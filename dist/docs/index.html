@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+  <html lang="es">
+    <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mencho</title>
+  <meta name="description" content="">
+  <meta name="author" content="Presidencia de la Nación">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <!-- Nav and address bar color -->
+  <meta name="theme-color" content="#0072b8">
+  <meta name="msapplication-navbutton-color" content="#0072b8">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
+
+  <meta property="og:url" content="//docs/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Mencho" />
+  <meta property="og:description" content="" />
+  <meta property="og:image" content="/ejemplos/img/jumbotron.jpg" />
+  <meta property="og:locale" content="es_AR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Mencho" />
+  <meta name="twitter:description" content="" />
+  <meta name="twitter:image" content="/ejemplos/img/jumbotron.jpg" />
+
+  <link href="/css/roboto-fontface.css" rel="stylesheet">
+  <link href="/css/bootstrap.css" rel="stylesheet">
+  <link href="/css/droid-serif.css" rel="stylesheet">
+  <link href="/css/font-awesome.min.css" rel="stylesheet">
+  <link href="/css/mencho.css" rel="stylesheet">
+</head>
+
+  <body>
+
+    <header>
+  <nav class="navbar navbar-top navbar-default" role="navigation">
+    <div class="container">
+      <div>
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">
+            <img alt="Brand" src="/img/argentinagob.svg" height="50">
+            <h1 class="sr-only">Argentina.gob.ar <small>Presidencia de la Nación</small></h1>
+          </a>
+        </div>
+        <div class="collapse navbar-collapse" id="main-navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="#">Documentación</a>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Ejemplos <b class="caret"></b></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="../ejemplos/pagina.html">Página</a></li>
+                <li><a href="../ejemplos/pagina-area.html">Página-area</a></li>
+                <li><a class="verMas right" href="../ejemplos/pagina-navegacion.html">Página-navegación</a></li>
+                <li><a class="verMas right" href="../ejemplos/noticia.html">Noticia</a></li>
+              </ul>
+            </li>
+
+            <li>
+              <a href="http://www.argentina.gob.ar/buscador_avanzado.php"><span class="glyphicon glyphicon-search"></span></a>
+            </li>
+
+          </ul>
+        </div>
+
+        <!-- SEARCH FORM -->
+        <div id="search_wrapper" class="col-sm-6 col-sm-offset-3">
+          <span class="bg-primary">en: Modernización</span>
+          <div class="input-group stylish-input-group">
+              <input type="text" class="form-control"  placeholder="Buscar trámites, servicios o áreas" >
+              <span class="input-group-addon">
+                  <button type="submit">
+                      <span class="glyphicon glyphicon-search"></span>
+                  </button>
+              </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+    <main role="main">
+      <div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <ol class="breadcrumb">
+        <li><a href="">Argentina</a></li>
+        <li><a href="">Ministerio de Modernización</a></li>
+        <li class="active">Título de página</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="container">
+    <div class="row">
+      <aside class="col-md-3 ">
+        <div class="fixed">
+          <div class="pane-content">
+            <nav class="page-sidebar">
+              <ul class="nav nav-pills nav-stacked">
+                <li class="btn-title"><a href="#estilos">Estilos</a></li>
+                <li class="btn-title"><a href="#components">Componentes</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </aside>
+      <div class="col-md-9">
+        <div class="row">
+          <div class="col-md-12">
+            <div id="css">
+              <h1 class="text-left text-primary">CSS</h1>
+
+              <h3>Tipografía</h3>
+              <br>
+              <h3>Encabezado</h3>
+              <h1>h1. Texto referencia <small>40 px | 2.5 em</small></h1>
+              <h2>h2. Texto referencia <small>36 px | 2.285714 em</small></h2>
+              <h3>h3. Texto referencia <small>32 pts | 2 em </small></h3>
+              <h4>h4. Texto referencia <small>27 pts | 1.714285 em</small></h4>
+              <h5>h5. Texto referencia <small>22 pts | 1.4 em</small></h5>
+              <h6>h6. Texto referencia <small>16 px | 1 em</small></h6>
+
+              <hr>
+
+              <h3>Cuerpo</h3>
+
+              <p class="lead">Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus. → 21 px</p>
+              <p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus. → 16 px | 1 em</p>
+
+              <hr>
+
+              <h3>Énfasis</h3>
+
+              <p>This line of text is meant to be treated as fine print.</p>
+
+              <p>The following snippet of text is <strong>rendered as bold text</strong></p>
+
+              <p>The following snippet of text is <i>rendered as italicized text</i></p>
+
+              <hr>
+
+              <h3>Cita</h3>
+              <blockquote>
+               <p> “Todas las áreas del Gobierno tendrán un plan de comunicación e información que será publicado y actualizado en forma permanente”</p>
+                — <cite>Andrés Ibarra</cite>
+              </blockquote>
+              <hr>
+
+             <h5>Lista </h5>
+              <ul>
+                <li>Lorem ipsum dolor sit <strong>amet</strong>.</li>
+                <li>Consectetur adipiscing elit <strong>lorem ipsum dolor sit</strong>.</li>
+                <li>Lorem ipsum dolor sit <strong>amet</strong>.</li>
+                <li>Consectetur adipiscing elit <strong>lorem ipsum dolor sit</strong>.</li>
+                <li>Lorem ipsum dolor sit <strong>amet</strong>.</li>
+                <li>Consectetur adipiscing elit <strong>lorem ipsum dolor sit</strong>.</li>
+              </ul>
+             <hr>
+             <h5>Descripcion </h5>
+            <dl>
+              <dt>Description lists</dt>
+              <dd>A description list is perfect for defining terms.</dd>
+              <dt>Euismod</dt>
+              <dd>Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</dd>
+              <dd>Donec id elit non mi porta gravida at eget metus.</dd>
+              <dt>Malesuada porta</dt>
+              <dd>Etiam porta sem malesuada magna mollis euismod.</dd>
+            </dl>
+             <hr>
+
+              <h3>Tablas</h3>
+              <p>El objetivo de las tablas es mostrar una serie de datos en forma ordenada, organizado en filas y columnas.</p><br>
+
+              <!-- Tables -->
+              <table class="table">
+                <thead>
+                <tr>
+                  <th>#</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Username</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>@mdo</td>
+                </tr>
+                <tr>
+                <th scope="row">2</th>
+                  <td>Jacob</td>
+                  <td>Thornton</td>
+                  <td>@fat</td>
+                </tr>
+                <tr>
+                <th scope="row">3</th>
+                  <td>Larry</td>
+                  <td>the Bird</td>
+                  <td>@twitter</td>
+                </tr>
+                </tbody>
+              </table>
+              <br>
+              <table class="table table-striped">
+                <thead>
+                <tr>
+                  <th>#</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Username</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>@mdo</td>
+                </tr>
+                <tr>
+                <th scope="row">2</th>
+                  <td>Jacob</td>
+                  <td>Thornton</td>
+                  <td>@fat</td>
+                </tr>
+                <tr>
+                <th scope="row">3</th>
+                  <td>Larry</td>
+                  <td>the Bird</td>
+                  <td>@twitter</td>
+                </tr>
+                </tbody>
+              </table>
+
+              <table class="table table-hover">
+                <thead>
+                <tr>
+                  <th>#</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Username</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>@mdo</td>
+                </tr>
+                <tr>
+                <th scope="row">2</th>
+                  <td>Jacob</td>
+                  <td>Thornton</td>
+                  <td>@fat</td>
+                </tr>
+                <tr>
+                <th scope="row">3</th>
+                  <td>Larry</td>
+                  <td>the Bird</td>
+                  <td>@twitter</td>
+                </tr>
+                </tbody>
+              </table>
+              <!-- Forms -->
+              <hr>
+              <h3>Ejemplo de formulario</h3>
+
+              <p>Los formulario permite que el usuario cargue datos y sean enviados al servidor. Es el medio ideal para realizar logeos, establecer contacto, sacar turnos, etc.</p><br>
+              <form>
+                <h3>Tamaños de campo</h3>
+                <div class="form-group"><input class="form-control input-lg" type="text" placeholder=".input-lg"></div>
+                <div class="form-group"><input class="form-control" type="text" placeholder=".input-default"></div>
+                <div class="form-group"><input class="form-control input-sm" type="text" placeholder=".input-sm"></div>
+
+                <div class="form-group"><select class="form-control input-lg"><option value="">.input-lg</option></select></div>
+                <div class="form-group"><select class="form-control"><option value="">Default</option></select></div>
+                <div class="form-group"><select class="form-control input-sm"><option value="">.input-sm</option></select></div>
+
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Dirección Email</label>
+                  <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Contraseña</label>
+                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                </div>
+                <div class="form-group">
+                  <p>Adjuntar archivo:</p>
+                  <input type="file" id="exampleInputFile" class="inputfile">
+                  <label for="exampleInputFile">Seleccionar archivo</label>
+                </div>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox"> Check
+                  </label>
+                </div>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+              </form>
+
+              <hr>
+              <h5>Tamaño de campos </h5>
+              <form role="form">
+                <div class="form-group">
+                  <input class="form-control input-xl" placeholder=".input-xl" type="text">
+                </div>
+                <div class="form-group">
+                  <input class="form-control input-lg" placeholder=".input-lg" type="text">
+                </div>
+                <div class="form-group">
+                  <input class="form-control" placeholder="Default input" type="text">
+                </div>
+                <div class="form-group">
+                  <input class="form-control input-sm" placeholder=".input-sm" type="text">
+                </div>
+                <div class="form-group">
+                  <select class="form-control input-xl">
+                    <option value="">.input-xl</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <select class="form-control input-lg">
+                    <option value="">.input-lg</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <select class="form-control">
+                    <option value="">Default select</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <select class="form-control input-sm">
+                    <option value="">.input-sm</option>
+                  </select>
+                </div>
+              </form>
+
+              <hr>
+              <h5>Estado de validación </h5>
+
+              <div class="form-group has-success has-feedback">
+                <label class="control-label" for="inputSuccess2">Input with success</label>
+                <input type="text" class="form-control" id="inputSuccess2">
+                <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+              </div>
+              <div class="form-group has-success has-feedback">
+                <label class="control-label" for="inputSuccess2">Input small with success</label>
+                <input type="text" class="form-control input-sm" id="inputSuccess2">
+                <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+              </div>
+              <div class="form-group has-warning has-feedback">
+                <label class="control-label" for="inputWarning2">Input with warning</label>
+                <input type="text" class="form-control" id="inputWarning2">
+                <span class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
+              </div>
+              <div class="form-group has-error has-feedback">
+                <label class="control-label" for="inputError2">Input with error</label>
+                <input type="text" class="form-control" id="inputError2">
+                <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+              </div>
+
+              <hr>
+
+              <h5>Input groups</h5>
+
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-btn">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Action</button>
+                    <ul class="dropdown-menu">
+                      <li><a href="#">Action</a></li>
+                      <li><a href="#">Another action</a></li>
+                      <li><a href="#">Something else here</a></li>
+                      <li class="divider"></li>
+                      <li><a href="#">Separated link</a></li>
+                    </ul>
+                  </div><!-- /btn-group -->
+                  <input type="text" class="form-control">
+                </div><!-- /input-group -->
+              </div>
+
+              <div class="form-group">
+                <div class="input-group">
+                  <input class="form-control" type="text">
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="button">Go!</button>
+                  </span>
+                </div>
+              </div>
+              <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">@</span>
+                <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+              </div>
+              <br>
+              <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
+                <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+              </div>
+              <br>
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="Recipient's username" aria-describedby="basic-addon2">
+                <span class="input-group-addon" id="basic-addon2">@example.com</span>
+              </div>
+              <br>
+              <div class="input-group">
+                <span class="input-group-addon">$</span>
+                <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                <span class="input-group-addon">.00</span>
+              </div>
+              <br>
+              <label for="basic-url">Url</label>
+              <div class="input-group">
+                <span class="input-group-addon" id="basic-addon3">https://example.com/users/</span>
+                <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+              </div>
+
+              <hr>
+
+              <h3>Navegación</h3>
+
+              <!-- Buttons-->
+              <h5>Botones</h5>
+
+              <p>
+                <button type="button" class="btn btn-default">Default</button>
+                <button type="button" class="btn btn-primary">Primary</button>
+                <button type="button" class="btn btn-success">Success</button>
+                <button type="button" class="btn btn-info disabled">Disabled</button>
+              </p>
+              <p>
+                <button type="button" class="btn btn-info">Info</button>
+                <button type="button" class="btn btn-warning">Warning</button>
+                <button type="button" class="btn btn-danger">Danger</button>
+                <button type="button" class="btn btn-link">Link</button>
+                <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-map-marker"></span>Boton con ícono</button>
+              </p>
+
+              <hr>
+              <h5>Tamaños</h5>
+              <p>
+                <button type="button" class="btn btn-primary btn-lg">Large button</button>
+                <button type="button" class="btn btn-default btn-lg">Large button</button>
+              </p>
+              <p>
+                <button type="button" class="btn btn-primary">Default button</button>
+                <button type="button" class="btn btn-default">Default button</button>
+              </p>
+              <p>
+                <button type="button" class="btn btn-primary btn-sm">Small button</button>
+                <button type="button" class="btn btn-default btn-sm">Small button</button>
+              </p>
+              <p>
+                <button type="button" class="btn btn-primary btn-xs">Extra small button</button>
+                <button type="button" class="btn btn-default btn-xs">Extra small button</button>
+              </p>
+
+              <hr>
+              <h3>Imágenes</h3>
+              <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgdmlld0JveD0iMCAwIDE0MCAxNDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzE0MHgxNDAKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xNTJmOWQxZWZiMSB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE1MmY5ZDFlZmIxIj48cmVjdCB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjQ1LjUiIHk9Ijc0LjUiPjE0MHgxNDA8L3RleHQ+PC9nPjwvZz48L3N2Zz4=" alt="" class="img-rounded">
+
+              <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgdmlld0JveD0iMCAwIDE0MCAxNDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzE0MHgxNDAKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xNTJmOWQxZWZiMSB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE1MmY5ZDFlZmIxIj48cmVjdCB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjQ1LjUiIHk9Ijc0LjUiPjE0MHgxNDA8L3RleHQ+PC9nPjwvZz48L3N2Zz4=" alt="" class="img-circle">
+
+            </div>
+
+            <div id="components" class="padding-60">
+              <h1 class="text-left text-primary">Componentes</h1>
+              <!-- DropDown -->
+              <h5>Botón con desplegable </h5>
+              <!-- Single button -->
+              <div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">  Default <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Action</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li><a href="#">Separated link</a></li>
+                </ul>
+              </div>
+              <div class="btn-group">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">  Primary <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Action</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li><a href="#">Separated link</a></li>
+                </ul>
+              </div>
+              <div class="btn-group">
+                <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">  Success <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Action</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li><a href="#">Separated link</a></li>
+                </ul>
+              </div>
+              <div class="btn-group">
+                <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Info <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Action</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li><a href="#">Separated link</a></li>
+                </ul>
+              </div>
+              <div class="btn-group">
+                <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">  Warning <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Action</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li><a href="#">Separated link</a></li>
+                </ul>
+              </div>
+              <div class="btn-group">
+                <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Danger <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Action</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li><a href="#">Separated link</a></li>
+                </ul>
+              </div>
+
+              <hr>
+
+              <h5>Button Group</h5>
+              <div class="btn-group" role="group" aria-label="...">
+                <button type="button" class="btn btn-default">Left</button>
+                <button type="button" class="btn btn-default">Middle</button>
+                <button type="button" class="btn btn-default">Right</button>
+              </div>
+              <!-- Single button -->
+              <div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Action <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Action</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li><a href="#">Separated link</a></li>
+                </ul>
+              </div>
+
+              <hr>
+
+              <h5>Pestañas</h5>
+
+              <ul class="nav nav-tabs">
+                <li role="presentation" class="active"><a href="#">Home</a></li>
+                <li role="presentation"><a href="#">Profile</a></li>
+                <li role="presentation"><a href="#">Messages</a></li>
+              </ul>
+              <hr>
+
+              <h5>Barra de navegación </h5>
+
+              <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                  <!-- Brand and toggle get grouped for better mobile display -->
+                  <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#"><img src="img/argentinagob.svg" height="50" alt=""></a>
+                  </div>
+
+                  <!-- Collect the nav links, forms, and other content for toggling -->
+                  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                      <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+                      <li><a href="#">Link</a></li>
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                          <li><a href="#">Action</a></li>
+                          <li><a href="#">Another action</a></li>
+                          <li><a href="#">Something else here</a></li>
+                          <li role="separator" class="divider"></li>
+                          <li><a href="#">Separated link</a></li>
+                          <li role="separator" class="divider"></li>
+                          <li><a href="#">One more separated link</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="#">Link</a></li>
+                      <li>
+                        <ul class="dropdown-menu">
+                          <li><a href="#">Action</a></li>
+                          <li><a href="#">Another action</a></li>
+                          <li><a href="#">Something else here</a></li>
+                          <li role="separator" class="divider"></li>
+                          <li><a href="#">Separated link</a></li>
+                          <li role="separator" class="divider"></li>
+                          <li><a href="#">One more separated link</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+              </nav>
+
+              <hr>
+
+              <h5>BreadCrumb</h5>
+              <ol class="breadcrumb">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Library</a></li>
+                <li class="active">Data</li>
+              </ol>
+              <hr>
+
+              <!-- Pagination -->
+              <h5>Pagination</h5>
+              <nav>
+                <ul class="pagination">
+                  <li>
+                    <a href="#" aria-label="Previous">
+                      <span aria-hidden="true">&laquo;</span>
+                    </a>
+                  </li>
+                  <li class="active"><a href="#">1</a></li>
+                  <li><a href="#">2</a></li>
+                  <li><a href="#">3</a></li>
+                  <li><a href="#">4</a></li>
+                  <li><a href="#">5</a></li>
+                  <li><a href="#">6</a></li>
+                  <li><a href="#">7</a></li>
+                  <li><a href="#">8</a></li>
+                  <li><a href="#">9</a></li>
+                  <li>
+                    <a href="#" aria-label="Next">
+                      <span aria-hidden="true">&raquo;</span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+              <hr>
+
+              <h3>Contenido</h3>
+              <h5>Grupo de lista </h5>
+              <ul class="list-group">
+                <li class="list-group-item">Cras justo odio</li>
+                <li class="list-group-item">Dapibus ac facilisis in</li>
+                <li class="list-group-item"><span class="badge">14</span> Morbi leo risus</li>
+                <li class="list-group-item">Porta ac consectetur ac</li>
+                <li class="list-group-item">Vestibulum at eros</li>
+              </ul>
+
+              <hr>
+
+              <h5>Panel </h5>
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  Basic panel example
+                </div>
+              </div>
+              <p>Panel link no destacado</p>
+              <a class="panel panel-default" href="#">
+                  <div class="panel-body">
+                    <h3>Este es el título del link</h3>
+                  </div>
+                </a>
+              <p>Panel links no destacados con descripción</p>
+              <a class="panel panel-default" href="#">
+                <div class="panel-body">
+                  <h3>Ministerio de Economía</h3>
+                  <p class="text-muted">quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
+                </div>
+              </a>
+
+              <div class="row">
+                <div class="col-sm-6 col-md-4">
+                  <p>Panel links destacados con iconos y descripción</p>
+                  <a class="panel panel-default panel-icon" href="#">
+                    <div class="panel-heading"><i class="fa fa-file"></i></div>
+                    <div class="panel-body">
+                      <h3>Ministerio de Economía</h3>
+                      <p class="text-muted">quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
+                    </div>
+                  </a>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                  <p>Panel links destacados con fotos</p>
+                  <a class="panel panel-default" href="#">
+                    <div style="background-image:url('img/thumb-ph1.jpg');" class="panel-heading"></div>
+                    <div class="panel-body">
+                      <h3>Este es el título del link</h3>
+                    </div>
+                  </a>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                  <p>Panel Noticia Destacada</p>
+                  <a class="panel panel-default panel-md" href="#">
+                    <div style="background-image:url('./img/thumb-ph1.jpg');" class="panel-heading"></div>
+                    <div class="panel-body">
+                      <time>Jueves 14 de Enero del 2016</time>
+                      <h4>El Ministro Buryaile asistió a la apertura de la Semana Verde Internacional, en Berlín</h4>
+                    </div>
+                  </a>
+                </div>
+
+              </div>
+
+              <hr>
+
+              <h5>Lista multimedia </h5>
+              <hr>
+              <h5>Wells </h5>
+              <div class="well"><span>Look, I'm in a well!</span></div>
+              <div class="well well-lg"><h1>Look, I'm in a large well!</h1></div>
+              <div class="well well-sm"><span><small>Look, I'm in a small well!</small></span></div>
+
+              <hr>
+
+
+              <h3>Elementos auxiliares</h3>
+
+              <h5>Labels</h5>
+              <span class="label label-default">Default</span>
+              <span class="label label-primary">Primary</span>
+              <span class="label label-success">Success</span>
+              <span class="label label-info">Info</span>
+              <span class="label label-warning">Warning</span>
+              <span class="label label-danger">Danger</span>
+              <hr>
+
+              <h5>Badges</h5>
+              <a href="#">Inbox <span class="badge">42</span></a>
+              <button class="btn btn-primary" type="button">
+                Messages <span class="badge">4</span>
+              </button>
+              <hr>
+
+              <h5>Alerts</h5>
+              <div class="alert alert-success" role="alert">Mensaje</div>
+              <div class="alert alert-info" role="alert">Mensaje</div>
+              <div class="alert alert-warning" role="alert">Mensaje</div>
+              <div class="alert alert-danger" role="alert">Mensaje</div>
+              <div class="alert alert-warning">
+                  <div class="media">
+                      <div class="media-left">
+                          <i class="fa fa-arrow-circle-o-right fa-fw fa-4x"></i>
+                      </div>
+                      <div class="media-body">
+                          <h4>¿Ya iniciaste tu tramite? </h4>
+                          <p class="margin-0">Seguí el <a href="http://www.mininterior.gov.ar/tramitesyservicios/estado-tramite-dni.php" target="_blank">estado del trámite en linea</a></p>
+                      </div>
+                  </div>
+              </div>
+              <div class="alert alert-info">
+                  <div class="media">
+                      <div class="media-left">
+                          <i class="fa fa-phone fa-fw fa-4x"></i>
+                      </div>
+                      <div class="media-body">
+                          <h4><a href="">Línea gratuíta 0800-999-0209 </a></h4>
+                          <p class="margin-0">Servicio Gratuíto de Orientación y Asesoramiento al Ciudadano</p>
+                      </div>
+                  </div>
+              </div>
+              <hr>
+
+              <h5>Progress Bar</h5>
+              <div class="progress">
+                <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                  <span class="sr-only">60% Complete</span>
+                </div>
+              </div>
+              <hr>
+
+              <h5>Helper classes</h5>
+
+              <p class="text-muted">Fusce dapibus, tellus ac cursus commodo, tortor mauris nibh.</p>
+              <p class="text-primary">Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+              <p class="text-success">Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
+              <p class="text-info">Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+              <p class="text-warning">Etiam porta sem malesuada magna mollis euismod.</p>
+              <p class="text-danger">Donec ullamcorper nulla non metus auctor fringilla.</p>
+
+              <hr>
+
+
+
+              <h5>Colores de fondo</h5>
+
+              <div class="docs-colores">
+                <span class="bg-primary"></span>
+                <span class="bg-success"></span>
+                <span class="bg-info"></span>
+                <span class="bg-warning"></span>
+                <span class="bg-danger"></span>
+              </div>
+
+              <div class="clearfix"></div>
+              <hr>
+
+
+            <div id="components">
+              <h1>Componentes</h1>
+
+              <h5>Jumbotron</h5>
+              <div class="jumbotron" style="background-image: url('img/modernizacion.jpg');">
+                <div class="jumbotron_body">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-xs-12 col-md-8 col-md-offset-2 text-center">
+                        <h1>Hello, world!</h1>
+                        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                  <div class="overlay"></div>
+              </div>
+              <h5>Jumbotron con barra superior</h5>
+              <section class="jumbotron" style="background-image: url('img/modernizacion.jpg');">
+                <div class="jumbotron_bar">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <ol class="breadcrumb pull-left">
+                          <li><a href="">Argentina</a></li>
+                          <li class="active"><span>Ministerio de Modernización</span></li>
+                        </ol>
+                        <ul class="list-inline pull-right">
+                          <li><a href="#" class="search"><i class="glyphicon glyphicon-search"></i>Buscar en el área</a></li>
+                          <li><a href="#">Institucional</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="jumbotron_body">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-xs-12 col-md-8 col-md-offset-2 text-center">
+                        <h1>Hello, world!</h1>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt enim tempora at voluptas labore asperiores blanditiis similique laudantium placeat molestiae aut quam nisi sint atque, ullam consequuntur perspiciatis eum fuga.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="overlay"></div>
+              </section>
+
+              <hr>
+              <h5>Page Header</h5>
+              <div class="page-header">
+                <h1>Example page header <small>Subtext for header</small></h1>
+              </div>
+              <hr>
+
+              <h5>Media Object</h5>
+              <div class="media">
+                <div class="media-left">
+                  <a href="#">
+                    <img class="media-object" src="http://placehold.it/100x100" alt="...">
+                  </a>
+                </div>
+                <div class="media-body">
+                  <h4 class="media-heading">Media heading</h4>
+                   Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                </div>
+              </div>
+              <hr>
+              <h5>Responsive Embeb</h5>
+              <!-- 16:9 aspect ratio -->
+              <!-- 4:3 aspect ratio -->
+              <h5>Aspect Ratio 16:9</h5>
+              <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/XYPJDCoR6nw"></iframe>
+              </div>
+              <br>
+              <h5>Aspect Ratio 4:3</h5>
+              <div class="embed-responsive embed-responsive-4by3">
+                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/XYPJDCoR6nw"></iframe>
+              </div>
+              <hr>
+            </div>
+            <div id="Javascript">
+              <h1>Javascript</h1>
+
+              <h5>Modal</h5>
+
+              <!-- Button to trigger modal -->
+                <a href="#myModal" role="button" class="btn btn-primary" data-toggle="modal">Launch demo modal</a>
+
+                <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Modal title</h4>
+                      </div>
+                      <div class="modal-body">
+                        <p>One fine body&hellip;</p>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                      </div>
+                    </div><!-- /.modal-content -->
+                  </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+              <hr>
+
+              <h5>Tooltip</h5>
+
+                <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="left" title="Tooltip on left">Tooltip on left</button>
+
+                <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Tooltip on top">Tooltip on top</button>
+
+                <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Tooltip on bottom</button>
+
+                <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="right" title="Tooltip on right">Tooltip on right</button>
+
+              <hr>
+
+              <h5>Popovers</h5>
+
+              <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+                Popover on left
+              </button>
+
+              <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+                Popover on top
+              </button>
+
+              <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Vivamus
+              sagittis lacus vel augue laoreet rutrum faucibus.">
+                Popover on bottom
+              </button>
+
+              <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="right" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+                Popover on right
+              </button>
+
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+
+    </div>
+
+
+  </div>
+</section>
+
+    </main>
+
+    <script src="/js/jquery.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script>
+      $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+        $('[data-toggle="popover"]').popover()
+      })
+    </script>
+
+  </body>
+</html>

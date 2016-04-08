@@ -1,0 +1,7 @@
+.sass-cache
+Gemfile.lock
+
+# Mac files
+.DS_Store
+
+src/_site
