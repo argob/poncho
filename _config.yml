@@ -7,7 +7,7 @@
 
 # Site settings
 lang: es
-title: "Mencho"
+title: "Poncho"
 Description: "Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina."
 
 baseurl: "/" # the subpath of your site, e.g. /blog
