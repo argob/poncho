@@ -2,6 +2,8 @@
 
 Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.
 
+[Ver documentación](http://argob.github.io/poncho/)
+
 ## Instalación y requisitos
 
 Para poder correr el proyecto es necesario tener instalado Ruby y la gema de [Bundler](http://bundler.io/):
