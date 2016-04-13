@@ -30,6 +30,7 @@
   <link href="/css/bootstrap.css" rel="stylesheet">
   <link href="/css/droid-serif.css" rel="stylesheet">
   <link href="/css/font-awesome.min.css" rel="stylesheet">
+  <link href="/css/docs.css" rel="stylesheet">
   <link href="/css/poncho.css" rel="stylesheet">
 </head>
 
@@ -91,7 +92,7 @@
   </nav>
 </header>
 
-    <main role="main">
+    <main id="docs" role="main">
       <div class="container">
   <div class="row">
     <div class="col-sm-6">
@@ -123,9 +124,7 @@
         <div class="row">
           <div class="col-md-12">
             <div id="css">
-              <h1 class="text-left text-primary">CSS</h1>
-
-              <h3>Tipografía</h3>
+              <h2>Tipografía</h2>
               <br>
               <h3>Encabezado</h3>
               <h1>h1. Texto referencia <small>40 px | 2.5 em</small></h1>
@@ -136,6 +135,11 @@
               <h6>h6. Texto referencia <small>16 px | 1 em</small></h6>
 
               <hr>
+
+              <h3>Encabezado Página</h3>
+              <div class="page-header">
+                <h1>Ejemplo de encabezado de página <small> subtítulo de encabezado</small></h1>
+              </div>
 
               <h3>Cuerpo</h3>
 
@@ -161,7 +165,7 @@
               </blockquote>
               <hr>
 
-             <h5>Lista </h5>
+             <h3>Lista </h3>
               <ul>
                 <li>Lorem ipsum dolor sit <strong>amet</strong>.</li>
                 <li>Consectetur adipiscing elit <strong>lorem ipsum dolor sit</strong>.</li>
@@ -171,7 +175,7 @@
                 <li>Consectetur adipiscing elit <strong>lorem ipsum dolor sit</strong>.</li>
               </ul>
              <hr>
-             <h5>Descripción </h5>
+             <h3>Descripción </h3>
             <dl>
               <dt>Listas descriptivas</dt>
               <dd>Una lista descriptiva es perfecta para la definición de términos.</dd>
@@ -316,7 +320,7 @@
               </form>
 
               <hr>
-              <h5>Tamaño de campos </h5>
+              <h3>Tamaño de campos </h3>
               <form role="form">
                 <div class="form-group">
                   <input class="form-control input-xl" placeholder=".input-xl" type="text">
@@ -353,7 +357,7 @@
               </form>
 
               <hr>
-              <h5>Estado de validación </h5>
+              <h3>Estado de validación </h3>
 
               <div class="form-group has-success has-feedback">
                 <label class="control-label" for="inputSuccess2">Campo de entrada con éxito</label>
@@ -378,7 +382,7 @@
 
               <hr>
 
-              <h5>Input groups</h5>
+              <h3>Campos especiales</h3>
 
               <div class="form-group">
                 <div class="input-group">
@@ -425,7 +429,7 @@
                 <span class="input-group-addon">.00</span>
               </div>
               <br>
-              <label for="basic-url">Url</label>
+              <label for="basic-url">Dirección de enlace</label>
               <div class="input-group">
                 <span class="input-group-addon" id="basic-addon3">https://ejemplo.com/usuarios/</span>
                 <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
@@ -433,10 +437,8 @@
 
               <hr>
 
-              <h3>Navegación</h3>
-
               <!-- Buttons-->
-              <h5>Botones</h5>
+              <h3>Botones</h3>
 
               <p>
                 <button type="button" class="btn btn-default">Default</button>
@@ -453,7 +455,7 @@
               </p>
 
               <hr>
-              <h5>Tamaños de botones</h5>
+              <h3>Tamaños de botones</h3>
               <p>
                 <button type="button" class="btn btn-primary btn-lg">Boton grande (btn-lg)</button>
                 <button type="button" class="btn btn-default btn-lg">Boton grande (btn-lg)</button>
@@ -480,9 +482,8 @@
             </div>
 
             <div id="components" class="padding-60">
-              <h1 class="text-left text-primary">Componentes</h1>
               <!-- DropDown -->
-              <h5>Botón con desplegable </h5>
+              <h3>Botón con desplegable </h3>
               <!-- Single button -->
               <div class="btn-group">
                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">  Default <span class="caret"></span></button>
@@ -547,7 +548,7 @@
 
               <hr>
 
-              <h5>Grupo de botones</h5>
+              <h3>Grupo de botones</h3>
               <div class="btn-group" role="group" aria-label="...">
                 <button type="button" class="btn btn-default">Izquierda&nbsp;(left)</button>
                 <button type="button" class="btn btn-default">Centro&nbsp;(middle)</button>
@@ -569,7 +570,7 @@
 
               <hr>
 
-              <h5>Pestañas</h5>
+              <h3>Pestañas</h3>
 
               <ul class="nav nav-tabs">
                 <li role="presentation" class="active"><a href="#">Inicio</a></li>
@@ -578,7 +579,7 @@
               </ul>
               <hr>
 
-              <h5>Barra de navegación </h5>
+              <h3>Barra de navegación </h3>
 
               <nav class="navbar navbar-default">
                 <div class="container-fluid">
@@ -629,7 +630,7 @@
 
               <hr>
 
-              <h5>BreadCrumb - Referencia de ubicación</h5>
+              <h3>BreadCrumb - Referencia de ubicación</h3>
               <ol class="breadcrumb">
                 <li><a href="#">Inicio</a></li>
                 <li><a href="#">Sección</a></li>
@@ -638,7 +639,7 @@
               <hr>
 
               <!-- Pagination -->
-              <h5>Paginación</h5>
+              <h3>Paginación</h3>
               <nav>
                 <ul class="pagination">
                   <li>
@@ -665,7 +666,7 @@
               <hr>
 
               <h3>Contenido</h3>
-              <h5>Grupo de lista </h5>
+              <h4>Grupo de lista </h4>
               <ul class="list-group">
                 <li class="list-group-item">Cras justo odio</li>
                 <li class="list-group-item">Dapibus ac facilisis in</li>
@@ -676,7 +677,7 @@
 
               <hr>
 
-              <h5>Panel </h5>
+              <h4>Panel </h4>
               <div class="panel panel-default">
                 <div class="panel-body">
                   Ejemplo de panel básico
@@ -710,7 +711,7 @@
                 <div class="col-sm-6 col-md-4">
                   <p>Panel links destacados con fotos</p>
                   <a class="panel panel-default" href="#">
-                    <div style="background-image:url('img/thumb-ph1.jpg');" class="panel-heading"></div>
+                    <div style="background-image:url('img/placeholder.png');" class="panel-heading"></div>
                     <div class="panel-body">
                       <h3>Este es el título del link</h3>
                     </div>
@@ -719,7 +720,7 @@
                 <div class="col-sm-6 col-md-4">
                   <p>Panel Noticia Destacada</p>
                   <a class="panel panel-default panel-md" href="#">
-                    <div style="background-image:url('./img/thumb-ph1.jpg');" class="panel-heading"></div>
+                    <div style="background-image:url('./img/placeholder.png');" class="panel-heading"></div>
                     <div class="panel-body">
                       <time>Jueves 14 de Enero del 2016</time>
                       <h4>El Ministro Buryaile asistió a la apertura de la Semana Verde Internacional, en Berlín</h4>
@@ -731,7 +732,7 @@
 
               <hr>
 
-              <h5>Wells </h5>
+              <h4>Wells </h4>
               <p>Utilice el well para darle un efecto de inserción a un elemento .</p>
               <div class="well"><span>Texto referencia.</span></div>
               <div class="well well-lg"><h1>Texto referencia.</h1></div>
@@ -740,9 +741,9 @@
               <hr>
 
 
-              <h3>Elementos auxiliares</h3>
 
-              <h5>Etiquetas</h5>
+
+              <h3>Etiquetas</h3>
               <span class="label label-default">Default</span>
               <span class="label label-primary">Primary</span>
               <span class="label label-success">Success</span>
@@ -751,19 +752,25 @@
               <span class="label label-danger">Danger</span>
               <hr>
 
-              <h5>Badges</h5>
+              <h3>Etiqueta numérica</h3>
               <p>Resaltar facilmente los elementos nuevos o no leídos mediante la adición de un span class="badge" a los enlaces, navs, y otros elementos.</p>
-              <a href="#">Bandeja de entrada <span class="badge">42</span></a>
+              <a href="#">Bandeja de entrada  &nbsp; <span class="badge">42</span></a>
+              <br>
+              <br>
               <button class="btn btn-primary" type="button">
-                Mensajes <span class="badge">4</span>
+                Mensajes &nbsp; <span class="badge">4</span>
               </button>
               <hr>
 
-              <h5>Alertas</h5>
+              <h3>Alertas</h3>
               <div class="alert alert-success" role="alert">Mensaje</div>
               <div class="alert alert-info" role="alert">Mensaje</div>
               <div class="alert alert-warning" role="alert">Mensaje</div>
               <div class="alert alert-danger" role="alert">Mensaje</div>
+              <hr>
+              <h3>Alertas con ícono</h3>
+              <br>
+
               <div class="alert alert-warning">
                   <div class="media">
                       <div class="media-left">
@@ -788,7 +795,7 @@
               </div>
               <hr>
 
-              <h5>Barra de progreso</h5>
+              <h4>Barra de progreso</h4>
               <div class="progress">
                 <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
                   <span class="sr-only">60% Completado</span>
@@ -796,7 +803,7 @@
               </div>
               <hr>
 
-              <h5>Clases auxiliares</h5>
+              <h4>Clases auxiliares</h4>
 
               <p class="text-muted">Fusce dapibus, tellus ac cursus commodo, tortor mauris nibh.</p>
               <p class="text-primary">Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
@@ -807,16 +814,15 @@
 
               <hr>
 
-
-
-              <h5>Colores de fondo</h5>
+              <h4>Colores de fondo</h4>
+              <br>
 
               <div class="docs-colores">
-                <span class="bg-primary">Texto de referencia.</span>
-                <span class="bg-success">Texto de referencia.</span>
-                <span class="bg-info">Texto de referencia.</span>
-                <span class="bg-warning">Texto de referencia.</span>
-                <span class="bg-danger">Texto de referencia.</span>
+                <span class="bg-primary"></span>
+                <span class="bg-success"></span>
+                <span class="bg-info"></span>
+                <span class="bg-warning"></span>
+                <span class="bg-danger"></span>
               </div>
 
               <div class="clearfix"></div>
@@ -824,9 +830,8 @@
 
 
             <div id="components">
-              <h1>Componentes</h1>
 
-              <h5>Jumbotron</h5>
+              <h3>Jumbotron</h3>
               <div class="jumbotron" style="background-image: url('img/modernizacion.jpg');">
                 <div class="jumbotron_body">
                   <div class="container">
@@ -841,7 +846,8 @@
                 </div>
                   <div class="overlay"></div>
               </div>
-              <h5>Jumbotron con barra superior</h5>
+              <br>
+              <h3>Jumbotron con barra superior</h3>
               <section class="jumbotron" style="background-image: url('img/modernizacion.jpg');">
                 <div class="jumbotron_bar">
                   <div class="container">
@@ -873,13 +879,8 @@
               </section>
 
               <hr>
-              <h5>Encabezado Página</h5>
-              <div class="page-header">
-                <h1>Ejemplo de encabezado de página <small> subtítulo de encabezado</small></h1>
-              </div>
-              <hr>
 
-              <h5>Media Object</h5>
+              <h3>Elemento multimedia</h3>
               <p>Estilos de objetos abstractos para la construcción de diversos tipos de componentes (como los comentarios de blogs, tweets, etc.) que ofrecen una imagen de la izquierda o alineado a la derecha junto con el contenido textual.</p>
               <div class="media">
                 <div class="media-left">
@@ -893,24 +894,26 @@
                 </div>
               </div>
               <hr>
-              <h5>Inserción responsiva</h5>
+              <h3>Videos Responsivos</h3>
               <!-- 16:9 aspect ratio -->
               <!-- 4:3 aspect ratio -->
               <h5>Relación de aspecto 16:9</h5>
+              <br>
               <div class="embed-responsive embed-responsive-16by9">
                 <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/XYPJDCoR6nw"></iframe>
               </div>
               <br>
               <h5>Relación de aspecto 4:3</h5>
+              <br>
               <div class="embed-responsive embed-responsive-4by3">
                 <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/XYPJDCoR6nw"></iframe>
               </div>
               <hr>
             </div>
             <div id="Javascript">
-              <h1>Javascript</h1>
+              <h3>Javascript</h3>
 
-              <h5>Modal</h5>
+              <h4>Modal</h4>
 
               <!-- Button to trigger modal -->
                 <a href="#myModal" role="button" class="btn btn-primary" data-toggle="modal">Iniciar demo de modal</a>
@@ -934,35 +937,34 @@
                 </div><!-- /.modal -->
               <hr>
 
-              <h5>Nota de ayuda sobre elemento</h5>
+              <h4>Nota de ayuda sobre elemento</h4>
 
+              <div style="position: relative;">
                 <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="left" title="Nota a la izquierda">Nota a la izquierda</button>
-
                 <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Nota superior">Nota superior</button>
-
                 <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Nota inferior">Nota inferior</button>
-
                 <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="right" title="Nota a la derecha">Nota a la derecha</button>
+              </div>
 
               <hr>
 
-              <h5>Popovers</h5>
+              <h4>Información contextual </h4>
 
               <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
-                Popover on left
+                A la derecha
               </button>
 
               <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
-                Popover on top
+                Arriba
               </button>
 
               <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Vivamus
               sagittis lacus vel augue laoreet rutrum faucibus.">
-                Popover on bottom
+                Abajo
               </button>
 
               <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="right" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
-                Popover on right
+                A la derecha
               </button>
 
             </div>
