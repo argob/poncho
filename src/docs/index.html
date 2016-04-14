@@ -7,9 +7,8 @@ layout: docs
   <div class="row">
     <div class="col-sm-6">
       <ol class="breadcrumb">
-        <li><a href="">Argentina</a></li>
-        <li><a href="">Ministerio de Modernización</a></li>
-        <li class="active">Título de página</li>
+        <li><a href="../">Poncho</a></li>
+        <li class="active">Documentación</li>
       </ol>
     </div>
   </div>
@@ -51,6 +50,8 @@ layout: docs
                 <h1>Ejemplo de encabezado de página <small> subtítulo de encabezado</small></h1>
               </div>
 
+              <hr>
+
               <h3>Cuerpo</h3>
 
               <p class="lead">Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus. → 21 px</p>
@@ -73,10 +74,12 @@ layout: docs
                <p> “Todas las áreas del Gobierno tendrán un plan de comunicación e información que será publicado y actualizado en forma permanente”</p>
                 — <cite>Andrés Ibarra</cite>
               </blockquote>
-              <hr>
 
-             <h3>Lista </h3>
-              <ul>
+              <hr>
+              <h3 class="margin-40">Listas</h3>
+
+              <h5>Lista sin orden</h5>
+              <ul class="margin-40">
                 <li>Lorem ipsum dolor sit <strong>amet</strong>.</li>
                 <li>Consectetur adipiscing elit <strong>lorem ipsum dolor sit</strong>.</li>
                 <li>Lorem ipsum dolor sit <strong>amet</strong>.</li>
@@ -84,19 +87,28 @@ layout: docs
                 <li>Lorem ipsum dolor sit <strong>amet</strong>.</li>
                 <li>Consectetur adipiscing elit <strong>lorem ipsum dolor sit</strong>.</li>
               </ul>
-             <hr>
-             <h3>Descripción </h3>
-            <dl>
-              <dt>Listas descriptivas</dt>
-              <dd>Una lista descriptiva es perfecta para la definición de términos.</dd>
-              <dt>Euismod</dt>
-              <dd>Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</dd>
-              <dd>Donec id elit non mi porta gravida at eget metus.</dd>
-              <dt>Malesuada porta</dt>
-              <dd>Etiam porta sem malesuada magna mollis euismod.</dd>
-            </dl>
-             <hr>
 
+              <h5>Lista ordenada</h5>
+              <ol class="margin-40">
+                <li>Lorem ipsum dolor sit <strong>amet</strong>.</li>
+                <li>Consectetur adipiscing elit <strong>lorem ipsum dolor sit</strong>.</li>
+                <li>Lorem ipsum dolor sit <strong>amet</strong>.</li>
+                <li>Consectetur adipiscing elit <strong>lorem ipsum dolor sit</strong>.</li>
+                <li>Lorem ipsum dolor sit <strong>amet</strong>.</li>
+                <li>Consectetur adipiscing elit <strong>lorem ipsum dolor sit</strong>.</li>
+              </ol>
+
+              <h5>Lista de descripción</h5>
+              <dl>
+                <dt>Listas descriptivas</dt>
+                <dd>Una lista descriptiva es perfecta para la definición de términos.</dd>
+                <dt>Euismod</dt>
+                <dd>Donec id elit non mi porta gravida at eget metus.</dd>
+                <dt>Malesuada porta</dt>
+                <dd>Etiam porta sem malesuada magna mollis euismod.</dd>
+              </dl>
+
+              <hr>
               <h3>Tablas</h3>
               <p>El objetivo de las tablas es mostrar una serie de datos en forma ordenada, organizado en filas y columnas.</p><br>
 
@@ -131,7 +143,9 @@ layout: docs
                 </tr>
                 </tbody>
               </table>
+
               <br>
+              <h5>Tabla con separador de filas</h5>
               <table class="table table-striped">
                 <thead>
                 <tr>
@@ -163,6 +177,80 @@ layout: docs
                 </tbody>
               </table>
 
+              <br>
+              <h5>Tabla con bordes</h5>
+              <table class="table table-bordered">
+                <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Nombre</th>
+                  <th>Apellido</th>
+                  <th>Nombre de usuario</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>@mdo</td>
+                </tr>
+                <tr>
+                <th scope="row">2</th>
+                  <td>Jacob</td>
+                  <td>Thornton</td>
+                  <td>@fat</td>
+                </tr>
+                <tr>
+                <th scope="row">3</th>
+                  <td>Larry</td>
+                  <td>the Bird</td>
+                  <td>@twitter</td>
+                </tr>
+                </tbody>
+              </table>
+
+              <br>
+              <h5>Tabla con colores</h5>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Nombre de usuario</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="info">
+                    <th scope="row">1</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                  </tr>
+                  <tr class="success">
+                    <th scope="row">3</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                  </tr>
+                  <tr class="warning">
+                    <th scope="row">4</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                  </tr>
+                  <tr class="danger">
+                    <th scope="row">5</th>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td>@twitter</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <br>
+              <h5>Tabla con hover</h5>
               <table class="table table-hover">
                 <thead>
                 <tr>
@@ -199,7 +287,7 @@ layout: docs
 
               <p>Los formulario permite que el usuario cargue datos y sean enviados al servidor. Es el medio ideal para realizar logueos, establecer contacto, sacar turnos, etc.</p><br>
               <form>
-                <h3>Tamaño de los campos para formulario</h3>
+                <h5>Tamaño de los campos para formulario</h5>
                 <div class="form-group"><input class="form-control input-lg" type="text" placeholder=".input-lg"></div>
                 <div class="form-group"><input class="form-control" type="text" placeholder=".input-default"></div>
                 <div class="form-group"><input class="form-control input-sm" type="text" placeholder=".input-sm"></div>
@@ -227,43 +315,6 @@ layout: docs
                   </label>
                 </div>
                 <button type="submit" class="btn btn-primary">Enviar</button>
-              </form>
-
-              <hr>
-              <h3>Tamaño de campos </h3>
-              <form role="form">
-                <div class="form-group">
-                  <input class="form-control input-xl" placeholder=".input-xl" type="text">
-                </div>
-                <div class="form-group">
-                  <input class="form-control input-lg" placeholder=".input-lg" type="text">
-                </div>
-                <div class="form-group">
-                  <input class="form-control" placeholder="Default input" type="text">
-                </div>
-                <div class="form-group">
-                  <input class="form-control input-sm" placeholder=".input-sm" type="text">
-                </div>
-                <div class="form-group">
-                  <select class="form-control input-xl">
-                    <option value="">.input-xl</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <select class="form-control input-lg">
-                    <option value="">.input-lg</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <select class="form-control">
-                    <option value="">Default select</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <select class="form-control input-sm">
-                    <option value="">.input-sm</option>
-                  </select>
-                </div>
               </form>
 
               <hr>
@@ -361,7 +412,7 @@ layout: docs
                 <button type="button" class="btn btn-warning">Warning</button>
                 <button type="button" class="btn btn-danger">Danger</button>
                 <button type="button" class="btn btn-link">Link</button>
-                <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-map-marker"></span>Boton con ícono</button>
+                <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-map-marker"></span> &nbsp; Boton con ícono</button>
               </p>
 
               <hr>
@@ -386,6 +437,8 @@ layout: docs
               <hr>
               <h3>Imágenes</h3>
               <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgdmlld0JveD0iMCAwIDE0MCAxNDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzE0MHgxNDAKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xNTJmOWQxZWZiMSB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE1MmY5ZDFlZmIxIj48cmVjdCB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjQ1LjUiIHk9Ijc0LjUiPjE0MHgxNDA8L3RleHQ+PC9nPjwvZz48L3N2Zz4=" alt="" class="img-rounded">
+
+              &nbsp;
 
               <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgdmlld0JveD0iMCAwIDE0MCAxNDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzE0MHgxNDAKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xNTJmOWQxZWZiMSB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE1MmY5ZDFlZmIxIj48cmVjdCB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjQ1LjUiIHk9Ijc0LjUiPjE0MHgxNDA8L3RleHQ+PC9nPjwvZz48L3N2Zz4=" alt="" class="img-circle">
 
@@ -850,10 +903,10 @@ layout: docs
               <h4>Nota de ayuda sobre elemento</h4>
 
               <div style="position: relative;">
-                <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="left" title="Nota a la izquierda">Nota a la izquierda</button>
-                <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Nota superior">Nota superior</button>
-                <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Nota inferior">Nota inferior</button>
-                <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="right" title="Nota a la derecha">Nota a la derecha</button>
+                <button type="button" class="btn btn-link" data-toggle="tooltip" data-placement="left" title="Nota a la izquierda">Nota a la izquierda</button>
+                <button type="button" class="btn btn-link" data-toggle="tooltip" data-placement="top" title="Nota superior">Nota superior</button>
+                <button type="button" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Nota inferior">Nota inferior</button>
+                <button type="button" class="btn btn-link" data-toggle="tooltip" data-placement="right" title="Nota a la derecha">Nota a la derecha</button>
               </div>
 
               <hr>
