@@ -5,7 +5,7 @@
   <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
   <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
   <meta name="author" content="Presidencia de la Nación">
-  <link rel="shortcut icon" href="{{ "/favicon.ico" | prepend: site.url }}">
+  <link rel="shortcut icon" href="{{ "/favicon.ico" | prepend: site.baseurl }}">
 
   <!-- Nav and address bar color -->
   <meta name="theme-color" content="#0072b8">
@@ -24,10 +24,10 @@
   <meta name="twitter:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}" />
   <meta name="twitter:image" content="/ejemplos/img/jumbotron.jpg" />
 
-  <link href="{{ "css/roboto-fontface.css" | prepend: site.baseurl }}" rel="stylesheet">
-  <link href="{{ "css/bootstrap.css" | prepend: site.baseurl }}" rel="stylesheet">
-  <link href="{{ "css/droid-serif.css" | prepend: site.baseurl }}" rel="stylesheet">
-  <link href="{{ "css/font-awesome.min.css" | prepend: site.baseurl }}" rel="stylesheet">
-  <link href="{{ "css/docs.css" | prepend: site.baseurl }}" rel="stylesheet">
-  <link href="{{ "css/poncho.css" | prepend: site.baseurl }}" rel="stylesheet">
+  <link href="{{ "/css/roboto-fontface.css" | prepend: site.baseurl }}" rel="stylesheet">
+  <link href="{{ "/css/bootstrap.css" | prepend: site.baseurl }}" rel="stylesheet">
+  <link href="{{ "/css/droid-serif.css" | prepend: site.baseurl }}" rel="stylesheet">
+  <link href="{{ "/css/font-awesome.min.css" | prepend: site.baseurl }}" rel="stylesheet">
+  <link href="{{ "/css/docs.css" | prepend: site.baseurl }}" rel="stylesheet">
+  <link href="{{ "/css/poncho.css" | prepend: site.baseurl }}" rel="stylesheet">
 </head>

@@ -8,9 +8,9 @@
 # Site settings
 lang: es
 title: "Poncho"
-Description: "Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina."
+description: "Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina."
 
-baseurl: "/" # the subpath of your site, e.g. /blog
+baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site
 
 source: src
