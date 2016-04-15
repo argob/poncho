@@ -10,7 +10,7 @@ lang: es
 title: "Poncho"
 description: "Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina."
 
-baseurl: "" # the subpath of your site, e.g. /blog
+baseurl: "/poncho" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site
 
 source: src
