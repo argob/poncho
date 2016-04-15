@@ -8,8 +8,9 @@
       {{ content }}
     </main>
 
-    <script src="{{ "js/jquery.js" | prepend: site.baseurl }}"></script>
-    <script src="{{ "js/bootstrap.min.js" | prepend: site.baseurl }}"></script>
+    <script src="{{ "/js/jquery.js" | prepend: site.baseurl }}"></script>
+    <script src="{{ "/js/bootstrap.min.js" | prepend: site.baseurl }}"></script>
+    <script src="{{ "/js/prism.js" | prepend: site.baseurl }}"></script>
     <script>
       $(function () {
         $('[data-toggle="tooltip"]').tooltip();
