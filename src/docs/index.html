@@ -22,7 +22,18 @@ layout: docs
           <div class="pane-content">
             <nav class="page-sidebar">
               <ul class="nav nav-pills nav-stacked">
-                <li class="btn-title"><a href="#estilos">Estilos</a></li>
+                <li class="btn-title">
+                  <a href="#estilos">Estilos</a>
+                  <ul class="nav">
+                    <li><a href="#encabezado-pagina">Encabezado Página</a></li>
+                    <li><a href="#cuerpo">Cuerpo</a></li>
+                    <li><a href="#enfasis">Énfasis</a></li>
+                    <li><a href="#cita">Cita</a></li>
+                    <li><a href="#listas">Listas</a></li>
+                    <li><a href="#tablas">Tablas</a></li>
+                    <li><a href="#formularios">Formulario</a></li>
+                  </ul>
+                </li>
                 <li class="btn-title"><a href="#components">Componentes</a></li>
               </ul>
             </nav>
@@ -55,21 +66,37 @@ layout: docs
               </pre>
               <hr>
 
-              <h3>Encabezado Página</h3>
+              <h3 id="encabezado-pagina">Encabezado Página</h3>
               <div class="page-header">
                 <h1>Ejemplo de encabezado de página <small> subtítulo de encabezado</small></h1>
               </div>
+              <br>
+              <pre>
+                <code class="language-html">
+                  &#60;div class="page-header"&#62;
+                    &#60;h1&#62;Ejemplo de encabezado de página &#60;small&#62; subtítulo de encabezado&#60;/small&#62;&#60;/h1&#62;
+                  &#60;/div&#62;
+                </code>
+              </pre>
 
               <hr>
 
-              <h3>Cuerpo</h3>
+              <h3 id="cuerpo">Cuerpo</h3>
 
-              <p class="lead">Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus. → 21 px</p>
-              <p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus. → 16 px | 1 em</p>
+              <p class="lead">Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. → 21 px</p>
+              <p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. → 16 px | 1 em</p>
+
+              <br>
+              <pre>
+                <code class="language-markup">
+                  &#60;p class="lead"&#62;Lorem ipsum dolor sit amet, consectetur adipisicing elit.&#60;/p&#62;
+                  &#60;p&#62;Lorem ipsum dolor sit amet, consectetur adipisicing elit.&#60;/p&#62;
+                </code>
+              </pre>
 
               <hr>
 
-              <h3>Énfasis</h3>
+              <h3 id="enfasis">Énfasis</h3>
 
               <p>Esta línea de texto es tratada como impresión fina</p>
 
@@ -77,16 +104,36 @@ layout: docs
 
               <p>El siguiente fragmento de texto es <i>mostrado como texto en cursiva</i></p>
 
+              <br>
+              <pre>
+                <code class="language-markup">
+                  &#60;p&#62;Esta línea de texto es tratada como impresión fina&#60;/p&#62;
+
+                  &#60;p&#62;El siguiente fragmento de texto es &#60;strong&#62;mostrado como texto en negrita&#60;/strong&#62;&#60;/p&#62;
+
+                  &#60;p&#62;El siguiente fragmento de texto es &#60;i&#62;mostrado como texto en cursiva&#60;/i&#62;&#60;/p&#62;
+                </code>
+              </pre>
+
               <hr>
 
-              <h3>Cita</h3>
+              <h3 id="cita">Cita</h3>
               <blockquote>
                <p> “Todas las áreas del Gobierno tendrán un plan de comunicación e información que será publicado y actualizado en forma permanente”</p>
                 — <cite>Andrés Ibarra</cite>
               </blockquote>
+              <br>
+              <pre>
+                <code class="language-markup">
+                  &#60;blockquote&#62;
+                   &#60;p&#62; “Todas las áreas del Gobierno tendrán un plan de comunicación e información que será publicado y actualizado en forma permanente”&#60;/p&#62;
+                    — &#60;cite&#62;Andrés Ibarra&#60;/cite&#62;
+                  &#60;/blockquote&#62;
+                </code>
+              </pre>
 
               <hr>
-              <h3 class="margin-40">Listas</h3>
+              <h3 id="listas" class="margin-40">Listas</h3>
 
               <h5>Lista sin orden</h5>
               <ul class="margin-40">
@@ -97,6 +144,19 @@ layout: docs
                 <li>Lorem ipsum dolor sit <strong>amet</strong>.</li>
                 <li>Consectetur adipiscing elit <strong>lorem ipsum dolor sit</strong>.</li>
               </ul>
+              <pre>
+                <code class="language-markup">
+                &#60;ul&#62;
+                  &#60;li&#62;Lorem ipsum dolor sit &#60;strong&#62;amet&#60;/strong&#62;.&#60;/li&#62;
+                  &#60;li&#62;Consectetur adipiscing elit &#60;strong&#62;lorem ipsum dolor sit&#60;/strong&#62;.&#60;/li&#62;
+                  &#60;li&#62;Lorem ipsum dolor sit &#60;strong&#62;amet&#60;/strong&#62;.&#60;/li&#62;
+                  &#60;li&#62;Consectetur adipiscing elit &#60;strong&#62;lorem ipsum dolor sit&#60;/strong&#62;.&#60;/li&#62;
+                  &#60;li&#62;Lorem ipsum dolor sit &#60;strong&#62;amet&#60;/strong&#62;.&#60;/li&#62;
+                  &#60;li&#62;Consectetur adipiscing elit &#60;strong&#62;lorem ipsum dolor sit&#60;/strong&#62;.&#60;/li&#62;
+                &#60;/ul&#62;
+                </code>
+              </pre>
+              <br>
 
               <h5>Lista ordenada</h5>
               <ol class="margin-40">
@@ -108,6 +168,21 @@ layout: docs
                 <li>Consectetur adipiscing elit <strong>lorem ipsum dolor sit</strong>.</li>
               </ol>
 
+              <pre>
+                <code class="language-markup">
+                  &#60;ol&#62;
+                    &#60;li&#62;Lorem ipsum dolor sit &#60;strong&#62;amet&#60;/strong&#62;.&#60;/li&#62;
+                    &#60;li&#62;Consectetur adipiscing elit &#60;strong&#62;lorem ipsum dolor sit&#60;/strong&#62;.&#60;/li&#62;
+                    &#60;li&#62;Lorem ipsum dolor sit &#60;strong&#62;amet&#60;/strong&#62;.&#60;/li&#62;
+                    &#60;li&#62;Consectetur adipiscing elit &#60;strong&#62;lorem ipsum dolor sit&#60;/strong&#62;.&#60;/li&#62;
+                    &#60;li&#62;Lorem ipsum dolor sit &#60;strong&#62;amet&#60;/strong&#62;.&#60;/li&#62;
+                    &#60;li&#62;Consectetur adipiscing elit &#60;strong&#62;lorem ipsum dolor sit&#60;/strong&#62;.&#60;/li&#62;
+                  &#60;/ol&#62;
+                </code>
+              </pre>
+
+              <br>
+
               <h5>Lista de descripción</h5>
               <dl>
                 <dt>Listas descriptivas</dt>
@@ -118,8 +193,21 @@ layout: docs
                 <dd>Etiam porta sem malesuada magna mollis euismod.</dd>
               </dl>
 
+              <pre>
+                <code class="language-markup">
+                  &#60;dl&#62;
+                    &#60;dt&#62;Listas descriptivas&#60;/dt&#62;
+                    &#60;dd&#62;Una lista descriptiva es perfecta para la definición de términos.&#60;/dd&#62;
+                    &#60;dt&#62;Euismod&#60;/dt&#62;
+                    &#60;dd&#62;Donec id elit non mi porta gravida at eget metus.&#60;/dd&#62;
+                    &#60;dt&#62;Malesuada porta&#60;/dt&#62;
+                    &#60;dd&#62;Etiam porta sem malesuada magna mollis euismod.&#60;/dd&#62;
+                  &#60;/dl&#62;
+                </code>
+              </pre>
+
               <hr>
-              <h3>Tablas</h3>
+              <h3 id="tablas">Tablas</h3>
               <p>El objetivo de las tablas es mostrar una serie de datos en forma ordenada, organizado en filas y columnas.</p><br>
 
               <!-- Tables -->
@@ -153,6 +241,41 @@ layout: docs
                 </tr>
                 </tbody>
               </table>
+
+              <pre>
+                <code class="language-markup">
+                  &#60;table class="table"&#62;
+                    &#60;thead&#62;
+                      &#60;tr&#62;
+                        &#60;th>#&#60;/th&#62;
+                        &#60;th>Nombre&#60;/th&#62;
+                        &#60;th>Apellido&#60;/th&#62;
+                        &#60;th>Nombre de usuario&#60;/th&#62;
+                      &#60;/tr&#62;
+                    &#60;/thead&#62;
+                    &#60;tbody&#62;
+                      &#60;tr&#62;
+                        &#60;th scope="row">1&#60;/th&#62;
+                        &#60;td>Mark&#60;/td&#62;
+                        &#60;td>Otto&#60;/td&#62;
+                        &#60;td>@mdo&#60;/td&#62;
+                      &#60;/tr&#62;
+                      &#60;tr&#62;
+                      &#60;th scope="row">2&#60;/th&#62;
+                        &#60;td>Jacob&#60;/td&#62;
+                        &#60;td>Thornton&#60;/td&#62;
+                        &#60;td>@fat&#60;/td&#62;
+                      &#60;/tr&#62;
+                      &#60;tr&#62;
+                      &#60;th scope="row">3&#60;/th&#62;
+                        &#60;td>Larry&#60;/td&#62;
+                        &#60;td>the Bird&#60;/td&#62;
+                        &#60;td>@twitter&#60;/td&#62;
+                      &#60;/tr&#62;
+                    &#60;/tbody&#62;
+                  &#60;/table&#62;
+                </code>
+              </pre>
 
               <br>
               <h5>Tabla con separador de filas</h5>
@@ -188,6 +311,14 @@ layout: docs
               </table>
 
               <br>
+              <pre>
+                <code class="language-markup">
+                  &#60;table class="table table-striped"&#62;
+
+                  &#60;/table&#62;
+                </code>
+              </pre>
+              <br>
               <h5>Tabla con bordes</h5>
               <table class="table table-bordered">
                 <thead>
@@ -219,6 +350,15 @@ layout: docs
                 </tr>
                 </tbody>
               </table>
+
+              <br>
+              <pre>
+                <code class="language-markup">
+                  &#60;table class="table table-bordered"&#62;
+
+                  &#60;/table&#62;
+                </code>
+              </pre>
 
               <br>
               <h5>Tabla con colores</h5>
@@ -258,6 +398,37 @@ layout: docs
                   </tr>
                 </tbody>
               </table>
+              <br>
+              <pre>
+                <code class="language-markup">
+
+                      &#60;tr class="info"&#62;
+                        &#60;th scope="row">1&#60;/th&#62;
+                        &#60;td>Jacob&#60;/td&#62;
+                        &#60;td>Thornton&#60;/td&#62;
+                        &#60;td>@fat&#60;/td&#62;
+                      &#60;/tr&#62;
+                      &#60;tr class="success"&#62;
+                        &#60;th scope="row">3&#60;/th&#62;
+                        &#60;td>Mark&#60;/td&#62;
+                        &#60;td>Otto&#60;/td&#62;
+                        &#60;td>@mdo&#60;/td&#62;
+                      &#60;/tr&#62;
+                      &#60;tr class="warning"&#62;
+                        &#60;th scope="row">4&#60;/th&#62;
+                        &#60;td>Jacob&#60;/td&#62;
+                        &#60;td>Thornton&#60;/td&#62;
+                        &#60;td>@fat&#60;/td&#62;
+                      &#60;/tr&#62;
+                      &#60;tr class="danger"&#62;
+                        &#60;th scope="row">5&#60;/th&#62;
+                        &#60;td>Larry&#60;/td&#62;
+                        &#60;td>the Bird&#60;/td&#62;
+                        &#60;td>@twitter&#60;/td&#62;
+                      &#60;/tr&#62;
+
+                </code>
+              </pre>
 
               <br>
               <h5>Tabla con hover</h5>
@@ -291,9 +462,19 @@ layout: docs
                 </tr>
                 </tbody>
               </table>
+
+              <br>
+              <pre>
+                <code class="language-markup">
+                  &#60;table class="table table-hover"&#62;
+
+                  &#60;/table&#62;
+                </code>
+              </pre>
+
               <!-- Forms -->
               <hr>
-              <h3>Ejemplo de formulario</h3>
+              <h3 id="formularios">Ejemplo de formulario</h3>
 
               <p>Los formulario permite que el usuario cargue datos y sean enviados al servidor. Es el medio ideal para realizar logueos, establecer contacto, sacar turnos, etc.</p><br>
               <form>
@@ -302,10 +483,45 @@ layout: docs
                 <div class="form-group"><input class="form-control" type="text" placeholder=".input-default"></div>
                 <div class="form-group"><input class="form-control input-sm" type="text" placeholder=".input-sm"></div>
 
+                <br>
+                <pre>
+                  <code class="language-markup">
+                    &#60;form&#62;
+                      &#60;div class="form-group">
+                        &#60;input class="form-control input-lg" type="text" placeholder=".input-lg">
+                      &#60;/div&#62;
+                      &#60;div class="form-group">
+                        &#60;input class="form-control" type="text" placeholder=".input-default">
+                      &#60;/div&#62;
+                      &#60;div class="form-group">
+                        &#60;input class="form-control input-sm" type="text" placeholder=".input-sm">
+                      &#60;/div&#62;
+                     &#60;/form&#62;
+                  </code>
+                </pre>
+                <br>
+
                 <div class="form-group"><select class="form-control input-lg"><option value="">.input-lg</option></select></div>
                 <div class="form-group"><select class="form-control"><option value="">Default</option></select></div>
                 <div class="form-group"><select class="form-control input-sm"><option value="">.input-sm</option></select></div>
 
+                <br>
+                <pre>
+                  <code class="language-markup">
+                    &#60;form&#62;
+                      &#60;div class="form-group"&#62;
+                        &#60;select class="form-control input-lg">&#60;option value="">.input-lg&#60;/option>&#60;/select&#62;
+                      &#60;/div&#62;
+                      &#60;div class="form-group"&#62;
+                        &#60;select class="form-control">&#60;option value="">Default&#60;/option>&#60;/select&#62;
+                      &#60;/div&#62;
+                      &#60;div class="form-group"&#62;
+                        &#60;select class="form-control input-sm">&#60;option value="">.input-sm&#60;/option>&#60;/select&#62;
+                      &#60;/div&#62;
+                     &#60;/form&#62;
+                  </code>
+                </pre>
+                <br>
                 <div class="form-group">
                   <label for="exampleInputEmail1">Dirección Email</label>
                   <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
@@ -326,6 +542,33 @@ layout: docs
                 </div>
                 <button type="submit" class="btn btn-primary">Enviar</button>
               </form>
+
+              <br>
+              <pre>
+                <code class="language-markup">
+                  &#60;form&#62;
+                    &#60;div class="form-group"&#62;
+                      &#60;label for="exampleInputEmail1">Dirección Email&#60;/label&#62;
+                      &#60;input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email"&#62;
+                    &#60;/div&#62;
+                    &#60;div class="form-group"&#62;
+                      &#60;label for="exampleInputPassword1">Contraseña&#60;/label&#62;
+                      &#60;input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña"&#62;
+                    &#60;/div&#62;
+                    &#60;div class="form-group"&#62;
+                      &#60;p>Adjuntar archivo:&#60;/p&#62;
+                      &#60;input type="file" id="exampleInputFile" class="inputfile"&#62;
+                      &#60;label for="exampleInputFile">Seleccionar archivo&#60;/label&#62;
+                    &#60;/div&#62;
+                    &#60;div class="checkbox"&#62;
+                      &#60;label&#62;
+                        &#60;input type="checkbox"> Campo de verificación (Check&#62;
+                      &#60;/label&#62;
+                    &#60;/div&#62;
+                    &#60;button type="submit" class="btn btn-primary">Enviar&#60;/button&#62;
+                  &#60;/form&#62;
+                </code>
+              </pre>
 
               <hr>
               <h3>Estado de validación </h3>
@@ -350,6 +593,32 @@ layout: docs
                 <input type="text" class="form-control" id="inputError2">
                 <span class="glyphicon glyphicon-remove form-control-feedback"></span>
               </div>
+
+              <br>
+              <pre>
+                <code class="language-markup">
+                  &#60;div class="form-group has-success has-feedback"&#62;
+                    &#60;label class="control-label" for="inputSuccess2">Campo de entrada con éxito&#60;/label&#62;
+                    &#60;input type="text" class="form-control" id="inputSuccess2"&#62;
+                    &#60;span class="glyphicon glyphicon-ok form-control-feedback">&#60;/span&#62;
+                  &#60;/div&#62;
+                  &#60;div class="form-group has-success has-feedback"&#62;
+                    &#60;label class="control-label" for="inputSuccess2">Campo de entrada pequeño con éxito&#60;/label&#62;
+                    &#60;input type="text" class="form-control input-sm" id="inputSuccess2"&#62;
+                    &#60;span class="glyphicon glyphicon-ok form-control-feedback">&#60;/span&#62;
+                  &#60;/div&#62;
+                  &#60;div class="form-group has-warning has-feedback"&#62;
+                    &#60;label class="control-label" for="inputWarning2">Campo de entrada con advertencia&#60;/label&#62;
+                    &#60;input type="text" class="form-control" id="inputWarning2"&#62;
+                    &#60;span class="glyphicon glyphicon-warning-sign form-control-feedback">&#60;/span&#62;
+                  &#60;/div&#62;
+                  &#60;div class="form-group has-error has-feedback"&#62;
+                    &#60;label class="control-label" for="inputError2">Campo de entrada con error&#60;/label&#62;
+                    &#60;input type="text" class="form-control" id="inputError2"&#62;
+                    &#60;span class="glyphicon glyphicon-remove form-control-feedback">&#60;/span&#62;
+                  &#60;/div&#62;
+                </code>
+              </pre>
 
               <hr>
 
@@ -409,7 +678,7 @@ layout: docs
               <hr>
 
               <!-- Buttons-->
-              <h3>Botones</h3>
+              <h3 id="botones">Botones</h3>
 
               <p>
                 <button type="button" class="btn btn-default">Default</button>
@@ -424,6 +693,13 @@ layout: docs
                 <button type="button" class="btn btn-link">Link</button>
                 <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-map-marker"></span> &nbsp; Boton con ícono</button>
               </p>
+
+              <br>
+              <pre>
+                <code class="language-markup">
+
+                </code>
+              </pre>
 
               <hr>
               <h3>Tamaños de botones</h3>
