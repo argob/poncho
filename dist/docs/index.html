@@ -1373,9 +1373,9 @@
               <br>
               <pre>
                 <code class="language-markup">
-                  <div class="well well-lg">
-                    <h1>Texto referencia.</h1>
-                  </div>
+                  &#60;div class="well well-lg"&#62;
+                    &#60;h1>Texto referencia.&#60;/h1&#62;
+                  &#60;/div&#62;
                 </code>
               </pre>
 
@@ -1700,7 +1700,7 @@
 
               <h4>Modal</h4>
 
-              <!-- Button to trigger modal -->
+                <!-- Button to trigger modal -->
                 <a href="#myModal" role="button" class="btn btn-primary" data-toggle="modal">Iniciar demo de modal</a>
 
                 <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
@@ -1720,6 +1720,32 @@
                     </div><!-- /.modal-content -->
                   </div><!-- /.modal-dialog -->
                 </div><!-- /.modal -->
+                <br>
+                <pre>
+                  <code class="language-markup">
+                    &#60;!-- Button to trigger modal --&#62;
+                    &#60;a href="#myModal" role="button" class="btn btn-primary" data-toggle="modal">Iniciar demo de modal&#60;/a&#62;
+
+                    &#60;div id="myModal" class="modal fade" tabindex="-1" role="dialog"&#62;
+                      &#60;div class="modal-dialog"&#62;
+                        &#60;div class="modal-content"&#62;
+                          &#60;div class="modal-header"&#62;
+                            &#60;button type="button" class="close" data-dismiss="modal" aria-label="Close">&#60;span aria-hidden="true">&times;&#60;/span>&#60;/button&#62;
+                            &#60;h4 class="modal-title">Título de modal&#60;/h4&#62;
+                          &#60;/div&#62;
+                          &#60;div class="modal-body"&#62;
+                            &#60;p>Texto de referencia&hellip;&#60;/p&#62;
+                          &#60;/div&#62;
+                          &#60;div class="modal-footer"&#62;
+                            &#60;button type="button" class="btn btn-default" data-dismiss="modal">Cerrar&#60;/button&#62;
+                            &#60;button type="button" class="btn btn-primary">Guardar Cambios&#60;/button&#62;
+                          &#60;/div&#62;
+                        &#60;/div>&#60;!-- /.modal-content --&#62;
+                      &#60;/div>&#60;!-- /.modal-dialog --&#62;
+                    &#60;/div>&#60;!-- /.modal --&#62;
+
+                  </code>
+                </pre>
               <hr>
 
               <h4>Nota de ayuda sobre elemento</h4>
@@ -1730,6 +1756,15 @@
                 <button type="button" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Nota inferior">Nota inferior</button>
                 <button type="button" class="btn btn-link" data-toggle="tooltip" data-placement="right" title="Nota a la derecha">Nota a la derecha</button>
               </div>
+              <br>
+              <pre>
+                <code class="language-markup">
+                  &#60;button type="button" class="btn btn-link" data-toggle="tooltip" data-placement="left" title="Nota a la izquierda">Nota a la izquierda&#60;/button&#62;
+                  &#60;button type="button" class="btn btn-link" data-toggle="tooltip" data-placement="top" title="Nota superior">Nota superior&#60;/button&#62;
+                  &#60;button type="button" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Nota inferior">Nota inferior&#60;/button&#62;
+                  &#60;button type="button" class="btn btn-link" data-toggle="tooltip" data-placement="right" title="Nota a la derecha">Nota a la derecha&#60;/button&#62;
+                </code>
+              </pre>
 
               <hr>
 
@@ -1751,6 +1786,18 @@
               <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="right" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
                 A la derecha
               </button>
+              <pre>
+                <code class="language-markup">
+                  &#60;button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">A la derecha&#60;/button&#62;
+
+                  &#60;button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."&#62;Arriba&#60;/button&#62;
+
+                  &#60;button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Vivamus
+                  sagittis lacus vel augue laoreet rutrum faucibus."&#62;Abajo&#60;/button&#62;
+
+                  &#60;button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="right" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."&#62;A la derecha&#60;/button&#62;
+                </code>
+              </pre>
 
             </div>
           </div>
