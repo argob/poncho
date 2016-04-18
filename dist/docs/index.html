@@ -121,7 +121,19 @@
                     <li><a href="#formularios">Formulario</a></li>
                   </ul>
                 </li>
-                <li class="btn-title"><a href="#components">Componentes</a></li>
+                <li class="btn-title">
+                  <a href="#components">Componentes</a>
+                  <ul class="nav">
+                    <li><a href="#navbar">Navbar</a></li>
+                    <li><a href="#breadcrumb">Breadcrumb</a></li>
+                    <li><a href="#pagination">Paginación</a></li>
+                    <li><a href="#labels">Etiquetas</a></li>
+                    <li><a href="#badges">Etiquetas Numeradas</a></li>
+                    <li><a href="#alertas">Alertas</a></li>
+                    <li><a href="#alertas-con-iconos">Alertas Con Íconos</a></li>
+                    <li><a href="#background-color">Colores de Fondo</a></li>
+                  </ul>
+                </li>
               </ul>
             </nav>
           </div>
@@ -554,7 +566,7 @@
               <pre>
                 <code class="language-markup">
                   &#60;table class="table table-hover"&#62;
-
+                      ......
                   &#60;/table&#62;
                 </code>
               </pre>
@@ -631,31 +643,31 @@
               </form>
 
               <br>
-              <pre>
-                <code class="language-markup">
-                  &#60;form&#62;
-                    &#60;div class="form-group"&#62;
-                      &#60;label for="exampleInputEmail1">Dirección Email&#60;/label&#62;
-                      &#60;input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email"&#62;
-                    &#60;/div&#62;
-                    &#60;div class="form-group"&#62;
-                      &#60;label for="exampleInputPassword1">Contraseña&#60;/label&#62;
-                      &#60;input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña"&#62;
-                    &#60;/div&#62;
-                    &#60;div class="form-group"&#62;
-                      &#60;p>Adjuntar archivo:&#60;/p&#62;
-                      &#60;input type="file" id="exampleInputFile" class="inputfile"&#62;
-                      &#60;label for="exampleInputFile">Seleccionar archivo&#60;/label&#62;
-                    &#60;/div&#62;
-                    &#60;div class="checkbox"&#62;
-                      &#60;label&#62;
-                        &#60;input type="checkbox"> Campo de verificación (Check&#62;
-                      &#60;/label&#62;
-                    &#60;/div&#62;
-                    &#60;button type="submit" class="btn btn-primary">Enviar&#60;/button&#62;
-                  &#60;/form&#62;
-                </code>
-              </pre>
+                <pre>
+                  <code class="language-markup">
+                    &#60;form&#62;
+                      &#60;div class="form-group"&#62;
+                        &#60;label for="exampleInputEmail1">Dirección Email&#60;/label&#62;
+                        &#60;input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email"&#62;
+                      &#60;/div&#62;
+                      &#60;div class="form-group"&#62;
+                        &#60;label for="exampleInputPassword1">Contraseña&#60;/label&#62;
+                        &#60;input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña"&#62;
+                      &#60;/div&#62;
+                      &#60;div class="form-group"&#62;
+                        &#60;p&#62;Adjuntar archivo:&#60;/p&#62;
+                        &#60;input type="file" id="exampleInputFile" class="inputfile"&#62;
+                        &#60;label for="exampleInputFile"&#62;Seleccionar archivo&#60;/label&#62;
+                      &#60;/div&#62;
+                      &#60;div class="checkbox"&#62;
+                        &#60;label&#62;
+                          &#60;input type="checkbox"&#62; Campo de verificación (Check)
+                        &#60;/label&#62;
+                      &#60;/div&#62;
+                      &#60;button type="submit" class="btn btn-primary"&#62;Enviar&#60;/button&#62;
+                     &#60;/form&#62;
+                  </code>
+                </pre>
 
               <hr>
               <h3>Estado de validación </h3>
@@ -726,7 +738,26 @@
                   <input type="text" class="form-control">
                 </div><!-- /input-group -->
               </div>
-
+              <pre>
+                <code class="language-markup">
+                  &#60;div class="form-group"&#62;
+                    &#60;div class="input-group"&#62;
+                      &#60;div class="input-group-btn"&#62;
+                        &#60;button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"&#62;Acción&#60;/button&#62;
+                        &#60;ul class="dropdown-menu"&#62;
+                          &#60;li&#62;&#60;a href="#"&#62;Acción 1&#60;/a&#62;&#60;/li&#62;
+                          &#60;li&#62;&#60;a href="#"&#62;Acción 2&#60;/a&#62;&#60;/li&#62;
+                          &#60;li&#62;&#60;a href="#"&#62;Acción 3&#60;/a&#62;&#60;/li&#62;
+                          &#60;li class="divider"&#62;&#60;/li&#62;
+                          &#60;li&#62;&#60;a href="#"&#62;Acción 4&#60;/a&#62;&#60;/li&#62;
+                        &#60;/ul&#62;
+                      &#60;/div&#62;&#60;!-- /btn-group --&#62;
+                      &#60;input type="text" class="form-control"&#62;
+                    &#60;/div&#62;
+                  &#60;/div&#62;
+                </code>
+              </pre>
+              <br>
               <div class="form-group">
                 <div class="input-group">
                   <input class="form-control" type="text">
@@ -735,6 +766,19 @@
                   </span>
                 </div>
               </div>
+              <pre>
+                <code class="language-markup">
+                  &#60;div class="form-group"&#62;
+                    &#60;div class="input-group"&#62;
+                      &#60;input class="form-control" type="text"&#62;
+                      &#60;span class="input-group-btn"&#62;
+                        &#60;button class="btn btn-default" type="button">IR!&#60;/button&#62;
+                      &#60;/span&#62;
+                    &#60;/div&#62;
+                  &#60;/div&#62;
+                </code>
+              </pre>
+              <br>
               <div class="input-group">
                 <span class="input-group-addon" id="basic-addon1">@</span>
                 <input type="text" class="form-control" placeholder="Nombre de usuario" aria-describedby="basic-addon1">
@@ -745,10 +789,33 @@
                 <input type="text" class="form-control" placeholder="Nombre de usuario" aria-describedby="basic-addon1">
               </div>
               <br>
+              <pre>
+                <code class="language-markup">
+                  &#60;div class="input-group"&#62;
+                    &#60;span class="input-group-addon" id="basic-addon1">@&#60;/span&#62;
+                    &#60;input type="text" class="form-control" placeholder="Nombre de usuario" aria-describedby="basic-addon1"&#62;
+                  &#60;/div&#62;
+                  &#60;!-- --&#62;
+                  &#60;div class="input-group"&#62;
+                    &#60;span class="input-group-addon" id="basic-addon1">&#60;span class="glyphicon glyphicon-user">&#60;/span>&#60;/span&#62;
+                    &#60;input type="text" class="form-control" placeholder="Nombre de usuario" aria-describedby="basic-addon1"&#62;
+                  &#60;/div&#62;
+                </code>
+              </pre>
+              <br>
               <div class="input-group">
                 <input type="text" class="form-control" placeholder="Nombre de usuario del receptor" aria-describedby="basic-addon2">
                 <span class="input-group-addon" id="basic-addon2">@ejemplo.com</span>
               </div>
+              <br>
+              <pre>
+                <code class="language-markup">
+                  &#60;div class="input-group"&#62;
+                    &#60;input type="text" class="form-control" placeholder="Nombre de usuario del receptor" aria-describedby="basic-addon2"&#62;
+                    &#60;span class="input-group-addon" id="basic-addon2">@ejemplo.com&#60;/span&#62;
+                  &#60;/div&#62;
+                </code>
+              </pre>
               <br>
               <div class="input-group">
                 <span class="input-group-addon">$</span>
@@ -756,11 +823,32 @@
                 <span class="input-group-addon">.00</span>
               </div>
               <br>
+              <pre>
+                <code>
+                  &#60;div class="input-group"&#62;
+                    &#60;span class="input-group-addon">$&#60;/span&#62;
+                    &#60;input type="text" class="form-control" aria-label="Amount (to the nearest dollar)"&#62;
+                    &#60;span class="input-group-addon">.00&#60;/span&#62;
+                  &#60;/div&#62;
+                </code>
+              </pre>
+              <br>
               <label for="basic-url">Dirección de enlace</label>
               <div class="input-group">
                 <span class="input-group-addon" id="basic-addon3">https://ejemplo.com/usuarios/</span>
                 <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
               </div>
+
+              <br>
+              <pre>
+                <code class="language-markup">
+                  &#60;div class="input-group"/&#62;
+                    &#60;span class="input-group-addon" id="basic-addon3">https://ejemplo.com/usuarios/&#60;/span/&#62;
+                    &#60;input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3"/&#62;
+                  &#60;/div/&#62;
+
+                </code>
+              </pre>
 
               <hr>
 
@@ -773,6 +861,17 @@
                 <button type="button" class="btn btn-success">Success</button>
                 <button type="button" class="btn btn-info disabled">Disabled</button>
               </p>
+              <pre>
+                <code class="language-markup">
+
+                  &#60;button type="button" class="btn btn-default">Default&#60;/button&#62;
+                  &#60;button type="button" class="btn btn-primary">Primary&#60;/button&#62;
+                  &#60;button type="button" class="btn btn-success">Success&#60;/button&#62;
+                  &#60;button type="button" class="btn btn-info disabled">Disabled&#60;/button&#62;
+
+                </code>
+              </pre>
+              <br>
               <p>
                 <button type="button" class="btn btn-info">Info</button>
                 <button type="button" class="btn btn-warning">Warning</button>
@@ -780,11 +879,14 @@
                 <button type="button" class="btn btn-link">Link</button>
                 <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-map-marker"></span> &nbsp; Boton con ícono</button>
               </p>
-
               <br>
               <pre>
                 <code class="language-markup">
-
+                  &#60;button type="button" class="btn btn-info">Info&#60;/button&#62;
+                  &#60;button type="button" class="btn btn-warning">Warning&#60;/button&#62;
+                  &#60;button type="button" class="btn btn-danger">Danger&#60;/button&#62;
+                  &#60;button type="button" class="btn btn-link">Link&#60;/button&#62;
+                  &#60;button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-map-marker"></span> &nbsp; Boton con ícono&#60;/button&#62;
                 </code>
               </pre>
 
@@ -806,6 +908,19 @@
                 <button type="button" class="btn btn-primary btn-xs">Boton extra chico (btn-xs)</button>
                 <button type="button" class="btn btn-default btn-xs">Boton extra chico (btn-xs)</button>
               </p>
+              <br>
+              <pre>
+                <code class="language-markup">
+                  &#60;button type="button" class="btn btn-primary btn-lg">...&#60;/button&#62;
+                  &#60;button type="button" class="btn btn-default btn-lg">...&#60;/button&#62;
+                  &#60;button type="button" class="btn btn-primary">...&#60;/button&#62;
+                  &#60;button type="button" class="btn btn-default">...&#60;/button&#62;
+                  &#60;button type="button" class="btn btn-primary btn-sm">...&#60;/button&#62;
+                  &#60;button type="button" class="btn btn-default btn-sm">...&#60;/button&#62;
+                  &#60;button type="button" class="btn btn-primary btn-xs">...&#60;/button&#62;
+                  &#60;button type="button" class="btn btn-default btn-xs">...&#60;/button&#62;
+                </code>
+              </pre>
 
               <hr>
               <h3>Imágenes</h3>
@@ -814,6 +929,15 @@
               &nbsp;
 
               <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgdmlld0JveD0iMCAwIDE0MCAxNDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzE0MHgxNDAKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xNTJmOWQxZWZiMSB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE1MmY5ZDFlZmIxIj48cmVjdCB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjQ1LjUiIHk9Ijc0LjUiPjE0MHgxNDA8L3RleHQ+PC9nPjwvZz48L3N2Zz4=" alt="" class="img-circle">
+
+              <br>
+              <pre>
+                <code class="language-markup">
+                  &#60;img src="#" alt="" class="img-rounded"&#62;
+                  &#60;img src="#" alt="" class="img-circle"&#62;
+                </code>
+
+              </pre>
 
             </div>
 
@@ -881,6 +1005,21 @@
                   <li><a href="#">Separated link</a></li>
                 </ul>
               </div>
+              <br>
+              <pre>
+                <code class="language-markup">
+                  &#60;div class="btn-group"&#62;
+                    &#60;button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">  Default &#60;span&#62;class="caret">&#60;/span>&#60;/button&#62;
+                    &#60;ul class="dropdown-menu"&#62;
+                      &#60;li>&#60;a href="#">Action&#60;/a>&#60;/li&#62;
+                      &#60;li>&#60;a href="#">Another action&#60;/a>&#60;/li&#62;
+                      &#60;li>&#60;a href="#">Something else here&#60;/a>&#60;/li&#62;
+                      &#60;li role="separator" class="divider">&#60;/li&#62;
+                      &#60;li>&#60;a href="#">Separated link&#60;/a>&#60;/li&#62;
+                    &#60;/ul&#62;
+                  &#60;/div&#62;
+                </code>
+              </pre>
 
               <hr>
 
@@ -913,9 +1052,20 @@
                 <li role="presentation"><a href="#">Perfil</a></li>
                 <li role="presentation"><a href="#">Mensajes</a></li>
               </ul>
+              <br>
+              <pre>
+                <code class="language-markup">
+                  &#60;ul class="nav nav-tabs"&#62;
+                    &#60;li role="presentation" class="active"><a href="#">Inicio</a>&#60;/li&#62;
+                    &#60;li role="presentation"><a href="#">Perfil</a>&#60;/li&#62;
+                    &#60;li role="presentation"><a href="#">Mensajes</a>&#60;/li&#62;
+                  &#60;/ul&#62;
+                </code>
+              </pre>
+
               <hr>
 
-              <h3>Barra de navegación </h3>
+              <h3 id="navbar">Barra de navegación </h3>
 
               <nav class="navbar navbar-default">
                 <div class="container-fluid">
@@ -964,18 +1114,80 @@
                 </div><!-- /.container-fluid -->
               </nav>
 
+              <br>
+              <pre>
+                <code class="language-markup">
+                  &#60;nav class="navbar navbar-default"&#62;
+                    &#60;div class="container-fluid"&#62;
+                      &#60;!-- Brand and toggle get grouped for better mobile display --&#62;
+                      &#60;div class="navbar-header"&#62;
+                        &#60;button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"&#62;
+                          &#60;span class="sr-only">Toggle navigation&#60;/span&#62;
+                          &#60;span class="icon-bar">&#60;/span&#62;
+                          &#60;span class="icon-bar">&#60;/span&#62;
+                          &#60;span class="icon-bar">&#60;/span&#62;
+                        &#60;/button&#62;
+                        &#60;a class="navbar-brand" href="#">&#60;img src="img/argentinagob.svg" height="50" alt="">&#60;/a&#62;
+                      &#60;/div&#62;
+
+                      &#60;!-- Collect the nav links, forms, and other content for toggling --&#62;
+                      &#60;div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"&#62;
+                        &#60;ul class="nav navbar-nav navbar-right"&#62;
+                          &#60;li class="active">&#60;a href="#">Link &#60;span class="sr-only">(current)&#60;/span>&#60;/a>&#60;/li&#62;
+                          &#60;li>&#60;a href="#">Link&#60;/a>&#60;/li&#62;
+                          &#60;li class="dropdown"&#62;
+                            &#60;a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Desplegable &#60;span&#62;class="caret">&#60;/span>&#60;/a&#62;
+                            &#60;ul class="dropdown-menu"&#62;
+                              &#60;li>&#60;a href="#">Action&#60;/a>&#60;/li&#62;
+                              &#60;li>&#60;a href="#">Another action&#60;/a>&#60;/li&#62;
+                              &#60;li>&#60;a href="#">Something else here&#60;/a>&#60;/li&#62;
+                              &#60;li role="separator" class="divider">&#60;/li&#62;
+                              &#60;li>&#60;a href="#">Separated link&#60;/a>&#60;/li&#62;
+                              &#60;li role="separator" class="divider">&#60;/li&#62;
+                              &#60;li>&#60;a href="#">One more separated link&#60;/a>&#60;/li&#62;
+                            &#60;/ul&#62;
+                          &#60;/li&#62;
+                          &#60;li>&#60;a href="#">Link&#60;/a>&#60;/li&#62;
+                          &#60;li&#62;
+                            &#60;ul class="dropdown-menu"&#62;
+                              &#60;li>&#60;a href="#">Action&#60;/a>&#60;/li&#62;
+                              &#60;li>&#60;a href="#">Another action&#60;/a>&#60;/li&#62;
+                              &#60;li>&#60;a href="#">Something else here&#60;/a>&#60;/li&#62;
+                              &#60;li role="separator" class="divider">&#60;/li&#62;
+                              &#60;li>&#60;a href="#">Separated link&#60;/a>&#60;/li&#62;
+                              &#60;li role="separator" class="divider">&#60;/li&#62;
+                              &#60;li>&#60;a href="#">One more separated link&#60;/a>&#60;/li&#62;
+                            &#60;/ul&#62;
+                          &#60;/li&#62;
+                        &#60;/ul&#62;
+                      &#60;/div>&#60;!-- /.navbar-collapse --&#62;
+                    &#60;/div>&#60;!-- /.container-fluid --&#62;
+                  &#60;/nav&#62;
+                </code>
+              </pre>
+
               <hr>
 
-              <h3>BreadCrumb - Referencia de ubicación</h3>
+              <h3 id="breadcrumb">BreadCrumb - Referencia de ubicación</h3>
               <ol class="breadcrumb">
                 <li><a href="#">Inicio</a></li>
                 <li><a href="#">Sección</a></li>
                 <li class="active">Artículo</li>
               </ol>
+              <br>
+              <pre>
+                <code class="language-markup">
+                  &#60;ol class="breadcrumb"&#62;
+                    &#60;li><a href="#">Inicio</a>&#60;/li&#62;
+                    &#60;li><a href="#">Sección</a>&#60;/li&#62;
+                    &#60;li class="active">Artículo&#60;/li&#62;
+                  &#60;/ol&#62;
+                </code>
+              </pre>
               <hr>
 
               <!-- Pagination -->
-              <h3>Paginación</h3>
+              <h3 id="pagination">Paginación</h3>
               <nav>
                 <ul class="pagination">
                   <li>
@@ -999,10 +1211,36 @@
                   </li>
                 </ul>
               </nav>
+              <br>
+              <pre>
+                <code class="language-markup">
+                  &#60;ul class="pagination"&#62;
+                    &#60;li&#62;
+                      &#60;a href="#" aria-label="Previous"&#62;
+                        &#60;span aria-hidden="true">&laquo;&#60;/span&#62;
+                      &#60;/a&#62;
+                    &#60;/li&#62;
+                    &#60;li class="active">&#60;a href="#">1&#60;/a>&#60;/li&#62;
+                    &#60;li>&#60;a href="#">2&#60;/a>&#60;/li&#62;
+                    &#60;li>&#60;a href="#">3&#60;/a>&#60;/li&#62;
+                    &#60;li>&#60;a href="#">4&#60;/a>&#60;/li&#62;
+                    &#60;li>&#60;a href="#">5&#60;/a>&#60;/li&#62;
+                    &#60;li>&#60;a href="#">6&#60;/a>&#60;/li&#62;
+                    &#60;li>&#60;a href="#">7&#60;/a>&#60;/li&#62;
+                    &#60;li>&#60;a href="#">8&#60;/a>&#60;/li&#62;
+                    &#60;li>&#60;a href="#">9&#60;/a>&#60;/li&#62;
+                    &#60;li&#62;
+                      &#60;a href="#" aria-label="Next"&#62;
+                        &#60;span aria-hidden="true">&raquo;&#60;/span&#62;
+                      &#60;/a&#62;
+                    &#60;/li&#62;
+                  &#60;/ul&#62;
+                </code>
+              </pre>
               <hr>
 
               <h3>Contenido</h3>
-              <h4>Grupo de lista </h4>
+              <h4 id="grupo-de-lista">Grupo de lista </h4>
               <ul class="list-group">
                 <li class="list-group-item">Cras justo odio</li>
                 <li class="list-group-item">Dapibus ac facilisis in</li>
@@ -1010,10 +1248,22 @@
                 <li class="list-group-item">Porta ac consectetur ac</li>
                 <li class="list-group-item">Vestibulum at eros</li>
               </ul>
+              <br>
+              <pre>
+                <code class="language-markup">
+                  &#60;ul class="list-group"&#62;
+                    &#60;li class="list-group-item">Cras justo odio&#60;/li&#62;
+                    &#60;li class="list-group-item">Dapibus ac facilisis in&#60;/li&#62;
+                    &#60;li class="list-group-item">&#60;span class="badge">14&#60;/span> Morbi leo risus&#60;/li&#62;
+                    &#60;li class="list-group-item">Porta ac consectetur ac&#60;/li&#62;
+                    &#60;li class="list-group-item">Vestibulum at eros&#60;/li&#62;
+                  &#60;/ul&#62;
+                </code>
+              </pre>
 
               <hr>
 
-              <h4>Panel </h4>
+              <h4 id="panel">Panel </h4>
               <div class="panel panel-default">
                 <div class="panel-body">
                   Ejemplo de panel básico
@@ -1032,6 +1282,32 @@
                   <p class="text-muted">quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
                 </div>
               </a>
+
+              <br>
+               <pre>
+                 <code class="language-markup">
+                    &#60;div class="panel panel-default"&#62;
+                      &#60;div class="panel-body"&#62;
+                        Ejemplo de panel básico
+                      &#60;/div&#62;
+                    &#60;/div&#62;
+                    &#60;!--  -- &#62;
+                    &#60;a class="panel panel-default" href="#"&#62;
+                      &#60;div class="panel-body"&#62;
+                        &#60;h3>Este es el título del link&#60;/h3&#62;
+                      &#60;/div&#62;
+                    &#60;/a&#62;
+                    &#60;!--  -- &#62;
+                    &#60;a class="panel panel-default" href="#"&#62;
+                      &#60;div class="panel-body"&#62;
+                        &#60;h3>Ministerio de Economía&#60;/h3&#62;
+                        &#60;p class="text-muted">quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo&#60;/p&#62;
+                      &#60;/div&#62;
+                    &#60;/a&#62;
+
+                 </code>
+               </pre>
+             <br>
 
               <div class="row">
                 <div class="col-sm-6 col-md-4">
@@ -1066,29 +1342,67 @@
 
               </div>
 
+              <br>
+              <pre>
+                <code class="language-markup">
+                  &#60;a class="panel panel-default panel-icon" href="#"&#62;
+                    &#60;div class="panel-heading">&#60;i class="fa fa-file">&#60;/i>&#60;/div&#62;
+                    &#60;div class="panel-body"&#62;
+                      &#60;h3>Ministerio de Economía&#60;/h3&#62;
+                      &#60;p class="text-muted">quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo&#60;/p&#62;
+                    &#60;/div&#62;
+                  &#60;/a&#62;
+                  &#60;!-- -- &#62;
+                  &#60;a class="panel panel-default panel-md" href="#"&#62;
+                    &#60;div style="background-image:url('./img/placeholder.png');" class="panel-heading">&#60;/div&#62;
+                    &#60;div class="panel-body"&#62;
+                      &#60;time>Jueves 14 de Enero del 2016&#60;/time&#62;
+                      &#60;h4>El Ministro Buryaile asistió a la apertura de la Semana Verde Internacional, en Berlín&#60;/h4&#62;
+                    &#60;/div&#62;
+                  &#60;/a&#62;
+                </code>
+              </pre>
+
               <hr>
 
-              <h4>Wells </h4>
+              <h4 id="wells">Wells </h4>
               <p>Utilice el well para darle un efecto de inserción a un elemento .</p>
               <div class="well"><span>Texto referencia.</span></div>
               <div class="well well-lg"><h1>Texto referencia.</h1></div>
               <div class="well well-sm"><span><small>Texto referencia.</small></span></div>
+              <br>
+              <pre>
+                <code class="language-markup">
+                  <div class="well well-lg">
+                    <h1>Texto referencia.</h1>
+                  </div>
+                </code>
+              </pre>
 
               <hr>
 
-
-
-
-              <h3>Etiquetas</h3>
+              <h3 id="labels">Etiquetas</h3>
               <span class="label label-default">Default</span>
               <span class="label label-primary">Primary</span>
               <span class="label label-success">Success</span>
               <span class="label label-info">Info</span>
               <span class="label label-warning">Warning</span>
               <span class="label label-danger">Danger</span>
+
+              <br>
+              <pre>
+                <code class="language-markup">
+                  &#60;span class="label label-default">Default&#60;/span&#62;
+                  &#60;span class="label label-primary">Primary&#60;/span&#62;
+                  &#60;span class="label label-success">Success&#60;/span&#62;
+                  &#60;span class="label label-info">Info&#60;/span&#62;
+                  &#60;span class="label label-warning">Warning&#60;/span&#62;
+                  &#60;span class="label label-danger">Danger&#60;/span&#62;
+                </code>
+              </pre>
               <hr>
 
-              <h3>Etiqueta numérica</h3>
+              <h3 id="badges">Etiqueta numérica</h3>
               <p>Resaltar facilmente los elementos nuevos o no leídos mediante la adición de un span class="badge" a los enlaces, navs, y otros elementos.</p>
               <a href="#">Bandeja de entrada  &nbsp; <span class="badge">42</span></a>
               <br>
@@ -1096,15 +1410,34 @@
               <button class="btn btn-primary" type="button">
                 Mensajes &nbsp; <span class="badge">4</span>
               </button>
+              <br>
+              <pre>
+                <code class="language-markup">
+                  &#60;a href="#">Bandeja de entrada  &nbsp; &#60;span class="badge">42&#60;/span>&#60;/a&#62;
+                  &#60;button class="btn btn-primary" type="button"&#62;
+                    Mensajes &nbsp; &#60;span class="badge">4&#60;/span&#62;
+                  &#60;/button&#62;
+                </code>
+              </pre>
               <hr>
 
-              <h3>Alertas</h3>
+              <h3 id="alertas">Alertas</h3>
               <div class="alert alert-success" role="alert">Mensaje</div>
               <div class="alert alert-info" role="alert">Mensaje</div>
               <div class="alert alert-warning" role="alert">Mensaje</div>
               <div class="alert alert-danger" role="alert">Mensaje</div>
+              <br>
+              <pre>
+                <code class="language-markup">
+                  &#60;div class="alert alert-success" role="alert">Mensaje&#60;/div&#62;
+                  &#60;div class="alert alert-info" role="alert">Mensaje&#60;/div&#62;
+                  &#60;div class="alert alert-warning" role="alert">Mensaje&#60;/div&#62;
+                  &#60;div class="alert alert-danger" role="alert">Mensaje&#60;/div&#62;
+                </code>
+              </pre>
+
               <hr>
-              <h3>Alertas con ícono</h3>
+              <h3 id="alertas-con-icono">Alertas con ícono</h3>
               <br>
 
               <div class="alert alert-warning">
@@ -1129,14 +1462,55 @@
                       </div>
                   </div>
               </div>
+
+              <br>
+              <pre>
+                <code class="language-markup">
+                  &#60;div class="alert alert-warning"&#62;
+                      &#60;div class="media"&#62;
+                          &#60;div class="media-left"&#62;
+                              &#60;i class="fa fa-arrow-circle-o-right fa-fw fa-4x">&#60;/i&#62;
+                          &#60;/div&#62;
+                          &#60;div class="media-body"&#62;
+                              &#60;h4>¿Ya iniciaste tu tramite? &#60;/h4&#62;
+                              &#60;p class="margin-0">Seguí el &#60;a href="http://www.mininterior.gov.ar/tramitesyservicios/estado-tramite-dni.php" target="_blank">estado del&#62;trámite en linea&#60;/a>&#60;/p&#62;
+                          &#60;/div&#62;
+                      &#60;/div&#62;
+                  &#60;/div&#62;
+                  &#60;div class="alert alert-info"&#62;
+                      &#60;div class="media"&#62;
+                          &#60;div class="media-left"&#62;
+                              &#60;i class="fa fa-phone fa-fw fa-4x">&#60;/i&#62;
+                          &#60;/div&#62;
+                          &#60;div class="media-body"&#62;
+                              &#60;h4>&#60;a href="">Línea gratuíta 0800-999-0209 &#60;/a>&#60;/h4&#62;
+                              &#60;p class="margin-0">Servicio Gratuíto de Orientación y Asesoramiento al Ciudadano&#60;/p&#62;
+                          &#60;/div&#62;
+                      &#60;/div&#62;
+                  &#60;/div&#62;
+                </code>
+              </pre>
               <hr>
 
-              <h4>Barra de progreso</h4>
+              <h4 id="barra-progreso">Barra de progreso</h4>
+
               <div class="progress">
                 <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
                   <span class="sr-only">60% Completado</span>
                 </div>
               </div>
+
+              <br>
+              <pre>
+                <code class="language-markup">
+                  &#60;div class="progress"&#62;
+                    &#60;div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"&#62;
+                      &#60;span class="sr-only">60% Completado&#60;/span&#62;
+                    &#60;/div&#62;
+                  &#60;/div&#62;
+                </code>
+              </pre>
+
               <hr>
 
               <h4>Clases auxiliares</h4>
@@ -1148,9 +1522,21 @@
               <p class="text-warning">Etiam porta sem malesuada magna mollis euismod.</p>
               <p class="text-danger">Donec ullamcorper nulla non metus auctor fringilla.</p>
 
+              <br>
+              <pre>
+                <code class="language-markup">
+                  &#60;p class="text-muted">Fusce dapibus, tellus ac cursus commodo, tortor mauris nibh.&#60;/p&#62;
+                  &#60;p class="text-primary">Nullam id dolor id nibh ultricies vehicula ut id elit.&#60;/p&#62;
+                  &#60;p class="text-success">Duis mollis, est non commodo luctus, nisi erat porttitor ligula.&#60;/p&#62;
+                  &#60;p class="text-info">Maecenas sed diam eget risus varius blandit sit amet non magna.&#60;/p&#62;
+                  &#60;p class="text-warning">Etiam porta sem malesuada magna mollis euismod.&#60;/p&#62;
+                  &#60;p class="text-danger">Donec ullamcorper nulla non metus auctor fringilla.&#60;/p&#62;
+                </code>
+              </pre>
+
               <hr>
 
-              <h4>Colores de fondo</h4>
+              <h4 id="background-color">Colores de fondo</h4>
               <br>
 
               <div class="docs-colores">
@@ -1160,11 +1546,18 @@
                 <span class="bg-warning"></span>
                 <span class="bg-danger"></span>
               </div>
-
               <div class="clearfix"></div>
+              <br>
+              <pre>
+                <code class="language-markup">
+                  &#60;span class="bg-primary">&#60;/span&#62;
+                  &#60;span class="bg-success">&#60;/span&#62;
+                  &#60;span class="bg-info">&#60;/span&#62;
+                  &#60;span class="bg-warning">&#60;/span&#62;
+                  &#60;span class="bg-danger">&#60;/span&#62;
+                </code>
+              </pre>
               <hr>
-
-
             <div id="components">
 
               <h3>Jumbotron</h3>
@@ -1201,6 +1594,7 @@
                     </div>
                   </div>
                 </div>
+
                 <div class="jumbotron_body">
                   <div class="container">
                     <div class="row">
@@ -1214,9 +1608,33 @@
                 <div class="overlay"></div>
               </section>
 
+              <br>
+                <pre>
+                  <code class="language-markup">
+                    &#60;section class="jumbotron" style="background-image: url('img/modernizacion.jpg');">
+                      &#60;div class="jumbotron_bar"&#62;
+                        &#60;div class="container"&#62;
+                          &#60;div class="row"&#62;
+                            &#60;div class="col-md-12"&#62;
+                              &#60;ol class="breadcrumb pull-left"&#62;
+                                &#60;li>&#60;a href="">Argentina&#60;/a>&#60;/li&#62;
+                                &#60;li class="active">&#60;span>Ministerio de Modernización&#60;/span>&#60;/li&#62;
+                              &#60;/ol&#62;
+                              &#60;ul class="list-inline pull-right"&#62;
+                                &#60;li>&#60;a href="#" class="search">&#60;i class="glyphicon glyphicon-search">&#60;/i>Buscar en el área&#60;/a>&#60;/li&#62;
+                                &#60;li>&#60;a href="#">Institucional&#60;/a>&#60;/li&#62;
+                              &#60;/ul&#62;
+                            &#60;/div&#62;
+                          &#60;/div&#62;
+                        &#60;/div&#62;
+                      &#60;/div&#62;
+                    &#60;/section&#62;
+                  </code>
+                </pre>
+
               <hr>
 
-              <h3>Elemento multimedia</h3>
+              <h3 id="element-multimedia">Elemento multimedia</h3>
               <p>Estilos de objetos abstractos para la construcción de diversos tipos de componentes (como los comentarios de blogs, tweets, etc.) que ofrecen una imagen de la izquierda o alineado a la derecha junto con el contenido textual.</p>
               <div class="media">
                 <div class="media-left">
@@ -1229,6 +1647,23 @@
                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
                 </div>
               </div>
+              <br>
+              <pre>
+                <code class="language-markup">
+                  &#60;div class="media"&#62;
+                    &#60;div class="media-left"&#62;
+                      &#60;a href="#"&#62;
+                        &#60;img class="media-object" src="http://placehold.it/100x100" alt="..."&#62;
+                      &#60;/a&#62;
+                    &#60;/div&#62;
+                    &#60;div class="media-body"&#62;
+                      &#60;h4 class="media-heading">Encabezado&#60;/h4&#62;
+                       Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                    &#60;/div&#62;
+                  &#60;/div&#62;
+                </code>
+              </pre>
+
               <hr>
               <h3>Videos Responsivos</h3>
               <!-- 16:9 aspect ratio -->
@@ -1244,6 +1679,20 @@
               <div class="embed-responsive embed-responsive-4by3">
                 <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/XYPJDCoR6nw"></iframe>
               </div>
+
+              <br>
+              <pre>
+                <code class="language-markup">
+
+                  &#60;div class="embed-responsive embed-responsive-16by9"&#62;
+                    &#60;iframe class="embed-responsive-item" src="https://www.youtube.com/embed/XYPJDCoR6nw"&#62;&#60;/iframe&#62;
+                  &#60;/div&#62;
+                  &#60;div class="embed-responsive embed-responsive-4by3"&#62;
+                    &#60;iframe class="embed-responsive-item" src="https://www.youtube.com/embed/XYPJDCoR6nw"&#62;&#60;/iframe&#62;
+                  &#60;/div&#62;
+
+                </code>
+              </pre>
               <hr>
             </div>
             <div id="Javascript">
