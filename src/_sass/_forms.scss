@@ -169,3 +169,16 @@ input {
 }
 
 .open > .dropdown-toggle.btn-default{color: #fff !important;}
+
+.has-feedback {
+  input ~ .form-control-feedback {
+    top: 38px;
+  }
+  input.input-sm ~ .form-control-feedback {
+    top: 28px;
+  }
+  input.input-lg ~ .form-control-feedback {
+    top: 36px;
+  }
+}
+
