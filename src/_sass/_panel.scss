@@ -312,7 +312,7 @@ a {
   &:before {
     position: absolute;
     content: '';
-    top: 20%;
+    top: 50%;
     left: 50%;
     -webkit-animation: loader .6s linear;
     animation: loader .6s linear;
@@ -325,7 +325,7 @@ a {
     border-color: $gray $gray-background $gray-background;
     width: 2.2585em;
     height: 2.2585em;
-    margin: 0 0 0 -1.12925em;
+    margin: -1.12925em 0 0 -1.12925em;
     z-index: 11;
   }
   &:after {
