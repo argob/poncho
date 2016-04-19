@@ -35,7 +35,7 @@
   <link href="/css/poncho.css" rel="stylesheet">
 </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#navbar-docs">
 
     <header>
   <nav class="navbar navbar-top navbar-default" role="navigation">
@@ -104,11 +104,11 @@
 <section>
   <div class="container">
     <div class="row">
-      <aside class="col-md-3 ">
-        <div class="fixed">
+      <!--<aside class="col-md-3">
+        <div id="navbar-docs">
           <div class="pane-content">
             <nav class="page-sidebar">
-              <ul class="nav nav-pills nav-stacked">
+              <ul class="nav nav-pills nav-stacked" role="tablist">
                 <li class="btn-title">
                   <a href="#estilos">Estilos</a>
                   <ul class="nav">
@@ -119,6 +119,9 @@
                     <li><a href="#listas">Listas</a></li>
                     <li><a href="#tablas">Tablas</a></li>
                     <li><a href="#formularios">Formulario</a></li>
+                    <li><a href="#botones">Botones</a></li>
+                    <li><a href="#imagenes">Imágenes</a></li>
+                    <li><a href="#clases-auxiliares">Clases auxiliares</a></li>
                   </ul>
                 </li>
                 <li class="btn-title">
@@ -138,6 +141,51 @@
             </nav>
           </div>
         </div>
+      </aside> -->
+      <aside>
+          <nav class="sidebar col-md-3">
+            <ul id="navbar-docs" class="nav nav-pills nav-stacked" data-spy="affix" role="tablist">
+              <li class="btn-title">
+                <a href="#estilos">Estilos</a>
+                <ul class="nav">
+                  <li><a href="#encabezado-pagina">Encabezado Página</a></li>
+                  <li><a href="#cuerpo">Cuerpo</a></li>
+                  <li><a href="#enfasis">Énfasis</a></li>
+                  <li><a href="#cita">Cita</a></li>
+                  <li><a href="#listas">Listas</a></li>
+                  <li><a href="#tablas">Tablas</a></li>
+                  <li><a href="#formularios">Formulario</a></li>
+                  <li><a href="#botones">Botones</a></li>
+                  <li><a href="#imagenes">Imágenes</a></li>
+                  <li><a href="#clases-auxiliares">Clases auxiliares</a></li>
+                </ul>
+              </li>
+              <li class="btn-title">
+                <a href="#components">Componentes</a>
+                <ul class="nav">
+                  <li><a href="#navbar">Navbar</a></li>
+                  <li><a href="#breadcrumb">Breadcrumb</a></li>
+                  <li><a href="#pagination">Paginación</a></li>
+                  <li><a href="#labels">Etiquetas</a></li>
+                  <li><a href="#badges">Etiquetas Numeradas</a></li>
+                  <li><a href="#alertas">Alertas</a></li>
+                  <li><a href="#alertas-con-iconos">Alertas Con Íconos</a></li>
+                  <li><a href="#background-color">Colores de Fondo</a></li>
+                </ul>
+              </li>
+              <li class="btn-title">
+                <a href="#javascript">Javascript</a>
+                <ul class="nav">
+                  <li><a href="#modal">Modal</a></li>
+                  <li><a href="#">Dropdown</a></li>
+                  <li><a href="#ayuda-sobre-elementos">Nota de Ayuda Sobre Elementos</a></li>
+                  <li><a href="#info-contextual">Información Contextual</a></li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
+
+
       </aside>
       <div class="col-md-9">
         <div class="row">
@@ -923,13 +971,14 @@
               </pre>
 
               <hr>
-              <h3>Imágenes</h3>
+              <h3 id="imagenes">Imágenes</h3>
               <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgdmlld0JveD0iMCAwIDE0MCAxNDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzE0MHgxNDAKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xNTJmOWQxZWZiMSB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE1MmY5ZDFlZmIxIj48cmVjdCB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjQ1LjUiIHk9Ijc0LjUiPjE0MHgxNDA8L3RleHQ+PC9nPjwvZz48L3N2Zz4=" alt="" class="img-rounded">
 
               &nbsp;
 
               <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgdmlld0JveD0iMCAwIDE0MCAxNDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzE0MHgxNDAKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xNTJmOWQxZWZiMSB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE1MmY5ZDFlZmIxIj48cmVjdCB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjQ1LjUiIHk9Ijc0LjUiPjE0MHgxNDA8L3RleHQ+PC9nPjwvZz48L3N2Zz4=" alt="" class="img-circle">
 
+              <br>
               <br>
               <pre>
                 <code class="language-markup">
@@ -939,9 +988,34 @@
 
               </pre>
 
+              <hr>
+
+              <h3 id="clases-auxiliares">Clases auxiliares</h3>
+
+              <p class="text-muted">Fusce dapibus, tellus ac cursus commodo, tortor mauris nibh.</p>
+              <p class="text-primary">Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+              <p class="text-success">Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
+              <p class="text-info">Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+              <p class="text-warning">Etiam porta sem malesuada magna mollis euismod.</p>
+              <p class="text-danger">Donec ullamcorper nulla non metus auctor fringilla.</p>
+
+              <br>
+              <pre>
+                <code class="language-markup">
+                  &#60;p class="text-muted">Fusce dapibus, tellus ac cursus commodo, tortor mauris nibh.&#60;/p&#62;
+                  &#60;p class="text-primary">Nullam id dolor id nibh ultricies vehicula ut id elit.&#60;/p&#62;
+                  &#60;p class="text-success">Duis mollis, est non commodo luctus, nisi erat porttitor ligula.&#60;/p&#62;
+                  &#60;p class="text-info">Maecenas sed diam eget risus varius blandit sit amet non magna.&#60;/p&#62;
+                  &#60;p class="text-warning">Etiam porta sem malesuada magna mollis euismod.&#60;/p&#62;
+                  &#60;p class="text-danger">Donec ullamcorper nulla non metus auctor fringilla.&#60;/p&#62;
+                </code>
+              </pre>
+
+              <hr>
+
             </div>
 
-            <div id="components" class="padding-60">
+            <div id="components">
               <!-- DropDown -->
               <h3>Botón con desplegable </h3>
               <!-- Single button -->
@@ -1024,11 +1098,13 @@
               <hr>
 
               <h3>Grupo de botones</h3>
+
               <div class="btn-group" role="group" aria-label="...">
                 <button type="button" class="btn btn-default">Izquierda&nbsp;(left)</button>
                 <button type="button" class="btn btn-default">Centro&nbsp;(middle)</button>
                 <button type="button" class="btn btn-default">Derecha&nbsp;(right)</button>
               </div>
+
               <!-- Single button -->
               <div class="btn-group">
                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -1513,28 +1589,7 @@
 
               <hr>
 
-              <h4>Clases auxiliares</h4>
 
-              <p class="text-muted">Fusce dapibus, tellus ac cursus commodo, tortor mauris nibh.</p>
-              <p class="text-primary">Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              <p class="text-success">Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
-              <p class="text-info">Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
-              <p class="text-warning">Etiam porta sem malesuada magna mollis euismod.</p>
-              <p class="text-danger">Donec ullamcorper nulla non metus auctor fringilla.</p>
-
-              <br>
-              <pre>
-                <code class="language-markup">
-                  &#60;p class="text-muted">Fusce dapibus, tellus ac cursus commodo, tortor mauris nibh.&#60;/p&#62;
-                  &#60;p class="text-primary">Nullam id dolor id nibh ultricies vehicula ut id elit.&#60;/p&#62;
-                  &#60;p class="text-success">Duis mollis, est non commodo luctus, nisi erat porttitor ligula.&#60;/p&#62;
-                  &#60;p class="text-info">Maecenas sed diam eget risus varius blandit sit amet non magna.&#60;/p&#62;
-                  &#60;p class="text-warning">Etiam porta sem malesuada magna mollis euismod.&#60;/p&#62;
-                  &#60;p class="text-danger">Donec ullamcorper nulla non metus auctor fringilla.&#60;/p&#62;
-                </code>
-              </pre>
-
-              <hr>
 
               <h4 id="background-color">Colores de fondo</h4>
               <br>
@@ -1695,10 +1750,11 @@
               </pre>
               <hr>
             </div>
+
             <div id="Javascript">
               <h3>Javascript</h3>
 
-              <h4>Modal</h4>
+              <h4 id="modal">Modal</h4>
 
                 <!-- Button to trigger modal -->
                 <a href="#myModal" role="button" class="btn btn-primary" data-toggle="modal">Iniciar demo de modal</a>
@@ -1748,7 +1804,7 @@
                 </pre>
               <hr>
 
-              <h4>Nota de ayuda sobre elemento</h4>
+              <h4 id="ayuda-sobre-elementos">Nota de ayuda sobre elemento</h4>
 
               <div style="position: relative;">
                 <button type="button" class="btn btn-link" data-toggle="tooltip" data-placement="left" title="Nota a la izquierda">Nota a la izquierda</button>
@@ -1768,7 +1824,7 @@
 
               <hr>
 
-              <h4>Información contextual </h4>
+              <h4 id="info-contextual">Información contextual </h4>
 
               <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
                 A la derecha
@@ -1798,18 +1854,12 @@
                   &#60;button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="right" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."&#62;A la derecha&#60;/button&#62;
                 </code>
               </pre>
-
             </div>
           </div>
         </div>
-
-
       </div>
-
-    </div>
-
-
-  </div>
+    </div><!-- End Row -->
+  </div><!-- End Container -->
 </section>
 
     </main>
