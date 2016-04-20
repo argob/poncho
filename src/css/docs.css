@@ -18,4 +18,21 @@
 }
 
 #docs hr{margin: 60px 0 60px}
+
 #docs ul li ul {font-weight: normal;}
+
+#docs ul#navbar-docs {width: 263px;}
+
+@media only screen and (min-width: 768px ){
+  #docs .page-sidebar .nav > li.active > .nav > li { display: block;}
+}
+@media only screen and (max-width: 767px ){
+  #docs ul#navbar-docs {position: static;}
+}
+
+#docs .page-sidebar .nav .nav > li {display: none;}
+
+#docs #navbar-docs ul > li {margin-top: 2px;}
+
+#docs #navbar-docs ul > li > a {border-radius: 4px;}
+

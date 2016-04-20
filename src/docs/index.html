@@ -17,50 +17,13 @@ layout: docs
 <section>
   <div class="container">
     <div class="row">
-      <!--<aside class="col-md-3">
-        <div id="navbar-docs">
-          <div class="pane-content">
-            <nav class="page-sidebar">
-              <ul class="nav nav-pills nav-stacked" role="tablist">
-                <li class="btn-title">
-                  <a href="#estilos">Estilos</a>
-                  <ul class="nav">
-                    <li><a href="#encabezado-pagina">Encabezado Página</a></li>
-                    <li><a href="#cuerpo">Cuerpo</a></li>
-                    <li><a href="#enfasis">Énfasis</a></li>
-                    <li><a href="#cita">Cita</a></li>
-                    <li><a href="#listas">Listas</a></li>
-                    <li><a href="#tablas">Tablas</a></li>
-                    <li><a href="#formularios">Formulario</a></li>
-                    <li><a href="#botones">Botones</a></li>
-                    <li><a href="#imagenes">Imágenes</a></li>
-                    <li><a href="#clases-auxiliares">Clases auxiliares</a></li>
-                  </ul>
-                </li>
-                <li class="btn-title">
-                  <a href="#components">Componentes</a>
-                  <ul class="nav">
-                    <li><a href="#navbar">Navbar</a></li>
-                    <li><a href="#breadcrumb">Breadcrumb</a></li>
-                    <li><a href="#pagination">Paginación</a></li>
-                    <li><a href="#labels">Etiquetas</a></li>
-                    <li><a href="#badges">Etiquetas Numeradas</a></li>
-                    <li><a href="#alertas">Alertas</a></li>
-                    <li><a href="#alertas-con-iconos">Alertas Con Íconos</a></li>
-                    <li><a href="#background-color">Colores de Fondo</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-      </aside> -->
-      <aside>
-          <nav class="sidebar col-md-3">
-            <ul id="navbar-docs" class="nav nav-pills nav-stacked" data-spy="affix" role="tablist">
+      <aside class="page-sidebar col-md-3">
+          <nav>
+            <ul id="navbar-docs" class="nav nav-pills nav-stacked" data-spy="affix" data-offset-top="286" role="tablist">
               <li class="btn-title">
                 <a href="#estilos">Estilos</a>
                 <ul class="nav">
+                  <li><a href="#tipografia">Tipografía</a></li>
                   <li><a href="#encabezado-pagina">Encabezado Página</a></li>
                   <li><a href="#cuerpo">Cuerpo</a></li>
                   <li><a href="#enfasis">Énfasis</a></li>
@@ -76,6 +39,8 @@ layout: docs
               <li class="btn-title">
                 <a href="#components">Componentes</a>
                 <ul class="nav">
+                  <li><a href="#boton-con-desplegable">Botón con desplegable</a></li>
+                  <li><a href="#grupo-de-botones">Grupo de botones</a></li>
                   <li><a href="#navbar">Navbar</a></li>
                   <li><a href="#breadcrumb">Breadcrumb</a></li>
                   <li><a href="#pagination">Paginación</a></li>
@@ -103,10 +68,10 @@ layout: docs
       <div class="col-md-9">
         <div class="row">
           <div class="col-md-12">
-            <div id="css">
-              <h2>Tipografía</h2>
+            <div id="estilos">
+              <h3 id="tipografia">Tipografía</h3>
               <br>
-              <h3>Encabezado</h3>
+              <h4>Encabezado</h4>
               <h1>h1. Texto referencia <small>40 px | 2.5 em</small></h1>
               <h2>h2. Texto referencia <small>36 px | 2.285714 em</small></h2>
               <h3>h3. Texto referencia <small>32 pts | 2 em </small></h3>
@@ -930,7 +895,7 @@ layout: docs
 
             <div id="components">
               <!-- DropDown -->
-              <h3>Botón con desplegable </h3>
+              <h3 id="boton-con-desplegable">Botón con desplegable </h3>
               <!-- Single button -->
               <div class="btn-group">
                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">  Default <span class="caret"></span></button>
@@ -1010,7 +975,7 @@ layout: docs
 
               <hr>
 
-              <h3>Grupo de botones</h3>
+              <h3 id="grupo-de-botones">Grupo de botones</h3>
 
               <div class="btn-group" role="group" aria-label="...">
                 <button type="button" class="btn btn-default">Izquierda&nbsp;(left)</button>
@@ -1664,9 +1629,7 @@ layout: docs
               <hr>
             </div>
 
-            <div id="Javascript">
-              <h3>Javascript</h3>
-
+            <div id="javascript">
               <h4 id="modal">Modal</h4>
 
                 <!-- Button to trigger modal -->
