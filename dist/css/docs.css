@@ -34,5 +34,9 @@
 
 #docs #navbar-docs ul > li {margin-top: 2px;}
 
-#docs #navbar-docs ul > li > a {border-radius: 4px;}
+#docs #navbar-docs ul > li > a {border-radius: 4px; font-size: 16px;}
+#navbar-docs.affix {top: 55px;}
 
+pre[class*="language-"] {padding: 2em!important;}
+
+#docs .page-sidebar .nav-pills li>a {padding: 10px 15px;}
