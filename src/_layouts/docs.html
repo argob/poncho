@@ -1,7 +1,7 @@
 <!DOCTYPE html>
   <html lang="es">
     {% include docs/head.html %}
-  <body>
+  <body data-spy="scroll" data-target="#navbar-docs">
 
     {% include docs/header.html %}
     <main id="docs" role="main">
@@ -14,7 +14,12 @@
     <script>
       $(function () {
         $('[data-toggle="tooltip"]').tooltip();
-        $('[data-toggle="popover"]').popover()
+        $('[data-toggle="popover"]').popover();
+        var $affix = $("#navbar-docs");
+             $parent = $affix.parent(),
+             resize = function() { $affix.width($parent.width()); };
+         $(window).resize(resize);
+         resize();
       })
     </script>
 
