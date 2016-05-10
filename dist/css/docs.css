@@ -1,4 +1,8 @@
 /* colores */
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+  background: #ededed !important;
+}
 
 .docs-colores {
   float:left;
