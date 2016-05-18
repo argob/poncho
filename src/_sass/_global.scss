@@ -472,3 +472,50 @@ dd {
   }
 
 }
+
+.state-loading {
+  position: relative;
+
+  &:before {
+    -webkit-animation: loader .6s linear;
+    -webkit-animation-iteration-count: infinite;
+    animation: loader .6s linear;
+    animation-iteration-count: infinite;
+    border-color: $gray $gray-background $gray-background;
+    border-radius: 600rem;
+    border-style: solid;
+    border-width: .2em;
+    box-shadow: 0 0 0 1px transparent;
+    content: '';
+    height: 2.2585em;
+    left: 50%;
+    margin: -1.12925em 0 0 -1.12925em;
+    position: absolute;
+    top: 50%;
+    width: 2.2585em;
+    z-index: 11;
+  }
+
+  &:after {
+    background-color: rgba(204,204,204,.7);
+    border-radius: 4px;
+    content: '';
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+  }
+
+}
+
+@keyframes loader {
+  from {
+    -webkit-transform: rotate(0);
+    transform: rotate(0)
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg)}
+  }

@@ -785,6 +785,7 @@ layout: docs
                 <button type="button" class="btn btn-primary">Primary</button>
                 <button type="button" class="btn btn-success">Success</button>
                 <button type="button" class="btn btn-info disabled">Disabled</button>
+                <button type="button" class="btn btn-info disabled panel-loading">Cargando</button>
               </p>
               <pre>
                 <code class="language-markup">
@@ -1316,8 +1317,9 @@ layout: docs
                   &#60;/a&#62;
                 </code>
               </pre>
+              <br>
 
-              <h4>Panel Loader </h4>
+              <h4>Panel con estado cargando</h4>
 
               <div class="row">
                 <div class="col-md-6">
@@ -1325,7 +1327,7 @@ layout: docs
                     <div class="panel-heading"><i class="fa fa-check-square-o"></i></div>
                     <div class="panel-body">
                       <h2>¿Este es tu número de CUIT?</h2>
-                      <p class="h2"><strong>2222324252</strong></h3>
+                      <p class="h2"><strong>2222324252</strong></p>
                       <p>lo calculamos a partir de tus datos pero no siempre coincide</p>
                       <p><a href="cuit-ingresado.html" class="btn btn-primary btn-block">Si, es mi número de cuit</a></p>
                     </div>
@@ -1336,9 +1338,22 @@ layout: docs
                 </div>
               </div>
 
-              </div>
-
-
+              <pre>
+                <code class="language-markup">
+                  &#60;div class="panel panel-default panel-icon panel-primary margin-40 panel-loading" href="#"&#62;
+                    &#60;div class="panel-heading"><i class="fa fa-check-square-o"></i>&#60;/div&#62;
+                    &#60;div class="panel-body"&#62;
+                      &#60;h2>¿Este es tu número de CUIT?&#60;/h2&#62;
+                      &#60;p class="h2">&#60;strong&#62;2222324252&#60;/strong&#62;&#60;/p&#62;
+                      &#60;p&#62;lo calculamos a partir de tus datos pero no siempre coincide&#60;/p&#62;
+                      &#60;p&#62;&#60;a href="cuit-ingresado.html" class="btn btn-primary btn-block"&#62;Si, es mi número de cuit&#60;/a&#62;&#60;/p&#62;
+                    &#60;/div&#62;
+                    &#60;div class="panel-footer"&#62;
+                      &#60;a href="cuit-no-coincidente.html"&#62;Si no es tu número de cuit, ingresá el numero correcto&#60;/a&#62;
+                    &#60;/div&#62;
+                  &#60;/div&#62;
+                </code>
+              </pre>
 
               <hr>
 
