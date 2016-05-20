@@ -1,0 +1,28 @@
+{
+  "name": "poncho",
+  "version": "0.2.0",
+  "description": "Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/argob/poncho"
+  },
+  "keywords": [
+    "template",
+    "poncho",
+    "argentina",
+    "bootstrap",
+    "html",
+    "css",
+    "scss"
+  ],
+  "author": "Dirección Nacional de Servicios Digitales de la Subsecretaría de Gobierno Digital, dependiente del Ministerio de Modernización de la República Argentina",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/argob/poncho/issues"
+  },
+  "homepage": "https://github.com/argob/poncho"
+}
