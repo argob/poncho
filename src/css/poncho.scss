@@ -1,8 +1,5 @@
----
-# Only the main Sass file needs front matter (the dashes are enough)
----
 /*!
- * Poncho v0.1 (https://github.com/argob/poncho)
+ * Poncho v0.2 (https://github.com/argob/poncho)
  * Copyright 2016
  * Subsecretaría de Gobierno Digital
  * Presidencia de la Nación Argentina
@@ -11,26 +8,26 @@
 
 /* Resources */
 
-@import "bourbon/bourbon";
-@import "variables";
-@import "global";
-@import "grid";
-@import "helpers";
-@import "typography";
-@import "buttons";
-@import "dropdowns";
-@import "nav";
-@import "footer";
-@import "list-group";
-@import "breadcrumb";
-@import "pagination";
-@import "article";
-@import "panel";
-@import "jumbotron";
-@import "forms";
-@import "social";
-@import "tables";
-@import "dashboard"; // Charts and big numbers
+@import "modules/bourbon/bourbon";
+@import "modules/variables";
+@import "modules/global";
+@import "modules/grid";
+@import "modules/helpers";
+@import "modules/typography";
+@import "modules/buttons";
+@import "modules/dropdowns";
+@import "modules/nav";
+@import "modules/footer";
+@import "modules/list-group";
+@import "modules/breadcrumb";
+@import "modules/pagination";
+@import "modules/article";
+@import "modules/panel";
+@import "modules/jumbotron";
+@import "modules/forms";
+@import "modules/social";
+@import "modules/tables";
+@import "modules/dashboard"; // Charts and big numbers
 
 
 

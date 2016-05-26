@@ -19,10 +19,10 @@
     "css",
     "scss"
   ],
-  "author": "Dirección Nacional de Servicios Digitales de la Subsecretaría de Gobierno Digital, dependiente del Ministerio de Modernización de la República Argentina",
+  "author": "Dirección Nacional de Servicios Digitales de la Subsecretaría de Gobierno Digital.",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/argob/poncho/issues"
   },
-  "homepage": "https://github.com/argob/poncho"
+  "homepage": "https://argob.github.io/poncho"
 }

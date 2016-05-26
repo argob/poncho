@@ -1,0 +1,55 @@
+.pagination {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 64px;
+  margin-top: 60px;
+  text-transform: uppercase;
+}
+
+.pagination > li > a,
+.pagination > li > span {
+  background-color: transparent;
+  border: 0;
+  border-radius: 4px;
+  color: $brand-primary;
+  float: left;
+  line-height: 1.42857;
+  margin: 0 2px;
+  padding: 10px 17px;
+  position: relative;
+  text-decoration: none;
+}
+
+.pagination > li > a:hover,
+.pagination > li > a:focus,
+.pagination > li > span:hover,
+.pagination > li > span:focus {
+  background-color: $gray-lighter;
+  border-color: transparent;
+  color: $brand-primary;
+}
+
+.pagination > .active > a,
+.pagination > .active > a:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span,
+.pagination > .active > span:hover,
+.pagination > .active > span:focus {
+  background-color: $gray;
+  border-color: $brand-primary;
+  color: $body-bg;
+  cursor: default;
+  z-index: 2;
+}
+
+.pagination > .disabled > span,
+.pagination > .disabled > span:hover,
+.pagination > .disabled > span:focus,
+.pagination > .disabled > a,
+.pagination > .disabled > a:hover,
+.pagination > .disabled > a:focus {
+  background-color: #f8f5f0;
+  border-color: #dfd7ca;
+  color: #dfd7ca;
+  cursor: not-allowed;
+}

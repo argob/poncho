@@ -1,0 +1,41 @@
+.breadcrumb {
+  background: transparent;
+  border: 0;
+  font-weight: 400;
+  margin: 16px 0 0;
+  padding: 0;
+  text-transform: none;
+
+  li {
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  a {
+    color: $brand-primary;
+
+    &:hover {
+      color: $link-hover-color;
+    }
+  }
+
+  &>li+li:before,
+  &>.active {
+    color: $gray;
+  }
+}
+
+.section-actions {
+  margin: 16px 0 24px;
+}
+
+.jumbotron_bar {
+
+  .breadcrumb {
+
+    &>li+li:before,
+    &>.active {
+      color: $gray-border;
+    }
+  }
+}
