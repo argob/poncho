@@ -4,26 +4,40 @@ Base de html y css para la creación de sitios pertenecientes a la Administraci�
 
 Para usar Poncho en un sitio, ver [la documentación](http://argob.github.io/poncho/).
 
+Tambien se puede implementar mediante NPM
+
+ * [NPM](https://www.npmjs.com/package/poncho) npm install poncho
+
 ## Instalación y requisitos
 
-Para el desarrollo de poncho usamos Jekyll ya que ayudaa generar templates y compilar los archivos de sass.
-Para poder correr el proyecto es necesario tener instalado Ruby y la gema de [Bundler](http://bundler.io/): *(Si lo requiere, usar sudo)*
+Para poder compilar el proyecto es necesario tener instalado Ruby y la gema de [Sass](http://sass-lang.com/): *(Si lo requiere, usar sudo)*
 
-    gem install bundler
+    gem install sass
 
-Una vez instalado bundler, sobre la raíz del proyecto correr:
+## Ubicación de archivos
 
-    bundle install
+* Los archivos CSS compilados, se encuentran en la carpeta dist/ .
+* El archivo .SCSS principal está en src/css/poncho.scss
+* Los archivos .SCSS restantes se ubican en la carpeta src/css/modules/ .
 
 ## Puesta en marcha
 
-Para correr el proyecto, ejecutar el siguiente comando en su carpeta:
+Incluir en el html los siguientes archivos CSS:
 
-    jekyll serve
-
-Esto inicia un servidor de jekyll que se puede ver en **http://localhost:4000/**, el cual regenera los archivos automáticamente al hacer modificaciones en el proyecto.
+    <link rel="stylesheet" href="dist/css/droid-serif.css">
+    <link rel="stylesheet" href="dist/css/roboto-fontface.css">
+    <link rel="stylesheet" href="dist/css/poncho.css">
 
 En **Sublime Text** recomendamos tener los siguientes packages, disponibles en el package controller:
 
-- **Editorconfig** *(Para asegurar consistencia en el formato de archivos)*
 - **Sass** *(Para colores de los archivos scss)*
+
+## Compilar archivos SCSS luego de modificarlos.
+
+Ejecutar Sass desde la linea de comando:
+
+    sass src/css/poncho.scss:dist/css/poncho.css
+
+Actualizar el CSS principal cada vez que un archivo SCSS se modifica:
+
+    sass --watch src/css/poncho.scss:dist/css/poncho.css
