@@ -1,0 +1,119 @@
+.list-group-item {
+  border: 0;
+  border-bottom: solid 1px $gray-light;
+  color: $gray;
+  display: block;
+  font-weight: 400;
+  margin-bottom: 0;
+  padding: 16px 15px;
+  width: 100%;
+
+  &:last-child {
+    border: 0;
+  }
+
+}
+
+a {
+  &.list-group-item {
+    color: $gray-base;
+    font-weight: 500;
+
+    &:hover,
+    &:focus,
+    &:hover small,
+    &:focus small {
+      background-color: $brand-primary;
+      color: $white;
+    }
+  }
+}
+
+.list-group-agenda {
+  display: table;
+  width: 100%;
+
+  h4 {
+    font-weight: 700;
+    margin-top: 4px;
+  }
+}
+
+.agenda-date {
+  display: table-cell;
+  text-align: center;
+  vertical-align: top;
+  width: 56px;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  .h1,
+  .h2,
+  .h3,
+  .h4,
+  .h5,
+  .h6 {
+    font-weight: 400;
+  }
+
+  h3 {
+    margin-top: 0;
+  }
+
+  h4 {
+    font-size: 1.2em;
+    margin: 0;
+
+    small {
+      display: block;
+      font-size: .9em;
+      margin-top: 6px;
+    }
+  }
+
+  strong {
+    display: block;
+    font-size: 28px;
+  }
+}
+
+.agenda-small {
+  width: 30px;
+}
+
+.agenda-info {
+  display: table-cell;
+  margin-top: -15px;
+  padding-left: 15px;
+  vertical-align: top;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  .h1,
+  .h2,
+  .h3,
+  .h4,
+  .h5,
+  .h6 {
+    font-weight: 400;
+  }
+
+  h4 {
+    font-weight: normal;
+  }
+}
+
+.list-group-areas {
+  h3 {
+    font-weight: 700;
+    margin-top: 0;
+  }
+}

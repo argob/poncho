@@ -1,0 +1,247 @@
+.btn-primary {
+  background-color: $brand-primary;
+
+  &:hover,
+  &:focus,
+  &:active,
+  &.focus,
+  &.active {
+    background-color: lighten($brand-primary, 10%);
+  }
+}
+
+.btn-success {
+  background-color: $brand-success;
+
+  &:hover,
+  &:focus {
+    background-color: lighten($brand-success, 10%);
+  }
+}
+
+.btn-info {
+  background-color: $brand-info;
+
+  &:hover,
+  &:focus {
+    background-color: lighten($brand-info, 10%);
+  }
+}
+
+.btn-warning {
+  background-color: $brand-warning;
+
+  &:hover,
+  &:focus {
+    background-color: lighten($brand-warning, 10%);
+  }
+}
+
+.btn-danger {
+  background-color: $brand-danger;
+
+  &:hover,
+  &:focus {
+    background-color: lighten($brand-danger, 10%);
+  }
+}
+
+.btn-link {
+  border-radius: 4px;
+  color: $brand-primary;
+  text-decoration: underline !important;
+
+  &:hover,
+  &:focus {
+    background-color: $gray-lighter !important;
+    color: $brand-primary;
+  }
+}
+
+.bg-primary {
+  background-color: $brand-primary !important;
+}
+.bg-success {
+  background-color: $brand-success !important;
+}
+.bg-info {
+  background-color: $brand-info !important;
+}
+.bg-warning {
+  background-color: $brand-warning !important;
+}
+.bg-danger {
+  background-color: $brand-danger !important;
+}
+.bg-white {
+  background-color: $white;
+}
+
+a.bg-primary,
+a.bg-success,
+a.bg-info,
+a.bg-warning,
+a.bg-danger {
+  color: #FFF;
+  display: block;
+  padding: 6px 0;
+
+  &:hover {
+    opacity: 0.9;
+    text-decoration: underline;
+  }
+}
+
+
+
+.text-primary {
+  color: $brand-primary;
+}
+.text-secondary {
+  color: $brand-secondary;
+}
+.text-success {
+  color: $brand-success;
+}
+.text-info {
+  color: $brand-info;
+}
+.text-warning {
+  color: $brand-warning;
+}
+.text-danger {
+  color: $brand-danger;
+}
+
+.open>.dropdown-toggle {
+  &.btn-primary {
+    background-color: lighten($brand-primary, 10%);
+  }
+}
+
+.btn-inverse {
+  background-color: transparent;
+  border: solid 2px $white;
+  color: $white;
+}
+
+.btn-inverse {
+  &:hover,
+  &:focus,
+  &:active,
+  &.focus,
+  &.active {
+    background-color: $white;
+    color: $brand-primary;
+  }
+}
+
+.open>.dropdown-toggle {
+  &.btn-inverse {
+    background-color: $white;
+    color: $brand-primary;
+  }
+}
+
+.btn-default.disabled,
+.btn-default[disabled],
+.btn-default.disabled:hover,
+.btn-default[disabled]:hover,
+.btn-default.disabled:focus,
+.btn-default[disabled]:focus,
+.btn-default.disabled.focus,
+.btn-default[disabled].focus,
+.btn-default.disabled:active,
+.btn-default[disabled]:active,
+.btn-default.disabled.active,
+.btn-default[disabled].active,
+fieldset[disabled],
+fieldset[disabled] .btn-default:hover,
+fieldset[disabled] .btn-default:focus,
+fieldset[disabled] .btn-default.focus,
+fieldset[disabled] .btn-default:active,
+fieldset[disabled] .btn-default.active {
+  background-color: $gray-light;
+}
+
+.btn-default {
+  background-color: $gray;
+  color: $white;
+
+  &:hover,
+  &:focus {
+    background-color: lighten($brand-default, 10%);
+    color: $white;
+  }
+}
+
+
+.btn {
+  border: 0;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 10px;
+  padding: 16px 25px;
+  text-transform: uppercase;
+  vertical-align: top;
+  white-space: initial;
+
+  &:hover {
+    border: 0;
+  }
+
+  &.btn-lg {
+    font-size: 20px;
+    padding: 20px 40px;
+  }
+
+  &.btn-sm {
+    font-size: 14px;
+    padding: 5px 10px;
+  }
+
+  &.btn-xs {
+    font-size: 12px;
+    padding: 1px 5px;
+  }
+}
+
+.input-group-btn {
+  .btn {
+    margin-top: 0;
+  }
+}
+
+.btn-xl {
+  font-size: 24px;
+  line-height: 32px;
+  margin-top: 32px;
+  padding: 24px 96px;
+}
+
+.social-btn {
+  a {
+    color: $brand-primary;
+  }
+}
+
+.form-tramite {
+  .btn {
+    height: 49px;
+  }
+}
+
+span {
+  &.btn {
+    &:hover {
+      cursor: default;
+    }
+  }
+}
+
+header {
+  .btn {
+    margin: 13px;
+    padding: 12px 15px;
+  }
+}
