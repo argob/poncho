@@ -4,5 +4,5 @@ Gemfile.lock
 # Mac files
 .DS_Store
 
-dist
+#dist
 src/_site
