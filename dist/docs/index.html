@@ -26,13 +26,13 @@
   <meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
   <meta name="twitter:image" content="/ejemplos/img/jumbotron.jpg" />
 
-  <link href="/poncho/css/roboto-fontface.css" rel="stylesheet">
-  <link href="/poncho/css/bootstrap.css" rel="stylesheet">
-  <link href="/poncho/css/droid-serif.css" rel="stylesheet">
+  <link href="/poncho/node_modules/argob-poncho/dist/css/roboto-fontface.css" rel="stylesheet">
+  <link href="/poncho/node_modules/argob-poncho/dist/css/droid-serif.css" rel="stylesheet">
+  <link href="/poncho/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
   <link href="/poncho/css/font-awesome.min.css" rel="stylesheet">
+  <link href="/poncho/node_modules/argob-poncho/dist/css/poncho.css" rel="stylesheet">
   <link href="/poncho/css/docs.css" rel="stylesheet">
   <link href="/poncho/css/prism.css" rel="stylesheet">
-  <link href="/poncho/css/poncho.css" rel="stylesheet">
 </head>
 
   <body data-spy="scroll" data-target="#navbar-docs">
@@ -49,7 +49,7 @@
             <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand" href="/poncho/">
-            <!-- <img alt="Brand" src="/ponchoimg/argentinagob.svg" height="50"> -->
+
             <h1>Poncho <br><small>Base de estilos para web</small></h1>
           </a>
         </div>
@@ -131,7 +131,6 @@
                   <li><a href="#navbar">Navbar</a></li>
                   <li><a href="#breadcrumb">Breadcrumb</a></li>
                   <li><a href="#pagination">Paginación</a></li>
-                  <li><a href="#panel">Panel</a></li>
                   <li><a href="#labels">Etiquetas</a></li>
                   <li><a href="#badges">Etiquetas Numeradas</a></li>
                   <li><a href="#alertas">Alertas</a></li>
@@ -873,7 +872,7 @@
                 <button type="button" class="btn btn-primary">Primary</button>
                 <button type="button" class="btn btn-success">Success</button>
                 <button type="button" class="btn btn-info disabled">Disabled</button>
-                <button type="button" class="btn btn-info disabled state-loading">Cargando</button>
+                <button type="button" class="btn btn-info disabled panel-loading">Cargando</button>
               </p>
               <pre>
                 <code class="language-markup">
@@ -882,7 +881,7 @@
                   &#60;button type="button" class="btn btn-primary">Primary&#60;/button&#62;
                   &#60;button type="button" class="btn btn-success">Success&#60;/button&#62;
                   &#60;button type="button" class="btn btn-info disabled">Disabled&#60;/button&#62;
-                  &#60;button type="button" class="btn btn-info disabled state-loading">Cargando&#60;/button&#62;
+
                 </code>
               </pre>
               <br>
@@ -1411,7 +1410,7 @@
 
               <div class="row">
                 <div class="col-md-6">
-                  <div class="panel panel-default panel-icon panel-primary margin-40 state-loading" href="#">
+                  <div class="panel panel-default panel-icon panel-primary margin-40 panel-loading" href="#">
                     <div class="panel-heading"><i class="fa fa-check-square-o"></i></div>
                     <div class="panel-body">
                       <h2>¿Este es tu número de CUIT?</h2>
@@ -1428,7 +1427,7 @@
 
               <pre>
                 <code class="language-markup">
-                  &#60;div class="panel panel-default panel-icon panel-primary margin-40 state-loading" href="#"&#62;
+                  &#60;div class="panel panel-default panel-icon panel-primary margin-40 panel-loading" href="#"&#62;
                     &#60;div class="panel-heading"><i class="fa fa-check-square-o"></i>&#60;/div&#62;
                     &#60;div class="panel-body"&#62;
                       &#60;h2>¿Este es tu número de CUIT?&#60;/h2&#62;
@@ -1866,8 +1865,8 @@
 
     </main>
 
-    <script src="/poncho/js/jquery.js"></script>
-    <script src="/poncho/js/bootstrap.min.js"></script>
+    <script src="/poncho/node_modules/jquery/dist/jquery.js"></script>
+    <script src="/poncho/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="/poncho/js/prism.js"></script>
     <script>
       $(function () {
