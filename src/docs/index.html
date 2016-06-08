@@ -28,7 +28,14 @@ layout: docs
                   <li><a href="#cuerpo">Cuerpo</a></li>
                   <li><a href="#enfasis">Énfasis</a></li>
                   <li><a href="#cita">Cita</a></li>
-                  <li><a href="#listas">Listas</a></li>
+                  <li>
+                    <a href="#listas">Listas</a>
+                    <ul class="nav">
+                      <li><a href="#list-unorder">- Sin ordenar</a></li>
+                      <li><a href="#list-order">- Ordenadas</a></li>
+                      <li><a href="#list-desc">- Con Descripción</a></li>
+                    </ul>
+                  </li>
                   <li>
                     <a href="#tablas">Tablas</a>
                     <ul class="nav">
@@ -38,7 +45,13 @@ layout: docs
                       <li><a href="#tabla-colores">- Con colores</a></li>
                     </ul>
                   </li>
-                  <li><a href="#formularios">Formulario</a></li>
+                  <li>
+                    <a href="#formularios">Formulario</a>
+                    <ul class="nav">
+                      <li><a href="#form-state">- Estado de Validación</a></li>
+                      <li><a href="#form-specialfields">- Campos Especiales</a></li>
+                    </ul>
+                  </li>
                   <li><a href="#botones">Botones</a></li>
                   <li><a href="#imagenes">Imágenes</a></li>
                   <li><a href="#clases-auxiliares">Clases auxiliares</a></li>
@@ -167,7 +180,7 @@ layout: docs
               <hr>
               <h3 id="listas" class="margin-40">Listas</h3>
 
-              <h5>Lista sin orden</h5>
+              <h5 id="list-unorder">Lista sin orden</h5>
               <ul class="margin-40">
                 <li>Lorem ipsum dolor sit <strong>amet</strong>.</li>
                 <li>Consectetur adipiscing elit <strong>lorem ipsum dolor sit</strong>.</li>
@@ -190,7 +203,7 @@ layout: docs
               </pre>
               <br>
 
-              <h5>Lista ordenada</h5>
+              <h5 id="list-order">Lista ordenada</h5>
               <ol class="margin-40">
                 <li>Lorem ipsum dolor sit <strong>amet</strong>.</li>
                 <li>Consectetur adipiscing elit <strong>lorem ipsum dolor sit</strong>.</li>
@@ -215,7 +228,7 @@ layout: docs
 
               <br>
 
-              <h5>Lista de descripción</h5>
+              <h5 id="list-desc">Lista de descripción</h5>
               <dl>
                 <dt>Listas descriptivas</dt>
                 <dd>Una lista descriptiva es perfecta para la definición de términos.</dd>
@@ -711,7 +724,7 @@ layout: docs
                 </pre>
 
               <hr>
-              <h3>Estado de validación </h3>
+              <h3 id="form-state">Estado de validación </h3>
 
               <div class="form-group has-success has-feedback">
                 <label class="control-label" for="inputSuccess2">Campo de entrada con éxito</label>
@@ -762,7 +775,7 @@ layout: docs
 
               <hr>
 
-              <h3>Campos especiales</h3>
+              <h3 id="form-specialfields">Campos especiales</h3>
 
               <div class="form-group">
                 <div class="input-group">
