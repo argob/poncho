@@ -343,6 +343,114 @@ layout: docs
                 </code>
               </pre>
               <br>
+
+              <h5>Tabla con buscador</h5>
+              <div class="alert alert-warning" role="alert"><p>* Requiere ListJs <a href="http://www.listjs.com/" target="_blank">http://www.listjs.com/</a></p></div>
+
+              <div id="usuarios">
+                <div class="form-group">
+                  <input class="form-control search" placeholder="Buscar" />
+                </div>
+
+                <table class="table table-striped">
+                  <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Nombre de usuario</th>
+                  </tr>
+                  </thead>
+                  <tbody class="list">
+                  <tr>
+                    <th scope="row">1</th>
+                    <td class="nombre">Mark</td>
+                    <td class="apellido">Otto</td>
+                    <td class="usuario">@mdo</td>
+                  </tr>
+                  <tr>
+                  <th scope="row">2</th>
+                    <td class="nombre">Jacob</td>
+                    <td class="apellido">Thornton</td>
+                    <td class="usuario">@fat</td>
+                  </tr>
+                  <tr>
+                  <th scope="row">3</th>
+                    <td class="nombre">Larry</td>
+                    <td class="apellido">the Bird</td>
+                    <td class="usuario">@twitter</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">4</th>
+                    <td class="nombre">Steve</td>
+                    <td class="apellido">Otto</td>
+                    <td class="usuario">@mdq</td>
+                  </tr>
+                  <tr>
+                  <th scope="row">5</th>
+                    <td class="nombre">Peter</td>
+                    <td class="apellido">Thornton</td>
+                    <td class="usuario">@slim</td>
+                  </tr>
+                  <tr>
+                  <th scope="row">6</th>
+                    <td class="nombre">John</td>
+                    <td class="apellido">Big Bird</td>
+                    <td class="usuario">@twitter2</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <pre>
+                <code class="language-markup">
+                  &#60;div id="usuarios"&#62;
+                    &#60;table class="table table-striped"&#62;
+                      &#60;thead&#62;
+                        &#60;tr&#62;
+                          &#60;th&#62;#&#60;/th&#62;
+                          &#60;th&#62;Nombre&#60;/th&#62;
+                          &#60;th&#62;Apellido&#60;/th&#62;
+                          &#60;th&#62;Nombre de usuario&#60;/th&#62;
+                        &#60;/tr&#62;
+                        &#60;/thead&#62;
+                        &#60;tbody class="list"&#62;
+                        &#60;tr&#62;
+                          &#60;th scope="row"&#62;1&#60;/th&#62;
+                          &#60;td class="nombre"&#62;Mark&#60;/td&#62;
+                          &#60;td class="apellido"&#62;Otto&#60;/td&#62;
+                          &#60;td class="usuario"&#62;@mdo&#60;/td&#62;
+                        &#60;/tr&#62;
+                        &#60;tr&#62;
+                        &#60;th scope="row"&#62;2&#60;/th&#62;
+                          &#60;td class="nombre"&#62;Jacob&#60;/td&#62;
+                          &#60;td class="apellido"&#62;Thornton&#60;/td&#62;
+                          &#60;td class="usuario"&#62;@fat&#60;/td&#62;
+                        &#60;/tr&#62;
+                        &#60;tr&#62;
+                        &#60;th scope="row"&#62;3&#60;/th&#62;
+                          &#60;td class="nombre"&#62;Larry&#60;/td&#62;
+                          &#60;td class="apellido"&#62;the Bird&#60;/td&#62;
+                          &#60;td class="usuario"&#62;@twitter&#60;/td&#62;
+                        &#60;/tr&#62;
+                      &#60;/tbody&#62;
+                    &#60;/table&#62;
+                  &#60;/div&#62;
+                </code>
+              </pre>
+              <br>
+              <h5>Javascript relacionado</h5>
+              <pre>
+                <code class="language-javascript">
+                  var options = {
+                    valueNames: [ 'nombre', 'apellido', 'usuario' ]
+                  };
+
+                  var userList = new List('usuarios', options);
+                </code>
+              </pre>
+              <br>
+
               <h5>Tabla con bordes</h5>
               <table class="table table-bordered">
                 <thead>

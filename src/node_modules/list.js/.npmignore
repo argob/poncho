@@ -1,0 +1,5 @@
+.DS_Store
+lab/
+components
+build
+node_modules
