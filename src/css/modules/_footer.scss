@@ -50,3 +50,13 @@
     margin: 0 auto;
   }
 }
+
+.sticky-footer {
+  display: table-row;
+  height: 1px;
+
+  > div {
+    padding-bottom: 30px;
+    padding-top: 60px;
+  }
+}
