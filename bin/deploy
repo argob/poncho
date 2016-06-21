@@ -15,7 +15,7 @@ echo "Started deploying"
 git checkout -b gh-pages
 
 # Build site.
-bower install
+# bower install
 bundle exec jekyll build
 
 # Delete and move files.
@@ -30,7 +30,7 @@ git push -f -q origin gh-pages
 
 # Move back to previous branch.
 git checkout -
-bower install
+# bower install
 
 echo "Deployed Successfully!"
 
