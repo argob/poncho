@@ -16,14 +16,22 @@ url: "" # the base hostname & protocol for your site
 source: src
 destination: dist
 
-# paginate: 12
-#style: debug
-
 # Build settings
 markdown: kramdown
 
-#sass:
-   #style: compressed
+exclude:
+  - .bowerrc
+  - .travis.yml
+  - bin/*
+  - bower.json
+  - circle.yml
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - vendor/
 
-# gems:
- # - octopress-autoprefixer
+gems:
+  - jekyll-assets
+  - jekyll-sitemap
+
+name: gh_pages

@@ -1,0 +1,6 @@
+{
+  "name": "gh_pages",
+  "dependencies": {
+    "jquery": "~2.2.3"
+  }
+}

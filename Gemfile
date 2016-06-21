@@ -1,7 +1,9 @@
 source "https://rubygems.org"
 
-#gem "rake", "~> 11.0"
+gem "autoprefixer-rails"
+gem "html-proofer"
 gem "jekyll"
 gem "jekyll-assets"
-# gem "autoprefixer-rails"
-# gem "octopress-autoprefixer"
+gem "jekyll-sitemap"
+gem "sass"
+gem "uglifier"

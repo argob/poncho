@@ -1,8 +1,15 @@
+!.keep
+*.DS_Store
+*.sass-cache
+/.asset-cache/*
+/_site/*
+/_vendor/*
+
 .sass-cache
 Gemfile.lock
 
 # Mac files
 .DS_Store
 
-dist
+/dist
 src/_site

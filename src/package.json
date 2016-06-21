@@ -1,13 +1,17 @@
 {
   "name": "src",
   "version": "1.0.0",
-  "description": "",
+  "description": "Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.",
   "main": "index.js",
   "directories": {
     "doc": "docs"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/argob/poncho"
   },
   "author": "",
   "license": "ISC",
