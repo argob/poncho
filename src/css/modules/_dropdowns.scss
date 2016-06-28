@@ -26,8 +26,16 @@
 
   }
   &>li>a:hover,& li a:hover,&>li>a:focus,& li a:focus {
-    background-color:lighten($brand-primary, 10%);
+    background-color: $brand-primary;
     color: white;
+  }
+
+  & li:first-of-type a {
+    border-radius: 4px 4px 0 0;
+  }
+  & li:last-of-type a {
+    border-radius: 0 0 4px 4px;
+    border: none;
   }
 }
 

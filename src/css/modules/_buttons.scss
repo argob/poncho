@@ -245,3 +245,27 @@ header {
     padding: 12px 15px;
   }
 }
+
+.btn-group {
+  .btn-default {
+    background: $gray-lighter;
+    color: $gray-dark;
+    border-right: 1px solid $gray-light;
+
+    &:last-of-type {
+      border: none;
+    }
+
+    &:hover {
+      background: $gray-light;
+    }
+
+    &.active,
+    &:active {
+      background: $brand-primary;
+      color: $white;
+      box-shadow: none;
+      cursor: default;
+    }
+  }
+}

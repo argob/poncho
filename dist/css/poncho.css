@@ -2,15 +2,15 @@
 /*!
  * Poncho v0.2 (https://github.com/argob/poncho)
  * Copyright 2016
- * Subsecretar├¡a de Gobierno Digital
- * Presidencia de la Naci├│n Argentina
+ * Subsecretaría de Gobierno Digital
+ * Presidencia de la Nación Argentina
  * Licenciado bajo MIT (https://github.com/argob/poncho/LICENSE)
  */
 /* Resources */
 html,
 body {
   font-size: 16px;
-  height: 100%;
+  max-height: 100%;
   max-width: 100%;
   overflow-x: hidden; }
 
@@ -663,6 +663,20 @@ header .btn {
   margin: 13px;
   padding: 12px 15px; }
 
+.btn-group .btn-default {
+  background: #e5e5e5;
+  color: #444;
+  border-right: 1px solid #ccc; }
+  .btn-group .btn-default:last-of-type {
+    border: none; }
+  .btn-group .btn-default:hover {
+    background: #ccc; }
+  .btn-group .btn-default.active, .btn-group .btn-default:active {
+    background: #0072bc;
+    color: #fff;
+    box-shadow: none;
+    cursor: default; }
+
 .navbar .open > .dropdown-menu {
   border: inherit; }
 
@@ -691,8 +705,13 @@ header .btn {
     font-size: 16px;
     padding: 12px 15px; }
   .dropdown-menu > li > a:hover, .dropdown-menu li a:hover, .dropdown-menu > li > a:focus, .dropdown-menu li a:focus {
-    background-color: #0091ef;
+    background-color: #0072bc;
     color: white; }
+  .dropdown-menu li:first-of-type a {
+    border-radius: 4px 4px 0 0; }
+  .dropdown-menu li:last-of-type a {
+    border-radius: 0 0 4px 4px;
+    border: none; }
 
 .navbar-inverse .dropdown-menu > li > a,
 .navbar-inverse .dropdown-menu li a {
@@ -1443,8 +1462,7 @@ a.panel:hover, a.panel:focus {
   background-size: cover;
   color: #fff;
   margin-bottom: 0;
-  padding: 0;
-  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.5); }
+  padding: 0; }
   .jumbotron h2 {
     color: #fff;
     font-weight: 700;
@@ -1458,22 +1476,31 @@ a.panel:hover, a.panel:focus {
     font-size: 14px;
     padding: 16px 0;
     position: relative;
-    z-index: 2; }
-    .jumbotron .jumbotron_bar ul,
-    .jumbotron .jumbotron_bar ol {
+    z-index: 3; }
+    .jumbotron .jumbotron_bar .list-inline {
       margin-bottom: 0;
       margin-top: 0; }
-    .jumbotron .jumbotron_bar li:first-child:after {
-      content: '|';
-      margin-left: 15px; }
-    .jumbotron .jumbotron_bar li a {
-      color: #fff; }
-      .jumbotron .jumbotron_bar li a:hover {
-        opacity: .8; }
-      .jumbotron .jumbotron_bar li a .glyphicon {
-        margin-right: 10px; }
+      .jumbotron .jumbotron_bar .list-inline .dropdown {
+        display: inline-block; }
+      .jumbotron .jumbotron_bar .list-inline > li:after {
+        content: '|';
+        margin-left: 15px; }
+      .jumbotron .jumbotron_bar .list-inline > li:last-child:after {
+        content: '';
+        margin-left: 0; }
+      .jumbotron .jumbotron_bar .list-inline > li > a,
+      .jumbotron .jumbotron_bar .list-inline > li > .dropdown > a {
+        color: #fff;
+        text-shadow: 0 2px 2px rgba(0, 0, 0, 0.5); }
+        .jumbotron .jumbotron_bar .list-inline > li > a:hover,
+        .jumbotron .jumbotron_bar .list-inline > li > .dropdown > a:hover {
+          opacity: .8; }
+        .jumbotron .jumbotron_bar .list-inline > li > a .glyphicon,
+        .jumbotron .jumbotron_bar .list-inline > li > .dropdown > a .glyphicon {
+          margin-right: 10px; }
     .jumbotron .jumbotron_bar .breadcrumb {
-      margin: 0; }
+      margin: 0;
+      text-shadow: 0 2px 2px rgba(0, 0, 0, 0.5); }
       .jumbotron .jumbotron_bar .breadcrumb li:first-child:after {
         content: '';
         margin: 0; }
@@ -1486,7 +1513,8 @@ a.panel:hover, a.panel:focus {
   .jumbotron .jumbotron_body {
     position: relative;
     padding: 80px 0;
-    z-index: 2; }
+    z-index: 2;
+    text-shadow: 0 2px 2px rgba(0, 0, 0, 0.5); }
     .jumbotron .jumbotron_body h1 {
       color: #fff;
       font-size: 44px;

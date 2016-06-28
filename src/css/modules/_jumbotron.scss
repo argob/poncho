@@ -12,7 +12,6 @@
   color: $white;
   margin-bottom: 0;
   padding: 0;
-  text-shadow: 0 2px 2px $dark-opacity;
 
   h2 {
     color: $white;
@@ -31,29 +30,41 @@
     font-size: 14px;
     padding: 16px 0;
     position: relative;
-    z-index: 2;
+    z-index: 3;
 
-    ul,
-    ol {
+    .list-inline {
       margin-bottom: 0;
       margin-top: 0;
-    }
 
-    li {
-      &:first-child:after {
-        content: '|';
-        margin-left: 15px;
+      .dropdown {
+        display: inline-block;
       }
 
-      a{
-        &:hover {opacity: .8;}
-        color: $white;
-        .glyphicon { margin-right: 10px;}
+      > li {
+        &:after {
+          content: '|';
+          margin-left: 15px;
+        }
+
+        &:last-child:after {
+          content: '';
+          margin-left: 0;
+        }
+
+        > a,
+        > .dropdown > a {
+          color: $white;
+          text-shadow: 0 2px 2px $dark-opacity;
+          &:hover {opacity: .8;}
+
+          .glyphicon { margin-right: 10px; }
+        }
       }
     }
 
     .breadcrumb {
       margin: 0;
+      text-shadow: 0 2px 2px $dark-opacity;
 
       li{
 
@@ -76,6 +87,7 @@
     @include position(relative, null null null null);
     padding: 80px 0;
     z-index: 2;
+    text-shadow: 0 2px 2px $dark-opacity;
 
     h1 {
       color: $white;
