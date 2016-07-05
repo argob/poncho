@@ -10,12 +10,9 @@
 html,
 body {
   font-size: 16px;
-  max-height: 100%;
+  height: 100%;
   max-width: 100%;
   overflow-x: hidden; }
-
-main {
-  height: 100%; }
 
 h1, .h1 {
   font-size: 2.5em; }
@@ -743,7 +740,7 @@ header .btn {
     .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
       color: #fff; } }
 .navbar-brand {
-  padding: 10px 0 10px 15px; }
+  padding: 10px 15px; }
   .navbar-brand img {
     float: left;
     max-width: 100%; }
@@ -968,8 +965,9 @@ a.btn {
   .main-footer h4 {
     color: #767676; }
   .main-footer img.image-responsive {
-    margin-bottom: 30px;
-    max-width: 300px; }
+    margin-bottom: 20px;
+    max-width: 300px;
+    display: block; }
 
 .brand-footer {
   padding: 0;
@@ -978,12 +976,14 @@ a.btn {
     float: none;
     margin: 0 auto; }
 
-.sticky-footer {
-  display: table-row;
-  height: 1px; }
-  .sticky-footer > div {
-    padding-bottom: 30px;
-    padding-top: 60px; }
+body.sticky-footer {
+  height: 100%; }
+  body.sticky-footer .main-footer {
+    display: table-row;
+    height: 1px; }
+    body.sticky-footer .main-footer > div {
+      padding-bottom: 30px;
+      padding-top: 60px; }
 
 .list-group-item {
   border: 0;
