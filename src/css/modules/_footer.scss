@@ -35,8 +35,9 @@
 
   img {
     &.image-responsive {
-      margin-bottom: 30px;
+      margin-bottom: 20px;
       max-width: 300px;
+      display: block;
     }
   }
 }
@@ -51,12 +52,16 @@
   }
 }
 
-.sticky-footer {
-  display: table-row;
-  height: 1px;
+body.sticky-footer {
+  height: 100%;
 
-  > div {
-    padding-bottom: 30px;
-    padding-top: 60px;
+  .main-footer {
+    display: table-row;
+    height: 1px;
+
+    > div {
+      padding-bottom: 30px;
+      padding-top: 60px;
+    }
   }
 }

@@ -6,7 +6,7 @@ Para usar Poncho en un sitio, ver [la documentación](http://argob.github.io/pon
 
 Tambien se puede implementar mediante NPM
 
- * [NPM](https://www.npmjs.com/package/poncho) npm install argob-poncho
+ * [NPM](https://www.npmjs.com/package/argob-poncho) npm install argob-poncho
 
 ## Instalación y requisitos
 
