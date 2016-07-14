@@ -3,9 +3,17 @@ label {
   &.control-label {font-weight: 700;}
 }
 
+.form-group {
+  margin-bottom: 30px;
+}
+
 .form-control {
   color: $text-color;
+  font-size: 18px;
   height: 54px;
+  padding: 6px 8px;
+  border: solid 1px $gray-light;
+  // text-indent: 6px;
 
   &[disabled],
   &[readonly] {
@@ -14,6 +22,11 @@ label {
 }
 
 fieldset {
+  border: 1px solid $gray-light;
+  padding: 10px 30px;
+  border-radius: 4px;
+  margin-bottom: 30px;
+
   &[disabled] {
     .form-control {
       background-color: $gray-lighter;
@@ -182,3 +195,30 @@ input {
   }
 }
 
+// Fechas Drupal (Pasar a argentina.css)
+
+.form-type-date .form-inline {
+  margin: 0 -15px;
+
+  &:after {
+    content: '';
+    display: block;
+    clear: left;
+  }
+
+  > div {
+    width: 33.33%;
+    padding: 0 15px;
+    display: block;
+    float: left;
+
+    label {
+      display: block;
+    }
+
+    input, select {
+      width: 100%;
+      box-sizing: border-box;
+    }
+  }
+}

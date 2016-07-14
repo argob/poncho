@@ -268,6 +268,22 @@ header {
       cursor: default;
     }
   }
+
+  &.btn-group-vertical {
+    .btn {
+      border: none;
+      border-radius: 4px !important;
+    }
+
+    &.btn-group-justified {
+      display: block;
+
+      .btn {
+        display: block;
+        width: 100%;
+      }
+    }
+  }
 }
 
 // btn-groups en radios de drupal (Para agregar en argentina.css)

@@ -16,7 +16,92 @@ h6,
 .h6 {
   font-weight: 700;
   margin: .5em 0;
+
+  small,
+  .small {
+    color: $gray;
+  }
+
+  &.section-title {
+    color: $gray;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
 }
+
+h1, .h1 {
+  font-size: 2.5em;
+
+  &.section-title {
+    font-size: 1.8em;
+  }
+}
+
+h2, .h2 {
+  font-size: 2.285714em;
+
+  &.section-title {
+    font-size: 1.6em;
+  }
+}
+
+h3, .h3 {
+  font-size: 2em;
+
+  &.section-title {
+    font-size: 1.4em;
+  }
+}
+
+h4, .h4 {
+  font-size: 1.714285em;
+
+  &.section-title {
+    font-size: 1.2em;
+  }
+}
+
+h5, .h5 {
+  font-size: 1.4em;
+
+  &.section-title {
+    font-size: 1em;
+  }
+}
+
+h6, .h6 {
+  font-size: 1em;
+
+  &.section-title {
+    font-size: 0.8em;
+  }
+}
+
+a {
+  color: $brand-primary;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: $link-hover-color;
+    text-decoration: none;
+  }
+}
+
+p { font-size: 16px; }
+
+.text-muted {
+  color: $gray;
+}
+
+.lead {
+  font-size: 1.3em;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+
 
 blockquote {
   p {

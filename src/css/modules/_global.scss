@@ -6,75 +6,11 @@ body {
   overflow-x: hidden;
 }
 
-h1, .h1 {
-  font-size: 2.5em;
-
-  small,
-  .small {
-    color: $gray;
-  }
-}
-
-h2, .h2 {
-  font-size: 2.285714em;
-
-  small,
-  .small {
-    color: $gray;
-  }
-}
-
-h3, .h3 {
-  font-size: 2em;
-
-  small,
-  .small {
-    color: $gray;
-  }
-}
-
-h4, .h4 {
-  font-size: 1.714285em;
-
-  small,
-  .small {
-    color: $gray;
-  }
-}
-
-h5, .h5 {
-  font-size: 1.4em;
-
-  small,
-  .small {
-    color: $gray;
-  }
-}
-
-h6, .h6 {
-  font-size: 1em;
-
-  small,
-  .small {
-    color: $gray;
-  }
-}
-
 body {
   background: $body-bg;
   color: $text-color;
   display: table;
   width: 100%;
-}
-
-a {
-  color: $brand-primary;
-
-  &:hover,
-  &:focus {
-    color: $link-hover-color;
-    text-decoration: none;
-  }
 }
 
 hr {
@@ -92,20 +28,6 @@ hr {
   }
 }
 
-.h1,
-.h2,
-.h3,
-.h4,
-.h5,
-.h6 {
-  small,
-  .small {
-    color: $gray;
-  }
-}
-
-p { font-size: 16px; }
-
 .inline {
   display: inline-block;
 }
@@ -114,26 +36,6 @@ p { font-size: 16px; }
   border-radius: 4px;
 }
 
-.text-muted {
-  color: $gray;
-}
-
-.lead {
-  font-size: 1.3em;
-  font-weight: 400;
-  line-height: 1.2;
-}
-
-.jumbotron {
-  p {font-weight: 400;}
-}
-
-.section-title {
-  color: $gray;
-  font-weight: 700;
-  margin-bottom: 24px;
-  text-transform: uppercase;
-}
 
 section {
   padding: 40px 0;
