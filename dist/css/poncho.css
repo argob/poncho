@@ -2,8 +2,8 @@
 /*!
  * Poncho v0.2 (https://github.com/argob/poncho)
  * Copyright 2016
- * Subsecretar├¡a de Gobierno Digital
- * Presidencia de la Naci├│n Argentina
+ * Subsecretaría de Gobierno Digital
+ * Presidencia de la Nación Argentina
  * Licenciado bajo MIT (https://github.com/argob/poncho/LICENSE)
  */
 /* Libraries */
@@ -531,18 +531,26 @@ article h1.icon {
 
 .bg-primary {
   background-color: #0072bc !important; }
+  .bg-primary a {
+    color: #FFF; }
 
 .bg-success {
   background-color: #46a948 !important; }
+  .bg-success a {
+    color: #FFF; }
 
 .bg-info {
   background-color: #5bc0de !important; }
+  .bg-info a {
+    color: #FFF; }
 
 .bg-warning {
   background-color: #f0ad4e !important; }
 
 .bg-danger {
   background-color: #d9534f !important; }
+  .bg-danger a {
+    color: #FFF; }
 
 .bg-white {
   background-color: #fff; }

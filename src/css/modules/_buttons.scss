@@ -60,18 +60,34 @@
 
 .bg-primary {
   background-color: $brand-primary !important;
+
+  a {
+    color: #FFF;
+  }
 }
 .bg-success {
   background-color: $brand-success !important;
+
+  a {
+    color: #FFF;
+  }
 }
 .bg-info {
   background-color: $brand-info !important;
+
+  a {
+    color: #FFF;
+  }
 }
 .bg-warning {
   background-color: $brand-warning !important;
 }
 .bg-danger {
   background-color: $brand-danger !important;
+
+  a {
+    color: #FFF;
+  }
 }
 .bg-white {
   background-color: $white;
