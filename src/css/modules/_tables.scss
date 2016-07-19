@@ -17,7 +17,7 @@
     a {
       color: $text-color;
 
-      &:hover {text-decoration: underline; }
+      &:hover {text-decoration: underline; cursor: pointer; }
 
       }
     }
