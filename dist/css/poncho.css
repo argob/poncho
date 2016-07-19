@@ -902,17 +902,6 @@ a.btn {
 .tab-content .tab-pane {
   position: relative; }
 
-.navbar-collapse.in {
-  margin-top: 15px; }
-
-@media (max-width: 767px) {
-  .panel-index .navbar-brand {
-    padding: 14px 15px !important; }
-    .panel-index .navbar-brand h1 {
-      font-size: 14px !important;
-      margin-left: 0 !important; }
-    .panel-index .navbar-brand .brand {
-      height: 36px; } }
 @media (max-width: 979px) {
   .navbar-brand h1 {
     font-size: 18px;
@@ -935,34 +924,46 @@ a.btn {
     margin-left: -45px;
     margin-right: -30px; } }
 @media screen and (max-width: 767px) {
+  .navbar-default .nav > li > a {
+    padding-top: 12px;
+    padding-bottom: 10px; }
+
   .navbar-form {
     margin-left: 0;
     margin-right: 0; }
 
   .navbar-brand {
-    padding-right: 0; } }
+    padding-right: 0; }
+
+  .panel-index .navbar-brand {
+    padding: 14px 15px !important; }
+    .panel-index .navbar-brand h1 {
+      font-size: 14px !important;
+      margin-left: 0 !important; }
+    .panel-index .navbar-brand .brand {
+      height: 36px; } }
 @media (max-width: 400px) {
   .navbar-default {
     min-height: 64px; }
 
-  .navbar-brand {
+  .navbar .navbar-brand {
     padding: 14px 15px; }
-    .navbar-brand img {
+    .navbar .navbar-brand img {
       height: 36px;
       width: auto; }
-    .navbar-brand h1 {
+    .navbar .navbar-brand h1 {
       font-size: 14px;
       margin-left: 10px; } }
 @media (max-width: 320px) {
-  .navbar-brand {
+  .navbar .navbar-brand {
     padding-top: 14px; }
-    .navbar-brand img {
+    .navbar .navbar-brand img {
       height: 32px; }
-    .navbar-brand h1 {
+    .navbar .navbar-brand h1 {
       margin-top: 8px; }
-      .navbar-brand h1 span {
+      .navbar .navbar-brand h1 span {
         display: none; }
-    .navbar-brand br {
+    .navbar .navbar-brand br {
       display: none; } }
 .main-footer {
   background: #fff;

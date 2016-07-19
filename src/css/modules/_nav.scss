@@ -1,5 +1,5 @@
 .navbar {
-  min-height: 72px; 
+  min-height: 72px;
 
   .navbar-brand {
     padding: 10px 15px;
@@ -74,7 +74,7 @@ a {
   margin: 0;
   z-index: 9;
 
-  .nav>li>a {
+  .nav > li > a {
     color: $brand-primary;
     font-size: 16px;
     font-weight: 500;
@@ -84,8 +84,8 @@ a {
     text-transform: uppercase;
   }
 
-  .navbar-nav> {
-    li>a {
+  .navbar-nav >  {
+    li > a {
       &:hover,
       &:focus {
         background: $brand-primary;
@@ -93,7 +93,7 @@ a {
       }
     }
 
-    .active>a,
+    .active > a,
     .open>a {
       &,
       &:hover,
@@ -235,28 +235,6 @@ a {
   }
 }
 
-.navbar-collapse.in {
-    margin-top: 15px;
-}
-
-
-@media (max-width: 767px) {
-
-
-  .panel-index .navbar-brand {
-    padding: 14px 15px !important;
-
-    h1 {
-        font-size: 14px !important;
-        margin-left: 0 !important;
-      }
-
-    .brand {
-      height: 36px;
-    }
-  }
-}
-
 
 @media (max-width: 979px) {
 
@@ -302,6 +280,11 @@ a {
 
 @media screen and (max-width: 767px) {
 
+  .navbar-default .nav > li > a {
+    padding-top: 12px;
+    padding-bottom: 10px;
+  }
+
   .navbar-form {
     margin-left: 0;
     margin-right: 0;
@@ -310,6 +293,19 @@ a {
   .navbar-brand {
     padding-right: 0;
   }
+
+  .panel-index .navbar-brand {
+    padding: 14px 15px !important;
+
+    h1 {
+        font-size: 14px !important;
+        margin-left: 0 !important;
+      }
+
+    .brand {
+      height: 36px;
+    }
+  }
 }
 
 @media (max-width: 400px) {
@@ -317,7 +313,7 @@ a {
     min-height: 64px;
   }
 
-  .navbar-brand {
+  .navbar .navbar-brand {
     padding: 14px 15px;
 
     img {
@@ -334,7 +330,7 @@ a {
 }
 
 @media (max-width: 320px) {
-  .navbar-brand {
+  .navbar .navbar-brand {
     padding-top: 14px;
 
     img {
