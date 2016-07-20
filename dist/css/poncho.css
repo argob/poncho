@@ -1728,23 +1728,6 @@ input[type='text']:-ms-input-placeholder {
 .has-feedback input.input-lg ~ .form-control-feedback {
   top: 36px; }
 
-.form-type-date .form-inline {
-  margin: 0 -15px; }
-  .form-type-date .form-inline:after {
-    content: '';
-    display: block;
-    clear: left; }
-  .form-type-date .form-inline > div {
-    width: 33.33%;
-    padding: 0 15px;
-    display: block;
-    float: left; }
-    .form-type-date .form-inline > div label {
-      display: block; }
-    .form-type-date .form-inline > div input, .form-type-date .form-inline > div select {
-      width: 100%;
-      box-sizing: border-box; }
-
 .social-share {
   margin: 0;
   min-height: 32px; }
@@ -1879,7 +1862,8 @@ input[type='text']:-ms-input-placeholder {
   .table th a {
     color: #111; }
     .table th a:hover {
-      text-decoration: underline; }
+      text-decoration: underline;
+      cursor: pointer; }
 .table td small {
   color: #767676;
   font-weight: normal; }
