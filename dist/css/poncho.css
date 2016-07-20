@@ -524,9 +524,10 @@ article h1.icon {
 .btn-link {
   border-radius: 4px;
   color: #0072bc;
-  text-decoration: underline !important; }
+  text-decoration: underline !important;
+  background-color: #e5e5e5 !important; }
   .btn-link:hover, .btn-link:focus {
-    background-color: #e5e5e5 !important;
+    background-color: #ccc !important;
     color: #0072bc; }
 
 .bg-primary {
