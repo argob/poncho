@@ -220,7 +220,7 @@ a {
 
 .panel-icon {
   .panel-heading {
-    background-color: $brand-complementary;
+    background-color: $brand-primary;
     text-align: center;
 
     i {
@@ -254,7 +254,8 @@ a {
     }
   }
 
-  &.panel-danger {
+  &.panel-danger,
+  &.panel-complementary {
     .panel-heading {
       background-color: $brand-danger;
     }

@@ -1413,7 +1413,7 @@ a.panel:hover, a.panel:focus {
   min-height: 256px; }
 
 .panel-icon .panel-heading {
-  background-color: #fd4138;
+  background-color: #0072bc;
   text-align: center; }
   .panel-icon .panel-heading i {
     color: #fff;
@@ -1427,7 +1427,7 @@ a.panel:hover, a.panel:focus {
   background-color: #46a948; }
 .panel-icon.panel-warning .panel-heading {
   background-color: #f0ad4e; }
-.panel-icon.panel-danger .panel-heading {
+.panel-icon.panel-danger .panel-heading, .panel-icon.panel-complementary .panel-heading {
   background-color: #d9534f; }
 
 .panel-primary .panel-heading {
