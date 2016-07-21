@@ -88,7 +88,7 @@
     @include position(relative, null null null null);
     padding: 80px 0;
     z-index: 2;
-    text-shadow: 0 2px 2px $dark-opacity;
+
 
     h1 {
       color: $white;
@@ -99,9 +99,14 @@
       text-transform: none;
     }
 
+    h1, h2, h3, h4, h5, h6 {
+      text-shadow: 0 2px 2px $dark-opacity;
+    }
+
     p {
       font-size: 20px;
       line-height: 27px;
+      text-shadow: 0 2px 2px $dark-opacity;
     }
 
     a:not(.btn) {
@@ -111,6 +116,10 @@
       &:hover {
         opacity: .8;
       }
+    }
+
+    .btn {
+      text-shadow: none;
     }
 
     &.jumbotron_body-lg {

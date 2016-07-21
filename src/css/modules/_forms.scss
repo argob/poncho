@@ -22,10 +22,12 @@ label {
 }
 
 fieldset {
-  border: 1px solid $gray-light;
-  padding: 10px 30px;
-  border-radius: 4px;
-  margin-bottom: 30px;
+  &.framed {
+    padding: 10px 30px;
+    border-radius: 4px;
+    margin-bottom: 30px;
+    border: 1px solid $gray-light;
+  }
 
   &[disabled] {
     .form-control {
@@ -103,6 +105,10 @@ select.input-lg {
 
   .form-control {
     border: 0;
+  }
+
+  .btn {
+    margin: 0;
   }
 }
 

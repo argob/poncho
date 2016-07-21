@@ -1535,8 +1535,7 @@ a.panel:hover, a.panel:focus {
   .jumbotron .jumbotron_body {
     position: relative;
     padding: 80px 0;
-    z-index: 2;
-    text-shadow: 0 2px 2px rgba(0, 0, 0, 0.5); }
+    z-index: 2; }
     .jumbotron .jumbotron_body h1 {
       color: #fff;
       font-size: 44px;
@@ -1544,14 +1543,19 @@ a.panel:hover, a.panel:focus {
       margin-bottom: .3em;
       margin-top: 0;
       text-transform: none; }
+    .jumbotron .jumbotron_body h1, .jumbotron .jumbotron_body h2, .jumbotron .jumbotron_body h3, .jumbotron .jumbotron_body h4, .jumbotron .jumbotron_body h5, .jumbotron .jumbotron_body h6 {
+      text-shadow: 0 2px 2px rgba(0, 0, 0, 0.5); }
     .jumbotron .jumbotron_body p {
       font-size: 20px;
-      line-height: 27px; }
+      line-height: 27px;
+      text-shadow: 0 2px 2px rgba(0, 0, 0, 0.5); }
     .jumbotron .jumbotron_body a:not(.btn) {
       color: #fff;
       text-decoration: underline; }
       .jumbotron .jumbotron_body a:not(.btn):hover {
         opacity: .8; }
+    .jumbotron .jumbotron_body .btn {
+      text-shadow: none; }
     .jumbotron .jumbotron_body.jumbotron_body-lg {
       padding: 120px 0; }
   .jumbotron .align-top {
@@ -1603,13 +1607,13 @@ label {
   .form-control[disabled], .form-control[readonly] {
     background-color: #e5e5e5; }
 
-fieldset {
-  border: 1px solid #ccc;
+fieldset.framed {
   padding: 10px 30px;
   border-radius: 4px;
-  margin-bottom: 30px; }
-  fieldset[disabled] .form-control {
-    background-color: #e5e5e5; }
+  margin-bottom: 30px;
+  border: 1px solid #ccc; }
+fieldset[disabled] .form-control {
+  background-color: #e5e5e5; }
 
 .input-lg,
 select.input-lg {
@@ -1667,6 +1671,8 @@ select.input-lg {
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2); }
   .input-group-shadow .form-control {
     border: 0; }
+  .input-group-shadow .btn {
+    margin: 0; }
 
 input[type='text']::-webkit-input-placeholder {
   color: #767676; }
