@@ -1,16 +1,21 @@
 .navbar .open > .dropdown-menu{border:inherit;}
-.navbar .dropdown-menu{
-  background: $brand-primary !important;
-   & li a {
-    color:#fff;
-    text-transform: uppercase;
-    border-bottom:none;
+.navbar {
+  .dropdown-menu {
+    background: $brand-primary !important;
+     & li a {
+      color:#fff;
+      text-transform: uppercase;
+      border-bottom:none;
+    }
+    &>li>a:hover,& li a:hover,&>li>a:focus,& li a:focus {
+      background-color:lighten($brand-primary, 10%);
+      color: white;
+    }
   }
-  &>li>a:hover,& li a:hover,&>li>a:focus,& li a:focus {
-    background-color:lighten($brand-primary, 10%);
-    color: white;
-  }
+
+  // .btn-group .btn-group
 }
+
 .open > .dropdown-menu{border:1px solid #dbdbdb;}
 .dropdown-menu {
   padding:0;

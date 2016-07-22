@@ -37,6 +37,16 @@
   }
 }
 
+header {
+  .btn {
+    margin: 13px 0 0 13px;
+    padding: 12px 15px;
+  }
+  .btn-group > .btn:first-child {
+    margin-left: 13px;
+  }
+}
+
 .navbar-header {
   .duelo {
     margin: 14px 0 0 17px;
@@ -101,6 +111,14 @@ a {
         background: $brand-primary;
         color: $white;
       }
+    }
+
+    .btn {
+      margin: 13px 0 0 13px;
+      padding: 12px 15px;
+    }
+    .btn-group > .btn:first-child {
+      margin-left: 13px;
     }
   }
 
@@ -280,9 +298,26 @@ a {
 
 @media screen and (max-width: 767px) {
 
-  .navbar-default .nav > li > a {
-    padding-top: 12px;
-    padding-bottom: 10px;
+  .navbar-default {
+    .nav > li > a {
+      padding-top: 12px;
+      padding-bottom: 10px;
+    }
+
+    .btn {
+      margin: 13px 0 0 13px;
+      padding: 12px 15px;
+    }
+    .btn-group {
+      width:100%;
+
+      > .btn, {
+        margin: 13px 0 !important;
+        float: none;
+        width: 100%;
+        border-radius: 4px;
+      }
+    }
   }
 
   .navbar-form {
