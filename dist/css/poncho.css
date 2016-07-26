@@ -423,6 +423,9 @@ p {
 .text-muted {
   color: #767676; }
 
+.text-gray {
+  color: #444; }
+
 .lead {
   font-size: 1.3em;
   font-weight: 400;
