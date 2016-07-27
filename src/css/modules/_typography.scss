@@ -80,6 +80,7 @@ h6, .h6 {
 
 a {
   color: $brand-primary;
+  @include word-wrap(break-word);
 
   &:hover,
   &:focus,
