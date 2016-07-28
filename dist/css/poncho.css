@@ -412,7 +412,10 @@ h6, .h6 {
     font-size: 0.8em; }
 
 a {
-  color: #0072bc; }
+  color: #0072bc;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-all; }
   a:hover, a:focus, a:active {
     color: #0a9eff;
     text-decoration: none; }
