@@ -1,0 +1,182 @@
+.overlay {
+  @include position(absolute, 0 null null 0);
+  background: $dark-opacity;
+  height: 100%;
+  width: 100%;
+}
+
+.jumbotron {
+  @include position(relative, null null null null);
+  background-position: center center;
+  background-size: cover;
+  color: $white;
+  margin-bottom: 0;
+  padding: 0;
+
+  h2 {
+    color: $white;
+    font-weight: 700;
+    margin-bottom: .3em;
+    margin-top: 0;
+    text-transform: none;
+  }
+  p {
+    font-size: 20px;
+    font-weight: 400;
+  }
+
+  .jumbotron_bar {
+
+    background: rgba(0,0,0,.3);
+    font-size: 14px;
+    padding: 16px 0;
+    position: relative;
+    z-index: 3;
+
+    .list-inline {
+      margin-bottom: 0;
+      margin-top: 0;
+
+      .dropdown {
+        display: inline-block;
+      }
+
+      > li {
+        &:after {
+          content: '|';
+          margin-left: 15px;
+        }
+
+        &:last-child:after {
+          content: '';
+          margin-left: 0;
+        }
+
+        > a,
+        > .dropdown > a {
+          color: $white;
+          text-shadow: 0 2px 2px $dark-opacity;
+          &:hover {opacity: .8;}
+
+          .glyphicon { margin-right: 10px; }
+        }
+      }
+    }
+
+    .breadcrumb {
+      margin: 0;
+      text-shadow: 0 2px 2px $dark-opacity;
+
+      li{
+
+        &:first-child:after {
+          content: '';
+          margin: 0;
+        }
+        a {
+          color:$white;
+          font-size: 14px;
+          text-decoration: none;
+        }
+
+        span {font-size: 14px;}
+      }
+    }
+  }
+
+  .jumbotron_body {
+    @include position(relative, null null null null);
+    padding: 80px 0;
+    z-index: 2;
+
+
+    h1 {
+      color: $white;
+      font-size: 44px;
+      font-weight: 700;
+      margin-bottom: .3em;
+      margin-top: 0;
+      text-transform: none;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      text-shadow: 0 2px 2px $dark-opacity;
+    }
+
+    p {
+      font-size: 20px;
+      line-height: 27px;
+      text-shadow: 0 2px 2px $dark-opacity;
+    }
+
+    a:not(.btn) {
+      color: $white;
+      text-decoration: underline;
+
+      &:hover {
+        opacity: .8;
+      }
+    }
+
+    .btn {
+      text-shadow: none;
+    }
+
+    &.jumbotron_body-lg {
+      padding: 120px 0;
+    }
+  }
+
+  .align-top {
+    background-position: center top;
+  }
+
+  .align-bottom {
+    background-position: center bottom;
+  }
+
+  .btn-xl {
+    margin-top: 16px;
+  }
+
+  @media screen and (min-width: 768px) {
+    h2 {font-size: 44px; }
+  }
+
+  @media screen and (max-width: 767px) {
+    @include position(relative, null null null null);
+
+    h1 {
+      font-size: 32px !important;
+    }
+    min-height: 240px;
+    padding: 0;
+  }
+
+}
+
+.container {
+  .jumbotron {
+    border-radius: 7px;
+    overflow: hidden;
+    padding-left: 0;
+    padding-right: 0;
+
+    .jumbotron_body {
+      padding: 60px;
+    }
+  }
+}
+
+.jumboarticle {
+  @media screen and (min-width: 768px) {
+
+    min-height: 450px;
+  }
+  @media screen and (max-width: 767px) {
+    min-height: 250px;
+  }
+}
+
+
+
