@@ -265,7 +265,7 @@ dd {
     position: absolute;
     top: 50%;
     width: 2.2585em;
-    z-index: 11; }
+    z-index: 5; }
   .state-loading:after {
     background-color: rgba(204, 204, 204, 0.7);
     border-radius: 4px;
@@ -275,7 +275,7 @@ dd {
     position: absolute;
     top: 0;
     width: 100%;
-    z-index: 10; }
+    z-index: 4; }
 
 @keyframes loader {
   from {
@@ -795,6 +795,12 @@ header .btn-group > .btn:first-child {
 .navbar-header .duelo {
   margin: 14px 0 0 17px; }
 
+.navbar-brand {
+  height: 72px;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 2.6; }
+
 .navbar-brand-2 h1 {
   color: #767676; }
   .navbar-brand-2 h1 strong {
@@ -802,7 +808,7 @@ header .btn-group > .btn:first-child {
 
 .navbar-toggle {
   float: left;
-  margin: 15px 0 0 5px; }
+  margin: 20px 0 0 0px; }
 
 a.btn {
   line-height: 1.42857143; }
@@ -824,6 +830,10 @@ a.btn {
     padding-bottom: 20px;
     padding-top: 22px;
     text-transform: uppercase; }
+  .navbar-default .navbar-brand {
+    color: #111; }
+    .navbar-default .navbar-brand:hover {
+      color: #111; }
   .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
     background: #0072bc;
     color: #fff; }
@@ -924,10 +934,7 @@ a.btn {
   .navbar-default .nav > li > a {
     font-size: 15px;
     padding-left: 10px;
-    padding-right: 10px; }
-  .navbar-default .nav > li:last-of-type > a {
-    padding-left: 15px;
-    padding-right: 15px; } }
+    padding-right: 10px; } }
 @media screen and (min-width: 768px) {
   .navbar-form {
     margin-right: 0; }
@@ -970,8 +977,13 @@ a.btn {
   .navbar-default {
     min-height: 64px; }
 
+  .navbar-toggle {
+    margin-top: 15px; }
+
   .navbar .navbar-brand {
-    padding: 14px 15px; }
+    height: 64px;
+    padding: 14px 15px;
+    line-height: 1.8; }
     .navbar .navbar-brand img {
       height: 36px;
       width: auto; }

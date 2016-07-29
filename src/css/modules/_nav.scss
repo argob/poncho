@@ -53,6 +53,13 @@ header {
   }
 }
 
+.navbar-brand {
+  height: 72px;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 2.6;
+}
+
 .navbar-brand-2 {
   h1 {
     color: $gray;
@@ -65,7 +72,7 @@ header {
 
 .navbar-toggle {
   float: left;
-  margin: 15px 0 0 5px;
+  margin: 20px 0 0 0px;
 }
 
 a {
@@ -92,6 +99,14 @@ a {
     padding-bottom: 20px;
     padding-top: 22px;
     text-transform: uppercase;
+  }
+
+  .navbar-brand {
+    color: $gray-base;
+
+    &:hover {
+      color: $gray-base;
+    }
   }
 
   .navbar-nav >  {
@@ -270,10 +285,10 @@ a {
       padding-right: 10px;
     }
 
-    &:last-of-type > a {
-      padding-left: 15px;
-      padding-right: 15px;
-    }
+    // &:last-of-type > a {
+    //   padding-left: 15px;
+    //   padding-right: 15px;
+    // }
 
   }
 
@@ -348,8 +363,14 @@ a {
     min-height: 64px;
   }
 
+  .navbar-toggle {
+    margin-top: 15px;
+  }
+
   .navbar .navbar-brand {
+    height: 64px;
     padding: 14px 15px;
+    line-height: 1.8;
 
     img {
       height: 36px;
