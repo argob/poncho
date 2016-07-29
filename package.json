@@ -20,7 +20,7 @@
     "scss"
   ],
   "author": "Dirección Nacional de Servicios Digitales de la Subsecretaría de Gobierno Digital.",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/argob/poncho/issues"
   },
