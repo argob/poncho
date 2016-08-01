@@ -2,8 +2,8 @@
 /*!
  * Poncho v0.2 (https://github.com/argob/poncho)
  * Copyright 2016
- * Subsecretaría de Gobierno Digital
- * Presidencia de la Nación Argentina
+ * Subsecretar├¡a de Gobierno Digital
+ * Presidencia de la Naci├│n Argentina
  * Licenciado bajo MIT (https://github.com/argob/poncho/LICENSE)
  */
 /* Libraries */
@@ -126,48 +126,33 @@ dd {
   margin-bottom: 15px; }
 
 .ribbon {
-  border: 1px solid #ccc;
-  border-radius: 4px;
   display: inline-block;
   font-weight: 500;
   margin: 0 15px 10px 0;
-  padding: 11px 20px;
-  text-transform: uppercase; }
+  padding: 11px 20px; }
   .ribbon i {
     font-size: 1.5em;
     margin-right: 5px;
     position: relative;
     top: 2px; }
 
-.ribbon-default {
-  border-color: #838383; }
-  .ribbon-default i {
-    color: #838383; }
+.ribbon-default i {
+  color: #838383; }
 
-.ribbon-primary {
-  border-color: #0072bc; }
-  .ribbon-primary i {
-    color: #0072bc; }
+.ribbon-primary i {
+  color: #0072bc; }
 
-.ribbon-success {
-  border-color: #46a948; }
-  .ribbon-success i {
-    color: #46a948; }
+.ribbon-success i {
+  color: #46a948; }
 
-.ribbon-info {
-  border-color: #5bc0de; }
-  .ribbon-info i {
-    color: #5bc0de; }
+.ribbon-info i {
+  color: #5bc0de; }
 
-.ribbon-warning {
-  border-color: #f0ad4e; }
-  .ribbon-warning i {
-    color: #f0ad4e; }
+.ribbon-warning i {
+  color: #f0ad4e; }
 
-.ribbon-danger {
-  border-color: #d9534f; }
-  .ribbon-danger i {
-    color: #d9534f; }
+.ribbon-danger i {
+  color: #d9534f; }
 
 .well {
   border-color: #ccc;
@@ -415,13 +400,18 @@ a {
   color: #0072bc;
   overflow-wrap: break-word;
   word-wrap: break-word;
-  word-break: break-all; }
+  word-break: break-all;
+  font-weight: 500; }
   a:hover, a:focus, a:active {
     color: #0a9eff;
     text-decoration: none; }
 
+b, strong {
+  font-weight: 500; }
+
 p {
-  font-size: 16px; }
+  font-size: 18px;
+  font-weight: 300; }
 
 .text-muted {
   color: #767676; }
@@ -431,7 +421,6 @@ p {
 
 .lead {
   font-size: 1.3em;
-  font-weight: 400;
   line-height: 1.2; }
 
 blockquote p {
@@ -482,6 +471,7 @@ article h1.icon {
   font-family: "Droid Serif", serif; }
 .content_format li {
   font-size: 16px;
+  font-weight: 300;
   margin: 0 0 15px; }
 .content_format blockquote p {
   font-family: "Roboto", "Helvetica Neue", "Helvetica", "Arial", sans-serif; }
@@ -1220,8 +1210,10 @@ article ul {
     font-size: 1.4em;
     line-height: 1.6; }
 article li {
-  font-size: 16px;
-  line-height: 24px; }
+  font-size: 18px;
+  line-height: 24px;
+  margin-bottom: 20px;
+  font-weight: 300; }
 article footer {
   border-top: solid 1px #ccc;
   margin-bottom: 32px;
@@ -1778,7 +1770,9 @@ input[type='text']:-ms-input-placeholder {
     float: left;
     line-height: 1.2;
     margin-bottom: 0;
-    margin-top: 8px; }
+    margin-top: 8px;
+    font-weight: 400;
+    font-size: 16px; }
   .social-share span {
     color: #767676; }
   .social-share ul {

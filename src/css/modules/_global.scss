@@ -176,13 +176,10 @@ dd {
 }
 
 .ribbon {
-  border: 1px solid $gray-light;
-  border-radius: 4px;
   display: inline-block;
   font-weight: 500;
   margin: 0 15px 10px 0;
   padding: 11px 20px;
-  text-transform: uppercase;
 
   i {
     font-size: 1.5em;
@@ -193,7 +190,6 @@ dd {
 }
 
 .ribbon-default {
-  border-color: $brand-default;
 
   i {
     color: $brand-default;
@@ -201,40 +197,30 @@ dd {
 }
 
 .ribbon-primary {
-  border-color: $brand-primary;
-
   i {
     color: $brand-primary;
   }
 }
 
 .ribbon-success {
-  border-color: $brand-success;
-
   i {
     color: $brand-success;
   }
 }
 
 .ribbon-info {
-  border-color: $brand-info;
-
   i {
     color: $brand-info;
   }
 }
 
 .ribbon-warning {
-  border-color: $brand-warning;
-
   i {
     color: $brand-warning;
   }
 }
 
 .ribbon-danger {
-  border-color: $brand-danger;
-
   i {
     color: $brand-danger;
   }
