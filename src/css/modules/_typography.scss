@@ -31,7 +31,7 @@ h6,
 }
 
 h1, .h1 {
-  font-size: 2.5em;
+  font-size: 28px;
 
   &.section-title {
     font-size: 1.8em;
@@ -97,7 +97,7 @@ b, strong {
 }
 
 p { 
-  font-size: 18px; 
+  font-size: 16px; 
   font-weight: 300;
 }
 
@@ -109,7 +109,7 @@ p {
 }
 
 .lead {
-  font-size: 1.3em;
+  font-size: 16px;
   line-height: 1.2;
 }
 
@@ -237,3 +237,27 @@ article {
   }
 
 }
+
+
+@media (min-width: 768px) {
+  p, .lead { 
+    font-size: 16px; 
+  }
+  h1, .h1 {
+      font-size: 2.5em;
+  }  
+
+}
+@media (min-width: 992px) {
+  p { 
+    font-size: 18px; 
+  }
+  .lead { 
+    font-size: 1.3em; 
+  }  
+  h1, .h1 {
+      font-size: 2.5em;
+  }  
+
+}
+

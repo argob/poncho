@@ -367,7 +367,7 @@ h6,
     margin-bottom: 24px; }
 
 h1, .h1 {
-  font-size: 2.5em; }
+  font-size: 28px; }
   h1.section-title, .h1.section-title {
     font-size: 1.8em; }
 
@@ -410,7 +410,7 @@ b, strong {
   font-weight: 500; }
 
 p {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 300; }
 
 .text-muted {
@@ -420,7 +420,7 @@ p {
   color: #444; }
 
 .lead {
-  font-size: 1.3em;
+  font-size: 16px;
   line-height: 1.2; }
 
 blockquote p {
@@ -492,6 +492,21 @@ article h1.icon {
   line-height: 15px;
   margin-top: 40px; }
 
+@media (min-width: 768px) {
+  p, .lead {
+    font-size: 16px; }
+
+  h1, .h1 {
+    font-size: 2.5em; } }
+@media (min-width: 992px) {
+  p {
+    font-size: 18px; }
+
+  .lead {
+    font-size: 1.3em; }
+
+  h1, .h1 {
+    font-size: 2.5em; } }
 .btn-primary {
   background-color: #0072bc; }
   .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.focus, .btn-primary.active {
