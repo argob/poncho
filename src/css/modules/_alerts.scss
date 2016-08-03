@@ -1,0 +1,18 @@
+.alert {
+    font-weight: 300;
+}
+
+.alert-warning,
+.alert-success,
+.alert-info,
+.alert-danger {
+    color: $gray-dark;
+}
+.alert-success {
+    .title {
+      color: $brand-success;
+    }
+    i {
+      color: $brand-success;
+    }
+}

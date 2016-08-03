@@ -2,8 +2,8 @@
 /*!
  * Poncho v0.2 (https://github.com/argob/poncho)
  * Copyright 2016
- * Subsecretar├¡a de Gobierno Digital
- * Presidencia de la Naci├│n Argentina
+ * Subsecretaría de Gobierno Digital
+ * Presidencia de la Nación Argentina
  * Licenciado bajo MIT (https://github.com/argob/poncho/LICENSE)
  */
 /* Libraries */
@@ -306,6 +306,9 @@ dd {
   position: absolute;
   bottom: 30px;
   left: 0; }
+
+.m-t-0 {
+  margin-top: 0 !important; }
 
 body {
   font-family: "Roboto", "Helvetica Neue", "Helvetica", "Arial", sans-serif; }
@@ -1115,6 +1118,35 @@ a.list-group-item {
 .list-group-areas h3 {
   font-weight: 700;
   margin-top: 0; }
+
+.step {
+  position: relative;
+  min-height: 32px; }
+  .step > div:first-child {
+    position: static;
+    height: 0; }
+  .step > div:last-child {
+    margin-left: 32px;
+    padding-left: 16px; }
+  .step .circle {
+    background: #ccc;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    border-radius: 16px;
+    position: relative;
+    color: white;
+    text-align: center; }
+  .step .line {
+    position: absolute;
+    border-left: 1px solid #ccc;
+    left: 16px;
+    bottom: 10px;
+    top: 42px; }
+  .step:last-child .line {
+    display: none; }
+  .step .description {
+    padding-bottom: 40px; }
 
 .breadcrumb {
   background: transparent;
@@ -1970,5 +2002,19 @@ input[type='text']:-ms-input-placeholder {
   background-color: #e5e5e5; }
   .progress.progress-sm {
     height: 12px; }
+
+.alert {
+  font-weight: 300; }
+
+.alert-warning,
+.alert-success,
+.alert-info,
+.alert-danger {
+  color: #444; }
+
+.alert-success .title {
+  color: #46a948; }
+.alert-success i {
+  color: #46a948; }
 
 /*# sourceMappingURL=poncho.css.map */
