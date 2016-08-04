@@ -81,8 +81,6 @@ h6, .h6 {
 a {
   color: $brand-primary;
   @include word-wrap(break-word);
-  font-weight: 500;
-
 
   &:hover,
   &:focus,
@@ -92,14 +90,7 @@ a {
   }
 }
 
-b, strong {
-    font-weight: 500;
-}
-
-p { 
-  font-size: 18px; 
-  font-weight: 300;
-}
+p { font-size: 16px; }
 
 .text-muted {
   color: $gray;
@@ -110,6 +101,7 @@ p {
 
 .lead {
   font-size: 1.3em;
+  font-weight: 400;
   line-height: 1.2;
 }
 
@@ -200,7 +192,6 @@ article {
 
   li {
     font-size: 16px;
-   font-weight: 300;
     margin: 0 0 15px;
   }
 
