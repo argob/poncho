@@ -31,7 +31,7 @@ article {
   }
 
   li {
-    font-size: 18px;
+    font-size: 16px;
     line-height: 24px;
     margin-bottom: 20px;
     font-weight: 300;
@@ -184,6 +184,16 @@ blockquote {
     margin-top: 60px;
   }
 }
+
+
+@media (min-width: 992px) {
+   article li { 
+    font-size: 18px; 
+  }
+
+}
+
+
 
 
 

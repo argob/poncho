@@ -16,7 +16,7 @@ body {
   overflow-x: hidden; }
 
 body {
-  background: #f5f5f5;
+  background: #F9F9F9;
   color: #111;
   display: table;
   width: 100%; }
@@ -109,7 +109,7 @@ aside section {
   .page-sidebar .nav-pills > li.active > a:focus {
     background-color: #0072bc;
     border: 0;
-    color: #f5f5f5; }
+    color: #F9F9F9; }
   .page-sidebar .nav > li > a:hover,
   .page-sidebar .nav > li > a:focus {
     background-color: #e5e5e5;
@@ -238,7 +238,7 @@ dd {
     -webkit-animation-iteration-count: infinite;
     animation: loader .6s linear;
     animation-iteration-count: infinite;
-    border-color: #767676 #f5f5f5 #f5f5f5;
+    border-color: #767676 #F9F9F9 #F9F9F9;
     border-radius: 600rem;
     border-style: solid;
     border-width: .2em;
@@ -372,27 +372,27 @@ h1, .h1 {
     font-size: 1.8em; }
 
 h2, .h2 {
-  font-size: 2.285714em; }
+  font-size: 26px; }
   h2.section-title, .h2.section-title {
     font-size: 1.6em; }
 
 h3, .h3 {
-  font-size: 2em; }
+  font-size: 24px; }
   h3.section-title, .h3.section-title {
     font-size: 1.4em; }
 
 h4, .h4 {
-  font-size: 1.714285em; }
+  font-size: 22px; }
   h4.section-title, .h4.section-title {
     font-size: 1.2em; }
 
 h5, .h5 {
-  font-size: 1.4em; }
+  font-size: 20px; }
   h5.section-title, .h5.section-title {
     font-size: 1em; }
 
 h6, .h6 {
-  font-size: 1em; }
+  font-size: 18px; }
   h6.section-title, .h6.section-title {
     font-size: 0.8em; }
 
@@ -494,10 +494,7 @@ article h1.icon {
 
 @media (min-width: 768px) {
   p, .lead {
-    font-size: 16px; }
-
-  h1, .h1 {
-    font-size: 2.5em; } }
+    font-size: 16px; } }
 @media (min-width: 992px) {
   p {
     font-size: 18px; }
@@ -506,7 +503,22 @@ article h1.icon {
     font-size: 1.3em; }
 
   h1, .h1 {
-    font-size: 2.5em; } }
+    font-size: 2.5em; }
+
+  h2, .h2 {
+    font-size: 2.285714em; }
+
+  h3, .h3 {
+    font-size: 2em; }
+
+  h4, .h4 {
+    font-size: 1.714285em; }
+
+  h5, .h5 {
+    font-size: 1.4em; }
+
+  h6, .h6 {
+    font-size: 1em; } }
 .btn-primary {
   background-color: #0072bc; }
   .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.focus, .btn-primary.active {
@@ -1219,7 +1231,7 @@ a.list-group-item {
 .pagination > .active > span:focus {
   background-color: #767676;
   border-color: #0072bc;
-  color: #f5f5f5;
+  color: #F9F9F9;
   cursor: default;
   z-index: 2; }
 
@@ -1254,7 +1266,7 @@ article ul {
     font-size: 1.4em;
     line-height: 1.6; }
 article li {
-  font-size: 18px;
+  font-size: 16px;
   line-height: 24px;
   margin-bottom: 20px;
   font-weight: 300; }
@@ -1350,6 +1362,9 @@ blockquote {
 .overlap h1 {
   margin-top: 60px; }
 
+@media (min-width: 992px) {
+  article li {
+    font-size: 18px; } }
 .panel {
   margin-bottom: 20px; }
   .panel h1,
