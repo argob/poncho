@@ -8,11 +8,57 @@
 .alert-danger {
     color: $gray-dark;
 }
+.alert-warning {
+    .h1, h1, 
+    .h2, h2,
+    .h3, h3,
+    .h4, h4,
+    .h5, h5,
+    .h6, h6 {
+      color: $brand-warning;
+    }
+    i {
+      color: $brand-warning;
+    }
+}
 .alert-success {
-    .title {
+    .h1, h1, 
+    .h2, h2,
+    .h3, h3,
+    .h4, h4,
+    .h5, h5,
+    .h6, h6 {
       color: $brand-success;
     }
     i {
       color: $brand-success;
     }
 }
+.alert-info {
+    .h1, h1, 
+    .h2, h2,
+    .h3, h3,
+    .h4, h4,
+    .h5, h5,
+    .h6, h6 {
+      color: $brand-info;
+    }
+    i {
+      color: $brand-info;
+    }
+}
+
+.alert-danger {
+    .h1, h1, 
+    .h2, h2,
+    .h3, h3,
+    .h4, h4,
+    .h5, h5,
+    .h6, h6 {
+      color: $brand-danger;
+    }
+    i {
+      color: $brand-danger;
+    }
+}
+

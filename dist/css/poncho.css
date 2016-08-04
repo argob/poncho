@@ -2039,10 +2039,45 @@ input[type='text']:-ms-input-placeholder {
 .alert-danger {
   color: #444; }
 
-.alert-success .title {
+.alert-warning .h1, .alert-warning h1,
+.alert-warning .h2, .alert-warning h2,
+.alert-warning .h3, .alert-warning h3,
+.alert-warning .h4, .alert-warning h4,
+.alert-warning .h5, .alert-warning h5,
+.alert-warning .h6, .alert-warning h6 {
+  color: #f0ad4e; }
+.alert-warning i {
+  color: #f0ad4e; }
+
+.alert-success .h1, .alert-success h1,
+.alert-success .h2, .alert-success h2,
+.alert-success .h3, .alert-success h3,
+.alert-success .h4, .alert-success h4,
+.alert-success .h5, .alert-success h5,
+.alert-success .h6, .alert-success h6 {
   color: #46a948; }
 .alert-success i {
   color: #46a948; }
+
+.alert-info .h1, .alert-info h1,
+.alert-info .h2, .alert-info h2,
+.alert-info .h3, .alert-info h3,
+.alert-info .h4, .alert-info h4,
+.alert-info .h5, .alert-info h5,
+.alert-info .h6, .alert-info h6 {
+  color: #5bc0de; }
+.alert-info i {
+  color: #5bc0de; }
+
+.alert-danger .h1, .alert-danger h1,
+.alert-danger .h2, .alert-danger h2,
+.alert-danger .h3, .alert-danger h3,
+.alert-danger .h4, .alert-danger h4,
+.alert-danger .h5, .alert-danger h5,
+.alert-danger .h6, .alert-danger h6 {
+  color: #d9534f; }
+.alert-danger i {
+  color: #d9534f; }
 
 .m-x-auto {
   margin-right: auto !important;
