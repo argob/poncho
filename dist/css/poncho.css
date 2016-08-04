@@ -54,12 +54,138 @@ aside section {
   margin-bottom: 24px;
   width: 100%; }
 
+.bg-primary {
+  background-color: #0072bc !important;
+  color: #FFF; }
+  .bg-primary * {
+    color: #FFF; }
+
+.bg-success {
+  background-color: #46a948 !important;
+  color: #FFF; }
+  .bg-success * {
+    color: #FFF; }
+
+.bg-info {
+  background-color: #5bc0de !important;
+  color: #FFF; }
+  .bg-info * {
+    color: #FFF; }
+
+.bg-danger {
+  background-color: #d9534f !important;
+  color: #FFF; }
+  .bg-danger * {
+    color: #FFF; }
+
+.bg-warning {
+  background-color: #f0ad4e !important; }
+
 .bg-gray {
-  background-color: #e5e5e5;
-  padding-top: 48px; }
-  .bg-gray .section-title {
-    color: #111;
-    opacity: .7; }
+  background-color: #e5e5e5; }
+
+.bg-white {
+  background-color: #fff; }
+
+.bg-fucsia {
+  background-color: #ea1d76 !important;
+  color: #FFF; }
+  .bg-fucsia * {
+    color: #FFF; }
+
+.bg-arandano {
+  background-color: #bd1e61 !important;
+  color: #FFF; }
+  .bg-arandano * {
+    color: #FFF; }
+
+.bg-uva {
+  background-color: #873299 !important;
+  color: #FFF; }
+  .bg-uva * {
+    color: #FFF; }
+
+.bg-cielo {
+  background-color: #009dda !important;
+  color: #FFF; }
+  .bg-cielo * {
+    color: #FFF; }
+
+.bg-verdin {
+  background-color: #82bc00 !important;
+  color: #FFF; }
+  .bg-verdin * {
+    color: #FFF; }
+
+.bg-lima {
+  background-color: #cfde00 !important; }
+
+.bg-maiz {
+  background-color: #ffce00 !important; }
+
+.bg-tomate {
+  background-color: #ff4338 !important;
+  color: #FFF; }
+  .bg-tomate * {
+    color: #FFF; }
+
+a.bg-primary,
+a.bg-success,
+a.bg-info,
+a.bg-warning,
+a.bg-danger {
+  color: #FFF;
+  display: block;
+  padding: 6px 0; }
+  a.bg-primary:hover,
+  a.bg-success:hover,
+  a.bg-info:hover,
+  a.bg-warning:hover,
+  a.bg-danger:hover {
+    opacity: 0.9;
+    text-decoration: underline; }
+
+.text-primary {
+  color: #0072bc !important; }
+
+.text-secondary {
+  color: #00b9f1 !important; }
+
+.text-success {
+  color: #46a948 !important; }
+
+.text-info {
+  color: #5bc0de !important; }
+
+.text-warning {
+  color: #f0ad4e !important; }
+
+.text-danger {
+  color: #d9534f !important; }
+
+.text-fucsia {
+  color: #ea1d76 !important; }
+
+.text-arandano {
+  color: #bd1e61 !important; }
+
+.text-uva {
+  color: #873299 !important; }
+
+.text-cielo {
+  color: #009dda !important; }
+
+.text-verdin {
+  color: #82bc00 !important; }
+
+.text-lima {
+  color: #cfde00 !important; }
+
+.text-maiz {
+  color: #ffce00 !important; }
+
+.text-tomate {
+  color: #ff4338 !important; }
 
 .page-sidebar {
   margin-bottom: 48px;
@@ -415,7 +541,8 @@ a {
   color: #0072bc;
   overflow-wrap: break-word;
   word-wrap: break-word;
-  word-break: break-all; }
+  word-break: break-word;
+  font-weight: 500; }
   a:hover, a:focus, a:active {
     color: #0a9eff;
     text-decoration: none; }
@@ -433,10 +560,6 @@ p {
   font-size: 1.3em;
   font-weight: 400;
   line-height: 1.2; }
-
-blockquote p {
-  font-family: "Roboto", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-  line-height: 1.3; }
 
 .jumbotron h1.h1-sm {
   font-size: 44px; }
@@ -535,66 +658,6 @@ article h1.icon {
   .btn-link:hover, .btn-link:focus {
     background-color: #ccc !important;
     color: #0072bc; }
-
-.bg-primary {
-  background-color: #0072bc !important; }
-  .bg-primary a {
-    color: #FFF; }
-
-.bg-success {
-  background-color: #46a948 !important; }
-  .bg-success a {
-    color: #FFF; }
-
-.bg-info {
-  background-color: #5bc0de !important; }
-  .bg-info a {
-    color: #FFF; }
-
-.bg-warning {
-  background-color: #f0ad4e !important; }
-
-.bg-danger {
-  background-color: #d9534f !important; }
-  .bg-danger a {
-    color: #FFF; }
-
-.bg-white {
-  background-color: #fff; }
-
-a.bg-primary,
-a.bg-success,
-a.bg-info,
-a.bg-warning,
-a.bg-danger {
-  color: #FFF;
-  display: block;
-  padding: 6px 0; }
-  a.bg-primary:hover,
-  a.bg-success:hover,
-  a.bg-info:hover,
-  a.bg-warning:hover,
-  a.bg-danger:hover {
-    opacity: 0.9;
-    text-decoration: underline; }
-
-.text-primary {
-  color: #0072bc; }
-
-.text-secondary {
-  color: #00b9f1; }
-
-.text-success {
-  color: #46a948; }
-
-.text-info {
-  color: #5bc0de; }
-
-.text-warning {
-  color: #f0ad4e; }
-
-.text-danger {
-  color: #d9534f; }
 
 .open > .dropdown-toggle.btn-primary {
   background-color: #0091ef; }
@@ -1277,6 +1340,7 @@ blockquote {
     font-style: italic;
     margin-top: 10px; }
   blockquote.quote-highlighted {
+    margin: 0 50px 0;
     position: relative; }
     blockquote.quote-highlighted p {
       font-size: 1.5em !important;
@@ -1296,6 +1360,12 @@ blockquote {
         font-size: 4em;
         font-style: normal;
         margin-top: -50px; }
+    blockquote.quote-highlighted small,
+    blockquote.quote-highlighted footer {
+      color: #767676;
+      font-size: 20px;
+      font-style: italic;
+      margin-top: 10px; }
 
 .article-news article section {
   font-family: "Droid Serif", serif; }
@@ -1410,6 +1480,8 @@ a.panel:hover, a.panel:focus {
   background-size: cover;
   border: 0;
   min-height: 152px; }
+  .panel-default > .panel-heading.panel-heading-lg {
+    height: 300px; }
   .panel-default > .panel-heading.panel-heading-no-padding {
     padding: 0; }
     .panel-default > .panel-heading.panel-heading-no-padding img {
@@ -1503,7 +1575,7 @@ a.panel:hover, a.panel:focus {
     min-height: 180px; }
 
   .panel.panel-default.panel-lg .panel-heading {
-    min-height: 404px; } }
+    min-height: 250px; } }
 .overlay {
   position: absolute;
   top: 0;
@@ -1944,19 +2016,23 @@ input[type='text']:-ms-input-placeholder {
     .numbers.row.spaced > div {
       padding-left: 30px;
       padding-right: 30px; }
-.numbers h1 {
+.numbers h1, .numbers .h1 {
   font-size: 4em;
   font-weight: bold;
   margin: .2em 0; }
-.numbers h2 {
+.numbers h2, .numbers .h2 {
   font-size: 3em;
   font-weight: bold;
   margin: .2em 0; }
-.numbers h3 {
-  font-size: 2em;
+.numbers h3, .numbers .h3 {
+  font-size: 2.4em;
   font-weight: bold;
   margin: .2em 0; }
-.numbers h4 {
+.numbers h4, .numbers .h4 {
+  font-size: 1.8em;
+  font-weight: bold;
+  margin: .2em 0; }
+.numbers p.lead {
   font-size: 1.2em;
   font-weight: bold;
   margin: .2em 0; }

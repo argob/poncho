@@ -43,8 +43,8 @@ article {
 
     h3 {
       font-weight: 400;
+    }
   }
-}
 
   .social-date {
     h4 {
@@ -124,6 +124,7 @@ blockquote {
   }
 
   &.quote-highlighted {
+    margin: 0 50px 0;
     @include position(relative);
 
     p {
@@ -149,7 +150,14 @@ blockquote {
           margin-top: -50px;
         }
       }
+    }
 
+    small,
+    footer {
+      color: $gray;
+      font-size: 20px;
+      font-style: italic;
+      margin-top: 10px;
     }
   }
 }

@@ -150,6 +150,10 @@ a {
   border: 0;
   min-height: 152px;
 
+  &.panel-heading-lg{
+    height: 300px;
+  }
+
   &.panel-heading-no-padding {
     padding: 0;
 
@@ -315,7 +319,7 @@ a {
   }
 
   .panel.panel-default.panel-lg .panel-heading {
-    min-height: 404px;
+    min-height: 250px;
   }
 
 }
