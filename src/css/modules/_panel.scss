@@ -312,6 +312,10 @@ a {
   }
 }
 
+.flex-row {
+  display: flex;
+}
+
 @media screen and (min-width: 768px) {
 
   .panel.panel-default.panel-md .panel-heading {

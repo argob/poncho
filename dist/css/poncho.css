@@ -448,6 +448,11 @@ dd {
   bottom: 30px;
   left: 0; }
 
+.row-flex {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row; }
+
 body {
   font-family: "Roboto", "Helvetica Neue", "Helvetica", "Arial", sans-serif; }
 
@@ -1569,6 +1574,9 @@ a.panel:hover, a.panel:focus {
     display: flex; }
     .panels-row > div .panel {
       width: 100%; }
+
+.flex-row {
+  display: flex; }
 
 @media screen and (min-width: 768px) {
   .panel.panel-default.panel-md .panel-heading {
