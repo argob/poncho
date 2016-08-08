@@ -546,8 +546,7 @@ a {
   color: #0072bc;
   overflow-wrap: break-word;
   word-wrap: break-word;
-  word-break: break-word;
-  font-weight: 500; }
+  word-break: break-word; }
   a:hover, a:focus, a:active {
     color: #0a9eff;
     text-decoration: none; }
@@ -1475,8 +1474,18 @@ a.panel:hover, a.panel:focus {
   color: #fff; }
   a.panel:hover small, a.panel:focus small {
     color: #fff; }
-  a.panel:hover .text-muted, a.panel:focus .text-muted {
-    color: #fff; }
+  a.panel:hover .text-muted,
+  a.panel:hover .text-primary,
+  a.panel:hover .text-secondary,
+  a.panel:hover .text-success,
+  a.panel:hover .text-warning,
+  a.panel:hover .text-danger, a.panel:focus .text-muted,
+  a.panel:focus .text-primary,
+  a.panel:focus .text-secondary,
+  a.panel:focus .text-success,
+  a.panel:focus .text-warning,
+  a.panel:focus .text-danger {
+    color: #fff !important; }
   a.panel:hover .panel-heading, a.panel:focus .panel-heading {
     opacity: .8; }
 

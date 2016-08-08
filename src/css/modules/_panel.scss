@@ -132,8 +132,13 @@ a {
         color: $white;
       }
 
-      .text-muted {
-        color: $white;
+      .text-muted,
+      .text-primary,
+      .text-secondary,
+      .text-success,
+      .text-warning,
+      .text-danger {
+        color: $white !important;
       }
 
       .panel-heading {
