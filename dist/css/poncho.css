@@ -82,7 +82,7 @@ aside section {
   background-color: #f0ad4e !important; }
 
 .bg-gray {
-  background-color: #e5e5e5; }
+  background-color: #e9e9e9; }
 
 .bg-white {
   background-color: #fff; }
@@ -216,20 +216,20 @@ a.bg-danger {
     width: 100%; }
   .page-sidebar .nav-pills li.active > a,
   .page-sidebar .nav-pills li > a:hover {
-    background-color: #e5e5e5;
-    border-color: #e5e5e5; }
+    background-color: #e9e9e9;
+    border-color: #e9e9e9; }
   .page-sidebar .nav-pills li.btn-title > a {
     padding: 10px 20px; }
   .page-sidebar .nav-pills li > a {
     padding: 13px 20px; }
     .page-sidebar .nav-pills li > a:hover {
-      border-color: #e5e5e5; }
+      border-color: #e9e9e9; }
     .page-sidebar .nav-pills li > a:visited {
       color: #705582; }
   .page-sidebar .nav-pills li.disabled > a {
     color: #ccc; }
     .page-sidebar .nav-pills li.disabled > a:hover {
-      border-color: #e5e5e5; }
+      border-color: #e9e9e9; }
   .page-sidebar .nav-pills > li.active > a,
   .page-sidebar .nav-pills > li.active > a:hover,
   .page-sidebar .nav-pills > li.active > a:focus {
@@ -238,7 +238,7 @@ a.bg-danger {
     color: #F9F9F9; }
   .page-sidebar .nav > li > a:hover,
   .page-sidebar .nav > li > a:focus {
-    background-color: #e5e5e5;
+    background-color: #e9e9e9;
     text-decoration: none; }
   .page-sidebar .nav-pills a {
     color: #606060; }
@@ -546,18 +546,18 @@ a {
   color: #0072bc;
   overflow-wrap: break-word;
   word-wrap: break-word;
-  word-break: break-word; }
+  word-break: break-word;
+  font-weight: 500; }
   a:hover, a:focus, a:active {
     color: #0a9eff;
     text-decoration: none; }
 
+b, strong {
+  font-weight: 500; }
+
 p {
-<<<<<<< HEAD
   font-size: 16px;
   font-weight: 300; }
-=======
-  font-size: 16px; }
->>>>>>> 12424f3f5387bbdfc26e9756c5cc7ef6af4c0332
 
 .text-muted {
   color: #767676; }
@@ -566,12 +566,8 @@ p {
   color: #444; }
 
 .lead {
-<<<<<<< HEAD
-  font-size: 16px;
-=======
   font-size: 1.3em;
   font-weight: 400;
->>>>>>> 12424f3f5387bbdfc26e9756c5cc7ef6af4c0332
   line-height: 1.2; }
 
 .jumbotron h1.h1-sm {
@@ -610,20 +606,9 @@ article h1.icon {
 .content_format .h5,
 .content_format .h6 {
   margin-top: 2em; }
-.content_format p .btn {
-  font-family: "Roboto", "Helvetica Neue", "Helvetica", "Arial", sans-serif; }
-.content_format p,
-.content_format ul,
-.content_format ol {
-  font-family: "Droid Serif", serif; }
 .content_format li {
-  font-size: 16px;
+  font-weight: 300;
   margin: 0 0 15px; }
-.content_format blockquote p {
-  font-family: "Roboto", "Helvetica Neue", "Helvetica", "Arial", sans-serif; }
-.content_format .social-share p,
-.content_format .social-share ul {
-  font-family: "Roboto", "Helvetica Neue", "Helvetica", "Arial", sans-serif; }
 .content_format .additional_data h1,
 .content_format .additional_data h2,
 .content_format .additional_data h3,
@@ -633,7 +618,6 @@ article h1.icon {
   margin-top: 10px; }
 .content_format .credits p {
   color: #767676;
-  font-family: "Roboto", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   font-size: 13px;
   line-height: 15px;
   margin-top: 40px; }
@@ -694,7 +678,7 @@ article h1.icon {
   border-radius: 4px;
   color: #0072bc;
   text-decoration: underline !important;
-  background-color: #e5e5e5 !important; }
+  background-color: #e9e9e9 !important; }
   .btn-link:hover, .btn-link:focus {
     background-color: #ccc !important;
     color: #0072bc; }
@@ -782,7 +766,7 @@ span.btn:hover {
   cursor: default; }
 
 .btn-group .btn-default {
-  background: #e5e5e5;
+  background: #e9e9e9;
   color: #444;
   border-right: 1px solid #ccc; }
   .btn-group .btn-default:last-of-type {
@@ -1038,6 +1022,31 @@ a.btn {
     font-size: 15px;
     padding-left: 10px;
     padding-right: 10px; } }
+.nav.nav-icons {
+  text-align: center; }
+  .nav.nav-icons li {
+    display: inline-block; }
+    .nav.nav-icons li a {
+      font-weight: 400;
+      text-align: center;
+      width: 190px;
+      vertical-align: top; }
+      .nav.nav-icons li a:hover {
+        background: none; }
+      .nav.nav-icons li a i {
+        display: inline-block;
+        width: 80px;
+        height: 80px;
+        background: #767676;
+        color: #fff;
+        line-height: 80px;
+        font-size: 2em;
+        border-radius: 100px;
+        margin-bottom: 10px; }
+      .nav.nav-icons li a span {
+        display: block;
+        color: #767676; }
+
 @media screen and (min-width: 768px) {
   .navbar-form {
     margin-right: 0; }
@@ -1305,7 +1314,7 @@ a.list-group-item {
 .pagination > li > a:focus,
 .pagination > li > span:hover,
 .pagination > li > span:focus {
-  background-color: #e5e5e5;
+  background-color: #e9e9e9;
   border-color: transparent;
   color: #0072bc; }
 
@@ -1353,13 +1362,7 @@ article ul {
     line-height: 1.6; }
 article li {
   font-size: 16px;
-<<<<<<< HEAD
-  line-height: 24px;
-  margin-bottom: 20px;
-  font-weight: 300; }
-=======
   line-height: 24px; }
->>>>>>> 12424f3f5387bbdfc26e9756c5cc7ef6af4c0332
 article footer {
   border-top: solid 1px #ccc;
   margin-bottom: 32px;
@@ -1375,7 +1378,7 @@ article h1.first, article h2.first, article h3.first, article h4.first, article 
   margin-top: 0; }
 @media only screen and (min-width: 1200px) {
   article .overlap {
-    background: #f5f5f5;
+    background: #F9F9F9;
     border-radius: 4px;
     box-sizing: content-box;
     left: -60px;
@@ -1393,7 +1396,6 @@ figure {
     max-width: 100%; }
   figure figcaption {
     color: #767676;
-    font-size: 16px;
     margin-bottom: 24px;
     text-align: center; }
 
@@ -1463,7 +1465,7 @@ blockquote {
   article li {
     font-size: 18px; } }
 .panel {
-  margin-bottom: 20px; }
+  margin-bottom: 30px; }
   .panel h1,
   .panel h2,
   .panel h3,
@@ -1584,7 +1586,7 @@ a.panel:hover, a.panel:focus {
 
 .panel-footer {
   background-color: transparent;
-  border-color: #e5e5e5;
+  border-color: #e9e9e9;
   border-top: 1px solid #ccc;
   color: #111 !important;
   padding: 15px 20px; }
@@ -1690,7 +1692,8 @@ a.panel:hover, a.panel:focus {
     text-transform: none; }
   .jumbotron p {
     font-size: 20px;
-    font-weight: 400; }
+    font-weight: 300;
+    letter-spacing: 0.2px; }
   .jumbotron .jumbotron_bar {
     background: rgba(0, 0, 0, 0.3);
     font-size: 14px;
@@ -1721,15 +1724,17 @@ a.panel:hover, a.panel:focus {
     .jumbotron .jumbotron_bar .breadcrumb {
       margin: 0;
       text-shadow: 0 2px 2px rgba(0, 0, 0, 0.5); }
-      .jumbotron .jumbotron_bar .breadcrumb li:first-child:after {
-        content: '';
-        margin: 0; }
-      .jumbotron .jumbotron_bar .breadcrumb li a {
-        color: #fff;
-        font-size: 14px;
-        text-decoration: none; }
-      .jumbotron .jumbotron_bar .breadcrumb li span {
-        font-size: 14px; }
+      .jumbotron .jumbotron_bar .breadcrumb li {
+        margin-bottom: 0; }
+        .jumbotron .jumbotron_bar .breadcrumb li:first-child:after {
+          content: '';
+          margin: 0; }
+        .jumbotron .jumbotron_bar .breadcrumb li a {
+          color: #fff;
+          font-size: 14px;
+          text-decoration: none; }
+        .jumbotron .jumbotron_bar .breadcrumb li span {
+          font-size: 14px; }
   .jumbotron .jumbotron_body {
     position: relative;
     padding: 80px 0;
@@ -1803,7 +1808,7 @@ label {
   padding: 6px 8px;
   border: solid 1px #ccc; }
   .form-control[disabled], .form-control[readonly] {
-    background-color: #e5e5e5; }
+    background-color: #e9e9e9; }
 
 fieldset.framed {
   padding: 10px 30px;
@@ -1811,7 +1816,7 @@ fieldset.framed {
   margin-bottom: 30px;
   border: 1px solid #ccc; }
 fieldset[disabled] .form-control {
-  background-color: #e5e5e5; }
+  background-color: #e9e9e9; }
 
 .input-lg,
 select.input-lg {
@@ -2079,7 +2084,7 @@ input[type='text']:-ms-input-placeholder {
   width: 8%; }
 
 .table-hover > tbody > tr:hover {
-  background-color: #e5e5e5; }
+  background-color: #e9e9e9; }
 
 .dashboard ol {
   padding: 15px; }
@@ -2140,7 +2145,7 @@ input[type='text']:-ms-input-placeholder {
     font-size: 1.5em; } }
 
 .progress {
-  background-color: #e5e5e5; }
+  background-color: #e9e9e9; }
   .progress.progress-sm {
     height: 12px; }
 

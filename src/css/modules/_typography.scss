@@ -83,7 +83,7 @@ a {
   overflow-wrap: break-word;
   word-wrap: break-word;
   word-break: break-word;
-  // font-weight: 500;
+  font-weight: 500;
 
   &:hover,
   &:focus,
@@ -181,31 +181,32 @@ article {
 
   p {
     .btn {
-      font-family: $font-family-sans-serif;
+      // font-family: $font-family-sans-serif;
     }
   }
 
   p,
   ul,
   ol {
-    font-family: $font-family-serif;
+    // font-family: $font-family-serif;
   }
 
   li {
-    font-size: 16px;
+    // font-size: 16px;
+    font-weight: 300;
     margin: 0 0 15px;
   }
 
   blockquote {
     p {
-      font-family: $font-family-sans-serif;
+      // font-family: $font-family-sans-serif;
     }
   }
 
-  .social-share {
-    p,
-    ul {font-family: $font-family-sans-serif;}
-  }
+  // .social-share {
+  //   p,
+  //   ul {font-family: $font-family-sans-serif;}
+  // }
 
   .additional_data {
     h1,
@@ -221,7 +222,7 @@ article {
   .credits {
     p {
       color: $gray;
-      font-family: $font-family-sans-serif;
+      // font-family: $font-family-sans-serif;
       font-size: 13px;
       line-height: 15px;
       margin-top: 40px;

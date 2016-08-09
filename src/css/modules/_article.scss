@@ -65,7 +65,7 @@ article {
 
   @media only screen and (min-width: 1200px) {
     .overlap {
-      background: #f5f5f5;
+      background: $body-bg;
       border-radius: 4px;
       box-sizing: content-box;
       left: -60px;
@@ -92,7 +92,7 @@ figure {
 
   figcaption {
     color: $gray;
-    font-size: 16px;
+    // font-size: 16px;
     margin-bottom: 24px;
     text-align: center;
   }
@@ -192,8 +192,8 @@ blockquote {
 
 
 @media (min-width: 992px) {
-   article li { 
-    font-size: 18px; 
+   article li {
+    font-size: 18px;
   }
 
 }

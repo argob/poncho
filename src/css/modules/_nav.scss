@@ -294,6 +294,42 @@ a {
 
 }
 
+.nav.nav-icons {
+  text-align: center;
+
+  li {
+    display: inline-block;
+
+    a {
+      font-weight: 400;
+      text-align: center;
+      width: 190px;
+      vertical-align: top;
+
+      &:hover {
+        background: none;
+      }
+
+      i {
+        display: inline-block;
+        width: 80px;
+        height: 80px;
+        background: $gray;
+        color: $white;
+        line-height: 80px;
+        font-size: 2em;
+        border-radius: 100px;
+        margin-bottom: 10px;
+      }
+
+      span {
+        display: block;
+        color: $gray;
+      }
+    }
+  }
+}
+
 
 @media screen and (min-width: 768px) {
 
