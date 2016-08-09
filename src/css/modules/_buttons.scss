@@ -59,78 +59,7 @@
   }
 }
 
-.bg-primary {
-  background-color: $brand-primary !important;
-
-  a {
-    color: #FFF;
-  }
-}
-.bg-success {
-  background-color: $brand-success !important;
-
-  a {
-    color: #FFF;
-  }
-}
-.bg-info {
-  background-color: $brand-info !important;
-
-  a {
-    color: #FFF;
-  }
-}
-.bg-warning {
-  background-color: $brand-warning !important;
-}
-.bg-danger {
-  background-color: $brand-danger !important;
-
-  a {
-    color: #FFF;
-  }
-}
-.bg-white {
-  background-color: $white;
-}
-
-a.bg-primary,
-a.bg-success,
-a.bg-info,
-a.bg-warning,
-a.bg-danger {
-  color: #FFF;
-  display: block;
-  padding: 6px 0;
-
-  &:hover {
-    opacity: 0.9;
-    text-decoration: underline;
-  }
-}
-
-
-
-.text-primary {
-  color: $brand-primary;
-}
-.text-secondary {
-  color: $brand-secondary;
-}
-.text-success {
-  color: $brand-success;
-}
-.text-info {
-  color: $brand-info;
-}
-.text-warning {
-  color: $brand-warning;
-}
-.text-danger {
-  color: $brand-danger;
-}
-
-.open>.dropdown-toggle {
+.open > .dropdown-toggle {
   &.btn-primary {
     background-color: lighten($brand-primary, 10%);
   }
@@ -153,7 +82,7 @@ a.bg-danger {
   }
 }
 
-.open>.dropdown-toggle {
+.open > .dropdown-toggle {
   &.btn-inverse {
     background-color: $white;
     color: $brand-primary;

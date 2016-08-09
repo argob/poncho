@@ -64,14 +64,167 @@ aside {
   }
 }
 
+// Paleta principal
+
+.bg-primary {
+  background-color: $brand-primary !important;
+  color: #FFF;
+
+  * {
+    color: #FFF;
+  }
+}
+.bg-success {
+  background-color: $brand-success !important;
+  color: #FFF;
+
+  * {
+    color: #FFF;
+  }
+}
+.bg-info {
+  background-color: $brand-info !important;
+  color: #FFF;
+
+  * {
+    color: #FFF;
+  }
+}
+.bg-danger {
+  background-color: $brand-danger !important;
+  color: #FFF;
+
+  * {
+    color: #FFF;
+  }
+}
+
+.bg-warning {
+  background-color: $brand-warning !important;
+}
 .bg-gray {
   background-color: $gray-lighter;
-  padding-top: 48px;
+}
+.bg-white {
+  background-color: $white;
+}
 
-  .section-title {
-    color: $text-color;
-    opacity: .7;
+// Paleta extendida
+
+.bg-fucsia {
+  background-color: $brand-fucsia !important;
+  color: #FFF;
+
+  * {
+    color: #FFF;
   }
+}
+.bg-arandano {
+  background-color: $brand-arandano !important;
+  color: #FFF;
+
+  * {
+    color: #FFF;
+  }
+}
+.bg-uva {
+  background-color: $brand-uva !important;
+  color: #FFF;
+
+  * {
+    color: #FFF;
+  }
+}
+.bg-cielo {
+  background-color: $brand-cielo !important;
+  color: #FFF;
+
+  * {
+    color: #FFF;
+  }
+}
+.bg-verdin {
+  background-color: $brand-verdin !important;
+  color: #FFF;
+
+  * {
+    color: #FFF;
+  }
+}
+.bg-lima {
+  background-color: $brand-lima !important;
+}
+.bg-maiz {
+  background-color: $brand-maiz !important;
+}
+.bg-tomate {
+  background-color: $brand-tomate !important;
+  color: #FFF;
+
+  * {
+    color: #FFF;
+  }
+}
+
+
+a.bg-primary,
+a.bg-success,
+a.bg-info,
+a.bg-warning,
+a.bg-danger {
+  color: #FFF;
+  display: block;
+  padding: 6px 0;
+
+  &:hover {
+    opacity: 0.9;
+    text-decoration: underline;
+  }
+}
+
+.text-primary {
+  color: $brand-primary !important;
+}
+.text-secondary {
+  color: $brand-secondary !important;
+}
+.text-success {
+  color: $brand-success !important;
+}
+.text-info {
+  color: $brand-info !important;
+}
+.text-warning {
+  color: $brand-warning !important;
+}
+.text-danger {
+  color: $brand-danger !important;
+}
+
+//
+.text-fucsia {
+  color: $brand-fucsia !important;
+}
+.text-arandano {
+  color: $brand-arandano !important;
+}
+.text-uva {
+  color: $brand-uva !important;
+}
+.text-cielo {
+  color: $brand-cielo !important;
+}
+.text-verdin {
+  color: $brand-verdin !important;
+}
+.text-lima {
+  color: $brand-lima !important;
+}
+.text-maiz {
+  color: $brand-maiz !important;
+}
+.text-tomate {
+  color: $brand-tomate !important;
 }
 
 .page-sidebar {
@@ -176,10 +329,13 @@ dd {
 }
 
 .ribbon {
+  border: 1px solid $gray-light;
+  border-radius: 4px;
   display: inline-block;
   font-weight: 500;
   margin: 0 15px 10px 0;
   padding: 11px 20px;
+  text-transform: uppercase;
 
   i {
     font-size: 1.5em;
@@ -190,6 +346,7 @@ dd {
 }
 
 .ribbon-default {
+  border-color: $brand-default;
 
   i {
     color: $brand-default;
@@ -197,30 +354,40 @@ dd {
 }
 
 .ribbon-primary {
+  border-color: $brand-primary;
+
   i {
     color: $brand-primary;
   }
 }
 
 .ribbon-success {
+  border-color: $brand-success;
+
   i {
     color: $brand-success;
   }
 }
 
 .ribbon-info {
+  border-color: $brand-info;
+
   i {
     color: $brand-info;
   }
 }
 
 .ribbon-warning {
+  border-color: $brand-warning;
+
   i {
     color: $brand-warning;
   }
 }
 
 .ribbon-danger {
+  border-color: $brand-danger;
+
   i {
     color: $brand-danger;
   }

@@ -80,9 +80,10 @@ h6, .h6 {
 
 a {
   color: $brand-primary;
-  @include word-wrap(break-word);
-  font-weight: 500;
-
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  // font-weight: 500;
 
   &:hover,
   &:focus,
@@ -96,8 +97,8 @@ b, strong {
     font-weight: 500;
 }
 
-p { 
-  font-size: 16px; 
+p {
+  font-size: 16px;
   font-weight: 300;
 }
 
@@ -109,17 +110,9 @@ p {
 }
 
 .lead {
-  font-size: 16px;
+  font-size: 1.3em;
+  font-weight: 400;
   line-height: 1.2;
-}
-
-
-
-blockquote {
-  p {
-    font-family: $font-family-sans-serif;
-    line-height: 1.3;
-  }
 }
 
 .jumbotron {
@@ -200,7 +193,6 @@ article {
 
   li {
     font-size: 16px;
-   font-weight: 300;
     margin: 0 0 15px;
   }
 
@@ -240,21 +232,21 @@ article {
 
 
 @media (min-width: 768px) {
-  p, .lead { 
-    font-size: 16px; 
+  p, .lead {
+    font-size: 16px;
   }
 
 }
 @media (min-width: 992px) {
-  p { 
-    font-size: 18px; 
+  p {
+    font-size: 18px;
   }
-  .lead { 
-    font-size: 1.3em; 
-  }  
+  .lead {
+    font-size: 1.3em;
+  }
   h1, .h1 {
     font-size: 2.5em;
-  }  
+  }
   h2, .h2 {
     font-size: 2.285714em;
   }
