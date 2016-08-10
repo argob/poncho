@@ -306,10 +306,6 @@ a {
       width: 190px;
       vertical-align: top;
 
-      &:hover {
-        background: none;
-      }
-
       i {
         display: inline-block;
         width: 80px;
@@ -320,12 +316,38 @@ a {
         font-size: 2em;
         border-radius: 100px;
         margin-bottom: 10px;
+        transition: background 0.2s, color 0.2s, opacity 0.2s;
       }
 
       span {
         display: block;
         color: $gray;
+        transition: color 0.2s;
       }
+
+      &:hover,
+      &:focus {
+        background: none;
+
+        i {
+          opacity: 0.8;
+        }
+        span {
+          color: $gray-dark;
+        }
+      }
+    }
+  }
+
+  &.nav-icons-selected li:not( .active ) {
+    &:not( :hover ) a:not( :focus ) i {
+      background: $gray-light !important;
+      color: $gray !important;
+    }
+    a:hover i,
+    a:focus i {
+      opacity: 0.7;
+      color: $black !important;
     }
   }
 }

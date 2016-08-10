@@ -118,38 +118,44 @@ a {
   }
 }
 
-.step {
-  position: relative;
-  min-height: 32px;
-  > div:first-child {
-      position: static; height: 0;
-  }
-  > div:last-child {
-    margin-left: 32px;
-    padding-left: 16px;
-  }
-  .circle {
-    background: $gray-border;
-    width: 32px;
-    height: 32px;
-    line-height: 32px;
-    border-radius: 16px;
+.steps {
+  .step {
     position: relative;
-    color: white;
-    text-align: center;
-  }
-  .line {
-    position: absolute;
-    border-left: 1px solid $gray-border;
-    left: 16px;
-    bottom: 10px;
-    top: 42px;
-  }
-  &:last-child .line {
-    display: none;
-  }
-  .description {
-    padding-bottom: 40px;
+    min-height: 32px;
+    > div:first-child {
+        position: static; height: 0;
+    }
+    > div:last-child {
+      margin-left: 32px;
+      padding-left: 16px;
+    }
+    .circle {
+      background: $gray-border;
+      width: 32px;
+      height: 32px;
+      line-height: 32px;
+      border-radius: 16px;
+      position: relative;
+      color: white;
+      text-align: center;
+    }
+    .line {
+      position: absolute;
+      border-left: 1px solid $gray-border;
+      left: 16px;
+      bottom: 10px;
+      top: 42px;
+    }
+    &:last-child .line {
+      display: none;
+    }
+    .description {
+      padding-bottom: 40px;
+    }
+
+    &:last-of-type .description {
+      padding: 0;
+    }
   }
 }
 

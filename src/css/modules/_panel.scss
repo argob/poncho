@@ -86,6 +86,10 @@
         margin: 15px 0 20px;
       }
     }
+
+    p:last-of-type {
+      margin-bottom: 0;
+    }
   }
 
   time {
@@ -123,6 +127,12 @@
 
 a {
   &.panel {
+    transition: background 0.15s, color 0.15s;
+
+    .panel-heading {
+      transition: opacity 0.15s;
+    }
+
     &:hover,
     &:focus {
       background: $brand-primary;
@@ -223,7 +233,7 @@ a {
 
 }
 
-.panel-index>.panel-heading {
+.panel-index > .panel-heading {
   min-height: 256px;
 }
 
@@ -323,7 +333,7 @@ a {
 
 @media screen and (min-width: 768px) {
 
-  .panel.panel-default.panel-md .panel-heading {
+  .panel.panel-default .panel-heading {
     min-height: 180px;
   }
 
