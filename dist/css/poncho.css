@@ -38,16 +38,21 @@ hr {
 
 section {
   padding: 40px 0; }
+  section.section-no-spaced {
+    padding: 0; }
+  section.section-sm {
+    padding: 20px 0; }
+  section.section-lg {
+    padding: 80px 0; }
 
 .icon-item {
-  margin-bottom: 20px;
-  padding: 15px; }
+  margin-bottom: 20px; }
   .icon-item i {
-    color: #00b9f1;
-    font-size: 84px; }
-  .icon-item h3 {
-    font-size: 24px;
-    margin: 15px 0 5px; }
+    margin-bottom: 0.3em;
+    font-size: 6em;
+    color: #00b9f1; }
+  .icon-item h1, .icon-item h2, .icon-item h3, .icon-item h4, .icon-item h5, .icon-item h5 {
+    margin-top: 0 !important; }
 
 aside section {
   float: left;

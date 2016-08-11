@@ -39,21 +39,35 @@ hr {
 
 section {
   padding: 40px 0;
+
+  &.section-no-spaced {
+    padding: 0;
+  }
+  &.section-sm {
+    padding: 20px 0;
+  }
+  &.section-lg {
+    padding: 80px 0;
+  }
 }
 
 .icon-item {
   margin-bottom: 20px;
-  padding: 15px;
 
   i {
+    margin-bottom: 0.3em;
+    font-size: 6em;
     color: $brand-secondary;
-    font-size: 84px;
   }
 
-  h3 {
-    font-size: 24px;
-    margin: 15px 0 5px;
+  h1, h2, h3, h4, h5, h5 {
+    margin-top: 0 !important;
   }
+
+  // h3 {
+  //   font-size: 24px;
+  //   margin: 15px 0 5px;
+  // }
 }
 
 aside {
