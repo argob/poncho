@@ -903,7 +903,7 @@ a.btn {
   .navbar-default .navbar-nav > .open > a,
   .navbar-default .navbar-nav > .open > a:hover,
   .navbar-default .navbar-nav > .open > a:focus {
-    /* background: $brand-primary;*/
+    background: #0072bc;
     color: #fff; }
   .navbar-default .navbar-nav > .btn {
     margin: 13px 0 0 13px;
