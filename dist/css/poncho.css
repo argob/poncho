@@ -656,8 +656,10 @@ article h1.icon {
     background-color: #ccc !important;
     color: #0072bc; }
 
-.open > .dropdown-toggle.btn-primary {
-  background-color: #0091ef; }
+.navbar-default .navbar-nav > .open > .dropdown-toggle.btn-primary {
+  background-color: #0072bc; }
+.navbar-default .navbar-nav > .open > .dropdown-toggle.btn-success {
+  background-color: #46a948; }
 
 .btn-inverse {
   background-color: transparent;
@@ -763,13 +765,13 @@ span.btn:hover {
 .navbar .open > .dropdown-menu {
   border: inherit; }
 
-.navbar .dropdown-menu {
+.navbar ul li .dropdown-menu {
   background: #0072bc !important; }
-  .navbar .dropdown-menu li a {
+  .navbar ul li .dropdown-menu li a {
     color: #fff;
     text-transform: uppercase;
     border-bottom: none; }
-  .navbar .dropdown-menu > li > a:hover, .navbar .dropdown-menu li a:hover, .navbar .dropdown-menu > li > a:focus, .navbar .dropdown-menu li a:focus {
+  .navbar ul li .dropdown-menu > li > a:hover, .navbar ul li .dropdown-menu li a:hover, .navbar ul li .dropdown-menu > li > a:focus, .navbar ul li .dropdown-menu li a:focus {
     background-color: #0091ef;
     color: white; }
 
@@ -787,7 +789,7 @@ span.btn:hover {
     white-space: nowrap;
     font-size: 16px;
     padding: 12px 15px; }
-  .dropdown-menu > li > a:hover, .dropdown-menu li a:hover, .dropdown-menu > li > a:focus, .dropdown-menu li a:focus {
+  .dropdown-menu li a:not(.btn):hover, .dropdown-menu li a:not(.btn):focus {
     background-color: #0072bc;
     color: white; }
   .dropdown-menu li:first-of-type a {
@@ -901,7 +903,7 @@ a.btn {
   .navbar-default .navbar-nav > .open > a,
   .navbar-default .navbar-nav > .open > a:hover,
   .navbar-default .navbar-nav > .open > a:focus {
-    background: #0072bc;
+    /* background: $brand-primary;*/
     color: #fff; }
   .navbar-default .navbar-nav > .btn {
     margin: 13px 0 0 13px;

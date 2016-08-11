@@ -1,6 +1,7 @@
 .navbar .open > .dropdown-menu{border:inherit;}
 .navbar {
-  .dropdown-menu {
+
+  ul li .dropdown-menu {
     background: $brand-primary !important;
      & li a {
       color:#fff;
@@ -12,8 +13,6 @@
       color: white;
     }
   }
-
-  // .btn-group .btn-group
 }
 
 .open > .dropdown-menu{border:1px solid #dbdbdb;}
@@ -30,7 +29,9 @@
     padding:12px 15px;
 
   }
-  &>li>a:hover,& li a:hover,&>li>a:focus,& li a:focus {
+
+  & li a:not( .btn ):hover,
+  & li a:not( .btn ):focus {
     background-color: $brand-primary;
     color: white;
   }
