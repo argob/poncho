@@ -59,9 +59,12 @@
   }
 }
 
-.open > .dropdown-toggle {
+.navbar-default .navbar-nav > .open > .dropdown-toggle {
   &.btn-primary {
-    background-color: lighten($brand-primary, 10%);
+    background-color: $brand-primary;
+  }
+  &.btn-success {
+    background-color: $brand-success;
   }
 }
 
@@ -224,7 +227,3 @@ span {
     }
   }
 }
-
-// btn-groups en radios de drupal (Para agregar en argentina.css)
-
-
