@@ -57,26 +57,26 @@ aside section {
 .bg-primary {
   background-color: #0072bc !important;
   color: #FFF; }
-  .bg-primary * {
-    color: #FFF; }
+  .bg-primary *, .bg-primary a {
+    color: #FFF !important; }
 
 .bg-success {
   background-color: #46a948 !important;
   color: #FFF; }
-  .bg-success * {
-    color: #FFF; }
+  .bg-success *, .bg-success a {
+    color: #FFF !important; }
 
 .bg-info {
   background-color: #5bc0de !important;
   color: #FFF; }
-  .bg-info * {
-    color: #FFF; }
+  .bg-info *, .bg-info a {
+    color: #FFF !important; }
 
 .bg-danger {
   background-color: #d9534f !important;
   color: #FFF; }
-  .bg-danger * {
-    color: #FFF; }
+  .bg-danger *, .bg-danger a {
+    color: #FFF !important; }
 
 .bg-warning {
   background-color: #f0ad4e !important; }
@@ -90,32 +90,32 @@ aside section {
 .bg-fucsia {
   background-color: #ea1d76 !important;
   color: #FFF; }
-  .bg-fucsia * {
-    color: #FFF; }
+  .bg-fucsia *, .bg-fucsia a {
+    color: #FFF !important; }
 
 .bg-arandano {
   background-color: #bd1e61 !important;
   color: #FFF; }
-  .bg-arandano * {
-    color: #FFF; }
+  .bg-arandano *, .bg-arandano a {
+    color: #FFF !important; }
 
 .bg-uva {
   background-color: #873299 !important;
   color: #FFF; }
-  .bg-uva * {
-    color: #FFF; }
+  .bg-uva *, .bg-uva a {
+    color: #FFF !important; }
 
 .bg-cielo {
   background-color: #009dda !important;
   color: #FFF; }
-  .bg-cielo * {
-    color: #FFF; }
+  .bg-cielo *, .bg-cielo a {
+    color: #FFF !important; }
 
 .bg-verdin {
   background-color: #82bc00 !important;
   color: #FFF; }
-  .bg-verdin * {
-    color: #FFF; }
+  .bg-verdin *, .bg-verdin a {
+    color: #FFF !important; }
 
 .bg-lima {
   background-color: #cfde00 !important; }
@@ -544,12 +544,15 @@ h6, .h6 {
 
 a {
   color: #0072bc;
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-  word-break: break-word; }
+  font-weight: 500; }
   a:hover, a:focus, a:active {
     color: #0a9eff;
     text-decoration: none; }
+
+main a {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word; }
 
 p {
   font-size: 16px; }
@@ -995,7 +998,7 @@ a.btn {
 .tab-content .tab-pane {
   position: relative; }
 
-@media (max-width: 979px) {
+@media (max-width: 992px) {
   .navbar-brand h1 {
     font-size: 18px;
     margin: 7px 0 7px 12px; }

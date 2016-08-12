@@ -80,10 +80,8 @@ h6, .h6 {
 
 a {
   color: $brand-primary;
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-  word-break: break-word;
-  // font-weight: 500;
+  font-weight: 500;
+
 
   &:hover,
   &:focus,
@@ -91,6 +89,12 @@ a {
     color: $link-hover-color;
     text-decoration: none;
   }
+}
+
+main a {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
 }
 
 p { font-size: 16px; }
