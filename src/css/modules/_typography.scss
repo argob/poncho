@@ -80,10 +80,7 @@ h6, .h6 {
 
 a {
   color: $brand-primary;
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-  word-break: break-word;
-  font-weight: 500;
+  font-weight: 500;§
 
   &:hover,
   &:focus,
@@ -93,13 +90,19 @@ a {
   }
 }
 
-b, strong {
-    font-weight: 500;
+main a {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
 }
 
-p {
-  font-size: 16px;
-  font-weight: 300;
+p,
+ul,
+ol,
+p { font-weight: 300; }
+
+b, strong {
+    font-weight: 500;
 }
 
 .text-muted {
@@ -179,34 +182,9 @@ article {
     margin-top: 2em;
   }
 
-  p {
-    .btn {
-      // font-family: $font-family-sans-serif;
-    }
-  }
-
-  p,
-  ul,
-  ol {
-    // font-family: $font-family-serif;
-  }
-
   li {
-    // font-size: 16px;
-    font-weight: 300;
     margin: 0 0 15px;
   }
-
-  blockquote {
-    p {
-      // font-family: $font-family-sans-serif;
-    }
-  }
-
-  // .social-share {
-  //   p,
-  //   ul {font-family: $font-family-sans-serif;}
-  // }
 
   .additional_data {
     h1,
@@ -222,7 +200,6 @@ article {
   .credits {
     p {
       color: $gray;
-      // font-family: $font-family-sans-serif;
       font-size: 13px;
       line-height: 15px;
       margin-top: 40px;
@@ -239,7 +216,7 @@ article {
 
 }
 @media (min-width: 992px) {
-  p {
+  p, li {
     font-size: 18px;
   }
   .lead {
@@ -261,7 +238,7 @@ article {
   }
 
   h5, .h5 {
-    font-size: 1.4em;
+    font-size: 1.3em;
   }
 
   h6, .h6 {

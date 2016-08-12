@@ -84,32 +84,32 @@ aside {
   background-color: $brand-primary !important;
   color: #FFF;
 
-  * {
-    color: #FFF;
+  *, a {
+    color: #FFF !important;
   }
 }
 .bg-success {
   background-color: $brand-success !important;
   color: #FFF;
 
-  * {
-    color: #FFF;
+  *, a {
+    color: #FFF !important;
   }
 }
 .bg-info {
   background-color: $brand-info !important;
   color: #FFF;
 
-  * {
-    color: #FFF;
+  *, a {
+    color: #FFF !important;
   }
 }
 .bg-danger {
   background-color: $brand-danger !important;
   color: #FFF;
 
-  * {
-    color: #FFF;
+  *, a {
+    color: #FFF !important;
   }
 }
 
@@ -129,40 +129,40 @@ aside {
   background-color: $brand-fucsia !important;
   color: #FFF;
 
-  * {
-    color: #FFF;
+  *, a {
+    color: #FFF !important;
   }
 }
 .bg-arandano {
   background-color: $brand-arandano !important;
   color: #FFF;
 
-  * {
-    color: #FFF;
+  *, a {
+    color: #FFF !important;
   }
 }
 .bg-uva {
   background-color: $brand-uva !important;
   color: #FFF;
 
-  * {
-    color: #FFF;
+  *, a {
+    color: #FFF !important;
   }
 }
 .bg-cielo {
   background-color: $brand-cielo !important;
   color: #FFF;
 
-  * {
-    color: #FFF;
+  *, a {
+    color: #FFF !important;
   }
 }
 .bg-verdin {
   background-color: $brand-verdin !important;
   color: #FFF;
 
-  * {
-    color: #FFF;
+  *, a {
+    color: #FFF !important;
   }
 }
 .bg-lima {
@@ -345,8 +345,8 @@ dd {
 .ribbon {
   display: inline-block;
   font-weight: 500;
-  margin: 0 15px 10px 0;
-  padding: 11px 20px;
+  margin: 0 40px 10px 0;
+  padding: 11px 0px;
   text-transform: uppercase;
 
   i {

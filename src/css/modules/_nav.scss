@@ -269,7 +269,7 @@ a {
 }
 
 
-@media (max-width: 979px) {
+@media (max-width: 992px) {
 
   .navbar-brand {
     h1 {
@@ -306,6 +306,10 @@ a {
       width: 190px;
       vertical-align: top;
 
+      &:hover {
+        background: none;
+      }
+
       i {
         display: inline-block;
         width: 80px;
@@ -320,6 +324,7 @@ a {
       }
 
       span {
+        font-size: 16px;
         display: block;
         color: $gray;
         transition: color 0.2s;

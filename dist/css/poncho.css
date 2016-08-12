@@ -62,26 +62,26 @@ aside section {
 .bg-primary {
   background-color: #0072bc !important;
   color: #FFF; }
-  .bg-primary * {
-    color: #FFF; }
+  .bg-primary *, .bg-primary a {
+    color: #FFF !important; }
 
 .bg-success {
   background-color: #46a948 !important;
   color: #FFF; }
-  .bg-success * {
-    color: #FFF; }
+  .bg-success *, .bg-success a {
+    color: #FFF !important; }
 
 .bg-info {
   background-color: #5bc0de !important;
   color: #FFF; }
-  .bg-info * {
-    color: #FFF; }
+  .bg-info *, .bg-info a {
+    color: #FFF !important; }
 
 .bg-danger {
   background-color: #d9534f !important;
   color: #FFF; }
-  .bg-danger * {
-    color: #FFF; }
+  .bg-danger *, .bg-danger a {
+    color: #FFF !important; }
 
 .bg-warning {
   background-color: #f0ad4e !important; }
@@ -95,32 +95,32 @@ aside section {
 .bg-fucsia {
   background-color: #ea1d76 !important;
   color: #FFF; }
-  .bg-fucsia * {
-    color: #FFF; }
+  .bg-fucsia *, .bg-fucsia a {
+    color: #FFF !important; }
 
 .bg-arandano {
   background-color: #bd1e61 !important;
   color: #FFF; }
-  .bg-arandano * {
-    color: #FFF; }
+  .bg-arandano *, .bg-arandano a {
+    color: #FFF !important; }
 
 .bg-uva {
   background-color: #873299 !important;
   color: #FFF; }
-  .bg-uva * {
-    color: #FFF; }
+  .bg-uva *, .bg-uva a {
+    color: #FFF !important; }
 
 .bg-cielo {
   background-color: #009dda !important;
   color: #FFF; }
-  .bg-cielo * {
-    color: #FFF; }
+  .bg-cielo *, .bg-cielo a {
+    color: #FFF !important; }
 
 .bg-verdin {
   background-color: #82bc00 !important;
   color: #FFF; }
-  .bg-verdin * {
-    color: #FFF; }
+  .bg-verdin *, .bg-verdin a {
+    color: #FFF !important; }
 
 .bg-lima {
   background-color: #cfde00 !important; }
@@ -259,8 +259,8 @@ dd {
 .ribbon {
   display: inline-block;
   font-weight: 500;
-  margin: 0 15px 10px 0;
-  padding: 11px 20px;
+  margin: 0 40px 10px 0;
+  padding: 11px 0px;
   text-transform: uppercase; }
   .ribbon i {
     font-size: 1.5em;
@@ -517,20 +517,25 @@ h6, .h6 {
 
 a {
   color: #0072bc;
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-  word-break: break-word;
   font-weight: 500; }
+  §
   a:hover, a:focus, a:active {
     color: #0a9eff;
     text-decoration: none; }
 
+main a {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word; }
+
+p,
+ul,
+ol,
+p {
+  font-weight: 300; }
+
 b, strong {
   font-weight: 500; }
-
-p {
-  font-size: 16px;
-  font-weight: 300; }
 
 .text-muted {
   color: #767676; }
@@ -580,7 +585,6 @@ article h1.icon {
 .content_format .h6 {
   margin-top: 2em; }
 .content_format li {
-  font-weight: 300;
   margin: 0 0 15px; }
 .content_format .additional_data h1,
 .content_format .additional_data h2,
@@ -599,7 +603,7 @@ article h1.icon {
   p, .lead {
     font-size: 16px; } }
 @media (min-width: 992px) {
-  p {
+  p, li {
     font-size: 18px; }
 
   .lead {
@@ -618,7 +622,7 @@ article h1.icon {
     font-size: 1.714285em; }
 
   h5, .h5 {
-    font-size: 1.4em; }
+    font-size: 1.3em; }
 
   h6, .h6 {
     font-size: 1em; } }
@@ -988,7 +992,7 @@ a.btn {
 .tab-content .tab-pane {
   position: relative; }
 
-@media (max-width: 979px) {
+@media (max-width: 992px) {
   .navbar-brand h1 {
     font-size: 18px;
     margin: 7px 0 7px 12px; }
@@ -1006,6 +1010,8 @@ a.btn {
       text-align: center;
       width: 190px;
       vertical-align: top; }
+      .nav.nav-icons li a:hover {
+        background: none; }
       .nav.nav-icons li a i {
         display: inline-block;
         width: 80px;
@@ -1018,6 +1024,7 @@ a.btn {
         margin-bottom: 10px;
         transition: background 0.2s, color 0.2s, opacity 0.2s; }
       .nav.nav-icons li a span {
+        font-size: 16px;
         display: block;
         color: #767676;
         transition: color 0.2s; }
