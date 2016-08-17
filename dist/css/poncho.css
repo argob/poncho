@@ -524,9 +524,8 @@ a {
     text-decoration: none; }
 
 main a {
-  overflow-wrap: break-word;
   word-wrap: break-word;
-  word-break: break-word; }
+  }
 
 p,
 ul,
@@ -535,7 +534,7 @@ p {
   font-weight: 300; }
 
 b, strong {
-  font-weight: 500; }
+  font-weight: 600; }
 
 .text-muted {
   color: #767676; }
@@ -713,7 +712,8 @@ fieldset[disabled] .btn-default.active {
   padding: 16px 25px;
   text-transform: uppercase;
   vertical-align: top;
-  white-space: initial; }
+  white-space: initial;
+  }
   .btn:hover {
     border: 0; }
   .btn.btn-lg {
