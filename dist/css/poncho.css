@@ -524,9 +524,7 @@ a {
     text-decoration: none; }
 
 main a {
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-  word-break: break-word; }
+  word-wrap: break-word; }
 
 p,
 ul,
@@ -713,7 +711,8 @@ fieldset[disabled] .btn-default.active {
   padding: 16px 25px;
   text-transform: uppercase;
   vertical-align: top;
-  white-space: initial; }
+  white-space: initial;
+  word-break: initial; }
   .btn:hover {
     border: 0; }
   .btn.btn-lg {

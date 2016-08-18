@@ -134,6 +134,7 @@ fieldset[disabled] .btn-default.active {
   text-transform: uppercase;
   vertical-align: top;
   white-space: initial;
+  word-break: initial;
 
   &:hover {
     border: 0;
