@@ -18,7 +18,7 @@
   }
 }
 .alert-success {
-  background: lighten($brand-success, 35%);
+  background: lighten($brand-success, 40%);
   border-color: lighten($brand-success, 10%);
 
   i {
@@ -59,7 +59,7 @@ a.alert {
   }
   &.alert-success {
     &:hover {
-      background: lighten($brand-success, 30%);
+      background: lighten($brand-success, 33%);
     }
 
     i {
