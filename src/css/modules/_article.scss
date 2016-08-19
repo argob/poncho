@@ -33,9 +33,6 @@ article {
   li {
     font-size: 16px;
     line-height: 24px;
-    margin-bottom: 20px;
-    font-weight: 300;
-
   }
 
   footer {
@@ -46,8 +43,8 @@ article {
 
     h3 {
       font-weight: 400;
+    }
   }
-}
 
   .social-date {
     h4 {
@@ -68,7 +65,7 @@ article {
 
   @media only screen and (min-width: 1200px) {
     .overlap {
-      background: #f5f5f5;
+      background: $body-bg;
       border-radius: 4px;
       box-sizing: content-box;
       left: -60px;
@@ -95,7 +92,7 @@ figure {
 
   figcaption {
     color: $gray;
-    font-size: 16px;
+    // font-size: 16px;
     margin-bottom: 24px;
     text-align: center;
   }
@@ -127,6 +124,7 @@ blockquote {
   }
 
   &.quote-highlighted {
+    margin: 0 50px 0;
     @include position(relative);
 
     p {
@@ -152,7 +150,14 @@ blockquote {
           margin-top: -50px;
         }
       }
+    }
 
+    small,
+    footer {
+      color: $gray;
+      font-size: 20px;
+      font-style: italic;
+      margin-top: 10px;
     }
   }
 }
@@ -187,8 +192,8 @@ blockquote {
 
 
 @media (min-width: 992px) {
-   article li { 
-    font-size: 18px; 
+   article li {
+    font-size: 18px;
   }
 
 }

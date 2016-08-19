@@ -6,59 +6,94 @@
 .alert-success,
 .alert-info,
 .alert-danger {
-    color: $gray-dark;
+  color: $gray-dark;
 }
+
 .alert-warning {
-    .h1, h1, 
-    .h2, h2,
-    .h3, h3,
-    .h4, h4,
-    .h5, h5,
-    .h6, h6 {
-      color: $brand-warning;
-    }
-    i {
-      color: $brand-warning;
-    }
+  background: lighten($brand-warning, 30%);
+  border-color: lighten($brand-warning, 10%);
+
+  i {
+    color: $brand-warning;
+  }
 }
 .alert-success {
-    .h1, h1, 
-    .h2, h2,
-    .h3, h3,
-    .h4, h4,
-    .h5, h5,
-    .h6, h6 {
-      color: $brand-success;
-    }
-    i {
-      color: $brand-success;
-    }
+  background: lighten($brand-success, 40%);
+  border-color: lighten($brand-success, 10%);
+
+  i {
+    color: $brand-success;
+  }
 }
 .alert-info {
-    .h1, h1, 
-    .h2, h2,
-    .h3, h3,
-    .h4, h4,
-    .h5, h5,
-    .h6, h6 {
-      color: $brand-info;
-    }
-    i {
-      color: $brand-info;
-    }
-}
+  background: lighten($brand-info, 30%);
+  border-color: lighten($brand-info, 10%);
 
+  i {
+    color: $brand-info;
+  }
+}
 .alert-danger {
-    .h1, h1, 
-    .h2, h2,
-    .h3, h3,
-    .h4, h4,
-    .h5, h5,
-    .h6, h6 {
-      color: $brand-danger;
+  background: lighten($brand-danger, 35%);
+  border-color: lighten($brand-danger, 10%);
+
+  i {
+    color: $brand-danger;
+  }
+}
+
+a.alert {
+  &:hover {
+    text-decoration: none;
+    color: $black;
+  }
+
+  &.alert-warning {
+    &:hover {
+      background: lighten($brand-warning, 25%);
     }
+
+    i {
+      color: $brand-warning;
+    }
+  }
+  &.alert-success {
+    &:hover {
+      background: lighten($brand-success, 33%);
+    }
+
+    i {
+      color: $brand-success;
+    }
+  }
+  &.alert-info {
+    &:hover {
+      background: lighten($brand-info, 25%);
+    }
+
+    i {
+      color: $brand-info;
+    }
+  }
+  &.alert-danger {
+    &:hover {
+      background: lighten($brand-danger, 30%);
+    }
+
     i {
       color: $brand-danger;
     }
+  }
 }
 
+@media (max-width: 544px) {
+  .alert .fa.fa-fw {
+    width: 1em;
+  }
+}
+
+@media (max-width: 330px) {
+  .alert .fa.fa-fw {
+    width: 0.7em;
+  }
+}

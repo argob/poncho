@@ -46,25 +46,31 @@
     }
   }
 
-  h1 {
+  h1, .h1 {
     font-size: 4em;
     font-weight: bold;
     margin: .2em 0;
   }
 
-  h2 {
+  h2, .h2 {
     font-size: 3em;
     font-weight: bold;
     margin: .2em 0;
   }
 
-  h3 {
-    font-size: 2em;
+  h3, .h3 {
+    font-size: 2.4em;
     font-weight: bold;
     margin: .2em 0;
   }
 
-  h4 {
+  h4, .h4 {
+    font-size: 1.8em;
+    font-weight: bold;
+    margin: .2em 0;
+  }
+
+  p.lead {
     font-size: 1.2em;
     font-weight: bold;
     margin: .2em 0;
