@@ -103,13 +103,17 @@
       text-shadow: 0 2px 2px $dark-opacity;
     }
 
+    h1:not(.panel), h2:not(.panel), h3:not(.panel), h4:not(.panel), h5:not(.panel), h6:not(.panel) {
+      text-shadow: none;
+    }
+
     p {
       font-size: 20px;
       line-height: 27px;
       text-shadow: 0 2px 2px $dark-opacity;
     }
 
-    a:not(.btn) {
+    a:not(.btn):not(.panel) {
       color: $white;
       text-decoration: underline;
 
