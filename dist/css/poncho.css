@@ -667,13 +667,11 @@ article h1.icon {
   background-color: #46a948; }
 
 .btn-inverse {
-  background-color: transparent;
-  border: solid 2px #fff;
-  color: #fff; }
-
-.btn-inverse:hover, .btn-inverse:focus, .btn-inverse:active, .btn-inverse.focus, .btn-inverse.active {
-  background-color: #fff;
-  color: #0072bc; }
+  background-color: #e9e9e9;
+  color: #767676; }
+  .btn-inverse:hover, .btn-inverse:focus, .btn-inverse:active, .btn-inverse.active {
+    background-color: #ccc;
+    color: #111; }
 
 .open > .dropdown-toggle.btn-inverse {
   background-color: #fff;

@@ -69,19 +69,15 @@
 }
 
 .btn-inverse {
-  background-color: transparent;
-  border: solid 2px $white;
-  color: $white;
-}
+  background-color: $gray-hover;
+  color: $gray;
 
-.btn-inverse {
   &:hover,
   &:focus,
   &:active,
-  &.focus,
   &.active {
-    background-color: $white;
-    color: $brand-primary;
+    background-color: $gray-border;
+    color: $black;
   }
 }
 
