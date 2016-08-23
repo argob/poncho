@@ -54,6 +54,9 @@ section {
   .icon-item h1, .icon-item h2, .icon-item h3, .icon-item h4, .icon-item h5, .icon-item h5 {
     margin-top: 0 !important; }
 
+h1.icon-item i {
+  font-size: 2em; }
+
 aside section {
   float: left;
   margin-bottom: 24px;
