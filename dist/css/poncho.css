@@ -1759,14 +1759,16 @@ a.panel {
       text-transform: none; }
     .jumbotron .jumbotron_body h1, .jumbotron .jumbotron_body h2, .jumbotron .jumbotron_body h3, .jumbotron .jumbotron_body h4, .jumbotron .jumbotron_body h5, .jumbotron .jumbotron_body h6 {
       text-shadow: 0 2px 2px rgba(0, 0, 0, 0.5); }
+    .jumbotron .jumbotron_body h1:not(.panel), .jumbotron .jumbotron_body h2:not(.panel), .jumbotron .jumbotron_body h3:not(.panel), .jumbotron .jumbotron_body h4:not(.panel), .jumbotron .jumbotron_body h5:not(.panel), .jumbotron .jumbotron_body h6:not(.panel) {
+      text-shadow: none; }
     .jumbotron .jumbotron_body p {
       font-size: 20px;
       line-height: 27px;
       text-shadow: 0 2px 2px rgba(0, 0, 0, 0.5); }
-    .jumbotron .jumbotron_body a:not(.btn) {
+    .jumbotron .jumbotron_body a:not(.btn):not(.panel) {
       color: #fff;
       text-decoration: underline; }
-      .jumbotron .jumbotron_body a:not(.btn):hover {
+      .jumbotron .jumbotron_body a:not(.btn):not(.panel):hover {
         opacity: .8; }
     .jumbotron .jumbotron_body .btn {
       text-shadow: none; }
