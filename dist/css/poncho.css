@@ -1678,7 +1678,10 @@ a.panel {
     min-height: 180px; }
 
   .panel.panel-default.panel-lg .panel-heading {
-    min-height: 250px; } }
+    min-height: 250px; }
+
+  .panel.panel-icon .panel-heading {
+    min-height: 152px; } }
 .overlay {
   position: absolute;
   top: 0;
