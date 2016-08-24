@@ -63,6 +63,7 @@
   .h6 {
     small {
       font-size: 80%;
+      font-weight: 300;
     }
   }
 
@@ -127,7 +128,18 @@
 
 a {
   &.panel {
-    transition: background 0.15s, color 0.15s;
+
+    &,
+    .h1,
+    .h2,
+    .h3,
+    .h4,
+    .h5,
+    .h6,
+    small,
+    p {
+      transition: background 0.15s, color 0.15s;
+    }
 
     .panel-heading {
       transition: opacity 0.15s;

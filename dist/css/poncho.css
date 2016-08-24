@@ -152,6 +152,12 @@ a.bg-danger {
   a.bg-danger:hover {
     opacity: 0.9;
     text-decoration: underline; }
+  a.bg-primary p,
+  a.bg-success p,
+  a.bg-info p,
+  a.bg-warning p,
+  a.bg-danger p {
+    font-size: 16px; }
 
 .text-primary {
   color: #0072bc !important; }
@@ -607,6 +613,9 @@ article h1.icon {
   p, li {
     font-size: 18px; }
 
+  .jumbotron li {
+    font-size: 16px; }
+
   .lead {
     font-size: 1.3em; }
 
@@ -793,7 +802,8 @@ span.btn:hover {
     white-space: nowrap;
     font-size: 16px;
     padding: 12px 15px; }
-  .dropdown-menu li a:not(.btn):hover, .dropdown-menu li a:not(.btn):focus {
+  .dropdown-menu li a:not(.btn):hover,
+  .dropdown-menu li a:not(.btn):focus {
     background-color: #0072bc;
     color: white; }
   .dropdown-menu li:first-of-type a {
@@ -1513,7 +1523,8 @@ blockquote {
   .panel .h5 small,
   .panel h6 small,
   .panel .h6 small {
-    font-size: 80%; }
+    font-size: 80%;
+    font-weight: 300; }
   .panel dd {
     font-weight: 600; }
   .panel dt {
@@ -1549,29 +1560,37 @@ blockquote {
   display: block;
   text-decoration: none !important; }
 
-a.panel {
+a.panel,
+a.panel .h1,
+a.panel .h2,
+a.panel .h3,
+a.panel .h4,
+a.panel .h5,
+a.panel .h6,
+a.panel small,
+a.panel p {
   transition: background 0.15s, color 0.15s; }
-  a.panel .panel-heading {
-    transition: opacity 0.15s; }
-  a.panel:hover, a.panel:focus {
-    background: #0072bc;
+a.panel .panel-heading {
+  transition: opacity 0.15s; }
+a.panel:hover, a.panel:focus {
+  background: #0072bc;
+  color: #fff; }
+  a.panel:hover small, a.panel:focus small {
     color: #fff; }
-    a.panel:hover small, a.panel:focus small {
-      color: #fff; }
-    a.panel:hover .text-muted,
-    a.panel:hover .text-primary,
-    a.panel:hover .text-secondary,
-    a.panel:hover .text-success,
-    a.panel:hover .text-warning,
-    a.panel:hover .text-danger, a.panel:focus .text-muted,
-    a.panel:focus .text-primary,
-    a.panel:focus .text-secondary,
-    a.panel:focus .text-success,
-    a.panel:focus .text-warning,
-    a.panel:focus .text-danger {
-      color: #fff !important; }
-    a.panel:hover .panel-heading, a.panel:focus .panel-heading {
-      opacity: .8; }
+  a.panel:hover .text-muted,
+  a.panel:hover .text-primary,
+  a.panel:hover .text-secondary,
+  a.panel:hover .text-success,
+  a.panel:hover .text-warning,
+  a.panel:hover .text-danger, a.panel:focus .text-muted,
+  a.panel:focus .text-primary,
+  a.panel:focus .text-secondary,
+  a.panel:focus .text-success,
+  a.panel:focus .text-warning,
+  a.panel:focus .text-danger {
+    color: #fff !important; }
+  a.panel:hover .panel-heading, a.panel:focus .panel-heading {
+    opacity: .8; }
 
 .panel-default > .panel-heading {
   background-position: center center;

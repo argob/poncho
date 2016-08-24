@@ -18,7 +18,8 @@
 .open > .dropdown-menu{border:1px solid #dbdbdb;}
 .dropdown-menu {
   padding:0;
-  & li a {
+
+  li a {
     border-bottom:1px solid #dbdbdb;
     display: block;
     clear: both;
@@ -30,16 +31,16 @@
 
   }
 
-  & li a:not( .btn ):hover,
-  & li a:not( .btn ):focus {
+  li a:not( .btn ):hover,
+  li a:not( .btn ):focus {
     background-color: $brand-primary;
     color: white;
   }
 
-  & li:first-of-type a {
+  li:first-of-type a {
     border-radius: 4px 4px 0 0;
   }
-  & li:last-of-type a {
+  li:last-of-type a {
     border-radius: 0 0 4px 4px;
     border: none;
   }
