@@ -10,9 +10,10 @@
     }
 
     h1 {
-      color: $brand-primary;
+      color: $gray-dark;
       float: left;
-      font-size: 20px;
+      font-size: 30px;
+      line-height: 1.4;
       margin: 4px 0 4px 12px;
 
       strong {
@@ -26,7 +27,6 @@
           color: $brand-primary;
         }
       }
-
     }
 
     &.solo {
@@ -34,6 +34,10 @@
         margin-top: .7em;
       }
     }
+  }
+
+  a.navbar-brand:hover h1 {
+    color: $gray;
   }
 
   .btn.btn-login {

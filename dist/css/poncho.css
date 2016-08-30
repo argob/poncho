@@ -849,9 +849,10 @@ span.btn:hover {
       float: left;
       max-width: 100%; }
     .navbar .navbar-brand h1 {
-      color: #0072bc;
+      color: #444;
       float: left;
-      font-size: 20px;
+      font-size: 30px;
+      line-height: 1.4;
       margin: 4px 0 4px 12px; }
       .navbar .navbar-brand h1 strong {
         color: #767676; }
@@ -861,6 +862,8 @@ span.btn:hover {
           color: #0072bc; }
     .navbar .navbar-brand.solo h1 {
       margin-top: .7em; }
+  .navbar a.navbar-brand:hover h1 {
+    color: #767676; }
   .navbar .btn.btn-login {
     margin-left: 0;
     float: right; }
