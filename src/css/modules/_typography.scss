@@ -90,8 +90,9 @@ a {
   }
 }
 
-main a {
+main a:not(.btn) {
   word-wrap: break-word;
+  word-break: break-word;
 }
 
 p,

@@ -532,8 +532,9 @@ a {
     color: #0a9eff;
     text-decoration: none; }
 
-main a {
-  word-wrap: break-word; }
+main a:not(.btn) {
+  word-wrap: break-word;
+  word-break: break-word; }
 
 p,
 ul,
