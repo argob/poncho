@@ -46,7 +46,8 @@ section {
     padding: 80px 0; }
 
 .icon-item {
-  margin-bottom: 20px; }
+  margin-bottom: 20px;
+  }
   .icon-item i {
     margin-bottom: 0.3em;
     font-size: 6em;
@@ -1035,7 +1036,7 @@ a.btn {
         height: 80px;
         background: #767676;
         color: #fff;
-        line-height: 80px;
+        line-height: 2.5;
         font-size: 2em;
         border-radius: 100px;
         margin-bottom: 10px;

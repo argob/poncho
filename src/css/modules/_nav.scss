@@ -325,7 +325,7 @@ a {
         height: 80px;
         background: $gray;
         color: $white;
-        line-height: 80px;
+        line-height: 2.5;
         font-size: 2em;
         border-radius: 100px;
         margin-bottom: 10px;
@@ -428,6 +428,16 @@ a {
       height: 36px;
     }
   }
+
+  // .nav.nav-icons {
+  //   li {
+  //     a {
+  //       i {
+  //         font-size:
+  //       }
+  //     }
+  //   }
+  // }
 }
 
 @media (max-width: 410px) {
