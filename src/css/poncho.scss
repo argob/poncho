@@ -31,8 +31,12 @@
 @import "modules/forms";
 @import "modules/social";
 @import "modules/tables";
-@import "modules/dashboard"; // Charts and big numbers
 @import "modules/alerts";
+
+// Charts and big numbers
+@import "modules/dashboard";
+
+// Cool stuff from Bootstrap 4
 @import "modules/utilities";
 
 
