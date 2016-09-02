@@ -1,21 +1,22 @@
 ---
-layout: blank
+layout: docs
 ---
 
 <main role="main">
 
-  <section class="jumbotron" style="background-image: url('ejemplos/img/jumbotron.jpg');">
+  <section class="jumbotron" style="background-image: url('img/jumbotron.jpg');">
     <div class="jumbotron_body">
       <div class="container">
         <div class="row">
           <div class="col-xs-12 col-md-8 col-md-offset-2 text-center">
+            <img src="img/poncho_sin_sombra.gif" alt="Poncho al viento">
             <h1>Proyecto Poncho</h1>
             <p>Base de html y css basada en <a href="//getbootstrap.com/">Bootstrap</a> para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.</p>
           </div>
         </div>
       </div>
     </div>
-    <div class="overlay"></div>
+    <!-- <div class="overlay"></div> -->
   </section>
 
   <div class="container">
@@ -24,7 +25,7 @@ layout: blank
       <div class="row">
         <div class="col-md-8 col-md-offset-2">
 
-          <div class="alert alert-info">El desarrollo del código y la documentación de la  <strong>v0.1 de Poncho</strong> están en desarrollo. Se aceptan <a href="//github.com/argob/poncho/issues">issues</a> con dudas o sugerencias, pero por el momento no vamos a estar aceptando pull requests.</div>
+          <div class="alert alert-warning">El código y la documentación de la  <strong>v0.3 de Poncho</strong> están en desarrollo. Se aceptan <a href="//github.com/argob/poncho/issues">issues</a> con dudas o sugerencias. Para aportar con código, por favor generar un issue antes del pull request.</div>
 
           <h2>Documentación</h2>
           <p>Todo lo que necesitas saber para crear un sitio con Poncho.</p>
@@ -33,7 +34,7 @@ layout: blank
             <a href="docs/" class="btn btn-primary btn-lg">Ver Documentación</a>
           </p>
           <p>
-            <a href="//argob.github.io/poncho/assets/poncho.v01.zip" class="btn btn-default">Descargar framework y ejemplos</a>
+            <a href="https://github.com/argob/poncho/archive/v0.3.zip" class="btn btn-default">Descargar framework</a>
             &nbsp;
             <a href="//argob.github.io/poncho/assets/ui_kit_0.1.pdf" class="btn btn-default">Descargar recursos de diseño</a>
           </p>
@@ -43,13 +44,13 @@ layout: blank
 
           <hr>
           <h3>Dependencias</h3>
-          <p class="margin-40">El archivo <strong>poncho.css</strong> no tiene dependencias directas fuentes ni imágenes. <br>Para que se vea y funcione bien deben estar los siguientes archivos en la web:</p>
+          <p class="margin-40">El archivo <strong>poncho.css</strong> no tiene dependencias directas de fuentes ni imágenes. <br>Para que se vea y funcione bien deben estar los siguientes archivos en la web:</p>
 
           <h5>Tipografías</h5>
-          <p class="text-muted">Los archivos se encuentran en las carpetas css y fonts</p>
+          <p class="text-muted">Los archivos se encuentran en las carpetas css y fonts:</p>
           <ul>
             <li>roboto-fontface.css</li>
-            <li>droid-serif.css</li>
+            <!-- <li>droid-serif.css</li> -->
           </ul>
 
           <h5>Jquery <small>(Versión 1.10+)</small></h5>
@@ -119,7 +120,20 @@ layout: blank
 
           <hr>
           <h3>Versiones</h3>
-          <p> <strong>v0.1</strong>: Versión inicial. <span class="text-muted">(En desarrollo)</span></p>
+
+          <p><strong>v0.3</strong></p>
+          <ul>
+            <li>Actualización estética general</li>
+            <li>Agrega colores de la plate extendida</li>
+            <li>Agrega helpers para márgenes y alineación de texto responsive</li>
+          </ul><p><strong>v0.2</strong></p>
+          <ul>
+            <li>Modificaciones generales de estilos</li>
+            <li>Publicación en npm</li>
+          </ul><p><strong>v0.1</strong></p>
+          <ul>
+            <li>Primera versión</li>
+          </ul>
 
           <hr>
           <h3>Autores</h3>

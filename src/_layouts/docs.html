@@ -16,18 +16,16 @@
       $(function () {
         $('[data-toggle="tooltip"]').tooltip();
         $('[data-toggle="popover"]').popover();
-        var $affix = $("#navbar-docs");
-             $parent = $affix.parent(),
-             resize = function() { $affix.width($parent.width()); };
-         $(window).resize(resize);
-         resize();
+        // var $affix = $("#navbar-docs");
+        // $parent = $affix.parent(),
+        // resize = function() { $affix.width($parent.width()); };
+        // $(window).resize(resize);
+        // resize();
       })
 
-      var options = {
-        valueNames: [ 'nombre', 'apellido', 'usuario' ]
-      };
-
+      var options = { valueNames: [ 'nombre', 'apellido', 'usuario' ] };
       var userList = new List('usuarios', options);
+
     </script>
 
   </body>
