@@ -105,8 +105,10 @@
       text-shadow: 0 2px 2px $dark-opacity;
     }
 
-    h1:not(.panel), h2:not(.panel), h3:not(.panel), h4:not(.panel), h5:not(.panel), h6:not(.panel) {
-      text-shadow: none;
+    .panel {
+      h1, h2, h3, h4, h5, h6 {
+        text-shadow: none;
+      }
     }
 
     p {
