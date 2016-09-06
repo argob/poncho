@@ -19,7 +19,6 @@ npm install argob-poncho
 Incluir en el html los siguientes archivos CSS:
 
 ```html
-<link rel="stylesheet" href="dist/css/droid-serif.css">
 <link rel="stylesheet" href="dist/css/roboto-fontface.css">
 <link rel="stylesheet" href="dist/css/poncho.css">
 ```
