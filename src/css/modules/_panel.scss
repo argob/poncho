@@ -128,17 +128,21 @@
 
 a {
   &.panel {
+    transition: background 0.15s;
 
-    &,
-    .h1,
-    .h2,
-    .h3,
-    .h4,
-    .h5,
-    .h6,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
     small,
-    p {
-      transition: background 0.15s, color 0.15s;
+    p,
+    span {
+      transition: color 0.15s;
+      // transition-timing-function: ease;
+      // -webkit-transition-delay: 0s; /* Safari */
+      // transition-delay: 0s;
     }
 
     .panel-heading {
@@ -327,7 +331,7 @@ a {
 
 .panels-row {
   display: flex;
-  // flex-wrap: wrap; // Comentado porque trae problemas en Safari
+  flex-wrap: wrap; // Comentado porque trae problemas en Safari
   flex-direction: row;
 
   > div {

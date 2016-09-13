@@ -102,7 +102,7 @@ a {
 
   .nav > li > a {
     color: $brand-primary;
-    font-size: 16px;
+    font-size: 17px;
     font-weight: 500;
     line-height: 30px;
     padding-bottom: 20px;
@@ -242,6 +242,23 @@ a {
     margin-top: 4px;
   }
 }
+
+
+.nav-pills {
+  > li {
+
+    // Active state
+    &.active > a {
+      &,
+      &:hover,
+      &:focus {
+        color: $white;
+        background-color: $brand-primary;
+      }
+    }
+  }
+}
+
 
 .nav-news {
   padding: 48px 0 40px;
