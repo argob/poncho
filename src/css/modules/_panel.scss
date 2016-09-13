@@ -327,7 +327,7 @@ a {
 
 .panels-row {
   display: flex;
-  flex-wrap: wrap;
+  // flex-wrap: wrap; // Comentado porque trae problemas en Safari
   flex-direction: row;
 
   > div {

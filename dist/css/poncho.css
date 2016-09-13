@@ -1684,7 +1684,6 @@ a.panel:hover, a.panel:focus {
 
 .panels-row {
   display: flex;
-  flex-wrap: wrap;
   flex-direction: row; }
   .panels-row > div {
     display: flex; }
