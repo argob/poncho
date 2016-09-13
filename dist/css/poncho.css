@@ -928,7 +928,8 @@ a.btn {
     color: #fff; }
   .navbar-default .navbar-nav > .btn {
     margin: 13px 0 0 13px;
-    padding: 12px 15px; }
+    padding: 12px 15px;
+    float: left; }
   .navbar-default .navbar-nav > .btn-group > .btn:first-child {
     margin-left: 13px; }
   .navbar-default .glyphicon-search {
