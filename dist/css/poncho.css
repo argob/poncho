@@ -2152,7 +2152,7 @@ input[type='text']:-ms-input-placeholder {
     color: #33B560; }
 
 .alert-info {
-  background: #8de6ff;
+  background: #caf3ff;
   border-color: #28cffe; }
   .alert-info i {
     color: #01BDF2; }
@@ -2175,7 +2175,7 @@ a.alert.alert-success:hover {
 a.alert.alert-success i {
   color: #33B560; }
 a.alert.alert-info:hover {
-  background: #74e0fe; }
+  background: #b6efff; }
 a.alert.alert-info i {
   color: #01BDF2; }
 a.alert.alert-danger:hover {

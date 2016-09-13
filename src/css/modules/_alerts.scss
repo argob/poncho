@@ -26,7 +26,7 @@
   }
 }
 .alert-info {
-  background: lighten($brand-info, 30%);
+  background: lighten($brand-info, 42%);
   border-color: lighten($brand-info, 10%);
 
   i {
@@ -68,7 +68,7 @@ a.alert {
   }
   &.alert-info {
     &:hover {
-      background: lighten($brand-info, 25%);
+      background: lighten($brand-info, 38%);
     }
 
     i {
