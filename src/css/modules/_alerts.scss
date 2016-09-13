@@ -10,7 +10,7 @@
 }
 
 .alert-warning {
-  background: lighten($brand-warning, 30%);
+  background: lighten($brand-warning, 33%);
   border-color: lighten($brand-warning, 10%);
 
   i {
@@ -18,15 +18,15 @@
   }
 }
 .alert-success {
-  background: lighten($brand-success, 40%);
-  border-color: lighten($brand-success, 10%);
+  background: lighten($brand-success, 45%);
+  border-color: lighten($brand-success, 13%);
 
   i {
     color: $brand-success;
   }
 }
 .alert-info {
-  background: lighten($brand-info, 42%);
+  background: lighten($brand-info, 30%);
   border-color: lighten($brand-info, 10%);
 
   i {
@@ -35,7 +35,7 @@
 }
 .alert-danger {
   background: lighten($brand-danger, 35%);
-  border-color: lighten($brand-danger, 10%);
+  border-color: lighten($brand-danger, 13%);
 
   i {
     color: $brand-danger;
@@ -50,7 +50,7 @@ a.alert {
 
   &.alert-warning {
     &:hover {
-      background: lighten($brand-warning, 25%);
+      background: lighten($brand-warning, 28%);
     }
 
     i {
@@ -59,7 +59,7 @@ a.alert {
   }
   &.alert-success {
     &:hover {
-      background: lighten($brand-success, 33%);
+      background: lighten($brand-success, 40%);
     }
 
     i {
@@ -68,7 +68,7 @@ a.alert {
   }
   &.alert-info {
     &:hover {
-      background: lighten($brand-info, 38%);
+      background: lighten($brand-info, 25%);
     }
 
     i {
