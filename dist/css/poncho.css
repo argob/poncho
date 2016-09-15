@@ -1437,6 +1437,10 @@ a.btn {
   transition: background 0.2s, color 0.2s, opacity 0.2s;
 }
 
+.nav.nav-icons li a i.fa {
+  line-height: 2.2;
+}
+
 .nav.nav-icons li a span {
   font-size: 16px;
   display: block;
