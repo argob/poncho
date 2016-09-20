@@ -134,13 +134,121 @@
     }
   }
 
-  .align-top {
+  .dropdown-menu > li > a {
+    color: $black;
+  }
+  .dropdown-menu li a:not(.btn):hover, .dropdown-menu li a:not(.btn):focus {
+     color: $white;
+  }    
+
+  &.align-top {
     background-position: center top;
   }
 
-  .align-bottom {
+  &.align-bottom {
     background-position: center bottom;
   }
+
+  &.jumbotron-bg-primary {
+    background-color: $brand-primary !important;
+    color: #FFF;
+
+    *, a {
+      color: #FFF;
+    }
+
+  }
+  &.jumbotron-bg-success {
+    background-color: $brand-success !important;
+    color: #FFF;
+
+    *, a {
+      color: #FFF;
+    }
+  }
+  &.jumbotron-bg-info {
+    background-color: $brand-info !important;
+    color: #FFF;
+
+    *, a {
+      color: #FFF;
+    }
+  }
+  &.jumbotron-bg-danger {
+    background-color: $brand-danger !important;
+    color: #FFF;
+
+    *, a {
+      color: #FFF;
+    }
+  }
+
+  &.jumbotron-bg-warning {
+    background-color: $brand-warning !important;
+  }
+  &.jumbotron-bg-gray {
+    background-color: $gray-lighter;
+  }
+  &.jumbotron-bg-white {
+    background-color: $white;
+  }
+
+  &.jumbotron-bg-fucsia {
+    background-color: $brand-fucsia !important;
+    color: #FFF;
+
+    *, a {
+      color: #FFF;
+    }
+  }
+  &.jumbotron-bg-arandano {
+    background-color: $brand-arandano !important;
+    color: #FFF;
+
+    *, a {
+      color: #FFF;
+    }
+  }
+  &.jumbotron-bg-uva {
+    background-color: $brand-uva !important;
+    color: #FFF;
+
+    *, a {
+      color: #FFF;
+    }
+  }
+  &.jumbotron-bg-cielo {
+    background-color: $brand-cielo !important;
+    color: #FFF;
+
+    *, a {
+      color: #FFF;
+    }
+  }
+  &.jumbotron-bg-verdin {
+    background-color: $brand-verdin !important;
+    color: #FFF;
+
+    *, a {
+      color: #FFF;
+    }
+  }
+  &.jumbotron-bg-lima {
+    background-color: $brand-lima !important;
+  }
+  &.jumbotron-bg-maiz {
+    background-color: $brand-maiz !important;
+  }
+  &.jumbotron-bg-tomate {
+    background-color: $brand-tomate !important;
+    color: #FFF;
+
+    * {
+      color: #FFF;
+    }
+  }
+
+
 
   .btn-xl {
     margin-top: 16px;
