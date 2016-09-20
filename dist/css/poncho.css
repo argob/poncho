@@ -1579,6 +1579,10 @@ a.btn {
   padding: 0;
 }
 
+.main-footer ul.nav > li > a:hover {
+  background: none;
+}
+
 .main-footer li {
   list-style: none;
 }

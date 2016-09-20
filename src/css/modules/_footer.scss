@@ -12,6 +12,10 @@
   ul {
     margin-bottom: 32px;
     padding: 0;
+
+    &.nav>li>a:hover {
+      background: none;
+    }
   }
 
   li {
