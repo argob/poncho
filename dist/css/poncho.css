@@ -1810,6 +1810,9 @@ a.panel {
     background-position: center top; }
   .jumbotron.align-bottom {
     background-position: center bottom; }
+  .jumbotron.jumbotron-pattern {
+    background-repeat: repeat;
+    background-size: inherit; }
   .jumbotron.jumbotron-bg-primary {
     background-color: #0695d6 !important;
     color: #FFF; }
