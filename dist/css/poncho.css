@@ -1815,65 +1815,65 @@ a.panel {
   .jumbotron.jumbotron-pattern {
     background-repeat: repeat;
     background-size: inherit; }
-  .jumbotron.jumbotron-bg-primary {
+  .jumbotron.jumbotron-primary {
     background-color: #0695d6 !important;
     color: #FFF; }
-    .jumbotron.jumbotron-bg-primary *, .jumbotron.jumbotron-bg-primary a {
+    .jumbotron.jumbotron-primary *, .jumbotron.jumbotron-primary a {
       color: #FFF; }
-  .jumbotron.jumbotron-bg-success {
+  .jumbotron.jumbotron-success {
     background-color: #33b560 !important;
     color: #FFF; }
-    .jumbotron.jumbotron-bg-success *, .jumbotron.jumbotron-bg-success a {
+    .jumbotron.jumbotron-success *, .jumbotron.jumbotron-success a {
       color: #FFF; }
-  .jumbotron.jumbotron-bg-info {
+  .jumbotron.jumbotron-info {
     background-color: #5bc0de !important;
     color: #FFF; }
-    .jumbotron.jumbotron-bg-info *, .jumbotron.jumbotron-bg-info a {
+    .jumbotron.jumbotron-info *, .jumbotron.jumbotron-info a {
       color: #FFF; }
-  .jumbotron.jumbotron-bg-danger {
+  .jumbotron.jumbotron-danger {
     background-color: #ef4d3d !important;
     color: #FFF; }
-    .jumbotron.jumbotron-bg-danger *, .jumbotron.jumbotron-bg-danger a {
+    .jumbotron.jumbotron-danger *, .jumbotron.jumbotron-danger a {
       color: #FFF; }
-  .jumbotron.jumbotron-bg-warning {
+  .jumbotron.jumbotron-warning {
     background-color: #fec221 !important; }
-  .jumbotron.jumbotron-bg-gray {
+  .jumbotron.jumbotron-gray {
     background-color: #e9e9e9; }
-  .jumbotron.jumbotron-bg-white {
+  .jumbotron.jumbotron-white {
     background-color: #fff; }
-  .jumbotron.jumbotron-bg-fucsia {
+  .jumbotron.jumbotron-fucsia {
     background-color: #ea1d76 !important;
     color: #FFF; }
-    .jumbotron.jumbotron-bg-fucsia *, .jumbotron.jumbotron-bg-fucsia a {
+    .jumbotron.jumbotron-fucsia *, .jumbotron.jumbotron-fucsia a {
       color: #FFF; }
-  .jumbotron.jumbotron-bg-arandano {
+  .jumbotron.jumbotron-arandano {
     background-color: #bd1e61 !important;
     color: #FFF; }
-    .jumbotron.jumbotron-bg-arandano *, .jumbotron.jumbotron-bg-arandano a {
+    .jumbotron.jumbotron-arandano *, .jumbotron.jumbotron-arandano a {
       color: #FFF; }
-  .jumbotron.jumbotron-bg-uva {
+  .jumbotron.jumbotron-uva {
     background-color: #873299 !important;
     color: #FFF; }
-    .jumbotron.jumbotron-bg-uva *, .jumbotron.jumbotron-bg-uva a {
+    .jumbotron.jumbotron-uva *, .jumbotron.jumbotron-uva a {
       color: #FFF; }
-  .jumbotron.jumbotron-bg-cielo {
+  .jumbotron.jumbotron-cielo {
     background-color: #009dda !important;
     color: #FFF; }
-    .jumbotron.jumbotron-bg-cielo *, .jumbotron.jumbotron-bg-cielo a {
+    .jumbotron.jumbotron-cielo *, .jumbotron.jumbotron-cielo a {
       color: #FFF; }
-  .jumbotron.jumbotron-bg-verdin {
+  .jumbotron.jumbotron-verdin {
     background-color: #82bc00 !important;
     color: #FFF; }
-    .jumbotron.jumbotron-bg-verdin *, .jumbotron.jumbotron-bg-verdin a {
+    .jumbotron.jumbotron-verdin *, .jumbotron.jumbotron-verdin a {
       color: #FFF; }
-  .jumbotron.jumbotron-bg-lima {
+  .jumbotron.jumbotron-lima {
     background-color: #cfde00 !important; }
-  .jumbotron.jumbotron-bg-maiz {
+  .jumbotron.jumbotron-maiz {
     background-color: #ffce00 !important; }
-  .jumbotron.jumbotron-bg-tomate {
+  .jumbotron.jumbotron-tomate {
     background-color: #ff4338 !important;
     color: #FFF; }
-    .jumbotron.jumbotron-bg-tomate * {
+    .jumbotron.jumbotron-tomate * {
       color: #FFF; }
   .jumbotron .btn-xl {
     margin-top: 16px; }
