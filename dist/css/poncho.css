@@ -1011,6 +1011,10 @@ span.btn:hover {
   cursor: default;
 }
 
+.media .btn {
+  white-space: nowrap;
+}
+
 .btn-group .btn-default {
   background: #e9e9e9;
   color: #444;
