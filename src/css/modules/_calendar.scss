@@ -1,0 +1,13 @@
+#cal-slide-content {
+  background-image: none!important;
+  box-shadow: none!important;
+  background-color: $gray-lighter;
+  &:hover {
+    background-color: $gray-lighter!important;
+  }
+  a.event-item {
+    color: $brand-default!important;
+    font-weight: 300!important;
+  }  
+
+}
