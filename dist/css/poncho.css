@@ -2258,6 +2258,9 @@ a.alert.alert-danger i {
 @media (max-width: 330px) {
   .alert .fa.fa-fw {
     width: 0.7em; } }
+.calendar:after {
+  content: none; }
+
 #cal-slide-content {
   background-image: none !important;
   box-shadow: none !important;
