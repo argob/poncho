@@ -844,9 +844,9 @@ span.btn:hover {
 .navbar {
   min-height: 72px; }
   .navbar.navbar-top .input-group {
-    max-width: 200px;
-    float: left;
-    margin-top: 13px; }
+    max-width: 250px;
+    margin-top: 13px;
+    margin-left: 30px; }
     .navbar.navbar-top .input-group input {
       height: 46px; }
   .navbar .navbar-brand {
@@ -1020,6 +1020,9 @@ a.btn {
   position: relative; }
 
 @media (max-width: 992px) {
+  .navbar.navbar-top .input-group {
+    max-width: 195px; }
+
   .navbar-brand h1 {
     font-size: 18px;
     margin: 7px 0 7px 12px; }
@@ -1083,8 +1086,8 @@ a.btn {
 @media screen and (max-width: 767px) {
   .navbar.navbar-top .input-group {
     max-width: 100%;
-    float: none;
-    margin: 10px 0; }
+    margin: 10px 0;
+    float: left; }
     .navbar.navbar-top .input-group .btn {
       margin-top: 0; }
 
