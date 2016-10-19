@@ -1141,6 +1141,7 @@ span.btn:hover {
 }
 
 .navbar {
+<<<<<<< HEAD
   min-height: 72px;
 }
 
@@ -1195,6 +1196,39 @@ span.btn:hover {
   margin-left: 0;
   float: right;
 }
+=======
+  min-height: 72px; }
+  .navbar.navbar-top .input-group {
+    max-width: 250px;
+    margin-top: 13px;
+    margin-left: 30px; }
+    .navbar.navbar-top .input-group input {
+      height: 46px; }
+  .navbar .navbar-brand {
+    padding: 10px 15px; }
+    .navbar .navbar-brand img {
+      float: left;
+      max-width: 100%; }
+    .navbar .navbar-brand h1 {
+      color: #444;
+      float: left;
+      font-size: 30px;
+      line-height: 1.4;
+      margin: 4px 0 4px 12px; }
+      .navbar .navbar-brand h1 strong {
+        color: #767676; }
+      .navbar .navbar-brand h1.brand-2-h1 {
+        color: #767676; }
+        .navbar .navbar-brand h1.brand-2-h1 strong {
+          color: #0695d6; }
+    .navbar .navbar-brand.solo h1 {
+      margin-top: .7em; }
+  .navbar a.navbar-brand:hover h1 {
+    color: #767676; }
+  .navbar .btn.btn-login {
+    margin-left: 0;
+    float: right; }
+>>>>>>> 5a3abc78274734b27170e48de82c23a5c36a563a
 
 header .btn {
   margin: 13px 0 0 13px;
@@ -1402,6 +1436,9 @@ a.btn {
 }
 
 @media (max-width: 992px) {
+  .navbar.navbar-top .input-group {
+    max-width: 195px; }
+
   .navbar-brand h1 {
     font-size: 18px;
     margin: 7px 0 7px 12px;
@@ -1495,12 +1532,20 @@ a.btn {
 @media screen and (max-width: 767px) {
   .navbar.navbar-top .input-group {
     max-width: 100%;
+<<<<<<< HEAD
     float: none;
     margin: 10px 0;
   }
   .navbar.navbar-top .input-group .btn {
     margin-top: 0;
   }
+=======
+    margin: 10px 0;
+    float: left; }
+    .navbar.navbar-top .input-group .btn {
+      margin-top: 0; }
+
+>>>>>>> 5a3abc78274734b27170e48de82c23a5c36a563a
   .navbar-default .nav > li > a {
     padding-top: 12px;
     padding-bottom: 10px;
