@@ -1,3 +1,6 @@
+textarea {
+  resize: vertical;
+}
 label {
   font-weight: 400;
   &.control-label {font-weight: 700;}
