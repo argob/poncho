@@ -1,0 +1,28 @@
+{
+  "name": "argob/poncho",
+  "type": "library",
+  "description": "Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.",
+  "keywords": [
+    "template",
+    "poncho",
+    "argentina",
+    "bootstrap",
+    "html",
+    "css",
+    "scss"
+  ],
+  "homepage": "https://argob.github.io/poncho",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Dirección Nacional de Servicios Digitales de la Subsecretaría de Gobierno Digital.",
+    }
+  ],
+  "require": {
+  },
+  "autoload": {
+      "psr-0": {
+          "Monolog": "src"
+      }
+  }
+}
