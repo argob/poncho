@@ -1,0 +1,25 @@
+.bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-primary, 
+.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-primary {
+    background-color: $brand-primary!important;
+}
+
+.bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-info, 
+.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-info {
+    background-color: $brand-info!important;
+}
+
+.bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-success, 
+.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-success {
+    background-color: $brand-success!important;
+}
+
+.bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-warning, 
+.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-warning {
+    background-color: $brand-warning!important;
+}
+.bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-default, 
+.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-default {
+    background-color: $brand-default!important;
+    color: $white!important;
+}
+
