@@ -23,3 +23,10 @@
     color: $white!important;
 }
 
+@media screen and (max-width: 767px) {
+
+  .bootstrap-switch {
+    float: right;
+  }
+
+}
