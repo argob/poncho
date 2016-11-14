@@ -429,6 +429,12 @@ dd {
   flex-wrap: wrap;
   flex-direction: row; }
 
+.btn-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap !important;
+  max-width: 200px; }
+
 body {
   font-family: "Roboto", "Helvetica Neue", "Helvetica", "Arial", sans-serif; }
 

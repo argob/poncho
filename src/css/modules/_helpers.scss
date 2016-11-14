@@ -38,3 +38,11 @@
   flex-wrap: wrap;
   flex-direction: row;
 }
+
+.btn-truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap!important;
+    max-width: 200px;
+}
+
