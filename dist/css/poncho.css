@@ -13,7 +13,6 @@ body {
   font-size: 16px;
   height: 100%;
   max-width: 100%;
-  overflow-x: hidden;
 }
 
 body {
@@ -596,61 +595,28 @@ body {
   font-family: "Roboto", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-.h1,
-.h2,
-.h3,
-.h4,
-.h5,
-.h6 {
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   font-weight: 700;
   margin: .5em 0;
 }
 
 h1 small,
-h1 .small,
-h2 small,
-h2 .small,
-h3 small,
-h3 .small,
-h4 small,
-h4 .small,
-h5 small,
-h5 .small,
-h6 small,
-h6 .small,
-.h1 small,
-.h1 .small,
-.h2 small,
-.h2 .small,
-.h3 small,
-.h3 .small,
-.h4 small,
-.h4 .small,
-.h5 small,
-.h5 .small,
-.h6 small,
+h1 .small, h2 small,
+h2 .small, h3 small,
+h3 .small, h4 small,
+h4 .small, h5 small,
+h5 .small, h6 small,
+h6 .small, .h1 small,
+.h1 .small, .h2 small,
+.h2 .small, .h3 small,
+.h3 .small, .h4 small,
+.h4 .small, .h5 small,
+.h5 .small, .h6 small,
 .h6 .small {
   color: #767676;
 }
 
-h1.section-title,
-h2.section-title,
-h3.section-title,
-h4.section-title,
-h5.section-title,
-h6.section-title,
-.h1.section-title,
-.h2.section-title,
-.h3.section-title,
-.h4.section-title,
-.h5.section-title,
-.h6.section-title {
+h1.section-title, h2.section-title, h3.section-title, h4.section-title, h5.section-title, h6.section-title, .h1.section-title, .h2.section-title, .h3.section-title, .h4.section-title, .h5.section-title, .h6.section-title {
   color: #767676;
   font-weight: 700;
   text-transform: uppercase;
@@ -778,17 +744,24 @@ article h1.icon.aside {
   margin-top: 10px;
 }
 
-.content_format h2,
-.content_format h3,
-.content_format h4,
-.content_format h5,
-.content_format h6,
-.content_format .h2,
-.content_format .h3,
-.content_format .h4,
-.content_format .h5,
-.content_format .h6 {
+.content_format h1, .content_format h2, .content_format h3, .content_format h4, .content_format h5, .content_format h6, .content_format .h1, .content_format .h2, .content_format .h3, .content_format .h4, .content_format .h5, .content_format .h6 {
   margin-top: 2em;
+}
+
+.content_format .alert h1, .content_format .alert h2, .content_format .alert h3, .content_format .alert h4, .content_format .alert h5, .content_format .alert h6, .content_format .alert .h1, .content_format .alert .h2, .content_format .alert .h3, .content_format .alert .h4, .content_format .alert .h5, .content_format .alert .h6,
+.content_format .well h1,
+.content_format .well h2,
+.content_format .well h3,
+.content_format .well h4,
+.content_format .well h5,
+.content_format .well h6,
+.content_format .well .h1,
+.content_format .well .h2,
+.content_format .well .h3,
+.content_format .well .h4,
+.content_format .well .h5,
+.content_format .well .h6 {
+  margin: .5em 0;
 }
 
 .content_format li {

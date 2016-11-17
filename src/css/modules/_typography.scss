@@ -2,18 +2,7 @@ body {
   font-family: $font-family-sans-serif;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-.h1,
-.h2,
-.h3,
-.h4,
-.h5,
-.h6 {
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   font-weight: 700;
   margin: .5em 0;
 
@@ -168,17 +157,15 @@ article {
 }
 
 .content_format {
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  .h2,
-  .h3,
-  .h4,
-  .h5,
-  .h6 {
+  h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     margin-top: 2em;
+  }
+
+  .alert,
+  .well {
+    h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+      margin: .5em 0;
+    }
   }
 
   li {
