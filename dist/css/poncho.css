@@ -433,8 +433,14 @@ dd {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap !important;
-  max-width: 200px; }
+  max-width: 100%; }
 
+@media (min-width: 768px) {
+  .btn-truncate {
+    max-width: 90px; } }
+@media (min-width: 992px) {
+  .btn-truncate {
+    max-width: 200px; } }
 body {
   font-family: "Roboto", "Helvetica Neue", "Helvetica", "Arial", sans-serif; }
 
