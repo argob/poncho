@@ -591,6 +591,13 @@ dd {
   flex-direction: row;
 }
 
+.btn-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap !important;
+  max-width: 200px;
+}
+
 body {
   font-family: "Roboto", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 }
@@ -1610,6 +1617,7 @@ a.btn {
 
 body.sticky-footer {
   height: 100%;
+  display: table;
 }
 
 body.sticky-footer .main-footer {
@@ -3247,6 +3255,38 @@ a.alert.alert-danger i {
 #cal-slide-content a.event-item {
   color: #838383 !important;
   font-weight: 300 !important;
+}
+
+.bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-primary,
+.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-primary {
+  background-color: #0695d6 !important;
+}
+
+.bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-info,
+.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-info {
+  background-color: #5bc0de !important;
+}
+
+.bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-success,
+.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-success {
+  background-color: #33b560 !important;
+}
+
+.bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-warning,
+.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-warning {
+  background-color: #fec221 !important;
+}
+
+.bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-default,
+.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-default {
+  background-color: #838383 !important;
+  color: #fff !important;
+}
+
+@media screen and (max-width: 767px) {
+  .bootstrap-switch {
+    float: right;
+  }
 }
 
 .dashboard ol {

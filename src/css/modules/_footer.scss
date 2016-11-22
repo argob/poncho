@@ -58,6 +58,7 @@
 
 body.sticky-footer {
   height: 100%;
+  display: table;
 
   .main-footer {
     display: table-row;
