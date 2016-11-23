@@ -600,7 +600,7 @@ dd {
 
 @media (min-width: 768px) {
   .btn-truncate {
-    max-width: 90px;
+    max-width: 120px;
   }
 }
 
