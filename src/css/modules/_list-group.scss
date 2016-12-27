@@ -157,6 +157,26 @@ a {
       padding: 0;
     }
   }
+  &.steps-horizontal {
+    .step {
+      > div:last-child {
+          margin: 120px 0 0;
+      }
+      .circle {
+        margin: 0 auto;
+        width: 100px;
+        height: 100px;
+        line-height: 100px;
+        border-radius: 50px;
+      }      
+      .line {
+        border-top: 1px solid #ccc;
+        border-left: none;
+        left: 75%;
+        top: 50px;
+        width: 50%;        
+      }      
+    }      
+  }  
 }
-
 
