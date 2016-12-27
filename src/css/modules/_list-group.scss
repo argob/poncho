@@ -163,6 +163,7 @@ a {
           margin: 120px 0 0;
       }
       .circle {
+        font-size: 35px;
         margin: 0 auto;
         width: 100px;
         height: 100px;
@@ -180,3 +181,23 @@ a {
   }  
 }
 
+
+@media screen and (max-width: 767px) {
+
+
+  .steps.steps-horizontal {
+    .step {
+      > div:last-child {
+          margin: 70px 0 0;
+      }
+      .circle {
+        font-size: 20px;
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+        border-radius: 25px;
+      }      
+    }      
+  } 
+
+}
