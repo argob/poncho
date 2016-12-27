@@ -432,14 +432,25 @@ dd {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap !important;
+<<<<<<< HEAD
   max-width: 100%; }
+=======
+  max-width: 100%;
+}
+>>>>>>> 57e69b3b916b4fe2bbd44f4d528c69a8261a66e0
 
 @media (min-width: 768px) {
   .btn-truncate {
-    max-width: 90px; } }
+    max-width: 120px;
+  }
+}
+
 @media (min-width: 992px) {
   .btn-truncate {
-    max-width: 200px; } }
+    max-width: 200px;
+  }
+}
+
 body {
   font-family: "Roboto", "Helvetica Neue", "Helvetica", "Arial", sans-serif; }
 
