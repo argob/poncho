@@ -13,25 +13,16 @@
   margin-bottom: 0;
   padding: 0;
 
-  h2 {
-    color: $white;
-    font-weight: 700;
-    margin-bottom: .3em;
-    margin-top: 0;
-    text-transform: none;
-  }
-  p {
-    font-size: 20px;
-    font-weight: 300;
-    letter-spacing: 0.2px;
-  }
-
   .jumbotron_bar {
     background: rgba(0,0,0,.3);
     font-size: 14px;
     padding: 16px 0;
     position: relative;
     z-index: 3;
+
+    &.jumbotron-bar-transparent {
+      background: none;
+    }
 
     .list-inline {
       margin-bottom: 0;
@@ -90,19 +81,35 @@
     padding: 80px 0;
     z-index: 2;
 
-
-    h1 {
+    h1, h2, h3, h4, h5, h6 {
       color: $white;
-      font-size: 44px;
+      text-shadow: 0 2px 2px $dark-opacity;
       font-weight: 700;
       margin-bottom: .3em;
       margin-top: 0;
       text-transform: none;
     }
 
-    h1, h2, h3, h4, h5, h6 {
-      text-shadow: 0 2px 2px $dark-opacity;
+    h2, .h2 {
+      font-size: 44px;
     }
+
+    h3, .h3 {
+      font-size: 34px;
+    }
+
+    h4, .h4 {
+      font-size: 28px;
+    }
+
+    h5, .h5 {
+      font-size: 24px;
+    }
+
+    h6, .h6 {
+      font-size: 20px;
+    }
+
 
     .panel {
       h1, h2, h3, h4, h5, h6 {
@@ -139,7 +146,7 @@
   }
   .dropdown-menu li a:not(.btn):hover, .dropdown-menu li a:not(.btn):focus {
      color: $white;
-  }    
+  }
 
   &.align-top {
     background-position: center top;
@@ -269,7 +276,7 @@
     h1 {
       font-size: 32px !important;
     }
-    min-height: 240px;
+    // min-height: 240px;
     padding: 0;
   }
 

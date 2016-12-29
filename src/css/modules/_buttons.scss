@@ -49,11 +49,11 @@
 .btn-link {
   border-radius: 4px;
   color: $brand-primary;
-  text-decoration: underline !important;
   background-color: $gray-lighter !important;
 
   &:hover,
   &:focus {
+    text-decoration: none !important;
     background-color: $gray-light !important;
     color: $brand-primary;
   }

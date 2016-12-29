@@ -267,7 +267,7 @@ a.bg-danger {
     border: medium none;
     border-radius: 4px;
     color: #666;
-    cursor: pointer;
+    // cursor: pointer;
     display: inline-block;
     font-size: 22px;
     font-weight: 600;
@@ -293,6 +293,7 @@ a.bg-danger {
 
   .nav-pills li > a {
     padding: 13px 20px;
+    border-radius: 4px;
 
     &:hover {
       border-color: $gray-lighter;
@@ -312,12 +313,13 @@ a.bg-danger {
     }
   }
 
-  .nav-pills > li.active > a,
-  .nav-pills > li.active > a:hover,
-  .nav-pills > li.active > a:focus {
+  .nav-pills li.active > a,
+  .nav-pills li.active > a:hover,
+  .nav-pills li.active > a:focus {
     background-color: $brand-primary;
     border: 0;
     color: $body-bg;
+
   }
 
   .nav > li > a:hover,

@@ -298,7 +298,6 @@ a.bg-danger p {
   border: medium none;
   border-radius: 4px;
   color: #666;
-  cursor: pointer;
   display: inline-block;
   font-size: 22px;
   font-weight: 600;
@@ -324,6 +323,7 @@ a.bg-danger p {
 
 .page-sidebar .nav-pills li > a {
   padding: 13px 20px;
+  border-radius: 4px;
 }
 
 .page-sidebar .nav-pills li > a:hover {
@@ -342,9 +342,9 @@ a.bg-danger p {
   border-color: #e9e9e9;
 }
 
-.page-sidebar .nav-pills > li.active > a,
-.page-sidebar .nav-pills > li.active > a:hover,
-.page-sidebar .nav-pills > li.active > a:focus {
+.page-sidebar .nav-pills li.active > a,
+.page-sidebar .nav-pills li.active > a:hover,
+.page-sidebar .nav-pills li.active > a:focus {
   background-color: #0695d6;
   border: 0;
   color: #F9F9F9;
@@ -885,11 +885,11 @@ article h1.icon.aside {
 .btn-link {
   border-radius: 4px;
   color: #0695d6;
-  text-decoration: underline !important;
   background-color: #e9e9e9 !important;
 }
 
 .btn-link:hover, .btn-link:focus {
+  text-decoration: none !important;
   background-color: #ccc !important;
   color: #0695d6;
 }
@@ -2366,6 +2366,30 @@ a.panel:hover .panel-heading, a.panel:focus .panel-heading {
   background-color: #ef4d3d;
 }
 
+.panel-border-primary {
+  border-top: 8px solid rgba(6, 149, 214, 0.7);
+}
+
+.panel-border-secondary {
+  border-top: 8px solid rgba(1, 189, 242, 0.7);
+}
+
+.panel-border-success {
+  border-top: 8px solid rgba(51, 181, 96, 0.7);
+}
+
+.panel-border-warning {
+  border-top: 8px solid rgba(254, 194, 33, 0.7);
+}
+
+.panel-border-danger {
+  border-top: 8px solid rgba(239, 77, 61, 0.7);
+}
+
+.panel-border-gray {
+  border-top: 8px solid #ccc;
+}
+
 .panel-id > .panel-body {
   padding-bottom: 30px;
 }
@@ -2426,26 +2450,16 @@ a.panel:hover .panel-heading, a.panel:focus .panel-heading {
   padding: 0;
 }
 
-.jumbotron h2 {
-  color: #fff;
-  font-weight: 700;
-  margin-bottom: .3em;
-  margin-top: 0;
-  text-transform: none;
-}
-
-.jumbotron p {
-  font-size: 20px;
-  font-weight: 300;
-  letter-spacing: 0.2px;
-}
-
 .jumbotron .jumbotron_bar {
   background: rgba(0, 0, 0, 0.3);
   font-size: 14px;
   padding: 16px 0;
   position: relative;
   z-index: 3;
+}
+
+.jumbotron .jumbotron_bar.jumbotron-bar-transparent {
+  background: none;
 }
 
 .jumbotron .jumbotron_bar .list-inline {
@@ -2513,17 +2527,33 @@ a.panel:hover .panel-heading, a.panel:focus .panel-heading {
   z-index: 2;
 }
 
-.jumbotron .jumbotron_body h1 {
+.jumbotron .jumbotron_body h1, .jumbotron .jumbotron_body h2, .jumbotron .jumbotron_body h3, .jumbotron .jumbotron_body h4, .jumbotron .jumbotron_body h5, .jumbotron .jumbotron_body h6 {
   color: #fff;
-  font-size: 44px;
+  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.5);
   font-weight: 700;
   margin-bottom: .3em;
   margin-top: 0;
   text-transform: none;
 }
 
-.jumbotron .jumbotron_body h1, .jumbotron .jumbotron_body h2, .jumbotron .jumbotron_body h3, .jumbotron .jumbotron_body h4, .jumbotron .jumbotron_body h5, .jumbotron .jumbotron_body h6 {
-  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.5);
+.jumbotron .jumbotron_body h2, .jumbotron .jumbotron_body .h2 {
+  font-size: 44px;
+}
+
+.jumbotron .jumbotron_body h3, .jumbotron .jumbotron_body .h3 {
+  font-size: 34px;
+}
+
+.jumbotron .jumbotron_body h4, .jumbotron .jumbotron_body .h4 {
+  font-size: 28px;
+}
+
+.jumbotron .jumbotron_body h5, .jumbotron .jumbotron_body .h5 {
+  font-size: 24px;
+}
+
+.jumbotron .jumbotron_body h6, .jumbotron .jumbotron_body .h6 {
+  font-size: 20px;
 }
 
 .jumbotron .jumbotron_body .panel h1, .jumbotron .jumbotron_body .panel h2, .jumbotron .jumbotron_body .panel h3, .jumbotron .jumbotron_body .panel h4, .jumbotron .jumbotron_body .panel h5, .jumbotron .jumbotron_body .panel h6 {
@@ -2697,7 +2727,6 @@ a.panel:hover .panel-heading, a.panel:focus .panel-heading {
 @media screen and (max-width: 767px) {
   .jumbotron {
     position: relative;
-    min-height: 240px;
     padding: 0;
   }
   .jumbotron h1 {
@@ -3291,14 +3320,8 @@ a.alert.alert-danger i {
 
 .bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-default,
 .bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-default {
-  background-color: #838383 !important;
-  color: #fff !important;
-}
-
-@media screen and (max-width: 767px) {
-  .bootstrap-switch {
-    float: right;
-  }
+  background-color: #e9e9e9 !important;
+  color: #444 !important;
 }
 
 .dashboard ol {

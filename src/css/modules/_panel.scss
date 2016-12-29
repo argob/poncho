@@ -313,6 +313,25 @@ a {
   background-color: $brand-danger;
 }
 
+.panel-border-primary {
+  border-top: 8px solid rgba( $brand-primary, 0.7 );
+}
+.panel-border-secondary {
+  border-top: 8px solid rgba( $brand-secondary, 0.7 );
+}
+.panel-border-success {
+  border-top: 8px solid rgba( $brand-success, 0.7 );
+}
+.panel-border-warning {
+  border-top: 8px solid rgba( $brand-warning, 0.7 );
+}
+.panel-border-danger {
+  border-top: 8px solid rgba( $brand-danger, 0.7 );
+}
+.panel-border-gray {
+  border-top: 8px solid $gray-border;
+}
+
 .panel-id>.panel-body {
   padding-bottom: 30px;
 }
