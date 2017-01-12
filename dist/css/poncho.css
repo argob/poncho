@@ -979,6 +979,10 @@ fieldset[disabled] .btn-default.active {
   padding: 1px 5px;
 }
 
+.btn .fa {
+  font-size: 1.2em;
+}
+
 .input-group-btn .btn {
   margin-top: 0;
 }
@@ -1136,7 +1140,7 @@ span.btn:hover {
 }
 
 .navbar.navbar-top .input-group {
-  max-width: 250px;
+  width: 500px;
   margin-top: 13px;
   margin-left: 30px;
 }
@@ -1183,7 +1187,6 @@ span.btn:hover {
 }
 
 .navbar .btn.btn-login {
-  margin-left: 0;
   float: right;
 }
 
@@ -1218,10 +1221,6 @@ header .btn-group > .btn:first-child {
 .navbar-toggle {
   float: left;
   margin: 20px 0 0 0px;
-}
-
-a.btn {
-  line-height: 1.42857143;
 }
 
 .navbar-default {
@@ -1392,21 +1391,6 @@ a.btn {
   position: relative;
 }
 
-@media (max-width: 992px) {
-  .navbar.navbar-top .input-group {
-    max-width: 195px;
-  }
-  .navbar-brand h1 {
-    font-size: 18px;
-    margin: 7px 0 7px 12px;
-  }
-  .navbar-default .nav > li > a {
-    font-size: 15px;
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-}
-
 .nav.nav-icons {
   text-align: center;
 }
@@ -1473,7 +1457,31 @@ a.btn {
   color: #111 !important;
 }
 
+@media (max-width: 1199px) {
+  .navbar.navbar-top .input-group {
+    width: 400px;
+  }
+}
+
+@media (max-width: 992px) {
+  .navbar.navbar-top .input-group {
+    width: 230px;
+  }
+  .navbar-brand h1 {
+    font-size: 18px;
+    margin: 7px 0 7px 12px;
+  }
+  .navbar-default .nav > li > a {
+    font-size: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+
 @media screen and (min-width: 768px) {
+  .navbar-right {
+    margin-right: 0;
+  }
   .navbar-form {
     margin-right: 0;
   }
@@ -1487,30 +1495,46 @@ a.btn {
 }
 
 @media screen and (max-width: 767px) {
+  .navbar .nav > li > a {
+    padding-top: 12px;
+    padding-bottom: 10px;
+  }
+  .navbar .btn {
+    margin: 13px 0 0 13px;
+    padding: 12px 15px;
+  }
+  .navbar .btn-group {
+    width: 100%;
+  }
+  .navbar .btn-group > .btn {
+    margin: 13px 0 !important;
+    float: none;
+    width: 100%;
+    border-radius: 4px;
+  }
   .navbar.navbar-top .input-group {
     max-width: 100%;
-    margin: 10px 0;
+    margin: 13px 0;
     float: left;
   }
   .navbar.navbar-top .input-group .btn {
     margin-top: 0;
   }
-  .navbar-default .nav > li > a {
-    padding-top: 12px;
-    padding-bottom: 10px;
+  .navbar.navbar-top.state-search .navbar-header {
+    display: none;
   }
-  .navbar-default .btn {
-    margin: 13px 0 0 13px;
-    padding: 12px 15px;
+  .navbar.navbar-top.state-search .navbar-nav.navbar-right {
+    margin: 0;
+    display: block !important;
   }
-  .navbar-default .btn-group {
-    width: 100%;
+  .navbar.navbar-top.state-search .navbar-nav.navbar-right > .btn {
+    margin: 13px 15px 0 0;
+    position: relative;
+    z-index: 5;
   }
-  .navbar-default .btn-group > .btn {
-    margin: 13px 0 !important;
+  .navbar.navbar-top.state-search .navbar-nav.navbar-right .input-group {
+    width: auto;
     float: none;
-    width: 100%;
-    border-radius: 4px;
   }
   .navbar-form {
     margin-left: 0;
@@ -1531,7 +1555,7 @@ a.btn {
   }
 }
 
-@media (max-width: 410px) {
+@media (max-width: 490px) {
   .navbar-default {
     min-height: 64px;
   }
@@ -1551,26 +1575,39 @@ a.btn {
     font-size: 14px;
     margin-left: 10px;
   }
-  .navbar .btn-login {
+  .navbar .btn {
     margin-top: 9px;
+  }
+  .navbar.navbar-top .navbar-nav > .btn {
+    margin-top: 9px !important;
+  }
+  .navbar.navbar-top .input-group {
+    margin: 9px 0;
   }
 }
 
-@media (max-width: 350px) {
-  .navbar .navbar-brand {
-    padding: 14px 5px 14px;
+@media (max-width: 420px) {
+  .navbar .container .navbar-header .navbar-brand {
+    padding: 14px 0 14px;
+    width: 160px;
+    overflow: hidden;
   }
-  .navbar .navbar-brand img {
-    height: 32px;
+  .navbar .container .navbar-header .navbar-brand img {
+    width: 115%;
+    max-width: none;
   }
-  .navbar .navbar-brand h1 {
+  .navbar .container .navbar-header .navbar-brand h1 {
     margin-top: 8px;
   }
-  .navbar .navbar-brand h1 span {
+  .navbar .container .navbar-header .navbar-brand h1 span {
     display: none;
   }
-  .navbar .navbar-brand br {
+  .navbar .container .navbar-header .navbar-brand br {
     display: none;
+  }
+  .navbar .container .navbar-header > .btn {
+    padding: 12px;
+    margin-left: 10px;
   }
 }
 
