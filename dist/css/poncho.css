@@ -1611,6 +1611,12 @@ header .btn-group > .btn:first-child {
   }
 }
 
+@media (max-width: 310px) {
+  .navbar .container .navbar-header .navbar-brand {
+    width: 120px;
+  }
+}
+
 .main-footer {
   background: #fff;
   padding-bottom: 32px;

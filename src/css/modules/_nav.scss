@@ -585,3 +585,9 @@ header {
   }
 }
 
+@media (max-width: 310px) {
+  .navbar .container .navbar-header .navbar-brand {
+    width: 120px;
+  }
+}
+
