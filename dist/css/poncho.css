@@ -2613,8 +2613,12 @@ a.panel:hover .panel-heading, a.panel:focus .panel-heading {
   text-transform: none;
 }
 
+.jumbotron .jumbotron_body h1, .jumbotron .jumbotron_body .h1 {
+  font-size: 46px;
+}
+
 .jumbotron .jumbotron_body h2, .jumbotron .jumbotron_body .h2 {
-  font-size: 44px;
+  font-size: 40px;
 }
 
 .jumbotron .jumbotron_body h3, .jumbotron .jumbotron_body .h3 {
