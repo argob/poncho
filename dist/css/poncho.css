@@ -1397,6 +1397,7 @@ header .btn-group > .btn:first-child {
 
 .nav.nav-icons li {
   display: inline-block;
+  vertical-align: top;
 }
 
 .nav.nav-icons li a {
