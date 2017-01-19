@@ -708,7 +708,8 @@ main a:not(.btn) {
 p,
 ul,
 ol,
-p {
+p,
+table {
   font-weight: 300;
 }
 
@@ -810,7 +811,7 @@ article h1.icon.aside {
 }
 
 @media (min-width: 992px) {
-  p, li {
+  p, li, table {
     font-size: 18px;
   }
   .jumbotron li {
@@ -3231,7 +3232,11 @@ input[type='text']:-ms-input-placeholder {
 
 .table.table-spaced td,
 .table.table-spaced th {
-  padding: 12px 4px;
+  padding: 14px 8px;
+}
+
+.table.table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: #f0f0f0;
 }
 
 .table th {

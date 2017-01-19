@@ -7,7 +7,16 @@
 
   &.table-spaced {
     td,
-    th {padding: 12px 4px;}
+    th {
+      padding: 14px 8px;
+    }
+  }
+
+  &.table-striped {
+
+  }
+  &.table-striped > tbody > tr:nth-of-type(odd) {
+      background-color: $gray-hover-light;
   }
 
   th {

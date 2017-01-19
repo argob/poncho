@@ -87,7 +87,8 @@ main a:not(.btn) {
 p,
 ul,
 ol,
-p { font-weight: 300; }
+p,
+table { font-weight: 300; }
 
 b, strong {
     font-weight: 600;
@@ -202,7 +203,7 @@ article {
 
 }
 @media (min-width: 992px) {
-  p, li {
+  p, li, table {
     font-size: 18px;
   }
 
