@@ -510,8 +510,15 @@ main a:not(.btn) {
 p,
 ul,
 ol,
+<<<<<<< HEAD
 p {
   font-weight: 300; }
+=======
+p,
+table {
+  font-weight: 300;
+}
+>>>>>>> ec541d9c21e94c047900672f628f68e306396e74
 
 b, strong {
   font-weight: 600; }
@@ -587,9 +594,15 @@ article h1.icon {
   p {
     font-size: 16px; } }
 @media (min-width: 992px) {
+<<<<<<< HEAD
   p, li {
     font-size: 18px; }
 
+=======
+  p, li, table {
+    font-size: 18px;
+  }
+>>>>>>> ec541d9c21e94c047900672f628f68e306396e74
   .jumbotron li {
     font-size: 16px; }
     .jumbotron li a {
@@ -2290,7 +2303,17 @@ input[type='text']:-ms-input-placeholder {
   vertical-align: middle; }
 .table.table-spaced td,
 .table.table-spaced th {
+<<<<<<< HEAD
   padding: 12px 4px; }
+=======
+  padding: 14px 8px;
+}
+
+.table.table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: #f0f0f0;
+}
+
+>>>>>>> ec541d9c21e94c047900672f628f68e306396e74
 .table th {
   line-height: 1.2; }
   .table th a {
