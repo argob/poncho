@@ -442,6 +442,9 @@ dd {
   white-space: nowrap !important;
   max-width: 100%; }
 
+.f-w-400 {
+  font-weight: 400 !important; }
+
 @media (min-width: 768px) {
   .btn-truncate {
     max-width: 120px; } }
