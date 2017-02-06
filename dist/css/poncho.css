@@ -3330,19 +3330,6 @@ input[type='text']:-ms-input-placeholder {
   text-align: right;
 }
 
-.table.table-align-middle td {
-  vertical-align: middle;
-}
-
-.table.table-spaced td,
-.table.table-spaced th {
-  padding: 14px 8px;
-}
-
-.table.table-striped > tbody > tr:nth-of-type(odd) {
-  background-color: #f0f0f0;
-}
-
 .table th {
   line-height: 1.2;
 }
@@ -3368,6 +3355,58 @@ input[type='text']:-ms-input-placeholder {
 
 .table td.td-fixed {
   width: 8%;
+}
+
+.table.table-align-middle td {
+  vertical-align: middle;
+}
+
+.table.table-spaced td,
+.table.table-spaced th {
+  padding: 14px 8px;
+}
+
+.table.table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: #f0f0f0;
+}
+
+.table.table-mobile td span.td-label {
+  display: none;
+}
+
+@media only screen and (max-width: 767px), (min-device-width: 768px) and (max-device-width: 1024px) {
+  .table.table-mobile table, .table.table-mobile thead, .table.table-mobile tbody, .table.table-mobile th, .table.table-mobile td, .table.table-mobile tr {
+    display: block;
+  }
+  .table.table-mobile thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+  .table.table-mobile tr {
+    border-bottom: 1px solid #ccc;
+  }
+  .table.table-mobile td {
+    border: none !important;
+    position: relative;
+    padding-left: 50% !important;
+  }
+  .table.table-mobile td span.td-label {
+    display: block;
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+    font-weight: 500;
+  }
+  .table.table-mobile tr:nth-child(even) {
+    background: #fff;
+  }
+  .table.table-mobile tr:nth-child(odd) {
+    background: #f0f0f0;
+  }
 }
 
 .table-hover > tbody > tr:hover {
