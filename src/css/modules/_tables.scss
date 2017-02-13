@@ -23,6 +23,13 @@
     &.td-fixed {
       width: 8%;
     }
+
+    &.message.empty {
+      font-size: 1.4em;
+      color: $gray;
+      text-align: center;
+      padding: 2em 0;
+    }
   }
 
 

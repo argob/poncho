@@ -3340,6 +3340,13 @@ input[type='text']:-ms-input-placeholder {
   width: 8%;
 }
 
+.table td.message.empty {
+  font-size: 1.4em;
+  color: #767676;
+  text-align: center;
+  padding: 2em 0;
+}
+
 .table.table-align-middle td {
   vertical-align: middle;
 }
