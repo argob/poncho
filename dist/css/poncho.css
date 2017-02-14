@@ -1549,28 +1549,18 @@ header .btn-group > .btn:first-child {
   .navbar.navbar-top.state-search .navbar-header {
     display: none;
   }
-  .navbar.navbar-top.state-search .navbar-nav.navbar-right > .visible-xs {
-    display: none !important;
-  }
-  .navbar.navbar-top.state-search .navbar-nav.navbar-right > .hidden-xs {
+  .navbar.navbar-top.state-search .navbar-nav.navbar-right {
     margin: 0;
     display: block !important;
   }
-  .navbar.navbar-top.state-search .navbar-nav.navbar-right > .hidden-xs > .btn {
-    margin: 0 15px;
+  .navbar.navbar-top.state-search .navbar-nav.navbar-right > .btn {
+    margin: 13px 15px 0 0;
     position: relative;
     z-index: 5;
   }
-  .navbar.navbar-top.state-search .navbar-nav.navbar-right > .hidden-xs #cd-login {
-    display: none;
-  }
-  .navbar.navbar-top.state-search .navbar-nav.navbar-right > .hidden-xs .pull-right {
-    float: none !important;
-  }
-  .navbar.navbar-top.state-search .navbar-nav.navbar-right > .hidden-xs .input-group {
+  .navbar.navbar-top.state-search .navbar-nav.navbar-right .input-group {
     width: auto;
     float: none;
-    margin-right: 15px;
   }
   .navbar-form {
     margin-left: 0;

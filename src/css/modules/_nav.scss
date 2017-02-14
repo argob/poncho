@@ -468,33 +468,18 @@ header {
           display: none;
         }
         .navbar-nav.navbar-right {
-          > .visible-xs {
-            display: none !important;
+          margin: 0;
+          display: block !important;
+
+          > .btn {
+            margin: 13px 15px 0 0;
+            position: relative;
+            z-index: 5;
           }
 
-          > .hidden-xs {
-            margin: 0;
-            display: block !important;
-
-            > .btn {
-              margin: 0 15px;
-              position: relative;
-              z-index: 5;
-            }
-
-            #cd-login {
-              display: none;
-            }
-
-            .pull-right {
-              float: none !important;
-            }
-
-            .input-group {
-              width: auto;
-              float: none;
-              margin-right: 15px;
-            }
+          .input-group {
+            width: auto;
+            float: none;
           }
         }
       }
