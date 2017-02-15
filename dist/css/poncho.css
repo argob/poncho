@@ -1008,6 +1008,22 @@ fieldset[disabled] .btn-default.active {
   font-size: 1.2em;
 }
 
+.btn .fa.fa-2x {
+  font-size: 2em;
+}
+
+.btn .fa.fa-3x {
+  font-size: 3em;
+}
+
+.btn .fa.fa-4x {
+  font-size: 4em;
+}
+
+.btn .fa.fa-5x {
+  font-size: 5em;
+}
+
 .input-group-btn .btn {
   margin-top: 0;
 }
