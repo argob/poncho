@@ -1,6 +1,7 @@
 .overlay {
   @include position(absolute, 0 null null 0);
   background: $dark-opacity;
+  filter: $dark-opacity-IE;
   height: 100%;
   width: 100%;
 }
