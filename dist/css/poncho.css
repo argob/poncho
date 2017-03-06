@@ -2054,6 +2054,10 @@ select.input-lg {
 .input-sm {
   height: 30px; }
 
+select.input-sm {
+  padding-top: 0;
+  padding-bottom: 0; }
+
 .input-group-lg > .form-control,
 .input-group-lg > .input-group-addon,
 .input-group-lg > .input-group-btn > .btn {
