@@ -2508,6 +2508,9 @@ a.alert.alert-danger i {
     display: block;
     padding-left: 0 !important;
     margin-top: 10px; } }
+@media print {
+  .social-share {
+    display: none; } }
 .dashboard ol {
   padding: 15px; }
   .dashboard ol li {
