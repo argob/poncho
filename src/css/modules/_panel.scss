@@ -366,6 +366,13 @@ a {
   display: flex;
 }
 
+.panels-row:before,
+.panels-row:after
+.flex-row:before,
+.flex-row:after {
+    content: normal;
+}
+
 @media screen and (min-width: 768px) {
 
   .panel.panel-default .panel-heading {
