@@ -3602,17 +3602,16 @@ a.alert.alert-danger i {
   .media-right {
     display: block;
     padding-left: 0 !important;
-<<<<<<< HEAD
-    margin-top: 10px; } }
-@media print {
-  .social-share {
-    display: none; } }
-=======
     margin-top: 10px;
   }
 }
 
->>>>>>> d94b161ae9842808b2818b0e70f95654b9d2e736
+@media print {
+  .social-share {
+    display: none;
+  }
+}
+
 .dashboard ol {
   padding: 15px;
 }
