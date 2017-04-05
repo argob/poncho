@@ -348,6 +348,27 @@ a.bg-danger {
       padding-left: 0px;
       list-style: none;
 
+      li {
+
+        a {
+        font-size: 16px;
+        &:before {
+          content: '-';
+          display: inline-block;
+          margin-right: 15px;
+          color: $gray-light;
+        }
+      }
+
+        ul li a {
+          &:before {
+            margin-left: 10px;
+          }
+        }      
+
+      }
+
+
       li a {
         font-size: 16px;
         &:before {
