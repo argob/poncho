@@ -81,12 +81,24 @@ section.section-lg {
 
 .icon-item i {
   margin-bottom: 0.3em;
+<<<<<<< HEAD
   font-size: 6em;
+=======
+  font-size: 4.5em;
+>>>>>>> 834f3c0911e15f480f5c6ca572bd8724f51b2e71
   color: #01bdf2;
 }
 
 .icon-item h1, .icon-item h2, .icon-item h3, .icon-item h4, .icon-item h5, .icon-item h5 {
   margin-top: 0 !important;
+<<<<<<< HEAD
+=======
+  margin-bottom: 0.2em;
+}
+
+.icon-item h3 {
+  font-size: 1.6em;
+>>>>>>> 834f3c0911e15f480f5c6ca572bd8724f51b2e71
 }
 
 h1.icon-item i {
