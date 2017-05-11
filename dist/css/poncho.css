@@ -325,6 +325,13 @@ dd {
   line-height: 15px;
   margin-top: 40px; }
 
+.circle {
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  margin-right: 8px;
+  display: inline-block; }
+
 @media screen and (max-width: 767px) {
   h2 {
     font-size: 2.6em; }
