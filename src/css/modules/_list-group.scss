@@ -181,6 +181,31 @@ a {
   }  
 }
 
+.steps-min {
+  .step {
+    min-height: 16px;
+    > div:last-child {
+      margin-left: 16px;
+      padding-left: 8px;
+    }
+    .circle {
+      width: 16px;
+      height: 16px;
+      line-height: 16px;
+      border-radius: 8px;
+    }
+    .line {
+      left: 8px;
+      bottom: 5px;
+      top: 22px;
+    }
+    .description {
+      padding-bottom: 20px;
+    }
+
+  }
+ 
+}
 
 @media screen and (max-width: 767px) {
 
