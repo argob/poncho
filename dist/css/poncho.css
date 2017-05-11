@@ -59,7 +59,6 @@ section {
     padding: 80px 0; }
 
 .icon-item {
-<<<<<<< HEAD
   margin-bottom: 20px; }
   .icon-item i {
     margin-bottom: 0.3em;
@@ -70,25 +69,6 @@ section {
     margin-bottom: 0.2em; }
   .icon-item h3 {
     font-size: 1.6em; }
-=======
-  margin-bottom: 20px;
-}
-
-.icon-item i {
-  margin-bottom: 0.3em;
-  font-size: 4.5em;
-  color: #01bdf2;
-}
-
-.icon-item h1, .icon-item h2, .icon-item h3, .icon-item h4, .icon-item h5, .icon-item h5 {
-  margin-top: 0 !important;
-  margin-bottom: 0.2em;
-}
-
-.icon-item h3 {
-  font-size: 1.6em;
-}
->>>>>>> b9378aab914d7c3a36546786c14b32402c8cd9fb
 
 h1.icon-item i {
   font-size: 2em; }
