@@ -85,6 +85,19 @@ main a:not(.btn) {
   word-break: break-word;
 }
 
+
+p {
+
+  a {
+      text-decoration: underline;
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+    }
+  }  
+
+}
+
 p,
 ul,
 ol,
@@ -109,6 +122,9 @@ b, strong {
 }
 
 .jumbotron {
+  p {
+    font-weight: 300;
+  }
   h1 {
     &.h1-sm {
       font-size: 44px;

@@ -9,6 +9,14 @@
     }
   }
 
+  a {
+      text-decoration: none;
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+    }
+  }    
+
   ul {
     margin-bottom: 32px;
     padding: 0;

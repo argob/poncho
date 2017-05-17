@@ -555,6 +555,11 @@ main a:not(.btn) {
   word-wrap: break-word;
   word-break: break-word; }
 
+p a {
+  text-decoration: underline; }
+  p a:hover, p a:focus {
+    text-decoration: underline; }
+
 p,
 ul,
 ol,
@@ -576,6 +581,8 @@ b, strong {
   font-weight: 400;
   line-height: 1.2; }
 
+.jumbotron p {
+  font-weight: 300; }
 .jumbotron h1.h1-sm {
   font-size: 44px; }
 
@@ -750,7 +757,8 @@ fieldset[disabled] .btn-default.active {
   text-transform: uppercase;
   vertical-align: top;
   white-space: initial;
-  word-break: initial; }
+  word-break: initial;
+  text-decoration: none; }
   .btn:hover {
     border: 0; }
   .btn.btn-lg {
@@ -1223,6 +1231,10 @@ header .btn-group > .btn:first-child {
   padding-top: 60px; }
   .main-footer .row > div:first-child {
     padding-right: 30px; }
+  .main-footer a {
+    text-decoration: none; }
+    .main-footer a:hover, .main-footer a:focus {
+      text-decoration: underline; }
   .main-footer ul {
     margin-bottom: 32px;
     padding: 0; }
