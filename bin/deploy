@@ -19,7 +19,7 @@ git checkout -b gh-pages
 bundle exec jekyll build
 
 # Delete and move files.
-find . -maxdepth 1 ! -name 'dist' ! -name '.git' ! -name '.gitignore' -exec rm -rf {} \;
+find . -maxdepth 1 ! -name 'dist' ! -name '.git' ! -name '.gitignore' ! -name '.nojekyll' -exec rm -rf {} \;
 mv dist/* .
 rm -R dist/
 
