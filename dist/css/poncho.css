@@ -1689,7 +1689,7 @@ header .btn-group > .btn:first-child {
     overflow: hidden;
   }
   .navbar .container .navbar-header .navbar-brand img {
-    width: 115%;
+    width: 100%;
     max-width: none;
   }
   .navbar .container .navbar-header .navbar-brand h1 {
