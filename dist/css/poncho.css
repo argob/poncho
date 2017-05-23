@@ -2315,6 +2315,13 @@ a.bg-warning,
 a.bg-danger {
   color: #FFF;
   display: block;
+}
+
+a.bg-primary[href^="/"],
+a.bg-success[href^="/"],
+a.bg-info[href^="/"],
+a.bg-warning[href^="/"],
+a.bg-danger[href^="/"] {
   padding: 6px 0;
 }
 
