@@ -269,6 +269,10 @@ a.bg-danger p {
   color: #111 !important;
 }
 
+.text-white {
+  color: #fff !important;
+}
+
 .text-fucsia {
   color: #ea1d76 !important;
 }
