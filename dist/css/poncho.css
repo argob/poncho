@@ -265,6 +265,10 @@ a.bg-danger p {
   color: #ef4d3d !important;
 }
 
+.text-black {
+  color: #111 !important;
+}
+
 .text-fucsia {
   color: #ea1d76 !important;
 }
