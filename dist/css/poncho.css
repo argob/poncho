@@ -5736,6 +5736,10 @@ a.alert.alert-danger i {
   }
 }
 
+.embed-responsive-1by1 {
+  padding-bottom: 100%;
+}
+
 .calendar:after {
   content: none;
 }
