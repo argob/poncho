@@ -610,7 +610,7 @@ dd {
 
 }
 
-.state-loading {
+.state-loading, .icon-load.progress-disabled {
   position: relative;
 
   &:before {
