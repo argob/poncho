@@ -9,6 +9,7 @@
       color:#fff;
       text-transform: uppercase;
       border-bottom:none;
+      text-decoration: none;
     }
     &>li>a:hover,& li a:hover,&>li>a:focus,& li a:focus {
       background-color:lighten($brand-primary, 10%);
@@ -30,6 +31,7 @@
     white-space: nowrap;
     font-size: 16px;
     padding:12px 15px;
+    text-decoration: none;
 
   }
 

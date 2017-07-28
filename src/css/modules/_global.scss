@@ -311,6 +311,10 @@ a.bg-danger {
   color: $brand-tomate !important;
 }
 
+.nav > li > a {
+  text-decoration: none;
+}
+
 .page-sidebar {
 
   margin-bottom: 48px;

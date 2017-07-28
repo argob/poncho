@@ -48,6 +48,7 @@
         > .dropdown > a {
           color: $white;
           text-shadow: 0 2px 2px $dark-opacity;
+          text-decoration: none;
           &:hover {opacity: .8;}
 
           .glyphicon { margin-right: 10px; }
