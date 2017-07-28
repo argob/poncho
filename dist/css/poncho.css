@@ -2554,6 +2554,9 @@ dd {
 .padding-0 {
   padding-top: 0px !important; }
 
+.padding-5 {
+  padding-top: 5px !important; }
+
 .padding-20 {
   padding-top: 20px !important; }
 
@@ -3832,12 +3835,14 @@ a.panel {
     a.panel:hover .text-secondary,
     a.panel:hover .text-success,
     a.panel:hover .text-warning,
-    a.panel:hover .text-danger, a.panel:focus .text-muted,
+    a.panel:hover .text-danger,
+    a.panel:hover .text-cielo, a.panel:focus .text-muted,
     a.panel:focus .text-primary,
     a.panel:focus .text-secondary,
     a.panel:focus .text-success,
     a.panel:focus .text-warning,
-    a.panel:focus .text-danger {
+    a.panel:focus .text-danger,
+    a.panel:focus .text-cielo {
       color: #fff !important; }
     a.panel:hover .panel-heading, a.panel:focus .panel-heading {
       opacity: .8; }
