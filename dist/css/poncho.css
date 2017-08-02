@@ -2426,6 +2426,11 @@ a.bg-danger p {
 .page-sidebar a {
   display: block;
   padding: 5px 0;
+  text-decoration: none;
+}
+
+.page-sidebar a:hover {
+  text-decoration: none;
 }
 
 .page-sidebar .nav {

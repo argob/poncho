@@ -327,6 +327,10 @@ a.bg-danger {
   a {
     display: block;
     padding: 5px 0;
+    text-decoration: none;
+      &:hover {
+        text-decoration: none;
+      }
   }
 
   .nav {
