@@ -5272,6 +5272,10 @@ label.control-label {
   font-weight: 700;
 }
 
+label.label-block {
+  display: block;
+}
+
 .form-group {
   margin-bottom: 30px;
 }

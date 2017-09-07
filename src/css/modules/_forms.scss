@@ -4,6 +4,7 @@ textarea {
 label {
   font-weight: 400;
   &.control-label {font-weight: 700;}
+  &.label-block {display: block;}
 }
 
 .form-group {
