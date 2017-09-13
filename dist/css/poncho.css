@@ -4836,6 +4836,38 @@ a.panel:hover .panel-heading, a.panel:focus .panel-heading {
   background-color: #ef4d3d;
 }
 
+.panel-icon.panel-fucsia .panel-heading {
+  background-color: #ea1d76;
+}
+
+.panel-icon.panel-arandano .panel-heading {
+  background-color: #bd1e61;
+}
+
+.panel-icon.panel-uva .panel-heading {
+  background-color: #873299;
+}
+
+.panel-icon.panel-cielo .panel-heading {
+  background-color: #009dda;
+}
+
+.panel-icon.panel-verdin .panel-heading {
+  background-color: #82bc00;
+}
+
+.panel-icon.panel-lima .panel-heading {
+  background-color: #cfde00;
+}
+
+.panel-icon.panel-maiz .panel-heading {
+  background-color: #ffce00;
+}
+
+.panel-icon.panel-tomate .panel-heading {
+  background-color: #ff4338;
+}
+
 .panel-primary .panel-heading {
   background-color: #0695d6;
 }

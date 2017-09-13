@@ -296,6 +296,56 @@ a {
       background-color: $brand-danger;
     }
   }
+
+  &.panel-fucsia {
+    .panel-heading {
+      background-color: $brand-fucsia;
+    }
+  }
+
+  &.panel-arandano {
+    .panel-heading {
+      background-color: $brand-arandano;
+    }
+  }
+
+  &.panel-uva {
+    .panel-heading {
+      background-color: $brand-uva;
+    }
+  }
+
+  &.panel-cielo {
+    .panel-heading {
+      background-color: $brand-cielo;
+    }
+  }
+
+  &.panel-verdin {
+    .panel-heading {
+      background-color: $brand-verdin;
+    }
+  }
+
+  &.panel-lima {
+    .panel-heading {
+      background-color: $brand-lima;
+    }
+  }
+
+  &.panel-maiz {
+    .panel-heading {
+      background-color: $brand-maiz;
+    }
+  }
+
+  &.panel-tomate {
+    .panel-heading {
+      background-color: $brand-tomate;
+    }
+  }
+
+
 }
 
 .panel-primary .panel-heading {
