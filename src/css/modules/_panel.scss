@@ -297,6 +297,12 @@ a {
     }
   }
 
+  &.panel-gray {
+    .panel-heading {
+      background-color: $gray-lighter;
+    }
+  }
+
   &.panel-fucsia {
     .panel-heading {
       background-color: $brand-fucsia;

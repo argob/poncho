@@ -4836,6 +4836,10 @@ a.panel:hover .panel-heading, a.panel:focus .panel-heading {
   background-color: #ef4d3d;
 }
 
+.panel-icon.panel-gray .panel-heading {
+  background-color: #e9e9e9;
+}
+
 .panel-icon.panel-fucsia .panel-heading {
   background-color: #ea1d76;
 }
