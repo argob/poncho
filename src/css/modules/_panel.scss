@@ -303,6 +303,12 @@ a {
     }
   }
 
+  &.panel-muted {
+    .panel-heading {
+      background-color: $gray;
+    }
+  }  
+
   &.panel-fucsia {
     .panel-heading {
       background-color: $brand-fucsia;
