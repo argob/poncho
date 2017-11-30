@@ -87,6 +87,7 @@ section.section-lg {
   margin-bottom: 0.3em;
   font-size: 4.5em;
   color: #01bdf2;
+  height: 90px;
 }
 
 .icon-item h1, .icon-item h2, .icon-item h3, .icon-item h4, .icon-item h5, .icon-item h5 {
@@ -4973,7 +4974,7 @@ a.panel:hover .panel-heading, a.panel:focus .panel-heading {
     min-height: 250px;
   }
   .panel.panel-icon .panel-heading {
-    min-height: 152px;
+    height: 152px;
   }
 }
 
