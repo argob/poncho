@@ -6023,7 +6023,12 @@ a.alert.alert-danger i {
 }
 
 @media print {
-  .social-share {
+  .social-share,
+  .service-rating {
+    display: none;
+  }
+  .main-footer,
+  body.sticky-footer .main-footer {
     display: none;
   }
 }
