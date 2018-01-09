@@ -18,6 +18,7 @@
   "dependencies": {
     "argob-poncho": "^0.3.2",
     "bootstrap": "^3.3.6",
+    "font-awesome": "^4.7.0",
     "jquery": "^1.11.1",
     "list.js": "^1.2.0"
   }
