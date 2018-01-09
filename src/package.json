@@ -16,7 +16,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "argob-poncho": "^0.3.2",
+    "argob-poncho": "^0.3.4",
     "bootstrap": "^3.3.6",
     "font-awesome": "^4.7.0",
     "jquery": "^1.11.1",
