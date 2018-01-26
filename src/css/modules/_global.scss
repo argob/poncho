@@ -623,6 +623,31 @@ dd {
 
 }
 
+.list-idioma {
+  background: transparent;
+  border: 0;
+  font-weight: 400;
+  margin: 16px 0 0;
+  padding: 0;
+  text-transform: none;
+
+  li {
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  a {
+    color: $brand-primary;
+    text-decoration: none;
+
+    &:hover {
+      color: $link-hover-color;
+    }
+  }
+
+}
+
+
 .state-loading, .icon-load.progress-disabled {
   position: relative;
 

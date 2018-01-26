@@ -2682,6 +2682,29 @@ dd {
   padding-top: 15px;
 }
 
+.list-idioma {
+  background: transparent;
+  border: 0;
+  font-weight: 400;
+  margin: 16px 0 0;
+  padding: 0;
+  text-transform: none;
+}
+
+.list-idioma li {
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.list-idioma a {
+  color: #0695d6;
+  text-decoration: none;
+}
+
+.list-idioma a:hover {
+  color: #2fbaf9;
+}
+
 .state-loading, .icon-load.progress-disabled {
   position: relative;
 }
@@ -6032,7 +6055,7 @@ a.alert.alert-danger i {
     display: none;
   }
   .main-footer,
-  body.sticky-footer .main-footer {
+  body .main-footer {
     display: none;
   }
 }
