@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]> <html lang="es"class="iem7"> <![endif]-->
+<!--[if lt IE 7 ]> <html lang="es" class="ie6 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="es" class="ie7 lt-ie8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="es" class="ie8"> <![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="es"><!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Formularios</title>
+	<meta name="description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
+	<meta name="author" content="Presidencia de la Nación">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<!-- Nav and address bar color -->
+	<meta name="theme-color" content="#0072b8">
+	<meta name="msapplication-navbutton-color" content="#0072b8">
+	<meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
+
+	<meta property="og:url" content="http://localhost:4000/proyectos/documentacion/formularios/formularios.html" />
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="Banco de Pruebas" />
+	<meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+	<meta property="og:image" content="/ejemplos/img/jumbotron.jpg" />
+	<meta property="og:locale" content="es_AR" />
+
+	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:title" content="Banco de Pruebas" />
+	<meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+	<meta name="twitter:image" content="/ejemplos/img/jumbotron.jpg" />
+
+	<link href="http://poncheado.herokuapp.com/vendor/poncho/dist/css/roboto-fontface.css" rel="stylesheet">
+	<link href="http://poncheado.herokuapp.com/vendor/poncho/dist/css/droid-serif.css" rel="stylesheet">
+	<link href="http://poncheado.herokuapp.com/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+	<link href="http://poncheado.herokuapp.com/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<link href="https://id.argentina.gob.ar/static/css/chosen/chosen.css" rel="stylesheet">
+	<link href="http://poncheado.herokuapp.com/node_modules/flag-icon-css/css/flag-icon.css" rel="stylesheet"> 
+	<link href="http://poncheado.herokuapp.com/vendor/poncho/dist/css/poncho.css" rel="stylesheet">
+	<link href="http://poncheado.herokuapp.com/vendor/iconos/dist/css/icono-arg.css" rel="stylesheet">
+	<link href="http://poncheado.herokuapp.com/css/argentina.css" rel="stylesheet">
+	<link href="http://poncheado.herokuapp.com/css/docs.css" rel="stylesheet">
+
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="http://poncheado.herokuapp.com/node_modules/html5shiv/html5shiv.js"></script>
+      <script src="http://poncheado.herokuapp.com/node_modules/respond.js/respond.min.js"></script>
+      <![endif]-->  
+
+  </head>
+
+  <script src="http://poncheado.herokuapp.com/node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="http://poncheado.herokuapp.com/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="https://id.argentina.gob.ar/static/js/chosen.jquery.js"></script>
+
+
+  <style type="text/css">
+
+        .help-block {
+          font-size: 85%;
+        }
+
+        input:focus, 
+        textarea:focus, 
+        select:focus, 
+        button:focus,
+        .form-control:focus
+        {
+          outline: 2px solid #66afe9;
+          outline-offset: 0;
+          box-shadow: none;
+        }
+        .rc-label {
+          display: block;
+          float: left;
+          clear: none;
+          position: relative;
+          padding: 15px 15px 15px 35px!important;
+          margin-bottom: 10px;
+          cursor: pointer;
+          margin-bottom: 10px;
+
+        }
+
+        .rc-label input {
+          position: absolute;
+          top: 15px;
+          left: 24px;
+          cursor: pointer;
+          margin-left: -12px!important;
+        }
+
+        .rc-horizontal .rc-label {
+          float: none;
+          margin-bottom: 10px;
+        }
+
+        .radio-inline, .checkbox-inline {
+          padding-left: 0;
+        }
+
+        .has-error .chosen-container a{
+          border-color:#BB4945!important;
+        }
+
+        .breadcrumb li,.breadcrumb li a,.breadcrumb > li + li:before, .breadcrumb > .active{color: #fff!important;}
+
+
+
+        label{
+          font-weight: 500
+        }
+
+        @media (min-width: 641px) {
+
+          .rc-label {
+            float: left;
+          }
+        }
+      </style>
+
+    <script type="text/javascript">
+
+      var busqueda = document.getElementById('buscar');
+      var buscar = document.getElementById('buscar-btn');
+      buscar.onclick = function () {
+        var buscado = busqueda.value;
+        location.href = "http://www.argentina.gob.ar/buscar/" + buscado;
+      };
+
+    </script>
+
+
+  <body>
+  	<header>
+
+
+  		<nav class="navbar navbar-top navbar-default" role="navigation">
+    <div class="container">
+      <div>
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="/poncho/" class="navbar-brand">
+            <img alt="Poncho" src="https://argob.github.io/poncho/img/poncho.gif" height="50">
+            <h1>Poncho</h1>
+          </a>
+        </div>
+        <div class="collapse navbar-collapse" id="main-navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/poncho/">Documentación anterior</a></li>
+            <li class="active"><a href="/iconos">Patrones</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  	</header>
+
+<div class="jumbotron" style="background-color: #0695d6;color:#FFF">
+  <div class="container">
+  <div class="col-sm-12">
+      <ol class="breadcrumb">
+        <li><a href="/">Inicio</a></li>
+        <li class="active">Formularios</li>
+      </ol>
+
+      <h1>Patrones</h1>
+  </div>
+  </div>
+</div>
+  	<main role="main">
+  	<div class="container">
+      
+      <div class="row">
+      <div class="col-sm-3">
+        <ul class="nav nav-pills nav-stacked m-t-4">
+           <li><a href="formularios_como_disenar.html">Cómo diseñar formularios</a></li>
+           <li><a href="formularios_paginas.html">Páginas de formularios</a></li>
+           <li><a href="formularios_datos_personales.html">Datos personales</a></li>
+           <li><a href="formularios_otros_datos_personales.html">Otros datos personales</a></li>
+           <li><a href="formularios_datos_contacto.html">Datos de contacto</a></li>
+           <li><a href="formularios_domicilio.html">Domicilio</a></li>
+           <li><a href="formularios_otros_datos_especificos.html">Otros datos específicos</a></li>
+           <li><a href="formularios_funcionamiento.html">Funcionamiento</a></li>
+        </ul>
+
+      </div>
+
+      <div class="col-sm-9">
+
+        <section>
+          <article class="row">
+            <div class="col-sm-12">
+<h1 id="cmodisearformularios">Cómo diseñar formularios</h1>
+
+<p>Los formularios son herramientas muy comunes en la interacción entre
+ciudadanos y organismos. Por lo que es importante diseñarlos pensando en
+la utilidad para el organismo y el uso y satisfacción de los ciudadanos.</p>
+
+<hr>
+
+<fieldset>
+<div class="alert alert-info">
+  Si necesitás hacer un formulario te recomendamos descargar el HTML que tiene todos
+los elementos de esta guía en una sola página.
+Próximamente vamos a subir más páginas con diferentes ejemplos de formularios.
+
+<br><br>
+<div class="btn btn-primary btn-small">Formulario base completo</div>
+</div>
+
+<h2>Principios</h2>
+
+<h3>Pedir la menor cantidad de datos posible</h3>
+
+<p>Cada dato que le pedimos al usuario que piense y complete hace que su experiencia sea
+menos satisfactoria. Para eso se debe tener en cuenta:</p>
+
+<ul>
+<li>Pedir sólo los datos obligatorios para el uso del servicio. Y por consecuencia no
+pedir datos que sirvan sólo para estadística u otros usos del organismo.</li>
+
+<li>No pedir más de una vez un dato. Si una acción necesita un dato que el usuario ya
+cargó, debe completarse automáticamente con eso.</li>
+
+<li>De ser posible los datos deben completarse usando alguna base de datos existente.
+Por ejemplo si quiero poner los datos de una empresa, debería poder poner el CUIT y
+que los datos se completen solos, usando un web service de AFIP.</li>
+</ul>
+
+<h3>Usar los elementos y patrones de esta guía</h3>
+
+<p>Poncho y esta guía de patrones de diseño están pensados para brindar a los ciudadanos
+una experiencia unificada dentro de las diferentes plataformas del Gobierno. Es por eso
+que debe respetarse:</p>
+
+<ul>
+<li>El orden en el que se piden los datos y la forma en la que están agrupados.</li>
+
+<li>Las dimensiones. El alto está optimizado para el tap en dispositivos móviles, y el
+ancho varía según el tipo de dato para una lectura más cómoda del formulario.</li>
+
+<li>Los colores, que tienen el contraste necesario para ser accesibles.</li>
+</ul>
+
+<hr />
+
+<h3>Metodología</h3>
+
+<p>Las metodologías para diseñar e implementar un formulario pueden ser varias, pero el
+trabajo completo se puede resumir en:</p>
+
+<ol>
+<li>Analizar los datos mínimos necesarios que necesita el servicio para funcionar. Si es
+un formulario existente se debe buscar la manera de eliminar los datos
+innecesarios.</li>
+
+<li>Listar o diagramar las pantallas necesarias.</li>
+
+<li>Idealmente usar las páginas de carga y de respuesta de páginas de formularios
+como base (es preferible modificar eso que hacer algo desde cero).</li>
+
+<li>Si se necesitan modificar datos, se deben respestar el orden y el agrupamiento de
+los elementos según esta guía.</li>
+
+<li>Idealmente hacer pruebas con usuarios en papel o en html para verificar que se
+entienda.</li>
+</ol>
+
+<hr />
+
+<h3>Páginas de formularios</h3>
+
+<p>La experiencia de un formulario está compuesta de las siguientes páginas:</p>
+
+<ul>
+<li>Páginas de carga</li>
+
+<li>Páginas de respuesta</li>
+
+<li>Correos electrónicos (sólo en casos como registros, reclamos o turnos)</li>
+</ul>
+
+<p><a href="http://link">Probá y descargá las páginas de formularios.</a></p>
+</fieldset>
+
+            </div>
+          </article>
+          </section>
+
+
+                
+      </div>
+    </div>
+
+      </div>
+
+  			
+  		</main>
+  		<footer class="main-footer">
+  			<div class="container">
+  				<div class="row">
+  					<div class="col-sm-6">
+  						<img class="image-responsive" alt="Argentina.gob.ar - Presidencia de la Nación" src="http://poncheado.herokuapp.com/proyectos/argentina/img/argentinagob.svg">
+  						<p class="text-muted small">Los contenidos de Argentina.gob.ar están licenciados bajo <a href="https://creativecommons.org/licenses/by/2.5/ar/">Creative Commons Reconocimiento 2.5 Argentina License</a></p>
+  						<a class="btn btn-primary m-t-1" href="/acerca">¿Querés hacernos una sugerencia?</a>
+  					</div>
+  					<div class="col-md-3 col-sm-6">
+  						<ul>
+  							<li><a href="/servicios">Trámites y servicios</a></li>
+  							<li><a href="/organismos">Organismos del Estado</a></li>
+  							<li><a href="/pais">Nuestro país</a></li>
+  							<li><a href="http://mapadelestado.modernizacion.gob.ar/">Mapa del Estado</a></li>
+  						</ul>
+  					</div>
+  					<div class="col-md-3 col-sm-6">
+  						<ul>
+  							<li><a href="/ayuda">Ayuda</a></li>
+  							<li><a href="/sugerencias">Hacer una sugerencia</a></li>
+  							<li><a href="/acerca">Acerca de este sitio</a></li>
+  							<li><a href="/terminos-y-condiciones">Términos y condiciones</a></li>
+  							<li><a href="/creditos">Créditos</a></li>
+  						</ul>
+  					</div>
+  				</div>
+  			</div>
+  		</footer>
+
+<script>
+          $(function(){
+            $(".chosen-select").chosen({
+              width: '100%',
+              disable_search: true
+            });
+            $('input.conError:radio').change(function(){
+              if($(this).is(":checked")) {
+                $('.error').removeClass("hidden");
+                $('.item-form').addClass('has-error has-feedback');
+              }
+            });
+            $('input.sinError:radio').change(function(){
+              if($(this).is(":checked")) {
+                $('.error').addClass("hidden");
+                $('.item-form').removeClass('has-error has-feedback');
+              }
+            });
+
+          });
+        </script>
+
+
+
+
+  	</body>
+  	</html>

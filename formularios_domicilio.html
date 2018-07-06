@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]> <html lang="es"class="iem7"> <![endif]-->
+<!--[if lt IE 7 ]> <html lang="es" class="ie6 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="es" class="ie7 lt-ie8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="es" class="ie8"> <![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="es"><!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Formularios</title>
+	<meta name="description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
+	<meta name="author" content="Presidencia de la Nación">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<!-- Nav and address bar color -->
+	<meta name="theme-color" content="#0072b8">
+	<meta name="msapplication-navbutton-color" content="#0072b8">
+	<meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
+
+	<meta property="og:url" content="http://localhost:4000/proyectos/documentacion/formularios/formularios.html" />
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="Banco de Pruebas" />
+	<meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+	<meta property="og:image" content="/ejemplos/img/jumbotron.jpg" />
+	<meta property="og:locale" content="es_AR" />
+
+	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:title" content="Banco de Pruebas" />
+	<meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+	<meta name="twitter:image" content="/ejemplos/img/jumbotron.jpg" />
+
+	<link href="http://poncheado.herokuapp.com/vendor/poncho/dist/css/roboto-fontface.css" rel="stylesheet">
+	<link href="http://poncheado.herokuapp.com/vendor/poncho/dist/css/droid-serif.css" rel="stylesheet">
+	<link href="http://poncheado.herokuapp.com/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+	<link href="http://poncheado.herokuapp.com/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<link href="https://id.argentina.gob.ar/static/css/chosen/chosen.css" rel="stylesheet">
+	<link href="http://poncheado.herokuapp.com/node_modules/flag-icon-css/css/flag-icon.css" rel="stylesheet"> 
+	<link href="http://poncheado.herokuapp.com/vendor/poncho/dist/css/poncho.css" rel="stylesheet">
+	<link href="http://poncheado.herokuapp.com/vendor/iconos/dist/css/icono-arg.css" rel="stylesheet">
+	<link href="http://poncheado.herokuapp.com/css/argentina.css" rel="stylesheet">
+	<link href="http://poncheado.herokuapp.com/css/docs.css" rel="stylesheet">
+
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="http://poncheado.herokuapp.com/node_modules/html5shiv/html5shiv.js"></script>
+      <script src="http://poncheado.herokuapp.com/node_modules/respond.js/respond.min.js"></script>
+      <![endif]-->  
+
+  </head>
+
+  <script src="http://poncheado.herokuapp.com/node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="http://poncheado.herokuapp.com/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="https://id.argentina.gob.ar/static/js/chosen.jquery.js"></script>
+
+
+  <style type="text/css">
+
+        .help-block {
+          font-size: 85%;
+        }
+
+        input:focus, 
+        textarea:focus, 
+        select:focus, 
+        button:focus,
+        .form-control:focus
+        {
+          outline: 2px solid #66afe9;
+          outline-offset: 0;
+          box-shadow: none;
+        }
+        .rc-label {
+          display: block;
+          float: left;
+          clear: none;
+          position: relative;
+          padding: 15px 15px 15px 35px!important;
+          margin-bottom: 10px;
+          cursor: pointer;
+          margin-bottom: 10px;
+
+        }
+
+        .rc-label input {
+          position: absolute;
+          top: 15px;
+          left: 24px;
+          cursor: pointer;
+          margin-left: -12px!important;
+        }
+
+        .rc-horizontal .rc-label {
+          float: none;
+          margin-bottom: 10px;
+        }
+
+        .radio-inline, .checkbox-inline {
+          padding-left: 0;
+        }
+
+        .has-error .chosen-container a{
+          border-color:#BB4945!important;
+        }
+
+        .breadcrumb li,.breadcrumb li a,.breadcrumb > li + li:before, .breadcrumb > .active{color: #fff!important;}
+
+
+
+        label{
+          font-weight: 500
+        }
+
+        @media (min-width: 641px) {
+
+          .rc-label {
+            float: left;
+          }
+        }
+      </style>
+
+    <script type="text/javascript">
+
+      var busqueda = document.getElementById('buscar');
+      var buscar = document.getElementById('buscar-btn');
+      buscar.onclick = function () {
+        var buscado = busqueda.value;
+        location.href = "http://www.argentina.gob.ar/buscar/" + buscado;
+      };
+
+    </script>
+
+
+  <body>
+  	<header>
+
+
+  		<nav class="navbar navbar-top navbar-default" role="navigation">
+    <div class="container">
+      <div>
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="/poncho/" class="navbar-brand">
+            <img alt="Poncho" src="https://argob.github.io/poncho/img/poncho.gif" height="50">
+            <h1>Poncho</h1>
+          </a>
+        </div>
+        <div class="collapse navbar-collapse" id="main-navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/poncho/">Documentación anterior</a></li>
+            <li class="active"><a href="/iconos">Patrones</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  	</header>
+
+<div class="jumbotron" style="background-color: #0695d6;color:#FFF">
+  <div class="container">
+  <div class="col-sm-12">
+      <ol class="breadcrumb">
+        <li><a href="/">Inicio</a></li>
+        <li class="active">Formularios</li>
+      </ol>
+
+      <h1>Patrones</h1>
+  </div>
+  </div>
+</div>
+  	<main role="main">
+  	<div class="container">
+      
+      <div class="row">
+      <div class="col-sm-3">
+ <ul class="nav nav-pills nav-stacked m-t-4">
+           <li><a href="formularios_como_disenar.html">Cómo diseñar formularios</a></li>
+           <li><a href="formularios_paginas.html">Páginas de formularios</a></li>
+           <li><a href="formularios_datos_personales.html">Datos personales</a></li>
+           <li><a href="formularios_otros_datos_personales.html">Otros datos personales</a></li>
+           <li><a href="formularios_datos_contacto.html">Datos de contacto</a></li>
+           <li><a href="formularios_domicilio.html">Domicilio</a></li>
+           <li><a href="formularios_otros_datos_especificos.html">Otros datos específicos</a></li>
+           <li><a href="formularios_funcionamiento.html">Funcionamiento</a></li>
+        </ul>
+
+      </div>
+
+      <div class="col-sm-9">
+
+        <section>
+          <article class="row">
+            <div class="col-sm-12">
+
+                  <h1>Domicilio</h1>
+                  <p>Datos que sirven para poder saber el lugar de residencia del ciudadano. No hace falta pedir todos los datos si no sólo los necesarios para que funcione el servicio.</p>
+                  <hr>
+
+          <fieldset>  
+                  <div class="row">
+                    <div class="col-md-12 form-group">
+                      <h3 class="m-b-1">Domicilio</h3>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-8 form-group item-form">
+                      <label for="">País</label>
+                      <select id="country" class="form-control chosen-select">
+                        <option value=""></option>
+                        <option value="">País 1</option>
+                        <option value="">País 2</option>
+                        <option value="">País 3</option>
+                      </select>
+                      <p class="help-block error hidden">Ingresá un país</p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4 form-group item-form">
+                      <label for="address_postalcode">Código postal</label>
+                      <p class="help-block"><a href="https://www.correoargentino.com.ar/formularios/cpa" target="_blank">Consultá tu código postal</a></p>
+                      <input id="address_postalcode" class="form-control" type="number" min="1" placeholder="">                 
+                      <p class="help-block error hidden">Ingresá un código postal</p>               
+                    </div>          
+                  </div>
+                  <div class="row">
+                    <div class="col-md-8 form-group item-form">
+                      <label for="">Provincia</label>
+                      <select class="form-control chosen-select" name="" id="address_state">
+                        <option value="" selected></option>
+                        <option value="">Provincia 1</option>
+                        <option value="">Provincia 2</option>
+                        <option value="">Provincia 3</option>
+                      </select>
+                      <p class="help-block error hidden">Ingresá una provincia</p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-8 form-group item-form">
+                      <label for="">Partido o departamento</label>
+                      <select class="form-control chosen-select" name="" id="">
+                        <option value="" selected></option>
+                        <option value="">Partido 1</option>
+                        <option value="">Partido 2</option>
+                        <option value="">Partido 3</option>
+                      </select>
+                      <p class="help-block error hidden">Ingresá un partido o departamento</p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-8 form-group item-form">
+                      <label for="">Localidad</label>
+                      <select class="form-control chosen-select" name="" id="">
+                        <option value="" selected></option>
+                        <option value="">Localidad 1</option>
+                        <option value="">Localidad 2</option>
+                        <option value="">Localidad 3</option>
+                      </select>
+                      <p class="help-block error hidden">Ingresá una localidad</p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-8 form-group item-form">
+                        <label for="">Calle</label>
+                        <input type="name" class="form-control" id="address_street" tabindex="" required="">
+                        <p class="help-block error hidden">Ingresá una calle</p>
+                    </div>  
+
+                    <div class="col-md-4 form-group item-form">
+                        <label for="">Número de calle</label>
+                        <input type="text" class="form-control" id="address_street_number" tabindex="" required="">
+                        <p class="help-block error hidden">Ingresá un número de calle</p>
+                    </div> 
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-4 form-group item-form">
+                        <label for="">Piso y departamento</label>
+                        <input type="text" class="form-control" id="address_apartment_number" tabindex="" required="">
+                        <p class="help-block error hidden">Ingresá un piso y/o departamento</p>
+                    </div>                    
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12 form-group">
+                      <label for="">Otros datos de domicilio</label>
+                      <p class="help-block">Ej: Parcela, manzana, lote, bloque, pasillo, barrio u otros</p>
+                      <input type="name" class="form-control" id="otrosDatos" tabindex="" required="">
+                    </div>   
+                  </div>  
+                </fieldset>  
+                              
+            </div>
+          </article>
+          </section>
+
+
+                
+      </div>
+    </div>
+
+      </div>
+
+  		
+  		</main>
+  		<footer class="main-footer">
+  			<div class="container">
+  				<div class="row">
+  					<div class="col-sm-6">
+  						<img class="image-responsive" alt="Argentina.gob.ar - Presidencia de la Nación" src="http://poncheado.herokuapp.com/proyectos/argentina/img/argentinagob.svg">
+  						<p class="text-muted small">Los contenidos de Argentina.gob.ar están licenciados bajo <a href="https://creativecommons.org/licenses/by/2.5/ar/">Creative Commons Reconocimiento 2.5 Argentina License</a></p>
+  						<a class="btn btn-primary m-t-1" href="/acerca">¿Querés hacernos una sugerencia?</a>
+  					</div>
+  					<div class="col-md-3 col-sm-6">
+  						<ul>
+  							<li><a href="/servicios">Trámites y servicios</a></li>
+  							<li><a href="/organismos">Organismos del Estado</a></li>
+  							<li><a href="/pais">Nuestro país</a></li>
+  							<li><a href="http://mapadelestado.modernizacion.gob.ar/">Mapa del Estado</a></li>
+  						</ul>
+  					</div>
+  					<div class="col-md-3 col-sm-6">
+  						<ul>
+  							<li><a href="/ayuda">Ayuda</a></li>
+  							<li><a href="/sugerencias">Hacer una sugerencia</a></li>
+  							<li><a href="/acerca">Acerca de este sitio</a></li>
+  							<li><a href="/terminos-y-condiciones">Términos y condiciones</a></li>
+  							<li><a href="/creditos">Créditos</a></li>
+  						</ul>
+  					</div>
+  				</div>
+  			</div>
+  		</footer>
+
+  <script>
+          $(function(){
+            $(".chosen-select").chosen({
+              width: '100%',
+              disable_search: true
+            });
+            $('input.conError:radio').change(function(){
+              if($(this).is(":checked")) {
+                $('.error').removeClass("hidden");
+                $('.item-form').addClass('has-error has-feedback');
+              }
+            });
+            $('input.sinError:radio').change(function(){
+              if($(this).is(":checked")) {
+                $('.error').addClass("hidden");
+                $('.item-form').removeClass('has-error has-feedback');
+              }
+            });
+
+          });
+        </script>
+
+
+
+
+  	</body>
+  	</html>
