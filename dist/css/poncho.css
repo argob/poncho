@@ -2950,12 +2950,12 @@ article h1.icon {
 .btn-primary {
   background-color: #0072BB; }
   .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.focus, .btn-primary.active {
-    background-color: #0091ee; }
+    background-color: #2fbaf9; }
 
 .btn-success {
   background-color: #2E7D33; }
   .btn-success:hover, .btn-success:focus {
-    background-color: #3ca242; }
+    background-color: #439f46; }
 
 .btn-info {
   background-color: #5bc0de; }
