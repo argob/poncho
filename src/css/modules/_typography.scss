@@ -61,7 +61,7 @@ h5, .h5 {
 }
 
 h6, .h6 {
-  font-size: 18px;
+  font-size: 16px;
 
   &.section-title {
     font-size: 0.8em;
@@ -104,7 +104,7 @@ p,
 ul,
 ol,
 p,
-table { font-weight: 300; }
+table { font-weight: 400; }
 
 b, strong {
     font-weight: 600;
@@ -125,7 +125,7 @@ b, strong {
 
 .jumbotron {
   p {
-    font-weight: 300;
+    font-weight: 400;
   }
   h1 {
     &.h1-sm {
@@ -223,7 +223,7 @@ article {
 }
 @media (min-width: 992px) {
   p, li, table {
-    font-size: 18px;
+    font-size: 16px;
   }
 
   .jumbotron {

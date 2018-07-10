@@ -107,17 +107,17 @@
 
 .panel-default,
 .list-group {
-  border: 0;
+  border: 1px #dee2e6 solid;
   border-radius: 4px;
-  box-shadow: $shadow;
+  box-shadow: none;
   color: $text-color;
   display: block;
   text-decoration: none !important;
 }
 
 .panel-disabled {
-  background: rgba($white, .8);
-  border: 0;
+  background: rgba(251,252,253,0);
+  border: 1px #dee2e6 solid;;
   border-radius: 4px;
   box-shadow: none;
   color: $text-color;
@@ -125,6 +125,8 @@
   text-decoration: none !important;
 
 }
+
+  
 
 a {
   &.panel {

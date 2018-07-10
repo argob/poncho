@@ -7,14 +7,14 @@ $white:                  #fff !default;
 $black:                  #333 !default;
 $gray-base:              #333 !default;
 
-$gray:                   #767676;
+$gray:                   #707070;
 $gray-dark:              #444;
-$gray-border:            #ccc;
-$gray-hover:             #e9e9e9;
+$gray-border:            #dee236;
+$gray-hover:             #eff0f5;
 $gray-hover-light:       #f0f0f0;
-$gray-background:        #F9F9F9;
+$gray-background:        #fafbfc;
 $gray-light:             #ccc;
-$gray-lighter:           #e9e9e9;
+$gray-lighter:           #eff0f5;
 
 $brand-default:         #838383 !default;
 $brand-primary:         #0072BB !default;
@@ -32,8 +32,8 @@ $brand-uva:             #873299 !default;
 $brand-cielo:           #009dda !default;
 $brand-verdin:          #82bc00 !default;
 $brand-lima:            #cfde00 !default;
-$brand-maiz:            #ffce00 !default;
-$brand-tomate:          #ff4338 !default;
+$brand-maiz:            #fdd835 !default;
+$brand-tomate:          #e53935 !default;
 
 
 //== Scaffolding
@@ -41,7 +41,7 @@ $brand-tomate:          #ff4338 !default;
 //## Settings for some of the most global styles.
 
 //** Background color for `<body>`.
-$body-bg:               #F9F9F9 !default;
+$body-bg:               #fafbfc !default;
 //** Global text color on `<body>`.
 $text-color:            $gray-base !default;
 
