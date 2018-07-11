@@ -52,10 +52,13 @@
   <script src="http://poncheado.herokuapp.com/node_modules/jquery/dist/jquery.min.js"></script>
   <script src="http://poncheado.herokuapp.com/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="https://id.argentina.gob.ar/static/js/chosen.jquery.js"></script>
-  <script src="argob-poncho/dist/js/script.js"></script>
-
+  <script src="../../node_modules/argob-poncho/dist/js/scripts.js"></script>
 
   <style type="text/css">
+
+        .mensajeError:hover{
+          cursor:pointer;
+        }
 
         .help-block {
           font-size: 85%;
@@ -106,7 +109,7 @@
 
         .breadcrumb li,.breadcrumb li a,.breadcrumb > li + li:before, .breadcrumb > .active{color: #fff!important;}
 
-
+    
 
         label{
           font-weight: 500
@@ -168,7 +171,9 @@
   <div class="col-sm-12">
       <ol class="breadcrumb">
         <li><a href="/">Inicio</a></li>
-        <li class="active">Formularios</li>
+        <li><a href="/">Patrones</a></li>
+        <li><a href="/">Formularios</a></li>
+        <li class="active">Login y registro</li>
       </ol>
 
       <h1>Patrones</h1>
@@ -179,116 +184,88 @@
   	<div class="container">
       
       <div class="row">
-      <div class="col-sm-3">
-        <ul class="nav nav-pills nav-stacked m-t-4">
-           <li><a href="formularios_como_disenar.html">Cómo diseñar formularios</a></li>
-           <li><a href="formularios_paginas.html">Páginas de formularios</a></li>
-           <li><a href="formularios_datos_personales.html">Datos personales</a></li>
-           <li><a href="formularios_otros_datos_personales.html">Otros datos personales</a></li>
-           <li><a href="formularios_datos_contacto.html">Datos de contacto</a></li>
-           <li><a href="formularios_domicilio.html">Domicilio</a></li>
-           <li><a href="formularios_otros_datos_especificos.html">Otros datos específicos</a></li>
-           <li><a href="formularios_funcionamiento.html">Funcionamiento</a></li>
-        </ul>
-
-      </div>
+      <div class="col-sm-3" id="menuLateral" data-seccion="5"></div>
 
       <div class="col-sm-9">
+
 
         <section>
           <article class="row">
             <div class="col-sm-12">
-<h1 id="cmodisearformularios">Cómo diseñar formularios</h1>
+              
+<h1>Login y registro</h1>
 
-<p>Los formularios son herramientas muy comunes en la interacción entre
-ciudadanos y organismos. Por lo que es importante diseñarlos pensando en
-la utilidad para el organismo y el uso y satisfacción de los ciudadanos.</p>
+<p>En esta sección se explicará como generar un login de acceso y registro para el usuario.</p>
 
-<hr>
+<hr />
 
 <fieldset>
-<div class="alert alert-info">
-  Si necesitás hacer un formulario te recomendamos descargar el HTML que tiene todos
-los elementos de esta guía en una sola página.
-Próximamente vamos a subir más páginas con diferentes ejemplos de formularios.
+                    <div class="row">
+<div class="col-sm-12">
+<h2>Utilización de Mi.Argentina</h2>
 
-<br><br>
-<a href="formularios_ejemplo_completo.html" target="_blank" class="btn btn-primary btn-small">Formulario base completo</a>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae atque aspernatur delectus deserunt blanditiis incidunt quam, culpa dolor vel deleniti adipisci voluptates nemo, perferendis dolorum assumenda, quibusdam quisquam aperiam enim.</p>
+
+
+<img src="https://i.imgur.com/plboeUz.png" alt="">
+
+<h4>Principios</h4>
+<ul>
+   <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+   <li>Ea quasi possimus, id provident praesentium laboriosam iure laborum quas impedit sed! </li>
+   <li>Similique quibusdam facilis dolore perferendis assumenda magnam maxime dolorem, adipisci.</li>
+</ul>
+
+<p><a href="https://argob.github.io/mi-argentina/">Ir a documentación</a></p>  
 </div>
+                      
+                    </div>
 
-<h2>Principios</h2>
+                </fieldset>
 
-<h3>Pedir la menor cantidad de datos posible</h3>
 
-<p>Cada dato que le pedimos al usuario que piense y complete hace que su experiencia sea
-menos satisfactoria. Para eso se debe tener en cuenta:</p>
+  <h2>Otra forma de login</h2>
 
-<ul>
-<li>Pedir sólo los datos obligatorios para el uso del servicio. Y por consecuencia no
-pedir datos que sirvan sólo para estadística u otros usos del organismo.</li>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit doloremque fugit error, vel eaque tempore dolor delectus porro, earum ipsam eveniet enim cupiditate beatae sint consequuntur nesciunt libero, illo repellat.</p>
 
-<li>No pedir más de una vez un dato. Si una acción necesita un dato que el usuario ya
-cargó, debe completarse automáticamente con eso.</li>
+<p><a id="mostrarVariante" data-mostrar="false" class="cursorPointer">Mostrar variante login</a></p>
 
-<li>De ser posible los datos deben completarse usando alguna base de datos existente.
-Por ejemplo si quiero poner los datos de una empresa, debería poder poner el CUIT y
-que los datos se completen solos, usando un web service de AFIP.</li>
-</ul>
+<fieldset  id="varianteLogin" style="display:none">
+  <div class="row">
+                    <div class="col-md-8">
+                      <label>Contraseña</label>
+                      <p class="help-block">Usá al menos 8 caracteres</p>
 
-<h3>Usar los elementos y patrones de esta guía</h3>
+                      <div class="form-group item-form">
+                        <input id="password" name="password" type="password" class="form-control" maxlength="15" placeholder="" role="textbox" aria-disabled="false" aria-readonly="false">
+                        <p class="help-block">Usá al menos 8 caracteres</p>
+                        <p class="help-block error hidden">Ingresá tu contraseña</p>
+                      </div>
+                    </div>
 
-<p>Poncho y esta guía de patrones de diseño están pensados para brindar a los ciudadanos
-una experiencia unificada dentro de las diferentes plataformas del Gobierno. Es por eso
-que debe respetarse:</p>
+                    <div class="col-sm-12">
+                      <a class="mensajeError" data-mostrar="true">Ver mensajes de error</a>
+                    </div>                    
 
-<ul>
-<li>El orden en el que se piden los datos y la forma en la que están agrupados.</li>
+                  </div>
+                  
+                  <hr>
 
-<li>Las dimensiones. El alto está optimizado para el tap en dispositivos móviles, y el
-ancho varía según el tipo de dato para una lectura más cómoda del formulario.</li>
+                  <div class="row">
+                    <div class="col-md-8">
+                      <label>Contraseña</label>
+                      <div class="form-group item-form">
+                        <input id="password_confirmation" name="password" type="password" class="form-control" maxlength="15" placeholder="" role="textbox" aria-disabled="false" aria-readonly="false">
+                        <p class="help-block error hidden">La contraseña ingresada no es correcta</p>
+                      </div>
+                    </div>
 
-<li>Los colores, que tienen el contraste necesario para ser accesibles.</li>
-</ul>
+                    <div class="col-sm-12">
+                      <a class="mensajeError" data-mostrar="true">Ver mensajes de error</a>
+                    </div>                    
 
-<hr />
+                  </div> 
 
-<h3>Metodología</h3>
-
-<p>Las metodologías para diseñar e implementar un formulario pueden ser varias, pero el
-trabajo completo se puede resumir en:</p>
-
-<ol>
-<li>Analizar los datos mínimos necesarios que necesita el servicio para funcionar. Si es
-un formulario existente se debe buscar la manera de eliminar los datos
-innecesarios.</li>
-
-<li>Listar o diagramar las pantallas necesarias.</li>
-
-<li>Idealmente usar las páginas de carga y de respuesta de páginas de formularios
-como base (es preferible modificar eso que hacer algo desde cero).</li>
-
-<li>Si se necesitan modificar datos, se deben respestar el orden y el agrupamiento de
-los elementos según esta guía.</li>
-
-<li>Idealmente hacer pruebas con usuarios en papel o en html para verificar que se
-entienda.</li>
-</ol>
-
-<hr />
-
-<h3>Páginas de formularios</h3>
-
-<p>La experiencia de un formulario está compuesta de las siguientes páginas:</p>
-
-<ul>
-<li>Páginas de carga</li>
-
-<li>Páginas de respuesta</li>
-
-<li>Correos electrónicos (sólo en casos como registros, reclamos o turnos)</li>
-</ul>
-
-<p><a href="formularios_ejemplo_completo.html" target="_blank">Probá y descargá las páginas de formularios.</a></p>
 </fieldset>
 
             </div>
@@ -302,35 +279,52 @@ entienda.</li>
 
       </div>
 
-  			
+  		
+
   		</main>
   		<footer class="main-footer hidden">
-  			<div class="container">
-  				<div class="row">
-  					<div class="col-sm-6">
-  						<img class="image-responsive" alt="Argentina.gob.ar - Presidencia de la Nación" src="http://poncheado.herokuapp.com/proyectos/argentina/img/argentinagob.svg">
-  						<p class="text-muted small">Los contenidos de Argentina.gob.ar están licenciados bajo <a href="https://creativecommons.org/licenses/by/2.5/ar/">Creative Commons Reconocimiento 2.5 Argentina License</a></p>
-  					</div>
-  					<div class="col-md-3 col-sm-6">
-  						<ul>
-  							<li><a href="/servicios">Trámites y servicios</a></li>
-  							<li><a href="/organismos">Organismos del Estado</a></li>
-  							<li><a href="/pais">Nuestro país</a></li>
-  							<li><a href="http://mapadelestado.modernizacion.gob.ar/">Mapa del Estado</a></li>
-  						</ul>
-  					</div>
-  					<div class="col-md-3 col-sm-6">
-  						<ul>
-  							<li><a href="/ayuda">Ayuda</a></li>
-  							<li><a href="/sugerencias">Hacer una sugerencia</a></li>
-  							<li><a href="/acerca">Acerca de este sitio</a></li>
-  							<li><a href="/terminos-y-condiciones">Términos y condiciones</a></li>
-  							<li><a href="/creditos">Créditos</a></li>
-  						</ul>
-  					</div>
-  				</div>
-  			</div>
-  		</footer>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-6">
+              <img class="image-responsive" alt="Argentina.gob.ar - Presidencia de la Nación" src="http://poncheado.herokuapp.com/proyectos/argentina/img/argentinagob.svg">
+              <p class="text-muted small">Los contenidos de Argentina.gob.ar están licenciados bajo <a href="https://creativecommons.org/licenses/by/2.5/ar/">Creative Commons Reconocimiento 2.5 Argentina License</a></p>
+            </div>
+            <div class="col-md-3 col-sm-6">
+              <ul>
+                <li><a href="/servicios">Trámites y servicios</a></li>
+                <li><a href="/organismos">Organismos del Estado</a></li>
+                <li><a href="/pais">Nuestro país</a></li>
+                <li><a href="http://mapadelestado.modernizacion.gob.ar/">Mapa del Estado</a></li>
+              </ul>
+            </div>
+            <div class="col-md-3 col-sm-6">
+              <ul>
+                <li><a href="/ayuda">Ayuda</a></li>
+                <li><a href="/sugerencias">Hacer una sugerencia</a></li>
+                <li><a href="/acerca">Acerca de este sitio</a></li>
+                <li><a href="/terminos-y-condiciones">Términos y condiciones</a></li>
+                <li><a href="/creditos">Créditos</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
+    <script>
+      $(function(){
+        $("#menuLateral").load("../../includes/patrones_menu.html",function(){
+          var seccion = $("#menuLateral").data("seccion");
+          $("#menuLateral ul li a[data-seccion="+seccion+"]").parent().addClass("active");
+        });
+
+        $("#mostrarVariante").click(function(){
+          $("#varianteLogin").toggle();
+          var text = $(this).attr("data-mostrar");
+          $(this).text(text == "true" ? "Mostrar variante login" : "Ocultar variante login");
+          $(this).attr("data-mostrar",text == "true" ? "false" : "true");
+        }) 
+               
+      })
+    </script>
 
   	</body>
   	</html>

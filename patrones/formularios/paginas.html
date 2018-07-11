@@ -52,11 +52,11 @@
   <script src="http://poncheado.herokuapp.com/node_modules/jquery/dist/jquery.min.js"></script>
   <script src="http://poncheado.herokuapp.com/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="https://id.argentina.gob.ar/static/js/chosen.jquery.js"></script>
-  <script src="node_modules/argob-poncho/dist/js/scripts.js"></script>
+  <script src="../../node_modules/argob-poncho/dist/js/scripts.js"></script>
+
 
   <style type="text/css">
-
-        .mensajeError:hover{
+.mensajeError:hover{
           cursor:pointer;
         }
 
@@ -109,7 +109,7 @@
 
         .breadcrumb li,.breadcrumb li a,.breadcrumb > li + li:before, .breadcrumb > .active{color: #fff!important;}
 
-    
+
 
         label{
           font-weight: 500
@@ -171,7 +171,9 @@
   <div class="col-sm-12">
       <ol class="breadcrumb">
         <li><a href="/">Inicio</a></li>
-        <li class="active">Formularios</li>
+        <li><a href="/">Patrones</a></li>
+        <li><a href="/">Formularios</a></li>
+        <li class="active">Páginas de formularios</li>
       </ol>
 
       <h1>Patrones</h1>
@@ -182,99 +184,93 @@
   	<div class="container">
       
       <div class="row">
-      <div class="col-sm-3">
- <ul class="nav nav-pills nav-stacked m-t-4">
-           <li><a href="formularios_como_disenar.html">Cómo diseñar formularios</a></li>
-           <li><a href="formularios_paginas.html">Páginas de formularios</a></li>
-           <li><a href="formularios_datos_personales.html">Datos personales</a></li>
-           <li><a href="formularios_otros_datos_personales.html">Otros datos personales</a></li>
-           <li><a href="formularios_datos_contacto.html">Datos de contacto</a></li>
-           <li><a href="formularios_domicilio.html">Domicilio</a></li>
-           <li><a href="formularios_otros_datos_especificos.html">Otros datos específicos</a></li>
-           <li><a href="formularios_funcionamiento.html">Funcionamiento</a></li>
-        </ul>
-
-      </div>
+      <div class="col-sm-3" id="menuLateral" data-seccion="2"></div>
+      
 
       <div class="col-sm-9">
-
 
         <section>
           <article class="row">
             <div class="col-sm-12">
-              
-<h1 id="datospersonales">Datos personales</h1>
-
-<p>Son los datos mínimos necesarios para identificar a un ciudadano.</p>
-
-<hr />
-
 <fieldset>
-                    <div class="row">
-                      <div class="col-md-12 form-group">
-                        <h3 class="m-b-1">Datos personales</h3>
-                      </div>
-                    </div>
-                    
-                    <div class="row">
-                    <div class="col-md-4 form-group item-form">
-                      <label for="">CUIL</label>
-                      <p class="help-block"><a href="https://www.anses.gob.ar/constancia-de-cuil/" target="_blank">Consultá tu CUIL</a></p>
-                      <input type="number" class="form-control" id="cuil_number" tabindex="" required="" min="1">
-                      <p class="help-block error hidden">Ingresá tu CUIL <br>El CUIL tiene un formato no válido</p>
-                    </div>
-                    </div>
-                    <div class="row">
-                    <div class="col-md-8 form-group item-form">
-                      <label for="nombre">Nombres</label>
-                      <input type="name" class="form-control" id="name" tabindex="" required="">
-                      <p class="help-block error hidden">Ingresá tu nombre</p>
-                    </div>
-                    </div>
-                    <div class="row">
-                    <div class="col-md-8 form-group item-form">
-                      <label for="apellido">Apellidos</label>
-                      <input type="name" class="form-control" id="last_name" tabindex="" required="">
-                      <p class="help-block error hidden">Ingresá tu apellido</p>
-                    </div>
-                    </div>
-                    <div class="row">
-                    <div class="col-md-8">
-                      <label for="sexo">Sexo</label>
-                      <p class="help-block">Como aparece en tu documento</p>
-                      <div class="form-group item-form">
-                        <fieldset>
-                          <div class="radio">
-                            <label for="femenino" class="rc-label">
-                              <input type="radio" name="sex" id="femenino" value="femenino" tabindex="" required="">
-                              Femenino
-                            </label>
-                            <label for="masculino" class="rc-label m-l-1">
-                              <input type="radio" name="sex" id="masculino" value="masculino" tabindex="" required="">
-                              Masculino
-                            </label>
-                          </div>
-                        </fieldset>
-                        <p class="help-block error hidden">Ingresá tu sexo</p>
-                      </div>
-                    </div>
-                    </div>
-      
-                    <div class="row">
-                    <div class="col-md-4">
-                      <div class="form-group item-form">
-                        <label for="fechaNac col-sm-12">Fecha de nacimiento</label>
-                        <input type="date" class="form-control" id="birthday" placeholder="dd/mm/aaaa" tabindex="" required="">
-                        <p class="help-block error hidden">Ingresá tu fecha de nacimiento</p>
-                      </div>
-                    </div> 
-                    <div class="col-sm-12">
-                      <a class="mensajeError" data-mostrar="true">Ver mensajes de error</a>
-                    </div>
-                    </div>
-            
-                </fieldset>
+   <h1>Páginas de formularios</h1>
+   <p>Los formularios están compuestos de páginas de carga de parte del usuario
+      y de respuesta de parte del sitio web.
+   </p>
+   <hr />
+   <h2>Páginas de carga de datos</h2>
+   <p>La página o páginas de carga de datos son las que requieren que el usuario piense, en
+      algunos casos busque y complete datos necesarios para usar un servicio. Existen
+      diferentes variables según la necesidad y el servicio.
+   </p>
+   <h3>Consulta o formulario simple</h3>
+   <p>Sirve para servicios con respuestas simples como consultar la vigencia y fecha de algún
+      documento
+   </p>
+   <ul>
+      <li>Pedir no más de 10 datos.</li>
+      <li>La página de respuesta debe mostrar los datos de la consulta y un botón para hacer
+         otra consulta.
+      </li>
+   </ul>
+   <div class="hidden">
+      <p>Ejemplos:</p>
+      <ul>
+         <li><a href="">Datos personales completos</a></li>
+      </ul>
+   </div>
+   <h3>Formulario largo</h3>
+   <p>Sirve para servicios que necesitan muchos datos del usuario o de una situación.
+      Idealmente se dividen en varias páginas.
+   </p>
+   <ul>
+      <li>Dividir el formulario en varias páginas, en donde cada página tiene un grupo de
+         datos específico.
+      </li>
+      <li>Incluír una página de confirmación de datos que permita verlos todos juntos con
+         links para editar cada página.
+      </li>
+   </ul>
+   <h2>Páginas de respuesta</h2>
+   <p>La página o páginas de respuesta son las que le aparecen al usuario luego de que envíen
+      el formulario. Existen diferentes variables según la necesidad y el servicio.
+   </p>
+   <h3>Respuesta positiva</h3>
+   <p>Sirve para cuando un formulario:</p>
+   <ul>
+      <li>Se envía con éxito.</li>
+      <li>Se realiza un registro (alta, baja o modificación).</li>
+      <li>Se encuentra un documento vigente.</li>
+   </ul>
+   <h3>Respuesta negativa</h3>
+   <p>Sirve para cuando un formulario:</p>
+   <ul>
+      <li>No se envía por un error en el servicio (incluye un mensaje aclarando si el envío se
+         va a hacer automáticamente después o no).
+      </li>
+      <li>La acción que quiere hacer el usuario no se puede hacer por algún dato cargado
+         (que no puede validar errores en la pantalla de carga por tener que consultar con
+         una base de datos para responder).
+      </li>
+      <li>Se encuentra un documento vencido.</li>
+   </ul>
+   <h3>Revisar correo electrónico</h3>
+   <p>Sirve para casos específicos donde inmediatamente luego de la carga del formulario el
+      usuario debe revisar su mail para continuar un proceso. Por ejemplo el registro para una
+      plataforma que requiere que el usuario valide su cuenta de correo electrónico antes de
+      poder usarla.
+   </p>
+   <h3>Comprobante de envío</h3>
+   <p>Sirve para casos específicos donde el usuario va a continuar un proceso días más
+      adelante. Por ejemplo cuando se hace un reclamo o se pide un turno.
+   </p>
+   <h3>Correos electrónicos</h3>
+   <p>Sirven para enviar al usuario información y acciones que necesita completar luego de
+      enviar un formulario, o para enviar comprobantes (por ejemplo de turnos o reclamos).
+   </p>
+</fieldset>
 
+              
             </div>
           </article>
           </section>
@@ -287,7 +283,6 @@
       </div>
 
   		
-
   		</main>
   		<footer class="main-footer hidden">
         <div class="container">
@@ -316,7 +311,13 @@
           </div>
         </div>
       </footer>
-
-
+    <script>
+      $(function(){
+        $("#menuLateral").load("../../includes/patrones_menu.html",function(){
+          var seccion = $("#menuLateral").data("seccion");
+          $("#menuLateral ul li a[data-seccion="+seccion+"]").parent().addClass("active");
+        });
+      })
+    </script>
   	</body>
   	</html>

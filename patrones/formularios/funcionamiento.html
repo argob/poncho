@@ -52,7 +52,7 @@
   <script src="http://poncheado.herokuapp.com/node_modules/jquery/dist/jquery.min.js"></script>
   <script src="http://poncheado.herokuapp.com/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="https://id.argentina.gob.ar/static/js/chosen.jquery.js"></script>
-<script src="node_modules/argob-poncho/dist/js/scripts.js"></script>
+<script src="../../node_modules/argob-poncho/dist/js/scripts.js"></script>
 
   <style type="text/css">
 
@@ -167,7 +167,9 @@
   <div class="col-sm-12">
       <ol class="breadcrumb">
         <li><a href="/">Inicio</a></li>
-        <li class="active">Formularios</li>
+        <li><a href="/">Patrones</a></li>
+        <li><a href="/">Formularios</a></li>
+        <li class="active">Funcionamiento</li>
       </ol>
 
       <h1>Patrones</h1>
@@ -178,19 +180,7 @@
   	<div class="container">
       
       <div class="row">
-      <div class="col-sm-3">
- <ul class="nav nav-pills nav-stacked m-t-4">
-           <li><a href="formularios_como_disenar.html">Cómo diseñar formularios</a></li>
-           <li><a href="formularios_paginas.html">Páginas de formularios</a></li>
-           <li><a href="formularios_datos_personales.html">Datos personales</a></li>
-           <li><a href="formularios_otros_datos_personales.html">Otros datos personales</a></li>
-           <li><a href="formularios_datos_contacto.html">Datos de contacto</a></li>
-           <li><a href="formularios_domicilio.html">Domicilio</a></li>
-           <li><a href="formularios_otros_datos_especificos.html">Otros datos específicos</a></li>
-           <li><a href="formularios_funcionamiento.html">Funcionamiento</a></li>
-        </ul>
-
-      </div>
+      <div class="col-sm-3" id="menuLateral" data-seccion="9"></div>
 
       <div class="col-sm-9">
 
@@ -285,7 +275,14 @@ minutos</p>
         </div>
       </footer>
 
-
+    <script>
+      $(function(){
+        $("#menuLateral").load("../../includes/patrones_menu.html",function(){
+          var seccion = $("#menuLateral").data("seccion");
+          $("#menuLateral ul li a[data-seccion="+seccion+"]").parent().addClass("active");
+        });
+      })
+    </script>
 
   	</body>
   	</html>

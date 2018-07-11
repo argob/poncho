@@ -52,7 +52,8 @@
   <script src="http://poncheado.herokuapp.com/node_modules/jquery/dist/jquery.min.js"></script>
   <script src="http://poncheado.herokuapp.com/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="https://id.argentina.gob.ar/static/js/chosen.jquery.js"></script>
-  <script src="node_modules/argob-poncho/dist/js/scripts.js"></script>
+  <script src="../../node_modules/argob-poncho/dist/js/scripts.js"></script>
+
 
   <style type="text/css">
 .mensajeError:hover{
@@ -170,7 +171,9 @@
   <div class="col-sm-12">
       <ol class="breadcrumb">
         <li><a href="/">Inicio</a></li>
-        <li class="active">Formularios</li>
+        <li><a href="/">Patrones</a></li>
+        <li><a href="/">Formularios</a></li>
+        <li class="active">Otros datos personales</li>
       </ol>
 
       <h1>Patrones</h1>
@@ -181,127 +184,120 @@
   	<div class="container">
       
       <div class="row">
-      <div class="col-sm-3">
- <ul class="nav nav-pills nav-stacked m-t-4">
-           <li><a href="formularios_como_disenar.html">Cómo diseñar formularios</a></li>
-           <li><a href="formularios_paginas.html">Páginas de formularios</a></li>
-           <li><a href="formularios_datos_personales.html">Datos personales</a></li>
-           <li><a href="formularios_otros_datos_personales.html">Otros datos personales</a></li>
-           <li><a href="formularios_datos_contacto.html">Datos de contacto</a></li>
-           <li><a href="formularios_domicilio.html">Domicilio</a></li>
-           <li><a href="formularios_otros_datos_especificos.html">Otros datos específicos</a></li>
-           <li><a href="formularios_funcionamiento.html">Funcionamiento</a></li>
-        </ul>
-
-      </div>
+      <div class="col-sm-3" id="menuLateral" data-seccion="4"></div>
+      
 
       <div class="col-sm-9">
+
 
         <section>
           <article class="row">
             <div class="col-sm-12">
 
-                  <h1>Domicilio</h1>
-                  <p>Datos que sirven para poder saber el lugar de residencia del ciudadano. No hace falta pedir todos los datos si no sólo los necesarios para que funcione el servicio.</p>
+                  <h1>Otros datos personales</h1>
+                  <p>Forman parte de los datos personales, pero no son necesarios para identificar al ciudadano.</p>
                   <hr>
+<fieldset>
+                    
 
-          <fieldset>  
                   <div class="row">
-                    <div class="col-md-12 form-group">
-                      <h3 class="m-b-1">Domicilio</h3>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-8 form-group item-form">
-                      <label for="">País</label>
-                      <select id="country" class="form-control chosen-select">
-                        <option value=""></option>
-                        <option value="">País 1</option>
-                        <option value="">País 2</option>
-                        <option value="">País 3</option>
-                      </select>
-                      <p class="help-block error hidden">Ingresá un país</p>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-4 form-group item-form">
-                      <label for="address_postalcode">Código postal</label>
-                      <p class="help-block"><a href="https://www.correoargentino.com.ar/formularios/cpa" target="_blank">Consultá tu código postal</a></p>
-                      <input id="address_postalcode" class="form-control" type="number" min="1" placeholder="">                 
-                      <p class="help-block error hidden">Ingresá un código postal</p>               
-                    </div>          
-                  </div>
-                  <div class="row">
-                    <div class="col-md-8 form-group item-form">
-                      <label for="">Provincia</label>
-                      <select class="form-control chosen-select" name="" id="address_state">
-                        <option value="" selected></option>
-                        <option value="">Provincia 1</option>
-                        <option value="">Provincia 2</option>
-                        <option value="">Provincia 3</option>
-                      </select>
-                      <p class="help-block error hidden">Ingresá una provincia</p>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-8 form-group item-form">
-                      <label for="">Partido o departamento</label>
-                      <select class="form-control chosen-select" name="" id="">
-                        <option value="" selected></option>
-                        <option value="">Partido 1</option>
-                        <option value="">Partido 2</option>
-                        <option value="">Partido 3</option>
-                      </select>
-                      <p class="help-block error hidden">Ingresá un partido o departamento</p>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-8 form-group item-form">
-                      <label for="">Localidad</label>
-                      <select class="form-control chosen-select" name="" id="">
-                        <option value="" selected></option>
-                        <option value="">Localidad 1</option>
-                        <option value="">Localidad 2</option>
-                        <option value="">Localidad 3</option>
-                      </select>
-                      <p class="help-block error hidden">Ingresá una localidad</p>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-8 form-group item-form">
-                        <label for="">Calle</label>
-                        <input type="name" class="form-control" id="address_street" tabindex="" required="">
-                        <p class="help-block error hidden">Ingresá una calle</p>
-                    </div>  
 
-                    <div class="col-md-4 form-group item-form">
-                        <label for="">Número de calle</label>
-                        <input type="text" class="form-control" id="address_street_number" tabindex="" required="">
-                        <p class="help-block error hidden">Ingresá un número de calle</p>
-                    </div> 
+                    <div class="col-md-4">
+                      <div class="form-group item-form">
+                        <label for="id_type">Tipo de Documento</label>
+                        <select id="id_type" name="id_type" class="form-control">
+                          <option value="DNI" selected="">DNI</option>
+                          <option value="Libreta de Enrolamiento">Libreta de Enrolamiento</option>
+                          <option value="Libreta Cívica">Libreta Cívica</option>
+                          <option value="Pasaporte extranjero">Pasaporte extranjero</option>
+                        </select>
+                        <p class="help-block error hidden">Elegí un tipo de documento</p>
+                      </div>
+                    </div>
+
+                    <div class="col-md-4">
+                      <div class="form-group item-form">
+                        <label for="">Número de documento</label>
+                        <input type="number" min="1" class="form-control" id="document_number" tabindex="" required="">
+                        <p class="help-block error hidden">Ingresá tu número de documento</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-8 form-group item-form">
+                      <label for="marital_status">Estado civil</label>
+                      <select id="marital_status" name="marital_status" class="form-control">
+                        <option value="" selected=""></option>
+                        <option value="">Soltero/a</option>
+                        <option value="">Casado/a</option>
+                        <option value="">Divorciado/a</option>
+                        <option value="">Viudo/a</option>
+                        <option value="">Vínculo de hecho</option>
+                        <option value="">Separado/a</option>
+                      </select>
+                      <p class="help-block error hidden">Ingresá tu estado civil</p>
+                    </div>
                   </div>
 
                   <div class="row">
-                    <div class="col-md-4 form-group item-form">
-                        <label for="">Piso y departamento</label>
-                        <input type="text" class="form-control" id="address_apartment_number" tabindex="" required="">
-                        <p class="help-block error hidden">Ingresá un piso y/o departamento</p>
-                    </div>                    
-                  </div>
-                  <div class="row">
-                    <div class="col-md-12 form-group">
-                      <label for="">Otros datos de domicilio</label>
-                      <p class="help-block">Ej: Parcela, manzana, lote, bloque, pasillo, barrio u otros</p>
-                      <input type="name" class="form-control" id="otrosDatos" tabindex="" required="">
-                    </div>   
-                  </div>  
-                  <div class="row">
+                    <div class="col-md-8">
+                      <div class="form-group item-form">
+                        <label for="country_birth">País de nacimiento</label>
+                        <select id="country_birth" class="form-control chosen-select">
+                          <option value=""></option>
+                          <option value="">País 1</option>
+                          <option value="">País 2</option>
+                          <option value="">País 3</option>
+                        </select>
+                        <p class="help-block error hidden">Ingresá tu país de nacimiento</p>
+                      </div>
+                    </div>
+
+                  
                     <div class="col-sm-12">
                       <a class="mensajeError" data-mostrar="true">Ver mensajes de error</a>
                     </div>                    
+                  
                   </div>
 
-                </fieldset>  
+                  <hr>
+                  
+                  <div class="row">
+                    <div class="col-md-8">
+                      <label>Contraseña</label>
+                      <p class="help-block">Usá al menos 8 caracteres</p>
+
+                      <div class="form-group item-form">
+                        <input id="password" name="password" type="password" class="form-control" maxlength="15" placeholder="" role="textbox" aria-disabled="false" aria-readonly="false">
+                        <p class="help-block">Usá al menos 8 caracteres</p>
+                        <p class="help-block error hidden">Ingresá tu contraseña</p>
+                      </div>
+                    </div>
+
+                    <div class="col-sm-12">
+                      <a class="mensajeError" data-mostrar="true">Ver mensajes de error</a>
+                    </div>                    
+
+                  </div>
+                  
+                  <hr>
+
+                  <div class="row">
+                    <div class="col-md-8">
+                      <label>Contraseña</label>
+                      <div class="form-group item-form">
+                        <input id="password_confirmation" name="password" type="password" class="form-control" maxlength="15" placeholder="" role="textbox" aria-disabled="false" aria-readonly="false">
+                        <p class="help-block error hidden">La contraseña ingresada no es correcta</p>
+                      </div>
+                    </div>
+
+                    <div class="col-sm-12">
+                      <a class="mensajeError" data-mostrar="true">Ver mensajes de error</a>
+                    </div>                    
+
+                  </div>  
+</fieldset>
+
                               
             </div>
           </article>
@@ -314,7 +310,8 @@
 
       </div>
 
-  		
+  			
+
   		</main>
   		<footer class="main-footer hidden">
         <div class="container">
@@ -345,8 +342,13 @@
       </footer>
 
 
-
-
-
+    <script>
+      $(function(){
+        $("#menuLateral").load("../../includes/patrones_menu.html",function(){
+          var seccion = $("#menuLateral").data("seccion");
+          $("#menuLateral ul li a[data-seccion="+seccion+"]").parent().addClass("active");
+        });
+      })
+    </script>
   	</body>
   	</html>

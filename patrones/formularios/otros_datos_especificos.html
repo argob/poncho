@@ -52,7 +52,7 @@
   <script src="http://poncheado.herokuapp.com/node_modules/jquery/dist/jquery.min.js"></script>
   <script src="http://poncheado.herokuapp.com/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="https://id.argentina.gob.ar/static/js/chosen.jquery.js"></script>
-  <script src="node_modules/argob-poncho/dist/js/scripts.js"></script>
+  <script src="../../node_modules/argob-poncho/dist/js/scripts.js"></script>
 
 
   <style type="text/css">
@@ -171,7 +171,9 @@
   <div class="col-sm-12">
       <ol class="breadcrumb">
         <li><a href="/">Inicio</a></li>
-        <li class="active">Formularios</li>
+        <li><a href="/">Patrones</a></li>
+        <li><a href="/">Formularios</a></li>
+        <li class="active">Otros datos específicos</li>
       </ol>
 
       <h1>Patrones</h1>
@@ -182,78 +184,50 @@
   	<div class="container">
       
       <div class="row">
-      <div class="col-sm-3">
-         <ul class="nav nav-pills nav-stacked m-t-4">
-           <li><a href="formularios_como_disenar.html">Cómo diseñar formularios</a></li>
-           <li><a href="formularios_paginas.html">Páginas de formularios</a></li>
-           <li><a href="formularios_datos_personales.html">Datos personales</a></li>
-           <li><a href="formularios_otros_datos_personales.html">Otros datos personales</a></li>
-           <li><a href="formularios_datos_contacto.html">Datos de contacto</a></li>
-           <li><a href="formularios_domicilio.html">Domicilio</a></li>
-           <li><a href="formularios_otros_datos_especificos.html">Otros datos específicos</a></li>
-           <li><a href="formularios_funcionamiento.html">Funcionamiento</a></li>
-        </ul>
-
-      </div>
+      <div class="col-sm-3" id="menuLateral" data-seccion="8"></div>
 
       <div class="col-sm-9">
-
 
         <section>
           <article class="row">
             <div class="col-sm-12">
 
-                  <h1>Datos de contacto</h1>
-                  <p>Datos que sirven para poder comunicarse con el ciudadano y así darle información o pedirle que realice una acción.</p>
+                  <h1>Otros datos específicos</h1>
+                  <p>Datos que pueden usarse en diferentes contextos, pero tienen un formato y reglas específicas.<p>
                   <hr>
 
-<fieldset>
+            <fieldset>
                   <div class="row">
                     <div class="col-md-12 form-group">
-                      <h3 class="m-b-1">Datos de contacto</h3>
-                      <p class="help-block">Ingresá al menos un dato de contacto</p>
-                    </div>
-                  </div> 
-
-                  <div class="row"> 
-                  <div class="col-md-8 form-group item-form">
-                      <label for="email">Correo electrónico</label>
-                      <input type="name" class="form-control" id="email" tabindex="" required="">
-                      <p class="help-block error hidden">Ingresá un correo electrónico <br> El correo electrónico tiene un formato no válido</p>
+                      <h3 class="m-b-1">Otros datos específicos</h3>
                     </div>
                   </div>
-
-                  <div class="row"> 
-                    <div class="col-md-8 form-group m-b-0">
-                      <label for="">Teléfono móvil</label>
-                      <p class="help-block"><a href="https://www.argentina.gob.ar/codigos-de-area" target="_blank">Buscá códigos de área</a></p>
+                  <div class="row">
+                    <div class="col-md-4 form-group item-form">
+                      <label for="">CUIT</label>
+                      <input type="number" min="1" class="form-control" id="cuit_number" tabindex="" required="">
+                      <p class="help-block error hidden">Ingresá un CUIT <br> El CUIT tiene un formato inválido</p>
                     </div>
-  
-                    <div class="col-md-8 form-group item-form">
-                      <input id="cellphone_number" class="form-control" value="" type="number" min="1" placeholder="">
-                      <p class="help-block error hidden">Ingresá tu número de teléfono fijo</p>
-                    </div>
-                  </div>
-              
-                  <div class="row"> 
-                    <div class="col-md-8 form-group m-b-0">
-                      <label for="">Teléfono fijo</label>
-                      <p class="help-block"><a href="https://www.argentina.gob.ar/codigos-de-area" target="_blank">Buscá códigos de área</a></p>
-                    </div>
-  
-                    <div class="col-md-8 form-group item-form">
-                      <input id="phone_number" class="form-control" value="" type="number" min="1" placeholder="">
-                      <p class="help-block error hidden">Ingresá tu número de teléfono fijo</p>
-                    </div>
-
                     <div class="col-sm-12">
                       <a class="mensajeError" data-mostrar="true">Ver mensajes de error</a>
                     </div>                                        
                   </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-md-4 ">
+                      <label for="nombre">Patente de vehículo</label>
+                      <p class="help-block">Ej: AAA123 o AA123BB</p>
 
+                      <div class="form-group item-form">
+                        <input type="number" min="1" class="form-control" id="vehicule_plaque" tabindex="" required="">
+                        <p class="help-block error hidden">Ingresá una patente</p>
+                      </div>
+                    </div>
+                    <div class="col-sm-12">
+                      <a class="mensajeError" data-mostrar="true">Ver mensajes de error</a>
+                    </div>                                        
+                  </div>
                 </fieldset>
-
-
                               
             </div>
           </article>
@@ -296,7 +270,14 @@
           </div>
         </div>
       </footer>
-
+    <script>
+      $(function(){
+        $("#menuLateral").load("../../includes/patrones_menu.html",function(){
+          var seccion = $("#menuLateral").data("seccion");
+          $("#menuLateral ul li a[data-seccion="+seccion+"]").parent().addClass("active");
+        });
+      })
+    </script>
 
   	</body>
   	</html>
