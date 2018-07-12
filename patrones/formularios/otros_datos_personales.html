@@ -56,7 +56,10 @@
 
 
   <style type="text/css">
-.mensajeError:hover{
+          .navbar{
+          box-shadow:none!important;
+        }
+        .mensajeError:hover{
           cursor:pointer;
         }
 
@@ -298,6 +301,25 @@
                   </div>  
 </fieldset>
 
+<hr>  
+
+        <fieldset>
+          <h2 class="m-b-4">Detalle de elementos</h2>
+          <h3>No usar encabezado</h3>
+          <p>Este grupo de datos va debajo de los datos personales (y por ende agrupado bajo el encabezado de datos personales).</p>
+          
+          <h3>Tipo de documento</h3>
+          <p>Sirve para identificar a un ciudadano. Es menos preciso que el CUIL ya que pueden haber DNI duplicados. No pedir si el servicio no necesita este dato para funcionar. Siempre se debe intentar usar CUIL primero.</p>
+
+          <h3>Número de documento</h3>
+          <p>Complementa al dato Tipo de documento.</p>
+
+          <h3>Estado Civil</h3>
+          <p>Sirve para saber el estado civil del ciudadano. No pedir si el servicio no necesita este dato para funcionar.</p>
+          
+          <h3>País de nacimiento</h3>
+          <p>Sirve para saber la nacionalidad original del ciudadano. No pedir si el servicio no necesita este dato para funcionar.</p>
+        </fieldset>
                               
             </div>
           </article>

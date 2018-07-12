@@ -55,7 +55,10 @@
   <script src="../../node_modules/argob-poncho/dist/js/scripts.js"></script>
 
   <style type="text/css">
-
+        .navbar{
+          box-shadow:none!important;
+        }
+        
         .mensajeError:hover{
           cursor:pointer;
         }
@@ -193,77 +196,133 @@
           <article class="row">
             <div class="col-sm-12">
               
-<h1 id="datospersonales">Datos personales</h1>
+<h1>Datos personales</h1>
 
 <p>Son los datos mínimos necesarios para identificar a un ciudadano.</p>
 
 <hr />
 
 <fieldset>
-                    <div class="row">
-                      <div class="col-md-12 form-group">
-                        <h3 class="m-b-1">Datos personales</h3>
-                      </div>
-                    </div>
-                    
-                    <div class="row">
-                    <div class="col-md-4 form-group item-form">
-                      <label for="">CUIL</label>
-                      <p class="help-block"><a href="https://www.anses.gob.ar/constancia-de-cuil/" target="_blank">Consultá tu CUIL</a></p>
-                      <input type="number" class="form-control" id="cuil_number" tabindex="" required="" min="1">
-                      <p class="help-block error hidden">Ingresá tu CUIL <br>El CUIL tiene un formato no válido</p>
-                    </div>
-                    </div>
-                    <div class="row">
-                    <div class="col-md-8 form-group item-form">
-                      <label for="nombre">Nombres</label>
-                      <input type="name" class="form-control" id="name" tabindex="" required="">
-                      <p class="help-block error hidden">Ingresá tu nombre</p>
-                    </div>
-                    </div>
-                    <div class="row">
-                    <div class="col-md-8 form-group item-form">
-                      <label for="apellido">Apellidos</label>
-                      <input type="name" class="form-control" id="last_name" tabindex="" required="">
-                      <p class="help-block error hidden">Ingresá tu apellido</p>
-                    </div>
-                    </div>
-                    <div class="row">
-                    <div class="col-md-8">
-                      <label for="sexo">Sexo</label>
-                      <p class="help-block">Como aparece en tu documento</p>
-                      <div class="form-group item-form">
-                        <fieldset>
-                          <div class="radio">
-                            <label for="femenino" class="rc-label">
-                              <input type="radio" name="sex" id="femenino" value="femenino" tabindex="" required="">
-                              Femenino
-                            </label>
-                            <label for="masculino" class="rc-label m-l-1">
-                              <input type="radio" name="sex" id="masculino" value="masculino" tabindex="" required="">
-                              Masculino
-                            </label>
-                          </div>
-                        </fieldset>
-                        <p class="help-block error hidden">Ingresá tu sexo</p>
-                      </div>
-                    </div>
-                    </div>
+      <div class="row">
+        <div class="col-md-12 form-group">
+          <h3 class="m-b-1">Datos personales</h3>
+        </div>
+      </div>
       
-                    <div class="row">
-                    <div class="col-md-4">
-                      <div class="form-group item-form">
-                        <label for="fechaNac col-sm-12">Fecha de nacimiento</label>
-                        <input type="date" class="form-control" id="birthday" placeholder="dd/mm/aaaa" tabindex="" required="">
-                        <p class="help-block error hidden">Ingresá tu fecha de nacimiento</p>
-                      </div>
-                    </div> 
-                    <div class="col-sm-12">
-                      <a class="mensajeError" data-mostrar="true">Ver mensajes de error</a>
-                    </div>
-                    </div>
-            
-                </fieldset>
+      <div class="row">
+        <div class="col-md-4 form-group item-form">
+          <label for="">CUIL</label>
+          <p class="help-block"><a href="https://www.anses.gob.ar/constancia-de-cuil/" target="_blank">Consultá tu CUIL</a></p>
+          <input type="number" class="form-control" id="cuil_number" tabindex="" required="" min="1">
+          <p class="help-block error hidden">Ingresá tu CUIL <br>El CUIL tiene un formato no válido</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 form-group item-form">
+          <label for="nombre">Nombres</label>
+          <input type="name" class="form-control" id="name" tabindex="" required="">
+          <p class="help-block error hidden">Ingresá tu nombre</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 form-group item-form">
+          <label for="apellido">Apellidos</label>
+          <input type="name" class="form-control" id="last_name" tabindex="" required="">
+          <p class="help-block error hidden">Ingresá tu apellido</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8">
+          <label for="sexo">Sexo</label>
+          <p class="help-block">Como aparece en tu documento</p>
+          <div class="form-group item-form">
+            <fieldset>
+              <div class="radio">
+                <label for="femenino" class="rc-label">
+                  <input type="radio" name="sex" id="femenino" value="femenino" tabindex="" required="">
+                  Femenino
+                </label>
+                <label for="masculino" class="rc-label m-l-1">
+                  <input type="radio" name="sex" id="masculino" value="masculino" tabindex="" required="">
+                  Masculino
+                </label>
+              </div>
+            </fieldset>
+            <p class="help-block error hidden">Ingresá tu sexo</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group item-form">
+            <label for="fechaNac col-sm-12">Fecha de nacimiento</label>
+            <input type="date" class="form-control" id="birthday" placeholder="dd/mm/aaaa" tabindex="" required="">
+            <p class="help-block error hidden">Ingresá tu fecha de nacimiento</p>
+          </div>
+        </div> 
+        <div class="col-sm-12">
+          <a class="mensajeError" data-mostrar="true">Ver mensajes de error</a>
+        </div>
+      </div>
+
+</fieldset>
+
+<hr>
+
+<fieldset>
+  <h2 class="m-b-4">Detalle de elementos</h2>
+  <h3 >Datos personales</h3>
+  <p>Usar este encabezado para agrupar los datos y separarlos de otros para una lectura más cómoda.</p>
+  
+  <h3>CUIL</h3>
+  <p>Sirve para identificar a un ciudadano. Es más preciso que el DNI. Si se pide este dato no hace falta pedir más datos personales de identificación.</p>
+<div class="panel">
+    <div class="panel-body">
+  <p class="m-b-0"><i class="fa fa-cog text-primary"></i> <b>Funcionamiento</b></p>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam totam, officiis explicabo unde quae eaque vero aliquam harum, nulla ex numquam itaque, saepe aspernatur temporibus eos quaerat facere sunt cum!</p>
+</div>
+  </div>
+  <h3>Nombres</h3>
+  <p>Sirve para identificar y llamar al usuario por su nombre en páginas donde esté loggeado o correos electrónicos que se le envíen.</p>
+  
+  <div class="panel">
+    <div class="panel-body">
+        <p class="m-b-0"><i class="fa fa-cog text-primary"></i> <b>Funcionamiento</b></p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam totam, officiis explicabo unde quae eaque vero aliquam harum, nulla ex numquam itaque, saepe aspernatur temporibus eos quaerat facere sunt cum!</p>
+    </div>
+  </div>
+
+  <h3>Apellidos</h3>
+  <p>Sirve para identificar al usuario. No pedir si no es necesario identificar al ciudadano (por ejemplo un formulario de sugerencias donde con un nombre y un correo electrónico alcanza.</p>
+  
+  <div class="panel">
+    <div class="panel-body">
+        <p class="m-b-0"><i class="fa fa-cog text-primary"></i> <b>Funcionamiento</b></p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam totam, officiis explicabo unde quae eaque vero aliquam harum, nulla ex numquam itaque, saepe aspernatur temporibus eos quaerat facere sunt cum!</p>
+    </div>
+  </div>
+
+  <h3>Sexo</h3>
+  <p>Sirve para identificar al usuario. Hay servicios públicos y/o médicos que requieren de identificar el sexo del usuario. En general no hace falta pedirlo.</p>
+  
+  <div class="panel">
+    <div class="panel-body">
+        <p class="m-b-0"><i class="fa fa-cog text-primary"></i> <b>Funcionamiento</b></p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam totam, officiis explicabo unde quae eaque vero aliquam harum, nulla ex numquam itaque, saepe aspernatur temporibus eos quaerat facere sunt cum!</p>
+    </div>
+  </div>
+
+  <h3>Fecha de nacimiento</h3>
+  <p>Sirve para saber la edad del usuario. Sirve para servicios que requieran cierta mayoría o rango de edad.</p>
+  
+  <div class="panel">
+    <div class="panel-body">
+        <p class="m-b-0"><i class="fa fa-cog text-primary"></i> <b>Funcionamiento</b></p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam totam, officiis explicabo unde quae eaque vero aliquam harum, nulla ex numquam itaque, saepe aspernatur temporibus eos quaerat facere sunt cum!</p>
+    </div>
+  </div>
+</fieldset>
 
             </div>
           </article>
