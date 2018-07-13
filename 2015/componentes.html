@@ -1,0 +1,2022 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Poncho</title>
+  <meta name="description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
+  <meta name="author" content="Presidencia de la Nación">
+  <link rel="shortcut icon" href="/poncho/favicon.ico">
+
+  <!-- Nav and address bar color -->
+  <meta name="theme-color" content="#0072b8">
+  <meta name="msapplication-navbutton-color" content="#0072b8">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
+
+  <meta property="og:url" content="/poncho/docs/componentes.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Poncho">
+  <meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
+  <meta property="og:image" content="/ejemplos/img/jumbotron.jpg">
+  <meta property="og:locale" content="es_AR">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Poncho">
+  <meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
+  <meta name="twitter:image" content="/ejemplos/img/jumbotron.jpg">
+
+  <link href="/poncho/node_modules/argob-poncho/dist/css/roboto-fontface.css" rel="stylesheet">
+  <!-- <link href="/poncho/node_modules/argob-poncho/dist/css/droid-serif.css" rel="stylesheet"> -->
+  <link href="/poncho/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/poncho/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="/poncho/node_modules/argob-poncho/dist/css/poncho.css" rel="stylesheet">
+  <link href="/poncho/css/docs.css" rel="stylesheet">
+  <link href="/poncho/css/prism.css" rel="stylesheet">
+</head>
+
+  <body data-spy="scroll" data-target="#navbar-docs">
+
+    <header>
+  <nav class="navbar navbar-top navbar-default" role="navigation">
+    <div class="container">
+      <div>
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="/poncho/" class="navbar-brand">
+            <img alt="Poncho" src="/poncho/img/poncho.gif" height="50">
+            <h1>Poncho</h1>
+          </a>
+        </div>
+        <div class="collapse navbar-collapse" id="main-navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/poncho/">Inicio</a></li>
+            <li><a href="/poncho/docs/">Documentación</a></li>
+            <li><a href="/poncho/docs/componentes.html">Componentes</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Ejemplos <b class="caret"></b></a>
+              <ul class="dropdown-menu submenu" role="menu">
+                <li><a href="/poncho/ejemplos/pagina.html">Página</a></li>
+                <li><a href="/poncho/ejemplos/pagina-area.html">Página de área</a></li>
+                <li><a href="/poncho/ejemplos/pagina-navegacion.html">Página con navegación</a></li>
+                <li><a href="/poncho/ejemplos/noticia.html">Noticia</a></li>
+                <li><a href="/poncho/ejemplos/pagina-sticky-footer.html">Pie de página inferior</a></li>
+              </ul>
+            </li>
+            <li><a href="/iconos">Iconos</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+    <main id="docs" role="main">
+      <div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <ol class="breadcrumb">
+        <li><a href="../">Poncho</a></li>
+        <li class="active">Documentación</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="container">
+    <div class="row">
+      <aside class="page-sidebar col-md-3">
+          <nav>
+            <ul class="nav nav-pills nav-stacked">
+              <li class="btn-title">
+                <a href="#estilos">Estilos</a>
+                <!-- <ul class="nav">
+                  <li><a href="#tipografia">Tipografía</a></li>
+                  <li><a href="#encabezado-pagina">Encabezado Página</a></li>
+                  <li><a href="#cuerpo">Cuerpo</a></li>
+                  <li><a href="#enfasis">Énfasis</a></li>
+                  <li><a href="#cita">Cita</a></li>
+                  <li><a href="#listas">Listas</a></li>
+                  <li><a href="#tablas">Tablas</a></li>
+                  <li><a href="#formularios">Formulario</a></li>
+                  <li><a href="#botones">Botones</a></li>
+                  <li><a href="#imagenes">Imágenes</a></li>
+                  <li><a href="#clases-auxiliares">Clases auxiliares</a></li>
+                </ul> -->
+              </li>
+              <li class="btn-title">
+                <a href="#components">Componentes</a>
+                <!-- <ul class="nav">
+                  <li><a href="#boton-con-desplegable">Botón con desplegable</a></li>
+                  <li><a href="#grupo-de-botones">Grupo de botones</a></li>
+                  <li><a href="#navbar">Navbar</a></li>
+                  <li><a href="#breadcrumb">Breadcrumb</a></li>
+                  <li><a href="#pagination">Paginación</a></li>
+                  <li><a href="#contenido">Contenido</a></li>
+                  <li><a href="#paneles">Paneles</a></li>
+                  <li><a href="#labels">Etiquetas</a></li>
+                  <li><a href="#badges">Etiquetas Numeradas</a></li>
+                  <li><a href="#alertas">Alertas</a></li>
+                  <li><a href="#alertas-con-icono">Alertas Con Íconos</a></li>
+                  <li><a href="#background-color">Colores de Fondo</a></li>
+                </ul> -->
+              </li>
+              <li class="btn-title">
+                <a href="#javascript">Javascript</a>
+                <!-- <ul class="nav">
+                  <li><a href="#modal">Modal</a></li>
+                  <li><a href="#ayuda-sobre-elementos">Nota de Ayuda Sobre Elementos</a></li>
+                  <li><a href="#info-contextual">Información Contextual</a></li>
+                </ul> -->
+              </li>
+            </ul>
+          </nav>
+
+
+      </aside>
+      <div class="col-md-9 docs-container">
+        <div class="row">
+          <div class="col-md-12">
+            <div>
+              <h2 id="estilos" class="m-b-3">Estilos</h2>
+              <hr>
+              <h3>Encabezado</h3>
+              <h1>h1. Texto referencia <small>small</small>
+</h1>
+              <h2>h2. Texto referencia <small>small</small>
+</h2>
+              <h3>h3. Texto referencia <small>small</small>
+</h3>
+              <h4>h4. Texto referencia <small>small</small>
+</h4>
+              <h5>h5. Texto referencia <small>small</small>
+</h5>
+              <h6>h6. Texto referencia <small>small</small>
+</h6>
+              <br>
+              <pre>
+                <code class="language-html">
+                  &lt;h1&gt;h1. Texto referencia&lt;/h1&gt;
+                  &lt;h2&gt;h2. Texto referencia&lt;/h2&gt;
+                  &lt;h3&gt;h3. Texto referencia&lt;/h3&gt;
+                  &lt;h4&gt;h4. Texto referencia&lt;/h4&gt;
+                  &lt;h5&gt;h5. Texto referencia&lt;/h5&gt;
+                  &lt;h6&gt;h6. Texto referencia&lt;/h6&gt;
+                </code>
+              </pre>
+              <hr>
+
+              <h3 id="cuerpo">Cuerpo</h3>
+
+              <p class="lead">Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. → 21 px</p>
+              <p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. → 16 px | 1 em</p>
+
+              <br>
+              <pre>
+                <code class="language-markup">
+                  &lt;p class="lead"&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit.&lt;/p&gt;
+                  &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit.&lt;/p&gt;
+                </code>
+              </pre>
+
+              <hr>
+
+              <h3 id="enfasis">Énfasis</h3>
+
+              <p>Esta línea de texto es tratada como impresión fina</p>
+
+              <p>El siguiente fragmento de texto es <strong>mostrado como texto en negrita</strong></p>
+
+              <p>El siguiente fragmento de texto es <i>mostrado como texto en cursiva</i></p>
+
+              <br>
+              <pre>
+                <code class="language-markup">
+                  &lt;p&gt;Esta línea de texto es tratada como impresión fina&lt;/p&gt;
+
+                  &lt;p&gt;El siguiente fragmento de texto es &lt;strong&gt;mostrado como texto en negrita&lt;/strong&gt;&lt;/p&gt;
+
+                  &lt;p&gt;El siguiente fragmento de texto es &lt;i&gt;mostrado como texto en cursiva&lt;/i&gt;&lt;/p&gt;
+                </code>
+              </pre>
+
+              <hr>
+
+              <h3 id="cita">Cita</h3>
+              <blockquote>
+               <p> “Todas las áreas del Gobierno tendrán un plan de comunicación e información que será publicado y actualizado en forma permanente”</p>
+                — <cite>Andrés Ibarra</cite>
+              </blockquote>
+              <br>
+              <pre>
+                <code class="language-markup">
+                  &lt;blockquote&gt;
+                   &lt;p&gt; “Todas las áreas del Gobierno tendrán un plan de comunicación e información que será publicado y actualizado en forma permanente”&lt;/p&gt;
+                    — &lt;cite&gt;Andrés Ibarra&lt;/cite&gt;
+                  &lt;/blockquote&gt;
+                </code>
+              </pre>
+
+              <hr>
+              <h3 id="listas" class="margin-40">Listas</h3>
+
+              <h5 id="list-unorder">Lista sin orden</h5>
+              <ul class="margin-40">
+                <li>Lorem ipsum dolor sit <strong>amet</strong>.</li>
+                <li>Consectetur adipiscing elit <strong>lorem ipsum dolor sit</strong>.</li>
+                <li>Lorem ipsum dolor sit <strong>amet</strong>.</li>
+                <li>Consectetur adipiscing elit <strong>lorem ipsum dolor sit</strong>.</li>
+                <li>Lorem ipsum dolor sit <strong>amet</strong>.</li>
+                <li>Consectetur adipiscing elit <strong>lorem ipsum dolor sit</strong>.</li>
+              </ul>
+              <pre>
+                <code class="language-markup">
+                &lt;ul&gt;
+                  &lt;li&gt;Lorem ipsum dolor sit &lt;strong&gt;amet&lt;/strong&gt;.&lt;/li&gt;
+                  &lt;li&gt;Consectetur adipiscing elit &lt;strong&gt;lorem ipsum dolor sit&lt;/strong&gt;.&lt;/li&gt;
+                  &lt;li&gt;Lorem ipsum dolor sit &lt;strong&gt;amet&lt;/strong&gt;.&lt;/li&gt;
+                  &lt;li&gt;Consectetur adipiscing elit &lt;strong&gt;lorem ipsum dolor sit&lt;/strong&gt;.&lt;/li&gt;
+                  &lt;li&gt;Lorem ipsum dolor sit &lt;strong&gt;amet&lt;/strong&gt;.&lt;/li&gt;
+                  &lt;li&gt;Consectetur adipiscing elit &lt;strong&gt;lorem ipsum dolor sit&lt;/strong&gt;.&lt;/li&gt;
+                &lt;/ul&gt;
+                </code>
+              </pre>
+              <br>
+
+              <h5 id="list-order">Lista ordenada</h5>
+              <ol class="margin-40">
+                <li>Lorem ipsum dolor sit <strong>amet</strong>.</li>
+                <li>Consectetur adipiscing elit <strong>lorem ipsum dolor sit</strong>.</li>
+                <li>Lorem ipsum dolor sit <strong>amet</strong>.</li>
+                <li>Consectetur adipiscing elit <strong>lorem ipsum dolor sit</strong>.</li>
+                <li>Lorem ipsum dolor sit <strong>amet</strong>.</li>
+                <li>Consectetur adipiscing elit <strong>lorem ipsum dolor sit</strong>.</li>
+              </ol>
+
+              <pre>
+                <code class="language-markup">
+                  &lt;ol&gt;
+                    &lt;li&gt;Lorem ipsum dolor sit &lt;strong&gt;amet&lt;/strong&gt;.&lt;/li&gt;
+                    &lt;li&gt;Consectetur adipiscing elit &lt;strong&gt;lorem ipsum dolor sit&lt;/strong&gt;.&lt;/li&gt;
+                    &lt;li&gt;Lorem ipsum dolor sit &lt;strong&gt;amet&lt;/strong&gt;.&lt;/li&gt;
+                    &lt;li&gt;Consectetur adipiscing elit &lt;strong&gt;lorem ipsum dolor sit&lt;/strong&gt;.&lt;/li&gt;
+                    &lt;li&gt;Lorem ipsum dolor sit &lt;strong&gt;amet&lt;/strong&gt;.&lt;/li&gt;
+                    &lt;li&gt;Consectetur adipiscing elit &lt;strong&gt;lorem ipsum dolor sit&lt;/strong&gt;.&lt;/li&gt;
+                  &lt;/ol&gt;
+                </code>
+              </pre>
+
+              <br>
+
+              <h5 id="list-desc">Lista de descripción</h5>
+              <dl>
+                <dt>Listas descriptivas</dt>
+                <dd>Una lista descriptiva es perfecta para la definición de términos.</dd>
+                <dt>Euismod</dt>
+                <dd>Donec id elit non mi porta gravida at eget metus.</dd>
+                <dt>Malesuada porta</dt>
+                <dd>Etiam porta sem malesuada magna mollis euismod.</dd>
+              </dl>
+
+              <pre>
+                <code class="language-markup">
+                  &lt;dl&gt;
+                    &lt;dt&gt;Listas descriptivas&lt;/dt&gt;
+                    &lt;dd&gt;Una lista descriptiva es perfecta para la definición de términos.&lt;/dd&gt;
+                    &lt;dt&gt;Euismod&lt;/dt&gt;
+                    &lt;dd&gt;Donec id elit non mi porta gravida at eget metus.&lt;/dd&gt;
+                    &lt;dt&gt;Malesuada porta&lt;/dt&gt;
+                    &lt;dd&gt;Etiam porta sem malesuada magna mollis euismod.&lt;/dd&gt;
+                  &lt;/dl&gt;
+                </code>
+              </pre>
+
+              <hr>
+              <h3 id="tablas">Tablas</h3>
+              <p>El objetivo de las tablas es mostrar una serie de datos en forma ordenada, organizado en filas y columnas.</p>
+<br>
+
+              <!-- Tables -->
+              <table class="table">
+                <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Nombre</th>
+                  <th>Apellido</th>
+                  <th>Nombre de usuario</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>@mdo</td>
+                </tr>
+                <tr>
+                <th scope="row">2</th>
+                  <td>Jacob</td>
+                  <td>Thornton</td>
+                  <td>@fat</td>
+                </tr>
+                <tr>
+                <th scope="row">3</th>
+                  <td>Larry</td>
+                  <td>the Bird</td>
+                  <td>@twitter</td>
+                </tr>
+                </tbody>
+              </table>
+
+              <pre>
+                <code class="language-markup">
+                  &lt;table class="table"&gt;
+                    &lt;thead&gt;
+                      &lt;tr&gt;
+                        &lt;th&gt;#&lt;/th&gt;
+                        &lt;th&gt;Nombre&lt;/th&gt;
+                        &lt;th&gt;Apellido&lt;/th&gt;
+                        &lt;th&gt;Nombre de usuario&lt;/th&gt;
+                      &lt;/tr&gt;
+                    &lt;/thead&gt;
+                    &lt;tbody&gt;
+                      &lt;tr&gt;
+                        &lt;th scope="row"&gt;1&lt;/th&gt;
+                        &lt;td&gt;Mark&lt;/td&gt;
+                        &lt;td&gt;Otto&lt;/td&gt;
+                        &lt;td&gt;@mdo&lt;/td&gt;
+                      &lt;/tr&gt;
+                      &lt;tr&gt;
+                      &lt;th scope="row"&gt;2&lt;/th&gt;
+                        &lt;td&gt;Jacob&lt;/td&gt;
+                        &lt;td&gt;Thornton&lt;/td&gt;
+                        &lt;td&gt;@fat&lt;/td&gt;
+                      &lt;/tr&gt;
+                      &lt;tr&gt;
+                      &lt;th scope="row"&gt;3&lt;/th&gt;
+                        &lt;td&gt;Larry&lt;/td&gt;
+                        &lt;td&gt;the Bird&lt;/td&gt;
+                        &lt;td&gt;@twitter&lt;/td&gt;
+                      &lt;/tr&gt;
+                    &lt;/tbody&gt;
+                  &lt;/table&gt;
+                </code>
+              </pre>
+
+              <br>
+              <h5 id="tabla-separador">Tabla con separador de filas</h5>
+              <table class="table table-striped">
+                <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Nombre</th>
+                  <th>Apellido</th>
+                  <th>Nombre de usuario</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>@mdo</td>
+                </tr>
+                <tr>
+                <th scope="row">2</th>
+                  <td>Jacob</td>
+                  <td>Thornton</td>
+                  <td>@fat</td>
+                </tr>
+                <tr>
+                <th scope="row">3</th>
+                  <td>Larry</td>
+                  <td>the Bird</td>
+                  <td>@twitter</td>
+                </tr>
+                </tbody>
+              </table>
+
+              <br>
+              <pre>
+                <code class="language-markup">
+                  &lt;table class="table table-striped"&gt;
+
+                  &lt;/table&gt;
+                </code>
+              </pre>
+              <br>
+
+              <h5 id="tabla-buscador">Tabla con buscador</h5>
+              <div class="alert alert-warning" role="alert"><p>* Requiere ListJs <a href="http://www.listjs.com/" target="_blank">http://www.listjs.com/</a></p></div>
+
+              <div id="usuarios">
+                <div class="form-group">
+                  <input class="form-control search" placeholder="Buscar">
+                </div>
+
+                <table class="table table-striped">
+                  <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Nombre de usuario</th>
+                  </tr>
+                  </thead>
+                  <tbody class="list">
+                  <tr>
+                    <th scope="row">1</th>
+                    <td class="nombre">Mark</td>
+                    <td class="apellido">Otto</td>
+                    <td class="usuario">@mdo</td>
+                  </tr>
+                  <tr>
+                  <th scope="row">2</th>
+                    <td class="nombre">Jacob</td>
+                    <td class="apellido">Thornton</td>
+                    <td class="usuario">@fat</td>
+                  </tr>
+                  <tr>
+                  <th scope="row">3</th>
+                    <td class="nombre">Larry</td>
+                    <td class="apellido">the Bird</td>
+                    <td class="usuario">@twitter</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">4</th>
+                    <td class="nombre">Steve</td>
+                    <td class="apellido">Otto</td>
+                    <td class="usuario">@mdq</td>
+                  </tr>
+                  <tr>
+                  <th scope="row">5</th>
+                    <td class="nombre">Peter</td>
+                    <td class="apellido">Thornton</td>
+                    <td class="usuario">@slim</td>
+                  </tr>
+                  <tr>
+                  <th scope="row">6</th>
+                    <td class="nombre">John</td>
+                    <td class="apellido">Big Bird</td>
+                    <td class="usuario">@twitter2</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <pre>
+                <code class="language-markup">
+                  &lt;div id="usuarios"&gt;
+                    &lt;table class="table table-striped"&gt;
+                      &lt;thead&gt;
+                        &lt;tr&gt;
+                          &lt;th&gt;#&lt;/th&gt;
+                          &lt;th&gt;Nombre&lt;/th&gt;
+                          &lt;th&gt;Apellido&lt;/th&gt;
+                          &lt;th&gt;Nombre de usuario&lt;/th&gt;
+                        &lt;/tr&gt;
+                        &lt;/thead&gt;
+                        &lt;tbody class="list"&gt;
+                        &lt;tr&gt;
+                          &lt;th scope="row"&gt;1&lt;/th&gt;
+                          &lt;td class="nombre"&gt;Mark&lt;/td&gt;
+                          &lt;td class="apellido"&gt;Otto&lt;/td&gt;
+                          &lt;td class="usuario"&gt;@mdo&lt;/td&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt;
+                        &lt;th scope="row"&gt;2&lt;/th&gt;
+                          &lt;td class="nombre"&gt;Jacob&lt;/td&gt;
+                          &lt;td class="apellido"&gt;Thornton&lt;/td&gt;
+                          &lt;td class="usuario"&gt;@fat&lt;/td&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt;
+                        &lt;th scope="row"&gt;3&lt;/th&gt;
+                          &lt;td class="nombre"&gt;Larry&lt;/td&gt;
+                          &lt;td class="apellido"&gt;the Bird&lt;/td&gt;
+                          &lt;td class="usuario"&gt;@twitter&lt;/td&gt;
+                        &lt;/tr&gt;
+                      &lt;/tbody&gt;
+                    &lt;/table&gt;
+                  &lt;/div&gt;
+                </code>
+              </pre>
+              <br>
+              <h5>Javascript relacionado</h5>
+              <pre>
+                <code class="language-javascript">
+                  var options = {
+                    valueNames: [ 'nombre', 'apellido', 'usuario' ]
+                  };
+
+                  var userList = new List('usuarios', options);
+                </code>
+              </pre>
+              <br>
+
+              <h5 id="tabla-bordes">Tabla con bordes</h5>
+              <table class="table table-bordered">
+                <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Nombre</th>
+                  <th>Apellido</th>
+                  <th>Nombre de usuario</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>@mdo</td>
+                </tr>
+                <tr>
+                <th scope="row">2</th>
+                  <td>Jacob</td>
+                  <td>Thornton</td>
+                  <td>@fat</td>
+                </tr>
+                <tr>
+                <th scope="row">3</th>
+                  <td>Larry</td>
+                  <td>the Bird</td>
+                  <td>@twitter</td>
+                </tr>
+                </tbody>
+              </table>
+
+              <br>
+              <pre>
+                <code class="language-markup">
+                  &lt;table class="table table-bordered"&gt;
+
+                  &lt;/table&gt;
+                </code>
+              </pre>
+
+              <br>
+              <h5 id="tabla-colores">Tabla con colores</h5>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Nombre de usuario</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="info">
+                    <th scope="row">1</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                  </tr>
+                  <tr class="success">
+                    <th scope="row">3</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                  </tr>
+                  <tr class="warning">
+                    <th scope="row">4</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                  </tr>
+                  <tr class="danger">
+                    <th scope="row">5</th>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td>@twitter</td>
+                  </tr>
+                </tbody>
+              </table>
+              <br>
+              <pre>
+                <code class="language-markup">
+
+                      &lt;tr class="info"&gt;
+                        &lt;th scope="row"&gt;1&lt;/th&gt;
+                        &lt;td&gt;Jacob&lt;/td&gt;
+                        &lt;td&gt;Thornton&lt;/td&gt;
+                        &lt;td&gt;@fat&lt;/td&gt;
+                      &lt;/tr&gt;
+                      &lt;tr class="success"&gt;
+                        &lt;th scope="row"&gt;3&lt;/th&gt;
+                        &lt;td&gt;Mark&lt;/td&gt;
+                        &lt;td&gt;Otto&lt;/td&gt;
+                        &lt;td&gt;@mdo&lt;/td&gt;
+                      &lt;/tr&gt;
+                      &lt;tr class="warning"&gt;
+                        &lt;th scope="row"&gt;4&lt;/th&gt;
+                        &lt;td&gt;Jacob&lt;/td&gt;
+                        &lt;td&gt;Thornton&lt;/td&gt;
+                        &lt;td&gt;@fat&lt;/td&gt;
+                      &lt;/tr&gt;
+                      &lt;tr class="danger"&gt;
+                        &lt;th scope="row"&gt;5&lt;/th&gt;
+                        &lt;td&gt;Larry&lt;/td&gt;
+                        &lt;td&gt;the Bird&lt;/td&gt;
+                        &lt;td&gt;@twitter&lt;/td&gt;
+                      &lt;/tr&gt;
+
+                </code>
+              </pre>
+
+              <br>
+              <h5>Tabla con hover</h5>
+              <table class="table table-hover">
+                <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Nombre</th>
+                  <th>Apellido</th>
+                  <th>Nombre de usuario</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>@mdo</td>
+                </tr>
+                <tr>
+                <th scope="row">2</th>
+                  <td>Jacob</td>
+                  <td>Thornton</td>
+                  <td>@fat</td>
+                </tr>
+                <tr>
+                <th scope="row">3</th>
+                  <td>Larry</td>
+                  <td>the Bird</td>
+                  <td>@twitter</td>
+                </tr>
+                </tbody>
+              </table>
+
+              <br>
+              <pre>
+                <code class="language-markup">
+                  &lt;table class="table table-hover"&gt;
+                      ......
+                  &lt;/table&gt;
+                </code>
+              </pre>
+
+              <!-- Forms -->
+              <hr>
+              <h3 id="formularios">Ejemplo de formulario</h3>
+
+              <p>Los formulario permite que el usuario cargue datos y sean enviados al servidor. Es el medio ideal para realizar logueos, establecer contacto, sacar turnos, etc.</p>
+<br>
+              <form>
+                <h5>Tamaño de los campos para formulario</h5>
+                <div class="form-group"><input class="form-control input-lg" type="text" placeholder=".input-lg"></div>
+                <div class="form-group"><input class="form-control" type="text" placeholder=".input-default"></div>
+                <div class="form-group"><input class="form-control input-sm" type="text" placeholder=".input-sm"></div>
+
+                <br>
+                <pre>
+                  <code class="language-markup">
+                    &lt;form&gt;
+                      &lt;div class="form-group"&gt;
+                        &lt;input class="form-control input-lg" type="text" placeholder=".input-lg"&gt;
+                      &lt;/div&gt;
+                      &lt;div class="form-group"&gt;
+                        &lt;input class="form-control" type="text" placeholder=".input-default"&gt;
+                      &lt;/div&gt;
+                      &lt;div class="form-group"&gt;
+                        &lt;input class="form-control input-sm" type="text" placeholder=".input-sm"&gt;
+                      &lt;/div&gt;
+                     &lt;/form&gt;
+                  </code>
+                </pre>
+                <br>
+
+                <div class="form-group"><select class="form-control input-lg"><option value="">.input-lg</option></select></div>
+                <div class="form-group"><select class="form-control"><option value="">Default</option></select></div>
+                <div class="form-group"><select class="form-control input-sm"><option value="">.input-sm</option></select></div>
+
+                <br>
+                <pre>
+                  <code class="language-markup">
+                    &lt;form&gt;
+                      &lt;div class="form-group"&gt;
+                        &lt;select class="form-control input-lg"&gt;&lt;option value=""&gt;.input-lg&lt;/option&gt;&lt;/select&gt;
+                      &lt;/div&gt;
+                      &lt;div class="form-group"&gt;
+                        &lt;select class="form-control"&gt;&lt;option value=""&gt;Default&lt;/option&gt;&lt;/select&gt;
+                      &lt;/div&gt;
+                      &lt;div class="form-group"&gt;
+                        &lt;select class="form-control input-sm"&gt;&lt;option value=""&gt;.input-sm&lt;/option&gt;&lt;/select&gt;
+                      &lt;/div&gt;
+                     &lt;/form&gt;
+                  </code>
+                </pre>
+                <br>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Dirección Email</label>
+                  <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Contraseña</label>
+                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña">
+                </div>
+                <div class="form-group">
+                  <p>Adjuntar archivo:</p>
+                  <input type="file" id="exampleInputFile" class="inputfile">
+                  <label for="exampleInputFile">Seleccionar archivo</label>
+                </div>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox"> Campo de verificación (Check)
+                  </label>
+                </div>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+              </form>
+
+              <br>
+                <pre>
+                  <code class="language-markup">
+                    &lt;form&gt;
+                      &lt;div class="form-group"&gt;
+                        &lt;label for="exampleInputEmail1"&gt;Dirección Email&lt;/label&gt;
+                        &lt;input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email"&gt;
+                      &lt;/div&gt;
+                      &lt;div class="form-group"&gt;
+                        &lt;label for="exampleInputPassword1"&gt;Contraseña&lt;/label&gt;
+                        &lt;input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña"&gt;
+                      &lt;/div&gt;
+                      &lt;div class="form-group"&gt;
+                        &lt;p&gt;Adjuntar archivo:&lt;/p&gt;
+                        &lt;input type="file" id="exampleInputFile" class="inputfile"&gt;
+                        &lt;label for="exampleInputFile"&gt;Seleccionar archivo&lt;/label&gt;
+                      &lt;/div&gt;
+                      &lt;div class="checkbox"&gt;
+                        &lt;label&gt;
+                          &lt;input type="checkbox"&gt; Campo de verificación (Check)
+                        &lt;/label&gt;
+                      &lt;/div&gt;
+                      &lt;button type="submit" class="btn btn-primary"&gt;Enviar&lt;/button&gt;
+                     &lt;/form&gt;
+                  </code>
+                </pre>
+
+              <hr>
+              <h3 id="form-state">Estado de validación </h3>
+
+              <div class="form-group has-success has-feedback">
+                <label class="control-label" for="inputSuccess2">Campo de entrada con éxito</label>
+                <input type="text" class="form-control" id="inputSuccess2">
+                <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+              </div>
+              <div class="form-group has-success has-feedback">
+                <label class="control-label" for="inputSuccess2">Campo de entrada pequeño con éxito</label>
+                <input type="text" class="form-control input-sm" id="inputSuccess2">
+                <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+              </div>
+              <div class="form-group has-warning has-feedback">
+                <label class="control-label" for="inputWarning2">Campo de entrada con advertencia</label>
+                <input type="text" class="form-control" id="inputWarning2">
+                <span class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
+              </div>
+              <div class="form-group has-error has-feedback">
+                <label class="control-label" for="inputError2">Campo de entrada con error</label>
+                <input type="text" class="form-control" id="inputError2">
+                <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+              </div>
+
+              <br>
+              <pre>
+                <code class="language-markup">
+                  &lt;div class="form-group has-success has-feedback"&gt;
+                    &lt;label class="control-label" for="inputSuccess2"&gt;Campo de entrada con éxito&lt;/label&gt;
+                    &lt;input type="text" class="form-control" id="inputSuccess2"&gt;
+                    &lt;span class="glyphicon glyphicon-ok form-control-feedback"&gt;&lt;/span&gt;
+                  &lt;/div&gt;
+                  &lt;div class="form-group has-success has-feedback"&gt;
+                    &lt;label class="control-label" for="inputSuccess2"&gt;Campo de entrada pequeño con éxito&lt;/label&gt;
+                    &lt;input type="text" class="form-control input-sm" id="inputSuccess2"&gt;
+                    &lt;span class="glyphicon glyphicon-ok form-control-feedback"&gt;&lt;/span&gt;
+                  &lt;/div&gt;
+                  &lt;div class="form-group has-warning has-feedback"&gt;
+                    &lt;label class="control-label" for="inputWarning2"&gt;Campo de entrada con advertencia&lt;/label&gt;
+                    &lt;input type="text" class="form-control" id="inputWarning2"&gt;
+                    &lt;span class="glyphicon glyphicon-warning-sign form-control-feedback"&gt;&lt;/span&gt;
+                  &lt;/div&gt;
+                  &lt;div class="form-group has-error has-feedback"&gt;
+                    &lt;label class="control-label" for="inputError2"&gt;Campo de entrada con error&lt;/label&gt;
+                    &lt;input type="text" class="form-control" id="inputError2"&gt;
+                    &lt;span class="glyphicon glyphicon-remove form-control-feedback"&gt;&lt;/span&gt;
+                  &lt;/div&gt;
+                </code>
+              </pre>
+
+              <hr>
+
+              <h3 id="form-specialfields">Campos especiales</h3>
+
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-btn">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Acción</button>
+                    <ul class="dropdown-menu">
+                      <li><a href="#">Acción 1</a></li>
+                      <li><a href="#">Acción 2</a></li>
+                      <li><a href="#">Acción 3</a></li>
+                      <li class="divider">
+                      <li><a href="#">Acción 4</a></li>
+                    </ul>
+                  </div>
+<!-- /btn-group -->
+                  <input type="text" class="form-control">
+                </div>
+<!-- /input-group -->
+              </div>
+              <pre>
+                <code class="language-markup">
+                  &lt;div class="form-group"&gt;
+                    &lt;div class="input-group"&gt;
+                      &lt;div class="input-group-btn"&gt;
+                        &lt;button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"&gt;Acción&lt;/button&gt;
+                        &lt;ul class="dropdown-menu"&gt;
+                          &lt;li&gt;&lt;a href="#"&gt;Acción 1&lt;/a&gt;&lt;/li&gt;
+                          &lt;li&gt;&lt;a href="#"&gt;Acción 2&lt;/a&gt;&lt;/li&gt;
+                          &lt;li&gt;&lt;a href="#"&gt;Acción 3&lt;/a&gt;&lt;/li&gt;
+                          &lt;li class="divider"&gt;&lt;/li&gt;
+                          &lt;li&gt;&lt;a href="#"&gt;Acción 4&lt;/a&gt;&lt;/li&gt;
+                        &lt;/ul&gt;
+                      &lt;/div&gt;&lt;!-- /btn-group --&gt;
+                      &lt;input type="text" class="form-control"&gt;
+                    &lt;/div&gt;
+                  &lt;/div&gt;
+                </code>
+              </pre>
+              <br>
+              <div class="form-group">
+                <div class="input-group">
+                  <input class="form-control" type="text">
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="button">IR!</button>
+                  </span>
+                </div>
+              </div>
+              <pre>
+                <code class="language-markup">
+                  &lt;div class="form-group"&gt;
+                    &lt;div class="input-group"&gt;
+                      &lt;input class="form-control" type="text"&gt;
+                      &lt;span class="input-group-btn"&gt;
+                        &lt;button class="btn btn-default" type="button"&gt;IR!&lt;/button&gt;
+                      &lt;/span&gt;
+                    &lt;/div&gt;
+                  &lt;/div&gt;
+                </code>
+              </pre>
+              <br>
+              <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">@</span>
+                <input type="text" class="form-control" placeholder="Nombre de usuario" aria-describedby="basic-addon1">
+              </div>
+              <br>
+              <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
+                <input type="text" class="form-control" placeholder="Nombre de usuario" aria-describedby="basic-addon1">
+              </div>
+              <br>
+              <pre>
+                <code class="language-markup">
+                  &lt;div class="input-group"&gt;
+                    &lt;span class="input-group-addon" id="basic-addon1"&gt;@&lt;/span&gt;
+                    &lt;input type="text" class="form-control" placeholder="Nombre de usuario" aria-describedby="basic-addon1"&gt;
+                  &lt;/div&gt;
+                  &lt;!-- --&gt;
+                  &lt;div class="input-group"&gt;
+                    &lt;span class="input-group-addon" id="basic-addon1"&gt;&lt;span class="glyphicon glyphicon-user"&gt;&lt;/span&gt;&lt;/span&gt;
+                    &lt;input type="text" class="form-control" placeholder="Nombre de usuario" aria-describedby="basic-addon1"&gt;
+                  &lt;/div&gt;
+                </code>
+              </pre>
+              <br>
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="Nombre de usuario del receptor" aria-describedby="basic-addon2">
+                <span class="input-group-addon" id="basic-addon2">@ejemplo.com</span>
+              </div>
+              <br>
+              <pre>
+                <code class="language-markup">
+                  &lt;div class="input-group"&gt;
+                    &lt;input type="text" class="form-control" placeholder="Nombre de usuario del receptor" aria-describedby="basic-addon2"&gt;
+                    &lt;span class="input-group-addon" id="basic-addon2"&gt;@ejemplo.com&lt;/span&gt;
+                  &lt;/div&gt;
+                </code>
+              </pre>
+              <br>
+              <div class="input-group">
+                <span class="input-group-addon">$</span>
+                <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                <span class="input-group-addon">.00</span>
+              </div>
+              <br>
+              <pre>
+                <code class="language-markup">
+                  &lt;div class="input-group"&gt;
+                    &lt;span class="input-group-addon"&gt;$&lt;/span&gt;
+                    &lt;input type="text" class="form-control" aria-label="Amount (to the nearest dollar)"&gt;
+                    &lt;span class="input-group-addon"&gt;.00&lt;/span&gt;
+                  &lt;/div&gt;
+                </code>
+              </pre>
+              <br>
+              <label for="basic-url">Dirección de enlace</label>
+              <div class="input-group">
+                <span class="input-group-addon" id="basic-addon3">https://ejemplo.com/usuarios/</span>
+                <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+              </div>
+
+              <br>
+              <pre>
+                <code class="language-markup">
+                  &lt;div class="input-group"/&gt;
+                    &lt;span class="input-group-addon" id="basic-addon3"&gt;https://ejemplo.com/usuarios/&lt;/span/&gt;
+                    &lt;input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3"/&gt;
+                  &lt;/div/&gt;
+
+                </code>
+              </pre>
+
+              <hr>
+
+              <!-- Buttons-->
+              <h3 id="botones">Botones</h3>
+
+              <p>
+                <button type="button" class="btn btn-default">Default</button>
+                <button type="button" class="btn btn-primary">Primary</button>
+                <button type="button" class="btn btn-success">Success</button>
+                <button type="button" class="btn btn-info disabled">Disabled</button>
+                <button type="button" class="btn btn-info disabled state-loading">Cargando</button>
+              </p>
+              <pre>
+                <code class="language-markup">
+
+                  &lt;button type="button" class="btn btn-default"&gt;Default&lt;/button&gt;
+                  &lt;button type="button" class="btn btn-primary"&gt;Primary&lt;/button&gt;
+                  &lt;button type="button" class="btn btn-success"&gt;Success&lt;/button&gt;
+                  &lt;button type="button" class="btn btn-info disabled"&gt;Disabled&lt;/button&gt;
+                  &lt;button type="button" class="btn btn-info disabled state-loading"&gt;Cargando&lt;/button&gt;
+
+                </code>
+              </pre>
+              <br>
+              <p>
+                <button type="button" class="btn btn-info">Info</button>
+                <button type="button" class="btn btn-warning">Warning</button>
+                <button type="button" class="btn btn-danger">Danger</button>
+                <button type="button" class="btn btn-link">Link</button>
+                <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-map-marker"></span>   Boton con ícono</button>
+              </p>
+              <br>
+              <pre>
+                <code class="language-markup">
+                  &lt;button type="button" class="btn btn-info"&gt;Info&lt;/button&gt;
+                  &lt;button type="button" class="btn btn-warning"&gt;Warning&lt;/button&gt;
+                  &lt;button type="button" class="btn btn-danger"&gt;Danger&lt;/button&gt;
+                  &lt;button type="button" class="btn btn-link"&gt;Link&lt;/button&gt;
+                  &lt;button type="button" class="btn btn-primary"&gt;&lt;span class="glyphicon glyphicon-map-marker"&gt;&lt;/span&gt;   Boton con ícono&lt;/button&gt;
+                </code>
+              </pre>
+
+              <hr>
+              <h3>Tamaños de botones</h3>
+              <p>
+                <button type="button" class="btn btn-primary btn-lg">Boton grande (btn-lg)</button>
+                <button type="button" class="btn btn-default btn-lg">Boton grande (btn-lg)</button>
+              </p>
+              <p>
+                <button type="button" class="btn btn-primary">Boton default (btn-primary)</button>
+                <button type="button" class="btn btn-default">Boton default (btn-default)</button>
+              </p>
+              <p>
+                <button type="button" class="btn btn-primary btn-sm">Boton chico (btn-sm)</button>
+                <button type="button" class="btn btn-default btn-sm">Boton chico (btn-sm)</button>
+              </p>
+              <p>
+                <button type="button" class="btn btn-primary btn-xs">Boton extra chico (btn-xs)</button>
+                <button type="button" class="btn btn-default btn-xs">Boton extra chico (btn-xs)</button>
+              </p>
+              <br>
+              <pre>
+                <code class="language-markup">
+                  &lt;button type="button" class="btn btn-primary btn-lg"&gt;...&lt;/button&gt;
+                  &lt;button type="button" class="btn btn-default btn-lg"&gt;...&lt;/button&gt;
+                  &lt;button type="button" class="btn btn-primary"&gt;...&lt;/button&gt;
+                  &lt;button type="button" class="btn btn-default"&gt;...&lt;/button&gt;
+                  &lt;button type="button" class="btn btn-primary btn-sm"&gt;...&lt;/button&gt;
+                  &lt;button type="button" class="btn btn-default btn-sm"&gt;...&lt;/button&gt;
+                  &lt;button type="button" class="btn btn-primary btn-xs"&gt;...&lt;/button&gt;
+                  &lt;button type="button" class="btn btn-default btn-xs"&gt;...&lt;/button&gt;
+                </code>
+              </pre>
+
+              <hr>
+              <h3 id="imagenes">Imágenes</h3>
+              <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgdmlld0JveD0iMCAwIDE0MCAxNDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzE0MHgxNDAKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xNTJmOWQxZWZiMSB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE1MmY5ZDFlZmIxIj48cmVjdCB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjQ1LjUiIHk9Ijc0LjUiPjE0MHgxNDA8L3RleHQ+PC9nPjwvZz48L3N2Zz4=" alt="" class="img-rounded">
+
+               
+
+              <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgdmlld0JveD0iMCAwIDE0MCAxNDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzE0MHgxNDAKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xNTJmOWQxZWZiMSB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE1MmY5ZDFlZmIxIj48cmVjdCB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjQ1LjUiIHk9Ijc0LjUiPjE0MHgxNDA8L3RleHQ+PC9nPjwvZz48L3N2Zz4=" alt="" class="img-circle">
+
+              <br>
+              <br>
+              <pre>
+                <code class="language-markup">
+                  &lt;img src="#" alt="" class="img-rounded"&gt;
+                  &lt;img src="#" alt="" class="img-circle"&gt;
+                </code>
+
+              </pre>
+
+              <hr>
+
+              <h3 id="clases-auxiliares">Clases auxiliares</h3>
+
+              <p class="text-muted">Fusce dapibus, tellus ac cursus commodo, tortor mauris nibh.</p>
+              <p class="text-primary">Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+              <p class="text-success">Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
+              <p class="text-info">Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+              <p class="text-warning">Etiam porta sem malesuada magna mollis euismod.</p>
+              <p class="text-danger">Donec ullamcorper nulla non metus auctor fringilla.</p>
+
+              <br>
+              <pre>
+                <code class="language-markup">
+                  &lt;p class="text-muted"&gt;Fusce dapibus, tellus ac cursus commodo, tortor mauris nibh.&lt;/p&gt;
+                  &lt;p class="text-primary"&gt;Nullam id dolor id nibh ultricies vehicula ut id elit.&lt;/p&gt;
+                  &lt;p class="text-success"&gt;Duis mollis, est non commodo luctus, nisi erat porttitor ligula.&lt;/p&gt;
+                  &lt;p class="text-info"&gt;Maecenas sed diam eget risus varius blandit sit amet non magna.&lt;/p&gt;
+                  &lt;p class="text-warning"&gt;Etiam porta sem malesuada magna mollis euismod.&lt;/p&gt;
+                  &lt;p class="text-danger"&gt;Donec ullamcorper nulla non metus auctor fringilla.&lt;/p&gt;
+                </code>
+              </pre>
+
+              <hr>
+
+
+              <h3 id="sticky-footer">Pie de página fijo.</h3>
+              <p>Esta clase se utiliza en casos donde el contenido es poco, ocasionando que el pie de página pierda su posicion en la parte inferior.</p>
+
+              <pre>
+                <code class="language-markup">
+                  &lt;footer class="main-footer sticky-footer"&gt;
+                    &lt;div class="container"&gt;
+                      .......
+                    &lt;/div&gt;
+                  &lt;/footer&gt;
+                </code>
+              </pre>
+              <br>
+
+            </div>
+
+            <div>
+
+              <h2 id="components" class="m-b-3">Componentes</h2>
+
+              <!-- DropDown -->
+              <h3 id="boton-con-desplegable">Botón con desplegable </h3>
+              <!-- Single button -->
+              <div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">  Default <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Action</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li role="separator" class="divider">
+                  <li><a href="#">Separated link</a></li>
+                </ul>
+              </div>
+              <div class="btn-group">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">  Primary <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Action</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li role="separator" class="divider">
+                  <li><a href="#">Separated link</a></li>
+                </ul>
+              </div>
+              <div class="btn-group">
+                <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">  Success <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Action</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li role="separator" class="divider">
+                  <li><a href="#">Separated link</a></li>
+                </ul>
+              </div>
+              <div class="btn-group">
+                <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Info <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Action</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li role="separator" class="divider">
+                  <li><a href="#">Separated link</a></li>
+                </ul>
+              </div>
+              <div class="btn-group">
+                <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">  Warning <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Action</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li role="separator" class="divider">
+                  <li><a href="#">Separated link</a></li>
+                </ul>
+              </div>
+              <div class="btn-group">
+                <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Danger <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Action</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li role="separator" class="divider">
+                  <li><a href="#">Separated link</a></li>
+                </ul>
+              </div>
+              <br>
+              <pre>
+                <code class="language-markup">
+                  &lt;div class="btn-group"&gt;
+                    &lt;button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"&gt;  Default &lt;span&gt;class="caret"&gt;&lt;/span&gt;&lt;/button&gt;
+                    &lt;ul class="dropdown-menu"&gt;
+                      &lt;li&gt;&lt;a href="#"&gt;Action&lt;/a&gt;&lt;/li&gt;
+                      &lt;li&gt;&lt;a href="#"&gt;Another action&lt;/a&gt;&lt;/li&gt;
+                      &lt;li&gt;&lt;a href="#"&gt;Something else here&lt;/a&gt;&lt;/li&gt;
+                      &lt;li role="separator" class="divider"&gt;&lt;/li&gt;
+                      &lt;li&gt;&lt;a href="#"&gt;Separated link&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                  &lt;/div&gt;
+                </code>
+              </pre>
+
+              <hr>
+
+              <h3 id="grupo-de-botones">Grupo de botones</h3>
+
+              <div class="btn-group" role="group" aria-label="...">
+                <button type="button" class="btn btn-default">Izquierda (left)</button>
+                <button type="button" class="btn btn-default">Centro (middle)</button>
+                <button type="button" class="btn btn-default">Derecha (right)</button>
+              </div>
+
+              <!-- Single button -->
+              <div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Acción <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Acción 1</a></li>
+                  <li><a href="#">Acción 2</a></li>
+                  <li><a href="#">Acción 3</a></li>
+                  <li role="separator" class="divider">
+                  <li><a href="#">Acción 4</a></li>
+                </ul>
+              </div>
+
+              <hr>
+
+              <h3>Pestañas</h3>
+
+              <ul class="nav nav-tabs">
+                <li role="presentation" class="active"><a href="#">Inicio</a></li>
+                <li role="presentation"><a href="#">Perfil</a></li>
+                <li role="presentation"><a href="#">Mensajes</a></li>
+              </ul>
+              <br>
+              <pre>
+                <code class="language-markup">
+                  &lt;ul class="nav nav-tabs"&gt;
+                    &lt;li role="presentation" class="active"&gt;<a href="#">Inicio</a>&lt;/li&gt;
+                    &lt;li role="presentation"&gt;<a href="#">Perfil</a>&lt;/li&gt;
+                    &lt;li role="presentation"&gt;<a href="#">Mensajes</a>&lt;/li&gt;
+                  &lt;/ul&gt;
+                </code>
+              </pre>
+
+              <hr>
+
+              <h3 id="navbar">Barra de navegación </h3>
+
+              <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                  <!-- Brand and toggle get grouped for better mobile display -->
+                  <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#"><img src="img/argentinagob.svg" height="50" alt=""></a>
+                  </div>
+
+                  <!-- Collect the nav links, forms, and other content for toggling -->
+                  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                      <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+                      <li><a href="#">Link</a></li>
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Desplegable <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                          <li><a href="#">Action</a></li>
+                          <li><a href="#">Another action</a></li>
+                          <li><a href="#">Something else here</a></li>
+                          <li role="separator" class="divider">
+                          <li><a href="#">Separated link</a></li>
+                          <li role="separator" class="divider">
+                          <li><a href="#">One more separated link</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="#">Link</a></li>
+                      <li>
+                        <ul class="dropdown-menu">
+                          <li><a href="#">Action</a></li>
+                          <li><a href="#">Another action</a></li>
+                          <li><a href="#">Something else here</a></li>
+                          <li role="separator" class="divider">
+                          <li><a href="#">Separated link</a></li>
+                          <li role="separator" class="divider">
+                          <li><a href="#">One more separated link</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+<!-- /.navbar-collapse -->
+                </div>
+<!-- /.container-fluid -->
+              </nav>
+
+              <br>
+              <pre>
+                <code class="language-markup">
+                  &lt;nav class="navbar navbar-default"&gt;
+                    &lt;div class="container-fluid"&gt;
+                      &lt;!-- Brand and toggle get grouped for better mobile display --&gt;
+                      &lt;div class="navbar-header"&gt;
+                        &lt;button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"&gt;
+                          &lt;span class="sr-only"&gt;Toggle navigation&lt;/span&gt;
+                          &lt;span class="icon-bar"&gt;&lt;/span&gt;
+                          &lt;span class="icon-bar"&gt;&lt;/span&gt;
+                          &lt;span class="icon-bar"&gt;&lt;/span&gt;
+                        &lt;/button&gt;
+                        &lt;a class="navbar-brand" href="#"&gt;&lt;img src="img/argentinagob.svg" height="50" alt=""&gt;&lt;/a&gt;
+                      &lt;/div&gt;
+
+                      &lt;!-- Collect the nav links, forms, and other content for toggling --&gt;
+                      &lt;div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"&gt;
+                        &lt;ul class="nav navbar-nav navbar-right"&gt;
+                          &lt;li class="active"&gt;&lt;a href="#"&gt;Link &lt;span class="sr-only"&gt;(current)&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                          &lt;li&gt;&lt;a href="#"&gt;Link&lt;/a&gt;&lt;/li&gt;
+                          &lt;li class="dropdown"&gt;
+                            &lt;a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"&gt;Desplegable &lt;span&gt;class="caret"&gt;&lt;/span&gt;&lt;/a&gt;
+                            &lt;ul class="dropdown-menu"&gt;
+                              &lt;li&gt;&lt;a href="#"&gt;Action&lt;/a&gt;&lt;/li&gt;
+                              &lt;li&gt;&lt;a href="#"&gt;Another action&lt;/a&gt;&lt;/li&gt;
+                              &lt;li&gt;&lt;a href="#"&gt;Something else here&lt;/a&gt;&lt;/li&gt;
+                              &lt;li role="separator" class="divider"&gt;&lt;/li&gt;
+                              &lt;li&gt;&lt;a href="#"&gt;Separated link&lt;/a&gt;&lt;/li&gt;
+                              &lt;li role="separator" class="divider"&gt;&lt;/li&gt;
+                              &lt;li&gt;&lt;a href="#"&gt;One more separated link&lt;/a&gt;&lt;/li&gt;
+                            &lt;/ul&gt;
+                          &lt;/li&gt;
+                          &lt;li&gt;&lt;a href="#"&gt;Link&lt;/a&gt;&lt;/li&gt;
+                          &lt;li&gt;
+                            &lt;ul class="dropdown-menu"&gt;
+                              &lt;li&gt;&lt;a href="#"&gt;Action&lt;/a&gt;&lt;/li&gt;
+                              &lt;li&gt;&lt;a href="#"&gt;Another action&lt;/a&gt;&lt;/li&gt;
+                              &lt;li&gt;&lt;a href="#"&gt;Something else here&lt;/a&gt;&lt;/li&gt;
+                              &lt;li role="separator" class="divider"&gt;&lt;/li&gt;
+                              &lt;li&gt;&lt;a href="#"&gt;Separated link&lt;/a&gt;&lt;/li&gt;
+                              &lt;li role="separator" class="divider"&gt;&lt;/li&gt;
+                              &lt;li&gt;&lt;a href="#"&gt;One more separated link&lt;/a&gt;&lt;/li&gt;
+                            &lt;/ul&gt;
+                          &lt;/li&gt;
+                        &lt;/ul&gt;
+                      &lt;/div&gt;&lt;!-- /.navbar-collapse --&gt;
+                    &lt;/div&gt;&lt;!-- /.container-fluid --&gt;
+                  &lt;/nav&gt;
+                </code>
+              </pre>
+
+              <hr>
+
+              <h3 id="breadcrumb">BreadCrumb - Referencia de ubicación</h3>
+              <ol class="breadcrumb">
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Sección</a></li>
+                <li class="active">Artículo</li>
+              </ol>
+              <br>
+              <pre>
+                <code class="language-markup">
+                  &lt;ol class="breadcrumb"&gt;
+                    &lt;li&gt;<a href="#">Inicio</a>&lt;/li&gt;
+                    &lt;li&gt;<a href="#">Sección</a>&lt;/li&gt;
+                    &lt;li class="active"&gt;Artículo&lt;/li&gt;
+                  &lt;/ol&gt;
+                </code>
+              </pre>
+              <hr>
+
+              <!-- Pagination -->
+              <h3 id="pagination">Paginación</h3>
+              <nav>
+                <ul class="pagination">
+                  <li>
+                    <a href="#" aria-label="Previous">
+                      <span aria-hidden="true">«</span>
+                    </a>
+                  </li>
+                  <li class="active"><a href="#">1</a></li>
+                  <li><a href="#">2</a></li>
+                  <li><a href="#">3</a></li>
+                  <li><a href="#">4</a></li>
+                  <li><a href="#">5</a></li>
+                  <li><a href="#">6</a></li>
+                  <li><a href="#">7</a></li>
+                  <li><a href="#">8</a></li>
+                  <li><a href="#">9</a></li>
+                  <li>
+                    <a href="#" aria-label="Next">
+                      <span aria-hidden="true">»</span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+              <br>
+              <pre>
+                <code class="language-markup">
+                  &lt;ul class="pagination"&gt;
+                    &lt;li&gt;
+                      &lt;a href="#" aria-label="Previous"&gt;
+                        &lt;span aria-hidden="true"&gt;«&lt;/span&gt;
+                      &lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li class="active"&gt;&lt;a href="#"&gt;1&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="#"&gt;2&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="#"&gt;3&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="#"&gt;4&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="#"&gt;5&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="#"&gt;6&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="#"&gt;7&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="#"&gt;8&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="#"&gt;9&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;
+                      &lt;a href="#" aria-label="Next"&gt;
+                        &lt;span aria-hidden="true"&gt;»&lt;/span&gt;
+                      &lt;/a&gt;
+                    &lt;/li&gt;
+                  &lt;/ul&gt;
+                </code>
+              </pre>
+              <hr>
+
+              <h3 id="contenido">Contenido</h3>
+              <h4 id="grupo-de-lista">Grupo de lista </h4>
+              <ul class="list-group">
+                <li class="list-group-item">Cras justo odio</li>
+                <li class="list-group-item">Dapibus ac facilisis in</li>
+                <li class="list-group-item">
+<span class="badge">14</span> Morbi leo risus</li>
+                <li class="list-group-item">Porta ac consectetur ac</li>
+                <li class="list-group-item">Vestibulum at eros</li>
+              </ul>
+              <br>
+              <pre>
+                <code class="language-markup">
+                  &lt;ul class="list-group"&gt;
+                    &lt;li class="list-group-item"&gt;Cras justo odio&lt;/li&gt;
+                    &lt;li class="list-group-item"&gt;Dapibus ac facilisis in&lt;/li&gt;
+                    &lt;li class="list-group-item"&gt;&lt;span class="badge"&gt;14&lt;/span&gt; Morbi leo risus&lt;/li&gt;
+                    &lt;li class="list-group-item"&gt;Porta ac consectetur ac&lt;/li&gt;
+                    &lt;li class="list-group-item"&gt;Vestibulum at eros&lt;/li&gt;
+                  &lt;/ul&gt;
+                </code>
+              </pre>
+
+              <hr>
+
+              <h4 id="paneles">Panel </h4>
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  Ejemplo de panel básico
+                </div>
+              </div>
+              <p>Panel link no destacado</p>
+              <a class="panel panel-default" href="#">
+                  <div class="panel-body">
+                    <h3>Este es el título del link</h3>
+                  </div>
+                </a>
+              <p>Panel links no destacados con descripción</p>
+              <a class="panel panel-default" href="#">
+                <div class="panel-body">
+                  <h3>Ministerio de Economía</h3>
+                  <p class="text-muted">quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
+                </div>
+              </a>
+
+              <br>
+               <pre>
+                 <code class="language-markup">
+                    &lt;div class="panel panel-default"&gt;
+                      &lt;div class="panel-body"&gt;
+                        Ejemplo de panel básico
+                      &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;!--  -- &gt;
+                    &lt;a class="panel panel-default" href="#"&gt;
+                      &lt;div class="panel-body"&gt;
+                        &lt;h3&gt;Este es el título del link&lt;/h3&gt;
+                      &lt;/div&gt;
+                    &lt;/a&gt;
+                    &lt;!--  -- &gt;
+                    &lt;a class="panel panel-default" href="#"&gt;
+                      &lt;div class="panel-body"&gt;
+                        &lt;h3&gt;Ministerio de Economía&lt;/h3&gt;
+                        &lt;p class="text-muted"&gt;quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo&lt;/p&gt;
+                      &lt;/div&gt;
+                    &lt;/a&gt;
+
+                 </code>
+               </pre>
+             <br>
+
+              <div class="row">
+                <div class="col-sm-6 col-md-4">
+                  <p>Panel links destacados con iconos y descripción</p>
+                  <a class="panel panel-default panel-icon" href="#">
+                    <div class="panel-heading"><i class="fa fa-file"></i></div>
+                    <div class="panel-body">
+                      <h3>Ministerio de Economía</h3>
+                      <p class="text-muted">quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
+                    </div>
+                  </a>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                  <p>Panel links destacados con fotos</p>
+                  <a class="panel panel-default" href="#">
+                    <div style="background-image:url('img/placeholder.png');" class="panel-heading"></div>
+                    <div class="panel-body">
+                      <h3>Este es el título del link</h3>
+                    </div>
+                  </a>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                  <p>Panel Noticia Destacada</p>
+                  <a class="panel panel-default panel-md" href="#">
+                    <div style="background-image:url('./img/placeholder.png');" class="panel-heading"></div>
+                    <div class="panel-body">
+                      <time>Jueves 14 de Enero del 2016</time>
+                      <h4>El Ministro Buryaile asistió a la apertura de la Semana Verde Internacional, en Berlín</h4>
+                    </div>
+                  </a>
+                </div>
+
+              </div>
+
+
+              <br>
+              <pre>
+                <code class="language-markup">
+                  &lt;a class="panel panel-default panel-icon" href="#"&gt;
+                    &lt;div class="panel-heading"&gt;&lt;i class="fa fa-file"&gt;&lt;/i&gt;&lt;/div&gt;
+                    &lt;div class="panel-body"&gt;
+                      &lt;h3&gt;Ministerio de Economía&lt;/h3&gt;
+                      &lt;p class="text-muted"&gt;quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo&lt;/p&gt;
+                    &lt;/div&gt;
+                  &lt;/a&gt;
+                  &lt;!-- -- &gt;
+                  &lt;a class="panel panel-default panel-md" href="#"&gt;
+                    &lt;div style="background-image:url('./img/placeholder.png');" class="panel-heading"&gt;&lt;/div&gt;
+                    &lt;div class="panel-body"&gt;
+                      &lt;time&gt;Jueves 14 de Enero del 2016&lt;/time&gt;
+                      &lt;h4&gt;El Ministro Buryaile asistió a la apertura de la Semana Verde Internacional, en Berlín&lt;/h4&gt;
+                    &lt;/div&gt;
+                  &lt;/a&gt;
+                </code>
+              </pre>
+              <br>
+
+              <h4>Panel con estado cargando</h4>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="panel panel-default panel-icon panel-primary margin-40 state-loading" href="#">
+                    <div class="panel-heading"><i class="fa fa-check-square-o"></i></div>
+                    <div class="panel-body">
+                      <h2>¿Este es tu número de CUIT?</h2>
+                      <p class="h2"><strong>2222324252</strong></p>
+                      <p>lo calculamos a partir de tus datos pero no siempre coincide</p>
+                      <p><a href="cuit-ingresado.html" class="btn btn-primary btn-block">Si, es mi número de cuit</a></p>
+                    </div>
+                    <div class="panel-footer">
+                      <a href="cuit-no-coincidente.html">Si no es tu número de cuit, ingresá el numero correcto</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <pre>
+                <code class="language-markup">
+                  &lt;div class="panel panel-default panel-icon panel-primary margin-40 panel-loading" href="#"&gt;
+                    &lt;div class="panel-heading"&gt;<i class="fa fa-check-square-o"></i>&lt;/div&gt;
+                    &lt;div class="panel-body"&gt;
+                      &lt;h2&gt;¿Este es tu número de CUIT?&lt;/h2&gt;
+                      &lt;p class="h2"&gt;&lt;strong&gt;2222324252&lt;/strong&gt;&lt;/p&gt;
+                      &lt;p&gt;lo calculamos a partir de tus datos pero no siempre coincide&lt;/p&gt;
+                      &lt;p&gt;&lt;a href="cuit-ingresado.html" class="btn btn-primary btn-block"&gt;Si, es mi número de cuit&lt;/a&gt;&lt;/p&gt;
+                    &lt;/div&gt;
+                    &lt;div class="panel-footer"&gt;
+                      &lt;a href="cuit-no-coincidente.html"&gt;Si no es tu número de cuit, ingresá el numero correcto&lt;/a&gt;
+                    &lt;/div&gt;
+                  &lt;/div&gt;
+                </code>
+              </pre>
+
+              <hr>
+
+              <h4 id="wells">Wells </h4>
+              <p>Utilice el well para darle un efecto de inserción a un elemento .</p>
+              <div class="well"><span>Texto referencia.</span></div>
+              <div class="well well-lg"><h1>Texto referencia.</h1></div>
+              <div class="well well-sm"><span><small>Texto referencia.</small></span></div>
+              <br>
+              <pre>
+                <code class="language-markup">
+                  &lt;div class="well well-lg"&gt;
+                    &lt;h1&gt;Texto referencia.&lt;/h1&gt;
+                  &lt;/div&gt;
+                </code>
+              </pre>
+
+              <hr>
+
+              <h3 id="labels">Etiquetas</h3>
+              <span class="label label-default">Default</span>
+              <span class="label label-primary">Primary</span>
+              <span class="label label-success">Success</span>
+              <span class="label label-info">Info</span>
+              <span class="label label-warning">Warning</span>
+              <span class="label label-danger">Danger</span>
+
+              <br>
+              <pre>
+                <code class="language-markup">
+                  &lt;span class="label label-default"&gt;Default&lt;/span&gt;
+                  &lt;span class="label label-primary"&gt;Primary&lt;/span&gt;
+                  &lt;span class="label label-success"&gt;Success&lt;/span&gt;
+                  &lt;span class="label label-info"&gt;Info&lt;/span&gt;
+                  &lt;span class="label label-warning"&gt;Warning&lt;/span&gt;
+                  &lt;span class="label label-danger"&gt;Danger&lt;/span&gt;
+                </code>
+              </pre>
+              <hr>
+
+              <h3 id="badges">Etiqueta numérica</h3>
+              <p>Resaltar facilmente los elementos nuevos o no leídos mediante la adición de un span class="badge" a los enlaces, navs, y otros elementos.</p>
+              <a href="#">Bandeja de entrada    <span class="badge">42</span></a>
+              <br>
+              <br>
+              <button class="btn btn-primary" type="button">
+                Mensajes   <span class="badge">4</span>
+              </button>
+              <br>
+              <pre>
+                <code class="language-markup">
+                  &lt;a href="#"&gt;Bandeja de entrada    &lt;span class="badge"&gt;42&lt;/span&gt;&lt;/a&gt;
+                  &lt;button class="btn btn-primary" type="button"&gt;
+                    Mensajes   &lt;span class="badge"&gt;4&lt;/span&gt;
+                  &lt;/button&gt;
+                </code>
+              </pre>
+              <hr>
+
+              <h3 id="alertas">Alertas</h3>
+              <div class="alert alert-success" role="alert">Mensaje</div>
+              <div class="alert alert-info" role="alert">Mensaje</div>
+              <div class="alert alert-warning" role="alert">Mensaje</div>
+              <div class="alert alert-danger" role="alert">Mensaje</div>
+              <br>
+              <pre>
+                <code class="language-markup">
+                  &lt;div class="alert alert-success" role="alert"&gt;Mensaje&lt;/div&gt;
+                  &lt;div class="alert alert-info" role="alert"&gt;Mensaje&lt;/div&gt;
+                  &lt;div class="alert alert-warning" role="alert"&gt;Mensaje&lt;/div&gt;
+                  &lt;div class="alert alert-danger" role="alert"&gt;Mensaje&lt;/div&gt;
+                </code>
+              </pre>
+
+              <hr>
+              <h3 id="alertas-con-icono">Alertas con ícono</h3>
+              <br>
+
+              <div class="alert alert-warning">
+                  <div class="media">
+                      <div class="media-left">
+                          <i class="fa fa-arrow-circle-o-right fa-fw fa-4x"></i>
+                      </div>
+                      <div class="media-body">
+                          <h4>¿Ya iniciaste tu tramite? </h4>
+                          <p class="margin-0">Seguí el <a href="http://www.mininterior.gov.ar/tramitesyservicios/estado-tramite-dni.php" target="_blank">estado del trámite en linea</a></p>
+                      </div>
+                  </div>
+              </div>
+              <div class="alert alert-info">
+                  <div class="media">
+                      <div class="media-left">
+                          <i class="fa fa-phone fa-fw fa-4x"></i>
+                      </div>
+                      <div class="media-body">
+                          <h4><a href="">Línea gratuíta 0800-999-0209 </a></h4>
+                          <p class="margin-0">Servicio Gratuíto de Orientación y Asesoramiento al Ciudadano</p>
+                      </div>
+                  </div>
+              </div>
+
+              <br>
+              <pre>
+                <code class="language-markup">
+                  &lt;div class="alert alert-warning"&gt;
+                      &lt;div class="media"&gt;
+                          &lt;div class="media-left"&gt;
+                              &lt;i class="fa fa-arrow-circle-o-right fa-fw fa-4x"&gt;&lt;/i&gt;
+                          &lt;/div&gt;
+                          &lt;div class="media-body"&gt;
+                              &lt;h4&gt;¿Ya iniciaste tu tramite? &lt;/h4&gt;
+                              &lt;p class="margin-0"&gt;Seguí el &lt;a href="http://www.mininterior.gov.ar/tramitesyservicios/estado-tramite-dni.php" target="_blank"&gt;estado del&gt;trámite en linea&lt;/a&gt;&lt;/p&gt;
+                          &lt;/div&gt;
+                      &lt;/div&gt;
+                  &lt;/div&gt;
+                  &lt;div class="alert alert-info"&gt;
+                      &lt;div class="media"&gt;
+                          &lt;div class="media-left"&gt;
+                              &lt;i class="fa fa-phone fa-fw fa-4x"&gt;&lt;/i&gt;
+                          &lt;/div&gt;
+                          &lt;div class="media-body"&gt;
+                              &lt;h4&gt;&lt;a href=""&gt;Línea gratuíta 0800-999-0209 &lt;/a&gt;&lt;/h4&gt;
+                              &lt;p class="margin-0"&gt;Servicio Gratuíto de Orientación y Asesoramiento al Ciudadano&lt;/p&gt;
+                          &lt;/div&gt;
+                      &lt;/div&gt;
+                  &lt;/div&gt;
+                </code>
+              </pre>
+              <hr>
+
+              <h4 id="barra-progreso">Barra de progreso</h4>
+
+              <div class="progress">
+                <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                  <span class="sr-only">60% Completado</span>
+                </div>
+              </div>
+
+              <br>
+              <pre>
+                <code class="language-markup">
+                  &lt;div class="progress"&gt;
+                    &lt;div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"&gt;
+                      &lt;span class="sr-only"&gt;60% Completado&lt;/span&gt;
+                    &lt;/div&gt;
+                  &lt;/div&gt;
+                </code>
+              </pre>
+
+              <hr>
+
+
+
+              <h4 id="background-color">Colores de fondo</h4>
+              <br>
+
+              <div class="docs-colores">
+                <span class="bg-primary"></span>
+                <span class="bg-success"></span>
+                <span class="bg-info"></span>
+                <span class="bg-warning"></span>
+                <span class="bg-danger"></span>
+              </div>
+              <div class="clearfix"></div>
+              <br>
+              <pre>
+                <code class="language-markup">
+                  &lt;span class="bg-primary"&gt;&lt;/span&gt;
+                  &lt;span class="bg-success"&gt;&lt;/span&gt;
+                  &lt;span class="bg-info"&gt;&lt;/span&gt;
+                  &lt;span class="bg-warning"&gt;&lt;/span&gt;
+                  &lt;span class="bg-danger"&gt;&lt;/span&gt;
+                </code>
+              </pre>
+              <hr>
+            <div id="components">
+
+              <h3>Jumbotron</h3>
+              <div class="jumbotron" style="background-image: url('img/modernizacion.jpg');">
+                <div class="jumbotron_body">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-xs-12 col-md-8 col-md-offset-2 text-center">
+                        <h1>Hola mundo!</h1>
+                        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <p><a class="btn btn-primary btn-lg" href="#" role="button">Leer más</a></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                  <div class="overlay"></div>
+              </div>
+              <br>
+              <h3>Jumbotron con barra superior</h3>
+              <section class="jumbotron" style="background-image: url('img/modernizacion.jpg');">
+                <div class="jumbotron_bar">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <ol class="breadcrumb pull-left">
+                          <li><a href="">Argentina</a></li>
+                          <li class="active"><span>Ministerio de Modernización</span></li>
+                        </ol>
+                        <ul class="list-inline pull-right">
+                          <li><a href="#" class="search"><i class="glyphicon glyphicon-search"></i>Buscar en el área</a></li>
+                          <li><a href="#">Institucional</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="jumbotron_body">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-xs-12 col-md-8 col-md-offset-2 text-center">
+                        <h1>Hola mundo!</h1>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt enim tempora at voluptas labore asperiores blanditiis similique laudantium placeat molestiae aut quam nisi sint atque, ullam consequuntur perspiciatis eum fuga.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="overlay"></div>
+              </section>
+
+              <br>
+                <pre>
+                  <code class="language-markup">
+                    &lt;section class="jumbotron" style="background-image: url('img/modernizacion.jpg');"&gt;
+                      &lt;div class="jumbotron_bar"&gt;
+                        &lt;div class="container"&gt;
+                          &lt;div class="row"&gt;
+                            &lt;div class="col-md-12"&gt;
+                              &lt;ol class="breadcrumb pull-left"&gt;
+                                &lt;li&gt;&lt;a href=""&gt;Argentina&lt;/a&gt;&lt;/li&gt;
+                                &lt;li class="active"&gt;&lt;span&gt;Ministerio de Modernización&lt;/span&gt;&lt;/li&gt;
+                              &lt;/ol&gt;
+                              &lt;ul class="list-inline pull-right"&gt;
+                                &lt;li&gt;&lt;a href="#" class="search"&gt;&lt;i class="glyphicon glyphicon-search"&gt;&lt;/i&gt;Buscar en el área&lt;/a&gt;&lt;/li&gt;
+                                &lt;li&gt;&lt;a href="#"&gt;Institucional&lt;/a&gt;&lt;/li&gt;
+                              &lt;/ul&gt;
+                            &lt;/div&gt;
+                          &lt;/div&gt;
+                        &lt;/div&gt;
+                      &lt;/div&gt;
+                    &lt;/section&gt;
+                  </code>
+                </pre>
+
+              <hr>
+
+              <h3 id="element-multimedia">Elemento multimedia</h3>
+              <p>Estilos de objetos abstractos para la construcción de diversos tipos de componentes (como los comentarios de blogs, tweets, etc.) que ofrecen una imagen de la izquierda o alineado a la derecha junto con el contenido textual.</p>
+              <div class="media">
+                <div class="media-left">
+                  <a href="#">
+                    <img class="media-object" src="http://placehold.it/100x100" alt="...">
+                  </a>
+                </div>
+                <div class="media-body">
+                  <h4 class="media-heading">Encabezado</h4>
+                   Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                </div>
+              </div>
+              <br>
+              <pre>
+                <code class="language-markup">
+                  &lt;div class="media"&gt;
+                    &lt;div class="media-left"&gt;
+                      &lt;a href="#"&gt;
+                        &lt;img class="media-object" src="http://placehold.it/100x100" alt="..."&gt;
+                      &lt;/a&gt;
+                    &lt;/div&gt;
+                    &lt;div class="media-body"&gt;
+                      &lt;h4 class="media-heading"&gt;Encabezado&lt;/h4&gt;
+                       Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                    &lt;/div&gt;
+                  &lt;/div&gt;
+                </code>
+              </pre>
+
+              <hr>
+              <h3 id="embed-responsive">Videos Responsivos</h3>
+              <!-- 16:9 aspect ratio -->
+              <!-- 4:3 aspect ratio -->
+              <!-- 1:1 aspect ratio -->
+              <h5>Relación de aspecto 16:9</h5>
+              <br>
+              <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/XYPJDCoR6nw"></iframe>
+              </div>
+              <br>
+              <h5>Relación de aspecto 4:3</h5>
+              <br>
+              <div class="embed-responsive embed-responsive-4by3">
+                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/XYPJDCoR6nw"></iframe>
+              </div>
+
+              <br>
+              <h5>Relación de aspecto 1:1</h5>
+              <br>
+              <div class="embed-responsive embed-responsive-1by1">
+                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/XYPJDCoR6nw"></iframe>
+              </div>
+
+              <pre>
+                <code class="language-markup">
+
+                  &lt;div class="embed-responsive embed-responsive-16by9"&gt;
+                    &lt;iframe class="embed-responsive-item" src="https://www.youtube.com/embed/XYPJDCoR6nw"&gt;&lt;/iframe&gt;
+                  &lt;/div&gt;
+                  &lt;div class="embed-responsive embed-responsive-4by3"&gt;
+                    &lt;iframe class="embed-responsive-item" src="https://www.youtube.com/embed/XYPJDCoR6nw"&gt;&lt;/iframe&gt;
+                  &lt;/div&gt;
+                  &lt;div class="embed-responsive embed-responsive-1by1"&gt;
+                    &lt;iframe class="embed-responsive-item" src="https://www.youtube.com/embed/XYPJDCoR6nw"&gt;&lt;/iframe&gt;
+                  &lt;/div&gt;
+
+                </code>
+              </pre>
+              <hr>
+            </div>
+
+            <div>
+              <h2 id="javascript" class="m-b-3">Javascript</h2>
+
+              <h4 id="modal">Modal</h4>
+
+                <!-- Button to trigger modal -->
+                <a href="#myModal" role="button" class="btn btn-primary" data-toggle="modal">Iniciar demo de modal</a>
+
+                <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        <h4 class="modal-title">Título de modal</h4>
+                      </div>
+                      <div class="modal-body">
+                        <p>Texto de referencia…</p>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary">Guardar Cambios</button>
+                      </div>
+                    </div>
+<!-- /.modal-content -->
+                  </div>
+<!-- /.modal-dialog -->
+                </div>
+<!-- /.modal -->
+                <br>
+                <pre>
+                  <code class="language-markup">
+                    &lt;!-- Button to trigger modal --&gt;
+                    &lt;a href="#myModal" role="button" class="btn btn-primary" data-toggle="modal"&gt;Iniciar demo de modal&lt;/a&gt;
+
+                    &lt;div id="myModal" class="modal fade" tabindex="-1" role="dialog"&gt;
+                      &lt;div class="modal-dialog"&gt;
+                        &lt;div class="modal-content"&gt;
+                          &lt;div class="modal-header"&gt;
+                            &lt;button type="button" class="close" data-dismiss="modal" aria-label="Close"&gt;&lt;span aria-hidden="true"&gt;×&lt;/span&gt;&lt;/button&gt;
+                            &lt;h4 class="modal-title"&gt;Título de modal&lt;/h4&gt;
+                          &lt;/div&gt;
+                          &lt;div class="modal-body"&gt;
+                            &lt;p&gt;Texto de referencia…&lt;/p&gt;
+                          &lt;/div&gt;
+                          &lt;div class="modal-footer"&gt;
+                            &lt;button type="button" class="btn btn-default" data-dismiss="modal"&gt;Cerrar&lt;/button&gt;
+                            &lt;button type="button" class="btn btn-primary"&gt;Guardar Cambios&lt;/button&gt;
+                          &lt;/div&gt;
+                        &lt;/div&gt;&lt;!-- /.modal-content --&gt;
+                      &lt;/div&gt;&lt;!-- /.modal-dialog --&gt;
+                    &lt;/div&gt;&lt;!-- /.modal --&gt;
+
+                  </code>
+                </pre>
+              <hr>
+
+              <h4 id="ayuda-sobre-elementos">Nota de ayuda sobre elemento</h4>
+
+              <div style="position: relative;">
+                <button type="button" class="btn btn-link" data-toggle="tooltip" data-placement="left" title="Nota a la izquierda">Nota a la izquierda</button>
+                <button type="button" class="btn btn-link" data-toggle="tooltip" data-placement="top" title="Nota superior">Nota superior</button>
+                <button type="button" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Nota inferior">Nota inferior</button>
+                <button type="button" class="btn btn-link" data-toggle="tooltip" data-placement="right" title="Nota a la derecha">Nota a la derecha</button>
+              </div>
+              <br>
+              <pre>
+                <code class="language-markup">
+                  &lt;button type="button" class="btn btn-link" data-toggle="tooltip" data-placement="left" title="Nota a la izquierda"&gt;Nota a la izquierda&lt;/button&gt;
+                  &lt;button type="button" class="btn btn-link" data-toggle="tooltip" data-placement="top" title="Nota superior"&gt;Nota superior&lt;/button&gt;
+                  &lt;button type="button" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Nota inferior"&gt;Nota inferior&lt;/button&gt;
+                  &lt;button type="button" class="btn btn-link" data-toggle="tooltip" data-placement="right" title="Nota a la derecha"&gt;Nota a la derecha&lt;/button&gt;
+                </code>
+              </pre>
+
+              <hr>
+
+              <h4 id="info-contextual">Información contextual </h4>
+
+              <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+                A la izquierda
+              </button>
+
+              <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+                Arriba
+              </button>
+
+              <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Vivamus
+              sagittis lacus vel augue laoreet rutrum faucibus.">
+                Abajo
+              </button>
+
+              <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="right" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+                A la derecha
+              </button>
+              <pre>
+                <code class="language-markup">
+                  &lt;button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."&gt;A la derecha&lt;/button&gt;
+
+                  &lt;button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."&gt;Arriba&lt;/button&gt;
+
+                  &lt;button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Vivamus
+                  sagittis lacus vel augue laoreet rutrum faucibus."&gt;Abajo&lt;/button&gt;
+
+                  &lt;button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="right" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."&gt;A la derecha&lt;/button&gt;
+                </code>
+              </pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<!-- End Row -->
+  </div>
+<!-- End Container -->
+
+
+    
+
+    <script src="/poncho/node_modules/jquery/dist/jquery.js"></script>
+    <script src="/poncho/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/poncho/js/prism.js"></script>
+    <script src="/poncho/node_modules/list.js/dist/list.min.js"></script>
+    <script>
+      $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+        $('[data-toggle="popover"]').popover();
+        // var $affix = $("#navbar-docs");
+        // $parent = $affix.parent(),
+        // resize = function() { $affix.width($parent.width()); };
+        // $(window).resize(resize);
+        // resize();
+      })
+
+      var options = { valueNames: [ 'nombre', 'apellido', 'usuario' ] };
+      var userList = new List('usuarios', options);
+
+    </script>
+
+  </div></section></main>
+</body>
+</html>
