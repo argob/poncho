@@ -1,0 +1,2768 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Poncho</title>
+  <meta name="description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
+  <meta name="author" content="Presidencia de la Nación">
+  <link rel="shortcut icon" href="/poncho/favicon.ico">
+
+  <!-- Nav and address bar color -->
+  <meta name="theme-color" content="#0072b8">
+  <meta name="msapplication-navbutton-color" content="#0072b8">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
+
+  <meta property="og:url" content="/poncho/docs/">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Poncho">
+  <meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
+  <meta property="og:image" content="/ejemplos/img/jumbotron.jpg">
+  <meta property="og:locale" content="es_AR">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Poncho">
+  <meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
+  <meta name="twitter:image" content="/ejemplos/img/jumbotron.jpg">
+
+  <link href="/poncho/node_modules/argob-poncho/dist/css/roboto-fontface.css" rel="stylesheet">
+  <!-- <link href="/poncho/node_modules/argob-poncho/dist/css/droid-serif.css" rel="stylesheet"> -->
+  <link href="/poncho/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/poncho/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="/poncho/node_modules/argob-poncho/dist/css/poncho.css" rel="stylesheet">
+  <link href="/poncho/css/docs.css" rel="stylesheet">
+  <link href="/poncho/css/prism.css" rel="stylesheet">
+  <style>
+#nuevaDoc a{
+        text-align: center;
+        padding: 19px;
+        background-color: #0695d6;
+        color: #FFF;
+        font-weight: bold;
+        font-size: 19px;
+        color:#FFF;
+        display: block;
+      }
+      #nuevaDoc:hover{
+        opacity: 0.9;cursor:pointer;
+      }
+  </style>
+</head>
+
+  <body data-spy="scroll" data-target="#navbar-docs">
+<div id="nuevaDoc"><a href="">Ya está disponible la nueva documentación de Poncho 2019. Conocela acá</a></div>
+    <header>
+  <nav class="navbar navbar-top navbar-default" role="navigation">
+    <div class="container">
+      <div>
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="/poncho/" class="navbar-brand">
+            <img alt="Poncho" src="/poncho/img/poncho.gif" height="50">
+            <h1>Poncho</h1>
+          </a>
+        </div>
+        <div class="collapse navbar-collapse" id="main-navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="index.html">Inicio</a></li>
+            <li class="active"><a href="documentacion.html">Documentación</a></li>
+            <li><a href="componentes.html">Componentes</a></li>
+            <li><a href="https://argob.github.io/iconos/">Iconos</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+    <main id="docs" role="main">
+      <div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <ol class="breadcrumb">
+        <li><a href="../">Argentina</a></li>
+        <li class="active">Documentación</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<section id="docs">
+  <div class="container">
+    <div class="row">
+
+      <aside class="page-sidebar col-md-3">
+        <div class="row">
+          <div class="col-xs-12 col-sm-11">
+            <nav>
+              <ul class="nav nav-pills nav-stacked">
+                <li class="btn-title"><a href="#estilos">Estilos</a></li>
+
+                <li><a href="#atajos">Atajos</a></li>
+                <li><a href="#listados">Listados</a></li>
+                <li><a href="#alertas">Alertas</a></li>
+                <li><a href="#ejes">Ejes</a></li>
+                <li><a href="#numeros">Números destacados</a></li>
+                <li><a href="#citas">Citas</a></li>
+
+                <hr>
+
+                <li class="btn-title"><a href="#referencias">Referencias</a></li>
+
+                <li><a href="#colores-texto">Colores de texto</a></li>
+                <li><a href="#colores-fondo">Colores de fondo</a></li>
+                <li><a href="#iconos">Íconos</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </aside>
+
+      <div class="col-md-9 docs-container">
+
+        <h1 id="estilos" class="no-margin">Estilos de componentes</h1>
+        <hr>
+
+        <h2 id="atajos">Atajos</h2>
+        <p class="lead">Los atajos se utilizan para enlazar cualquier tipo de contenido, tanto interno como externo, y con diferentes tipos de jerarquías.</p>
+
+        <h4>Atajo Botón</h4>
+        <!-- <p>El atajo tipo botón consta de los siguientes campos:</p>
+        <ul>
+          <li>Título</li>
+          <li>Link interno o externo</li>
+          <li>Destacado <small class="text-muted">(Checkbox, si está activo agrega la clase .btn-lg al botón)</small></li>
+          <li>
+            Color <small class="text-muted">(opcional, por default es azul)</small>
+            <ul>
+              <li>Gris <small class="text-muted">(.btn-default)</small></li>
+              <li>Azul <small class="text-muted">(.btn-primary)</small></li>
+              <li>Verde <small class="text-muted">(.btn-success)</small></li>
+              <li>Rojo <small class="text-muted">(.btn-danger)</small></li>
+              <li>Link <small class="text-muted">(.btn-link)</small></li>
+            </ul>
+          </li>
+        </ul> -->
+
+        <div class="docs-examlpe">
+          <div class="docs-content">
+
+            <div class="row">
+              <div class="col-xs-12 text-center">
+                <a class="btn btn-primary" href="#">Ver todas las noticias</a>
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-xs-12 text-center">
+                <a class="btn btn-success btn-lg" href="#">Comenzar la capacitación</a>
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-xs-12 text-center">
+                <a class="btn btn-link" href="#">Ver más información</a>
+              </div>
+            </div>
+
+          </div>
+          <pre class="docs-code"><code>
+&lt;div class="row"&gt;
+  &lt;div class="col-xs-12 text-center"&gt;
+    &lt;a class="btn <strong title="Color" data-toggle="tooltip" data-placement="top">btn-primary</strong> <strong title="Destacado" data-toggle="tooltip" data-placement="top">btn-lg</strong>" <strong title="Link interno o externo" data-toggle="tooltip" data-placement="top">href="#"</strong>&gt;<strong title="Título" data-toggle="tooltip" data-placement="top">Ver todas las noticias</strong>&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+          </code></pre>
+        </div>
+
+        <h4>Atajo simple</h4>
+        <!-- <p>El atajo siemple consta de los siguientes campos:</p>
+        <ul>
+          <li>Título</li>
+          <li>Texto descriptivo <small class="text-muted">(opcional)</small></li>
+          <li>Link interno o externo</li>
+          <li>Ícono <small class="text-muted">(opcional, <a href="#iconos">ver referencia de íconos</a>)</small></li>
+          <li>Color de ícono <small class="text-muted">(opcional, de manera predeterminada se muestra azul, <a href="#colores-texto">ver referencia de colores</a>)</small></li>
+        </ul> -->
+
+        <div class="docs-examlpe">
+          <div class="docs-content">
+
+            <h3 class="section-title">Atajo simple con ícono y texto</h3>
+
+            <div class="row panels-row">
+              <div class="col-xs-12 col-sm-6">
+                <a class="panel panel-default" href="#">
+                  <div class="panel-body">
+                    <div class="media">
+                      <div class="media-left padding-5">
+                        <i class="fa fa-phone fa-fw fa-3x text-secondary"></i>
+                      </div>
+                      <div class="media-body">
+                        <h3>El estado del estado</h3>
+                        <p class="text-muted">Diagnóstico de la Administración Pública Nacional en diciembre de 2015</p>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-xs-12 col-sm-6">
+                <a class="panel panel-default" href="#">
+                  <div class="panel-body">
+                    <div class="media">
+                      <div class="media-left padding-5">
+                        <i class="fa fa-phone fa-fw fa-3x text-success"></i>
+                      </div>
+                      <div class="media-body">
+                        <h3>El estado del estado</h3>
+                        <p class="text-muted">Diagnóstico de la Administración Pública Nacional en diciembre de 2015</p>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+          </div>
+          <pre class="docs-code"><code>
+&lt;div class="row panels-row"&gt;
+
+  &lt;div class="col-xs-12 col-sm-6 col-md-3"&gt;
+    &lt;a class="panel panel-default" <strong title="Link interno o externo" data-toggle="tooltip" data-placement="top">href="#"</strong>&gt;
+      &lt;div class="panel-body"&gt;
+        &lt;div class="media"&gt;
+          &lt;div class="media-left padding-5"&gt;
+            &lt;i class="fa <strong title="Ícono" data-toggle="tooltip" data-placement="top">fa-phone</strong> fa-fw fa-3x <strong title="Color de ícono" data-toggle="tooltip" data-placement="top">text-secondary</strong>"&gt;&lt;/i&gt;
+          &lt;/div&gt;
+          &lt;div class="media-body"&gt;
+            &lt;h3&gt;<strong title="Título" data-toggle="tooltip" data-placement="top">El estado del estado</strong>&lt;/h3&gt;
+            &lt;p class="text-muted"&gt;<strong title="Texto descriptivo" data-toggle="tooltip" data-placement="top">Diagnóstico de la Administración Pública Nacional en diciembre de 2015</strong>&lt;/p&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/a&gt;
+  &lt;/div&gt;
+
+  &lt;div class="col-xs-12 col-sm-6 col-md-3"&gt;
+    ...
+  &lt;/div&gt;
+
+  &lt;div class="col-xs-12 col-sm-6 col-md-3"&gt;
+    ...
+  &lt;/div&gt;
+
+  &lt;div class="col-xs-12 col-sm-6 col-md-3"&gt;
+    ...
+  &lt;/div&gt;
+
+&lt;/div&gt;
+          </code></pre>
+        </div>
+
+
+        <div class="docs-examlpe">
+          <div class="docs-content">
+
+            <h3 class="section-title padding-20">Atajo simple con texto</h3>
+
+            <div class="row panels-row">
+              <div class="col-xs-12 col-sm-6">
+                <a class="panel panel-default" href="#">
+                  <div class="panel-body">
+                    <h3>Ministerio de Economía</h3>
+                    <p class="text-muted">quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
+                  </div>
+                </a>
+              </div>
+              <div class="col-xs-12 col-sm-6">
+                <a class="panel panel-default" href="#">
+                  <div class="panel-body">
+                    <h3>Ministerio de Economía</h3>
+                    <p class="text-muted">quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+            <h3 class="section-title padding-20">Atajo simple</h3>
+
+            <div class="row panels-row">
+              <div class="col-xs-12 col-sm-6">
+                <a class="panel panel-default" href="#">
+                  <div class="panel-body">
+                    <h3>Ministerio de Economía</h3>
+                  </div>
+                </a>
+              </div>
+              <div class="col-xs-12 col-sm-6">
+                <a class="panel panel-default" href="#">
+                  <div class="panel-body">
+                    <h3>Ministerio de Economía</h3>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+          </div>
+          <pre class="docs-code"><code>
+&lt;div class="row panels-row"&gt;
+
+  &lt;!-- Atajo con ícono --&gt;
+
+  &lt;div class="col-xs-12 col-sm-6 col-md-3"&gt;
+    &lt;a class="panel panel-default" <strong title="Link interno o externo" data-toggle="tooltip" data-placement="top">href="#"</strong>&gt;
+      &lt;div class="panel-body"&gt;
+        &lt;h3&gt;<strong title="Título" data-toggle="tooltip" data-placement="top">Ministerio de Economía</strong>&lt;/h3&gt;
+        &lt;p class="text-muted"&gt;<strong title="Texto descriptivo" data-toggle="tooltip" data-placement="top">quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</strong>&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/a&gt;
+  &lt;/div&gt;
+
+  &lt;!-- Atajo sin ícono --&gt;
+
+  &lt;div class="col-xs-12 col-sm-6 col-md-3"&gt;
+    &lt;a class="panel panel-default" <strong title="Link interno o externo" data-toggle="tooltip" data-placement="top">href="#"</strong>&gt;
+      &lt;div class="panel-body"&gt;
+        &lt;h3&gt;<strong title="Título" data-toggle="tooltip" data-placement="top">Ministerio de Economía</strong>&lt;/h3&gt;
+      &lt;/div&gt;
+    &lt;/a&gt;
+  &lt;/div&gt;
+
+  &lt;div class="col-xs-12 col-sm-6 col-md-3"&gt;
+    ...
+  &lt;/div&gt;
+
+  &lt;div class="col-xs-12 col-sm-6 col-md-3"&gt;
+    ...
+  &lt;/div&gt;
+
+&lt;/div&gt;
+          </code></pre>
+        </div>
+
+
+        <hr>
+
+        <h4>Atajo Destacado con ícono</h4>
+        <!-- <p>El atajo destacado con ícono consta de los siguientes campos:</p>
+        <ul>
+          <li>Título</li>
+          <li>Texto descriptivo <small class="text-muted">(opcional)</small></li>
+          <li>Link interno o externo</li>
+          <li>Ícono <small class="text-muted">(<a href="#iconos">ver referencia de íconos</a>)</small></li>
+          <li>Color de fondo <small class="text-muted">(opcional, de manera predeterminada se muestra azul, <a href="#colores-fondo">ver referencia de colores</a>)</small></li>
+        </ul> -->
+
+        <div class="docs-examlpe">
+          <div class="docs-content">
+
+            <h3 class="section-title">Atajo Destacado con ícono</h3>
+
+            <div class="row panels-row">
+              <div class="col-xs-12 col-sm-6">
+                <a class="panel panel-default panel-icon" href="#">
+                  <div class="panel-heading hidden-xs"><i class="fa fa-file"></i></div>
+                  <div class="panel-body">
+                    <h3>
+<span class="visible-xs-inline"><i class="fa fa-file text-secondary"></i>  </span>Ministerio de Economía</h3>
+                    <p class="text-muted">quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
+                  </div>
+                </a>
+              </div>
+              <div class="col-xs-12 col-sm-6">
+                <a class="panel panel-default panel-icon panel-secondary" href="#">
+                  <div class="panel-heading hidden-xs"><i class="fa fa-flask"></i></div>
+                  <div class="panel-body">
+                    <h3>
+<span class="visible-xs-inline"><i class="fa fa-flask text-secondary"></i> </span> Ministerio de Educación</h3>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+          <pre class="docs-code"><code>
+&lt;div class="row panels-row"&gt;
+
+  &lt;div class="col-xs-12 col-sm-6 col-md-3"&gt;
+    &lt;a class="panel panel-default panel-icon <strong title="Color de fondo" data-toggle="tooltip" data-placement="top">panel-secondary</strong>" <strong title="Link interno o externo" data-toggle="tooltip" data-placement="top">href="#"</strong>&gt;
+      &lt;div class="panel-heading hidden-xs"&gt;&lt;i class="fa <strong title="Ícono" data-toggle="tooltip" data-placement="top">fa-file</strong>"&gt;&lt;/i&gt;&lt;/div&gt;
+      &lt;div class="panel-body"&gt;
+        &lt;h3&gt;&lt;span class="visible-xs-inline"&gt;&lt;i class="fa <strong title="Ícono" data-toggle="tooltip" data-placement="top">fa-file</strong> <strong title="Color de fondo" data-toggle="tooltip" data-placement="top">text-secondary</strong>"&gt;&lt;/i&gt;&amp;nbsp; &lt;/span&gt;<strong title="Título" data-toggle="tooltip" data-placement="top">Ministerio de Economía</strong>&lt;/h3&gt;
+        &lt;p class="text-muted"&gt;<strong title="Texto descriptivo" data-toggle="tooltip" data-placement="top">quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</strong>&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/a&gt;
+  &lt;/div&gt;
+
+  &lt;div class="col-xs-12 col-sm-6 col-md-3"&gt;
+    ...
+  &lt;/div&gt;
+
+  &lt;div class="col-xs-12 col-sm-6 col-md-3"&gt;
+    ...
+  &lt;/div&gt;
+
+  &lt;div class="col-xs-12 col-sm-6 col-md-3"&gt;
+    ...
+  &lt;/div&gt;
+
+&lt;/div&gt;
+          </code></pre>
+        </div>
+
+        <hr>
+
+        <h4>Atajo Destacado con imagen</h4>
+        <!-- <p>El atajo destacado con imagen consta de los siguientes campos:</p>
+        <ul>
+          <li>Título</li>
+          <li>Texto descriptivo <small class="text-muted">(opcional)</small></li>
+          <li>Link interno o externo</li>
+          <li>Imagen</li>
+        </ul> -->
+
+        <div class="docs-examlpe">
+          <div class="docs-content">
+
+            <h3 class="section-title">Atajo Destacado con imagen</h3>
+
+            <div class="row panels-row">
+              <div class="col-xs-12 col-sm-6">
+                <a class="panel panel-default" href="#">
+                  <div style="background-image:url('img/placeholder.png');" class="panel-heading"></div>
+                  <div class="panel-body">
+                    <h3>Este es el título del link</h3>
+                    <p class="text-muted">quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
+                  </div>
+                </a>
+              </div>
+              <div class="col-xs-12 col-sm-6">
+                <a class="panel panel-default" href="#">
+                  <div style="background-image:url('img/placeholder.png');" class="panel-heading"></div>
+                  <div class="panel-body">
+                    <h3>Este es el título del link</h3>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+          </div>
+          <pre class="docs-code"><code>
+&lt;div class="row panels-row"&gt;
+
+  &lt;div class="col-xs-12 col-sm-6 col-md-3"&gt;
+    &lt;a class="panel panel-default" <strong title="Link interno o externo" data-toggle="tooltip" data-placement="top">href="#"</strong>&gt;
+      &lt;div style="background-image:url('<strong title="Imagen" data-toggle="tooltip" data-placement="top">img/placeholder.png</strong>');" class="panel-heading"&gt;&lt;/div&gt;
+      &lt;div class="panel-body"&gt;
+        &lt;h3&gt;<strong title="Título" data-toggle="tooltip" data-placement="top">Este es el título del link</strong>&lt;/h3&gt;
+        &lt;p class="text-muted"&gt;<strong title="Texto descriptivo" data-toggle="tooltip" data-placement="top">quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</strong>&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/a&gt;
+  &lt;/div&gt;
+
+  &lt;div class="col-xs-12 col-sm-6 col-md-3"&gt;
+    ...
+  &lt;/div&gt;
+
+  &lt;div class="col-xs-12 col-sm-6 col-md-3"&gt;
+    ...
+  &lt;/div&gt;
+
+  &lt;div class="col-xs-12 col-sm-6 col-md-3"&gt;
+    ...
+  &lt;/div&gt;
+
+&lt;/div&gt;
+          </code></pre>
+        </div>
+
+
+        <!-- //////////////////////////////////////////////////////////////////////////////////////// -->
+
+
+        <h2 id="listados">Listados</h2>
+        <p class="lead">Los listados obtienen la información de un tipo de contenido y un group audience específico de Drupal. Tienen la capacidad de seleccionar la cantidad de elementos a mostrar, paginarlos y agregar un botón para ver más.</p>
+
+        <!-- <h4>Listados en panelizer</h4>
+        <p>Los listados tienen la siguiente configuración:</p>
+        <ul>
+          <li>Título</li>
+          <li>Cantidad de elementos a mostrar</li>
+          <li>Tipo de listado:
+            <ul>
+              <li>Últimos cargados</li>
+              <li>Relacionados</li>
+              <li>Personalizado</li>
+            </ul>
+          </li>
+          <li>Tipos de contenidos que se pueden elegir: <small class="text-muted">(solo aplica para los tipos de listados <strong>últimos cargados</strong> y <strong>relacionados</strong>)</small>
+            <ul>
+              <li>Páginas</li>
+              <li>Noticias <small class="text-muted">(con capacidad de elegir una categoría)</small></li>
+              <li>Servicios <small class="text-muted">(con capacidad de elegir una categoría)</small></li>
+              <li>Áreas</li>
+              <li>Aplicaciones</li>
+            </ul>
+          </li>
+          <li>Contenido personalizado <small class="text-muted">(solo aplica para el tipo de listado <strong>personalizado</strong>)</small></li>
+          <li>Formato de visualización
+            <ul>
+              <li>Solo Título</li>
+              <li>Título y texto</li>
+              <li>Título e imagen</li>
+              <li>Título, texto e imagen</li>
+            </ul>
+          </li>
+          <li>Mostrar el botón "Ver todos"</li>
+          <li>Mostrar paginador</li>
+          <li>Orientación</li>
+        </ul> -->
+
+        <div class="docs-examlpe">
+          <div class="docs-content">
+
+            <h3 class="section-title">Solo Título</h3>
+
+            <div class="row panels-row">
+              <div class="col-xs-12 col-sm-6">
+                <a class="panel panel-default" href="#">
+                  <div class="panel-body">
+                    <h3>Ministerio de Economía</h3>
+                  </div>
+                </a>
+              </div>
+              <div class="col-xs-12 col-sm-6">
+                <a class="panel panel-default" href="#">
+                  <div class="panel-body">
+                    <h3>Ministerio de Economía</h3>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+            <h3 class="section-title">Título y texto</h3>
+
+            <div class="row panels-row">
+              <div class="col-xs-12 col-sm-6">
+                <a class="panel panel-default" href="#">
+                  <div class="panel-body">
+                    <h3>Ministerio de Economía</h3>
+                    <p class="text-muted">quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
+                  </div>
+                </a>
+              </div>
+              <div class="col-xs-12 col-sm-6">
+                <a class="panel panel-default" href="#">
+                  <div class="panel-body">
+                    <h3>Ministerio de Economía</h3>
+                    <p class="text-muted">quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+          <pre class="docs-code"><code>
+&lt;div class="row panels-row"&gt;
+
+  &lt;!-- Solo Título --&gt;
+
+  &lt;div class="col-xs-12 col-sm-6 col-md-3"&gt;
+    &lt;a class="panel panel-default" href="#"&gt;
+      &lt;div class="panel-body"&gt;
+        &lt;h3&gt;Ministerio de Economía&lt;/h3&gt;
+      &lt;/div&gt;
+    &lt;/a&gt;
+  &lt;/div&gt;
+
+  &lt;!-- Título y texto --&gt;
+
+  &lt;div class="col-xs-12 col-sm-6 col-md-3"&gt;
+    &lt;a class="panel panel-default" href="#"&gt;
+      &lt;div class="panel-body"&gt;
+        &lt;h3&gt;Ministerio de Economía&lt;/h3&gt;
+        &lt;p class="text-muted"&gt;quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/a&gt;
+  &lt;/div&gt;
+
+  &lt;div class="col-xs-12 col-sm-6 col-md-3"&gt;
+    ...
+  &lt;/div&gt;
+
+  &lt;div class="col-xs-12 col-sm-6 col-md-3"&gt;
+    ...
+  &lt;/div&gt;
+
+&lt;/div&gt;
+          </code></pre>
+        </div>
+
+
+        <div class="docs-examlpe">
+          <div class="docs-content">
+
+            <h3 class="section-title">Título e imagen</h3>
+
+            <div class="row panels-row">
+              <div class="col-xs-12 col-sm-6">
+                <a class="panel panel-default" href="#">
+                  <div style="background-image:url('img/placeholder.png');" class="panel-heading"></div>
+                  <div class="panel-body">
+                    <h4>El Ministro Buryaile asistió a la apertura de la Semana Verde Internacional, en Berlín</h4>
+                  </div>
+                </a>
+              </div>
+              <div class="col-xs-12 col-sm-6">
+                <a class="panel panel-default" href="#">
+                  <div style="background-image:url('img/placeholder.png');" class="panel-heading"></div>
+                  <div class="panel-body">
+                    <h4>El Ministro Buryaile asistió a la apertura de la Semana Verde Internacional, en Berlín</h4>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+            <h3 class="section-title">Título, texto e imagen</h3>
+
+            <div class="row panels-row">
+              <div class="col-xs-12 col-sm-6">
+                <a class="panel panel-default" href="#">
+                  <div style="background-image:url('img/placeholder.png');" class="panel-heading"></div>
+                  <div class="panel-body">
+                    <h4>El Ministro Buryaile asistió a la apertura de la Semana Verde Internacional, en Berlín</h4>
+                    <p class="text-muted">quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
+                  </div>
+                </a>
+              </div>
+              <div class="col-xs-12 col-sm-6">
+                <a class="panel panel-default" href="#">
+                  <div style="background-image:url('img/placeholder.png');" class="panel-heading"></div>
+                  <div class="panel-body">
+                    <h4>El Ministro Buryaile asistió a la apertura de la Semana Verde Internacional, en Berlín</h4>
+                    <p class="text-muted">quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+          </div>
+          <pre class="docs-code"><code>
+&lt;div class="row panels-row"&gt;
+
+  &lt;!-- Título e imagen --&gt;
+
+  &lt;div class="col-xs-12 col-sm-6 col-md-3"&gt;
+    &lt;a class="panel panel-default" href="#"&gt;
+      &lt;div style="background-image:url('img/placeholder.png');" class="panel-heading"&gt;&lt;/div&gt;
+      &lt;div class="panel-body"&gt;
+        &lt;h4&gt;El Ministro Buryaile asistió a la apertura de la Semana Verde Internacional, en Berlín&lt;/h4&gt;
+      &lt;/div&gt;
+    &lt;/a&gt;
+  &lt;/div&gt;
+
+  &lt;!-- Título, texto e imagen --&gt;
+
+  &lt;div class="col-xs-12 col-sm-6 col-md-3"&gt;
+    &lt;a class="panel panel-default" href="#"&gt;
+      &lt;div style="background-image:url('img/placeholder.png');" class="panel-heading"&gt;&lt;/div&gt;
+      &lt;div class="panel-body"&gt;
+        &lt;h4&gt;El Ministro Buryaile asistió a la apertura de la Semana Verde Internacional, en Berlín&lt;/h4&gt;
+        &lt;p class="text-muted"&gt;quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/a&gt;
+  &lt;/div&gt;
+
+  &lt;div class="col-xs-12 col-sm-6 col-md-3"&gt;
+    ...
+  &lt;/div&gt;
+
+  &lt;div class="col-xs-12 col-sm-6 col-md-3"&gt;
+    ...
+  &lt;/div&gt;
+
+&lt;/div&gt;
+          </code></pre>
+        </div>
+
+        <div class="docs-examlpe">
+          <div class="docs-content">
+
+            <h3 class="section-title">Noticias</h3>
+
+            <div class="row panels-row">
+              <div class="col-xs-12 col-sm-6">
+                <a class="panel panel-default" href="#">
+                  <div style="background-image:url('img/placeholder.png');" class="panel-heading"></div>
+                  <div class="panel-body">
+                    <time>Jueves 14 de Enero del 2016</time>
+                    <h4>El Ministro Buryaile asistió a la apertura de la Semana Verde Internacional, en Berlín</h4>
+                  </div>
+                </a>
+              </div>
+              <div class="col-xs-12 col-sm-6">
+                <a class="panel panel-default" href="#">
+                  <div style="background-image:url('img/placeholder.png');" class="panel-heading"></div>
+                  <div class="panel-body">
+                    <time>Jueves 14 de Enero del 2016</time>
+                    <h4>El Ministro Buryaile asistió a la apertura de la Semana Verde Internacional, en Berlín</h4>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12">
+                <a class="btn btn-primary" href="#">Ver todas las noticias</a>
+              </div>
+            </div>
+
+
+          </div>
+          <pre class="docs-code"><code>
+&lt;div class="row panels-row"&gt;
+
+  &lt;div class="col-xs-12 col-sm-6 col-md-3"&gt;
+    &lt;a class="panel panel-default" href="#"&gt;
+      &lt;div style="background-image:url('img/placeholder.png');" class="panel-heading"&gt;&lt;/div&gt;
+      &lt;div class="panel-body"&gt;
+        &lt;time&gt;Jueves 14 de Enero del 2016&lt;/time&gt;
+        &lt;h4&gt;El Ministro Buryaile asistió a la apertura de la Semana Verde Internacional, en Berlín&lt;/h4&gt;
+      &lt;/div&gt;
+    &lt;/a&gt;
+  &lt;/div&gt;
+
+  &lt;div class="col-xs-12 col-sm-6 col-md-3"&gt;
+    ...
+  &lt;/div&gt;
+
+  &lt;div class="col-xs-12 col-sm-6 col-md-3"&gt;
+    ...
+  &lt;/div&gt;
+
+  &lt;div class="col-xs-12 col-sm-6 col-md-3"&gt;
+    ...
+  &lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;div class="row"&gt;
+  &lt;div class="col-xs-12"&gt;
+    &lt;a class="btn btn-primary" href="#"&gt;Ver todas las noticias&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+          </code></pre>
+        </div>
+
+        <div class="docs-examlpe">
+          <div class="docs-content">
+
+            <h3 class="section-title">Noticias Destacadas</h3>
+
+            <div class="row panels-row">
+              <div class="col-xs-12">
+                <a class="panel panel-default panel-lg" href="#">
+                  <div style="background-image:url('img/placeholder.png');" class="panel-heading"></div>
+                  <div class="panel-body">
+                    <time>Jueves 14 de Enero del 2016</time>
+                    <h2>Andrés Ibarra lanzó País Digital en Salta</h2>
+                  </div>
+                </a>
+              </div>
+              <div class="col-xs-12 col-sm-6">
+                <a class="panel panel-default" href="#">
+                  <div style="background-image:url('img/placeholder.png');" class="panel-heading"></div>
+                  <div class="panel-body">
+                    <time>Jueves 14 de Enero del 2016</time>
+                    <h4>El Ministro Buryaile asistió a la apertura de la Semana Verde Internacional, en Berlín</h4>
+                  </div>
+                </a>
+              </div>
+              <div class="col-xs-12 col-sm-6">
+                <a class="panel panel-default" href="#">
+                  <div style="background-image:url('img/placeholder.png');" class="panel-heading"></div>
+                  <div class="panel-body">
+                    <time>Jueves 14 de Enero del 2016</time>
+                    <h4>El Ministro Buryaile asistió a la apertura de la Semana Verde Internacional, en Berlín</h4>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-xs-12">
+                <a class="btn btn-primary" href="#">Ver todas las noticias</a>
+              </div>
+            </div>
+
+
+          </div>
+          <pre class="docs-code"><code>
+&lt;div class="row panels-row"&gt;
+
+  &lt;!-- 2 principales --&gt;
+
+  &lt;div class="col-xs-12 col-md-6"&gt;
+    &lt;a class="panel panel-default panel-lg" href="#"&gt;
+      &lt;div style="background-image:url('img/placeholder.png');" class="panel-heading"&gt;&lt;/div&gt;
+      &lt;div class="panel-body"&gt;
+        &lt;time&gt;Jueves 14 de Enero del 2016&lt;/time&gt;
+        &lt;h2&gt;El Ministro Buryaile asistió a la apertura de la Semana Verde Internacional, en Berlín&lt;/h2&gt;
+      &lt;/div&gt;
+    &lt;/a&gt;
+  &lt;/div&gt;
+
+  &lt;div class="col-xs-12 col-md-6"&gt;
+    ...
+  &lt;/div&gt;
+
+  &lt;div class="col-xs-12 col-sm-6"&gt;
+    &lt;a class="panel panel-default" href="#"&gt;
+      &lt;div style="background-image:url('img/placeholder.png');" class="panel-heading"&gt;&lt;/div&gt;
+      &lt;div class="panel-body"&gt;
+        &lt;time&gt;Jueves 14 de Enero del 2016&lt;/time&gt;
+        &lt;h4&gt;El Ministro Buryaile asistió a la apertura de la Semana Verde Internacional, en Berlín&lt;/h4&gt;
+      &lt;/div&gt;
+    &lt;/a&gt;
+  &lt;/div&gt;
+
+  &lt;!-- 4 secundarias --&gt;
+
+  &lt;div class="col-xs-12 col-sm-6"&gt;
+    ...
+  &lt;/div&gt;
+
+  &lt;div class="col-xs-12 col-sm-6"&gt;
+    ...
+  &lt;/div&gt;
+
+  &lt;div class="col-xs-12 col-sm-6"&gt;
+    ...
+  &lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;div class="row"&gt;
+  &lt;div class="col-xs-12"&gt;
+    &lt;a class="btn btn-primary"&gt;Ver todas las noticias&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+          </code></pre>
+        </div>
+
+        <h2 id="alertas">Alertas</h2>
+        <!-- <p classo="lead">Las alertas se pueden utilizar de dos formas en drupal: como un módulo de panelizer, o como un text filter en cualquier campo que tenga markdown.</p>
+
+        <h4>Módulo de alerta en panelizer</h4>
+        <p>El módulo se agrega en panelizer dentro de argentina / alerta, y tiene la siguiente configuración:</p>
+        <ul>
+          <li>Título <small class="text-muted">(opcional, acepta markdown)</small></li>
+          <li>Texto descriptivo <small class="text-muted">(acepta markdown)</small></li>
+          <li>Ícono <small class="text-muted">(opcional, <a href="#iconos">ver referencia de íconos</a>)</small></li>
+          <li>
+            Color de la alerta <small class="text-muted">(opcional, de manera predeterminada se muestra amarillo)</small><br>
+            <!-- <small class="text-muted"><strong>Colores</strong>: Las alertas solo permiten los colores:</small> -->
+            <ul>
+              <li>Amarillo <small class="text-muted">(.alert-warning)</small>
+</li>
+              <li>Azul <small class="text-muted">(.alert-info)</small>
+</li>
+              <li>Verde <small class="text-muted">(.alert-success)</small>
+</li>
+              <li>Rojo <small class="text-muted">(.alert-danger)</small>
+</li>
+            </ul>
+          
+         --&gt;
+
+        <div class="docs-examlpe">
+          <div class="docs-content">
+
+            <div class="alert alert-warning">
+              <div class="media">
+                <div class="media-left">
+                  <i class="fa fa-arrow-circle-o-right fa-fw fa-4x"></i>
+                </div>
+                <div class="media-body">
+                  <h5>¿Ya iniciaste tu tramite?</h5>
+                  <p class="margin-0">Seguí el <a href="http://www.mininterior.gov.ar/tramitesyservicios/estado-tramite-dni.php" target="_blank">estado del trámite en linea</a></p>
+                </div>
+              </div>
+            </div>
+
+            <div class="alert alert-success">
+              <p class="margin-0">Lorem ipsum <strong>dolor sit amet</strong>, consectetur adipisicing elit. Dolorem ratione, illo quaerat corporis, suscipit tenetur vel iusto ullam ex ipsa ipsam recusandae nulla, <a href="#">accusamus officia sed</a>! Dolores itaque expedita, repudiandae.</p>
+            </div>
+
+          </div>
+          <pre class="docs-code"><code>
+&lt;!-- Alerta con ícono --&gt;
+
+&lt;div class="alert <strong title="Color de la alerta" data-toggle="tooltip" data-placement="top">alert-warning</strong>"&gt;
+  &lt;div class="media"&gt;
+    &lt;div class="media-left"&gt;
+      &lt;i class="fa <strong title="Ícono" data-toggle="tooltip" data-placement="top">fa-arrow-circle-o-right</strong> fa-fw fa-4x"&gt;&lt;/i&gt;
+    &lt;/div&gt;
+    &lt;div class="media-body"&gt;
+      &lt;h5&gt;¿<strong title="Título" data-toggle="tooltip" data-placement="top">Ya iniciaste tu tramite?</strong>&lt;/h5&gt;
+      &lt;p class="margin-0"&gt;<strong title="Texto descriptivo" data-toggle="tooltip" data-placement="top">Seguí el &lt;a href="http://www.mininterior.gov.ar/tramitesyservicios/estado-tramite-dni.php" target="_blank"&gt;estado del trámite en linea&lt;/a</strong>&gt;&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Alerta sin ícono --&gt;
+
+&lt;div class="alert <strong title="Color de la alerta" data-toggle="tooltip" data-placement="top">alert-warning</strong>"&gt;
+  &lt;h5&gt;¿<strong title="Título" data-toggle="tooltip" data-placement="top">Ya iniciaste tu tramite?</strong>&lt;/h5&gt;
+  &lt;p class="margin-0"&gt;<strong title="Texto descriptivo" data-toggle="tooltip" data-placement="top">Seguí el &lt;a href="http://www.mininterior.gov.ar/tramitesyservicios/estado-tramite-dni.php" target="_blank"&gt;estado del trámite en linea&lt;/a</strong>&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+          </code></pre>
+        </div>
+
+<!--         <hr>
+
+        <h4>Alertas en Markdown</h4>
+        <p>En markdown se puede agregar una alerta y tiene las siguiente configuración:</p>
+        <ul>
+          <li>Título <small class="text-muted">(opcional, acepta markdown)</small></li>
+          <li>Texto descriptivo <small class="text-muted">(acepta markdown)</small></li>
+          <li>Ícono <small class="text-muted">(opcional, <a href="#iconos">ver referencia de íconos</a>)</small></li>
+          <li>Color de la alerta <small class="text-muted">(opcional, de manera predeterminada se muestra amarillo)</small>
+            <ul>
+              <li>Amarillo</li>
+              <li>Azul</li>
+              <li>Verde</li>
+              <li>Rojo</li>
+            </ul>
+          </li>
+        </ul>
+
+        <div class="docs-examlpe">
+          <div class="docs-content">
+
+            <div class="alert alert-warning">
+              <div class="media">
+                <div class="media-left">
+                  <i class="fa fa-check fa-fw fa-4x"></i>
+                </div>
+                <div class="media-body">
+                  <h5>¿Ya iniciaste tu tramite?</h5>
+                  <p class="margin-0">Seguí el <a href="http://www.mininterior.gov.ar/tramitesyservicios/estado-tramite-dni.php" target="_blank">estado del trámite en linea</a>.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="alert alert-success">
+              <p class="margin-0">Lorem ipsum <strong>dolor sit amet</strong>, consectetur adipisicing elit. Dolorem ratione, illo quaerat corporis, suscipit tenetur vel iusto ullam ex ipsa ipsam recusandae nulla, <a href="#">accusamus officia sed</a>! Dolores itaque expedita, repudiandae.</p>
+            </div>
+
+          </div>
+          <pre class="docs-code"><code>
+{ <strong>alerta</strong> | <strong>color</strong>: amarillo | <strong>icono</strong>: check | <strong>titulo</strong>: ¿Ya iniciaste tu tramite? | <strong>texto</strong>: Seguí el [estado del trámite en linea](http://www.mininterior.gov.ar/tramitesyservicios/estado-tramite-dni.php). }
+
+{ <strong>alerta</strong> | <strong>color</strong>: verde | <strong>texto</strong>: Lorem ipsum *dolor sit amet*, consectetur adipisicing elit. Dolorem ratione, illo quaerat corporis, suscipit tenetur vel iusto ullam ex ipsa ipsam recusandae nulla, [accusamus officia sed](#)! Dolores itaque expedita, repudiandae. }
+          </code></pre>
+        </div> -->
+
+
+        <!-- //////////////////////////////////////////////////////////////////////////////////////// -->
+
+
+        <h2 id="ejes">Ejes</h2>
+        <p class="lead">Los ejes son contenidos breves que se muestran en columnas.</p>
+
+        <!-- <h4>Ejes en markdown</h4>
+        <p>El contenido de los ejes se compone de:</p>
+        <ul>
+          <li>Título <small class="text-muted">(acepta markdown)</small></li>
+          <li>Texto <small class="text-muted">(acepta markdown)</small></li>
+          <li>Ícono <small class="text-muted">(opcional, <a href="#iconos">ver referencia de íconos</a>)</small></li>
+          <li>Color del ícono <small class="text-muted">(opcional, de manera predeterminada se muestra celeste, <a href="#colores-texto">ver referencia de colores</a>)</small></li>
+        </ul> -->
+
+        <div class="docs-examlpe">
+          <div class="docs-content">
+
+            <div class="row">
+              <div class="col-xs-12 col-sm-6 col-md-4">
+                  <div class="icon-item">
+                      <i class="fa fa-users text-success"></i>
+                      <h3>Cercana</h3>
+                      <p>Conoce tus necesidades y adopta sus servicios a ellas.</p>
+                  </div>
+              </div>
+              <div class="col-xs-12 col-sm-6 col-md-4">
+                  <div class="icon-item">
+                      <i class="fa fa-search text-primary"></i>
+                      <h3>Transparente</h3>
+                      <p>Brinda mayor información y certeza sobre sus actos de gobierno.</p>
+                  </div>
+              </div>
+              <div class="col-xs-12 col-sm-6 col-md-4">
+                  <div class="icon-item">
+                      <i class="fa fa-users"></i>
+                      <h3>Participativa</h3>
+                      <p>Trabaja en equipo con los empleados públicos y la gente.</p>
+                  </div>
+              </div>
+            </div>
+
+          </div>
+          <pre class="docs-code"><code>
+&lt;div class="row"&gt;
+  &lt;div class="col-xs-12 col-sm-6 col-md-4"&gt;
+      &lt;div class="icon-item"&gt;
+          &lt;i class="fa fa-users text-success"&gt;&lt;/i&gt;
+          &lt;h3&gt;Cercana&lt;/h3&gt;
+          &lt;p&gt;Conoce tus necesidades y adopta sus servicios a ellas.&lt;/p&gt;
+      &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="col-xs-12 col-sm-6 col-md-4"&gt;
+      &lt;div class="icon-item"&gt;
+          &lt;i class="fa fa-search text-primary"&gt;&lt;/i&gt;
+          &lt;h3&gt;Transparente&lt;/h3&gt;
+          &lt;p&gt;Brinda mayor información y certeza sobre sus actos de gobierno.&lt;/p&gt;
+      &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="col-xs-12 col-sm-6 col-md-4"&gt;
+      &lt;div class="icon-item"&gt;
+          &lt;i class="fa fa-users"&gt;&lt;/i&gt;
+          &lt;h3&gt;Participativa&lt;/h3&gt;
+          &lt;p&gt;Trabaja en equipo con los empleados públicos y la gente.&lt;/p&gt;
+      &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+          </code></pre>
+        </div>
+
+
+        <!-- //////////////////////////////////////////////////////////////////////////////////////// -->
+
+
+        <h2 id="numeros">Números destacados</h2>
+        <p class="lead">Los números destacados se utilizan en landings, páginas o noticias que necesitan comunicar un resultado o medición.</p>
+
+        <!-- <h4>Números destacados en markdown</h4>
+        <p>El contenido se compone de:</p>
+        <ul>
+          <li>Número <small class="text-muted">(solo texto, máximo 10 caracteres)</small></li>
+          <li>Medida <small class="text-muted">(solo texto, máximo 20 caracteres)</small></li>
+          <li>Descripción <small class="text-muted">(solo texto)</small></li>
+          <li>Tamaño <small class="text-muted">(del 1 al 3, de manera predeterminada se usa 2)</small></li>
+          <li>Color <small class="text-muted">(opcional, de manera predeterminada se muestra negro, <a href="#colores-text">ver referencia de colores</a>)</small></li>
+        </ul> -->
+
+        <div class="docs-examlpe">
+          <div class="docs-content">
+
+            <div class="row numbers">
+              <div class="col-md-4">
+                <div class="h2 text-success">392.493</div>
+                <p class="lead">Visitas últimos 30 días</p>
+                <p class="text-muted">+11,06% vs mes anterior</p>
+              </div>
+              <div class="col-md-4">
+                <div class="h2 text-gray">33 <small>%</small>
+</div>
+                <p class="lead">Visitas este mes</p>
+                <p class="text-muted">del 1 al 26 de Febrero</p>
+              </div>
+              <div class="col-md-4">
+                <div class="h2">5 <small>de 10</small>
+</div>
+                <p class="lead">Personas conectadas</p>
+                <p class="text-muted">Duramente los últimos 30 días.</p>
+              </div>
+            </div>
+
+          </div>
+          <pre class="docs-code"><code>
+&lt;div class="row numbers"&gt;
+  &lt;div class="col-md-4"&gt;
+    &lt;div class="h2 text-success"&gt;392.493&lt;/div&gt;
+    &lt;p class="lead"&gt;Visitas últimos 30 días&lt;/p&gt;
+    &lt;p class="text-muted"&gt;+11,06% vs mes anterior&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="col-md-4"&gt;
+    &lt;div class="h2 text-gray"&gt;33 &lt;small&gt;%&lt;/small&gt;&lt;/div&gt;
+    &lt;p class="lead"&gt;Visitas este mes&lt;/p&gt;
+    &lt;p class="text-muted"&gt;del 1 al 26 de Febrero&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="col-md-4"&gt;
+    &lt;div class="h2"&gt;5 &lt;small&gt;de 10&lt;/small&gt;&lt;/div&gt;
+    &lt;p class="lead"&gt;Personas conectadas&lt;/p&gt;
+    &lt;p class="text-muted"&gt;Duramente los últimos 30 días.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+          </code></pre>
+        </div>
+
+
+        <!-- //////////////////////////////////////////////////////////////////////////////////////// -->
+
+
+        <h2 id="citas">Citas</h2>
+        <p class="lead">Las citas pueden ser estándares o destacadas.</p>
+
+        <!-- <h4>Citas en markdown</h4>
+        <p>El contenido de las citas se compone de:</p>
+        <ul>
+          <li>Texto <small class="text-muted">(acepta markdown)</small></li>
+          <li>Autor <small class="text-muted">(opcional, acepta markdown)</small></li>
+        </ul> -->
+
+        <div class="docs-examlpe">
+          <div class="docs-content">
+
+            <blockquote>
+              <p>“ Un Estado inteligente con servidores públicos capacitados para brindarle más y mejores servicios a los ciudadanos. Esto es el Siglo XXI y en eso trabajaremos día y noche. ”</p>
+              <small>Mauricio Macri</small>
+            </blockquote>
+
+          </div>
+          <pre class="docs-code"><code>
+&lt;blockquote&gt;
+  &lt;p&gt;“ Un Estado inteligente con servidores públicos capacitados para brindarle más y mejores servicios a los ciudadanos. Esto es el Siglo XXI y en eso trabajaremos día y noche. ”&lt;/p&gt;
+  &lt;small&gt;Mauricio Macri&lt;/small&gt;
+&lt;/blockquote&gt;
+          </code></pre>
+        </div>
+
+        <div class="docs-examlpe">
+          <div class="docs-content">
+
+            <blockquote class="quote-highlighted">
+              <p>
+                <span class="quotemark-open">“</span>
+                Un Estado inteligente con servidores públicos capacitados para brindarle más y mejores servicios a los ciudadanos. Esto es el Siglo XXI y en eso trabajaremos día y noche.
+                <span class="quotemark-close">”</span>
+              </p>
+              <small>Mauricio Macri</small>
+            </blockquote>
+
+          </div>
+          <pre class="docs-code"><code>
+&lt;blockquote class="quote-highlighted"&gt;
+  &lt;p&gt;
+    &lt;span class="quotemark-open"&gt;“&lt;/span&gt;
+    Un Estado inteligente con servidores públicos capacitados para brindarle más y mejores servicios a los ciudadanos. Esto es el Siglo XXI y en eso trabajaremos día y noche.
+    &lt;span class="quotemark-close"&gt;”&lt;/span&gt;
+  &lt;/p&gt;
+  &lt;small&gt;Mauricio Macri&lt;/small&gt;
+&lt;/blockquote&gt;
+          </code></pre>
+        </div>
+
+
+        <!-- //////////////////////////////////////////////////////////////////////////////////////// -->
+
+
+        <h1 id="referencias">Referencias</h1>
+        <hr>
+
+        <h2 id="colores-texto">Colores de texto</h2>
+        <p class="lead">Los atajos se utilizan para enlazar cualquier tipo de contenido, tanto interno como externo, y con diferentes tipos de jerarquías.</p>
+
+
+        <h4>Paleta principal</h4>
+        <p>La paleta principal se forma de:</p>
+        <ul>
+          <li>
+<strong class="text-primary">Azul</strong> <small class="text-muted">(.text-primary)</small>
+</li>
+          <li>
+<strong class="text-secondary">Celeste</strong> <small class="text-muted">(.text-secondary)</small>
+</li>
+          <li>
+<strong class="text-success">Verde</strong> <small class="text-muted">(.text-success)</small>
+</li>
+          <li>
+<strong class="text-warning">Amarillo</strong> <small class="text-muted">(.text-warning)</small>
+</li>
+          <li>
+<strong class="text-danger">Rojo</strong> <small class="text-muted">(.text-danger)</small>
+</li>
+          <li>
+<strong class="text-muted">Gris claro</strong> <small class="text-muted">(.text-muted)</small>
+</li>
+          <li>
+<strong class="text-gray">Gris oscuro</strong> <small class="text-muted">(.text-gray)</small>
+</li>
+          <li>
+<strong>Negro</strong> <small class="text-muted">(por defecto)</small>
+</li>
+        </ul>
+
+
+        <h4>Paleta extendida</h4>
+        <p>La paleta extendida se forma de:</p>
+
+        <ul>
+          <li>
+<strong class="text-fucsia">Fucsia</strong> <small class="text-muted">(.text-fucsia)</small>
+</li>
+          <li>
+<strong class="text-arandano">Arándano</strong> <small class="text-muted">(.text-arandano)</small>
+</li>
+          <li>
+<strong class="text-uva">Uva</strong> <small class="text-muted">(.text-uva)</small>
+</li>
+          <li>
+<strong class="text-cielo">Cielo</strong> <small class="text-muted">(.text-cielo)</small>
+</li>
+          <li>
+<strong class="text-verdin">Verdin</strong> <small class="text-muted">(.text-verdin)</small>
+</li>
+          <li>
+<strong class="text-lima">Lima</strong> <small class="text-muted">(.text-lima)</small>
+</li>
+          <li>
+<strong class="text-maiz">Maiz</strong> <small class="text-muted">(.text-maiz)</small>
+</li>
+          <li>
+<strong class="text-tomate">Tomate</strong> <small class="text-muted">(.text-tomate)</small>
+</li>
+        </ul>
+
+
+        <h2 id="colores-fondo">Colores de fondo</h2>
+        <p class="lead">Los atajos se utilizan para enlazar cualquier tipo de contenido, tanto interno como externo, y con diferentes tipos de jerarquías.</p>
+
+
+        <h4>Paleta principal</h4>
+        <p>La paleta principal se forma de:</p>
+        <div class="docs-colores">
+          <span class="bg-primary">.bg-primary</span>
+          <span class="bg-success">.bg-success</span>
+          <span class="bg-info">.bg-info</span>
+          <span class="bg-warning">.bg-warning</span>
+          <span class="bg-danger">.bg-danger</span>
+          <span class="bg-gray">.bg-gray</span>
+          <span class="bg-white">.bg-white</span>
+        </div>
+
+
+        <h4>Paleta extendida</h4>
+        <p>La paleta extendida se forma de:</p>
+        <div class="docs-colores">
+          <span class="bg-fucsia">.bg-fucsia</span>
+          <span class="bg-arandano">.bg-arandano</span>
+          <span class="bg-uva">.bg-uva</span>
+          <span class="bg-cielo">.bg-cielo</span>
+          <span class="bg-verdin">.bg-verdin</span>
+          <span class="bg-lima">.bg-lima</span>
+          <span class="bg-maiz">.bg-maiz</span>
+          <span class="bg-tomate">.bg-tomate</span>
+        </div>
+
+        <hr>
+
+        <h2 id="iconos">Íconos</h2>
+        <p class="lead">Dentro de poncho estamos trabajando en una <a href="/iconos">familia de íconos</a> que va creciendo de a poco, y de momento convive junto a <a href="http://fontawesome.io/icons/">Font Awesome</a>.</p>
+
+        <h4>Íconos en drupal</h4>
+        <p>En drupal, la lista de íconos disponibles es:</p>
+
+        <div class="row row-flex padding-40">
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-500px"></span> <br> <small class="text-muted">fa-500px</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-adjust"></span> <br> <small class="text-muted">fa-adjust</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-adn"></span> <br> <small class="text-muted">fa-adn</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-align-center"></span> <br> <small class="text-muted">fa-align-center</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-align-justify"></span> <br> <small class="text-muted">fa-align-justify</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-align-left"></span> <br> <small class="text-muted">fa-align-left</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-align-right"></span> <br> <small class="text-muted">fa-align-right</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-amazon"></span> <br> <small class="text-muted">fa-amazon</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-ambulance"></span> <br> <small class="text-muted">fa-ambulance</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-american-sign-language-interpreting"></span> <br> <small class="text-muted">fa-american-sign-language-interpreting</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-anchor"></span> <br> <small class="text-muted">fa-anchor</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-android"></span> <br> <small class="text-muted">fa-android</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-angellist"></span> <br> <small class="text-muted">fa-angellist</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-angle-double-down"></span> <br> <small class="text-muted">fa-angle-double-down</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-angle-double-left"></span> <br> <small class="text-muted">fa-angle-double-left</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-angle-double-right"></span> <br> <small class="text-muted">fa-angle-double-right</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-angle-double-up"></span> <br> <small class="text-muted">fa-angle-double-up</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-angle-down"></span> <br> <small class="text-muted">fa-angle-down</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-angle-left"></span> <br> <small class="text-muted">fa-angle-left</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-angle-right"></span> <br> <small class="text-muted">fa-angle-right</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-angle-up"></span> <br> <small class="text-muted">fa-angle-up</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-apple"></span> <br> <small class="text-muted">fa-apple</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-archive"></span> <br> <small class="text-muted">fa-archive</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-area-chart"></span> <br> <small class="text-muted">fa-area-chart</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-arrow-circle-down"></span> <br> <small class="text-muted">fa-arrow-circle-down</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-arrow-circle-left"></span> <br> <small class="text-muted">fa-arrow-circle-left</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-arrow-circle-o-down"></span> <br> <small class="text-muted">fa-arrow-circle-o-down</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-arrow-circle-o-left"></span> <br> <small class="text-muted">fa-arrow-circle-o-left</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-arrow-circle-o-right"></span> <br> <small class="text-muted">fa-arrow-circle-o-right</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-arrow-circle-o-up"></span> <br> <small class="text-muted">fa-arrow-circle-o-up</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-arrow-circle-right"></span> <br> <small class="text-muted">fa-arrow-circle-right</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-arrow-circle-up"></span> <br> <small class="text-muted">fa-arrow-circle-up</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-arrow-down"></span> <br> <small class="text-muted">fa-arrow-down</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-arrow-left"></span> <br> <small class="text-muted">fa-arrow-left</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-arrow-right"></span> <br> <small class="text-muted">fa-arrow-right</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-arrow-up"></span> <br> <small class="text-muted">fa-arrow-up</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-arrows"></span> <br> <small class="text-muted">fa-arrows</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-arrows-alt"></span> <br> <small class="text-muted">fa-arrows-alt</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-arrows-h"></span> <br> <small class="text-muted">fa-arrows-h</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-arrows-v"></span> <br> <small class="text-muted">fa-arrows-v</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-asl-interpreting"></span> <br> <small class="text-muted">fa-asl-interpreting</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-assistive-listening-systems"></span> <br> <small class="text-muted">fa-assistive-listening-systems</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-asterisk"></span> <br> <small class="text-muted">fa-asterisk</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-at"></span> <br> <small class="text-muted">fa-at</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-audio-description"></span> <br> <small class="text-muted">fa-audio-description</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-automobile"></span> <br> <small class="text-muted">fa-automobile</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-backward"></span> <br> <small class="text-muted">fa-backward</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-balance-scale"></span> <br> <small class="text-muted">fa-balance-scale</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-ban"></span> <br> <small class="text-muted">fa-ban</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-bank"></span> <br> <small class="text-muted">fa-bank</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-bar-chart"></span> <br> <small class="text-muted">fa-bar-chart</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-bar-chart-o"></span> <br> <small class="text-muted">fa-bar-chart-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-barcode"></span> <br> <small class="text-muted">fa-barcode</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-bars"></span> <br> <small class="text-muted">fa-bars</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-battery-0"></span> <br> <small class="text-muted">fa-battery-0</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-battery-1"></span> <br> <small class="text-muted">fa-battery-1</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-battery-2"></span> <br> <small class="text-muted">fa-battery-2</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-battery-3"></span> <br> <small class="text-muted">fa-battery-3</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-battery-4"></span> <br> <small class="text-muted">fa-battery-4</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-battery-empty"></span> <br> <small class="text-muted">fa-battery-empty</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-battery-full"></span> <br> <small class="text-muted">fa-battery-full</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-battery-half"></span> <br> <small class="text-muted">fa-battery-half</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-battery-quarter"></span> <br> <small class="text-muted">fa-battery-quarter</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-battery-three-quarters"></span> <br> <small class="text-muted">fa-battery-three-quarters</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-bed"></span> <br> <small class="text-muted">fa-bed</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-beer"></span> <br> <small class="text-muted">fa-beer</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-behance"></span> <br> <small class="text-muted">fa-behance</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-behance-square"></span> <br> <small class="text-muted">fa-behance-square</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-bell"></span> <br> <small class="text-muted">fa-bell</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-bell-o"></span> <br> <small class="text-muted">fa-bell-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-bell-slash"></span> <br> <small class="text-muted">fa-bell-slash</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-bell-slash-o"></span> <br> <small class="text-muted">fa-bell-slash-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-bicycle"></span> <br> <small class="text-muted">fa-bicycle</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-binoculars"></span> <br> <small class="text-muted">fa-binoculars</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-birthday-cake"></span> <br> <small class="text-muted">fa-birthday-cake</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-bitbucket"></span> <br> <small class="text-muted">fa-bitbucket</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-bitbucket-square"></span> <br> <small class="text-muted">fa-bitbucket-square</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-bitcoin"></span> <br> <small class="text-muted">fa-bitcoin</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-black-tie"></span> <br> <small class="text-muted">fa-black-tie</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-blind"></span> <br> <small class="text-muted">fa-blind</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-bluetooth"></span> <br> <small class="text-muted">fa-bluetooth</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-bluetooth-b"></span> <br> <small class="text-muted">fa-bluetooth-b</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-bold"></span> <br> <small class="text-muted">fa-bold</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-bolt"></span> <br> <small class="text-muted">fa-bolt</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-bomb"></span> <br> <small class="text-muted">fa-bomb</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-book"></span> <br> <small class="text-muted">fa-book</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-bookmark"></span> <br> <small class="text-muted">fa-bookmark</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-bookmark-o"></span> <br> <small class="text-muted">fa-bookmark-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-braille"></span> <br> <small class="text-muted">fa-braille</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-briefcase"></span> <br> <small class="text-muted">fa-briefcase</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-btc"></span> <br> <small class="text-muted">fa-btc</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-bug"></span> <br> <small class="text-muted">fa-bug</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-building"></span> <br> <small class="text-muted">fa-building</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-building-o"></span> <br> <small class="text-muted">fa-building-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-bullhorn"></span> <br> <small class="text-muted">fa-bullhorn</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-bullseye"></span> <br> <small class="text-muted">fa-bullseye</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-bus"></span> <br> <small class="text-muted">fa-bus</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-buysellads"></span> <br> <small class="text-muted">fa-buysellads</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-cab"></span> <br> <small class="text-muted">fa-cab</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-calculator"></span> <br> <small class="text-muted">fa-calculator</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-calendar"></span> <br> <small class="text-muted">fa-calendar</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-calendar-check-o"></span> <br> <small class="text-muted">fa-calendar-check-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-calendar-minus-o"></span> <br> <small class="text-muted">fa-calendar-minus-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-calendar-o"></span> <br> <small class="text-muted">fa-calendar-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-calendar-plus-o"></span> <br> <small class="text-muted">fa-calendar-plus-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-calendar-times-o"></span> <br> <small class="text-muted">fa-calendar-times-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-camera"></span> <br> <small class="text-muted">fa-camera</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-camera-retro"></span> <br> <small class="text-muted">fa-camera-retro</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-car"></span> <br> <small class="text-muted">fa-car</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-caret-down"></span> <br> <small class="text-muted">fa-caret-down</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-caret-left"></span> <br> <small class="text-muted">fa-caret-left</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-caret-right"></span> <br> <small class="text-muted">fa-caret-right</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-caret-square-o-down"></span> <br> <small class="text-muted">fa-caret-square-o-down</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-caret-square-o-left"></span> <br> <small class="text-muted">fa-caret-square-o-left</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-caret-square-o-right"></span> <br> <small class="text-muted">fa-caret-square-o-right</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-caret-square-o-up"></span> <br> <small class="text-muted">fa-caret-square-o-up</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-caret-up"></span> <br> <small class="text-muted">fa-caret-up</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-cart-arrow-down"></span> <br> <small class="text-muted">fa-cart-arrow-down</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-cart-plus"></span> <br> <small class="text-muted">fa-cart-plus</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-cc"></span> <br> <small class="text-muted">fa-cc</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-cc-amex"></span> <br> <small class="text-muted">fa-cc-amex</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-cc-diners-club"></span> <br> <small class="text-muted">fa-cc-diners-club</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-cc-discover"></span> <br> <small class="text-muted">fa-cc-discover</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-cc-jcb"></span> <br> <small class="text-muted">fa-cc-jcb</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-cc-mastercard"></span> <br> <small class="text-muted">fa-cc-mastercard</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-cc-paypal"></span> <br> <small class="text-muted">fa-cc-paypal</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-cc-stripe"></span> <br> <small class="text-muted">fa-cc-stripe</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-cc-visa"></span> <br> <small class="text-muted">fa-cc-visa</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-certificate"></span> <br> <small class="text-muted">fa-certificate</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-chain"></span> <br> <small class="text-muted">fa-chain</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-chain-broken"></span> <br> <small class="text-muted">fa-chain-broken</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-check"></span> <br> <small class="text-muted">fa-check</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-check-circle"></span> <br> <small class="text-muted">fa-check-circle</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-check-circle-o"></span> <br> <small class="text-muted">fa-check-circle-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-check-square"></span> <br> <small class="text-muted">fa-check-square</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-check-square-o"></span> <br> <small class="text-muted">fa-check-square-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-chevron-circle-down"></span> <br> <small class="text-muted">fa-chevron-circle-down</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-chevron-circle-left"></span> <br> <small class="text-muted">fa-chevron-circle-left</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-chevron-circle-right"></span> <br> <small class="text-muted">fa-chevron-circle-right</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-chevron-circle-up"></span> <br> <small class="text-muted">fa-chevron-circle-up</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-chevron-down"></span> <br> <small class="text-muted">fa-chevron-down</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-chevron-left"></span> <br> <small class="text-muted">fa-chevron-left</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-chevron-right"></span> <br> <small class="text-muted">fa-chevron-right</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-chevron-up"></span> <br> <small class="text-muted">fa-chevron-up</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-child"></span> <br> <small class="text-muted">fa-child</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-chrome"></span> <br> <small class="text-muted">fa-chrome</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-circle"></span> <br> <small class="text-muted">fa-circle</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-circle-o"></span> <br> <small class="text-muted">fa-circle-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-circle-o-notch"></span> <br> <small class="text-muted">fa-circle-o-notch</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-circle-thin"></span> <br> <small class="text-muted">fa-circle-thin</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-clipboard"></span> <br> <small class="text-muted">fa-clipboard</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-clock-o"></span> <br> <small class="text-muted">fa-clock-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-clone"></span> <br> <small class="text-muted">fa-clone</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-close"></span> <br> <small class="text-muted">fa-close</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-cloud"></span> <br> <small class="text-muted">fa-cloud</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-cloud-download"></span> <br> <small class="text-muted">fa-cloud-download</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-cloud-upload"></span> <br> <small class="text-muted">fa-cloud-upload</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-cny"></span> <br> <small class="text-muted">fa-cny</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-code"></span> <br> <small class="text-muted">fa-code</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-code-fork"></span> <br> <small class="text-muted">fa-code-fork</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-codepen"></span> <br> <small class="text-muted">fa-codepen</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-codiepie"></span> <br> <small class="text-muted">fa-codiepie</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-coffee"></span> <br> <small class="text-muted">fa-coffee</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-cog"></span> <br> <small class="text-muted">fa-cog</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-cogs"></span> <br> <small class="text-muted">fa-cogs</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-columns"></span> <br> <small class="text-muted">fa-columns</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-comment"></span> <br> <small class="text-muted">fa-comment</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-comment-o"></span> <br> <small class="text-muted">fa-comment-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-commenting"></span> <br> <small class="text-muted">fa-commenting</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-commenting-o"></span> <br> <small class="text-muted">fa-commenting-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-comments"></span> <br> <small class="text-muted">fa-comments</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-comments-o"></span> <br> <small class="text-muted">fa-comments-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-compass"></span> <br> <small class="text-muted">fa-compass</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-compress"></span> <br> <small class="text-muted">fa-compress</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-connectdevelop"></span> <br> <small class="text-muted">fa-connectdevelop</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-contao"></span> <br> <small class="text-muted">fa-contao</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-copy"></span> <br> <small class="text-muted">fa-copy</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-copyright"></span> <br> <small class="text-muted">fa-copyright</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-creative-commons"></span> <br> <small class="text-muted">fa-creative-commons</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-credit-card"></span> <br> <small class="text-muted">fa-credit-card</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-credit-card-alt"></span> <br> <small class="text-muted">fa-credit-card-alt</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-crop"></span> <br> <small class="text-muted">fa-crop</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-crosshairs"></span> <br> <small class="text-muted">fa-crosshairs</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-css3"></span> <br> <small class="text-muted">fa-css3</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-cube"></span> <br> <small class="text-muted">fa-cube</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-cubes"></span> <br> <small class="text-muted">fa-cubes</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-cut"></span> <br> <small class="text-muted">fa-cut</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-cutlery"></span> <br> <small class="text-muted">fa-cutlery</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-dashboard"></span> <br> <small class="text-muted">fa-dashboard</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-dashcube"></span> <br> <small class="text-muted">fa-dashcube</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-database"></span> <br> <small class="text-muted">fa-database</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-deaf"></span> <br> <small class="text-muted">fa-deaf</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-deafness"></span> <br> <small class="text-muted">fa-deafness</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-dedent"></span> <br> <small class="text-muted">fa-dedent</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-delicious"></span> <br> <small class="text-muted">fa-delicious</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-desktop"></span> <br> <small class="text-muted">fa-desktop</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-deviantart"></span> <br> <small class="text-muted">fa-deviantart</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-diamond"></span> <br> <small class="text-muted">fa-diamond</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-digg"></span> <br> <small class="text-muted">fa-digg</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-dollar"></span> <br> <small class="text-muted">fa-dollar</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-dot-circle-o"></span> <br> <small class="text-muted">fa-dot-circle-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-download"></span> <br> <small class="text-muted">fa-download</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-dribbble"></span> <br> <small class="text-muted">fa-dribbble</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-dropbox"></span> <br> <small class="text-muted">fa-dropbox</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-drupal"></span> <br> <small class="text-muted">fa-drupal</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-edge"></span> <br> <small class="text-muted">fa-edge</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-edit"></span> <br> <small class="text-muted">fa-edit</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-eject"></span> <br> <small class="text-muted">fa-eject</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-ellipsis-h"></span> <br> <small class="text-muted">fa-ellipsis-h</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-ellipsis-v"></span> <br> <small class="text-muted">fa-ellipsis-v</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-empire"></span> <br> <small class="text-muted">fa-empire</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-envelope"></span> <br> <small class="text-muted">fa-envelope</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-envelope-o"></span> <br> <small class="text-muted">fa-envelope-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-envelope-square"></span> <br> <small class="text-muted">fa-envelope-square</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-envira"></span> <br> <small class="text-muted">fa-envira</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-eraser"></span> <br> <small class="text-muted">fa-eraser</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-eur"></span> <br> <small class="text-muted">fa-eur</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-euro"></span> <br> <small class="text-muted">fa-euro</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-exchange"></span> <br> <small class="text-muted">fa-exchange</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-exclamation"></span> <br> <small class="text-muted">fa-exclamation</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-exclamation-circle"></span> <br> <small class="text-muted">fa-exclamation-circle</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-exclamation-triangle"></span> <br> <small class="text-muted">fa-exclamation-triangle</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-expand"></span> <br> <small class="text-muted">fa-expand</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-expeditedssl"></span> <br> <small class="text-muted">fa-expeditedssl</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-external-link"></span> <br> <small class="text-muted">fa-external-link</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-external-link-square"></span> <br> <small class="text-muted">fa-external-link-square</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-eye"></span> <br> <small class="text-muted">fa-eye</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-eye-slash"></span> <br> <small class="text-muted">fa-eye-slash</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-eyedropper"></span> <br> <small class="text-muted">fa-eyedropper</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-fa"></span> <br> <small class="text-muted">fa-fa</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-facebook"></span> <br> <small class="text-muted">fa-facebook</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-facebook-f"></span> <br> <small class="text-muted">fa-facebook-f</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-facebook-official"></span> <br> <small class="text-muted">fa-facebook-official</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-facebook-square"></span> <br> <small class="text-muted">fa-facebook-square</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-fast-backward"></span> <br> <small class="text-muted">fa-fast-backward</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-fast-forward"></span> <br> <small class="text-muted">fa-fast-forward</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-fax"></span> <br> <small class="text-muted">fa-fax</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-feed"></span> <br> <small class="text-muted">fa-feed</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-female"></span> <br> <small class="text-muted">fa-female</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-fighter-jet"></span> <br> <small class="text-muted">fa-fighter-jet</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-file"></span> <br> <small class="text-muted">fa-file</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-file-archive-o"></span> <br> <small class="text-muted">fa-file-archive-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-file-audio-o"></span> <br> <small class="text-muted">fa-file-audio-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-file-code-o"></span> <br> <small class="text-muted">fa-file-code-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-file-excel-o"></span> <br> <small class="text-muted">fa-file-excel-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-file-image-o"></span> <br> <small class="text-muted">fa-file-image-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-file-movie-o"></span> <br> <small class="text-muted">fa-file-movie-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-file-o"></span> <br> <small class="text-muted">fa-file-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-file-pdf-o"></span> <br> <small class="text-muted">fa-file-pdf-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-file-photo-o"></span> <br> <small class="text-muted">fa-file-photo-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-file-picture-o"></span> <br> <small class="text-muted">fa-file-picture-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-file-powerpoint-o"></span> <br> <small class="text-muted">fa-file-powerpoint-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-file-sound-o"></span> <br> <small class="text-muted">fa-file-sound-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-file-text"></span> <br> <small class="text-muted">fa-file-text</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-file-text-o"></span> <br> <small class="text-muted">fa-file-text-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-file-video-o"></span> <br> <small class="text-muted">fa-file-video-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-file-word-o"></span> <br> <small class="text-muted">fa-file-word-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-file-zip-o"></span> <br> <small class="text-muted">fa-file-zip-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-files-o"></span> <br> <small class="text-muted">fa-files-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-film"></span> <br> <small class="text-muted">fa-film</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-filter"></span> <br> <small class="text-muted">fa-filter</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-fire"></span> <br> <small class="text-muted">fa-fire</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-fire-extinguisher"></span> <br> <small class="text-muted">fa-fire-extinguisher</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-firefox"></span> <br> <small class="text-muted">fa-firefox</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-first-order"></span> <br> <small class="text-muted">fa-first-order</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-flag"></span> <br> <small class="text-muted">fa-flag</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-flag-checkered"></span> <br> <small class="text-muted">fa-flag-checkered</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-flag-o"></span> <br> <small class="text-muted">fa-flag-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-flash"></span> <br> <small class="text-muted">fa-flash</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-flask"></span> <br> <small class="text-muted">fa-flask</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-flickr"></span> <br> <small class="text-muted">fa-flickr</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-floppy-o"></span> <br> <small class="text-muted">fa-floppy-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-folder"></span> <br> <small class="text-muted">fa-folder</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-folder-o"></span> <br> <small class="text-muted">fa-folder-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-folder-open"></span> <br> <small class="text-muted">fa-folder-open</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-folder-open-o"></span> <br> <small class="text-muted">fa-folder-open-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-font"></span> <br> <small class="text-muted">fa-font</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-font-awesome"></span> <br> <small class="text-muted">fa-font-awesome</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-fonticons"></span> <br> <small class="text-muted">fa-fonticons</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-fort-awesome"></span> <br> <small class="text-muted">fa-fort-awesome</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-forumbee"></span> <br> <small class="text-muted">fa-forumbee</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-forward"></span> <br> <small class="text-muted">fa-forward</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-foursquare"></span> <br> <small class="text-muted">fa-foursquare</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-frown-o"></span> <br> <small class="text-muted">fa-frown-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-futbol-o"></span> <br> <small class="text-muted">fa-futbol-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-gamepad"></span> <br> <small class="text-muted">fa-gamepad</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-gavel"></span> <br> <small class="text-muted">fa-gavel</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-gbp"></span> <br> <small class="text-muted">fa-gbp</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-ge"></span> <br> <small class="text-muted">fa-ge</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-gear"></span> <br> <small class="text-muted">fa-gear</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-gears"></span> <br> <small class="text-muted">fa-gears</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-genderless"></span> <br> <small class="text-muted">fa-genderless</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-get-pocket"></span> <br> <small class="text-muted">fa-get-pocket</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-gg"></span> <br> <small class="text-muted">fa-gg</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-gg-circle"></span> <br> <small class="text-muted">fa-gg-circle</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-gift"></span> <br> <small class="text-muted">fa-gift</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-git"></span> <br> <small class="text-muted">fa-git</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-git-square"></span> <br> <small class="text-muted">fa-git-square</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-github"></span> <br> <small class="text-muted">fa-github</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-github-alt"></span> <br> <small class="text-muted">fa-github-alt</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-github-square"></span> <br> <small class="text-muted">fa-github-square</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-gitlab"></span> <br> <small class="text-muted">fa-gitlab</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-gittip"></span> <br> <small class="text-muted">fa-gittip</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-glass"></span> <br> <small class="text-muted">fa-glass</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-glide"></span> <br> <small class="text-muted">fa-glide</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-glide-g"></span> <br> <small class="text-muted">fa-glide-g</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-globe"></span> <br> <small class="text-muted">fa-globe</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-google"></span> <br> <small class="text-muted">fa-google</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-google-plus"></span> <br> <small class="text-muted">fa-google-plus</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-google-plus-circle"></span> <br> <small class="text-muted">fa-google-plus-circle</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-google-plus-official"></span> <br> <small class="text-muted">fa-google-plus-official</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-google-plus-square"></span> <br> <small class="text-muted">fa-google-plus-square</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-google-wallet"></span> <br> <small class="text-muted">fa-google-wallet</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-graduation-cap"></span> <br> <small class="text-muted">fa-graduation-cap</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-gratipay"></span> <br> <small class="text-muted">fa-gratipay</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-group"></span> <br> <small class="text-muted">fa-group</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-h-square"></span> <br> <small class="text-muted">fa-h-square</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-hacker-news"></span> <br> <small class="text-muted">fa-hacker-news</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-hand-grab-o"></span> <br> <small class="text-muted">fa-hand-grab-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-hand-lizard-o"></span> <br> <small class="text-muted">fa-hand-lizard-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-hand-o-down"></span> <br> <small class="text-muted">fa-hand-o-down</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-hand-o-left"></span> <br> <small class="text-muted">fa-hand-o-left</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-hand-o-right"></span> <br> <small class="text-muted">fa-hand-o-right</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-hand-o-up"></span> <br> <small class="text-muted">fa-hand-o-up</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-hand-paper-o"></span> <br> <small class="text-muted">fa-hand-paper-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-hand-peace-o"></span> <br> <small class="text-muted">fa-hand-peace-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-hand-pointer-o"></span> <br> <small class="text-muted">fa-hand-pointer-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-hand-rock-o"></span> <br> <small class="text-muted">fa-hand-rock-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-hand-scissors-o"></span> <br> <small class="text-muted">fa-hand-scissors-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-hand-spock-o"></span> <br> <small class="text-muted">fa-hand-spock-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-hand-stop-o"></span> <br> <small class="text-muted">fa-hand-stop-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-hard-of-hearing"></span> <br> <small class="text-muted">fa-hard-of-hearing</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-hashtag"></span> <br> <small class="text-muted">fa-hashtag</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-hdd-o"></span> <br> <small class="text-muted">fa-hdd-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-header"></span> <br> <small class="text-muted">fa-header</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-headphones"></span> <br> <small class="text-muted">fa-headphones</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-heart"></span> <br> <small class="text-muted">fa-heart</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-heart-o"></span> <br> <small class="text-muted">fa-heart-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-heartbeat"></span> <br> <small class="text-muted">fa-heartbeat</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-history"></span> <br> <small class="text-muted">fa-history</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-home"></span> <br> <small class="text-muted">fa-home</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-hospital-o"></span> <br> <small class="text-muted">fa-hospital-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-hotel"></span> <br> <small class="text-muted">fa-hotel</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-hourglass"></span> <br> <small class="text-muted">fa-hourglass</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-hourglass-1"></span> <br> <small class="text-muted">fa-hourglass-1</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-hourglass-2"></span> <br> <small class="text-muted">fa-hourglass-2</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-hourglass-3"></span> <br> <small class="text-muted">fa-hourglass-3</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-hourglass-end"></span> <br> <small class="text-muted">fa-hourglass-end</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-hourglass-half"></span> <br> <small class="text-muted">fa-hourglass-half</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-hourglass-o"></span> <br> <small class="text-muted">fa-hourglass-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-hourglass-start"></span> <br> <small class="text-muted">fa-hourglass-start</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-houzz"></span> <br> <small class="text-muted">fa-houzz</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-html5"></span> <br> <small class="text-muted">fa-html5</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-i-cursor"></span> <br> <small class="text-muted">fa-i-cursor</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-ils"></span> <br> <small class="text-muted">fa-ils</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-image"></span> <br> <small class="text-muted">fa-image</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-inbox"></span> <br> <small class="text-muted">fa-inbox</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-indent"></span> <br> <small class="text-muted">fa-indent</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-industry"></span> <br> <small class="text-muted">fa-industry</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-info"></span> <br> <small class="text-muted">fa-info</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-info-circle"></span> <br> <small class="text-muted">fa-info-circle</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-inr"></span> <br> <small class="text-muted">fa-inr</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-instagram"></span> <br> <small class="text-muted">fa-instagram</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-institution"></span> <br> <small class="text-muted">fa-institution</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-internet-explorer"></span> <br> <small class="text-muted">fa-internet-explorer</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-intersex"></span> <br> <small class="text-muted">fa-intersex</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-ioxhost"></span> <br> <small class="text-muted">fa-ioxhost</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-italic"></span> <br> <small class="text-muted">fa-italic</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-joomla"></span> <br> <small class="text-muted">fa-joomla</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-jpy"></span> <br> <small class="text-muted">fa-jpy</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-jsfiddle"></span> <br> <small class="text-muted">fa-jsfiddle</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-key"></span> <br> <small class="text-muted">fa-key</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-keyboard-o"></span> <br> <small class="text-muted">fa-keyboard-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-krw"></span> <br> <small class="text-muted">fa-krw</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-language"></span> <br> <small class="text-muted">fa-language</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-laptop"></span> <br> <small class="text-muted">fa-laptop</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-lastfm"></span> <br> <small class="text-muted">fa-lastfm</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-lastfm-square"></span> <br> <small class="text-muted">fa-lastfm-square</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-leaf"></span> <br> <small class="text-muted">fa-leaf</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-leanpub"></span> <br> <small class="text-muted">fa-leanpub</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-legal"></span> <br> <small class="text-muted">fa-legal</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-lemon-o"></span> <br> <small class="text-muted">fa-lemon-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-level-down"></span> <br> <small class="text-muted">fa-level-down</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-level-up"></span> <br> <small class="text-muted">fa-level-up</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-life-bouy"></span> <br> <small class="text-muted">fa-life-bouy</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-life-buoy"></span> <br> <small class="text-muted">fa-life-buoy</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-life-ring"></span> <br> <small class="text-muted">fa-life-ring</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-life-saver"></span> <br> <small class="text-muted">fa-life-saver</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-lightbulb-o"></span> <br> <small class="text-muted">fa-lightbulb-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-line-chart"></span> <br> <small class="text-muted">fa-line-chart</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-link"></span> <br> <small class="text-muted">fa-link</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-linkedin"></span> <br> <small class="text-muted">fa-linkedin</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-linkedin-square"></span> <br> <small class="text-muted">fa-linkedin-square</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-linux"></span> <br> <small class="text-muted">fa-linux</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-list"></span> <br> <small class="text-muted">fa-list</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-list-alt"></span> <br> <small class="text-muted">fa-list-alt</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-list-ol"></span> <br> <small class="text-muted">fa-list-ol</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-list-ul"></span> <br> <small class="text-muted">fa-list-ul</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-location-arrow"></span> <br> <small class="text-muted">fa-location-arrow</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-lock"></span> <br> <small class="text-muted">fa-lock</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-long-arrow-down"></span> <br> <small class="text-muted">fa-long-arrow-down</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-long-arrow-left"></span> <br> <small class="text-muted">fa-long-arrow-left</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-long-arrow-right"></span> <br> <small class="text-muted">fa-long-arrow-right</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-long-arrow-up"></span> <br> <small class="text-muted">fa-long-arrow-up</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-low-vision"></span> <br> <small class="text-muted">fa-low-vision</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-magic"></span> <br> <small class="text-muted">fa-magic</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-magnet"></span> <br> <small class="text-muted">fa-magnet</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-mail-forward"></span> <br> <small class="text-muted">fa-mail-forward</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-mail-reply"></span> <br> <small class="text-muted">fa-mail-reply</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-mail-reply-all"></span> <br> <small class="text-muted">fa-mail-reply-all</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-male"></span> <br> <small class="text-muted">fa-male</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-map"></span> <br> <small class="text-muted">fa-map</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-map-marker"></span> <br> <small class="text-muted">fa-map-marker</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-map-o"></span> <br> <small class="text-muted">fa-map-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-map-pin"></span> <br> <small class="text-muted">fa-map-pin</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-map-signs"></span> <br> <small class="text-muted">fa-map-signs</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-mars"></span> <br> <small class="text-muted">fa-mars</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-mars-double"></span> <br> <small class="text-muted">fa-mars-double</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-mars-stroke"></span> <br> <small class="text-muted">fa-mars-stroke</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-mars-stroke-h"></span> <br> <small class="text-muted">fa-mars-stroke-h</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-mars-stroke-v"></span> <br> <small class="text-muted">fa-mars-stroke-v</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-maxcdn"></span> <br> <small class="text-muted">fa-maxcdn</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-meanpath"></span> <br> <small class="text-muted">fa-meanpath</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-medium"></span> <br> <small class="text-muted">fa-medium</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-medkit"></span> <br> <small class="text-muted">fa-medkit</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-meh-o"></span> <br> <small class="text-muted">fa-meh-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-mercury"></span> <br> <small class="text-muted">fa-mercury</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-microphone"></span> <br> <small class="text-muted">fa-microphone</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-microphone-slash"></span> <br> <small class="text-muted">fa-microphone-slash</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-minus"></span> <br> <small class="text-muted">fa-minus</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-minus-circle"></span> <br> <small class="text-muted">fa-minus-circle</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-minus-square"></span> <br> <small class="text-muted">fa-minus-square</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-minus-square-o"></span> <br> <small class="text-muted">fa-minus-square-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-mixcloud"></span> <br> <small class="text-muted">fa-mixcloud</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-mobile"></span> <br> <small class="text-muted">fa-mobile</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-mobile-phone"></span> <br> <small class="text-muted">fa-mobile-phone</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-modx"></span> <br> <small class="text-muted">fa-modx</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-money"></span> <br> <small class="text-muted">fa-money</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-moon-o"></span> <br> <small class="text-muted">fa-moon-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-mortar-board"></span> <br> <small class="text-muted">fa-mortar-board</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-motorcycle"></span> <br> <small class="text-muted">fa-motorcycle</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-mouse-pointer"></span> <br> <small class="text-muted">fa-mouse-pointer</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-music"></span> <br> <small class="text-muted">fa-music</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-navicon"></span> <br> <small class="text-muted">fa-navicon</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-neuter"></span> <br> <small class="text-muted">fa-neuter</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-newspaper-o"></span> <br> <small class="text-muted">fa-newspaper-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-object-group"></span> <br> <small class="text-muted">fa-object-group</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-object-ungroup"></span> <br> <small class="text-muted">fa-object-ungroup</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-odnoklassniki"></span> <br> <small class="text-muted">fa-odnoklassniki</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-odnoklassniki-square"></span> <br> <small class="text-muted">fa-odnoklassniki-square</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-opencart"></span> <br> <small class="text-muted">fa-opencart</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-openid"></span> <br> <small class="text-muted">fa-openid</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-opera"></span> <br> <small class="text-muted">fa-opera</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-optin-monster"></span> <br> <small class="text-muted">fa-optin-monster</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-outdent"></span> <br> <small class="text-muted">fa-outdent</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-pagelines"></span> <br> <small class="text-muted">fa-pagelines</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-paint-brush"></span> <br> <small class="text-muted">fa-paint-brush</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-paper-plane"></span> <br> <small class="text-muted">fa-paper-plane</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-paper-plane-o"></span> <br> <small class="text-muted">fa-paper-plane-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-paperclip"></span> <br> <small class="text-muted">fa-paperclip</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-paragraph"></span> <br> <small class="text-muted">fa-paragraph</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-paste"></span> <br> <small class="text-muted">fa-paste</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-pause"></span> <br> <small class="text-muted">fa-pause</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-pause-circle"></span> <br> <small class="text-muted">fa-pause-circle</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-pause-circle-o"></span> <br> <small class="text-muted">fa-pause-circle-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-paw"></span> <br> <small class="text-muted">fa-paw</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-paypal"></span> <br> <small class="text-muted">fa-paypal</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-pencil"></span> <br> <small class="text-muted">fa-pencil</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-pencil-square"></span> <br> <small class="text-muted">fa-pencil-square</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-pencil-square-o"></span> <br> <small class="text-muted">fa-pencil-square-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-percent"></span> <br> <small class="text-muted">fa-percent</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-phone"></span> <br> <small class="text-muted">fa-phone</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-phone-square"></span> <br> <small class="text-muted">fa-phone-square</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-photo"></span> <br> <small class="text-muted">fa-photo</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-picture-o"></span> <br> <small class="text-muted">fa-picture-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-pie-chart"></span> <br> <small class="text-muted">fa-pie-chart</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-pied-piper"></span> <br> <small class="text-muted">fa-pied-piper</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-pied-piper-alt"></span> <br> <small class="text-muted">fa-pied-piper-alt</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-pied-piper-pp"></span> <br> <small class="text-muted">fa-pied-piper-pp</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-pinterest"></span> <br> <small class="text-muted">fa-pinterest</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-pinterest-p"></span> <br> <small class="text-muted">fa-pinterest-p</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-pinterest-square"></span> <br> <small class="text-muted">fa-pinterest-square</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-plane"></span> <br> <small class="text-muted">fa-plane</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-play"></span> <br> <small class="text-muted">fa-play</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-play-circle"></span> <br> <small class="text-muted">fa-play-circle</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-play-circle-o"></span> <br> <small class="text-muted">fa-play-circle-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-plug"></span> <br> <small class="text-muted">fa-plug</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-plus"></span> <br> <small class="text-muted">fa-plus</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-plus-circle"></span> <br> <small class="text-muted">fa-plus-circle</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-plus-square"></span> <br> <small class="text-muted">fa-plus-square</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-plus-square-o"></span> <br> <small class="text-muted">fa-plus-square-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-power-off"></span> <br> <small class="text-muted">fa-power-off</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-print"></span> <br> <small class="text-muted">fa-print</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-product-hunt"></span> <br> <small class="text-muted">fa-product-hunt</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-puzzle-piece"></span> <br> <small class="text-muted">fa-puzzle-piece</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-qq"></span> <br> <small class="text-muted">fa-qq</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-qrcode"></span> <br> <small class="text-muted">fa-qrcode</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-question"></span> <br> <small class="text-muted">fa-question</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-question-circle"></span> <br> <small class="text-muted">fa-question-circle</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-question-circle-o"></span> <br> <small class="text-muted">fa-question-circle-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-quote-left"></span> <br> <small class="text-muted">fa-quote-left</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-quote-right"></span> <br> <small class="text-muted">fa-quote-right</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-ra"></span> <br> <small class="text-muted">fa-ra</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-random"></span> <br> <small class="text-muted">fa-random</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-rebel"></span> <br> <small class="text-muted">fa-rebel</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-recycle"></span> <br> <small class="text-muted">fa-recycle</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-reddit"></span> <br> <small class="text-muted">fa-reddit</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-reddit-alien"></span> <br> <small class="text-muted">fa-reddit-alien</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-reddit-square"></span> <br> <small class="text-muted">fa-reddit-square</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-refresh"></span> <br> <small class="text-muted">fa-refresh</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-registered"></span> <br> <small class="text-muted">fa-registered</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-remove"></span> <br> <small class="text-muted">fa-remove</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-renren"></span> <br> <small class="text-muted">fa-renren</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-reorder"></span> <br> <small class="text-muted">fa-reorder</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-repeat"></span> <br> <small class="text-muted">fa-repeat</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-reply"></span> <br> <small class="text-muted">fa-reply</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-reply-all"></span> <br> <small class="text-muted">fa-reply-all</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-resistance"></span> <br> <small class="text-muted">fa-resistance</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-retweet"></span> <br> <small class="text-muted">fa-retweet</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-rmb"></span> <br> <small class="text-muted">fa-rmb</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-road"></span> <br> <small class="text-muted">fa-road</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-rocket"></span> <br> <small class="text-muted">fa-rocket</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-rotate-left"></span> <br> <small class="text-muted">fa-rotate-left</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-rotate-right"></span> <br> <small class="text-muted">fa-rotate-right</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-rouble"></span> <br> <small class="text-muted">fa-rouble</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-rss"></span> <br> <small class="text-muted">fa-rss</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-rss-square"></span> <br> <small class="text-muted">fa-rss-square</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-rub"></span> <br> <small class="text-muted">fa-rub</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-ruble"></span> <br> <small class="text-muted">fa-ruble</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-rupee"></span> <br> <small class="text-muted">fa-rupee</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-safari"></span> <br> <small class="text-muted">fa-safari</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-save"></span> <br> <small class="text-muted">fa-save</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-scissors"></span> <br> <small class="text-muted">fa-scissors</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-scribd"></span> <br> <small class="text-muted">fa-scribd</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-search"></span> <br> <small class="text-muted">fa-search</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-search-minus"></span> <br> <small class="text-muted">fa-search-minus</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-search-plus"></span> <br> <small class="text-muted">fa-search-plus</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-sellsy"></span> <br> <small class="text-muted">fa-sellsy</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-send"></span> <br> <small class="text-muted">fa-send</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-send-o"></span> <br> <small class="text-muted">fa-send-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-server"></span> <br> <small class="text-muted">fa-server</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-share"></span> <br> <small class="text-muted">fa-share</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-share-alt"></span> <br> <small class="text-muted">fa-share-alt</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-share-alt-square"></span> <br> <small class="text-muted">fa-share-alt-square</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-share-square"></span> <br> <small class="text-muted">fa-share-square</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-share-square-o"></span> <br> <small class="text-muted">fa-share-square-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-shekel"></span> <br> <small class="text-muted">fa-shekel</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-sheqel"></span> <br> <small class="text-muted">fa-sheqel</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-shield"></span> <br> <small class="text-muted">fa-shield</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-ship"></span> <br> <small class="text-muted">fa-ship</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-shirtsinbulk"></span> <br> <small class="text-muted">fa-shirtsinbulk</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-shopping-bag"></span> <br> <small class="text-muted">fa-shopping-bag</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-shopping-basket"></span> <br> <small class="text-muted">fa-shopping-basket</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-shopping-cart"></span> <br> <small class="text-muted">fa-shopping-cart</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-sign-in"></span> <br> <small class="text-muted">fa-sign-in</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-sign-language"></span> <br> <small class="text-muted">fa-sign-language</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-sign-out"></span> <br> <small class="text-muted">fa-sign-out</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-signal"></span> <br> <small class="text-muted">fa-signal</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-signing"></span> <br> <small class="text-muted">fa-signing</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-simplybuilt"></span> <br> <small class="text-muted">fa-simplybuilt</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-sitemap"></span> <br> <small class="text-muted">fa-sitemap</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-skyatlas"></span> <br> <small class="text-muted">fa-skyatlas</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-skype"></span> <br> <small class="text-muted">fa-skype</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-slack"></span> <br> <small class="text-muted">fa-slack</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-sliders"></span> <br> <small class="text-muted">fa-sliders</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-slideshare"></span> <br> <small class="text-muted">fa-slideshare</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-smile-o"></span> <br> <small class="text-muted">fa-smile-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-snapchat"></span> <br> <small class="text-muted">fa-snapchat</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-snapchat-ghost"></span> <br> <small class="text-muted">fa-snapchat-ghost</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-snapchat-square"></span> <br> <small class="text-muted">fa-snapchat-square</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-soccer-ball-o"></span> <br> <small class="text-muted">fa-soccer-ball-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-sort"></span> <br> <small class="text-muted">fa-sort</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-sort-alpha-asc"></span> <br> <small class="text-muted">fa-sort-alpha-asc</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-sort-alpha-desc"></span> <br> <small class="text-muted">fa-sort-alpha-desc</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-sort-amount-asc"></span> <br> <small class="text-muted">fa-sort-amount-asc</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-sort-amount-desc"></span> <br> <small class="text-muted">fa-sort-amount-desc</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-sort-asc"></span> <br> <small class="text-muted">fa-sort-asc</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-sort-desc"></span> <br> <small class="text-muted">fa-sort-desc</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-sort-down"></span> <br> <small class="text-muted">fa-sort-down</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-sort-numeric-asc"></span> <br> <small class="text-muted">fa-sort-numeric-asc</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-sort-numeric-desc"></span> <br> <small class="text-muted">fa-sort-numeric-desc</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-sort-up"></span> <br> <small class="text-muted">fa-sort-up</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-soundcloud"></span> <br> <small class="text-muted">fa-soundcloud</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-space-shuttle"></span> <br> <small class="text-muted">fa-space-shuttle</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-spinner"></span> <br> <small class="text-muted">fa-spinner</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-spoon"></span> <br> <small class="text-muted">fa-spoon</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-spotify"></span> <br> <small class="text-muted">fa-spotify</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-square"></span> <br> <small class="text-muted">fa-square</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-square-o"></span> <br> <small class="text-muted">fa-square-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-stack-exchange"></span> <br> <small class="text-muted">fa-stack-exchange</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-stack-overflow"></span> <br> <small class="text-muted">fa-stack-overflow</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-star"></span> <br> <small class="text-muted">fa-star</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-star-half"></span> <br> <small class="text-muted">fa-star-half</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-star-half-empty"></span> <br> <small class="text-muted">fa-star-half-empty</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-star-half-full"></span> <br> <small class="text-muted">fa-star-half-full</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-star-half-o"></span> <br> <small class="text-muted">fa-star-half-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-star-o"></span> <br> <small class="text-muted">fa-star-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-steam"></span> <br> <small class="text-muted">fa-steam</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-steam-square"></span> <br> <small class="text-muted">fa-steam-square</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-step-backward"></span> <br> <small class="text-muted">fa-step-backward</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-step-forward"></span> <br> <small class="text-muted">fa-step-forward</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-stethoscope"></span> <br> <small class="text-muted">fa-stethoscope</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-sticky-note"></span> <br> <small class="text-muted">fa-sticky-note</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-sticky-note-o"></span> <br> <small class="text-muted">fa-sticky-note-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-stop"></span> <br> <small class="text-muted">fa-stop</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-stop-circle"></span> <br> <small class="text-muted">fa-stop-circle</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-stop-circle-o"></span> <br> <small class="text-muted">fa-stop-circle-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-street-view"></span> <br> <small class="text-muted">fa-street-view</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-strikethrough"></span> <br> <small class="text-muted">fa-strikethrough</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-stumbleupon"></span> <br> <small class="text-muted">fa-stumbleupon</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-stumbleupon-circle"></span> <br> <small class="text-muted">fa-stumbleupon-circle</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-subscript"></span> <br> <small class="text-muted">fa-subscript</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-subway"></span> <br> <small class="text-muted">fa-subway</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-suitcase"></span> <br> <small class="text-muted">fa-suitcase</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-sun-o"></span> <br> <small class="text-muted">fa-sun-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-superscript"></span> <br> <small class="text-muted">fa-superscript</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-support"></span> <br> <small class="text-muted">fa-support</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-table"></span> <br> <small class="text-muted">fa-table</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-tablet"></span> <br> <small class="text-muted">fa-tablet</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-tachometer"></span> <br> <small class="text-muted">fa-tachometer</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-tag"></span> <br> <small class="text-muted">fa-tag</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-tags"></span> <br> <small class="text-muted">fa-tags</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-tasks"></span> <br> <small class="text-muted">fa-tasks</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-taxi"></span> <br> <small class="text-muted">fa-taxi</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-television"></span> <br> <small class="text-muted">fa-television</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-tencent-weibo"></span> <br> <small class="text-muted">fa-tencent-weibo</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-terminal"></span> <br> <small class="text-muted">fa-terminal</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-text-height"></span> <br> <small class="text-muted">fa-text-height</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-text-width"></span> <br> <small class="text-muted">fa-text-width</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-th"></span> <br> <small class="text-muted">fa-th</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-th-large"></span> <br> <small class="text-muted">fa-th-large</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-th-list"></span> <br> <small class="text-muted">fa-th-list</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-themeisle"></span> <br> <small class="text-muted">fa-themeisle</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-thumb-tack"></span> <br> <small class="text-muted">fa-thumb-tack</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-thumbs-down"></span> <br> <small class="text-muted">fa-thumbs-down</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-thumbs-o-down"></span> <br> <small class="text-muted">fa-thumbs-o-down</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-thumbs-o-up"></span> <br> <small class="text-muted">fa-thumbs-o-up</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-thumbs-up"></span> <br> <small class="text-muted">fa-thumbs-up</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-ticket"></span> <br> <small class="text-muted">fa-ticket</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-times"></span> <br> <small class="text-muted">fa-times</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-times-circle"></span> <br> <small class="text-muted">fa-times-circle</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-times-circle-o"></span> <br> <small class="text-muted">fa-times-circle-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-tint"></span> <br> <small class="text-muted">fa-tint</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-toggle-down"></span> <br> <small class="text-muted">fa-toggle-down</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-toggle-left"></span> <br> <small class="text-muted">fa-toggle-left</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-toggle-off"></span> <br> <small class="text-muted">fa-toggle-off</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-toggle-on"></span> <br> <small class="text-muted">fa-toggle-on</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-toggle-right"></span> <br> <small class="text-muted">fa-toggle-right</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-toggle-up"></span> <br> <small class="text-muted">fa-toggle-up</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-trademark"></span> <br> <small class="text-muted">fa-trademark</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-train"></span> <br> <small class="text-muted">fa-train</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-transgender"></span> <br> <small class="text-muted">fa-transgender</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-transgender-alt"></span> <br> <small class="text-muted">fa-transgender-alt</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-trash"></span> <br> <small class="text-muted">fa-trash</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-trash-o"></span> <br> <small class="text-muted">fa-trash-o</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-tree"></span> <br> <small class="text-muted">fa-tree</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-trello"></span> <br> <small class="text-muted">fa-trello</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-tripadvisor"></span> <br> <small class="text-muted">fa-tripadvisor</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-trophy"></span> <br> <small class="text-muted">fa-trophy</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-truck"></span> <br> <small class="text-muted">fa-truck</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-try"></span> <br> <small class="text-muted">fa-try</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-tty"></span> <br> <small class="text-muted">fa-tty</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-tumblr"></span> <br> <small class="text-muted">fa-tumblr</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-tumblr-square"></span> <br> <small class="text-muted">fa-tumblr-square</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-turkish-lira"></span> <br> <small class="text-muted">fa-turkish-lira</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-tv"></span> <br> <small class="text-muted">fa-tv</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-twitch"></span> <br> <small class="text-muted">fa-twitch</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-twitter"></span> <br> <small class="text-muted">fa-twitter</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-twitter-square"></span> <br> <small class="text-muted">fa-twitter-square</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-umbrella"></span> <br> <small class="text-muted">fa-umbrella</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-underline"></span> <br> <small class="text-muted">fa-underline</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-undo"></span> <br> <small class="text-muted">fa-undo</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-universal-access"></span> <br> <small class="text-muted">fa-universal-access</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-university"></span> <br> <small class="text-muted">fa-university</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-unlink"></span> <br> <small class="text-muted">fa-unlink</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-unlock"></span> <br> <small class="text-muted">fa-unlock</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-unlock-alt"></span> <br> <small class="text-muted">fa-unlock-alt</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-unsorted"></span> <br> <small class="text-muted">fa-unsorted</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-upload"></span> <br> <small class="text-muted">fa-upload</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-usb"></span> <br> <small class="text-muted">fa-usb</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-usd"></span> <br> <small class="text-muted">fa-usd</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-user"></span> <br> <small class="text-muted">fa-user</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-user-md"></span> <br> <small class="text-muted">fa-user-md</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-user-plus"></span> <br> <small class="text-muted">fa-user-plus</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-user-secret"></span> <br> <small class="text-muted">fa-user-secret</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-user-times"></span> <br> <small class="text-muted">fa-user-times</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-users"></span> <br> <small class="text-muted">fa-users</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-venus"></span> <br> <small class="text-muted">fa-venus</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-venus-double"></span> <br> <small class="text-muted">fa-venus-double</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-venus-mars"></span> <br> <small class="text-muted">fa-venus-mars</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-viacoin"></span> <br> <small class="text-muted">fa-viacoin</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-viadeo"></span> <br> <small class="text-muted">fa-viadeo</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-viadeo-square"></span> <br> <small class="text-muted">fa-viadeo-square</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-video-camera"></span> <br> <small class="text-muted">fa-video-camera</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-vimeo"></span> <br> <small class="text-muted">fa-vimeo</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-vimeo-square"></span> <br> <small class="text-muted">fa-vimeo-square</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-vine"></span> <br> <small class="text-muted">fa-vine</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-vk"></span> <br> <small class="text-muted">fa-vk</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-volume-control-phone"></span> <br> <small class="text-muted">fa-volume-control-phone</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-volume-down"></span> <br> <small class="text-muted">fa-volume-down</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-volume-off"></span> <br> <small class="text-muted">fa-volume-off</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-volume-up"></span> <br> <small class="text-muted">fa-volume-up</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-warning"></span> <br> <small class="text-muted">fa-warning</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-wechat"></span> <br> <small class="text-muted">fa-wechat</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-weibo"></span> <br> <small class="text-muted">fa-weibo</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-weixin"></span> <br> <small class="text-muted">fa-weixin</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-whatsapp"></span> <br> <small class="text-muted">fa-whatsapp</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-wheelchair"></span> <br> <small class="text-muted">fa-wheelchair</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-wheelchair-alt"></span> <br> <small class="text-muted">fa-wheelchair-alt</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-wifi"></span> <br> <small class="text-muted">fa-wifi</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-wikipedia-w"></span> <br> <small class="text-muted">fa-wikipedia-w</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-windows"></span> <br> <small class="text-muted">fa-windows</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-won"></span> <br> <small class="text-muted">fa-won</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-wordpress"></span> <br> <small class="text-muted">fa-wordpress</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-wpbeginner"></span> <br> <small class="text-muted">fa-wpbeginner</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-wpforms"></span> <br> <small class="text-muted">fa-wpforms</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-wrench"></span> <br> <small class="text-muted">fa-wrench</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-xing"></span> <br> <small class="text-muted">fa-xing</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-xing-square"></span> <br> <small class="text-muted">fa-xing-square</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-y-combinator"></span> <br> <small class="text-muted">fa-y-combinator</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-y-combinator-square"></span> <br> <small class="text-muted">fa-y-combinator-square</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-yahoo"></span> <br> <small class="text-muted">fa-yahoo</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-yc"></span> <br> <small class="text-muted">fa-yc</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-yc-square"></span> <br> <small class="text-muted">fa-yc-square</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-yelp"></span> <br> <small class="text-muted">fa-yelp</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-yen"></span> <br> <small class="text-muted">fa-yen</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-yoast"></span> <br> <small class="text-muted">fa-yoast</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-youtube"></span> <br> <small class="text-muted">fa-youtube</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-youtube-play"></span> <br> <small class="text-muted">fa-youtube-play</small>
+</div>
+          <div class="col-xs-6 col-sm-4 col-md-3 text-center margin-40"> <span class="text-gray fa-3x fa fa-youtube-square"></span> <br> <small class="text-muted">fa-youtube-square</small>
+</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
+</script>
+
+    </main>
+
+    <script src="/poncho/node_modules/jquery/dist/jquery.js"></script>
+    <script src="/poncho/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/poncho/js/prism.js"></script>
+    <script src="/poncho/node_modules/list.js/dist/list.min.js"></script>
+    <script>
+      $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+        $('[data-toggle="popover"]').popover();
+        // var $affix = $("#navbar-docs");
+        // $parent = $affix.parent(),
+        // resize = function() { $affix.width($parent.width()); };
+        // $(window).resize(resize);
+        // resize();
+      })
+
+      var options = { valueNames: [ 'nombre', 'apellido', 'usuario' ] };
+      var userList = new List('usuarios', options);
+
+    </script>
+
+  </body>
+</html>
