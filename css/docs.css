@@ -94,7 +94,7 @@ pre[class*="language-"] {
           box-shadow:none!important;
         }
         
-        .mensajeError:hover{
+        .mensajeError:hover,.cursorPointer{
           cursor:pointer;
         }
 
@@ -102,16 +102,16 @@ pre[class*="language-"] {
           font-size: 85%;
         }
 
-        input:focus, 
-        textarea:focus, 
-        select:focus, 
-        button:focus,
-        .form-control:focus
-        {
-          outline: 2px solid #66afe9;
-          outline-offset: 0;
-          box-shadow: none;
-        }
+/*         input:focus, 
+textarea:focus, 
+select:focus, 
+button:focus,
+.form-control:focus
+{
+  outline: 2px solid #66afe9;
+  outline-offset: 0;
+  box-shadow: none;
+} */
         .rc-label {
           display: block;
           float: left;

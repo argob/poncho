@@ -30,16 +30,14 @@
 	<meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
 	<meta name="twitter:image" content="/ejemplos/img/jumbotron.jpg" />
 
-	<link href="http://poncheado.herokuapp.com/vendor/poncho/dist/css/roboto-fontface.css" rel="stylesheet">
-	<link href="http://poncheado.herokuapp.com/vendor/poncho/dist/css/droid-serif.css" rel="stylesheet">
-	<link href="http://poncheado.herokuapp.com/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
-	<link href="http://poncheado.herokuapp.com/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-	<link href="https://id.argentina.gob.ar/static/css/chosen/chosen.css" rel="stylesheet">
-	<link href="http://poncheado.herokuapp.com/node_modules/flag-icon-css/css/flag-icon.css" rel="stylesheet"> 
-	<link href="http://poncheado.herokuapp.com/vendor/poncho/dist/css/poncho.css" rel="stylesheet">
-	<link href="http://poncheado.herokuapp.com/vendor/iconos/dist/css/icono-arg.css" rel="stylesheet">
-	<link href="http://poncheado.herokuapp.com/css/argentina.css" rel="stylesheet">
-	<link href="../../css/docs.css" rel="stylesheet">
+  <link href="../../node_modules/argob-poncho/dist/css/roboto-fontface.css" rel="stylesheet">
+  <link href="../../node_modules/argob-poncho/dist/css/droid-serif.css" rel="stylesheet">
+  <link href="../../node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+  <link href="../../node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="https://id.argentina.gob.ar/static/css/chosen/chosen.css" rel="stylesheet">
+  <link href="../../node_modules/argob-poncho/dist/css/poncho.css" rel="stylesheet">
+  <link href="../../css/argentina.css" rel="stylesheet">
+  <link href="../../css/docs.css" rel="stylesheet">
 
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -55,79 +53,7 @@
   <script src="../../node_modules/argob-poncho/dist/js/scripts.js"></script>
 
 
-  <style type="text/css">
-          .navbar{
-          box-shadow:none!important;
-        }
-        
-        .mensajeError:hover{
-          cursor:pointer;
-        }
-
-        .help-block {
-          font-size: 85%;
-        }
-
-        input:focus, 
-        textarea:focus, 
-        select:focus, 
-        button:focus,
-        .form-control:focus
-        {
-          outline: 2px solid #66afe9;
-          outline-offset: 0;
-          box-shadow: none;
-        }
-        .rc-label {
-          display: block;
-          float: left;
-          clear: none;
-          position: relative;
-          padding: 15px 15px 15px 35px!important;
-          margin-bottom: 10px;
-          cursor: pointer;
-          margin-bottom: 10px;
-
-        }
-
-        .rc-label input {
-          position: absolute;
-          top: 15px;
-          left: 24px;
-          cursor: pointer;
-          margin-left: -12px!important;
-        }
-
-        .rc-horizontal .rc-label {
-          float: none;
-          margin-bottom: 10px;
-        }
-
-        .radio-inline, .checkbox-inline {
-          padding-left: 0;
-        }
-
-        .has-error .chosen-container a{
-          border-color:#BB4945!important;
-        }
-
-        .breadcrumb li,.breadcrumb li a,.breadcrumb > li + li:before, .breadcrumb > .active{color: #fff!important;}
-
-
-
-        label{
-          font-weight: 500
-        }
-
-        @media (min-width: 641px) {
-
-          .rc-label {
-            float: left;
-          }
-        }
-      </style>
-
-    <script type="text/javascript">
+      <script type="text/javascript">
 
       var busqueda = document.getElementById('buscar');
       var buscar = document.getElementById('buscar-btn');
@@ -219,6 +145,83 @@
                     </div>
                   </div>
 
+
+                  <div class="row"> 
+                    <div class="col-md-12 form-group m-b-0">
+                      <label for="">Teléfono móvil</label>
+                      <p class="help-block">Incluí el <a href="">código de area</a> de tu localidad</p>
+                    </div>
+  
+
+                      <div class="col-xs-4">
+                        <div class="input-group form-group item-form">
+                            <span class="input-group-addon" id="basic-addon1">0</span>
+                            <input class="form-control" type="text" name="phone_number_0" data-mask="0099" autocomplete="off" maxlength="4">
+                        </div>
+                    </div>
+                    <div class="col-xs-8">
+                        <div class="input-group form-group item-form">
+                            <span class="input-group-addon" id="basic-addon1">15</span>
+                            <input class="form-control" type="text" name="phone_number_1" data-mask="00000099" autocomplete="off" maxlength="8">
+                        </div>
+                    </div>
+
+
+                  </div>
+              
+<div class="row"> 
+                    <div class="col-md-12 form-group m-b-0">
+                      <label for="">Teléfono fijo</label>
+                      <p class="help-block">Incluí el <a href="">código de area</a> de tu localidad</p>
+                    </div>
+  
+
+                    <div class="col-xs-4">
+                        <div class="form-group item-form">
+                          <input class="form-control" type="text" name="phone_number_1" data-mask="00000099" autocomplete="off" maxlength="8">
+                          <p class="help-block error hidden">Ingresá tu número de teléfono fijo</p>
+                        </div>
+                    </div>
+                    <div class="col-xs-8">
+                        <div class="form-group item-form">
+                          <input class="form-control" type="text" name="phone_number_1" data-mask="00000099" autocomplete="off" maxlength="8">
+                          <p class="help-block error hidden">Ingresá tu número de teléfono fijo</p>
+                        </div>
+                    </div>
+                      
+
+                  </div>
+                  <div class="col-sm-12">
+                      <a class="mensajeError" data-mostrar="true">Ver mensajes de error</a>
+                    </div>                                        
+
+  
+                </fieldset>
+
+<hr>
+<div class="row">
+            <div class="col-sm-12">
+              <h2>A tener en cuenta</h2>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore tenetur similique maiores saepe quisquam deleniti nesciunt perferendis blanditiis iste consequuntur, earum qui non, vitae eum velit. Odit laboriosam, necessitatibus nobis?</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore tenetur similique maiores saepe quisquam deleniti nesciunt perferendis blanditiis iste consequuntur, earum qui non, vitae eum velit. Odit laboriosam, necessitatibus nobis?</p>
+              <p><a href="https://datosgobar.github.io/georef-api/#/" target="_blank">Ver documentacion de la API</a></p>
+              <h4>Caracteristicas</h4>
+              <ul>
+                <li>Lorem ipsum dolor sit amet, </li>
+                <li>consectetur adipisicing elit. Ad id velit, </li>
+                <li>quos, quaerat minima quasi. Architecto harum </li>
+                <li>iure reprehenderit ipsa, ducimus minima esse </li>
+                <li>voluptatum delectus, maxime ipsam autem. Quibusdam, voluptas.</li>
+              </ul>
+            
+              <p><a id="mostrarVariante" data-mostrar="false" class="btn btn-link cursorPointer">Mostrar variante de teléfono</a></p>
+
+            </div>
+          </div>
+
+
+                <fieldset style="display:none" id="varianteContacto">
+                  
                   <div class="row"> 
                     <div class="col-md-12 form-group m-b-0">
                       <label for="">Teléfono móvil</label>
@@ -246,8 +249,6 @@
                       <a class="mensajeError" data-mostrar="true">Ver mensajes de error</a>
                     </div>                                        
                   </div>
-
-  
                 </fieldset>
 
           <hr>
@@ -334,6 +335,13 @@
           var seccion = $("#menuLateral").data("seccion");
           $("#menuLateral ul li a[data-seccion="+seccion+"]").parent().addClass("active");
         });
+
+         $("#mostrarVariante").click(function(){
+          $("#varianteContacto").toggle();
+          var text = $(this).attr("data-mostrar");
+          $(this).text(text == "true" ? "Mostrar variante de teléfono" : "Ocultar variante de teléfono");
+          $(this).attr("data-mostrar",text == "true" ? "false" : "true");
+        })    
       })
     </script>
 

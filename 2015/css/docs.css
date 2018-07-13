@@ -141,14 +141,6 @@ pre[class*="language-"] {
           padding-left: 0;
         }
 
-        .has-error .chosen-container a{
-          border-color:#BB4945!important;
-        }
-
-        .breadcrumb li,.breadcrumb li a,.breadcrumb > li + li:before, .breadcrumb > .active{color: #fff!important;}
-
-
-
         label{
           font-weight: 500
         }

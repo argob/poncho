@@ -30,16 +30,14 @@
 	<meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
 	<meta name="twitter:image" content="/ejemplos/img/jumbotron.jpg" />
 
-	<link href="http://poncheado.herokuapp.com/vendor/poncho/dist/css/roboto-fontface.css" rel="stylesheet">
-	<link href="http://poncheado.herokuapp.com/vendor/poncho/dist/css/droid-serif.css" rel="stylesheet">
-	<link href="http://poncheado.herokuapp.com/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
-	<link href="http://poncheado.herokuapp.com/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-	<link href="https://id.argentina.gob.ar/static/css/chosen/chosen.css" rel="stylesheet">
-	<link href="http://poncheado.herokuapp.com/node_modules/flag-icon-css/css/flag-icon.css" rel="stylesheet"> 
-	<link href="http://poncheado.herokuapp.com/vendor/poncho/dist/css/poncho.css" rel="stylesheet">
-	<link href="http://poncheado.herokuapp.com/vendor/iconos/dist/css/icono-arg.css" rel="stylesheet">
-	<link href="http://poncheado.herokuapp.com/css/argentina.css" rel="stylesheet">
-	<link href="../../css/docs.css" rel="stylesheet">
+  <link href="../../node_modules/argob-poncho/dist/css/roboto-fontface.css" rel="stylesheet">
+  <link href="../../node_modules/argob-poncho/dist/css/droid-serif.css" rel="stylesheet">
+  <link href="../../node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+  <link href="../../node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="https://id.argentina.gob.ar/static/css/chosen/chosen.css" rel="stylesheet">
+  <link href="../../node_modules/argob-poncho/dist/css/poncho.css" rel="stylesheet">
+  <link href="../../css/argentina.css" rel="stylesheet">
+  <link href="../../css/docs.css" rel="stylesheet">
 
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -54,77 +52,7 @@
   <script src="https://id.argentina.gob.ar/static/js/chosen.jquery.js"></script>
   <script src="../../node_modules/argob-poncho/dist/js/scripts.js"></script>
 
-  <style type="text/css">
-        .navbar{
-          box-shadow:none!important;
-        }
-        
-        .mensajeError:hover{
-          cursor:pointer;
-        }
-
-        .help-block {
-          font-size: 85%;
-        }
-
-        input:focus, 
-        textarea:focus, 
-        select:focus, 
-        button:focus,
-        .form-control:focus
-        {
-          outline: 2px solid #66afe9;
-          outline-offset: 0;
-          box-shadow: none;
-        }
-        .rc-label {
-          display: block;
-          float: left;
-          clear: none;
-          position: relative;
-          padding: 15px 15px 15px 35px!important;
-          margin-bottom: 10px;
-          cursor: pointer;
-          margin-bottom: 10px;
-
-        }
-
-        .rc-label input {
-          position: absolute;
-          top: 15px;
-          left: 24px;
-          cursor: pointer;
-          margin-left: -12px!important;
-        }
-
-        .rc-horizontal .rc-label {
-          float: none;
-          margin-bottom: 10px;
-        }
-
-        .radio-inline, .checkbox-inline {
-          padding-left: 0;
-        }
-
-        .has-error .chosen-container a{
-          border-color:#BB4945!important;
-        }
-
-        .breadcrumb li,.breadcrumb li a,.breadcrumb > li + li:before, .breadcrumb > .active{color: #fff!important;}
-
-    
-
-        label{
-          font-weight: 500
-        }
-
-        @media (min-width: 641px) {
-
-          .rc-label {
-            float: left;
-          }
-        }
-      </style>
+  
 
     <script type="text/javascript">
 
@@ -200,41 +128,39 @@
               
 <h1>Login y registro</h1>
 
-<p>En esta sección se explicará como generar un login de acceso y registro para el usuario.</p>
+<p>Datos para que el usuario pueda acceder a una plataforma con información o acciones personalizadas.</p>
 
-<hr />
+<hr>
 
 <fieldset>
                     <div class="row">
 <div class="col-sm-12">
-<h2>Utilización de Mi.Argentina</h2>
+<h2>Mi Argentina</h2>
 
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae atque aspernatur delectus deserunt blanditiis incidunt quam, culpa dolor vel deleniti adipisci voluptates nemo, perferendis dolorum assumenda, quibusdam quisquam aperiam enim.</p>
+<p>Para registrar usuarios en una plataforma, la misma debe integrar el sistema de login y registro de Mi Argentina.</p>
 
 
-<img src="https://i.imgur.com/plboeUz.png" alt="Login de Mi.argentina" style="box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+<img src="https://i.imgur.com/plboeUz.png" alt="Login de Mi.argentina" class="borde-img">
 
-<h4 class="m-t-2">Principios</h4>
-<ul>
-   <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
-   <li>Ea quasi possimus, id provident praesentium laboriosam iure laborum quas impedit sed! </li>
-   <li>Similique quibusdam facilis dolore perferendis assumenda magnam maxime dolorem, adipisci.</li>
-</ul>
+<p>Mi Argentina ofrece al usuario la posibilidad de acceder a diferentes servicios del Estado mediante un único usuario y contraseña. Y ofrece a los organismos una herramienta ya desarrollada que ahorra tiempo de implementación.</p>
 
-<p><a href="https://argob.github.io/mi-argentina/">Ir a documentación</a></p>  
+<p>Para más información de cómo integrar una plataforma nueva o existente consultá la <a target="_blank" href="https://argob.github.io/mi-argentina/">documentación de Mi Argentina</a>.</p>
+
+ 
 </div>
                       
                     </div>
 
                 </fieldset>
 
+<hr>
+<fieldset>
+  <h2>Alternativa de login y registro</h2>
 
-  <h2>Otra forma de login</h2>
+<p>Si en una plataforma existente por alguna razón se debe mantener el sistema propio de login y registro, se deben pedir los datos necesarios siguiendo los lineamientos de las otras páginas de patrones, y los lineamientos de contraseñas que usa Mi Argentina.</p>
 
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit doloremque fugit error, vel eaque tempore dolor delectus porro, earum ipsam eveniet enim cupiditate beatae sint consequuntur nesciunt libero, illo repellat.</p>
-
-<p><a id="mostrarVariante" data-mostrar="false" class="cursorPointer">Mostrar variante login</a></p>
-
+<p><a id="mostrarVariante" data-mostrar="false" class="btn btn-link cursorPointer">Mostrar variante login</a></p>
+</fieldset>
 <fieldset  id="varianteLogin" style="display:none">
   <div class="row">
                     <div class="col-md-8">
@@ -271,10 +197,13 @@
                   </div> 
 
 
+</fieldset>
 <hr>
-
+<fieldset>
+  
+<h2 class="m-b-4">Detalle de elementos</h2>
 <h3>Contraseña (para registro)</h3>
-<p>Sirve para que el usuario pueda acceder a una plataforma con información o acciones personalizadas. Si se trata de una nueva plataforma se debe usar Mi Argentina y no desarrollar un sistema nuevo de login. Más información sobre Mi Argentina.</p>
+<p>Sirve para cuando el usuario tiene que generar una nueva contraseña.</p>
     <div class="well">
     <p class="m-b-0"><i class="fa fa-cog text-primary"></i> <b>Funcionamiento</b></p>
     <p>Siempre deben mostrarse las reglas de contraseña antes de que el usuario pueda escribirla.</p>
@@ -282,14 +211,13 @@
     </div> 
 
 <h3>Contraseña (para ingresar)</h3>
-<p>Sirve para que, una vez registrado, el usuario pueda ingresar a una plataforma. La diferencia con el campo de contraseña para registrar, es que el de ingresar no valida si el usuario escribió algo que no siga las reglas de contraseña.</p>
+<p>Sirve para cuando el usuario tiene que ingresar a la plataforma con un usuario ya registrado.</p>
+<p>La diferencia con el campo de contraseña para registrar, es que el de ingresar no valida si el usuario escribió algo que no siga las reglas de contraseña.</p>
     <div class="well">
     <p class="m-b-0"><i class="fa fa-cog text-primary"></i> <b>Funcionamiento</b></p>
     <p>Siempre deben mostrarse las reglas de contraseña antes de que el usuario pueda escribirla.</p>
 <p>No pedir al usuario que escriba la contraseña 2 veces (la plataforma debe tener una forma de recuperar la contraseña a través de correo electrónico).</p>
     </div> 
-
-
 </fieldset>
 
             </div>
