@@ -149,7 +149,7 @@
                   <div class="row"> 
                     <div class="col-md-12 form-group m-b-0">
                       <label for="">Teléfono móvil</label>
-                      <p class="help-block">Incluí el <a href="">código de area</a> de tu localidad</p>
+                      <p class="help-block">Incluí el <a href="https://www.argentina.gob.ar/codigos-de-area-telefonicos-de-argentina" target="_blank">código de area</a> de tu localidad</p>
                     </div>
   
 
@@ -159,7 +159,7 @@
                             <input class="form-control" type="text" name="phone_number_0" data-mask="0099" autocomplete="off" maxlength="4">
                         </div>
                     </div>
-                    <div class="col-xs-8">
+                    <div class="col-xs-4">
                         <div class="input-group form-group item-form">
                             <span class="input-group-addon" id="basic-addon1">15</span>
                             <input class="form-control" type="text" name="phone_number_1" data-mask="00000099" autocomplete="off" maxlength="8">
@@ -172,17 +172,17 @@
 <div class="row"> 
                     <div class="col-md-12 form-group m-b-0">
                       <label for="">Teléfono fijo</label>
-                      <p class="help-block">Incluí el <a href="">código de area</a> de tu localidad</p>
+                      <p class="help-block">Incluí el <a href="https://www.argentina.gob.ar/codigos-de-area-telefonicos-de-argentina" target="_blank">código de area</a> de tu localidad</p>
                     </div>
   
 
                     <div class="col-xs-4">
-                        <div class="form-group item-form">
-                          <input class="form-control" type="text" name="phone_number_1" data-mask="00000099" autocomplete="off" maxlength="8">
-                          <p class="help-block error hidden">Ingresá tu número de teléfono fijo</p>
+                        <div class="input-group form-group item-form">
+                            <span class="input-group-addon" id="basic-addon1">0</span>
+                            <input class="form-control" type="text" name="phone_number_0" data-mask="0099" autocomplete="off" maxlength="4">
                         </div>
                     </div>
-                    <div class="col-xs-8">
+                    <div class="col-xs-4">
                         <div class="form-group item-form">
                           <input class="form-control" type="text" name="phone_number_1" data-mask="00000099" autocomplete="off" maxlength="8">
                           <p class="help-block error hidden">Ingresá tu número de teléfono fijo</p>
@@ -198,7 +198,7 @@
   
                 </fieldset>
 
-<hr>
+<!-- <hr>
 <div class="row">
             <div class="col-sm-12">
               <h2>A tener en cuenta</h2>
@@ -217,7 +217,7 @@
               <p><a id="mostrarVariante" data-mostrar="false" class="btn btn-link cursorPointer">Mostrar variante de teléfono</a></p>
 
             </div>
-          </div>
+          </div> -->
 
 
                 <fieldset style="display:none" id="varianteContacto">
@@ -261,6 +261,7 @@
    <p>En general es mejor pedir el teléfono movil del ciudadano ya que es más personal.</p>
    <div class="well">
       <p class="m-b-0"><i class="fa fa-cog text-primary"></i> <b>Funcionamiento</b></p>
+      <p>Este dato está compuesto por un campo para el código de área de la localidad (incluye el número "0") y un campo para el número de teléfono (incluye el número "15").</p>
       <p>Valida formato de mail.
          Hay que desactivar la validación de html5 del input email.
          No pedir mail 2 veces (se debe poder ingresar al sistema sin validar mail, y ahí dentro poder cambiarlo si lo puso mal).
@@ -272,6 +273,7 @@
   <p>En general es mejor pedir el teléfono movil del ciudadano ya que es más personal.</p>
    <div class="well">
       <p class="m-b-0"><i class="fa fa-cog text-primary"></i> <b>Funcionamiento</b></p>
+      <p>Este dato está compuesto por un campo para el código de área de la localidad (incluye el número "0") y un campo para el número de teléfono.</p>
       <p>Acepta puntos, guiónes, signo mas y barras, pero envía sólo números.
          Valida cantidad mínima de caracteres para mostrar error donde se le pregunta al usuario si puso su código de área.
       </p>

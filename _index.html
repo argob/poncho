@@ -31,28 +31,13 @@
   <!-- <link href="/poncho/node_modules/argob-poncho/dist/css/droid-serif.css" rel="stylesheet"> -->
   <link href="/poncho/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="/poncho/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <link href="dist/css/poncho.css" rel="stylesheet">
+  <link href="/poncho/node_modules/argob-poncho/dist/css/poncho.css" rel="stylesheet">
   <link href="/poncho/css/docs.css" rel="stylesheet">
   <link href="/poncho/css/prism.css" rel="stylesheet">
-    <style>
-      #nuevaDoc a{
-        text-align: center;
-        padding: 19px;
-        background-color: #0695d6;
-        color: #FFF;
-        font-weight: bold;
-        font-size: 19px;
-        color:#FFF;
-        display: block;
-      }
-      #nuevaDoc:hover{
-        opacity: 0.9;cursor:pointer;
-      }
-  </style>
 </head>
 
   <body data-spy="scroll" data-target="#navbar-docs">
-<div id="nuevaDoc"><a href="http://argob.github.io/poncho/">Estás viendo la documentación anterior de Poncho. Conocé la nueva versión.</a></div>
+
     <header>
   <nav class="navbar navbar-top navbar-default" role="navigation">
     <div class="container">
@@ -71,10 +56,20 @@
         </div>
         <div class="collapse navbar-collapse" id="main-navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li class="active"><a href="index.html">Inicio</a></li>
-            <li><a href="documentacion.html">Documentación</a></li>
-            <li><a href="componentes.html">Componentes</a></li>
-            <li><a href="https://argob.github.io/iconos/">Iconos</a></li>
+            <li><a href="/poncho/">Inicio</a></li>
+            <li><a href="/poncho/docs/">Documentación</a></li>
+            <li><a href="/poncho/docs/componentes.html">Componentes</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Ejemplos <b class="caret"></b></a>
+              <ul class="dropdown-menu submenu" role="menu">
+                <li><a href="/poncho/ejemplos/pagina.html">Página</a></li>
+                <li><a href="/poncho/ejemplos/pagina-area.html">Página de área</a></li>
+                <li><a href="/poncho/ejemplos/pagina-navegacion.html">Página con navegación</a></li>
+                <li><a href="/poncho/ejemplos/noticia.html">Noticia</a></li>
+                <li><a href="/poncho/ejemplos/pagina-sticky-footer.html">Pie de página inferior</a></li>
+              </ul>
+            </li>
+            <li><a href="/iconos">Iconos</a></li>
           </ul>
         </div>
       </div>
@@ -112,7 +107,7 @@
           <p>Todo lo que necesitas saber para crear un sitio con Poncho.</p>
           <br>
           <p>
-            <a href="documentacion.html" class="btn btn-primary btn-lg">Ver Documentación</a>
+            <a href="docs/" class="btn btn-primary btn-lg">Ver Documentación</a>
           </p>
           <p>
             <a href="https://github.com/argob/poncho/archive/v0.3.zip" class="btn btn-default">Descargar framework</a>
@@ -147,6 +142,59 @@
             <li>bootstrap.css</li>
             <li>bootstrap.js</li>
           </ul>
+
+          <hr>
+          <h3>Ejemplos</h3>
+          <p>Estos ejemplos buscan mostrar la forma de uso de cada uno de los módulos que tiene Poncho:</p>
+          <br>
+
+          <div class="row panels-row">
+            <div class="col-sm-6 col-md-6">
+              <a class="panel panel-default" href="ejemplos/pagina.html">
+                <div style="background-image:url('ejemplos/img/screenshot_pagina.jpg');" class="panel-heading align-top"></div>
+                <div class="panel-body">
+                  <h3>Página</h3>
+                  <p class="text-muted">Página básica de texto con imágenes.</p>
+                </div>
+              </a>
+            </div>
+            <div class="col-sm-6 col-md-6">
+              <a class="panel panel-default" href="ejemplos/pagina-navegacion.html">
+                <div style="background-image:url('ejemplos/img/screenshot_pagina_navegacion.jpg');" class="panel-heading"></div>
+                <div class="panel-body">
+                  <h3>Página con navegación</h3>
+                  <p class="text-muted">Página básica con menú de navegación interna.</p>
+                </div>
+              </a>
+            </div>
+            <div class="col-sm-6 col-md-6">
+              <a class="panel panel-default" href="ejemplos/pagina-area.html">
+                <div style="background-image:url('ejemplos/img/screenshot_pagina_area.jpg');" class="panel-heading"></div>
+                <div class="panel-body">
+                  <h3>Página Area</h3>
+                  <p class="text-muted">Página con estructura de "Landing".</p>
+                </div>
+              </a>
+            </div>
+            <div class="col-sm-6 col-md-6">
+              <a class="panel panel-default" href="ejemplos/noticia.html">
+                <div style="background-image:url('ejemplos/img/screenshot_noticia.jpg');" class="panel-heading"></div>
+                <div class="panel-body">
+                  <h3>Noticia</h3>
+                  <p class="text-muted">Página de noticia.</p>
+                </div>
+              </a>
+            </div>
+            <div class="col-sm-6 col-md-6">
+              <a class="panel panel-default" href="ejemplos/pagina-sticky-footer.html">
+                <div style="background-image:url('ejemplos/img/screenshot_pagina_sticky_footer.jpg');" class="panel-heading"></div>
+                <div class="panel-body">
+                  <h3>Pie de página inferior.</h3>
+                  <p class="text-muted">Pie de página inferior.</p>
+                </div>
+              </a>
+            </div>
+          </div>
 
           <hr>
           <h3>Versiones</h3>
