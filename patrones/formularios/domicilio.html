@@ -8,7 +8,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Formularios</title>
+	<title>Domicilio</title>
 	<meta name="description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
 	<meta name="author" content="Presidencia de la Nación">
 	<link rel="shortcut icon" href="/favicon.ico">
@@ -20,13 +20,13 @@
 
 	<meta property="og:url" content="http://localhost:4000/proyectos/documentacion/formularios/formularios.html" />
 	<meta property="og:type" content="article" />
-	<meta property="og:title" content="Banco de Pruebas" />
+	<meta property="og:title" content="Domicilio" />
 	<meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
 	<meta property="og:image" content="/ejemplos/img/jumbotron.jpg" />
 	<meta property="og:locale" content="es_AR" />
 
 	<meta name="twitter:card" content="summary" />
-	<meta name="twitter:title" content="Banco de Pruebas" />
+	<meta name="twitter:title" content="Domicilio" />
 	<meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
 	<meta name="twitter:image" content="/ejemplos/img/jumbotron.jpg" />
 
@@ -39,7 +39,7 @@
 	<link href="http://poncheado.herokuapp.com/vendor/poncho/dist/css/poncho.css" rel="stylesheet">
 	<link href="http://poncheado.herokuapp.com/vendor/iconos/dist/css/icono-arg.css" rel="stylesheet">
 	<link href="http://poncheado.herokuapp.com/css/argentina.css" rel="stylesheet">
-	<link href="http://poncheado.herokuapp.com/css/docs.css" rel="stylesheet">
+	<link href="../../css/docs.css" rel="stylesheet">
 
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -300,10 +300,11 @@
             </div>                                          
 
 
+<hr>
 
           <div class="row">
             <div class="col-sm-12">
-              <h2>Importante</h2>
+              <h2>A tener en cuenta</h2>
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore tenetur similique maiores saepe quisquam deleniti nesciunt perferendis blanditiis iste consequuntur, earum qui non, vitae eum velit. Odit laboriosam, necessitatibus nobis?</p>
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore tenetur similique maiores saepe quisquam deleniti nesciunt perferendis blanditiis iste consequuntur, earum qui non, vitae eum velit. Odit laboriosam, necessitatibus nobis?</p>
               <h4>Caracteristicas</h4>
@@ -320,6 +321,111 @@
             </div>
           </div>
 
+          </fieldset>                  
+
+
+<fieldset style="display:none" id="varianteDomicilio">  
+        <div class="row">
+          <div class="col-md-12 form-group">
+            <h3 class="m-b-1">Variante de domicilio</h3>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-8 form-group item-form">
+            <label for="">País</label>
+            <select id="country" class="form-control chosen-select">
+              <option value=""></option>
+              <option value="">País 1</option>
+              <option value="">País 2</option>
+              <option value="">País 3</option>
+            </select>
+            <p class="help-block error hidden">Ingresá un país</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 form-group item-form">
+            <label for="address_postalcode">Código postal</label>
+            <p class="help-block"><a href="https://www.correoargentino.com.ar/formularios/cpa" target="_blank">Consultá tu código postal</a></p>
+            <input id="address_postalcode" class="form-control" type="number" min="1" placeholder="">                 
+            <p class="help-block error hidden">Ingresá un código postal</p>               
+          </div>          
+        </div>
+        <div class="row">
+          <div class="col-md-8 form-group item-form">
+            <label for="">Provincia</label>
+            <select class="form-control chosen-select" name="" id="address_state">
+              <option value="" selected></option>
+              <option value="">Provincia 1</option>
+              <option value="">Provincia 2</option>
+              <option value="">Provincia 3</option>
+            </select>
+            <p class="help-block error hidden">Ingresá una provincia</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-8 form-group item-form">
+            <label for="">Partido o departamento</label>
+            <select class="form-control chosen-select" name="" id="">
+              <option value="" selected></option>
+              <option value="">Partido 1</option>
+              <option value="">Partido 2</option>
+              <option value="">Partido 3</option>
+            </select>
+            <p class="help-block error hidden">Ingresá un partido o departamento</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-8 form-group item-form">
+            <label for="">Localidad</label>
+            <select class="form-control chosen-select" name="" id="">
+              <option value="" selected></option>
+              <option value="">Localidad 1</option>
+              <option value="">Localidad 2</option>
+              <option value="">Localidad 3</option>
+            </select>
+            <p class="help-block error hidden">Ingresá una localidad</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-8 form-group item-form">
+              <label for="">Calle</label>
+              <input type="name" class="form-control" id="address_street" tabindex="" required="">
+              <p class="help-block error hidden">Ingresá una calle</p>
+          </div>  
+
+          <div class="col-md-4 form-group item-form">
+              <label for="">Número de calle</label>
+              <input type="text" class="form-control" id="address_street_number" tabindex="" required="">
+              <p class="help-block error hidden">Ingresá un número de calle</p>
+          </div> 
+        </div>
+
+        <div class="row">
+          <div class="col-md-4 form-group item-form">
+              <label for="">Piso y departamento</label>
+              <input type="text" class="form-control" id="address_apartment_number" tabindex="" required="">
+              <p class="help-block error hidden">Ingresá un piso y/o departamento</p>
+          </div>                    
+        </div>
+        <div class="row">
+          <div class="col-md-12 form-group">
+            <label for="">Otros datos de domicilio</label>
+            <p class="help-block">Ej: Parcela, manzana, lote, bloque, pasillo, barrio u otros</p>
+            <input type="name" class="form-control" id="otrosDatos" tabindex="" required="">
+          </div>   
+        </div>  
+        <div class="row">
+          <div class="col-sm-12">
+            <a class="mensajeError" data-mostrar="true">Ver mensajes de error</a>
+          </div>                    
+        </div>
+
+</fieldset>
+
+
+
+
+<hr>
  <fieldset>
         <h2 class="m-b-4">Detalle de elementos</h2>
 
@@ -328,24 +434,53 @@
         
         <h3>País</h3>
         <p>Sirve para saber en qué país reside el ciudadano, para cuando el servicio también lo pueden usar argentinos o extranjeros residentes en el exterior.</p>
+       <div class="well">
+          <p class="m-b-0"><i class="fa fa-cog text-primary"></i> <b>Funcionamiento</b></p>
+          <p>Si se cambia este campo, los de abajo (provincia, partido o departamento y localidad) se reseteean y deshabilitan.
+La primera opción del listado es Argentina.</p>
+       </div>        
         
         <h3>Código postal</h3>
         <p>Sirve para identificar y llamar al usuario por su nombre en páginas donde esté loggeado o correos electrónicos que se le envíen.</p>
+        <div class="well">
+          <p class="m-b-0"><i class="fa fa-cog text-primary"></i> <b>Funcionamiento</b></p>
+          <p>Si el usuario completa el código postal, se autocompletan los campos Provincia, Partido o departamento y Localidad. Para eso debe usarse el servicio de provincias, partidos o departamentos y localidades.</p>
+       </div>
         
         <h3>Provincia</h3>
         <p>Sirve para saber en dónde reside el ciudadano, para cuando el servicio se ofrece por diferentes canales según el lugar.</p>
+        <div class="well">
+          <p class="m-b-0"><i class="fa fa-cog text-primary"></i> <b>Funcionamiento</b></p>
+          <p>Si se cambia este campo, los de abajo (partido o departamento y localidad) se reseteean y deshabilitan.</p>
+       </div>
         
         <h3>Partido o departamento</h3>
         <p>Sirve para saber en dónde reside el ciudadano, para cuando el servicio se ofrece por diferentes canales según el lugar.</p>
+        <div class="well">
+          <p class="m-b-0"><i class="fa fa-cog text-primary"></i> <b>Funcionamiento</b></p>
+          <p>Si se cambia este campo, el de abajo (localidad) se reseteea y deshabilita.</p>
+       </div>
         
         <h3>Localidad</h3>
         <p>Sirve para saber en dónde reside el ciudadano, para cuando el servicio se ofrece por diferentes canales según el lugar.</p>
+        <div class="well">
+          <p class="m-b-0"><i class="fa fa-cog text-primary"></i> <b>Funcionamiento</b></p>
+          <p>Ingresá una localidad</p>
+       </div>
         
         <h3>Calle</h3>
         <p>Sirve para comunicarse con el ciudadano por correo tradicional o para que el agente de un organismo se acerque al domicilio del ciudadano.</p>
+        <div class="well">
+          <p class="m-b-0"><i class="fa fa-cog text-primary"></i> <b>Funcionamiento</b></p>
+          <p>Está en la misma fila a la izquierda de Número de calle.</p>
+       </div>
         
         <h3>Número de calle</h3>
         <p>Complementa al campo Calle.</p>
+        <div class="well">
+          <p class="m-b-0"><i class="fa fa-cog text-primary"></i> <b>Funcionamiento</b></p>
+          <p>Está en la misma fila a la derecha de Calle.</p>
+       </div>
         
         <h3>Piso</h3>
         <p>Complementa al campo Calle y número.</p>
@@ -360,106 +495,6 @@
 
 
 
-          </fieldset>                  
-
-
-          <fieldset style="display:none" id="varianteDomicilio">  
-                  <div class="row">
-                    <div class="col-md-12 form-group">
-                      <h3 class="m-b-1">Variante de domicilio</h3>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-8 form-group item-form">
-                      <label for="">País</label>
-                      <select id="country" class="form-control chosen-select">
-                        <option value=""></option>
-                        <option value="">País 1</option>
-                        <option value="">País 2</option>
-                        <option value="">País 3</option>
-                      </select>
-                      <p class="help-block error hidden">Ingresá un país</p>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-4 form-group item-form">
-                      <label for="address_postalcode">Código postal</label>
-                      <p class="help-block"><a href="https://www.correoargentino.com.ar/formularios/cpa" target="_blank">Consultá tu código postal</a></p>
-                      <input id="address_postalcode" class="form-control" type="number" min="1" placeholder="">                 
-                      <p class="help-block error hidden">Ingresá un código postal</p>               
-                    </div>          
-                  </div>
-                  <div class="row">
-                    <div class="col-md-8 form-group item-form">
-                      <label for="">Provincia</label>
-                      <select class="form-control chosen-select" name="" id="address_state">
-                        <option value="" selected></option>
-                        <option value="">Provincia 1</option>
-                        <option value="">Provincia 2</option>
-                        <option value="">Provincia 3</option>
-                      </select>
-                      <p class="help-block error hidden">Ingresá una provincia</p>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-8 form-group item-form">
-                      <label for="">Partido o departamento</label>
-                      <select class="form-control chosen-select" name="" id="">
-                        <option value="" selected></option>
-                        <option value="">Partido 1</option>
-                        <option value="">Partido 2</option>
-                        <option value="">Partido 3</option>
-                      </select>
-                      <p class="help-block error hidden">Ingresá un partido o departamento</p>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-8 form-group item-form">
-                      <label for="">Localidad</label>
-                      <select class="form-control chosen-select" name="" id="">
-                        <option value="" selected></option>
-                        <option value="">Localidad 1</option>
-                        <option value="">Localidad 2</option>
-                        <option value="">Localidad 3</option>
-                      </select>
-                      <p class="help-block error hidden">Ingresá una localidad</p>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-8 form-group item-form">
-                        <label for="">Calle</label>
-                        <input type="name" class="form-control" id="address_street" tabindex="" required="">
-                        <p class="help-block error hidden">Ingresá una calle</p>
-                    </div>  
-
-                    <div class="col-md-4 form-group item-form">
-                        <label for="">Número de calle</label>
-                        <input type="text" class="form-control" id="address_street_number" tabindex="" required="">
-                        <p class="help-block error hidden">Ingresá un número de calle</p>
-                    </div> 
-                  </div>
-
-                  <div class="row">
-                    <div class="col-md-4 form-group item-form">
-                        <label for="">Piso y departamento</label>
-                        <input type="text" class="form-control" id="address_apartment_number" tabindex="" required="">
-                        <p class="help-block error hidden">Ingresá un piso y/o departamento</p>
-                    </div>                    
-                  </div>
-                  <div class="row">
-                    <div class="col-md-12 form-group">
-                      <label for="">Otros datos de domicilio</label>
-                      <p class="help-block">Ej: Parcela, manzana, lote, bloque, pasillo, barrio u otros</p>
-                      <input type="name" class="form-control" id="otrosDatos" tabindex="" required="">
-                    </div>   
-                  </div>  
-                  <div class="row">
-                    <div class="col-sm-12">
-                      <a class="mensajeError" data-mostrar="true">Ver mensajes de error</a>
-                    </div>                    
-                  </div>
-
-                </fieldset>  
 
             </div>
           </article>

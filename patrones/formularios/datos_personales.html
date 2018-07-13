@@ -8,7 +8,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Formularios</title>
+	<title>Datos personales</title>
 	<meta name="description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
 	<meta name="author" content="Presidencia de la Nación">
 	<link rel="shortcut icon" href="/favicon.ico">
@@ -20,13 +20,13 @@
 
 	<meta property="og:url" content="http://localhost:4000/proyectos/documentacion/formularios/formularios.html" />
 	<meta property="og:type" content="article" />
-	<meta property="og:title" content="Banco de Pruebas" />
+	<meta property="og:title" content="Datos personales" />
 	<meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
 	<meta property="og:image" content="/ejemplos/img/jumbotron.jpg" />
 	<meta property="og:locale" content="es_AR" />
 
 	<meta name="twitter:card" content="summary" />
-	<meta name="twitter:title" content="Banco de Pruebas" />
+	<meta name="twitter:title" content="Datos personales" />
 	<meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
 	<meta name="twitter:image" content="/ejemplos/img/jumbotron.jpg" />
 
@@ -39,7 +39,7 @@
 	<link href="http://poncheado.herokuapp.com/vendor/poncho/dist/css/poncho.css" rel="stylesheet">
 	<link href="http://poncheado.herokuapp.com/vendor/iconos/dist/css/icono-arg.css" rel="stylesheet">
 	<link href="http://poncheado.herokuapp.com/css/argentina.css" rel="stylesheet">
-	<link href="http://poncheado.herokuapp.com/css/docs.css" rel="stylesheet">
+	<link href="../../css/docs.css" rel="stylesheet">
 
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -198,14 +198,13 @@
               
 <h1>Datos personales</h1>
 
-<p>Son los datos mínimos necesarios para identificar a un ciudadano.</p>
-
 <hr />
 
 <fieldset>
       <div class="row">
         <div class="col-md-12 form-group">
           <h3 class="m-b-1">Datos personales</h3>
+          <p>Son los datos mínimos necesarios para identificar a un ciudadano.</p>
         </div>
       </div>
       
@@ -277,51 +276,181 @@
   
   <h3>CUIL</h3>
   <p>Sirve para identificar a un ciudadano. Es más preciso que el DNI. Si se pide este dato no hace falta pedir más datos personales de identificación.</p>
-<div class="panel">
-    <div class="panel-body">
-  <p class="m-b-0"><i class="fa fa-cog text-primary"></i> <b>Funcionamiento</b></p>
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam totam, officiis explicabo unde quae eaque vero aliquam harum, nulla ex numquam itaque, saepe aspernatur temporibus eos quaerat facere sunt cum!</p>
-</div>
+
+  <div class="well">
+        <p class="m-b-0"><i class="fa fa-cog text-primary"></i> <b>Funcionamiento</b></p>
+        <p>Acepta puntos, guiónes y barras, pero envía sólo números. Valida un mínimo de caracteres numéricos.</p>
   </div>
+
   <h3>Nombres</h3>
   <p>Sirve para identificar y llamar al usuario por su nombre en páginas donde esté loggeado o correos electrónicos que se le envíen.</p>
   
-  <div class="panel">
-    <div class="panel-body">
-        <p class="m-b-0"><i class="fa fa-cog text-primary"></i> <b>Funcionamiento</b></p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam totam, officiis explicabo unde quae eaque vero aliquam harum, nulla ex numquam itaque, saepe aspernatur temporibus eos quaerat facere sunt cum!</p>
-    </div>
-  </div>
 
   <h3>Apellidos</h3>
   <p>Sirve para identificar al usuario. No pedir si no es necesario identificar al ciudadano (por ejemplo un formulario de sugerencias donde con un nombre y un correo electrónico alcanza.</p>
   
-  <div class="panel">
-    <div class="panel-body">
-        <p class="m-b-0"><i class="fa fa-cog text-primary"></i> <b>Funcionamiento</b></p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam totam, officiis explicabo unde quae eaque vero aliquam harum, nulla ex numquam itaque, saepe aspernatur temporibus eos quaerat facere sunt cum!</p>
-    </div>
-  </div>
 
   <h3>Sexo</h3>
   <p>Sirve para identificar al usuario. Hay servicios públicos y/o médicos que requieren de identificar el sexo del usuario. En general no hace falta pedirlo.</p>
   
-  <div class="panel">
-    <div class="panel-body">
-        <p class="m-b-0"><i class="fa fa-cog text-primary"></i> <b>Funcionamiento</b></p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam totam, officiis explicabo unde quae eaque vero aliquam harum, nulla ex numquam itaque, saepe aspernatur temporibus eos quaerat facere sunt cum!</p>
-    </div>
-  </div>
 
   <h3>Fecha de nacimiento</h3>
   <p>Sirve para saber la edad del usuario. Sirve para servicios que requieran cierta mayoría o rango de edad.</p>
   
-  <div class="panel">
-    <div class="panel-body">
-        <p class="m-b-0"><i class="fa fa-cog text-primary"></i> <b>Funcionamiento</b></p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam totam, officiis explicabo unde quae eaque vero aliquam harum, nulla ex numquam itaque, saepe aspernatur temporibus eos quaerat facere sunt cum!</p>
+
+    <div class="well">
+    <p class="m-b-0"><i class="fa fa-cog text-primary"></i> <b>Funcionamiento</b></p>
+    <p>Acepta números y barras.
+El formato de datos enviado es dd-mm-aaaa.
+Esto es siempre un único campo input date. Si a la base de datos a donde hay que guardar esto tiene los campos día, mes y año por separado, se debe parsear en el envío.</p>
     </div>
-  </div>
+
+</fieldset>
+
+<hr>
+
+
+
+
+
+  <h3>Otros datos personales</h3>
+  <p>Forman parte de los datos personales, pero no son necesarios para identificar al ciudadano.</p>
+<fieldset>
+                    
+
+                  <div class="row">
+
+                    <div class="col-md-4">
+                      <div class="form-group item-form">
+                        <label for="id_type">Tipo de Documento</label>
+                        <select id="id_type" name="id_type" class="form-control">
+                          <option value="DNI" selected="">DNI</option>
+                          <option value="Libreta de Enrolamiento">Libreta de Enrolamiento</option>
+                          <option value="Libreta Cívica">Libreta Cívica</option>
+                          <option value="Pasaporte extranjero">Pasaporte extranjero</option>
+                        </select>
+                        <p class="help-block error hidden">Elegí un tipo de documento</p>
+                      </div>
+                    </div>
+
+                    <div class="col-md-4">
+                      <div class="form-group item-form">
+                        <label for="">Número de documento</label>
+                        <input type="number" min="1" class="form-control" id="document_number" tabindex="" required="">
+                        <p class="help-block error hidden">Ingresá tu número de documento</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-8 form-group item-form">
+                      <label for="marital_status">Estado civil</label>
+                      <select id="marital_status" name="marital_status" class="form-control">
+                        <option value="" selected=""></option>
+                        <option value="">Soltero/a</option>
+                        <option value="">Casado/a</option>
+                        <option value="">Divorciado/a</option>
+                        <option value="">Viudo/a</option>
+                        <option value="">Vínculo de hecho</option>
+                        <option value="">Separado/a</option>
+                      </select>
+                      <p class="help-block error hidden">Ingresá tu estado civil</p>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-8">
+                      <div class="form-group item-form">
+                        <label for="country_birth">País de nacimiento</label>
+                        <select id="country_birth" class="form-control chosen-select">
+                          <option value=""></option>
+                          <option value="">País 1</option>
+                          <option value="">País 2</option>
+                          <option value="">País 3</option>
+                        </select>
+                        <p class="help-block error hidden">Ingresá tu país de nacimiento</p>
+                      </div>
+                    </div>
+
+                  
+                    <div class="col-sm-12">
+                      <a class="mensajeError" data-mostrar="true">Ver mensajes de error</a>
+                    </div>                    
+                  
+                  </div>
+
+                  <hr>
+                  
+                  <div class="row">
+                    <div class="col-md-8">
+                      <label>Contraseña</label>
+                      <p class="help-block">Usá al menos 8 caracteres</p>
+
+                      <div class="form-group item-form">
+                        <input id="password" name="password" type="password" class="form-control" maxlength="15" placeholder="" role="textbox" aria-disabled="false" aria-readonly="false">
+                        <p class="help-block">Usá al menos 8 caracteres</p>
+                        <p class="help-block error hidden">Ingresá tu contraseña</p>
+                      </div>
+                    </div>
+
+                    <div class="col-sm-12">
+                      <a class="mensajeError" data-mostrar="true">Ver mensajes de error</a>
+                    </div>                    
+
+                  </div>
+                  
+                  <hr>
+
+                  <div class="row">
+                    <div class="col-md-8">
+                      <label>Contraseña</label>
+                      <div class="form-group item-form">
+                        <input id="password_confirmation" name="password" type="password" class="form-control" maxlength="15" placeholder="" role="textbox" aria-disabled="false" aria-readonly="false">
+                        <p class="help-block error hidden">La contraseña ingresada no es correcta</p>
+                      </div>
+                    </div>
+
+                    <div class="col-sm-12">
+                      <a class="mensajeError" data-mostrar="true">Ver mensajes de error</a>
+                    </div>                    
+
+                  </div>  
+</fieldset>
+
+<hr>
+
+<fieldset>
+   <h2 class="m-b-4">Detalle de elementos</h2>
+    <h3>No usar encabezado</h3>
+    <p>Este grupo de datos va debajo de los datos personales (y por ende agrupado bajo el encabezado de datos personales).</p>
+    
+    <h3>Tipo de documento</h3>
+    <p>Sirve para identificar a un ciudadano. Es menos preciso que el CUIL ya que pueden haber DNI duplicados. No pedir si el servicio no necesita este dato para funcionar. Siempre se debe intentar usar CUIL primero.</p>
+    <div class="well">
+    <p class="m-b-0"><i class="fa fa-cog text-primary"></i> <b>Funcionamiento</b></p>
+    <p>Va en la misma fila a la izquierda de Número de documento.</p>
+    </div>
+
+
+    <h3>Número de documento</h3>
+    <p>Complementa al dato Tipo de documento.</p>
+    <div class="well">
+    <p class="m-b-0"><i class="fa fa-cog text-primary"></i> <b>Funcionamiento</b></p>
+    <p>Acepta números y barras.
+Acepta puntos, guiónes y barras, pero envía sólo números. Va en la misma fila a la derecha de Tipo de documento.</p>
+    </div>    
+
+    <h3>Estado Civil</h3>
+    <p>Sirve para saber el estado civil del ciudadano. No pedir si el servicio no necesita este dato para funcionar.</p>
+    
+    <h3>País de nacimiento</h3>
+    <p>Sirve para saber la nacionalidad original del ciudadano. No pedir si el servicio no necesita este dato para funcionar.</p>
+    <div class="well">
+    <p class="m-b-0"><i class="fa fa-cog text-primary"></i> <b>Funcionamiento</b></p>
+    <p>Acepta números y barras.
+    La primera opción del listado es Argentina.</p>
+    </div>    
+
+
 </fieldset>
 
             </div>

@@ -83,3 +83,79 @@ pre[class*="language-"] {
 
 #docs .page-sidebar .nav-pills li&gt;a {padding: 10px 15px;}
 */
+
+
+
+
+  .navbar .navbar-brand img{
+          width: auto!important
+        }
+          .navbar{
+          box-shadow:none!important;
+        }
+        
+        .mensajeError:hover{
+          cursor:pointer;
+        }
+
+        .help-block {
+          font-size: 85%;
+        }
+
+        input:focus, 
+        textarea:focus, 
+        select:focus, 
+        button:focus,
+        .form-control:focus
+        {
+          outline: 2px solid #66afe9;
+          outline-offset: 0;
+          box-shadow: none;
+        }
+        .rc-label {
+          display: block;
+          float: left;
+          clear: none;
+          position: relative;
+          padding: 15px 15px 15px 35px!important;
+          margin-bottom: 10px;
+          cursor: pointer;
+          margin-bottom: 10px;
+
+        }
+
+        .rc-label input {
+          position: absolute;
+          top: 15px;
+          left: 24px;
+          cursor: pointer;
+          margin-left: -12px!important;
+        }
+
+        .rc-horizontal .rc-label {
+          float: none;
+          margin-bottom: 10px;
+        }
+
+        .radio-inline, .checkbox-inline {
+          padding-left: 0;
+        }
+
+        .has-error .chosen-container a{
+          border-color:#BB4945!important;
+        }
+
+        .breadcrumb li,.breadcrumb li a,.breadcrumb > li + li:before, .breadcrumb > .active{color: #fff!important;}
+
+
+
+        label{
+          font-weight: 500
+        }
+
+        @media (min-width: 641px) {
+
+          .rc-label {
+            float: left;
+          }
+        }

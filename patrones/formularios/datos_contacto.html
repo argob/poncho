@@ -8,7 +8,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Formularios</title>
+	<title>Datos de contacto</title>
 	<meta name="description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
 	<meta name="author" content="Presidencia de la Nación">
 	<link rel="shortcut icon" href="/favicon.ico">
@@ -20,13 +20,13 @@
 
 	<meta property="og:url" content="http://localhost:4000/proyectos/documentacion/formularios/formularios.html" />
 	<meta property="og:type" content="article" />
-	<meta property="og:title" content="Banco de Pruebas" />
+	<meta property="og:title" content="Datos de contacto" />
 	<meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
 	<meta property="og:image" content="/ejemplos/img/jumbotron.jpg" />
 	<meta property="og:locale" content="es_AR" />
 
 	<meta name="twitter:card" content="summary" />
-	<meta name="twitter:title" content="Banco de Pruebas" />
+	<meta name="twitter:title" content="Datos de contacto" />
 	<meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
 	<meta name="twitter:image" content="/ejemplos/img/jumbotron.jpg" />
 
@@ -39,7 +39,7 @@
 	<link href="http://poncheado.herokuapp.com/vendor/poncho/dist/css/poncho.css" rel="stylesheet">
 	<link href="http://poncheado.herokuapp.com/vendor/iconos/dist/css/icono-arg.css" rel="stylesheet">
 	<link href="http://poncheado.herokuapp.com/css/argentina.css" rel="stylesheet">
-	<link href="http://poncheado.herokuapp.com/css/docs.css" rel="stylesheet">
+	<link href="../../css/docs.css" rel="stylesheet">
 
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -250,21 +250,39 @@
 
           <hr>
           <fieldset>
-          <h2 class="m-b-4">Detalle de elementos</h2>
-            <h3>Datos de contacto</h3>
-            <p>Usar este encabezado para agrupar los datos y separarlos de otros para una lectura más cómoda.</p>
-            
-            <h3>Correo electrónico</h3>
-            <p>Sirve para contactarse por teléfono con el usuario.</p>
-            <p>En general es mejor pedir el teléfono movil del ciudadano ya que es más personal.</p>
-            
-            <h3>Teléfono móvil</h3>
-            <p>Sirve para contactarse por teléfono con el usuario.</p>
-            <p>Pedir teléfono fijo en vez de móvil en el caso de que por ejemplo se necesite una confirmación telefónica sobre un domicilio.</p>  
-            
-            <h3>Teléfono fijo</h3>
+   <h2 class="m-b-4">Detalle de elementos</h2>
+   <h3>Datos de contacto</h3>
+   <p>Usar este encabezado para agrupar los datos y separarlos de otros para una lectura más cómoda.</p>
+   <h3>Correo electrónico</h3>
+   <p>Sirve para contactarse por teléfono con el usuario.</p>
+   <p>En general es mejor pedir el teléfono movil del ciudadano ya que es más personal.</p>
+   <div class="well">
+      <p class="m-b-0"><i class="fa fa-cog text-primary"></i> <b>Funcionamiento</b></p>
+      <p>Valida formato de mail.
+         Hay que desactivar la validación de html5 del input email.
+         No pedir mail 2 veces (se debe poder ingresar al sistema sin validar mail, y ahí dentro poder cambiarlo si lo puso mal).
+      </p>
+   </div>
+   <h3>Teléfono móvil</h3>
+   <p>Sirve para contactarse por teléfono con el usuario.</p>
 
-          </fieldset>
+  <p>En general es mejor pedir el teléfono movil del ciudadano ya que es más personal.</p>
+   <div class="well">
+      <p class="m-b-0"><i class="fa fa-cog text-primary"></i> <b>Funcionamiento</b></p>
+      <p>Acepta puntos, guiónes, signo mas y barras, pero envía sólo números.
+         Valida cantidad mínima de caracteres para mostrar error donde se le pregunta al usuario si puso su código de área.
+      </p>
+   </div>
+   <h3>Teléfono fijo</h3>
+   <p>Sirve para contactarse por teléfono con el usuario.</p>
+   <p>Pedir teléfono fijo en vez de móvil en el caso de que por ejemplo se necesite una confirmación telefónica sobre un domicilio.</p>
+   <div class="well">
+      <p class="m-b-0"><i class="fa fa-cog text-primary"></i> <b>Funcionamiento</b></p>
+      <p>Acepta puntos, guiónes, signo mas y barras, pero envía sólo números.
+         Valida cantidad mínima de caracteres para mostrar error donde se le pregunta al usuario si puso su código de área.
+      </p>
+   </div>
+</fieldset>
 
                               
             </div>

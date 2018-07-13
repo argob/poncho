@@ -8,7 +8,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Formularios</title>
+	<title>Otros datos específicos</title>
 	<meta name="description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
 	<meta name="author" content="Presidencia de la Nación">
 	<link rel="shortcut icon" href="/favicon.ico">
@@ -20,13 +20,13 @@
 
 	<meta property="og:url" content="http://localhost:4000/proyectos/documentacion/formularios/formularios.html" />
 	<meta property="og:type" content="article" />
-	<meta property="og:title" content="Banco de Pruebas" />
+	<meta property="og:title" content="Otros datos específicos" />
 	<meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
 	<meta property="og:image" content="/ejemplos/img/jumbotron.jpg" />
 	<meta property="og:locale" content="es_AR" />
 
 	<meta name="twitter:card" content="summary" />
-	<meta name="twitter:title" content="Banco de Pruebas" />
+	<meta name="twitter:title" content="Otros datos específicos" />
 	<meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
 	<meta name="twitter:image" content="/ejemplos/img/jumbotron.jpg" />
 
@@ -39,7 +39,7 @@
 	<link href="http://poncheado.herokuapp.com/vendor/poncho/dist/css/poncho.css" rel="stylesheet">
 	<link href="http://poncheado.herokuapp.com/vendor/iconos/dist/css/icono-arg.css" rel="stylesheet">
 	<link href="http://poncheado.herokuapp.com/css/argentina.css" rel="stylesheet">
-	<link href="http://poncheado.herokuapp.com/css/docs.css" rel="stylesheet">
+	<link href="../../css/docs.css" rel="stylesheet">
 
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -56,75 +56,7 @@
 
 
   <style type="text/css">
-          .navbar{
-          box-shadow:none!important;
-        }
-        
-        .mensajeError:hover{
-          cursor:pointer;
-        }
-
-        .help-block {
-          font-size: 85%;
-        }
-
-        input:focus, 
-        textarea:focus, 
-        select:focus, 
-        button:focus,
-        .form-control:focus
-        {
-          outline: 2px solid #66afe9;
-          outline-offset: 0;
-          box-shadow: none;
-        }
-        .rc-label {
-          display: block;
-          float: left;
-          clear: none;
-          position: relative;
-          padding: 15px 15px 15px 35px!important;
-          margin-bottom: 10px;
-          cursor: pointer;
-          margin-bottom: 10px;
-
-        }
-
-        .rc-label input {
-          position: absolute;
-          top: 15px;
-          left: 24px;
-          cursor: pointer;
-          margin-left: -12px!important;
-        }
-
-        .rc-horizontal .rc-label {
-          float: none;
-          margin-bottom: 10px;
-        }
-
-        .radio-inline, .checkbox-inline {
-          padding-left: 0;
-        }
-
-        .has-error .chosen-container a{
-          border-color:#BB4945!important;
-        }
-
-        .breadcrumb li,.breadcrumb li a,.breadcrumb > li + li:before, .breadcrumb > .active{color: #fff!important;}
-
-
-
-        label{
-          font-weight: 500
-        }
-
-        @media (min-width: 641px) {
-
-          .rc-label {
-            float: left;
-          }
-        }
+      
       </style>
 
     <script type="text/javascript">
@@ -239,9 +171,18 @@
                   <h2 class="m-b-4">Detalle de elementos</h2>
                   <h3>CUIT</h3>
                   <p>Sirve para cuando el usuario tiene que indicar los datos de una razón social (negocio).</p>
+                  <div class="well">
+                    <p class="m-b-0"><i class="fa fa-cog text-primary"></i> <b>Funcionamiento</b></p>
+                    <p>Acepta puntos, guiónes y barras, pero envía sólo números. Valida un mínimo de caracteres numéricos.
+Si se piden más datos de la razón social, al completarse el CUIT se autocompletan esos campos.</p>
+                 </div>                  
                   
                   <h3>Patente de vehiculo</h3>
                   <p>Sirve para cuando el usuario tiene que indicar la patente de su o sus vehículos.</p>
+                  <div class="well">
+                    <p class="m-b-0"><i class="fa fa-cog text-primary"></i> <b>Funcionamiento</b></p>
+                    <p>Acepta puntos, guiónes y barras, pero envía sólo números. Valida un mínimo de caracteres numéricos.</p>
+                 </div>
                   
                 </fieldset>
                               

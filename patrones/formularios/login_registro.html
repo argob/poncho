@@ -8,7 +8,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Formularios</title>
+	<title>Login - registro</title>
 	<meta name="description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
 	<meta name="author" content="Presidencia de la Nación">
 	<link rel="shortcut icon" href="/favicon.ico">
@@ -20,13 +20,13 @@
 
 	<meta property="og:url" content="http://localhost:4000/proyectos/documentacion/formularios/formularios.html" />
 	<meta property="og:type" content="article" />
-	<meta property="og:title" content="Banco de Pruebas" />
+	<meta property="og:title" content="Login - registro" />
 	<meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
 	<meta property="og:image" content="/ejemplos/img/jumbotron.jpg" />
 	<meta property="og:locale" content="es_AR" />
 
 	<meta name="twitter:card" content="summary" />
-	<meta name="twitter:title" content="Banco de Pruebas" />
+	<meta name="twitter:title" content="Login - registro" />
 	<meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
 	<meta name="twitter:image" content="/ejemplos/img/jumbotron.jpg" />
 
@@ -39,7 +39,7 @@
 	<link href="http://poncheado.herokuapp.com/vendor/poncho/dist/css/poncho.css" rel="stylesheet">
 	<link href="http://poncheado.herokuapp.com/vendor/iconos/dist/css/icono-arg.css" rel="stylesheet">
 	<link href="http://poncheado.herokuapp.com/css/argentina.css" rel="stylesheet">
-	<link href="http://poncheado.herokuapp.com/css/docs.css" rel="stylesheet">
+	<link href="../../css/docs.css" rel="stylesheet">
 
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -241,7 +241,6 @@
 
                       <div class="form-group item-form">
                         <input id="password" name="password" type="password" class="form-control" maxlength="15" placeholder="" role="textbox" aria-disabled="false" aria-readonly="false">
-                        <p class="help-block">Usá al menos 8 caracteres</p>
                         <p class="help-block error hidden">Ingresá tu contraseña</p>
                       </div>
                     </div>
@@ -273,10 +272,21 @@
 <hr>
 
 <h3>Contraseña (para registro)</h3>
-<p>Sirve para que el usuario pueda acceder a una plataforma con información o acciones personalizadas.</p>
+<p>Sirve para que el usuario pueda acceder a una plataforma con información o acciones personalizadas. Si se trata de una nueva plataforma se debe usar Mi Argentina y no desarrollar un sistema nuevo de login. Más información sobre Mi Argentina.</p>
+    <div class="well">
+    <p class="m-b-0"><i class="fa fa-cog text-primary"></i> <b>Funcionamiento</b></p>
+    <p>Siempre deben mostrarse las reglas de contraseña antes de que el usuario pueda escribirla.</p>
+<p>No pedir al usuario que escriba la contraseña 2 veces (la plataforma debe tener una forma de recuperar la contraseña a través de correo electrónico).</p>
+    </div> 
 
 <h3>Contraseña (para ingresar)</h3>
 <p>Sirve para que, una vez registrado, el usuario pueda ingresar a una plataforma. La diferencia con el campo de contraseña para registrar, es que el de ingresar no valida si el usuario escribió algo que no siga las reglas de contraseña.</p>
+    <div class="well">
+    <p class="m-b-0"><i class="fa fa-cog text-primary"></i> <b>Funcionamiento</b></p>
+    <p>Siempre deben mostrarse las reglas de contraseña antes de que el usuario pueda escribirla.</p>
+<p>No pedir al usuario que escriba la contraseña 2 veces (la plataforma debe tener una forma de recuperar la contraseña a través de correo electrónico).</p>
+    </div> 
+
 
 </fieldset>
 
