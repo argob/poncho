@@ -685,6 +685,18 @@ dd {
 
 }
 
+
+
+.borde-img{box-shadow: 0 2px 4px rgba(0,0,0,0.1)}
+
+
+
+.has-error .chosen-container a{
+         border-color:#BB4945!important;
+}
+
+
+
 @keyframes loader {
   from {
     -webkit-transform: rotate(0);
