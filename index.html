@@ -15,7 +15,7 @@
   <meta name="msapplication-navbutton-color" content="#0072b8">
   <meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
 
-  <meta property="og:title" content="Documentación Poncho"/>
+  <meta property="og:site_name" content="Documentación Poncho"/>
   <meta property="og:url" content="/poncho/">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Poncho">
@@ -72,7 +72,7 @@
     <main id="docs" role="main">
       <main role="main">
 
-  <section class="jumbotron" style="background-color:#0695d6">
+  <section class="jumbotron bg-primary">
     <div class="jumbotron_body">
       <div class="container">
         <div class="row">
@@ -223,6 +223,8 @@
     <script src="/poncho/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="/poncho/js/prism.js"></script>
     <script src="/poncho/node_modules/list.js/dist/list.min.js"></script>
+    <script src="https://id.argentina.gob.ar/static/js/chosen.jquery.js"></script>
+    <script src="/poncho/node_modules/argob-poncho/dist/js/scripts.js"></script>
     <script>
       $(function () {
         $('[data-toggle="tooltip"]').tooltip();
@@ -236,6 +238,17 @@
 
       var options = { valueNames: [ 'nombre', 'apellido', 'usuario' ] };
       var userList = new List('usuarios', options);
+
+        //PONCHO LABS
+  var url_string = window.location.href;
+  var url = new URL(url_string);
+  var lab = url.searchParams.get("lab");
+  console.log(lab);
+  
+  if(lab == ""){
+   $ ("head").append('<link href="css/poncho_lab.css" rel="stylesheet">');
+   }
+
 
     </script>
 
