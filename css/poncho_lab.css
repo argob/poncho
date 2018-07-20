@@ -5252,12 +5252,64 @@ a.alert.alert-danger i {
 
 
 
+/* LAB */
+
 p, ul, ol, p, table, ul, li{
   font-weight: 400!important;
   font-size: 16px!important;
-  line-height: 1.6em;
+  line-height: 1.5em;
+  margin-bottom: 0.688em;
 }
 
-article li,h2{
-  margin-bottom: 20px;
+ul li{
+  line-height: 1.3em;
+  margin-bottom: 0.25em;
+
+}
+
+h1, .h1 {
+  font-size: 2.25em;
+  font-weight: 600;
+  line-height: 1.3em;
+}
+
+h2, .h2 {
+  font-size: 1.8em!important;
+  font-weight: 600;
+  line-height: 1.3em;
+  margin-bottom: 0.5em;
+}
+
+h3, .h3 {
+  font-size: 1.313em!important;
+  font-weight: 600;
+  line-height: 1.3em;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+h4, .h4 {
+  font-size: 1.125em!important;
+  font-weight: 600;
+  line-height: 1.3em;
+}
+
+h5, .h5 {
+  font-size: 1em!important;
+  font-weight: 600;
+  line-height: 1.3em;
+}
+
+h6, .h6 {
+  font-size: 1em!important ;
+  font-weight: 600;
+  line-height: 1.3em;
+}
+
+.bg-naranja-oscuro{
+  background-color: #EF6C00 !important; 
+}
+
+.bg-verde-azulado{
+  background-color: #008388 !important; 
 }
