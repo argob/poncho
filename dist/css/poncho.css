@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /*!
- * Poncho v0.3.4 (https://github.com/argob/poncho)
+ * Poncho v0.3.3 (https://github.com/argob/poncho)
  * Copyright 2016
  * Subsecretaría de Gobierno Digital
  * Presidencia de la Nación Argentina
@@ -3516,7 +3516,7 @@ header .btn-group > .btn:first-child {
   .main-footer .row > div:first-child {
     padding-right: 30px; }
   .main-footer a {
-    text-decoration: none; }
+    text-decoration: underline; }
     .main-footer a:hover, .main-footer a:focus {
       text-decoration: underline; }
     .main-footer a.btn {
