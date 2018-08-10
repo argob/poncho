@@ -8,7 +8,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Datos personales</title>
+	<title>Otros datos personales</title>
 	<meta name="description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
 	<meta name="author" content="Presidencia de la Nación">
 	<link rel="shortcut icon" href="/favicon.ico">
@@ -20,13 +20,13 @@
   <meta property="og:site_name" content="Documentación Poncho"/>
   <meta property="og:url" content="http://argob.github.io/poncho/patrones/formularios/datos_personales.html" />
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="Datos personales" />
+  <meta property="og:title" content="Otros datos personales" />
   <meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
   <meta property="og:image" content="http://argob.github.io/poncho/img/poncho_social.jpg" />
   <meta property="og:locale" content="es_AR" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Datos personales" />
+  <meta name="twitter:title" content="Otros datos personales" />
   <meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
   <meta name="twitter:image" content="http://argob.github.io/poncho/img/poncho_social.jpg" />
 
@@ -93,7 +93,7 @@
           <ol class="breadcrumb">
             <li><a href="http://argob.github.io/poncho">Inicio</a></li>
             <li><a href="http://argob.github.io/poncho/patrones/formularios/como_disenar.html">Patrones</a></li>
-            <li class="active">Datos personales</li>
+            <li class="active">Otros datos personales</li>
           </ol>
           <div class="jumbotron_body p-t-2 p-b-2">
             <h1>Patrones <span class="badge">Alpha</span></h1>
@@ -105,7 +105,7 @@
      <div class="container">
 
       <div class="row">
-        <div class="col-sm-3" id="menuLateral" data-seccion="3"></div>
+        <div class="col-sm-3" id="menuLateral" data-seccion="4"></div>
 
         <div class="col-sm-9">
 
@@ -114,126 +114,108 @@
             <article class="row">
               <div class="col-sm-12">
 
-                <h1>Datos personales</h1>
-                <p>Son los datos mínimos necesarios para identificar a un ciudadano.</p>
+                <h1>Otros datos personales</h1>
+                <p>Forman parte de los datos personales, pero no son necesarios para identificar al ciudadano.</p>
                 <hr />
+              <fieldset>
+                <div class="row">
 
-                <fieldset>
-                  <div class="row">
-                    <div class="col-md-12 form-group">
-                      <h3>Datos personales</h3>
+                  <div class="col-md-4">
+                    <div class="form-group item-form">
+                      <label for="id_type">Tipo de Documento</label>
+                      <select id="id_type" name="id_type" class="form-control">
+                        <option value="DNI" selected="">DNI</option>
+                        <option value="Libreta de Enrolamiento">Libreta de Enrolamiento</option>
+                        <option value="Libreta Cívica">Libreta Cívica</option>
+                        <option value="Pasaporte extranjero">Pasaporte extranjero</option>
+                      </select>
+                      <p class="help-block error hidden">Elegí un tipo de documento</p>
                     </div>
                   </div>
 
-
-                  <div class="row">
-                    <div class="col-md-4 form-group item-form">
-                      <label for="cuil">CUIL</label>
-                      <p class="help-block"><a href="https://www.anses.gob.ar/constancia-de-cuil/" target="_blank">Consultá tu CUIL</a></p>
-                      <input type="number" class="form-control" id="cuil" required aria-required="true">
-                      <p class="help-block error hidden">Ingresá tu CUIL <br>El CUIL tiene un formato no válido</p>
+                  <div class="col-md-4">
+                    <div class="form-group item-form">
+                      <label for="">Número de documento</label>
+                      <input type="number" min="1" class="form-control" id="document_number" tabindex="" required="">
+                      <p class="help-block error hidden">Ingresá tu número de documento</p>
                     </div>
                   </div>
-
-
-                  <div class="row">
-                    <div class="col-md-8 form-group item-form">
-                      <label for="nombre">Nombres</label>
-                      <input type="text" name="name" class="form-control" id="nombre" required aria-required="true">
-                      <p class="help-block error hidden">Ingresá tu nombre</p>
-                    </div>
-                  </div>
-
-                  <div class="row">
-                   <div class="col-md-8 form-group item-form">
-                    <label for="apellido">Apellidos</label>
-                    <input type="text" name="lastname" class="form-control" id="apellido" required aria-required="true">
-                    <p class="help-block error hidden">Ingresá tu apellido</p>
+                </div>
+                <div class="row">
+                  <div class="col-md-8 form-group item-form">
+                    <label for="marital_status">Estado civil</label>
+                    <select id="marital_status" name="marital_status" class="form-control">
+                      <option value="" selected=""></option>
+                      <option value="">Soltero/a</option>
+                      <option value="">Casado/a</option>
+                      <option value="">Divorciado/a</option>
+                      <option value="">Viudo/a</option>
+                      <option value="">Vínculo de hecho</option>
+                      <option value="">Separado/a</option>
+                    </select>
+                    <p class="help-block error hidden">Ingresá tu estado civil</p>
                   </div>
                 </div>
 
                 <div class="row">
-                  <div class="col-sm-12">
-                    <fieldset>
-                      <legend>
-                       <label>Sexo <span class="sr-only">Como aparece en tu documento</span></label>
-                     </legend>
-                     <p class="help-block">Como aparece en tu documento</p>
-                     <div class="form-group item-form">
-                       <label for="f" class="radio-inline">
-                        <input type="radio" name="sexo" id="f" value="F" required aria-required="true">
-                        Femenino
-                      </label>
-                      <label for="m" class="radio-inline">
-                        <input type="radio" name="sexo" id="m" value="M" required aria-required="true">
-                        Masculino
-                      </label>
-                      <p class="help-block error hidden">Ingresá tu sexo</p>
+                  <div class="col-md-8">
+                    <div class="form-group item-form">
+                      <label for="country_birth">País de nacimiento</label>
+                      <select id="country_birth" class="form-control chosen-select">
+                        <option value=""></option>
+                        <option value="">País 1</option>
+                        <option value="">País 2</option>
+                        <option value="">País 3</option>
+                      </select>
+                      <p class="help-block error hidden">Ingresá tu país de nacimiento</p>
                     </div>
+                  </div>
 
-                  </fieldset>
+                  
+                  <div class="col-sm-12">
+                    <a class="mensajeError" data-mostrar="true">Ver mensajes de error</a>
+                  </div>                    
+                  
                 </div>
-              </div>
+                  
+              </fieldset>
 
+              <hr>
 
+              <fieldset>
+               <h2>Detalle de elementos</h2>
+               <h3>No usar encabezado</h3>
+               <p>Este grupo de datos va debajo de los datos personales (y por ende agrupado bajo el encabezado de datos personales).</p>
 
-              <div class="row">
-                <div class="form-group col-md-4 item-form">
-                  <label for="birthday">Fecha de nacimiento</label>
-                  <input type="date" class="form-control" id="birthday" required aria-required="true">
-                  <p class="help-block error hidden">Ingresá la fecha</p>
-                </div>
-              </div>
-
-          <div class="row">
-              <div class="col-sm-12">
-                <a class="mensajeError" data-mostrar="true">Ver mensajes de error</a>
-              </div>
-          </div>
-
-
-
-            </fieldset>
-
-            <hr>
-
-            <fieldset>
-              <h2>Detalle de elementos</h2>
-              <h3>Encabezado</h3>
-              <p>Usar este encabezado para agrupar los datos y separarlos de otros para una lectura más cómoda.</p>
-
-              <h3>CUIL</h3>
-              <p>Sirve para identificar a un ciudadano. Es más preciso que el DNI. Si se pide este dato no hace falta pedir más datos personales de identificación.</p>
-
-              <div class="well">
+               <h3>Tipo de documento</h3>
+               <p>Sirve para identificar a un ciudadano. Es menos preciso que el CUIL ya que pueden haber DNI duplicados. No pedir si el servicio no necesita este dato para funcionar. Siempre se debe intentar usar CUIL primero.</p>
+               <div class="well">
                 <p class="m-b-0"><i class="fa fa-cog text-primary"></i> <b>Funcionamiento</b></p>
-                <p>Acepta puntos, guiónes y barras, pero envía sólo números. Valida un mínimo de caracteres numéricos.</p>
+                <p>Va en la misma fila a la izquierda de Número de documento.</p>
               </div>
 
-              <h3>Nombres</h3>
-              <p>Sirve para identificar y llamar al usuario por su nombre en páginas donde esté loggeado o correos electrónicos que se le envíen.</p>
 
-
-              <h3>Apellidos</h3>
-              <p>Sirve para identificar al usuario. No pedir si no es necesario identificar al ciudadano (por ejemplo un formulario de sugerencias donde con un nombre y un correo electrónico alcanza.</p>
-
-
-              <h3>Sexo</h3>
-              <p>Sirve para identificar al usuario. Hay servicios públicos y/o médicos que requieren de identificar el sexo del usuario. En general no hace falta pedirlo.</p>
-
-
-              <h3>Fecha de nacimiento</h3>
-              <p>Sirve para saber la edad del usuario. Sirve para servicios que requieran cierta mayoría o rango de edad.</p>
-
-
+              <h3>Número de documento</h3>
+              <p>Complementa al dato Tipo de documento.</p>
               <div class="well">
                 <p class="m-b-0"><i class="fa fa-cog text-primary"></i> <b>Funcionamiento</b></p>
                 <p>Acepta números y barras.
-                  El formato de datos enviado es dd-mm-aaaa.
-                  Esto es siempre un único campo input date. Si a la base de datos a donde hay que guardar esto tiene los campos día, mes y año por separado, se debe parsear en el envío.</p>
-                </div>
+                  Acepta puntos, guiónes y barras, pero envía sólo números. Va en la misma fila a la derecha de Tipo de documento.</p>
+                </div>    
 
-              </fieldset>
+                <h3>Estado Civil</h3>
+                <p>Sirve para saber el estado civil del ciudadano. No pedir si el servicio no necesita este dato para funcionar.</p>
+
+                <h3>País de nacimiento</h3>
+                <p>Sirve para saber la nacionalidad original del ciudadano. No pedir si el servicio no necesita este dato para funcionar.</p>
+                <div class="well">
+                  <p class="m-b-0"><i class="fa fa-cog text-primary"></i> <b>Funcionamiento</b></p>
+                  <p>Acepta números y barras.
+                    La primera opción del listado es Argentina.</p>
+                  </div>    
+
+
+                </fieldset>
 
               </div>
             </article>

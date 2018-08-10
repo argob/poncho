@@ -76,7 +76,7 @@
           <ul class="nav navbar-nav navbar-right">
             <li><a href="../../">Inicio</a></li>
             <li class="active"><a href="http://argob.github.io/poncho/patrones/formularios/como_disenar.html">Patrones</a></li>
-            <link href="../../node_modules/argob-poncho/dist/css/poncho.css" rel="stylesheet">
+
             <li><a href="https://argob.github.io/iconos/">Iconos</a></li>
             <li><a href="https://argob.github.io/poncho/2015">Documentación anterior</a></li>
           </ul>
@@ -389,7 +389,7 @@
 
   <div class="row">
     <div class="col-md-8 form-group item-form">
-      <label for="department">Departamento</label>
+      <label for="department">Partido o departamento</label>
       <select class="form-control" name="department" id="department">
         <option value="" selected>Seleccioná un departamento</option>
         <option value="">Departamento 1</option>
@@ -449,6 +449,13 @@
   </div>  
 
   <div class="row">
+    <div class="col-md-8 form-group item-form">
+    <label for="address_info">Otros datos del domicilio</label>
+      <input type="text" name="address_info" class="form-control" id="address_info" required aria-required="true">
+    </div>
+  </div>
+
+  <div class="row">
     <div class="col-sm-12">
       <a class="mensajeError" data-mostrar="true">Ver mensajes de error</a>
     </div>
@@ -460,24 +467,16 @@
  <fieldset>
         <h2>Detalle de elementos</h2>
 
-        <h3>Domicilio</h3>
+        <h3>Encabezado</h3>
         <p>Usar este encabezado para agrupar los datos y separarlos de otros para una lectura más cómoda.</p>
         
-        <h3>País</h3>
+        <h3>País de residencia</h3>
         <p>Sirve para saber en qué país reside el ciudadano, para cuando el servicio también lo pueden usar argentinos o extranjeros residentes en el exterior.</p>
        <div class="well">
           <p class="m-b-0"><i class="fa fa-cog text-primary"></i> <b>Funcionamiento</b></p>
           <p>Si se cambia este campo, los de abajo (provincia, partido o departamento y localidad) se reseteean y deshabilitan.
 La primera opción del listado es Argentina.</p>
        </div>        
-        
-        <h3>Código postal</h3>
-        <p>Sirve para identificar y llamar al usuario por su nombre en páginas donde esté loggeado o correos electrónicos que se le envíen.</p>
-        <div class="well">
-          <p class="m-b-0"><i class="fa fa-cog text-primary"></i> <b>Funcionamiento</b></p>
-          <p>Si el usuario completa el código postal, se autocompletan los campos Provincia, Partido o departamento y Localidad. Para eso debe usarse el servicio de provincias, partidos o departamentos y localidades.</p>
-
-       </div>
         
         <h3>Provincia</h3>
         <p>Sirve para saber en dónde reside el ciudadano, para cuando el servicio se ofrece por diferentes canales según el lugar.</p>
@@ -501,6 +500,15 @@ La primera opción del listado es Argentina.</p>
           <p class="m-b-0"><i class="fa fa-cog text-primary"></i> <b>Funcionamiento</b></p>
           <p>Ingresá una localidad</p>
           <p>Los datos son tomados de la API del <a target="_blank" href="https://datosgobar.github.io/georef-api/">servicio de normalización</a> y geocodificación para direcciones de Argentina.</p>
+       </div>
+
+        
+        <h3>Código postal</h3>
+        <p>Sirve para identificar y llamar al usuario por su nombre en páginas donde esté loggeado o correos electrónicos que se le envíen.</p>
+        <div class="well">
+          <p class="m-b-0"><i class="fa fa-cog text-primary"></i> <b>Funcionamiento</b></p>
+          <p>Si el usuario completa el código postal, se autocompletan los campos Provincia, Partido o departamento y Localidad. Para eso debe usarse el servicio de provincias, partidos o departamentos y localidades.</p>
+
        </div>
         
         <h3>Calle</h3>
