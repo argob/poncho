@@ -61,28 +61,8 @@ pre[class*="language-"] {
 #docs .docs-container hr {
   margin: 60px 0 60px; }
 
-/*
 
-#docs ul li ul {font-weight: normal;}
 
-#docs ul#navbar-docs {width: 263px;}
-
-@media only screen and (min-width: 768px ){
-  #docs .page-sidebar .nav &gt; li.active &gt; .nav &gt; li { display: block;}
-}
-@media only screen and (max-width: 767px ){
-  #docs ul#navbar-docs {position: static;}
-}
-
-#docs .page-sidebar .nav .nav &gt; li {display: none;}
-
-#docs #navbar-docs ul &gt; li {margin-top: 2px;}
-
-#docs #navbar-docs ul &gt; li &gt; a {border-radius: 4px; font-size: 16px;}
-#navbar-docs.affix {top: 55px;}
-
-#docs .page-sidebar .nav-pills li&gt;a {padding: 10px 15px;}
-*/
 
 
 
@@ -98,49 +78,6 @@ pre[class*="language-"] {
           cursor:pointer;
         }
 
-        .help-block {
-          font-size: 85%;
-        }
-
-/*         input:focus, 
-textarea:focus, 
-select:focus, 
-button:focus,
-.form-control:focus
-{
-  outline: 2px solid #66afe9;
-  outline-offset: 0;
-  box-shadow: none;
-} */
-        .rc-label {
-          display: block;
-          float: left;
-          clear: none;
-          position: relative;
-          padding: 15px 15px 15px 35px!important;
-          margin-bottom: 10px;
-          cursor: pointer;
-          margin-bottom: 10px;
-
-        }
-
-        .rc-label input {
-          position: absolute;
-          top: 15px;
-          left: 24px;
-          cursor: pointer;
-          margin-left: -12px!important;
-        }
-
-        .rc-horizontal .rc-label {
-          float: none;
-          margin-bottom: 10px;
-        }
-
-        .radio-inline, .checkbox-inline {
-          padding-left: 0;
-        }
-
         .has-error .chosen-container a{
           border-color:#BB4945!important;
         }
@@ -150,10 +87,6 @@ button:focus,
         .paleta label{margin-top: 5px;font-size: 18px;font-weight: 600}
         .paleta p{padding: 0;font-weight: 400;text-transform: uppercase}
         .paleta-circle .color{border-radius: 50%;width: 50px;height: 50px;margin: 0 auto 0 auto;}
-
-        label{
-          font-weight: 500
-        }
 
         @media (min-width: 641px) {
 
