@@ -76,8 +76,9 @@
         </div>
         <div class="collapse navbar-collapse" id="main-navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="http://argob.github.io/poncho/">Inicio</a></li>
+            <li><a href="../../">Inicio</a></li>
             <li class="active"><a href="http://argob.github.io/poncho/patrones/formularios/como_disenar.html">Patrones</a></li>
+            <li><a href="../../estilos/colores/">Estilos</a></li>
             <li><a href="https://argob.github.io/iconos/">Iconos</a></li>
             <li><a href="https://argob.github.io/poncho/2015">Documentación anterior</a></li>
           </ul>
@@ -120,74 +121,85 @@
                   <hr>
 
         <fieldset>
-                  <div class="row">
-                    <div class="col-md-12 form-group">
-                      <h3>Datos de contacto</h3>
-                      <p class="help-block">Ingresá al menos un dato de contacto</p>
-                    </div>
-                  </div> 
+  <legend><h3>Datos de contacto</h3></legend>
+  
+  <div class="row"> 
+    <div class="col-md-8 form-group item-form">
+      <p class="help-block">Ingresá al menos un dato de contacto</p>
+      <label for="email">Correo electrónico</label>
+      <input type="text" name="email" class="form-control" id="email" required aria-required="true">
+      <p class="help-block error hidden">Ingresá un correo electrónico <br> El correo electrónico tiene un formato no válido</p>
+    </div>
+  </div>
 
-                  <div class="row"> 
-                  <div class="col-md-8 form-group item-form">
-                      <label for="email">Correo electrónico</label>
-                      <input type="name" class="form-control" id="email" tabindex="" required="">
-                      <p class="help-block error hidden">Ingresá un correo electrónico <br> El correo electrónico tiene un formato no válido</p>
-                    </div>
-                  </div>
+<div class="row">
+  <div class="col-sm-12">
+    <fieldset>
+      <legend>Teléfono movil</legend>
+        <div class="row">
+              <div class="col-sm-12">
+                <p class="help-block" id="help_telefono_movil">Incluí el <a href="https://www.argentina.gob.ar/codigos-de-area-telefonicos-de-argentina" target="_blank">código de área</a> de tu localidad</p>
+              </div>
+            <div class="form-group col-xs-6 col-sm-6 col-md-4 item-form">
+              <div class="input-group">
+                <span class="input-group-addon">0</span>
+                <input aria-label="Código de area de teléfono móvil" class="form-control" id="cellphone_area_code" required aria-required="true" type="text"> 
+              </div>
+              <p class="help-block error hidden">Ingresá el código de área</p>
+            </div> 
 
+            <div class="form-group col-xs-6 col-sm-6 col-md-4 item-form">
+              <div class="input-group">
 
-                <div class="row"> 
-                        <div class="col-md-12 form-group m-b-0">
-                          <label for="">Teléfono movil</label>
-                          <p class="help-block">Incluí el <a href="https://www.argentina.gob.ar/codigos-de-area-telefonicos-de-argentina" target="_blank">código de area</a> de tu localidad</p>
-                        </div>
-
-                        <div class="form-group col-xs-6 col-sm-6 col-md-4 item-form">
-                          <div class="input-group">
-                            <span class="input-group-addon">0</span>
-                            <input class="form-control" required="required" type="text"> 
-                          </div>
-                          <p class="help-block error hidden" for="cc_num">Ingresá el código de área</p>
-                        </div> 
-
-                        <div class="form-group col-xs-6 col-sm-6 col-md-4 item-form">
-                          <div class="input-group">
-                            <span class="input-group-addon">15</span>
-                            <input class="form-control" required="required" type="text"> 
-                          </div>
-                          <p class="help-block error hidden" for="cc_num">Ingresá tu número de teléfono movil</p>
-                        </div>                        
-                </div>                  
-              
-                <div class="row"> 
-                        <div class="col-md-12 form-group m-b-0">
-                          <label for="">Teléfono fijo</label>
-                          <p class="help-block">Incluí el <a href="https://www.argentina.gob.ar/codigos-de-area-telefonicos-de-argentina" target="_blank">código de area</a> de tu localidad</p>
-                        </div>
-
-                        <div class="form-group col-xs-6 col-sm-6 col-md-4 item-form">
-                          <div class="input-group">
-                            <span class="input-group-addon">0</span>
-                            <input class="form-control" required="required" type="text"> 
-                          </div>
-                          <p class="help-block error hidden" for="cc_num">Ingresá el código de área</p>
-                        </div> 
-
-                        <div class="col-xs-6 col-sm-6 col-md-4">
-                            <div class="form-group item-form">
-                              <input class="form-control" type="text" name="phone_number_1" data-mask="00000099" autocomplete="off" maxlength="8">
-                              <p class="help-block error hidden">Ingresá tu número de teléfono fijo</p>
-                            </div>
-                        </div>
-
-                  <div class="col-sm-12">
-                      <a class="mensajeError" data-mostrar="true">Ver mensajes de error</a>
-                    </div> 
+                <span class="input-group-addon">15</span>
+                <input aria-label="número de teléfono móvil" class="form-control" id="cellphone_number" required aria-required="true" type="text"> 
+              </div>
+              <p class="help-block error hidden">Ingresá tu número de teléfono móvil</p>
+            </div>
+ 
+        </div>      
+    </fieldset>
+  </div>
+</div>
 
 
-                </div>
+<div class="row">
+  <div class="col-sm-12">
+    <fieldset>
+      <legend>Teléfono fijo</legend>
+        <div class="row">
+              <div class="col-sm-12">
+                <p class="help-block" id="help_telefono_fijo">Incluí el <a href="https://www.argentina.gob.ar/codigos-de-area-telefonicos-de-argentina" target="_blank">código de área</a> de tu localidad</p>
+              </div>
+            <div class="form-group col-xs-6 col-sm-6 col-md-4 item-form">
+              <div class="input-group">
+                <span class="input-group-addon">0</span>
+                <input aria-label="Código de area de teléfono fijo" class="form-control" id="phone_area_code" required aria-required="true" type="text"> 
+              </div>
+              <p class="help-block error hidden">Ingresá el código de área</p>
+            </div> 
 
-                </fieldset>
+            <div class="form-group col-xs-6 col-sm-6 col-md-4 item-form">
+              <div class="input-group">
+
+                <span class="input-group-addon">15</span>
+                <input aria-label="número de teléfono fijo" class="form-control" id="phone_number" required aria-required="true" type="text"> 
+              </div>
+              <p class="help-block error hidden">Ingresá tu número de teléfono fijo</p>
+            </div>
+ 
+        </div>      
+    </fieldset>
+  </div>
+</div>
+    
+</fieldset>
+
+<div class="row">
+  <div class="col-sm-12">
+      <a class="mensajeError" data-mostrar="true">Ver mensajes de error</a>
+  </div>
+</div>
 
 <!-- <hr>
 <div class="row">

@@ -90,8 +90,9 @@
         </div>
         <div class="collapse navbar-collapse" id="main-navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="http://argob.github.io/poncho/">Inicio</a></li>
+            <li><a href="../../">Inicio</a></li>
             <li class="active"><a href="http://argob.github.io/poncho/patrones/formularios/como_disenar.html">Patrones</a></li>
+            <li><a href="../../estilos/colores/">Estilos</a></li>
             <li><a href="https://argob.github.io/iconos/">Iconos</a></li>
             <li><a href="https://argob.github.io/poncho/2015">Documentación anterior</a></li>
           </ul>
@@ -139,30 +140,28 @@
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-md-4 form-group item-form">
-                      <label for="">CUIT</label>
-                      <input type="number" min="1" class="form-control" id="cuit_number" tabindex="" required="">
-                      <p class="help-block error hidden">Ingresá un CUIT <br> El CUIT tiene un formato inválido</p>
-                    </div>
-                    <div class="col-sm-12">
-                      <a class="mensajeError" data-mostrar="true">Ver mensajes de error</a>
-                    </div>                                        
+                   <div class="col-md-4 form-group item-form">
+                    <label for="cuit">CUIT</label>
+                    <input type="number" min="1" class="form-control" id="cuit" required aria-required="true">
+                    <p class="help-block error hidden">Ingresá un CUIT <br> El CUIT tiene un formato inválido</p>
                   </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-md-4 ">
-                      <label for="nombre">Patente de vehículo</label>
-                      <p class="help-block">Ej: AAA123 o AA123BB</p>
+                </div>                  
+                <div class="row">
+                 <div class="col-md-4">
+                  <div class="form-group item-form">
+                    <label for="vehicule_plaque">Patente de vehículo</label>
+                    <p class="help-block" id="help_vehicule_plaque">Ejemplo: AAA123 o AA123BB</p>
+                    <input type="number" min="1" class="form-control" id="vehicule_plaque" required aria-required="true" aria-describedby="help_vehicule_plaque">
+                    <p class="help-block error hidden">Ingresá una patente</p>
+                  </div>
+                </div>
+                </div>
 
-                      <div class="form-group item-form">
-                        <input type="number" min="1" class="form-control" id="vehicule_plaque" tabindex="" required="">
-                        <p class="help-block error hidden">Ingresá una patente</p>
-                      </div>
-                    </div>
+                  <div class="row">
                     <div class="col-sm-12">
                       <a class="mensajeError" data-mostrar="true">Ver mensajes de error</a>
                     </div>                                        
-                  </div>
+                    </div>
                 </fieldset>
 
                 <hr>

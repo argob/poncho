@@ -74,8 +74,9 @@
         </div>
         <div class="collapse navbar-collapse" id="main-navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="http://argob.github.io/poncho/">Inicio</a></li>
+            <li><a href="../../">Inicio</a></li>
             <li class="active"><a href="http://argob.github.io/poncho/patrones/formularios/como_disenar.html">Patrones</a></li>
+            <li><a href="../../estilos/colores/">Estilos</a></li>
             <li><a href="https://argob.github.io/iconos/">Iconos</a></li>
             <li><a href="https://argob.github.io/poncho/2015">Documentación anterior</a></li>
           </ul>
@@ -149,40 +150,36 @@
 <p><a id="mostrarVariante" data-mostrar="false" class="btn btn-link cursorPointer">Mostrar variante login</a></p>
 </fieldset>
 <fieldset  id="varianteLogin" style="display:none">
-  <div class="row">
-                    <div class="col-md-8">
-                      <label>Contraseña</label>
-                      <p class="help-block">Usá al menos 8 caracteres</p>
 
-                      <div class="form-group item-form">
-                        <input id="password" name="password" type="password" class="form-control" maxlength="15" placeholder="" role="textbox" aria-disabled="false" aria-readonly="false">
-                        <p class="help-block error hidden">Ingresá tu contraseña</p>
-                      </div>
-                    </div>
+ <div class="row">
+   <div class="col-md-8">
+    <div class="form-group item-form">
+      <label>Contraseña</label>
+      <p class="help-block" id="help-password">Usá al menos 8 caracteres</p>
+      <input id="password" name="password" type="password" class="form-control" maxlength="15" aria-describedby="help-password">
+      <p class="help-block error hidden">Usá al menos 8 caracteres</p>
+      <p class="help-block error hidden">Ingresá tu contraseña</p>
+    </div>
+  </div>
+</div>
 
-                    <div class="col-sm-12">
-                      <a class="mensajeError" data-mostrar="true">Ver mensajes de error</a>
-                    </div>                    
+<hr>
 
-                  </div>
-                  
-                  <hr>
-
-                  <div class="row">
-                    <div class="col-md-8">
-                      <label>Contraseña</label>
-                      <div class="form-group item-form">
-                        <input id="password_confirmation" name="password" type="password" class="form-control" maxlength="15" placeholder="" role="textbox" aria-disabled="false" aria-readonly="false">
-                        <p class="help-block error hidden">La contraseña ingresada no es correcta</p>
-                      </div>
-                    </div>
-
-                    <div class="col-sm-12">
-                      <a class="mensajeError" data-mostrar="true">Ver mensajes de error</a>
-                    </div>                    
-
-                  </div> 
-
+<div class="row">
+ <div class="col-md-8">
+  <label for="password_confirmacion">Contraseña</label>
+  <div class="form-group item-form">
+   <input id="password_confirmacion" name="password_confirmacion" type="password" class="form-control" maxlength="15">
+   <p class="help-block error hidden">La contraseña ingresada no es correcta</p>
+ </div>
+</div>
+</div>                        
+            
+<div class="row">
+  <div class="col-sm-12">
+    <a class="mensajeError" data-mostrar="true">Ver mensajes de error</a>
+  </div>             
+</div>
 
 </fieldset>
 <hr>
