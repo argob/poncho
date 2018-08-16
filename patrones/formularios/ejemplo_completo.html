@@ -111,7 +111,7 @@
  <h2 class="m-t-2">Título de paso del formulario</h2>
  
  <!-- EJEMPLO DE ERRORES PARA LECTOR DE VOZ -->
- <div id="errores" class="sr-only" aria-live="polite"></div>
+ <div id="errores" aria-live="polite" class="alert alert-danger" style="display:none"></div>
 
  <!-- DATOS PERSONALES -->
  <fieldset>
@@ -273,8 +273,8 @@
   <div class="row"> 
     <div class="col-md-8 form-group item-form">
       <p class="help-block">Ingresá al menos un dato de contacto</p>
-      <label for="email">Correo electrónico</label>
-      <input type="text" name="email" class="form-control" id="email" required aria-required="true">
+      <label for="email">Dirección de correo electrónico</label>
+      <input type="email" name="email" class="form-control" id="email" required aria-required="true">
       <p class="help-block error hidden">Ingresá un correo electrónico <br> El correo electrónico tiene un formato no válido</p>
     </div>
   </div>
@@ -282,19 +282,19 @@
 <div class="row">
   <div class="col-sm-12">
     <fieldset>
-      <legend>Teléfono movil</legend>
+      <legend>Teléfono móvil</legend>
         <div class="row">
               <div class="col-sm-12">
                 <p class="help-block" id="help_telefono_movil">Incluí el <a href="https://www.argentina.gob.ar/codigos-de-area-telefonicos-de-argentina" aria-label="Ingresá código de área. Si no lo sabés consultá en este enlace" target="_blank">código de área</a> de tu localidad</p>
               </div>
-            <div class="form-group col-xs-6 col-sm-6 col-md-4 item-form">
+            <div class="form-group col-xs-12 col-sm-4 item-form">
               <div class="input-group">
                 <span class="input-group-addon">0</span>
                 <input aria-label="Código de area de teléfono móvil" class="form-control" id="cellphone_area_code" required aria-required="true" type="text"> 
               </div>
               <p class="help-block error hidden">Ingresá el código de área</p>
             </div> 
-            <div class="form-group col-xs-6 col-sm-6 col-md-4 item-form">
+            <div class="form-group col-xs-12 col-sm-8 item-form">
               <div class="input-group">
 
                 <span class="input-group-addon">15</span>
@@ -316,7 +316,7 @@
               <div class="col-sm-12">
                 <p class="help-block" id="help_telefono_fijo">Incluí el <a href="https://www.argentina.gob.ar/codigos-de-area-telefonicos-de-argentina" aria-label="Ingresá código de área. Si no lo sabés consultá en este enlace" target="_blank">código de área</a> de tu localidad</p>
               </div>
-            <div class="form-group col-xs-6 col-sm-6 col-md-4 item-form">
+             <div class="form-group col-xs-12 col-sm-4 item-form">
               <div class="input-group">
                 <span class="input-group-addon">0</span>
                 <input aria-label="Código de area de teléfono fijo" class="form-control" id="phone_area_code" required aria-required="true" type="text"> 
@@ -324,12 +324,8 @@
               <p class="help-block error hidden">Ingresá el código de área</p>
             </div> 
 
-            <div class="form-group col-xs-6 col-sm-6 col-md-4 item-form">
-              <div class="input-group">
-
-                <span class="input-group-addon">15</span>
+            <div class="form-group col-xs-12 col-sm-8 item-form">
                 <input aria-label="número de teléfono fijo" class="form-control" id="phone_number" required aria-required="true" type="text"> 
-              </div>
               <p class="help-block error hidden">Ingresá tu número de teléfono fijo</p>
             </div>
  
@@ -913,10 +909,6 @@
 
 <script>
   $(function(){
-    /*$(".chosen-select").chosen({
-      width: '100%',
-      disable_search: true
-    });*/
 
     $('input.conError:radio').change(function(){
       if($(this).is(":checked")) {
@@ -934,18 +926,27 @@
 
   });
 
-// A MODO EJEMPLO SE LIMITÓ LA CANTIDAD DE ERRORES A 3
 function mostrarErrores(){
   $("#errores").html("");
-  $("#errores").html("<h4>Se han producido los siguientes errores (En este ejemplo se muestran solo 3)</h4><ol></ol>");
+  $("#errores").html("<h5>Se han producido los siguientes errores:</h5><ol></ol>");
   var cantidadErrores = 0;
+
   $(".has-error").each(function(){
-    if(cantidadErrores<3){
+
+    if(cantidadErrores<3){// A MODO EJEMPLO SE LIMITÓ LA CANTIDAD DE ERRORES A 3
       var mensajeError = $(this).find(".help-block.error").html();
       $("#errores ol").append("<li>"+mensajeError+"</li>");
       cantidadErrores++;
     }
+
   });
+
+  if(cantidadErrores >0){
+    $("#errores").show();
+  }
+  else{
+    $("#errores").hide(); 
+  }
 }
 
 $('button').click(function(event) {
