@@ -6,9 +6,14 @@ label {
   &.control-label {font-weight: 500;}
   &.label-block {display: block;}
 }
+
 legend {
     border-bottom: none;
+    font-size: 16px;
+    margin: 0;
+    font-weight: 500;
 }
+
 
 .form-group {
   margin-bottom: 30px;
