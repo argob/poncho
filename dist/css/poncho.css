@@ -4593,6 +4593,9 @@ input[type='text']:-ms-input-placeholder {
 .chosen-container.chosen-container-multi.chosen-with-drop .chosen-results li.group-result {
   text-shadow: none; }
 
+.radio-inline, .checkbox-inline {
+  height: 0; }
+
 .social-share {
   margin: 0;
   min-height: 32px; }
