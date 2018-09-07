@@ -6,7 +6,7 @@
   &:active,
   &.focus,
   &.active {
-    background-color: lighten($brand-primary, 10%);
+    background-color: #01579b;
   }
 }
 
@@ -15,7 +15,7 @@
 
   &:hover,
   &:focus {
-    background-color: lighten($brand-success, 10%);
+    background-color: #1b5e20;
   }
 }
 
@@ -24,7 +24,7 @@
 
   &:hover,
   &:focus {
-    background-color: lighten($brand-info, 10%);
+    background-color: #037DBA;
   }
 }
 
@@ -33,7 +33,7 @@
 
   &:hover,
   &:focus {
-    background-color: lighten($brand-warning, 10%);
+    background-color: #e38f04;
   }
 }
 
@@ -42,7 +42,7 @@
 
   &:hover,
   &:focus {
-    background-color: lighten($brand-danger, 10%);
+    background-color: #b71c1c;
   }
 }
 

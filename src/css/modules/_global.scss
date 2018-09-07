@@ -156,6 +156,15 @@ aside {
   background-color: $brand-tomate !important;
 }
 
+.bg-naranja {
+  background-color: $brand-naranja !important;
+}
+
+.bg-verde-azulado {
+  background-color: $brand-verde-azulado !important;
+}
+
+
 .bg-primary, 
 .bg-success, 
 .bg-info,
@@ -168,7 +177,10 @@ aside {
 .bg-verdin,
 .bg-lima,
 .bg-maiz,
-.bg-tomate {
+.bg-tomate, 
+.bg-naranja, 
+.bg-verde-azulado
+{
   h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     color: #FFF !important;
     small,
