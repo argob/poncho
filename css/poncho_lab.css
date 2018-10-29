@@ -1,22 +1,22 @@
-
-
-
-
-/* VERSION JUAN */
+/* TIPOGRAFIA */
 body{
   font-size: 16px;
   line-height: 1.45;
 }
 
+p{
+  margin-bottom: 1.3em!important;
+}
 p, li, table, a{
-  font-size: 1em;
-  font-weight: 400
+  font-size: 1em!important;
+  font-weight: 400;
+  line-height: 1.471em;
 }
 .lead{
   font-size: 1.2em;
 }    
 
-h1, h2, h3, h4, h5 {
+h1,h2, h3, h4, h5 {
   margin: 1.414em 0 0.5em;
   line-height: 1.2;
 }
@@ -28,14 +28,13 @@ h1 {
 h1{font-size: 2.5em;}
 h2{font-size: 2em;}
 h3{font-size: 1.5em;}
-h4{font-size: 1.3em;}
+h4{font-size: 1.2em;}
 h5{font-size: 1.1em;}
+
 small, .font_small {font-size: 0.78em;}
 
-/* VERSION JUAN */
 
-
-/* JUMBOTRON 2.0 */
+/* PRUEBA JUMBOTRON 2.0 */
 .jumbotron2 h1,.jumbotron2 p{
 	text-align: left;
 	color:#FFF;
@@ -51,7 +50,7 @@ small, .font_small {font-size: 0.78em;}
 
 
 
-/* JUMBOTRON 3.0 */
+/* PRUEBA JUMBOTRON 3.0 */
 .jumbotron3 h1, .jumbotron3 p{
 	text-align: left;
 	color:#FFF;
