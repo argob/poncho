@@ -36,4 +36,18 @@ $("title").html(titulo);
       $('.item-form').removeClass('has-error has-feedback');
     }
   });
+
+
+
+//PONCHO LABS
+var url_string = window.location.href;
+var url = new URL(url_string);
+var lab = url.searchParams.get("lab");
+
+
+if(lab == ""){
+  $("head").append('<link href="../../css/poncho_lab.css" rel="stylesheet">');
+}
+
+
 });
