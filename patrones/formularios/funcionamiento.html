@@ -48,9 +48,8 @@
  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   <script src="../../js/scripts.js"></script>
-  </head>
 
-  <style type="text/css">
+<style type="text/css">
         .navbar{
           box-shadow:none!important;
         }
@@ -117,18 +116,7 @@
           }
         }
       </style>
-
-    <script type="text/javascript">
-
-      var busqueda = document.getElementById('buscar');
-      var buscar = document.getElementById('buscar-btn');
-      buscar.onclick = function () {
-        var buscado = busqueda.value;
-        location.href = "http://www.argentina.gob.ar/buscar/" + buscado;
-      };
-
-    </script>
-
+  </head>
 
   <body>
   	<header>
@@ -278,13 +266,21 @@ minutos</p>
       </footer>
 
     <script>
+
       $(function(){
+
+      var busqueda = document.getElementById('buscar');
+      var buscar = document.getElementById('buscar-btn');
+      buscar.onclick = function () {
+        var buscado = busqueda.value;
+        location.href = "http://www.argentina.gob.ar/buscar/" + buscado;
+      };
+              
         $("#menuLateral").load("../../includes/patrones_menu.html",function(){
           var seccion = $("#menuLateral").data("seccion");
           $("#menuLateral ul li a[data-seccion="+seccion+"]").parent().addClass("active");
         });
-      })
-    </script>
+      })</script>
 
   	</body>
   	</html>
