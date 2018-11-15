@@ -266,21 +266,14 @@ minutos</p>
       </footer>
 
     <script>
-
       $(function(){
-
-      var busqueda = document.getElementById('buscar');
-      var buscar = document.getElementById('buscar-btn');
-      buscar.onclick = function () {
-        var buscado = busqueda.value;
-        location.href = "http://www.argentina.gob.ar/buscar/" + buscado;
-      };
-              
         $("#menuLateral").load("../../includes/patrones_menu.html",function(){
           var seccion = $("#menuLateral").data("seccion");
           $("#menuLateral ul li a[data-seccion="+seccion+"]").parent().addClass("active");
         });
-      })</script>
+
+      })
+    </script>
 
   	</body>
   	</html>
