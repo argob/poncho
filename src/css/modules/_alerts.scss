@@ -1,7 +1,7 @@
 .alert {
     font-weight: 300;
     .btn i {
-      color: #fff;
+      color: $white;
     }     
 }
 
@@ -13,7 +13,7 @@
 }
 
 .alert-warning {
-  background: #fff1d2;
+  background: lighten($brand-warning, 42%);
   border-color: $brand-warning;
 
   i {
@@ -21,7 +21,7 @@
   }
 }
 .alert-success {
-  background: #e8f5e9;
+  background: lighten($brand-success, 63%);
   border-color: $brand-success;
 
   i {
@@ -30,7 +30,7 @@
    
 }
 .alert-info {
-  background: #EBF7FF;
+  background: lighten($brand-primary, 61%);
   border-color: $brand-primary;
 
   i {
@@ -38,7 +38,7 @@
   }
 }
 .alert-danger {
-  background: #ffebee;
+  background: lighten($brand-danger, 51%);
   border-color: $brand-danger;
 
   i {
@@ -54,7 +54,7 @@ a.alert {
 
   &.alert-warning {
     &:hover {
-      background: lighten($brand-warning, 28%);
+      background: lighten($brand-warning, 42%);
     }
 
     i {
@@ -63,7 +63,7 @@ a.alert {
   }
   &.alert-success {
     &:hover {
-      background: lighten($brand-success, 40%);
+      background: lighten($brand-success, 63%);
     }
 
     i {
@@ -72,7 +72,7 @@ a.alert {
   }
   &.alert-info {
     &:hover {
-      background: lighten($brand-info, 25%);
+      background: lighten($brand-primary, 61%);
     }
 
     i {
@@ -81,7 +81,7 @@ a.alert {
   }
   &.alert-danger {
     &:hover {
-      background: lighten($brand-danger, 30%);
+      background: lighten($brand-danger, 51%);
     }
 
     i {
