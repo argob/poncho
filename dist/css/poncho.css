@@ -3168,10 +3168,10 @@ h6, .h6 {
 
 a {
   color: #0072bb;
-  font-weight: 500; }
+  font-weight: 500;
+  text-decoration: underline; }
   a:hover, a:focus, a:active {
-    color: #6A1B99;
-    text-decoration: none; }
+    color: #6A1B99; }
 
 main a:not(.btn) {
   word-wrap: break-word;

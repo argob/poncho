@@ -71,12 +71,12 @@ h6, .h6 {
 a {
   color: $brand-primary;
   font-weight: 500;
-
+  text-decoration: underline;
   &:hover,
   &:focus,
   &:active {
     color: $link-hover-color;
-    text-decoration: none;
+    
   }
 }
 
