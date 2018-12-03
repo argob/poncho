@@ -180,31 +180,31 @@ input {
 
 .has-success {
   .form-control {
-    border-color: #43894E;
+    border-color: $brand-success;
   }
 }
 
 .has-warning {
   .form-control {
-    border-color: #C1994D;
+    border-color: $brand-warning;
   }
 }
 
 .has-error {
   .form-control {
-    border-color: #BB4945;
+    border-color: $brand-danger;
   }
 }
 
 .input-group-btn {
   .btn-default {
-    background-color: #838383;
+    background-color: $brand-default;
     border: 1px solid $gray-light;
     padding: 15px 25px;
   }
 }
 
-.open > .dropdown-toggle.btn-default{color: #fff !important;}
+.open > .dropdown-toggle.btn-default{color: $white !important;}
 
 .has-feedback {
   input ~ .form-control-feedback {
@@ -221,7 +221,7 @@ input {
 /* Chosen dropdowns */
 
 .chosen-container {
-  background-color: #fff;
+  background-color: $white;
   font-size: 18px;
 
 }
@@ -230,11 +230,11 @@ input {
   background: none;
   height: 54px;
   padding: 6px 8px;
-  border: 1px solid #ccc;
+  border: 1px solid $gray-light;
   border-radius: 4px;
   box-shadow: inset 0 2px 2px rgba(0, 0, 0, 0.075);
   font-weight: 400;
-  color: #111;
+  color: $black;
   line-height: 36px;
 }
 
@@ -251,16 +251,16 @@ input {
   background: none;
   height: 54px;
   padding: 6px 8px;
-  border: 1px solid #ccc;
+  border: 1px solid $gray-light;
   border-radius: 4px;
   box-shadow: inset 0 2px 2px rgba(0, 0, 0, 0.075);
   font-weight: 400;
-  color: #111;  
+  color: $black;  
   line-height: 36px;
 }
 .chosen-container.chosen-container-multi.chosen-with-drop .chosen-choices {
   border-radius: 4px 4px 0 0;
-  border-color: #aaa;
+  border-color: $gray-light;
 }
 
 .chosen-container .chosen-results li {
@@ -272,7 +272,7 @@ input {
 
 .chosen-container.chosen-container-single.chosen-with-drop .chosen-results li.highlighted,
 .chosen-container.chosen-container-multi.chosen-with-drop .chosen-results li.highlighted {
-  background: #4265bc;
+  background: $brand-primary;
 }
 .chosen-container.chosen-container-single.chosen-with-drop .chosen-results li.group-result,
 .chosen-container.chosen-container-multi.chosen-with-drop .chosen-results li.group-result {
