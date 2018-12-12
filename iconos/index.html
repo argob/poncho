@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]> <html lang="es"class="iem7"> <![endif]-->
+<!--[if lt IE 7 ]> <html lang="es" class="ie6 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="es" class="ie7 lt-ie8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="es" class="ie8"> <![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="es"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tipografía | Poncho</title>
+  <meta name="description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
+  <meta name="author" content="Presidencia de la Nación">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <!-- Nav and address bar color -->
+  <meta name="theme-color" content="#0072b8">
+  <meta name="msapplication-navbutton-color" content="#0072b8">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
+
+  <meta property="og:site_name" content="Documentación Poncho"/>
+  <meta property="og:url" content="http://argob.github.io/poncho/patrones/formularios/como_disenar.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Tipografía" />
+  <meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta property="og:image" content="http://argob.github.io/poncho/img/poncho_social.jpg" />
+  <meta property="og:locale" content="es_AR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Tipografía" />
+  <meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta name="twitter:image" content="http://argob.github.io/poncho/img/poncho_social.jpg" />
+
+  <link href="../node_modules/argob-poncho/dist/css/roboto-fontface.css" rel="stylesheet">
+  <link href="../node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+  <link href="../node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://argob.github.io/iconos/dist/css/icono-arg.css">
+  <link href="../node_modules/argob-poncho/dist/css/poncho.css" rel="stylesheet">
+  <link href="../css/docs.css" rel="stylesheet">
+  <link href="../css/prism.css" rel="stylesheet">
+  
+<style>
+  #iconosLista i{
+    display: block;
+    font-size: 50px
+  }
+  .name{
+
+  }
+  .modal-body .label{
+    margin-right: 5px;
+    margin-top: 5px;
+  }
+
+  pre{
+    text-align: left;
+    margin-top: 15px;
+  }
+
+</style>
+
+  </head>
+  
+  <script src="../node_modules/jquery/dist/jquery.js"></script>
+  <script type="text/javascript" src="../js/prism.js"></script>
+  <script src="https://argob.github.io/iconos/js/list.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+  <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="../js/scripts.js"></script>
+  
+    
+  <body>
+    <header>
+
+
+      <nav class="navbar navbar-top navbar-default" role="navigation">
+    <div class="container">
+      <div>
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="/poncho/" class="navbar-brand">
+            <img alt="Poncho" src="https://argob.github.io/poncho/img/poncho.gif" height="50">
+            <h1>Poncho</h1>
+          </a>
+        </div>
+        <div class="collapse navbar-collapse" id="main-navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="http://argob.github.io/poncho/">Inicio</a></li>
+            <li><a href="http://argob.github.io/poncho/patrones/formularios/como_disenar.html">Patrones</a></li>
+            <li><a href="https://argob.github.io/iconos/estilos/">Estilos</a></li>
+            <li class="active"><a href="https://argob.github.io/iconos/">Iconos</a></li>
+            <li><a href="https://argob.github.io/poncho/2015">Documentación anterior</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+    </header>
+
+<div class="jumbotron bg-primary">
+  <div class="container">
+  <div class="col-sm-12">
+      <ol class="breadcrumb">
+        <li><a href="http://argob.github.io/poncho">Inicio</a></li>
+        <li class="active">Íconos</li>
+      </ol>
+
+      <h1>Íconos</h1>
+  </div>
+  </div>
+</div>
+    <main>
+    <div class="container">
+      
+      <section>
+         <div class="col-sm-12" id="iconosLista">
+              <div class="form-group">
+              <label for="">Buscá por nombre o descripción </label>
+                <input class="form-control search">
+              </div>
+              <div class="row row-flex list"></div>
+        </div> 
+      </section>
+
+      </div>
+      </main>
+      <footer class="main-footer hidden">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-6">
+              <p class="text-muted small">Los contenidos de Argentina.gob.ar están licenciados bajo <a href="https://creativecommons.org/licenses/by/2.5/ar/">Creative Commons Reconocimiento 2.5 Argentina License</a></p>
+            </div>
+            <div class="col-md-3 col-sm-6">
+              <ul>
+                <li><a href="/servicios">Trámites y servicios</a></li>
+                <li><a href="/organismos">Organismos del Estado</a></li>
+                <li><a href="/pais">Nuestro país</a></li>
+                <li><a href="http://mapadelestado.modernizacion.gob.ar/">Mapa del Estado</a></li>
+              </ul>
+            </div>
+            <div class="col-md-3 col-sm-6">
+              <ul>
+                <li><a href="/ayuda">Ayuda</a></li>
+                <li><a href="/sugerencias">Hacer una sugerencia</a></li>
+                <li><a href="/acerca">Acerca de este sitio</a></li>
+                <li><a href="/terminos-y-condiciones">Términos y condiciones</a></li>
+                <li><a href="/creditos">Créditos</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+
+      <!-- Modal -->
+      <div class="modal fade" id="iconoModal" tabindex="-1" role="dialog" aria-labelledby="iconoModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="iconoModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body text-center">
+              <i></i>
+
+              <div class="etiquetas"></div>
+              <pre class="m-b-2"><div id="copy"></div></pre>
+
+
+<div class="alert alert-success" id="mensajeCopiado" style="display:none">Se ha copiado el código del ícono</div>
+
+              <button class="btn btn-primary copyButton" id="copyButtonId" 
+               data-clipboard-action="copy" data-clipboard-target="div#copy">Copiar código</button>
+             
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <script>
+$(function(){
+
+var clipboard = new ClipboardJS('.copyButton');
+
+clipboard.on('success', function(e) {
+    $("#mensajeCopiado").fadeIn(300);
+    document.getSelection().removeAllRanges();
+});
+
+
+$('#iconoModal').on('hidden.bs.modal', function () {
+     $("#mensajeCopiado").fadeOut(300);
+})
+
+
+
+
+  jQuery.getJSON('https://spreadsheets.google.com/feeds/list/13CLjNqMQlUXj849XYL_nGDaAkE90OOFT3mXL-Iag9xM/1/public/values?alt=json',
+
+    function(data) {
+        iconos = data['feed']['entry'];
+          //TITULOS
+          $.each(iconos, function(index, val) {
+            $(".list").append('<div class="icono col-xs-6 col-sm-4 col-md-3 text-center margin-40"><i class="'+ val["gsx$codigo"]["$t"] +'"></i><div class="name">'+ val["gsx$nombre"]["$t"] +'</div><div class="tags hidden">'+ val["gsx$etiquetas"]["$t"] +'</div></div>');
+          })
+          
+          //BUSCADOR
+          var options = { valueNames: [ 'name','tags' ] };
+          var iconsList = new List('iconosLista', options);
+
+          //DETALLE
+          $(document).on("click",".icono",function(){
+            icon = $(this).find("i").attr("class");
+            name = $(this).find(".name").html();
+            tags = $(this).find(".tags").html().split(",");
+            console.log(tags);
+
+            
+            $('#iconoModal .modal-title').html(name);
+            $('#iconoModal .modal-body i').attr("class",icon).addClass("fa-5x");
+            $(".etiquetas").html("");
+
+            $.each(tags, function(index, val) {
+               $(".etiquetas").append('<div class="label label-default">'+val+'</div>');
+            });
+            
+            $("#copy").html('&lt;i class="'+ icon +'">&lt;/i>');
+
+            $('#iconoModal').modal('show');
+          
+
+          })
+      })
+})
+
+    </script>
+    </body>
+    </html>
