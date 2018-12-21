@@ -176,11 +176,9 @@
               <pre class="m-b-2"><div id="copy"></div></pre>
 
 
-<div class="alert alert-success" id="mensajeCopiado" style="display:none">Se ha copiado el código del ícono</div>
-
+<div class="alert alert-success" id="mensajeCopiado" style="display:none">Se ha copiado el nombre en el portapapeles</div>
               <button class="btn btn-primary copyButton" id="copyButtonId" 
-               data-clipboard-action="copy" data-clipboard-target="div#copy">Copiar código</button>
-             
+               data-clipboard-action="copy" data-clipboard-target="h4#iconoModalLabel">Copiar nombre</button>
             </div>
           </div>
         </div>
@@ -230,15 +228,22 @@ $('#iconoModal').on('hidden.bs.modal', function () {
             $(".etiquetas").html("");
 
             $.each(tags, function(index, val) {
-               $(".etiquetas").append('<div class="label label-default">'+val+'</div>');
+               $(".etiquetas").append('<a href="#" class="label label-default etiqueta">'+val+'</a>');
             });
             
             $("#copy").html('&lt;i class="'+ icon +'">&lt;/i>');
 
             $('#iconoModal').modal('show');
-          
-
           })
+
+          $(document).on("click", ".etiqueta", function(){
+            var etiqueta = $(this).html();
+            $('#iconoModal').modal('hide');
+            $(".search").val(etiqueta);
+            iconsList.search(etiqueta);
+          })
+
+
       })
 })
 
