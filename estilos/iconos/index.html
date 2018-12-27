@@ -31,13 +31,13 @@
   <meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
   <meta name="twitter:image" content="http://argob.github.io/poncho/img/poncho_social.jpg" />
 
-  <link href="../node_modules/argob-poncho/dist/css/roboto-fontface.css" rel="stylesheet">
-  <link href="../node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://argob.github.io/iconos/dist/css/icono-arg.css">
-  <link href="../node_modules/argob-poncho/dist/css/poncho.css" rel="stylesheet">
+  <link href="../../node_modules/argob-poncho/dist/css/roboto-fontface.css" rel="stylesheet">
+  <link href="../../node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-  <link href="../css/docs.css" rel="stylesheet">
-  <link href="../css/prism.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://argob.github.io/iconos/dist/css/icono-arg.css">
+  <link href="../../node_modules/argob-poncho/dist/css/poncho.css" rel="stylesheet">
+  <link href="../../css/docs.css" rel="stylesheet">
+  <link href="../../css/prism.css" rel="stylesheet">
   
 <style>
   #listaPoncho i,#listaFontawesome i{
@@ -64,12 +64,12 @@
 
   </head>
   
-  <script src="../node_modules/jquery/dist/jquery.js"></script>
-  <script type="text/javascript" src="../js/prism.js"></script>
+  <script src="../../node_modules/jquery/dist/jquery.js"></script>
+  <script type="text/javascript" src="../../js/prism.js"></script>
   <script src="https://argob.github.io/iconos/js/list.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
-  <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-  <script src="../js/scripts.js"></script>
+  <script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="../../js/scripts.js"></script>
   
     
   <body>
@@ -95,8 +95,7 @@
           <ul class="nav navbar-nav navbar-right">
             <li><a href="http://argob.github.io/poncho/">Inicio</a></li>
             <li><a href="http://argob.github.io/poncho/patrones/formularios/como_disenar.html">Patrones</a></li>
-            <li><a href="https://argob.github.io/poncho/estilos/colores/">Estilos</a></li>
-            <li class="active"><a href="http://argob.github.io/poncho/iconos/">Iconos</a></li>
+            <li class="active"><a href="https://argob.github.io/poncho/estilos/estilos/colores/">Estilos</a></li>
             <li><a href="https://argob.github.io/poncho/2015">Documentación anterior</a></li>
           </ul>
         </div>
@@ -114,22 +113,30 @@
         <li class="active">Íconos</li>
       </ol>
 
-      <h1>Íconos</h1>
+      <h1>Estilos</h1>
   </div>
   </div>
 </div>
     <main>
     <div class="container">
-      
+
+<div class="row">
+  <div class="col-sm-3" id="menuLateral" data-seccion="2"></div>
+  <div class="col-sm-9">
+
       <section>
          <div class="col-sm-12">
+
+         <h2>Íconos</h2>
+         <p>Poncho tiene su propia librería de íconos. En el caso de no encontrar uno puntual se pueden usar los íconos de <a href="https://fontawesome.com/">Font Awesome.</a></p>
+         <hr>
               <div class="form-group">
               <label for="">Buscá por nombre o descripción </label>
                 <input class="form-control" id="buscadorIconos">
               </div>
               
               <div class="contenedor">
-                <h2>Poncho</h2>
+                <h3>Poncho</h3>
                 <hr>
                 <div id="listaPoncho">
                   <div class="row row-flex list"></div>
@@ -138,7 +145,7 @@
               </div>
               
               <div class="contenedor">
-                <h2>Font Awesome</h2>
+                <h3>Font Awesome</h3>
                 <hr>
                 <div id="listaFontawesome">
                   <div class="row row-flex list"></div>
@@ -149,6 +156,8 @@
 
         </div> 
       </section>
+      </div>
+</div>      
 
       </div>
       </main>
@@ -205,6 +214,16 @@
 
     <script>
 $(function(){
+
+
+  
+        $("#menuLateral").load("../../includes/estilos_menu.html",function(){
+          var seccion = $("#menuLateral").data("seccion");
+          $("#menuLateral ul li a[data-seccion="+seccion+"]").parent().addClass("active");
+        });
+ 
+    
+
 
   var clipboard = new ClipboardJS('.copyButton');
 
