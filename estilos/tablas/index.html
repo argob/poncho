@@ -48,6 +48,14 @@
       <![endif]-->  
 
   <style>
+
+
+.table-scroll{
+    overflow-x:auto;
+}
+.table-scroll table th{
+    white-space: nowrap;
+
   @media (max-width: 992px){
    
     table.table-responsive {
@@ -180,9 +188,9 @@
 
   <table class="table">
     <thead>
-      <th>Titulo 1</th>
-      <th>Titulo 2</th>
-      <th>Titulo 3</th>
+      <th>Título 1</th>
+      <th>Título 2</th>
+      <th>Título 3</th>
     </thead>
     <tbody>
       <tr>
@@ -201,9 +209,9 @@
     <pre><code class="language-html">
       &lt;table class="table">
         &lt;thead>
-          &lt;th>Titulo 1&lt;/th>
-          &lt;th>Titulo 2&lt;/th>
-          &lt;th>Titulo 3&lt;/th>
+          &lt;th>Título 1&lt;/th>
+          &lt;th>Título 2&lt;/th>
+          &lt;th>Título 3&lt;/th>
         &lt;/thead>
         &lt;tbody>
           &lt;tr>
@@ -228,9 +236,9 @@
 
       <table class="table">
         <thead>
-          <th>Titulo 1</th>
-          <th>Titulo 2</th>
-          <th>Titulo 3</th>
+          <th>Título 1</th>
+          <th>Título 2</th>
+          <th>Título 3</th>
         </thead>
         <tbody>
           <tr>
@@ -249,9 +257,9 @@
     <pre><code class="language-html">
       &lt;table class="table">
         &lt;thead>
-          &lt;th>Titulo 1&lt;/th>
-          &lt;th>Titulo 2&lt;/th>
-          &lt;th>Titulo 3&lt;/th>
+          &lt;th>Título 1&lt;/th>
+          &lt;th>Título 2&lt;/th>
+          &lt;th>Título 3&lt;/th>
         &lt;/thead>
         &lt;tbody>
           &lt;tr>
@@ -277,9 +285,9 @@
 
       <table class="table dataTables">
         <thead>
-          <th>Titulo 1</th>
-          <th>Titulo 2</th>
-          <th>Titulo 3</th>
+          <th>Título 1</th>
+          <th>Título 2</th>
+          <th>Título 3</th>
         </thead>
         <tbody>
           <tr>
@@ -300,9 +308,9 @@
     <pre><code class="language-html">
       &lt;table class="table dataTables">
         &lt;thead>
-          &lt;th>Titulo 1&lt;/th>
-          &lt;th>Titulo 2&lt;/th>
-          &lt;th>Titulo 3&lt;/th>
+          &lt;th>Título 1&lt;/th>
+          &lt;th>Título 2&lt;/th>
+          &lt;th>Título 3&lt;/th>
         &lt;/thead>
         &lt;tbody>
           &lt;tr>
@@ -336,20 +344,20 @@
 
       <table class="table table-responsive">
         <thead>
-          <th>Titulo 1</th>
-          <th>Titulo 2</th>
-          <th>Titulo 3</th>
+          <th>Título 1</th>
+          <th>Título 2</th>
+          <th>Título 3</th>
         </thead>
         <tbody>
           <tr>
-            <td data-label="Titulo 1">Lorem iipsum dolor</td>
-            <td data-label="Titulo 2">Lorem iipsum dolor</td>
-            <td data-label="Titulo 3">Lorem ipsum dolor sit amet</td>
+            <td data-label="Título 1">Lorem iipsum dolor</td>
+            <td data-label="Título 2">Lorem iipsum dolor</td>
+            <td data-label="Título 3">Lorem ipsum dolor sit amet</td>
           </tr>
           <tr>
-            <td data-label="Titulo 1">Lorem iipsum dolor</td>
-            <td data-label="Titulo 2">Lorem iipsum dolor</td>
-            <td data-label="Titulo 3">Lorem ipsum dolor sit amet</td>
+            <td data-label="Título 1">Lorem iipsum dolor</td>
+            <td data-label="Título 2">Lorem iipsum dolor</td>
+            <td data-label="Título 3">Lorem ipsum dolor sit amet</td>
           </tr>      
         </tbody>
       </table>
@@ -357,20 +365,20 @@
     <pre><code class="language-html">
       &lt;table class="table table-responsive">
         &lt;thead>
-          &lt;th>Titulo 1&lt;/th>
-          &lt;th>Titulo 2&lt;/th>
-          &lt;th>Titulo 3&lt;/th>
+          &lt;th>Título 1&lt;/th>
+          &lt;th>Título 2&lt;/th>
+          &lt;th>Título 3&lt;/th>
         &lt;/thead>
         &lt;tbody>
           &lt;tr>
-            &lt;td data-label="Titulo 1">Lorem iipsum dolor&lt;/td>
-            &lt;td data-label="Titulo 2">Lorem iipsum dolor&lt;/td>
-            &lt;td data-label="Titulo 3">Lorem ipsum dolor sit amet&lt;/td>
+            &lt;td data-label="Título 1">Lorem iipsum dolor&lt;/td>
+            &lt;td data-label="Título 2">Lorem iipsum dolor&lt;/td>
+            &lt;td data-label="Título 3">Lorem ipsum dolor sit amet&lt;/td>
           &lt;/tr>
           &lt;tr>
-            &lt;td data-label="Titulo 1">Lorem iipsum dolor&lt;/td>
-            &lt;td data-label="Titulo 2">Lorem iipsum dolor&lt;/td>
-            &lt;td data-label="Titulo 3">Lorem ipsum dolor sit amet&lt;/td>
+            &lt;td data-label="Título 1">Lorem iipsum dolor&lt;/td>
+            &lt;td data-label="Título 2">Lorem iipsum dolor&lt;/td>
+            &lt;td data-label="Título 3">Lorem ipsum dolor sit amet&lt;/td>
           &lt;/tr>      
         &lt;/tbody>
       &lt;/table>
@@ -379,52 +387,145 @@
 
 
 
-    <!-- TABLA RESPONSIVE SIMPLE -->
+    <!-- TABLA CON SCROLL HORIZONTAL -->
     <h3>Con scroll horizontal</h3>
       <p>Sólo ser usado para casos con muchas columnas que no puedan combinarse (grilla de horarios o tarifas). Este comportamiento debe evitarse ya que no es cómodo para dispositivos móviles.</p>
 
-
-      <table class="table table-responsive">
+  <div class="table-scroll">
+      <table class="table">
         <thead>
-          <th>Titulo 1</th>
-          <th>Titulo 2</th>
-          <th>Titulo 3</th>
+          <th>Título 1</th>
+          <th>Título 2</th>
+          <th>Título 3</th>
+          <th>Título 4</th>
+          <th>Título 5</th>
+          <th>Título 6</th>
+          <th>Título 7</th>
+          <th>Título 8</th>
+          <th>Título 9</th>
+          <th>Título 10</th>
+          <th>Título 11</th>
+          <th>Título 12</th>
+          <th>Título 13</th>
+          <th>Título 14</th>
+          <th>Título 15</th>
+          <th>Título 16</th>
+          <th>Título 17</th>
+          <th>Título 18</th>
         </thead>
         <tbody>
           <tr>
-            <td data-label="Titulo 1">Lorem iipsum dolor</td>
-            <td data-label="Titulo 2">Lorem iipsum dolor</td>
-            <td data-label="Titulo 3">Lorem ipsum dolor sit amet</td>
+            <td>Lorem ipsum dolor sit amet</td>
+            <td>Voluptas expedita hic consequuntur doloremque totam</td>
+            <td>30000</td>
+            <td>30000</td>
+            <td>30000</td>
+            <td>30000</td>
+            <td>30000</td>
+            <td>30000</td>
+            <td>30000</td>
+            <td>30000</td>
+            <td>30000</td>
+            <td>30000</td>
+            <td>30000</td>
+            <td>30000</td>
+            <td>40000</td>
+            <td>50000</td>
+            <td>60000</td>
+            <td>70000</td>
           </tr>
           <tr>
-            <td data-label="Titulo 1">Lorem iipsum dolor</td>
-            <td data-label="Titulo 2">Lorem iipsum dolor</td>
-            <td data-label="Titulo 3">Lorem ipsum dolor sit amet</td>
-          </tr>      
+            <td>Lorem ipsum dolor sit amet</td>
+            <td>Voluptas expedita hic consequuntur doloremque totam</td>
+            <td>30000</td>
+            <td>30000</td>
+            <td>30000</td>
+            <td>30000</td>
+            <td>30000</td>
+            <td>30000</td>
+            <td>30000</td>
+            <td>30000</td>
+            <td>30000</td>
+            <td>30000</td>
+            <td>30000</td>
+            <td>30000</td>
+            <td>40000</td>
+            <td>50000</td>
+            <td>60000</td>
+            <td>70000</td>
+          </tr>
+              
         </tbody>
       </table>
+  </div>    
 
     <pre><code class="language-html">
-      &lt;table class="table table-responsive">
+    &lt;div class="table-scroll">
+      &lt;table class="table">
         &lt;thead>
-          &lt;th>Titulo 1&lt;/th>
-          &lt;th>Titulo 2&lt;/th>
-          &lt;th>Titulo 3&lt;/th>
+          &lt;th>Título 1&lt;/th>
+          &lt;th>Título 2&lt;/th>
+          &lt;th>Título 3&lt;/th>
+          &lt;th>Título 4&lt;/th>
+          &lt;th>Título 5&lt;/th>
+          &lt;th>Título 6&lt;/th>
+          &lt;th>Título 7&lt;/th>
+          &lt;th>Título 8&lt;/th>
+          &lt;th>Título 9&lt;/th>
+          &lt;th>Título 10&lt;/th>
+          &lt;th>Título 11&lt;/th>
+          &lt;th>Título 12&lt;/th>
+          &lt;th>Título 13&lt;/th>
+          &lt;th>Título 14&lt;/th>
+          &lt;th>Título 15&lt;/th>
+          &lt;th>Título 16&lt;/th>
+          &lt;th>Título 17&lt;/th>
+          &lt;th>Título 18&lt;/th>
         &lt;/thead>
         &lt;tbody>
           &lt;tr>
-            &lt;td data-label="Titulo 1">Lorem iipsum dolor&lt;/td>
-            &lt;td data-label="Titulo 2">Lorem iipsum dolor&lt;/td>
-            &lt;td data-label="Titulo 3">Lorem ipsum dolor sit amet&lt;/td>
+            &lt;td>Lorem ipsum dolor sit amet&lt;/td>
+            &lt;td>Voluptas expedita hic consequuntur doloremque totam&lt;/td>
+            &lt;td>30000&lt;/td>
+            &lt;td>30000&lt;/td>
+            &lt;td>30000&lt;/td>
+            &lt;td>30000&lt;/td>
+            &lt;td>30000&lt;/td>
+            &lt;td>30000&lt;/td>
+            &lt;td>30000&lt;/td>
+            &lt;td>30000&lt;/td>
+            &lt;td>30000&lt;/td>
+            &lt;td>30000&lt;/td>
+            &lt;td>30000&lt;/td>
+            &lt;td>30000&lt;/td>
+            &lt;td>40000&lt;/td>
+            &lt;td>50000&lt;/td>
+            &lt;td>60000&lt;/td>
+            &lt;td>70000&lt;/td>
           &lt;/tr>
           &lt;tr>
-            &lt;td data-label="Titulo 1">Lorem iipsum dolor&lt;/td>
-            &lt;td data-label="Titulo 2">Lorem iipsum dolor&lt;/td>
-            &lt;td data-label="Titulo 3">Lorem ipsum dolor sit amet&lt;/td>
-          &lt;/tr>      
+            &lt;td>Lorem ipsum dolor sit amet&lt;/td>
+            &lt;td>Voluptas expedita hic consequuntur doloremque totam&lt;/td>
+            &lt;td>30000&lt;/td>
+            &lt;td>30000&lt;/td>
+            &lt;td>30000&lt;/td>
+            &lt;td>30000&lt;/td>
+            &lt;td>30000&lt;/td>
+            &lt;td>30000&lt;/td>
+            &lt;td>30000&lt;/td>
+            &lt;td>30000&lt;/td>
+            &lt;td>30000&lt;/td>
+            &lt;td>30000&lt;/td>
+            &lt;td>30000&lt;/td>
+            &lt;td>30000&lt;/td>
+            &lt;td>40000&lt;/td>
+            &lt;td>50000&lt;/td>
+            &lt;td>60000&lt;/td>
+            &lt;td>70000&lt;/td>
+          &lt;/tr>
         &lt;/tbody>
       &lt;/table>
-
+  &lt;/div>  
     </code></pre>
 
 <!-- Elementos de tablas -->
