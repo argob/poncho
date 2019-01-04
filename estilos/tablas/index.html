@@ -47,64 +47,6 @@
       <script src="http://poncheado.herokuapp.com/node_modules/respond.js/respond.min.js"></script>
       <![endif]-->  
 
-  <style>
-
-
-.table-scroll{
-    overflow-x:auto;
-}
-.table-scroll table th{
-    white-space: nowrap;
-
-  @media (max-width: 992px){
-   
-    table.table-responsive {
-      border: 0;
-    }
-
-    table.table-responsive thead {
-      border: none;
-      clip: rect(0 0 0 0);
-      height: 1px;
-      margin: -1px;
-      overflow: hidden;
-      padding: 0;
-      position: absolute;
-      width: 1px;
-    }
-    
-    table.table-responsive tr {
-
-      display: block;
-      margin-bottom: .625em;
-    }
-    
-    table.table-responsive td {
-      border-bottom: 1px solid #ddd;
-      display: block;
-
-      text-align: right;
-    }
-    
-    table.table-responsive td::before {
-      content: attr(data-label);
-      float: left;
-      font-weight: bold;
-      text-transform: uppercase;
-    }
-    
-    table.table-responsive td:last-child {
-      
-      border-bottom-color: #0072bb;
-      border-bottom-width: 3px;
-    }
-
-    table.table-responsive td:first-child {
-      border-top: 0!important;
-    }
-   } 
-  </style>
-
   </head>
   
   <script src="../../node_modules/jquery/dist/jquery.js"></script>
@@ -342,7 +284,7 @@
       <p>Para mostrar uno o varios datos por columna. Se usa para cuando hay muchas columnas y se necesita priorizar la vista en dispositivos móviles.</p>
 
 
-      <table class="table table-responsive">
+      <table class="table table-responsive-poncho">
         <thead>
           <th>Título 1</th>
           <th>Título 2</th>
@@ -363,7 +305,7 @@
       </table>
 
     <pre><code class="language-html">
-      &lt;table class="table table-responsive">
+      &lt;table class="table table-responsive-poncho">
         &lt;thead>
           &lt;th>Título 1&lt;/th>
           &lt;th>Título 2&lt;/th>
@@ -587,56 +529,50 @@
     <script>
       $(function(){
 
-jQuery(function($) {
-    $.syntax({theme: 'bright'});
-  });
+        jQuery(function($) {
+          $.syntax({theme: 'bright'});
+        });
 
         $("#menuLateral").load("../../includes/estilos_menu.html",function(){
           var seccion = $("#menuLateral").data("seccion");
           $("#menuLateral ul li a[data-seccion="+seccion+"]").parent().addClass("active");
         });
 
+        var tabla =  $(".dataTables").DataTable({
+            "lengthChange": false,
+            "autoWidth" : false,
+             "language": {
+                "sProcessing": "Procesando...",
+                "sLengthMenu": "Mostrar _MENU_ registros",
+                "sZeroRecords": "No se encontraron resultados",
+                "sEmptyTable": "Ningún dato disponible en esta tabla",
+                "sInfo": "_TOTAL_ resultados",
+                "sInfoEmpty": "No hay resultados",
+                "sInfoFiltered": "",
+                "sInfoPostFix": "",
+                "sSearch": "Buscar:",
+                "sUrl": "",
+                "sInfoThousands": ",",
+                "sLoadingRecords": "Cargando...",
 
-
-var tabla =  $(".dataTables").DataTable({
-    "lengthChange": false,
-    "autoWidth" : false,
-     "language": {
-        "sProcessing": "Procesando...",
-        "sLengthMenu": "Mostrar _MENU_ registros",
-        "sZeroRecords": "No se encontraron resultados",
-        "sEmptyTable": "Ningún dato disponible en esta tabla",
-        "sInfo": "_TOTAL_ resultados",
-        "sInfoEmpty": "No hay resultados",
-        "sInfoFiltered": "",
-        "sInfoPostFix": "",
-        "sSearch": "Buscar:",
-        "sUrl": "",
-        "sInfoThousands": ",",
-        "sLoadingRecords": "Cargando...",
-
-        "oPaginate": {
-            "sFirst": "<<",
-            "sLast": ">>",
-            "sNext": ">",
-            "sPrevious": "<"
-        },
-        "oAria": {
-            "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-            "sSortDescending": ": Activar para ordenar la columna de manera descendente",
-            "paginate": {
-                "first": 'Ir a la primera página',
-                "previous": 'Ir a la página anterior',
-                "next": 'Ir a la página siguiente',
-                "last": 'Ir a la última página'
+                "oPaginate": {
+                    "sFirst": "<<",
+                    "sLast": ">>",
+                    "sNext": ">",
+                    "sPrevious": "<"
+                },
+                "oAria": {
+                    "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                    "sSortDescending": ": Activar para ordenar la columna de manera descendente",
+                    "paginate": {
+                        "first": 'Ir a la primera página',
+                        "previous": 'Ir a la página anterior',
+                        "next": 'Ir a la página siguiente',
+                        "last": 'Ir a la última página'
+                    }
+                }
             }
-        }
-    }
-});
-
-
-
-
+        });
 
       })
     </script>
