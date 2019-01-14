@@ -579,7 +579,8 @@
     <div class="col-md-8 form-group item-form">
       <label for="country">País de residencia</label>
       <select id="country" class="form-control">
-        <option value="">Seleccioná un pais</option>
+        <option value="" selected>Seleccioná un país</option>
+        <option value="ARG">Argentina</option>                        
         <option value="AFG">Afganistán</option>                        
         <option value="ALB">Albania</option>                        
         <option value="DEU">Alemania</option>                        
@@ -590,7 +591,6 @@
         <option value="ATG">Antigua y Barbuda</option>                        
         <option value="SAU">Arabia Saudita</option>                        
         <option value="DZA">Argelia</option>                        
-        <option value="ARG" selected>Argentina</option>                        
         <option value="ARM">Armenia</option>                        
         <option value="ABW">Aruba</option>                        
         <option value="AUS">Australia</option>                        
@@ -833,10 +833,30 @@
     <div class="col-md-8 form-group item-form">
       <label for="address_state">Provincia</label>
       <select class="form-control" id="address_state" name="address_state">
-        <option value="" selected>Seleccioná una provincia</option>
-        <option value="">Provincia 1</option>
-        <option value="">Provincia 2</option>
-        <option value="">Provincia 3</option>
+          <option value="" selected>Seleccioná una provincia</option>
+          <option value="Ciudad Autónoma de buenos Aires">Ciudad Autónoma de Buenos Aires</option>
+          <option value="Buenos Aires">Buenos Aires</option>
+          <option value="Catamarca">Catamarca</option>
+          <option value="Chaco">Chaco</option>
+          <option value="Chubut">Chubut</option>
+          <option value="Córdoba">Córdoba</option>
+          <option value="Corrientes">Corrientes</option>
+          <option value="Entre Ríos">Entre Ríos</option>
+          <option value="Formosa">Formosa</option>
+          <option value="Jujuy">Jujuy</option>
+          <option value="La Pampa">La Pampa</option>
+          <option value="La Rioja">La Rioja</option>
+          <option value="Mendoza">Mendoza</option>
+          <option value="Misiones">Misiones</option>
+          <option value="Neuquén">Neuquén</option>
+          <option value="Río Negro">Río Negro</option>
+          <option value="Salta">Salta</option>
+          <option value="San Juan">San Juan</option>
+          <option value="Santa Cruz">Santa Cruz</option>
+          <option value="Santa Fe">Santa Fe</option>
+          <option value="Santiago del Estero">Santiago del Estero</option>
+          <option value="Tierra del Fuego">Tierra del Fuego</option>
+          <option value="Tucumán">Tucumán</option>        
       </select>
       <p class="help-block error hidden">Ingresá una provincia</p>
     </div>
@@ -844,7 +864,7 @@
 
   <div class="row">
     <div class="col-md-8 form-group item-form">
-      <label for="department">Departamento</label>
+      <label for="department">Partido o departamento</label>
       <select class="form-control" name="department" id="department">
         <option value="" selected>Seleccioná un departamento</option>
         <option value="">Departamento 1</option>

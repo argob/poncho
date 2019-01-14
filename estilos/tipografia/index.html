@@ -114,27 +114,16 @@
             <div class="col-sm-12">
 <h1>Tipografía</h1>
 
-<p>Los Tipografía de Poncho están basados en el <a href="https://github.com/argob/presidencia-manual-de-marca" target="_blank">Manual de identidad de Presidencia de la Nación</a> pero tienen ajustes de brillo y contraste para que sean accesibles.</p>
+<p>La tipografía de Poncho es <a href="https://fonts.google.com/specimen/Roboto">Roboto</a>. Es la tipografía usada en los dispositivos con Android.</p>
 
 <hr>
 
 <fieldset>
 
-<!-- FUENTE -->
-  <h2>Fuente</h2>
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis assumenda fugiat dolore, consequatur neque pariatur, fugit eveniet maiores tempore ipsum eligendi. Placeat, in quos numquam tempora quam ducimus ab nam!</p>
-
-<pre><code class="language-html">
-  &lt;link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700" rel="stylesheet">
-</code></pre>
-
-<hr>
-
-
 <!-- TÍTULOS -->
-  <h2>Títulos</h2>
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis atque temporibus quod quae beatae cupiditate deleniti ea minus et nobis rem quas, autem sit non totam ex odio vel voluptates.</p>
-  <table class="table table-bordered">
+  <h2>Títulos y encabezados</h2>
+  <p>Una página sólo puede tener un título h1 pero varios encabezados. Siempre debe respetarse el orden (h1 al h5) y no saltearse encabezados.</p>
+  <table class="table">
     <thead>
       <th>Título</th>
       <th>Código</th>
@@ -178,10 +167,10 @@
 
 <!-- FORMATOS -->
 
-  <h2>Formato</h2>
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga dolores aliquid eveniet vel debitis. Quas repellendus, cumque labore accusantium nesciunt tempore dignissimos consequatur sapiente doloremque aut animi vel pariatur dolor!</p>
+  <h2>Formatos de texto</h2>
+  <p>Estos son los elementos de texto que pueden encontrarse dentro de un cuerpo de texto (páginas, noticias) y algunos elementos interactivos (tarjetas, tablas).</p>
 
-  <table class="table table-bordered">
+  <table class="table">
     <thead>
       <th width="250">Formato</th>
       <th>Código</th>
@@ -220,11 +209,12 @@
 
 <!-- COLORES -->
 
-  <h2>Colores</h2>
+  <h2>Colores de textos</h2>
+  <p>Los textos mayormente usan color negro salvo excepciones de algunos elementos interactivos (indicar estados, mensajes de error). No se deben usar de forma decorativa.</p>
 
   <h3>Paleta principal</h3>
   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil sed natus dignissimos unde in officiis incidunt, architecto vitae! Amet natus laboriosam eos, ducimus, voluptas officiis ipsa perferendis modi sunt qui.</p>
-<table class="table table-bordered">
+<table class="table">
     <thead>
       <th>Color</th>
       <th>Código</th>
@@ -266,8 +256,9 @@
 
 
 <!-- Divisiones -->
-<h2>Divisiones</h2>
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto ad quaerat, ut ipsa in repellendus ipsam quam sint corporis deserunt maiores ea officia optio, porro facere animi dolore fuga minus.
+<h2>Divisiones horizontales</h2>
+Las divisiones se usan para separar grupos de elementos dentro de una página.
+
 <pre><code class="language-html">
   &lt;hr>
 </code></pre>
@@ -284,7 +275,7 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto ad quaerat,
 <!-- EJEMPLO PARA BORRAR -->
 <section>
   <article>
-  <hr>
+
     <h1>Titulo de esta seccion con H1</h1>
     <h2>Aca iria un subtitulo con H2</h2>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta ea praesentium suscipit illum eum, ad labore, nemo doloribus molestias reprehenderit! Unde debitis similique veniam repellendus ab optio non voluptates nulla!</p>
@@ -366,11 +357,6 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto ad quaerat,
 
     <script>
       $(function(){
-
-jQuery(function($) {
-    $.syntax({theme: 'bright'});
-  });
-
         $("#menuLateral").load("../../includes/estilos_menu.html",function(){
           var seccion = $("#menuLateral").data("seccion");
           $("#menuLateral ul li a[data-seccion="+seccion+"]").parent().addClass("active");
