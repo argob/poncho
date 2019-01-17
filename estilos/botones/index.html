@@ -59,21 +59,20 @@
       /* EXPERIMéNTAL */
       .btn,.btn:hover,.btn-link, .btn-link:hover{border:3px solid transparent;letter-spacing: 1.5px}
 
-       /* PRIMARY */
-       #btn-primary-hover{background-color: #01579b!important;}
-       #btn-primary-disabled:disabled{}
+      /* PRIMARY */
+      #btn-primary-hover{background-color: #005388!important;}
+
+      /* SUCCESS */
+      #btn-success-hover{background-color: #205824!important;}
 
       /* ENLACE SECUNDARIO */
-      .btn-link {border-radius: 4px;border:3px solid #DEE2E6!important;color: #0072bb!important;background-color: #FFF!important; }
-      .btn-link:hover, .btn-link:focus {text-decoration: none !important;background-color: #F8f8f8!important;color: #0072bb!important; }
-      #btn-link-hover{background-color: #F8f8f8!important;color:#FFF;border:3px solid transparent;  }
+      #btn-link-hover{background-color: #f2f2f2}
       
-      /* SUCCESS */
-
       /* DANGER */
-      .btn-primary.state-loading{}
+      #btn-danger-hover{background-color: #9C1F1F!important;}
+
       .btn-focus{border: 3px solid #FEC221!important;}
-      .btn:focus{border: 3px solid #FEC221!important;outline: none;}
+
 
     </style>
   <body>
@@ -275,7 +274,7 @@
   <div class="col-sm-3">
     <label for="">Hover</label>
     <div>
-      <button class="btn btn-success">Ver algo</button>
+      <button class="btn btn-success" id="btn-success-hover">Ver algo</button>
     </div>
   </div>
 
@@ -332,7 +331,7 @@
   <div class="col-sm-3">
     <label for="">Hover</label>
     <div>
-      <button class="btn btn-danger">Ver algo</button>
+      <button class="btn btn-danger" id="btn-danger-hover">Ver algo</button>
     </div>
   </div>
 
