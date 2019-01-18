@@ -91,6 +91,14 @@ a.alert {
   }
 }
 
+
+.alert h2{
+    font-size: 1.3em!important;
+    margin-top: 8px!important;
+    margin-bottom: 8px!important;
+    font-weight: 600!important;  
+}
+
 @media (max-width: 544px) {
   .alert .fa.fa-fw {
     width: 1em;

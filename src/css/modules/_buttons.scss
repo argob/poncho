@@ -6,7 +6,7 @@
   &:active,
   &.focus,
   &.active {
-    background-color: #01579b;
+    background-color: darken($brand-primary, 10);
   }
 }
 
@@ -15,7 +15,7 @@
 
   &:hover,
   &:focus {
-    background-color: #1b5e20;
+    background-color: darken($brand-success, 10);
   }
 }
 
@@ -24,7 +24,7 @@
 
   &:hover,
   &:focus {
-    background-color: #037DBA;
+    background-color: darken($brand-primary, 10);
   }
 }
 
@@ -33,7 +33,7 @@
 
   &:hover,
   &:focus {
-    background-color: #e38f04;
+    background-color: darken($brand-danger, 10);
   }
 }
 
@@ -42,19 +42,20 @@
 
   &:hover,
   &:focus {
-    background-color: #b71c1c;
+    background-color: darken($brand-danger, 10);
   }
 }
 
 .btn-link {
   border-radius: 4px;
   color: $brand-primary;
-  background-color: $gray-lighter !important;
+  background-color: $white;
+  border:3px solid #DEE2E6!important;
 
   &:hover,
   &:focus {
-    text-decoration: none !important;
-    background-color: $gray-light !important;
+    text-decoration: none;
+    background-color: darken($white, 5)!important;
     color: $brand-primary;
   }
 }
@@ -110,31 +111,38 @@ fieldset[disabled] .btn-default.active {
 }
 
 .btn-default {
-  background-color: $gray;
-  color: $white;
+  border-radius: 4px;
+  color: $brand-primary;
+  background-color: $gray-lighter !important;
 
   &:hover,
   &:focus {
-    background-color: lighten($brand-default, 10%);
+    text-decoration: none !important;
+    background-color: darken($brand-primary, 10);;
     color: $white;
   }
 }
 
 
 .btn {
-  border: 0;
+  border:3px solid transparent;
   font-size: 16px;
   font-weight: 500;
   margin-bottom: 10px;
-  padding: 16px 25px;
+  padding: 10px 25px;
   text-transform: uppercase;
   vertical-align: top;
   white-space: initial;
   word-break: initial;
   text-decoration: none;
+  letter-spacing: 1.5px;
 
   &:hover {
-    border: 0;
+    border:3px solid transparent;
+  }
+
+  &:focus{
+    border: 3px solid #FEC221!important;outline: none;
   }
 
   &.btn-lg {
