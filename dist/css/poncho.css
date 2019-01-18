@@ -5182,7 +5182,11 @@ a.alert.alert-danger:hover {
 a.alert.alert-danger i {
   color: #c62828; }
 
+<<<<<<< HEAD
 .alert h2 {
+=======
+alert.h2 {
+>>>>>>> 87bde68109c41d14c0dbc231257fc80346863782
   font-size: 1.3em !important;
   margin-top: 8px !important;
   margin-bottom: 8px !important;

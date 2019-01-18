@@ -11,17 +11,17 @@ $gray-dark:              #444444;
 $gray-border:            #cccccc;
 $gray-hover:             #e9e9e9;
 $gray-hover-light:       #f0f0f0;
-$gray-background:        #FAFBFC;
+$gray-background:        #F2F3F4;
 $gray-light:             #cccccc;
-$gray-lighter:           #EFF0F5;
+$gray-lighter:           #E5EAEB;
 
 $brand-default:         #838383 !default;
 $brand-primary:         #0072bb !default;
 $brand-primary-alt:     #0072bb !default;
-$brand-secondary:       #039BE5 !default;
+$brand-secondary:       #2897D4 !default;
 $brand-complementary:   #EF5350 !default;
 $brand-success:         #2e7d33 !default;
-$brand-info:            #039BE5 !default;
+$brand-info:            #2897D4 !default;
 $brand-warning:         #f9a822 !default;
 $brand-danger:          #c62828 !default;
 
@@ -44,7 +44,7 @@ $brand-verde-azulado:   #008388 !default;
 //## Settings for some of the most global styles.
 
 //** Background color for `<body>`.
-$body-bg:               #FAFBFC !default;
+$body-bg:               #F2F3F4 !default;
 //** Global text color on `<body>`.
 $text-color:            $gray-base !default;
 
