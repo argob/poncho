@@ -29,12 +29,14 @@
   <meta name="twitter:image" content="http://argob.github.io/poncho/img/poncho_social.jpg" />
 
   <link href="/poncho/node_modules/argob-poncho/dist/css/roboto-fontface.css" rel="stylesheet">
-  <!-- <link href="/poncho/node_modules/argob-poncho/dist/css/droid-serif.css" rel="stylesheet"> -->
   <link href="/poncho/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="/poncho/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
   <link href="/poncho/node_modules/argob-poncho/dist/css/poncho.css" rel="stylesheet">
   <link href="/poncho/css/docs.css" rel="stylesheet">
   <link href="/poncho/css/prism.css" rel="stylesheet">
+  <script src="/poncho/js/jquery.js"></script>
+  <script src="/poncho/js/bootstrap.min.js"></script>
+  <script src="/poncho/js/scripts.js"></script>
 </head>
 
   <body data-spy="scroll" data-target="#navbar-docs">
@@ -55,14 +57,7 @@
             <h1>Poncho</h1>
           </a>
         </div>
-        <div class="collapse navbar-collapse" id="main-navbar-collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li class="active"><a href="http://argob.github.io/poncho/">Inicio</a></li>
-            <li><a href="http://argob.github.io/poncho/patrones/formularios/como_disenar.html">Patrones</a></li>
-            <li><a href="https://argob.github.io/poncho/estilos/colores/">Estilos</a></li>
-            <li><a href="https://argob.github.io/poncho/2015">Documentación anterior</a></li>
-          </ul>
-        </div>
+        <div class="collapse navbar-collapse" id="main-navbar-collapse" data-seccion="Inicio"></div>
       </div>
     </div>
   </nav>
@@ -222,13 +217,7 @@
 
 
     </main>
-
-    <script src="node_modules/jquery/dist/jquery.js"></script>
-    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="js/prism.js"></script>
-    <script src="node_modules/list.js/dist/list.min.js"></script>
-    <script src="https://id.argentina.gob.ar/static/js/chosen.jquery.js"></script>
-    <script src="node_modules/argob-poncho/dist/js/scripts.js"></script>
+    
     <script>
       $(function () {
         $('[data-toggle="tooltip"]').tooltip();
@@ -239,9 +228,6 @@
         // $(window).resize(resize);
         // resize();
       })
-
-      var options = { valueNames: [ 'nombre', 'apellido', 'usuario' ] };
-      var userList = new List('usuarios', options);
 
         //PONCHO LABS
       var url_string = window.location.href;

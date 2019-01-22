@@ -3,8 +3,14 @@ $(function(){
 var titulo = $("main h1").html();
 $("title").html(titulo);
 
-  
+//Menu Navbar Dinamico
+$("#main-navbar-collapse").load("/poncho/includes/navbar.html",function(){
+  var seccion = $("#main-navbar-collapse").attr("data-seccion");//Busca la seccion activa
+  $(document).find("#main-navbar-collapse li[data-seccion='"+seccion+"']").addClass("active");
+});  
 
+  
+//Visualizador de Errores
   $(".mensajeError").click(function(){
     status = $(this).attr("data-mostrar");
 
@@ -15,6 +21,7 @@ $("title").html(titulo);
       $('.error').removeClass("hidden");
       $('.item-form').addClass('has-error has-feedback');
     }
+
     else{
       $(".mensajeError").html("Ver mensajes de error");
       $(".mensajeError").attr("data-mostrar",true);
