@@ -287,14 +287,16 @@ $(function(){
   })
 
 
-  jQuery.getJSON('https://spreadsheets.google.com/feeds/list/13CLjNqMQlUXj849XYL_nGDaAkE90OOFT3mXL-Iag9xM/2/public/values?alt=json',
+  jQuery.getJSON('https://spreadsheets.google.com/feeds/list/13CLjNqMQlUXj849XYL_nGDaAkE90OOFT3mXL-Iag9xM/1/public/values?alt=json',
 
     function(data) {
           iconos = data['feed']['entry'];
+
           //TITULOS
           $.each(iconos, function(index, val) {
 
             if(val.gsx$grupo.$t == "Poncho"){
+              console.log(val.gsx$grupo.$t);
               $("#listaPoncho .row").append('<div class="icono col-xs-6 col-sm-4 col-md-3 text-center margin-40"><i class="'+ val["gsx$codigo"]["$t"] +'"></i><div class="name">'+ val["gsx$nombre"]["$t"] +'</div><div class="tags hidden">'+ val["gsx$etiquetas"]["$t"] +'</div></div>');
             }
 
