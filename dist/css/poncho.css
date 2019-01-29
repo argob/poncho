@@ -3199,7 +3199,7 @@ b, strong {
   color: #444444; }
 
 .lead {
-  font-size: 1.3em;
+  font-size: 18px;
   font-weight: 400;
   line-height: 1.2; }
 
@@ -3266,7 +3266,7 @@ article h1.icon {
     font-size: 16px; } }
 @media (min-width: 992px) {
   p, li, table {
-    font-size: 18px; }
+    font-size: 16px; }
 
   .jumbotron li {
     font-size: 16px; }
@@ -3274,7 +3274,7 @@ article h1.icon {
       font-weight: 400; }
 
   .lead {
-    font-size: 1.3em; }
+    font-size: 18px; }
 
   h1, .h1 {
     font-size: 2.5em; }
@@ -5218,7 +5218,7 @@ a.alert.alert-danger i {
 
 .alert h2 {
   font-size: 1.3em !important;
-  margin-top: 0px !important;
+  margin-top: 8px !important;
   margin-bottom: 8px !important;
   font-weight: 600 !important; }
 

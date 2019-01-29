@@ -118,7 +118,7 @@ b, strong {
 }
 
 .lead {
-  font-size: 1.3em;
+  font-size: 18px;
   font-weight: 400;
   line-height: 1.2;
 }
@@ -223,7 +223,7 @@ article {
 }
 @media (min-width: 992px) {
   p, li, table {
-    font-size: 18px;
+    font-size: 16px;
   }
 
   .jumbotron {
@@ -235,9 +235,8 @@ article {
       }
     }
   }
-
   .lead {
-    font-size: 1.3em;
+    font-size: 18px;
   }
 
   h1, .h1 {
