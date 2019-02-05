@@ -2664,6 +2664,12 @@ a.bg-danger {
 .text-tomate {
   color: #EF5350 !important; }
 
+.text-naranja {
+  color: #EF6C00 !important; }
+
+.text-verde-azulado {
+  color: #008388 !important; }
+
 .nav > li > a {
   text-decoration: none; }
 
