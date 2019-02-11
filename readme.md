@@ -8,12 +8,6 @@ Base de html y css para la creación de sitios pertenecientes a la Administraci�
 
 Para usar Poncho en un sitio, ver [la documentación](http://argob.github.io/poncho).
 
-Se pueden bajar los archivos o implementar mediante NPM para mantenerlo actualizado con el siguiente comando:
-
-```bash
-npm install argob-poncho
-```
-
 ### Puesta en marcha
 
 Incluir en el html los siguientes archivos CSS:
