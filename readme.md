@@ -19,47 +19,12 @@ npm install argob-poncho
 Incluir en el html los siguientes archivos CSS:
 
 ```html
-<link rel="stylesheet" href="dist/css/roboto-fontface.css">
-<link rel="stylesheet" href="dist/css/poncho.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+<link rel="stylesheet" href="dist/css/poncho.min.css">
 ```
 
-## Desarrollo
-
-Para poder compilar el proyecto es necesario tener instalado [Ruby](https://www.ruby-lang.org/es/) y la [gema de Sass](http://sass-lang.com/): *(Si lo requiere, usar sudo)*
-
-```bash
-gem install sass
-```
 ### Ubicación de archivos
 
 * Los archivos CSS compilados, se encuentran en la carpeta **dist/**.
 * El archivo .SCSS principal es **src/css/poncho.scss**.
 * Los archivos .SCSS restantes se ubican en la carpeta **src/css/modules/**.
-
-### Compilar archivos SCSS luego de modificarlos.
-
-Para actualizar el CSS principal cada vez que un archivo SCSS se modifica, estando en la carpeta raíz del proyecto ejecutar:
-
-```bash
-sass --watch src/css/poncho.scss:dist/css/poncho.css
-```
-
-Para actualizar la versión minificada:
-
-```bash
-sass --watch src/css/poncho.scss:dist/css/poncho.min.css --compressed
-```
-
-##Registro de cambios
-
-**v0.3**
-- Actualización estética general
-- Agrega colores de la plate extendida
-- Agrega helpers para márgenes y alineación de texto responsive
-
-**v0.2**
-- Modificaciones generales de estilos
-- Publicación en npm
-
-**v0.1**
-- Primera versión
