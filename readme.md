@@ -4,6 +4,9 @@
 
 Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.
 
+En este repositorio podés descargar los archivos de Poncho para trabajar de manera local.
+Esta nueva versión de Poncho incluye cambios de colores y otros elementos que mejoran cuestiones de accesibilidad.
+
 ## Instalación
 
 Para usar Poncho en un sitio, ver [la documentación](http://argob.github.io/poncho).
