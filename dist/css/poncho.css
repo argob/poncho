@@ -3120,7 +3120,7 @@ body {
   font-family: "Roboto", "Helvetica Neue", "Helvetica", "Arial", sans-serif; }
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-  font-weight: 700;
+  font-weight: 600;
   margin: .5em 0; }
   h1 small,
   h1 .small, h2 small,
@@ -3138,7 +3138,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     color: #707070; }
   h1.section-title, h2.section-title, h3.section-title, h4.section-title, h5.section-title, h6.section-title, .h1.section-title, .h2.section-title, .h3.section-title, .h4.section-title, .h5.section-title, .h6.section-title {
     color: #707070;
-    font-weight: 700;
+    font-weight: 600;
     text-transform: uppercase;
     margin-bottom: 24px; }
 
@@ -3205,12 +3205,12 @@ b, strong {
   color: #444444; }
 
 .lead {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 400;
   line-height: 1.2; }
 
 .jumbotron p {
-  font-weight: 300; }
+  font-weight: 400; }
 .jumbotron h1.h1-sm {
   font-size: 44px; }
 
@@ -3271,9 +3271,6 @@ article h1.icon {
   p {
     font-size: 16px; } }
 @media (min-width: 992px) {
-  p, li, table {
-    font-size: 14px; }
-
   .jumbotron li {
     font-size: 16px; }
     .jumbotron li a {

@@ -3,7 +3,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-  font-weight: 700;
+  font-weight: 600;
   margin: .5em 0;
 
   small,
@@ -13,7 +13,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
   &.section-title {
     color: $gray;
-    font-weight: 700;
+    font-weight: 600;
     text-transform: uppercase;
     margin-bottom: 24px;
   }
@@ -118,14 +118,14 @@ b, strong {
 }
 
 .lead {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 400;
   line-height: 1.2;
 }
 
 .jumbotron {
   p {
-    font-weight: 300;
+    font-weight: 400;
   }
   h1 {
     &.h1-sm {
@@ -222,10 +222,6 @@ article {
 
 }
 @media (min-width: 992px) {
-  p, li, table {
-    font-size: 14px;
-  }
-
   .jumbotron {
     li {
       font-size: 16px;
