@@ -19,9 +19,3 @@ Incluir en el html los siguientes archivos CSS:
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
 <link rel="stylesheet" href="dist/css/poncho.min.css">
 ```
-
-### Ubicación de archivos
-
-* Los archivos CSS compilados, se encuentran en la carpeta **dist/**.
-* El archivo .SCSS principal es **src/css/poncho.scss**.
-* Los archivos .SCSS restantes se ubican en la carpeta **src/css/modules/**.
