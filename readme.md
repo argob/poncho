@@ -18,4 +18,5 @@ Incluir en el html los siguientes archivos CSS:
 ```html
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
 <link rel="stylesheet" href="dist/css/poncho.min.css">
+<link rel="stylesheet" href="dist/css/icono-arg.css">
 ```
