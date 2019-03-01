@@ -3209,6 +3209,9 @@ b, strong {
   font-weight: 400;
   line-height: 1.2; }
 
+.help-block {
+  font-size: 14px; }
+
 .jumbotron p {
   font-weight: 400; }
 .jumbotron h1.h1-sm {
@@ -4741,8 +4744,10 @@ label {
 legend {
   border-bottom: none;
   font-size: 16px;
-  margin: 30px 0px 20px 0px;
   font-weight: 500; }
+
+legend h2, legend h3 {
+  margin: 40px 0px 20px 0px; }
 
 .form-group {
   margin-bottom: 30px; }
@@ -4755,9 +4760,6 @@ legend {
   border: solid 1px #cccccc; }
   .form-control[disabled], .form-control[readonly] {
     background-color: #E5EAEB; }
-
-fieldset {
-  margin-bottom: 30px; }
 
 fieldset.framed {
   padding: 10px 30px;
