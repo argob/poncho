@@ -4744,7 +4744,8 @@ label {
 legend {
   border-bottom: none;
   font-size: 16px;
-  font-weight: 500; }
+  font-weight: 500;
+  margin: 0; }
 
 legend h2, legend h3 {
   margin: 40px 0px 20px 0px; }
