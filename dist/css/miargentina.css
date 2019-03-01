@@ -1,463 +1,28 @@
-/*****Tipografía (a partir de versión 4)******/
 
-body {
-  font-size: 16px;
-  line-height: 1.45;
-}
-
-p {
-  margin: 0 0 10px;
-}
-
-p, li, table, a {
-  font-size: 1em;
-  font-weight: 400;
-  line-height: 1.471em;
-}
-
-.nav li a {
-  text-decoration: none !important;
-}
-
-a {
-  text-decoration: underline !important;
-}
-
-a.btn {
-  text-decoration: none !important;
-}
-
-.lead {
-  font-size: 1.2em;
-}
-
-h1, h2, h3, h4, h5 {
-  margin: 1.414em 0 0.5em;
-  line-height: 1.2;
-}
-
-h1, h3 {
-  margin-top: 0;
-}
-
-h1 {
-  font-size: 2.5em;
-}
-
-h2 {
-  font-size: 2em;
-}
-
-h3 {
-  font-size: 1.5em;
-}
-
-h4 {
-  font-size: 1.2em;
-}
-
-h5 {
-  font-size: 1.1em;
-}
-
-small, .font_small {
-  font-size: 0.9em;
-}
-
-.cursor-pointer {
-  cursor: pointer;
-}
-
-/* PANELES v2 */
-
-/* QR */
-.qrsmall {
-  display: none;
-}
-
-.qrlarge {
-  opacity: 0.3;
-}
-
-@media (min-width: 1199px) {
-  .qrsmall {
-    float: right;
-  }
-}
-
-@media (min-width: 991px) and (max-width: 1199px) {
-  .qrsmall {
-    float: left;
-    padding-right: 10px;
-  }
-}
-
-@media (min-width: 68px) and (max-width: 990px) {
-  .qrsmall {
-    float: left;
-    margin-top: 20px;
-  }
-}
-
-@media (min-width: 991px) {
-  .qrlarge {
-    float: left;
-  }
-}
-
-@media (min-width: 68px) and (max-width: 990px) {
-  .qrlarge {
-    float: left;
-    margin-top: 20px;
-  }
-}
-
-/* TABLAS */
-.media-right-30 {
-  width: 30%;
-  text-align: right;
-}
-
-.listado-2-columnas .media-middle {
-  width: 540px;
-}
-
-/*INCUCAI*/
-.bajada {
-  margin-bottom: 2.5rem;
-}
-
-.has-error .radio {
-  background-color: #f2dede;
-  margin: 0;
-}
-
-.media .bootstrap-switch {
-  display: block;
-}
-
-.piconos {
-  margin-bottom: 0 !important;
-}
-
-.piconos i {
-  font-size: 22px;
-  margin-right: 8px;
-}
-
-.subtitulo {
-  margin-top: 30px !important;
-  margin-bottom: 10px;
-}
-
-.subtitulo i {
-  margin-right: 5px;
-}
-
-/* lista 3 botones */
-@media (max-width: 454px) {
-  .lista-botones a {
-    width: 100%;
-  }
-}
-
-@media (max-width: 767px) {
-  .media .switch {
-    display: table-cell !important;
-  }
-
-  .media .media-right {
-    padding: 15px 0 0 0 !important;
-  }
-
-  .panels-row-miargentina .panel-body {
-    height: -webkit-calc(100% - 105px) !important;
-    height: calc(100% - 105px) !important;
-  }
-}
-
-@media (min-width: 768px) {
-  .modal-dialog {
-    width: 600px;
-    margin: 20% auto;
-  }
-}
-
-@media (max-width: 1200px) {
-  .panels-row-miargentina .panel-body {
-    height: -webkit-calc(88% - 50px);
-    height: calc(88% - 50px);
-  }
-}
-
-.panels-row-miargentina>div .panel-credenciales {
-  position: relative;
-  padding-bottom: 54px;
-}
-
-.panels-row-miargentina>div .panel-credenciales .panel-footer {
-  position: absolute;
-  width: 100%;
-  bottom: 0;
-}
-
-/*hacemos futuro estilos de paneles*/
-.displayPaneles {
-  display: table-cell !important;
-}
-
-.displayPaneles h2, .displayPaneles p {
-  margin-top: 4px !important;
-  margin-bottom: 6px !important;
-}
 
-.margin-observaciones {
-  margin: 0px;
+.alert .btn, .panels-row-miargentina .btn{
+  margin-top: 15px;
 }
 
-.vmiddle {
-  vertical-align: middle;
+.salud-img img{
+  width: 130px;
+  float: right;
+  margin-top: 20px;
 }
 
-@media (max-width: 768px) {
-  .margin-observaciones {
-    margin: 15px 0px 0px 0px;
-  }
-
-  .margin-observaciones p:first-child {
-    margin-bottom: 0px;
-  }
-}
-
-/***estilos salud*****/
-.bajada {
-  margin-bottom: 2.5rem;
-}
-
-p small {
-  line-height: 1.3em;
-  display: block;
-}
-
-.page-sidebar .nav-pills li.active>a, .page-sidebar .nav-pills li.active>a:hover, .page-sidebar .nav-pills li.active>a:focus {
-  color: #F7F8FA !important;
-}
-
-.estilo-salud-sin-ev {
-  min-height: 100px;
-  height: auto !important
-}
-
-.w-logos {
-  min-width: 70px;
-  max-width: 150px;
-}
-
-.w-logos-credencial {
-  width: 90px;
-  margin-left: 10px;
-}
-
-/****Formulario expresar voluntad de donar***/
-.page-sidebar .nav-pills li a {
-  color: #333;
-}
-
-.page-sidebar .nav-pills li>a:visited {
-  color: #7e2199;
-}
-
-.bajada {
-  margin-bottom: 2.5rem;
-}
-
-.page-sidebar .nav-pills li.active>a, .page-sidebar .nav-pills li.active>a:hover, .page-sidebar .nav-pills li.active>a:focus {
-  color: #F7F8FA !important;
-}
-
-.has-error .radio {
-  background-color: #f2dede;
-  margin: 0;
-}
-
-/*credenciales INCUCAI*/
-#dni {
-  position: relative !important;
-  white-space: unset !important;
-}
-
-#dni2 .popover {
-  display: block;
-  position: absolute !important;
-  max-width: 400px !important;
-  top: 330px !important;
-  left: 0px !important;
-}
-
-#dni2 .arrow {
-  left: 50% !important;
-}
-
-@media (max-width: 992px) {
-  #dni2 .popover {
-    top: 310px !important;
-  }
-}
-
-.btn-wrap {
-  white-space: pre-wrap !important;
-}
-
-.max-w-img {
-  max-width: 350px;
-}
-
-.max-w-alert {
-  max-width: 500px;
-}
-
-.has-error {
-  color: #a94442;
-}
-
-/* Centros de salud */
-.favorito:hover {
-  cursor: pointer;
+.align-right {
+  float: right;
 }
-
-@media (max-width: 767px) {
-  #listadoCentros .media {
-    position: relative;
-  }
-
-  #listadoCentros .media-right {
-    position: absolute;
-    right: 0px;
-    top: 0px;
-    padding-top: 0 !important;
-  }
-
-  #listadoCentros .media-body h4 {
-    padding-right: 75px;
-  }
-}
-
-#map-header {
-  display: block;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 10;
-}
-
-#map-container {
-  height: 600px;
-}
-
-#map {
-  height: 100%;
-}
-
-.favorito:hover {
-  cursor: pointer;
-}
-
-.overflowHidden {
-  overflow: hidden;
-}
-
-/****Trasplantados****/
-#verificado .w-logos-credencial {
-  display: block;
-  width: 120px;
-}
-}
-
-@media (max-width: 991px) {
-  .logos-salud img {
-    margin-left: 0px !important;
-  }
-
-  .logos-salud img:first-child {
-    margin-top: 15px;
-  }
-}
-
-/*******Validador*******/
-.media-body-popover {
-  overflow: visible;
+.w-logos{
+  max-width: 300px;
 }
+/********PANELES**********/
 
-#dniContainer .popover {
-  display: block;
-  position: absolute !important;
-  max-width: 400px !important;
-  top: -340px !important;
-  left: 0px !important;
-}
-
-#dniContainer .arrow {
-  left: 30% !important;
-}
-
-#idVerificado {
-  visibility: hidden;
-  width: 0px;
-  margin-left: -14px;
-}
-
-#idVerificado+i {
-  visibility: visible;
-}
-
-#idVerificado+i+i {
-  visibility: hidden;
-  font-size: 0px;
-}
-
-#idVerificado:checked+i+i {
-  visibility: visible;
-  font-size: 2em;
-}
-
-#idVerificado:checked+i {
-  visibility: hidden;
-  font-size: 0px;
-}
-
-@media (max-width: 480px) {
-  #dniContainer .popover {
-    width: 350px;
-    top: -300px !important;
-  }
-}
-
-@media (max-width: 400px) {
-  #dniContainer .popover {
-    width: 320px;
-    top: -280px !important;
-    margin-left: -30px;
-  }
-}
-
-.media .btn {
-  white-space:
-}
-
-/*V4*/
-/*Nuevos paneles*/
-.alert-v4 {
-  padding: 22px 30px 22px 20px;
-}
 
-.panel-body-v4 .list-group {
+.panel-body .list-group {
   box-shadow: 0 0px 0px rgba(0, 0, 0, 0.2);
 }
 
-a.btn-collapse {
-  color: #333;
-}
 
 .alert .btn-close {
   margin-top: -7px;
@@ -481,74 +46,105 @@ a.btn-collapse i.collapseGira {
   margin-top: 5px;
 }
 
-
 .panels-row-miargentina .panel-default {
   width: 100%;
 }
-
-.panels-row-miargentina>.panel {
-  width: 100%;
-  border-left: 1px solid #ccc;
-  border-right: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
+.panels-row-miargentina>div .panel-credenciales {
+    position: relative;
+    padding-bottom: 54px;
+  }
+.panels-row-miargentina .panel-body{
+  height: -webkit-calc(100% - 105px) !important;
+  height: calc(100% - 105px) !important;
 }
 
 .panels-row-miargentina .panel-default>.panel-heading {
-  min-height: 0 !important;
+  min-height: 0!important;
   background-color: transparent;
   border-bottom: 1px solid #ccc;
-  color: #333 !important;
+  color: #333;
+
 }
 
-.panel-heading .media-left {
-  vertical-align: middle !important;
+.panels-row-miargentina .media-left {
+  padding-right: 20px;
 }
 
-.panel-body-v4 .media-left .fa {
+.panels-row-miargentina .panel-body .media-left .fa {
   margin-top: 8px;
 }
 
-.panel-nolink {
+.panels-row-miargentina .panel-nolink {
   border-left: 1px solid #ccc;
   border-right: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
 }
 
-.panel h4 {
-  font-size: 1.18em;
+.panels-row-miargentina .panel h2 {
+  font-size: 1.3em !important;
+  margin-top: 8px !important;
+  margin-bottom: 8px !important;
+  font-weight: 600 !important
 }
 
-.panel h3 {
+.panels-row-miargentina .panel .item-panel {
+  font-weight: 600 !important;
+  display: block !important;
+}
+
+.panels-row-miargentina .panel.panel-default, .panels-row-miargentina .list-group {
+  box-shadow: none !important;
+}
+
+.panels-row-miargentina>div .panel-credenciales .panel-footer {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+}
+
+.credential-danger-state {
+  border: 1px #cccccc solid;
+  padding: 40px 20px;
+}
+
+.credential-danger-state p.text-danger {
+  font-size: 30px !important;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+
+
+.panels-row-miargentina .panel h3 {
   font-size: 1.3em;
 }
 
-.list-group-item {
+.panels-row-miargentina .list-group-item {
   padding: 10px 25px;
   color: #333;
 }
 
-.panel-content-padding {
+.panels-row-miargentina .panel-content-padding {
   padding: 10px 15px;
 }
 
-.align-right {
-  float: right;
-}
 
-.panel-body-v4 .table, .panel-body-v4 .form-group {
+
+.panels-row-miargentina .panel-body .table, .panels-row-miargentina .panel-body .form-group {
   margin-bottom: 0px;
 }
 
-.panel-table td {
+.panels-row-miargentina .panel-table td {
   padding-bottom: 10px !important;
   padding-top: 10px !important;
 }
 
-.list-group {
+.panels-row-miargentina .list-group {
   margin-bottom: 0px !important;
+  margin: -10px -20px;
 }
 
-.state-loading>.panel-body, .panel-body-v4 .state-loading {
+.state-loading>.panel-body, .panel-body .state-loading {
   min-height: 70px;
 }
 
@@ -560,6 +156,13 @@ a.btn-collapse i.collapseGira {
   cursor: pointer;
 }
 
+.panel-activar-cuenta{
+  max-width: 800px;
+}
+
+.panel-footer .pagination{
+  margin: 10px;
+}
 @media (min-width: 991px) {
   .panel-table tr:first-child>td {
     border-top: 0px;
@@ -588,58 +191,415 @@ a.btn-collapse i.collapseGira {
   }
 }
 
-/**ALERTS***/
-.alert .m-media-alert {
-  margin: 5px 0px 10px;
+
+
+/************************************* NUEVO DASHBOARD**************************************/
+.nav-dashboard{
+  margin-top: 20px;
+  padding-right: 0px;
+}
+.navbar-header {
+  margin-top:16px;
+}
+.title-dashboard{
+  margin-bottom: 1em;
+}
+.title-dashboard h1{
+  font-size: 1.5em;
+  margin-top: 35px;
+}
+.sidebar-item, .nav-dashboard{
+  padding-left: 0px;
+  padding-right: 0px;
+}
+.max-w-img{
+    max-width: 350px;
+  }
+
+.brand-icon{
+  width: 300px;
+}
+.icon-init{
+  font-size: 21px;
+  margin-right: 16px;
+}
+.icon-header{
+  color: #CACBC5;
 }
 
-.alert .btn {
+
+
+.navbar-left-mobile, .navbar-left-mobile ul li{
+  float: left;
+}
+
+.navbar-right-header{
+  float: right;
+  margin-top: 2em!important;
+}
+.nav-header-dashboard{
+  box-shadow: none;
+  border-bottom: 2px #dee2e6 solid;
+}
+.nav-header-dashboard li:first-child{
+  margin-top: -10px;
+}
+
+#dashboard-sidebar .panel-sidebar{
+  border: 0;
+  margin-bottom: 0px;
+  border-radius: 4px;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.16)!important;
+}
+.navbar ul li .dropdown-micuenta, .nav .open > a, .navbar ul li .dropdown-notificaciones{
+  background-color: #ffffff!important;
+}
+.navbar-right .dropdown-micuenta{
+  right: 3px;
+  width: 275px;
+  left: initial;
+}
+
+.navbar-right .dropdown-micuenta h3{
+  margin-top: 20px;
+}
+.navbar .open > .dropdown-menu{
+  border: 1px #dbdbdb solid;
+}
+
+
+#dashboard-sidebar{
+    height: 100vh;
+    width: 100%;
+    min-width: 260px;
+    min-height: 100%;
+    background-color: white;
+    display: block;
+    margin-bottom: 0px!important;
+
+}
+
+
+#dashboard-sidebar ul li > a:hover{
+  background: #F4F4F4;
+}
+ #dashboard-sidebar ul li > a:active{
+  background: #f2f3f4;
+}
+#dashboard-sidebar ul li > a:hover, #dashboard-sidebar ul li > a:active,  #dashboard-sidebar ul li > a.active {
+  border-radius: 0px!important;
+}
+ #dashboard-sidebar ul li.active > a{
+  border-left: 5px solid #0072bb;
+  background-color: #f2f3f4;
+  border-radius: 0px;
+  
+ }
+#dashboard-sidebar ul li.active > a, #dashboard-sidebar ul li.active > a i{
+  color: #0072bb!important;
+}
+#dashboard-sidebar ul li.active > a .media{
+  margin-left: -7px;
+}
+#dashboard-sidebar i{
+  text-align: center;
+  width: 35px;
+  display: inline-block!important;
+  color: #CACBC5;
+}
+
+#dashboard-sidebar .media-body{
+  vertical-align: middle;
+}
+
+.dropdown-micuenta, .dropdown-notificaciones{
+  top: 50px;
+}
+.dropdown-micuenta ul, .dropdown-notificaciones ul{
+  padding-left: 0px;
+}
+.dropdown-micuenta li h3,  .dropdown-micuenta li small, .dropdown-notificaciones li h3, .dropdown-notificaciones li h3{
+  padding: 12px 15px 0px 15px;
   margin-bottom: 0px;
 }
-
-.titulo-con-volver {
-  margin: 0 !important;
-  margin-top: 6px !important;
-  margin-left: 10px !important;
+.dropdown-micuenta li h4, .dropdown-notificaciones li h4{
+  padding: 5px 15px;
+  margin-top: 0px;  
+}
+.dropdown-micuenta hr, .dropdown-notificaciones hr{
+  margin: 20px 10px 15px 10px;
+}
+.dropdown-micuenta li, .dropdown-notificaciones li{
+  list-style-type: none;  
+}
+.dropdown-micuenta a, .dropdown-notificaciones a{
+  border-bottom: 0px!important;
 }
 
-.jumbotron_body .nombreUsuario {
-  font-size: 34px;
-  font-weight: 700;
-  margin: .5em 0;
-  font-family: inherit;
-  line-height: 1.1;
+.dropdown-micuenta li a, .dropdown-notificaciones li a{
+  border-left: 4px transparent solid!important;
+  color: #000000!important;
 }
 
-/* PANELES */
-
-
-.panel h2 {
-  font-size: 1.3em !important;
-  margin-top: 8px !important;
-  margin-bottom: 8px !important;
-  font-weight: 600 !important
+.dropdown-micuenta li a:hover, .dropdown-notificaciones li a:hover { 
+  background-color: #F2F3F4!important;
+  border-left: 4px #0072bb solid!important;
+  
+}
+.page-sidebar .nav-pills li>a:visited{
+  color: #333;
+}
+.dropdown-micuenta .media, .dropdown-notificaciones .media{
+  width: 240px;
 }
 
-.panel .item-panel {
-  font-weight: 600 !important;
-  display: block !important;
+.navbar-right .dropdown-notificaciones{
+  right: 175px;
 }
 
-.panel.panel-default, .list-group {
-  box-shadow: none !important;
+
+
+.nav-dashboard > li{
+  float: left!important;
 }
 
-.credential-danger-state {
-  border: 1px #cccccc solid;
-  padding: 40px 20px;
+
+.nav-dashboard li img{
+  width: 50%;
+  min-width: 80px;
+  margin: auto;
+}
+.sidebar{
+    min-height: 100%;
+    max-width: 320px;
+    min-width: 320px;
+    padding-left: 0px;
+
+  }
+  .sidebar nav{
+    width: 100%;
+  }
+.dashboard{
+  display: flex;
 }
 
-.credential-danger-state p.text-danger {
-  font-size: 30px !important;
-  text-transform: uppercase;
-  font-weight: 500;
+
+
+
+@media(max-width: 1200px){
+  .salud-title{
+  min-width: 100%;
 }
+.salud-img img{
+  float: left;
+  margin-top: 0px;
+}
+.panels-row-miargentina .panel-body {
+    height: -webkit-calc(88% - 50px);
+    height: calc(88% - 50px);
+  }
+}
+
+/************************************************NUEVO DASHBOARD MOBILE***********************************************/
+
+
+
+@media (max-width: 767px){
+  .brand-icon{
+    width:116px;
+  }
+  .title-dashboard h1{
+    margin-top: 29px;
+    margin-bottom:16px;
+  }
+  .navbar-header .nav{
+    margin-left: -8px!important;
+  }
+  .navbar-right-header{
+    margin-top: 1.3em!important;
+  }
+  .sidebar{
+    padding: 0px;
+    width: 100%;
+    max-width: 100%!important;
+  }
+  #dashboard-sidebar{
+    background-color: #f2f3f4;
+    margin: auto;
+    max-width: 100%!important;
+
+  }
+  #dashboard-sidebar ul{
+    padding: 0px 15px!important;
+
+  }
+
+
+  .nav-dashboard li{
+    margin-top: 0px!important;
+  }
+  .nav-dashboard li a, .nav-dashboard h1{
+    padding: 5px!important;
+  }
+  
+  .nav-dashboard > li > a:hover{
+    background-color: initial!important;
+  }
+  .nav-dashboard li a p{
+    font-size: 0.9em;
+  }
+
+  .dropdown-micuenta .media-body{
+    display: table-cell;
+  }
+  .notificaciones{
+    margin-right: 15px;
+  }
+
+  .dropdown-notificaciones{
+    float: right;
+    left: initial;
+    right: 60px!important;
+    max-width: 350px;
+  }
+#dashboard-sidebar ul li.active > a{
+  border: 0px;
+  margin-left: 0px;
+  background-color: #f2f3f4;
+}
+
+}
+@media (max-width: 560px){
+  #dashboard-sidebar p{
+    font-size: 0.8em;
+  }
+  .sidebar{
+    max-width: 100%!important;
+  }
+  #dashboard-sidebar{
+    width: 100%;
+    max-width: 100%!important;
+  }
+
+
+  .navbar-right .dropdown-micuenta{
+    right: 5px;
+  }
+}
+
+@media (max-width: 358px){
+  .nav-dashboard li{
+    width: 100%;
+  }
+}
+
+
+/****************************************************LOADING*********************************************************/
+ .loading{
+    margin-top: 28%;
+  }
+@media (orientation: portrait){
+  .loading{
+    margin-top: 60%;
+  }
+}
+
+@media (max-width: 768px) and (orientation: portrait){
+  .loading{
+    margin-top: 50%;
+  }
+}
+
+@media(orientation: landscape){
+  .loading{
+    margin-top: 15%;
+  }
+}
+
+
+}
+
+/*********************************************ONBOARDING**************************************************/
+
+
+.onboarding-img{
+  width: 300px;
+  height: 200px;
+  margin: auto;
+}
+.onboarding-img img{
+  margin-top: 10%;
+}
+.onboarding-control{
+  background: rgba(0,0,0,0)!important;
+}
+
+.onboarding-content{
+  margin-bottom: 50px;
+}
+.carousel-indicators-onboarding li{
+  width: 14px;
+  height: 14px;
+}
+.carousel-indicators-onboarding li.active{
+  width: 16px;
+  height: 16px;
+  border: 1px solid #e5e8eb;
+      -webkit-font-smoothing: antialiased;
+}
+.carousel-indicators-onboarding li{
+  border: 2px solid #e5e8eb;
+ 
+}
+
+.carousel-indicators-onboarding li.active{
+   background-color: #0072bb;
+}
+
+.modal-content-onboarding{
+  width: 900px;
+  margin-top: 10%;
+
+}
+
+.onboarding-items{
+  min-height: 750px;
+}
+@media (max-width: 998px){
+  
+  .modal-content-onboarding{
+    width: 90%;
+
+
+  }
+  .onboarding-content{
+    height: 100%;
+    width: 80%;
+    margin: auto;
+  }
+
+  
+}
+@media (max-width: 550px){
+  .onboarding-img img{
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 400px){
+  .onboarding-img img{
+    max-width: 220px;
+  }
+  .modal-content-onboarding{
+    min-height: 650px;
+    max-height: 650px;
+  }
+  .onboarding-items{
+    min-height: 650px;
+    height: 100%;
+  }
+}
+
 
 /***  licencia de conducir **/
 .container-licencia {
@@ -725,10 +685,6 @@ a.btn-collapse i.collapseGira {
    
   }
 }
-
-
-
-
 
 @media (min-width: 1200px) and (orientation: landscape) {
   .body-licencia{
@@ -892,7 +848,5 @@ a.btn-collapse i.collapseGira {
 .state-loading:before, .icon-load.progress-disabled:before{
       border-color: #0072BB #F2F3F4 #F2F3F4!important;
 }
-
-
 
 
