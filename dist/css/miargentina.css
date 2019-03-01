@@ -51,7 +51,7 @@ a.btn-collapse i.collapseGira {
     position: relative;
     padding-bottom: 54px;
   }
-.panels-row-miargentina .panel-body{
+.panels-row-miargentina .panel-credenciales .panel-body{
   height: -webkit-calc(100% - 105px) !important;
   height: calc(100% - 105px) !important;
 }
@@ -392,7 +392,7 @@ a.btn-collapse i.collapseGira {
   float: left;
   margin-top: 0px;
 }
-.panels-row-miargentina .panel-body {
+.panels-row-miargentina .panel-credenciales .panel-body {
     height: -webkit-calc(88% - 50px);
     height: calc(88% - 50px);
   }
