@@ -4747,7 +4747,7 @@ legend {
   font-weight: 500;
   margin: 0; }
 
-fieldset legend:first-child {
+form > fieldset > legend {
   margin: 40px 0px 20px 0px; }
 
 .form-group {
