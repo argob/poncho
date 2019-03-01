@@ -3381,13 +3381,13 @@ fieldset[disabled] .btn-default.active {
   font-size: 16px;
   font-weight: 500;
   margin-bottom: 10px;
-  padding: 6px 20px;
+  padding: 8px 20px;
   text-transform: uppercase;
   vertical-align: top;
   white-space: initial;
   word-break: initial;
   text-decoration: none;
-  letter-spacing: 1.5px; }
+  letter-spacing: 1px; }
   .btn:hover {
     border: 3px solid transparent; }
   .btn:focus {
@@ -4749,8 +4749,8 @@ legend {
 
 .form-control {
   color: #333333;
-  font-size: 18px;
-  height: 54px;
+  font-size: 16px;
+  height: 44px;
   padding: 6px 8px;
   border: solid 1px #cccccc; }
   .form-control[disabled], .form-control[readonly] {
