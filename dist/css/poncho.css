@@ -3120,7 +3120,7 @@ body {
   font-family: "Roboto", "Helvetica Neue", "Helvetica", "Arial", sans-serif; }
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-  font-weight: 700;
+  font-weight: 600;
   margin: .5em 0; }
   h1 small,
   h1 .small, h2 small,
@@ -3138,7 +3138,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     color: #707070; }
   h1.section-title, h2.section-title, h3.section-title, h4.section-title, h5.section-title, h6.section-title, .h1.section-title, .h2.section-title, .h3.section-title, .h4.section-title, .h5.section-title, .h6.section-title {
     color: #707070;
-    font-weight: 700;
+    font-weight: 600;
     text-transform: uppercase;
     margin-bottom: 24px; }
 
@@ -3205,12 +3205,15 @@ b, strong {
   color: #444444; }
 
 .lead {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 400;
   line-height: 1.2; }
 
+.help-block {
+  font-size: 14px; }
+
 .jumbotron p {
-  font-weight: 300; }
+  font-weight: 400; }
 .jumbotron h1.h1-sm {
   font-size: 44px; }
 
@@ -3271,9 +3274,6 @@ article h1.icon {
   p {
     font-size: 16px; } }
 @media (min-width: 992px) {
-  p, li, table {
-    font-size: 14px; }
-
   .jumbotron li {
     font-size: 16px; }
     .jumbotron li a {
@@ -3384,13 +3384,13 @@ fieldset[disabled] .btn-default.active {
   font-size: 16px;
   font-weight: 500;
   margin-bottom: 10px;
-  padding: 10px 25px;
+  padding: 8px 20px;
   text-transform: uppercase;
   vertical-align: top;
   white-space: initial;
   word-break: initial;
   text-decoration: none;
-  letter-spacing: 1.5px; }
+  letter-spacing: 1px; }
   .btn:hover {
     border: 3px solid transparent; }
   .btn:focus {
@@ -3400,8 +3400,8 @@ fieldset[disabled] .btn-default.active {
     font-size: 20px;
     padding: 20px 40px; }
   .btn.btn-sm {
-    font-size: 14px;
-    padding: 5px 10px; }
+    font-size: 12px;
+    padding: 2px 10px; }
   .btn.btn-xs {
     font-size: 12px;
     padding: 1px 5px; }
@@ -4744,16 +4744,19 @@ label {
 legend {
   border-bottom: none;
   font-size: 16px;
-  margin: 0;
-  font-weight: 500; }
+  font-weight: 500;
+  margin: 0; }
+
+legend h2, legend h3 {
+  margin: 40px 0px 20px 0px; }
 
 .form-group {
   margin-bottom: 30px; }
 
 .form-control {
   color: #333333;
-  font-size: 18px;
-  height: 54px;
+  font-size: 16px;
+  height: 44px;
   padding: 6px 8px;
   border: solid 1px #cccccc; }
   .form-control[disabled], .form-control[readonly] {

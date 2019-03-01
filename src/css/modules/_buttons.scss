@@ -129,13 +129,13 @@ fieldset[disabled] .btn-default.active {
   font-size: 16px;
   font-weight: 500;
   margin-bottom: 10px;
-  padding: 10px 25px;
+  padding: 8px 20px;
   text-transform: uppercase;
   vertical-align: top;
   white-space: initial;
   word-break: initial;
   text-decoration: none;
-  letter-spacing: 1.5px;
+  letter-spacing: 1px;
 
   &:hover {
     border:3px solid transparent;
@@ -151,8 +151,8 @@ fieldset[disabled] .btn-default.active {
   }
 
   &.btn-sm {
-    font-size: 14px;
-    padding: 5px 10px;
+    font-size: 12px;
+    padding: 2px 10px;
   }
 
   &.btn-xs {

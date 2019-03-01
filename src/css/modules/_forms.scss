@@ -10,10 +10,13 @@ label {
 legend {
     border-bottom: none;
     font-size: 16px;
-    margin: 0;
     font-weight: 500;
+    margin: 0
 }
 
+legend h2,legend h3{
+  margin: 40px 0px 20px 0px
+}
 
 .form-group {
   margin-bottom: 30px;
@@ -21,8 +24,8 @@ legend {
 
 .form-control {
   color: $text-color;
-  font-size: 18px;
-  height: 54px;
+  font-size: 16px;
+  height: 44px;
   padding: 6px 8px;
   border: solid 1px $gray-light;
   // text-indent: 6px;
@@ -32,6 +35,7 @@ legend {
     background-color: $gray-lighter;
   }
 }
+
 
 fieldset {
   &.framed {
