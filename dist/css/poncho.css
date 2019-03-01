@@ -3381,7 +3381,7 @@ fieldset[disabled] .btn-default.active {
   font-size: 16px;
   font-weight: 500;
   margin-bottom: 10px;
-  padding: 10px 25px;
+  padding: 6px 20px;
   text-transform: uppercase;
   vertical-align: top;
   white-space: initial;
@@ -3397,8 +3397,8 @@ fieldset[disabled] .btn-default.active {
     font-size: 20px;
     padding: 20px 40px; }
   .btn.btn-sm {
-    font-size: 14px;
-    padding: 5px 10px; }
+    font-size: 12px;
+    padding: 2px 10px; }
   .btn.btn-xs {
     font-size: 12px;
     padding: 1px 5px; }
