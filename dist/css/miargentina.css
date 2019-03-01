@@ -12,7 +12,9 @@
 .align-right {
   float: right;
 }
-
+.w-logos{
+  max-width: 300px;
+}
 /********PANELES**********/
 
 
@@ -177,12 +179,18 @@ a.btn-collapse i.collapseGira {
 
 
 /************************************* NUEVO DASHBOARD**************************************/
-
+.nav-dashboard{
+  margin-top: 20px;
+  padding-right: 0px;
+}
 h1.title-dashboard{
   font-size: 1.5em;
   margin-top: 35px;
 }
-
+.sidebar-item, .nav-dashboard{
+  padding-left: 0px;
+  padding-right: 0px;
+}
 .max-w-img{
     max-width: 350px;
   }
