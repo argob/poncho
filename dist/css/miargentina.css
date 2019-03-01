@@ -183,7 +183,13 @@ a.btn-collapse i.collapseGira {
   margin-top: 20px;
   padding-right: 0px;
 }
-h1.title-dashboard{
+.navbar-header {
+  margin-top:16px;
+}
+.title-dashboard{
+  margin-bottom: 1em;
+}
+.title-dashboard h1{
   font-size: 1.5em;
   margin-top: 35px;
 }
@@ -200,6 +206,7 @@ h1.title-dashboard{
 }
 .icon-init{
   font-size: 21px;
+  margin-top: 1em;
 }
 .icon-header{
   color: #CACBC5;
@@ -254,6 +261,7 @@ h1.title-dashboard{
     background-color: white;
     display: block;
     margin-bottom: 0px!important;
+
 }
 
 
@@ -379,6 +387,10 @@ h1.title-dashboard{
 @media (max-width: 767px){
   .brand-icon{
     width:116px;
+  }
+  .title-dashboard h1{
+    margin-top: 22px;
+    margin-bottom: 29px;
   }
   .navbar-header .nav{
     margin-left: -8px!important;
