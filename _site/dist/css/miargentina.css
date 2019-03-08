@@ -1,6 +1,6 @@
 
 
-.alert .btn, .panels-row-miargentina .btn{
+.alert .btn{
   margin-top: 15px;
 }
 
@@ -113,7 +113,7 @@ a.btn-collapse i.collapseGira {
 
 
 
-.panels-row-miargentina .panel-body .table, .panels-row-miargentina .panel-body .form-group {
+.panels-row-miargentina .panel-body .table {
   margin-bottom: 0px;
 }
 
@@ -146,6 +146,7 @@ a.btn-collapse i.collapseGira {
 .panel-footer .pagination{
   margin: 10px;
 }
+
 @media (min-width: 991px) {
   .panel-table tr:first-child>td {
     border-top: 0px;
@@ -180,7 +181,7 @@ a.btn-collapse i.collapseGira {
 
 h1.title-dashboard{
   font-size: 1.5em;
-  margin-top: 25px;
+  margin-top: 35px;
 }
 
 .max-w-img{
