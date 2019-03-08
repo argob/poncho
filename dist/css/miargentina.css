@@ -851,7 +851,7 @@ h1.title-dashboard{
 }
 
 input:checked + .slider:before {
-    transform:translateX(30px);
+    transform:translateX(33px);
     background:#2e7d33;
 }
 input:checked + .slider {
