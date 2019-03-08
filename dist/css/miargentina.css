@@ -176,7 +176,9 @@ a.btn-collapse i.collapseGira {
   }
 }
 
-
+.panels-row-miargentina form h3{
+  margin-bottom: 15px;
+}
 
 /************************************* NUEVO DASHBOARD**************************************/
 
