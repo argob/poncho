@@ -819,8 +819,8 @@ h1.title-dashboard{
 
 .switch {
     display:inline-block;
-    width:60px;
-    height:30px;
+    width:40px;
+    height:20px;
     margin:8px;
     transform:translateY(50%);
     position:relative;
@@ -846,15 +846,15 @@ h1.title-dashboard{
     height:100%;
     background:#777;
     border-radius:30px;
-    transform:translateX(-30px);
+    transform:translateX(-20px);
     transition:.4s;
 }
 
 input:checked + .slider:before {
     transform:translateX(30px);
-    background:limeGreen;
+    background:#2e7d33;
 }
 input:checked + .slider {
-    box-shadow:0 0 0 2px limeGreen,0 0 2px limeGreen;
+    box-shadow:0 0 0 2px #2e7d33,0 0 2px #2e7d33;
 }
 
