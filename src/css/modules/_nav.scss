@@ -7,9 +7,7 @@
         margin-top: 13px;
         margin-left: 30px;
 
-        input {
-          height: 46px;
-        }
+        
       }
     }
 
@@ -61,7 +59,8 @@
 header {
   .btn {
     margin: 13px 0 0 13px;
-    padding: 9px 15px;
+    padding-left: 15px;
+    padding-right: 15px;
   }
   .btn-group > .btn:first-child {
     margin-left: 13px;
@@ -150,8 +149,6 @@ header {
     }
 
     .btn {
-      margin: 13px 0 0 13px;
-      padding: 9px 15px;
       float: left;
     }
     .btn-group > .btn:first-child {
@@ -293,6 +290,10 @@ header {
       text-decoration: none !important;
     }
   }
+}
+
+.navbar-default .btn-link {
+   color: #0072bb;
 }
 
 .nav-news-mini {
@@ -438,7 +439,7 @@ header {
 
     .btn {
       margin: 13px 0 0 13px;
-      padding: 12px 15px;
+      
     }
     .btn-group {
       width:100%;
@@ -575,10 +576,7 @@ header {
             display: none;
           }
         }
-        > .btn {
-          padding: 12px;
-          margin-left: 10px;
-        }
+       
       }
     }
   }
