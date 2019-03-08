@@ -41,7 +41,6 @@ a.btn-collapse i.collapseGira {
 .btn-volver {
   padding-right: 0px;
   margin-top: 5px;
-  max-width: 120px;
 }
 
 .panels-row-miargentina .panel-default {
@@ -147,6 +146,7 @@ a.btn-collapse i.collapseGira {
 .panel-footer .pagination{
   margin: 10px;
 }
+
 @media (min-width: 991px) {
   .panel-table tr:first-child>td {
     border-top: 0px;
