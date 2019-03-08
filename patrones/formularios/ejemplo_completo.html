@@ -167,7 +167,7 @@
   <fieldset>
     <legend>
      <label>Sexo</label>
-   <p class="help-block">Como aparece en tu documento</p>
+   <p class="help-block">Como aparece en tu DNI</p>
    </legend>
    <div class="form-group item-form">
      <label for="f" class="radio-inline">
@@ -198,9 +198,9 @@
    <div class="col-md-8">
     <div class="form-group item-form">
       <label for="password">Contraseña</label>
-      <p class="help-block" id="help-password">Usá al menos 8 caracteres</p>
+      <p class="help-block" id="help-password">Usá al menos  caracteres</p>
       <input id="password" name="password" type="password" class="form-control" maxlength="15" aria-describedby="help-password">
-      <p class="help-block error hidden">Usá al menos 8 caracteres</p>
+      <p class="help-block error hidden">Usá al menos 6 caracteres</p>
       <p class="help-block error hidden">Ingresá tu contraseña</p>
     </div>
   </div>
@@ -264,6 +264,12 @@
    <label for="country_birthday">País de nacimiento</label>
    <select id="country_birthday" class="form-control">
         <option value="">Seleccioná un pais</option>
+        <option value="ARG" selected>Argentina</option>                        
+        <option value="BRA">Brasil</option>                        
+        <option value="URY">Uruguay</option>                        
+        <option value="PRY">Paraguay</option>                        
+        <option value="CHL">Chile</option>                        
+        <option value="BOL">Bolivia</option>                                        
         <option value="AFG">Afganistán</option>                        
         <option value="ALB">Albania</option>                        
         <option value="DEU">Alemania</option>                        
@@ -274,7 +280,6 @@
         <option value="ATG">Antigua y Barbuda</option>                        
         <option value="SAU">Arabia Saudita</option>                        
         <option value="DZA">Argelia</option>                        
-        <option value="ARG" selected>Argentina</option>                        
         <option value="ARM">Armenia</option>                        
         <option value="ABW">Aruba</option>                        
         <option value="AUS">Australia</option>                        
@@ -289,11 +294,9 @@
         <option value="BEN">Benín</option>                        
         <option value="BMU">Bermudas</option>                        
         <option value="BLR">Bielorrusia</option>                        
-        <option value="BOL">Bolivia</option>                        
         <option value="BES">Bonaire</option>                        
         <option value="BIH">Bosnia y Herzegovina</option>                        
         <option value="BWA">Botsuana</option>                        
-        <option value="BRA">Brasil</option>                        
         <option value="BRN">Brunéi Darussalam</option>                        
         <option value="BGR">Bulgaria</option>                        
         <option value="BFA">Burkina Faso</option>                        
@@ -437,7 +440,6 @@
         <option value="PSE">Palestina, Estado de</option>                        
         <option value="PAN">Panamá</option>                        
         <option value="PNG">Papúa Nueva Guinea</option>                        
-        <option value="PRY">Paraguay</option>                        
         <option value="PER">Perú</option>                        
         <option value="PCN">Pitcairn</option>                        
         <option value="PYF">Polinesia Francesa</option>                        
@@ -498,7 +500,6 @@
         <option value="TUV">Tuvalu</option>                        
         <option value="UKR">Ucrania</option>                        
         <option value="UGA">Uganda</option>                        
-        <option value="URY">Uruguay</option>                        
         <option value="UZB">Uzbekistán</option>                        
         <option value="VUT">Vanuatu</option>                        
         <option value="VEN">Venezuela</option>                        
@@ -598,8 +599,13 @@
     <div class="col-md-8 form-group item-form">
       <label for="country">País de residencia</label>
       <select id="country" class="form-control">
-        <option value="" selected>Seleccioná un país</option>
-        <option value="ARG">Argentina</option>                        
+        <option value="">Seleccioná un pais</option>
+        <option value="ARG" selected>Argentina</option>                        
+        <option value="BRA">Brasil</option>                        
+        <option value="URY">Uruguay</option>                        
+        <option value="PRY">Paraguay</option>                        
+        <option value="CHL">Chile</option>                        
+        <option value="BOL">Bolivia</option>                                        
         <option value="AFG">Afganistán</option>                        
         <option value="ALB">Albania</option>                        
         <option value="DEU">Alemania</option>                        
@@ -624,11 +630,9 @@
         <option value="BEN">Benín</option>                        
         <option value="BMU">Bermudas</option>                        
         <option value="BLR">Bielorrusia</option>                        
-        <option value="BOL">Bolivia</option>                        
         <option value="BES">Bonaire</option>                        
         <option value="BIH">Bosnia y Herzegovina</option>                        
         <option value="BWA">Botsuana</option>                        
-        <option value="BRA">Brasil</option>                        
         <option value="BRN">Brunéi Darussalam</option>                        
         <option value="BGR">Bulgaria</option>                        
         <option value="BFA">Burkina Faso</option>                        
@@ -772,7 +776,6 @@
         <option value="PSE">Palestina, Estado de</option>                        
         <option value="PAN">Panamá</option>                        
         <option value="PNG">Papúa Nueva Guinea</option>                        
-        <option value="PRY">Paraguay</option>                        
         <option value="PER">Perú</option>                        
         <option value="PCN">Pitcairn</option>                        
         <option value="PYF">Polinesia Francesa</option>                        
@@ -833,7 +836,6 @@
         <option value="TUV">Tuvalu</option>                        
         <option value="UKR">Ucrania</option>                        
         <option value="UGA">Uganda</option>                        
-        <option value="URY">Uruguay</option>                        
         <option value="UZB">Uzbekistán</option>                        
         <option value="VUT">Vanuatu</option>                        
         <option value="VEN">Venezuela</option>                        
@@ -885,7 +887,7 @@
     <div class="col-md-8 form-group item-form">
       <label for="department">Partido o departamento</label>
       <select class="form-control" name="department" id="department">
-        <option value="" selected>Seleccioná un departamento</option>
+        <option value="" selected>Seleccioná un partido o departamento</option>
         <option value="">Departamento 1</option>
         <option value="">Departamento 2</option>
         <option value="">Departamento 3</option>
