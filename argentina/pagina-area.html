@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]> <html lang="es"class="iem7"> <![endif]-->
+<!--[if lt IE 7 ]> <html lang="es" class="ie6 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="es" class="ie7 lt-ie8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="es" class="ie8"> <![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="es"><!--<![endif]-->
+    <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Banco de Pruebas</title>
+  <meta name="description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
+  <meta name="author" content="Presidencia de la Nación">
+  <link rel="shortcut icon" href="img/favicon.ico">
+
+  <!-- Nav and address bar color -->
+  <meta name="theme-color" content="#0072b8">
+  <meta name="msapplication-navbutton-color" content="#0072b8">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
+
+  <meta property="og:url" content="http://localhost:4000/proyectos/argentina/pagina-area.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Banco de Pruebas" />
+  <meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta property="og:image" content="/ejemplos/img/jumbotron.jpg" />
+  <meta property="og:locale" content="es_AR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Banco de Pruebas" />
+  <meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta name="twitter:image" content="/ejemplos/img/jumbotron.jpg" />
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://qa-poncho.argentina.gob.ar/dist/css/poncho.min.css">
+  <link rel="stylesheet" href="https://qa-poncho.argentina.gob.ar/dist/css/icono-arg.css">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="/node_modules/html5shiv/html5shiv.js"></script>
+      <script src="/node_modules/respond.js/respond.min.js"></script>
+  <![endif]-->  
+  <style type="text/css">
+    @media print{
+      /* paneles */
+      .panel-default>.panel-heading{height: initial!important;min-height: initial!important;}
+      .panel-body{padding: 0!important;}
+      .panel-icon .panel-heading{text-align: left!important;}
+      .panel-icon .panel-heading i{padding: 0!important;}
+      /* iconos */
+      .icon-item i{height: initial!important;}
+      /* jumbotron */
+      .jumbotron .text-center{text-align: left!important;}
+      .jumbotron .jumbotron_body{padding: 20px 0!important;}
+      /* */
+      .content_format h2,
+      .content_format h3,
+      .content_format h4,
+      .content_format h5,
+      .content_format h6,
+      .content_format .h2,
+      .content_format .h3,
+      .content_format .h4,
+      .content_format .h5,
+      .content_format .h6{margin-top: 0!important;}
+      /* evita cortes de titulos entre paginas */
+      h1, h2, h3, h4, h5, h6{break-inside: avoid!important;}
+    }
+    .btn i[class*="icono-arg"]{font-size: 1em;height: 22px;float: left;margin-right:8px;}
+    .btn i[class*="icono-arg"].fa-fw{width: 1.6em;margin-right:0;}
+    .btn i[class*="icono-arg"]:before{line-height: 22px;font-size:1.6em;}
+  </style>
+    
+</head>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+
+  <body>
+
+    
+    
+<header>
+  <nav class="navbar navbar-top navbar-default" role="navigation">
+    <div class="container">
+      <div>
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/proyectos/argentina/" aria-label="Argentina.gob.ar Presidencia de la Nación">
+            <img alt="Argentina.gob.ar" src="img/argentinagob.svg" height="50">
+          </a>
+          <a class="btn btn-link btn-login visible-xs" href="/proyectos/mi-argentina/v3/"><i class="icono-arg-mi-argentina fa-fw"></i></a>
+          <a class="btn btn-primary btn-login visible-xs" href="#" onclick="$('.navbar.navbar-top').addClass('state-search');"><span class="fa fa-search fa-fw"></span></a>
+        </div>
+        <ul class="nav navbar-nav navbar-right hidden-xs">
+          <a href="#" onclick="$('.navbar.navbar-top').removeClass('state-search');" class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+          <li>
+            <div class="input-group">
+              
+              <input id="buscar" type="text" class="form-control" aria-label="Buscar trámites, servicios o áreas" placeholder="Buscar trámites, servicios o áreas ...">
+              <span class="input-group-btn">
+                <button class="btn btn-primary" id="buscar-btn" type="button" aria-label="Buscar"><i class="fa fa-search"></i></button>
+              </span>
+            </div>
+          </li>              
+          <a href="#" class="dropdown-toggle btn btn-link hidden-xs" aria-label="Ingresar a Mi Argentina" data-toggle="dropdown">
+           <i class="icono-arg-mi-argentina"></i>Mi Argentina</a>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+
+<script type="text/javascript">
+  var busqueda = document.getElementById('buscar');
+  var buscar = document.getElementById('buscar-btn');
+  buscar.onclick = function () {
+    var buscado = busqueda.value;
+    location.href = "http://www.argentina.gob.ar/buscar/" + buscado;
+  };
+  
+  //PONCHO LABS
+  var url_string = window.location.href;
+  var url = new URL(url_string);
+  var lab = url.searchParams.get("lab");
+  
+  
+  if(lab == ""){
+    $("head").append('<link href="/proyectos/poncho/css/poncho_lab.css" rel="stylesheet">');
+  }
+</script>
+
+    <main role="main">
+      <section class="jumbotron" style="background-image: url('img/modernizacion.jpg');">
+  <div class="jumbotron_bar">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <ol class="breadcrumb pull-left">
+            <li><a href="">Argentina</a></li>
+            <li class="active"><span>Ministerio de Modernización</span></li>
+          </ol>
+          <ul class="list-inline pull-right">
+            <li><a href="#" class="search"><i class="glyphicon glyphicon-search"></i>Buscar en el área</a></li>
+            <li>
+              <div class="dropdown">
+                <a href="#" class="dropdown-toggle" id="jumbo-menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  Institucional
+                  <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="jumbo-menu">
+                  <li><a href="#">Acción</a></li>
+                  <li><a href="#">Acción secundaria</a></li>
+                  <li><a href="#">Misiones y funciones</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="jumbotron_body">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-md-8 col-md-offset-2 text-center">
+          <h1>Ministerio de Modernización</h1>
+          <p>Mejora los sistemas y procesos internos del Estado, capacita permanentemente a sus empleados e incorpora Nuevas Tecnologías a la administración pública para alcanzar una gestión eficiente, inclusiva y transparente que brinde más y mejores servicios a los ciudadanos.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="overlay"></div>
+</section>
+
+<section>
+  <article class="container content_format">
+    <div class="col-md-8 col-md-offset-2">
+     <div class="row">
+
+        <div class="section-actions is_area col-md-12 social-share">
+  <p>Compartir en <br> redes sociales</p>
+  <ul class="list-inline">
+    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+    <li><a href="#"><i class="fa fa-twitter "></i></a></li>
+    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+  </ul>
+</div>
+
+
+     </div>
+
+      <h2>El Estado al servicio de la gente</h2>
+
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+      <blockquote>
+        <p>Todas las áreas del Gobierno tendrán un plan de comunicación e información que será publicado y actualizado en forma permanente</p>
+        <small>Mauricio Macri</small>
+      </blockquote>
+
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+      <h2 class="">Qué hacemos</h2>
+
+      <ul>
+        <li>Colaboramos con toda las áreas del gobierno para que sus servicios sean cada vez mas <strong>eficientes</strong>.</li>
+        <li>Aplicamos tecnología e innovamos en procesos para que <strong>vos ganes en calidad de vida</strong>.</li>
+        <li>Acercamos el Estado a la gente para hacerlo <strong>más transparente</strong>, y abrimos la información para una comunicación mas directa, que tenga un <strong>ida y vuelta con la ciudadanía</strong>.</li>
+        <li>Trabajamos hacia adentro con el eje puesto en el <strong>empleado público</strong>, para capacitarlo y jerarquizar su carrera,  y de esta manera <strong>acompañar su vocación y ganas de crecer</strong>. </li>
+      </ul>
+
+
+
+    </div>
+  </article>
+</section>
+
+<section>
+  <div class="container">
+    <div class="col-md-8 col-md-offset-2">
+    <h2>Principios para una gestión moderna</h2>
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="icon-item">
+                <i class="fa fa-users"></i>
+                <h3>Cercana</h3>
+                <p>Conoce tus necesidades y adopta sus servicios a ellas.</p>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="icon-item">
+                <i class="fa fa-search"></i>
+                <h3>Transparente</h3>
+                <p>Brinda mayor información y certeza sobre sus actos de gobierno.</p>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="icon-item">
+                <i class="fa fa-users"></i>
+                <h3>Participativa</h3>
+                <p>Trabaja en equipo con los empleados públicos y la gente.</p>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section>
+  <div class="container">
+    <div class="row ">
+      <div class="col-md-12">
+          <h2 class="h3 section-title">Links no destacados</h2>
+      </div>
+    </div>
+    <div class="row panels-row">
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <a class="panel panel-default" href="#">
+          <div class="panel-body">
+            <h3>Este es el título del link</h3>
+          </div>
+        </a>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <a class="panel panel-default" href="#">
+          <div class="panel-body">
+            <h3>Este es el título de otro link un tanto mas largo</h3>
+          </div>
+        </a>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <a class="panel panel-default" href="#">
+          <div class="panel-body">
+            <h3>Este es el título para otro link mas</h3>
+          </div>
+        </a>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <a class="panel panel-default" href="#">
+          <div class="panel-body">
+            <h3>Este es el título del link</h3>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <a class="btn btn-primary">Ver todas las áreas de gobierno</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="row ">
+      <div class="col-md-12">
+        <h2 class="h3 section-title">Links no destacados con descripción</h2>
+      </div>
+    </div>
+    <div class="row panels-row">
+      <div class="col-xs-12 col-sm-6 col-md-4">
+        <a class="panel panel-default" href="#">
+          <div class="panel-body">
+            <h3>Ministerio de Economía</h3>
+            <p class="text-muted">quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
+          </div>
+        </a>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-4">
+        <a class="panel panel-default" href="#">
+          <div class="panel-body">
+            <h3>Ministerio de Educacióncon con dos líneas de texto</h3>
+            <p class="text-muted">quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
+          </div>
+        </a>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-4">
+        <a class="panel panel-default" href="#">
+          <div class="panel-body">
+            <h3>Este es el título para otro link mas</h3>
+            <p class="text-muted">quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <a class="btn btn-primary">Ver todas las áreas de gobierno</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="row ">
+      <div class="col-md-12">
+          <h2 class="h3 section-title">Links destacados con iconos y descripción</h2>
+      </div>
+    </div>
+    <div class="row panels-row">
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <a class="panel panel-default panel-icon" href="#">
+          <div class="panel-heading"><i class="fa fa-file"></i></div>
+          <div class="panel-body">
+            <h3>Ministerio de Economía</h3>
+            <p class="text-muted">quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
+          </div>
+        </a>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <a class="panel panel-default panel-icon" href="#">
+          <div class="panel-heading"><i class="fa fa-flask"></i></div>
+          <div class="panel-body">
+            <h3>Ministerio de Educación</h3>
+            <p class="text-muted">quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
+          </div>
+        </a>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <a class="panel panel-default panel-icon" href="#">
+          <div class="panel-heading"><i class="fa fa-file"></i></div>
+          <div class="panel-body">
+            <h3>Ministerio del Interior</h3>
+            <p class="text-muted">quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
+          </div>
+        </a>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <a class="panel panel-default panel-icon" href="#">
+          <div class="panel-heading"><i class="fa fa-cube"></i></div>
+          <div class="panel-body">
+            <h3>Ministerio de Salud</h3>
+            <p class="text-muted">quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <a class="btn btn-primary">Ver todas las áreas de gobierno</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="row ">
+      <div class="col-md-12">
+          <h2 class="h3 section-title">Links destacados con fotos</h2>
+      </div>
+    </div>
+    <div class="row panels-row">
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <a class="panel panel-default" href="#">
+          <div style="background-image:url('./img/1.jpg');" class="panel-heading"></div>
+          <div class="panel-body">
+            <h3>Este es el título del link</h3>
+          </div>
+        </a>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <a class="panel panel-default" href="#">
+          <div style="background-image:url('./img/2.jpg');" class="panel-heading"></div>
+          <div class="panel-body">
+            <h3>Este es el título del link</h3>
+          </div>
+        </a>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <a class="panel panel-default" href="#">
+          <div style="background-image:url('./img/3.jpg');" class="panel-heading"></div>
+          <div class="panel-body">
+            <h3>Este es el título del link</h3>
+          </div>
+        </a>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <a class="panel panel-default" href="#">
+          <div style="background-image:url('./img/4.jpg');" class="panel-heading"></div>
+          <div class="panel-body">
+            <h3>Este es el título del link</h3>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="row ">
+      <div class="col-md-12">
+        <h2 class="h3 section-title">Noticias Destacadas</h2>
+      </div>
+    </div>
+
+    <div class="row panels-row">
+      <div class="col-xs-12 col-sm-6">
+        <a class="panel panel-default panel-lg" href="#">
+          <div style="background-image:url('./img/1.jpg');" class="panel-heading"></div>
+          <div class="panel-body">
+            <time>Jueves 14 de Enero del 2016</time>
+            <h4>El Ministro Buryaile asistió a la apertura de la Semana Verde Internacional, en Berlín</h4>
+          </div>
+        </a>
+      </div>
+      <div class="col-xs-12 col-sm-6">
+        <a class="panel panel-default panel-lg" href="#">
+          <div style="background-image:url('./img/2.jpg');" class="panel-heading"></div>
+          <div class="panel-body">
+            <time>Jueves 14 de Enero del 2016</time>
+            <h4>El Ministro Buryaile asistió a la apertura de la Semana Verde Internacional, en Berlín</h4>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="row panels-row">
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <a class="panel panel-default panel-md" href="#">
+          <div style="background-image:url('./img/3.jpg');" class="panel-heading"></div>
+          <div class="panel-body">
+            <time>Jueves 14 de Enero del 2016</time>
+            <h4>El Ministro Buryaile asistió a la apertura de la Semana Verde Internacional, en Berlín</h4>
+          </div>
+        </a>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <a class="panel panel-default panel-md" href="#">
+          <div style="background-image:url('./img/4.jpg');" class="panel-heading"></div>
+          <div class="panel-body">
+            <time>Jueves 14 de Enero del 2016</time>
+            <h4>El Ministro Buryaile asistió a la apertura de la Semana Verde Internacional, en Berlín</h4>
+          </div>
+        </a>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <a class="panel panel-default panel-md" href="#">
+          <div style="background-image:url('./img/1.jpg');" class="panel-heading"></div>
+          <div class="panel-body">
+            <time>Jueves 14 de Enero del 2016</time>
+            <h4>El Ministro Buryaile asistió a la apertura de la Semana Verde Internacional, en Berlín</h4>
+          </div>
+        </a>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <a class="panel panel-default panel-md" href="#">
+          <div style="background-image:url('./img/2.jpg');" class="panel-heading"></div>
+          <div class="panel-body">
+            <time>Jueves 14 de Enero del 2016</time>
+            <h4>El Ministro Buryaile asistió a la apertura de la Semana Verde Internacional, en Berlín</h4>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <a class="btn btn-primary">Ver todas las noticias</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-gray modulo-mapaestado">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h2 class="h3 section-title">Ministro</h2>
+      </div>
+    </div>
+
+    <div class="row margin-20">
+      <div class="col-xs-12 col-sm-3 col-md-2">
+        <img class="img-responsive img-rounded" alt="" src="img/ibarra.jpg">
+      </div>
+      <div class="col-xs-12 col-sm-9 col-md-10">
+        <h2>Andrés Ibarra<br><small>Ministro de modernización</small></h2>
+        <p>Andrés Ibarra es el Ministro de Modernización de la Nación desde el 10 de diciembre del 2015. <br>Anteriormente se desempeñó como Ministro de Modernización de la Ciudad de Buenos Aires (2011-2015).</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <h2 class="h3 section-title">Secretarios</h2>
+      </div>
+    </div>
+
+    <div class="row panels-row">
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <div class="panel panel-disabled">
+          <div class="panel-body">
+            <h4>Secretaría de Empleo Público</h4>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <a class="panel panel-default" href="#">
+          <div class="panel-body">
+            <h4>Secretaría Pais Digital</h4>
+          </div>
+        </a>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <a class="panel panel-default" href="#">
+          <div class="panel-body">
+            <h4>Secretaría de Gestión e Innovación Pública</h4>
+          </div>
+        </a>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <a class="panel panel-default" href="#">
+          <div class="panel-body">
+            <h4>Secretaría de Modernización Adeministrativa</h4>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <h2 class="h3 section-title">Subsecretarios</h2>
+      </div>
+    </div>
+
+    <div class="row panels-row">
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <a class="panel panel-default" href="#">
+          <div class="panel-body">
+            <h4>Subsecretaría de planificación de empleo público</h4>
+          </div>
+        </a>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <div class="panel panel-disabled">
+          <div class="panel-body">
+            <h4>Subsecretaría de desarrollo de País Digital</h4>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <div class="panel panel-disabled">
+          <div class="panel-body">
+            <h4>Subsecretaría de gobierno digital</h4>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <a class="panel panel-default" href="#">
+          <div class="panel-body">
+            <h4>Subsecretaría de innovación pública y gobierno abierto</h4>
+          </div>
+        </a>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <a class="panel panel-default" href="#">
+          <div class="panel-body">
+            <h4>Subsecretaría de gestión administrativa</h4>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="modulo-contacto">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-6">
+          <h2 class="h3 section-title">Datos de Contacto</h2>
+          <div>
+            <h5>Dirección Nacional de Relaciones Institucionales</h5>
+            <p>
+              <strong>Dirección:</strong> Av. Roque Sáenz Peña 511 (Entrepiso)<br>
+              <strong>Teléfono:</strong> (011) 5985-8600 / 4343-9001<br>
+              <strong>Correo electrónico:</strong> <a href="mailto:institucionales@modernizacion.gob.ar">institucionales@modernizacion.gob.ar</a>
+            </p>
+          </div>
+      </div>
+      <div class="col-xs-12 col-sm-6">
+        <div>
+          <h2 class="h3 section-title">Envianos tu consulta</h2>
+          <form>
+            <div class="form-group">
+              <label class="text-muted">Escribí tu mensaje o consulta para el Ministerio de Modernización</label>
+              <textarea class="form-control" rows="3" placeholder=""></textarea>
+            </div>
+            <button type="submit" class="btn btn-success">Enviar mi consulta</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+    </main>
+    <footer class="main-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6">
+        <img class="image-responsive" alt="Argentina.gob.ar - Presidencia de la Nación" src="img/argentinagob.svg" height="50">
+        <p class="text-muted small"><a href="https://creativecommons.org/licenses/by/2.5/ar/">Los contenidos de Argentina.gob.ar están licenciados bajo Creative Commons Reconocimiento 2.5 Argentina License</a></p>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <ul>
+          <li><a href="/servicios">Trámites y servicios</a></li>
+          <li><a href="/turnos">Turnos</a></li>
+          <li><a href="/organismos">Organismos del Estado</a></li>
+          <li><a href="http://mapadelestado.modernizacion.gob.ar/" target="_blank" aria-label="Mapa del Estado - Sitio Externo">Mapa del Estado</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <ul>
+          <li><a href="/acerca">Acerca de este sitio</a></li>
+          <li><a href="/terminos-y-condiciones">Términos y condiciones</a></li>
+          <li><a href="/ayuda">Ayuda</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
+    
+  </body>
+</html>
