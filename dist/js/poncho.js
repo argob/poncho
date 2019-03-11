@@ -12,8 +12,8 @@
     var th = [];
     var lista = '';      
     var centeredContent ='';
-    if ( $.fn.DataTable.isDataTable('#ponchoTable') ) {
-      $('#ponchoTable').DataTable().destroy();
+    if ( jQuery.fn.DataTable.isDataTable('#ponchoTable') ) {
+      jQuery('#ponchoTable').DataTable().destroy();
     }
 
     //UNIQUE
@@ -29,7 +29,7 @@
           listado = data['feed']['entry'];
 
           //TITULOS
-          $.each(Object.keys(listado[0]), function(index, key) {
+          jQuery.each(Object.keys(listado[0]), function(index, key) {
               if (key.substr(0, 4) == 'gsx$') {
                   filteredTitle.push(listado[0][key]["$t"]);
                   filteredTitleGsx.push(key);
@@ -39,18 +39,18 @@
           })
 
           //Caption de la tabla
-          $("#ponchoTable caption").html(opt.tituloTabla);
+          jQuery("#ponchoTable caption").html(opt.tituloTabla);
 
           //Agregar titulos al thead de la tabla
-          $('#ponchoTable thead tr').empty();
-          $('#ponchoTable thead tr').append(titulos);
+          jQuery('#ponchoTable thead tr').empty();
+          jQuery('#ponchoTable thead tr').append(titulos);
 
           //CONTENIDO FILAS
-          $.each(listado, function(row, value) {
+          jQuery.each(listado, function(row, value) {
               
               if(row > 0){
               lista += '<tr>';
-                $.each(filteredTitleGsx, function(index, title) {
+                jQuery.each(filteredTitleGsx, function(index, title) {
                   var tdEmpty = '';
                     if (title.substr(0, 4) == 'gsx$') {
                        
@@ -71,7 +71,7 @@
                         if(title.includes("filtro-") && filas != ""){
                           filtroColumna = index;
                           nameFiltro = title.substr(11, title.length-11).replace("-"," ");
-                          $("#tituloFiltro").html(nameFiltro);
+                          jQuery("#tituloFiltro").html(nameFiltro);
                           filtro.push(filas);
                         }
 
@@ -93,14 +93,14 @@
           })
 
           //Agregar filtro
-          $.each(filtrarUnicos(filtro), function(index, val) {
-             $("#ponchoTableFiltro").append("<option>"+val+"</option>")
+          jQuery.each(filtrarUnicos(filtro), function(index, val) {
+             jQuery("#ponchoTableFiltro").append("<option>"+val+"</option>")
           });
          
 
           //Agregar contenido al body de la Tabla
-          $('#ponchoTable tbody').empty();
-          $('#ponchoTable tbody').append(lista);
+          jQuery('#ponchoTable tbody').empty();
+          jQuery('#ponchoTable tbody').append(lista);
 
           initDataTable();
       }
@@ -159,7 +159,7 @@ searchType.html = function (data) {
 
 
 
-      var tabla = $("#ponchoTable").DataTable({
+      var tabla = jQuery("#ponchoTable").DataTable({
           "lengthChange": false,
           "autoWidth" : false,
           "order": [[ opt.ordenColumna-1, opt.ordenTipo ]],
@@ -207,7 +207,7 @@ jQuery(document).ready(function () {
     jQuery('#ponchoTableSearch').keyup(function () {
       tabla
         .search(
-        $.fn.DataTable.ext.type.search.string(this.value)
+        jQuery.fn.DataTable.ext.type.search.string(this.value)
         )
         .draw()
     });
@@ -215,14 +215,14 @@ jQuery(document).ready(function () {
 
 
       //BUSCADOR
-      $("#ponchoTable_filter").parent().parent().remove();
+      jQuery("#ponchoTable_filter").parent().parent().remove();
 
       //FILTRO PERSONALIZADO
-      if($('#ponchoTableFiltro option').length > 1){
-        $('#ponchoTableFiltroCont').show();
+      if(jQuery('#ponchoTableFiltro option').length > 1){
+        jQuery('#ponchoTableFiltroCont').show();
       }
-      $('#ponchoTableFiltro').on('change', function() {
-        var filtro = $(this).val();
+      jQuery('#ponchoTableFiltro').on('change', function() {
+        var filtro = jQuery(this).val();
           if(filtro != ""){
             tabla.column(filtroColumna).every( function () {
                 var that = this;
