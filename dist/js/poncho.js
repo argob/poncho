@@ -290,10 +290,10 @@ var estilos = [
  //Validación de usuario
  var autores = ["metricas.mod@gmail.com","modernizacion.ux@gmail.com","contenidosgobar@gmail.com"];
  jQuery.each(data["feed"]["author"], function(index, val) {
- if(autores.indexOf(val.email.$t) == -1){
- //jQuery("body").remove();
- //window.location.replace("http://www.argentina.gob.ar");
- }
+	 if(autores.indexOf(val.email.$t) == -1){
+	 	jQuery("body").remove();
+	 	window.location.replace("http://www.argentina.gob.ar");
+	 }
  });
  
 
@@ -333,10 +333,6 @@ var estilos = [
  "naranja oscuro" : {"hex" : "#EF6C00"},
  "verde azulado" : {"hex" : "#008388"}
  };
-
-
- 
-
 
 
  //MAPEAR LOS PUNTOS
