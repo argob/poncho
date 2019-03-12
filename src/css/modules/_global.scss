@@ -88,6 +88,17 @@ section {
   }
 }
 
+
+.icon-item i[class*=icono-arg]:before{
+    line-height: 72px;
+    font-size: 1.30em;
+}
+
+.panel-heading i[class*=icono-arg]:before{
+  line-height: 70px;
+}
+
+
 // Fix para Argentina.gob.ar, idealmente desaparece cuando actualice drupal
 h1.icon-item i {
   font-size: 2em;

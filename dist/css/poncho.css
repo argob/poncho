@@ -73,6 +73,13 @@ section {
   .icon-item h3 {
     font-size: 1.6em; }
 
+.icon-item i[class*=icono-arg]:before {
+  line-height: 72px;
+  font-size: 1.30em; }
+
+.panel-heading i[class*=icono-arg]:before {
+  line-height: 70px; }
+
 h1.icon-item i {
   font-size: 2em; }
 
