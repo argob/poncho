@@ -73,6 +73,13 @@ section {
   .icon-item h3 {
     font-size: 1.6em; }
 
+.icon-item i[class*=icono-arg]:before {
+  line-height: 72px;
+  font-size: 1.30em; }
+
+.panel-heading i[class*=icono-arg]:before {
+  line-height: 70px; }
+
 h1.icon-item i {
   font-size: 2em; }
 
@@ -3533,8 +3540,6 @@ span.btn:hover {
     width: 500px;
     margin-top: 13px;
     margin-left: 30px; }
-    .navbar.navbar-top .input-group input {
-      height: 46px; }
   .navbar .navbar-brand {
     padding: 10px 15px; }
     .navbar .navbar-brand img {
@@ -3561,7 +3566,8 @@ span.btn:hover {
 
 header .btn {
   margin: 13px 0 0 13px;
-  padding: 9px 15px; }
+  padding-left: 15px;
+  padding-right: 15px; }
 header .btn-group > .btn:first-child {
   margin-left: 13px; }
 
@@ -3614,8 +3620,6 @@ header .btn-group > .btn:first-child {
     background: #0072bb;
     color: #fff; }
   .navbar-default .navbar-nav > .btn {
-    margin: 13px 0 0 13px;
-    padding: 9px 15px;
     float: left; }
   .navbar-default .navbar-nav > .btn-group > .btn:first-child {
     margin-left: 13px; }
@@ -3694,6 +3698,9 @@ header .btn-group > .btn:first-child {
     background-color: #707070 !important;
     color: #fff;
     text-decoration: none !important; }
+
+.navbar-default .btn-link {
+  color: #0072bb; }
 
 .nav-news-mini {
   padding: 0 0 24px; }
@@ -3775,8 +3782,7 @@ header .btn-group > .btn:first-child {
     padding-top: 12px;
     padding-bottom: 10px; }
   .navbar .btn {
-    margin: 13px 0 0 13px;
-    padding: 12px 15px; }
+    margin: 13px 0 0 13px; }
   .navbar .btn-group {
     width: 100%; }
     .navbar .btn-group > .btn {
@@ -3853,10 +3859,7 @@ header .btn-group > .btn:first-child {
       .navbar .container .navbar-header .navbar-brand h1 span {
         display: none; }
     .navbar .container .navbar-header .navbar-brand br {
-      display: none; }
-  .navbar .container .navbar-header > .btn {
-    padding: 12px;
-    margin-left: 10px; } }
+      display: none; } }
 @media (max-width: 310px) {
   .navbar .container .navbar-header .navbar-brand {
     width: 120px; } }
@@ -4948,7 +4951,7 @@ input[type='text']:-ms-input-placeholder {
   text-shadow: none; }
 
 .radio-inline, .checkbox-inline {
-  height: 0; }
+  height: 25px; }
 
 .social-share {
   margin: 0;

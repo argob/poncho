@@ -176,7 +176,12 @@ a.btn-collapse i.collapseGira {
   }
 }
 
-
+.panels-row-miargentina form h3{
+  margin-bottom: 15px;
+}
+.panels-row-miargentina label{
+  margin-bottom: 15px;
+}
 
 /************************************* NUEVO DASHBOARD**************************************/
 
@@ -811,4 +816,50 @@ h1.title-dashboard{
       border-color: #0072BB #F2F3F4 #F2F3F4!important;
 }
 
+/***************switches**********************/
+
+.switch input{
+  display: none;
+}
+
+.switch {
+    display:inline-block;
+    width:40px;
+    height:20px;
+    margin:8px;
+    transform:translateY(50%);
+    position:relative;
+}
+.slider {
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    border-radius:30px;
+    box-shadow:0 0 0 2px #777, 0 0 4px #777;
+    cursor:pointer;
+    border:4px solid transparent;
+    overflow:hidden;
+     transition:.4s;
+}
+
+.slider:before {
+    position:absolute;
+    content:"";
+    width:100%;
+    height:100%;
+    background:#777;
+    border-radius:30px;
+    transform:translateX(-20px);
+    transition:.4s;
+}
+
+input:checked + .slider:before {
+    transform:translateX(20px);
+    background:#2e7d33;
+}
+input:checked + .slider {
+    box-shadow:0 0 0 2px #2e7d33,0 0 2px #2e7d33;
+}
 
