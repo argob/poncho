@@ -162,7 +162,7 @@ searchType.html = function (data) {
       var tabla = jQuery("#ponchoTable").DataTable({
           "lengthChange": false,
           "autoWidth" : false,
-          "orden" : opt.orden,
+          "ordering" : opt.orden,
           "order": [[ opt.ordenColumna-1, opt.ordenTipo ]],
           "dom": "<'row'<'col-sm-6'l><'col-sm-6'f>>" +
                  "<'row'<'col-sm-12'i>>" +
