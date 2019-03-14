@@ -163,8 +163,8 @@ searchType.html = function (data) {
           "lengthChange": false,
           "autoWidth" : false,
           "bSort": false,
-          "ordering" : opt.orden,
-          "order": [[ opt.ordenColumna-1, opt.ordenTipo ]],
+          "ordering" : false,
+          //"order": [[ opt.ordenColumna-1, opt.ordenTipo ]],
           "dom": "<'row'<'col-sm-6'l><'col-sm-6'f>>" +
                  "<'row'<'col-sm-12'i>>" +
                  "<'row'<'col-sm-12'tr>>" +
