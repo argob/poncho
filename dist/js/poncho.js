@@ -162,9 +162,8 @@ searchType.html = function (data) {
       var tabla = jQuery("#ponchoTable").DataTable({
           "lengthChange": false,
           "autoWidth" : false,
-          "bSort": false,
-          "ordering" : false,
-          //"order": [[ opt.ordenColumna-1, opt.ordenTipo ]],
+          "ordering" : opt.orden,
+          "order": [[ opt.ordenColumna-1, opt.ordenTipo ]],
           "dom": "<'row'<'col-sm-6'l><'col-sm-6'f>>" +
                  "<'row'<'col-sm-12'i>>" +
                  "<'row'<'col-sm-12'tr>>" +
@@ -292,10 +291,10 @@ var estilos = [
  //Validación de usuario
  var autores = ["metricas.mod@gmail.com","modernizacion.ux@gmail.com","contenidosgobar@gmail.com"];
  jQuery.each(data["feed"]["author"], function(index, val) {
-	 if(autores.indexOf(val.email.$t) == -1){
-	 	jQuery("body").remove();
-	 	window.location.replace("http://www.argentina.gob.ar");
-	 }
+   if(autores.indexOf(val.email.$t) == -1){
+    jQuery("body").remove();
+    window.location.replace("http://www.argentina.gob.ar");
+   }
  });
  
 
@@ -371,8 +370,8 @@ optimized: false
  if(punto.gsx$telefono.$t != ""){ telefono = "<div><i class='fa fa-phone'></i>" + punto.gsx$telefono.$t + "</div>";}
  if(punto.gsx$email.$t != ""){ email = "<div><i class='fa fa-envelope'></i>" + punto.gsx$email.$t + "</div>";}
  if(punto.gsx$descripcion.$t != ""){ 
- 	var converter = new showdown.Converter();
- 	descripcion = "<div>" + converter.makeHtml(punto.gsx$descripcion.$t) + "</div>";}
+  var converter = new showdown.Converter();
+  descripcion = "<div>" + converter.makeHtml(punto.gsx$descripcion.$t) + "</div>";}
  if(punto.gsx$boton.$t != ""){ boton = "<hr><a class='btn btn-success btn-sm' href="+ punto.gsx$boton.$t +">"+opt.textoBoton+"</a>";}
 
  
