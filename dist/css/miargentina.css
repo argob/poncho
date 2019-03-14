@@ -871,5 +871,5 @@ input:checked + .slider {
     margin-top: -30px;
     position: relative;
     z-index: 2;
-    color: #E5EAEB;
+    color: #c5c2c2;
 }
