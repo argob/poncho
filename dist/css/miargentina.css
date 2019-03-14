@@ -179,7 +179,7 @@ a.btn-collapse i.collapseGira {
 .panels-row-miargentina form h3{
   margin-bottom: 15px;
 }
-.panels-row-miargentina label{
+.panels-row-miargentina label, .panels-row-miargentina .help-block{
   margin-bottom: 15px;
 }
 
