@@ -228,7 +228,7 @@ jQuery(document).ready(function () {
             tabla.column(filtroColumna).every( function () {
                 var that = this;
                     that
-                        .search(filtro)
+                        .search(jQuery.fn.DataTable.ext.type.search.string(filtro))
                         .draw();
             }); 
           }
