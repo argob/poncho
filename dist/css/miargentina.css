@@ -508,6 +508,11 @@ h1.title-dashboard{
   margin-bottom: 50px;
   padding: 0px 40px;  
 }
+
+.carousel-content-onboarding{
+  height: 650px;
+}
+
 .carousel-indicators-onboarding li{
   width: 14px;
   height: 14px;
@@ -533,88 +538,125 @@ h1.title-dashboard{
 
 }
 
-.onboarding-content p:last-child{
-        padding-top: 15px;
-    }
 
- @media(min-height: 900px) and (min-width: 400px){
-      .onboarding-items{
-        min-height: 750px!important;
-      }
-    }
-
-
-@media(max-height: 899px){
-
-  .onboarding-items{
-    min-height: 650px;
-  }
-
+@media(max-height: 960px){
   .onboarding-img img{
     max-width: 250px;
   }
-   .modal-content-onboarding{
-      margin-top: 6%;
+  .modal-content-onboarding{
+    margin-top: 6%;
+  }
+}
+@media(max-height: 700px){
+  .modal-content-onboarding{
+    margin-top: 50px;
+  }
+}
+
+@media(max-height: 860px){
+  .carousel-content-onboarding {
+    height: 550px;
+  }
+}
+
+@media(max-height: 860px){
+  .onboarding-img img {
+    margin-top: 4%;
+  }
+}
+
+@media (max-width: 960px){
+.modal-content-onboarding, .carousel-content-onboarding {
+    max-width: 550px;
+}
+}
+
+@media (max-width: 570px){
+.modal-content-onboarding, .carousel-content-onboarding {
+    max-width: 350px;
+  }
+  .onboarding-content p:last-child{
+        padding-top: 15px!important;
     }
 }
 
-@media (max-width: 998px){
-  
-  .modal-content-onboarding{
-    width: 90%;
+@media (max-width: 390px){
+.modal-content-onboarding, .carousel-content-onboarding {
+    max-width: 280px;
+}
+}
+
+@media (max-height: 640px){
+.modal-content-onboarding, .carousel-content-onboarding {
+    max-height: 500px;
   }
-  .onboarding-content{
-    height: 100%;
+  .onboarding-img img{
+    margin-top: 30px;
+    width: 150px;
+  }
+
+  .onboarding-items{
     width: 80%;
     margin: auto;
-    padding: 0px 20px;  
   }
-
-
-  
 }
-
-
-@media (max-width: 450px){
-  .onboarding-img img{
-    max-width: 220px;
-  }
+@media(max-width: 380px) and (max-height: 581px){
   .modal-content-onboarding{
-    min-height: 650px;
-   
+    margin-top: 25px;
   }
-  .onboarding-items{
-    min-height: 650px;
-    height: 100%;
+  .modal-content-onboarding, .carousel-content-onboarding {
+    max-height: 470px!important;
+  }
+}
+@media (max-height: 640px) and (max-width: 413px){
+  .onboarding-img img{
+    width: 100px;
+  }
+  .onboarding-content h2{
+    font-size: 18px;
   }
 }
 
-
-
-
-@media(max-height: 899px){
-  .onboarding-items{
-    min-height: 550px;
+@media (max-height: 580px){
+  .modal-content-onboarding, .carousel-content-onboarding {
+    max-height: 460px;
   }
 
-  .onboarding-items{
-    max-height: 550px;
+  .onboarding-content h2{
+    font-size: 20px;
   }
 
   .onboarding-img img{
-    max-width: 200px;
+    width: 100px;
   }
-}
 
-
- 
-
-@media (max-width:1200px) and(orientation: landscape){
-    .carousel-indicators-onboarding{
-      bottom: 30px!important;
+  .onboarding-content p:last-child{
+        padding-top: 15px!important;
     }
 
-    .carousel-indicators-onboarding li.active{
+}
+
+@media (max-height:650px) and (orientation: landscape){
+  .modal-content-onboarding{
+    margin-top: 20px;
+  }
+
+  .modal-content-onboarding, .carousel-content-onboarding{
+    max-height: 320px;
+  }
+
+  .onboarding-items{
+    width: 90%;
+  }
+}
+
+@media (max-height:350px) and (orientation: landscape){
+  .modal-content-onboarding, .carousel-content-onboarding{
+    max-width: 95%;
+    margin: auto;
+  }
+
+  .carousel-indicators-onboarding li.active{
       width: 10px;
       height: 10px;
     }
@@ -623,42 +665,21 @@ h1.title-dashboard{
       width: 8px;
       height: 8px;
     }
-    .onboarding-content h2{
-      font-size: 20px;
-    }
+}
 
-    .modal-content-onboarding{
-      margin-top: 40px;
-    }
-
-    .onboarding-content p:last-child{
-      padding-top: 22px!important;
-    }
+@media (min-height:750px) and (max-width: 400px) and (orientation: portrait){
+  .modal-content-onboarding{
+    margin-top: 20%!important;
+    max-width: 95%!important;
   }
-  
-
-  @media (max-height:600px) and (orientation: landscape){
-    .onboarding-items {
-        max-height: 300px;
-    }
-    .onboarding-items {
-        min-height: 300px;
-    }
-
-    .onboarding-img img {
-        max-width: 120px;
-        margin-top: 15px;
-    }
-
-    .modal-content-onboarding{
-      margin-top: 20px;
-    }
-
-    .onboarding-content p:last-child{
-        padding-top: 35px!important;
-    }
+  .onboarding-img img{
+    margin-top: 10%;
   }
+  .carousel-content-onboarding{
+    max-width: 100%;
 
+  }
+}
 /***  licencia de conducir **/
 .container-licencia {
   padding-top: 10%;
