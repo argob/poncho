@@ -494,6 +494,7 @@ h1.title-dashboard{
   height: 200px;
   margin: auto;
 }
+
 .onboarding-img img{
   margin-top: 10%;
 }
@@ -503,6 +504,7 @@ h1.title-dashboard{
 
 .onboarding-content{
   margin-bottom: 50px;
+  padding: 0px 40px;  
 }
 .carousel-indicators-onboarding li{
   width: 14px;
@@ -528,11 +530,7 @@ h1.title-dashboard{
   margin-top: 10%;
 
 }
-@media(min-height: 900px){
-  .onboarding-items{
-    min-height: 750px;
-  }
-}
+
 
 @media(max-height: 899px){
   .onboarding-items{
@@ -557,6 +555,7 @@ h1.title-dashboard{
     height: 100%;
     width: 80%;
     margin: auto;
+    padding: 0px 20px;  
   }
 
   
@@ -582,11 +581,7 @@ h1.title-dashboard{
 }
 
 
-@media(min-height: 900px){
-  .onboarding-items{
-    min-height: 750px;
-  }
-}
+
 
 @media(max-height: 899px){
   .onboarding-items{
@@ -602,6 +597,65 @@ h1.title-dashboard{
   }
 }
 
+
+
+
+  
+  @media (max-width:1200px) and(orientation: landscape){
+    .carousel-indicators-onboarding{
+      bottom: 30px!important;
+    }
+
+    .carousel-indicators-onboarding li.active{
+      width: 10px;
+      height: 10px;
+    }
+
+    .carousel-indicators-onboarding li{
+      width: 8px;
+      height: 8px;
+    }
+    .onboarding-content h2{
+      font-size: 20px;
+    }
+
+    .modal-content-onboarding{
+      margin-top: 40px;
+    }
+
+    .onboarding-content p:last-child{
+      padding-top: 22px!important;
+    }
+  }
+  
+
+  @media (max-height:600px) and (orientation: landscape){
+    .onboarding-items {
+        max-height: 300px;
+    }
+    .onboarding-items {
+        min-height: 300px;
+    }
+
+    .onboarding-img img {
+        max-width: 120px;
+        margin-top: 15px;
+    }
+
+    .modal-content-onboarding{
+      margin-top: 20px;
+    }
+
+    .onboarding-content p:last-child{
+        padding-top: 35px!important;
+    }
+  }
+
+  @media(min-height: 900px) and (min-width: 1200px){
+      .onboarding-items{
+        min-height: 750px!important;
+      }
+    }
 
 /***  licencia de conducir **/
 .container-licencia {
