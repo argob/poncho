@@ -164,3 +164,18 @@ $color_lochmara_approx: #0072bb;
     }
   }
 }
+
+
+
+
+/* PONCHO TABLES */
+#ponchoTable caption{
+  display: none;
+}
+#ponchoTableFiltroCont label:first-letter,#ponchoTable th:first-letter{
+  text-transform: uppercase;
+}
+
+#ponchoTable caption{
+  display: none;
+}

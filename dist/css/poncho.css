@@ -5172,6 +5172,16 @@ input[type='text']:-ms-input-placeholder {
       float: left;
       font-weight: bold;
       text-transform: uppercase; } }
+/* PONCHO TABLES */
+#ponchoTable caption {
+  display: none; }
+
+#ponchoTableFiltroCont label:first-letter, #ponchoTable th:first-letter {
+  text-transform: uppercase; }
+
+#ponchoTable caption {
+  display: none; }
+
 .alert {
   border-width: 2px;
   font-weight: 400; }
