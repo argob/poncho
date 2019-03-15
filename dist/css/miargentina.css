@@ -545,6 +545,7 @@ h1.title-dashboard{
 
 
 @media(max-height: 899px){
+
   .onboarding-items{
     min-height: 650px;
   }
@@ -552,6 +553,9 @@ h1.title-dashboard{
   .onboarding-img img{
     max-width: 250px;
   }
+   .modal-content-onboarding{
+      margin-top: 6%;
+    }
 }
 
 @media (max-width: 998px){
