@@ -528,10 +528,24 @@ h1.title-dashboard{
   margin-top: 10%;
 
 }
-
-.onboarding-items{
-  min-height: 750px;
+@media(min-height: 900px){
+  .onboarding-items{
+    min-height: 750px;
+  }
 }
+
+@media(max-height: 899px){
+  .onboarding-items{
+    min-height: 650px;
+  }
+
+  .onboarding-img img{
+    max-width: 250px;
+  }
+}
+
+
+
 @media (max-width: 998px){
   
   .modal-content-onboarding{
@@ -564,6 +578,27 @@ h1.title-dashboard{
   .onboarding-items{
     min-height: 650px;
     height: 100%;
+  }
+}
+
+
+@media(min-height: 900px){
+  .onboarding-items{
+    min-height: 750px;
+  }
+}
+
+@media(max-height: 899px){
+  .onboarding-items{
+    min-height: 550px;
+  }
+
+  .onboarding-items{
+    max-height: 550px;
+  }
+
+  .onboarding-img img{
+    max-width: 200px;
   }
 }
 
@@ -916,5 +951,5 @@ ul.data li{
 }
 
 .title-login{
-  margin-top: 30px!important;
+  margin-top: 40px!important;
 }
