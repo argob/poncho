@@ -531,6 +531,16 @@ h1.title-dashboard{
 
 }
 
+.onboarding-content p:last-child{
+        padding-top: 15px;
+    }
+
+ @media(min-height: 900px) and (min-width: 450px){
+      .onboarding-items{
+        min-height: 750px!important;
+      }
+    }
+
 
 @media(max-height: 899px){
   .onboarding-items{
@@ -542,14 +552,10 @@ h1.title-dashboard{
   }
 }
 
-
-
 @media (max-width: 998px){
   
   .modal-content-onboarding{
     width: 90%;
-
-
   }
   .onboarding-content{
     height: 100%;
@@ -560,7 +566,7 @@ h1.title-dashboard{
 
   
 }
-@media (max-width: 550px){
+@media (max-width: 450px){
   .onboarding-img img{
     max-width: 300px;
   }
@@ -598,10 +604,9 @@ h1.title-dashboard{
 }
 
 
+ 
 
-
-  
-  @media (max-width:1200px) and(orientation: landscape){
+@media (max-width:1200px) and(orientation: landscape){
     .carousel-indicators-onboarding{
       bottom: 30px!important;
     }
@@ -650,12 +655,6 @@ h1.title-dashboard{
         padding-top: 35px!important;
     }
   }
-
-  @media(min-height: 900px) and (min-width: 1200px){
-      .onboarding-items{
-        min-height: 750px!important;
-      }
-    }
 
 /***  licencia de conducir **/
 .container-licencia {
