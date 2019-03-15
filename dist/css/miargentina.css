@@ -497,6 +497,8 @@ h1.title-dashboard{
 
 .onboarding-img img{
   margin-top: 10%;
+  width: 100%;
+  max-width: 300px;
 }
 .onboarding-control{
   background: rgba(0,0,0,0)!important;
@@ -535,7 +537,7 @@ h1.title-dashboard{
         padding-top: 15px;
     }
 
- @media(min-height: 900px) and (min-width: 450px){
+ @media(min-height: 900px) and (min-width: 400px){
       .onboarding-items{
         min-height: 750px!important;
       }
@@ -564,15 +566,12 @@ h1.title-dashboard{
     padding: 0px 20px;  
   }
 
+
   
 }
-@media (max-width: 450px){
-  .onboarding-img img{
-    max-width: 300px;
-  }
-}
 
-@media (max-width: 400px){
+
+@media (max-width: 450px){
   .onboarding-img img{
     max-width: 220px;
   }
