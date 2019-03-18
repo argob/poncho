@@ -148,6 +148,9 @@ a.btn-collapse i.collapseGira {
   margin: 10px;
 }
 
+.panels-row-miargentina .panel-body small{
+  margin: 10px 0px;
+}
 @media (min-width: 991px) {
   .panel-table tr:first-child>td {
     border-top: 0px;
