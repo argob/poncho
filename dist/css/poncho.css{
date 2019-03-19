@@ -4538,12 +4538,6 @@ a.panel {
 
   .panel.panel-icon .panel-heading {
     height: 152px; } }
-@media (max-width: 768px) {
-  .panels-row {
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -ms-flexbox; } }
 .overlay {
   position: absolute;
   top: 0;
@@ -5707,4 +5701,4 @@ a.alert.alert-danger i {
   .text-lg-center {
     text-align: center !important; } }
 
-/*# sourceMappingURL=poncho.css.map */
+/*# sourceMappingURL=poncho.css%7B.map */
