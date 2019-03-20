@@ -59,13 +59,13 @@
       <!-- <script src="https://id.argentina.gob.ar/static/js/chosen.jquery.js"></script> -->
 <style>
   /*toggle dni*/
-.content-dni-tramite{
+.content-popover{
   position: absolute !important;
   max-width: 400px !important;
   z-index: 2; border: 1px solid rgba(0, 0, 0, .2);
   border-radius: 6px; padding: 10px 20px 20px 20px;top: -300px;
 }
-.arrow-tramite{
+.arrow-popover{
     border-bottom: 0px solid rgba(0, 0, 0, 0);
     border-left: 11px solid rgba(0, 0, 0, 0);
     border-right: 11px solid rgba(0, 0, 0, 0);
@@ -78,7 +78,7 @@
     width: 22px;
 
 }
-.arrow-tramite:after{
+.arrow-popover:after{
   content: " ";
   border-width: 10px;
   box-sizing: border-box;
@@ -284,8 +284,8 @@
       <p>
         <a onclick="popshow()" role="button" data-toggle="popover" data-trigger="focus">¿Dónde encuentro mi número de trámite?</a>
       </p>
-      <div class="content-dni-tramite hidden bg-white" id="content-dni-tramite">
-        <div class="arrow-tramite"></div>
+      <div class="content-popover hidden bg-white" id="content-popover">
+        <div class="arrow-popover"></div>
         <div class='col-xs-12 p-x-0'>
           <span class='close'  onclick="pophidde()">&times;</span>
         </div>
@@ -1294,12 +1294,12 @@ $('button').click(function(event) {
   mostrarErrores();
 });
 
-var content = document.getElementById('content-dni-tramite');
+var content_popover = document.getElementById('content-popover');
 function popshow(){
-  content.classList.toggle('hidden');
+  content_popover.classList.toggle('hidden');
 }
 function pophidde(){
-  content.classList.add('hidden')
+  content_popover.classList.add('hidden')
 }
 </script>
 
