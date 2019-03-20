@@ -57,7 +57,43 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   
       <!-- <script src="https://id.argentina.gob.ar/static/js/chosen.jquery.js"></script> -->
+<style>
+  /*toggle dni*/
+.content-dni-tramite{
+  position: absolute !important;
+  max-width: 400px !important;
+  z-index: 2; border: 1px solid rgba(0, 0, 0, .2);
+  border-radius: 6px; padding: 10px 20px 20px 20px;top: -300px;
+}
+.arrow-tramite{
+    border-bottom: 0px solid rgba(0, 0, 0, 0);
+    border-left: 11px solid rgba(0, 0, 0, 0);
+    border-right: 11px solid rgba(0, 0, 0, 0);
+    border-top: 11px solid rgba(0, 0, 0, 0.25);
+    bottom: -11px;
+    height: 11px;
+    left: 199px;
+    margin-left: -11px;
+    position: absolute;
+    width: 22px;
 
+}
+.arrow-tramite:after{
+  content: " ";
+  border-width: 10px;
+  box-sizing: border-box;
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  bottom: 1px;
+  margin-left: -10px;
+  border-top-color: #fff;
+  border-bottom-width: 0;
+}
+</style>
     </head>
     <body>
   <!-- Google Tag Manager (noscript) -->
@@ -240,6 +276,35 @@
    <p class="help-block error hidden">Ingresá tu número de documento</p>
  </div>
 </div>
+</div>
+<div class="row">
+  <div class="form-group item-form">
+    <div class="col-xs-12">
+      <label for="nro-tramite">Número de trámite del DNI</label>
+      <p>
+        <a onclick="popshow()" role="button" data-toggle="popover" data-trigger="focus">¿Dónde encuentro mi número de trámite?</a>
+      </p>
+      <div class="content-dni-tramite hidden bg-white" id="content-dni-tramite">
+        <div class="arrow-tramite"></div>
+        <div class='col-xs-12 p-x-0'>
+          <span class='close'  onclick="pophidde()">&times;</span>
+        </div>
+        <div>
+          <p>El número de trámite de tu DNI se encuentra en el frente en la parte inferior.</p>
+        </div>
+        <div class='m-x-1'>
+          <img src='../../img/dni_id.png' alt='imagen-dni' class='img-responsive'>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group  item-form">
+            <input type="number" class="form-control" id="nro-tramite" required="" min="0" aria-required="true">  
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="row">
@@ -1228,6 +1293,14 @@ function mostrarErrores(){
 $('button').click(function(event) {
   mostrarErrores();
 });
+
+var content = document.getElementById('content-dni-tramite');
+function popshow(){
+  content.classList.toggle('hidden');
+}
+function pophidde(){
+  content.classList.add('hidden')
+}
 </script>
 
 </body>
