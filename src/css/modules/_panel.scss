@@ -413,7 +413,7 @@ a {
 
 .panels-row {
   display: flex;
-  flex-wrap: wrap; // Comentado porque trae problemas en Safari
+  flex-wrap: wrap;
   flex-direction: row;
 
   > div {
@@ -436,6 +436,9 @@ a {
     content: normal;
 }
 
+
+
+
 @media screen and (min-width: 768px) {
 
   .panel.panel-default .panel-heading {
@@ -451,3 +454,12 @@ a {
   }
 
 }
+
+@media (max-width: 768px){
+  .panels-row{
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: -ms-flexbox;
+      }
+ }
