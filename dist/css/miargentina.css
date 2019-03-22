@@ -44,7 +44,7 @@ a.btn-collapse i.collapseGira {
   max-width: 120px;
 }
 .btn-volver a{
-  margin-top: 0px;
+  margin-top: 0px!important;
 }
 
 .panels-row-miargentina .panel-default {
