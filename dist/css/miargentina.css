@@ -43,6 +43,9 @@ a.btn-collapse i.collapseGira {
   margin-top: 5px;
   max-width: 120px;
 }
+.btn-volver a{
+  margin-top: 0px;
+}
 
 .panels-row-miargentina .panel-default {
   width: 100%;
@@ -163,6 +166,9 @@ a.btn-collapse i.collapseGira {
 }
 .panels-row-miargentina .btn{
   margin-top:15px;
+}
+.panels-row-miargentina .panel-heading .media-left{
+  vertical-align: middle;
 }
 @media (min-width: 991px) {
   .panel-table tr:first-child>td {
