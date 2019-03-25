@@ -5389,6 +5389,44 @@ a.alert.alert-danger i {
   /* evita cortes de titulos entre paginas */
   h1, h2, h3, h4, h5, h6 {
     break-inside: avoid !important; } }
+#map-container {
+  height: 100vh; }
+
+#map {
+  height: 100%; }
+
+@media (max-width: 480px) {
+  #map-container .navbar .container .navbar-header .navbar-brand {
+    width: auto; } }
+#map-container .separarGuiones span:before {
+  content: "-";
+  display: inline-block;
+  margin-left: 5px;
+  margin-right: 5px; }
+
+#map-container .separarGuiones span:nth-child(2):before {
+  content: none; }
+
+#map-container .media-body .fa {
+  margin-right: 5px;
+  width: 15px;
+  color: #9b9b9b;
+  text-align: center; }
+
+#map-container .media-body h4 {
+  margin: 0px 0px 10px 0px; }
+
+#map-container .media-body div {
+  margin-bottom: 10px;
+  font-size: 13px; }
+
+#map-container .media-body hr {
+  margin-bottom: 10px;
+  margin-top: 10px; }
+
+#map-container .media-body small {
+  font-weight: 600; }
+
 .dashboard ol {
   padding: 15px; }
   .dashboard ol li {
