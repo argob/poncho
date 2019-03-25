@@ -993,10 +993,10 @@ input:checked + .slider {
   height: 100%;
   min-height: 100%;
   position: relative;
+  height: calc(100vh - 233px);
 }
-.login-container section:first-child{
-  min-height: 616px;
-  height: calc(100vh - 500px);
+.login-container section:nth-child(2){
+  margin-top: auto;
 }
 .input-icon{
     float: right;
