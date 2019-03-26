@@ -247,39 +247,45 @@ jQuery(document).ready(function () {
 //####################### PONCHO MAPS #################################
 //#####################################################################
 
+/*Valores predeterminados*/
+var opt = {
+      "tipoMapa" : "roadmap",
+    };
 
 
 function ponchoMaps(opt){
+
  //INICIALIZA EL MAPA
  var puntos;
 
 
-var estilos = [
- {
- "featureType": "administrative.country",
- "stylers": [
- {
- "visibility": "on"
- }
- ]
- },
- {
- "featureType": "poi",
- "stylers": [
- {
- "visibility": "off"
- }
- ]
- }
+var estilos = 
+[  
+   {  
+      "featureType":"administrative.country",
+      "stylers":[  
+         {  
+            "visibility":"on"
+         }
+      ]
+   },
+   {  
+      "featureType":"poi",
+      "stylers":[  
+         {  
+            "visibility":"off"
+         }
+      ]
+   }
 ];
 
 
  var mapOptions = {
- center: new google.maps.LatLng(58, 16),
- zoom: 5,
- mapTypeId: google.maps.MapTypeId.ROADMAP,
- center: {lat:-39.6930895,lng:-57.2432742},
- styles: estilos
+   center: new google.maps.LatLng(58, 16),
+   zoom: 5,
+   mapTypeId: opt.tipoMapa,
+   center: {lat:-39.6930895,lng:-57.2432742},
+   styles: estilos
  };
  var map = new google.maps.Map(document.getElementById("map"),mapOptions);
 
@@ -359,9 +365,8 @@ optimized: false
  email = 
  boton = 
  descripcion = 
- ubicacion = "";
-
-
+ ubicacion = 
+ foto = "";
  
 
  if(punto.gsx$provincia.$t != "" || punto.gsx$localidad.$t != ""){ 
@@ -373,18 +378,18 @@ optimized: false
   var converter = new showdown.Converter();
   descripcion = "<div>" + converter.makeHtml(punto.gsx$descripcion.$t) + "</div>";}
  if(punto.gsx$boton.$t != ""){ boton = "<hr><a class='btn btn-success btn-sm' href="+ punto.gsx$boton.$t +">"+opt.textoBoton+"</a>";}
-
+ if(punto.gsx$foto != null ){ foto = '<img width="100%" src="'+ punto.gsx$foto.$t +'">'}
  
  //DETALLE CADA PUNTO
  detalles[key] = new google.maps.InfoWindow({
- content: '<div class="media"> <div class="media-body"><small class="text-primary">'+ punto.gsx$tipo.$t +'</small><h4>'+ punto.gsx$nombre.$t + '</h4> ' + descripcion + ubicacion + telefono + email + boton + '</div></div>',
+ content: '<div class="media"><div class="media-body"><small class="text-primary">'+ punto.gsx$tipo.$t +'</small><h4>'+ punto.gsx$nombre.$t + '</h4> ' + foto + descripcion + ubicacion + telefono + email + boton + '</div></div>',
  maxWidth: 300
  });
 
  markers[key].addListener('click', function() {
  closeWindows();
- map.setZoom(17);
- map.setCenter(markers[key].getPosition());
+ //map.setZoom(17);
+ //map.setCenter(markers[key].getPosition());
  detalles[key].open(map, markers[key]);
  });
 
