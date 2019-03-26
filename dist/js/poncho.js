@@ -252,13 +252,10 @@ var opt = {
       "tipoMapa" : "roadmap",
     };
 
-
 function ponchoMaps(opt){
 
- //INICIALIZA EL MAPA
- var puntos;
-
-
+//INICIALIZA EL MAPA
+var puntos;
 var estilos = 
 [  
    {  
