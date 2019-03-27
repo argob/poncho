@@ -154,7 +154,7 @@ a.btn-collapse i.collapseGira {
 .panels-row-miargentina>div .panel-default{
    display: flex;
    flex-direction:column ;
-   height: 100%
+  
 }
 
 .panels-row-miargentina .panel-footer{
