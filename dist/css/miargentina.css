@@ -930,7 +930,7 @@ h1.title-dashboard{
 /***----------------------FOOTER Y HEADER---------------------------------***/
 
 .main-footer{
-  padding: 22px 0px 15px 0px;
+  padding: 28px 0px 15px 0px;
 }
 @media only screen and (max-width: 768px) {
   .main-footer img.image-responsive {
