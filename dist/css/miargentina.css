@@ -295,10 +295,10 @@ h1.title-dashboard{
 
 
 .dashboard-sidebar ul li > a:hover{
-  background: #F4F4F4;
+  background: #F4F4F4!important;
 }
  .dashboard-sidebar ul li > a:active{
-  background: #f2f3f4;
+  background: #f2f3f4!important;
 }
 .dashboard-sidebar ul li > a:hover, .dashboard-sidebar ul li > a:active,  .dashboard-sidebar ul li > a.active {
   border-radius: 0px!important;
@@ -311,6 +311,8 @@ h1.title-dashboard{
  }
 .dashboard-sidebar ul li.active > a, .dashboard-sidebar ul li.active > a i{
   color: #0072bb!important;
+  background-color: #f2f3f4!important;
+
 }
 .dashboard-sidebar ul li.active > a .media{
   margin-left: -7px;
