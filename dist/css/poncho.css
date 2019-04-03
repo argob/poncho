@@ -4541,10 +4541,7 @@ a.panel {
     height: 152px; } }
 @media (max-width: 768px) {
   .panels-row {
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -ms-flexbox; } }
+    display: block; } }
 /*TOGGLE DNI*/
 .content-popover {
   position: absolute !important;
