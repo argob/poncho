@@ -260,7 +260,7 @@ h1.title-dashboard{
   margin-top: -10px;
 }
 
-#dashboard-sidebar .panel-sidebar{
+.dashboard-sidebar .panel-sidebar{
   border: 0;
   margin-bottom: 0px;
   border-radius: 4px;
@@ -283,7 +283,7 @@ h1.title-dashboard{
 }
 
 
-#dashboard-sidebar{
+.dashboard-sidebar{
     height: 100vh;
     width: 100%;
     min-width: 260px;
@@ -294,35 +294,35 @@ h1.title-dashboard{
 }
 
 
-#dashboard-sidebar ul li > a:hover{
+.dashboard-sidebar ul li > a:hover{
   background: #F4F4F4;
 }
- #dashboard-sidebar ul li > a:active{
+ .dashboard-sidebar ul li > a:active{
   background: #f2f3f4;
 }
-#dashboard-sidebar ul li > a:hover, #dashboard-sidebar ul li > a:active,  #dashboard-sidebar ul li > a.active {
+.dashboard-sidebar ul li > a:hover, .dashboard-sidebar ul li > a:active,  .dashboard-sidebar ul li > a.active {
   border-radius: 0px!important;
 }
- #dashboard-sidebar ul li.active > a{
+ .dashboard-sidebar ul li.active > a{
   border-left: 5px solid #0072bb;
   background-color: #f2f3f4;
   border-radius: 0px;
   
  }
-#dashboard-sidebar ul li.active > a, #dashboard-sidebar ul li.active > a i{
+.dashboard-sidebar ul li.active > a, .dashboard-sidebar ul li.active > a i{
   color: #0072bb!important;
 }
-#dashboard-sidebar ul li.active > a .media{
+.dashboard-sidebar ul li.active > a .media{
   margin-left: -7px;
 }
-#dashboard-sidebar i{
+.dashboard-sidebar i{
   text-align: center;
   width: 35px;
   display: inline-block!important;
   color: #CACBC5;
 }
 
-#dashboard-sidebar .media-body{
+.dashboard-sidebar .media-body{
   vertical-align: middle;
 }
 
@@ -428,13 +428,13 @@ h1.title-dashboard{
     width: 100%;
     max-width: 100%!important;
   }
-  #dashboard-sidebar{
+  .dashboard-sidebar{
     background-color: #f2f3f4;
     margin: auto;
     max-width: 100%!important;
 
   }
-  #dashboard-sidebar ul{
+  .dashboard-sidebar ul{
     padding: 0px 15px!important;
 
   }
@@ -469,7 +469,7 @@ h1.title-dashboard{
     right: 60px!important;
     max-width: 350px;
   }
-#dashboard-sidebar ul li.active > a{
+.dashboard-sidebar ul li.active > a{
   border: 0px;
   margin-left: 0px;
   background-color: #f2f3f4;
@@ -477,13 +477,13 @@ h1.title-dashboard{
 
 }
 @media (max-width: 560px){
-  #dashboard-sidebar p{
+  .dashboard-sidebar p{
     font-size: 0.8em;
   }
   .sidebar{
     max-width: 100%!important;
   }
-  #dashboard-sidebar{
+  .dashboard-sidebar{
     width: 100%;
     max-width: 100%!important;
   }
@@ -701,19 +701,12 @@ h1.title-dashboard{
 }
 
 
-/***  licencia de conducir **/
+/***  licencia de conducir 
 .container-licencia {
   padding-top: 10%;
 }
 
-.control-licencia.right, .control-licencia.left {
-  background-image: none;
-}
 
-.control-licencia, .control-licencia:hover, .control-licencia:focus {
-  color: #101010;
-  opacity: 1;
-}
 
 .licencia {
   width: 85%;
@@ -725,11 +718,7 @@ h1.title-dashboard{
   justify-content: center;
 }
 
-.panel-licencia {
-  display: block;
-}
-
-.display-panel-licencia {
+.panel-licencia, .display-panel-licencia {
   display: block;
 }
 
@@ -746,6 +735,15 @@ h1.title-dashboard{
 .panel-licencia{
    margin-bottom: 0px!important; 
   }
+
+@media (max-height: 630px){
+  .display-panel-licencia {
+    display: none !important;
+  }
+ .container-licencia{
+  padding-top: 0px;
+ }
+}
 
 @media (max-width: 991px) {
   .container-licencia {
@@ -894,13 +892,14 @@ h1.title-dashboard{
     border-top: none;
   }
 
-  .display-panel-licencia {
-    display: none !important;
-  }
+  
  
 }
 
 @media(max-width: 991px){
+  .container-g-licencia{
+    width: 100%;
+  }
   .container-licencia{
     height: 100vh;
   }
@@ -909,7 +908,9 @@ h1.title-dashboard{
   }
 
 }
-@media (min-width: 991px) {
+
+
+@media (min-width: 992px) {
   
   .panel-licencia {
     -webkit-transform: rotate(0deg);
@@ -924,6 +925,20 @@ h1.title-dashboard{
     width: auto;
   }
 }
+
+
+**/
+
+
+
+
+
+
+
+
+
+
+
 
 
 
