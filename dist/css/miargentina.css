@@ -305,7 +305,7 @@ h1.title-dashboard{
 }
  .dashboard-sidebar ul li.active > a{
   border-left: 5px solid #0072bb;
-  background-color: #f2f3f4;
+  background-color: #f2f3f4!important;
   border-radius: 0px;
   
  }
