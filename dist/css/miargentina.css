@@ -20,7 +20,10 @@
   box-shadow: 0 0px 0px rgba(0, 0, 0, 0.2);
 }
 
-
+.no-border-shadow{
+  border: none!important;
+  box-shadow: none!important;
+}
 .alert .btn-close {
   margin-top: -7px;
 }
@@ -85,7 +88,7 @@ a.btn-collapse i.collapseGira {
   display: block !important;
 }
 
-.panels-row-miargentina .panel.panel-default, .panels-row-miargentina .list-group {
+.panels-row-miargentina .panel.panel-default, .panels-row-miargentina .list-group  {
   box-shadow: none !important;
 }
 
@@ -704,12 +707,16 @@ h1.title-dashboard{
 
 
 /***  licencia de conducir 
+
+**/
+
 .container-licencia {
   padding-top: 10%;
 }
-
-
-
+.control-licencia{
+  background-image: none!important;
+  color: #464646;
+}
 .licencia {
   width: 85%;
   margin: auto;
@@ -724,212 +731,167 @@ h1.title-dashboard{
   display: block;
 }
 
-.item-licencia img {
-  height: auto !important;
-  width: 100%;
-}
 
-.item-licencia:last-child img {
+
+/*.item-licencia:last-child img {
   width: auto;
   max-height: 500px;
-}
+}*/
 
 .panel-licencia{
    margin-bottom: 0px!important; 
   }
-
-@media (max-height: 630px){
-  .display-panel-licencia {
+@media(max-width: 768px) and (max-height: 768px){
+  .panels-row-licencia{
+    height: 100vh;
+  }
+  .panel-licencia{
+    height: 100%;
+  }
+}
+@media(max-width: 991px) and (max-height: 991px) {
+   .display-panel-licencia {
     display: none !important;
   }
- .container-licencia{
-  padding-top: 0px;
- }
-}
-
-@media (max-width: 991px) {
-  .container-licencia {
-    padding-top: 0;
-  }
-
-  .item-licencia img, .item-licencia:last-child img {
-    max-height: 250px !important;
-    width: auto !important;
-  }
-
-  #lic-carousel .body-licencia {
+  .container-g-licencia{
     width: 100%;
   }
-
-  .display-panel-licencia {
-    display: none !important;
-  }
-
-  .panels-row-licencia .panel-border-primary {
-    border-top: none;
+}
+@media(max-height: 670px) and (max-width: 991px) and (orientation:landscape){
+   
+  .container-licencia{
+    padding-top: 0px;
+    width: 100%;
   }
  
-  .container-licencia{
-    padding: 0px;
+}
+
+
+@media(max-width: 991px) and (max-height: 991px) {
+    .panel-licencia{
+      transform-origin: left top;
+      -webkit-transform: rotate(90deg);
+      -moz-transform: rotate(90deg);
+      -o-transform: rotate(90deg);
+      -ms-transform: rotate(90deg);
+      transform: rotate(90deg)!important;
+      width: 100vh !important;
+      height: 100vw !important;
+      overflow-x: hidden;
+      position: absolute;
+      top: 0;
+      left: 100%;
+    }
+  }
+@media (max-width: 991px) and (orientation:landscape) {
+ .panel-licencia{
+      transform-origin: left top;
+      -webkit-transform: rotate(0deg);
+      -moz-transform: rotate(0deg);
+      -o-transform: rotate(0deg);
+      -ms-transform: rotate(0deg);
+      transform: rotate(0deg)!important;
+      width: 100vw !important;
+      height: 100vh !important;
+      overflow-x: hidden;
+      position: absolute;
+      top: 0;
+      left:0%;
+    }
+  }
+@media(max-height: 411px) and (orientation: landscape){
+  #lic-carousel{
+    height: 350px;
+  }
+  .body-licencia, .licencia, .item-licencia, .fila-licencia>div {
+    height: 100%;
+  }
+  .fila-licencia{
+    height: 95%;
+  }
+  .fila-licencia>div img{
+    height: 90%;
   }
 }
 
-@media (max-width: 767px) {
-  .licencia p {
-    margin-top: 7px;
+@media(max-height: 330px) and (orientation: landscape){
+  #lic-carousel{
+    height: 300px;
+  }
+  
+}
+
+@media(max-height: 380px) and (min-width: 800px) and (orientation: landscape){
+  #lic-carousel{
+    height: 300px;
+  }
+  
+}
+@media (max-width: 600px) and (orientation: portrait){
+  #lic-carousel{
+    height: 350px;
+  }
+  .body-licencia, .licencia, .item-licencia, .fila-licencia>div {
+    height: 100%;
+  }
+  .fila-licencia{
+    height: 95%;
+  }
+  .fila-licencia>div img{
+    height: 90%;
   }
 }
-@media (max-width: 670px) {
-   .item-licencia img, .item-licencia:last-child img {
-    max-height: 228px !important;
+
+@media (max-width: 330px) and (orientation: portrait){
+  #lic-carousel{
+    height: 300px;
+  }
+  
+  }
+@media(min-width: 768px) and (min-height: 1024px){
+  .fila-licencia>div img{
+    height: auto;
+    width: 100%;
+  }
+  .item-licencia:last-child .fila-licencia div img{
+    height: auto;
+    width: auto;
+    max-height: 318px;
+  }
+}
+@media(orientation: landscape) and (min-height: 768px){
+  .fila-licencia>div img{
+    height: auto;
+    width: 100%;
+    max-height: 318px;
+  }
+  .item-licencia:last-child .fila-licencia div img{
+    width: auto;
    
   }
 }
 
-@media (min-width: 1200px) and (orientation: landscape) {
-  .body-licencia{
-    height: 470px;
+
+@media(max-height: 420px){
+  .item-licencia:last-child .fila-licencia div img{
+    height: 310px;
+   
   }
-  .licencia img{
-    margin-top: 15px;
-  }
-  .item-licencia:last-child img{
-    margin-top: 50px!important;
+}
+@media (orientation:landscape) and (max-height: 420px){
+  .item-licencia:last-child .fila-licencia div img{
+    height: 90%;
+    max-height: 310px;
+    width:auto;
   }
 }
 
-@media (max-width: 1200px) and (min-width: 991px) and (orientation: landscape) {
-  .container-licencia{
-    height: 530px;
-  }
-
-  .panels-row-licencia, .panel-licencia{
-    height: 100%;
+@media (orientation:landscape) and (max-height: 320px){
+  .item-licencia:last-child .fila-licencia div img{
+    height: 210px;
+    width:auto;
   }
 }
-@media (max-width: 1200px) and (min-width: 991px) and (orientation: portrait) {
-  .container-licencia{
-    height: 530px;
-  }
-
-  .panels-row-licencia, .panel-licencia{
-    width: 100%;
-  }
-}
-
-
-@media (max-width: 991px) and (orientation: landscape) {
-  .padding-panel-licencia {
-    padding: 10px !important;
-  }
-
-  .licencia img {
-    margin-top: 10px;
-  }
-}
-
-
-
-@media (min-width: 767px) and (orientation: landscape){
-   a.control-licencia{
-    max-height: 100%;
-  }
- 
-}
-@media (max-width: 767px) and (orientation: landscape){
-   a.control-licencia{
-    margin-top: 70px;
-    min-height: 100%;
-  }
-  a.control-licencia span{
-    margin-top: -50px!important;
-
-  }
-}
-@media (orientation: portrait){
-   a.control-licencia{
-    margin-top: 70px;
-    min-height: 100%;
-    
-  }
-  a.control-licencia span{
-    margin-top: -50px!important;
-
-  }
-}
-
-
-@media (max-width: 991px) and (orientation: portrait) {
-
-  .padding-panel-licencia {
-    padding: 0px !important;
-  }
-
-  .panel-licencia {
-    transform-origin: left top;
-    -webkit-transform: rotate(90deg);
-    -moz-transform: rotate(90deg);
-    -o-transform: rotate(90deg);
-    -ms-transform: rotate(90deg);
-    transform: rotate(90deg);
-    width: 100vh !important;
-    height: 100vw !important;
-    overflow-x: hidden;
-    position: absolute;
-    top: 0;
-    left: 100%;
-    margin-bottom: 0px;
-  }
-
-  .licencia img {
-    width: 100%;
-    margin-top: 10px;
-  }
-
-  #lic-carousel .panel-body {
-    width: 100% !important;
-  }
-
-  .panels-row-licencia .panel-border-primary {
-    border-top: none;
-  }
-
-  
- 
-}
-
-@media(max-width: 991px){
-  .container-g-licencia{
-    width: 100%;
-  }
-  .container-licencia{
-    height: 100vh;
-  }
-  .panels-row-licencia, .panel-licencia{
-    height: 100%;
-  }
-
-}
-
-
-@media (min-width: 992px) {
-  
-  .panel-licencia {
-    -webkit-transform: rotate(0deg);
-    -moz-transform: rotate(0deg);
-    -o-transform: rotate(0deg);
-    -ms-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-
-  .item-licencia:last-child img {
-    max-height: 258px;
-    width: auto;
-  }
-}
-
-
-**/
 
 
 
