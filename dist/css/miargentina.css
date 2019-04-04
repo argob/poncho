@@ -289,7 +289,7 @@ h1.title-dashboard{
 .dashboard-sidebar{
     height: 100vh;
     width: 100%;
-    min-width: 260px;
+    max-width: 260px;
     min-height: 100%;
     background-color: white;
     display: block;
@@ -458,7 +458,7 @@ h1.title-dashboard{
     background-color: initial!important;
   }
   .nav-dashboard li a p{
-    font-size: 0.9em;
+    font-size: 0.8em;
   }
 
   .dropdown-micuenta .media-body{
