@@ -731,7 +731,10 @@ h1.title-dashboard{
   display: block;
 }
 
-
+.licencia-volver-lg{
+    margin-top: 6px;
+    margin-right: 10px;
+}
 
 /*.item-licencia:last-child img {
   width: auto;
