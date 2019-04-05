@@ -18,6 +18,10 @@
   border: none!important;
   box-shadow: none!important;
 }
+.panel-borders{
+  border: 1px solid #dee2e6;
+}
+
 .alert .btn-close {
   margin-top: -7px;
 }
@@ -61,7 +65,7 @@ a.btn-collapse i.collapseGira {
   border-bottom: 1px solid #ccc;
 }
 .panels-row-miargentina .panel h2 {
-  font-size: 1.3em !important;
+  font-size: 1.4em !important;
   margin-top: 8px !important;
   margin-bottom: 8px !important;
   font-weight: 600 !important
@@ -83,7 +87,7 @@ a.btn-collapse i.collapseGira {
   font-weight: 500;
 }
 .panels-row-miargentina .panel h3 {
-  font-size: 1.3em;
+  font-size: 1.2em;
 }
 .panels-row-miargentina .list-group-item {
   padding: 10px 25px;
@@ -149,6 +153,9 @@ a.btn-collapse i.collapseGira {
 }
 .panels-row-miargentina label, .panels-row-miargentina .help-block{
   margin-bottom: 15px;
+}
+.panel-borders .panel-heading{
+  border: none!important;
 }
 @media (min-width: 991px) {
   .panel-table tr:first-child>td {
@@ -739,12 +746,30 @@ h1.title-dashboard{
 .main-footer{
   padding: 28px 0 15px 0;
 }
-@media only screen and (max-width: 768px) {
+.main-footer .footer-content{
+    float: right;
+    min-width: 1200px;
+}
+@media only screen and (max-width: 1366px) {
+  .main-footer .footer-content{
+    max-width: 1200px;
+    min-width: 900px;
+  }
   .main-footer img.image-responsive {
     max-width: 250px !important;
-    float: none !important;
+   
   }
 }
+@media only screen and (max-width: 991px){
+  .main-footer .footer-content{
+    width: 100%;
+    float: none;
+  }
+  .footer-content .row .col-md-4:nth-child(2){
+    margin-top: 30px;
+  }
+}
+
 @media (max-width: 420px) {
   .navbar .container .navbar-header .navbar-brand {
     padding: 14px 0 14px !important;
