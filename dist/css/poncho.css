@@ -3441,9 +3441,6 @@ fieldset[disabled] .btn-default.active {
 span.btn:hover {
   cursor: default; }
 
-.media .btn {
-  white-space: nowrap; }
-
 .btn-group .btn-default {
   background: #E5EAEB;
   color: #444444;
