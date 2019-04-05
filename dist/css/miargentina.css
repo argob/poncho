@@ -746,29 +746,26 @@ h1.title-dashboard{
 .main-footer{
   padding: 28px 0 15px 0;
 }
-.main-footer .footer-content{
-    float: right;
-    min-width: 1200px;
+.main-footer img.image-responsive {
+  max-width: 250px !important;
+ 
 }
-@media only screen and (max-width: 1366px) {
-  .main-footer .footer-content{
-    max-width: 1200px;
-    min-width: 900px;
-  }
-  .main-footer img.image-responsive {
-    max-width: 250px !important;
-   
+
+.footer-img-content, .footer-img-content .col-md-4{
+  float: right;
+}
+@media(max-width: 2000px) and (min-width: 1199px){
+  .footer-img-content{
+    margin-left: auto;
+    min-width: 700px;
   }
 }
 @media only screen and (max-width: 991px){
-  
-  .main-footer .footer-content{
-    min-width: 100%;
-    max-width: 100%;
-    float: none;
-  }
-  .footer-content .row .col-md-4:nth-child(2){
+  div:first-child > img.image-responsive{
     margin-top: 30px;
+  }
+  .footer-img-content, .footer-img-content .col-md-4{
+    float: none;
   }
 }
 
