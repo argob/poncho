@@ -763,19 +763,15 @@ h1.title-dashboard{
 @media only screen and (max-width: 991px){
   
   .main-footer .footer-content{
-    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
     float: none;
   }
   .footer-content .row .col-md-4:nth-child(2){
     margin-top: 30px;
   }
 }
-@media only screen and (max-width: 768px){
-  .main-footer {
-    position: absolute;
-    bottom: 0;
-  }
-}
+
 @media (max-width: 420px) {
   .navbar .container .navbar-header .navbar-brand {
     padding: 14px 0 14px !important;
