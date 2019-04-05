@@ -746,29 +746,34 @@ h1.title-dashboard{
 .main-footer{
   padding: 28px 0 15px 0;
 }
-.main-footer img.image-responsive {
-  max-width: 250px !important;
- 
+
+.footer{
+  display: flex; 
+  justify-content: flex-end;
 }
 
-.footer-img-content, .footer-img-content .col-md-4{
-  float: right;
+.footer .col-sm-2{
+  min-width: 270px;
+  max-width: 500px;
 }
-@media(max-width: 2000px) and (min-width: 1199px){
-  .footer-img-content{
-    margin-left: auto;
-    min-width: 700px;
+.footer .first-footer-item{
+  margin-right: auto;
+  margin-top: 9px;
+  min-width: 250px;
+}
+@media(min-width: 1366px){
+  .footer .col-sm-2{
+    max-width: 300px;
   }
 }
-@media only screen and (max-width: 991px){
-  div:first-child > img.image-responsive{
+@media(max-width: 768px){
+  .footer{
+    display: block;
+  }
+  .footer .col-sm-2:nth-child(2){
     margin-top: 30px;
   }
-  .footer-img-content, .footer-img-content .col-md-4{
-    float: none;
-  }
 }
-
 @media (max-width: 420px) {
   .navbar .container .navbar-header .navbar-brand {
     padding: 14px 0 14px !important;
