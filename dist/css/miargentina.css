@@ -354,9 +354,13 @@ h1.title-dashboard{
 /************************************************NUEVO DASHBOARD MOBILE***********************************************/
 
 
-
+.menutoggle{
+  display: none;
+}
 @media (max-width: 767px){
-
+  .menutoggle{
+  display: block;
+}
   .brand-icon{
     width:116px;
   }
