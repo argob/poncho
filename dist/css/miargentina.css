@@ -237,7 +237,7 @@ h1.title-dashboard{
   border: 1px #dbdbdb solid;
 }
 .dashboard-sidebar{
-  height: 100vh;
+  height: 82vh;
   width: 100%;
   max-width: 260px;
   min-height: 100%;
@@ -281,7 +281,7 @@ h1.title-dashboard{
 .dropdown-micuenta ul, .dropdown-notificaciones ul{
   padding-left: 0;
 }
-.dropdown-micuenta li h3, .dropdown-micuenta li small, .dropdown-notificaciones li h3, .dropdown-notificaciones li h3{
+.dropdown-micuenta li h3, .dropdown-micuenta li small, .dropdown-micuenta li p, .dropdown-notificaciones li h3, .dropdown-notificaciones li h3{
   padding: 12px 15px 0 15px;
   margin-bottom: 0;
 }
@@ -324,7 +324,7 @@ h1.title-dashboard{
   margin: auto;
 }
 .sidebar{
-  min-height: 100%;
+  min-height: 82vh;
   max-width: 320px;
   min-width: 280px;
   padding-left: 0;
@@ -343,10 +343,20 @@ h1.title-dashboard{
     float: left;
   }
 }
-
+@media(max-width: 768px){
+  .nav-dashboard{
+    position: absolute;
+    top: 130px;
+    z-index: 10000;
+    background-color: #f2f3f4;
+  }
+}
 /************************************************NUEVO DASHBOARD MOBILE***********************************************/
 
+
+
 @media (max-width: 767px){
+
   .brand-icon{
     width:116px;
   }
@@ -365,9 +375,17 @@ h1.title-dashboard{
     background-color: #f2f3f4;
     margin: auto;
     max-width: 100%!important;
+    height: auto;
   }
   .dashboard-sidebar ul{
-    padding: 0 15px!important;
+    padding: 0 15px 30px 15px!important;
+    position: initial;
+    top: 0;
+
+  }
+  .forMenuMobile>section{
+    position: absolute;
+    z-index: -1;
   }
   .dashboard{
     display: block;
@@ -421,6 +439,16 @@ h1.title-dashboard{
   .nav-dashboard li{
     width: 100%;
   }
+}
+
+@media(max-width: 768px){
+  .forMenuMobile{
+    position: relative;
+    top: 0;
+    bottom: 0;
+    overflow: hidden;
+  }
+  
 }
 /****************************************************LOADING*********************************************************/
 .loading{
