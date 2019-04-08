@@ -418,6 +418,7 @@ a {
 
   > div {
     display: flex;
+    margin-right: -1px;
 
     .panel {
       width: 100%;
@@ -457,10 +458,8 @@ a {
 
 @media (max-width: 768px){
   .panels-row{
-            display: -webkit-box;
-            display: -moz-box;
-            display: -ms-flexbox;
-            display: -ms-flexbox;
+            display: block;
+            
       }
  }
 

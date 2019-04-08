@@ -75,6 +75,16 @@
                           filtro.push(filas);
                         }
 
+                        //Detectar si es fecha
+                        if(title.includes("fecha-") && filas != ""){
+                          var dteSplit = filas.split("/");
+                          var yearh = dteSplit[2];
+                          var month = dteSplit[1];
+                          var day = dteSplit[0];
+                          var finalDate = yearh+"-"+month+"-"+day;
+                          filas = '<span style="display:none;">'+finalDate+'</span>'+filas;
+                        }
+
                         //Ocultar filas vacias en mobile
                         if(filas == ''){
                           tdEmpty = 'hidden-xs';
@@ -109,52 +119,52 @@
   function initDataTable() {
 
 
-function removeAccents(data) {
-    return data
-      .replace(/έ/g, 'ε')
-      .replace(/[ύϋΰ]/g, 'υ')
-      .replace(/ό/g, 'ο')
-      .replace(/ώ/g, 'ω')
-      .replace(/ά/g, 'α')
-      .replace(/[ίϊΐ]/g, 'ι')
-      .replace(/ή/g, 'η')
-      .replace(/\n/g, ' ')
-      .replace(/[áÁ]/g, 'a')
-      .replace(/[éÉ]/g, 'e')
-      .replace(/[íÍ]/g, 'i')
-      .replace(/[óÓ]/g, 'o')
-      .replace(/[úÚ]/g, 'u')
-      .replace(/ê/g, 'e')
-      .replace(/î/g, 'i')
-      .replace(/ô/g, 'o')
-      .replace(/è/g, 'e')
-      .replace(/ï/g, 'i')
-      .replace(/ü/g, 'u')
-      .replace(/ã/g, 'a')
-      .replace(/õ/g, 'o')
-      .replace(/ç/g, 'c')
-      .replace(/ì/g, 'i');
-  }
+      function removeAccents(data) {
+        return data
+          .replace(/έ/g, 'ε')
+          .replace(/[ύϋΰ]/g, 'υ')
+          .replace(/ό/g, 'ο')
+          .replace(/ώ/g, 'ω')
+          .replace(/ά/g, 'α')
+          .replace(/[ίϊΐ]/g, 'ι')
+          .replace(/ή/g, 'η')
+          .replace(/\n/g, ' ')
+          .replace(/[áÁ]/g, 'a')
+          .replace(/[éÉ]/g, 'e')
+          .replace(/[íÍ]/g, 'i')
+          .replace(/[óÓ]/g, 'o')
+          .replace(/[úÚ]/g, 'u')
+          .replace(/ê/g, 'e')
+          .replace(/î/g, 'i')
+          .replace(/ô/g, 'o')
+          .replace(/è/g, 'e')
+          .replace(/ï/g, 'i')
+          .replace(/ü/g, 'u')
+          .replace(/ã/g, 'a')
+          .replace(/õ/g, 'o')
+          .replace(/ç/g, 'c')
+          .replace(/ì/g, 'i');
+      }
 
 
 
-var searchType = jQuery.fn.DataTable.ext.type.search;
-console.log(jQuery.fn.DataTable.ext.type.search);
-searchType.string = function (data) {
-  return !data ?
-    '' :
-    typeof data === 'string' ?
-      removeAccents(data) :
-      data;
-};
+      var searchType = jQuery.fn.DataTable.ext.type.search;
+      console.log(jQuery.fn.DataTable.ext.type.search);
+      searchType.string = function (data) {
+        return !data ?
+          '' :
+          typeof data === 'string' ?
+            removeAccents(data) :
+            data;
+      };
 
-searchType.html = function (data) {
-  return !data ?
-    '' :
-    typeof data === 'string' ?
-      removeAccents(data.replace(/<.*?>/g, '')) :
-      data;
-};
+      searchType.html = function (data) {
+        return !data ?
+          '' :
+          typeof data === 'string' ?
+            removeAccents(data.replace(/<.*?>/g, '')) :
+            data;
+      };
 
 
 
@@ -203,16 +213,16 @@ searchType.html = function (data) {
       });
 
 
-jQuery(document).ready(function () {
-    // Remove accented character from search input as well
-    jQuery('#ponchoTableSearch').keyup(function () {
-      tabla
-        .search(
-        jQuery.fn.DataTable.ext.type.search.string(this.value)
-        )
-        .draw()
-    });
-  });
+      jQuery(document).ready(function () {
+        // Remove accented character from search input as well
+        jQuery('#ponchoTableSearch').keyup(function () {
+          tabla
+            .search(
+            jQuery.fn.DataTable.ext.type.search.string(this.value)
+            )
+            .draw()
+        });
+      });
 
 
       //BUSCADOR
