@@ -1,0 +1,125 @@
+@charset "UTF-8";
+/*!
+ * Poncho v0.2 (https://github.com/argob/poncho)
+ * Copyright 2016
+ * Subsecretaría de Gobierno Digital
+ * Presidencia de la Nación Argentina
+ * Licenciado bajo MIT (https://github.com/argob/poncho/LICENSE)
+ */
+/* Resources */
+main a[href^="http://"][target^="_blank"]:after, main a[href^="http://"][target^="_blank"]:after, main a[href^="https://"][target^="_blank"]:after, main a[href^="https://"][target^="_blank"]:after, main footer[href^="http://"][target^="_blank"]:after, main footer[href^="http://"][target^="_blank"]:after, main footer[href^="https://"][target^="_blank"]:after, main footer[href^="https://"][target^="_blank"]:after {
+  content: " \f08e";
+  display: inline-block;
+  margin-left: 5px;
+  vertical-align: -1px;
+  font: normal normal normal 14px/1 FontAwesome;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased; }
+main a.btn:after, main a[href^="http://www.argentina.gob.ar"]:after, main a[href^="https://www.argentina.gob.ar"]:after, main a.panel:after, main a.btn:after, main a.not-external:after, main footer.btn:after, main footer[href^="http://www.argentina.gob.ar"]:after, main footer[href^="https://www.argentina.gob.ar"]:after, main footer.panel:after, main footer.btn:after, main footer.not-external:after {
+  content: none !important; }
+main .social-share a:after,
+main .panel a:after,
+main .alert a:after,
+main a.alert:after,
+main .nav a:after,
+main .gm-style a:after {
+  content: none !important; }
+
+.form-type-date .form-inline {
+  margin: 0 -15px;
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  width: initial; }
+  .form-type-date .form-inline:after {
+    content: '';
+    display: block;
+    clear: left; }
+  .form-type-date .form-inline > div {
+    width: 33.33%;
+    padding: 0 15px;
+    display: block;
+    float: left; }
+    .form-type-date .form-inline > div label {
+      display: block; }
+    .form-type-date .form-inline > div input, .form-type-date .form-inline > div select {
+      width: 100%;
+      box-sizing: border-box; }
+
+.form-item input {
+  font-size: 16px;
+  line-height: 1;
+  padding: 15px; }
+  .form-item input[type=hidden] + input {
+    border-radius: 4px 0 0 4px !important; }
+.form-item .input-group-btn .btn {
+  min-width: 200px; }
+
+.checkbox input[type=checkbox],
+.checkbox-inline input[type=checkbox],
+.radio input[type=radio],
+.radio-inline input[type=radio] {
+  padding: 0; }
+
+fieldset.panel.collapsible {
+  border: none;
+  background: none;
+  box-shadow: none;
+  padding: 0;
+  height: initial !important; }
+  fieldset.panel.collapsible legend.panel-heading {
+    border: 0;
+    min-height: 0;
+    background: none;
+    padding: 0;
+    margin: 0; }
+    fieldset.panel.collapsible legend.panel-heading a {
+      display: inline-block;
+      font-size: 16px;
+      font-weight: 500;
+      margin-bottom: 10px;
+      padding: 16px 25px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      vertical-align: top;
+      color: #0072bc;
+      text-decoration: underline !important;
+      background-color: #e5e5e5 !important; }
+      fieldset.panel.collapsible legend.panel-heading a span {
+        display: none; }
+      fieldset.panel.collapsible legend.panel-heading a:hover, fieldset.panel.collapsible legend.panel-heading a:focus {
+        background-color: #ccc !important;
+        color: #0072bc; }
+  fieldset.panel.collapsible .panel-body {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 30px 30px 0; }
+    fieldset.panel.collapsible .panel-body .form-group > label.control-label {
+      font-weight: 400; }
+
+#cd-login {
+  display: inline-block; }
+
+main .container img {
+  max-width: 100%;
+  border-radius: 4px;
+  height: auto; }
+
+main .container .media img {
+  max-width: none; }
+
+@media (min-width: 768px) and (max-width: 1200px) {
+  .navbar .navbar-brand img {
+    width: 236px; } }
+@media (max-width: 768px) {
+  #cd-login {
+    display: block; }
+    #cd-login button {
+      width: 100%;
+      margin: 0 0 20px; } }
+@media print {
+  .main-footer,
+  .pane-argentinagobar-bloques-reportes-formulario-reportes,
+  .book-navigation {
+    display: none; } }
