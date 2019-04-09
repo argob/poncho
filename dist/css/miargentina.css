@@ -343,7 +343,7 @@ h1.title-dashboard{
     float: left;
   }
 }
-@media(max-width: 768px){
+@media(max-width: 767px){
   .nav-dashboard{
     position: absolute;
     top: 130px;
@@ -493,7 +493,7 @@ h1.title-dashboard{
   height: 400px;
 }
 .onboarding-img{
-  width: 300px;
+  width: 270px;
   margin: auto;
 }
 .onboarding-img img{
@@ -533,10 +533,24 @@ h1.title-dashboard{
   .vertical-center-modal {
     max-width: 550px;
   }
+   .onboarding-control .glyphicon-chevron-left{
+    margin-left:0;
+  }
+  .onboarding-control .glyphicon-chevron-right{
+    margin-right:0;
+  }
+}
+@media (max-width: 768px){
+  
 }
 @media (max-width: 570px){
   .vertical-center-modal{
     max-width: 400px;
+  }
+
+  .onboarding-content{
+    max-height: 350px;
+    width: 70%;
   }
   .onboarding-content p:last-child{
     padding-top: 15px!important;
@@ -551,24 +565,18 @@ h1.title-dashboard{
 }
 @media (max-width: 390px){
   .vertical-center-modal{
-    max-width: 350px;
+    max-width: 90%;
+  }
+  .onboarding-content{
+    max-height: 380px;
+    width: 70%;
   }
 }
-/*@media (max-height: 640px){
-     .onboarding-img img{
-         margin-top: 30px;
-         width: 150px;
-    }
-     .onboarding-items{
-         width: 80%;
-         margin: auto;
-    }
-     .onboarding-content{
-         margin-bottom: 30px;
-    }
-}
- */
+
 @media (max-height: 640px) {
+  .onboarding-img img{
+    max-width: 220px;
+  }
   .onboarding-img{
     margin-top: 20px;
   }
@@ -583,29 +591,58 @@ h1.title-dashboard{
   .onboarding-content p{
     font-size: 15px;
   }
-  .carousel-indicators{
-    bottom: 0;
-  }
-  .carousel-indicators-onboarding li.active{
-    width: 10px;
-    height: 10px;
-  }
-  .carousel-indicators-onboarding li{
-    width: 8px;
-    height: 8px;
-  }
+  
   .onboarding-control{
     width: 8%;
   }
 }
+
+@media (max-height: 640px) and (max-width:390px){
+  .carousel-indicators-onboarding{
+    display: none;
+  }
+}
 @media (max-height: 450px){
+  .modal-content-onboarding{
+    height: 90%;
+  }
+  .carousel-content-onboarding{
+    height: 100%!important;
+  }
   .onboarding-img img{
-    width: 80px;
     margin-top: 0;
+    max-width: 180px;
   }
   .onboarding-content{
-    height:200px;
+    height:280px;
   }
+}
+
+@media (max-height: 350px) and (min-width: 391px){
+  .onboarding-img img{
+    max-width: 130px;
+  }
+}
+@media (max-height: 450px) and ( max-width: 390px){
+   .onboarding-img img{
+    max-width: 100px;
+  }
+
+  .vertical-center-modal{
+    width: 100%;
+    max-width: 100%;
+  }
+}
+@media (max-height: 300px) and ( max-width: 650px){
+  .onboarding-img img{
+    max-width: 80px;
+  }
+}
+@media(max-height: 390px){
+  .carousel-indicators-onboarding{
+    display: none;
+  }
+  
 }
 /*** licencia de conducir **/
 .container-licencia {
