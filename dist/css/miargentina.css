@@ -213,8 +213,11 @@ h1.title-dashboard{
   box-shadow: none;
   border-bottom: 2px #dee2e6 solid;
 }
-.nav-header-dashboard li:first-child{
+.nav-header-dashboard .dropdown-micuenta li:first-child{
   margin-top: 10px;
+}
+.nav-header-dashboard .navbar-left-mobile li:first-child{
+  margin-top: -10px;
 }
 .dashboard-sidebar .panel-sidebar{
   border: 0;
