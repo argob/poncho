@@ -1,3 +1,12 @@
+/*****Tipografía******/
+
+h1{
+  font-size: 2em;
+}
+h2{
+  font-size: 1.8em;
+}
+
 .alert .btn{
   margin-top: 15px;
 }
@@ -186,10 +195,7 @@ a.btn-collapse i.collapseGira {
   }
 }
 /************************************* NUEVO DASHBOARD**************************************/
-h1.title-dashboard{
-  font-size: 1.5em;
-  margin-top: 35px;
-}
+
 .max-w-img{
   max-width: 350px;
 }
@@ -1085,14 +1091,14 @@ input:checked + .slider {
 .login-container{
   display: flex;
   flex-direction: column;
-  width: 100%;
+ 
   height: 100%;
   min-height: 100%;
   position: relative;
 }
 .login-container section{
   width: 100%;
-  margin-top: auto;
+ 
 }
 .input-icon{
   float: right;
@@ -1147,6 +1153,6 @@ ul.data li{
 }
 @media(min-height: 1110px){
   .login-container{
-    height: calc(100vh - 233px);
+    height: calc(50vh - 233px);
   }
 }
