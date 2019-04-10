@@ -671,7 +671,7 @@ h1.title-dashboard{
   margin-top: 6px!important;
   margin-right: 10px;
 }
-.item-licencia:last-child img {
+.item-licencia img.qr-licencia {
      width: auto;
      max-height: 330px;
 }
@@ -683,7 +683,104 @@ h1.title-dashboard{
   max-width: 100%;
 }
 
-@media(max-height: 648px) and (min-width: 1200px){
+@media(max-width: 991px) and (max-height: 991px) {
+  
+  .display-panel-licencia {
+    display: none !important;
+  }
+  .container-g-licencia{
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) and (orientation: portrait){
+  .panel-licencia{
+    transform-origin: left top;
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg)!important;
+    width: 100vh !important;
+    height: 100vw !important;
+    overflow-x: hidden;
+    position: absolute;
+    top: 0;
+    left: 100%;
+  }
+  .display-panel-licencia {
+    display: none !important;
+  }
+  .container-g-licencia{
+    width: 100%;
+  }
+}
+
+@media (max-width: 420px) and (orientation: portrait){
+  .licencia{
+    max-height: 350px
+  }
+  .fila-licencia img{
+    max-height: 300px;
+  }
+}
+
+@media (max-width: 385px) and (orientation: portrait){
+  .licencia{
+    max-height: 300px
+  }
+  .fila-licencia img{
+    max-height: 220px;
+  }
+}
+
+
+@media (max-width: 991px) and (max-height: 991px) and (orientation: landscape){
+  .panel-licencia{
+    
+    width: 100vw !important;
+    height: 100vh !important;
+    overflow-x: hidden;
+    position: absolute;
+    top: 0;
+    left:0;
+  }
+  .display-panel-licencia {
+    display: none !important;
+  }
+  .container-g-licencia{
+    width: 100%;
+  }
+}
+
+@media (min-width: 780px) and (max-width: 991px) and (max-height: 480px) and (orientation: landscape){
+  .licencia{
+    max-height: 300px
+  }
+  .fila-licencia img{
+    max-height: 220px;
+  }
+  .item-licencia img.qr-licencia{
+    max-height: 220px;
+  }
+}
+
+@media (min-width: 780px) and (max-width: 991px) and (max-height: 360px) and (orientation: landscape){
+  .licencia{
+    max-height: 250px
+  }
+  .fila-licencia img{
+    max-height: 170px;
+  }
+  .item-licencia img.qr-licencia{
+    max-height: 170px;
+  }
+}
+
+
+
+
+/*@media(max-height: 648px) and (min-width: 1200px){
   .container-licencia{
     padding-top: 30px;
   }
@@ -871,7 +968,7 @@ h1.title-dashboard{
     max-height: 130px;
   }
   
-}
+}*/
 /***----------------------FOOTER Y HEADER---------------------------------***/
 .main-footer{
   padding: 28px 0 15px 0;
