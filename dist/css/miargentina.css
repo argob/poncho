@@ -693,7 +693,7 @@ h1.title-dashboard{
   }
 }
 
-@media (max-width: 768px) and (orientation: portrait){
+@media (max-width: 767px) and (orientation: portrait){
   .panel-licencia{
     transform-origin: left top;
     -webkit-transform: rotate(90deg);
@@ -715,7 +715,17 @@ h1.title-dashboard{
     width: 100%;
   }
 }
-
+@media (max-width: 440px) and (orientation: portrait){
+  .licencia{
+    max-height: 300px
+  }
+  .fila-licencia img{
+    max-height: 230px;
+  }
+   .item-licencia img.qr-licencia{
+    max-height: 220px;
+  }
+}
 @media (max-width: 420px) and (orientation: portrait){
   .licencia{
     max-height: 350px
@@ -753,6 +763,7 @@ h1.title-dashboard{
   }
 }
 
+
 @media (min-width: 780px) and (max-width: 991px) and (max-height: 480px) and (orientation: landscape){
   .licencia{
     max-height: 300px
@@ -776,6 +787,23 @@ h1.title-dashboard{
     max-height: 170px;
   }
 }
+
+@media (max-width: 991px) and (max-height: 320px) and (orientation: landscape){
+ 
+  .item-licencia img.qr-licencia{
+    max-height: 200px;
+  }
+}
+
+@media (max-width: 991px) and (max-height: 450px) and (orientation: landscape) {
+ .licencia{
+    max-height: 250px
+  }
+  .item-licencia img.qr-licencia{
+    max-height: 220px;
+  }
+}
+
 
 
 
