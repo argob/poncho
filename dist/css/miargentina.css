@@ -679,7 +679,15 @@ h1.title-dashboard{
 .panel-licencia{
   margin-bottom: 0 !important;
 }
+.fila-licencia>div img{
+  max-width: 100%;
+}
 
+@media(max-height: 648px) and (min-width: 1200px){
+  .container-licencia{
+    padding-top: 30px;
+  }
+}
 @media(max-width: 768px){
   .fila-licencia>div img{
     max-width: 100%;
@@ -740,18 +748,20 @@ h1.title-dashboard{
     left: 0;
   }
 }
-@media(max-height: 411px) and (orientation: landscape){
+@media(max-height: 460px) and (orientation: landscape){
   #lic-carousel{
     height: 350px;
   }
-  .body-licencia, .licencia, .item-licencia, .fila-licencia>div {
+  .body-licencia,  .licencia,  .item-licencia, .fila-licencia>div {
     height: 100%;
+   max-height: 350px;
   }
+
   .fila-licencia{
     height: 95%;
   }
   .fila-licencia>div img{
-    height: 90%;
+    max-height: 90%;
   }
 }
 @media(max-height: 330px) and (orientation: landscape){
@@ -777,6 +787,9 @@ h1.title-dashboard{
   .fila-licencia>div img{
     max-height: 90%;
     max-width: 100%;
+  }
+  .item-licencia:last-child img{
+    max-height: 250px;
   }
 }
 @media (max-width: 330px) and (orientation: portrait){
