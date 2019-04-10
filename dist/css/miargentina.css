@@ -693,6 +693,9 @@ h1.title-dashboard{
     max-width: 100%;
 
   }
+   .body-licencia{
+    padding-bottom: 0px!important;  
+  }
 }
 @media(max-width: 768px) and (max-height: 768px){
   .panels-row-licencia{
@@ -750,53 +753,71 @@ h1.title-dashboard{
 }
 @media(max-height: 460px) and (orientation: landscape){
   #lic-carousel{
-    height: 350px;
+    max-height: 350px;
   }
   .body-licencia,  .licencia,  .item-licencia, .fila-licencia>div {
     height: 100%;
-   max-height: 350px;
+    
   }
 
-  .fila-licencia{
-    height: 95%;
-  }
+  
   .fila-licencia>div img{
     max-height: 90%;
   }
 }
-@media(max-height: 330px) and (orientation: landscape){
+
+
+@media(max-height: 390px) and (min-width: 800px) and (orientation: landscape){
   #lic-carousel{
-    height: 300px;
+    height: 280px;
   }
+ 
 }
-@media(max-height: 380px) and (min-width: 800px) and (orientation: landscape){
+
+@media(max-height: 350px) and (min-width: 800px){
   #lic-carousel{
-    height: 300px;
+    height: 250px;
   }
+  
 }
 @media (max-width: 600px) and (orientation: portrait){
   #lic-carousel{
     height: 350px;
   }
-  .body-licencia, .licencia, .item-licencia, .fila-licencia>div {
-    height: 100%;
-  }
-  .fila-licencia{
-    height: 95%;
-  }
-  .fila-licencia>div img{
-    max-height: 90%;
-    max-width: 100%;
-  }
+  
+  
   .item-licencia:last-child img{
     max-height: 250px;
   }
 }
-@media (max-width: 330px) and (orientation: portrait){
+
+
+@media (max-width: 340px) and (orientation: portrait){
   #lic-carousel{
-    height: 300px;
+    height: 280px;
+  }
+  .item-licencia:last-child img {
+    max-height: 190px;
+  }
+ 
+}
+
+
+@media (max-width: 300px) and (orientation: portrait){
+  #lic-carousel{
+    height: 260px;
+  }
+  .body-licencia{
+    padding-bottom: 0px;  
   }
 }
+
+@media (max-width: 488px) and (max-height: 500px){
+  .licencia-txt{
+    font-size: 14px;
+  }
+}
+
 @media(min-width: 768px) and (min-height: 1024px){
   .fila-licencia>div img{
     height: auto;
@@ -823,6 +844,12 @@ h1.title-dashboard{
     height: 310px;
   }
 }
+
+@media(max-height: 320px){
+  .item-licencia:last-child .fila-licencia div img{
+    height: 200px;
+  }
+}
 @media (orientation:landscape) and (max-height: 420px){
   .item-licencia:last-child .fila-licencia div img{
     height: 90%;
@@ -835,6 +862,15 @@ h1.title-dashboard{
     height: 210px;
     width:auto;
   }
+}
+@media (max-height: 300px) and (min-width: 768px) and (orientation: landscape){
+  #lic-carousel {
+    height: 210px;
+}
+ .fila-licencia>div img, .item-licencia:last-child .fila-licencia div img {
+    max-height: 130px;
+  }
+  
 }
 /***----------------------FOOTER Y HEADER---------------------------------***/
 .main-footer{
