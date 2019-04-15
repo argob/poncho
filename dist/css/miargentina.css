@@ -669,9 +669,10 @@ a.btn-collapse i.collapseGira {
 .container-licencia {
   padding-top: 10%;
 }
-.control-licencia{
+.control-licencia span, .control-licencia:hover span, .control-licencia:active span, .control-licencia:visited span{
   background-image: none!important;
   color: #464646;
+
 }
 .licencia {
   width: 85%;
@@ -1158,6 +1159,16 @@ min-height: 900px;
  background-color: #E5EAEB !important;
   
 }
+
+.content-dni-tramite {
+    position: absolute !important;
+    max-width: 400px !important;
+    z-index: 2;
+    border: 1px solid rgba(0, 0, 0, .2);
+    border-radius: 6px;
+    padding: 10px 20px 20px 20px;
+    top: -300px;
+  }
 .arrow-tramite{
   border-bottom: 0 solid rgba(0, 0, 0, 0);
   border-left: 11px solid rgba(0, 0, 0, 0);
@@ -1193,5 +1204,31 @@ ul.data li{
 }
 
 .container-id{
+  background: #F2F3F4;
   padding-top: 20px;
+}
+.container-id .media .media-body{
+  vertical-align: middle;
+}
+
+@media (max-width: 767px){
+  .brand-id{
+    padding-left: 0px!important;
+  }
+}
+
+/*Credencial CUD*/
+
+.fila-licencia canvas {
+  max-height: 271px;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media(max-width: 1199px) and (min-width: 768px){
+  .fila-licencia canvas {
+    max-width: 330px;
+   
+  }
 }
