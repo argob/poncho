@@ -689,6 +689,9 @@ a.btn-collapse i.collapseGira {
 .panel-licencia, .display-panel-licencia {
   display: block;
 }
+.panel .panel-body p:last-of-type{
+  margin-bottom: 10px!important;
+}
 .licencia-volver-lg{
   margin-top: 6px!important;
   margin-right: 10px;
