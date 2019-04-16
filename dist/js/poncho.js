@@ -378,7 +378,7 @@ optimized: false
  
 
  if(punto.gsx$provincia.$t != "" || punto.gsx$localidad.$t != ""){ 
- ubicacion = '<div class="separarGuiones"><i class="fa fa-map-marker"></i><span>' + punto.gsx$localidad.$t + '</span><span>' + punto.gsx$provincia.$t + '</span><span>' + punto.gsx$direccion.$t + '</span></div>';
+ ubicacion = '<div class="separarGuiones"><i class="fa fa-map-marker"></i><span>' + punto.gsx$direccion.$t + '</span><span>' + punto.gsx$localidad.$t + '</span><span>' + punto.gsx$provincia.$t + '</span></div>';
  }
  if(punto.gsx$telefono.$t != ""){ telefono = "<div><i class='fa fa-phone'></i>" + punto.gsx$telefono.$t + "</div>";}
  if(punto.gsx$email.$t != ""){ email = "<div><i class='fa fa-envelope'></i>" + punto.gsx$email.$t + "</div>";}
