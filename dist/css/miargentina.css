@@ -345,7 +345,7 @@ a.btn-collapse i.collapseGira {
 }
 .sidebar{
   min-height: 720px;
-  height: calc(100vh - 220px);
+  
   max-width: 320px;
   min-width: 280px;
   padding-left: 0;
@@ -668,11 +668,15 @@ a.btn-collapse i.collapseGira {
 /*** licencia de conducir **/
 .container-licencia {
   padding-top: 10%;
+  background-image: none!important;
 }
 .control-licencia span, .control-licencia:hover span, .control-licencia:active span, .control-licencia:visited span{
   background-image: none!important;
   color: #464646;
 
+}
+.control-licencia{
+  background-image: none!important;
 }
 .licencia {
   width: 85%;
@@ -719,7 +723,7 @@ a.btn-collapse i.collapseGira {
     -o-transform: rotate(90deg);
     -ms-transform: rotate(90deg);
     transform: rotate(90deg)!important;
-    width: 100vh !important;
+    width: 95vh !important;
     height: 100vw !important;
     overflow-x: hidden;
     position: absolute;
