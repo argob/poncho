@@ -2,6 +2,8 @@
 //####################### PONCHO TABLE #################################
 //#####################################################################
 
+  jQuery('#ponchoTable').addClass('state-loading');
+
   function ponchoTable(opt){
     var listado = [];
     var filteredTitle = [];
@@ -110,7 +112,9 @@
 
           //Agregar contenido al body de la Tabla
           jQuery('#ponchoTable tbody').empty();
+          jQuery('#ponchoTableSearchCont').show();
           jQuery('#ponchoTable tbody').append(lista);
+          jQuery('#ponchoTable').removeClass('state-loading');
 
           initDataTable();
       }
@@ -172,6 +176,12 @@
       var tabla = jQuery("#ponchoTable").DataTable({
           "lengthChange": false,
           "autoWidth" : false,
+          "columnDefs": [
+            {
+                "targets": opt.ocultarColumnas,
+                "visible": false
+            }
+          ],
           "ordering" : opt.orden,
           "order": [[ opt.ordenColumna-1, opt.ordenTipo ]],
           "dom": "<'row'<'col-sm-6'l><'col-sm-6'f>>" +
