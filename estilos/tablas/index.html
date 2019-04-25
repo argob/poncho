@@ -54,7 +54,9 @@
       <script src="http://poncheado.herokuapp.com/node_modules/html5shiv/html5shiv.js"></script>
       <script src="http://poncheado.herokuapp.com/node_modules/respond.js/respond.min.js"></script>
       <![endif]-->  
-
+<style>
+  .text-center .dataTables_paginate {text-align: center!important;}
+</style>
   </head>
   
   <script src="../../node_modules/jquery/dist/jquery.js"></script>
@@ -118,7 +120,7 @@
     <div class="container">
 
 <div class="row">
-      <div class="col-sm-3" id="menuLateral" data-seccion="1"></div>
+      <div class="col-sm-3" id="menuLateral" data-seccion="4"></div>
 
       <div class="col-sm-9">
 
@@ -236,8 +238,15 @@
       <h3>Con filtro</h3>
 
     <p>Cuando se necesitan mostrar muchas filas es conveniente usar un filtro que permita buscar texto sobre cualquier elemento de la tabla. Para eso se usa el componente "Data Tables" que además permite ordenar por columnas y le agrega un paginado automáticamente.</p>
-
-      <table class="table dataTables">
+      <div class="row">
+        <div class="col-sm-8" id="ponchoTableSearchCont">
+            <div class="form-group">
+                <label for="ponchoTableSearch">Buscá por palabra clave</label>
+                <input class="form-control" id="ponchoTableSearch" type="text" />
+            </div>
+        </div>
+      </div>
+      <table class="table" id="tableFiltro">
         <thead>
           <th>Título 1</th>
           <th>Título 2</th>
@@ -247,11 +256,11 @@
           <tr>
             <td>Lorem iipsum dolor</td>
             <td>Lorem iipsum dolor</td>
-            <td>Lorem ipsum dolor sit amet</td>
+            <td>Lorem iipsum dolor</td>
           </tr>
           <tr>
-            <td>Lorem iipsum dolor</td>
-            <td>Lorem iipsum dolor</td>
+            <td>Lorem ipsum dolor sit amet</td>
+            <td>Lorem ipsum dolor sit amet</td>
             <td>Lorem ipsum dolor sit amet</td>
           </tr>      
         </tbody>
@@ -541,9 +550,6 @@
     <script>
       $(function(){
 
-        jQuery(function($) {
-          $.syntax({theme: 'bright'});
-        });
 
         $("#menuLateral").load("../../includes/estilos_menu.html",function(){
           var seccion = $("#menuLateral").data("seccion");
@@ -551,40 +557,99 @@
         });
 
         var tabla =  $(".dataTables").DataTable({
-            "lengthChange": false,
-            "autoWidth" : false,
-             "language": {
-                "sProcessing": "Procesando...",
-                "sLengthMenu": "Mostrar _MENU_ registros",
-                "sZeroRecords": "No se encontraron resultados",
-                "sEmptyTable": "Ningún dato disponible en esta tabla",
-                "sInfo": "_TOTAL_ resultados",
-                "sInfoEmpty": "No hay resultados",
-                "sInfoFiltered": "",
-                "sInfoPostFix": "",
-                "sSearch": "Buscar:",
-                "sUrl": "",
-                "sInfoThousands": ",",
-                "sLoadingRecords": "Cargando...",
+          "lengthChange": false,
+          "autoWidth" : false,
+          "bFilter" : false,
+          "dom": "<'row'<'col-sm-6'l><'col-sm-6'f>>" +
+                 "<'row'<'col-sm-12'i>>" +
+                 "<'row'<'col-sm-12'tr>>" +
+                 "<'row'<'col-md-12 text-center'p>>",
+           "language": {
+              "sProcessing": "Procesando...",
+              "sLengthMenu": "Mostrar _MENU_ registros",
+              "sZeroRecords": "No se encontraron resultados",
+              "sEmptyTable": "Ningún dato disponible en esta tabla",
+              "sInfo": "_TOTAL_ resultados",
+              "sInfoEmpty": "No hay resultados",
+              //"sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+              "sInfoFiltered": "",
+              "sInfoPostFix": "",
+              "sSearch": "Buscar:",
+              "sUrl": "",
+              "sInfoThousands": ",",
+              "sLoadingRecords": "Cargando...",
 
-                "oPaginate": {
-                    "sFirst": "<<",
-                    "sLast": ">>",
-                    "sNext": ">",
-                    "sPrevious": "<"
-                },
-                "oAria": {
-                    "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-                    "sSortDescending": ": Activar para ordenar la columna de manera descendente",
-                    "paginate": {
-                        "first": 'Ir a la primera página',
-                        "previous": 'Ir a la página anterior',
-                        "next": 'Ir a la página siguiente',
-                        "last": 'Ir a la última página'
-                    }
-                }
-            }
-        });
+              "oPaginate": {
+                  "sFirst": "<<",
+                  "sLast": ">>",
+                  "sNext": ">",
+                  "sPrevious": "<"
+              },
+              "oAria": {
+                  "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                  "sSortDescending": ": Activar para ordenar la columna de manera descendente",
+                  "paginate": {
+                      "first": 'Ir a la primera página',
+                      "previous": 'Ir a la página anterior',
+                      "next": 'Ir a la página siguiente',
+                      "last": 'Ir a la última página'
+                  }
+              }
+          }
+      });
+        var oTable = $('#tableFiltro').DataTable({
+          "lengthChange": false,
+          "autoWidth" : false,
+          "bFilter" : true,
+          "dom": "<'row'<'col-sm-6'l><'col-sm-6'f>>" +
+                 "<'row'<'col-sm-12'i>>" +
+                 "<'row'<'col-sm-12'tr>>" +
+                 "<'row'<'col-md-12 text-center'p>>",
+           "language": {
+              "sProcessing": "Procesando...",
+              "sLengthMenu": "Mostrar _MENU_ registros",
+              "sZeroRecords": "No se encontraron resultados",
+              "sEmptyTable": "Ningún dato disponible en esta tabla",
+              "sInfo": "_TOTAL_ resultados",
+              "sInfoEmpty": "No hay resultados",
+              //"sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+              "sInfoFiltered": "",
+              "sInfoPostFix": "",
+              "sSearch": "Buscar:",
+              "sUrl": "",
+              "sInfoThousands": ",",
+              "sLoadingRecords": "Cargando...",
+
+              "oPaginate": {
+                  "sFirst": "<<",
+                  "sLast": ">>",
+                  "sNext": ">",
+                  "sPrevious": "<"
+              },
+              "oAria": {
+                  "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                  "sSortDescending": ": Activar para ordenar la columna de manera descendente",
+                  "paginate": {
+                      "first": 'Ir a la primera página',
+                      "previous": 'Ir a la página anterior',
+                      "next": 'Ir a la página siguiente',
+                      "last": 'Ir a la última página'
+                  }
+              }
+          }
+      });
+
+        
+         
+          $("#tableFiltro_filter").addClass("hidden");
+          $('#ponchoTableSearch').keyup(function(){
+            oTable.search($(this).val()).draw() ;
+          })
+        
+
+
+
+
 
       })
     </script>
