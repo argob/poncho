@@ -3064,6 +3064,10 @@ dd {
 .fa-yoast:before {
   content: ""; }
 
+i[class^="icono-arg-"],
+i.fa {
+  line-height: 80px; }
+
 .row-news {
   margin-bottom: 24px; }
 

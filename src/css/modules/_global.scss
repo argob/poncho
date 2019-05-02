@@ -886,4 +886,8 @@ dd {
     content: "";
 }
 
-
+i[class^="icono-arg-"],
+i.fa
+{
+  line-height:80px
+}
