@@ -3235,7 +3235,7 @@ h4.h4-lg {
 
 article h1.icon {
   font-size: 7em;
-  line-height: 2.5;
+  line-height: 0;
   margin: 0; }
   article h1.icon.aside {
     line-height: 1.5;
@@ -3313,22 +3313,22 @@ article h1.icon {
 
 .btn-success {
   background-color: #2e7d33; }
-  .btn-success:hover, .btn-success:focus {
+  .btn-success:hover, .btn-success:focus, .btn-success:active {
     background-color: #205824; }
 
 .btn-info {
   background-color: #0072bb; }
-  .btn-info:hover, .btn-info:focus {
+  .btn-info:hover, .btn-info:focus, .btn-info:active {
     background-color: #005388; }
 
 .btn-warning {
   background-color: #f9a822; }
-  .btn-warning:hover, .btn-warning:focus {
+  .btn-warning:hover, .btn-warning:focus, .btn-warning:active {
     background-color: #9c1f1f; }
 
 .btn-danger {
   background-color: #c62828; }
-  .btn-danger:hover, .btn-danger:focus {
+  .btn-danger:hover, .btn-danger:focus, .btn-danger:active {
     background-color: #9c1f1f; }
 
 .btn-link {
@@ -3336,7 +3336,7 @@ article h1.icon {
   color: #0072bb;
   background-color: #fff;
   border: 3px solid #DEE2E6 !important; }
-  .btn-link:hover, .btn-link:focus {
+  .btn-link:hover, .btn-link:focus, .btn-link:active {
     text-decoration: none;
     background-color: #f2f2f2 !important;
     color: #0072bb; }
