@@ -2,8 +2,8 @@
 /*!
  * Poncho v0.3.3 (https://github.com/argob/poncho)
  * Copyright 2016
- * Subsecretaría de Gobierno Digital
- * Presidencia de la Nación Argentina
+ * Subsecretar├¡a de Gobierno Digital
+ * Presidencia de la Naci├│n Argentina
  * Licenciado bajo MIT (https://github.com/argob/poncho/LICENSE)
  */
 /* Libraries */
@@ -2684,7 +2684,7 @@ a.bg-danger {
   margin-bottom: 48px;
   padding: 0; }
   .page-sidebar li {
-    font-size: 18px; }
+    font-size: 16px; }
   .page-sidebar a {
     display: block;
     padding: 5px 0;
@@ -3317,7 +3317,7 @@ article h1.icon {
     background-color: #205824; }
 
 .btn-info {
-  background-color: #2897D4; }
+  background-color: #0072bb; }
   .btn-info:hover, .btn-info:focus {
     background-color: #005388; }
 
@@ -4247,9 +4247,9 @@ blockquote {
 .article-news article section {
   font-family: "Droid Serif", serif; }
 .article-news p {
-  font-size: 18px; }
+  font-size: 16px; }
 .article-news li {
-  font-size: 18px;
+  font-size: 16px;
   margin-bottom: 6px; }
 
 .title-description hr {
@@ -4263,7 +4263,7 @@ blockquote {
 
 @media (min-width: 992px) {
   article li {
-    font-size: 18px; } }
+    font-size: 16px; } }
 .panel {
   margin-bottom: 30px; }
   .panel h1,
