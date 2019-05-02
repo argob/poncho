@@ -886,8 +886,14 @@ dd {
     content: "";
 }
 
+i[class^="icono-arg-"]:before,
+i.fa:before
+{
+  line-height:80px
+}
+
 i[class^="icono-arg-"],
 i.fa
 {
-  line-height:80px
+  line-height:0
 }

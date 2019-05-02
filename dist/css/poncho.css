@@ -3064,9 +3064,13 @@ dd {
 .fa-yoast:before {
   content: ""; }
 
+i[class^="icono-arg-"]:before,
+i.fa:before {
+  line-height: 80px; }
+
 i[class^="icono-arg-"],
 i.fa {
-  line-height: 80px; }
+  line-height: 0; }
 
 .row-news {
   margin-bottom: 24px; }
