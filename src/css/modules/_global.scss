@@ -886,14 +886,14 @@ dd {
     content: "";
 }
 
-i[class^="icono-arg-"]:before,
-i.fa:before
+.nav-icons i[class^="icono-arg-"]:before,
+.nav-icons i.fa:before
 {
   line-height:80px
 }
 
-i[class^="icono-arg-"],
-i.fa
+.nav-icons i[class^="icono-arg-"],
+.nav-icons i.fa
 {
   line-height:0
 }
