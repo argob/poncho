@@ -344,9 +344,9 @@ a.btn-collapse i.collapseGira {
   margin: auto;
 }
 .sidebar{
-  min-height: 720px;
+
   
-  max-width: 320px;
+  max-width: 290px;
   min-width: 280px;
   padding-left: 0;
 }
@@ -881,8 +881,8 @@ a.btn-collapse i.collapseGira {
 }
 .switch {
   display:inline-block;
-  width:40px;
-  height:20px;
+  width:70px;
+  height:30px;
   margin:8px;
   transform:translateY(50%);
   position:relative;
@@ -895,6 +895,7 @@ a.btn-collapse i.collapseGira {
   right:0;
   border-radius:30px;
   box-shadow:0 0 0 2px #777, 0 0 4px #777;
+  background-color: #777;
   cursor:pointer;
   border:4px solid transparent;
   overflow:hidden;
@@ -903,19 +904,35 @@ a.btn-collapse i.collapseGira {
 .slider:before {
   position:absolute;
   content:"";
-  width:100%;
+  width:70%;
   height:100%;
-  background:#777;
+  background:#fff;
   border-radius:30px;
   transform:translateX(-20px);
   transition:.4s;
 }
-input:checked + .slider:before {
-  transform:translateX(20px);
-  background:#2e7d33;
+
+
+
+
+input:checked + .slider:before  {
+  transform:translateX(40px);
+  background-color: #fff;
+
+  
 }
+
+
 input:checked + .slider {
-  box-shadow:0 0 0 2px #2e7d33,0 0 2px #2e7d33;
+  box-shadow:0 0 0 2px #0072bb,0 0 2px #0072bb;
+
+}
+.switch-txt{
+  padding-left: 35px;
+  padding-top: 3px;
+  color: #fff;
+  position: absolute;
+  font-weight: bolder;
 }
 /*****login ID****/
 .login-container{
