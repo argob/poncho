@@ -3751,7 +3751,7 @@ header .btn-group > .btn:first-child {
         .nav.nav-icons li a:hover span, .nav.nav-icons li a:focus span {
           color: #444444; }
   .nav.nav-icons.nav-icons-selected li:not(.active):not(:hover) a:not(:focus) i {
-    background: #DEE2E6 !important;
+    background: #CCC !important;
     color: #707070 !important; }
   .nav.nav-icons.nav-icons-selected li:not(.active) a:hover i,
   .nav.nav-icons.nav-icons-selected li:not(.active) a:focus i {
@@ -4015,7 +4015,7 @@ a.list-group-item {
     margin-left: 32px;
     padding-left: 16px; }
   .steps .step .circle {
-    background: #DEE2E6;
+    background: #0072bb;
     width: 32px;
     height: 32px;
     line-height: 32px;

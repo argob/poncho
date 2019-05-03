@@ -361,7 +361,7 @@ header {
 
   &.nav-icons-selected li:not( .active ) {
     &:not( :hover ) a:not( :focus ) i {
-      background: $gray-light !important;
+      background: #CCC !important;
       color: $gray !important;
     }
     a:hover i,
