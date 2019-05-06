@@ -880,9 +880,7 @@ a.btn-collapse i.collapseGira {
   border-color: #0072BB #F2F3F4 #F2F3F4!important;
 }
 /***************switches**********************/
-.switch input{
-  display: none;
-}
+
 .switch {
   display:inline-block;
   width:70px;
