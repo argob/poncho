@@ -28,6 +28,10 @@ h2{
   float: right;
 }
 
+.no-underline{
+  text-decoration: none!important;
+}
+
 /********PANELES**********/
 
 .panel-body .list-group {
@@ -66,7 +70,7 @@ a.btn-collapse i.collapseGira {
 .panels-row-miargentina .panel-default {
   width: 100%;
 }
-.panels-row-miargentina .panel-default>.panel-heading {
+.panels-row-miargentina .panel-default>.panel-heading, .panels-row-miargentina .panel-default fieldset legend .panel-heading {
   min-height: 0 !important;
   background-color: transparent;
   border-bottom: 1px solid #ccc;
@@ -344,7 +348,7 @@ a.btn-collapse i.collapseGira {
   margin: auto;
 }
 .sidebar{
-
+  min-height: 720px;
   
   max-width: 290px;
   min-width: 280px;
@@ -933,6 +937,8 @@ input:checked + .slider {
   color: #fff;
   position: absolute;
   font-weight: bolder;
+   
+    top: 0;
 }
 /*****login ID****/
 .login-container{
