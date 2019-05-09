@@ -3474,6 +3474,9 @@ span.btn:hover {
     display: block;
     width: 100%; }
 
+@media (max-width: 767px) {
+  .btn {
+    font-weight: 600 !important; } }
 .navbar .open > .dropdown-menu {
   border: inherit; }
 
