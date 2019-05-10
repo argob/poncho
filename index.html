@@ -39,7 +39,7 @@
   <link href="/poncho/node_modules/argob-poncho/dist/css/roboto-fontface.css" rel="stylesheet">
   <link href="/poncho/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="/poncho/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <link href="/poncho/node_modules/argob-poncho/dist/css/poncho.css" rel="stylesheet">
+  <link href="https://qa-poncho.argentina.gob.ar/dist/js/poncho.min.js" rel="stylesheet">
   <link href="https://qa-poncho.argentina.gob.ar/dist/css/documentacion.css" rel="stylesheet">
   <link href="/poncho/css/prism.css" rel="stylesheet">
   <script src="/poncho/js/jquery.js"></script>
@@ -234,24 +234,7 @@
       $(function () {
         $('[data-toggle="tooltip"]').tooltip();
         $('[data-toggle="popover"]').popover();
-        // var $affix = $("#navbar-docs");
-        // $parent = $affix.parent(),
-        // resize = function() { $affix.width($parent.width()); };
-        // $(window).resize(resize);
-        // resize();
       })
-
-        //PONCHO LABS
-      var url_string = window.location.href;
-      var url = new URL(url_string);
-      var lab = url.searchParams.get("lab");
-      console.log(lab);
-      
-      if(lab == ""){
-       $ ("head").append('<link href="css/poncho_lab.css" rel="stylesheet">');
-       }
-
-
     </script>
 
   </body>
