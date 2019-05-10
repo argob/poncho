@@ -79,9 +79,7 @@ a.btn-collapse i.collapseGira {
 .panels-row-miargentina .media-left {
   padding-right: 20px;
 }
-.panels-row-miargentina .panel-body .media-left .fa {
-  margin-top: 8px;
-}
+
 .panels-row-miargentina .panel-nolink {
   border-left: 1px solid #ccc;
   border-right: 1px solid #ccc;
@@ -673,6 +671,7 @@ a.btn-collapse i.collapseGira {
 .container-licencia {
   padding-top: 10%;
   background-image: none!important;
+
 }
 .control-licencia span, .control-licencia:hover span, .control-licencia:active span, .control-licencia:visited span{
   background-image: none!important;
@@ -681,6 +680,7 @@ a.btn-collapse i.collapseGira {
 }
 .control-licencia{
   background-image: none!important;
+  width: 6%!important;
 }
 .licencia {
   width: 85%;
@@ -712,6 +712,11 @@ a.btn-collapse i.collapseGira {
   max-width: 100%;
 }
 
+.licencia-txt{
+  font-size: calc(14px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
+
+}
+
 @media(max-width: 991px) and (max-height: 991px) {
   
   .display-panel-licencia {
@@ -730,7 +735,7 @@ a.btn-collapse i.collapseGira {
     -o-transform: rotate(90deg);
     -ms-transform: rotate(90deg);
     transform: rotate(90deg)!important;
-    width: 95vh !important;
+    width: 100vh !important;
     height: 100vw !important;
     overflow-x: hidden;
     position: absolute;
@@ -826,13 +831,30 @@ a.btn-collapse i.collapseGira {
 
 @media (max-width: 991px) and (max-height: 450px) and (orientation: landscape) {
  .licencia{
-    max-height: 250px
+    max-height: 350px
+  }
+
+  .fila-licencia img{
+    max-height: 300px;
   }
   .item-licencia img.qr-licencia{
     max-height: 220px;
   }
 }
+@media (max-width: 991px) and (max-height: 420px) and (orientation: landscape) {
+  
+  .fila-licencia>div img{
+    max-height: 250px;
+  }
+}
 
+
+@media (max-width: 991px) and (max-height: 380px) and (orientation: landscape) {
+  
+  .fila-licencia>div img{
+    max-height: 200px;
+  }
+}
 
 .qrlarge {
  opacity: 0.3;
@@ -888,6 +910,7 @@ a.btn-collapse i.collapseGira {
   margin:8px;
   transform:translateY(50%);
   position:relative;
+  margin-top: 0px;
 }
 .slider {
   position:absolute;
@@ -914,30 +937,26 @@ a.btn-collapse i.collapseGira {
   transition:.4s;
 }
 
+.slider span{
+  padding-left: 8px;
+  color: #fff;
+}
 
 
-
+input:checked + .slider span:nth-child(2){
+  visibility: hidden;
+}
 input:checked + .slider:before  {
   transform:translateX(40px);
   background-color: #fff;
-
-  
 }
 
 
 input:checked + .slider {
   box-shadow:0 0 0 2px #0072bb,0 0 2px #0072bb;
+  background-color: #0072bb;
+}
 
-}
-.switch-txt{
-  padding-left: 35px;
-  padding-top: 3px;
-  color: #fff;
-  position: absolute;
-  font-weight: bolder;
-   
-    top: 0;
-}
 /*****login ID****/
 .login-container{
   display: flex;
