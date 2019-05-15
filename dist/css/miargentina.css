@@ -31,6 +31,9 @@ h2{
 .no-underline{
   text-decoration: none!important;
 }
+.gral-container{
+  margin-top: 15px;
+}
 
 /********PANELES**********/
 
@@ -392,9 +395,7 @@ a.btn-collapse i.collapseGira {
   .navbar-header .nav{
     margin-left: -8px!important;
   }
-  .navbar-right-header{
-    margin-top: 1.3em!important;
-  }
+ 
   .sidebar{
     padding: 0;
     width: 100%;
@@ -737,7 +738,7 @@ a.btn-collapse i.collapseGira {
 }
 @media (max-width: 767px){
   .panels-row-licencia{
-    margin-top: -10px;
+    margin-top: -15px!important;
   }
 }
 
