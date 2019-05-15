@@ -176,7 +176,7 @@ a.btn-collapse i.collapseGira {
   margin-bottom: 15px;
 }
 .panels-row-miargentina label, .panels-row-miargentina .help-block{
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 .panel-borders .panel-heading{
   border: none!important;
@@ -919,13 +919,12 @@ a.btn-collapse i.collapseGira {
 /***************switches**********************/
 
 .switch {
-  display:inline-block;
-  width:70px;
-  height:30px;
-  margin:8px;
-  transform:translateY(50%);
-  position:relative;
-  margin-top: 0px;
+    display: inline-block;
+    width: 70px;
+    height: 33px;
+    margin-right: 8px;
+    
+    margin-top: 5px;
 }
 .slider {
   position:absolute;
