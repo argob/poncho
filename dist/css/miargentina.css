@@ -921,10 +921,11 @@ a.btn-collapse i.collapseGira {
 .switch {
     display: inline-block;
     width: 70px;
-    height: 33px;
-    margin-right: 8px;
-    
-    margin-top: 5px;
+    height: 31px;
+    margin: 8px;
+    /* transform: translateY(50%); */
+    position: relative;
+    margin-top: 6px;
 }
 .slider {
   position:absolute;
