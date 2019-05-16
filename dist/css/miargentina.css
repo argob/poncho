@@ -1105,3 +1105,24 @@ ul.data li{
    
   }
 }
+
+
+@media (min-width: 1199px) {
+ .qrsmall {
+   float: right;
+ }
+}
+
+@media (min-width: 991px) and (max-width: 1199px) {
+ .qrsmall {
+   float: left;
+   padding-right: 10px;
+ }
+}
+
+@media (min-width: 68px) and (max-width: 990px) {
+ .qrsmall {
+   float: left;
+   margin-top: 20px;
+ }
+}
