@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]> <html lang="es"class="iem7"> <![endif]-->
+<!--[if lt IE 7 ]> <html lang="es" class="ie6 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="es" class="ie7 lt-ie8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="es" class="ie8"> <![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="es"><!--<![endif]-->
+    <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Banco de Pruebas</title>
+  <meta name="description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
+  <meta name="author" content="Presidencia de la Nación">
+  <link rel="shortcut icon" href="img/favicon.ico">
+
+  <!-- Nav and address bar color -->
+  <meta name="theme-color" content="#0072b8">
+  <meta name="msapplication-navbutton-color" content="#0072b8">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
+
+  <meta property="og:url" content="http://localhost:4000/proyectos/argentina/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Banco de Pruebas" />
+  <meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta property="og:image" content="/ejemplos/img/jumbotron.jpg" />
+  <meta property="og:locale" content="es_AR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Banco de Pruebas" />
+  <meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta name="twitter:image" content="/ejemplos/img/jumbotron.jpg" />
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://qa-poncho.argentina.gob.ar/dist/css/poncho.min.css">
+  <link rel="stylesheet" href="https://qa-poncho.argentina.gob.ar/dist/css/icono-arg.css">
+  <link rel="stylesheet" href="https://qa-poncho.argentina.gob.ar/dist/css/argentina.css">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="http://argob.github.io/poncho/js/html5shiv.js"></script>
+      <script src="http://argob.github.io/poncho/js/respond.min.js"></script>
+  <![endif]-->
+  <style type="text/css">
+    @media print{
+      /* paneles */
+      .panel-default>.panel-heading{height: initial!important;min-height: initial!important;}
+      .panel-body{padding: 0!important;}
+      .panel-icon .panel-heading{text-align: left!important;}
+      .panel-icon .panel-heading i{padding: 0!important;}
+      /* iconos */
+      .icon-item i{height: initial!important;}
+      /* jumbotron */
+      .jumbotron .text-center{text-align: left!important;}
+      .jumbotron .jumbotron_body{padding: 20px 0!important;}
+      /* encabezados */
+      .content_format h2,
+      .content_format h3,
+      .content_format h4,
+      .content_format h5,
+      .content_format h6,
+      .content_format .h2,
+      .content_format .h3,
+      .content_format .h4,
+      .content_format .h5,
+      .content_format .h6{margin-top: 0!important}
+      /* evita cortes de titulos entre paginas */
+      h1, h2, h3, h4, h5, h6{break-inside: avoid!important;}
+    }
+    .btn i[class*="icono-arg"]{font-size: 1em;height: 22px;float: left;margin-right:8px;}
+    .btn i[class*="icono-arg"].fa-fw{width: 1.6em;margin-right:0;}
+    .btn i[class*="icono-arg"]:before{line-height: 22px;font-size:1.6em;}
+
+    /* cambios en header
+    .navbar.navbar-top.state-search .navbar-nav.navbar-right .input-group{
+      width: auto;
+      float: none;
+    } */
+  </style>
+    
+</head>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+
+  <body>
+
+    
+<header>
+  <nav class="navbar navbar-top navbar-default" role="navigation">
+    <div class="container">
+      <div>
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#" aria-label="Argentina.gob.ar Presidencia de la Nación">
+            <h1>Argentina.gob.ar</h1>
+          </a>
+        </div>
+        <div class="collapse navbar-collapse" id="main-navbar-collapse" data-seccion="Patrones">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="active"><a href="#">Inicio</a></li>
+            <li><a href="#">Enlace 1</a></li>
+            <li><a href="#">Enlace 2</a></li>
+            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Menú desplegable  <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Acción 1</a></li>
+                <li><a href="#">Acción 2</a></li>
+                <li><a href="#">Acción 3</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+
+<main role="main">
+  <div style="height: calc(100vh - 332px);"></div>
+</main>
+
+<footer class="main-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6">
+        <h3 class="m-t-0">Argentina.gob.ar</h3>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <ul>
+          <li><a href="#">Enlace 1</a></li>
+          <li><a href="#">Enlace 2</a></li>
+          <li><a href="#">Enlace 3</a></li>
+          <li><a href="#">Enlace 4</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <ul>
+          <li><a href="#">Enlace 5</a></li>
+          <li><a href="#">Enlace 6</a></li>
+          <li><a href="#">Enlace 7</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function viewpassword(){
+    var clave = document.getElementById('password_confirmacion')
+    if(clave.type === 'password'){
+      clave.type = 'text'
+      document.getElementById('eye-password').classList.remove("fa-eye-slash")
+      document.getElementById('eye-password').classList.add("fa-eye")
+    }else{
+      clave.type = 'password'
+      document.getElementById('eye-password').classList.remove("fa-eye")
+      document.getElementById('eye-password').classList.add("fa-eye-slash")
+    }
+    
+  }
+</script>
+  </body>
+</html>

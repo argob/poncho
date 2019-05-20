@@ -91,104 +91,60 @@
   <nav class="navbar navbar-top navbar-default" role="navigation">
     <div class="container">
       <div>
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
         <div class="navbar-header">
-          <a class="navbar-brand" href="/proyectos/argentina/" aria-label="Argentina.gob.ar Presidencia de la Nación">
+          <a class="navbar-brand" href="#" aria-label="Argentina.gob.ar Presidencia de la Nación">
             <img alt="Argentina.gob.ar" src="img/argentinagob.svg" height="50">
           </a>
-          <a class="btn btn-link btn-login visible-xs" href="/proyectos/mi-argentina/v3/"><i class="icono-arg-mi-argentina fa-fw"></i></a>
-          <a class="btn btn-primary btn-login visible-xs" href="#" onclick="$('.navbar.navbar-top').addClass('state-search');"><span class="fa fa-search fa-fw"></span></a>
         </div>
-        <ul class="nav navbar-nav navbar-right hidden-xs">
-          <a href="#" onclick="$('.navbar.navbar-top').removeClass('state-search');" class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
-          <li>
-            <div class="input-group">
-              
-              <input id="buscar" type="text" class="form-control" aria-label="Buscar trámites, servicios o áreas" placeholder="Buscar trámites, servicios o áreas ...">
-              <span class="input-group-btn">
-                <button class="btn btn-primary" id="buscar-btn" type="button" aria-label="Buscar"><i class="fa fa-search"></i></button>
-              </span>
-            </div>
-          </li>              
-          <a href="#" class="dropdown-toggle btn btn-link hidden-xs" aria-label="Ingresar a Mi Argentina" data-toggle="dropdown">
-           <i class="icono-arg-mi-argentina"></i>Mi Argentina</a>
-        </ul>
+        <div class="collapse navbar-collapse" id="main-navbar-collapse" data-seccion="Patrones">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="active"><a href="#">Inicio</a></li>
+            <li><a href="#">Enlace 1</a></li>
+            <li><a href="#">Enlace 2</a></li>
+            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Menú desplegable  <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Acción 1</a></li>
+                <li><a href="#">Acción 2</a></li>
+                <li><a href="#">Acción 3</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </nav>
 </header>
 
 
-    <main role="main">
-      
+<main role="main">
+  <div style="height: calc(100vh - 332px);"></div>
+</main>
 
-<section>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2">
-            <form method="" action="">
-              <fieldset>
-                <legend>
-                  <h1 class="sr-only">Ingresá a tu cuenta</h1>
-                  <h2 aria-hidden="true">Ingresá a tu cuenta</h2>
-                </legend>
-                <div class="row">
-                  <div class="col-xs-12 form-group item-form">
-                    <label for="cuil">CUIL o pasaporte extranjero</label>
-                    <input type="text" class="form-control" id="cuil" required aria-required="true">
-                    <p class="help-block error hidden">Ingresá tu CUIL <br>El CUIL tiene un formato no válido</p>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-xs-12">
-                    <label for="password_confirmacion">Contraseña</label>
-                    <div class="form-group item-form">
-                      <input id="password_confirmacion"  type="password" class="form-control" maxlength="15" " required>
-                      <span  class="fa fa-fw fa-eye-slash input-icon" id="eye-password" onclick="viewpassword()" alt="Mostrar contraseña"></span>
-                      <p class="help-block error hidden">La contraseña ingresada no es correcta</p>
-                    </div>
-                    <p><a href="recuperar-contrasena1.html">¿Olvidaste tu contraseña?</a></p>
-                  </div>
-                </div>
-                <div class="row m-t-2">
-                  <div class="col-md-8">
-                    <button type="submit" class="btn btn-success">Ingresar</button>
-                  </div>
-                </div>
-              
-           
-            <p class="m-t-2 m-b-1">O ingresá con Facebook o Google<span class="sr-only">Facebook o Google</span></p>
-            <div class="m-b-0">
-              <button type="submit" onclick="location.href='https://facebook.com'" class="btn btn-link m-r-1"><i class="fa fa-facebook"></i> &nbsp; Facebook</button>
-              <button type="submit" onclick="location.href='https://facebook.com'" class="btn btn-link text-danger"><i class="fa fa-google"></i> &nbsp; Google</a></button>
-            </div>
-            </fieldset>
-           </form>
-          </div>
-        </div>
-      </div>
-</section>
-
-
-    </main>
-    <footer class="main-footer">
+<footer class="main-footer">
   <div class="container">
     <div class="row">
       <div class="col-sm-6">
-        <img class="image-responsive" alt="Argentina.gob.ar - Presidencia de la Nación" src="img/argentinagob.svg" height="50">
+        <h3 class="m-t-0">Argentina.gob.ar</h3>
       </div>
       <div class="col-md-3 col-sm-6">
         <ul>
-          <li><a href="/servicios">Trámites y servicios</a></li>
-          <li><a href="/turnos">Turnos</a></li>
-          <li><a href="/organismos">Organismos del Estado</a></li>
-          <li><a href="http://mapadelestado.modernizacion.gob.ar/" target="_blank" aria-label="Mapa del Estado - Sitio Externo">Mapa del Estado</a></li>
+          <li><a href="#">Enlace 1</a></li>
+          <li><a href="#">Enlace 2</a></li>
+          <li><a href="#">Enlace 3</a></li>
+          <li><a href="#">Enlace 4</a></li>
         </ul>
       </div>
       <div class="col-md-3 col-sm-6">
         <ul>
-          <li><a href="/acerca">Acerca de este sitio</a></li>
-          <li><a href="/terminos-y-condiciones">Términos y condiciones</a></li>
-          <li><a href="/ayuda">Ayuda</a></li>
+          <li><a href="#">Enlace 5</a></li>
+          <li><a href="#">Enlace 6</a></li>
+          <li><a href="#">Enlace 7</a></li>
         </ul>
       </div>
     </div>
