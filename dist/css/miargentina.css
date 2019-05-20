@@ -35,6 +35,12 @@ h2{
   margin-top: 15px;
 }
 
+@media (min-width: 767px) and (max-width: 900px){
+  #main-content{
+    max-width: 450px;
+  }
+}
+
 /********PANELES**********/
 
 .panel-body .list-group {
@@ -256,8 +262,11 @@ a.btn-collapse i.collapseGira {
 .navbar-right-mobile button.sr-only{
   width: 274px;
   height: 50px;
+  
 }
-
+.navbar-right-mobile button{
+  background: none;
+}
 .navbar .open > .dropdown-menu{
   border: 1px #dbdbdb solid;
 }
@@ -1125,4 +1134,24 @@ ul.data li{
    float: left;
    margin-top: 20px;
  }
+}
+
+/*id paso de validación verificado*/
+#idVerificado{
+  visibility: hidden;
+}
+.fa-square-o, .fa-check-square-o{
+  z-index: 1;
+  position: absolute;
+  margin-top: -5px;
+}
+.fa-square-o{
+  margin-left: -20px; 
+}
+.fa-check-square-o{
+  margin-left: -18px;
+}
+#verificado span{
+  margin-left: 20px; 
+  margin-top: 5px;
 }
