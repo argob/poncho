@@ -886,11 +886,11 @@ dd {
     content: "";
 }
 
-.fa.text-primary, .icono-arg.text-primary{color:$brand-primary}
-.fa.text-info, .icono-arg.text-info{color:$brand-primary}
-.fa.text-success, .icono-arg.text-success{color:$brand-success}
-.fa.text-warning, .icono-arg.text-warning{color:$brand-warning}
-.fa.text-danger, .icono-arg.text-danger{color:$brand-danger}
+.fa.text-primary{color:$brand-primary!important}
+.fa.text-info{color:$brand-primary!important}
+.fa.text-success{color:$brand-success!important}
+.fa.text-warning{color:$brand-warning!important}
+.fa.text-danger{color:$brand-danger!important}
 
 .nav-icons i[class^="icono-arg-"]:before,
 .nav-icons i.fa:before

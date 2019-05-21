@@ -3064,20 +3064,20 @@ dd {
 .fa-yoast:before {
   content: ""; }
 
-.fa.text-primary, .icono-arg.text-primary {
-  color: #0072bb; }
+.fa.text-primary {
+  color: #0072bb !important; }
 
-.fa.text-info, .icono-arg.text-info {
-  color: #0072bb; }
+.fa.text-info {
+  color: #0072bb !important; }
 
-.fa.text-success, .icono-arg.text-success {
-  color: #2e7d33; }
+.fa.text-success {
+  color: #2e7d33 !important; }
 
-.fa.text-warning, .icono-arg.text-warning {
-  color: #f9a822; }
+.fa.text-warning {
+  color: #f9a822 !important; }
 
-.fa.text-danger, .icono-arg.text-danger {
-  color: #c62828; }
+.fa.text-danger {
+  color: #c62828 !important; }
 
 .nav-icons i[class^="icono-arg-"]:before,
 .nav-icons i.fa:before {
