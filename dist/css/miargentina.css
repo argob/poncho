@@ -6,6 +6,9 @@ h1{
 h2{
   font-size: 18px;
 }
+form .panels-row-miargentina .panel h3 {
+  font-size: 2em;
+}
 
 @media (min-width: 991px){
   h1{
@@ -14,6 +17,7 @@ h2{
   h2{
   font-size: 1.8em;
 }
+
 }
 /**********/
 
