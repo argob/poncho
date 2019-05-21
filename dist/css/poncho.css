@@ -3064,6 +3064,21 @@ dd {
 .fa-yoast:before {
   content: ""; }
 
+.fa.text-primary, .icono-arg.text-primary {
+  color: #0072bb; }
+
+.fa.text-info, .icono-arg.text-info {
+  color: #0072bb; }
+
+.fa.text-success, .icono-arg.text-success {
+  color: #2e7d33; }
+
+.fa.text-warning, .icono-arg.text-warning {
+  color: #f9a822; }
+
+.fa.text-danger, .icono-arg.text-danger {
+  color: #c62828; }
+
 .nav-icons i[class^="icono-arg-"]:before,
 .nav-icons i.fa:before {
   line-height: 80px; }
