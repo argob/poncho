@@ -54,6 +54,9 @@ form  h3 {
   border: none!important;
   box-shadow: none!important;
 }
+.no-border-list-item{
+  border-bottom: 0px;
+}
 .panel-borders{
   border: 1px solid #dee2e6;
 }
