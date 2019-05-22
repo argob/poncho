@@ -6,8 +6,8 @@ h1{
 h2{
   font-size: 18px;
 }
-form .panels-row-miargentina .panel h3 {
-  font-size: 2em;
+form  h3 {
+  font-size: 1.6em!important;
 }
 
 @media (min-width: 991px){
@@ -1149,15 +1149,15 @@ ul.data li{
 #idVerificado{
   visibility: hidden;
 }
-.fa-square-o, .fa-check-square-o{
+.fa-validador-check, .fa-validador-nocheck{
   z-index: 1;
   position: absolute;
   margin-top: -5px;
 }
-.fa-square-o{
+.fa-validador-nocheck{
   margin-left: -20px; 
 }
-.fa-check-square-o{
+.fa-validador-check{
   margin-left: -18px;
 }
 #verificado span{
