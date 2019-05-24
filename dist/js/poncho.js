@@ -177,10 +177,8 @@
           "lengthChange": false,
           "autoWidth" : false,
           "columnDefs": [
-            {
-                "targets": opt.ocultarColumnas,
-                "visible": false
-            }
+            { "type": "html-num", "targets": opt.tipoNumero },
+            { "targets": opt.ocultarColumnas, "visible": false }
           ],
           "ordering" : opt.orden,
           "order": [[ opt.ordenColumna-1, opt.ordenTipo ]],
