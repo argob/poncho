@@ -66,7 +66,9 @@ form  h3 {
 .panel-borders{
   border: 1px solid #dee2e6;
 }
-
+.panel-heading-close{
+  margin-top:-30px
+}
 .alert .btn-close {
   margin-top: -7px;
 }
@@ -405,7 +407,14 @@ a.btn-collapse i.collapseGira {
     z-index: 10000;
     background-color: #f2f3f4;
   }
+
 }
+@media(max-width: 360px){
+   .panels-row-miargentina-cud label{
+      max-width: 250px;
+  }
+}
+
 /************************************************NUEVO DASHBOARD MOBILE***********************************************/
 
 
