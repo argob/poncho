@@ -258,6 +258,9 @@ a {
   .panel-heading {
     background-color: $brand-primary;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     i {
       color: $white;

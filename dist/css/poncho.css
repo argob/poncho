@@ -4461,7 +4461,10 @@ a.panel {
 
 .panel-icon .panel-heading {
   background-color: #0072bb;
-  text-align: center; }
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
   .panel-icon .panel-heading i {
     color: #fff;
     font-size: 70px;
