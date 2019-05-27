@@ -68,8 +68,10 @@ form  h3 {
 .panel-borders{
   border: 1px solid #dee2e6;
 }
-.panel-heading-close{
-  margin-top:-30px
+.panel-heading-title{
+  width: calc(100% - 50px);
+  padding-left: 15px;
+  float: left;
 }
 .alert .btn-close {
   margin-top: -7px;
