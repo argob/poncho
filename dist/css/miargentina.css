@@ -46,7 +46,9 @@ form  h3 {
 }
 
 /********PANELES**********/
-
+.panels-row-miargentina .panel-body{
+  flex-grow: 1;
+}
 .panel-body .list-group {
   box-shadow: 0 0 0 rgba(0, 0, 0, 0.2);
 }
