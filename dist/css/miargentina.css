@@ -20,7 +20,9 @@ form  h3 {
 
 }
 /**********/
-
+#main-content{
+  margin-bottom: 30px;
+}
 .alert .btn{
   margin-top: 15px;
 }
