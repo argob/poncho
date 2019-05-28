@@ -71,7 +71,7 @@ form  h3 {
   border: 1px solid #dee2e6;
 }
 .panel-heading-title{
-  width: calc(100% - 50px);
+  width: calc(100% - 30px);
   padding-left: 15px;
   float: left;
 }
