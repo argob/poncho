@@ -20,7 +20,7 @@ form  h3 {
 
 }
 /**********/
-#main-content{
+.main{
   margin-bottom: 30px;
 }
 .alert .btn{
@@ -184,6 +184,7 @@ a.btn-collapse i.collapseGira {
 }
 .panels-row-miargentina>div{
   margin-bottom: 20px;
+  flex-direction: column;
 }
 .panels-row-miargentina .btn{
   margin-top:15px;
@@ -927,7 +928,7 @@ a.btn-collapse i.collapseGira {
 }
 
 .footer .col-sm-2{
-  min-width: 270px;
+  min-width: 260px;
   max-width: 500px;
 }
 .footer .first-footer-item{
@@ -944,6 +945,7 @@ a.btn-collapse i.collapseGira {
   .footer{
     display: block;
   }
+
   .footer .col-sm-2:nth-child(2){
     margin-top: 30px;
   }
