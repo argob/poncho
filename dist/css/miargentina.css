@@ -48,6 +48,9 @@ form  h3 {
 }
 
 /********PANELES**********/
+.panels-row-miargentina .panel-credenciales{
+  margin-bottom: 0px;
+}
 .panels-row-miargentina .panel-body{
   flex-grow: 1;
 }
@@ -184,7 +187,7 @@ a.btn-collapse i.collapseGira {
 }
 .panels-row-miargentina>div{
   margin-bottom: 20px;
-  flex-direction: column;
+
 }
 .panels-row-miargentina .btn{
   margin-top:15px;
