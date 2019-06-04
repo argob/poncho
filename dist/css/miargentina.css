@@ -75,7 +75,6 @@ form  h3 {
 }
 .panel-heading-title{
   width: calc(100% - 30px);
-  padding-left: 15px;
   float: left;
 }
 .alert .btn-close {
@@ -245,6 +244,49 @@ a.btn-collapse i.collapseGira {
     display: block;
   }
 }
+
+/************************************* Panels v2 **************************************/
+.panels-row-miargentina-credenciales>div{
+  display: flex;
+}
+
+.panels-row-miargentina-credenciales .collapse.in{
+    display: flex;
+    flex-direction:column;
+    flex:1 1 auto;
+    transition: all 0.1s ;
+}
+.panels-row-miargentina-credenciales .panel{
+  margin-bottom: 0px;
+}
+.panels-row-miargentina-credenciales .collapsing, .panels-row-miargentina-credenciales .collapse {
+    transition: height 0.5s linear;
+}
+
+.panels-row-miargentina-credenciales .panel-heading .media-left img{
+  width: 50px;
+}
+
+.panels-row-miargentina-credenciales .panel-body img.qr{
+  max-width: 150px;
+}
+.panels-row-miargentina-credenciales .panel-heading h2, .panels-row-miargentina-credenciales .panel-heading h2:hover{
+  color:#333;
+} 
+.panels-row-miargentina-credenciales .panel-heading i, .panels-row-miargentina-credenciales .panel-heading i:hover{
+ color: #0072bb;
+}
+.panels-row-miargentina-credenciales .panel-body img.logo{
+  width:60px;
+}
+.panels-row-miargentina-credenciales .panel-footer .btn-footer-container{
+  max-width: 320px;
+}
+@media (max-width: 1590px) and (min-width: 1199px){
+  .panels-row-miargentina-credenciales .panel-body .credencial-txt .col-xs-6{
+    width: 100%;
+  }
+}
 /************************************* NUEVO DASHBOARD**************************************/
 
 .max-w-img{
@@ -301,7 +343,7 @@ a.btn-collapse i.collapseGira {
   border: 1px #dbdbdb solid;
 }
 .dashboard-sidebar{
-  height: 82vh;
+  height: 85vh;
   width: 100%;
   max-width: 260px;
   min-height: 100%;
@@ -927,7 +969,8 @@ a.btn-collapse i.collapseGira {
 
 .footer{
   display: flex; 
-  justify-content: flex-end;
+  width: 100%;
+
 }
 
 .footer .col-sm-2{
@@ -1193,3 +1236,5 @@ ul.data li{
   margin-left: 20px; 
   margin-top: 5px;
 }
+
+
