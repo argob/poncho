@@ -456,7 +456,7 @@ a.btn-collapse i.collapseGira {
   .nav-dashboard{
     position: absolute;
     top: 130px;
-    z-index: 10000;
+    z-index: 1;
     background-color: #f2f3f4;
   }
 
