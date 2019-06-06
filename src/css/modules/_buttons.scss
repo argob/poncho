@@ -118,13 +118,15 @@ fieldset[disabled] .btn-default.active {
 .btn-default {
   border-radius: 4px;
   color: $brand-primary;
-  background-color: $gray-lighter !important;
+  background-color: $white;
+  border:3px solid #DEE2E6!important;
 
   &:hover,
-  &:focus {
-    text-decoration: none !important;
-    background-color: darken($brand-primary, 10);;
-    color: $white;
+  &:focus,
+  &:active {
+    text-decoration: none;
+    background-color: darken($white, 5)!important;
+    color: $brand-primary;
   }
 }
 

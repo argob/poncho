@@ -3408,11 +3408,12 @@ fieldset[disabled] .btn-default.active {
 .btn-default {
   border-radius: 4px;
   color: #0072bb;
-  background-color: #E5EAEB !important; }
-  .btn-default:hover, .btn-default:focus {
-    text-decoration: none !important;
-    background-color: #005388;
-    color: #fff; }
+  background-color: #fff;
+  border: 3px solid #DEE2E6 !important; }
+  .btn-default:hover, .btn-default:focus, .btn-default:active {
+    text-decoration: none;
+    background-color: #f2f2f2 !important;
+    color: #0072bb; }
 
 .btn {
   border: 3px solid transparent;
