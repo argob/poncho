@@ -216,6 +216,9 @@ a.btn-collapse i.collapseGira {
   border-top: 1px solid #ddd;
   padding: 15px 20px;
 }
+#configurarServicios{
+  max-width: 768px;
+}
 @media (min-width: 991px) {
   .panel-table tr:first-child>td {
     border-top: 0;
@@ -243,6 +246,46 @@ a.btn-collapse i.collapseGira {
   .panels-row-miargentina{
     display: block;
   }
+}
+
+/*************************************. Panel popUp ***********************************/
+
+.content-popup{
+  position: initial;
+  max-width: 400px !important;
+    z-index: 2;
+    border: 1px solid rgba(0, 0, 0, .2);
+    border-radius: 6px;
+    padding: 10px 20px 20px 20px;
+    margin: 15px 0;
+}
+.arrow-popup{
+  border-bottom: 0 solid rgba(0, 0, 0, 0);
+    border-left: 11px solid rgba(0, 0, 0, 0);
+    border-right: 11px solid rgba(0, 0, 0, 0);
+    border-top: 11px solid rgba(0, 0, 0, 0.25);
+    bottom: 37px;
+    height: 11px;
+    left: 199px;
+    margin-left: -11px;
+    position: absolute;
+    width: 22px;
+}
+
+.arrow-popup:after {
+    content: " ";
+    border-width: 10px;
+    box-sizing: border-box;
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    bottom: 1px;
+    margin-left: -10px;
+    border-top-color: #fff;
+    border-bottom-width: 0;
 }
 
 /************************************* Panels v2 **************************************/
