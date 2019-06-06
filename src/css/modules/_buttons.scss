@@ -125,7 +125,7 @@ fieldset[disabled] .btn-default.active {
   &:focus,
   &:active {
     text-decoration: none;
-    background-color: darken($white, 5)!important;
+    background-color: darken($white, 5);
     color: $brand-primary;
   }
 }

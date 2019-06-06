@@ -3412,7 +3412,7 @@ fieldset[disabled] .btn-default.active {
   border: 3px solid #DEE2E6 !important; }
   .btn-default:hover, .btn-default:focus, .btn-default:active {
     text-decoration: none;
-    background-color: #f2f2f2 !important;
+    background-color: #f2f2f2;
     color: #0072bb; }
 
 .btn {
