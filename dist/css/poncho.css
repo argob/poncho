@@ -3410,7 +3410,7 @@ fieldset[disabled] .btn-default.active {
   color: #0072bb;
   background-color: #fff;
   border: 3px solid #DEE2E6 !important; }
-  .btn-default:hover, .btn-default:focus, .btn-default:active {
+  .btn-default:hover, .btn-default:focus, .btn-default.active, .btn-default:active {
     text-decoration: none;
     background-color: #f2f2f2;
     color: #0072bb; }
@@ -3471,16 +3471,16 @@ span.btn:hover {
   cursor: default; }
 
 .btn-group .btn-default {
-  background: #E5EAEB;
-  color: #444444;
+  background-color: #fff;
+  color: #0072bb;
   border-right: 1px solid #DEE2E6; }
   .btn-group .btn-default:last-of-type {
     border: none; }
   .btn-group .btn-default:hover {
-    background: #DEE2E6; }
+    background-color: #f2f2f2; }
   .btn-group .btn-default.active, .btn-group .btn-default:active {
-    background: #0072bb;
-    color: #fff;
+    border-color: #0072bb !important;
+    color: #0072bb !important;
     box-shadow: none;
     cursor: default; }
 .btn-group.btn-group-vertical .btn {

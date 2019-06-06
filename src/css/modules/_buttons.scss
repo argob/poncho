@@ -120,9 +120,10 @@ fieldset[disabled] .btn-default.active {
   color: $brand-primary;
   background-color: $white;
   border:3px solid #DEE2E6!important;
-
+  
   &:hover,
   &:focus,
+  &.active,
   &:active {
     text-decoration: none;
     background-color: darken($white, 5);
@@ -221,8 +222,8 @@ span {
 
 .btn-group {
   .btn-default {
-    background: $gray-lighter;
-    color: $gray-dark;
+    background-color: $white;
+    color: $brand-primary;
     border-right: 1px solid $gray-light;
 
     &:last-of-type {
@@ -230,13 +231,13 @@ span {
     }
 
     &:hover {
-      background: $gray-light;
+      background-color: darken($white, 5);
     }
 
     &.active,
     &:active {
-      background: $brand-primary;
-      color: $white;
+      border-color: $brand-primary!important;
+      color: $brand-primary!important;
       box-shadow: none;
       cursor: default;
     }
