@@ -35,6 +35,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://qa-poncho.argentina.gob.ar/dist/css/poncho.min.css">
   <link rel="stylesheet" href="https://qa-poncho.argentina.gob.ar/dist/css/icono-arg.css">
+  <link rel="stylesheet" href="https://qa-poncho.argentina.gob.ar/dist/css/argentina.css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -51,36 +52,37 @@
   <body>
 
     
-    
+
 <header>
-  <nav class="navbar navbar-top navbar-default" role="navigation">
-    <div class="container">
-      <div>
-        <div class="navbar-header">
-          <a class="navbar-brand" href="/proyectos/argentina/" aria-label="Argentina.gob.ar Presidencia de la Nación">
-            <img alt="Argentina.gob.ar" src="img/argentinagob.svg" height="50">
-          </a>
-          <a class="btn btn-link btn-login visible-xs" href="/proyectos/mi-argentina/v3/"><i class="icono-arg-mi-argentina fa-fw"></i></a>
-          <a class="btn btn-primary btn-login visible-xs" href="#" onclick="$('.navbar.navbar-top').addClass('state-search');"><span class="fa fa-search fa-fw"></span></a>
+    <nav class="navbar navbar-top navbar-default" role="navigation">
+      <div class="container">
+        <div>
+          <div class="navbar-header">
+            <a class="navbar-brand" href="/proyectos/argentina/" aria-label="Argentina.gob.ar Presidencia de la Nación">
+              <img alt="Argentina.gob.ar" src="img/argentinagob.svg" height="50">
+            </a>
+            <a class="btn btn-link btn-login visible-xs" href="/proyectos/mi-argentina/v3/"><i class="icono-arg-mi-argentina fa-fw"></i></a>
+            <a class="btn btn-primary btn-login visible-xs" href="#" onclick="$('.navbar.navbar-top').addClass('state-search');"><span class="fa fa-search fa-fw"></span></a>
+          </div>
+          <ul class="nav navbar-nav navbar-right hidden-xs">
+            <a href="#" onclick="$('.navbar.navbar-top').removeClass('state-search');" class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+            <li>
+              <div class="input-group">
+                
+                <input id="buscar" type="text" class="form-control" aria-label="Buscar trámites, servicios o áreas" placeholder="Buscar trámites, servicios o áreas ...">
+                <span class="input-group-btn">
+                  <button class="btn btn-primary" id="buscar-btn" type="button" aria-label="Buscar"><i class="fa fa-search"></i></button>
+                </span>
+              </div>
+            </li>              
+            <a href="#" class="dropdown-toggle btn btn-link hidden-xs" aria-label="Ingresar a Mi Argentina" data-toggle="dropdown">
+              <i class="icono-arg-mi-argentina"></i>Mi Argentina</a>
+          </ul>
         </div>
-        <ul class="nav navbar-nav navbar-right hidden-xs">
-          <a href="#" onclick="$('.navbar.navbar-top').removeClass('state-search');" class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
-          <li>
-            <div class="input-group">
-              
-              <input id="buscar" type="text" class="form-control" aria-label="Buscar trámites, servicios o áreas" placeholder="Buscar trámites, servicios o áreas ...">
-              <span class="input-group-btn">
-                <button class="btn btn-primary" id="buscar-btn" type="button" aria-label="Buscar"><i class="fa fa-search"></i></button>
-              </span>
-            </div>
-          </li>              
-          <a href="#" class="dropdown-toggle btn btn-link hidden-xs" aria-label="Ingresar a Mi Argentina" data-toggle="dropdown">
-           <i class="icono-arg-mi-argentina"></i>Mi Argentina</a>
-        </ul>
       </div>
-    </div>
-  </nav>
-</header>
+    </nav>
+  </header>
+
 
 
 <script type="text/javascript">
@@ -113,7 +115,6 @@
             <li class="active"><span>Ministerio de Modernización</span></li>
           </ol>
           <ul class="list-inline pull-right">
-            <li><a href="#" class="search"><i class="glyphicon glyphicon-search"></i>Buscar en el área</a></li>
             <li>
               <div class="dropdown">
                 <a href="#" class="dropdown-toggle" id="jumbo-menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -147,72 +148,63 @@
 
 <section>
   <article class="container content_format">
-    <div class="col-md-8 col-md-offset-2">
-     <div class="row">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
 
-        <div class="section-actions is_area col-md-12 social-share">
-  <p>Compartir en <br> redes sociales</p>
-  <ul class="list-inline">
-    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-    <li><a href="#"><i class="fa fa-twitter "></i></a></li>
-    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-  </ul>
-</div>
+        <h2>El Estado al servicio de la gente</h2>
 
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
-     </div>
+        <blockquote>
+          <p>Todas las áreas del Gobierno tendrán un plan de comunicación e información que será publicado y actualizado en forma permanente</p>
+          <small>Mauricio Macri</small>
+        </blockquote>
 
-      <h2>El Estado al servicio de la gente</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <h2 class="">Qué hacemos</h2>
 
-      <blockquote>
-        <p>Todas las áreas del Gobierno tendrán un plan de comunicación e información que será publicado y actualizado en forma permanente</p>
-        <small>Mauricio Macri</small>
-      </blockquote>
-
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-      <h2 class="">Qué hacemos</h2>
-
-      <ul>
-        <li>Colaboramos con toda las áreas del gobierno para que sus servicios sean cada vez mas <strong>eficientes</strong>.</li>
-        <li>Aplicamos tecnología e innovamos en procesos para que <strong>vos ganes en calidad de vida</strong>.</li>
-        <li>Acercamos el Estado a la gente para hacerlo <strong>más transparente</strong>, y abrimos la información para una comunicación mas directa, que tenga un <strong>ida y vuelta con la ciudadanía</strong>.</li>
-        <li>Trabajamos hacia adentro con el eje puesto en el <strong>empleado público</strong>, para capacitarlo y jerarquizar su carrera,  y de esta manera <strong>acompañar su vocación y ganas de crecer</strong>. </li>
-      </ul>
+        <ul>
+          <li>Colaboramos con toda las áreas del gobierno para que sus servicios sean cada vez mas <strong>eficientes</strong>.</li>
+          <li>Aplicamos tecnología e innovamos en procesos para que <strong>vos ganes en calidad de vida</strong>.</li>
+          <li>Acercamos el Estado a la gente para hacerlo <strong>más transparente</strong>, y abrimos la información para una comunicación mas directa, que tenga un <strong>ida y vuelta con la ciudadanía</strong>.</li>
+          <li>Trabajamos hacia adentro con el eje puesto en el <strong>empleado público</strong>, para capacitarlo y jerarquizar su carrera,  y de esta manera <strong>acompañar su vocación y ganas de crecer</strong>. </li>
+        </ul>
 
 
 
+      </div>
     </div>
   </article>
 </section>
 
 <section>
   <div class="container">
-    <div class="col-md-8 col-md-offset-2">
-    <h2>Principios para una gestión moderna</h2>
-      <div class="row">
-        <div class="col-xs-12 col-sm-6 col-md-4">
-            <div class="icon-item">
-                <i class="fa fa-users"></i>
-                <h3>Cercana</h3>
-                <p>Conoce tus necesidades y adopta sus servicios a ellas.</p>
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-4">
-            <div class="icon-item">
-                <i class="fa fa-search"></i>
-                <h3>Transparente</h3>
-                <p>Brinda mayor información y certeza sobre sus actos de gobierno.</p>
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-4">
-            <div class="icon-item">
-                <i class="fa fa-users"></i>
-                <h3>Participativa</h3>
-                <p>Trabaja en equipo con los empleados públicos y la gente.</p>
-            </div>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+      <h2>Principios para una gestión moderna</h2>
+        <div class="row">
+          <div class="col-xs-12 col-sm-6 col-md-4">
+              <div class="icon-item">
+                  <i class="fa fa-users"></i>
+                  <h3>Cercana</h3>
+                  <p>Conoce tus necesidades y adopta sus servicios a ellas.</p>
+              </div>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-4">
+              <div class="icon-item">
+                  <i class="fa fa-search"></i>
+                  <h3>Transparente</h3>
+                  <p>Brinda mayor información y certeza sobre sus actos de gobierno.</p>
+              </div>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-4">
+              <div class="icon-item">
+                  <i class="fa fa-users"></i>
+                  <h3>Participativa</h3>
+                  <p>Trabaja en equipo con los empleados públicos y la gente.</p>
+              </div>
+          </div>
         </div>
       </div>
     </div>
@@ -371,7 +363,7 @@
     <div class="row panels-row">
       <div class="col-xs-12 col-sm-6 col-md-3">
         <a class="panel panel-default" href="#">
-          <div style="background-image:url('./img/1.jpg');" class="panel-heading"></div>
+          <div style="background-image:url('./img/01.jpg');" class="panel-heading"></div>
           <div class="panel-body">
             <h3>Este es el título del link</h3>
           </div>
@@ -379,7 +371,7 @@
       </div>
       <div class="col-xs-12 col-sm-6 col-md-3">
         <a class="panel panel-default" href="#">
-          <div style="background-image:url('./img/2.jpg');" class="panel-heading"></div>
+          <div style="background-image:url('./img/02.jpg');" class="panel-heading"></div>
           <div class="panel-body">
             <h3>Este es el título del link</h3>
           </div>
@@ -387,7 +379,7 @@
       </div>
       <div class="col-xs-12 col-sm-6 col-md-3">
         <a class="panel panel-default" href="#">
-          <div style="background-image:url('./img/3.jpg');" class="panel-heading"></div>
+          <div style="background-image:url('./img/03.jpg');" class="panel-heading"></div>
           <div class="panel-body">
             <h3>Este es el título del link</h3>
           </div>
@@ -395,7 +387,7 @@
       </div>
       <div class="col-xs-12 col-sm-6 col-md-3">
         <a class="panel panel-default" href="#">
-          <div style="background-image:url('./img/4.jpg');" class="panel-heading"></div>
+          <div style="background-image:url('./img/04.jpg');" class="panel-heading"></div>
           <div class="panel-body">
             <h3>Este es el título del link</h3>
           </div>
@@ -416,7 +408,7 @@
     <div class="row panels-row">
       <div class="col-xs-12 col-sm-6">
         <a class="panel panel-default panel-lg" href="#">
-          <div style="background-image:url('./img/1.jpg');" class="panel-heading"></div>
+          <div style="background-image:url('./img/01.jpg');" class="panel-heading"></div>
           <div class="panel-body">
             <time>Jueves 14 de Enero del 2016</time>
             <h4>El Ministro Buryaile asistió a la apertura de la Semana Verde Internacional, en Berlín</h4>
@@ -425,7 +417,7 @@
       </div>
       <div class="col-xs-12 col-sm-6">
         <a class="panel panel-default panel-lg" href="#">
-          <div style="background-image:url('./img/2.jpg');" class="panel-heading"></div>
+          <div style="background-image:url('./img/02.jpg');" class="panel-heading"></div>
           <div class="panel-body">
             <time>Jueves 14 de Enero del 2016</time>
             <h4>El Ministro Buryaile asistió a la apertura de la Semana Verde Internacional, en Berlín</h4>
@@ -436,7 +428,7 @@
     <div class="row panels-row">
       <div class="col-xs-12 col-sm-6 col-md-3">
         <a class="panel panel-default panel-md" href="#">
-          <div style="background-image:url('./img/3.jpg');" class="panel-heading"></div>
+          <div style="background-image:url('./img/03.jpg');" class="panel-heading"></div>
           <div class="panel-body">
             <time>Jueves 14 de Enero del 2016</time>
             <h4>El Ministro Buryaile asistió a la apertura de la Semana Verde Internacional, en Berlín</h4>
@@ -445,7 +437,7 @@
       </div>
       <div class="col-xs-12 col-sm-6 col-md-3">
         <a class="panel panel-default panel-md" href="#">
-          <div style="background-image:url('./img/4.jpg');" class="panel-heading"></div>
+          <div style="background-image:url('./img/04.jpg');" class="panel-heading"></div>
           <div class="panel-body">
             <time>Jueves 14 de Enero del 2016</time>
             <h4>El Ministro Buryaile asistió a la apertura de la Semana Verde Internacional, en Berlín</h4>
@@ -454,7 +446,7 @@
       </div>
       <div class="col-xs-12 col-sm-6 col-md-3">
         <a class="panel panel-default panel-md" href="#">
-          <div style="background-image:url('./img/1.jpg');" class="panel-heading"></div>
+          <div style="background-image:url('./img/01.jpg');" class="panel-heading"></div>
           <div class="panel-body">
             <time>Jueves 14 de Enero del 2016</time>
             <h4>El Ministro Buryaile asistió a la apertura de la Semana Verde Internacional, en Berlín</h4>
@@ -463,7 +455,7 @@
       </div>
       <div class="col-xs-12 col-sm-6 col-md-3">
         <a class="panel panel-default panel-md" href="#">
-          <div style="background-image:url('./img/2.jpg');" class="panel-heading"></div>
+          <div style="background-image:url('./img/02.jpg');" class="panel-heading"></div>
           <div class="panel-body">
             <time>Jueves 14 de Enero del 2016</time>
             <h4>El Ministro Buryaile asistió a la apertura de la Semana Verde Internacional, en Berlín</h4>
@@ -593,18 +585,6 @@
               <strong>Correo electrónico:</strong> <a href="mailto:institucionales@modernizacion.gob.ar">institucionales@modernizacion.gob.ar</a>
             </p>
           </div>
-      </div>
-      <div class="col-xs-12 col-sm-6">
-        <div>
-          <h2 class="h3 section-title">Envianos tu consulta</h2>
-          <form>
-            <div class="form-group">
-              <label class="text-muted">Escribí tu mensaje o consulta para el Ministerio de Modernización</label>
-              <textarea class="form-control" rows="3" placeholder=""></textarea>
-            </div>
-            <button type="submit" class="btn btn-success">Enviar mi consulta</button>
-          </form>
-        </div>
       </div>
     </div>
   </div>
