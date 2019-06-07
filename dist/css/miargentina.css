@@ -46,7 +46,12 @@ form  h3 {
     max-width: 450px;
   }
 }
-
+@media (max-width: 768px){
+  .main-footer{
+    position: absolute;
+    bottom: 0;
+  }
+}
 /********PANELES**********/
 .panels-row-miargentina .panel-credenciales{
   margin-bottom: 0px;
