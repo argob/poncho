@@ -27,7 +27,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
 
   <meta property="og:site_name" content="Documentación Poncho"/>
-  <meta property="og:url" content="http://argob.github.io/poncho/plantillas/index.html" />
+  <meta property="og:url" content="http://argob.github.io/poncho/plantillas/paginas-de-argentina/index.html" />
   <meta property="og:type" content="article" />
   <meta property="og:title" content="Botones" />
   <meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
@@ -39,15 +39,15 @@
   <meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
   <meta name="twitter:image" content="http://argob.github.io/poncho/img/poncho_social.jpg" />
 
-  <link href="../node_modules/argob-poncho/dist/css/roboto-fontface.css" rel="stylesheet">
-  <link href="../node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
-  <link href="../node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="../../node_modules/argob-poncho/dist/css/roboto-fontface.css" rel="stylesheet">
+  <link href="../../node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+  <link href="../../node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
   <link href="https://id.argentina.gob.ar/static/css/chosen/chosen.css" rel="stylesheet">
   <link href="https://qa-poncho.argentina.gob.ar/dist/css/poncho.min.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/dt-1.10.18/r-2.2.2/datatables.min.css"/>
 
   <link href="https://qa-poncho.argentina.gob.ar/dist/css/documentacion.css" rel="stylesheet">
-  <link href="../css/prism.css" rel="stylesheet">
+  <link href="../../css/prism.css" rel="stylesheet">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -57,11 +57,11 @@
 
   </head>
   
-  <script src="../node_modules/jquery/dist/jquery.js"></script>
+  <script src="../../node_modules/jquery/dist/jquery.js"></script>
   <script type="text/javascript" src="../../js/prism.js"></script>
-  <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.18/r-2.2.2/datatables.min.js"></script>
-  <script src="../js/scripts.js"></script>
+  <script src="../../js/scripts.js"></script>
 
     <style>
       /* EXPERIMéNTAL */
@@ -107,7 +107,8 @@
   <div class="col-sm-12">
       <ol class="breadcrumb">
         <li><a href="/poncho/">Inicio</a></li>
-        <li class="active">Plantillas</li>
+        <li><a href="/poncho/plantillas/plantillas/">Plantillas</a></li>
+        <li class="active">Páginas de Argentina.gob.ar</li>
       </ol>
 
 <div class="jumbotron_body p-t-2 p-b-2">
@@ -129,9 +130,8 @@
         <section>
           <article class="row">
             <div class="col-sm-12">
-                <h1>Plantillas</h1>
+                <h1>Páginas de argentina.gob.ar</h1>
                 <hr>
-                <h2>Páginas de argentina.gob.ar</h2>
 
                 <fieldset>
                   <h3><a href="home.html">Inicio del sitio</a></h3>
@@ -199,7 +199,7 @@
           $.syntax({theme: 'bright'});
         });
 
-        $("#menuLateral").load("../includes/plantillas_menu.html",function(){
+        $("#menuLateral").load("../../includes/plantillas_menu.html",function(){
           var seccion = $("#menuLateral").data("seccion");
           $("#menuLateral ul li a[data-seccion="+seccion+"]").parent().addClass("active");
         });
