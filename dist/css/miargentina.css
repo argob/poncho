@@ -1290,6 +1290,7 @@ ul.data li{
 }
 
 
+
 /* steps */
 .wizard-head .nav-tabs {
   position: relative;
@@ -1322,8 +1323,7 @@ z-index: 1;
 .wizard-head .nav-tabs > li{float:none;position: relative;z-index: 2;background: #fff;}
 .wizard-head .nav-tabs > li > a{display: flex;padding: 0 8px;}
 
-.wizard-head .nav-tabs > li.active > a, .wizard-head .nav-tabs > li.active > a:hover, .wizard-head .nav-tabs > li.active > a:focus,
-.mobile-step.active > a, .mobile-step.active > a:hover, .mobile-step.active > a:focus {
+.wizard-head .nav-tabs > li.active > a, .wizard-head .nav-tabs > li.active > a:hover, .wizard-head .nav-tabs > li.active > a:focus{
 color: #555555;
 cursor: default;
 border: 0;
@@ -1341,7 +1341,7 @@ z-index: 2;
 position: relative;
 text-align: center;
 font-size: 14px;
-color:#fff;flex: 0 0 24px;margin-right: 8px;
+color:#fff;flex: 0 0 24px;
 }
 span.round-tab i,
 span.round-tab span{
@@ -1352,23 +1352,18 @@ span.round-tab i{display: none;}
 .check span.round-tab i{display: inline-block;}
 .check .stepnumber{display: none;}
 
-.mobile-step a h5,
-.wizard-head li a h5{color:#333333;margin: 3px 0 0;font-size: 14px;word-break: keep-all;}
-.mobile-step.disabled a h5,
+.wizard-head li a h5{color:#333333;margin: 3px 8px 0;font-size: 14px;word-break: keep-all;}
 .wizard-head li.disabled a h5{color:#BCBCBC;word-break: keep-all;}
 
-.wizard-head li.active span.round-tab,
-.mobile-step.active span.round-tab {
+.wizard-head li.active span.round-tab{
 box-shadow: 0 4px 8px rgba(0,0,0,.4);
 
 }
-.wizard-head li.disabled span.round-tab,
-.mobile-step.disabled span.round-tab {
+.wizard-head li.disabled span.round-tab{
 background: #BCBCBC;
 
 }
-.wizard-head li.disabled span.round-tab i,
-.mobile-step.disabled span.round-tab i{
+.wizard-head li.disabled span.round-tab i{
 color: #BCBCBC;
 }
 span.round-tab:hover {
@@ -1392,38 +1387,7 @@ border:none;
 position: relative;
 }
 
-.mobile-step{margin: 24px 0;}
-.mobile-step a{display: flex;text-decoration: none}
-.mobile-step.disabled > a:hover,
-.mobile-step.disabled > a:focus{cursor: not-allowed;}
-
-.panel-heading{display: none;}
-@media( min-width : 768px ) {
-.mobile-step{display: none;}
-.panel-heading{display: block;}
-}
 @media( max-width : 768px ) {
-  .tab-pane{margin-left: 32px;}
-  .tab-content .tab-pane:last-child:after{
-    background: #fff;
-    content: "";
-    position: absolute;
-    height: calc(100% + 24px);
-    left: -21px;
-    width: 2px;
-    top: -24px;
-    z-index: 3;
-  }
-  .tab-content .connecting-line {
-    height: 100%;
-    background: #e0e0e0;
-    position: absolute;
-    width: 2px;
-    margin: 0 auto;
-    top: 0;
-    bottom: 0;
-    left: 11px;
-    z-index: 1;
-  }
+  .wizard-head li a h5{display: none;}
 }
 /* fin steps */
