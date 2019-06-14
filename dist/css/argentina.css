@@ -123,3 +123,8 @@ main .container .media img {
   .pane-argentinagobar-bloques-reportes-formulario-reportes,
   .book-navigation {
     display: none; } }
+
+/* Fix labels en input radios de formularios */
+.form-radios label {
+    font-weight: 400;
+}
