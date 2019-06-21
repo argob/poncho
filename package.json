@@ -1,6 +1,6 @@
 {
-  "name": "argob-poncho",
-  "version": "0.3.4",
+  "name": "ar-poncho",
+  "version": "1.0.0",
   "description": "Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.",
   "main": "index.js",
   "scripts": {
