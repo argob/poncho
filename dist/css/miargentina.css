@@ -1174,7 +1174,9 @@ min-height: 900px;
  background-color: #E5EAEB !important;
   
 }
-
+a#eye-password{
+  text-decoration: none;
+}
 .content-dni-tramite {
     position: absolute !important;
     max-width: 400px !important;
@@ -1267,6 +1269,12 @@ ul.data li{
    float: left;
    margin-top: 20px;
  }
+}
+
+
+/*Planilla CUD*/
+.planillaCudContainer, .planillaCud{
+  width: 100%!important;
 }
 
 /*id paso de validación verificado*/
@@ -1390,3 +1398,15 @@ position: relative;
   .wizard-head li a h5{display: none;}
 }
 /* fin steps */
+
+/*Hide spiner (input number*/
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+   /* display: none; <- Crashes Chrome on hover */
+   -webkit-appearance: none;
+   margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number] {
+   -moz-appearance:textfield; /* Firefox */
+}
