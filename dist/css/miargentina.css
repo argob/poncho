@@ -1272,10 +1272,6 @@ ul.data li{
 }
 
 
-/*Planilla CUD*/
-.planillaCudContainer, .planillaCud{
-  width: 100%!important;
-}
 
 /*id paso de validación verificado*/
 #idVerificado{
