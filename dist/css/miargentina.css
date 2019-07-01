@@ -1242,6 +1242,9 @@ ul.data li{
   margin-right: auto;
   margin-left: auto;
 }
+.dashboard ol{
+  padding: 30px;
+}
 
 @media(max-width: 1199px) and (min-width: 768px){
   .fila-licencia canvas {
