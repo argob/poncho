@@ -593,7 +593,9 @@ a.btn-collapse i.collapseGira {
 }
 @media (max-width: 767px) and (max-height: 800px){
   .navbar-right .dropdown-micuenta{
-    width: 100%;
+    position: absolute;
+    width: calc(100% + 30px);
+    left: -15px;
     height: 100vh;
   }
 }
