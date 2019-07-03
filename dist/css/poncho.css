@@ -69,7 +69,6 @@ section {
     height: 110px;
     display: flex;
     align-items: center;
-    justify-content: center;
   }
   .icon-item h1, .icon-item h2, .icon-item h3, .icon-item h4, .icon-item h5, .icon-item h5 {
     margin-top: 0 !important;

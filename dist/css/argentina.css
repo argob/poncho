@@ -128,3 +128,8 @@ main .container .media img {
 .form-radios label {
     font-weight: 400;
 }
+
+/* Fix para centrar iconos en Argentina.gob.ar */
+.icon-item i {
+  justify-content: center;
+}
