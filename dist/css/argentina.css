@@ -130,6 +130,9 @@ main .container .media img {
 }
 
 /* Fix para centrar iconos en Argentina.gob.ar */
+.icon-item{
+  text-align: center;
+}
 .icon-item i {
   justify-content: center;
 }
