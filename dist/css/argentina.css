@@ -137,7 +137,7 @@ main .container .media img {
   justify-content: center;
 }
 
-/* Fix para ajustar Breadcrums */
+/* Fix para ajustar Breadcrumbs */
 
 .jumbotron_bar .col-md-12 {
   display: flex;
@@ -153,6 +153,7 @@ main .container .media img {
 
 .jumbotron_bar .col-md-12 .list-inline.pull-right {
   float: none !important;
+  order: 2;
 }
 
 .jumbotron_bar .col-md-12 .list-inline {}
