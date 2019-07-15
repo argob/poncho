@@ -166,8 +166,8 @@ main .container .media img {
     display: inline-block !important;
     margin-top: 0;
   }
-  .jumbotron_bar .col-md-12 .list-inline.pull-right,
-  .pane-page-breadcrumb .pane-content .list-inline.pull-right{
+  .jumbotron_bar .col-md-12 > .list-inline.pull-right,
+  .pane-page-breadcrumb .pane-content > .list-inline.pull-right{
     margin-top: 10px !important;
   }
 }
