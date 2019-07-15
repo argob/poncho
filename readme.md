@@ -20,3 +20,8 @@ Incluir en el html los siguientes archivos CSS:
 <link rel="stylesheet" href="dist/css/poncho.min.css">
 <link rel="stylesheet" href="dist/css/icono-arg.css">
 ```
+
+### NPM
+
+Tambien estamos en [NPM](https://www.npmjs.com/package/ar-poncho)
+
