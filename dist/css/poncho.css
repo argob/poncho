@@ -68,7 +68,8 @@ section {
     color: #2897D4;
     height: 110px;
     display: flex;
-    align-items: center; }
+    align-items: center;
+  }
   .icon-item h1, .icon-item h2, .icon-item h3, .icon-item h4, .icon-item h5, .icon-item h5 {
     margin-top: 0 !important;
     margin-bottom: 0.2em; }

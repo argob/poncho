@@ -128,3 +128,41 @@ main .container .media img {
 .form-radios label {
     font-weight: 400;
 }
+
+/* Fix para centrar iconos en Argentina.gob.ar */
+.icon-item{
+  text-align: center;
+}
+.icon-item i {
+  justify-content: center;
+}
+
+/* Fix para ajustar Breadcrumbs */
+.pane-page-breadcrumb .pane-content,
+.jumbotron_bar .col-md-12 {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.pane-page-breadcrumb .pane-content .breadcrumb,
+.jumbotron_bar .col-md-12 .breadcrumb {
+  float: none !important;
+}
+.pane-page-breadcrumb .pane-content .list-inline.pull-right,
+.jumbotron_bar .col-md-12 .list-inline.pull-right {
+  float: none !important;
+  order: 2;
+}
+
+/* 
+.jumbotron_bar .col-md-12 .list-inline {}
+
+.pane-page-breadcrum .pane-content,
+.jumbotron_bar .col-md-12 .col-auto {
+  flex: 0 0 auto;
+  width: auto;
+  max-width: 100%;
+}
+*/
