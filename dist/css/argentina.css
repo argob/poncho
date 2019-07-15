@@ -138,6 +138,11 @@ main .container .media img {
 }
 
 /* Fix para ajustar Breadcrumbs */
+.pane-page-breadcrumb .breadcrumb li,
+.jumbotron_bar .breadcrumb li{
+  display: inline;
+}
+
 .pane-page-breadcrumb .pane-content,
 .jumbotron_bar .col-md-12 {
   display: flex;
