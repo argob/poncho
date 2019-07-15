@@ -164,7 +164,12 @@ main .container .media img {
 @media (max-width:768px){
   .jumbotron div.jumbotron_bar .col-md-12 .list-inline li {
     display: inline-block !important;
-    margin-top: 0;}
+    margin-top: 0;
+  }
+  .jumbotron_bar .col-md-12 .list-inline.pull-right,
+  .pane-page-breadcrumb .pane-content .list-inline.pull-right{
+    margin-top: 10px !important;
+  }
 }
 
 /* 
