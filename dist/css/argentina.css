@@ -141,7 +141,7 @@ main .container .media img {
 .jumbotron .jumbotron_bar{padding-bottom: 6px;}
 
 .pane-page-breadcrumb .breadcrumb,
-.jumbotron_bar .breadcrumb{
+.jumbotron .jumbotron_bar .breadcrumb{
   margin-bottom:10px;
 }
 .pane-page-breadcrumb .breadcrumb li,
