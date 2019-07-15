@@ -160,6 +160,7 @@ main .container .media img {
 .pane-page-breadcrumb .pane-content .breadcrumb,
 .jumbotron_bar .col-md-12 .breadcrumb {
   float: none !important;
+  margin-right: 10px;
 }
 .pane-page-breadcrumb .pane-content .list-inline.pull-right,
 .jumbotron_bar .col-md-12 > .list-inline.pull-right {
@@ -177,6 +178,11 @@ main .container .media img {
   .pane-page-breadcrumb .pane-content > .list-inline.pull-right{
     margin-top: 10px !important;
   }*/
+}
+@media (min-width: 992px){
+  .jumbotron li{
+    line-height: 1em;
+  }
 }
 
 /* 
