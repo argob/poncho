@@ -138,7 +138,7 @@ main .container .media img {
 }
 
 /* Fix para ajustar Breadcrumbs */
-.pane-page-breadcrum .pane-content,
+.pane-page-breadcrumb .pane-content,
 .jumbotron_bar .col-md-12 {
   display: flex;
   flex-direction: row;
@@ -146,11 +146,11 @@ main .container .media img {
   justify-content: space-between;
   align-items: flex-start;
 }
-.pane-page-breadcrum .pane-content .breadcrumb,
+.pane-page-breadcrumb .pane-content .breadcrumb,
 .jumbotron_bar .col-md-12 .breadcrumb {
   float: none !important;
 }
-.pane-page-breadcrum .pane-content .list-inline.pull-right,
+.pane-page-breadcrumb .pane-content .list-inline.pull-right,
 .jumbotron_bar .col-md-12 .list-inline.pull-right {
   float: none !important;
   order: 2;
