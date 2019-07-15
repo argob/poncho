@@ -138,6 +138,12 @@ main .container .media img {
 }
 
 /* Fix para ajustar Breadcrumbs */
+.jumbotron .jumbotron_bar{padding-bottom: 6px;}
+
+.pane-page-breadcrumb .breadcrumb,
+.jumbotron_bar .breadcrumb{
+  margin-bottom:10px;
+}
 .pane-page-breadcrumb .breadcrumb li,
 .jumbotron_bar .breadcrumb li{
   display: inline;
@@ -159,6 +165,7 @@ main .container .media img {
 .jumbotron_bar .col-md-12 > .list-inline.pull-right {
   float: none !important;
   order: 2;
+  margin-bottom:10px;
 }
 
 @media (max-width:768px){
@@ -166,10 +173,10 @@ main .container .media img {
     display: inline-block !important;
     margin-top: 0;
   }
-  .jumbotron_bar .col-md-12 > .list-inline.pull-right,
+  /*.jumbotron_bar .col-md-12 > .list-inline.pull-right,
   .pane-page-breadcrumb .pane-content > .list-inline.pull-right{
     margin-top: 10px !important;
-  }
+  }*/
 }
 
 /* 
