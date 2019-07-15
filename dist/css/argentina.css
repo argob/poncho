@@ -136,3 +136,34 @@ main .container .media img {
 .icon-item i {
   justify-content: center;
 }
+
+/* Fix para ajustar Breadcrumbs */
+
+.jumbotron_bar .col-md-12 {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.jumbotron_bar .col-md-12 .breadcrumb {
+  float: none !important;
+}
+
+.jumbotron_bar .col-md-12 .list-inline.pull-right {
+  float: none !important;
+  order: 2;
+}
+
+.jumbotron_bar .col-md-12 .list-inline {}
+
+.jumbotron_bar .col-md-12 .col-auto {
+  flex: 0 0 auto;
+  width: auto;
+  max-width: 100%;
+}
+
+
+
+/*.pane-page-breadcrum .pane-content*/
