@@ -392,12 +392,21 @@ a.btn-collapse i.collapseGira {
 
 .panels-row-miargentina-credenciales .panel-heading i, .panels-row-miargentina-credenciales .panel-heading i:hover {
   color: #0072bb;
+<<<<<<< HEAD
 }
 
 .panels-row-miargentina-credenciales .panel-body img.logo {
   width: 60px;
 }
 
+=======
+}
+
+.panels-row-miargentina-credenciales .panel-body img.logo {
+  width: 60px;
+}
+
+>>>>>>> 6bb4841aa6935b0d22bdd33bbda545ec11f33d25
 .panels-row-miargentina-credenciales .panel-footer .btn-footer-container {
   max-width: 320px;
 }
@@ -417,6 +426,12 @@ a.btn-collapse i.collapseGira {
   width: 300px;
 }
 
+<<<<<<< HEAD
+.fa-05x{
+  font-size: 0.6em;
+}
+=======
+>>>>>>> 6bb4841aa6935b0d22bdd33bbda545ec11f33d25
 .icon-init {
   font-size: 21px;
 }
@@ -712,9 +727,20 @@ a.btn-collapse i.collapseGira {
     background-color: #f2f3f4;
   }
 }
+<<<<<<< HEAD
+<<<<<<< HEAD
+@media (max-width: 767px) and (max-height: 800px){
+  .navbar-right .dropdown-micuenta{
+=======
 
 @media (max-width: 767px) and (max-height: 800px) {
   .navbar-right .dropdown-micuenta {
+>>>>>>> 08fa1db00e27fe32477793c43363c7a1fa451a51
+=======
+
+@media (max-width: 767px) and (max-height: 800px) {
+  .navbar-right .dropdown-micuenta {
+>>>>>>> 6bb4841aa6935b0d22bdd33bbda545ec11f33d25
     position: absolute;
     width: calc(100% + 30px);
     left: -15px;
