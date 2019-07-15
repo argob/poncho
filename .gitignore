@@ -5,3 +5,5 @@
 
 src/_site
 node_modules
+package.json
+readme.md
