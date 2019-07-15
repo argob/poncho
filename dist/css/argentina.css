@@ -156,9 +156,15 @@ main .container .media img {
   float: none !important;
 }
 .pane-page-breadcrumb .pane-content .list-inline.pull-right,
-.jumbotron_bar .col-md-12 .list-inline.pull-right {
+.jumbotron_bar .col-md-12 > .list-inline.pull-right {
   float: none !important;
   order: 2;
+}
+
+@media (max-width:768px){
+  .jumbotron div.jumbotron_bar .col-md-12 .list-inline li {
+    display: inline-block !important;
+    margin-top: 0;}
 }
 
 /* 
