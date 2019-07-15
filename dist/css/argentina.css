@@ -166,7 +166,7 @@ main .container .media img {
 .jumbotron_bar .col-md-12 > .list-inline.pull-right {
   float: none !important;
   order: 2;
-  margin-bottom:10px;
+  /*margin-bottom:10px;*/
 }
 
 @media (max-width:768px){
@@ -178,11 +178,6 @@ main .container .media img {
   .pane-page-breadcrumb .pane-content > .list-inline.pull-right{
     margin-top: 10px !important;
   }*/
-}
-@media (min-width: 992px){
-  .jumbotron li{
-    line-height: 1em;
-  }
 }
 
 /* 
