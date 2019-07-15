@@ -10,7 +10,8 @@ Esta nueva versión de Poncho incluye cambios de colores y otros elementos que m
 ## Instalación
 
 Para usar Poncho en un sitio, ver [la documentación](http://argob.github.io/poncho).  
-Tambien estamos en [NPM](https://www.npmjs.com/package/ar-poncho)
+Tambien estamos en [NPM](https://www.npmjs.com/package/ar-poncho).  
+
 ### Puesta en marcha
 
 Incluir en el html los siguientes archivos CSS:
