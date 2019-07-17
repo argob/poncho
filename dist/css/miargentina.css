@@ -427,7 +427,10 @@ a.btn-collapse i.collapseGira {
 .icon-header {
   color: #CACBC5;
 }
-
+.navbar-left-mobile button{
+  border-color: #ffffff;
+  background-color: #ffffff;
+}
 .navbar-left-mobile, .navbar-left-mobile ul li {
   float: left;
 }
@@ -644,6 +647,7 @@ a.btn-collapse i.collapseGira {
 
   .brand-icon {
     width: 116px;
+    margin-top: 8px;
   }
 
   .navbar-header .nav {
@@ -715,17 +719,12 @@ a.btn-collapse i.collapseGira {
     background-color: #f2f3f4;
   }
 }
-<<<<<<< HEAD
-@media (max-width: 767px) and (max-height: 800px){
-  .navbar-right .dropdown-micuenta{
-=======
 
 @media (max-width: 767px) and (max-height: 800px) {
   .navbar-right .dropdown-micuenta {
->>>>>>> 08fa1db00e27fe32477793c43363c7a1fa451a51
     position: absolute;
-    width: calc(100% + 30px);
-    left: -15px;
+    width: 100%;
+    left: 0;
     height: 100vh;
   }
 }
@@ -744,9 +743,7 @@ a.btn-collapse i.collapseGira {
     max-width: 100% !important;
   }
 
-  .navbar-right .dropdown-micuenta {
-    right: 5px;
-  }
+  
 }
 
 @media (max-width: 358px) {
