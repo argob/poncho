@@ -1659,3 +1659,7 @@ input[type=number] {
   -moz-appearance: textfield;
   /* Firefox */
 }
+.scrollBtnAndroid{
+  position: fixed;
+  bottom: 0;
+}
