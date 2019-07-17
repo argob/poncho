@@ -427,8 +427,12 @@ a.btn-collapse i.collapseGira {
 .icon-header {
   color: #CACBC5;
 }
+.navbar-left-mobile{
+  margin-left:0!important;
+}
 .navbar-left-mobile button{
   border-color: #ffffff;
+  margin-left:0;
   background-color: #ffffff;
 }
 .navbar-left-mobile, .navbar-left-mobile ul li {
@@ -468,7 +472,10 @@ a.btn-collapse i.collapseGira {
   width: 275px;
   left: initial;
 }
-
+.navbar-right-mobile{
+  margin-right:0;
+  margin-top: 22px;
+}
 .navbar-right-mobile button.sr-only {
   width: 274px;
   height: 50px;
@@ -644,7 +651,9 @@ a.btn-collapse i.collapseGira {
   .menutoggle {
     display: block;
   }
-
+  .brand-container{
+    width: 180px;
+  }
   .brand-icon {
     width: 116px;
     margin-top: 8px;
@@ -1658,8 +1667,4 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
   /* Firefox */
-}
-.scrollBtnAndroid{
-  position: fixed;
-  bottom: 0;
 }
