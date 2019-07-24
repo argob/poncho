@@ -1668,3 +1668,20 @@ input[type=number] {
   -moz-appearance: textfield;
   /* Firefox */
 }
+
+/* ACCESIBILITY UTILS */
+
+.bypass-block-link {
+  position: absolute;
+  text-decoration: none;
+  padding: 0.2em;
+  z-index: 10;
+ }
+ 
+ .bypass-block-target:focus {
+  outline: none;
+ }
+ 
+ .bypass-block-target:focus:target, [tabindex="0"]:focus, [tabindex="1"]:focus, a:focus, button:focus, input:focus {
+  outline: solid 2px orange;
+ } 
