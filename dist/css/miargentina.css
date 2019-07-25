@@ -280,9 +280,6 @@ a.btn-collapse i.collapseGira {
   padding: 15px 20px;
 }
 
-#configurarServicios {
-  max-width: 768px;
-}
 
 @media (min-width: 991px) {
   .panel-table tr:first-child>td {
@@ -1651,6 +1648,10 @@ span.round-tab:hover {
 @media(max-width : 768px) {
   .wizard-head li a h5 {
     display: none;
+  }
+  .btn{
+    width: 100%;
+    display: block;
   }
 }
 
