@@ -1721,3 +1721,6 @@ button:focus,
 input:focus {
 	outline: solid 2px orange;
 }
+.ico-security{
+	margin-top: 4px;
+}
