@@ -1830,3 +1830,12 @@ label[for]{
 	}
 	
 }
+.input-group .form-group{
+    margin-top: 1px !important;
+    margin-bottom: 0px !important;
+}
+
+.form-group .help-block {
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+}
