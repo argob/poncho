@@ -1724,3 +1724,109 @@ input:focus {
 .ico-security{
 	margin-top: 4px;
 }
+
+
+/*  agregado para MIS TURNOS  */
+[data-toggle="collapse"],
+label[for]{
+	cursor: pointer;
+}
+.section-main h2{
+	font-size: 1.3em;
+}
+
+.search-group {
+	position: relative;
+	display: table;
+	border-collapse: separate;
+}
+.search-group-btn {
+	position: relative;
+	font-size: 0;
+	white-space: nowrap;
+}
+.search-group .form-control:first-child{
+	border-bottom-right-radius: 0;
+	border-top-right-radius: 0;
+}
+.search-group .fa-search{
+	line-height: 1.42857143;
+}
+
+.flex-title{
+	display: flex;
+	align-items: center;
+}
+/* estilos de caja contenedora de horarios */
+.cont-bordered{
+	border: 2px solid #DEE2E6;
+	border-radius: 4px;
+	padding: 15px 20px 0;
+}
+.radio-box{
+	border: 2px solid #DEE2E6;
+	border-radius: 4px;
+	padding: 5px;
+	display: flex;
+}
+.radio-box:hover{
+	border-color:#0072BB;
+}
+.radio-box.checked{
+	border-color:#0072BB;
+}
+.radio-box input[type="radio"]{
+	margin-right: 5px;
+}
+/* columnas dentro del flex-cont*/
+.flex-cont{
+	display: flex;
+	flex-wrap: wrap;
+}
+.flex-cont [class^=col]{
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 100%;
+	flex: 0 0 100%;
+	max-width: 100%;
+}
+.flex-cont .col-6{
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 50%;
+	flex: 0 0 50%;
+	max-width: 50%;
+}
+@media (min-width: 992px){
+	.flex-cont .col-md-6 {
+		-webkit-box-flex: 0;
+		-ms-flex: 0 0 50%;
+		flex: 0 0 50%;
+		max-width: 50%;
+	}
+	.flex-cont .col-md-4 {
+		-webkit-box-flex: 0;
+		-ms-flex: 0 0 33.33333333%;
+		flex: 0 0 33.33333333%;
+		max-width: 33.33333333%;
+	}
+}
+@media (min-width: 1200px){
+	.flex-cont .col-lg-6 {
+		-webkit-box-flex: 0;
+		-ms-flex: 0 0 50%;
+		flex: 0 0 50%;
+		max-width: 50%;
+	}
+	.flex-cont .col-lg-4 {
+		-webkit-box-flex: 0;
+		-ms-flex: 0 0 33.33333333%;
+		flex: 0 0 33.33333333%;
+		max-width: 33.33333333%;
+	}
+	.flex-cont .col-lg-3 {
+		-webkit-box-flex: 0;
+		-ms-flex: 0 0 25%;
+		flex: 0 0 25%;
+		max-width: 25%;
+	}
+	
+}
