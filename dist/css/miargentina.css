@@ -1839,3 +1839,12 @@ label[for]{
     margin-top: 0px !important;
     margin-bottom: 0px !important;
 }
+
+/*FORMAT HTML MARKDOWN*/
+.formatHTML ul {
+	padding-left: 15px !important;
+}
+​
+.formatHTML p a {
+	padding-left: 15px !important;
+}
