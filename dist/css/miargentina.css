@@ -1848,3 +1848,10 @@ label[for]{
 .formatHTML p a {
 	padding-left: 15px !important;
 }
+
+.fixed-top {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    left: 0;
+}
