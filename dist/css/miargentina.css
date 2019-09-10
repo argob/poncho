@@ -1752,6 +1752,7 @@ label[for]{
 .search-group .fa-search{
 	line-height: 1.42857143;
 }
+.search-group.input-group .form-group{margin-top:0px !important;}
 
 .flex-title{
 	display: flex;
