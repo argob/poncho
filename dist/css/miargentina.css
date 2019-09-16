@@ -1759,6 +1759,7 @@ label[for]{
 	align-items: center;
 }
 /* estilos de caja contenedora de horarios */
+/*
 .cont-bordered{
 	border: 2px solid #DEE2E6;
 	border-radius: 4px;
@@ -1779,6 +1780,34 @@ label[for]{
 .radio-box input[type="radio"]{
 	margin-right: 5px;
 }
+*/
+
+/* pruebas para radio box  */
+.radio-box{
+	position: relative;
+}
+.radio-box input[type="radio"]{
+	position: absolute;
+	top: 9px;
+	left: 9px;
+	cursor: pointer;
+}
+.radio-box label{
+	border: 2px solid #DEE2E6;
+	border-radius: 4px;
+	padding: 5px 5px 5px 27px;
+	display: block;
+	transition: border 0.3s;
+	-moz-transition: border 0.3s;
+	-webkit-transition: border 0.3s;
+}
+.radio-box label:hover{
+	border-color:#0072BB;
+}
+input[type="radio"]:checked + label{
+	border-color:#0072BB;
+}
+
 /* columnas dentro del flex-cont*/
 .flex-cont{
 	display: flex;
