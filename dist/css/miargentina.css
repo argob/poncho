@@ -1756,8 +1756,9 @@ label[for]{
 
 .flex-title{
 	display: flex;
-	align-items: center;
+	align-items: flex-start;
 }
+.flex-title .round-tab{margin-top: 10px;}
 /* estilos de caja contenedora de horarios */
 /*
 .cont-bordered{
