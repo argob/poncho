@@ -244,6 +244,12 @@ a.btn-collapse i.collapseGira {
 	margin-bottom: 20px;
 }
 
+.panels-row-miargentina button.panel:hover,
+.panels-row-miargentina button.panel:focus {
+    background: #0072bb;
+	color: #fff;
+}
+
 /* .panels-row-miargentina .btn {
   margin-top: 15px;
 } */
