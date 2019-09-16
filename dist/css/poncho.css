@@ -5255,8 +5255,7 @@ input[type='text']:-ms-input-placeholder {
       margin-bottom: .625em; }
     table.table-responsive-poncho td {
       border-bottom: 1px solid #ddd;
-      display: block;
-      text-align: right; }
+      display: block; }
       table.table-responsive-poncho td:last-child {
         border-bottom-color: #0072bb;
         border-bottom-width: 3px; }
@@ -5264,9 +5263,9 @@ input[type='text']:-ms-input-placeholder {
         border-top: 0 !important; }
     table.table-responsive-poncho td::before {
       content: attr(data-label);
-      float: left;
       font-weight: bold;
-      text-transform: uppercase; } }
+      text-transform: uppercase;
+      display: block; } }
 /* PONCHO TABLES */
 #ponchoTable caption {
   display: none; }

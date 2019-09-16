@@ -147,7 +147,7 @@ $color_lochmara_approx: #0072bb;
     td {
       border-bottom: 1px solid $color_alto_approx;
       display: block;
-      text-align: right;
+      //text-align: right;
       &:last-child {
         border-bottom-color: $color_lochmara_approx;
         border-bottom-width: 3px;
@@ -158,9 +158,10 @@ $color_lochmara_approx: #0072bb;
     }
     td::before {
       content: attr(data-label);
-      float: left;
+      //float: left;
       font-weight: bold;
       text-transform: uppercase;
+      display: block;
     }
   }
 }
