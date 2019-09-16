@@ -1858,3 +1858,10 @@ label[for]{
 	left: 0;
 	z-index: 999;
 }
+
+/* Paneles sin estilos */
+.panel-unstyled{
+	border: none;
+	box-shadow: none;
+	border-radius: 0;
+}
