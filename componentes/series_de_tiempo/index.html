@@ -8,7 +8,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Plantillas | Poncho</title>
+  <title>Series de Tiempo | Poncho</title>
   <meta name="description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
   <meta name="author" content="Presidencia de la Nación">
   <link rel="shortcut icon" href="/favicon.ico">
@@ -27,15 +27,15 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
 
   <meta property="og:site_name" content="Documentación Poncho"/>
-  <meta property="og:url" content="http://argob.github.io/poncho/plantillas/paginas-de-argentina/index.html" />
+  <meta property="og:url" content="http://argob.github.io/poncho/componentes/series_de_tiempo/index.html" />
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="Plantillas" />
+  <meta property="og:title" content="Botones" />
   <meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
   <meta property="og:image" content="http://argob.github.io/poncho/img/poncho_social.jpg" />
   <meta property="og:locale" content="es_AR" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Plantillas" />
+  <meta name="twitter:title" content="Botones" />
   <meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
   <meta name="twitter:image" content="http://argob.github.io/poncho/img/poncho_social.jpg" />
 
@@ -62,7 +62,8 @@
   <script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.18/r-2.2.2/datatables.min.js"></script>
   <script src="../../js/scripts.js"></script>
-
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/datosgobar/series-tiempo-ar-explorer@ts_components_2.5.0/dist/css/components.css" type="text/css">
+  <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/datosgobar/series-tiempo-ar-explorer@ts_components_2.5.0/dist/js/components.js'></script>
     <style>
       /* EXPERIMéNTAL */
       .btn,.btn:hover,.btn-link, .btn-link:hover{border:3px solid transparent;letter-spacing: 1.5px}
@@ -95,7 +96,7 @@
             <h1>Poncho</h1>
           </a>
         </div>
-        <div class="collapse navbar-collapse" id="main-navbar-collapse" data-seccion="Plantillas"></div>
+        <div class="collapse navbar-collapse" id="main-navbar-collapse" data-seccion="Componentes"></div>
       </div>
     </div>
   </nav>
@@ -103,16 +104,17 @@
     </header>
 
 <div class="jumbotron bg-primary" style="background-image:url('https://www.argentina.gob.ar/sites/default/files/jumbotron-poncho.png');">
+   
   <div class="container">
   <div class="col-sm-12">
       <ol class="breadcrumb">
         <li><a href="/poncho/">Inicio</a></li>
-        <li><a href="/poncho/plantillas/">Plantillas</a></li>
-        <li class="active">Páginas de Argentina.gob.ar</li>
+        <li><a href="/poncho/componentes/botones/">Componentes</a></li>
+        <li class="active">Series de Tiempo</li>
       </ol>
 
 <div class="jumbotron_body p-t-2 p-b-2">
-      <h1>Plantillas</h1>
+      <h1>Componentes</h1>
       </div>
 
       
@@ -123,38 +125,103 @@
     <div class="container">
 
 <div class="row">
-      <div class="col-sm-3" id="menuLateral" data-seccion="1"></div>
+      <div class="col-sm-3" id="menuLateral" data-seccion="8"></div>
 
       <div class="col-sm-9">
 
         <section>
           <article class="row">
             <div class="col-sm-12">
-                <h1>Páginas de argentina.gob.ar</h1>
+                <h1>Series de tiempo</h1>
+
+                <p>Descripción: Componentes para visualizar indicadores con evolución en el tiempo.</p>
+
                 <hr>
 
                 <fieldset>
-                  <h3><a href="home.html">Inicio del sitio</a></h3>
-                  <p>Página de inicio de argentina.gob.ar.</p>
-                  <h3><a href="pagina-area.html">Área (inicio de un organismo)</a></h3>
-                  <p>Página de inicio de un organismo.</p>
-                  <h3><a href="noticia.html">Noticia</a></h3>
-                  <p>Página que cuenta un anuncio, evento o novedad de un organismo.</p>
-                  <h3><a href="pagina.html">Página</a></h3>
-                  <p>Página genérica para mostrar diferentes contenidos para los cuales no existe un tipo de contenido específico en Drupal. Se usa para:</p>
-                  <ul>
-                    <li>Landings promocionales de una campaña o un servicio complejo</li>
-                    <li>Agrupar diferentes servicios</li>
-                    <li>Contenidos con formatos nuevos o especiales</li>
-                  </ul>
-                  <h3><a href="pagina-navegacion.html">Página de libro</a></h3>
-                  <p>Página que agrupa otras páginas mediante una navegación lateral (sidebar). Esto permite ver contenidos de un mismo tema e ir y volver entre páginas con comodidad. Los contenidos de estas páginas deben ser simples y no tener la misma complejidad que los tipos de contenido Página.</p>
-                  <h3><a href="servicio.html">Servicio</a></h3>
-                  <p>Página que explica los requisitos y pasos de un trámite.</p>
+
+                <h2>Íconos</h2>
+                <p>Sirven para mostrar conceptos como principios, valores, funcionalidades y otros atributos.</p>
+
+
+                <div class="row">
+                  <div class="col-sm-6 col-md-4">
+                    <div class="icon-item">
+                      <i class="fa fa-users text-success"></i>
+                      <h3>Cercana</h3>
+                      <p>Conoce tus necesidades y adopta sus servicios a ellas.</p>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-md-4">
+                    <div class="icon-item">
+                      <i class="fa fa-search text-primary"></i>
+                      <h3>Transparente</h3>
+                      <p>Brinda mayor información y certeza sobre sus actos de gobierno.</p>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-md-4">
+                    <div class="icon-item">
+                      <i class="fa fa-users"></i>
+                      <h3>Participativa</h3>
+                      <p>Trabaja en equipo con los empleados públicos y la gente.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-12">
+                    <pre><code class="language-html">
+                        &lt;div class="icon-item">
+                          &emsp;&emsp;&lt;i class="fa fa-users text-success">&lt;/i>
+                          &emsp;&emsp;&lt;h3>Cercana&lt;/h3>
+                          &emsp;&emsp;&lt;p>Conoce tus necesidades y adopta sus servicios a ellas.&lt;/p>
+                        &lt;/div>
+                      </code></pre>
+                  </div>
+                </div>
+
+                <h2>Números</h2>
+                <p>Sirven para mostrar cifras estadísticas.  </p>
+
+                <div class="row numbers">
+                  <div class="col-md-4">
+                    <div class="h2 text-success">392.493</div>
+                    <p class="lead">Visitas últimos 30 días</p>
+                    <p class="text-muted">+11,06% vs mes anterior</p>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="h2 text-gray">33 <small>%</small></div>
+                    <p class="lead">Visitas este mes</p>
+                    <p class="text-muted">del 1 al 26 de Febrero</p>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="h2">5 <small>de 10</small></div>
+                    <p class="lead">Personas conectadas</p>
+                    <p class="text-muted">Duramente los últimos 30 días.</p>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-12">
+                    <pre><code class="language-html">
+                      &lt;div class="row numbers">
+                        &emsp;&emsp;&lt;div class="col-md-4">
+                          &emsp;&emsp;&emsp;&emsp;&lt;div class="h2 text-success">392.493&lt;/div>
+                          &emsp;&emsp;&emsp;&emsp;&lt;p class="lead">Visitas últimos 30 días&lt;/p>
+                          &emsp;&emsp;&emsp;&emsp;&lt;p class="text-muted">+11,06% vs mes anterior&lt;/p>
+                        &emsp;&emsp;&lt;/div>
+                      &lt;/div>
+                    </code></pre>
+                  </div>
+                </div>
+                  
                 </fieldset>
+
 
             </div>
 
+
+            
           </article>
           </section>              
       </div>
@@ -199,7 +266,7 @@
           $.syntax({theme: 'bright'});
         });
 
-        $("#menuLateral").load("../../includes/plantillas_menu.html",function(){
+        $("#menuLateral").load("../../includes/componentes_menu.html",function(){
           var seccion = $("#menuLateral").data("seccion");
           $("#menuLateral ul li a[data-seccion="+seccion+"]").parent().addClass("active");
         });
@@ -240,7 +307,8 @@
             }
         });
 
-      })
+      });
     </script>
+    
     </body>
     </html>
