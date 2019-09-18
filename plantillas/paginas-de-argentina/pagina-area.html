@@ -43,7 +43,107 @@
       <script src="/node_modules/respond.js/respond.min.js"></script>
   <![endif]-->  
   
+<style>
+  @media print {
     
+    section, .jumbotron {
+    padding: 0;
+    }
+
+    main .jumbotron_bar {
+    display: none;
+    }
+    /* ANCHO 90% TODO EL CONTENIDO GENERAL Y CENTRADO */
+    main {
+    width: 90%;
+    margin: 0 auto;
+    }
+
+    .jumbotron_body {
+      padding: 25px 0 !important;
+    }
+
+    .content_for {
+      margin: 0;
+    }
+    .content_format h2{
+      margin-top: 0;
+    }
+
+    .icon-item {
+      text-align: center;
+      margin: 10px 0;
+    }
+
+    /* Quitar o No Mostrar Rutas Internas */
+    a[href]:after {
+    display: none;
+    }
+    /* Rutas que empiecen con http */
+    a[href^=http]:after {
+    content: " (" attr(href) ")";
+    display: block;
+    }
+    /* AGREGAR UN ESPACIADO ALGUN FIX QUE ROMPA*/
+    .page-break {
+    display:block;
+    height: 100px;
+    width: 100%;
+
+    }
+    .panel-default{
+    color: #2897D4 !important;
+    border: 1px solid #333;
+    border-radius: 5px;
+    padding: 20px;
+    }
+
+    .panel-heading {
+      display: none;
+    }
+
+    .panel-heading.img:after {
+    /*background: #333 url('./img/01.jpg') no-repeat !important;
+    background-size: cover;*/
+    content: "img";
+
+    position: absolute;
+    left: 25%;
+    top: 25%;
+    transform: translate(-50%, -50%);
+    }
+    /*.print-after {
+    page-break-after: always;
+    }
+
+    .print-before {
+    page-break-before: always;
+    }*/
+    section .panels-row .panel{
+    width: 50%;
+    margin: 10 auto;
+    }
+    
+    a.btn.btn-primary {
+      border: 3px solid #333;
+      font-size: 16px ;
+      font-weight: 500 ;
+      margin-bottom: 10px ;
+      padding: 10px 25px ;
+      text-transform: uppercase ;
+      
+
+
+      }
+  }
+
+  .icon-item {
+      text-align: center;
+      margin: 10px 0;
+    }
+
+  
+</style>
 </head>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
@@ -177,7 +277,8 @@
     </div>
   </article>
 </section>
-
+<div class="page-break"></div>
+<div class="page-break"></div>
 <section>
   <div class="container">
     <div class="row">
@@ -211,7 +312,7 @@
   </div>
 </section>
 
-
+<div class="page-break"></div>
 <section>
   <div class="container">
     <div class="row ">
@@ -227,6 +328,7 @@
           </div>
         </a>
       </div>
+      <div class="page-break"></div>
       <div class="col-xs-12 col-sm-6 col-md-3">
         <a class="panel panel-default" href="#">
           <div class="panel-body">
@@ -281,6 +383,7 @@
           </div>
         </a>
       </div>
+      <div class="page-break"></div>
       <div class="col-xs-12 col-sm-6 col-md-4">
         <a class="panel panel-default" href="#">
           <div class="panel-body">
@@ -290,6 +393,7 @@
         </a>
       </div>
     </div>
+    
     <div class="row">
       <div class="col-xs-12">
         <a class="btn btn-primary">Ver todas las áreas de gobierno</a>
@@ -325,6 +429,7 @@
           </div>
         </a>
       </div>
+      
       <div class="col-xs-12 col-sm-6 col-md-3">
         <a class="panel panel-default panel-icon" href="#">
           <div class="panel-heading"><i class="fa fa-file"></i></div>
@@ -334,6 +439,8 @@
           </div>
         </a>
       </div>
+      <div class="page-break"></div>
+      <div class="page-break"></div>
       <div class="col-xs-12 col-sm-6 col-md-3">
         <a class="panel panel-default panel-icon" href="#">
           <div class="panel-heading"><i class="fa fa-cube"></i></div>
@@ -363,7 +470,7 @@
     <div class="row panels-row">
       <div class="col-xs-12 col-sm-6 col-md-3">
         <a class="panel panel-default" href="#">
-          <div style="background-image:url('./img/01.jpg');" class="panel-heading"></div>
+          <div style="background-image:url('./img/01.jpg');" class="panel-heading img"></div>
           <div class="panel-body">
             <h3>Este es el título del link</h3>
           </div>
@@ -371,7 +478,16 @@
       </div>
       <div class="col-xs-12 col-sm-6 col-md-3">
         <a class="panel panel-default" href="#">
-          <div style="background-image:url('./img/02.jpg');" class="panel-heading"></div>
+          <div style="background-image:url('./img/02.jpg');" class="panel-heading img"></div>
+          <div class="panel-body">
+            <h3>Este es el título del link</h3>
+          </div>
+        </a>
+      </div>
+      
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <a class="panel panel-default" href="#">
+          <div style="background-image:url('./img/03.jpg');" class="panel-heading img"></div>
           <div class="panel-body">
             <h3>Este es el título del link</h3>
           </div>
@@ -379,15 +495,7 @@
       </div>
       <div class="col-xs-12 col-sm-6 col-md-3">
         <a class="panel panel-default" href="#">
-          <div style="background-image:url('./img/03.jpg');" class="panel-heading"></div>
-          <div class="panel-body">
-            <h3>Este es el título del link</h3>
-          </div>
-        </a>
-      </div>
-      <div class="col-xs-12 col-sm-6 col-md-3">
-        <a class="panel panel-default" href="#">
-          <div style="background-image:url('./img/04.jpg');" class="panel-heading"></div>
+          <div style="background-image:url('./img/04.jpg');" class="panel-heading img"></div>
           <div class="panel-body">
             <h3>Este es el título del link</h3>
           </div>
@@ -396,7 +504,8 @@
     </div>
   </div>
 </section>
-
+<div class="page-break"></div>
+<div class="page-break"></div>
 <section>
   <div class="container">
     <div class="row ">
@@ -408,16 +517,17 @@
     <div class="row panels-row">
       <div class="col-xs-12 col-sm-6">
         <a class="panel panel-default panel-lg" href="#">
-          <div style="background-image:url('./img/01.jpg');" class="panel-heading"></div>
+          <div style="background-image:url('./img/01.jpg');" class="panel-heading img"></div>
           <div class="panel-body">
             <time>Jueves 14 de Enero del 2016</time>
             <h4>El Ministro Buryaile asistió a la apertura de la Semana Verde Internacional, en Berlín</h4>
           </div>
         </a>
       </div>
+      
       <div class="col-xs-12 col-sm-6">
         <a class="panel panel-default panel-lg" href="#">
-          <div style="background-image:url('./img/02.jpg');" class="panel-heading"></div>
+          <div style="background-image:url('./img/02.jpg');" class="panel-heading img"></div>
           <div class="panel-body">
             <time>Jueves 14 de Enero del 2016</time>
             <h4>El Ministro Buryaile asistió a la apertura de la Semana Verde Internacional, en Berlín</h4>
@@ -428,7 +538,7 @@
     <div class="row panels-row">
       <div class="col-xs-12 col-sm-6 col-md-3">
         <a class="panel panel-default panel-md" href="#">
-          <div style="background-image:url('./img/03.jpg');" class="panel-heading"></div>
+          <div style="background-image:url('./img/03.jpg');" class="panel-heading img"></div>
           <div class="panel-body">
             <time>Jueves 14 de Enero del 2016</time>
             <h4>El Ministro Buryaile asistió a la apertura de la Semana Verde Internacional, en Berlín</h4>
@@ -437,7 +547,19 @@
       </div>
       <div class="col-xs-12 col-sm-6 col-md-3">
         <a class="panel panel-default panel-md" href="#">
-          <div style="background-image:url('./img/04.jpg');" class="panel-heading"></div>
+          <div style="background-image:url('./img/04.jpg');" class="panel-heading img"></div>
+          <div class="panel-body">
+            <time>Jueves 14 de Enero del 2016</time>
+            <h4>El Ministro Buryaile asistió a la apertura de la Semana Verde Internacional, en Berlín</h4>
+          </div>
+        </a>
+      </div>
+      <div class="page-break"></div>
+      <div class="page-break"></div>
+      <div class="page-break"></div>
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <a class="panel panel-default panel-md" href="#">
+          <div style="background-image:url('./img/01.jpg');" class="panel-heading img"></div>
           <div class="panel-body">
             <time>Jueves 14 de Enero del 2016</time>
             <h4>El Ministro Buryaile asistió a la apertura de la Semana Verde Internacional, en Berlín</h4>
@@ -446,16 +568,7 @@
       </div>
       <div class="col-xs-12 col-sm-6 col-md-3">
         <a class="panel panel-default panel-md" href="#">
-          <div style="background-image:url('./img/01.jpg');" class="panel-heading"></div>
-          <div class="panel-body">
-            <time>Jueves 14 de Enero del 2016</time>
-            <h4>El Ministro Buryaile asistió a la apertura de la Semana Verde Internacional, en Berlín</h4>
-          </div>
-        </a>
-      </div>
-      <div class="col-xs-12 col-sm-6 col-md-3">
-        <a class="panel panel-default panel-md" href="#">
-          <div style="background-image:url('./img/02.jpg');" class="panel-heading"></div>
+          <div style="background-image:url('./img/02.jpg');" class="panel-heading img"></div>
           <div class="panel-body">
             <time>Jueves 14 de Enero del 2016</time>
             <h4>El Ministro Buryaile asistió a la apertura de la Semana Verde Internacional, en Berlín</h4>
@@ -488,7 +601,9 @@
         <p>Andrés Ibarra es el Ministro de Modernización de la Nación desde el 10 de diciembre del 2015. <br>Anteriormente se desempeñó como Ministro de Modernización de la Ciudad de Buenos Aires (2011-2015).</p>
       </div>
     </div>
-
+    <div class="page-break"></div>
+    <div class="page-break"></div>
+    
     <div class="row">
       <div class="col-md-12">
         <h2 class="h3 section-title">Secretarios</h2>
@@ -547,6 +662,7 @@
           </div>
         </div>
       </div>
+      
       <div class="col-xs-12 col-sm-6 col-md-3">
         <div class="panel panel-disabled">
           <div class="panel-body">
@@ -554,6 +670,7 @@
           </div>
         </div>
       </div>
+      <div class="page-break"></div>
       <div class="col-xs-12 col-sm-6 col-md-3">
         <a class="panel panel-default" href="#">
           <div class="panel-body">
@@ -561,6 +678,7 @@
           </div>
         </a>
       </div>
+      
       <div class="col-xs-12 col-sm-6 col-md-3">
         <a class="panel panel-default" href="#">
           <div class="panel-body">

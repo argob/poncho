@@ -42,7 +42,45 @@
       <script src="/node_modules/html5shiv/html5shiv.js"></script>
       <script src="/node_modules/respond.js/respond.min.js"></script>
   <![endif]-->  
-  
+  <style>
+    @media print {
+
+      main {
+        width: 90%;
+        margin: 0 auto;
+      }
+
+      main .breadcrumb,
+      aside {
+        display: none;
+      }
+
+      /* AGREGAR UN ESPACIADO ALGUN FIX QUE ROMPA*/
+      .page-break {
+        display: block;
+        height: 100px;
+        width: 100%;
+
+      }
+      a.btn.btn-primary {
+      border: 3px solid #333;
+      font-size: 16px ;
+      font-weight: 500 ;
+      margin-bottom: 10px ;
+      padding: 10px 25px ;
+      text-transform: uppercase ;
+      
+
+
+      }
+      .circle{
+        border: 3px solid #333;
+        border-radius: 50%;
+          
+      }
+
+    }
+  </style>
     
 </head>
 
@@ -181,7 +219,7 @@
                   </div>
                 </div>
               </div>
-
+              <div class="page-break"></div>
               <div class="media m-y-4">
                 <div class="media-left hidden-xs">
                   <i class="text-secondary fa fa-list-ol fa-fw fa-2x" aria-hidden="true"></i>
@@ -248,7 +286,7 @@
                   <p><strong class="lead">$350</strong><br>Mayores de 34 años.</p>
                 </div>
               </div>
-
+              <div class="page-break"></div>
               <div class="media m-y-4">
                 <div class="media-left hidden-xs">
                   <i class="text-secondary fa fa-calendar-o fa-fw fa-2x" aria-hidden="true"></i>
@@ -281,7 +319,7 @@
           </div>
         </div>
 
-        <hr>
+        <hr class="hidden-xs">
         <div class="row">
           <div class="section-actions col-md-12 social-share">
             <p>Compartí <br>esta página</p>
@@ -330,6 +368,9 @@
                 </div>
 
                 <hr>
+                <div class="page-break"></div>
+                <div class="page-break"></div>
+                <div class="page-break"></div>
                 <h4>Descargas</h4>
 
                 <div class="row">

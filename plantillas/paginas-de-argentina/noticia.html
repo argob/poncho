@@ -42,7 +42,54 @@
       <script src="/node_modules/html5shiv/html5shiv.js"></script>
       <script src="/node_modules/respond.js/respond.min.js"></script>
   <![endif]--> 
-  
+  <style>
+  @media print {
+
+    main {
+         width: 90%;
+         margin: 0 auto;
+    }
+
+    main .jumbotron_bar {
+         display: none;
+    }
+
+    figure{
+      padding: 20px 0;
+      margin: 20px auto !important;
+      width: 80%;
+      
+    }
+
+    .panel-heading {
+      display: none;
+    }
+
+    section {
+      padding: 10px 0 !important;
+    }
+
+    .panel-body{
+      margin: 20px 0;
+    }
+
+    h1 {
+      margin: 10px 0 !important;
+    }
+    a.btn.btn-primary {
+      border: 3px solid #333;
+      font-size: 16px ;
+      font-weight: 500 ;
+      margin-bottom: 10px ;
+      padding: 10px 25px ;
+      text-transform: uppercase ;
+      
+
+
+      }
+    
+  }
+  </style>
     
 </head>
 
