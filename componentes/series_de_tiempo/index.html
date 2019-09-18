@@ -122,115 +122,433 @@
   </div>
 </div>
     <main>
-    <div class="container">
+      <div class="container">
 
-<div class="row">
-      <div class="col-sm-3" id="menuLateral" data-seccion="8"></div>
+        <div class="row">
+          <div class="col-sm-3" id="menuLateral" data-seccion="8"></div>
 
-      <div class="col-sm-9">
+          <div class="col-sm-9">
+              <section>
+                  <article class="row">
+                      <div class="col-sm-12">
+                          <h1>Series de tiempo</h1>
+                          <p>Las series de tiempo son indicadores numéricos con evolución temporal. Estos componentes se pueden usar con todas las series publicadas en la <a href="https://apis.datos.gob.ar/series">API de Series de Tiempo de la República Argentina</a>.</p>
+                          <hr>
+                          <fieldset>
+                              <h2>Tarjetas</h2>
+                              <p>Sirven para mostrar el valor más reciente de un indicador.</p>
+                              <p>Para usarlas debe importarse un CSS y un JS adicional:</p>
+                              <div class="row">
+                                  <div class="col-sm-12">
+                                      <pre><code class="language-html">
 
-        <section>
-          <article class="row">
-            <div class="col-sm-12">
-                <h1>Series de tiempo</h1>
+                  &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/datosgobar/series-tiempo-ar-explorer@ts_components_2.6.0-beta1/dist/css/components.css" type="text/css">
 
-                <p>Descripción: Componentes para visualizar indicadores con evolución en el tiempo.</p>
+                  &lt;script type='text/javascript' src='https://cdn.jsdelivr.net/gh/datosgobar/series-tiempo-ar-explorer@ts_components_2.6.0-beta1/dist/js/components.js'>&lt;/script>
 
-                <hr>
+                </code></pre>
+                                  </div>
+                              </div>
+                              <p>Debe ubicarse un div con un id en el html, y crear un objeto TSComponentes.Card en un script:</p>
+                              <div class="row">
+                                  <div class="col-sm-12">
+                                      <pre><code class="language-html">
 
-                <fieldset>
+                  &lt;div id='ipc-card'>&lt;/div>
+                </code></pre>
+                                      <pre><code class="language-js">
+window.onload = function() {
+&emsp;&emsp;TSComponents.Card.render('ipc-card', {
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;serieId: '148.3_INIVELNAL_DICI_M_26:percent_change',
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;color: '#F9A822',
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;hasChart: 'small',
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;title: "Indice de Precios al Consumidor Nacional"
+&emsp;&emsp;&emsp;&emsp;})
+}
 
-                <h2>Íconos</h2>
-                <p>Sirven para mostrar conceptos como principios, valores, funcionalidades y otros atributos.</p>
+                </code></pre>
+                                  </div>
+                              </div>
+                              <p>Para que se vean mejor, conviene ubicar las tarjetas en una row y agregar algunos estilos:</p>
+                              <div class="row">
+                                  <div class="col-sm-12">
+                                      <pre><code class="language-html">
+&lt;style>
+.row {
+&emsp;&emsp;&emsp;&emsp;display: flex;
+&emsp;&emsp;&emsp;&emsp;justify-content: space-around;
+}
+&lt;/style>
+
+&lt;div class="row">
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&lt;div id='ipc-card'>&lt;/div>
+&lt;/div>
+                </code></pre>
+                                  </div>
+                              </div>
+                              <p>Ver la <a href="https://datosgobar.github.io/series-tiempo-ar-explorer/reference/ts-components/card/">documentación completa del objeto "Card"</a>.</p>
+                              <div class="title">
+                                  <h3>Card: default</h3>
+                              </div>
+                              <div class="row m-y-1">
+                                  <div class="col-md-4" id='ipc-card'></div>
+                                  <div class="col-md-4" id='superavit-card'></div>
+                                  <div class="col-md-4" id='desempleo-card'></div>
+                              </div>
+                              <div class="row">
+                                  <div class="col-sm-12">
+                                      <pre><code class="language-html">
+                              &lt;div class="row">
+                              &emsp;&emsp;&emsp;&emsp;&lt;div id='ipc-card'>&lt;/div>
+                              &emsp;&emsp;&emsp;&emsp;&lt;div id='superavit-card'>&lt;/div>
+                              &emsp;&emsp;&emsp;&emsp;&lt;div id='desempleo-card'>&lt;/div>
+                              &lt;/div>
+                </code></pre>
+                                      <pre><code class="language-js">
+  TSComponents.Card.render('ipc-card', {
+  &emsp;&emsp;&emsp;&emsp;serieId: '148.3_INIVELNAL_DICI_M_26:percent_change',
+  &emsp;&emsp;&emsp;&emsp;color: '#F9A822',
+  &emsp;&emsp;&emsp;&emsp;hasChart: 'small',
+  &emsp;&emsp;&emsp;&emsp;title: "Indice de Precios al Consumidor Nacional"
+  })
+
+  TSComponents.Card.render('superavit-card', {
+  &emsp;&emsp;&emsp;&emsp;serieId: '452.3_RESULTADO_RIO_0_M_18_54',
+  &emsp;&emsp;&emsp;&emsp;hasChart: 'small',
+  &emsp;&emsp;&emsp;&emsp;title: "Resultado Primario del Sector Público No Fin."
+  })
+
+  TSComponents.Card.render('desempleo-card', {
+  &emsp;&emsp;&emsp;&emsp;serieId: '42.3_EPH_PUNTUATAL_0_M_30',
+  &emsp;&emsp;&emsp;&emsp;color: '#EC407A',
+  &emsp;&emsp;&emsp;&emsp;hasChart: 'small',
+  &emsp;&emsp;&emsp;&emsp;title: "Desocupación"
+  })
+
+                </code></pre>
+                                  </div>
+                              </div>
+                              <div class="title">
+                                  <h3>Card: menos links</h3>
+                              </div>
+                              <div class="row m-y-1">
+                                  <div class="col-md-4" id='ipc-card-links2'></div>
+                                  <div class="col-md-4" id='superavit-card-links2'></div>
+                                  <div class="col-md-4" id='desempleo-card-links2'></div>
+                              </div>
+                              <div class="row">
+                                  <div class="col-sm-12">
+                                      <pre><code class="language-html">
+                              &lt;div class="row">
+                              &emsp;&emsp;&emsp;&emsp;&lt;div id='ipc-card-links2'>&lt;/div>
+                              &emsp;&emsp;&emsp;&emsp;&lt;div id='superavit-card-links2'>&lt;/div>
+                              &emsp;&emsp;&emsp;&emsp;&lt;div id='desempleo-card-links2'>&lt;/div>
+                              &lt;/div>
+                </code></pre>
+                                      <pre><code class="language-js">
+  TSComponents.Card.render('ipc-card-links2', {
+  &emsp;&emsp;&emsp;&emsp;serieId: '148.3_INIVELNAL_DICI_M_26:percent_change',
+  &emsp;&emsp;&emsp;&emsp;color: '#F9A822',
+  &emsp;&emsp;&emsp;&emsp;hasChart: 'small',
+  &emsp;&emsp;&emsp;&emsp;links: "small",
+  &emsp;&emsp;&emsp;&emsp;title: "Indice de Precios al Consumidor Nacional"
+  })
+
+  TSComponents.Card.render('superavit-card-links2', {
+  &emsp;&emsp;&emsp;&emsp;serieId: '372.6_SUPERAVIT_017__23_67',
+  &emsp;&emsp;&emsp;&emsp;hasChart: 'small',
+  &emsp;&emsp;&emsp;&emsp;links: "small",
+  &emsp;&emsp;&emsp;&emsp;title: "Resultado Primario del Sector Público No Fin."
+  })
+
+  TSComponents.Card.render('desempleo-card-links2', {
+  &emsp;&emsp;&emsp;&emsp;serieId: '42.3_EPH_PUNTUATAL_0_M_30',
+  &emsp;&emsp;&emsp;&emsp;color: '#EC407A',
+  &emsp;&emsp;&emsp;&emsp;hasChart: 'small',
+  &emsp;&emsp;&emsp;&emsp;links: "small",
+  &emsp;&emsp;&emsp;&emsp;title: "Desocupación"
+  })
+                </code></pre>
+                                  </div>
+                              </div>
+                              <div class="title">
+                                  <h3>Card: sin links</h3>
+                              </div>
+                              <div class="row m-y-1">
+                                  <div class="col-md-4" id='ipc-card-med'></div>
+                                  <div class="col-md-4" id='superavit-card-med'></div>
+                                  <div class="col-md-4" id='desempleo-card-med'></div>
+                              </div>
+                              <div class="row">
+                                  <div class="col-sm-12">
+                                      <pre><code class="language-html">
+                              &lt;div class="row">
+                              &emsp;&emsp;&emsp;&emsp;&lt;div id='ipc-card-med'>&lt;/div>
+                              &emsp;&emsp;&emsp;&emsp;&lt;div id='superavit-card-med'>&lt;/div>
+                              &emsp;&emsp;&emsp;&emsp;&lt;div id='desempleo-card-med'>&lt;/div>
+                              &lt;/div>
+                </code></pre>
+                                      <pre><code class="language-js">
+  TSComponents.Card.render('ipc-card-med', {
+  &emsp;&emsp;&emsp;&emsp;serieId: '148.3_INIVELNAL_DICI_M_26:percent_change',
+  &emsp;&emsp;&emsp;&emsp;color: '#F9A822',
+  &emsp;&emsp;&emsp;&emsp;hasChart: 'small',
+  &emsp;&emsp;&emsp;&emsp;links: "none",
+  &emsp;&emsp;&emsp;&emsp;title: "Indice de Precios al Consumidor Nacional"
+  })
+
+  TSComponents.Card.render('superavit-card-med', {
+  &emsp;&emsp;&emsp;&emsp;serieId: '372.6_SUPERAVIT_017__23_67',
+  &emsp;&emsp;&emsp;&emsp;hasChart: 'small',
+  &emsp;&emsp;&emsp;&emsp;links: "none",
+  &emsp;&emsp;&emsp;&emsp;title: "Resultado Primario del Sector Público No Fin.",
+  &emsp;&emsp;&emsp;&emsp;hasFrame: false
+  })
+
+  TSComponents.Card.render('desempleo-card-med', {
+  &emsp;&emsp;&emsp;&emsp;serieId: '42.3_EPH_PUNTUATAL_0_M_30',
+  &emsp;&emsp;&emsp;&emsp;color: '#EC407A',
+  &emsp;&emsp;&emsp;&emsp;hasChart: 'small',
+  &emsp;&emsp;&emsp;&emsp;links: "none",
+  &emsp;&emsp;&emsp;&emsp;title: "Desocupación",
+  &emsp;&emsp;&emsp;&emsp;hasColorBar: false
+  })
+                </code></pre>
+                                  </div>
+                              </div>
+                              <div class="title">
+                                  <h3>Card: mínima</h3>
+                              </div>
+                              <div class="row m-y-1">
+                                  <div class="col-md-4" id='ipc-card-min'></div>
+                                  <div class="col-md-4" id='superavit-card-min'></div>
+                                  <div class="col-md-4" id='desempleo-card-min'></div>
+                              </div>
+                              <div class="row">
+                                  <div class="col-sm-12">
+                                      <pre><code class="language-html">
+                              &lt;div class="row">
+                              &emsp;&emsp;&emsp;&emsp;&lt;div id='ipc-card-min'>&lt;/div>
+                              &emsp;&emsp;&emsp;&emsp;&lt;div id='superavit-card-min'>&lt;/div>
+                              &emsp;&emsp;&emsp;&emsp;&lt;div id='desempleo-card-min'>&lt;/div>
+                              &lt;/div>
+                              &lt;div class="row">
+                </code></pre>
+                                      <pre><code class="language-js">
+  TSComponents.Card.render('ipc-card-min', {
+  &emsp;&emsp;&emsp;&emsp;serieId: '148.3_INIVELNAL_DICI_M_26:percent_change',
+  &emsp;&emsp;&emsp;&emsp;color: '#F9A822',
+  &emsp;&emsp;&emsp;&emsp;links: 'none',
+  &emsp;&emsp;&emsp;&emsp;hasChart: "none",
+  &emsp;&emsp;&emsp;&emsp;title: "Indice de Precios al Consumidor Nacional"
+  })
+
+  TSComponents.Card.render('superavit-card-min', {
+  &emsp;&emsp;&emsp;&emsp;serieId: '372.6_SUPERAVIT_017__23_67',
+  &emsp;&emsp;&emsp;&emsp;links: 'none',
+  &emsp;&emsp;&emsp;&emsp;hasChart: "none",
+  &emsp;&emsp;&emsp;&emsp;title: "Resultado Primario del Sector Público No Fin.",
+  &emsp;&emsp;&emsp;&emsp;hasColorBar: true
+  })
+
+  TSComponents.Card.render('desempleo-card-min', {
+  &emsp;&emsp;&emsp;&emsp;serieId: '42.3_EPH_PUNTUATAL_0_M_30',
+  &emsp;&emsp;&emsp;&emsp;color: '#EC407A',
+  &emsp;&emsp;&emsp;&emsp;links: 'none',
+  &emsp;&emsp;&emsp;&emsp;hasChart: "none",
+  &emsp;&emsp;&emsp;&emsp;title: "Desocupación",
+  &emsp;&emsp;&emsp;&emsp;hasFrame: true
+  })
+                </code></pre>
+                                  </div>
+                              </div>
+                              <div class="title">
+                                  <h3>Card: mínima (eliminando elementos)</h3>
+                              </div>
+                              <div class="row m-y-1">
+                                  <div class="col-md-4" id='ipc-card-min-xtreme'></div>
+                                  <div class="col-md-4" id='superavit-card-min-xtreme'></div>
+                                  <div class="col-md-4" id='desempleo-card-min-xtreme'></div>
+                              </div>
+                              <div class="row">
+                                  <div class="col-sm-12">
+                                      <pre><code class="language-html">
+                              &lt;div class="row">
+                                  &emsp;&emsp;&emsp;&emsp;&lt;div id='ipc-card-min-xtreme'>&lt;/div>
+                                  &emsp;&emsp;&emsp;&emsp;&lt;div id='superavit-card-min-xtreme'>&lt;/div>
+                                  &emsp;&emsp;&emsp;&emsp;&lt;div id='desempleo-card-min-xtreme'>&lt;/div>
+                              &lt;/div>
+
+                </code></pre>
+                                      <pre><code class="language-js">
+  TSComponents.Card.render('ipc-card-min-xtreme', {
+  &emsp;&emsp;&emsp;&emsp;serieId: '148.3_INIVELNAL_DICI_M_26:percent_change',
+  &emsp;&emsp;&emsp;&emsp;links: 'none',
+  &emsp;&emsp;&emsp;&emsp;hasChart: "none",
+  &emsp;&emsp;&emsp;&emsp;title: "",
+  &emsp;&emsp;&emsp;&emsp;units: "",
+  &emsp;&emsp;&emsp;&emsp;source: ""
+  })
+
+  TSComponents.Card.render('superavit-card-min-xtreme', {
+  &emsp;&emsp;&emsp;&emsp;serieId: '372.6_SUPERAVIT_017__23_67',
+  &emsp;&emsp;&emsp;&emsp;links: 'none',
+  &emsp;&emsp;&emsp;&emsp;hasChart: "none",
+  &emsp;&emsp;&emsp;&emsp;title: "",
+  &emsp;&emsp;&emsp;&emsp;units: "",
+  &emsp;&emsp;&emsp;&emsp;source: "",
+  &emsp;&emsp;&emsp;&emsp;hasColorBar: true
+  })
+
+  TSComponents.Card.render('desempleo-card-min-xtreme', {
+  &emsp;&emsp;&emsp;&emsp;serieId: '42.3_EPH_PUNTUATAL_0_M_30',
+  &emsp;&emsp;&emsp;&emsp;color: '#EC407A',
+  &emsp;&emsp;&emsp;&emsp;links: 'none',
+  &emsp;&emsp;&emsp;&emsp;hasChart: "none",
+  &emsp;&emsp;&emsp;&emsp;title: "",
+  &emsp;&emsp;&emsp;&emsp;units: "",
+  &emsp;&emsp;&emsp;&emsp;source: "",
+  &emsp;&emsp;&emsp;&emsp;hasFrame: true
+  })
+                </code></pre>
+                                  </div>
+                              </div>
+                              <h2>Gráficos</h2>
+                              <p>Sirven para mostrar la evolución temporal de un indicador.</p>
+                              <p>Ver la <a href="https://datosgobar.github.io/series-tiempo-ar-explorer/reference/ts-components/card/">documentación completa del objeto "Graphic"</a>.</p>
+                              <div class="title">
+                                  <h3>Gráfico: completo</h3>
+                              </div>
+                              <div class="row">
+                                  <div class="col-sm-12" id="tsChartFull"></div>
+                              </div>
+                              <br>
+                              <br>
+                              <div class="row">
+                                  <div class="col-sm-12">
+                                      <pre><code class="language-html">
+                              &lt;div class="row">
+                                  &emsp;&emsp;&emsp;&emsp;&lt;div class="col-sm-12" id="tsChartFull">&lt;/div>
+                              &lt;/div>
+
+                </code></pre>
+                                      <pre><code class="language-js">
+  TSComponents.Graphic.render('tsChartFull', {
+      &emsp;&emsp;&emsp;&emsp;graphicUrl: 'https://apis.datos.gob.ar/series/api/series/?ids=143.3_NO_PR_2004_A_21:percent_change_a_year_ago,116.4_TCRZE_2015_D_36_4',
+      &emsp;&emsp;&emsp;&emsp;zoom: true,
+      &emsp;&emsp;&emsp;&emsp;chartTypes: {'143.3_NO_PR_2004_A_21:percent_change_a_year_ago': 'column'},
+      &emsp;&emsp;&emsp;&emsp;title: 'Nivel de Actividad y Tipo de Cambio Real Multilateral',
+      &emsp;&emsp;&emsp;&emsp;source: 'Fuente: Instituto Nacional de Estadística y Censos (INDEC), Banco Central de la República Argentina (BCRA)',
+      &emsp;&emsp;&emsp;&emsp;navigator: true
+  })
 
 
-                <div class="row">
-                  <div class="col-sm-6 col-md-4">
-                    <div class="icon-item">
-                      <i class="fa fa-users text-success"></i>
-                      <h3>Cercana</h3>
-                      <p>Conoce tus necesidades y adopta sus servicios a ellas.</p>
-                    </div>
-                  </div>
-                  <div class="col-sm-6 col-md-4">
-                    <div class="icon-item">
-                      <i class="fa fa-search text-primary"></i>
-                      <h3>Transparente</h3>
-                      <p>Brinda mayor información y certeza sobre sus actos de gobierno.</p>
-                    </div>
-                  </div>
-                  <div class="col-sm-6 col-md-4">
-                    <div class="icon-item">
-                      <i class="fa fa-users"></i>
-                      <h3>Participativa</h3>
-                      <p>Trabaja en equipo con los empleados públicos y la gente.</p>
-                    </div>
-                  </div>
-                </div>
+                </code></pre>
+                                  </div>
+                              </div>
+                              <br>
+                              <br>
+                              <div class="title">
+                                  <h3>Gráfico: medio</h3>
+                              </div>
+                              <div class="row">
+                                  <div class="col-sm-6" id="tsChartSmall1"></div>
+                                  <div class="col-sm-6" id="tsChartSmall2"></div>
+                              </div>
+                              <br>
+                              <br>
+                              <br>
+                              <div class="row">
+                                  <div class="col-sm-12">
+                                      <pre><code class="language-html">
+                              &lt;div class="row">
+                                  &emsp;&emsp;&emsp;&emsp;&lt;div class="col-sm-6" id="tsChartSmall1">&lt;/div>
+                                  &emsp;&emsp;&emsp;&emsp;&lt;div class="col-sm-6" id="tsChartSmall2">&lt;/div>
+                              &lt;/div>
+                </code></pre>
+                                      <pre><code class="language-js">
+  TSComponents.Graphic.render('tsChartSmall1', {
+      &emsp;&emsp;&emsp;&emsp;graphicUrl: 'https://apis.datos.gob.ar/series/api/series/?ids=11.3_VMATC_2004_M_12:percent_change_a_year_ago,143.3_NO_PR_2004_A_21:percent_change_a_year_ago',
+      &emsp;&emsp;&emsp;&emsp;zoom: false,
+      &emsp;&emsp;&emsp;&emsp;datePickerEnabled: false,
+      &emsp;&emsp;&emsp;&emsp;navigator: false,
+      &emsp;&emsp;&emsp;&emsp;title: 'Apagando todos los elementos',
+      &emsp;&emsp;&emsp;&emsp;chartTypes: { '11.3_VMATC_2004_M_12:percent_change_a_year_ago': 'area', '143.3_NO_PR_2004_A_21:percent_change_a_year_ago': 'area' },
+      &emsp;&emsp;&emsp;&emsp;source: 'Fuente: Instituto Nacional de Estadística y Censos (INDEC)',
+      &emsp;&emsp;&emsp;&emsp;legendLabel: { "11.3_VMATC_2004_M_12": "mi propio label", '143.3_NO_PR_2004_A_21': "el otro label" }
+  })
 
-                <div class="row">
-                  <div class="col-sm-12">
-                    <pre><code class="language-html">
-                        &lt;div class="icon-item">
-                          &emsp;&emsp;&lt;i class="fa fa-users text-success">&lt;/i>
-                          &emsp;&emsp;&lt;h3>Cercana&lt;/h3>
-                          &emsp;&emsp;&lt;p>Conoce tus necesidades y adopta sus servicios a ellas.&lt;/p>
-                        &lt;/div>
-                      </code></pre>
-                  </div>
-                </div>
+  TSComponents.Graphic.render('tsChartSmall2', {
+      &emsp;&emsp;&emsp;&emsp;graphicUrl: 'https://apis.datos.gob.ar/series/api/series/?ids=151.1_TL_SIN_TAC_2012_M_15,151.1_TL_ESTADAD_2012_M_20',
+      &emsp;&emsp;&emsp;&emsp;title: 'Prendiendo todos los elementos',
+      &emsp;&emsp;&emsp;&emsp;navigator: true,
+      &emsp;&emsp;&emsp;&emsp;zoom: true,
+      &emsp;&emsp;&emsp;&emsp;datePickerEnabled: true
+  })
+                </code></pre>
+                                  </div>
+                              </div>
+                              <br>
+                              <br>
+                              <div class="title">
+                                  <h3>Gráfico: mínimo</h3>
+                              </div>
+                              <div class="row" style="height: 400px">
+                                  <div class="col-sm-4" id="tsChartMin1"></div>
+                                  <div class="col-sm-4" id="tsChartMin2"></div>
+                                  <div class="col-sm-4" id="tsChartMin4"></div>
+                              </div>
+                              <br>
+                              <br>
+                              <br>
+                              <div class="row">
+                                  <div class="col-sm-12 m-y-4 ">
+                                      <pre><code class="language-html">
+                              &lt;div class="row" style="height: 400px">
+                                  &emsp;&emsp;&emsp;&emsp;&lt;div class="col-sm-4" id="tsChartMin1">&lt;/div>
+                                  &emsp;&emsp;&emsp;&emsp;&lt;div class="col-sm-4" id="tsChartMin2">&lt;/div>
+                                  &emsp;&emsp;&emsp;&emsp;&lt;div class="col-sm-4" id="tsChartMin4">&lt;/div>
+                              &lt;/div>
+                </code></pre>
+                                      <pre><code class="language-js">
+  TSComponents.Graphic.render('tsChartMin1', {
+  &emsp;&emsp;&emsp;&emsp;graphicUrl: 'https://apis.datos.gob.ar/series/api/series/?ids=33.2_I_2004_M_4',
+  &emsp;&emsp;&emsp;&emsp;title: "Apagando todos los elementos",
+  &emsp;&emsp;&emsp;&emsp;source: 'Fuente: Instituto Nacional de Estadística y Censos (INDEC)',
+  })
 
-                <h2>Números</h2>
-                <p>Sirven para mostrar cifras estadísticas.  </p>
+  TSComponents.Graphic.render('tsChartMin2', {
+  &emsp;&emsp;&emsp;&emsp;graphicUrl: 'https://apis.datos.gob.ar/series/api/series/?ids=143.3_NO_PR_2004_A_21:percent_change_a_year_ago',
+  &emsp;&emsp;&emsp;&emsp;title: 'Prendiendo algunos elementos',
+  &emsp;&emsp;&emsp;&emsp;zoom: true,
+  &emsp;&emsp;&emsp;&emsp;datePickerEnabled: true,
+  &emsp;&emsp;&emsp;&emsp;source: 'Fuente: Instituto Nacional de Estadística y Censos (INDEC)',
+  &emsp;&emsp;&emsp;&emsp;chartTypes: { '143.3_NO_PR_2004_A_21': 'column' }
+  })
 
-                <div class="row numbers">
-                  <div class="col-md-4">
-                    <div class="h2 text-success">392.493</div>
-                    <p class="lead">Visitas últimos 30 días</p>
-                    <p class="text-muted">+11,06% vs mes anterior</p>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="h2 text-gray">33 <small>%</small></div>
-                    <p class="lead">Visitas este mes</p>
-                    <p class="text-muted">del 1 al 26 de Febrero</p>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="h2">5 <small>de 10</small></div>
-                    <p class="lead">Personas conectadas</p>
-                    <p class="text-muted">Duramente los últimos 30 días.</p>
-                  </div>
-                </div>
+  TSComponents.Graphic.render('tsChartMin4', {
+  &emsp;&emsp;&emsp;&emsp;graphicUrl: 'https://apis.datos.gob.ar/series/api/series/?ids=14.2_E_M_2004_0_3',
+  &emsp;&emsp;&emsp;&emsp;title: 'Sin fuente',
+  &emsp;&emsp;&emsp;&emsp;zoom: false,
+  &emsp;&emsp;&emsp;&emsp;datePickerEnabled: false
+  })
+                </code></pre>
+                                  </div>
+                              </div>
+                              <br>
+                              <br>
+                          </fieldset>
+                      </div>
+                  </article>
+              </section>
 
-                <div class="row">
-                  <div class="col-sm-12">
-                    <pre><code class="language-html">
-                      &lt;div class="row numbers">
-                        &emsp;&emsp;&lt;div class="col-md-4">
-                          &emsp;&emsp;&emsp;&emsp;&lt;div class="h2 text-success">392.493&lt;/div>
-                          &emsp;&emsp;&emsp;&emsp;&lt;p class="lead">Visitas últimos 30 días&lt;/p>
-                          &emsp;&emsp;&emsp;&emsp;&lt;p class="text-muted">+11,06% vs mes anterior&lt;/p>
-                        &emsp;&emsp;&lt;/div>
-                      &lt;/div>
-                    </code></pre>
-                  </div>
-                </div>
-                  
-                </fieldset>
+          </div>
+        </div>
 
-
-            </div>
-
-
-            
-          </article>
-          </section>              
       </div>
-    </div>
 
-    </div>
 
-        
-      </main>
+    </main>
       <footer class="main-footer hidden">
         <div class="container">
           <div class="row">
@@ -258,6 +576,167 @@
           </div>
         </div>
       </footer>
+      <script>
+          window.onload = function() {
+              // COLORES SUGERIDOS "#0072BB","#2E7D33","#C62828","#F9A822","#6A1B99", "#EC407A","#C2185B","#6A1B99","#039BE5","#6EA100"
+              // componentes de series de tiempo
+              TSComponents.Card.render('ipc-card', {
+                  serieId: '148.3_INIVELNAL_DICI_M_26:percent_change',
+                  color: '#F9A822',
+                  hasChart: 'small',
+                  title: "Indice de Precios al Consumidor Nacional"
+              })
+              TSComponents.Card.render('superavit-card', {
+                  serieId: '452.3_RESULTADO_RIO_0_M_18_54',
+                  hasChart: 'small',
+                  title: "Resultado Primario del Sector Público No Fin."
+              })
+              TSComponents.Card.render('desempleo-card', {
+                  serieId: '42.3_EPH_PUNTUATAL_0_M_30',
+                  color: '#EC407A',
+                  hasChart: 'small',
+                  title: "Desocupación"
+              })
+              TSComponents.Card.render('ipc-card-links2', {
+                  serieId: '148.3_INIVELNAL_DICI_M_26:percent_change',
+                  color: '#F9A822',
+                  hasChart: 'small',
+                  links: "small",
+                  title: "Indice de Precios al Consumidor Nacional"
+              })
+              TSComponents.Card.render('superavit-card-links2', {
+                  serieId: '372.6_SUPERAVIT_017__23_67',
+                  hasChart: 'small',
+                  links: "small",
+                  title: "Resultado Primario del Sector Público No Fin."
+              })
+              TSComponents.Card.render('desempleo-card-links2', {
+                  serieId: '42.3_EPH_PUNTUATAL_0_M_30',
+                  color: '#EC407A',
+                  hasChart: 'small',
+                  links: "small",
+                  title: "Desocupación"
+              })
+              TSComponents.Card.render('ipc-card-med', {
+                  serieId: '148.3_INIVELNAL_DICI_M_26:percent_change',
+                  color: '#F9A822',
+                  hasChart: 'small',
+                  links: "none",
+                  title: "Indice de Precios al Consumidor Nacional"
+              })
+              TSComponents.Card.render('superavit-card-med', {
+                  serieId: '372.6_SUPERAVIT_017__23_67',
+                  hasChart: 'small',
+                  links: "none",
+                  title: "Resultado Primario del Sector Público No Fin.",
+                  hasFrame: false
+              })
+              TSComponents.Card.render('desempleo-card-med', {
+                  serieId: '42.3_EPH_PUNTUATAL_0_M_30',
+                  color: '#EC407A',
+                  hasChart: 'small',
+                  links: "none",
+                  title: "Desocupación",
+                  hasColorBar: false
+              })
+              TSComponents.Card.render('ipc-card-min', {
+                  serieId: '148.3_INIVELNAL_DICI_M_26:percent_change',
+                  color: '#F9A822',
+                  links: 'none',
+                  hasChart: "none",
+                  title: "Indice de Precios al Consumidor Nacional"
+              })
+              TSComponents.Card.render('superavit-card-min', {
+                  serieId: '372.6_SUPERAVIT_017__23_67',
+                  links: 'none',
+                  hasChart: "none",
+                  title: "Resultado Primario del Sector Público No Fin.",
+                  hasColorBar: true
+              })
+              TSComponents.Card.render('desempleo-card-min', {
+                  serieId: '42.3_EPH_PUNTUATAL_0_M_30',
+                  color: '#EC407A',
+                  links: 'none',
+                  hasChart: "none",
+                  title: "Desocupación",
+                  hasFrame: true
+              })
+              TSComponents.Card.render('ipc-card-min-xtreme', {
+                  serieId: '148.3_INIVELNAL_DICI_M_26:percent_change',
+                  links: 'none',
+                  hasChart: "none",
+                  title: "",
+                  units: "",
+                  source: ""
+              })
+              TSComponents.Card.render('superavit-card-min-xtreme', {
+                  serieId: '372.6_SUPERAVIT_017__23_67',
+                  links: 'none',
+                  hasChart: "none",
+                  title: "",
+                  units: "",
+                  source: "",
+                  hasColorBar: true
+              })
+              TSComponents.Card.render('desempleo-card-min-xtreme', {
+                  serieId: '42.3_EPH_PUNTUATAL_0_M_30',
+                  color: '#EC407A',
+                  links: 'none',
+                  hasChart: "none",
+                  title: "",
+                  units: "",
+                  source: "",
+                  hasFrame: true
+              })
+              // Gráfico de series de tiempo completo
+              TSComponents.Graphic.render('tsChartFull', {
+                  graphicUrl: 'https://apis.datos.gob.ar/series/api/series/?ids=143.3_NO_PR_2004_A_21:percent_change_a_year_ago,116.4_TCRZE_2015_D_36_4',
+                  zoom: true,
+                  chartTypes: { '143.3_NO_PR_2004_A_21:percent_change_a_year_ago': 'column' },
+                  title: 'Nivel de Actividad y Tipo de Cambio Real Multilateral',
+                  source: 'Fuente: Instituto Nacional de Estadística y Censos (INDEC), Banco Central de la República Argentina (BCRA)',
+                  navigator: true
+              })
+              // Gráficos de series de tiempo chicos
+              TSComponents.Graphic.render('tsChartSmall1', {
+                  graphicUrl: 'https://apis.datos.gob.ar/series/api/series/?ids=11.3_VMATC_2004_M_12:percent_change_a_year_ago,143.3_NO_PR_2004_A_21:percent_change_a_year_ago',
+                  zoom: false,
+                  datePickerEnabled: false,
+                  navigator: false,
+                  title: 'Apagando todos los elementos',
+                  chartTypes: { '11.3_VMATC_2004_M_12:percent_change_a_year_ago': 'area', '143.3_NO_PR_2004_A_21:percent_change_a_year_ago': 'area' },
+                  source: 'Fuente: Instituto Nacional de Estadística y Censos (INDEC)',
+                  legendLabel: { "11.3_VMATC_2004_M_12": "mi propio label", '143.3_NO_PR_2004_A_21': "el otro label" }
+              })
+              TSComponents.Graphic.render('tsChartSmall2', {
+                  graphicUrl: 'https://apis.datos.gob.ar/series/api/series/?ids=151.1_TL_SIN_TAC_2012_M_15,151.1_TL_ESTADAD_2012_M_20',
+                  title: 'Prendiendo todos los elementos',
+                  navigator: true,
+                  zoom: true,
+                  datePickerEnabled: true
+              })
+              // Gráficos de series de tiempo mono-serie
+              TSComponents.Graphic.render('tsChartMin1', {
+                  graphicUrl: 'https://apis.datos.gob.ar/series/api/series/?ids=33.2_I_2004_M_4',
+                  title: "Apagando todos los elementos",
+                  source: 'Fuente: Instituto Nacional de Estadística y Censos (INDEC)',
+              })
+              TSComponents.Graphic.render('tsChartMin2', {
+                  graphicUrl: 'https://apis.datos.gob.ar/series/api/series/?ids=143.3_NO_PR_2004_A_21:percent_change_a_year_ago',
+                  title: 'Prendiendo algunos elementos',
+                  zoom: true,
+                  datePickerEnabled: true,
+                  source: 'Fuente: Instituto Nacional de Estadística y Censos (INDEC)',
+                  chartTypes: { '143.3_NO_PR_2004_A_21': 'column' }
+              })
+              TSComponents.Graphic.render('tsChartMin4', {
+                  graphicUrl: 'https://apis.datos.gob.ar/series/api/series/?ids=14.2_E_M_2004_0_3',
+                  title: 'Sin fuente',
+                  zoom: false,
+                  datePickerEnabled: false
+              })
+          }
+          </script>
 
     <script>
       $(function(){
