@@ -272,7 +272,7 @@ Poncho te saluda, amigo del código!
               <div class="alert alert-success" id="mensajeCopiado" style="display:none">Se ha copiado el nombre en el portapapeles</div>
               <button class="btn btn-primary copyButton" id="copyButtonId" 
                data-clipboard-action="copy" data-clipboard-target="span#codigoCopiar">Copiar nombre</button>
-              <a href="#" class="btn btn-link copyImg" id="copyImgId" download>Descargar SVG</a>
+              <button class="btn btn-link copyImg" id="copyImgId" >Descargar SVG</button>
             </div>
           </div>
         </div>
@@ -314,7 +314,7 @@ $(function(){
           $.each(iconos, function(index, val) {
 
             if(val.gsx$grupo.$t == "Poncho"){
-              console.log(val.gsx$grupo.$t);
+              //console.log(val.gsx$grupo.$t);
               $("#listaPoncho .row").append('<div class="icono col-xs-6 col-sm-4 col-md-3 text-center margin-40"><i class="'+ val["gsx$codigo"]["$t"] +'"></i><div class="name">'+ val["gsx$nombre"]["$t"] +'</div><div class="tags hidden">'+ val["gsx$etiquetas"]["$t"] +'</div></div>');
             }
 
@@ -341,6 +341,29 @@ $(function(){
           })
 
 
+          // crea una imagen temporal con un link de descarga 
+          function loadDoc(nombre) {
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        result = this.responseText;
+                            const a = document.createElement("a");
+                            a.style.display = "none";
+                            document.body.appendChild(a);
+                            a.href = window.URL.createObjectURL(
+                                new Blob([result], {type: 'image/svg+xml'})
+                            );
+                            a.setAttribute("download", nombre);
+                            a.click();
+                            window.URL.revokeObjectURL(a.href);
+                            document.body.removeChild(a);
+                    }
+                };
+                xhttp.open("GET", "https://raw.githubusercontent.com/argob/iconos/master/src/_icons/"+ nombre + ".svg", true);
+                xhttp.send();
+            }
+
+
 
           //Recorre todas las listas para filtrar el contenido
           function buscarIcono(busqueda){
@@ -351,7 +374,8 @@ $(function(){
             if(listaFontawesome.visibleItems.length == 0){$("#listaFontawesome .error").show()}else{$("#listaFontawesome .error").hide()}
           }
 
-
+          // crea svg a partir del código
+          
 
           //Mostrar Detalle de un ícono
           $(document).on("click",".icono",function(){
@@ -368,7 +392,10 @@ $(function(){
             });
             
             $("#copy").html('&lt;i class="'+ icon +'">&lt;/i>');
-            $("#copyImgId").attr("href", "https://raw.githubusercontent.com/argob/iconos/master/src/_icons/"+name+".svg");
+            //$("#copyImgId").attr("href", "https://raw.githubusercontent.com/argob/iconos/master/src/_icons/"+name+".svg");
+
+
+
             $('#iconoModal').modal('show');
           })
           
@@ -381,6 +408,15 @@ $(function(){
             $("#buscadorIconos").val(etiqueta);
             buscarIcono(etiqueta)
           })
+
+          // descarga svg con el clik en el boton 
+          $(document).on("click","#copyImgId",function(){
+              loadDoc(name);
+          });
+
+
+
+
 
 
       })
