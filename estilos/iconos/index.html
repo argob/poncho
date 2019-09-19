@@ -320,6 +320,7 @@ $(function(){
 
             if(val.gsx$grupo.$t == "Font Awesome"){
               $("#listaFontawesome .row").append('<div class="icono col-xs-6 col-sm-4 col-md-3 text-center margin-40"><i class="'+ val["gsx$codigo"]["$t"] +'" title="prueba"></i><div class="name">'+ val["gsx$nombre"]["$t"] +'</div><div class="tags hidden">'+ val["gsx$etiquetas"]["$t"] +'</div></div>');
+              
             }
 
           })
@@ -360,9 +361,7 @@ $(function(){
                             a.click();
                             window.URL.revokeObjectURL(a.href);
                             document.body.removeChild(a);
-                    } else {
-                      document.querySelector('#copyImgId').classList.add('hidden');
-                    }
+                    } 
                 };
                 
 
@@ -401,6 +400,12 @@ $(function(){
             $("#copy").html('&lt;i class="'+ icon +'">&lt;/i>');
             //$("#copyImgId").attr("href", "https://raw.githubusercontent.com/argob/iconos/master/src/_icons/"+name+".svg");
 
+            var nono = icon.startsWith("fa");
+            if(nono){
+              document.querySelector('#copyImgId').classList.add('hidden');
+            } else {
+              document.querySelector('#copyImgId').classList.remove('hidden');
+              }
 
             $('#iconoModal').modal('show');
           })
