@@ -42,7 +42,77 @@
       <script src="http://argob.github.io/poncho/js/html5shiv.js"></script>
       <script src="http://argob.github.io/poncho/js/respond.min.js"></script>
   <![endif]-->
-  
+  <style>
+  @media print { 
+      /* All your print styles go here */
+      main .jumbotron {
+         display: none;
+      }
+      main, .pane-content .print, .print h2 {
+         width: 90%;
+         margin: 0 auto;
+      }
+
+      #destacados {
+         padding: 0;
+         margin: 0;
+         page-break-after: always;
+      }
+
+      .panel{
+         
+         border: 2px solid #333;
+         border-radius: 5px;
+         margin: 10px 0 !important;
+      }
+
+      .row.apps{
+         width: 100%;
+         margin: 0 auto;
+      }
+      
+
+      .panel-heading {
+         display: none;
+         
+         
+      }
+
+      .panel-separator, .panel-pane.pane-atajos, .pane-content {
+         padding: 0;
+         margin: 0;
+      }
+      /* Quitar o No Mostrar Rutas Internas */
+      a[href]:after {
+         display: none;
+      }
+      /* Rutas que empiecen con http 
+      a[href^=http]:after {
+         content: " (" attr(href) ")";
+         display: block;
+      }
+      */
+      .page-break { 
+         display:block;
+         height: 100px;
+         width: 100%;
+
+         
+      }
+
+      .panel {
+         margin: 0;
+      }
+
+      .panel-body {
+         margin: 10px;
+      }
+      
+
+      
+
+   }
+  </style>
     
 </head>
 
@@ -131,7 +201,7 @@
 <section>
   <div class="container">
 
-    <div class="row">
+    <div class="row apps">
       <div class="col-md-8 col-md-offset-2">
         <a id="appAlert" class="alert alert-info visible-xs" href="/app">
           <div class="media">
@@ -167,7 +237,7 @@
    <div class="panel-pane pane-texto">
       <div class="pane-content">
          <div class="">
-            <div class="row">
+            <div class="row apps">
                <div class="col-md-8 col-md-offset-2">
                   <a id="appAlert" class="alert alert-info visible-xs" href="/app">
                      <div class="media">
@@ -197,7 +267,7 @@
    <div class="panel-separator"></div>
    <div class="panel-pane pane-atajos">
       <div class="pane-content">
-         <div class="row panels-row" id="destacados"></div>
+         <div class="row panels-row " id="destacados"></div>
       </div>
    </div>
    <div class="panel-separator"></div>
@@ -205,9 +275,10 @@
       <div class="pane-content">
          <div class="">
             <section class="m-y-0 p-y-1">
-               <div class="">
+               
                   <h2>Este mes te puede interesar</h2>
-                  <div class="row panels-row m-t-2">
+                  <div class="">
+                  <div class="row panels-row m-t-2 ">
                      <div class="col-xs-12 col-sm-6 col-md-4">
                         <a class="panel panel-default" href="estudiar">
                            <div class="panel-body">
@@ -287,6 +358,7 @@
                            </div>
                         </a>
                      </div>
+                     
                      <div class="col-xs-12 col-sm-6 col-md-4">
                         <a class="panel panel-default" href="cuidar-la-salud">
                            <div class="panel-body">
@@ -300,6 +372,7 @@
                            </div>
                         </a>
                      </div>
+                     <div class="page-break"></div>
                      <div class="col-xs-12 col-sm-6 col-md-4">
                         <a class="panel panel-default" href="emprender-innovar-crecer">
                            <div class="panel-body">
@@ -313,6 +386,7 @@
                            </div>
                         </a>
                      </div>
+                     
                      <div class="col-xs-12 col-sm-6 col-md-4">
                         <a class="panel panel-default" href="jubiladosypensionados">
                            <div class="panel-body">
@@ -391,6 +465,7 @@
                            </div>
                         </a>
                      </div>
+                     <div class="page-break"></div>
                      <div class="col-xs-12 col-sm-6 col-md-4">
                         <a class="panel panel-default" href="emergencias">
                            <div class="panel-body">
@@ -417,6 +492,7 @@
                            </div>
                         </a>
                      </div>
+                     
                      <div class="col-xs-12 col-sm-6 col-md-4">
                         <a class="panel panel-default" href="/automotor">
                            <div class="panel-body">
@@ -455,7 +531,7 @@
          <div class="">
             <div class="">
                <h2 class="h3 m-b-2">Más consultados</h2>
-               <div class="row row-flex">
+               <div class="row row-flex print">
                   <div class="col-xs-12 col-sm-6 col-lg-3 m-b-2">
                      <a href="turnosparaanses">
                         <h3 class="h5">Tramitar turnos para ANSES</h3>
@@ -474,6 +550,7 @@
                      </a>
                      <p class="text-muted">Si te pidieron un comprobante de que no estás recibiendo otros aportes de ANSES.</p>
                   </div>
+                  <div class="page-break"></div>
                   <div class="col-xs-12 col-sm-6 col-lg-3 m-b-2">
                      <a href="seguir-el-estado-de-tramite-del-dni">
                         <h3 class="h5">Seguir el estado de trámite del DNI</h3>
@@ -492,12 +569,14 @@
                      </a>
                      <p class="text-muted">Si sos jubilado o pensionado, podés consultar si te corresponde.</p>
                   </div>
+                  
                   <div class="col-xs-12 col-sm-6 col-lg-3 m-b-2">
                      <a href="obtener-tu-constancia-de-cuil">
                         <h3 class="h5">Obtener tu constancia de CUIL</h3>
                      </a>
                      <p class="text-muted">Es un número personalizado, por el cual quedan registrados todos tus aportes laborales.</p>
                   </div>
+                  
                   <div class="col-xs-12 col-sm-6 col-lg-3 m-b-2">
                      <a href="solicitar-certificado-de-antecedentes-penales">
                         <h3 class="h5">Certificado de Antecedentes Penales</h3>

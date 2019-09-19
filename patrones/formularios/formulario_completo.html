@@ -155,6 +155,7 @@
     <div class="row">
     <div class="col-md-4 form-group item-form">
     <label for="cuil">CUIL</label>
+    <p class="help-block">Sin guiones ni barras</p>
     <p class="help-block"><a href="https://www.anses.gob.ar/constancia-de-cuil/" aria-label="Ingresá tu CUIL. Si no lo sabés consultá en este enlace de ANSES" target="_blank">Consultá tu CUIL</a></p>
         <input type="number" class="form-control" id="cuil" required aria-required="true">
         <p class="help-block error hidden">Ingresá tu CUIL <br>El CUIL tiene un formato no válido</p>
@@ -181,6 +182,7 @@
 <div class="row">
   <div class="form-group col-md-4 item-form">
     <label for="birthday">Fecha de nacimiento</label>
+    <p class="help-block">Sin guiones ni barras</p>
     <input type="date" class="form-control" id="birthday" required aria-required="true">
     <p class="help-block error hidden">Ingresá una fecha válida</p>
   </div>
@@ -223,10 +225,10 @@
    <div class="col-md-8">
     <div class="form-group item-form">
       <label for="password">Contraseña</label>
-      <p class="help-block" id="help-password">Usá al menos  caracteres</p>
+      <p class="help-block" id="help-password">Usá al menos 8 caracteres</p>
       <input id="password" name="password" type="password" class="form-control" maxlength="15" aria-describedby="help-password">
-      <p class="help-block error hidden">Usá al menos 6 caracteres</p>
-      <p class="help-block error hidden">Ingresá tu contraseña</p>
+      <p class="help-block error hidden">Usá al menos 8 caracteres</p>
+      <p class="help-block error hidden">La contraseña debe tener al menos 8 caracteres</p>
     </div>
   </div>
 </div>
@@ -250,8 +252,6 @@
    <label for="tipoDoc">Tipo de Documento</label>
    <select id="tipoDoc" name="tipodoc" class="form-control">
     <option value="DNI" selected="">DNI</option>
-    <option value="Libreta de Enrolamiento">Libreta de Enrolamiento</option>
-    <option value="Libreta Cívica">Libreta Cívica</option>
     <option value="Pasaporte extranjero">Pasaporte extranjero</option>
   </select>
   <p class="help-block error hidden">Elegí un tipo de documento</p>
@@ -260,12 +260,36 @@
 
 <div class="col-md-4">
   <div class="form-group item-form">
-   <label for="numDoc">Número de documento</label>
+   <label for="numDoc"   id="mostrar-tipo">Número de documento</label>
    <input type="number" min="1" class="form-control" id="numDoc" required aria-required="true">
+   <p class="help-block">Sin guiones ni barras</p>
    <p class="help-block error hidden">Ingresá tu número de documento</p>
  </div>
 </div>
 </div>
+<div class="row hidden">
+
+  <div class="col-md-4">
+   <div class="form-group item-form">
+    <label for="tipoDoc">Tipo de Documento</label>
+    <select id="tipoDoc" name="tipodoc" class="form-control">
+     <option value="DNI" selected="">DNI</option>
+     <option value="Libreta de Enrolamiento">Libreta de Enrolamiento</option>
+     <option value="Libreta Cívica">Libreta Cívica</option>
+     <option value="Pasaporte extranjero">Pasaporte extranjero</option>
+   </select>
+   <p class="help-block error hidden">Elegí un tipo de documento</p>
+ </div>
+ </div>
+ 
+ <div class="col-md-4">
+   <div class="form-group item-form">
+    <label for="numDoc">Número de documento</label>
+    <input type="number" min="1" class="form-control" id="numDoc" required aria-required="true">
+    <p class="help-block error hidden">Ingresá tu número de documento</p>
+  </div>
+ </div>
+ </div>
 <div class="row">
   <div class="form-group item-form">
     <div class="col-xs-12">
@@ -945,6 +969,7 @@
         <option value="">Municipio 1</option>
         <option value="">Municipio 2</option>
         <option value="">Municipio 3</option>
+        <option value="Prueba">Prueba</option>
       </select>
       <p class="help-block error hidden">Ingresá un Municipio</p>
     </div>
@@ -1290,6 +1315,31 @@ function popshow(){
 function pophidde(){
   content_popover.classList.add('hidden')
 }
+</script>
+
+<script>
+  $(document).ready(function(){
+    $('#mostrar-tipo').text('Numero de DNI');
+    $("select[name=tipodoc]").change(function(){
+      //alert($('select[name=tipodoc]').val());
+    if($('select[name=tipodoc]').val() === 'DNI') {
+      $('#mostrar-tipo').text('Numero de DNI');
+    }else if ($('select[name=tipodoc]').val() === 'Pasaporte extranjero') {
+      $('#mostrar-tipo').text('Numero de Pasaporte');
+    }
+      //$('#mostrar-tipo').text('Pasaporte');
+    });
+    /*
+    $("select[name=address_state]").change(function(){
+      if($('select[name=address_state]').val() === 'Ciudad Autónoma de buenos Aires') {
+        alert($('#address_state option:selected').val());  
+        $("#municipio option[value='Prueba']").attr("selected", true);
+      }
+    
+
+    });
+    */
+  });
 </script>
 
 </body>

@@ -42,7 +42,37 @@
       <script src="/node_modules/html5shiv/html5shiv.js"></script>
       <script src="/node_modules/respond.js/respond.min.js"></script>
   <![endif]-->  
-  
+  <style>
+  @media print{
+
+    main {
+    width: 90%;
+    margin: 0 auto;
+    }
+
+    main .breadcrumb, aside {
+    display: none;
+    }
+    /* AGREGAR UN ESPACIADO ALGUN FIX QUE ROMPA*/
+    .page-break {
+    display:block;
+    height: 100px;
+    width: 100%;
+
+    }
+    a.btn.btn-primary {
+      border: 3px solid #333;
+      font-size: 16px ;
+      font-weight: 500 ;
+      margin-bottom: 10px ;
+      padding: 10px 25px ;
+      text-transform: uppercase ;
+      
+
+
+      }
+  }
+  </style>
     
 </head>
 
@@ -144,7 +174,7 @@
           <li>Acercamos el Estado a la gente para hacerlo <strong>más transparente</strong>, y abrimos la información para una comunicación mas directa, que tenga un <strong>ida y vuelta con la ciudadanía</strong>.</li>
           <li>Trabajamos hacia adentro con el eje puesto en el <strong>empleado público</strong>, para capacitarlo y jerarquizar su carrera,  y de esta manera <strong>acompañar su vocación y ganas de crecer</strong>. </li>
         </ul>
-
+        <div class="page-break"></div>
         <h4>h4. El Estado al servicio de la gente</h4>
         <p>El ministro destacó que “ya hemos realizado una experiencia muy importante” en ese sentido durante la gestión que llevó adelante Macri como Jefe de Gobierno de la ciudad de Buenos Aires. (hacemos un enlace a la web de ciudad aca?)</p>
         <p>Ibarra recordó que desde 2012 la Argentina forma parte de la Alianza Mundial para el Gobierno Abierto, una iniciativa multilateral orientada a propiciar compromisos concretos de parte de los gobiernos para promover la transparencia de la información pública.</p>
@@ -153,7 +183,7 @@
           <img class="img-responsive img-full" src="img/billete.jpg">
           <figcaption>Billete de 500 pesos con el Baby Yaguareté</figcaption>
         </figure>
-
+        
         <h4>h4. El Estado al servicio de la gente</h4>
         <p>Sin embargo, advirtió que hasta el presente la participación del país ha sido “pobre, escasa y poco proactiva, a tal punto que estamos en el puesto 54, mientras que Uruguay, por ejemplo, está en el puesto número siete”.  </p>
         <p>“Trabajaremos  para revertir esa tendencia y lograr que  Argentina pase a tener un rol activo en la promoción de la transparencia, la colaboración y  la innovación".</p>
@@ -161,7 +191,7 @@
         <div class="credits">
           <p><strong>Créditos:</strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
         </div>
-
+        <div class="page-break"></div>
         <div class="downloads">
           <hr>
           <h4>Descargas</h4>

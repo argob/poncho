@@ -44,7 +44,7 @@
   <link href="../../node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
   <link href="https://id.argentina.gob.ar/static/css/chosen/chosen.css" rel="stylesheet">
   <link href="../../node_modules/argob-poncho/dist/css/poncho.min.css" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/dt-1.10.18/r-2.2.2/datatables.min.css"/>
+
 
   <link href="../../node_modules/argob-poncho/dist/css/documentacion.css" rel="stylesheet">
   <link href="../../css/prism.css" rel="stylesheet">
@@ -60,7 +60,7 @@
   <script src="../../node_modules/jquery/dist/jquery.js"></script>
   <script type="text/javascript" src="../../js/prism.js"></script>
   <script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.18/r-2.2.2/datatables.min.js"></script>
+ 
   <script src="../../js/scripts.js"></script>
 
     <style>
@@ -71,6 +71,8 @@
       #btn-primary-hover{background-color: #005388!important;}
 
       .btn-focus{border: 3px solid #FEC221!important;}
+
+      
     </style>
   <body>
   <!-- Google Tag Manager (noscript) -->
@@ -102,12 +104,12 @@
 
     </header>
 
-<div class="jumbotron bg-primary">
+<div class="jumbotron bg-primary" style="background-image:url('https://www.argentina.gob.ar/sites/default/files/jumbotron-poncho.png');">
   <div class="container">
   <div class="col-sm-12">
       <ol class="breadcrumb">
         <li><a href="/poncho/">Inicio</a></li>
-        <li><a href="/poncho/plantillas/headers-y-footers/">Plantillas</a></li>
+        <li><a href="/poncho/plantillas/paginas-de-argentina/">Plantillas</a></li>
         <li class="active">Headers y footers</li>
       </ol>
 
@@ -178,53 +180,11 @@
 
     <script>
       $(function(){
-
-        jQuery(function($) {
-          $.syntax({theme: 'bright'});
-        });
-
         $("#menuLateral").load("../../includes/plantillas_menu.html",function(){
           var seccion = $("#menuLateral").data("seccion");
           $("#menuLateral ul li a[data-seccion="+seccion+"]").parent().addClass("active");
         });
-
-        var tabla =  $(".dataTables").DataTable({
-            "lengthChange": false,
-            "autoWidth" : false,
-             "language": {
-                "sProcessing": "Procesando...",
-                "sLengthMenu": "Mostrar _MENU_ registros",
-                "sZeroRecords": "No se encontraron resultados",
-                "sEmptyTable": "Ningún dato disponible en esta tabla",
-                "sInfo": "_TOTAL_ resultados",
-                "sInfoEmpty": "No hay resultados",
-                "sInfoFiltered": "",
-                "sInfoPostFix": "",
-                "sSearch": "Buscar:",
-                "sUrl": "",
-                "sInfoThousands": ",",
-                "sLoadingRecords": "Cargando...",
-
-                "oPaginate": {
-                    "sFirst": "<<",
-                    "sLast": ">>",
-                    "sNext": ">",
-                    "sPrevious": "<"
-                },
-                "oAria": {
-                    "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-                    "sSortDescending": ": Activar para ordenar la columna de manera descendente",
-                    "paginate": {
-                        "first": 'Ir a la primera página',
-                        "previous": 'Ir a la página anterior',
-                        "next": 'Ir a la página siguiente',
-                        "last": 'Ir a la última página'
-                    }
-                }
-            }
-        });
-
-      })
+      });
     </script>
-    </body>
-    </html>
+  </body>
+</html>
