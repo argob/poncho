@@ -6,10 +6,16 @@
 /_vendor/*
 
 .sass-cache
-Gemfile.lock
 
 # Mac files
 .DS_Store
 
+<<<<<<< HEAD
 /dist
 src/_site
+=======
+src/_site
+node_modules
+package.json
+readme.md
+>>>>>>> eb48f9f968e8f140a460e4aa1af15642237ceb6b

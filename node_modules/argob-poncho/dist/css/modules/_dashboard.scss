@@ -1,0 +1,113 @@
+
+.dashboard {
+  ol {
+    padding: 15px;
+
+    li {
+      margin-bottom: 10px;
+    }
+  }
+}
+
+.chart {
+  height: 250px;
+  margin: 40px 0 60px;
+  width: 100%;
+
+  &.chart-sm {
+    height: 180px;
+  }
+
+  &.chart-md {
+    height: 350px;
+  }
+
+  &.chart-lg {
+    height: 450px;
+  }
+}
+
+.numbers {
+  &.row {
+    padding: 30px 0;
+
+    > div {
+      margin-bottom: 30px;
+    }
+
+    &.spaced {
+      margin-left: -30px;
+      margin-right: -30px;
+
+      > div {
+        padding-left: 30px;
+        padding-right: 30px;
+      }
+    }
+  }
+
+  h1, .h1 {
+    font-size: 4em;
+    font-weight: bold;
+    margin: .2em 0;
+  }
+
+  h2, .h2 {
+    font-size: 3em;
+    font-weight: bold;
+    margin: .2em 0;
+  }
+
+  h3, .h3 {
+    font-size: 2.4em;
+    font-weight: bold;
+    margin: .2em 0;
+  }
+
+  h4, .h4 {
+    font-size: 1.8em;
+    font-weight: bold;
+    margin: .2em 0;
+  }
+
+  p.lead {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: .2em 0;
+  }
+
+  @media (min-width: 768px) {
+
+    &.row > div {
+      margin-bottom: 0;
+    }
+
+    h1 {
+      font-size: 6em;
+    }
+
+    h2 {
+      font-size: 4em;
+    }
+
+    h3 {
+      font-size: 3em;
+    }
+
+    h4 {
+      font-size: 1.5em;
+    }
+
+  }
+
+}
+
+.progress {
+  background-color: $gray-lighter;
+
+  &.progress-sm {
+    height: 12px;
+  }
+}
+
+
