@@ -345,7 +345,10 @@ $(function(){
           function loadDoc(nombre) {
                 var xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function() {
+                  var mostrarbt;
                     if (this.readyState == 4 && this.status == 200) {
+                        document.querySelector('#copyImgId').classList.remove('hidden');
+                        
                         result = this.responseText;
                             const a = document.createElement("a");
                             a.style.display = "none";
@@ -357,8 +360,12 @@ $(function(){
                             a.click();
                             window.URL.revokeObjectURL(a.href);
                             document.body.removeChild(a);
+                    } else {
+                      document.querySelector('#copyImgId').classList.add('hidden');
                     }
                 };
+                
+
                 xhttp.open("GET", "https://raw.githubusercontent.com/argob/iconos/master/src/_icons/"+ nombre + ".svg", true);
                 xhttp.send();
             }
@@ -393,7 +400,6 @@ $(function(){
             
             $("#copy").html('&lt;i class="'+ icon +'">&lt;/i>');
             //$("#copyImgId").attr("href", "https://raw.githubusercontent.com/argob/iconos/master/src/_icons/"+name+".svg");
-
 
 
             $('#iconoModal').modal('show');
