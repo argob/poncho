@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]> <html lang="es"class="iem7"> <![endif]-->
+<!--[if lt IE 7 ]> <html lang="es" class="ie6 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="es" class="ie7 lt-ie8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="es" class="ie8"> <![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="ES"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Formularios - Datos Personales | Poncho</title>
+  <meta name="description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
+  <meta name="author" content="Presidencia de la Nación">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P68ZXT');</script>
+  <!-- End Google Tag Manager -->
+
+  <!-- Nav and address bar color -->
+  <meta name="theme-color" content="#0072b8">
+  <meta name="msapplication-navbutton-color" content="#0072b8">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
+  <meta property="og:site_name" content="Documentación Poncho"/>
+  <meta property="og:url" content="http://argob.github.io/poncho/plantillas/formularios/datos_personales.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Formularios - Ejemplo completo" />
+  <meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta property="og:image" content="http://argob.github.io/poncho/img/poncho_social.jpg" />
+  <meta property="og:locale" content="es_AR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Formularios - Ejemplo completo" />
+  <meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta name="twitter:image" content="http://argob.github.io/poncho/img/poncho_social.jpg" />
+
+  <link href="../../node_modules/argob-poncho/dist/css/roboto-fontface.css" rel="stylesheet">
+  
+  <link href="../../node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+  <link href="../../node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <!-- <link href="https://id.argentina.gob.ar/static/css/chosen/chosen.css" rel="stylesheet"> -->
+  <link href="../../node_modules/argob-poncho/dist/css/poncho.min.css" rel="stylesheet">
+  <!--  -->
+  <link href="../../node_modules/argob-poncho/dist/css/documentacion.css" rel="stylesheet">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="http://poncheado.herokuapp.com/node_modules/html5shiv/html5shiv.js"></script>
+      <script src="http://poncheado.herokuapp.com/node_modules/respond.js/respond.min.js"></script>
+      <![endif]-->  
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  
+      <!-- <script src="https://id.argentina.gob.ar/static/js/chosen.jquery.js"></script> -->
+<style>
+  /*toggle dni*/
+.content-popover{
+  position: absolute !important;
+  max-width: 400px !important;
+  z-index: 2; border: 1px solid rgba(0, 0, 0, .2);
+  border-radius: 6px; padding: 10px 20px 20px 20px;top: -300px;
+}
+.arrow-popover{
+    border-bottom: 0px solid rgba(0, 0, 0, 0);
+    border-left: 11px solid rgba(0, 0, 0, 0);
+    border-right: 11px solid rgba(0, 0, 0, 0);
+    border-top: 11px solid rgba(0, 0, 0, 0.25);
+    bottom: -11px;
+    height: 11px;
+    left: 199px;
+    margin-left: -11px;
+    position: absolute;
+    width: 22px;
+
+}
+.arrow-popover:after{
+  content: " ";
+  border-width: 10px;
+  box-sizing: border-box;
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  bottom: 1px;
+  margin-left: -10px;
+  border-top-color: #fff;
+  border-bottom-width: 0;
+}
+</style>
+    </head>
+    <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P68ZXT" 
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+
+     <main>
+     <div class="container">
+
+       <div class="pull-right">
+        <fieldset>
+         <div class="radio">
+          <label for="se" class="rc-label">
+           <input type="radio" name="error" id="se" value="SE" class="sinError" checked>
+           Sin mensajes de error
+         </label>
+         <label for="ce" class="rc-label m-l-1">
+           <input type="radio" name="error" id="ce" value="CE" class="conError">
+           Con mensajes de error
+         </label>
+       </div>  
+     </fieldset>
+   </div>
+
+   <section>
+    <div class="row">
+
+     <div class="col-md-8 col-md-offset-2">
+
+      <h1>Titulo de formulario</h1>
+
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo.</p>
+
+   <hr>
+
+
+
+<form>
+
+
+ 
+ <!-- EJEMPLO DE ERRORES PARA LECTOR DE VOZ -->
+ <div id="errores" aria-live="polite" class="alert alert-danger" style="display:none"></div>
+
+ <!-- DATOS PERSONALES -->
+ <fieldset>
+  <legend><h3>Datos personales</h3></legend>
+
+    <div class="row">
+    <div class="col-md-4 form-group item-form">
+    <label for="cuil">CUIL</label>
+    <p class="help-block">Sin guiones ni barras</p>
+    <p class="help-block"><a href="https://www.anses.gob.ar/constancia-de-cuil/" aria-label="Ingresá tu CUIL. Si no lo sabés consultá en este enlace de ANSES" target="_blank">Consultá tu CUIL</a></p>
+        <input type="number" class="form-control" id="cuil" required aria-required="true">
+        <p class="help-block error hidden">Ingresá tu CUIL <br>El CUIL tiene un formato no válido</p>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-md-8 form-group item-form">
+      <label for="nombre">Nombres</label>
+      <input type="text" name="name" class="form-control" id="nombre" required aria-required="true">
+      <p class="help-block error hidden">Ingresá tu nombre</p>
+    </div>
+  </div>
+
+  <div class="row">
+   <div class="col-md-8 form-group item-form">
+    <label for="apellido">Apellidos</label>
+    <input type="text" name="lastname" class="form-control" id="apellido" required aria-required="true">
+    <p class="help-block error hidden">Ingresá tu apellido</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="form-group col-md-4 item-form">
+    <label for="birthday">Fecha de nacimiento</label>
+    <p class="help-block">Sin guiones ni barras</p>
+    <input type="date" class="form-control" id="birthday" required aria-required="true">
+    <p class="help-block error hidden">Ingresá una fecha válida</p>
+  </div>
+</div>
+
+
+<div class="row">
+<div class="col-sm-12">
+  <fieldset>
+    <legend>
+     <label>Sexo</label>
+   <p class="help-block">Como aparece en tu DNI</p>
+   </legend>
+   <div class="form-group item-form">
+     <label for="f" class="radio-inline">
+      <input type="radio" name="sexo" id="f" value="F" required aria-required="true">
+      Femenino
+    </label>
+     <label for="m" class="radio-inline">
+      <input type="radio" name="sexo" id="m" value="M" required aria-required="true">
+      Masculino
+    </label>
+    <p class="help-block error hidden p-y-1">Ingresá tu sexo</p>
+</div>
+
+</fieldset>
+</div>
+</div>
+
+</fieldset>
+
+</form>
+
+<div class="row">
+ <div class="col-md-12">
+  <hr>
+  <p> 
+   <img src="https://www.argentina.gob.ar/sites/default/files/logo_organismo.png" alt="Logo organismo" width="350">
+ </p>
+</div>
+</div>
+
+
+</div>
+</div>
+</section>
+
+</div>
+</main>
+
+<script>
+  $(function(){
+
+    $('input.conError:radio').change(function(){
+      if($(this).is(":checked")) {
+        $('.error').removeClass("hidden");
+        $('.item-form').addClass('has-error has-feedback');
+        mostrarErrores();
+      }
+    });
+    $('input.sinError:radio').change(function(){
+      if($(this).is(":checked")) {
+        $('.error').addClass("hidden");
+        $('.item-form').removeClass('has-error has-feedback');
+      }
+    });
+
+  });
+
+function mostrarErrores(){
+  $("#errores").html("");
+  $("#errores").html("<h5>Se han producido los siguientes errores:</h5><ol></ol>");
+  var cantidadErrores = 0;
+
+  $(".has-error").each(function(){
+
+    if(cantidadErrores<3){// A MODO EJEMPLO SE LIMITÓ LA CANTIDAD DE ERRORES A 3
+      var mensajeError = $(this).find(".help-block.error").html();
+      $("#errores ol").append("<li>"+mensajeError+"</li>");
+      cantidadErrores++;
+    }
+
+  });
+
+  if(cantidadErrores >0){
+    $("#errores").show();
+  }
+  else{
+    $("#errores").hide(); 
+  }
+}
+
+$('button').click(function(event) {
+  mostrarErrores();
+});
+
+var content_popover = document.getElementById('content-popover');
+function popshow(){
+  content_popover.classList.toggle('hidden');
+}
+function pophidde(){
+  content_popover.classList.add('hidden')
+}
+</script>
+
+<script>
+  $(document).ready(function(){
+    $('#mostrar-tipo').text('Numero de DNI');
+    $("select[name=tipodoc]").change(function(){
+      //alert($('select[name=tipodoc]').val());
+    if($('select[name=tipodoc]').val() === 'DNI') {
+      $('#mostrar-tipo').text('Numero de DNI');
+    }else if ($('select[name=tipodoc]').val() === 'Pasaporte extranjero') {
+      $('#mostrar-tipo').text('Numero de Pasaporte');
+    }
+      //$('#mostrar-tipo').text('Pasaporte');
+    });
+    /*
+    $("select[name=address_state]").change(function(){
+      if($('select[name=address_state]').val() === 'Ciudad Autónoma de buenos Aires') {
+        alert($('#address_state option:selected').val());  
+        $("#municipio option[value='Prueba']").attr("selected", true);
+      }
+    
+
+    });
+    */
+  });
+</script>
+
+</body>
+</html>
