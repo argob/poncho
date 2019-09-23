@@ -183,7 +183,9 @@ main .container .media img {
     left: 0;
   }
 }
-
+footer ul.nav li a {
+  text-decoration: none !important;
+}
 /* 
 .jumbotron_bar .col-md-12 .list-inline {}
 
