@@ -2,8 +2,8 @@
 /*!
  * Poncho v0.3.3 (https://github.com/argob/poncho)
  * Copyright 2016
- * Subsecretar├¡a de Gobierno Digital
- * Presidencia de la Naci├│n Argentina
+ * Subsecretaría de Gobierno Digital
+ * Presidencia de la Nación Argentina
  * Licenciado bajo MIT (https://github.com/argob/poncho/LICENSE)
  */
 /* Libraries */
@@ -3092,7 +3092,7 @@ dd {
 #clase11 {
   color: #000; }
 
-/* bot├│n mi argentina en header */
+/* botón mi argentina en header */
 header .btn i[class*="icono-arg"] {
   font-size: 1em;
   height: 22px;
@@ -5179,19 +5179,27 @@ input[type='text']:-ms-input-placeholder {
     .table th a:hover {
       text-decoration: underline;
       cursor: pointer; }
-.table td small {
-  color: #707070;
-  font-weight: normal; }
-.table td.td-strong {
-  font-size: 1.1em;
-  font-weight: bold; }
-.table td.td-fixed {
-  width: 8%; }
-.table td.message.empty {
-  font-size: 1.4em;
-  color: #707070;
-  text-align: center;
-  padding: 2em 0; }
+.table td {
+  -ms-word-break: break-all;
+  word-break: break-all;
+  word-break: break-word;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto; }
+  .table td small {
+    color: #707070;
+    font-weight: normal; }
+  .table td.td-strong {
+    font-size: 1.1em;
+    font-weight: bold; }
+  .table td.td-fixed {
+    width: 8%; }
+  .table td.message.empty {
+    font-size: 1.4em;
+    color: #707070;
+    text-align: center;
+    padding: 2em 0; }
 .table.table-align-middle td {
   vertical-align: middle; }
 .table.table-spaced td,
