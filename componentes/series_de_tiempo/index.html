@@ -71,7 +71,19 @@
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.18/r-2.2.2/datatables.min.js"></script>
 <script src="https://argob.github.io/poncho/js/scripts.js"></script>
 <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/datosgobar/series-tiempo-ar-explorer@ts_components_2.6.1/dist/js/components.js'></script>
-
+<style>
+/* ESTILOS PARA TARJETAS DE SERIES DE TIEMPO */
+.row {
+    display: flex;
+    justify-content: space-around;
+}
+.card.full {
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+    background: #ffffff;
+    border-radius: 4px;
+    box-shadow: 0 2px 2px rgba(0,0,0,0.2);
+}
+</style>
 
 <body>
 
@@ -490,8 +502,8 @@ window.onload = function() {
                                     <br>
                                     <br>
                                     <br>
-                                    <div class="row">
-                                        <div class="col-sm-12">
+                                    <div class="row m-y-4">
+                                        <div class="col-sm-12 m-t-4">
                                             <pre><code class="language-html">
                                     &lt;div class="row" style="height: 400px">
                                         &emsp;&emsp;&emsp;&emsp;&lt;div class="col-sm-4" id="tsChartMin1">&lt;/div>
