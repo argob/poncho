@@ -8,7 +8,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Formularios - Datos Personales | Poncho</title>
+  <title>Formularios - Ejemplo de consulta | Poncho</title>
   <meta name="description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
   <meta name="author" content="Presidencia de la Nación">
   <link rel="shortcut icon" href="/favicon.ico">
@@ -26,15 +26,15 @@
   <meta name="msapplication-navbutton-color" content="#0072b8">
   <meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
   <meta property="og:site_name" content="Documentación Poncho"/>
-  <meta property="og:url" content="http://argob.github.io/poncho/plantillas/formularios/datos_personales.html" />
+  <meta property="og:url" content="http://argob.github.io/poncho/plantillas/formularios/ejemplo_consulta.html" />
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="Formularios - Ejemplo completo" />
+  <meta property="og:title" content="Formularios - Ejemplo de consulta" />
   <meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
   <meta property="og:image" content="http://argob.github.io/poncho/img/poncho_social.jpg" />
   <meta property="og:locale" content="es_AR" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Formularios - Ejemplo completo" />
+  <meta name="twitter:title" content="Formularios - Ejemplo de consulta" />
   <meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
   <meta name="twitter:image" content="http://argob.github.io/poncho/img/poncho_social.jpg" />
 
@@ -125,9 +125,9 @@
 
      <div class="col-md-8 col-md-offset-2">
 
-      <h1>Titulo de formulario</h1>
+      <h1>Descargar constancia de CUIL</h1>
 
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo.</p>
+      
 
    <hr>
 
@@ -137,74 +137,102 @@
 
 
  
- <!-- EJEMPLO DE ERRORES PARA LECTOR DE VOZ 
- <div id="errores" aria-live="polite" class="alert alert-danger" style="display:none"></div>-->
+ <!-- EJEMPLO DE ERRORES PARA LECTOR DE VOZ
+ <div id="errores" aria-live="polite" class="alert alert-danger" style="display:none"></div> -->
 
- <!-- DATOS PERSONALES -->
+ <!-- DATOS EJEMPLO DE CONSULTA -->
  <fieldset>
-  <legend><h3>Datos personales</h3></legend>
-
-    <div class="row">
-    <div class="col-md-6 form-group item-form">
-    <label for="cuil">CUIL</label>
-    <p class="help-block">Sin guiones ni barras</p>
-    <p class="help-block"><a href="https://www.anses.gob.ar/constancia-de-cuil/" aria-label="Ingresá tu CUIL. Si no lo sabés consultá en este enlace de ANSES" target="_blank">Consultá tu CUIL</a></p>
-        <input type="number" class="form-control" id="cuil" required aria-required="true">
-        <p class="help-block error hidden">Ingresá tu CUIL <br>El CUIL tiene un formato no válido</p>
-    </div>
-  </div>
-
-
-  <div class="row">
-    <div class="col-md-12 form-group item-form">
-      <label for="nombre">Nombres</label>
-      <input type="text" name="name" class="form-control" id="nombre" required aria-required="true">
-      <p class="help-block error hidden">Ingresá tu nombre</p>
-    </div>
-  </div>
-
-  <div class="row">
-   <div class="col-md-12 form-group item-form">
-    <label for="apellido">Apellidos</label>
-    <input type="text" name="lastname" class="form-control" id="apellido" required aria-required="true">
-    <p class="help-block error hidden">Ingresá tu apellido</p>
-  </div>
-</div>
-
-<div class="row">
-  <div class="form-group col-md-12 item-form">
-    <label for="birthday">Fecha de nacimiento</label>
-    <p class="help-block">Sin guiones ni barras</p>
-    <input type="date" class="form-control" id="birthday" required aria-required="true">
-    <p class="help-block error hidden">Ingresá una fecha válida</p>
-  </div>
-</div>
-
-
-<div class="row">
-<div class="col-sm-12">
-  <fieldset>
     <legend>
-     <label>Sexo</label>
-   <p class="help-block">Como aparece en tu DNI</p>
-   </legend>
-   <div class="form-group item-form">
-     <label for="f" class="radio-inline">
-      <input type="radio" name="sexo" id="f" value="F" required aria-required="true">
-      Femenino
-    </label>
-     <label for="m" class="radio-inline m-l-3">
-      <input type="radio" name="sexo" id="m" value="M" required aria-required="true">
-      Masculino
-    </label>
-    <p class="help-block error hidden p-y-1">Ingresá tu sexo</p>
-</div>
-
-</fieldset>
-</div>
-</div>
-
-</fieldset>
+      <h3>Completá tu datos</h3>
+      <p>Si necesitás la constancia de CUIL para hacer un trámite, completá los datos en este formulario para generarla, descargarla e imprimirla.</p>
+      <p><a href="https://www.argentina.gob.ar/obtener-tu-constancia-de-cuil">Más información sobre la constancia de CUIL.</a></p>
+    </legend>
+        <div class="row m-t-2">
+  
+        <div class="col-md-4">
+        <div class="form-group item-form">
+        <label for="tipoDoc">Tipo de Documento</label>
+        <select id="tipoDoc" name="tipodoc" class="form-control">
+        <option value="DNI" selected="">DNI</option>
+        <option value="Pasaporte extranjero">Pasaporte extranjero</option>
+        </select>
+        <p class="help-block error hidden">Elegí un tipo de documento</p>
+        </div>
+        </div>
+  
+        <div class="col-md-8">
+        <div class="form-group item-form">
+        <label for="numDoc" id="mostrar-tipo">Numero de DNI</label>
+        <input type="number" min="1" class="form-control" id="numDoc" required="" aria-required="true">
+        <p class="help-block">Sin guiones ni barras</p>
+        <p class="help-block error hidden">Ingresá tu número de documento</p>
+        </div>
+        </div>
+        </div>
+  
+  
+  
+    <div class="row">
+      <div class="col-md-12 form-group item-form">
+        <label for="nombre">Nombres</label>
+        <input type="text" name="name" class="form-control" id="nombre" required aria-required="true">
+        <p class="help-block error hidden">Ingresá tu nombre</p>
+      </div>
+    </div>
+  
+    <div class="row">
+     <div class="col-md-12 form-group item-form">
+      <label for="apellido">Apellidos</label>
+      <input type="text" name="lastname" class="form-control" id="apellido" required aria-required="true">
+      <p class="help-block error hidden">Ingresá tu apellido</p>
+    </div>
+  </div>
+  
+  
+  
+  
+  <div class="row m-b-2">
+  <div class="col-sm-12">
+    <fieldset>
+      <legend>
+       <label>Sexo</label>
+     <p class="help-block">Como aparece en tu DNI</p>
+     </legend>
+     <div class="form-group item-form">
+      <div class="col-md-6">
+       <label for="f" class="radio-inline">
+        <input type="radio" name="sexo" id="f" value="F" required aria-required="true">
+        Femenino
+      </label>
+      </div>
+      <div class="col-md-6">
+       <label for="m" class="radio-inline">
+        <input type="radio" name="sexo" id="m" value="M" required aria-required="true">
+        Masculino
+      </label>
+      </div>
+      <p class="help-block error hidden p-y-1">Ingresá tu sexo</p>
+    </div>
+  
+  </fieldset>
+  </div>
+  </div>
+  <div class="row m-y-2">
+    <div class="form-group col-md-12 item-form">
+      <label for="birthday">Fecha de nacimiento</label>
+      <p class="help-block">Sin guiones ni barras</p>
+      <input type="date" class="form-control" id="birthday" required aria-required="true">
+      <p class="help-block error hidden">Ingresá una fecha válida</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8">
+      <button type="button" class="btn btn-success">GENERÁ TU CONSTANCIA DE CUIL</button>  
+    </div>
+    
+  </div>
+  </fieldset>
+   <!-- DATOS EJEMPLO DE CONSULTA -->
 
 </form>
 
@@ -212,7 +240,7 @@
  <div class="col-md-12">
   <hr>
   <p> 
-   <img src="https://www.argentina.gob.ar/sites/default/files/logo_organismo.png" alt="Logo organismo" width="350">
+   <img src="https://www.argentina.gob.ar/sites/default/files/anses-azul.png" alt="Logo organismo" height="50">
  </p>
 </div>
 </div>

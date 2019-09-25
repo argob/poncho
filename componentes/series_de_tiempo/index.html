@@ -72,21 +72,6 @@
 <script src="https://argob.github.io/poncho/js/scripts.js"></script>
 <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/datosgobar/series-tiempo-ar-explorer@ts_components_2.6.1/dist/js/components.js'></script>
 <style>
-/* EXPERIMéNTAL */
-.btn,
-.btn:hover,
-.btn-link,
-.btn-link:hover {
-    border: 3px solid transparent;
-    letter-spacing: 1.5px
-}
-/* PRIMARY */
-#btn-primary-hover {
-    background-color: #005388!important;
-}
-.btn-focus {
-    border: 3px solid #FEC221!important;
-}
 /* ESTILOS PARA TARJETAS DE SERIES DE TIEMPO */
 .row {
     display: flex;
@@ -101,11 +86,7 @@
 </style>
 
 <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript>
-        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P68ZXT" height="0" width="0" style="display:none;visibility:hidden"></iframe>
-    </noscript>
-    <!-- End Google Tag Manager (noscript) -->
+
     <header>
         <nav class="navbar navbar-top navbar-default" role="navigation">
             <div class="container">
@@ -127,7 +108,7 @@
             </div>
         </nav>
     </header>
-    <div class="jumbotron bg-primary" style="background-image:url('https://www.argentina.gob.ar/sites/default/files/jumbotron-poncho.png');">
+    <div class="jumbotron bg-primary">
         <div class="container">
             <div class="col-sm-12">
                 <ol class="breadcrumb">
@@ -144,7 +125,7 @@
     <main>
         <div class="container">
             <div class="row">
-                <div class="col-sm-3" id="menuLateral" data-seccion="8"></div>
+                <div class="col-sm-3" id="menuLateral" data-seccion="3"></div>
                 <div class="col-sm-9">
                     <section>
                         <article class="row">
@@ -155,15 +136,17 @@
                                 <fieldset>
                                     <h2>Tarjetas</h2>
                                     <p>Sirven para mostrar el valor más reciente de un indicador.</p>
-                                    <p>Para usarlas debe importarse un CSS y un JS adicional:</p>
+                                    <p>Para usarlas debe importarse dos CSS's y un JS adicional:</p>
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <pre><code class="language-html">
 
                         &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/datosgobar/series-tiempo-ar-explorer@ts_components_2.6.1/dist/css/components.css" type="text/css">
 
-                        &lt;script type='text/javascript' src='https://cdn.jsdelivr.net/gh/datosgobar/series-tiempo-ar-explorer@ts_components_2.6.1/dist/js/components.js'>&lt;/script>
+                        &lt;link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" type="text/css">
 
+                        &lt;script type='text/javascript' src='https://cdn.jsdelivr.net/gh/datosgobar/series-tiempo-ar-explorer@ts_components_2.6.1/dist/js/components.js'>&lt;/script>
+                        
                       </code></pre>
                                         </div>
                                     </div>
@@ -519,8 +502,8 @@ window.onload = function() {
                                     <br>
                                     <br>
                                     <br>
-                                    <div class="row">
-                                        <div class="col-sm-12">
+                                    <div class="row m-y-4">
+                                        <div class="col-sm-12 m-t-4">
                                             <pre><code class="language-html">
                                     &lt;div class="row" style="height: 400px">
                                         &emsp;&emsp;&emsp;&emsp;&lt;div class="col-sm-4" id="tsChartMin1">&lt;/div>
