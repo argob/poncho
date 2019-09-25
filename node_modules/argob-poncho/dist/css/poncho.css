@@ -5180,9 +5180,8 @@ input[type='text']:-ms-input-placeholder {
       text-decoration: underline;
       cursor: pointer; }
 .table td {
-  -ms-word-break: break-all;
-  word-break: break-all;
-  word-break: break-word;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
   -webkit-hyphens: auto;
   -moz-hyphens: auto;
   -ms-hyphens: auto;
