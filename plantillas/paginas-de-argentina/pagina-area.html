@@ -229,6 +229,7 @@
               </div>
             </li>
           </ul>
+          
         </div>
       </div>
     </div>
@@ -736,6 +737,85 @@
   </div>
 </footer>
 
+  <script>
+    // Selecciono los items de la lista (de todas las litas falta ) 
+  const elementos = document.querySelectorAll("ul.dropdown-menu.dropdown-menu-right li");
+
+    // determino cual es el ultimo item de la lista
+  let ultimoitem = elementos.length - 1;
+
+    // recorro los item de la lista
+  for (let i = 0; i < elementos.length; i++) {
     
+    if(i == 0){
+      elementos[i].addEventListener("keydown", function(e) {
+        
+        if(e.shiftKey && e.keyCode == 9){
+          let open =  document.querySelector(".dropdown");
+          open.classList.remove("open");
+          //alert('close1');
+        }
+      });
+    }else if (ultimoitem == i ) {
+      elementos[i].addEventListener("keydown", function(e) {
+
+      if(e.shiftKey && e.keyCode == 9){
+          let open =  document.querySelector(".dropdown");
+          open.classList.add("open");
+          //alert('subi');
+        }else if(e.keyCode == 9){
+          let open =  document.querySelector(".dropdown");
+          open.classList.remove("open");
+          //alert('close2');
+        }
+      });
+      
+    }
+    
+
+    
+}
+    /*
+    
+    let seleccionarul = document.querySelector('ul.dropdown-menu.dropdown-menu-right');
+    let li = document.createElement('li');
+    li.innerHTML = '<a href="#" >Cerrar</a>';
+    seleccionarul.appendChild(li);
+
+
+    
+
+    seleccionarul.lastElementChild.firstElementChild.addEventListener('keydown', function(e) {
+      if(e.keyCode == 9){
+        let open =  document.querySelector(".dropdown");
+      open.classList.remove("open");
+      }
+    });
+*/
+    
+
+    /*
+    if(seleccionarul.lastElementChild.firstElementChild.textContent == 'Cerrar'){
+      let open =  document.querySelector(".dropdown");
+      open.classList.remove("open");
+    }
+
+    console.log(seleccionarul.lastElementChild.firstElementChild);
+    */
+    /*
+      var ejemplo = document.querySelector("ul.dropdown-menu.dropdown-menu-right");
+  console.log(ejemplo);
+
+  ejemplo.addEventListener("focusout", funcionEjemplo);
+
+  function funcionEjemplo(){
+
+    let open =  document.querySelector(".dropdown");
+    open.classList.remove("open");
+
+
+  }
+    */
+  </script>
   </body>
 </html>
