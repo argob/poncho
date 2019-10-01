@@ -244,6 +244,22 @@
                   </ul>
                 </div>
               </li>
+
+              <li>
+                <div class="dropdown">
+                  <a href="#" class="dropdown-toggle" id="jumbo-menu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Institucional3
+                    <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="jumbo-menu3">
+                    <li><a href="#">Acción</a></li>
+                    <li><a href="#">Acción secundaria</a></li>
+                    <li><a href="#">Misiones y funcioness</a></li>
+                    <li><a href="#">Acción</a></li>
+                    
+                  </ul>
+                </div>
+              </li>
           </ul>
           
           
@@ -754,10 +770,6 @@
   </div>
 </footer>
 
-<script>
-
-</script>
-
   <script>
     let ul = document.querySelectorAll("ul.dropdown-menu.dropdown-menu-right");
     
@@ -772,36 +784,61 @@
       
       let ultimoitem = elementos.length - 1;
       console.log(elementos[0].parentNode.parentNode);
+
       // recorro los item de la lista
       for (let i = 0; i < elementos.length; i++) {
-        
+
+        // Primer item de la lista
         if(i == 0){
           elementos[i].addEventListener("keydown", function(e) {
             
             if(e.shiftKey && e.keyCode == 9){
-              let open =  document.querySelector(".dropdown");
+              
               
               elementos[i].parentNode.parentNode.classList.remove("open");
                
 
               elementos[i].parentNode.parentNode.firstElementChild.setAttribute("aria-expanded", 'false');
               
+              
               //alert('close1');
             }
+            if(e.keyCode == 38){
+              
+              elementos[i].parentNode.parentNode.classList.remove("open");
+               
+
+              elementos[i].parentNode.parentNode.firstElementChild.setAttribute("aria-expanded", 'false');  
+                
+              
+            //  elementos[i].firstElementChild.focus();
+            }
           });
+          // ultimo item de la lista
         }else if (ultimoitem == i ) {
           elementos[i].addEventListener("keydown", function(e) {
 
           if(e.shiftKey && e.keyCode == 9){
-              let open =  document.querySelector(".dropdown");
+              
               elementos[i].parentNode.parentNode.classList.add("open");
               elementos[i].parentNode.parentNode.firstElementChild.setAttribute("aria-expanded", 'true');
               //alert('subi');
             }else if(e.keyCode == 9){
-              let open =  document.querySelector(".dropdown");
+              
               elementos[i].parentNode.parentNode.classList.remove("open");
               elementos[i].parentNode.parentNode.firstElementChild.setAttribute("aria-expanded", 'false');
               //alert('close2' + elementos[i]);
+            }
+
+            if(e.keyCode == 40){
+              
+              elementos[i].parentNode.parentNode.classList.remove("open");
+               
+
+              elementos[i].parentNode.parentNode.firstElementChild.setAttribute("aria-expanded", 'false');  
+                
+              
+            //  elementos[i].firstElementChild.focus();
             }
           });
           
@@ -811,91 +848,6 @@
 
     }
 
-
-
-/* 30-09-2019
-    // Selecciono los items de la lista (de todas las litas falta ) 
-  const elementos = document.querySelectorAll("ul.dropdown-menu.dropdown-menu-right > li");
-    console.log(elementos);
-    // determino cual es el ultimo item de la lista
-  let ultimoitem = elementos.length - 1;
-
-    // recorro los item de la lista
-  for (let i = 0; i < elementos.length; i++) {
-    
-    if(i == 0){
-      elementos[i].addEventListener("keydown", function(e) {
-        
-        if(e.shiftKey && e.keyCode == 9){
-          let open =  document.querySelector(".dropdown");
-          open.classList.remove("open");
-          //alert('close1');
-        }
-      });
-    }else if (ultimoitem == i ) {
-      elementos[i].addEventListener("keydown", function(e) {
-
-      if(e.shiftKey && e.keyCode == 9){
-          let open =  document.querySelector(".dropdown");
-          open.classList.add("open");
-          //alert('subi');
-        }else if(e.keyCode == 9){
-          let open =  document.querySelector(".dropdown");
-          open.classList.remove("open");
-          //alert('close2');
-        }
-      });
-      
-    }
-    
-
-    
-}
-
-*/
-
-
-    /*
-    
-    let seleccionarul = document.querySelector('ul.dropdown-menu.dropdown-menu-right');
-    let li = document.createElement('li');
-    li.innerHTML = '<a href="#" >Cerrar</a>';
-    seleccionarul.appendChild(li);
-
-
-    
-
-    seleccionarul.lastElementChild.firstElementChild.addEventListener('keydown', function(e) {
-      if(e.keyCode == 9){
-        let open =  document.querySelector(".dropdown");
-      open.classList.remove("open");
-      }
-    });
-*/
-    
-
-    /*
-    if(seleccionarul.lastElementChild.firstElementChild.textContent == 'Cerrar'){
-      let open =  document.querySelector(".dropdown");
-      open.classList.remove("open");
-    }
-
-    console.log(seleccionarul.lastElementChild.firstElementChild);
-    */
-    /*
-      var ejemplo = document.querySelector("ul.dropdown-menu.dropdown-menu-right");
-  console.log(ejemplo);
-
-  ejemplo.addEventListener("focusout", funcionEjemplo);
-
-  function funcionEjemplo(){
-
-    let open =  document.querySelector(".dropdown");
-    open.classList.remove("open");
-
-
-  }
-    */
   </script>
   </body>
 </html>
