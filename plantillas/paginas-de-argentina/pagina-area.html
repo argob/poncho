@@ -228,7 +228,24 @@
                 </ul>
               </div>
             </li>
+            <li>
+                <div class="dropdown">
+                  <a href="#" class="dropdown-toggle" id="jumbo-menu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    Institucional2
+                    <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="jumbo-menu2">
+                    <li><a href="#">Acción</a></li>
+                    <li><a href="#">Acción secundaria</a></li>
+                    <li><a href="#">Misiones y funcioness</a></li>
+                    <li><a href="#">Acción</a></li>
+                    <li><a href="#">Acción secundaria</a></li>
+                    <li><a href="#">Misiones y funcioness</a></li>
+                  </ul>
+                </div>
+              </li>
           </ul>
+          
           
         </div>
       </div>
@@ -737,10 +754,60 @@
   </div>
 </footer>
 
-  <script>
-    // Selecciono los items de la lista (de todas las litas falta ) 
-  const elementos = document.querySelectorAll("ul.dropdown-menu.dropdown-menu-right li");
+<script>
 
+</script>
+
+  <script>
+    let ul = document.querySelectorAll("ul.dropdown-menu.dropdown-menu-right");
+    for (let i = 0; i < ul.length; i++){
+      let item_listas = ul[i].querySelectorAll('li');
+      console.log(item_listas);
+      codigo(item_listas);
+    }
+
+    function codigo(elementos){
+      
+   
+      let ultimoitem = elementos.length - 1;
+      
+      // recorro los item de la lista
+      for (let i = 0; i < elementos.length; i++) {
+        
+        if(i == 0){
+          elementos[i].addEventListener("keydown", function(e) {
+            
+            if(e.shiftKey && e.keyCode == 9){
+              let open =  document.querySelector(".dropdown");
+              
+              open.classList.remove("open");
+              alert('close1');
+            }
+          });
+        }else if (ultimoitem == i ) {
+          elementos[i].addEventListener("keydown", function(e) {
+
+          if(e.shiftKey && e.keyCode == 9){
+              let open =  document.querySelector(".dropdown");
+              open.classList.add("open");
+              alert('subi');
+            }else if(e.keyCode == 9){
+              let open =  document.querySelector(".dropdown");
+              open.classList.remove("open");
+              alert('close2' + elementos[i]);
+            }
+          });
+          
+        }
+ 
+      }
+
+    }
+
+/* 30-09-2019
+    // Selecciono los items de la lista (de todas las litas falta ) 
+  const elementos = document.querySelectorAll("ul.dropdown-menu.dropdown-menu-right > li");
+    console.log(elementos);
     // determino cual es el ultimo item de la lista
   let ultimoitem = elementos.length - 1;
 
@@ -775,6 +842,10 @@
 
     
 }
+
+*/
+
+
     /*
     
     let seleccionarul = document.querySelector('ul.dropdown-menu.dropdown-menu-right');
