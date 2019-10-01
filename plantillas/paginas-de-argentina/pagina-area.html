@@ -217,7 +217,7 @@
           <ul class="list-inline pull-right">
             <li>
               <div class="dropdown">
-                <a href="#" class="dropdown-toggle" id="jumbo-menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                <a href="#" class="dropdown-toggle" id="jumbo-menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Institucional
                   <span class="caret"></span>
                 </a>
@@ -230,7 +230,7 @@
             </li>
             <li>
                 <div class="dropdown">
-                  <a href="#" class="dropdown-toggle" id="jumbo-menu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  <a href="#" class="dropdown-toggle" id="jumbo-menu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Institucional2
                     <span class="caret"></span>
                   </a>
@@ -760,6 +760,7 @@
 
   <script>
     let ul = document.querySelectorAll("ul.dropdown-menu.dropdown-menu-right");
+    
     for (let i = 0; i < ul.length; i++){
       let item_listas = ul[i].querySelectorAll('li');
       console.log(item_listas);
@@ -768,9 +769,9 @@
 
     function codigo(elementos){
       
-   
-      let ultimoitem = elementos.length - 1;
       
+      let ultimoitem = elementos.length - 1;
+      console.log(elementos[0].parentNode.parentNode);
       // recorro los item de la lista
       for (let i = 0; i < elementos.length; i++) {
         
@@ -780,8 +781,12 @@
             if(e.shiftKey && e.keyCode == 9){
               let open =  document.querySelector(".dropdown");
               
-              open.classList.remove("open");
-              alert('close1');
+              elementos[i].parentNode.parentNode.classList.remove("open");
+               
+
+              elementos[i].parentNode.parentNode.firstElementChild.setAttribute("aria-expanded", 'false');
+              
+              //alert('close1');
             }
           });
         }else if (ultimoitem == i ) {
@@ -789,12 +794,14 @@
 
           if(e.shiftKey && e.keyCode == 9){
               let open =  document.querySelector(".dropdown");
-              open.classList.add("open");
-              alert('subi');
+              elementos[i].parentNode.parentNode.classList.add("open");
+              elementos[i].parentNode.parentNode.firstElementChild.setAttribute("aria-expanded", 'true');
+              //alert('subi');
             }else if(e.keyCode == 9){
               let open =  document.querySelector(".dropdown");
-              open.classList.remove("open");
-              alert('close2' + elementos[i]);
+              elementos[i].parentNode.parentNode.classList.remove("open");
+              elementos[i].parentNode.parentNode.firstElementChild.setAttribute("aria-expanded", 'false');
+              //alert('close2' + elementos[i]);
             }
           });
           
@@ -803,6 +810,8 @@
       }
 
     }
+
+
 
 /* 30-09-2019
     // Selecciono los items de la lista (de todas las litas falta ) 
