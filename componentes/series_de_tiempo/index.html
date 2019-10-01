@@ -50,7 +50,7 @@
     <meta name="twitter:image" content="https://argob.github.io/poncho/img/poncho_social.jpg" />
     <link href="https://argob.github.io/poncho/node_modules/argob-poncho/dist/css/roboto-fontface.css" rel="stylesheet">
     <link href="https://argob.github.io/poncho/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
-    
+
     <link href="https://argob.github.io/poncho/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://id.argentina.gob.ar/static/css/chosen/chosen.css" rel="stylesheet">
     <link href="../../node_modules/argob-poncho/dist/css/poncho.min.css" rel="stylesheet">
@@ -63,14 +63,14 @@
       <script src="https://poncheado.herokuapp.com/node_modules/html5shiv/html5shiv.js"></script>
       <script src="https://poncheado.herokuapp.com/node_modules/respond.js/respond.min.js"></script>
       <![endif]-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/datosgobar/series-tiempo-ar-explorer@ts_components_2.6.1/dist/css/components.css" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/datosgobar/series-tiempo-ar-explorer@ts_components_2.6.2/dist/css/components.css" type="text/css">
 </head>
 <script src="https://argob.github.io/poncho/node_modules/jquery/dist/jquery.js"></script>
 <script type="text/javascript" src="https://argob.github.io/poncho/js/prism.js"></script>
 <script src="https://argob.github.io/poncho/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.18/r-2.2.2/datatables.min.js"></script>
 <script src="https://argob.github.io/poncho/js/scripts.js"></script>
-<script type='text/javascript' src='https://cdn.jsdelivr.net/gh/datosgobar/series-tiempo-ar-explorer@ts_components_2.6.1/dist/js/components.js'></script>
+<script type='text/javascript' src='https://cdn.jsdelivr.net/gh/datosgobar/series-tiempo-ar-explorer@ts_components_2.6.2/dist/js/components.js'></script>
 <style>
 /* ESTILOS PARA TARJETAS DE SERIES DE TIEMPO */
 .row {
@@ -141,12 +141,12 @@
                                         <div class="col-sm-12">
                                             <pre><code class="language-html">
 
-                        &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/datosgobar/series-tiempo-ar-explorer@ts_components_2.6.1/dist/css/components.css" type="text/css">
+                        &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/datosgobar/series-tiempo-ar-explorer@ts_components_2.6.2/dist/css/components.css" type="text/css">
 
                         &lt;link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" type="text/css">
 
-                        &lt;script type='text/javascript' src='https://cdn.jsdelivr.net/gh/datosgobar/series-tiempo-ar-explorer@ts_components_2.6.1/dist/js/components.js'>&lt;/script>
-                        
+                        &lt;script type='text/javascript' src='https://cdn.jsdelivr.net/gh/datosgobar/series-tiempo-ar-explorer@ts_components_2.6.2/dist/js/components.js'>&lt;/script>
+
                       </code></pre>
                                         </div>
                                     </div>
@@ -155,15 +155,16 @@
                                         <div class="col-sm-12">
                                             <pre><code class="language-html">
 
-                        &lt;div id='ipc-card'>&lt;/div>
+                        &lt;div id='reservas-card'>&lt;/div>
                       </code></pre>
                                             <pre><code class="language-js">
 window.onload = function() {
-&emsp;&emsp;TSComponents.Card.render('ipc-card', {
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;serieId: '148.3_INIVELNAL_DICI_M_26:percent_change',
+&emsp;&emsp;TSComponents.Card.render('reservas-card', {
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;serieId: '174.1_RRVAS_IDOS_0_0_36:percent_change',
+&emsp;&emsp;&emsp;&emsp;explicitSign: true,
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;color: '#F9A822',
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;hasChart: 'small',
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;title: "Indice de Precios al Consumidor Nacional"
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;title: "Reservas Internacionales"
 &emsp;&emsp;&emsp;&emsp;})
 }
 
@@ -182,7 +183,7 @@ window.onload = function() {
 &lt;/style>
 
 &lt;div class="row">
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&lt;div id='ipc-card'>&lt;/div>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&lt;div id='reservas-card'>&lt;/div>
 &lt;/div>
                       </code></pre>
                                         </div>
@@ -192,38 +193,39 @@ window.onload = function() {
                                         <h3>Card: default</h3>
                                     </div>
                                     <div class="row">
-                                        <div id='ipc-card'></div>
-                                        <div id='superavit-card'></div>
-                                        <div id='desempleo-card'></div>
+                                        <div id='reservas-card'></div>
+                                        <div id='tn-card'></div>
+                                        <div id='faafem-card'></div>
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <pre><code class="language-html">
                                     &lt;div class="row">
-                                    &emsp;&emsp;&emsp;&emsp;&lt;div id='ipc-card'>&lt;/div>
-                                    &emsp;&emsp;&emsp;&emsp;&lt;div id='superavit-card'>&lt;/div>
-                                    &emsp;&emsp;&emsp;&emsp;&lt;div id='desempleo-card'>&lt;/div>
+                                    &emsp;&emsp;&emsp;&emsp;&lt;div id='reservas-card'>&lt;/div>
+                                    &emsp;&emsp;&emsp;&emsp;&lt;div id='tn-card'>&lt;/div>
+                                    &emsp;&emsp;&emsp;&emsp;&lt;div id='faafem-card'>&lt;/div>
                                     &lt;/div>
                       </code></pre>
                                             <pre><code class="language-js">
-        TSComponents.Card.render('ipc-card', {
-        &emsp;&emsp;&emsp;&emsp;serieId: '148.3_INIVELNAL_DICI_M_26:percent_change',
+        TSComponents.Card.render('reservas-card', {
+        &emsp;&emsp;&emsp;&emsp;serieId: '174.1_RRVAS_IDOS_0_0_36:percent_change',
+        &emsp;&emsp;&emsp;&emsp;explicitSign: true,
         &emsp;&emsp;&emsp;&emsp;color: '#F9A822',
         &emsp;&emsp;&emsp;&emsp;hasChart: 'small',
-        &emsp;&emsp;&emsp;&emsp;title: "Indice de Precios al Consumidor Nacional"
+        &emsp;&emsp;&emsp;&emsp;title: "Reservas Internacionales"
         })
 
-        TSComponents.Card.render('superavit-card', {
+        TSComponents.Card.render('tn-card', {
         &emsp;&emsp;&emsp;&emsp;serieId: '452.3_RESULTADO_RIO_0_M_18_54',
         &emsp;&emsp;&emsp;&emsp;hasChart: 'small',
-        &emsp;&emsp;&emsp;&emsp;title: "Resultado Primario del Sector Público No Fin."
+        &emsp;&emsp;&emsp;&emsp;title: "Tasa de Natalidad de Argentina"
         })
 
-        TSComponents.Card.render('desempleo-card', {
-        &emsp;&emsp;&emsp;&emsp;serieId: '42.3_EPH_PUNTUATAL_0_M_30',
+        TSComponents.Card.render('faafem-card', {
+        &emsp;&emsp;&emsp;&emsp;serieId: 'defensa_FAA_0006',
         &emsp;&emsp;&emsp;&emsp;color: '#EC407A',
         &emsp;&emsp;&emsp;&emsp;hasChart: 'small',
-        &emsp;&emsp;&emsp;&emsp;title: "Desocupación"
+        &emsp;&emsp;&emsp;&emsp;title: "Personal femenino de la Fuerza Aérea"
         })
 
                       </code></pre>
@@ -233,41 +235,42 @@ window.onload = function() {
                                         <h3>Card: menos links</h3>
                                     </div>
                                     <div class="row">
-                                        <div id='ipc-card-links2'></div>
-                                        <div id='superavit-card-links2'></div>
-                                        <div id='desempleo-card-links2'></div>
+                                        <div id='reservas-card-links2'></div>
+                                        <div id='tn-card-links2'></div>
+                                        <div id='faafem-card-links2'></div>
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <pre><code class="language-html">
                                     &lt;div class="row">
-                                    &emsp;&emsp;&emsp;&emsp;&lt;div id='ipc-card-links2'>&lt;/div>
-                                    &emsp;&emsp;&emsp;&emsp;&lt;div id='superavit-card-links2'>&lt;/div>
-                                    &emsp;&emsp;&emsp;&emsp;&lt;div id='desempleo-card-links2'>&lt;/div>
+                                    &emsp;&emsp;&emsp;&emsp;&lt;div id='reservas-card-links2'>&lt;/div>
+                                    &emsp;&emsp;&emsp;&emsp;&lt;div id='tn-card-links2'>&lt;/div>
+                                    &emsp;&emsp;&emsp;&emsp;&lt;div id='faafem-card-links2'>&lt;/div>
                                     &lt;/div>
                       </code></pre>
                                             <pre><code class="language-js">
-        TSComponents.Card.render('ipc-card-links2', {
-        &emsp;&emsp;&emsp;&emsp;serieId: '148.3_INIVELNAL_DICI_M_26:percent_change',
+        TSComponents.Card.render('reservas-card-links2', {
+        &emsp;&emsp;&emsp;&emsp;serieId: '174.1_RRVAS_IDOS_0_0_36:percent_change',
+        &emsp;&emsp;&emsp;&emsp;explicitSign: true,
         &emsp;&emsp;&emsp;&emsp;color: '#F9A822',
         &emsp;&emsp;&emsp;&emsp;hasChart: 'small',
         &emsp;&emsp;&emsp;&emsp;links: "small",
-        &emsp;&emsp;&emsp;&emsp;title: "Indice de Precios al Consumidor Nacional"
+        &emsp;&emsp;&emsp;&emsp;title: "Reservas Internacionales"
         })
 
-        TSComponents.Card.render('superavit-card-links2', {
-        &emsp;&emsp;&emsp;&emsp;serieId: '372.6_SUPERAVIT_017__23_67',
+        TSComponents.Card.render('tn-card-links2', {
+        &emsp;&emsp;&emsp;&emsp;serieId: 'tn_arg',
         &emsp;&emsp;&emsp;&emsp;hasChart: 'small',
         &emsp;&emsp;&emsp;&emsp;links: "small",
-        &emsp;&emsp;&emsp;&emsp;title: "Resultado Primario del Sector Público No Fin."
+        &emsp;&emsp;&emsp;&emsp;title: "Tasa de Natalidad de Argentina"
         })
 
-        TSComponents.Card.render('desempleo-card-links2', {
-        &emsp;&emsp;&emsp;&emsp;serieId: '42.3_EPH_PUNTUATAL_0_M_30',
+        TSComponents.Card.render('faafem-card-links2', {
+        &emsp;&emsp;&emsp;&emsp;serieId: 'defensa_FAA_0006',
         &emsp;&emsp;&emsp;&emsp;color: '#EC407A',
         &emsp;&emsp;&emsp;&emsp;hasChart: 'small',
         &emsp;&emsp;&emsp;&emsp;links: "small",
-        &emsp;&emsp;&emsp;&emsp;title: "Desocupación"
+        &emsp;&emsp;&emsp;&emsp;title: "Personal femenino de la Fuerza Aérea"
         })
                       </code></pre>
                                         </div>
@@ -276,42 +279,43 @@ window.onload = function() {
                                         <h3>Card: sin links</h3>
                                     </div>
                                     <div class="row">
-                                        <div id='ipc-card-med'></div>
-                                        <div id='superavit-card-med'></div>
-                                        <div id='desempleo-card-med'></div>
+                                        <div id='reservas-card-med'></div>
+                                        <div id='tn-card-med'></div>
+                                        <div id='faafem-card-med'></div>
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <pre><code class="language-html">
                                     &lt;div class="row">
-                                    &emsp;&emsp;&emsp;&emsp;&lt;div id='ipc-card-med'>&lt;/div>
-                                    &emsp;&emsp;&emsp;&emsp;&lt;div id='superavit-card-med'>&lt;/div>
-                                    &emsp;&emsp;&emsp;&emsp;&lt;div id='desempleo-card-med'>&lt;/div>
+                                    &emsp;&emsp;&emsp;&emsp;&lt;div id='reservas-card-med'>&lt;/div>
+                                    &emsp;&emsp;&emsp;&emsp;&lt;div id='tn-card-med'>&lt;/div>
+                                    &emsp;&emsp;&emsp;&emsp;&lt;div id='faafem-card-med'>&lt;/div>
                                     &lt;/div>
                       </code></pre>
                                             <pre><code class="language-js">
-        TSComponents.Card.render('ipc-card-med', {
-        &emsp;&emsp;&emsp;&emsp;serieId: '148.3_INIVELNAL_DICI_M_26:percent_change',
+        TSComponents.Card.render('reservas-card-med', {
+        &emsp;&emsp;&emsp;&emsp;serieId: '174.1_RRVAS_IDOS_0_0_36:percent_change',
+        &emsp;&emsp;&emsp;&emsp;explicitSign: true,
         &emsp;&emsp;&emsp;&emsp;color: '#F9A822',
         &emsp;&emsp;&emsp;&emsp;hasChart: 'small',
         &emsp;&emsp;&emsp;&emsp;links: "none",
-        &emsp;&emsp;&emsp;&emsp;title: "Indice de Precios al Consumidor Nacional"
+        &emsp;&emsp;&emsp;&emsp;title: "Reservas Internacionales"
         })
 
-        TSComponents.Card.render('superavit-card-med', {
-        &emsp;&emsp;&emsp;&emsp;serieId: '372.6_SUPERAVIT_017__23_67',
+        TSComponents.Card.render('tn-card-med', {
+        &emsp;&emsp;&emsp;&emsp;serieId: 'tn_arg',
         &emsp;&emsp;&emsp;&emsp;hasChart: 'small',
         &emsp;&emsp;&emsp;&emsp;links: "none",
-        &emsp;&emsp;&emsp;&emsp;title: "Resultado Primario del Sector Público No Fin.",
+        &emsp;&emsp;&emsp;&emsp;title: "Tasa de Natalidad de Argentina",
         &emsp;&emsp;&emsp;&emsp;hasFrame: false
         })
 
-        TSComponents.Card.render('desempleo-card-med', {
-        &emsp;&emsp;&emsp;&emsp;serieId: '42.3_EPH_PUNTUATAL_0_M_30',
+        TSComponents.Card.render('faafem-card-med', {
+        &emsp;&emsp;&emsp;&emsp;serieId: 'defensa_FAA_0006',
         &emsp;&emsp;&emsp;&emsp;color: '#EC407A',
         &emsp;&emsp;&emsp;&emsp;hasChart: 'small',
         &emsp;&emsp;&emsp;&emsp;links: "none",
-        &emsp;&emsp;&emsp;&emsp;title: "Desocupación",
+        &emsp;&emsp;&emsp;&emsp;title: "Personal femenino de la Fuerza Aérea",
         &emsp;&emsp;&emsp;&emsp;hasColorBar: false
         })
                       </code></pre>
@@ -321,43 +325,44 @@ window.onload = function() {
                                         <h3>Card: mínima</h3>
                                     </div>
                                     <div class="row">
-                                        <div id='ipc-card-min'></div>
-                                        <div id='superavit-card-min'></div>
-                                        <div id='desempleo-card-min'></div>
+                                        <div id='reservas-card-min'></div>
+                                        <div id='tn-card-min'></div>
+                                        <div id='faafem-card-min'></div>
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <pre><code class="language-html">
                                     &lt;div class="row">
-                                    &emsp;&emsp;&emsp;&emsp;&lt;div id='ipc-card-min'>&lt;/div>
-                                    &emsp;&emsp;&emsp;&emsp;&lt;div id='superavit-card-min'>&lt;/div>
-                                    &emsp;&emsp;&emsp;&emsp;&lt;div id='desempleo-card-min'>&lt;/div>
+                                    &emsp;&emsp;&emsp;&emsp;&lt;div id='reservas-card-min'>&lt;/div>
+                                    &emsp;&emsp;&emsp;&emsp;&lt;div id='tn-card-min'>&lt;/div>
+                                    &emsp;&emsp;&emsp;&emsp;&lt;div id='faafem-card-min'>&lt;/div>
                                     &lt;/div>
                                     &lt;div class="row">
                       </code></pre>
                                             <pre><code class="language-js">
-        TSComponents.Card.render('ipc-card-min', {
-        &emsp;&emsp;&emsp;&emsp;serieId: '148.3_INIVELNAL_DICI_M_26:percent_change',
+        TSComponents.Card.render('reservas-card-min', {
+        &emsp;&emsp;&emsp;&emsp;serieId: '174.1_RRVAS_IDOS_0_0_36:percent_change',
+        &emsp;&emsp;&emsp;&emsp;explicitSign: true,
         &emsp;&emsp;&emsp;&emsp;color: '#F9A822',
         &emsp;&emsp;&emsp;&emsp;links: 'none',
         &emsp;&emsp;&emsp;&emsp;hasChart: "none",
-        &emsp;&emsp;&emsp;&emsp;title: "Indice de Precios al Consumidor Nacional"
+        &emsp;&emsp;&emsp;&emsp;title: "Reservas Internacionales"
         })
 
-        TSComponents.Card.render('superavit-card-min', {
-        &emsp;&emsp;&emsp;&emsp;serieId: '372.6_SUPERAVIT_017__23_67',
+        TSComponents.Card.render('tn-card-min', {
+        &emsp;&emsp;&emsp;&emsp;serieId: 'tn_arg',
         &emsp;&emsp;&emsp;&emsp;links: 'none',
         &emsp;&emsp;&emsp;&emsp;hasChart: "none",
-        &emsp;&emsp;&emsp;&emsp;title: "Resultado Primario del Sector Público No Fin.",
+        &emsp;&emsp;&emsp;&emsp;title: "Tasa de Natalidad de Argentina",
         &emsp;&emsp;&emsp;&emsp;hasColorBar: true
         })
 
-        TSComponents.Card.render('desempleo-card-min', {
-        &emsp;&emsp;&emsp;&emsp;serieId: '42.3_EPH_PUNTUATAL_0_M_30',
+        TSComponents.Card.render('faafem-card-min', {
+        &emsp;&emsp;&emsp;&emsp;serieId: 'defensa_FAA_0006',
         &emsp;&emsp;&emsp;&emsp;color: '#EC407A',
         &emsp;&emsp;&emsp;&emsp;links: 'none',
         &emsp;&emsp;&emsp;&emsp;hasChart: "none",
-        &emsp;&emsp;&emsp;&emsp;title: "Desocupación",
+        &emsp;&emsp;&emsp;&emsp;title: "Personal femenino de la Fuerza Aérea",
         &emsp;&emsp;&emsp;&emsp;hasFrame: true
         })
                       </code></pre>
@@ -367,23 +372,24 @@ window.onload = function() {
                                         <h3>Card: mínima (eliminando elementos)</h3>
                                     </div>
                                     <div class="row">
-                                        <div id='ipc-card-min-xtreme'></div>
-                                        <div id='superavit-card-min-xtreme'></div>
-                                        <div id='desempleo-card-min-xtreme'></div>
+                                        <div id='reservas-card-min-xtreme'></div>
+                                        <div id='tn-card-min-xtreme'></div>
+                                        <div id='faafem-card-min-xtreme'></div>
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <pre><code class="language-html">
                                     &lt;div class="row">
-                                        &emsp;&emsp;&emsp;&emsp;&lt;div id='ipc-card-min-xtreme'>&lt;/div>
-                                        &emsp;&emsp;&emsp;&emsp;&lt;div id='superavit-card-min-xtreme'>&lt;/div>
-                                        &emsp;&emsp;&emsp;&emsp;&lt;div id='desempleo-card-min-xtreme'>&lt;/div>
+                                        &emsp;&emsp;&emsp;&emsp;&lt;div id='reservas-card-min-xtreme'>&lt;/div>
+                                        &emsp;&emsp;&emsp;&emsp;&lt;div id='tn-card-min-xtreme'>&lt;/div>
+                                        &emsp;&emsp;&emsp;&emsp;&lt;div id='faafem-card-min-xtreme'>&lt;/div>
                                     &lt;/div>
 
                       </code></pre>
                                             <pre><code class="language-js">
-        TSComponents.Card.render('ipc-card-min-xtreme', {
-        &emsp;&emsp;&emsp;&emsp;serieId: '148.3_INIVELNAL_DICI_M_26:percent_change',
+        TSComponents.Card.render('reservas-card-min-xtreme', {
+        &emsp;&emsp;&emsp;&emsp;serieId: '174.1_RRVAS_IDOS_0_0_36:percent_change',
+        &emsp;&emsp;&emsp;&emsp;explicitSign: true,
         &emsp;&emsp;&emsp;&emsp;links: 'none',
         &emsp;&emsp;&emsp;&emsp;hasChart: "none",
         &emsp;&emsp;&emsp;&emsp;title: "",
@@ -391,8 +397,8 @@ window.onload = function() {
         &emsp;&emsp;&emsp;&emsp;source: ""
         })
 
-        TSComponents.Card.render('superavit-card-min-xtreme', {
-        &emsp;&emsp;&emsp;&emsp;serieId: '372.6_SUPERAVIT_017__23_67',
+        TSComponents.Card.render('tn-card-min-xtreme', {
+        &emsp;&emsp;&emsp;&emsp;serieId: 'tn_arg',
         &emsp;&emsp;&emsp;&emsp;links: 'none',
         &emsp;&emsp;&emsp;&emsp;hasChart: "none",
         &emsp;&emsp;&emsp;&emsp;title: "",
@@ -401,8 +407,8 @@ window.onload = function() {
         &emsp;&emsp;&emsp;&emsp;hasColorBar: true
         })
 
-        TSComponents.Card.render('desempleo-card-min-xtreme', {
-        &emsp;&emsp;&emsp;&emsp;serieId: '42.3_EPH_PUNTUATAL_0_M_30',
+        TSComponents.Card.render('faafem-card-min-xtreme', {
+        &emsp;&emsp;&emsp;&emsp;serieId: 'defensa_FAA_0006',
         &emsp;&emsp;&emsp;&emsp;color: '#EC407A',
         &emsp;&emsp;&emsp;&emsp;links: 'none',
         &emsp;&emsp;&emsp;&emsp;hasChart: "none",
@@ -577,97 +583,102 @@ window.onload = function() {
     window.onload = function() {
         // COLORES SUGERIDOS "#0072BB","#2E7D33","#C62828","#F9A822","#6A1B99", "#EC407A","#C2185B","#6A1B99","#039BE5","#6EA100"
         // componentes de series de tiempo
-        TSComponents.Card.render('ipc-card', {
-            serieId: '148.3_INIVELNAL_DICI_M_26:percent_change',
+        TSComponents.Card.render('reservas-card', {
+            serieId: '174.1_RRVAS_IDOS_0_0_36:percent_change',
+            explicitSign: true,
             color: '#F9A822',
             hasChart: 'small',
-            title: "Indice de Precios al Consumidor Nacional"
+            title: "Reservas Internacionales"
         })
-        TSComponents.Card.render('superavit-card', {
+        TSComponents.Card.render('tn-card', {
             serieId: '452.3_RESULTADO_RIO_0_M_18_54',
             hasChart: 'small',
-            title: "Resultado Primario del Sector Público No Fin."
+            title: "Tasa de Natalidad de Argentina"
         })
-        TSComponents.Card.render('desempleo-card', {
-            serieId: '42.3_EPH_PUNTUATAL_0_M_30',
+        TSComponents.Card.render('faafem-card', {
+            serieId: 'defensa_FAA_0006',
             color: '#EC407A',
             hasChart: 'small',
-            title: "Desocupación"
+            title: "Personal femenino de la Fuerza Aérea"
         })
-        TSComponents.Card.render('ipc-card-links2', {
-            serieId: '148.3_INIVELNAL_DICI_M_26:percent_change',
+        TSComponents.Card.render('reservas-card-links2', {
+            serieId: '174.1_RRVAS_IDOS_0_0_36:percent_change',
+            explicitSign: true,
             color: '#F9A822',
             hasChart: 'small',
             links: "small",
-            title: "Indice de Precios al Consumidor Nacional"
+            title: "Reservas Internacionales"
         })
-        TSComponents.Card.render('superavit-card-links2', {
-            serieId: '372.6_SUPERAVIT_017__23_67',
+        TSComponents.Card.render('tn-card-links2', {
+            serieId: 'tn_arg',
             hasChart: 'small',
             links: "small",
-            title: "Resultado Primario del Sector Público No Fin."
+            title: "Tasa de Natalidad de Argentina"
         })
-        TSComponents.Card.render('desempleo-card-links2', {
-            serieId: '42.3_EPH_PUNTUATAL_0_M_30',
+        TSComponents.Card.render('faafem-card-links2', {
+            serieId: 'defensa_FAA_0006',
             color: '#EC407A',
             hasChart: 'small',
             links: "small",
-            title: "Desocupación"
+            title: "Personal femenino de la Fuerza Aérea"
         })
-        TSComponents.Card.render('ipc-card-med', {
-            serieId: '148.3_INIVELNAL_DICI_M_26:percent_change',
+        TSComponents.Card.render('reservas-card-med', {
+            serieId: '174.1_RRVAS_IDOS_0_0_36:percent_change',
+            explicitSign: true,
             color: '#F9A822',
             hasChart: 'small',
             links: "none",
-            title: "Indice de Precios al Consumidor Nacional"
+            title: "Reservas Internacionales"
         })
-        TSComponents.Card.render('superavit-card-med', {
-            serieId: '372.6_SUPERAVIT_017__23_67',
+        TSComponents.Card.render('tn-card-med', {
+            serieId: 'tn_arg',
             hasChart: 'small',
             links: "none",
-            title: "Resultado Primario del Sector Público No Fin.",
+            title: "Tasa de Natalidad de Argentina",
             hasFrame: false
         })
-        TSComponents.Card.render('desempleo-card-med', {
-            serieId: '42.3_EPH_PUNTUATAL_0_M_30',
+        TSComponents.Card.render('faafem-card-med', {
+            serieId: 'defensa_FAA_0006',
             color: '#EC407A',
             hasChart: 'small',
             links: "none",
-            title: "Desocupación",
+            title: "Personal femenino de la Fuerza Aérea",
             hasColorBar: false
         })
-        TSComponents.Card.render('ipc-card-min', {
-            serieId: '148.3_INIVELNAL_DICI_M_26:percent_change',
+        TSComponents.Card.render('reservas-card-min', {
+            serieId: '174.1_RRVAS_IDOS_0_0_36:percent_change',
+            explicitSign: true,
             color: '#F9A822',
             links: 'none',
             hasChart: "none",
-            title: "Indice de Precios al Consumidor Nacional"
+            title: "Reservas Internacionales"
         })
-        TSComponents.Card.render('superavit-card-min', {
-            serieId: '372.6_SUPERAVIT_017__23_67',
+        TSComponents.Card.render('tn-card-min', {
+            serieId: 'tn_arg',
             links: 'none',
             hasChart: "none",
-            title: "Resultado Primario del Sector Público No Fin.",
+            title: "Tasa de Natalidad de Argentina",
             hasColorBar: true
         })
-        TSComponents.Card.render('desempleo-card-min', {
-            serieId: '42.3_EPH_PUNTUATAL_0_M_30',
+        TSComponents.Card.render('faafem-card-min', {
+            serieId: 'defensa_FAA_0006',
             color: '#EC407A',
             links: 'none',
             hasChart: "none",
-            title: "Desocupación",
+            title: "Personal femenino de la Fuerza Aérea",
             hasFrame: true
         })
-        TSComponents.Card.render('ipc-card-min-xtreme', {
-            serieId: '148.3_INIVELNAL_DICI_M_26:percent_change',
+        TSComponents.Card.render('reservas-card-min-xtreme', {
+            serieId: '174.1_RRVAS_IDOS_0_0_36:percent_change',
+            explicitSign: true,
             links: 'none',
             hasChart: "none",
             title: "",
             units: "",
             source: ""
         })
-        TSComponents.Card.render('superavit-card-min-xtreme', {
-            serieId: '372.6_SUPERAVIT_017__23_67',
+        TSComponents.Card.render('tn-card-min-xtreme', {
+            serieId: 'tn_arg',
             links: 'none',
             hasChart: "none",
             title: "",
@@ -675,8 +686,8 @@ window.onload = function() {
             source: "",
             hasColorBar: true
         })
-        TSComponents.Card.render('desempleo-card-min-xtreme', {
-            serieId: '42.3_EPH_PUNTUATAL_0_M_30',
+        TSComponents.Card.render('faafem-card-min-xtreme', {
+            serieId: 'defensa_FAA_0006',
             color: '#EC407A',
             links: 'none',
             hasChart: "none",
