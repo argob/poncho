@@ -112,6 +112,7 @@ Poncho te saluda, amigo del código!
   <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
   <script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="../../js/scripts.js"></script>
+  <script src='https://www.google.com/recaptcha/api.js'></script>
     <style>
     .navbar-default .btn-link {
         color: #0072bb;
@@ -202,6 +203,25 @@ Poncho te saluda, amigo del código!
                             </div>
 
                         </div>
+                        <div class="row">
+                                <div class="col-md-10 form-group item-form m-b-0">
+                                        <div class="checkbox">
+                                         <label for="Option_1">
+                                          <input id="Option_1" name="Option_1" type="checkbox" value="">Acepto los <a href="#">términos y condiciones.</a>
+                                        </label>
+                                      </div>
+                      
+                                      <p class="help-block error hidden">Marca un opción </p>
+                                    </div>
+                        </div>
+
+                        <div class="row m-y-2">
+                            <div class="col-md-10">
+                                    <div class="g-recaptcha" data-sitekey="mykey"></div>
+
+                            </div>
+                        </div>
+
                         <div class="row">
                             <div class="col-sm-5">
                                 <button type="button" class="btn btn-success">CREAR CUENTA</button>
