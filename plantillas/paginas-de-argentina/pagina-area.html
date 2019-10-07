@@ -142,11 +142,51 @@
       margin: 10px 0;
     }
 
+    /* Generar mas contraste con este color al texto*/
     .h3.section-title {
       color: #333;
     }
 
-  
+    /* Las listas despegables que se corran a la izquierda */
+    .dropdown-menu-right {
+      
+      left: 0 ;
+      right: auto;
+      
+    }
+
+    /* Reducir padding  */
+
+    .jumbotron .jumbotron_body {
+      
+      padding: 60px 0;
+      
+   }
+
+   /* hover mas contraste   */
+   .nav.nav-icons li a:hover i, .nav.nav-icons li a:focus i {
+      
+      color: #0072bb !important;
+      background: #fff !important;
+      box-shadow: 0px 0px 3px 2px #707070;
+   }
+
+   .nav.nav-icons.nav-icons-selected li:not(.active) a:hover i {
+    color: #0072bb !important;
+    
+  }
+  .nav.nav-icons li a span {
+
+    color: #333;
+    ;
+}
+
+  /* Mejorar contraste a etiqueta time en paneles */
+  .panel time {
+    opacity: 1;
+  }
+
+
 </style>
 </head>
 
@@ -289,6 +329,40 @@
     </div>
   </div>
   <div class="overlay"></div>
+</section>
+
+<section class="bg-gray section-sm">
+  <div class="">
+    <div class="panel-pane pane-atajos">
+      <div class="pane-content">
+        <ul class="nav nav-icons nav-icons-selected">
+          <li class="active">
+            <a href="/aaip/accesoalainformacion">
+            <i class="icono-arg-anticorrupcion bg-success"></i><span>Acceso a la Información Pública</span>
+            </a>
+          </li>
+          <li class="">
+            <a href="/aaip/datospersonales">
+              <i class="icono-arg-dni bg-primary"></i><span>Protección de datos personales</span>
+            </a>
+          </li>
+          <li class="">
+            <a href="/aaip/tramites">
+              <i class="icono-arg-tramite bg-fucsia"></i><span>Trámites y servicios</span></a></li>
+          <li class="">
+            <a href="/aaip/buscador-normativa">
+              <i class="fa fa-legal bg-warning"></i><span>Normativa</span>
+            </a>
+          </li>
+          <li class="">
+            <a href="/aaip/consejo-federal-transparencia">
+              <i class="icono-arg-mapa-argentina bg-uva"></i><span>Consejo Federal para la Transparencia</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </section>
 
 <section>
@@ -794,15 +868,16 @@
       
       
       let ultimoitem = elementos.length - 1;
-      console.log(elementos[0].parentNode.parentNode);
+      //console.log(elementos[0].parentNode.parentNode);
 
       // recorro los item de la lista
       for (let i = 0; i < elementos.length; i++) {
-
+        
+        
         // Primer item de la lista
         if(i == 0){
           elementos[i].addEventListener("keydown", function(e) {
-            
+            /* tecla shift + (keycode = 9) es igual a la tecla de tabulacion */
             if(e.shiftKey && e.keyCode == 9){
               
               
@@ -810,10 +885,13 @@
                
 
               elementos[i].parentNode.parentNode.firstElementChild.setAttribute("aria-expanded", 'false');
+
+              
               
               
               //alert('close1');
             }
+            /* (keycode = 38) es igual a la tecla flecha arriba */
             if(e.keyCode == 38){
               
               elementos[i].parentNode.parentNode.classList.remove("open");
@@ -828,19 +906,21 @@
           // ultimo item de la lista
         }else if (ultimoitem == i ) {
           elementos[i].addEventListener("keydown", function(e) {
-
+            /* tecla shift + (keycode = 9) es igual a la tecla de tabulacion */
           if(e.shiftKey && e.keyCode == 9){
               
               elementos[i].parentNode.parentNode.classList.add("open");
               elementos[i].parentNode.parentNode.firstElementChild.setAttribute("aria-expanded", 'true');
               //alert('subi');
+
+             /* (keycode = 9) es igual a la tecla de tabulacion */
             }else if(e.keyCode == 9){
               
               elementos[i].parentNode.parentNode.classList.remove("open");
               elementos[i].parentNode.parentNode.firstElementChild.setAttribute("aria-expanded", 'false');
               //alert('close2' + elementos[i]);
             }
-
+            /* (keycode = 40) es igual a la tecla flecha abajo */
             if(e.keyCode == 40){
               
               elementos[i].parentNode.parentNode.classList.remove("open");
@@ -858,6 +938,15 @@
       }
 
     }
+    
+  </script>
+
+  <script>
+  /*document.addEventListener("click", function() {
+    document.querySelector('dropdown-toggle').classList.add("open");
+  });*/
+  
+
 
   </script>
   </body>

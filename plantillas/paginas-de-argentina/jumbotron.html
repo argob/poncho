@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]> <html lang="es"class="iem7"> <![endif]-->
+<!--[if lt IE 7 ]> <html lang="es" class="ie6 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="es" class="ie7 lt-ie8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="es" class="ie8"> <![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="es"><!--<![endif]-->
+    <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Banco de Pruebas</title>
+  <meta name="description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
+  <meta name="author" content="Presidencia de la Nación">
+  <link rel="shortcut icon" href="img/favicon.ico">
+
+  <!-- Nav and address bar color -->
+  <meta name="theme-color" content="#0072b8">
+  <meta name="msapplication-navbutton-color" content="#0072b8">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
+
+  <meta property="og:url" content="http://localhost:4000/proyectos/argentina/pagina-area.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Banco de Pruebas" />
+  <meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta property="og:image" content="/ejemplos/img/jumbotron.jpg" />
+  <meta property="og:locale" content="es_AR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Banco de Pruebas" />
+  <meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta name="twitter:image" content="/ejemplos/img/jumbotron.jpg" />
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../../node_modules/argob-poncho/dist/css/poncho.min.css">
+  <link rel="stylesheet" href="../../node_modules/argob-poncho/dist/icono-arg.css">
+ 
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="/node_modules/html5shiv/html5shiv.js"></script>
+      <script src="/node_modules/respond.js/respond.min.js"></script>
+  <![endif]-->  
+  
+<style>
+
+    /* Reducir padding  */
+
+    .jumbotron .jumbotron_body {
+      
+      padding: 60px 0;
+      
+   }
+
+   .jumbotron_body p {
+        background-color: #666;
+        display: inline;
+        padding: 4px 0;
+    }
+
+    .jumbotron_body .fondo {
+        background-color: #666;
+        
+        padding: 4px 0;
+    }
+
+    /* Nunca se interpreta como marcado
+    .jumbotron_body p::after {
+        content: "<br />";
+        display: block;
+    }
+    */
+
+    .jumbotron .jumbotron_bar{
+        background: rgba(0,0,0,0.6);
+    }
+
+</style>
+</head>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+
+  <body>
+
+    
+
+<header>
+    <nav class="navbar navbar-top navbar-default" role="navigation">
+      <div class="container">
+        <div>
+          <div class="navbar-header">
+            <a class="navbar-brand" href="/proyectos/argentina/" aria-label="Argentina.gob.ar Presidencia de la Nación">
+              <img alt="Argentina.gob.ar" src="img/argentinagob.svg" height="50">
+            </a>
+            <a class="btn btn-link btn-login visible-xs" href="/proyectos/mi-argentina/v3/"><i class="icono-arg-mi-argentina fa-fw"></i></a>
+            <a class="btn btn-primary btn-login visible-xs" href="#" onclick="$('.navbar.navbar-top').addClass('state-search');"><span class="fa fa-search fa-fw"></span></a>
+          </div>
+          <ul class="nav navbar-nav navbar-right hidden-xs">
+            <a href="#" onclick="$('.navbar.navbar-top').removeClass('state-search');" class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+            <li>
+              <div class="input-group">
+                
+                <input id="buscar" type="text" class="form-control" aria-label="Buscar trámites, servicios o áreas" placeholder="Buscar trámites, servicios o áreas ...">
+                <span class="input-group-btn">
+                  <button class="btn btn-primary" id="buscar-btn" type="button" aria-label="Buscar"><i class="fa fa-search"></i></button>
+                </span>
+              </div>
+            </li>              
+            <a href="#" class="dropdown-toggle btn btn-link hidden-xs" aria-label="Ingresar a Mi Argentina" data-toggle="dropdown">
+              <i class="icono-arg-mi-argentina"></i>Mi Argentina</a>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+
+
+<script type="text/javascript">
+  var busqueda = document.getElementById('buscar');
+  var buscar = document.getElementById('buscar-btn');
+  buscar.onclick = function () {
+    var buscado = busqueda.value;
+    location.href = "http://www.argentina.gob.ar/buscar/" + buscado;
+  };
+  
+  //PONCHO LABS
+  var url_string = window.location.href;
+  var url = new URL(url_string);
+  var lab = url.searchParams.get("lab");
+  
+  
+  if(lab == ""){
+    $("head").append('<link href="/proyectos/poncho/css/poncho_lab.css" rel="stylesheet">');
+  }
+</script>
+
+    <main role="main">
+            <section class="jumbotron" style="background-image: url('img/modernizacion.jpg');">
+                <div class="jumbotron_bar">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <ol class="breadcrumb pull-left">
+                          <li><a href="">Argentina</a></li>
+                          <li class="active"><span>Ministerio de Modernización</span></li>
+                        </ol>
+                        <ul class="list-inline pull-right">
+                          <li>
+                              <div class="dropdown">
+                                  <ul class="list-inline pull-right">
+                                      <li>
+                                        <div class="dropdown">
+                                          <a href="#" class="dropdown-toggle" id="jumbo-menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Institucional
+                                            <span class="caret"></span>
+                                          </a>
+                                          <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="jumbo-menu">
+                                            <li><a href="#">Acción</a></li>
+                                            <li><a href="#">Acción secundaria</a></li>
+                                            <li><a href="#">Misiones y funciones</a></li>
+                                          </ul>
+                                        </div>
+                                      </li>
+                                      <li>
+                                          <div class="dropdown">
+                                            <a href="#" class="dropdown-toggle" id="jumbo-menu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                              Institucional2
+                                              <span class="caret"></span>
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="jumbo-menu2">
+                                              <li><a href="#">Acción</a></li>
+                                              <li><a href="#">Acción secundaria</a></li>
+                                              <li><a href="#">Misiones y funcioness</a></li>
+                                              <li><a href="#">Acción</a></li>
+                                              <li><a href="#">Acción secundaria</a></li>
+                                              <li><a href="#">Misiones y funcioness</a></li>
+                                            </ul>
+                                          </div>
+                                        </li>
+                          
+                                        <li>
+                                          <div class="dropdown">
+                                            <a href="#" class="dropdown-toggle" id="jumbo-menu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                              Institucional3
+                                              <span class="caret"></span>
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="jumbo-menu3">
+                                              <li><a href="#">Acción</a></li>
+                                              <li><a href="#">Acción secundaria</a></li>
+                                              <li><a href="#">Misiones y funcioness</a></li>
+                                              <li><a href="#">Acción</a></li>
+                                              
+                                            </ul>
+                                          </div>
+                                        </li>
+                                    </ul>
+                              </div>
+                            </li>
+                        </ul>
+                        
+                        
+                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="jumbotron_body">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-xs-12 col-md-8 col-md-offset-2 text-center">
+                        <h1>Ministerio de Modernización</h1>
+                        <p>Mejora los sistemas y procesos internos del Estado, capacita permanentemente a sus empleados e incorpora Nuevas Tecnologías a la administración pública para alcanzar una gestión eficiente, inclusiva y transparente que brinde más y mejores servicios a los ciudadanos.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="overlay"></div>
+              </section>
+
+
+
+      <section class="jumbotron" style="background-image: url('img/modernizacion.jpg');">
+  <div class="jumbotron_bar">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <ol class="breadcrumb pull-left">
+            <li><a href="">Argentina</a></li>
+            <li class="active"><span>Ministerio de Modernización</span></li>
+          </ol>
+          <ul class="list-inline pull-right">
+            <li>
+                <div class="dropdown">
+                    <ul class="list-inline pull-right">
+                        <li>
+                          <div class="dropdown">
+                            <a href="#" class="dropdown-toggle" id="jumbo-menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Institucional
+                              <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="jumbo-menu">
+                              <li><a href="#">Acción</a></li>
+                              <li><a href="#">Acción secundaria</a></li>
+                              <li><a href="#">Misiones y funciones</a></li>
+                            </ul>
+                          </div>
+                        </li>
+                        <li>
+                            <div class="dropdown">
+                              <a href="#" class="dropdown-toggle" id="jumbo-menu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Institucional2
+                                <span class="caret"></span>
+                              </a>
+                              <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="jumbo-menu2">
+                                <li><a href="#">Acción</a></li>
+                                <li><a href="#">Acción secundaria</a></li>
+                                <li><a href="#">Misiones y funcioness</a></li>
+                                <li><a href="#">Acción</a></li>
+                                <li><a href="#">Acción secundaria</a></li>
+                                <li><a href="#">Misiones y funcioness</a></li>
+                              </ul>
+                            </div>
+                          </li>
+            
+                          <li>
+                            <div class="dropdown">
+                              <a href="#" class="dropdown-toggle" id="jumbo-menu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Institucional3
+                                <span class="caret"></span>
+                              </a>
+                              <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="jumbo-menu3">
+                                <li><a href="#">Acción</a></li>
+                                <li><a href="#">Acción secundaria</a></li>
+                                <li><a href="#">Misiones y funcioness</a></li>
+                                <li><a href="#">Acción</a></li>
+                                
+                              </ul>
+                            </div>
+                          </li>
+                      </ul>
+                </div>
+              </li>
+          </ul>
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="jumbotron_body">
+    <div class="container">
+      <div class="row">
+        <div class="fondo col-xs-12 col-md-8 col-md-offset-2 text-center">
+          <h1>Ministerio de Modernización</h1>
+          <p>Mejora los sistemas y procesos internos del Estado, capacita permanentemente a sus empleados e incorpora Nuevas Tecnologías a la administración pública para alcanzar una gestión eficiente, inclusiva y transparente que brinde más y mejores servicios a los ciudadanos.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="overlay"></div>
+</section>
+
+
+
+
+<div class="page-break"></div>
+<div class="page-break"></div>
+
+
+    </main>
+    <footer class="main-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6">
+        <img class="image-responsive" alt="Argentina.gob.ar - Presidencia de la Nación" src="img/argentinagob.svg" height="50">
+        <p class="text-muted small"><a href="https://creativecommons.org/licenses/by/2.5/ar/">Los contenidos de Argentina.gob.ar están licenciados bajo Creative Commons Reconocimiento 2.5 Argentina License</a></p>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <ul>
+          <li><a href="/servicios">Trámites y servicios</a></li>
+          <li><a href="/turnos">Turnos</a></li>
+          <li><a href="/organismos">Organismos del Estado</a></li>
+          <li><a href="http://mapadelestado.modernizacion.gob.ar/" target="_blank" aria-label="Mapa del Estado - Sitio Externo">Mapa del Estado</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <ul>
+          <li><a href="/acerca">Acerca de este sitio</a></li>
+          <li><a href="/terminos-y-condiciones">Términos y condiciones</a></li>
+          <li><a href="/ayuda">Ayuda</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>
