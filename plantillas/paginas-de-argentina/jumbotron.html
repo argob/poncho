@@ -58,23 +58,23 @@
         display: inline;
         padding: 4px 0;
     }
-
-    .jumbotron_body .fondo {
+    /* FONDO TANTO PARA HEADING COMO PARA EL PARRAFO */
+    .jumbotron_body .fondo_texto_titulo {
         background-color: #666;
         
         padding: 4px 0;
     }
-
+    /* FONDO PARA LA BARRA DE JUMBOTRON */
+    .jumbotron .jumbotron_bar{
+        background: rgba(0,0,0,0.6);
+    }
     /* Nunca se interpreta como marcado
     .jumbotron_body p::after {
         content: "<br />";
         display: block;
     }
     */
-
-    .jumbotron .jumbotron_bar{
-        background: rgba(0,0,0,0.6);
-    }
+    
 
 </style>
 </head>
@@ -212,7 +212,7 @@
                     <div class="row">
                       <div class="col-xs-12 col-md-8 col-md-offset-2 text-center">
                         <h1>Ministerio de Modernización</h1>
-                        <p>Mejora los sistemas y procesos internos del Estado, capacita permanentemente a sus empleados e incorpora Nuevas Tecnologías a la administración pública para alcanzar una gestión eficiente, inclusiva y transparente que brinde más y mejores servicios a los ciudadanos.</p>
+                        <p >Mejora los sistemas y procesos internos del Estado, capacita permanentemente a sus empleados e incorpora Nuevas Tecnologías a la administración pública para alcanzar una gestión eficiente, inclusiva y transparente que brinde más y mejores servicios a los ciudadanos.</p>
                       </div>
                     </div>
                   </div>
@@ -294,7 +294,7 @@
   <div class="jumbotron_body">
     <div class="container">
       <div class="row">
-        <div class="fondo col-xs-12 col-md-8 col-md-offset-2 text-center">
+        <div class="fondo_texto_titulo col-xs-12 col-md-8 col-md-offset-2 text-center">
           <h1>Ministerio de Modernización</h1>
           <p>Mejora los sistemas y procesos internos del Estado, capacita permanentemente a sus empleados e incorpora Nuevas Tecnologías a la administración pública para alcanzar una gestión eficiente, inclusiva y transparente que brinde más y mejores servicios a los ciudadanos.</p>
         </div>
