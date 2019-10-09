@@ -27,7 +27,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
 
   <meta property="og:site_name" content="Documentación Poncho"/>
-  <meta property="og:url" content="http://argob.github.io/poncho/plantillas/formularios/index.html" />
+  <meta property="og:url" content="http://argob.github.io/poncho/plantillas/tablas/index.html" />
   <meta property="og:type" content="article" />
   <meta property="og:title" content="Plantillas" />
   <meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
@@ -110,7 +110,7 @@
       <ol class="breadcrumb">
         <li><a href="/poncho/">Inicio</a></li>
         <li><a href="/poncho/plantillas/paginas-de-argentina/">Plantillas</a></li>
-        <li class="active">Datos</li>
+        <li class="active">Tablas</li>
       </ol>
 
 <div class="jumbotron_body p-t-2 p-b-2">
@@ -125,107 +125,25 @@
     <div class="container">
 
     <div class="row">
-        <div class="col-sm-3" id="menuLateral" data-seccion="4"></div>
+        <div class="col-sm-3" id="menuLateral" data-seccion="6"></div>
 
         <div class="col-sm-9">
 
             <section>
                 <article class="row">
                     <div class="col-sm-12">
-                        <h1>Formularios</h1>
+                        <h1>Tablas</h1>
                         <hr>
-
-                        <div class="col-md-12">
-
-                            <div class="row panels-row">
-          
-                                <div class="col-sm-6">
-                                    <a class="panel panel-default" href="/poncho/plantillas/formularios/formulario_completo.html">
-                                      <div class="panel-heading" style="background-image: url(../../../poncho/img/for-1.png)">
-                                      </div>
-                                      <div class="panel-body">
-                                        <div class="media-body">
-                                          <h3>Formulario (todos los elementos)</h3>
-                                          <p>Todos los componentes de formularios (campos de texto, desplegables, etc) en una misma página. Incluye atributos propios de cada campo, atributos de accesibilidad y errores de validación (los cuales se pueden ver con los 2 radiobuttons al principio de la página).</p>
-                                        </div>
-                                      </div>
-                                    </a>
-                                  </div>
-                                  <div class="col-sm-6">
-                                    <a class="panel panel-default" href="/poncho/plantillas/formularios/datos_personales.html">
-                                      <div class="panel-heading" style="background-image: url(../../../poncho/img/for-2.png)">
-                                      </div>
-                                      <div class="panel-body">
-                                        <div class="media-body">
-                                          <h3>Formulario (datos personales)</h3>
-                                          <p>Ejemplo de formulario básico para pedir datos de identificación de una persona (tener en cuenta pedir la menor cantidad de datos posibles, por ejemplo si es un formulario de sugerencias, con pedir el nombre, correo electrónico y la sugerencia es suficiente).</p>
-                                        </div>
-                                      </div>
-                                    </a>
-                                  </div>
-                            </div>
-
-                            <div class="row panels-row">
-          
-                                <div class="col-sm-6">
-                                    <a class="panel panel-default" href="/poncho/plantillas/formularios/ejemplo_consulta.html">
-                                      <div class="panel-heading" style="background-image: url(../../../poncho/img/for-3.png)">
-                                      </div>
-                                      <div class="panel-body">
-                                        <div class="media-body">
-                                          <h3>Formulario (ejemplo de consulta)</h3>
-                                          <p>Ejemplo de formulario para una consulta simple (con pocos campos).</p>
-                                        </div>
-                                      </div>
-                                    </a>
-                                  </div>
-                                  <div class="col-sm-6">
-                                    <a class="panel panel-default" href="/poncho/plantillas/formularios/respuesta.html">
-                                      <div class="panel-heading" style="background-image: url(../../../poncho/img/for-4.png)">
-                                      </div>
-                                      <div class="panel-body">
-                                        <div class="media-body">
-                                          <h3>Respuesta</h3>
-                                          <p>Página de respuesta de la consulta simple, que muestra los datos de la consulta.</p>
-                                        </div>
-                                      </div>
-                                    </a>
-                                  </div>
-                            </div>
-
-                            <div class="row panels-row">
-          
-                                <div class="col-sm-6">
-                                    <a class="panel panel-default" href="/poncho/plantillas/formularios/respuesta-con-error.html">
-                                      <div class="panel-heading" style="background-image: url(../../../poncho/img/for-5.png)">
-                                      </div>
-                                      <div class="panel-body">
-                                        <div class="media-body">
-                                          <h3>Respuesta con error</h3>
-                                          <p>Página de respuesta para cuando sucede un error de parte de la plataforma.</p>
-                                        </div>
-                                      </div>
-                                    </a>
-                                  </div>
-                                  <div class="col-sm-6">
-                                    <a class="panel panel-default" href="/poncho/plantillas/formularios/constancia-cuil.html">
-                                      <div class="panel-heading" style="background-image: url(../../../poncho/img/for-6.png)">
-                                      </div>
-                                      <div class="panel-body">
-                                        <div class="media-body">
-                                          <h3>Formulario (correo electrónico)</h3>
-                                          <p>Correo que se envía al usuario que usa el formulario de consulta.</p>
-                                        </div>
-                                      </div>
-                                    </a>
-                                  </div>
-                            </div>
-          
-          
-                          </div>
-                        
-                     
-                        
+                        <h2><a href="tabla-simple.html">Tabla simple</a></h2>
+                        <p>Para mostrar un dato por columna. Se usa para cuando hay pocas columnas.</p>
+                        <!--<h2><a href="tabla-columnas-combinadas.html">Tabla con columnas combinadas</a></h2>
+                        <p>Para mostrar varios datos por columna. Se usa para cuando hay muchas columnas.</p>-->
+                        <h2><a href="tabla-filtro-data-tables.html">Tabla con filtro de texto, paginado y ordenamiento (Data Tables)</a></h2>
+                        <p>Cuando se necesitan mostrar muchas filas es conveniente usar un filtro que permita buscar texto sobre cualquier elemento de la tabla. Para eso se usa el componente "Data Tables" que además permite ordenar por columnas y le agrega un paginado automáticamente.</p>
+                        <h2><a href="tabla-responsive.html">Tabla responsive (cambia en vista mobile)</a></h2>
+                        <p>Para mostrar uno o varios datos por columna. Se usa para cuando hay muchas columnas y se necesita priorizar la vista en dispositivos móviles.</p>
+                        <h2><a href="tabla-scroll-horizontal.html">Tabla con scroll horizontal</a></h2>
+                        <p>Sólo ser usado para casos con muchas columnas que no puedan combinarse (grilla de horarios o tarifas). Este comportamiento debe evitarse ya que no es cómodo para dispositivos móviles.</p>
                     </div>
 
                 </article>
