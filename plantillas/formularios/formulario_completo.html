@@ -141,7 +141,7 @@
  </div>
 
 
-<form>
+<form autocomplete="off">
 
  <h2 class="m-t-2">Título de paso del formulario</h2>
  
@@ -1342,7 +1342,7 @@ var node = document.getElementById("cuil");
   //cuando pierda el foco no este vacio ni tenga caracter guion (-)
   node.addEventListener('focusout', () => {
     
-    if(node.value == "" || node.indexOf('-') != -1){
+    if(node.value < 0 || node.value == "" || node.indexOf('-') != -1){
       
       node.setAttribute('aria-invalid', 'true');
       node.parentElement.classList.add("has-error");
@@ -1361,6 +1361,7 @@ var node = document.getElementById("cuil");
         node.parentElement.classList.remove("has-error");
         node.parentElement.classList.remove("has-feedback");
         node.nextElementSibling.classList.add("hidden");
+        node.focus();
       }
       
     });
