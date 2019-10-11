@@ -1901,3 +1901,24 @@ input[type="radio"]:checked + label{
 	box-shadow: none;
 	border-radius: 0;
 }
+
+.cont-radio-list{}
+.radio-list{
+	position: relative;
+	margin-bottom: 10px; 
+}
+.radio-list input{
+	position: absolute;
+	top: 11px;
+    left: 12px;
+}
+.radio-list label{
+	display: block;
+	border-radius: 4px;
+	padding: 13px 10px 10px 35px;
+}
+.radio-list label:hover,
+.radio-list input:checked + label{
+	background-color: #f3faff;
+	cursor: pointer;
+}

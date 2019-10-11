@@ -5045,9 +5045,6 @@ input[type='text']:-ms-input-placeholder {
 .chosen-container.chosen-container-multi.chosen-with-drop .chosen-results li.group-result {
   text-shadow: none; }
 
-.radio-inline, .checkbox-inline {
-  height: 25px; }
-
 .social-share {
   margin: 0;
   min-height: 32px; }
@@ -5179,19 +5176,26 @@ input[type='text']:-ms-input-placeholder {
     .table th a:hover {
       text-decoration: underline;
       cursor: pointer; }
-.table td small {
-  color: #707070;
-  font-weight: normal; }
-.table td.td-strong {
-  font-size: 1.1em;
-  font-weight: bold; }
-.table td.td-fixed {
-  width: 8%; }
-.table td.message.empty {
-  font-size: 1.4em;
-  color: #707070;
-  text-align: center;
-  padding: 2em 0; }
+.table td {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto; }
+  .table td small {
+    color: #707070;
+    font-weight: normal; }
+  .table td.td-strong {
+    font-size: 1.1em;
+    font-weight: bold; }
+  .table td.td-fixed {
+    width: 8%; }
+  .table td.message.empty {
+    font-size: 1.4em;
+    color: #707070;
+    text-align: center;
+    padding: 2em 0; }
 .table.table-align-middle td {
   vertical-align: middle; }
 .table.table-spaced td,
