@@ -79,14 +79,12 @@
   <main>
   <section class="jumbotron bg-primary" style="background-image:url('https://www.argentina.gob.ar/sites/default/files/jumbotron-poncho.png');">
    
-      <div class="jumbotron_body">
-        <div class="container">
+      <div class="container jumbotron_body">
         <div class="row">
           <div class="col-xs-12 col-md-8 col-md-offset-2 text-center">
             <h1>Poncho</h1>
-            <p>La librería de estilos y componentes oficiales para diseñar y desarrollar sitios web y aplicaciones móviles del Gobierno de la República Argentina.</p>
+            <p>Poncho es la librería de estilos, componentes y patrones de uso para diseñar y desarrollar sitios web del Gobierno de la República Argentina.</p>
           </div>
-        </div>
         </div>
       </div>
 
@@ -102,106 +100,24 @@
         <div class="col-sm-4">
           <i class="icono-arg-reloj fa-4x text-primary"></i>
           <h3>Menos tiempo de trabajo</h3>
-          <p>Copiá y pegá componentes y plantillas sin necesidad de desarrollar desde cero.</p>
+          <p>Usá páginas ya desarrolladas. Copiá y pegá componentes sin necesidad de crearlos de cero.</p>
         </div>
         <div class="col-sm-4 ">
           <i class="icono-arg-sitios-accesibles fa-4x text-primary"></i>
           <h3>Sitios accesibles</h3>
-          <p>Los componentes fueron mejorados para que los usen personas con discapacidad.</p>
+          <p>Las páginas y componentes cumplen con el nivel AA de accesibilidad de la WCAG.</p>
         </div>
         <div class="col-sm-4">
-          <i class="icono-arg fa fa-users fa-4x text-primary"></i>
+          <i class="icono-arg-usuarios fa-4x text-primary"></i>
           <h3>Experiencia unificada</h3>
-          <p>Los ciudadanos van a reconocer el sitio como parte de los sitios oficiales del Gobierno.</p>
+          <p>Ayuda a que los ciudadanos reconozcan el sitio como oficial y ya sepan cómo usarlo.</p>
         </div>
       </div>
     </div>
   </section>
-  <!-- Inicio Como Instalar Poncho -->
-  <section>
-    <div class="container">
-      <div class="row text-center">
-        <div class="col-sm-12">
-          <h2>¿Cómo instalar Poncho?</h2>
-        </div>
-      </div>
 
-      <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="well">
-              <h5>Si usás NPM</h5>
-              <ul>
-                <li>Ejecutá en la consola el comando <strong>npm i ar-poncho</strong></li>
-              </ul>
-            </div>
-        </div>
-      </div>
 
-      <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="well">
-              <div class="row">
-                <div class="col-md-12">
-                  <h5>Si descargás los archivos manualmente</h5>
-                  <p>También podés <a href="/poncho/plantillas/paginas-de-argentina">descargar las plantillas de Poncho</a> o crear archivos html nuevos, asegurándote de que en los html estén declaradas estas dependencias:</p>
-                </div>
-              </div>
 
-              <div class="row">
-                <div class="col-md-12">
-                  <h5>Fuente Tipográfica - Roboto</h5>
-                  
-                  <ul>
-                    <li>
-                      
-                      <pre><code>&lt;link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet"></code></pre> 
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="col-md-12">
-                  <h5>CSS - Bootstrap (v-3.4.1), Font Awesome (v-4.7.0), Poncho, Iconos</h5>
-                  <ul>
-                    <li><pre><code>&lt;link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"  rel="stylesheet"></code></pre></li>
-                    <li><pre><code>&lt;link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"></code></pre></li>
-                    <li><pre><code>&lt;link href="dist/css/poncho.min.css" rel="stylesheet"></code></pre></li>
-                    <li><pre><code>&lt;link href="dist/css/icono-arg.css" rel="stylesheet"></code></pre></li>
-                  </ul>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-md-12">
-                  <h5>JavaScript - Bootstrap (v-3.4.1), Jquery</h5>
-                  <ul>
-                    <li><pre><code>&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js>&lt;/script></code></pre></li>
-                    <li><pre><code>&lt;script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js”>&lt;/script></code></pre></li>
-                  </ul>
-                </div>
-              </div>
-
-              <hr>
-
-              <div class="row">
-                <div class="col-md-12">
-                  <p>Todas las dependencias son rutas absolutas excepto poncho.min.css e icono-arg.css, que los debés descargar del repositorio de Poncho en github y usar de manera local.</p>
-                </div>
-              </div>
-
-              <div class="row m-y-1">
-                <div class="col-md-12">
-                  <a href="https://github.com/argob/poncho" class="btn btn-success ">DESCARGAR PONCHO EN GITHUB</a>
-                </div>
-              </div>
-
-            </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- Fin Como Instalar Poncho -->
   <section class="p-b-0">
     <div class="container">
       <div class="row text-center">
@@ -212,21 +128,21 @@
 
 <div class="row panels-row">
 
-  <div class="col-md-4 col-xs-12 col-sm-6">
-     <a href="/poncho/identidad/colores/" class="panel panel-default panel-icon panel-primary">
+  <div class="col-md-3 col-xs-12 col-sm-6">
+     <a href="/poncho/estilos/colores/" class="panel panel-default panel-icon panel-primary">
         <div class="panel-heading hidden-xs">
            <i class="icono-arg-paleta-colores"></i>
         </div>
         <div class="panel-body">
-           <h3><span class="visible-xs-inline"><i class="icono-arg-paleta-colores"></i>&nbsp; </span>Identidad</h3>
+           <h3><span class="visible-xs-inline"><i class="icono-arg-paleta-colores"></i>&nbsp; </span>Estilos</h3>
            <div class="text-muted">
-              <p>Íconos oficiales, colores, tipografía y manual de marca.</p>
+              <p>Colores, tipografía, íconos y otros lineamientos de identidad visual.</p>
            </div>
         </div>
      </a>
   </div>
 
-  <div class="col-md-4 col-xs-12 col-sm-6">
+  <div class="col-md-3 col-xs-12 col-sm-6">
      <a href="/poncho/componentes/botones/" class="panel panel-default panel-icon panel-primary">
         <div class="panel-heading hidden-xs">
            <i class="icono-arg-componentes"></i> 
@@ -234,26 +150,26 @@
         <div class="panel-body">
            <h3><span class="visible-xs-inline"><i class="icono-arg-componentes"></i>&nbsp; </span>Componentes</h3>
            <div class="text-muted">
-              <p>Botones, paneles, alertas y otros elementos para construír páginas.</p>
+              <p>Botones, tarjetas y otros elementos web para construír páginas.</p>
            </div>
         </div>
      </a>
   </div>
 
-  <div class="col-md-4 col-xs-12 col-sm-6">
-     <a href="/poncho/plantillas/paginas-de-argentina" class="panel panel-default panel-icon panel-primary">
+  <div class="col-md-3 col-xs-12 col-sm-6">
+     <a href="http://argob.github.io/poncho/patrones/formularios/piezas_de_formularios.html" class="panel panel-default panel-icon panel-primary">
         <div class="panel-heading hidden-xs">
-           <i class="icono-arg-computadora-celular-tablet"></i>
+           <i class="icono-arg-patrones-de-uso"></i>
         </div>
         <div class="panel-body">
-           <h3><span class="visible-xs-inline"><i class="icono-arg-computadora-celular-tablet"></i>&nbsp; </span>Plantillas </h3>
+           <h3><span class="visible-xs-inline"><i class="icono-arg-patrones-de-uso"></i>&nbsp; </span>Patrones de uso <span aria-label="Versión alpha" class="badge">Alpha</span></h3>
            <div class="text-muted">
-              <p>Páginas estandarizadas con componentes específicos, listas para usar.</p>
+              <p>Cómo usar los componentes dependiendo de la información a mostrar.</p>
            </div>
         </div>
      </a>
   </div>
-  <!-- MOBILE FALTA POR AHORA NO
+
   <div class="col-md-3 col-xs-12 col-sm-6">
      <a href="https://github.com/argob/poncho" class="panel panel-default panel-icon panel-primary">
         <div class="panel-heading hidden-xs">
@@ -266,10 +182,18 @@
            </div>
         </div>
      </a>
-  </div>-->
+  </div>
 
 
+  <div class="col-sm-6 col-sm-offset-3 col-xs-12">
+      <div class="alert alert-info">
+        <p>Si necesitás hacer un formulario podés descargar un HTML con los componentes que hay que usar según el dato que se le pide al usuario.</p>
 
+      <br><br>
+      <a href="/poncho/plantillas/formularios/formulario_completo.html" target="_blank" class="btn btn-primary btn-small">Formulario base completo</a>
+      <a href="/poncho/patrones/formularios/piezas_de_formularios.html" target="_blank" class="btn btn-link btn-small">Patrones de uso de formularios</a>
+      </div> 
+  </div>
 
 
 
@@ -286,20 +210,18 @@
     <section class="" style="padding-bottom: 140px;">
       <div class="row">
         <div class="col-md-8 col-md-offset-2">
-          <div class="row text-center">
-            <div class="col-sm-12">
-              <h2 class="m-b-3">Acerca de Poncho</h2>
-            </div>
-          </div>
+      <div class="row text-center">
+      <div class="col-sm-12">
+        <h2 class="m-b-3">Acerca de Poncho</h2>
+      </div>
+      </div>
 
-          <div class="row">
-            <div class="col-md-12">
-              <p>Poncho es administrado por la <strong>Dirección Nacional de Servicios Digitales</strong> de la <strong>Subsecretaría de Gobierno
-                Digital,</strong> dependiente de la <strong>Secretaría de Gobierno de Modernización de la República Argentina.</strong></p>
-              <p>Si querés hacer una sugerencia podés <a href="https://github.com/argob/poncho/issues">cargar un issue en el repositorio de Poncho en Github.</a></p>
-            </div>
-          </div>
+      <p>Estamos actualizando la nueva versión de Poncho para cubrir todos los componentes y patrones de uso de todos los sitios web del Gobierno.</p>
+      <p>Contactate con nosotros a proccella@modernizacion.gob.ar si tenés alguna duda o necesitás componentes nuevos.</p>
 
+      <p>Poncho es administrado por la Dirección Nacional de Servicios Digitales de la Subsecretaría de Gobierno Digital, dependiente de la Secretaría de Modernización de la República Argentina.</p>
+
+      <p>Si necesitás también podés consultar la <a href="/poncho/2015">documentación anterior</a> que próximamente vamos a dar de baja cuando estén actualizados todos los componentes en esta nueva documentación.</p>
         </div>
       </div>
     </section>
