@@ -7,18 +7,32 @@ Base de html y css para la creación de sitios pertenecientes a la Administraci�
 En este repositorio podés descargar los archivos de Poncho para trabajar de manera local.
 Esta nueva versión de Poncho incluye cambios de colores y otros elementos que mejoran cuestiones de accesibilidad.
 
-## Instalación
-
 Para usar Poncho en un sitio, ver [la documentación](http://argob.github.io/poncho).  
-Tambien estamos en [NPM](https://www.npmjs.com/package/ar-poncho).  
+Tambien estamos en [NPM](https://www.npmjs.com/package/ar-poncho).
 
-### Puesta en marcha
+## ¿Cómo instalar Poncho?
 
-Incluir en el html los siguientes archivos CSS:
+#### Si usás NPM
 
-```html
-<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
-<link rel="stylesheet" href="dist/css/poncho.min.css">
-<link rel="stylesheet" href="dist/css/icono-arg.css">
-```
+* Ejecutá en la consola el comando **npm i ar-poncho**
+
+#### Si descargás los archivos manualmente
+
+* También podés [descargar las plantillas de Poncho](http://argob.github.io/poncho/plantillas/paginas-de-argentina/) o crear archivos html nuevos, asegurándote de que en los html estén declaradas estas dependencias:
+  
+#### Fuente Tipográfica - Roboto
+
+* ``` <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet"> ```
+
+#### CSS - Bootstrap (v-3.4.1), Font Awesome (v-4.7.0), Poncho, Iconos
+
+* ``` <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"  rel="stylesheet"> ```
+* ``` <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> ```
+* ``` <link rel="stylesheet" href="dist/css/poncho.min.css"> ```
+* ``` <link rel="stylesheet" href="dist/css/icono-arg.css"> ```
+
+#### JavaScript -  Jquery, Bootstrap (v-3.4.1)
+
+* ``` <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> ```
+* ``` <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js”></script> ```
 
