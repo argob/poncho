@@ -159,7 +159,7 @@
       <p class="help-block"><a href="https://www.anses.gob.ar/constancia-de-cuil/"
           aria-label="Ingresá tu CUIL. Si no lo sabés consultá en este enlace de ANSES" target="_blank">Consultá tu
           CUIL</a></p>
-      <input type="number" class="form-control" id="cuil" required aria-required="true" aria-invalid="false">
+      <input type="number" class="form-control" id="cuil" required aria-required="true" aria-invalid="false" title="Ingresa tu CUIL">
       <p class="help-block error hidden" role="alert">Ingresá tu CUIL <br>El CUIL tiene un formato no
         válido</p>
     </div>
@@ -170,7 +170,7 @@
     <div class="col-md-8 form-group item-form">
       <label for="nombre">Nombres</label>
       <input type="text" name="name" class="form-control" id="nombre" required aria-required="true">
-      <p class="help-block error hidden">Ingresá tu nombre</p>
+      <p class="help-block error hidden" role="alert">Ingresá tu nombre</p>
     </div>
   </div>
 
@@ -1348,7 +1348,7 @@ var node = document.getElementById("cuil");
       node.parentElement.classList.add("has-error");
       node.parentElement.classList.add("has-feedback");
       node.nextElementSibling.classList.remove("hidden");
-      node.focus();
+      
     }
 
 
