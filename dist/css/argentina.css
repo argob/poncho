@@ -186,6 +186,82 @@ main .container .media img {
 footer ul.nav li a {
   text-decoration: underline !important;
 }
+
+.icon-item {
+  text-align: center;
+  margin: 10px 0;
+}
+
+/* Generar mas contraste con este color al texto*/
+.h3.section-title { 
+  color: #333; /* archivo tipography.scss line 43 le agrega por defecto color: #707070 */
+}
+
+/* Las listas despegables que se corran a la izquierda */
+.dropdown-menu-right {
+  
+  left: 0 ;
+  right: auto;
+  
+}
+
+/* Reducir padding  */
+
+.jumbotron .jumbotron_body {
+  
+  padding: 60px 0;
+  
+}
+
+/* hover mas contraste   */
+.nav.nav-icons li a:hover i, .nav.nav-icons li a:focus i {
+  
+  color: #0072bb !important;
+  background: #fff !important;
+  box-shadow: 0px 0px 3px 2px #707070;
+}
+
+/* afecta tambien nav.scss line 369*/
+.nav.nav-icons.nav-icons-selected li:not(.active) a:hover i {
+color: #0072bb !important;
+  background: #fff !important;
+  box-shadow: 0px 0px 3px 2px #707070;
+
+}
+.nav.nav-icons li a span {
+
+color: #333;
+
+}
+
+/* que no tengan la clase active ni el hover ni el focus
+.nav.nav-icons.nav-icons-selected li:not(.active):not(:hover) a:not(:focus) i {
+background: #CCC !important;
+color: #707070 !important;
+}*/
+
+/* Mejorar contraste a etiqueta time en paneles noticias destacadas */
+.panel time {
+opacity: 1;
+}
+
+/* modificar paneles sacar headings por parrafos o span */
+.panel .h3_title, .h3_title{ /* panel.scss line 34, 16, 142(transicion)*/
+font-size: 1.3em !important;
+font-weight: 500 !important;
+line-height: 1.3 !important;
+margin: .25em 0 !important;
+/*color: red; cambiar color para visualizar mejor que se esta cambiando*/
+}
+
+/* modificar paneles sacar headings por parrafos o span */
+.icon-item .h3_title{ 
+font-size: 1.6em !important; /* global.scss line 90*/
+margin-top: 0 !important; /* global.scss line 85*/
+margin-bottom: 0.2em;
+font-weight: 600;
+/*color: red; cambiar color para visualizar mejor que se esta cambiando*/
+}
 /* 
 .jumbotron_bar .col-md-12 .list-inline {}
 
