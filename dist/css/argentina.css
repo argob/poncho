@@ -272,3 +272,31 @@ font-weight: 600;
   max-width: 100%;
 }
 */
+
+.markerCSS .leaflet-popup-content-wrapper {
+  background: #2ce897;
+  color: #eee;
+  font-size: 12px;
+  line-height: 24px;
+  border-radius: 0px;
+ }
+ .markerCSS .leaflet-popup-content-wrapper a {
+  color: rgba(200, 200, 200, 0.1);
+ } */
+ .markerCSS .leaflet-popup-content {
+  width: 400px;
+ }
+ .markerCSS .leaflet-popup-tip-container {
+    margin-left: -5px;
+ }
+ .markerCSScluster {
+    text-align: center;
+    background-image: url('/img/m1.png');
+ }
+ .textCluster {
+    color: white;
+    margin-top: 13px;
+ }
+ .leaflet-fade-anim .leaflet-tile,.leaflet-zoom-anim .leaflet-zoom-animated {
+    will-change:auto !important;
+ }
