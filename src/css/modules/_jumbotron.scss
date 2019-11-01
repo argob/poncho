@@ -313,3 +313,35 @@
 
 
 
+
+    /* Reducir padding  */
+
+    .jumbotron .jumbotron_body {
+      
+      padding: 60px 0;
+      
+   }
+
+
+    /* FONDO TANTO PARA HEADING COMO PARA EL PARRAFO */
+    .jumbotron_body .fondo_texto_titulo, .fondo_texto_titulo  {
+        background-color: #595959;
+        
+        padding: 4px 0;
+    }
+    /* FONDO PARA LA BARRA DE JUMBOTRON */
+    .jumbotron .jumbotron_bar{
+        background: rgba(0,0,0,0.6);
+    }
+    /* Nunca se interpreta como marcado
+    .jumbotron_body p::after {
+        content: "<br />";
+        display: block;
+    }
+    */
+    .jumbotron_body .fondo_texto_titulo, .fondo_texto_titulo {
+        background-color: #595959;
+        padding: 4px 0;
+        border-radius: 10px;
+        padding: 16px;
+    }
