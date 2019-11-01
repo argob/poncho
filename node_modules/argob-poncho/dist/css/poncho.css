@@ -2,8 +2,8 @@
 /*!
  * Poncho v0.3.3 (https://github.com/argob/poncho)
  * Copyright 2016
- * Subsecretaría de Gobierno Digital
- * Presidencia de la Nación Argentina
+ * Subsecretar├¡a de Gobierno Digital
+ * Presidencia de la Naci├│n Argentina
  * Licenciado bajo MIT (https://github.com/argob/poncho/LICENSE)
  */
 /* Libraries */
@@ -3092,7 +3092,7 @@ dd {
 #clase11 {
   color: #000; }
 
-/* botón mi argentina en header */
+/* bot├│n mi argentina en header */
 header .btn i[class*="icono-arg"] {
   font-size: 1em;
   height: 22px;
@@ -4829,6 +4829,31 @@ a.panel {
   .jumboarticle {
     min-height: 250px; } }
 
+/* Reducir padding  */
+.jumbotron .jumbotron_body {
+  padding: 60px 0; }
+
+/* FONDO TANTO PARA HEADING COMO PARA EL PARRAFO */
+.jumbotron_body .fondo_texto_titulo, .fondo_texto_titulo {
+  background-color: #595959;
+  padding: 4px 0; }
+
+/* FONDO PARA LA BARRA DE JUMBOTRON */
+.jumbotron .jumbotron_bar {
+  background: rgba(0, 0, 0, 0.6); }
+
+/* Nunca se interpreta como marcado
+.jumbotron_body p::after {
+    content: "<br />";
+    display: block;
+}
+*/
+.jumbotron_body .fondo_texto_titulo, .fondo_texto_titulo {
+  background-color: #595959;
+  padding: 4px 0;
+  border-radius: 10px;
+  padding: 16px; }
+
 textarea {
   resize: vertical; }
 
@@ -5044,9 +5069,6 @@ input[type='text']:-ms-input-placeholder {
 .chosen-container.chosen-container-single.chosen-with-drop .chosen-results li.group-result,
 .chosen-container.chosen-container-multi.chosen-with-drop .chosen-results li.group-result {
   text-shadow: none; }
-
-.radio-inline, .checkbox-inline {
-  height: 25px; }
 
 .social-share {
   margin: 0;
