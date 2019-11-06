@@ -1924,39 +1924,53 @@ input[type="radio"]:checked + label{
 }
 
 /* .markerCSS .leaflet-popup-content-wrapper {
-  background: #2ce897;
-  color: #eee;
-  font-size: 12px;
-  line-height: 24px;
-  border-radius: 0px;
+	background: #2ce897;
+	color: #eee;
+	font-size: 12px;
+	line-height: 24px;
+	border-radius: 0px;
 }
 
 .markerCSS .leaflet-popup-content-wrapper a {
-  color: rgba(200, 200, 200, 0.1);
+	color: rgba(200, 200, 200, 0.1);
 } */
 
 .markerCSS .leaflet-popup-content {
 	width: 400px;
-  }
-  
-  .markerCSS .leaflet-popup-tip-container {
-	  margin-left: -5px;
-  }
-  
-  .markerCSScluster {
-	  text-align: center;
-	  /*background-image: url('/img/m1.png');*/
-	  background-color: #0072bb;
-	  border-radius: 100px;
-	  border: solid 5px #4994cb;
-	  line-height: 10px;
-  }
-  
-  .textCluster {
-	  color: white;
-	  margin-top: 13px;
-  }
-  
-  .leaflet-fade-anim .leaflet-tile,.leaflet-zoom-anim .leaflet-zoom-animated {
-	  will-change:auto !important;
-  }
+}
+
+.markerCSS .leaflet-popup-tip-container {
+	margin-left: -5px;
+}
+
+.markerCSScluster {
+	text-align: center;
+	/*background-image: url('/img/m1.png');*/
+	background-color: #0072bb;
+	border-radius: 100px;
+	border: solid 5px #4994cb;
+	line-height: 10px;
+}
+
+.textCluster {
+	color: white;
+	margin-top: 13px;
+}
+
+.leaflet-fade-anim .leaflet-tile,.leaflet-zoom-anim .leaflet-zoom-animated {
+	will-change:auto !important;
+}
+
+
+.circle-number {
+	display: inline-flex;
+	background: #0072BB;
+	color: #fff;
+	padding: 0.6rem;
+	border-radius: 50%;
+
+}
+
+
+/* Login y registro v5 css */
+
