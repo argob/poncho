@@ -94,7 +94,7 @@ form h3 {
 	display: inline;
 }
 
-.panel-borders {
+.panel-border-none {
 	border: 1px solid #dee2e6;
 }
 
@@ -280,7 +280,7 @@ a.btn-collapse i.collapseGira {
 	margin-bottom: 20px;
 }
 
-.panel-borders .panel-heading {
+.panel-border-none .panel-heading {
 	border: none !important;
 }
 
@@ -1922,3 +1922,41 @@ input[type="radio"]:checked + label{
 	background-color: #f3faff;
 	cursor: pointer;
 }
+
+/* .markerCSS .leaflet-popup-content-wrapper {
+  background: #2ce897;
+  color: #eee;
+  font-size: 12px;
+  line-height: 24px;
+  border-radius: 0px;
+}
+
+.markerCSS .leaflet-popup-content-wrapper a {
+  color: rgba(200, 200, 200, 0.1);
+} */
+
+.markerCSS .leaflet-popup-content {
+	width: 400px;
+  }
+  
+  .markerCSS .leaflet-popup-tip-container {
+	  margin-left: -5px;
+  }
+  
+  .markerCSScluster {
+	  text-align: center;
+	  /*background-image: url('/img/m1.png');*/
+	  background-color: #0072bb;
+	  border-radius: 100px;
+	  border: solid 5px #4994cb;
+	  line-height: 10px;
+  }
+  
+  .textCluster {
+	  color: white;
+	  margin-top: 13px;
+  }
+  
+  .leaflet-fade-anim .leaflet-tile,.leaflet-zoom-anim .leaflet-zoom-animated {
+	  will-change:auto !important;
+  }
