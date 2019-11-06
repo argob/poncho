@@ -1972,5 +1972,34 @@ input[type="radio"]:checked + label{
 }
 
 
-/* Login y registro v5 css */
+/* Login y registro nuevo v5 */
 
+body.id-v5 h2 {
+	font-size: 18px;
+    margin-bottom: 20px;
+}
+body.id-v5 p {
+    font-size: 14px;
+}
+body.id-v5 hr {
+    margin: 20px 0;
+}
+body.id-v5 .well {
+    margin: 0;
+}
+body.id-v5 .navbar {
+    margin-bottom: 0;
+    border: 0;
+    text-align: center;
+}
+body.id-v5 .navbar-nav {
+    float: none !important;
+}
+body.id-v5 .nav.navbar-nav.navbar-header a img {
+    width: 90%;
+}
+@media (max-width: 991px) {
+    body.id-v5 main {
+        margin: 0 -30px;
+    }
+}
