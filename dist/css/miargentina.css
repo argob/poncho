@@ -2006,3 +2006,22 @@ body.id-v5 .nav.navbar-nav.navbar-header a img {
         margin: 0 -30px;
     }
 }
+
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+
+.login-contrasena {
+    font-size: 12px;
+    margin: 10px 0;
+    line-height: 20px;
+    margin-bottom: 20px;
+}
+.float-right {
+    float: right;
+}
+.float-left {
+    float: left;
+}
