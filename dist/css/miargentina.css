@@ -1974,9 +1974,6 @@ input[type="radio"]:checked + label{
 
 /* Login y registro nuevo v5 */
 
-body.id-v5 .row {
-	padding: 0 10px;
-}
 body.id-v5 h1 {
 	font-size: 22px;
 }
