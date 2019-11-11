@@ -2012,15 +2012,32 @@ body.id-v5 .form-group {
 }
 
 
-.login-contrasena {
+body.id-v5 .login-contrasena {
     font-size: 12px;
     margin: 10px 0;
     line-height: 20px;
     margin-bottom: 20px;
 }
-.float-right {
+body.id-v5 .float-right {
     float: right;
 }
-.float-left {
+body.id-v5 .float-left {
     float: left;
+}
+
+
+
+body.id-v5 .circle-number {
+    padding: 8px 13px;
+    width: 35px;
+    height: 35px;
+    margin: 0 10px 20px 0;
+    float: left;
+}
+body.id-v5 .circle-heading {
+    margin-top: 7px;
+}
+body.id-v5 .fa-check-circle {
+    float: left;
+    margin: 0 5px 40px 0;
 }
