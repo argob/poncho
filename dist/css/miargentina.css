@@ -1983,6 +1983,9 @@ body.id-v5 h2 {
 body.id-v5 p {
     font-size: 16px;
 }
+body.id-v5 .help-block {
+    font-size: 14px;
+}
 body.id-v5 hr {
     margin: 20px 0;
 }
