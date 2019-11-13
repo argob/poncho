@@ -2008,10 +2008,17 @@ body.id-v5 .nav.navbar-nav.navbar-header a img {
 }
 body.id-v5 .navbar {
 	min-height: auto;
+	margin: 20px 0;
 }
 @media (max-width: 991px) {
     body.id-v5 main {
         margin: 0 -20px;
+	}
+	body.id-v5 .navbar {
+		margin: 15px 0;
+	}
+	body.id-v5 .navbar img {
+		width: 90%;
 	}
 }
 
