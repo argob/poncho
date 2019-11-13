@@ -2000,10 +2000,10 @@ body.id-v5 .navbar {
 	margin: 0;
 	border: 0;
     text-align: center;
-	float: none !important;
 }
 body.id-v5 .navbar-nav {
 	margin: 20px 0;
+	float: none !important;
 }
 body.id-v5 .nav.navbar-nav img {
     width: 90%;
