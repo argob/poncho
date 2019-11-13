@@ -2099,17 +2099,23 @@ body.id-v5 .navbar-nav {
 body.id-v5 .nav.navbar-nav img {
     width: 90%;
 }
+
+
+
+
 @media (max-width: 991px) {
     body.id-v5 main {
         margin: 0 -20px;
-	}
-	body.id-v5 .navbar {
-		margin: 15px 0;
 	}
 	body.id-v5 .navbar img {
 		width: 90%;
 	}
 }
+
+
+
+
+
 
 
 body.id-v5 .form-group {
