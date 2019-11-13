@@ -2006,10 +2006,16 @@ body.id-v5 .navbar-nav {
 body.id-v5 .nav.navbar-nav.navbar-header a img {
     width: 90%;
 }
+body.id-v5 .navbar {
+	min-height: auto;
+}
 @media (max-width: 991px) {
     body.id-v5 main {
-        margin: 0 -30px;
-    }
+        margin: 0 -20px;
+	}
+	body.id-v5 .navbar-nav {
+		margin: 10px 0 !important;
+	}
 }
 
 
