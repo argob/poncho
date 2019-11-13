@@ -2136,7 +2136,10 @@ body.id-v5 .float-left {
     float: left;
 }
 
-
+body.id-v5 .label-tyc {
+	font-size: 14px;
+	font-weight: bold;
+}
 
 body.id-v5 .circle-number {
     padding: 8px 13px;
