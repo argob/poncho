@@ -2126,7 +2126,7 @@ body.id-v5 .form-group {
 body.id-v5 .login-contrasena {
     font-size: 12px;
     margin: 10px 0;
-    line-height: 20px;
+    line-height: 22px;
     margin-bottom: 20px;
 }
 body.id-v5 .float-right {
@@ -2139,6 +2139,7 @@ body.id-v5 .float-left {
 body.id-v5 .label-tyc {
 	font-size: 14px;
 	font-weight: bold;
+	line-height: 22px;
 }
 
 body.id-v5 .circle-number {
