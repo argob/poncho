@@ -2046,6 +2046,11 @@ body.id-v5 .fa-check-circle {
 }
 
 body.id-v5 .form-group .help-block {
-    margin-top: 5px !important;
+    margin-top: -5px !important;
     margin-bottom: 10px !important;
+}
+
+
+body.id-v5 label {
+	margin-bottom: 10px;
 }
