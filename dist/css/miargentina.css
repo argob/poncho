@@ -1995,12 +1995,13 @@ body.id-v5 hr {
 body.id-v5 .well {
     margin: 0;
 }
+body.id-v5 .navbar {
+	min-height: auto;
+}
 body.id-v5 .navbar-nav {
-	margin-bottom: 0;
     border: 0;
     text-align: center;
 	float: none !important;
-	min-height: auto;
 	margin: 20px 0;
 }
 body.id-v5 .nav.navbar-nav img {
