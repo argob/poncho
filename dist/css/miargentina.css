@@ -2052,5 +2052,5 @@ body.id-v5 .form-group .help-block {
 
 
 body.id-v5 label {
-	margin-bottom: 10px;
+	margin-bottom: 10px !important;
 }
