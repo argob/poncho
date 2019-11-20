@@ -1289,6 +1289,10 @@ a.btn-collapse i.collapseGira {
 	}
 }
 
+.footer .first-footer-item {
+	padding: 0.6rem;
+}
+
 /******STATE LOADING*********/
 .state-loading:before,
 .icon-load.progress-disabled:before {
