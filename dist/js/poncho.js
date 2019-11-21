@@ -176,6 +176,7 @@
       var tabla = jQuery("#ponchoTable").DataTable({
           "lengthChange": false,
           "autoWidth" : false,
+          "pageLenght" : 20,
           "columnDefs": [
             { "type": "html-num", "targets": opt.tipoNumero },
             { "targets": opt.ocultarColumnas, "visible": false }
