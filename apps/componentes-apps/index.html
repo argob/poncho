@@ -83,7 +83,7 @@
             <h1>Poncho</h1>
           </a>
         </div>
-        <div class="collapse navbar-collapse" id="main-navbar-collapse" data-seccion="Identidad"></div>
+        <div class="collapse navbar-collapse" id="main-navbar-collapse" data-seccion="Apps"></div>
       </div>
     </div>
   </nav>
@@ -179,7 +179,7 @@
 
     <script>
       $(function(){
-        $("#menuLateral").load("../../includes/estilos_menu.html",function(){
+        $("#menuLateral").load("../../includes/apps_menu.html",function(){
           var seccion = $("#menuLateral").data("seccion");
           $("#menuLateral ul li a[data-seccion="+seccion+"]").parent().addClass("active");
         });
