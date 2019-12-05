@@ -14,19 +14,18 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
     <link href="bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../../node_modules/argob-poncho/dist/icono-arg.css">
+    <link rel="stylesheet" href="http://argob.github.io/poncho/node_modules/argob-poncho/dist/icono-arg.css">
 
   </head>
 
   <body>
-
-    <nav class="navbar navbar-expand-md bg-white">
+    <a class="sr-only sr-only-focusable" href="#main">Saltear navegación</a>
+    <nav class="navbar navbar-expand-md navbar-poncho bg-white ">
       <div class="container">
-        <a class="navbar-brand font-weight-bold" href="#">Poncho BS4</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+        <button class="navbar-toggler text-primary" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"><i class="fa fa-navicon pt-1"><span class="sr-only">Menú</span></i></span>
         </button>
-
+        <a class="navbar-brand font-weight-bold ml-sm-2" href="#">Poncho BS4</a>
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
@@ -39,7 +38,7 @@
               <a class="nav-link disabled" href="#">Deshabilitado</a>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Menú desplegable</a>
+              <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Desplegable</a>
               <div class="dropdown-menu" aria-labelledby="dropdown01">
                 <a class="dropdown-item" href="#">Acción</a>
                 <a class="dropdown-item" href="#">Otra acción</a>
@@ -47,15 +46,22 @@
               </div>
             </li>
           </ul>
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Buscar" aria-label="Buscar">
-            <button class="btn btn-primary my-2 my-sm-0" type="submit">Buscar</button>
-          </form>
+
+          <form class="form-inline my-2">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="Buscar..." aria-label="Buscar..." aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-primary my-2 my-sm-0" type="submit"><i class="fa fa-search"><span class="sr-only">Buscar</span></i></button>
+                </div>
+              </div>
+            </form>
+
+
         </div>
       </div>
     </nav>
 
-    <main role="main">
+    <main role="main" id="main">
 
       <!-- Jumbotron -->
 
@@ -65,7 +71,7 @@
               <div class="col-8">
                 <h1>Poncho Bootstrap 4</h1>
                 <p>La librería de estilos y componentes oficiales para diseñar y desarrollar sitios web y aplicaciones móviles del Gobierno de la República Argentina.</p>
-                <p><a class="btn btn-success" href="#" role="button">Descargar Poncho</a></p>
+                <p><a class="btn btn-primary" href="#" role="button">Descargar Poncho</a></p>
               </div>
             </div>
           </div>

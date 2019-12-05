@@ -7155,3 +7155,7 @@ a.dropdown-item,
   height: 100%;
   width: 100%;
   z-index: 1; }
+
+.navbar-poncho > .container,
+.navbar-poncho > .container-fluid {
+  justify-content: left; }
