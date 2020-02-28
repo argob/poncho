@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]> <html lang="es"class="iem7"> <![endif]-->
+<!--[if lt IE 7 ]> <html lang="es" class="ie6 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="es" class="ie7 lt-ie8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="es" class="ie8"> <![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="es"><!--<![endif]-->
+    <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Banco de Pruebas</title>
+  <meta name="description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
+  <meta name="author" content="Presidencia de la Nación">
+  <link rel="shortcut icon" href="img/favicon.ico">
+
+  <!-- Nav and address bar color -->
+  <meta name="theme-color" content="#0072b8">
+  <meta name="msapplication-navbutton-color" content="#0072b8">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
+
+  <meta property="og:url" content="http://localhost:4000/proyectos/argentina/servicio.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Banco de Pruebas" />
+  <meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta property="og:image" content="/ejemplos/img/jumbotron.jpg" />
+  <meta property="og:locale" content="es_AR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Banco de Pruebas" />
+  <meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta name="twitter:image" content="/ejemplos/img/jumbotron.jpg" />
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../../node_modules/argob-poncho/dist/css/poncho.min.css">
+  <link rel="stylesheet" href="../../node_modules/argob-poncho/dist/icono-arg.css">
+
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="/node_modules/html5shiv/html5shiv.js"></script>
+      <script src="/node_modules/respond.js/respond.min.js"></script>
+  <![endif]-->  
+  <style>
+    @media print {
+
+      main {
+        width: 90%;
+        margin: 0 auto;
+      }
+
+      main .breadcrumb,
+      aside {
+        display: none;
+      }
+
+      /* AGREGAR UN ESPACIADO ALGUN FIX QUE ROMPA*/
+      .page-break {
+        display: block;
+        height: 100px;
+        width: 100%;
+
+      }
+      a.btn.btn-primary {
+      border: 3px solid #333;
+      font-size: 16px ;
+      font-weight: 500 ;
+      margin-bottom: 10px ;
+      padding: 10px 25px ;
+      text-transform: uppercase ;
+      
+
+
+      }
+      .circle{
+        border: 3px solid #333;
+        border-radius: 50%;
+          
+      }
+
+    }
+  </style>
+    
+</head>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+
+  <body>
+
+    
+    
+<header>
+  <nav class="navbar navbar-top navbar-default" role="navigation">
+    <div class="container">
+      <div>
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/proyectos/argentina/" aria-label="Argentina.gob.ar Presidencia de la Nación">
+            <img alt="Argentina.gob.ar" src="img/argentinagob.svg" height="50">
+          </a>
+          <a class="btn btn-link btn-login visible-xs" href="/proyectos/mi-argentina/v3/"><i class="icono-arg-mi-argentina fa-fw"></i></a>
+          <a class="btn btn-primary btn-login visible-xs" href="#" onclick="$('.navbar.navbar-top').addClass('state-search');"><span class="fa fa-search fa-fw"></span></a>
+        </div>
+        <ul class="nav navbar-nav navbar-right hidden-xs">
+          <a href="#" onclick="$('.navbar.navbar-top').removeClass('state-search');" class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+          <li>
+            <div class="input-group">
+              
+              <input id="buscar" type="text" class="form-control" aria-label="Buscar trámites, servicios o áreas" placeholder="Buscar trámites, servicios o áreas ...">
+              <span class="input-group-btn">
+                <button class="btn btn-primary" id="buscar-btn" type="button" aria-label="Buscar"><i class="fa fa-search"></i></button>
+              </span>
+            </div>
+          </li>              
+          <a href="#" class="dropdown-toggle btn btn-link hidden-xs" aria-label="Ingresar a Mi Argentina" data-toggle="dropdown">
+           <i class="icono-arg-mi-argentina"></i>Mi Argentina</a>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+
+<script type="text/javascript">
+  var busqueda = document.getElementById('buscar');
+  var buscar = document.getElementById('buscar-btn');
+  buscar.onclick = function () {
+    var buscado = busqueda.value;
+    location.href = "http://www.argentina.gob.ar/buscar/" + buscado;
+  };
+  
+  //PONCHO LABS
+  var url_string = window.location.href;
+  var url = new URL(url_string);
+  var lab = url.searchParams.get("lab");
+  
+  
+  if(lab == ""){
+    $("head").append('<link href="/proyectos/poncho/css/poncho_lab.css" rel="stylesheet">');
+  }
+</script>
+
+    <main role="main">
+      <div class="container">
+  <ol class="breadcrumb">
+    <li><a href="">Argentina</a></li>
+    <li><a href="">Servicios</a></li>
+    <li><a href="">Documentación</a></li>
+    <li class="active">Obtención del Certificado Único de Discapacidad (CUD)</li>
+  </ol>
+
+  <section>
+    <div class="row">
+      <div class="col-md-12 m-b-2">
+        <h1>Obtención del Certificado Único de Discapacidad (CUD)</h1>
+        <p class="lead">Si cambiaste el domicilio, perdiste el documento, te lo robaron o se te estropeó, sacá uno nuevo. Hacelo antes del 1 de agosto si tenés el viejo DNI verde, Libreta Cívica o de Enrolamiento y menos de 75 años.</p>  
+        <div>
+          <span class="ribbon"><i class="fa fa-clock-o text-arandano"></i> 3 horas apróximadamente</span>
+          <span class="ribbon"><i class="fa fa-usd text-arandano"></i> Gratuito</span>
+          <span class="ribbon"><i class="fa fa-desktop text-arandano"></i> 100% digital</span>
+          <span class="ribbon"><i class="fa fa-map-marker text-arandano"></i> Ministerio de Salud</span>
+        </div> 
+        <hr>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-8">
+        <article>
+          <div class="row">
+            <div class="col-md-12">
+              <p>Las Declaraciones Juradas permiten detectar incompatibilidades en la tarea pública, ya sea porque un funcionario acumula cargos o porque sus intereses privados afectan el cumplimiento de sus de beres públicos (conflictos de intereses).</p>
+              <p class="m-b-2">Al comparar los datos económico-ﬁnancieros de declaraciones juradas de períodos anteriores, podés descubrir eventuales enriquecimientos ilícitos.</p>
+
+              <div class="media m-y-4">
+                <div class="media-left hidden-xs">
+                  <i class="text-secondary fa fa-user fa-fw fa-2x" aria-hidden="true"></i>
+                </div>
+                <div class="media-body">
+                  <i class="text-secondary fa fa-user fa-fw fa-2x visible-xs-inline pull-left" aria-hidden="true"></i>
+                  <h4 class="m-t-0 clearfix">¿A quién está dirigido? </h4>
+
+                  <p class="m-b-0 clearfix"><strong>Lo pueden tramitar vos o tu tutor responsable</strong> y para eso hay que pedir un turno para la evaluación de una Junta Interdisciplinaria, que determinará si tu caso entra o no dentro de lo contemplado por las leyes 22.431 y 24.901.</p>
+                </div>
+              </div>
+
+              <div class="media m-y-4">
+                <div class="media-left hidden-xs">
+                  <i class="text-secondary fa fa-list-ul fa-fw fa-2x" aria-hidden="true"></i>
+                </div>
+                <div class="media-body">
+                  <i class="text-secondary fa fa-list-ul fa-fw fa-2x visible-xs-inline pull-left" aria-hidden="true"></i>
+                  <h4 class="m-t-0 m-b-2">¿Qué documentación necesito? </h4>
+
+                  <div class="media clearfix">
+                    <div class="media-left">
+                      <i class="text-success fa fa-check fa-fw fa-2x" aria-hidden="true"></i>
+                    </div>
+                    <div class="media-body">
+                      <p class="m-b-0"><strong><a href="renovar-dni.html">Documento de Identidad</a></strong>, original y copia.</p>
+                    </div>
+                  </div>   
+                  <div class="media">
+                    <div class="media-left">
+                      <i class="text-success fa fa-check fa-fw fa-2x" aria-hidden="true"></i>
+                    </div>
+                    <div class="media-body">
+                      <p class="m-b-0">Una vez analizada la información, <strong>la Junta te otorgará un turno para que te presentes en esa fecha</strong>.</p>
+                    </div>
+                  </div>
+                  <div class="media">
+                    <div class="media-left">
+                      <i class="text-success fa fa-check fa-fw fa-2x" aria-hidden="true"></i>
+                    </div>
+                    <div class="media-body">
+                      <p class="m-b-0">La Junta se expide y si el caso corresponde <strong>se entrega el CUD</strong>  en el día, o en la fecha que te indiquen allí.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="page-break"></div>
+              <div class="media m-y-4">
+                <div class="media-left hidden-xs">
+                  <i class="text-secondary fa fa-list-ol fa-fw fa-2x" aria-hidden="true"></i>
+                </div>
+                <div class="media-body">
+                  <i class="text-secondary fa fa-list-ol fa-fw fa-2x visible-xs-inline pull-left" aria-hidden="true"></i>
+                  <h4 class="m-t-0 m-b-3">¿Cómo hago? </h4>
+
+                  <div class="steps clearfix">
+                    <div class="step">
+                      <div>
+                        <div class="circle">1</div>
+                        <div class="line"></div>
+                      </div>
+                      <div>
+                        <div class="description"><p class="m-b-0"><strong>Con toda la toda la documentación necesaria, acercarte a la sede de la Junta Evaluadora que te corresponda</strong>, de acuerdo con la dirección que figura en tu DNI.</p></div>
+                      </div>
+                    </div>
+                    <div class="step">
+                      <div>
+                        <div class="circle">2</div>
+                        <div class="line"></div>
+                      </div>
+                      <div>
+                        <div class="description"><p class="m-b-0">Una vez analizada la información, <strong>la Junta te otorgará un turno para que te presentes en esa fecha.</strong></p></div>
+                      </div>
+                    </div>
+                    <div class="step">
+                      <div>
+                        <div class="circle">3</div>
+                      </div>
+                      <div>
+                        <div class="description"><p class="m-b-0">La Junta se expide y si el caso corresponde <strong>se entrega el CUD</strong> en el día, o en la fecha que te indiquen allí.</p></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <p class="alert alert-warning"><strong>En caso de extravío o robo</strong> del CUD, deberá iniciar el trámite nuevamente y presentar la denuncia policial por extravío o robo del documento público. <strong>En caso de vencimiento</strong> podrá solicitar una nueva evaluación. </p>
+
+              <div class="media m-y-4">
+                <div class="media-left hidden-xs">
+                  <i class="text-secondary fa fa-clock-o fa-fw fa-2x" aria-hidden="true"></i>
+                </div>
+                <div class="media-body">
+                  <i class="text-secondary fa fa-clock-o fa-fw fa-2x visible-xs-inline pull-left" aria-hidden="true"></i>
+                  <h4 class="m-t-0 m-b-2">¿Cuánto tiempo toma hacer el trámite?</h4>
+
+                  <p class="clearfix m-b-0">El trámite toma <strong>3 horas</strong>.</p>
+                </div>
+              </div>
+
+              <div class="media m-y-4">
+                <div class="media-left hidden-xs">
+                  <i class="text-secondary fa fa-dollar fa-fw fa-2x" aria-hidden="true"></i>
+                </div>
+                <div class="media-body">
+                  <i class="text-secondary fa fa-dollar fa-fw fa-2x visible-xs-inline pull-left" aria-hidden="true"></i>
+                  <h4 class="m-t-0 m-b-2">¿Cuál es el costo del trámite?</h4>
+                  
+                  <p class="clearfix"><strong class="lead">$125</strong><br>Menores de 13 años con ascendencia en júpiter.</p>
+                  <p><strong class="lead">$350</strong><br>Mayores de 34 años.</p>
+                </div>
+              </div>
+              <div class="page-break"></div>
+              <div class="media m-y-4">
+                <div class="media-left hidden-xs">
+                  <i class="text-secondary fa fa-calendar-o fa-fw fa-2x" aria-hidden="true"></i>
+                </div>
+                <div class="media-body">
+                  <i class="text-secondary fa fa-calendar-o fa-fw fa-2x visible-xs-inline pull-left" aria-hidden="true"></i>
+                  <h4 class="m-t-0 m-b-2">Vigencia</h4>
+
+                  <p class="clearfix"><strong class="lead">1 mes</strong><br>Menores de 13 años con ascendencia en júpiter.</p>
+                  <p><strong class="lead">3 años</strong><br>Mayores de 34 años.</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+
+        </article>
+
+        <div class="row">
+          <div class="col-sm-12 text-center">
+            <div class="panel panel-default panel-disabled">
+              <div class="panel-body">
+                <p class="hidden-xs hidden-sm"><a class="btn btn-success" href="#"> obtener turno en línea</a></p>
+                <p class="hidden-md hidden-lg"><a class="btn btn-success btn-block" href="#"> obtener turno en línea</a></p>
+                <p><a href="#"> Consultar el estado del trámite</a></p>
+                <p><a href="#"> Consultas al 0800-333-8547</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <hr class="hidden-xs">
+        <div class="row">
+          <div class="section-actions col-md-12 social-share">
+            <p>Compartí <br>esta página</p>
+            <ul class="list-inline">
+              <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+              <li><a href="#"><i class="fa fa-twitter "></i></a></li>
+              <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+              <li><a href="#"><i class="fa fa-print"></i></a></li>
+              <li><a href="#"><i class="fa fa-envelope-o"></i></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="row">
+          <div class="col-xs-12 col-md-11 col-md-offset-1">
+            
+            <div class="row hidden-xs hidden-sm">
+              <div class="col-sm-offset-2 col-sm-8 col-md-offset-0 col-md-12">
+                <div class="panel panel-default panel-disabled">
+                  <div class="panel-body text-center">
+                    <p><a class="btn btn-success btn-block" href="#"> obtener turno en línea</a></p>
+                    <p><a href="#"> Consultar el estado del trámite</a></p>
+                    <p><a href="#"> Consultas al 0800-333-8547</a></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <hr>
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <h4>Trámites relacionados</h4>
+                  </div>
+                  <div class="col-xs-12 col-sm-6 col-md-12">
+                    <h5><a href="">Seguir el estado de trámite del DNI </a></h5>
+                    <p>Si ya iniciaste el trámite para renovar, reemplazar o actualizar tu DNI, podés hacer el seguimiento en línea, con el número de tu documento o el de la constancia que te entregaron en ese momento (boleta prenumerada de 26 dígitos). </p>
+                  </div>
+                  <div class="col-xs-12 col-sm-6 col-md-12">  
+                    <h5><a href="">Certificación negativa de ANSES </a></h5>
+                    <p>Si para obtener una beca o subsidio, te pidieron un comprobante de que no estás recibiendo ningún aporte o beneﬁcio de ANSES (jubilación, pensión, plan, programa, etc.), podés tramitar esta certiﬁcación desde aquí. </p>
+                  </div>
+                </div>
+
+                <hr>
+                <div class="page-break"></div>
+                <div class="page-break"></div>
+                <div class="page-break"></div>
+                <h4>Descargas</h4>
+
+                <div class="row">
+                  <div class="col-xs-12 col-sm-6 col-md-12">
+                    <h5>Nombre del archivo </h5>
+                    <p>Descripción del archivo </p>
+                    <p><a class="btn btn-primary btn-sm"><i class="fa fa-download"></i>&nbsp; Descargar</a></p>
+                  </div>
+                  <div class="col-xs-12 col-sm-6 col-md-12">  
+                    <h5>Nombre del archivo con descripción que abarca dos líneas </h5>
+                    <p>Descripción del archivo </p>
+                    <p><a class="btn btn-primary btn-sm"><i class="fa fa-download"></i>&nbsp; Descargar</a></p>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+    </main>
+    <footer class="main-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6">
+        <img class="image-responsive" alt="Argentina.gob.ar - Presidencia de la Nación" src="img/argentinagob.svg" height="50">
+        <p class="text-muted small"><a href="https://creativecommons.org/licenses/by/2.5/ar/">Los contenidos de Argentina.gob.ar están licenciados bajo Creative Commons Reconocimiento 2.5 Argentina License</a></p>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <ul>
+          <li><a href="/servicios">Trámites y servicios</a></li>
+          <li><a href="/turnos">Turnos</a></li>
+          <li><a href="/organismos">Organismos del Estado</a></li>
+          <li><a href="http://mapadelestado.modernizacion.gob.ar/" target="_blank" aria-label="Mapa del Estado - Sitio Externo">Mapa del Estado</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <ul>
+          <li><a href="/acerca">Acerca de este sitio</a></li>
+          <li><a href="/terminos-y-condiciones">Términos y condiciones</a></li>
+          <li><a href="/ayuda">Ayuda</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
+    
+  </body>
+</html>

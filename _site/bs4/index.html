@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="es" class="bg-white">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../favicon.ico">
+
+    <title>Poncho BS4 - Prueba</title>
+
+    <!-- Archivos: Fuente, Poncho+BS4, Íconos Font Awesome, Íconos Poncho -->
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <link href="bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://argob.github.io/poncho/node_modules/argob-poncho/dist/icono-arg.css">
+
+    <!-- 
+    <link href="https://fonts.googleapis.com/css?family=Encode+Sans:300,400,600,700&display=swap" rel="stylesheet">
+    <style>body {font-family: 'Encode Sans', sans-serif;}h1, h2, h3, h4, h5, .h1, .h2, .h3, .h4, .h5, .btn {font-weight:700 !important;}</style>
+    -->
+
+    <!-- 
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,600,600i,700,700i&display=swap" rel="stylesheet" rel="stylesheet">
+    <style>body {font-family: 'Source Sans Pro', sans-serif;}h1, h2, h3, h4, h5, .h1, .h2, .h3, .h4, .h5, .btn {font-weight:700 !important;}</style>
+    -->
+
+  </head>
+
+  <body>
+
+    <a class="sr-only sr-only-focusable" href="#main">Saltear navegación</a>
+
+    <nav class="navbar navbar-expand-md navbar-poncho bg-white ">
+
+      <div class="container">
+
+        <button class="navbar-toggler text-primary" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"><i class="fa fa-navicon pt-1"><span class="sr-only">Menú</span></i></span>
+        </button>
+
+        <a class="navbar-brand font-weight-bold ml-sm-2" href="#">Poncho BS4</a>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Inicio <span class="sr-only">(página actual)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Enlace</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" href="#">Deshabilitado</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Desplegable</a>
+              <div class="dropdown-menu" aria-labelledby="dropdown01">
+                <a class="dropdown-item" href="#">Acción</a>
+                <a class="dropdown-item" href="#">Otra acción</a>
+                <a class="dropdown-item" href="#">Otra cosa</a>
+              </div>
+            </li>
+          </ul>
+
+          <form class="form-inline my-2">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Buscar..." aria-label="Buscar..." aria-describedby="basic-addon2">
+              <div class="input-group-append">
+                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit"><i class="fa fa-search"><span class="sr-only">Buscar</span></i></button>
+              </div>
+            </div>
+          </form>
+
+        </div>
+
+      </div>
+
+    </nav>
+
+    <main role="main" id="main" class="pb-5">
+
+      <!-- Jumbotron -->
+
+      <div class="jumbotron jumbotron-poncho bg-dark text-white text-center rounded-0 py-5 mb-5" style="background-image: url(https://www.argentina.gob.ar/sites/default/files/jumbotron-poncho.png);">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-8">
+                <h1>Poncho Bootstrap 4</h1>
+                <p>La librería de estilos y componentes oficiales para diseñar y desarrollar sitios web y aplicaciones móviles del Gobierno de la República Argentina.</p>
+                <p><a class="btn btn-primary" href="#" role="button">Descargar Poncho</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="overlay"></div>
+      </div>
+
+      <!-- Fin Jumbotron -->
+
+      <div class="container">
+
+        <!-- Listado de tarjetas -->
+
+        <div class="row mb-5">
+
+          <div class="col-12">
+
+            <h2 class="mb-4">Listado de tarjetas</h2>
+          
+            <div class="card-deck">
+
+              <div class="card mb-4">
+                <img class="card-img-top img-fluid" src="https://www.argentina.gob.ar/sites/default/files/styles/listado/public/imagenAtajo/dni_digital_destacado_home_1.png" alt="Descripción de imagen">
+                <div class="card-body">
+                  <p class="h5 card-title">Contenido 1</p>
+                  <p class="card-text">Este es un ejemplo de bajada para este contenido. El largo del texto puede variar.</p>
+                  <a href="#" class="card-link stretched-link">Ver contenido 1</a>
+                </div>
+              </div>
+
+              <div class="card mb-4">
+                <img class="card-img-top img-fluid" src="https://www.argentina.gob.ar/sites/default/files/styles/listado/public/imagenAtajo/dni_digital_destacado_home_1.png" alt="Descripción de imagen">
+                <div class="card-body">
+                  <p class="h5 card-title">Contenido 2 pero título más largo</p>
+                  <p class="card-text">Este es un ejemplo de bajada para este contenido.</p>
+                  <a href="#" class="card-link stretched-link">Ver contenido 2</a>
+                  </div>
+              </div>
+
+              <div class="w-100 d-none d-sm-block d-md-none"><!-- wrap every 2 on sm--></div>
+              <div class="w-100 d-none d-md-block d-lg-none"><!-- wrap every 4 on md--></div>
+              <div class="card mb-4">
+                <img class="card-img-top img-fluid" src="https://www.argentina.gob.ar/sites/default/files/styles/listado/public/imagenAtajo/dni_digital_destacado_home_1.png" alt="Descripción de imagen">
+                <div class="card-body">
+                  <p class="h5 card-title">Contenido 3</p>
+                  <p class="card-text">Este es un ejemplo de bajada para este contenido. El largo del texto puede variar.</p>
+                  <a href="#" class="card-link stretched-link">Ver contenido 3</a>
+                </div>
+              </div>
+
+              <div class="card mb-4">
+                <img class="card-img-top img-fluid" src="https://www.argentina.gob.ar/sites/default/files/styles/listado/public/imagenAtajo/dni_digital_destacado_home_1.png" alt="Descripción de imagen">
+                <div class="card-body">
+                  <p class="h5 card-title">Contenido 4</p>
+                  <p class="card-text">Este es un ejemplo de bajada para este contenido. El largo del texto puede variar y ser más largo que en otras tarjetas.</p>
+                  <a href="#" class="card-link stretched-link">Ver contenido 4</a>
+                </div>
+              </div>
+
+              <div class="w-100 d-none d-sm-block d-md-none"><!-- wrap every 2 on sm--></div>
+              <div class="w-100 d-none d-md-block d-lg-none"><!-- wrap every 4 on md--></div>
+              <div class="w-100 d-none d-lg-block d-xl-none"><!-- wrap every 4 on lg--></div>
+              <div class="w-100 d-none d-xl-block"><!-- wrap every 5 on xl--></div>
+
+              <div class="card mb-4">
+                  <img class="card-img-top img-fluid" src="https://www.argentina.gob.ar/sites/default/files/styles/listado/public/imagenAtajo/dni_digital_destacado_home_1.png" alt="Descripción de imagen">
+                  <div class="card-body">
+                    <p class="h5 card-title">Contenido 1</p>
+                    <p class="card-text">Este es un ejemplo de bajada para este contenido. El largo del texto puede variar.</p>
+                    <a href="#" class="card-link stretched-link">Ver contenido 1</a>
+                  </div>
+                </div>
+
+                <div class="card mb-4">
+                  <img class="card-img-top img-fluid" src="https://www.argentina.gob.ar/sites/default/files/styles/listado/public/imagenAtajo/dni_digital_destacado_home_1.png" alt="Descripción de imagen">
+                  <div class="card-body">
+                    <p class="h5 card-title">Contenido 2 pero título más largo</p>
+                    <p class="card-text">Este es un ejemplo de bajada para este contenido.</p>
+                    <a href="#" class="card-link stretched-link">Ver contenido 2</a>
+                    </div>
+                </div>
+
+                <div class="w-100 d-none d-sm-block d-md-none"><!-- wrap every 2 on sm--></div>
+                <div class="w-100 d-none d-md-block d-lg-none"><!-- wrap every 4 on md--></div>
+
+                <div class="card mb-4">
+                  <img class="card-img-top img-fluid" src="https://www.argentina.gob.ar/sites/default/files/styles/listado/public/imagenAtajo/dni_digital_destacado_home_1.png" alt="Descripción de imagen">
+                  <div class="card-body">
+                    <p class="h5 card-title">Contenido 3</p>
+                    <p class="card-text">Este es un ejemplo de bajada para este contenido. El largo del texto puede variar.</p>
+                    <a href="#" class="card-link stretched-link">Ver contenido 3</a>
+                  </div>
+                </div>
+
+                <div class="card mb-4">
+                  <img class="card-img-top img-fluid" src="https://www.argentina.gob.ar/sites/default/files/styles/listado/public/imagenAtajo/dni_digital_destacado_home_1.png" alt="Descripción de imagen">
+                  <div class="card-body">
+                    <p class="h5 card-title">Contenido 4</p>
+                    <p class="card-text">Este es un ejemplo de bajada para este contenido. El largo del texto puede variar y ser más largo que en otras tarjetas.</p>
+                    <a href="#" class="card-link stretched-link">Ver contenido 4</a>
+                  </div>
+                </div>
+
+                <div class="w-100 d-none d-sm-block d-md-none"><!-- wrap every 2 on sm--></div>
+                <div class="w-100 d-none d-md-block d-lg-none"><!-- wrap every 4 on md--></div>
+                <div class="w-100 d-none d-lg-block d-xl-none"><!-- wrap every 4 on lg--></div>
+                <div class="w-100 d-none d-xl-block"><!-- wrap every 5 on xl--></div>
+  
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Fin de Listado de tarjetas -->
+
+        <!-- Listado de tarjetas horizontales -->
+
+        <div class="row mb-5">
+
+            <div class="col-12">
+  
+              <h2 class="mb-4">Listado de tarjetas horizontales</h2>
+            
+              <div class="card-deck">
+  
+                <div class="card mb-4">
+                  <div class="card-body">
+                    <i class="fa fa-users fa-3x text-primary float-left"></i>
+                    <div class="card-horizontal-content">
+                      <p class="h5 card-title">Contenido horizontal 1</p>
+                      <p class="card-text">Este es un ejemplo de bajada para este contenido. El largo del texto puede variar.</p>
+                      <a href="#" class="card-link stretched-link">Ver contenido horizontal 1</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="w-100 d-none d-sm-block d-md-none"><!-- wrap every 2 on sm--></div>
+                <div class="w-100 d-none d-md-block d-lg-none"><!-- wrap every 4 on md--></div>
+
+                <div class="card mb-4">
+                  <div class="card-body">
+                    <i class="fa fa-users fa-3x text-primary float-left"></i>
+                    <div class="card-horizontal-content">
+                      <p class="h5 card-title">Contenido horizontal 1</p>
+                      <p class="card-text">Este es un ejemplo de bajada para este contenido. El largo del texto puede variar.</p>
+                      <a href="#" class="card-link stretched-link">Ver contenido horizontal 1</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="w-100 d-none d-sm-block d-md-none"><!-- wrap every 2 on sm--></div>
+                <div class="w-100 d-none d-md-block d-lg-none"><!-- wrap every 4 on md--></div>
+
+                <div class="card mb-4">
+                  <div class="card-body">
+                    <i class="fa fa-users fa-3x text-primary float-left"></i>
+                    <div class="card-horizontal-content">
+                      <p class="h5 card-title">Contenido horizontal 1</p>
+                      <p class="card-text">Este es un ejemplo de bajada para este contenido. El largo del texto puede variar.</p>
+                      <a href="#" class="card-link stretched-link">Ver contenido horizontal 1</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="w-100 d-none d-sm-block d-md-none"><!-- wrap every 2 on sm--></div>
+                <div class="w-100 d-none d-md-block d-lg-none"><!-- wrap every 4 on md--></div>
+                <div class="w-100 d-none d-lg-block d-xl-none"><!-- wrap every 4 on lg--></div>
+                <div class="w-100 d-none d-xl-block"><!-- wrap every 5 on xl--></div>
+
+                <div class="card mb-4">
+                  <div class="card-body">
+                    <i class="fa fa-users fa-3x text-primary float-left"></i>
+                    <div class="card-horizontal-content">
+                      <p class="h5 card-title">Contenido horizontal 1</p>
+                      <p class="card-text">Este es un ejemplo de bajada para este contenido. El largo del texto puede variar.</p>
+                      <a href="#" class="card-link stretched-link">Ver contenido horizontal 1</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="w-100 d-none d-sm-block d-md-none"><!-- wrap every 2 on sm--></div>
+                <div class="w-100 d-none d-md-block d-lg-none"><!-- wrap every 4 on md--></div>
+  
+                <div class="card mb-4">
+                  <div class="card-body">
+                    <i class="fa fa-users fa-3x text-primary float-left"></i>
+                    <div class="card-horizontal-content">
+                      <p class="h5 card-title">Contenido horizontal 1</p>
+                      <p class="card-text">Este es un ejemplo de bajada para este contenido. El largo del texto puede variar.</p>
+                      <a href="#" class="card-link stretched-link">Ver contenido horizontal 1</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="w-100 d-none d-sm-block d-md-none"><!-- wrap every 2 on sm--></div>
+                <div class="w-100 d-none d-md-block d-lg-none"><!-- wrap every 4 on md--></div>
+
+                <div class="card mb-4">
+                  <div class="card-body">
+                    <i class="fa fa-users fa-3x text-primary float-left"></i>
+                    <div class="card-horizontal-content">
+                      <p class="h5 card-title">Contenido horizontal 1</p>
+                      <p class="card-text">Este es un ejemplo de bajada para este contenido. El largo del texto puede variar.</p>
+                      <a href="#" class="card-link stretched-link">Ver contenido horizontal 1</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="w-100 d-none d-sm-block d-md-none"><!-- wrap every 2 on sm--></div>
+                <div class="w-100 d-none d-md-block d-lg-none"><!-- wrap every 4 on md--></div>
+                <div class="w-100 d-none d-lg-block d-xl-none"><!-- wrap every 4 on lg--></div>
+                <div class="w-100 d-none d-xl-block"><!-- wrap every 5 on xl--></div>
+    
+              </div>
+  
+            </div>
+  
+          </div>
+  
+        <!-- Fin de Listado de tarjetas horizontales -->
+
+        <hr class="mb-5">
+
+        <!-- Texto centrado -->
+
+        <div class="row justify-content-center text-center mb-5">
+          <div class="col-8">
+            <h2 class="mb-4">Texto centrado</h2>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odio temporibus corporis neque perferendis, porro quasi! Quo commodi dolorem reprehenderit hic impedit necessitatibus, omnis beatae adipisci illo itaque. Iste, veritatis incidunt?</p>
+          </div>
+        </div>
+
+        <!-- Fin de Texto centrado -->
+
+        <!-- Listado de items -->      
+
+        <div class="row text-center">
+
+          <div class="col-12">
+            <h2 class="mb-5">Listado de items</h2>
+          </div>
+
+          <div class="col-md-4 col-xs-12 mb-5">
+            <i class="fa fa-users fa-4x mb-4 text-primary"></i>
+            <p class="h5 mb-3">Tema destacado 1</p>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odio temporibus corporis neque perferendis, porro quasi!</p>
+            <a href="#">Ver destacado 1</a>
+          </div>
+
+          <div class="col-md-4 col-xs-12 mb-5">
+            <i class="fa fa-users fa-4x mb-4 text-primary"></i>
+            <p class="h5 mb-3">Tema destacado 2</p>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odio temporibus corporis neque perferendis, porro quasi!</p>
+            <a href="#">Ver destacado 2</a>
+          </div>
+
+          <div class="col-md-4 col-xs-12 mb-5">
+            <i class="fa fa-users fa-4x mb-4 text-primary"></i>
+            <p class="h5 mb-3">Tema destacado 3</p>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odio temporibus corporis neque perferendis, porro quasi!</p>
+            <a href="#">Ver destacado 3</a>
+          </div>
+
+        </div>
+
+        <!-- Fin de Listado de items -->
+
+        <hr class="mb-5">
+
+        <!-- Listado de items horizontales -->      
+
+        <div class="row">
+
+          <div class="col-12">
+            <h2 class="mb-5">Listado de items horizontales</h2>
+          </div>
+  
+          <div class="col-md-4 col-xs-12 mb-5">
+            <i class="fa fa-users fa-3x text-primary float-left"></i>
+            <div class="card-horizontal-content">
+              <p class="h5 mb-3">Tema destacado 1</p>
+              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odio temporibus corporis neque perferendis, porro quasi!</p>
+              <a href="#">Ver destacado 1</a>
+            </div>
+          </div>
+  
+          <div class="col-md-4 col-xs-12 mb-5">
+            <i class="fa fa-users fa-3x text-primary float-left"></i>
+            <div class="card-horizontal-content">
+              <p class="h5 mb-3">Tema destacado 1</p>
+              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odio temporibus corporis neque perferendis, porro quasi!</p>
+              <a href="#">Ver destacado 1</a>
+            </div>
+          </div>
+  
+          <div class="col-md-4 col-xs-12 mb-5">
+            <i class="fa fa-users fa-3x text-primary float-left"></i>
+            <div class="card-horizontal-content">
+              <p class="h5 mb-3">Tema destacado 1</p>
+              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odio temporibus corporis neque perferendis, porro quasi!</p>
+              <a href="#">Ver destacado 1</a>
+            </div>
+          </div>
+  
+        </div>
+  
+        <!-- Fin de Listado de items horizontales -->
+
+        <hr class="mb-5">
+
+        <!-- Imagenes con texto a la derecha -->
+
+        <div class="row justify-content-center mb-5">
+          <div class="col-8">
+
+            <div class="row">
+              <div class="col-12">
+                <h2 class="mb-5">Imagenes con texto a la derecha</h2>
+              </div>
+            </div>     
+            
+            <div class="row mb-4">
+              <div class="col-4">
+                <img class="img-fluid" src="https://www.argentina.gob.ar/sites/default/files/styles/listado/public/imagenAtajo/dni_digital_destacado_home_1.png" alt="Descripción de imagen">
+              </div>
+              <div class="col-8">
+                <p class="h5 mb-3">Texto a la derecha 1</p>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odio temporibus corporis neque perferendis, porro quasi! Quo commodi dolorem reprehenderit hic impedit necessitatibus, omnis beatae adipisci illo itaque. Iste, veritatis incidunt?</p>
+              </div>
+            </div>
+    
+            <div class="row mb-4">
+              <div class="col-4">
+                <img class="img-fluid" src="https://www.argentina.gob.ar/sites/default/files/styles/listado/public/imagenAtajo/dni_digital_destacado_home_1.png" alt="Descripción de imagen">
+              </div>
+              <div class="col-8">
+                <p class="h5 mb-3">Texto a la derecha 2</p>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odio temporibus corporis neque perferendis, porro quasi! Quo commodi dolorem reprehenderit hic impedit necessitatibus, omnis beatae adipisci illo itaque. Iste, veritatis incidunt?</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Fin de Imagenes con texto a la derecha -->
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+
+    </main>
+
+    <footer class="bg-white py-5">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <p>Poncho BS4 - 2020</p>
+          </div>
+          <div class="col">
+            <p><a href="#">Link 1</a></p>
+            <p><a href="#">Link 2</a></p>
+            <p><a href="#">Link 3</a></p>
+          </div>
+          <div class="col">
+            <p><a href="#">Link 4</a></p>
+            <p><a href="#">Link 5</a></p>
+            <p><a href="#">Link 6</a></p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Archivos: Jquery, Bootstrap.js -->
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="bootstrap.min.js"></script>
+
+  </body>
+</html>
