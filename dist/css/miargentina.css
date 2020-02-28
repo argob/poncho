@@ -2175,3 +2175,6 @@ body.id-v5 label {
 	speak: none;
 }
 
+.logo-width {
+	max-width: 250px;
+}
