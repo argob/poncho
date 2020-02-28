@@ -2111,7 +2111,8 @@ body.id-v5 .nav.navbar-nav img {
     body.id-v5 main {
         margin: 0 -20px;
 	}
-	body.id-v5 .navbar img {
+	body.id-v5 .logo-header-width,
+	body.id-v5 .logo-footer-width, {
 		width: 90%;
 	}
 }
@@ -2175,6 +2176,10 @@ body.id-v5 label {
 	speak: none;
 }
 
-.logo-width {
+.logo-header-width {
+	max-width: 280px;
+}
+
+.logo-footer-width {
 	max-width: 250px;
 }
