@@ -2171,5 +2171,7 @@ body.id-v5 label {
 	margin-bottom: 10px !important;
 }
 
-
+.speaknone {
+	speak: none;
+}
 
