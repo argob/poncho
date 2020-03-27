@@ -1,7 +1,7 @@
 .sass-cache
 
 # Mac files
-.DS_Store
+*/.DS_Store
 
 src/_site
 node_modules
