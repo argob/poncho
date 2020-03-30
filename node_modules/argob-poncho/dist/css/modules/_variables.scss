@@ -1,0 +1,64 @@
+//== Colors
+//
+//## Gray and brand colors for use across Bootstrap.
+
+$white:                  #fff !default;
+$black:                  #333333 !default;
+$gray-base:              #333333 !default;
+
+$gray:                   #707070;
+$gray-dark:              #444444;
+$gray-border:            #DEE2E6;
+$gray-hover:             #e9e9e9;
+$gray-hover-light:       #f0f0f0;
+$gray-background:        #F2F3F4;
+$gray-light:             #DEE2E6;
+$gray-lighter:           #E5EAEB;
+
+$brand-default:         #838383 !default;
+$brand-primary:         #0072bb !default;
+$brand-primary-alt:     #0072bb !default;
+$brand-secondary:       #2897D4 !default;
+$brand-complementary:   #EF5350 !default;
+$brand-success:         #2e7d33 !default;
+$brand-info:            #2897D4 !default;
+$brand-warning:         #f9a822 !default;
+$brand-danger:          #c62828 !default;
+
+
+
+$brand-fucsia:          #EC407A !default;
+$brand-arandano:        #C2185B !default;
+$brand-uva:             #6A1B99 !default;
+$brand-cielo:           #039BE5 !default;
+$brand-verdin:          #6EA100 !default;
+$brand-lima:            #CDDC39 !default;
+$brand-maiz:            #FFCE00 !default;
+$brand-tomate:          #EF5350 !default;
+$brand-naranja:         #EF6C00 !default;
+$brand-verde-azulado:   #008388 !default;
+
+
+//== Scaffolding
+//
+//## Settings for some of the most global styles.
+
+//** Background color for `<body>`.
+$body-bg:               #F2F3F4 !default;
+//** Global text color on `<body>`.
+$text-color:            $gray-base !default;
+
+//** Global textual link color.
+$link-color:            $brand-primary !default;
+//** Link hover color set via `darken()` function.
+$link-hover-color:      $brand-uva;
+//** Link hover decoration.
+$link-visited: #6A1B99 !default;
+
+$dark-opacity: rgba(0, 0, 0, .5);
+$dark-opacity-IE: progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000,endColorstr=#99000000);
+
+$shadow: 0 2px 2px rgba(0, 0, 0, .2);
+
+$font-family-serif: 'Droid Serif', serif;
+$font-family-sans-serif: 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;

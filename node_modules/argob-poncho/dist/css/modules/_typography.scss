@@ -1,0 +1,265 @@
+body {
+  font-family: $font-family-sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  font-weight: 600;
+  margin: .5em 0;
+
+  small,
+  .small {
+    color: $gray;
+  }
+
+  &.section-title {
+    color: $gray;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+}
+
+h1, .h1 {
+  font-size: 28px;
+
+
+  &.section-title {
+    font-size: 1.8em;
+  }
+}
+
+h2, .h2 {
+  font-size: 26px;
+
+  &.section-title {
+    font-size: 1.6em;
+  }
+}
+
+h3, .h3 {
+  font-size: 24px;
+
+  &.section-title {
+    font-size: 1.4em;
+  }
+}
+
+h4, .h4 {
+  font-size: 22px;
+
+  &.section-title {
+    font-size: 1.2em;
+  }
+}
+
+h5, .h5 {
+  font-size: 20px;
+
+  &.section-title {
+    font-size: 1em;
+  }
+}
+
+h6, .h6 {
+  font-size: 18px;
+
+  &.section-title {
+    font-size: 0.8em;
+  }
+}
+
+a {
+  color: $brand-primary;
+  font-weight: 500;
+  text-decoration: underline;
+  &:hover,
+  &:focus,
+  &:active {
+    color: $link-hover-color;
+    
+  }
+}
+
+main a:not(.btn) {
+  word-wrap: break-word;
+  word-break: break-word;
+}
+
+
+p, li, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, table tbody {
+
+  a {
+      text-decoration: underline;
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+    }
+  }  
+
+}
+
+
+
+p,
+ul,
+ol,
+p,
+table { font-weight: 400; }
+
+b, strong {
+    font-weight: 600;
+}
+
+.text-muted {
+  color: $gray;
+}
+.text-gray {
+  color: $gray-dark;
+}
+
+.lead {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.help-block{
+  font-size: 14px
+}
+
+
+.jumbotron {
+  p {
+    font-weight: 400;
+  }
+  h1 {
+    &.h1-sm {
+      font-size: 44px;
+    }
+  }
+}
+
+h2 {
+  &.h2-lg {
+    font-size: 4em;
+  }
+}
+
+h3 {
+  &.h3-lg {
+    font-size: 2.85em;
+  }
+}
+
+h4 {
+  &.h4-lg {
+    font-size: 2.3em;
+  }
+}
+
+article {
+  h1 {
+    &.icon {
+      font-size: 7em;
+      line-height: 0;
+      margin: 0;
+
+      &.aside {
+        line-height: 1.5;
+        text-align: center;
+        }
+      }
+
+    }
+}
+
+.row-color {
+  h3 {
+    color: $white;
+    font-size: 32px;
+    margin-top: 10px;
+  }
+}
+
+.content_format {
+  h2, h3, h4, h5, h6, .h2, .h3, .h4, .h5, .h6 {
+    margin-top: 2em;
+  }
+
+  .alert,
+  .well {
+    h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+      margin: .5em 0;
+    }
+  }
+
+  li {
+    margin: 0 0 15px;
+  }
+
+  .additional_data {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin-top: 10px;
+    }
+  }
+
+  .credits {
+    p {
+      color: $gray;
+      font-size: 13px;
+      line-height: 15px;
+      margin-top: 40px;
+    }
+  }
+
+}
+
+
+@media (min-width: 768px) {
+  p {
+    font-size: 16px;
+  }
+
+}
+@media (min-width: 992px) {
+  .jumbotron {
+    li {
+      font-size: 16px;
+
+      a {
+        font-weight: 400;
+      }
+    }
+  }
+  .lead {
+    font-size: 18px;
+  }
+
+  h1, .h1 {
+    font-size: 2.5em;
+  }
+  h2, .h2 {
+    font-size: 2.285714em;
+  }
+
+  h3, .h3 {
+    font-size: 2em;
+  }
+
+  h4, .h4 {
+    font-size: 1.714285em;
+  }
+
+  h5, .h5 {
+    font-size: 1.3em;
+  }
+
+  h6, .h6 {
+    font-size: 1em;
+  }
+}
