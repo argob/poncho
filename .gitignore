@@ -7,3 +7,4 @@ src/_site
 node_modules
 package.json
 readme.md
+dist/.DS_Store
