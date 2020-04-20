@@ -2,8 +2,8 @@
 /*!
  * Poncho v0.3.3 (https://github.com/argob/poncho)
  * Copyright 2016
- * Subsecretar├¡a de Gobierno Digital
- * Presidencia de la Naci├│n Argentina
+ * Subsecretaría de Gobierno Digital
+ * Presidencia de la Nación Argentina
  * Licenciado bajo MIT (https://github.com/argob/poncho/LICENSE)
  */
 /* Libraries */
@@ -112,7 +112,7 @@ aside section {
   background-color: #fff !important; }
 
 .bg-muted {
-  background-color: #707070 !important; }
+  background-color: #525252 !important; }
 
 .bg-fucsia {
   background-color: #EC407A !important; }
@@ -2647,7 +2647,7 @@ a.bg-danger {
   color: #fff !important; }
 
 .text-muted {
-  color: #707070 !important; }
+  color: #525252 !important; }
 
 .text-fucsia {
   color: #EC407A !important; }
@@ -2784,7 +2784,7 @@ dd {
   margin: 30px 0; }
 
 .credits p {
-  color: #707070;
+  color: #525252;
   font-family: "Roboto", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   font-size: 13px;
   line-height: 15px;
@@ -2882,7 +2882,7 @@ dd {
     -webkit-animation-iteration-count: infinite;
     animation: loader .6s linear;
     animation-iteration-count: infinite;
-    border-color: #707070 #F2F3F4 #F2F3F4;
+    border-color: #525252 #F2F3F4 #F2F3F4;
     border-radius: 600rem;
     border-style: solid;
     border-width: .2em;
@@ -3092,7 +3092,7 @@ dd {
 #clase11 {
   color: #000; }
 
-/* bot├│n mi argentina en header */
+/* botón mi argentina en header */
 header .btn i[class*="icono-arg"] {
   font-size: 1em;
   height: 22px;
@@ -3187,9 +3187,9 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   .h4 .small, .h5 small,
   .h5 .small, .h6 small,
   .h6 .small {
-    color: #707070; }
+    color: #525252; }
   h1.section-title, h2.section-title, h3.section-title, h4.section-title, h5.section-title, h6.section-title, .h1.section-title, .h2.section-title, .h3.section-title, .h4.section-title, .h5.section-title, .h6.section-title {
-    color: #707070;
+    color: #525252;
     font-weight: 600;
     text-transform: uppercase;
     margin-bottom: 24px; }
@@ -3251,7 +3251,7 @@ b, strong {
   font-weight: 600; }
 
 .text-muted {
-  color: #707070; }
+  color: #525252; }
 
 .text-gray {
   color: #444444; }
@@ -3317,7 +3317,7 @@ article h1.icon {
 .content_format .additional_data h6 {
   margin-top: 10px; }
 .content_format .credits p {
-  color: #707070;
+  color: #525252;
   font-size: 13px;
   line-height: 15px;
   margin-top: 40px; }
@@ -3393,7 +3393,7 @@ article h1.icon {
 
 .btn-inverse {
   background-color: #e9e9e9;
-  color: #707070; }
+  color: #525252; }
   .btn-inverse:hover, .btn-inverse:focus, .btn-inverse:active, .btn-inverse.active {
     background-color: #DEE2E6;
     color: #333333; }
@@ -3603,15 +3603,15 @@ span.btn:hover {
       line-height: 1.4;
       margin: 4px 0 4px 12px; }
       .navbar .navbar-brand h1 strong {
-        color: #707070; }
+        color: #525252; }
       .navbar .navbar-brand h1.brand-2-h1 {
-        color: #707070; }
+        color: #525252; }
         .navbar .navbar-brand h1.brand-2-h1 strong {
           color: #0072bb; }
     .navbar .navbar-brand.solo h1 {
       margin-top: .7em; }
   .navbar a.navbar-brand:hover h1 {
-    color: #707070; }
+    color: #525252; }
   .navbar .btn.btn-login {
     float: right; }
 
@@ -3632,7 +3632,7 @@ header .btn-group > .btn:first-child {
   line-height: 2.6; }
 
 .navbar-brand-2 h1 {
-  color: #707070; }
+  color: #525252; }
   .navbar-brand-2 h1 strong {
     color: #0072bb; }
 
@@ -3746,7 +3746,7 @@ header .btn-group > .btn:first-child {
     color: #0072bb;
     text-decoration: none; }
   .nav-news .active a, .nav-news .active a:hover, .nav-news .active a:focus {
-    background-color: #707070 !important;
+    background-color: #525252 !important;
     color: #fff;
     text-decoration: none !important; }
 
@@ -3775,7 +3775,7 @@ header .btn-group > .btn:first-child {
         display: inline-block;
         width: 80px;
         height: 80px;
-        background: #707070;
+        background: #525252;
         color: #fff;
         line-height: 2.5;
         font-size: 2em;
@@ -3785,7 +3785,7 @@ header .btn-group > .btn:first-child {
       .nav.nav-icons li a span {
         font-size: 16px;
         display: block;
-        color: #707070;
+        color: #525252;
         transition: color 0.2s; }
       .nav.nav-icons li a:hover, .nav.nav-icons li a:focus {
         background: none; }
@@ -3795,7 +3795,7 @@ header .btn-group > .btn:first-child {
           color: #444444; }
   .nav.nav-icons.nav-icons-selected li:not(.active):not(:hover) a:not(:focus) i {
     background: #CCC !important;
-    color: #707070 !important; }
+    color: #525252 !important; }
   .nav.nav-icons.nav-icons-selected li:not(.active) a:hover i,
   .nav.nav-icons.nav-icons-selected li:not(.active) a:focus i {
     opacity: 0.7;
@@ -3940,7 +3940,7 @@ header .btn-group > .btn:first-child {
       .main-footer li a:hover, .main-footer li a:focus {
         text-decoration: underline; }
   .main-footer h4 {
-    color: #707070; }
+    color: #525252; }
   .main-footer img.image-responsive {
     margin-bottom: 20px;
     max-width: 300px;
@@ -3966,7 +3966,7 @@ body.sticky-footer {
 .list-group-item {
   border: 0;
   border-bottom: solid 1px #DEE2E6;
-  color: #707070;
+  color: #525252;
   display: block;
   font-weight: 400;
   margin-bottom: 0;
@@ -4136,7 +4136,7 @@ a.list-group-item {
     .breadcrumb a:hover {
       color: #6A1B99; }
   .breadcrumb > li + li:before, .breadcrumb > .active {
-    color: #707070; }
+    color: #525252; }
 
 .section-actions {
   margin: 16px 0 24px; }
@@ -4178,7 +4178,7 @@ a.list-group-item {
 .pagination > .active > span,
 .pagination > .active > span:hover,
 .pagination > .active > span:focus {
-  background-color: #707070;
+  background-color: #525252;
   border-color: #0072bb;
   color: #F2F3F4;
   cursor: default;
@@ -4249,7 +4249,7 @@ figure {
     margin-bottom: 16px;
     max-width: 100%; }
   figure figcaption {
-    color: #707070;
+    color: #525252;
     margin-bottom: 24px;
     text-align: center; }
 
@@ -4258,7 +4258,7 @@ blockquote {
   margin: 32px;
   padding: 0; }
   blockquote cite {
-    color: #707070; }
+    color: #525252; }
   blockquote p {
     font-size: 22px !important;
     line-height: 1.3;
@@ -4266,7 +4266,7 @@ blockquote {
     margin-top: 8px; }
   blockquote small,
   blockquote footer {
-    color: #707070;
+    color: #525252;
     font-size: 16px;
     font-style: italic;
     margin-top: 10px; }
@@ -4280,20 +4280,20 @@ blockquote {
       blockquote.quote-highlighted p span.quotemark-open {
         position: absolute;
         left: -50px;
-        color: #707070;
+        color: #525252;
         font-size: 4em;
         font-style: normal;
         margin-top: -30px; }
       blockquote.quote-highlighted p span.quotemark-close {
         position: absolute;
         right: -40px;
-        color: #707070;
+        color: #525252;
         font-size: 4em;
         font-style: normal;
         margin-top: -50px; }
     blockquote.quote-highlighted small,
     blockquote.quote-highlighted footer {
-      color: #707070;
+      color: #525252;
       font-size: 20px;
       font-style: italic;
       margin-top: 10px; }
@@ -4505,7 +4505,7 @@ a.panel {
 .panel-icon.panel-gray .panel-heading {
   background-color: #E5EAEB; }
 .panel-icon.panel-muted .panel-heading {
-  background-color: #707070; }
+  background-color: #525252; }
 .panel-icon.panel-fucsia .panel-heading {
   background-color: #EC407A; }
 .panel-icon.panel-arandano .panel-heading {
@@ -4957,13 +4957,13 @@ select.input-sm {
     margin: 0; }
 
 input[type='text']::-webkit-input-placeholder {
-  color: #707070; }
+  color: #525252; }
 input[type='text']::-moz-placeholder {
-  color: #707070; }
+  color: #525252; }
 input[type='text']:-moz-placeholder {
-  color: #707070; }
+  color: #525252; }
 input[type='text']:-ms-input-placeholder {
-  color: #707070; }
+  color: #525252; }
 
 .form-complete input[type='text']::-webkit-input-placeholder {
   color: #333333; }
@@ -5074,13 +5074,13 @@ input[type='text']:-ms-input-placeholder {
   margin: 0;
   min-height: 32px; }
   .social-share p {
-    color: #707070;
+    color: #525252;
     float: left;
     line-height: 1.2;
     margin-bottom: 0;
     margin-top: 8px; }
   .social-share span {
-    color: #707070; }
+    color: #525252; }
   .social-share ul {
     float: left;
     margin: 5px 10px 5px 5px; }
@@ -5132,7 +5132,7 @@ input[type='text']:-ms-input-placeholder {
       float: left;
       list-style: none; }
   .social-btn .social-label {
-    color: #707070;
+    color: #525252;
     float: left;
     line-height: 1.3;
     margin: 3px 8px 0 0; }
@@ -5189,7 +5189,7 @@ input[type='text']:-ms-input-placeholder {
   .social-date h4 {
     position: relative;
     top: 7px;
-    color: #707070;
+    color: #525252;
     font-size: 14px;
     padding-left: 30px;
     text-align: right; }
@@ -5209,7 +5209,7 @@ input[type='text']:-ms-input-placeholder {
   -ms-hyphens: auto;
   hyphens: auto; }
   .table td small {
-    color: #707070;
+    color: #525252;
     font-weight: normal; }
   .table td.td-strong {
     font-size: 1.1em;
@@ -5218,7 +5218,7 @@ input[type='text']:-ms-input-placeholder {
     width: 8%; }
   .table td.message.empty {
     font-size: 1.4em;
-    color: #707070;
+    color: #525252;
     text-align: center;
     padding: 2em 0; }
 .table.table-align-middle td {
@@ -5861,5 +5861,3 @@ a.alert.alert-danger i {
 
   .text-lg-center {
     text-align: center !important; } }
-
-/*# sourceMappingURL=poncho.css.map */
