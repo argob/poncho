@@ -199,7 +199,7 @@
               "sInfoPostFix": "",
               "sSearch": "Buscar:",
               "sUrl": "",
-              "sInfoThousands": ",",
+              "sInfoThousands": ".",
               "sLoadingRecords": "Cargando...",
 
               "oPaginate": {
