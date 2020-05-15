@@ -46,8 +46,6 @@ hr.hr-sm {
 
 .element-invisible {
   position: absolute !important;
-  clip: rect(1px 1px 1px 1px);
-  /* IE6, IE7 */
   clip: rect(1px, 1px, 1px, 1px);
   overflow: hidden;
   height: 1px;
@@ -6042,7 +6040,7 @@ input[type=text]:-ms-input-placeholder {
   }
   table.table-responsive-poncho thead {
     border: none;
-    clip: rect(0 0 0 0);
+    clip: rect(0, 0, 0, 0);
     height: 1px;
     margin: -1px;
     overflow: hidden;
@@ -6817,4 +6815,4 @@ body .main-footer {
   }
 }
 
-/*# sourceMappingURL=pponcho.css.map */
+/*# sourceMappingURL=poncho.css.map */
