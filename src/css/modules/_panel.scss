@@ -359,6 +359,18 @@ a {
       background-color: $brand-tomate;
     }
   }
+	
+  &.panel-naranja {
+    .panel-heading {
+      background-color: $brand-naranja;
+    }
+  }
+
+  &.panel-verde-azulado {
+    .panel-heading {
+      background-color: $brand-verde-azulado;
+    }
+  }
 
 
 }

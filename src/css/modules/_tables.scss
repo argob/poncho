@@ -64,7 +64,7 @@
     display: none;
   }
 
-  @media only screen and (max-width: 767px), (min-device-width: 768px) and (max-device-width: 1024px)  {
+  @media only screen and (max-width: 767px), (min-width: 768px) and (max-width: 1024px)  {
 
     &.table-mobile {
       table, thead, tbody, th, td, tr {
