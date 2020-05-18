@@ -396,6 +396,9 @@ a {
 .panel-danger .panel-heading {
   background-color: $brand-danger;
 }
+.panel-info .panel-heading {
+  background-color: $brand-info;
+}
 
 .panel-border-primary {
   border-top: 8px solid rgba( $brand-primary, 1);

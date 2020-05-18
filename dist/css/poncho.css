@@ -4542,6 +4542,9 @@ a.panel {
 .panel-danger .panel-heading {
   background-color: #c62828; }
 
+.panel-info .panel-heading {
+  background-color: #2897D4; }
+
 .panel-border-primary {
   border-top: 8px solid #0072bb; }
 
