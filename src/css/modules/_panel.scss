@@ -274,6 +274,12 @@ a {
       background-color: $brand-primary;
     }
   }
+	
+  &.panel-info {
+    .panel-heading {
+      background-color: $brand-info;
+    }
+  }
 
   &.panel-secondary {
     .panel-heading {
