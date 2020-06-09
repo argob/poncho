@@ -19,3 +19,4 @@ node_modules
 package.json
 readme.md
 >>>>>>> eb48f9f968e8f140a460e4aa1af15642237ceb6b
+node_modules/argob-poncho/dist/.DS_Store
