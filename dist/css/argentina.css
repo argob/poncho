@@ -557,8 +557,8 @@ footer section section ul {
   margin-top: 0 !important;
 }
 
-main > section {
-  margin-top: -20px;
+main > div > div > div > div > section {
+  padding-top: 10px;
 }
 
 
