@@ -485,8 +485,6 @@ footer section section {
   padding: 0 0 30px 0 !important;
 }
 
-.navbar.navbar-top.state-search .navbar-nav.navbar-right .input-group {
-  width: none !important;}
 
 
 .jumbotron .jumbotron_bar .breadcrumb, .pane-page-breadcrumb .breadcrumb {
@@ -500,10 +498,10 @@ footer section section {
 }
 
 @media screen and (max-width: 767px) {
-  .navbar.navbar-top.state-search .navbar-nav.navbar-right .input-group {
-      width: none !important;
-  }
+
   .navbar .btn {
     margin: 13px 0 0 10px;
   }
 }
+
+
