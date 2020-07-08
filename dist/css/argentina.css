@@ -528,11 +528,10 @@ footer section section {
   color: #333;
 }
 
-@media (max-width: 768px) {
+
   ul.dropdown-menu li a {
       width: 350px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
   }
-}
