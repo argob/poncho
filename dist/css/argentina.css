@@ -546,12 +546,11 @@ footer section section ul {
 
 
 
-.pagination>li:first-child>a, .pagination>li:first-child>span {
+.pagination>li:first-child>a, .pagination>li:first-child>span,
+.pagination>li:last-child>a, .pagination>li:last-child>span {
   margin-left: 0;
-  border-top-left-radius: 30px;
-  border-bottom-left-radius: 30px;
+  border-radius: 30px;
 }
-
 
 
 .checkbox label, .radio label {
