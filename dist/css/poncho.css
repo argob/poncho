@@ -3877,7 +3877,7 @@ header .btn-group > .btn:first-child {
       position: relative;
       z-index: 5; }
     .navbar.navbar-top.state-search .navbar-nav.navbar-right .input-group {
-      width: auto;
+      /* width: auto; */
       float: none; }
 
   .navbar-form {
