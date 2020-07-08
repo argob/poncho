@@ -444,12 +444,13 @@ color: #333;
 .main-footer {
 padding: 30px 0 20px 0;
 margin-top: 10px;
-background: #D3F2FF !important;
+/* background: #D3F2FF !important; */
+background: #fff !important;
 
 }
-.main-footer h3, .main-footer a {
+/* .main-footer h3, .main-footer a {
 color: #333;
-}
+} */
 .sub-footer {
   background-color: #37BBED;
   padding: 20px 0 40px 0;
@@ -575,4 +576,8 @@ footer .nav>li>a:focus, footer .nav>li>a:hover {
 
 .nav-pills>li>a {
   border-radius: 30px;
+}
+
+hr {
+  margin: 15px 0;
 }
