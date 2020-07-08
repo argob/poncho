@@ -535,3 +535,10 @@ footer section section {
       overflow: hidden;
       text-overflow: ellipsis;
   }
+
+
+  .pagination>li:first-child>a, .pagination>li:first-child>span {
+    margin-left: 0;
+    border-top-left-radius: auto;
+    border-bottom-left-radius: auto;
+}
