@@ -175,7 +175,7 @@ main .container .media img {
   float: none !important;
   order: 2;
   margin-top: 1px;
-  /* margin-bottom:10px; */
+  margin-bottom:10px;
 }
 
 @media (max-width:768px){
@@ -483,4 +483,15 @@ color: #333;
 
 footer section {
   padding: 0 0 30px 0 !important;
+}
+
+
+.jumbotron .jumbotron_bar .breadcrumb, .pane-page-breadcrumb .breadcrumb {
+  margin-bottom: 5px !important;
+}
+
+@media (max-width: 490px) {
+  .navbar .btn {
+      margin-top: 10px;
+  }
 }
