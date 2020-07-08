@@ -521,6 +521,13 @@ footer section section {
     display: inline-block !important;
     margin-top: 0;
 }
+footer section section {
+  padding: 0 !important;
+}
+footer section section ul {
+  margin-bottom: 0 !important;
+  padding: 0;
+}
 }
 
 
@@ -556,6 +563,7 @@ main > section {
 
 
 
-
-
+.main-footer {
+  margin-top: 0 !important;
+}
 
