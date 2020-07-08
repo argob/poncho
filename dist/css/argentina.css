@@ -175,7 +175,7 @@ main .container .media img {
   float: none !important;
   order: 2;
   margin-top: 1px;
-  margin-bottom:10px;
+  /* margin-bottom:10px; */
 }
 
 @media (max-width:768px){
@@ -578,4 +578,9 @@ footer .nav>li>a:focus, footer .nav>li>a:hover {
 
 hr {
   margin: 15px 0;
+}
+
+
+.nav.nav-icons li a:hover i, .nav.nav-icons li a:focus i {
+  box-shadow: none !important;
 }
