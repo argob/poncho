@@ -227,14 +227,18 @@ footer ul.nav li a {
   
   color: #0072bb !important;
   background: #fff !important;
-  box-shadow: 0px 0px 3px 2px #707070;
+  /* box-shadow: 0px 0px 3px 2px #707070; */
+  box-shadow: none;
+  border: solid 1px #ddd;
 }
 
 /* afecta tambien nav.scss line 369*/
 .nav.nav-icons.nav-icons-selected li:not(.active) a:hover i {
 color: #0072bb !important;
   background: #fff !important;
-  box-shadow: 0px 0px 3px 2px #707070;
+  /* box-shadow: 0px 0px 3px 2px #707070; */
+  box-shadow: none;
+  border: solid 1px #ddd;
 
 }
 .nav.nav-icons li a span {
@@ -580,7 +584,3 @@ hr {
   margin: 15px 0;
 }
 
-
-.nav.nav-icons li a:hover i, .nav.nav-icons li a:focus i {
-  box-shadow: none !important;
-}
