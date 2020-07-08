@@ -487,9 +487,7 @@ footer section section {
 
 
 
-.jumbotron .jumbotron_bar .breadcrumb, .pane-page-breadcrumb .breadcrumb {
-  margin-bottom: 5px !important;
-}
+
 
 @media (max-width: 490px) {
   .navbar .btn {
@@ -497,10 +495,13 @@ footer section section {
   }
 }
 
-@media screen and (max-width: 767px) {
+@media (max-width: 767px) {
 
   .navbar .btn {
     margin: 13px 0 8px 10px;
+  }
+  .jumbotron .jumbotron_bar .breadcrumb, .pane-page-breadcrumb .breadcrumb {
+    margin-bottom: 5px !important;
   }
 }
 
@@ -511,5 +512,27 @@ footer section section {
   }
   .navbar-default {
     min-height: 70px;
+  }
+}
+
+
+@media (max-width: 768px) {
+.jumbotron div.jumbotron_bar .col-md-12 .list-inline li {
+    display: inline-block !important;
+    margin-top: 0;
+}
+}
+
+
+.breadcrumb a:hover {
+  color: #333;
+}
+
+@media (max-width: 768px) {
+  ul.dropdown-menu li a {
+      width: 350px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
   }
 }
