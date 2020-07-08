@@ -542,3 +542,20 @@ footer section section {
     border-top-left-radius: auto;
     border-bottom-left-radius: auto;
 }
+
+
+
+
+.checkbox label, .radio label {
+  margin-top: 0 !important;
+}
+
+main > section > article {
+  margin-top: -30px;
+}
+
+
+
+
+
+
