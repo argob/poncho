@@ -498,3 +498,12 @@ footer section section {
       margin-top: 10px;
   }
 }
+
+@media screen and (max-width: 767px) {
+  .navbar.navbar-top.state-search .navbar-nav.navbar-right .input-group {
+      width: none !important;
+  }
+  .navbar .btn {
+    margin: 13px 0 0 10px;
+  }
+}
