@@ -567,3 +567,7 @@ main > div > div > div > div > section {
   margin-top: 0 !important;
 }
 
+footer .nav>li>a:focus, footer .nav>li>a:hover {
+  background-color: #transparent;
+  opacity: .8;
+}
