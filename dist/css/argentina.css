@@ -591,3 +591,7 @@ hr {
 .panel-disabled, .panel-disabled .h3, .panel-disabled h3, .panel-disabled p {
   color: #333!important;
 }
+
+.pane-area-estructura h2 {
+  margin-bottom: 10px !important;
+}
