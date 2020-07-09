@@ -595,3 +595,7 @@ hr {
 .pane-area-estructura h2 {
   margin-bottom: 10px !important;
 }
+
+.pane-area-estructura .img-rounded {
+  margin-bottom: 20px !important;
+}
