@@ -587,3 +587,7 @@ hr {
 .dropdown .list-inline li {
   margin-bottom: 0 !important;
 }
+
+.panel-disabled, .panel-disabled .h3, .panel-disabled h3, .panel-disabled p {
+  color: #333!important;
+}
