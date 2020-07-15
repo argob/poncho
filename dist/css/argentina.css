@@ -7,6 +7,14 @@
  * Licenciado bajo MIT (https://github.com/argob/poncho/LICENSE)
  */
 /* Resources */
+
+
+body {
+  margin: 0;
+}
+
+
+
 main a[href^="http://"][target^="_blank"]:after, main a[href^="http://"][target^="_blank"]:after, main a[href^="https://"][target^="_blank"]:after, main a[href^="https://"][target^="_blank"]:after, main footer[href^="http://"][target^="_blank"]:after, main footer[href^="http://"][target^="_blank"]:after, main footer[href^="https://"][target^="_blank"]:after, main footer[href^="https://"][target^="_blank"]:after {
   content: " \f08e";
   display: inline-block;
@@ -138,11 +146,11 @@ main .container .media img {
 }
 
 /* Fix para ajustar Breadcrumbs */
-.jumbotron .jumbotron_bar{padding-bottom: 6px;}
+.jumbotron .jumbotron_bar{padding: 10px 0 0 0;}
 
 .pane-page-breadcrumb .breadcrumb,
 .jumbotron .jumbotron_bar .breadcrumb{
-  margin-bottom:10px;
+  /* margin-bottom:10px; */
 }
 .pane-page-breadcrumb .breadcrumb li,
 .jumbotron_bar .breadcrumb li{
@@ -166,7 +174,8 @@ main .container .media img {
 .jumbotron_bar .col-md-12 > .list-inline.pull-right {
   float: none !important;
   order: 2;
-  margin-bottom:10px;
+  margin-top: 1px;
+  /* margin-bottom:10px; */
 }
 
 @media (max-width:768px){
@@ -205,27 +214,31 @@ footer ul.nav li a {
   
 }
 
-/* Reducir padding  */
+/* Reducir padding (ya está en poncho)  */
 
-.jumbotron .jumbotron_body {
+/* .jumbotron .jumbotron_body {
   
   padding: 60px 0;
   
-}
+} */
 
 /* hover mas contraste   */
 .nav.nav-icons li a:hover i, .nav.nav-icons li a:focus i {
   
   color: #0072bb !important;
   background: #fff !important;
-  box-shadow: 0px 0px 3px 2px #707070;
+  /* box-shadow: 0px 0px 3px 2px #707070; */
+  box-shadow: none;
+  border: solid 1px #ddd;
 }
 
 /* afecta tambien nav.scss line 369*/
 .nav.nav-icons.nav-icons-selected li:not(.active) a:hover i {
 color: #0072bb !important;
   background: #fff !important;
-  box-shadow: 0px 0px 3px 2px #707070;
+  /* box-shadow: 0px 0px 3px 2px #707070; */
+  box-shadow: none;
+  border: solid 1px #ddd;
 
 }
 .nav.nav-icons li a span {
@@ -300,3 +313,293 @@ font-weight: 600;
  .leaflet-fade-anim .leaflet-tile,.leaflet-zoom-anim .leaflet-zoom-animated {
     will-change:auto !important;
  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+ #campaign h2 {
+  font-size: 14px !important;
+  color: #111 !important;
+  font-weight: 500 !important;
+  padding: 2px 0 !important;
+}
+#campaign a {
+  text-decoration: underline !important;
+}
+#campaign a:hover {
+  text-decoration: none !important;
+}
+#campaign a:visited {
+  color: #111 !important;
+}
+
+/* #campaign .container-fluid {
+  border-bottom: solid 1px #ddd;
+} */
+
+#campaign .bg-primary {
+  background-color: #37BBED !important;
+}
+
+
+
+ 
+ #divnoticias .panel h3,
+ #divnoticias .panel .h3 {
+   font-weight: 600 !important;
+   font-size: 18px;
+   line-height: 1.3;
+ }
+ 
+ 
+ .pane-area-estructura .img-rounded {
+   margin-top: 10px !important;
+ }
+ 
+ 
+ 
+ 
+
+
+/* header nav {
+   background-color: #0072bb !important;
+   border: none !important;
+} */
+
+
+
+
+
+
+
+#destacados .panel-default {
+border: none !important;
+}
+
+#destacados h3, #destacados p{
+  color: #fff !important;
+}
+
+.tramites-iconos .panel-default {
+  border: none !important;
+  margin-bottom: 5px !important;
+}
+
+.tramites-iconos {
+  text-align: center !important;
+}
+
+.tramites-iconos .media-left {
+  display: block;
+  padding: 0 !important;
+}
+
+.tramites-iconos .media-left i {
+  padding: 20px;
+  margin: 0 auto 15px auto;
+  display: block;
+  width: 90px;
+  height: 90px;
+  border-radius: 90px;
+  color: #fff !important;
+  vertical-align: middle;
+}
+.tramites-iconos .media-left i.fa {
+  padding: 30px 20px 20px 20px;
+}
+
+header nav .btn-link {
+  /* background: transparent !important; */
+  color: #0072bb !important;
+  /* border-color: transparent !important; */
+  margin-left: 20px !important;
+}
+/* header nav .btn-link:hover, header nav .btn-link:focus, header nav .btn-link:active {
+  background: transparent !important;
+} */
+header nav input#buscar {
+  opacity: 0.7;
+}
+header nav input#buscar:focus {
+  opacity: 1;
+}
+
+.panel h3, .panel .h3 {
+/* color: #0072bb; */
+color: #333;
+}
+
+.tramites-iconos .panel h3, .tramites-iconos .panel .h3 {
+color: #333;
+}
+
+
+
+
+.main-footer {
+padding: 30px 0 20px 0;
+margin-top: 10px;
+/* background: #D3F2FF !important; */
+background: #fff !important;
+
+}
+/* .main-footer h3, .main-footer a {
+color: #333;
+} */
+.sub-footer {
+  background-color: #37BBED;
+  padding: 20px 0 40px 0;
+}
+
+
+
+
+@media (max-width: 767px) {
+   .navbar .navbar-brand {
+       padding: 10px 15px 10px 0;
+   }
+   #campaign h2 {
+       margin: 8px -15px;
+   }
+   .navbar.navbar-top.state-search .navbar-nav.navbar-right > .btn {
+       margin-left: 0 !important;
+   }
+}
+
+
+
+
+.input-group .form-control:not(:first-child):not(:last-child),
+.input-group-addon:not(:first-child):not(:last-child),
+.input-group-btn:not(:first-child):not(:last-child) {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+
+footer section section {
+  padding: 0 0 30px 0 !important;
+}
+
+
+
+
+
+@media (max-width: 490px) {
+  .navbar .btn {
+      margin-top: 10px;
+  }
+}
+
+@media (max-width: 767px) {
+
+  .navbar .btn {
+    margin: 13px 0 8px 10px;
+  }
+  .jumbotron .jumbotron_bar .breadcrumb, .pane-page-breadcrumb .breadcrumb {
+    margin-bottom: 5px !important;
+  }
+}
+
+
+@media (max-width: 490px) {
+  .navbar.navbar-top .input-group {
+      margin: 9px 0 0 0;
+  }
+  .navbar-default {
+    min-height: 70px;
+  }
+}
+
+
+@media (max-width: 768px) {
+.jumbotron div.jumbotron_bar .col-md-12 .list-inline li {
+    display: inline-block !important;
+    margin-top: 0;
+}
+footer section section {
+  padding: 0 !important;
+}
+footer section section ul {
+  margin-bottom: 0 !important;
+  padding: 0;
+}
+}
+
+
+.breadcrumb a:hover {
+  color: #333;
+}
+
+
+  ul.dropdown-menu li a {
+      width: 350px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+  }
+
+
+
+.pagination>li:first-child>a, .pagination>li:first-child>span,
+.pagination>li:last-child>a, .pagination>li:last-child>span {
+  border-radius: 30px !important;
+}
+
+
+.checkbox label, .radio label {
+  margin-top: 0 !important;
+}
+
+main > div > div > div > section {
+  padding-top: 10px;
+}
+
+
+
+.main-footer {
+  margin-top: 0 !important;
+}
+
+footer .nav>li>a:focus, footer .nav>li>a:hover {
+  background-color: #transparent;
+  opacity: .8;
+}
+
+
+.nav-pills>li>a {
+  border-radius: 30px;
+}
+
+hr {
+  margin: 15px 0;
+}
+
+.dropdown .list-inline li {
+  margin-bottom: 0 !important;
+}
+
+.panel-disabled, .panel-disabled .h3, .panel-disabled h3, .panel-disabled p {
+  color: #333!important;
+}
+
+.pane-area-estructura h2 {
+  margin-bottom: 10px !important;
+}
+
+.pane-area-estructura .img-rounded {
+  margin-bottom: 20px !important;
+}
+
+.well {
+  border-width: 2px !important;
+}
