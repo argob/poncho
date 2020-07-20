@@ -580,9 +580,9 @@ footer .nav>li>a:focus, footer .nav>li>a:hover {
   border-radius: 30px;
 }
 
-hr {
+/* hr {
   margin: 15px 0;
-}
+} */
 
 .dropdown .list-inline li {
   margin-bottom: 0 !important;
@@ -602,4 +602,8 @@ hr {
 
 .well {
   border-width: 2px !important;
+}
+
+.node-unpublished {
+  background-color: #fff !important;
 }
