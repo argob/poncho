@@ -507,6 +507,7 @@ footer section section {
   }
   .jumbotron .jumbotron_bar .breadcrumb, .pane-page-breadcrumb .breadcrumb {
     margin-bottom: 5px !important;
+    min-width: 260px;
   }
 }
 
