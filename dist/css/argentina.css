@@ -146,7 +146,7 @@ main .container .media img {
 }
 
 /* Fix para ajustar Breadcrumbs */
-.jumbotron .jumbotron_bar{padding: 10px 0 0 0;}
+.jumbotron .jumbotron_bar{padding: 10px 0;}
 
 .pane-page-breadcrumb .breadcrumb,
 .jumbotron .jumbotron_bar .breadcrumb{
