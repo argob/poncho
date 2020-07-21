@@ -608,3 +608,65 @@ footer .nav>li>a:focus, footer .nav>li>a:hover {
 .node-unpublished {
   background-color: #fff !important;
 }
+
+
+
+
+
+
+.panel-primary {
+  background-color: #0072bb !important; }
+
+.panel-success {
+  background-color: #2e7d33 !important; }
+
+.panel-info {
+  background-color: #2897D4 !important; }
+
+.panel-danger {
+  background-color: #c62828 !important; }
+
+.panel-warning {
+  background-color: #f9a822 !important; }
+
+.panel-gray {
+  background-color: #e5e5e5 !important; }
+
+.panel-white {
+  background-color: #fff !important;
+  border:solid 1px #ddd;
+  border-radius: 10px;
+ }
+
+.panel-muted {
+  background-color: #555 !important; }
+
+.panel-fucsia {
+  background-color: #EC407A !important; }
+
+.panel-arandano {
+  background-color: #C2185B !important; }
+
+.panel-uva {
+  background-color: #6A1B99 !important; }
+
+.panel-cielo {
+  background-color: #039BE5 !important; }
+
+.panel-verdin {
+  background-color: #6EA100 !important; }
+
+.panel-lima {
+  background-color: #CDDC39 !important; }
+
+.panel-maiz {
+  background-color: #FFCE00 !important; }
+
+.panel-tomate {
+  background-color: #EF5350 !important; }
+
+.panel-naranja {
+  background-color: #EF6C00 !important; }
+
+.panel-verde-azulado {
+  background-color: #008388 !important; }
