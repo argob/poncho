@@ -614,59 +614,59 @@ footer .nav>li>a:focus, footer .nav>li>a:hover {
 
 
 
-.panel-primary {
+.panel-icon.panel-primary .panel-heading {
   background-color: #0072bb !important; }
 
-.panel-success {
+.panel-icon.panel-success .panel-heading {
   background-color: #2e7d33 !important; }
 
-.panel-info {
+.panel-icon.panel-info .panel-heading {
   background-color: #2897D4 !important; }
 
-.panel-danger {
+.panel-icon.panel-danger .panel-heading {
   background-color: #c62828 !important; }
 
-.panel-warning {
+.panel-icon.panel-warning .panel-heading {
   background-color: #f9a822 !important; }
 
-.panel-gray {
+.panel-icon.panel-gray .panel-heading {
   background-color: #e5e5e5 !important; }
 
-.panel-white {
+.panel-icon.panel-white .panel-heading {
   background-color: #fff !important;
   border:solid 1px #ddd;
   border-radius: 10px;
  }
 
-.panel-muted {
+.panel-icon.panel-muted .panel-heading {
   background-color: #555 !important; }
 
-.panel-fucsia {
+.panel-icon.panel-fucsia .panel-heading {
   background-color: #EC407A !important; }
 
-.panel-arandano {
+.panel-icon.panel-arandano .panel-heading {
   background-color: #C2185B !important; }
 
-.panel-uva {
+.panel-icon.panel-uva .panel-heading {
   background-color: #6A1B99 !important; }
 
-.panel-cielo {
+.panel-icon.panel-cielo .panel-heading {
   background-color: #039BE5 !important; }
 
-.panel-verdin {
+.panel-icon.panel-verdin .panel-heading {
   background-color: #6EA100 !important; }
 
-.panel-lima {
+.panel-icon.panel-lima .panel-heading {
   background-color: #CDDC39 !important; }
 
-.panel-maiz {
+.panel-icon.panel-maiz .panel-heading {
   background-color: #FFCE00 !important; }
 
-.panel-tomate {
+.panel-icon.panel-tomate .panel-heading {
   background-color: #EF5350 !important; }
 
-.panel-naranja {
+.panel-icon.panel-naranja .panel-heading {
   background-color: #EF6C00 !important; }
 
-.panel-verde-azulado {
+.panel-icon.panel-verde-azulado .panel-heading {
   background-color: #008388 !important; }
