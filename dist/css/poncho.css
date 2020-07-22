@@ -102,7 +102,7 @@ aside section {
   background-color: #f9a822 !important; }
 
 .bg-gray {
-  background-color: #e5e5e5 !important; }
+  background-color: #F2F2F2 !important; }
 
 .bg-white {
   background-color: #fff !important;
@@ -3542,7 +3542,7 @@ span.btn:hover {
 .dropdown-menu {
   padding: 0; }
   .dropdown-menu li a {
-    border-bottom: 1px solid #dbdbdb;g
+    border-bottom: 1px solid #dbdbdb;
     display: block;
     clear: both;
     font-weight: normal;
@@ -4159,6 +4159,10 @@ a.list-group-item {
       color: #fafafa; }
   .jumbotron .breadcrumb > li + li:before, .jumbotron .breadcrumb > .active {
     color: #fff; }
+
+    .breadcrumb>.active {
+      color: #707070;
+    }
 
 .section-actions {
   margin: 16px 0 24px; }
@@ -5169,7 +5173,7 @@ input[type='text']:-ms-input-placeholder {
 
 .chosen-container.chosen-container-single.chosen-with-drop .chosen-single {
   background: none;
-  box-shadow: inset none; }
+  box-shadow: none; }
 
 .chosen-container.chosen-container-multi .chosen-choices {
   background: none;
@@ -5362,7 +5366,7 @@ input[type='text']:-ms-input-placeholder {
   background-color: #f0f0f0; }
 .table.table-mobile td span.td-label {
   display: none; }
-@media only screen and (max-width: 767px), (min-device-width: 768px) and (max-device-width: 1024px) {
+@media only screen and (max-width: 767px), (min-width: 768px) and (max-width: 1024px) {
   .table.table-mobile table, .table.table-mobile thead, .table.table-mobile tbody, .table.table-mobile th, .table.table-mobile td, .table.table-mobile tr {
     display: block; }
   .table.table-mobile thead tr {

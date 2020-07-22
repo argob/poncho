@@ -572,7 +572,7 @@ main > div > div > div > section {
 }
 
 footer .nav>li>a:focus, footer .nav>li>a:hover {
-  background-color: #transparent;
+  background-color: transparent;
   opacity: .8;
 }
 
@@ -670,3 +670,17 @@ footer .nav>li>a:focus, footer .nav>li>a:hover {
 
 .panel-icon.panel-verde-azulado .panel-heading {
   background-color: #008388 !important; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
