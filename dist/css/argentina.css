@@ -11,6 +11,7 @@
 
 body {
   margin: 0;
+  font-size: 16px;
 }
 
 
@@ -672,7 +673,9 @@ footer .nav>li>a:focus, footer .nav>li>a:hover {
   background-color: #008388 !important; }
 
 
-
+small {
+  font-weight: 500 !important;
+}
 
 
 
