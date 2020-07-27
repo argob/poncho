@@ -679,7 +679,10 @@ small {
 
 
 
-
+.social-share a {
+  font-size: 20px;
+  margin-top: -6px;
+}
 
 
 
