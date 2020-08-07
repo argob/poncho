@@ -1,35 +1,3 @@
-
-
-
-
-
-@font-face {
-  font-family: 'Encode Sans';
-  src:  url('../fonts/EncodeSans-Regular.ttf') format('truetype');
-  font-weight: 400;
-}
-@font-face {
-  font-family: 'Encode Sans';
-  src:  url('../fonts/EncodeSans-Medium.ttf') format('truetype');
-  font-weight: 500;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'Encode Sans';
-  src:  url('../fonts/EncodeSans-SemiBold.ttf') format('truetype');
-}
-@font-face {
-  font-family: 'Encode Sans';
-  src:  url('../fonts/EncodeSans-Bold.ttf') format('truetype');
-  font-weight: 700;
-  font-style: bold;
-}
-
-
-
-
-
-
 @font-face {
   font-family: 'Roboto';
   src:  url('../fonts/Roboto-Thin-webfont.eot');
