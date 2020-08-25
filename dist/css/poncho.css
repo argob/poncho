@@ -5206,7 +5206,8 @@ input[type='text']:-ms-input-placeholder {
 
 .social-share {
   margin: 0;
-  min-height: 32px; }
+  min-height: 32px;
+  overflow: auto; }
   .social-share p {
     color: #555;
     float: left;
