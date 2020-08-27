@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]> <html lang="es"class="iem7"> <![endif]-->
+<!--[if lt IE 7 ]> <html lang="es" class="ie6 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="es" class="ie7 lt-ie8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="es" class="ie8"> <![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!-->
+<html lang="es">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Banco de Pruebas</title>
+<meta name="description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
+<meta name="author" content="Presidencia de la Nación">
+<link rel="shortcut icon" href="img/favicon.ico">
+
+<!-- Nav and address bar color -->
+<meta name="theme-color" content="#0072b8">
+<meta name="msapplication-navbutton-color" content="#0072b8">
+<meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
+<meta property="og:url" content="http://localhost:4000/proyectos/argentina/" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Banco de Pruebas" />
+<meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+<meta property="og:image" content="/ejemplos/img/jumbotron.jpg" />
+<meta property="og:locale" content="es_AR" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Banco de Pruebas" />
+<meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+<meta name="twitter:image" content="/ejemplos/img/jumbotron.jpg" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../../node_modules/argob-poncho/dist/css/poncho.min.css">
+<link rel="stylesheet" href="../../node_modules/argob-poncho/dist/icono-arg.css">
+	<link rel="stylesheet" href="../../node_modules/argob-poncho/dist/argentina.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> 
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="       anonymous"></script> 
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries --> 
+<!--[if lt IE 9]>
+      <script src="http://argob.github.io/poncho/js/html5shiv.js"></script>
+      <script src="http://argob.github.io/poncho/js/respond.min.js"></script>
+  <![endif]-->
+
+</head>
+
+<body role="document" class="html front not-logged-in no-sidebars page-node i18n-es jquery-once-1-processed">
+<h1 class="sr-only"><small>Presidencia de la Nación</small></h1>
+<div id="skip-link"> <a href="https://www.argentina.gob.ar/#main-content" class="element-invisible element-focusable">Pasar al contenido principal</a></div>
+<div class="region region-page-top"> <section id="campaign" role="dialog" aria-labelledby="campaign01" aria-describedby="campaign02" style="padding:0px"> <a href="/salud/coronavirus-COVID-19?utm_source=alerta_20200424&amp;utm_medium=web&amp;utm_campaign=campana_coronavirus" title="Enlace a Campaña Nacional" id="js-titulo"><div class="container-fluid bg-primary"> <header class="sr-only"><h1 id="campaign01">Campañas Nacionales</h1> </header><div class="container"><h2 id="campaign02" class="tituloContainerCam"> <strong>Coronavirus COVID-19</strong> <span class="c_bajada">conocé información y recomendaciones del Ministerio de Salud.</span></h2></div></div> </a> </section></div>
+<header>
+  <nav class="navbar navbar-top navbar-default" role="navigation">
+    <div class="container">
+      <div>
+        <div class="navbar-header"> <a class="navbar-brand" href="/proyectos/argentina/" aria-label="Argentina.gob.ar Presidencia de la Nación"> <img alt="Argentina.gob.ar" src="img/argentinagob.svg" height="50"> </a> <a class="btn btn-link btn-login visible-xs" href="/proyectos/mi-argentina/v3/"><i class="icono-arg-mi-argentina fa-fw"></i></a> <a class="btn btn-primary btn-login visible-xs" href="#" onclick="$('.navbar.navbar-top').addClass('state-search');"><span class="fa fa-search fa-fw"></span></a> </div>
+        <ul class="nav navbar-nav navbar-right hidden-xs">
+          <a href="#" onclick="$('.navbar.navbar-top').removeClass('state-search');" class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+          <li>
+            <div class="input-group">
+              <input id="buscar" type="text" class="form-control" aria-label="Buscar trámites, servicios o áreas" placeholder="Buscar trámites, servicios o áreas ...">
+              <span class="input-group-btn">
+              <button class="btn btn-primary" id="buscar-btn" type="button" aria-label="Buscar"><i class="fa fa-search"></i></button>
+              </span> </div>
+          </li>
+          <a href="#" class="dropdown-toggle btn btn-link hidden-xs" aria-label="Ingresar a Mi Argentina" data-toggle="dropdown"> Mi Argentina</a>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+<main role="main"> <a id="main-content"></a>
+  <div class="container"></div>
+  <div class="region region-content">
+    <div id="block-system-main" class="block block-system clearfix">
+      <div class="panel-pane pane-block pane-argentinagobar-search-apachesolrinput">
+        <div class="pane-content">
+          <section class="jumbotron" style="background-image:url(https://www.argentina.gob.ar/sites/default/files/styles/jumbotron/public/backimage_buscador/jumbotron-home-argentina-gob-ar.jpg?itok=FImfLyeP);">
+            <div class="jumbotron_body jumbotron_body-lg">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-12">
+                    <h2 class="text-center">¿Qué estás buscando?</h2>
+                  </div>
+                </div>
+                <div class="row">
+                  <div id="buscador" class="col-md-8 col-md-offset-2">
+                    <form class="main-form" role="search" action="https://www.argentina.gob.ar/" method="post" id="apachesolr-search-custom-page-search-form" accept-charset="UTF-8">
+                      <div>
+                        <input type="hidden" name="form_build_id" value="form-yQWyPypqJSYnhi8t2dRe3eL2DWAgZlQoTOjc_lvsfz0">
+                        <input type="hidden" name="form_id" value="apachesolr_search_custom_page_search_form">
+                        <div style="display:none;">
+                          <div class="form-item form-item-tarro-de-miel form-type-textfield form-group">
+                            <label class="control-label" for="edit-tarro-de-miel">Dejar en blanco </label>
+                            <input class="form-control form-text" type="text" id="edit-tarro-de-miel" name="tarro_de_miel" value="" size="60" maxlength="128">
+                          </div>
+                        </div>
+                        <div class="input-group">
+                          <label class="sr-only" for="edit-keys">Buscar en el sitio</label>
+                          <input placeholder="Buscar trámites, servicios o áreas" id="edit-keys" aria-label="Buscar trámites, servicios o áreas" class="form-control form-text" type="text" name="keys" value="" size="20" maxlength="255">
+                          <span class="input-group-btn">
+                          <button class="btn-primary fa fa-search btn btn-primary form-submit" aria-labelledby="edit-keys" type="submit" id="edit-submit" name="op" value="&lt;span class=&quot;sr-only&quot;&gt;Buscar&lt;/span&gt;"><span class="sr-only">Buscar</span></button>
+                          </span></div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="overlay"></div>
+          </section>
+        </div>
+      </div>
+      <section>
+        <div class="container">
+          <div>
+            <div class="panel-pane pane-atajos">
+              <div class="pane-content">
+                <div class="row panels-row">
+                  <div class="col-xs-12 col-sm-6 col-md-3"><a href="https://www.argentina.gob.ar/salud/coronavirus-COVID-19" class="panel panel-default">
+                    <div style="background-image:url(https://www.argentina.gob.ar/sites/default/files/styles/listado/public/imagenAtajo/nuevo-coronavirus-covid-19_0.jpg?itok=M3dKRVF0);" class="panel-heading"></div>
+                    <div class="panel-body">
+                      <h3>Nuevo Coronavirus COVID-19</h3>
+                      <div class="text-muted">
+                        <p>Información, recomendaciones y medidas de prevención.</p>
+                      </div>
+                    </div>
+                    </a></div>
+                  <div class="col-xs-12 col-sm-6 col-md-3"><a href="https://www.argentina.gob.ar/atp" class="panel panel-default">
+                    <div style="background-image:url(https://www.argentina.gob.ar/sites/default/files/styles/listado/public/imagenAtajo/atp_atajo_480x320_0.png?itok=gRqGt2p_);" class="panel-heading"></div>
+                    <div class="panel-body">
+                      <h3>ATP</h3>
+                      <div class="text-muted">
+                        <p>Programa de Asistencia de Emergencia al Trabajo y la Producción.</p>
+                      </div>
+                    </div>
+                    </a></div>
+                  <div class="col-xs-12 col-sm-6 col-md-3"><a href="https://www.argentina.gob.ar/habitat/Procrear" class="panel panel-default">
+                    <div style="background-image:url(https://www.argentina.gob.ar/sites/default/files/styles/listado/public/imagenAtajo/procrear-atajo-home-agosto-2020_0.jpg?itok=f4TY-nQ-);" class="panel-heading"></div>
+                    <div class="panel-body">
+                      <h3>Procrear</h3>
+                      <div class="text-muted">
+                        <p>Política de desarrollo territorial, urbano y habitacional de alcance federal.</p>
+                      </div>
+                    </div>
+                    </a></div>
+                  <div class="col-xs-12 col-sm-6 col-md-3"><a href="https://www.argentina.gob.ar/argentinacontraelhambre" class="panel panel-default">
+                    <div style="background-image:url(https://www.argentina.gob.ar/sites/default/files/styles/listado/public/imagenAtajo/plan-contra-hambre-atajo-2_0_0.png?itok=DQRABbxG);" class="panel-heading"></div>
+                    <div class="panel-body">
+                      <h3>Plan Integral Argentina contra el Hambre</h3>
+                      <div class="text-muted">
+                        <p>Enterate de los mecanismos que ponemos en marcha para garantizar el derecho a la alimentación.</p>
+                      </div>
+                    </div>
+                    </a></div>
+                </div>
+              </div>
+            </div>
+            <div class="panel-separator"></div>
+            <div class="panel-pane pane-texto">
+              <div class="pane-content">
+                <div class="">
+                  <div class="">
+                    <h2>Trámites y servicios</h2>
+                    <div class="row m-y-3">
+                      <div class="col-md-8 col-md-offset-2">
+                        <div id="campaign-alert" class="alert alert-info">
+                          <div class="media">
+                            <div class="media-left">
+                              <div class="media-left"> <i aria-hidden="true" class="fa fa-info fa-fw fa-4x text-primary" title="Información Importante"></i> <span class="sr-only">Información Importante</span></div>
+                            </div>
+                            <div class="media-body">
+                              <p class="margin-0">&nbsp;</p>
+                              <p><a href="https://www.argentina.gob.ar/circular">Solicitá el certificado de circulación y descargá la app Cuidar – Covid 19</a></p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row panels-row m-t-2">
+                      <div class="col-xs-12 col-sm-6 col-md-4"> <a class="panel panel-default" href="https://www.argentina.gob.ar/estudiar">
+                        <div class="panel-body">
+                          <div class="media">
+                            <div class="media-left padding-20"><i class="fa icono-arg-educacion fa-fw fa-2x text-primary"></i></div>
+                            <div class="media-body">
+                              <h3>Estudiar</h3>
+                              <p>Niveles y modalidades educativas, programas, becas y reválida de títulos.</p>
+                            </div>
+                          </div>
+                        </div>
+                        </a></div>
+                      <div class="col-xs-12 col-sm-6 col-md-4"> <a class="panel panel-default" href="https://www.argentina.gob.ar/tema/hogar">
+                        <div class="panel-body">
+                          <div class="media">
+                            <div class="media-left padding-20"><i class="fa icono-arg-hogar-y-familia fa-fw fa-2x text-primary"></i></div>
+                            <div class="media-body">
+                              <h3>Pareja y familia</h3>
+                              <p>Trámites relacionados con estar en pareja, tener un hijo o enfrentar el fallecimiento de un ser querido.</p>
+                            </div>
+                          </div>
+                        </div>
+                        </a></div>
+                      <div class="col-xs-12 col-sm-6 col-md-4"> <a class="panel panel-default" href="https://www.argentina.gob.ar/discapacidad">
+                        <div class="panel-body">
+                          <div class="media">
+                            <div class="media-left padding-20"><i class="icono-arg-discapacidad fa-fw fa-2x text-primary"></i></div>
+                            <div class="media-body">
+                              <h3>Personas con discapacidad</h3>
+                              <p>Servicios para atención de la salud, asignaciones familiares, viajar gratis y más trámites.</p>
+                            </div>
+                          </div>
+                        </div>
+                        </a></div>
+                      <div class="col-xs-12 col-sm-6 col-md-4"> <a class="panel panel-default" href="https://www.argentina.gob.ar/tema/adultosmayores">
+                        <div class="panel-body">
+                          <div class="media">
+                            <div class="media-left padding-20"><i class="fa icono-arg-jubilado fa-fw fa-2x text-primary"></i></div>
+                            <div class="media-body">
+                              <h3>Adultos mayores</h3>
+                              <p>Consejos, servicios y orientación para realizar trámites de jubilaciones y pensiones.</p>
+                            </div>
+                          </div>
+                        </div>
+                        </a></div>
+                      <div class="col-xs-12 col-sm-6 col-md-4"> <a class="panel panel-default" href="https://www.argentina.gob.ar/tema/cuidarlasalud">
+                        <div class="panel-body">
+                          <div class="media">
+                            <div class="media-left padding-20"><i class="fa icono-arg-medicamentos fa-fw fa-2x text-primary"></i></div>
+                            <div class="media-body">
+                              <h3>Cuidar la salud</h3>
+                              <p>Vacunas obligatorias, primeros auxilios ante emergencias y consejos para una vida saludable.</p>
+                            </div>
+                          </div>
+                        </div>
+                        </a></div>
+                      <div class="col-xs-12 col-sm-6 col-md-4"> <a class="panel panel-default" href="https://www.argentina.gob.ar/argentinos-en-el-exterior">
+                        <div class="panel-body">
+                          <div class="media">
+                            <div class="media-left padding-20"><i class="fa icono-arg-exterior fa-fw fa-2x text-primary"></i></div>
+                            <div class="media-body">
+                              <h3>Argentinos en el mundo</h3>
+                              <p>Si te encontrás en otro país o vas a hacer un viaje, chequeá información útil.</p>
+                            </div>
+                          </div>
+                        </div>
+                        </a></div>
+                      <div class="col-xs-12 col-sm-6 col-md-4"> <a class="panel panel-default" href="https://www.argentina.gob.ar/violencia-y-abuso">
+                        <div class="panel-body">
+                          <div class="media">
+                            <div class="media-left padding-20"><i class="fa fa-exclamation-triangle fa-fw fa-2x text-primary"></i></div>
+                            <div class="media-body">
+                              <h3>Violencia y abuso</h3>
+                              <p>Ante una situación de violencia o abuso no dudes en llamar y denunciar.</p>
+                            </div>
+                          </div>
+                        </div>
+                        </a></div>
+                      <div class="col-xs-12 col-sm-6 col-md-4"> <a class="panel panel-default" href="https://www.argentina.gob.ar/identidad">
+                        <div class="panel-body">
+                          <div class="media">
+                            <div class="media-left padding-20"><i class="fa fa-id-card-o fa-fw fa-2x text-primary"></i></div>
+                            <div class="media-body">
+                              <h3>Documentación ciudadana</h3>
+                              <p>Te guiamos en trámites tales como sacar el DNI o pasaporte y cambio de género, entre otros.</p>
+                            </div>
+                          </div>
+                        </div>
+                        </a></div>
+                      <div class="col-xs-12 col-sm-6 col-md-4"> <a class="panel panel-default" href="https://www.argentina.gob.ar/tema/emergencias">
+                        <div class="panel-body">
+                          <div class="media">
+                            <div class="media-left padding-20"><i class="fa fa-2x fa-ambulance text-primary fa-fw fa-2x text-primary"></i></div>
+                            <div class="media-body">
+                              <h3>Emergencias</h3>
+                              <p>Te ofrecemos una lista de números y consejos a seguir.</p>
+                            </div>
+                          </div>
+                        </div>
+                        </a></div>
+                      <div class="col-xs-12 col-sm-6 col-md-4"> <a class="panel panel-default" href="https://www.argentina.gob.ar/emprender-innovar-crecer">
+                        <div class="panel-body">
+                          <div class="media">
+                            <div class="media-left padding-20"><i class="fa fa-line-chart fa-fw fa-2x text-primary"></i></div>
+                            <div class="media-body">
+                              <h3>Emprender, innovar, crecer</h3>
+                              <p>Herramientas de financiamiento y capacitación para emprendedores y PyMEs.</p>
+                            </div>
+                          </div>
+                        </div>
+                        </a></div>
+                      <div class="col-xs-12 col-sm-6 col-md-4"> <a class="panel panel-default" href="https://www.argentina.gob.ar/tema/extranjeros">
+                        <div class="panel-body">
+                          <div class="media">
+                            <div class="media-left padding-20"><i class="fa icono-arg-social fa-fw fa-2x text-primary"></i></div>
+                            <div class="media-body">
+                              <h3>Extranjeros en Argentina</h3>
+                              <p>Información y servicios para los que viajan, estudian, trabajan y viven en la Argentina.</p>
+                            </div>
+                          </div>
+                        </div>
+                        </a></div>
+                      <div class="col-xs-12 col-sm-6 col-md-4"> <a class="panel panel-default" href="https://www.argentina.gob.ar/tema/automotor">
+                        <div class="panel-body">
+                          <div class="media">
+                            <div class="media-left padding-20"><i class="fa fa-2x icono-arg-auto text-primary fa-fw fa-2x text-primary"></i></div>
+                            <div class="media-body">
+                              <h3>Tránsito y automotor</h3>
+                              <p>Información para circular en vía pública y para comprar, registrar, permutar, asegurar o vender tu auto o moto.</p>
+                            </div>
+                          </div>
+                        </div>
+                        </a></div>
+                      <div class="col-xs-12 col-sm-6 col-md-4"> <a class="panel panel-default" href="https://www.argentina.gob.ar/tema/culturaytiempolibre/arteycultura">
+                        <div class="panel-body">
+                          <div class="media">
+                            <div class="media-left padding-20"><i class="fa icono-arg-cultura fa-fw fa-2x text-primary"></i></div>
+                            <div class="media-body">
+                              <h3>Beneficios para artistas</h3>
+                              <p>Beneficios para artistas y agenda de actividades para disfrutar.</p>
+                            </div>
+                          </div>
+                        </div>
+                        </a></div>
+                      <div class="col-xs-12 col-sm-6 col-md-4"> <a class="panel panel-default" href="https://www.argentina.gob.ar/tema/vacaciones">
+                        <div class="panel-body">
+                          <div class="media">
+                            <div class="media-left padding-20"><i class="fa fa-2x icono-arg-avion fa-fw fa-2x text-primary"></i></div>
+                            <div class="media-body">
+                              <h3>Salir de vacaciones</h3>
+                              <p>Información, servicios y asesoramiento para planificar tu viaje.</p>
+                            </div>
+                          </div>
+                        </div>
+                        </a></div>
+                      <div class="col-xs-12 col-sm-6 col-md-4"> <a class="panel panel-default" href="https://www.argentina.gob.ar/trabajar">
+                        <div class="panel-body">
+                          <div class="media">
+                            <div class="media-left padding-20"><i class="fa icono-arg-trabajador fa-fw fa-2x text-primary"></i></div>
+                            <div class="media-body">
+                              <h3>Trabajar</h3>
+                              <p>Todos los servicios por si sos empleado, monotributista, querés capacitarte o estás buscando trabajo.</p>
+                            </div>
+                          </div>
+                        </div>
+                        </a></div>
+                      <div class="col-xs-12 col-sm-6 col-md-4"> <a class="panel panel-default" href="https://www.argentina.gob.ar/tema/consumidores">
+                        <div class="panel-body">
+                          <div class="media">
+                            <div class="media-left padding-20"><i class="fa fa-2x icono-arg-carrito text-primary fa-fw fa-2x text-primary"></i></div>
+                            <div class="media-body">
+                              <h3>Consumidores</h3>
+                              <p>Información sobre tus derechos, herramientas para comprar o contratar servicios, y pautas para hacer un reclamo.</p>
+                            </div>
+                          </div>
+                        </div>
+                        </a></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel-separator"></div>
+            <div class="panel-pane pane-texto">
+              <div class="pane-content">
+                <div class="">
+                  <div class="">
+                    <h2 class="h3 m-b-2">Más consultados</h2>
+                    <div class="row row-flex">
+                      <div class="col-xs-12 col-sm-6 col-lg-4 m-b-2"> <a href="https://www.argentina.gob.ar/consultar-fecha-lugar-y-medio-de-cobro-del-ife">
+                        <h3 class="h5">Consultar fecha, lugar y medio de cobro del IFE</h3>
+                        </a>
+                        <p class="text-muted">Consultá para acceder al Ingreso Familiar de Emergencia a través de Anses.</p>
+                      </div>
+                      <div class="col-xs-12 col-sm-6 col-lg-4 m-b-2"> <a href="https://www.argentina.gob.ar/educacion/fines/terminar-primaria-secundaria">
+                        <h3 class="h5">Finalizar tus estudios primarios / secundarios</h3>
+                        </a>
+                        <p class="text-muted">Terminá tus estudios escolares primarios y/o secundarios con el programa FinEs.</p>
+                      </div>
+                      <div class="col-xs-12 col-sm-6 col-lg-4 m-b-2"> <a href="https://www.argentina.gob.ar/consultar-cuando-y-donde-cobro-en-anses">
+                        <h3 class="h5">Consultar cuándo y dónde cobro en ANSES</h3>
+                        </a>
+                        <p class="text-muted">Si sos jubilado o pensionado, o recibís algún tipo de subsidio o prestación de ANSES.</p>
+                      </div>
+                      <div class="col-xs-12 col-sm-6 col-lg-4 m-b-2"> <a href="https://www.argentina.gob.ar/inscribirme-en-progresar">
+                        <h3 class="h5">Inscribirme en Progresar</h3>
+                        </a>
+                        <p class="text-muted">Solicitá una beca para finalizar tus estudios de educación obligatoria.</p>
+                      </div>
+                      <div class="col-xs-12 col-sm-6 col-lg-4 m-b-2"> <a href="https://www.argentina.gob.ar/iniciar-un-reclamo-ante-defensa-de-las-y-los-consumidores">
+                        <h3 class="h5">Reclamar ante Defensa del Consumidor</h3>
+                        </a>
+                        <p class="text-muted">Si tuviste un problema con algún servicio o producto, podés realizar el reclamo.</p>
+                      </div>
+                      <div class="col-xs-12 col-sm-6 col-lg-4 m-b-2"> <a href="https://www.argentina.gob.ar/circular">
+                        <h3 class="h5">Solicitar Certificado de Circulación COVID-19</h3>
+                        </a>
+                        <p class="text-muted">Si estás exceptuado de la cuarentena, obtené este certificado para poder circular.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</main>
+<footer class="main-footer">
+  <div class="container">
+    <section>
+      <div class="row">
+        <div class="col-sm-6 col-sm-12">
+          <section class="block block-block clearfix"> <img class="image-responsive" src="img/logo_argentina_unida.svg" alt="Argentina Unida">
+            <p class="text-muted small m-b-2"> <a href="https://creativecommons.org/licenses/by/4.0/deed.es" target="_blank" rel="noreferrer">Los contenidos de Argentina.gob.ar están licenciados bajo Creative Commons Atribución 4.0 Internacional</a></p>
+          </section>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="region region-footer2">
+            <section id="block-menu-menu-footer-2" class="block block-menu clearfix">
+              <ul class="menu nav">
+                <li class="first leaf"><a href="https://www.argentina.gob.ar/turnos">Turnos</a></li>
+                <li class="leaf"><a href="https://www.argentina.gob.ar/organismos">Organismos del Estado</a></li>
+                <li class="last leaf"><a href="https://www.argentina.gob.ar/jefatura/mapa-del-estado">Mapa del estado</a></li>
+              </ul>
+            </section>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="region region-footer3">
+            <section id="block-menu-menu-footer-3" class="block block-menu clearfix">
+              <ul class="menu nav">
+                <li class="first leaf"><a href="https://www.argentina.gob.ar/normativa">Leyes argentinas</a></li>
+                <li class="leaf"><a href="https://www.argentina.gob.ar/acerca">Acerca de este sitio</a></li>
+                <li class="last leaf"><a href="https://www.argentina.gob.ar/terminos-y-condiciones">Términos y condiciones</a></li>
+              </ul>
+            </section>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</footer>
+
+</body>
+</html>
