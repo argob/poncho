@@ -34,8 +34,8 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="../../node_modules/argob-poncho/dist/css/poncho.min.css">
-<link rel="stylesheet" href="../../node_modules/argob-poncho/dist/icono-arg.css">
-	<link rel="stylesheet" href="../../node_modules/argob-poncho/dist/argentina.css">
+<link rel="stylesheet" href="../../node_modules/argob-poncho/dist/css/icono-arg.css">
+<link rel="stylesheet" href="../../node_modules/argob-poncho/dist/css/argentina.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> 
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="       anonymous"></script> 
 
@@ -50,9 +50,20 @@
 <body role="document" class="html front not-logged-in no-sidebars page-node i18n-es jquery-once-1-processed">
 <h1 class="sr-only"><small>Presidencia de la Nación</small></h1>
 <div id="skip-link"> <a href="https://www.argentina.gob.ar/#main-content" class="element-invisible element-focusable">Pasar al contenido principal</a></div>
-<div class="region region-page-top"> <section id="campaign" role="dialog" aria-labelledby="campaign01" aria-describedby="campaign02" style="padding:0px"> <a href="/salud/coronavirus-COVID-19?utm_source=alerta_20200424&amp;utm_medium=web&amp;utm_campaign=campana_coronavirus" title="Enlace a Campaña Nacional" id="js-titulo"><div class="container-fluid bg-primary"> <header class="sr-only"><h1 id="campaign01">Campañas Nacionales</h1> </header><div class="container"><h2 id="campaign02" class="tituloContainerCam"> <strong>Coronavirus COVID-19</strong> <span class="c_bajada">conocé información y recomendaciones del Ministerio de Salud.</span></h2></div></div> </a> </section></div>
+<div class="region region-page-top">
+  <section id="campaign" role="dialog" aria-labelledby="campaign01" aria-describedby="campaign02" style="padding:0px"> <a href="/salud/coronavirus-COVID-19?utm_source=alerta_20200424&amp;utm_medium=web&amp;utm_campaign=campana_coronavirus" title="Enlace a Campaña Nacional" id="js-titulo">
+    <div class="container-fluid text-primary">
+      <header class="sr-only">
+        <h1 id="campaign01">Campañas Nacionales</h1>
+      </header>
+      <div class="container">
+        <h2 id="campaign02" class="tituloContainerCam"> <strong>Coronavirus COVID-19</strong> <span class="c_bajada">conocé información y recomendaciones del Ministerio de Salud.</span></h2>
+      </div>
+    </div>
+    </a> </section>
+</div>
 <header>
-  <nav class="navbar navbar-top navbar-default" role="navigation">
+  <nav class="navbar navbar-top navbar-default bg-celeste-argentina" role="navigation">
     <div class="container">
       <div>
         <div class="navbar-header"> <a class="navbar-brand" href="/proyectos/argentina/" aria-label="Argentina.gob.ar Presidencia de la Nación"> <img alt="Argentina.gob.ar" src="img/argentinagob.svg" height="50"> </a> <a class="btn btn-link btn-login visible-xs" href="/proyectos/mi-argentina/v3/"><i class="icono-arg-mi-argentina fa-fw"></i></a> <a class="btn btn-primary btn-login visible-xs" href="#" onclick="$('.navbar.navbar-top').addClass('state-search');"><span class="fa fa-search fa-fw"></span></a> </div>
@@ -62,11 +73,11 @@
             <div class="input-group">
               <input id="buscar" type="text" class="form-control" aria-label="Buscar trámites, servicios o áreas" placeholder="Buscar trámites, servicios o áreas ...">
               <span class="input-group-btn">
-              <button class="btn btn-primary" id="buscar-btn" type="button" aria-label="Buscar"><i class="fa fa-search"></i></button>
+              <button class="btn bg-white" id="buscar-btn " type="button" aria-label="Buscar"><i class="fa fa-search text-primary"></i></button>
               </span> </div>
           </li>
-          <a href="#" class="dropdown-toggle btn btn-link hidden-xs" aria-label="Ingresar a Mi Argentina" data-toggle="dropdown"> Mi Argentina</a>
-        </ul>
+          <a href="#" class="dropdown-toggle btn btn-mi-argentina hidden-xs bg-white" aria-label="Ingresar a Mi Argentina" data-toggle="dropdown"> miArgentina</a>
+        </ul>	
       </div>
     </div>
   </nav>
@@ -444,6 +455,5 @@
     </section>
   </div>
 </footer>
-
 </body>
 </html>
