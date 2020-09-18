@@ -3,7 +3,7 @@
   border-bottom: solid 1px $gray-light;
   color: $gray;
   display: block;
-  font-weight: 400;
+  font-weight: 500;
   margin-bottom: 0;
   padding: 16px 15px;
   width: 100%;
@@ -57,7 +57,7 @@ a {
   .h4,
   .h5,
   .h6 {
-    font-weight: 400;
+    font-weight: 700;
   }
 
   h3 {
@@ -103,11 +103,11 @@ a {
   .h4,
   .h5,
   .h6 {
-    font-weight: 400;
+    font-weight: 700;
   }
 
   h4 {
-    font-weight: normal;
+    font-weight: 400;
   }
 }
 
@@ -171,7 +171,7 @@ a {
         border-radius: 50px;
       }      
       .line {
-        border-top: 1px solid #ccc;
+        border-top: 1px solid $gray-light;
         border-left: none;
         left: 75%;
         top: 50px;

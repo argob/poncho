@@ -12,12 +12,12 @@
   td {
     small {
       color: $gray;
-      font-weight: normal;
+      font-weight: 400;
     }
 
     &.td-strong {
       font-size: 1.1em;
-      font-weight: bold;
+      font-weight: 700;
     }
 
     &.td-fixed {
@@ -166,8 +166,8 @@ $color_lochmara_approx: #0072bb;
     td::before {
       content: attr(data-label);
       //float: left;
-      font-weight: bold;
-      text-transform: uppercase;
+      font-weight: 700;
+      text-transform: inherit;
       display: block;
     }
   }

@@ -59,8 +59,8 @@
 header {
   .btn {
     margin: 13px 0 0 13px;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
   }
   .btn-group > .btn:first-child {
     margin-left: 13px;
@@ -107,7 +107,8 @@ header {
   border: 0;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
-  box-shadow: $shadow;
+  box-shadow: none;
+	border-bottom: solid 1px $gray-light;
   margin: 0;
   z-index: 9;
 
@@ -276,7 +277,7 @@ header {
   }
 
   a {
-    border-radius: 4px;
+    border-radius: 10px;
     color: $brand-primary;
     text-decoration: none;
   }
@@ -314,13 +315,13 @@ header {
     vertical-align: top;
 
     a {
-      font-weight: 400;
+      font-weight: 500;
       text-align: center;
       width: 190px;
       vertical-align: top;
 
       &:hover {
-        background: none;
+        background: 0 0;
       }
 
       i {
@@ -347,7 +348,7 @@ header {
 
       &:hover,
       &:focus {
-        background: none;
+        background: 0 0;
 
         i {
           opacity: 0.8;
@@ -448,7 +449,7 @@ header {
         margin: 13px 0 !important;
         float: none;
         width: 100%;
-        border-radius: 4px;
+        border-radius: 10px;
       }
     }
 
@@ -477,7 +478,6 @@ header {
           }
 
           .input-group {
-            width: auto;
             float: none;
           }
         }

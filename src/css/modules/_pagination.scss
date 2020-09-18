@@ -3,14 +3,14 @@
   font-weight: 500;
   margin-bottom: 64px;
   margin-top: 60px;
-  text-transform: uppercase;
+  text-transform: inherit;
 }
 
 .pagination > li > a,
 .pagination > li > span {
   background-color: transparent;
   border: 0;
-  border-radius: 4px;
+  border-radius: 30px;
   color: $brand-primary;
   float: left;
   line-height: 1.42857;
@@ -21,7 +21,7 @@
 }
 
 .pagination > li > a:hover,
-.pagination > li > a:focus,
+.pagination > li > a:focus,pagination
 .pagination > li > span:hover,
 .pagination > li > span:focus {
   background-color: $gray-lighter;
