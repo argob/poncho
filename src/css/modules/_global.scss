@@ -180,6 +180,29 @@ aside {
 .bg-verde-azulado {
   background-color: $brand-verde-azulado !important;
 }
+.bg-mandarina {
+  background-color: $brand-mandarina !important;
+}
+.bg-cereza {
+  background-color: $brand-cereza !important;
+}
+.bg-lavanda {
+  background-color: $brand-lavanda !important;
+}
+.bg-escarapela {
+  background-color: $brand-escarapela !important;
+}
+.bg-celeste-argentina {
+  background-color: $brand-celeste-argentina !important;
+}
+.bg-palta {
+  background-color: $brand-palta !important;
+}
+.bg-limon {
+  background-color: $brand-limon !important;
+}
+
+
 
 
 .bg-primary, 
@@ -196,7 +219,14 @@ aside {
 .bg-maiz,
 .bg-tomate, 
 .bg-naranja, 
-.bg-verde-azulado
+.bg-verde-azulado,
+.bg-mandarina,
+.bg-cereza,
+.bg-lavanda,
+.bg-escarapela,
+.bg-celeste-argentina,
+.bg-palta,
+.bg-limon
 {
   h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     color: #FFF !important;
@@ -353,6 +383,32 @@ a.bg-danger {
 
 .text-verde-azulado {
   color: $brand-verde-azulado !important;
+}
+
+.text-mandarina {
+  color: $brand-mandarina !important;
+}
+
+.text-cereza {
+  color: $brand-cereza !important;
+}
+
+.text-lavanda {
+  color: $brand-lavanda !important;
+}
+
+.text-escarapela {
+  color: $brand-escarapela !important;
+}
+
+.text-celeste-argentina {
+  color: $brand-celeste-argentina !important;
+}
+.text-palta {
+  color: $brand-palta !important;
+}
+.text-limon {
+  color: $brand-limon !important;
 }
 
 .nav > li > a {

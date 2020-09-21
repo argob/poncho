@@ -582,6 +582,44 @@ header {
   }
 }
 
+@media (max-width: 350px){
+
+
+.navbar {
+	.container {
+		.navbar-header {
+			.navbar-brand {
+				
+				width: 178px;
+				
+						img {
+							width: auto!important;    height: 35px!important;
+							}
+				}
+			}
+		}
+	}
+
+}
+
+@media (min-width: 351px) and (max-width: 420px){
+
+	.navbar {
+		.container {
+			.navbar-header {
+				.navbar-brand {
+	
+					width: 210px;
+							img{
+    						width: auto!important;
+							height: 40px;
+						}
+						}
+				}
+			}
+		}
+}
+
 @media (max-width: 310px) {
   .navbar .container .navbar-header .navbar-brand {
     width: 120px;

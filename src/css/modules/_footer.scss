@@ -37,6 +37,8 @@
       display: block;
       font-size: 16px;
       padding: 6px 0;
+		text-decoration: none!important;
+		color:$black ;
 
       &:hover,
       &:focus {

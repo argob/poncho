@@ -384,6 +384,44 @@ a {
     }
   }
 
+ &.panel-mandarina {
+    .panel-heading {
+      background-color: $brand-mandarina;
+    }
+  }
+
+	&.panel-cereza {
+    .panel-heading {
+      background-color: $brand-cereza;
+    }
+  }
+	
+&.panel-lavanda {
+    .panel-heading {
+      background-color: $brand-lavanda;
+    }
+  }
+	
+		
+&.panel-escarapela {
+    .panel-heading {
+      background-color: $brand-escarapela;
+    }
+  }
+	
+	&.panel-palta {
+    .panel-heading {
+      background-color: $brand-palta;
+    }
+  }
+	
+	&.panel-limon {
+    .panel-heading {
+      background-color: $brand-limon;
+    }
+  }
+
+
 
 }
 
@@ -424,6 +462,31 @@ a {
 .panel-border-gray {
   border-top: 8px solid $gray-border;
 }
+
+.panel-border-mandarina {
+	border-color: #ddd; border-bottom: 12px solid $brand-mandarina;
+}
+.panel-border-cereza {
+	border-color: #ddd;border-bottom: 12px solid $brand-cereza;
+}
+.panel-border-lavanda {
+	border-color: #ddd;border-bottom: 12px solid $brand-lavanda;
+}
+
+.panel-border-escarapela {
+	border-color: #ddd;border-bottom: 12px solid $brand-escarapela;
+}
+
+.panel-border-palta {
+	border-color: #ddd;border-bottom: 12px solid $brand-palta;
+}
+
+.panel-border-limon {
+	border-color: #ddd;border-bottom: 12px solid $brand-limon;
+}
+
+
+
 
 .panel-id>.panel-body {
   padding-bottom: 30px;
