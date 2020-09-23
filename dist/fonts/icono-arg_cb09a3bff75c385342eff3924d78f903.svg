@@ -1,11 +1,11 @@
 <?xml version="1.0" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
 <!--
-2020-9-18: Created with FontForge (http://fontforge.org)
+2020-9-23: Created with FontForge (http://fontforge.org)
 -->
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
 <metadata>
-Created by FontForge 20190801 at Fri Sep 18 18:16:41 2020
+Created by FontForge 20190801 at Wed Sep 23 13:46:56 2020
  By root
 
 </metadata>
@@ -22,7 +22,7 @@ Created by FontForge 20190801 at Fri Sep 18 18:16:41 2020
     bbox="-0.569219 -59 506 444"
     underline-thickness="38.4"
     underline-position="-76.8"
-    unicode-range="U+0020-F62A"
+    unicode-range="U+0020-F62B"
   />
     <missing-glyph />
     <glyph glyph-name="space" unicode=" " horiz-adv-x="200" 
@@ -2470,6 +2470,9 @@ c-1 0 -2 -1 -3 -1c-3 0 -8 2 -11 4s-6 7 -6 11v0c-2 0 -5 0 -7 1c-5 4 -8 12 -8 18c0
 s2 12 4 16l6 24c1 3 1 7 1 10v2c-1 5 -3 12 -5 17c-1 6 -2 15 -2 21c0 12 5 31 10 42c3 7 7 19 8 27c0 6 -1 12 0 18c0 6 5 13 10 15c2 0 4 1 5 2c1 2 2 5 2 7v1c0 15 11 26 26 26c5 0 12 -2 16 -5c3 4 10 7 15 7c3 0 7 -1 10 -3c7 -4 17 -12 22 -18c9 -8 27 -18 38 -23
 c4 -1 9 -6 11 -9c1 -2 2 -5 2 -7s-1 -5 -2 -7s-7 -10 -6 -12c3 -5 21 4 24 6l3 3c0 1 1 2 1 3c0 2 1 5 2 7c2 3 6 6 10 6h1c4 0 10 -3 13 -6zM125 -9c6 -3 5 -7 5 -13c0 -3 -2 -10 -5 -10v0c-3 0 -6 3 -6 6v0v1v5c-3 0 -6 3 -6 6c0 2 1 4 3 5c1 1 4 2 5 2s3 -1 4 -2zM145 -8
 c2 0 4 -2 5 -3c0 -1 1 -2 1 -3s-1 -1 -1 -2l-3 -3c0 -1 -1 -2 -1 -3s1 -2 1 -3v-1c0 -2 -1 -5 -3 -6h-2c-2 0 -6 2 -7 4c-4 7 -1 21 9 20h1z" />
+    <glyph glyph-name="maps" unicode="&#xf62b;" horiz-adv-x="391" 
+d="M114 -5zM114 -5zM211 -5h-1h-91h-1c-65 0 -118 53 -118 118c0 51 30 92 76 112l69 -156v0c14 -34 37 -60 66 -74zM391 112zM391 209v-1v-91v-2c0 -65 -52 -117 -117 -117c-51 0 -92 29 -112 75l155 70v0c34 14 60 37 74 66zM278 389zM277 389zM180 389h1h92h1
+c65 0 117 -53 117 -118c0 -51 -30 -92 -76 -112l-69 156v0c-14 34 -37 60 -66 74zM0 175v1v91v2c0 65 52 117 117 117c51 0 93 -29 113 -75l-156 -70v0c-34 -14 -60 -37 -74 -66z" />
     <glyph glyph-name="maquina-agricola" unicode="&#xf4fb;" horiz-adv-x="482" 
 d="M270 127v0c27 0 50 -23 50 -50v0c0 -27 -23 -49 -50 -49s-50 22 -50 49s23 50 50 50zM309 62c2 4 3 11 3 15v2c0 24 -18 43 -42 43s-43 -19 -43 -43v-2v0c0 -24 19 -43 43 -43c16 0 33 13 39 28zM91 23v0c-21 0 -38 17 -38 38s17 39 38 39s38 -18 38 -39v0v0
 c0 -6 -3 -15 -6 -20c-6 -10 -20 -18 -32 -18zM91 93v0c-17 0 -31 -14 -31 -31s14 -31 31 -31c9 0 21 6 26 14c3 4 5 11 5 16v1v0c0 17 -14 31 -31 31v0zM477 -9c3 -1 5 -4 5 -7v-1c-1 -3 -5 -5 -8 -5v0h-81v-1c-4 0 -8 4 -8 8v0v14c-11 1 -25 9 -32 17c-2 3 -5 7 -6 10
