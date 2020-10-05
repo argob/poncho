@@ -51,10 +51,9 @@
 }
 
 .btn-link {
-  border-radius: 4px;
   color: $brand-primary;
   background-color: $white;
-  border:3px solid #DEE2E6!important;
+  border:3px solid $gray-light!important;
 
   &:hover,
   &:focus,
@@ -82,7 +81,7 @@
   &:focus,
   &:active,
   &.active {
-    background-color: $gray-border;
+    background-color: $gray-light;
     color: $black;
   }
 }
@@ -116,15 +115,15 @@ fieldset[disabled] .btn-default.active {
 }
 
 .btn-default {
-  border-radius: 4px;
+  border-radius: 30px;
   color: $brand-primary;
   background-color: $white;
-  border:3px solid #DEE2E6!important;
+  border:3px solid $gray-light!important;
   
   &:hover,
   &:focus,
   &.active,
-  &:active {
+  &:active {	
     text-decoration: none;
     background-color: darken($white, 5);
     color: $brand-primary;
@@ -135,15 +134,17 @@ fieldset[disabled] .btn-default.active {
 .btn {
   border:3px solid transparent;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 600;
   margin-bottom: 10px;
   padding: 8px 20px;
-  text-transform: uppercase;
+  text-transform: inherit;
   vertical-align: top;
-  white-space: initial;
+  white-space: normal;
   word-break: initial;
   text-decoration: none;
-  letter-spacing: 1px;
+  letter-spacing: inherit;
+	border-radius: 30px;
+  line-height: 1.42857143;
 
   &:hover {
     border:3px solid transparent;
@@ -151,6 +152,7 @@ fieldset[disabled] .btn-default.active {
 
   &:focus{
     border: 3px solid #FEC221!important;outline: none;
+	  border-radius: 30px !important
   }
 
   &.btn-lg {
@@ -246,7 +248,7 @@ span {
   &.btn-group-vertical {
     .btn {
       border: none;
-      border-radius: 4px !important;
+      border-radius: 10px !important;
     }
 
     &.btn-group-justified {
@@ -260,6 +262,11 @@ span {
   }
 }
 
+.btn-mi-argentina {
+  color: $brand-primary;
+  background-color: $white;
+    text-decoration: none;
+   }
 
 
 @media (max-width: 767px) {

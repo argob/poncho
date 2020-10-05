@@ -42,13 +42,13 @@ article {
     padding-top: 16px;
 
     h3 {
-      font-weight: 400;
+      font-weight: 700;
     }
   }
 
   .social-date {
     h4 {
-      font-weight: 400;
+      font-weight: 700;
       margin-bottom: 10px;
       margin-top: 10px;
     }
@@ -66,7 +66,7 @@ article {
   @media only screen and (min-width: 1200px) {
     .overlap {
       background: $body-bg;
-      border-radius: 4px;
+      border-radius: 10px;
       box-sizing: content-box;
       left: -60px;
       margin-top: -60px;
@@ -85,7 +85,7 @@ figure {
   margin: 24px 0 32px;
 
   img {
-    border-radius: 4px;
+    border-radius: 10px;
     margin-bottom: 16px;
     max-width: 100%;
   }
@@ -100,6 +100,7 @@ figure {
 
 
 blockquote {
+	font-size: 18px;
   border: 0;
   margin: 32px;
   padding: 0;
@@ -165,7 +166,7 @@ blockquote {
 .article-news {
   article {
     section {
-      font-family: $font-family-serif;
+      font-family: $font-family-sans-serif;
     }
   }
 

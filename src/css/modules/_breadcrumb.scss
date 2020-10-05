@@ -1,7 +1,6 @@
 .breadcrumb {
   background: transparent;
   border: 0;
-  font-weight: 400;
   margin: 16px 0 0;
   padding: 0;
   text-transform: none;
@@ -16,7 +15,7 @@
     text-decoration: none;
 
     &:hover {
-      color: $link-hover-color;
+      color: $white;
     }
   }
 
@@ -25,6 +24,15 @@
     color: $gray;
   }
 }
+
+.jumbotron .breadcrumb a { 
+	color:$white; 
+	text-decoration: none;
+}
+
+.jumbotron .breadcrumb > .active, .jumbotron .breadcrumb > li + li:before { 
+	 color: #fff
+}	
 
 .section-actions {
   margin: 16px 0 24px;

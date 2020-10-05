@@ -1,6 +1,7 @@
 .social-share {
   margin: 0;
   min-height: 32px;
+	overflow: auto;
 
   p {
     color: $gray;
@@ -18,7 +19,7 @@
     }
 
   li {
-    border-radius: 4px;
+    border-radius: 30px;
     margin: 0;
     padding: 6px;
 
@@ -92,7 +93,7 @@
 
   a {
     @include position(relative, -1px null null null);
-    border-radius: 4px;
+    border-radius: 30px;
     display: block;
     font-size: 30px;
     height: 48px;
@@ -117,7 +118,7 @@
 
     a {
       @include position(relative, -1px null null null);
-      border-radius: 4px;
+      border-radius: 30px;
       display: block;
       font-size: 30px;
       height: 48px;

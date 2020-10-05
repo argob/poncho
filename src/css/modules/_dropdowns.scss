@@ -7,7 +7,7 @@
     background: $brand-primary !important;
      & li a {
       color:#fff;
-      text-transform: uppercase;
+      text-transform: inherit;
       border-bottom:none;
       text-decoration: none;
     }
@@ -26,7 +26,7 @@
     border-bottom:1px solid #dbdbdb;
     display: block;
     clear: both;
-    font-weight: normal;
+    font-weight: 500;
     line-height: 1.42857143;
     white-space: nowrap;
     font-size: 16px;
@@ -37,15 +37,15 @@
 
   li a:not( .btn ):hover,
   li a:not( .btn ):focus {
-    background-color: $brand-primary;
-    color: white;
+    background-color: transparent;
+    color: $brand-primary;
   }
 
   li:first-of-type a {
-    border-radius: 4px 4px 0 0;
+    border-radius: 10px 10px 0 0;
   }
   li:last-of-type a {
-    border-radius: 0 0 4px 4px;
+    border-radius: 0 0 10px 10px;
     border: none;
   }
 }
@@ -83,6 +83,10 @@
       &:hover,&:focus {
         color: #fff;
     }
-  }
+	header .btn {
+		padding-left: 10px !important;
+		padding-right: 10px !important
+ }
+	}
 
 }

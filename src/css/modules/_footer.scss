@@ -2,6 +2,7 @@
   background: $white;
   padding-bottom: 32px;
   padding-top: 60px;
+  border-top: solid 1px $gray-light;
 
   .row > div {
     &:first-child {
@@ -36,6 +37,8 @@
       display: block;
       font-size: 16px;
       padding: 6px 0;
+		text-decoration: none!important;
+		color:$black ;
 
       &:hover,
       &:focus {
@@ -80,4 +83,9 @@ body.sticky-footer {
       padding-top: 60px;
     }
   }
+}
+
+.sub-footer{
+ background-color: $brand-celeste-argentina;
+ padding: 20px 0 40px 0;
 }

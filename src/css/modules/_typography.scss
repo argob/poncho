@@ -1,10 +1,13 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Encode+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 body {
   font-family: $font-family-sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-  font-weight: 600;
-  margin: .5em 0;
+  font-weight: 700;
+  margin: .5em 0 .7em 0;
 
   small,
   .small {
@@ -37,7 +40,7 @@ h2, .h2 {
 }
 
 h3, .h3 {
-  font-size: 24px;
+  font-size: 1.375em;
 
   &.section-title {
     font-size: 1.4em;
@@ -53,7 +56,7 @@ h4, .h4 {
 }
 
 h5, .h5 {
-  font-size: 20px;
+  font-size: 1.125em;
 
   &.section-title {
     font-size: 1em;
@@ -103,14 +106,14 @@ p, li, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, table tbody {
 p,
 ul,
 ol,
-p,
-table { font-weight: 400; }
+table,
+fieldset { font-weight: 500; }
 
 b, strong {
-    font-weight: 600;
+    font-weight: 700;
 }
 
-.text-muted {
+.text-muted, time {
   color: $gray;
 }
 .text-gray {
@@ -119,12 +122,13 @@ b, strong {
 
 .lead {
   font-size: 18px;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 1.2;
 }
 
 .help-block{
-  font-size: 14px
+  font-size: 14px;
+	color: $gray
 }
 
 
@@ -224,15 +228,19 @@ article {
   p {
     font-size: 16px;
   }
+	
+h3 {
+    font-size: 1.25em!important;
+  }
 
 }
 @media (min-width: 992px) {
   .jumbotron {
     li {
-      font-size: 16px;
+      font-size: 14px;
 
       a {
-        font-weight: 400;
+        font-weight: 500;
       }
     }
   }
@@ -244,11 +252,11 @@ article {
     font-size: 2.5em;
   }
   h2, .h2 {
-    font-size: 2.285714em;
+    font-size: 1.75em;
   }
 
   h3, .h3 {
-    font-size: 2em;
+    font-size: 1.375em;
   }
 
   h4, .h4 {
@@ -256,7 +264,7 @@ article {
   }
 
   h5, .h5 {
-    font-size: 1.3em;
+    font-size: 1.125em;
   }
 
   h6, .h6 {

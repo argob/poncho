@@ -3,6 +3,8 @@ body {
   font-size: 16px;
   height: 100%;
   max-width: 100%;
+	font-weight: 500;
+	 background: #fff;
   // overflow-x: hidden; // Se comenta porque rompe el screenshot en pantalla completa completa
 }
 
@@ -34,9 +36,9 @@ hr {
   display: inline-block;
 }
 
-.img-rounded {
+/*.img-rounded {
   border-radius: 4px;
-}
+}*/
 
 .element-invisible {
   position: absolute !important;
@@ -54,7 +56,7 @@ hr {
 }
 
 section {
-  padding: 40px 0;
+  padding: 30px 0;
 
   &.section-no-spaced {
     padding: 0;
@@ -63,7 +65,7 @@ section {
     padding: 20px 0;
   }
   &.section-lg {
-    padding: 80px 0;
+    padding: 40px 0;
   }
 }
 
@@ -138,6 +140,8 @@ aside {
 }
 .bg-white {
   background-color: $white !important;
+	border: solid 1px #ddd;
+	border-radius: 10px;
 }
 .bg-muted {
   background-color: $gray !important;
@@ -176,6 +180,29 @@ aside {
 .bg-verde-azulado {
   background-color: $brand-verde-azulado !important;
 }
+.bg-mandarina {
+  background-color: $brand-mandarina !important;
+}
+.bg-cereza {
+  background-color: $brand-cereza !important;
+}
+.bg-lavanda {
+  background-color: $brand-lavanda !important;
+}
+.bg-escarapela {
+  background-color: $brand-escarapela !important;
+}
+.bg-celeste-argentina {
+  background-color: $brand-celeste-argentina !important;
+}
+.bg-palta {
+  background-color: $brand-palta !important;
+}
+.bg-limon {
+  background-color: $brand-limon !important;
+}
+
+
 
 
 .bg-primary, 
@@ -192,7 +219,13 @@ aside {
 .bg-maiz,
 .bg-tomate, 
 .bg-naranja, 
-.bg-verde-azulado
+.bg-verde-azulado,
+.bg-mandarina,
+.bg-cereza,
+.bg-lavanda,
+.bg-escarapela,
+.bg-palta,
+.bg-limon
 {
   h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     color: #FFF !important;
@@ -313,6 +346,7 @@ a.bg-danger {
 }
 .text-muted {
   color: $gray !important;
+	opacity: 1 !important
 }
 
 
@@ -350,6 +384,32 @@ a.bg-danger {
   color: $brand-verde-azulado !important;
 }
 
+.text-mandarina {
+  color: $brand-mandarina !important;
+}
+
+.text-cereza {
+  color: $brand-cereza !important;
+}
+
+.text-lavanda {
+  color: $brand-lavanda !important;
+}
+
+.text-escarapela {
+  color: $brand-escarapela !important;
+}
+
+.text-celeste-argentina {
+  color: $brand-celeste-argentina !important;
+}
+.text-palta {
+  color: $brand-palta !important;
+}
+.text-limon {
+  color: $brand-limon !important;
+}
+
 .nav > li > a {
   text-decoration: none;
 }
@@ -379,7 +439,7 @@ a.bg-danger {
 
   .btn-title {
     border: medium none;
-    border-radius: 4px;
+    border-radius: 30px;
     color: #666;
     // cursor: pointer;
     display: inline-block;
@@ -399,7 +459,7 @@ a.bg-danger {
   .nav-pills li {
 
     a {
-      color: #606060;
+      color: #0072bb;
     }
 
     &.active > a,
@@ -413,7 +473,7 @@ a.bg-danger {
     }
 
     &.disabled > a {
-      color: $gray-light;
+      color: $white;
 
       &:hover {
         border-color: $gray-lighter;
@@ -422,7 +482,7 @@ a.bg-danger {
 
     > a {
       padding: 13px 20px;
-      border-radius: 4px;
+      border-radius: 30px;
 
       &:hover {
         border-color: $gray-lighter;
@@ -543,12 +603,14 @@ dd {
 @media screen and (max-width: 767px) {
 
   h2 {
-    font-size: 2.6em;
+    font-size: 2em;
   }
 
   h3 {
     font-size: 32px;
   }
+
+
 
   article {
     h1 {
@@ -607,7 +669,7 @@ dd {
 
   span {
     &.bg-primary {
-      border-radius: 4px;
+      border-radius: 30px;
       float: left;
       margin-right: 20px;
       margin-top: 15px;
@@ -638,7 +700,7 @@ dd {
     }
 
     button {
-      background: transparent;
+      background: 0 0;
       border: 0;
     }
   }
@@ -657,9 +719,9 @@ dd {
 }
 
 .list-idioma {
-  background: transparent;
+  background: 0 0;
   border: 0;
-  font-weight: 400;
+  font-weight: 500;
   margin: 16px 0 0;
   padding: 0;
   text-transform: none;
@@ -706,7 +768,7 @@ dd {
 
   &:after {
     background-color: rgba(204,204,204,.7);
-    border-radius: 4px;
+    border-radius: 30px;
     content: '';
     height: 100%;
     left: 0;
