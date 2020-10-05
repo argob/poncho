@@ -1,7 +1,7 @@
 /*
 Error: File to import not found or unreadable: ../../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/variables.
-       Load path: /Users/soni/sites/PonchoGitHub/src/css
-        on line 15 of /Users/soni/sites/PonchoGitHub/src/css/ponchito.scss
+       Load path: /Users/male/sites/poncho/src/css
+        on line 15 of /Users/male/sites/poncho/src/css/ponchito.scss
 
 10: // Colores de poncho
 11: @import "modules/variables";
@@ -16,7 +16,7 @@ Error: File to import not found or unreadable: ../../../../node_modules/bootstra
 20: // @import "../../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/print";
 
 Backtrace:
-/Users/soni/sites/PonchoGitHub/src/css/ponchito.scss:15
+/Users/male/sites/poncho/src/css/ponchito.scss:15
 /Applications/Koala.app/Contents/Resources/app.nw/rubygems/gems/sass-3.5.2/lib/sass/tree/import_node.rb:67:in `rescue in import'
 /Applications/Koala.app/Contents/Resources/app.nw/rubygems/gems/sass-3.5.2/lib/sass/tree/import_node.rb:44:in `import'
 /Applications/Koala.app/Contents/Resources/app.nw/rubygems/gems/sass-3.5.2/lib/sass/tree/import_node.rb:28:in `imported_file'
@@ -54,4 +54,4 @@ Backtrace:
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: File to import not found or unreadable: ../../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/variables.\A        Load path: /Users/soni/sites/PonchoGitHub/src/css\A         on line 15 of /Users/soni/sites/PonchoGitHub/src/css/ponchito.scss\A \A 10: // Colores de poncho\A 11: @import \"modules/variables\";\A 12: \A 13: \A 14: // Core variables and mixins\A 15: @import \"../../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/variables\";\A 16: @import \"../../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/mixins\";\A 17: \A 18: // Reset and dependencies\A 19: @import \"../../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/normalize\";\A 20: // @import \"../../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/print\";"; }
+  content: "Error: File to import not found or unreadable: ../../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/variables.\A        Load path: /Users/male/sites/poncho/src/css\A         on line 15 of /Users/male/sites/poncho/src/css/ponchito.scss\A \A 10: // Colores de poncho\A 11: @import \"modules/variables\";\A 12: \A 13: \A 14: // Core variables and mixins\A 15: @import \"../../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/variables\";\A 16: @import \"../../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/mixins\";\A 17: \A 18: // Reset and dependencies\A 19: @import \"../../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/normalize\";\A 20: // @import \"../../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/print\";"; }
