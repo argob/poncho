@@ -329,18 +329,18 @@ font-weight: 600;
 
  #campaign h2 {
   font-size: 14px !important;
-  color: #111 !important;
+  /*color: #111 !important;*/
   font-weight: 500 !important;
   padding: 2px 0 !important;
 }
 #campaign a {
-  text-decoration: underline !important;
+  /*text-decoration: underline !important;*/
 }
 #campaign a:hover {
   text-decoration: none !important;
 }
 #campaign a:visited {
-  color: #111 !important;
+  /*color: #111 !important;*/
 }
 
 /* #campaign .container-fluid {
@@ -351,7 +351,11 @@ font-weight: 600;
   background-color: #37BBED !important;
 }
 
-
+@media screen and (max-width: 767px){
+.c_bajada {
+    display: none;
+}
+}
 
  
  #divnoticias .panel h3,
@@ -428,7 +432,7 @@ header nav .btn-link {
   background: transparent !important;
 } */
 header nav input#buscar {
-  opacity: 0.7;
+  opacity: 0.9;
 }
 header nav input#buscar:focus {
   opacity: 1;
@@ -447,10 +451,10 @@ color: #333;
 
 
 .main-footer {
-padding: 30px 0 20px 0;
+padding: 50px 0 20px 0;
 margin-top: 10px;
-/* background: #D3F2FF !important; */
-background: #fff !important;
+background: #F3FAFF !important;
+/* background: #fff !important; */
 
 }
 /* .main-footer h3, .main-footer a {
@@ -687,6 +691,202 @@ small {
 
 
 
+/*	ESTILOS ETAPA 2 ARGENTINA.GOB.AR */
+
+
+#campaign a { text-decoration: none!important
+}
+
+
+.etapa2 .h3  {color: #333!important;
+font-size: 20px!important;
+text-shadow: none!important;
+}
+
+.etapa2 p {
+    font-size: 16px!important;
+    line-height: 22px!important;
+    text-shadow: none!important;
+    font-weight: 500!important;
+    color: #555!important;
+}
+
+.etapa2  .text-muted {
+text-shadow: none!important;}
+
+.mt-3{margin-top: 30px;}
+
+/*.btn-mi-argentina {
+  color: #0072bb;
+  background-color: #fff; }
+
+
+  .btn-mi-argentina {
+    text-decoration: none;
+    background-color: #fff !important;
+    color: #0072bb; }*/
+
+.input-search { border: none!important}
+
+.input-search:hover, .input-search:focus { -webkit-box-shadow:none!important;
+    box-shadow: none!important}
+
+/*.main-footer li a  { text-decoration: none!important; color: #333!important}
+*/
+.box-campania  { padding: 30px 0 0 0;
+    background-color: #f3faff;
+}
+
+.container-campania { 
+	border-radius: 10px;
+	width: 1270px!important;
+  padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+/*@media (max-width: 350px){
+.navbar .container .navbar-header .navbar-brand {
+width: 178px;
+}
+
+.navbar .container .navbar-header .navbar-brand img {
+width: auto!important;    height: 35px!important;
+}
+
+}
+
+@media (min-width: 351px) and (max-width: 420px){
+.navbar .container .navbar-header .navbar-brand {
+    width: 210px;
+}
+	.navbar .container .navbar-header .navbar-brand img{
+    width: auto!important;
+		height: 40px;
+}
+
+}*/
+
+
+@media (max-width: 768px){
+/*header .btn {
+    padding-left: 7px!important;
+    padding-right: 7px!important;	
+}*/
+#campaign02 {
+	line-height: 1.4
+}
+	
+.panel-camp-principal{
+	 margin-top: 160px
+}
+	.box-camp-principal {
+ padding: 0px!important
+}
+}
+	.container-campania {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+		border-radius: 10px!important;
+}
+@media (min-width: 300px){
+.container-campania {
+    width: 100%!important;
+}
+}
+@media (max-width: 767px){
+.container-campania {
+    width: 100%!important;
+	border-radius: 0px!important;
+	height: 250px;
+    margin-bottom: 86px;
+}
+	.box-campania{
+     padding: 0px;
+}
+/*.panels-row{
+     display: flex!important;
+}*/
+}
+@media (min-width: 768px){
+.container-campania {
+    width: 750px!important;
+}}
+@media (min-width: 992px){
+.container-campania {
+    width: 970px!important;
+}}
+@media (min-width: 1200px){
+.container-campania {
+    width: 1170px!important;
+}}
+@media (min-width: 1270px){
+.container-campania {
+    width: 1270px!important;
+}}
+
+.d-inline-block {
+    display: inline-block!important;
+}
+
+
+/*.panel-border-mandarina {border-color: #ddd;border-bottom: 12px solid #F79525;}
+
+.panel-border-cereza {border-color: #ddd;border-bottom: 12px solid #ED3D8F;}
+
+.panel-border-lavanda {border-color: #ddd;border-bottom: 12px solid #9284BE;}
+
+.panel-border-escarapela {border-color: #ddd;border-bottom: 12px solid #2CB9EE;}
 
 
 
+/*  trámites y servicios */
+
+.bg-celeste-argentina { 
+	background-color: #2CB9EE
+}
+
+.bg-escarapela {
+    background-color: #2CB9EE!important;
+}
+.text-escarapela {
+    color: #2CB9EE!important;
+}
+
+.bg-lavanda {
+    background-color: #9284BE!important;
+}
+.text-lavanda {
+    color: #9284BE!important;
+}
+
+.bg-palta{
+    background-color: #50B7B2!important;
+}
+.text-palta {
+    color: #50B7B2!important;
+}
+
+.bg-cereza{
+    background-color: #ED3D8F!important;
+}
+.text-cereza {
+    color: #ED3D8F!important;
+}
+.bg-mandarina{
+    background-color: #F79525!important;
+}
+.text-mandarina {
+    color: #F79525!important;
+}
+
+.bg-limon{
+    background-color: #D7DF23!important;
+}
+.text-limon{
+    color: #D7DF23!important;
+}
+*/
