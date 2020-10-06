@@ -575,13 +575,13 @@ header nav .input-search {
       .navbar-header {
         .navbar-brand {
           padding: 14px 0 14px;
-          width: 160px;
+          width: 170px;
           overflow: hidden;
 
           img {
             width: 100%;
             max-width: none;
-            // height: 32px;
+             height: 33px;
           }
 
           h1 {
@@ -619,7 +619,7 @@ header nav .input-search {
 
 }
 
-@media (min-width: 351px) and (max-width: 420px){
+/*@media (min-width: 351px) and (max-width: 420px){
 
 	.navbar {
 		.container {
@@ -635,7 +635,7 @@ header nav .input-search {
 				}
 			}
 		}
-}
+}*/
 
 @media (max-width: 310px) {
   .navbar .container .navbar-header .navbar-brand {
