@@ -597,8 +597,8 @@ header nav .input-search:focus { opacity: 1; }
   .navbar .container .navbar-header .navbar-brand h1 { margin-top: 8px; }
   .navbar .container .navbar-header .navbar-brand h1 span { display: none; }
   .navbar .container .navbar-header .navbar-brand br { display: none; } }
-@media (max-width: 350px) { .navbar .container .navbar-header .navbar-brand { width: 178px; }
-  .navbar .container .navbar-header .navbar-brand img { width: auto !important; height: 35px !important; } }
+@media (max-width: 350px) { .navbar .container .navbar-header .navbar-brand { width: 162px; }
+  .navbar .container .navbar-header .navbar-brand img { width: auto !important; height: 32px !important; } }
 /*@media (min-width: 351px) and (max-width: 420px){
 
 	.navbar {
