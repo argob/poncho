@@ -75,6 +75,15 @@ header nav input#buscar {
   }
 }
 
+header nav .input-search {
+  opacity: 0.9;
+
+  &:focus {
+    opacity: 1;
+  }
+}
+
+
 .navbar-header {
   .duelo {
     margin: 14px 0 0 17px;

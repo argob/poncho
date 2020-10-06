@@ -495,6 +495,9 @@ header .btn-group > .btn:first-child { margin-left: 13px; }
 header nav input#buscar { opacity: 0.9; }
 header nav input#buscar:focus { opacity: 1; }
 
+header nav .input-search { opacity: 0.9; }
+header nav .input-search:focus { opacity: 1; }
+
 .navbar-header .duelo { margin: 14px 0 0 17px; }
 
 .navbar-brand { height: 72px; font-size: 20px; font-weight: 500; line-height: 2.6; }
