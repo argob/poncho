@@ -599,7 +599,7 @@ header nav input#buscar:focus { opacity: 1; }
 @media (min-width: 351px) and (max-width: 420px) { .navbar .container .navbar-header .navbar-brand { width: 210px; }
   .navbar .container .navbar-header .navbar-brand img { width: auto !important; height: 40px; } }
 @media (max-width: 310px) { .navbar .container .navbar-header .navbar-brand { width: 120px; } }
-.main-footer { background: #fff; padding-bottom: 32px; padding-top: 60px; border-top: solid 1px #DDD; }
+.main-footer { background: #fff; padding-bottom: 32px; padding-top: 10px !important; border-top: solid 1px #DDD; }
 .main-footer .row > div:first-child { padding-right: 30px; }
 .main-footer a { text-decoration: underline; }
 .main-footer a:hover, .main-footer a:focus { text-decoration: underline; }
@@ -610,7 +610,7 @@ header nav input#buscar:focus { opacity: 1; }
 .main-footer li { list-style: none; }
 .main-footer li a { display: block; font-size: 16px; padding: 6px 0; text-decoration: none !important; color: #333333; }
 .main-footer li a:hover, .main-footer li a:focus { text-decoration: underline; }
-.main-footer section { padding: 30px 0 0; }
+.main-footer section { padding: 30px 0; }
 .main-footer h2 { font-size: 1.25em !important; }
 .main-footer h4 { color: #555; }
 .main-footer img.image-responsive { margin-bottom: 20px; max-width: 300px; display: block; }
@@ -624,6 +624,7 @@ body.sticky-footer .main-footer > div { padding-bottom: 30px; padding-top: 60px;
 
 .sub-footer { background-color: #37BBED; padding: 20px 0 40px 0; }
 
+@media (max-width: 768px) { .main-footer section { padding: 30px 0 0; } }
 .list-group-item { border: 0; border-bottom: solid 1px #DDD; color: #555; display: block; font-weight: 500; margin-bottom: 0; padding: 16px 15px; width: 100%; }
 .list-group-item:last-child { border: 0; }
 

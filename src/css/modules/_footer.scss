@@ -1,7 +1,7 @@
 .main-footer {
   background: $white;
   padding-bottom: 32px;
-  padding-top: 60px;
+  padding-top: 10px!important;
   border-top: solid 1px $gray-light;
 
   .row > div {
@@ -51,8 +51,9 @@
     }
   }
 section {
-    padding: 30px 0 0;
+    padding: 30px 0;
   }
+	
 	
   h2{
     font-size: 1.25em!important
@@ -101,4 +102,11 @@ body.sticky-footer {
  padding: 20px 0 40px 0;
 }
 
+@media (max-width: 768px) {
+	.main-footer {
+		section {
+    padding: 30px 0 0;
+  }
+		}
+}
 
