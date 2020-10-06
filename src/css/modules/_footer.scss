@@ -24,7 +24,11 @@
   ul {
     margin-bottom: 32px;
     padding: 0;
-
+	
+	&.nav>li>a {
+      text-decoration: none !important;
+    }  
+	  
     &.nav>li>a:hover {
       background: none;
     }
@@ -89,3 +93,5 @@ body.sticky-footer {
  background-color: $brand-celeste-argentina;
  padding: 20px 0 40px 0;
 }
+
+

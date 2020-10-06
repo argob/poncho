@@ -744,7 +744,6 @@ text-shadow: none!important;}
     padding-left: 15px;
     margin-right: auto;
     margin-left: auto;
-  min-height:354px;
 }
 
 /*@media (max-width: 350px){
@@ -819,7 +818,9 @@ width: auto!important;    height: 35px!important;
 @media (min-width: 992px){
 .container-campania {
     width: 970px!important;
-}}
+    min-height: 354px;
+}
+}
 @media (min-width: 1200px){
 .container-campania {
     width: 1170px!important;
