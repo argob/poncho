@@ -314,7 +314,8 @@ body { font-family: "Encode Sans", Arial, sans-serif; }
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 { font-weight: 700; margin: .5em 0 .7em 0; }
 h1 small, h1 .small, h2 small, h2 .small, h3 small, h3 .small, h4 small, h4 .small, h5 small, h5 .small, h6 small, h6 .small, .h1 small, .h1 .small, .h2 small, .h2 .small, .h3 small, .h3 .small, .h4 small, .h4 .small, .h5 small, .h5 .small, .h6 small, .h6 .small { color: #555; }
-h1.section-title, h2.section-title, h3.section-title, h4.section-title, h5.section-title, h6.section-title, .h1.section-title, .h2.section-title, .h3.section-title, .h4.section-title, .h5.section-title, .h6.section-title { color: #555; font-weight: 600; /*text-transform: uppercase;*/ margin-bottom: 24px; }
+h1.section-title, h2.section-title, h3.section-title, h4.section-title, h5.section-title, h6.section-title, .h1.section-title, .h2.section-title, .h3.section-title, .h4.section-title, .h5.section-title, .h6.section-title { color: #555; /*font-weight: 600;
+text-transform: uppercase;*/ margin-bottom: 24px; }
 
 h1, .h1 { font-size: 28px; }
 h1.section-title, .h1.section-title { font-size: 1.8em; }
@@ -604,6 +605,7 @@ header nav input#buscar:focus { opacity: 1; }
 .main-footer a:hover, .main-footer a:focus { text-decoration: underline; }
 .main-footer a.btn { text-decoration: none; }
 .main-footer ul { margin-bottom: 32px; padding: 0; }
+.main-footer ul.nav > li > a { text-decoration: none !important; }
 .main-footer ul.nav > li > a:hover { background: none; }
 .main-footer li { list-style: none; }
 .main-footer li a { display: block; font-size: 16px; padding: 6px 0; text-decoration: none !important; color: #333333; }
