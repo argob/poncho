@@ -604,12 +604,13 @@ header nav input#buscar:focus { opacity: 1; }
 .main-footer a { text-decoration: underline; }
 .main-footer a:hover, .main-footer a:focus { text-decoration: underline; }
 .main-footer a.btn { text-decoration: none; }
-.main-footer ul { margin-bottom: 32px; padding: 0; }
+.main-footer ul { margin-bottom: 10px; padding: 0; }
 .main-footer ul.nav > li > a { text-decoration: none !important; }
 .main-footer ul.nav > li > a:hover { background: none; }
 .main-footer li { list-style: none; }
 .main-footer li a { display: block; font-size: 16px; padding: 6px 0; text-decoration: none !important; color: #333333; }
 .main-footer li a:hover, .main-footer li a:focus { text-decoration: underline; }
+.main-footer section { padding: 30px 0 0; }
 .main-footer h2 { font-size: 1.25em !important; }
 .main-footer h4 { color: #555; }
 .main-footer img.image-responsive { margin-bottom: 20px; max-width: 300px; display: block; }

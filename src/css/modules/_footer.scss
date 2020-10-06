@@ -22,7 +22,7 @@
   }    
 
   ul {
-    margin-bottom: 32px;
+    margin-bottom: 10px;
     padding: 0;
 	
 	&.nav>li>a {
@@ -49,6 +49,9 @@
         text-decoration: underline;
       }
     }
+  }
+section {
+    padding: 30px 0 0;
   }
 	
   h2{
