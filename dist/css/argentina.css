@@ -838,6 +838,10 @@ width: auto!important;    height: 35px!important;
     display: inline-block!important;
 }
 
+.btn-search-reset {padding: 11px 14px!important;
+    border: none!important;
+    }
+
 
 /*.panel-border-mandarina {border-color: #ddd;border-bottom: 12px solid #F79525;}
 
