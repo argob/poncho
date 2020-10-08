@@ -492,6 +492,7 @@ color: #333;
 .input-group-btn:not(:first-child):not(:last-child) {
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
+  border: none!important;
 }
 
 
