@@ -397,7 +397,7 @@ article h1.icon.aside { line-height: 1.5; text-align: center; }
 .btn-warning { background-color: #f9a822; }
 .btn-warning:hover, .btn-warning:focus, .btn-warning:active { background-color: #9c1f1f; }
 
-.btn-danger { background-color: #c62828; }
+.btn-danger { /* background-color: $brand-danger;*/ }
 .btn-danger:hover, .btn-danger:focus, .btn-danger:active { background-color: #9c1f1f; }
 
 .btn-link { color: #0072bb; background-color: #fff; border: 3px solid #DDD !important; }
