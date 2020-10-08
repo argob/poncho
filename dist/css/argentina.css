@@ -839,8 +839,8 @@ width: auto!important;    height: 35px!important;
     display: inline-block!important;
 }
 
-.btn-search-reset {padding: 11px 14px!important;
-    border: none!important;
+.btn-search-reset {padding: 8px 11px!important;
+    border: 3px solid #fff!important;
     }
 
 
