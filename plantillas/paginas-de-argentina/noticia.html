@@ -30,10 +30,10 @@
   <meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
   <meta name="twitter:image" content="/ejemplos/img/jumbotron.jpg" />
 
-  <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="../../node_modules/argob-poncho/dist/css/poncho.min.css">
+				    <link rel="stylesheet" href="../../node_modules/argob-poncho/dist/css/argentina.css">
   <link rel="stylesheet" href="../../node_modules/argob-poncho/dist/icono-arg.css">
   
 
@@ -101,34 +101,26 @@
     
     
 <header>
-  <nav class="navbar navbar-top navbar-default" role="navigation">
-    <div class="container">
-      <div>
-        <div class="navbar-header">
-          <a class="navbar-brand" href="/proyectos/argentina/" aria-label="Argentina.gob.ar Presidencia de la Nación">
-            <img alt="Argentina.gob.ar" src="img/argentinagob.svg" height="50">
-          </a>
-          <a class="btn btn-link btn-login visible-xs" href="/proyectos/mi-argentina/v3/"><i class="icono-arg-mi-argentina fa-fw"></i></a>
-          <a class="btn btn-primary btn-login visible-xs" href="#" onclick="$('.navbar.navbar-top').addClass('state-search');"><span class="fa fa-search fa-fw"></span></a>
-        </div>
-        <ul class="nav navbar-nav navbar-right hidden-xs">
-          <a href="#" onclick="$('.navbar.navbar-top').removeClass('state-search');" class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
-          <li>
-            <div class="input-group">
-              
-              <input id="buscar" type="text" class="form-control" aria-label="Buscar trámites, servicios o áreas" placeholder="Buscar trámites, servicios o áreas ...">
-              <span class="input-group-btn">
-                <button class="btn btn-primary" id="buscar-btn" type="button" aria-label="Buscar"><i class="fa fa-search"></i></button>
-              </span>
+        <nav class="navbar navbar-top navbar-default bg-celeste-argentina" role="navigation">
+            <div class="container">
+                <div>
+                    <div class="navbar-header"> <a class="navbar-brand" href="/proyectos/argentina/" aria-label="Argentina.gob.ar Presidencia de la Nación"> <img alt="Argentina.gob.ar" src="img/argentinagob-2.svg" height="50"> </a> <a class="btn btn-mi-argentina btn-login visible-xs"
+                            href="/proyectos/mi-argentina/v3/"><i class="icono-arg-mi-argentina fa-fw"></i></a> <a class="btn bg-white btn-login visible-xs" href="#" onclick="$('.navbar.navbar-top').addClass('state-search');"><span class="fa fa-search fa-fw"></span></a>                        </div>
+                    <div class="nav navbar-nav navbar-right hidden-xs">
+                        <a href="#" onclick="$('.navbar.navbar-top').removeClass('state-search');" class="btn btn-mi-argentina visible-xs"> <i class="fa fa-times"></i> </a>
+                        <div style="float: left">
+                            <div class="input-group">
+                                <input id="buscar" type="text" class="form-control input-search" aria-label="Buscar trámites, servicios o áreas" placeholder="Buscar trámites, servicios o áreas ...">
+                                <span class="input-group-btn">
+              <button class="btn bg-white"  type="button" aria-label="Buscar"><i class="fa fa-search text-primary"></i></button>
+              </span> </div>
+                        </div>
+                        <a href="#" class="dropdown-toggle btn btn-mi-argentina hidden-xs bg-white" aria-label="Ingresar a Mi Argentina" data-toggle="dropdown"> miArgentina</a>
+                    </div>
+                </div>
             </div>
-          </li>              
-          <a href="#" class="dropdown-toggle btn btn-link hidden-xs" aria-label="Ingresar a Mi Argentina" data-toggle="dropdown">
-           <i class="icono-arg-mi-argentina"></i>Mi Argentina</a>
-        </ul>
-      </div>
-    </div>
-  </nav>
-</header>
+        </nav>
+    </header>
 
 
 <script type="text/javascript">
@@ -316,31 +308,46 @@
 </section>
 
     </main>
-    <footer class="main-footer">
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-6">
-        <img class="image-responsive" alt="Argentina.gob.ar - Presidencia de la Nación" src="img/logo_argentina_unida.svg" height="25">
-        <p class="text-muted small"><a href="https://creativecommons.org/licenses/by/2.5/ar/">Los contenidos de Argentina.gob.ar están licenciados bajo Creative Commons Reconocimiento 2.5 Argentina License</a></p>
-      </div>
-      <div class="col-md-3 col-sm-6">
-        <ul>
-          <li><a href="/servicios">Trámites y servicios</a></li>
-          <li><a href="/turnos">Turnos</a></li>
-          <li><a href="/organismos">Organismos del Estado</a></li>
-          <li><a href="http://mapadelestado.modernizacion.gob.ar/" target="_blank" aria-label="Mapa del Estado - Sitio Externo">Mapa del Estado</a></li>
-        </ul>
-      </div>
-      <div class="col-md-3 col-sm-6">
-        <ul>
-          <li><a href="/acerca">Acerca de este sitio</a></li>
-          <li><a href="/terminos-y-condiciones">Términos y condiciones</a></li>
-          <li><a href="/ayuda">Ayuda</a></li>
-        </ul>
-      </div>
+      <footer class="main-footer">
+        <div class="container">
+            <div class="row">
+				
+				
+                <div class="col-md-4 col-sm-6">
+                    <h3>Trámites y servicios</h3>
+                    <ul class="footer-link">
+                        <li><a href="https://www.argentina.gob.ar/turnos">Turnos</a></li>
+                        <li><a href="https://www.argentina.gob.ar/jefatura/innovacion-publica/administrativa/tramites-a-distancia">Trámites a distancia</a></li>
+                        <li><a href="https://www.argentina.gob.ar/miargentina/mesadeayuda">Atención al ciudadano</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <h3>Acerca de la República Argentina</h3>
+                    <ul class="footer-link">
+                        <li><a href="https://back.argentina.gob.ar/nuestro-pais">Nuestro País</a></li>
+                        <li><a href="https://www.argentina.gob.ar/normativa">Leyes argentinas</a></li>
+                        <li><a  class="d-inline-block" href="https://www.argentina.gob.ar/organismos" target="_blank">Organismos</a> y <a class="d-inline-block" href="https://www.argentina.gob.ar/jefatura/mapa-del-estado" target="_blank" >Mapa del Estado</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <h3>Acerca de Argentina.gob.ar</h3>
+                    <ul class="footer-link">
+                        <li><a href="https://www.argentina.gob.ar/acerca">Acerca de este sitio</a></li>
+                        <li><a href="https://www.argentina.gob.ar/terminos-y-condiciones">Términos y condiciones</a></li>
+                        <li><a href="http://www.argentina.gob.ar/contacto">Contacto</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div class="sub-footer">
+        <div class="container">
+            <div class="col-sm-6 m-y-1 p-x-0">
+               <a href="http://www.argentina.gob.ar/unida"><img class="image-responsive" alt="Argentina.gob.ar - Presidencia de la Nación" src="img/logo_argentina_unida-blanco.svg" height="40"></a> 
+                <!-- <p class="text-muted small"><a href="https://creativecommons.org/licenses/by/2.5/ar/">Los contenidos de Argentina.gob.ar están licenciados bajo Creative Commons Reconocimiento 2.5 Argentina License</a></p> -->
+            </div>
+        </div>
     </div>
-  </div>
-</footer>
 
     
   </body>
