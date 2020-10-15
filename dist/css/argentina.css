@@ -477,7 +477,9 @@ color: #333;
        padding: 10px 15px 10px 0;
    }
    #campaign h2 {
-       margin: 8px -15px;
+       /*margin: 8px -15px;*/
+      margin-right: auto;
+      margin-left: auto;
    }
    .navbar.navbar-top.state-search .navbar-nav.navbar-right > .btn {
        margin-left: 0 !important;
