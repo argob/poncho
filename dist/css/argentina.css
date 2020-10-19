@@ -809,9 +809,10 @@ width: auto!important;    height: 35px!important;
     width: 100%!important;
 	border-radius: 0px!important;
 	height: 250px;
-    margin-bottom: 180px;
     overflow: visible;
 }
+  .container-campania:not(:root:root){ margin-bottom: 180px; } 
+  
 	.box-campania{
      padding: 0px;
 }
