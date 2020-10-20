@@ -614,7 +614,14 @@ header nav .input-search:focus { opacity: 1; }
 			}
 		}
 }*/
-@media (max-width: 310px) { .navbar .container .navbar-header .navbar-brand { width: 120px; } }
+@media (max-width: 320px) { header .btn { padding: 7px; } }
+@media (max-width: 310px) { .navbar .container .navbar-header .navbar-brand { width: 155px; }
+  .navbar .container .navbar-header .navbar-brand img { height: 30px !important; }
+  header .btn { padding: 7px; }
+  .sub-footer .container div image-responsive { width: 250px; } }
+@media (max-width: 300px) { .navbar .container .navbar-header .navbar-brand { width: 145px; }
+  .navbar .container .navbar-header .navbar-brand img { height: 29px !important; }
+  header .btn { padding: 7px; } }
 .main-footer { background: #fff; padding-bottom: 32px; padding-top: 10px !important; border-top: solid 1px #DDD; }
 .main-footer .row > div:first-child { padding-right: 30px; }
 .main-footer a { text-decoration: underline; }
