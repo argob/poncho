@@ -123,7 +123,7 @@ main .container .media img {
     width: 236px; } }
 @media (max-width: 768px) {
   #cd-login {
-    display: block; }
+    /*display: block; */}
     #cd-login button {
       width: 100%;
       margin: 0 0 20px; } }
