@@ -564,7 +564,7 @@ header nav .input-search:focus { opacity: 1; }
 @media (max-width: 992px) { .navbar.navbar-top .input-group { width: 230px; }
   .navbar-brand h1 { font-size: 18px; margin: 7px 0 7px 12px; }
   .navbar-default .nav > li > a { font-size: 15px; padding-left: 10px; padding-right: 10px; } }
-@media screen and (min-width: 769px) { .navbar-right { margin-right: 0; }
+@media screen and (min-width: 768px) { .navbar-right { margin-right: 0; }
   .navbar-form { margin-right: 0; }
   .navbar-form .input-group > .form-control { width: 284px; }
   .navbar-inverse .collapse { margin-left: -45px; margin-right: -30px; } }
