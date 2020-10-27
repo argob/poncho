@@ -173,6 +173,7 @@
   }
   .dropdown-menu li a:not(.btn):hover, .dropdown-menu li a:not(.btn):focus {
      color: $white;
+	  background-color: $brand-primary
   }
 
   &.align-top {

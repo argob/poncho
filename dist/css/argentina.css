@@ -214,8 +214,8 @@ footer ul.nav li a {
 /* Las listas despegables que se corran a la izquierda */
 .dropdown-menu-right {
   
-  left: 0 ;
-  right: auto;
+  left: auto ;
+  right:0;
   
 }
 
