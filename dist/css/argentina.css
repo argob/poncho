@@ -188,10 +188,6 @@ main .container .media img {
   .pane-page-breadcrumb .pane-content > .list-inline.pull-right{
     margin-top: 10px !important;
   }*/
-  .jumbotron_bar .dropdown-menu-right{
-    right: auto;
-    left: 0;
-  }
 }
 
 
