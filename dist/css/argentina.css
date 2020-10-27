@@ -193,6 +193,17 @@ main .container .media img {
     left: 0;
   }
 }
+
+
+@media (max-width:530px){
+
+  .jumbotron_bar .dropdown-menu-right{
+    right: auto;
+    left: 0;
+  }
+}
+
+
 footer ul.nav li a {
   text-decoration: underline !important;
 }
