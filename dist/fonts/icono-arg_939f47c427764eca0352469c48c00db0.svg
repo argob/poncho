@@ -1,11 +1,11 @@
 <?xml version="1.0" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
 <!--
-2020-11-4: Created with FontForge (http://fontforge.org)
+2020-11-13: Created with FontForge (http://fontforge.org)
 -->
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
 <metadata>
-Created by FontForge 20190801 at Wed Nov  4 17:00:23 2020
+Created by FontForge 20190801 at Fri Nov 13 18:09:29 2020
  By root
 
 </metadata>
@@ -22,7 +22,7 @@ Created by FontForge 20190801 at Wed Nov  4 17:00:23 2020
     bbox="-0.569219 -59 506 444"
     underline-thickness="38.4"
     underline-position="-76.8"
-    unicode-range="U+0020-F62F"
+    unicode-range="U+0020-F630"
   />
     <missing-glyph />
     <glyph glyph-name="space" unicode=" " horiz-adv-x="200" 
@@ -1978,6 +1978,10 @@ l1 -3c3 1 9 1 12 1s8 0 11 -1c4 -1 7 -4 7 -8s-4 -8 -8 -8l-1 1c-3 1 -8 1 -11 1c-2 
 v3c0 4 3 8 6 9zM254 153l-1 -1c12 -32 6 -63 -16 -71s-46 11 -58 43v0c-12 32 -6 64 16 72s47 -12 59 -43zM231 98c13 5 15 26 7 48v0c-8 22 -24 37 -37 32s-15 -26 -7 -48v0c8 -22 24 -37 37 -32zM292 198c7 -18 2 -34 -9 -38s-25 4 -32 22v0c-7 18 -2 35 9 39
 s25 -5 32 -23zM261 186v0c4 -11 12 -18 18 -15s7 12 3 23v0c-4 11 -12 17 -18 15s-7 -12 -3 -23zM303 237c12 4 25 -5 32 -23s3 -34 -9 -38s-24 5 -31 23v0c-7 18 -4 34 8 38zM325 210v0c-4 11 -11 17 -17 15s-7 -11 -3 -22s11 -19 17 -16s7 12 3 23zM333 171v-1
 c1 0 1 1 2 1c3 0 6 -4 6 -7c0 -2 -1 -4 -3 -5l-53 -20h-2c-3 0 -6 3 -6 6c0 2 1 5 3 6z" />
+    <glyph glyph-name="grooming" unicode="&#xf630;" horiz-adv-x="422" 
+d="M56 114c-13 0 -23 11 -23 24v216c0 13 10 24 23 24h309c13 0 24 -11 24 -24v-216c0 -13 -11 -24 -24 -24h-309zM53 354v-193h316v193c0 2 -2 3 -4 3h-309c-2 0 -3 -1 -3 -3zM419 19c-2 -7 -8 -13 -16 -13h-384c-8 0 -15 6 -17 13c-4 10 -2 22 6 30l36 36c3 3 8 4 12 4
+h310c4 0 8 -1 11 -4l37 -36c7 -8 9 -20 5 -30zM226 325l66 -113c8 -14 -3 -31 -19 -31h-130c-16 0 -27 17 -19 31l66 113c8 14 28 14 36 0zM221 207v17c0 1 -2 3 -3 3h-17c-1 0 -2 -2 -2 -3v-17c0 -1 1 -3 2 -3h17c1 0 3 2 3 3zM220 241l1 47c0 1 -1 2 -2 2h-19
+c-1 0 -2 -1 -2 -2l2 -47c0 -1 1 -2 2 -2h15c1 0 3 1 3 2z" />
     <glyph glyph-name="guia-tramites" unicode="&#xf50b;" horiz-adv-x="425" 
 d="M388 228c0 3 1 4 3 2l33 -32c1 -1 1 -2 1 -3s0 -3 -1 -4l-33 -31c-2 -2 -4 -2 -4 1zM388 228c0 3 1 4 3 2l33 -32c1 -1 1 -2 1 -3s0 -3 -1 -4l-33 -31c-2 -2 -4 -2 -4 1zM38 161c0 -3 -2 -3 -4 -1l-32 31c-1 1 -2 3 -2 4s1 2 2 3l32 32c2 2 4 1 4 -2v-67zM38 161
 c0 -3 -2 -3 -4 -1l-32 31c-1 1 -2 3 -2 4s1 2 2 3l32 32c2 2 4 1 4 -2v-67zM246 4c3 0 4 -1 2 -3l-32 -33c-1 -1 -2 -1 -3 -1s-3 0 -4 1l-31 33c-2 2 -2 3 1 3h67zM246 4c3 0 4 -1 2 -3l-32 -33c-1 -1 -2 -1 -3 -1s-3 0 -4 1l-31 33c-2 2 -2 3 1 3h67zM271 46v0
