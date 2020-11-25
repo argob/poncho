@@ -178,8 +178,15 @@ a.btn.btn-primary {
     font-size: 1.6em !important; /* global.scss line 90*/
     margin-top: 0 !important; /* global.scss line 85*/
     margin-bottom: 0.2em;
+
     font-weight: 600;/*color: red; cambiar color para visualizar mejor que se esta cambiando*/
 }
+
+.nro-tramite{ padding: 5px 7px;
+    text-align: center;}
+
+
+
 </style>
 </head>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
@@ -297,6 +304,16 @@ a.btn.btn-primary {
               <span class="input-group-btn">
               <button class="bg-primary btn-search-reset btn btn-default form-submit" aria-labelledby="edit-keys" aria-label="Buscar" type="submit" id="edit-submit" name="op" value="<i class=&quot;fa fa-search text-primary&quot;></i>" style="border: none!important; padding: 11px 16px!important	;	"><i class="fa fa-search text-white"></i></button>
               </span></div>
+
+
+<div style="
+    padding: 0 40px 10px 0;
+">    
+    <input class="custom-control-input" id="" autocomplete="off" name="" type="checkbox" value="">
+            <label for="#" class="custom-control-label m">Filtrar por tema</label>    
+</div>
+
+
           </div>
         </div>
       </div>
@@ -374,7 +391,8 @@ a.btn.btn-primary {
     <article class="container content_format">
       <div class="row">
         <div class="col-md-12">
-          <h3 class="activities-sidbar">Trámites más consultados</h3>
+          <p class="activities-sidbar">3 resultados para <strong>“certificado”</strong> del tema “COVID-19” <a href="#">(borrar todo)</a>
+</p>
 
 <div class="panels-row m-t-2 row">
 
@@ -426,23 +444,23 @@ a.btn.btn-primary {
   <section>
     <div class="container">
       <div class="row">
-        <div class="col-md-12 text-center">
-          <h2>¿Cómo hago mis trámites?</h2>
+        <div class="col-md-12 text-center m-b-4">
+          <h2 class="m-b-3">¿Cómo hago mis trámites?</h2>
           <div class="row">
             <div class="col-xs-12 col-sm-6 col-md-4">
-              <div > <i class="icono-tramitar-redondo icono-arg-numero-1 bg-primary"></i>
+              <div > <i class="icono-tramitar-redondo icono-arg-numero-1 bg-primary nro-tramite"></i>
                 <p class="h3_title"><strong>Buscá el trámite</strong></p>
                 <p>Hacelo por tema, por palabra clave o por nombre del organismo.</p>
               </div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-4">
-              <div> <i class="icono-tramitar-redondo icono-arg-numero-2 bg-primary"></i>
+              <div> <i class="icono-tramitar-redondo icono-arg-numero-2 bg-primary nro-tramite"></i>
                 <p class="h3_title"><strong>Conocé cómo hacerlo</strong></p>
                 <p>Te explicamos los requisitos y la documentación que necesitás.</p>
               </div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-4">
-              <div> <i class="icono-tramitar-redondo icono-arg-numero-3 bg-primary"></i>
+              <div> <i class="icono-tramitar-redondo icono-arg-numero-3 bg-primary nro-tramite"></i>
                 <p class="h3_title"><strong>Comenzalo en línea</strong></p>
                 <p>Sacá turno o hacelo en línea con tu perfil de Mi Argentina.</p>
               </div>
