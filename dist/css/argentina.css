@@ -929,3 +929,8 @@ width: auto!important;    height: 35px!important;
             border-top-right-radius: 0px !important
         }
     }
+
+/* alineación central para las alertas solo de la home */
+   .align-middle .media-body {
+    vertical-align: middle !important;
+}
