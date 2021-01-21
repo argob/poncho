@@ -122,7 +122,7 @@ var target = function(text){
     /(\[(.*?)\]\(((blank):#)([-\_\.\~\!\*\'\(\)\;\:\@\&\=\+\$\,\/\?\%\#\[\]\!\¿\?\¡0-9a-zA-Záéíóúñ]*)\))/,
     "gmi"
   );
-  text = text.replace(mainRegex, `<a href="$5" targetr="_$4">$2</a>`);
+  text = text.replace(mainRegex, `<a href="$5" target="_$4">$2</a>`);
   return text;
 }
 
