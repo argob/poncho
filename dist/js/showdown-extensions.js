@@ -386,7 +386,7 @@ if(showdown){ // IF showdown
       {
         type: 'lang',
         filter: function(text, converter, options){
-          const regex = /(col([2-4])<<)[\s\S]*?\[\[ejes-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}\]\][\s\S]*?(>>)/
+          const regex = /(col([1-4])<<)[\s\S]*?\[\[ejes-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}\]\][\s\S]*?(>>)/
           var mainRegex = new RegExp(regex, "gmi");
 
           text = text.replace(mainRegex, function(e){
@@ -395,7 +395,8 @@ if(showdown){ // IF showdown
             var cols = {
                 '2': '6',
                 '3': '4',
-                '4': '3'
+                '4': '3',
+                '1': '12'
             };
 
             var html = `<div class="col-xs-12 col-sm-${cols[rgx[2]]} col-md-${cols[rgx[2]]}">
@@ -428,7 +429,7 @@ if(showdown){ // IF showdown
       {
         type: 'lang',
         filter: function(text, converter, options) {
-          const regex = /(col([2-4])<<)[\s\S]*?\[\[numeros-\{([^\{\}-]*?)-([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}\]\][\s\S]*?(>>)/;
+          const regex = /(col([1-4])<<)[\s\S]*?\[\[numeros-\{([^\{\}-]*?)-([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}\]\][\s\S]*?(>>)/;
           const mainRegex = new RegExp(regex, "gmi");
 
           text = text.replace(mainRegex, function(e){
@@ -438,7 +439,8 @@ if(showdown){ // IF showdown
           var cols = {
               '2': '6',
               '3': '4',
-              '4': '3'
+              '4': '3',
+              '1': '12'
           };
 
           var html = `<div class="col-xs-12 col-sm-${cols[rgx[2]]} col-md-${cols[rgx[2]]}">
@@ -468,18 +470,25 @@ if(showdown){ // IF showdown
       {
         type: 'lang',
         filter: function(text, converter, options) {
-          const regex = /^col([2,4])<<[\s\S]*?\[\{summary(-open|-close)?\}\[(.*?)\]\]([\s\S]*?)>>$/;
+          const regex = /^col([1-4])<<[\s\S]*?\[\{summary(-open|-close)?\}\[(.*?)\]\]([\s\S]*?)>>$/;
           const mainRegex = new RegExp(regex, "gmi");
 
           text = text.replace(mainRegex, function(e){
             const mainRegex = new RegExp(regex, "gmi")
             var rgx = mainRegex.exec(e);
+            var cols = {
+                '2': '6',
+                '3': '4',
+                '4': '3',
+                '1': '12'
+            };
             var open = (rgx[2] == '-open')? 'true' : false;
 
             var details = document.createElement('details');
             if(open){
               details.setAttribute('open', 'true');
             }
+            details.className = `col-xs-12 col-sm-${cols[rgx[1]]} col-md-${cols[rgx[1]]}`;
             var summary = document.createElement('summary');
             summary.innerHTML = cleanner(
                 converter.makeHtml(rgx[3]),
@@ -511,4 +520,3 @@ if(showdown){ // IF showdown
   });
 
 } // END IF showdown
-
