@@ -224,7 +224,7 @@ if(showdown){ // IF showdown
       {
         type: 'lang',
         filter: function(text, converter, options) {
-          const regex = /(\[([^\[\]]+)\]\(([\w_\-\.\/:]+)\)\{([\w_\-.]+?)\})/;
+          const regex = /(\[([^\[\]]+)\]\((blank:#)?([\w_\-\.\/:]+)\)\{([\w_\-.]+?)\})/;
 
           var mainRegex = new RegExp(regex, "gmi");
 
@@ -237,9 +237,12 @@ if(showdown){ // IF showdown
             if(rgx_data){
               // creao el objeto html <a>
               var a         = document.createElement('a');
-              a.className   = classlist(rgx_data, 4);
-              a.href        = rgx_data[3];
+              a.className   = classlist(rgx_data, 5);
+              a.href        = rgx_data[4];
               a.textContent = rgx_data[2];
+              if(rgx_data[3]){
+                a.target = '_blank';
+              }
               return a.outerHTML;
             }
           });
@@ -348,7 +351,7 @@ if(showdown){ // IF showdown
               var html   = `<div class="alert alert-${color}">
                     <div class="media">
                       <div class="media-left">
-                        <i class="${icon} fa-fw fa-4x"></i>
+                        <i class="fa ${icon} fa-fw fa-4x"></i>
                       </div>
                       <div class="media-body">
                         <h5></h5>
@@ -383,21 +386,29 @@ if(showdown){ // IF showdown
       {
         type: 'lang',
         filter: function(text, converter, options){
-          var mainRegex = new RegExp(
-                /(col(1[0-2]|[1-9])<<)[\s\S]*?\[\[ejes-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}\]\][\s\S]*?(>>)/,
-                "gmi"
-          );
+          const regex = /(col([2-4])<<)[\s\S]*?\[\[ejes-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}\]\][\s\S]*?(>>)/
+          var mainRegex = new RegExp(regex, "gmi");
 
-          var html = `<div class="col-xs-12 col-sm-$2 col-md-$2">
+          text = text.replace(mainRegex, function(e){
+            var mainRegex = new RegExp(regex, "gmi");
+            var rgx = mainRegex.exec(e);
+            var cols = {
+                '2': '6',
+                '3': '4',
+                '4': '3'
+            };
+
+            var html = `<div class="col-xs-12 col-sm-${cols[rgx[2]]} col-md-${cols[rgx[2]]}">
               <div class="icon-item">
-                <i class="$5 $6"></i>
+                <i class="${rgx[5]} ${rgx[6]}"></i>
                 <p></p>
-                <h3>$3</h3>
-                <p>$4</p>
+                <h3>${rgx[3]}</h3>
+                <p>${rgx[4]}</p>
               </div>
               </div>`;
+            return html;
 
-          text = text.replace(mainRegex, html);
+          });
           return text;
         }
       }
@@ -417,21 +428,82 @@ if(showdown){ // IF showdown
       {
         type: 'lang',
         filter: function(text, converter, options) {
+          const regex = /(col([2-4])<<)[\s\S]*?\[\[numeros-\{([^\{\}-]*?)-([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}\]\][\s\S]*?(>>)/;
+          const mainRegex = new RegExp(regex, "gmi");
 
-          const mainRegex = new RegExp(
-              /(col(1[0-2]|[2-9])<<)[\s\S]*?\[\[numeros-\{([^\{\}-]*?)-([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}\]\][\s\S]*?(>>)/,
-              "gmi"
-          );
+          text = text.replace(mainRegex, function(e){
 
-          var html = `<div class="col-xs-12 col-sm-$2 col-md-$2">
-                <div class="h2 $7">
-                  $3<small>$4</small>
+          const mainRegex = new RegExp(regex, "gmi");
+          var rgx = mainRegex.exec(e);
+          var cols = {
+              '2': '6',
+              '3': '4',
+              '4': '3'
+          };
+
+          var html = `<div class="col-xs-12 col-sm-${cols[rgx[2]]} col-md-${cols[rgx[2]]}">
+                <div class="h2 ${rgx[7]}">
+                  ${rgx[3]}<small>${rgx[4]}</small>
                 </div>
-                <p class="lead">$5</p>
-                <p class="text-muted">$6</p>
+                <p class="lead">${rgx[5]}</p>
+                <p class="text-muted">${rgx[6]}</p>
               </div>`;
+            return html;
+          });
+          return text;
+        }
+      }
+    ]
+  });
 
-          text = text.replace(mainRegex, html);
+
+  /**
+   * Crea la etiqueta details con un summary.
+   *
+   * @regexp https://regex101.com/r/ojH22w/2/
+   */
+  showdown.extension("details", function() {
+    'use strict';
+    return [
+      {
+        type: 'lang',
+        filter: function(text, converter, options) {
+          const regex = /^col([2,4])<<[\s\S]*?\[\{summary(-open|-close)?\}\[(.*?)\]\]([\s\S]*?)>>$/;
+          const mainRegex = new RegExp(regex, "gmi");
+
+          text = text.replace(mainRegex, function(e){
+            const mainRegex = new RegExp(regex, "gmi")
+            var rgx = mainRegex.exec(e);
+            var open = (rgx[2] == '-open')? 'true' : false;
+
+            var details = document.createElement('details');
+            if(open){
+              details.setAttribute('open', 'true');
+            }
+            var summary = document.createElement('summary');
+            summary.innerHTML = cleanner(
+                converter.makeHtml(rgx[3]),
+                [
+                    'h1',
+                    'h2',
+                    'h3',
+                    'h4',
+                    'h5',
+                    'h6',
+                    'strong',
+                    'em',
+                    'i'
+                ]
+            );
+            var div = document.createElement('div');
+            div.innerHTML = converter.makeHtml(target(rgx[4]));
+            details.appendChild(summary);
+            details.appendChild(div);
+
+            console.log(details.outerHTML);
+            var html = details.outerHTML;
+            return html;
+          });
           return text;
         }
       }
@@ -439,3 +511,4 @@ if(showdown){ // IF showdown
   });
 
 } // END IF showdown
+
