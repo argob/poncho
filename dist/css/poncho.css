@@ -4600,6 +4600,11 @@ span.btn:hover {
   background-color: #fff;
   text-decoration: none; }
 
+.btn-tag {
+  font-size: 14px;
+  padding: 6px 10px;
+  border: 2px solid #ddd !important; }
+
 @media (max-width: 767px) {
   .btn {
     font-weight: 600 !important; } }
