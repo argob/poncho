@@ -118,11 +118,11 @@ var classlist = function(obj, index) {
  * @return {string}      Objeto <a> con el atributto target.
  */
 var target = function(text){
-  var mainRegex = new RegExp(
+  var main_regex = new RegExp(
     /(\[(.*?)\]\(((blank):#)([-\_\.\~\!\*\'\(\)\;\:\@\&\=\+\$\,\/\?\%\#\[\]\!\¿\?\¡0-9a-zA-Záéíóúñ]*)\))/,
     "gmi"
   );
-  text = text.replace(mainRegex, `<a href="$5" target="_$4">$2</a>`);
+  text = text.replace(main_regex, `<a href="$5" target="_$4">$2</a>`);
   return text;
 }
 
@@ -132,7 +132,7 @@ var target = function(text){
   # SHOWDOWN EXTENSIONS
 \*------------------------------------*/
 if(showdown){ // IF showdown
-  
+
   /**
    * Hace un wrapper en una tabla markdown y le agrega los estilos para
    * presentar una tabla bootstrap
@@ -168,10 +168,10 @@ if(showdown){ // IF showdown
         type: 'lang',
         filter: function(text, converter, options) {
           const regex = /\!\[([^\[\]]{0,255})\]\(([-\_\.\~\!\*\'\(\)\;\:\@\&\=\+\$\,\/\?\%\#\[\]\!\¿\?\¡0-9a-zA-Záéíóúñ]{1,255})\)\{([\w\.-]+)\}/;
-          var mainRegex = new RegExp(regex, "gm");
-          text = text.replace(mainRegex, function(e){
-            var mainRegex = new RegExp(regex, "gm");
-            var rgx_data  = mainRegex.exec(e);
+          var main_regex = new RegExp(regex, "gm");
+          text = text.replace(main_regex, function(e){
+            var main_regex = new RegExp(regex, "gm");
+            var rgx_data  = main_regex.exec(e);
 
             // Creo el objeto <img/>
             var img       = document.createElement('img');
@@ -200,11 +200,11 @@ if(showdown){ // IF showdown
       {
         type: 'lang',
         filter: function(text, converter, options) {
-          var mainRegex = new RegExp(
+          var main_regex = new RegExp(
               /(\[(.*?)\]\(((blank):#)([-\_\.\~\!\*\'\(\)\;\:\@\&\=\+\$\,\/\?\%\#\[\]\!\¿\?\¡0-9a-zA-Záéíóúñ]*)\))/,
               "gmi"
           );
-          text = text.replace(mainRegex, target);
+          text = text.replace(main_regex, target);
           return text;
         }
       }
@@ -224,27 +224,29 @@ if(showdown){ // IF showdown
       {
         type: 'lang',
         filter: function(text, converter, options) {
-          const regex = /(\[([^\[\]]+)\]\((blank:#)?([\w_\-\.\/:]+)\)\{([\w_\-.]+?)\})/;
 
-          var mainRegex = new RegExp(regex, "gmi");
+          const regex = /(\[([^\[\]]+)\]\((blank:#)?([\w_\-\.\/:]+)\)(\{([\w_\-.]+?)\})?)/;
 
-          text = text.replace(mainRegex, function(e){
+          var main_regex = new RegExp(regex, "gmi");
+
+          text = text.replace(main_regex, function(e){
             // Proceso la expresion regular para sacarle el gurpo de estilos
             // y dibujar el resulttado
-            var mainRegex = new RegExp(regex, "gmi");
-            var rgx_data = mainRegex.exec(e);
+            var main_regex = new RegExp(regex, "gm");
+            var rgx  = main_regex.exec(e);
 
-            if(rgx_data){
-              // creao el objeto html <a>
-              var a         = document.createElement('a');
-              a.className   = classlist(rgx_data, 5);
-              a.href        = rgx_data[4];
-              a.textContent = rgx_data[2];
-              if(rgx_data[3]){
-                a.target = '_blank';
-              }
-              return a.outerHTML;
+            var a = document.createElement('a');
+            a.href = rgx[4];
+            if(rgx[3]){
+              a.target = '_blank';
             }
+            if(rgx[6] != undefined){
+              a.className = classlist(rgx, 6);
+            }
+            a.textContent = rgx[2];
+            a.dataset.created = 'true';
+
+            return a.outerHTML;
           });
 
           return text;
@@ -268,12 +270,12 @@ if(showdown){ // IF showdown
         filter: function(text, converter, options) {
         const regex = /\[\[(youtube|vimeo)-\{(16by9|4by3)\}-\{([a-zA-Z0-9]+)\}\]\]/;
 
-        var mainRegex = new RegExp(regex,"gm");
-        text = text.replace(mainRegex, function(e){
+        var main_regex = new RegExp(regex,"gm");
+        text = text.replace(main_regex, function(e){
 
-          var mainRegex = new RegExp(regex,"gm");
+          var main_regex = new RegExp(regex,"gm");
 
-          var rgx_data = mainRegex.exec(e);
+          var rgx_data = main_regex.exec(e);
           if(rgx_data){
             var video_ratio = rgx_data[2];
             var video_code  = rgx_data[3];
@@ -336,18 +338,18 @@ if(showdown){ // IF showdown
         filter: function(text, converter, options) {
           const regex = /\[\[alerta-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([\w-\s]*?)\}-\{(warning|danger|info|success)\}\]\]/;
 
-          var mainRegex = new RegExp(regex, "gm");
+          var main_regex = new RegExp(regex, "gm");
 
-          text = text.replace(mainRegex, function(e){
+          text = text.replace(main_regex, function(e){
             // Proceso cada una de los matcheos.
-            var mainRegex = new RegExp(regex, "gm");
-            var rgx_data = mainRegex.exec(e);
+            var main_regex = new RegExp(regex, "gm");
+            var rgx_data = main_regex.exec(e);
 
             if(rgx_data){
               var color  = rgx_data[4];
               var icon   = rgx_data[3];
-              var titulo = converter.makeHtml(target(rgx_data[1]));
-              var texto  = converter.makeHtml(target(rgx_data[2]));
+              var titulo = converter.makeHtml(rgx_data[1]);
+              var texto  = converter.makeHtml(rgx_data[2]);
               var html   = `<div class="alert alert-${color}">
                     <div class="media">
                       <div class="media-left">
@@ -387,11 +389,11 @@ if(showdown){ // IF showdown
         type: 'lang',
         filter: function(text, converter, options){
           const regex = /(col([1-4])<<)[\s\S]*?\[\[ejes-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}\]\][\s\S]*?(>>)/
-          var mainRegex = new RegExp(regex, "gmi");
+          var main_regex = new RegExp(regex, "gmi");
 
-          text = text.replace(mainRegex, function(e){
-            var mainRegex = new RegExp(regex, "gmi");
-            var rgx = mainRegex.exec(e);
+          text = text.replace(main_regex, function(e){
+            var main_regex = new RegExp(regex, "gmi");
+            var rgx = main_regex.exec(e);
             var cols = {
                 '2': '6',
                 '3': '4',
@@ -430,12 +432,12 @@ if(showdown){ // IF showdown
         type: 'lang',
         filter: function(text, converter, options) {
           const regex = /(col([1-4])<<)[\s\S]*?\[\[numeros-\{([^\{\}-]*?)-([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}\]\][\s\S]*?(>>)/;
-          const mainRegex = new RegExp(regex, "gmi");
+          const main_regex = new RegExp(regex, "gmi");
 
-          text = text.replace(mainRegex, function(e){
+          text = text.replace(main_regex, function(e){
 
-          const mainRegex = new RegExp(regex, "gmi");
-          var rgx = mainRegex.exec(e);
+          const main_regex = new RegExp(regex, "gmi");
+          var rgx = main_regex.exec(e);
           var cols = {
               '2': '6',
               '3': '4',
@@ -471,11 +473,11 @@ if(showdown){ // IF showdown
         type: 'lang',
         filter: function(text, converter, options) {
           const regex = /^col([1-4])<<[\s\S]*?\[\{summary(-open|-close)?\}\[(.*?)\]\]([\s\S]*?)>>$/;
-          const mainRegex = new RegExp(regex, "gmi");
+          const main_regex = new RegExp(regex, "gmi");
 
-          text = text.replace(mainRegex, function(e){
-            const mainRegex = new RegExp(regex, "gmi")
-            var rgx = mainRegex.exec(e);
+          text = text.replace(main_regex, function(e){
+            const main_regex = new RegExp(regex, "gmi")
+            var rgx = main_regex.exec(e);
             var cols = {
                 '2': '6',
                 '3': '4',
@@ -505,11 +507,10 @@ if(showdown){ // IF showdown
                 ]
             );
             var div = document.createElement('div');
-            div.innerHTML = converter.makeHtml(target(rgx[4]));
+            div.innerHTML = converter.makeHtml(rgx[4]);
             details.appendChild(summary);
             details.appendChild(div);
 
-            console.log(details.outerHTML);
             var html = details.outerHTML;
             return html;
           });
@@ -520,3 +521,5 @@ if(showdown){ // IF showdown
   });
 
 } // END IF showdown
+
+
