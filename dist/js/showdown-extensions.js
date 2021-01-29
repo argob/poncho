@@ -167,7 +167,7 @@ if(showdown){ // IF showdown
       {
         type: 'lang',
         filter: function(text, converter, options) {
-          const regex = /\!\[([^\[\]]{0,255})\]\(([-\_\.\~\!\*\'\(\)\;\:\@\&\=\+\$\,\/\?\%\#\[\]\!\¿\?\¡0-9a-zA-Záéíóúñ]{1,255})\)\{([\w\.-]+)\}/;
+          const regex = /\!\[([^\[\]]{0,255})\]\(([-\_\.\~\!\*\'\(\)\;\:\@\&\=\+\$\,\/\?\%\#\[\]\!\¿\?\¡0-9a-zA-Záéíóúñ\s]{1,255})\)\{([\w\.-]+)\}/;
           var main_regex = new RegExp(regex, "gm");
           text = text.replace(main_regex, function(e){
             var main_regex = new RegExp(regex, "gm");
@@ -225,7 +225,7 @@ if(showdown){ // IF showdown
         type: 'lang',
         filter: function(text, converter, options) {
 
-          const regex = /(\[([^\[\]]+)\]\((blank:#)?([\w_\-\.\/:]+)\)(\{([\w_\-.]+?)\})?)/;
+          const regex = /^(\[([^\[\]]+)\]\(([\w_\-\.\/:]+)\)\{([\w_\-.]+?)\})$/;
 
           var main_regex = new RegExp(regex, "gmi");
 
@@ -521,5 +521,4 @@ if(showdown){ // IF showdown
   });
 
 } // END IF showdown
-
 
