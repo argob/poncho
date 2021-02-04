@@ -225,7 +225,7 @@ if(showdown){ // IF showdown
         type: 'lang',
         filter: function(text, converter, options) {
 
-          const regex = /^(\[([^\[\]]+)\]\(([\w_\-\.\/:]+)\)\{([\w_\-.]+?)\})$/;
+          const regex = /(\[([^\[\]]+)\]\((blank:#)?([\w_\-\.\/:]+)\)\{([\w_\-.]+?)\})/;
 
           var main_regex = new RegExp(regex, "gmi");
 
@@ -240,8 +240,8 @@ if(showdown){ // IF showdown
             if(rgx[3]){
               a.target = '_blank';
             }
-            if(rgx[6] != undefined){
-              a.className = classlist(rgx, 6);
+            if(rgx[5] != undefined){
+              a.className = classlist(rgx, 5);
             }
             a.textContent = rgx[2];
             a.dataset.created = 'true';
