@@ -216,7 +216,7 @@ if(showdown){ // IF showdown
    * Converte el especificado en doc. a un botón bootstrap
    *
    * @see https://www.argentina.gob.ar/contenidosdigitales/markdown/boton
-   * @regexp https://regex101.com/r/MDkz8B/5/
+   * @regexp https://regex101.com/r/hM9qR5/1
    */
   showdown.extension("button", function() {
     'use strict';
@@ -225,7 +225,7 @@ if(showdown){ // IF showdown
         type: 'lang',
         filter: function(text, converter, options) {
 
-          const regex = /(\[([^\[\]]+)\]\((blank:#)?([\w_\-\.\/:]+)\)\{([\w_\-.]+?)\})/;
+          const regex = /(\[([^\[\]]+)\]\((blank:#)?([\w_\-\.\/:\s]+)\)\{([\w_\-.]+?)\})/;
 
           var main_regex = new RegExp(regex, "gmi");
 
@@ -521,4 +521,3 @@ if(showdown){ // IF showdown
   });
 
 } // END IF showdown
-
