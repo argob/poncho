@@ -231,8 +231,7 @@
             )
             .draw()
         });
-      });
-      
+    
     if(jQuery.isFunction(jQuery.fn.dataTable.ext.order.intl)){
 		  jQuery("#ponchoTable").dataTable.ext.order.intl('es');
 		  jQuery("#ponchoTable").dataTable.ext.order.htmlIntl('es');
