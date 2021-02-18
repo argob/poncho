@@ -38,7 +38,7 @@
                   titulos += '<th>' + listado[0][key]["$t"] + '</th>';
                   th.push(listado[0][key]["$t"]);
               }
-          })
+    ;      })
 
           //Caption de la tabla
           jQuery("#ponchoTable caption").html(opt.tituloTabla);
@@ -99,10 +99,10 @@
                         lista += '<td class="'+ tdEmpty + '" data-title="'+ th[index] +'">' + filas + '</td>';
 
                     }
-                })
+              ;  })
               lista += '</tr>';
               }
-          })
+         ; })
 
           //Agregar filtro
           jQuery.each(filtrarUnicos(filtro), function(index, val) {
