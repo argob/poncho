@@ -201,6 +201,17 @@ aside {
 .bg-limon {
   background-color: $brand-limon !important;
 }
+.bg-verde-jade {
+  background-color: $brand-verde-jade !important;
+}
+.bg-verde-aloe {
+  background-color: $brand-verde-aloe !important;
+}
+.bg-verde-cemento {
+  background-color: $brand-verde-cemento !important;
+}
+
+
 
 
 
@@ -225,7 +236,10 @@ aside {
 .bg-lavanda,
 .bg-escarapela,
 .bg-palta,
-.bg-limon
+.bg-limon,
+.bg-verde-jade,
+.bg-verde-aloe,
+.bg-verde-cemento
 {
   h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     color: #FFF !important;
@@ -408,6 +422,15 @@ a.bg-danger {
 }
 .text-limon {
   color: $brand-limon !important;
+}
+.text-verde-jade {
+  color: $brand-verde-jade !important;
+}
+.text-verde-aloe {
+  color: $brand-verde-aloe !important;
+}
+.text-verde-cemento {
+  color: $brand-verde-cemento !important;
 }
 
 .nav > li > a {
