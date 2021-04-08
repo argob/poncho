@@ -420,6 +420,22 @@ a {
       background-color: $brand-limon;
     }
   }
+	
+	&.panel-verde-jade {
+    .panel-heading {
+      background-color: $brand-verde-jade;
+    }
+  }
+	&.panel-verde-aloe {
+    .panel-heading {
+      background-color: $brand-verde-aloe;
+    }
+  }
+	&.panel-verde-cemento {
+    .panel-heading {
+      background-color: $brand-verde-cemento;
+    }
+  }
 
 
 
@@ -483,6 +499,16 @@ a {
 
 .panel-border-limon {
 	border-color: #ddd;border-bottom: 12px solid $brand-limon;
+}
+
+.panel-border-verde-jade {
+	border-color: #ddd;border-bottom: 12px solid $brand-verde-jade;
+}
+.panel-border-verde-aloe {
+	border-color: #ddd;border-bottom: 12px solid $brand-verde-aloe;
+}
+.panel-border-verde-cemento {
+	border-color: #ddd;border-bottom: 12px solid $brand-verde-cemento;
 }
 
 

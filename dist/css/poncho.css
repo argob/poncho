@@ -853,6 +853,9 @@ a.panel:hover .panel-heading, a.panel:focus .panel-heading { opacity: .8; }
 .panel-icon.panel-escarapela .panel-heading { background-color: #2CB9EE; }
 .panel-icon.panel-palta .panel-heading { background-color: #50B7B2; }
 .panel-icon.panel-limon .panel-heading { background-color: #D7DF23; }
+.panel-icon.panel-verde-jade .panel-heading { background-color: #006666; }
+.panel-icon.panel-verde-aloe .panel-heading { background-color: #4FBB73; }
+.panel-icon.panel-verde-cemento .panel-heading { background-color: #B4BEBA; }
 
 .panel-primary .panel-heading { background-color: #0072bb; }
 
@@ -889,6 +892,12 @@ a.panel:hover .panel-heading, a.panel:focus .panel-heading { opacity: .8; }
 .panel-border-palta { border-color: #ddd; border-bottom: 12px solid #50B7B2; }
 
 .panel-border-limon { border-color: #ddd; border-bottom: 12px solid #D7DF23; }
+
+.panel-border-verde-jade { border-color: #ddd; border-bottom: 12px solid #006666; }
+
+.panel-border-verde-aloe { border-color: #ddd; border-bottom: 12px solid #4FBB73; }
+
+.panel-border-verde-cemento { border-color: #ddd; border-bottom: 12px solid #B4BEBA; }
 
 .panel-id > .panel-body { padding-bottom: 30px; }
 
