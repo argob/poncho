@@ -917,7 +917,7 @@ a.panel:hover .panel-heading, a.panel:focus .panel-heading { opacity: .8; }
   .panel.panel-default.panel-lg .panel-heading { min-height: 152px; }
   .panel.panel-icon .panel-heading { height: 152px; } }
 @media (max-width: 767px) { .panels-row { display: block; }
-  .icon-fix { min-height: 110px !important; }
+  .icon-fix { min-height: 112px !important; }
   .icon-fix i { padding: 0px !important; font-size: 60px !important; } }
 /*TOGGLE DNI*/
 .content-popover { position: absolute !important; max-width: 400px !important; z-index: 2; border: 1px solid rgba(0, 0, 0, 0.2); border-radius: 10px; padding: 10px 20px 20px 20px; top: -300px; }
