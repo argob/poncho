@@ -330,22 +330,22 @@ h1 small, h1 .small, h2 small, h2 .small, h3 small, h3 .small, h4 small, h4 .sma
 h1.section-title, h2.section-title, h3.section-title, h4.section-title, h5.section-title, h6.section-title, .h1.section-title, .h2.section-title, .h3.section-title, .h4.section-title, .h5.section-title, .h6.section-title { color: #555; /*font-weight: 600;
 text-transform: uppercase;*/ margin-bottom: 24px; }
 
-h1, .h1 { font-size: 28px; }
+h1, .h1 { font-size: 2.5rem; }
 h1.section-title, .h1.section-title { font-size: 1.8em; }
 
-h2, .h2 { font-size: 26px; }
+h2, .h2 { font-size: 2rem; }
 h2.section-title, .h2.section-title { font-size: 1.6em; }
 
-h3, .h3 { font-size: 1.375em; }
+h3, .h3 { font-size: 1.75rem; }
 h3.section-title, .h3.section-title { font-size: 1.4em; }
 
-h4, .h4 { font-size: 22px; }
+h4, .h4 { font-size: 1.5rem; }
 h4.section-title, .h4.section-title { font-size: 1.2em; }
 
-h5, .h5 { font-size: 1.125em; }
+h5, .h5 { font-size: 1.25rem; }
 h5.section-title, .h5.section-title { font-size: 1em; }
 
-h6, .h6 { font-size: 18px; }
+h6, .h6 { font-size: 1rem; }
 h6.section-title, .h6.section-title { font-size: 0.8em; }
 
 a { color: #0072bb; font-weight: 500; text-decoration: underline; }
@@ -389,16 +389,15 @@ article h1.icon.aside { line-height: 1.5; text-align: center; }
 .content_format .credits p { color: #555; font-size: 13px; line-height: 15px; margin-top: 40px; }
 
 @media (min-width: 768px) { p { font-size: 16px; }
-  h3 { font-size: 1.25em !important; } }
+  /*h3 { font-size: 1.25em!important; }*/ }
 @media (min-width: 992px) { .jumbotron li { font-size: 14px; }
   .jumbotron li a { font-weight: 500; }
   .lead { font-size: 18px; }
-  h1, .h1 { font-size: 2.5em; }
-  h2, .h2 { font-size: 1.75em; }
-  h3, .h3 { font-size: 1.375em; }
-  h4, .h4 { font-size: 1.714285em; }
-  h5, .h5 { font-size: 1.125em; }
-  h6, .h6 { font-size: 1em; } }
+  /*h1, .h1 { font-size: 2.5em; } h2, .h2 { font-size: 1.75em; }
+ h3, .h3 { font-size: 1.375em; }
+ h4, .h4 { font-size: 1.714285em; }
+ h5, .h5 { font-size: 1.125em; }
+ h6, .h6 { font-size: 1em; }*/ }
 .btn-primary { background-color: #0072bb; }
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.focus, .btn-primary.active { background-color: #005388; }
 

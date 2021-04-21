@@ -20,7 +20,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 
 h1, .h1 {
-  font-size: 28px;
+  font-size: 2.5rem;
 
 
   &.section-title {
@@ -29,7 +29,7 @@ h1, .h1 {
 }
 
 h2, .h2 {
-  font-size: 26px;
+  font-size: 2rem;
 
   &.section-title {
     font-size: 1.6em;
@@ -37,7 +37,7 @@ h2, .h2 {
 }
 
 h3, .h3 {
-  font-size: 1.375em;
+  font-size: 1.75rem;
 
   &.section-title {
     font-size: 1.4em;
@@ -45,7 +45,7 @@ h3, .h3 {
 }
 
 h4, .h4 {
-  font-size: 22px;
+  font-size: 1.5rem;
 
   &.section-title {
     font-size: 1.2em;
@@ -53,7 +53,7 @@ h4, .h4 {
 }
 
 h5, .h5 {
-  font-size: 1.125em;
+  font-size: 1.25rem;
 
   &.section-title {
     font-size: 1em;
@@ -61,7 +61,7 @@ h5, .h5 {
 }
 
 h6, .h6 {
-  font-size: 18px;
+  font-size: 1rem;
 
   &.section-title {
     font-size: 0.8em;
@@ -214,7 +214,7 @@ article {
       color: $gray;
       font-size: 13px;
       line-height: 15px;
-      margin-top: 40px;
+      margin-top: 40px; 
     }
   }
 
@@ -226,9 +226,9 @@ article {
     font-size: 16px;
   }
 	
-h3 {
+/*h3 {
     font-size: 1.25em!important;
-  }
+  }*/
 
 }
 @media (min-width: 992px) {
@@ -245,7 +245,7 @@ h3 {
     font-size: 18px;
   }
 
-  h1, .h1 {
+  /*h1, .h1 {
     font-size: 2.5em;
   }
   h2, .h2 {
@@ -266,5 +266,5 @@ h3 {
 
   h6, .h6 {
     font-size: 1em;
-  }
+  }*/
 }
