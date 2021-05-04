@@ -1119,6 +1119,28 @@ input[type='text']:-ms-input-placeholder { color: #555; }
 
 .chosen-container.chosen-container-single.chosen-with-drop .chosen-results li.group-result, .chosen-container.chosen-container-multi.chosen-with-drop .chosen-results li.group-result { text-shadow: none; }
 
+/*Estilos para componente "ponchoUbicacion" */
+.select2-container { color: #333; font-size: 16px; height: 44px; padding: 6px 16px; border-radius: 10px; box-shadow: none; }
+
+.select2 { border: solid 1px #ddd !important; }
+
+.select2-container--default .select2-selection--single { border: none !important; }
+
+.select2-dropdown { padding: 12px; -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; border: 1px solid #DBDBDB; }
+
+.select2-search__field { -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; }
+
+.select2-selection__arrow { margin-top: 7px; }
+
+.select2-container--open { border: none !important; }
+
+.select2-container--default .select2-results__option--highlighted.select2-results__option--selectable, .select2-container--default .select2-results__option--selected { -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; }
+
+.select2-results__option--selectable { padding: 6px 12px; }
+.select2-results__option--selectable:hover { -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; }
+
+.webform-component .select2 { border: solid 1px #ddd !important; }
+
 .social-share { margin: 0; min-height: 32px; overflow: auto; }
 .social-share p { color: #555; float: left; line-height: 1.2; margin-bottom: 0; margin-top: 8px; }
 .social-share span { color: #555; }
