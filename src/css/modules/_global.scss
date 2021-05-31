@@ -1044,6 +1044,7 @@ header .btn i[class*="icono-arg"]:before{line-height: 22px;font-size:1.6em;}
 details {
   transition: all ease-out 0.2s;
   margin-bottom: 0;
+	padding-left: 0px
 }
 details:last-child {
   border-top: none;
@@ -1053,28 +1054,29 @@ summary {
   display: block;
   padding: 0.5em 1.5em;
   cursor: pointer;
+	font-size: 1.1em;
   font-weight: bold;
   position: relative;
   color: $brand-primary;
   &:before {
     content: " ";
-    top: 38%;
+    top: 36%;
     left: 0.5em;
     position: absolute;
     z-index: 20;
-    width: 5px;
-    height: 5px;
+    width: 8px;
+    height: 8px;
     transition: 0.25s;
     border: {
       right: {
         style: solid;
         color: $gray-dark;
-        width: 2px;
+        width: 3px;
       }
       bottom: {
         style: solid;
         color: $gray-dark;
-        width: 2px;
+        width: 3px;
       }
     }
 
@@ -1108,6 +1110,7 @@ summary::-webkit-details-marker {
 
 details[open] summary ~ * {
   animation: open 0.2s ease-in-out;
+	padding-left: 26px
 }
 
 details[open] > summary {
