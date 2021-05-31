@@ -50,6 +50,18 @@ $brand-verde-aloe:      #4FBB73 !default;
 $brand-verde-cemento:   #B4BEBA !default;
 
 
+// Variables agregados para etiqueta details/summary
+$arrow_open_base: 8px;
+$arrow_open_height: 6px;
+
+$arrow_close_base: 8px;
+$arrow_close_height: 6px;
+
+$arrow_down_color: $brand-primary;
+$arrow_up_color: $brand-primary;
+
+
+
 //== Scaffolding
 //
 //## Settings for some of the most global styles.
