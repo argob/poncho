@@ -1,7 +1,6 @@
 //#####################################################################
 //####################### PONCHO TABLE #################################
 //#####################################################################
-
   jQuery('#ponchoTable').addClass('state-loading');
 
   function ponchoTable(opt){
@@ -56,23 +55,23 @@
                   var tdEmpty = '';
                     if (title.substr(0, 4) == 'gsx$') {
                        
-                        filas = listado[row][filteredTitleGsx[index]].$t;
+                        var filas = listado[row][filteredTitleGsx[index]].$t;
 
                         //Guardar título de referencia de cada fila
                         if(title == filteredTitleGsx[0]){
-                            labelBtn = filas;
+                            var labelBtn = filas;
                           }
                         
                         //Detectar si es botón
                         if(title.includes("btn-") && filas != "" ){
-                          nameBtn = title.substr(8, title.length-8).replace("-"," ");
+                          var nameBtn = title.substr(8, title.length-8).replace("-"," ");
                           filas = '<a aria-label="' + nameBtn + " " + labelBtn + '" class="btn btn-primary btn-sm margin-btn" target="_blank" href="'+filas+'">'+nameBtn+'</a>';
                         }
 
                         //Detectar si es filtro
                         if(title.includes("filtro-") && filas != ""){
                           filtroColumna = index;
-                          nameFiltro = title.substr(11, title.length-11).replace("-"," ");
+                          var nameFiltro = title.substr(11, title.length-11).replace("-"," ");
                           jQuery("#tituloFiltro").html(nameFiltro);
                           filtro.push(filas);
                         }
@@ -93,7 +92,7 @@
                         }
 
                         //Aplicar markdown a todas las filas
-                        var converter = new showdown.Converter(),
+                        var converter = new showdown.Converter();
                         filas = converter.makeHtml(filas);
 
                         lista += '<td class="'+ tdEmpty + '" data-title="'+ th[index] +'">' + filas + '</td>';
@@ -365,10 +364,10 @@ var estilos =
 
  //MAPEAR LOS PUNTOS
  jQuery.each(puntos, function(key, punto) {
- color = punto.gsx$color.$t.toLowerCase();
+ var color = punto.gsx$color.$t.toLowerCase();
 
  //Cambio color de marker segun el tipo de punto
- svg = template.replace('{{ color }}', colores[color]["hex"]);
+ var svg = template.replace('{{ color }}', colores[color]["hex"]);
  var latLng = new google.maps.LatLng(punto.gsx$latitud.$t, punto.gsx$longitud.$t); 
 
  //Tipo de punto
@@ -380,15 +379,15 @@ optimized: false
  });
  markers.push(marker);
 
- provincia = 
- localidad = 
- telefono = 
- email = 
- boton = 
- descripcion = 
- ubicacion = 
- direccion = 
- foto = "";
+ var provincia = '';
+ var localidad = '';
+ var telefono = '';
+ var email = '';
+ var boton = '';
+ var descripcion = '';
+ var ubicacion = '';
+ var direccion = '';
+ var foto = "";
  
 
  if(punto.gsx$provincia.$t != "" || punto.gsx$localidad.$t != ""){ 
@@ -421,7 +420,7 @@ jQuery('#map-container').removeClass('state-loading');
 
 //Función Cerrar Detalle
 var closeWindows = function(){
-  for (i = 0; i < detalles.length; i++) {
+  for (var i = 0; i < detalles.length; i++) {
     detalles[i].close();
   }
 };
@@ -473,141 +472,141 @@ function pophidde(){
 //#####################################################################
 
 var ponchoUbicacion = function(options) {
-  var urlProvincias = 'https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/resources/jsons/geoprovincias.json';
-  var urlLocalidades = 'https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/resources/jsons/geolocalidades.json';
-  var showDepartamento = true;
-  var provincias;
-  var localidades;
-  var iProvincia = jQuery('input[name="submitted[' + options.provincia + ']"]');
-  var iLocalidad = jQuery('input[name="submitted[' + options.localidad + ']"]');
-  var sProvincia;
-  var sLocalidades;
+    var urlProvincias =  'https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/resources/jsons/geoprovincias.json';
+    var urlLocalidades = 'https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/resources/jsons/geolocalidades.json';
+    var provincias;
+    var localidades;
+    var iProvincia = jQuery('input[name="submitted[' + options.provincia + ']"]');
+    var iLocalidad = jQuery('input[name="submitted[' + options.localidad + ']"]');
+    var sProvincia;
+    var sLocalidades;
 
-  function init() {
+    function init() {
+        urlProvincias = options.urlProvincias ? options.urlProvincias : urlProvincias;
+        urlLocalidades = options.urlLocalidades ? options.urlLocalidades : urlLocalidades;
+        
+        jQuery.getJSON(urlProvincias, function(data) {
+            provincias = parseJsonProvincias(data);
+            //provincias
+            sProvincia = getSelectProvincias(provincias);
+            addProvEvent();
+            iProvincia.after(sProvincia);
+            jQuery(sProvincia).select2();
+        });
 
-      urlProvincias = options.json_provincias ? options.json_provincias : urlProvincias;
-      urlLocalidades = options.json_localidades ? options.json_localidades : urlLocalidades;
-      showDepartamento = typeof options.show_departamento !== 'undefined' ? 
-                              options.show_departamento : 
-                              showDepartamento;
+        jQuery.getJSON(urlLocalidades, function(data) {
+            localidades = parseJsonLocalidades(data);
+            sLocalidades = getSelectLocalidades(localidades, '');
+            addLocEvent();
+            iLocalidad.after(sLocalidades);
+            jQuery(sLocalidades).select2();
+        });
+        iProvincia.hide();
+        iLocalidad.hide();
+    }
 
-      jQuery.getJSON(urlProvincias, function(data) {
-          provincias = parseJsonProvincias(data);
-          sProvincia = getSelectProvincias(provincias);
-          addProvEvent();
-          iProvincia.after(sProvincia);
-          jQuery(sProvincia).select2();
-      });
-
-      jQuery.getJSON(urlLocalidades, function(data) {
-          localidades = parseJsonLocalidades(data);
-          sLocalidades = getSelectLocalidades(localidades, '');
-          addLocEvent();
-          iLocalidad.after(sLocalidades);
-          jQuery(sLocalidades).select2();
-      });
-      iProvincia.hide();
-      iLocalidad.hide();
-  }
-
-  function parseJsonProvincias(data) {
-      provincias = [];
-
-      data.results.forEach(function(provincia, index) {
-          provincias.push(provincia);
-      });
-
-     return provincias;
-  }
-
-  function parseJsonLocalidades(data) {
-      localidades = [];
-
-      data.results.forEach(function(localidad, index) {
-          localidades.push(localidad);
-      });
-      return localidades;
-  }
-
-  function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
-
-  function addProvEvent() {
-      sProvincia.on('change', function(e) {
-          iProvincia.val('');
-          iLocalidad.val('');
-          sLocalidades.children('option:not(:first)').remove();
-          if (sProvincia.val() != '') {
-              iProvincia.val(sProvincia.find(":selected").text());
-              sAux = getSelectLocalidades(localidades, sProvincia.val());
-              sOpt = sAux.find('option');
-              sLocalidades.append(sOpt);
-              sLocalidades.val('');
-          }
-      });
-  }
-
-  function addLocEvent() {
-      sLocalidades.on('change', function(e) {
-          iLocalidad.val('');
-          if (sLocalidades.val() != '') {
-              iLocalidad.val(sLocalidades.find(":selected").text());
-          }
-      });
-  }
+    function parseJsonProvincias(data) {
+        provincias = [];
 
 
-  function getDropDownList(name, id, optionList, emptyOption = true) {
-      var combo = jQuery("<select></select>").attr("id", id).attr("name", name).addClass("form-control form-select");
-      if (emptyOption)
-          combo.append("<option value=''>Seleccione una opción</option>");
-      jQuery.each(optionList, function(i, el) {
-          combo.append("<option value='" + el.id + "'>" + el.nombre + "</option>");
-      });
-      return combo;
-  }
+        data.results.forEach(function(provincia, index) {
+            provincias.push(provincia);
+        });
 
-  function getSelectProvincias(provincias) {
-      provinciasOptions = [];
+       return provincias;
+    }
 
-      provinciasOptions= provincias.sort(function(a, b){
-                              return a.id - b.id;
-                          });
-      var select = getDropDownList('sProvincias', 'sProvincias', provinciasOptions);
-      return select;
-  }
+    function capitalizeFirstLetter(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+    }
 
-  function getSelectLocalidades(localidades, provincia) {
-      var locaSelect = {};
+    
+    function parseJsonLocalidades(data) {
+        localidades = [];
 
-      var select = getDropDownList('sLocalidades', 'sLocalidades', [], true);
- 
-      if (provincia) {
-          locaSelect = localidades
-              .filter(function(localidad) {
-                  return String(localidad.provincia.id) == String(provincia);
-              })
-              .map(function (a) {
-                  if(showDepartamento && a.departamento.nombre) {
-                      a.nombre = capitalizeFirstLetter(a.departamento.nombre.toLowerCase()) + 
-                                  ' - ' + capitalizeFirstLetter(a.nombre.toLowerCase());
-                  } else {
-                      a.nombre = capitalizeFirstLetter(a.nombre.toLowerCase());
-                  }
-                  return a;
-              })
-              .sort(function(a, b) {
-                  return (a.nombre < b.nombre) ? -1 : (a.nombre > a.nombre) ? 1 : 0;
-              })
-          ;
- 
-          select = getDropDownList('sLocalidades', 'sLocalidades', locaSelect, false);
-      }
- 
-      return select;
-  }
+        data.results.forEach(function(localidad, index) {
+            localidades.push(localidad);
+        });
+        return localidades;
+    }
 
-  init();
+    function addProvEvent() {
+        sProvincia.on('change', function(e) {
+            iProvincia.val('');
+            iLocalidad.val('');
+            sLocalidades.children('option:not(:first)').remove();
+            if (sProvincia.val() != '') {
+                iProvincia.val(sProvincia.find(":selected").text());
+                var sAux = getSelectLocalidades(localidades, sProvincia.val());
+                var sOpt = sAux.find('option');
+                sLocalidades.append(sOpt);
+                sLocalidades.val('');
+            }
+        });
+    }
+
+    function addLocEvent() {
+        sLocalidades.on('change', function(e) {
+            iLocalidad.val('');
+            if (sLocalidades.val() != '') {
+                iLocalidad.val(sLocalidades.find(":selected").text());
+            }
+        });
+    }
+
+
+    function getDropDownList(name, id, optionList, required=false, emptyOption = false) {
+
+        var combo = jQuery("<select></select>").attr("id", id).attr("name", name).addClass("form-control form-select").prop('required',required);
+        if (emptyOption) {
+            combo.append("<option value=''>Seleccione una opción</option>");
+        }
+
+        jQuery.each(optionList, function(i, el) {
+            combo.append("<option value='" + el.id + "'>" + el.nombre + "</option>");
+        });
+        return combo;
+    }
+
+    function getSelectProvincias(provincias) {
+        var provinciasOptions = [];
+
+        provinciasOptions= provincias.sort(function(a, b){
+                                return a.id - b.id;
+                            });
+        var required = iProvincia.prop('required');
+        var select = getDropDownList('sProvincias', 'sProvincias', provinciasOptions, required, true);
+        return select;
+    }
+
+    function getSelectLocalidades(localidades, provincia) {
+        var locaSelect = {};
+        var required = iLocalidad.prop('required');
+
+        var select = getDropDownList('sLocalidades', 'sLocalidades', [], required, true);
+        
+        if (provincia) {
+            locaSelect = localidades
+                .filter(function(localidad) {
+                    return String(localidad.provincia.id) == String(provincia);
+                })
+                .map(function (a) {
+                    if(a.departamento.nombre) {
+                        a.nombre = capitalizeFirstLetter(a.departamento.nombre.toLowerCase()) + ' - ' +
+                                   capitalizeFirstLetter(a.nombre.toLowerCase());
+                    }
+                    return a;
+                })
+                .sort(function(a, b) {
+                    return (a.nombre < b.nombre) ? -1 : (a.nombre > a.nombre) ? 1 : 0;
+                });
+                
+            select = getDropDownList('sLocalidades', 'sLocalidades', locaSelect, required);
+        }
+        
+        return select;
+    }
+
+    init();
 
 };
