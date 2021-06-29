@@ -472,8 +472,8 @@ function pophidde(){
 //#####################################################################
 
 var ponchoUbicacion = function(options) {
-    var urlProvincias =  'https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/resources/jsons/geoprovincias.json';
-    var urlLocalidades = 'https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/resources/jsons/geolocalidades.json';
+    var urlProvincias =  '/profiles/argentinagobar/themes/contrib/poncho/resources/jsons/geoprovincias.json';
+    var urlLocalidades = '/profiles/argentinagobar/themes/contrib/poncho/resources/jsons/geolocalidades.json';
     var provincias;
     var localidades;
     var iProvincia = jQuery('input[name="submitted[' + options.provincia + ']"]');
