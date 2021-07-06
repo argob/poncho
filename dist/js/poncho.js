@@ -484,7 +484,7 @@ var ponchoUbicacion = function(options) {
     function init() {
         urlProvincias = options.urlProvincias ? options.urlProvincias : urlProvincias;
         urlLocalidades = options.urlLocalidades ? options.urlLocalidades : urlLocalidades;
-        
+
         jQuery.getJSON(urlProvincias, function(data) {
             provincias = parseJsonProvincias(data);
             //provincias
@@ -507,7 +507,6 @@ var ponchoUbicacion = function(options) {
 
     function parseJsonProvincias(data) {
         provincias = [];
-
 
         data.results.forEach(function(provincia, index) {
             provincias.push(provincia);
@@ -571,8 +570,10 @@ var ponchoUbicacion = function(options) {
     function getSelectProvincias(provincias) {
         var provinciasOptions = [];
 
-        provinciasOptions= provincias.sort(function(a, b){
-                                return a.id - b.id;
+        provinciasOptions= provincias.sort(function(a, b) {
+                            var nameA = a.nombre.toUpperCase(); // ignore upper and lowercase
+                            var nameB = b.nombre.toUpperCase(); // ignore upper and lowercase
+                            return nameA.localeCompare(nameB);
                             });
         var required = iProvincia.prop('required');
         var select = getDropDownList('sProvincias', 'sProvincias', provinciasOptions, required, true);
@@ -598,8 +599,11 @@ var ponchoUbicacion = function(options) {
                     return a;
                 })
                 .sort(function(a, b) {
-                    return (a.nombre < b.nombre) ? -1 : (a.nombre > a.nombre) ? 1 : 0;
-                });
+                            var nameA = a.nombre.toUpperCase(); // ignore upper and lowercase
+                            var nameB = b.nombre.toUpperCase(); // ignore upper and lowercase
+                            return nameA.localeCompare(nameB);
+                            })
+            ;
                 
             select = getDropDownList('sLocalidades', 'sLocalidades', locaSelect, required);
         }
@@ -609,4 +613,4 @@ var ponchoUbicacion = function(options) {
 
     init();
 
-};
+}
