@@ -938,6 +938,13 @@ a.panel:hover .panel-heading, a.panel:focus .panel-heading { opacity: .8; }
 @media (max-width: 767px) { .panels-row { display: block; }
   .icon-fix { min-height: 112px !important; }
   .icon-fix i { padding: 0px !important; font-size: 60px !important; } }
+/*Paneles con marco y bajada */
+.panel-frame-bajada .panel-heading { background-color: transparent; color: black !important; min-height: 80px !important; padding: 0px !important; height: 80px !important; }
+.panel-frame-bajada .panel-heading i { font-size: 36px; padding: 0px !important; margin: 0 !important; }
+.panel-frame-bajada .panel-body { font-weight: initial; }
+.panel-frame-bajada .panel-body h3 { font-size: 14px !important; font-weight: 600; text-align: center; }
+.panel-frame-bajada .panel-body p { font-size: 12px; border-top: 1px solid #6a6a6a; margin-top: 12px; padding-top: 12px; }
+
 /*TOGGLE DNI*/
 .content-popover { position: absolute !important; max-width: 400px !important; z-index: 2; border: 1px solid rgba(0, 0, 0, 0.2); border-radius: 10px; padding: 10px 20px 20px 20px; top: -300px; }
 

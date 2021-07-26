@@ -590,6 +590,43 @@ a {
 
 
 
+/*Paneles con marco y bajada */
+
+.panel-frame-bajada {
+  .panel-heading {
+    background-color: transparent;
+    color: black !important;
+    min-height: 80px !important;
+    padding: 0px !important;
+    height: 80px !important;
+
+    i {
+      font-size: 36px;
+      padding: 0px !important;
+      margin: 0 !important;
+    }
+  }
+
+  .panel-body {
+    font-weight: initial;
+
+    h3 {
+      font-size: 14px !important;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    p {
+      font-size: 12px;
+      border-top: 1px solid #6a6a6a;
+      margin-top: 12px;
+      padding-top: 12px;
+    }
+  }
+}
+
+
+
 /*TOGGLE DNI*/
 .content-popover{
  position: absolute !important;
