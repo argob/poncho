@@ -66,7 +66,27 @@
     <body>
 
 
-
+<header>
+        <nav class="navbar navbar-top navbar-default bg-celeste-argentina" role="navigation">
+            <div class="container">
+                <div>
+                    <div class="navbar-header"> <a class="navbar-brand" href="/proyectos/argentina/" aria-label="Argentina.gob.ar Presidencia de la Nación"> <img alt="Argentina.gob.ar" src="../paginas-de-argentina/img/argentinagob-2.svg" height="50"> </a> <a class="btn btn-mi-argentina btn-login visible-xs"
+                            href="/proyectos/mi-argentina/v3/"><i class="icono-arg-mi-argentina fa-fw"></i></a> <a class="btn bg-white btn-login visible-xs" href="#" onclick="$('.navbar.navbar-top').addClass('state-search');"><span class="fa fa-search fa-fw"></span></a>                        </div>
+                    <div class="nav navbar-nav navbar-right hidden-xs">
+                        <a href="#" onclick="$('.navbar.navbar-top').removeClass('state-search');" class="btn btn-mi-argentina visible-xs"> <i class="fa fa-times"></i> </a>
+                        <div style="float: left">
+                            <div class="input-group">
+                                <input id="buscar" type="text" class="form-control input-search" aria-label="Buscar trámites, servicios o áreas" placeholder="Buscar trámites, servicios o áreas ...">
+                                <span class="input-group-btn">
+              <button class="btn bg-white"  type="button" aria-label="Buscar"><i class="fa fa-search text-primary"></i></button>
+              </span> </div>
+                        </div>
+                        <a href="#" class="dropdown-toggle btn btn-mi-argentina hidden-xs bg-white" aria-label="Ingresar a Mi Argentina" data-toggle="dropdown"> miArgentina</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
      <main>
        <div class="container">
 
@@ -162,20 +182,26 @@
                 </div>
               </div>
 
-               <div class="row">
-                 <div class="col-md-12">
-                   <hr>
-                   <p>
-                    <img alt="Argentina.gob.ar" src="http://argob.github.io/poncho/plantillas/headers-y-footers/img/logo_argentina_unida.svg" height="25">
-                   </p>
-                 </div>
-               </div>
-
+              
 
              
          </section>
 
        </div>
+		 <footer>
+  <div class="container-fluid">
+    <div class="row sub-footer">
+      <div class="container">
+        <div class="col-sm-6 m-y-1 p-x-0">
+                          <img class="image-responsive" width="288" height="40" src="../paginas-de-argentina/img/logo_argentina_unida-blanco.svg" alt="Argentina Unida"/>
+                        <!-- <p class="text-muted small m-b-2">
+              <a href="https://creativecommons.org/licenses/by/4.0/deed.es" target="_blank" rel="noreferrer">Los contenidos de Argentina.gob.ar están licenciados bajo Creative Commons Atribución 4.0 Internacional</a>            </p> -->
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
      </main>
 
 
