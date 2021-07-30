@@ -592,6 +592,13 @@ a {
 
 /*Paneles con marco y bajada */
 
+.panel-frame-fix-icono {min-height: 48px;
+    align-items: center!important;
+    display: flex;
+    justify-content: center;}
+
+.panel-frame-bajada { padding:0.5rem}
+
 .panel-frame-bajada  p {    border-top: 1px solid gray; margin-top: 12px; padding-top: 12px; word-break: break-word;
     -webkit-hyphens: auto; -moz-hyphens: auto; -ms-hyphens: auto; hyphens: auto; }
 

@@ -939,6 +939,10 @@ a.panel:hover .panel-heading, a.panel:focus .panel-heading { opacity: .8; }
   .icon-fix { min-height: 112px !important; }
   .icon-fix i { padding: 0px !important; font-size: 60px !important; } }
 /*Paneles con marco y bajada */
+.panel-frame-fix-icono { min-height: 48px; align-items: center !important; display: flex; justify-content: center; }
+
+.panel-frame-bajada { padding: 0.5rem; }
+
 .panel-frame-bajada p { border-top: 1px solid gray; margin-top: 12px; padding-top: 12px; word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; -ms-hyphens: auto; hyphens: auto; }
 
 /*TOGGLE DNI*/
