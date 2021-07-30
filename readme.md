@@ -20,9 +20,9 @@ Tambien estamos en [NPM](https://www.npmjs.com/package/ar-poncho).
 
 * También podés [descargar las plantillas de Poncho](http://argob.github.io/poncho/plantillas/paginas-de-argentina/) o crear archivos html nuevos, asegurándote de que en los html estén declaradas estas dependencias:
   
-#### Fuente Tipográfica - Roboto
+#### Fuente Tipográfica - Encode
 
-* ``` <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet"> ```
+* ``` <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Encode+Sans:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" media="all" /> ```
 
 #### CSS - Bootstrap (v-3.4.1), Font Awesome (v-4.7.0), Poncho, Iconos
 
