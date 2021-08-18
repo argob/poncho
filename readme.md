@@ -8,7 +8,7 @@ En este repositorio podés descargar los archivos de Poncho para trabajar de man
 Esta nueva versión de Poncho incluye cambios de colores y otros elementos que mejoran cuestiones de accesibilidad.
 
 Para usar Poncho en un sitio, ver [la documentación](http://argob.github.io/poncho).  
-Tambien estamos en [NPM](https://www.npmjs.com/package/ar-poncho).
+También estamos en [NPM](https://www.npmjs.com/package/ar-poncho).
 
 ## ¿Cómo instalar Poncho?
 
