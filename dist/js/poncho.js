@@ -1,9 +1,9 @@
 //#####################################################################
 //####################### PONCHO TABLE #################################
 //#####################################################################
-  jQuery('#ponchoTable').addClass('state-loading');
+jQuery('#ponchoTable').addClass('state-loading');
 
-  function ponchoTable(opt){
+function ponchoTable(opt) {
     var listado = [];
     var filteredTitle = [];
     var filteredTitleGsx = [];
@@ -11,257 +11,269 @@
     var filtroColumna;
     var titulos = '';
     var th = [];
-    var lista = '';      
-    var centeredContent ='';
-    if ( jQuery.fn.DataTable.isDataTable('#ponchoTable') ) {
-      jQuery('#ponchoTable').DataTable().destroy();
+    var lista = '';
+    var centeredContent = '';
+    if (jQuery.fn.DataTable.isDataTable('#ponchoTable')) {
+        jQuery('#ponchoTable').DataTable().destroy();
     }
 
     //UNIQUE
-    function filtrarUnicos(array){
-      return array.filter(function(el, index, arr) {
-          return index === arr.indexOf(el);
-      });
-    }      
+    function filtrarUnicos(array) {
+        return array.filter(function(el, index, arr) {
+            return index === arr.indexOf(el);
+        });
+    }
 
-    jQuery.getJSON('https://spreadsheets.google.com/feeds/list/'+opt.idSpread+'/'+opt.hojaNumero+'/public/values?alt=json',
+    function getSheetName(id) {
+        jQuery.getJSON('https://sheets.googleapis.com/v4/spreadsheets/' + opt.idSpread + '/?alt=json&key=AIzaSyCq2wEEKL9-6RmX-TkW23qJsrmnFHFf5tY', function function_name(response) {
+            getSheetValues(response.sheets[id - 1].properties.title)
+        });
+    }
 
-      function(data) {
-          listado = data['feed']['entry'];
+    getSheetName(opt.hojaNumero);
 
-          //TITULOS
-          jQuery.each(Object.keys(listado[0]), function(index, key) {
-              if (key.substr(0, 4) == 'gsx$') {
-                  filteredTitle.push(listado[0][key]["$t"]);
-                  filteredTitleGsx.push(key);
-                  titulos += '<th>' + listado[0][key]["$t"] + '</th>';
-                  th.push(listado[0][key]["$t"]);
-              }
-          });
+    function getSheetValues(sheetName) {
 
-          //Caption de la tabla
-          jQuery("#ponchoTable caption").html(opt.tituloTabla);
+        jQuery.getJSON('https://sheets.googleapis.com/v4/spreadsheets/' + opt.idSpread + '/values/' + sheetName + '?alt=json&key=AIzaSyCq2wEEKL9-6RmX-TkW23qJsrmnFHFf5tY',
 
-          //Agregar titulos al thead de la tabla
-          jQuery('#ponchoTable thead tr').empty();
-          jQuery('#ponchoTable thead tr').append(titulos);
+            function(data) {
+                listado = data['values'];
 
-          //CONTENIDO FILAS
-          jQuery.each(listado, function(row, value) {
-              
-              if(row > 0){
-              lista += '<tr>';
-                jQuery.each(filteredTitleGsx, function(index, title) {
-                  var tdEmpty = '';
-                    if (title.substr(0, 4) == 'gsx$') {
-                       
-                        var filas = listado[row][filteredTitleGsx[index]].$t;
-
-                        //Guardar título de referencia de cada fila
-                        if(title == filteredTitleGsx[0]){
-                            var labelBtn = filas;
-                          }
-                        
-                        //Detectar si es botón
-                        if(title.includes("btn-") && filas != "" ){
-                          var nameBtn = title.substr(8, title.length-8).replace("-"," ");
-                          filas = '<a aria-label="' + nameBtn + " " + labelBtn + '" class="btn btn-primary btn-sm margin-btn" target="_blank" href="'+filas+'">'+nameBtn+'</a>';
-                        }
-
-                        //Detectar si es filtro
-                        if(title.includes("filtro-") && filas != ""){
-                          filtroColumna = index;
-                          var nameFiltro = title.substr(11, title.length-11).replace("-"," ");
-                          jQuery("#tituloFiltro").html(nameFiltro);
-                          filtro.push(filas);
-                        }
-
-                        //Detectar si es fecha
-                        if(title.includes("fecha-") && filas != ""){
-                          var dteSplit = filas.split("/");
-                          var yearh = dteSplit[2];
-                          var month = dteSplit[1];
-                          var day = dteSplit[0];
-                          var finalDate = yearh+"-"+month+"-"+day;
-                          filas = '<span style="display:none;">'+finalDate+'</span>'+filas;
-                        }
-
-                        //Ocultar filas vacias en mobile
-                        if(filas == ''){
-                          tdEmpty = 'hidden-xs';
-                        }
-
-                        //Aplicar markdown a todas las filas
-                        var converter = new showdown.Converter();
-                        filas = converter.makeHtml(filas);
-
-                        lista += '<td class="'+ tdEmpty + '" data-title="'+ th[index] +'">' + filas + '</td>';
-
+                //TITULOS
+                jQuery.each(Object.keys(listado[0]), function(index, key) {
+                    if (listado[0][key]) {
+                        filteredTitle.push(listado[0][key]);
+                        filteredTitleGsx.push(key);
+                        titulos += '<th>' + listado[1][key] + '</th>';
+                        th.push(listado[0][key]);
                     }
                 });
-              lista += '</tr>';
-              }
-          });
-
-          //Agregar filtro
-          jQuery.each(filtrarUnicos(filtro), function(index, val) {
-             jQuery("#ponchoTableFiltro").append("<option>"+val+"</option>");
-          });
-         
-
-          //Agregar contenido al body de la Tabla
-          jQuery('#ponchoTable tbody').empty();
-          jQuery('#ponchoTableSearchCont').show();
-          jQuery('#ponchoTable tbody').append(lista);
-          jQuery('#ponchoTable').removeClass('state-loading');
-
-          initDataTable();
-      }
-  );
-
-  function initDataTable() {
 
 
-      function removeAccents(data) {
-        return data
-          .replace(/έ/g, 'ε')
-          .replace(/[ύϋΰ]/g, 'υ')
-          .replace(/ό/g, 'ο')
-          .replace(/ώ/g, 'ω')
-          .replace(/ά/g, 'α')
-          .replace(/[ίϊΐ]/g, 'ι')
-          .replace(/ή/g, 'η')
-          .replace(/\n/g, ' ')
-          .replace(/[áÁ]/g, 'a')
-          .replace(/[éÉ]/g, 'e')
-          .replace(/[íÍ]/g, 'i')
-          .replace(/[óÓ]/g, 'o')
-          .replace(/[úÚ]/g, 'u')
-          .replace(/ê/g, 'e')
-          .replace(/î/g, 'i')
-          .replace(/ô/g, 'o')
-          .replace(/è/g, 'e')
-          .replace(/ï/g, 'i')
-          .replace(/ü/g, 'u')
-          .replace(/ã/g, 'a')
-          .replace(/õ/g, 'o')
-          .replace(/ç/g, 'c')
-          .replace(/ì/g, 'i');
-      }
+                //Caption de la tabla
+                jQuery("#ponchoTable caption").html(opt.tituloTabla);
+
+                //Agregar titulos al thead de la tabla
+                jQuery('#ponchoTable thead tr').empty();
+                jQuery('#ponchoTable thead tr').append(titulos);
+
+                //CONTENIDO FILAS
+                jQuery.each(listado, function(row, value) {
+
+                    if (row > 1) {
+                        var concatenado = '';
+                        var thisrows = '';
+                        jQuery.each(filteredTitle, function(index, title) {
+
+                            var tdEmpty = '';
+                            var filas = listado[row][index];
+
+                            //Detectar si es botón
+                            if (filteredTitle[index].includes("btn-") && filas) {
+                                nameBtn = listado[1][index];
+                                filas = '<a aria-label="' + nameBtn + '" class="btn btn-primary btn-sm margin-btn" target="_blank" href="' + filas + '">' + nameBtn + '</a>'
+                            }
+
+                            //Detectar si es filtro
+                            if (filteredTitle[index].includes("filtro-") && filas) {
+                                filtroColumna = index;
+                                nameFiltro = listado[1][index];
+                                jQuery("#tituloFiltro").html(nameFiltro);
+                                filtro.push(filas);
+                            }
+
+                            //Detectar si es fecha
+                            if (filteredTitle[index].includes("fecha-") && filas) {
+                                var dteSplit = filas.split("/");
+                                var yearh = dteSplit[2];
+                                var month = dteSplit[1];
+                                var day = dteSplit[0];
+                                var finalDate = yearh + "-" + month + "-" + day;
+                                filas = '<span style="display:none;">' + finalDate + '</span>' + filas;
+                            }
+
+                            //Ocultar filas vacias en mobile
+                            if (!filas) {
+                                tdEmpty = 'hidden-xs';
+                            }
+                            concatenado += typeof filas !== 'undefined' ? filas : '';
+
+                            //Aplicar markdown a todas las filas
+                            var converter = new showdown.Converter();
+                            filas = converter.makeHtml(filas);
+
+                            thisrows += '<td class="' + tdEmpty + '" data-title="' + th[index] + '">' + filas + '</td>';
 
 
+                        });
+                        if (concatenado != '') {
+                            lista += '<tr>';
+                            lista += thisrows;
+                            lista += '</tr>';
+                        }
+                    }
+                });
 
-      var searchType = jQuery.fn.DataTable.ext.type.search;
-      console.log(jQuery.fn.DataTable.ext.type.search);
-      searchType.string = function (data) {
-        return !data ?
-          '' :
-          typeof data === 'string' ?
-            removeAccents(data) :
-            data;
-      };
-
-      searchType.html = function (data) {
-        return !data ?
-          '' :
-          typeof data === 'string' ?
-            removeAccents(data.replace(/<.*?>/g, '')) :
-            data;
-      };
+                //Agregar filtro
+                jQuery.each(filtrarUnicos(filtro), function(index, val) {
+                    jQuery("#ponchoTableFiltro").append("<option>" + val + "</option>");
+                });
 
 
+                //Agregar contenido al body de la Tabla
+                jQuery('#ponchoTable tbody').empty();
+                jQuery('#ponchoTableSearchCont').show();
+                jQuery('#ponchoTable tbody').append(lista);
+                jQuery('#ponchoTable').removeClass('state-loading');
+
+                initDataTable();
+            }
+        );
+    }
+
+    function initDataTable() {
 
 
-      var tabla = jQuery("#ponchoTable").DataTable({
-          "lengthChange": false,
-          "autoWidth" : false,
-          "pageLength" : opt.cantidadItems,
-          "columnDefs": [
-            { "type": "html-num", "targets": opt.tipoNumero },
-            { "targets": opt.ocultarColumnas, "visible": false }
-          ],
-          "ordering" : opt.orden,
-          "order": [[ opt.ordenColumna-1, opt.ordenTipo ]],
-          "dom": "<'row'<'col-sm-6'l><'col-sm-6'f>>" +
-                 "<'row'<'col-sm-12'i>>" +
-                 "<'row'<'col-sm-12'tr>>" +
-                 "<'row'<'col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8'p>>",
-           "language": {
-              "sProcessing": "Procesando...",
-              "sLengthMenu": "Mostrar _MENU_ registros",
-              "sZeroRecords": "No se encontraron resultados",
-              "sEmptyTable": "Ningún dato disponible en esta tabla",
-              "sInfo": "_TOTAL_ resultados",
-              "sInfoEmpty": "No hay resultados",
-              //"sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-              "sInfoFiltered": "",
-              "sInfoPostFix": "",
-              "sSearch": "Buscar:",
-              "sUrl": "",
-              "sInfoThousands": ".",
-              "sLoadingRecords": "Cargando...",
-
-              "oPaginate": {
-                  "sFirst": "<<",
-                  "sLast": ">>",
-                  "sNext": ">",
-                  "sPrevious": "<"
-              },
-              "oAria": {
-                  "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-                  "sSortDescending": ": Activar para ordenar la columna de manera descendente",
-                  "paginate": {
-                      "first": 'Ir a la primera página',
-                      "previous": 'Ir a la página anterior',
-                      "next": 'Ir a la página siguiente',
-                      "last": 'Ir a la última página'
-                  }
-              }
-          }
-      });
-
-
-      jQuery(document).ready(function () {
-        // Remove accented character from search input as well
-        jQuery('#ponchoTableSearch').keyup(function () {
-          tabla
-            .search(
-            jQuery.fn.DataTable.ext.type.search.string(this.value)
-            )
-            .draw();
-        });
-    
-        if(jQuery.isFunction(jQuery.fn.dataTable.ext.order.intl)){
-          jQuery("#ponchoTable").dataTable.ext.order.intl('es');
-          jQuery("#ponchoTable").dataTable.ext.order.htmlIntl('es');
+        function removeAccents(data) {
+            return data
+                .replace(/έ/g, 'ε')
+                .replace(/[ύϋΰ]/g, 'υ')
+                .replace(/ό/g, 'ο')
+                .replace(/ώ/g, 'ω')
+                .replace(/ά/g, 'α')
+                .replace(/[ίϊΐ]/g, 'ι')
+                .replace(/ή/g, 'η')
+                .replace(/\n/g, ' ')
+                .replace(/[áÁ]/g, 'a')
+                .replace(/[éÉ]/g, 'e')
+                .replace(/[íÍ]/g, 'i')
+                .replace(/[óÓ]/g, 'o')
+                .replace(/[úÚ]/g, 'u')
+                .replace(/ê/g, 'e')
+                .replace(/î/g, 'i')
+                .replace(/ô/g, 'o')
+                .replace(/è/g, 'e')
+                .replace(/ï/g, 'i')
+                .replace(/ü/g, 'u')
+                .replace(/ã/g, 'a')
+                .replace(/õ/g, 'o')
+                .replace(/ç/g, 'c')
+                .replace(/ì/g, 'i');
         }
-    
-      });
 
-      //BUSCADOR
-      jQuery("#ponchoTable_filter").parent().parent().remove();
 
-      //FILTRO PERSONALIZADO
-      if(jQuery('#ponchoTableFiltro option').length > 1){
-        jQuery('#ponchoTableFiltroCont').show();
-      }
-      jQuery('#ponchoTableFiltro').on('change', function() {
-        var filtro = jQuery(this).val();
-          if(filtro != ""){
-            tabla.column(filtroColumna).every( function () {
-                var that = this;
+
+        var searchType = jQuery.fn.DataTable.ext.type.search;
+        searchType.string = function(data) {
+            return !data ?
+                '' :
+                typeof data === 'string' ?
+                removeAccents(data) :
+                data;
+        };
+
+        searchType.html = function(data) {
+            return !data ?
+                '' :
+                typeof data === 'string' ?
+                removeAccents(data.replace(/<.*?>/g, '')) :
+                data;
+        };
+
+
+
+
+        var tabla = jQuery("#ponchoTable").DataTable({
+            "lengthChange": false,
+            "autoWidth": false,
+            "pageLength": opt.cantidadItems,
+            "columnDefs": [
+                { "type": "html-num", "targets": opt.tipoNumero },
+                { "targets": opt.ocultarColumnas, "visible": false }
+            ],
+            "ordering": opt.orden,
+            "order": [
+                [opt.ordenColumna - 1, opt.ordenTipo]
+            ],
+            "dom": "<'row'<'col-sm-6'l><'col-sm-6'f>>" +
+                "<'row'<'col-sm-12'i>>" +
+                "<'row'<'col-sm-12'tr>>" +
+                "<'row'<'col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8'p>>",
+            "language": {
+                "sProcessing": "Procesando...",
+                "sLengthMenu": "Mostrar _MENU_ registros",
+                "sZeroRecords": "No se encontraron resultados",
+                "sEmptyTable": "Ningún dato disponible en esta tabla",
+                "sInfo": "_TOTAL_ resultados",
+                "sInfoEmpty": "No hay resultados",
+                //"sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                "sInfoFiltered": "",
+                "sInfoPostFix": "",
+                "sSearch": "Buscar:",
+                "sUrl": "",
+                "sInfoThousands": ".",
+                "sLoadingRecords": "Cargando...",
+
+                "oPaginate": {
+                    "sFirst": "<<",
+                    "sLast": ">>",
+                    "sNext": ">",
+                    "sPrevious": "<"
+                },
+                "oAria": {
+                    "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                    "sSortDescending": ": Activar para ordenar la columna de manera descendente",
+                    "paginate": {
+                        "first": 'Ir a la primera página',
+                        "previous": 'Ir a la página anterior',
+                        "next": 'Ir a la página siguiente',
+                        "last": 'Ir a la última página'
+                    }
+                }
+            }
+        });
+
+
+        jQuery(document).ready(function() {
+            // Remove accented character from search input as well
+            jQuery('#ponchoTableSearch').keyup(function() {
+                tabla
+                    .search(
+                        jQuery.fn.DataTable.ext.type.search.string(this.value)
+                    )
+                    .draw();
+            });
+
+            if (jQuery.isFunction(jQuery.fn.dataTable.ext.order.intl)) {
+                jQuery("#ponchoTable").dataTable.ext.order.intl('es');
+                jQuery("#ponchoTable").dataTable.ext.order.htmlIntl('es');
+            }
+
+        });
+
+        //BUSCADOR
+        jQuery("#ponchoTable_filter").parent().parent().remove();
+
+        //FILTRO PERSONALIZADO
+        if (jQuery('#ponchoTableFiltro option').length > 1) {
+            jQuery('#ponchoTableFiltroCont').show();
+        }
+        jQuery('#ponchoTableFiltro').on('change', function() {
+            var filtro = jQuery(this).val();
+            if (filtro != "") {
+                tabla.column(filtroColumna).every(function() {
+                    var that = this;
                     that
                         .search(jQuery.fn.DataTable.ext.type.search.string(filtro))
                         .draw();
-            }); 
-          }
-          else{
-              tabla.search( '' ).columns().search( '' ).draw();
-          }
+                });
+            } else {
+                tabla.search('').columns().search('').draw();
+            }
 
-      });
+        });
 
-  }
+    }
 }
 
 
