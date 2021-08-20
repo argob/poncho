@@ -181,8 +181,11 @@ function ponchoTable(opt) {
         };
 
 
-
-
+        if (jQuery.isFunction(jQuery.fn.DataTable.ext.order.intl)) {
+          jQuery.fn.DataTable.ext.order.intl('es');
+          jQuery.fn.DataTable.ext.order.htmlIntl('es');
+        }
+      
         var tabla = jQuery("#ponchoTable").DataTable({
             "lengthChange": false,
             "autoWidth": false,
@@ -243,12 +246,6 @@ function ponchoTable(opt) {
                     )
                     .draw();
             });
-
-            if (jQuery.isFunction(jQuery.fn.dataTable.ext.order.intl)) {
-                jQuery("#ponchoTable").dataTable.ext.order.intl('es');
-                jQuery("#ponchoTable").dataTable.ext.order.htmlIntl('es');
-            }
-
         });
 
         //BUSCADOR
