@@ -45,7 +45,7 @@ function ponchoTable(opt) {
                         filteredTitle.push(listado[0][key]);
                         filteredTitleGsx.push(key);
                         titulos += '<th>' + listado[1][key] + '</th>';
-                        th.push(listado[0][key]);
+                        th.push(listado[1][key]);
                     }
                 });
 
