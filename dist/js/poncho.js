@@ -62,7 +62,7 @@ function ponchoTable(opt) {
 
                     if (row > 1) {
                         var concatenado = '';
-                        var thisrows = '';
+                        var thisRow = '';
                         jQuery.each(filteredTitle, function(index, title) {
 
                             var tdEmpty = '';
@@ -70,14 +70,14 @@ function ponchoTable(opt) {
 
                             //Detectar si es botón
                             if (filteredTitle[index].includes("btn-") && filas) {
-                                nameBtn = listado[0][index].replace('btn-', '').replace('-', ' ');
+                                var nameBtn = listado[0][index].replace('btn-', '').replace('-', ' ');
                                 filas = '<a aria-label="' + nameBtn + '" class="btn btn-primary btn-sm margin-btn" target="_blank" href="' + filas + '">' + nameBtn + '</a>'
                             }
 
                             //Detectar si es filtro
                             if (filteredTitle[index].includes("filtro-") && filas) {
                                 filtroColumna = index;
-                                nameFiltro = listado[1][index];
+                                var nameFiltro = listado[1][index];
                                 jQuery("#tituloFiltro").html(nameFiltro);
                                 filtro.push(filas);
                             }
@@ -92,23 +92,25 @@ function ponchoTable(opt) {
                                 filas = '<span style="display:none;">' + finalDate + '</span>' + filas;
                             }
 
-                            //Ocultar filas vacias en mobile
                             if (!filas) {
+                                filas =  '';
+                                //Ocultar filas vacias en mobile
                                 tdEmpty = 'hidden-xs';
                             }
-                            concatenado += typeof filas !== 'undefined' ? filas : '';
+
+                            concatenado += filas;
 
                             //Aplicar markdown a todas las filas
                             var converter = new showdown.Converter();
                             filas = converter.makeHtml(filas);
 
-                            thisrows += '<td class="' + tdEmpty + '" data-title="' + th[index] + '">' + filas + '</td>';
+                            thisRow += '<td class="' + tdEmpty + '" data-title="' + th[index] + '">' + filas + '</td>';
 
 
                         });
                         if (concatenado != '') {
                             lista += '<tr>';
-                            lista += thisrows;
+                            lista += thisRow;
                             lista += '</tr>';
                         }
                     }
