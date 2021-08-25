@@ -279,7 +279,52 @@ Poncho te saluda, amigo del código!
       </div>
 
     <script>
+
+//#####################################################################
+//####################### GAPI LEGACY #################################
+//#####################################################################
+//<!--
+/**
+ * Retorna la estructura de la versión 3 de la API GoogleSheets.
+ *
+ * La estructura del objeto que retorna es de este modo:
+ *  .
+ *  \--feed
+ *      \-- entry
+ *          |-- gsx$[nombre columna]
+ *          |   \-- $t
+ *          |-- gsx$[nombre columna]
+ *          |   \-- $t
+ *
+ * @param  {object} response Response JSON.
+ * @return {void}
+ */
+function gapi_legacy(response){
+
+  const keys = response.values[0];
+  const regex = / |\/|_/ig;
+  let entry = [];
+
+  response.values.forEach((v, k) => {
+    if(k > 0){
+
+      let zip = {};
+      for(var i in keys){
+        var d = (v.hasOwnProperty(i))? v[i].trim() : "";
+        zip[`gsx$${ keys[i].toLowerCase().replace(regex, '') }`] = {"$t": d};
+      }
+      entry.push(zip);
+    }
+  });
+
+  return {"feed": {"entry": entry}};
+}
+//-->
+      
+      
 $(function(){
+  
+  
 
 
   
@@ -302,11 +347,15 @@ $(function(){
   $('#iconoModal').on('hidden.bs.modal', function () {
        $("#mensajeCopiado").fadeOut(300);
   })
+  
+  var idSpread = '13CLjNqMQlUXj849XYL_nGDaAkE90OOFT3mXL-Iag9xM';
+  var hojaNombre = 'Iconos';
+  var sheetURL = 'https://sheets.googleapis.com/v4/spreadsheets/' + idSpread + '/values/' + hojaNombre + '?alt=json&key=AIzaSyCq2wEEKL9-6RmX-TkW23qJsrmnFHFf5tY'
 
-
-  jQuery.getJSON('https://spreadsheets.google.com/feeds/list/13CLjNqMQlUXj849XYL_nGDaAkE90OOFT3mXL-Iag9xM/1/public/values?alt=json',
+  jQuery.getJSON(sheetURL,
 
     function(data) {
+          data = gapi_legacy(data);
           $(".preloader").remove();
           iconos = data['feed']['entry'];
 
