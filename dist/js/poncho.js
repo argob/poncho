@@ -70,7 +70,7 @@ function ponchoTable(opt) {
 
                             //Detectar si es botón
                             if (filteredTitle[index].includes("btn-") && filas) {
-                                nameBtn = listado[1][index];
+                                nameBtn = listado[0][index].replace('btn-', '').replace('-', ' ');
                                 filas = '<a aria-label="' + nameBtn + '" class="btn btn-primary btn-sm margin-btn" target="_blank" href="' + filas + '">' + nameBtn + '</a>'
                             }
 
