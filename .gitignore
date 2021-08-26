@@ -2,25 +2,12 @@
 *.DS_Store
 *.sass-cache
 /.asset-cache/*
-/_site/*
+/_site
 /_vendor/*
-
 .sass-cache
-
 # Mac files
 .DS_Store
-
-<<<<<<< HEAD
 /dist
-src/_site
-=======
-src/_site
-node_modules
-package.json
-readme.md
->>>>>>> eb48f9f968e8f140a460e4aa1af15642237ceb6b
-node_modules/argob-poncho/dist/.DS_Store
-node_modules/argob-poncho/dist/fonts/.DS_Store
-dist/.DS_Store
-node_modules/argob-poncho/dist/.DS_Store
-node_modules/argob-poncho/dist/.DS_Store
+/node_modules
+/src/node_modules
+package-lock.json

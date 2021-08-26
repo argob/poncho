@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]> <html lang="es"class="iem7"> <![endif]-->
+<!--[if lt IE 7 ]> <html lang="es" class="ie6 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="es" class="ie7 lt-ie8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="es" class="ie8"> <![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="es"><!--<![endif]-->
+    <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Banco de Pruebas</title>
+  <meta name="description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
+  <meta name="author" content="Presidencia de la Nación">
+  <link rel="shortcut icon" href="img/favicon.ico">
+
+  <!-- Nav and address bar color -->
+  <meta name="theme-color" content="#0072b8">
+  <meta name="msapplication-navbutton-color" content="#0072b8">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
+
+  <meta property="og:url" content="http://localhost:4000/proyectos/argentina/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Banco de Pruebas" />
+  <meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta property="og:image" content="/ejemplos/img/jumbotron.jpg" />
+  <meta property="og:locale" content="es_AR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Banco de Pruebas" />
+  <meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta name="twitter:image" content="/ejemplos/img/jumbotron.jpg" />
+
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../../node_modules/ar-poncho/dist/css/poncho.min.css">
+  <link rel="stylesheet" href="../../node_modules/ar-poncho/dist/css/argentina.css">
+
+		<link rel="stylesheet" href="../../node_modules/ar-poncho/dist/icono-arg.css">
+  
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="http://argob.github.io/poncho/js/html5shiv.js"></script>
+      <script src="http://argob.github.io/poncho/js/respond.min.js"></script>
+  <![endif]-->
+  
+    
+</head>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+
+  <body>
+
+    
+<header>
+        <nav class="navbar navbar-top navbar-default bg-celeste-argentina" role="navigation">
+            <div class="container">
+                <div>
+                    <div class="navbar-header"> <a class="navbar-brand" href="/proyectos/argentina/" aria-label="Argentina.gob.ar Presidencia de la Nación"> <img alt="Argentina.gob.ar" src="../paginas-de-argentina/img/argentinagob-2.svg" height="50"> </a> <a class="btn btn-mi-argentina btn-login visible-xs"
+                            href="/proyectos/mi-argentina/v3/"><i class="icono-arg-mi-argentina fa-fw"></i></a> <a class="btn bg-white btn-login visible-xs" href="#" onclick="$('.navbar.navbar-top').addClass('state-search');"><span class="fa fa-search fa-fw"></span></a>                        </div>
+                    <div class="nav navbar-nav navbar-right hidden-xs">
+                        <a href="#" onclick="$('.navbar.navbar-top').removeClass('state-search');" class="btn btn-mi-argentina visible-xs"> <i class="fa fa-times"></i> </a>
+                        <div style="float: left">
+                            <div class="input-group">
+                                <input id="buscar" type="text" class="form-control input-search" aria-label="Buscar trámites, servicios o áreas" placeholder="Buscar trámites, servicios o áreas ...">
+                                <span class="input-group-btn">
+              <button class="btn bg-white"  type="button" aria-label="Buscar"><i class="fa fa-search text-primary"></i></button>
+              </span> </div>
+                        </div>
+                        <a href="#" class="dropdown-toggle btn btn-mi-argentina hidden-xs bg-white" aria-label="Ingresar a Mi Argentina" data-toggle="dropdown"> miArgentina</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+<main role="main">
+    <section>
+        <div class="container">
+            <div class="row m-b-2">
+                <div class="col-md-6 col-md-offset-3">
+                    <h4 class="activities-sidbar">Creá tu cuenta de {nombre de organismo o plataforma}</h4>
+                </div>
+            </div>
+
+
+
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <div id="errores" aria-live="polite" class="alert alert-danger hidden">
+                        <h5>Se han producido los siguientes errores:</h5>
+                        <ol>
+                            <li>Ingresá correo electrónico</li>
+                            <li>Ingresá tu usuario</li>
+                            <li>Ingresá tu contraseña</li>
+                        </ol>
+                    </div>
+                    <form method="post">
+                        <div class="row">
+                            <div class="col-md-10 form-group item-form">
+                                <label for="email">Correo electrónico</label>
+                                <input type="email" name="email" class="form-control" id="email" required=""
+                                    aria-required="true">
+                                <p class="help-block error hidden">Ingresá un correo electrónico <br> El correo
+                                    electrónico tiene un formato no válido</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-10 form-group item-form">
+                                <label for="usuario">Usuario</label>
+                                <input type="text" name="user" class="form-control" id="usuario" required=""
+                                    aria-required="true">
+                                <p class="help-block error hidden">Ingresa tu usuario</p>
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <div class="col-md-10 form-group item-form">
+                                <label for="password">Contraseña</label>
+                                <p class="help-block" id="help-password">Usá al menos 6 caracteres</p>
+                                <input id="password" name="password" type="password" class="form-control" maxlength="15"
+                                    aria-describedby="help-password">
+                                <p class="help-block error hidden">Usá al menos 6 caracteres</p>
+                                <p class="help-block error hidden">Ingresá tu contraseña</p>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                                <div class="col-md-10 form-group item-form m-b-0">
+                                        <div class="checkbox">
+                                         <label for="Option_1">
+                                          <input id="Option_1" name="Option_1" type="checkbox" value="">Acepto los <a href="#">términos y condiciones.</a>
+                                        </label>
+                                      </div>
+                      
+                                      <p class="help-block error hidden">Marca un opción </p>
+                                    </div>
+                        </div>
+
+                        <div class="row m-y-2">
+                            <div class="col-md-10">
+                                    <div class="g-recaptcha" data-sitekey="mykey"></div>
+
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-5">
+                                <button type="button" class="btn btn-success">CREAR CUENTA</button>
+                            </div>
+                        </div>
+                        <hr>
+
+                    </form>
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <p><a href="#">Recuperar mi contraseña</a></p>
+                            <p><a href="#">Volver al Inicio</a></p>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+    </section>
+</main>
+
+<footer>
+  <div class="container-fluid">
+    <div class="row sub-footer">
+      <div class="container">
+        <div class="col-sm-6 m-y-1 p-x-0">
+                          <img class="image-responsive" width="288" height="40" src="../paginas-de-argentina/img/logo_argentina_unida-blanco.svg" alt="Argentina Unida"/>
+                        <!-- <p class="text-muted small m-b-2">
+              <a href="https://creativecommons.org/licenses/by/4.0/deed.es" target="_blank" rel="noreferrer">Los contenidos de Argentina.gob.ar están licenciados bajo Creative Commons Atribución 4.0 Internacional</a>            </p> -->
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,38 @@
+{
+  "name": "ar-poncho",
+  "version": "2.0.3",
+  "description": "Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/argob/poncho"
+  },
+  "author": "Subsecretaría de Gobierno Abierto y País Digital - Secretaría de Innovación Pública",
+  "license": "MIT",
+  "dependencies": {
+    "ar-poncho": "^2.0.0",
+    "bootstrap": "^3.4.1",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.6.0",
+    "list.js": "^1.2.0"
+  },
+  "keywords": [
+    "template",
+    "poncho",
+    "argentina",
+    "bootstrap",
+    "html",
+    "css",
+    "scss"
+  ],
+  "bugs": {
+    "url": "https://github.com/argob/poncho/issues"
+  },
+  "homepage": "https://argob.github.io/poncho"
+}

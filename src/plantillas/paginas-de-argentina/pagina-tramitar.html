@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]> <html lang="es"class="iem7"> <![endif]-->
+<!--[if lt IE 7 ]> <html lang="es" class="ie6 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="es" class="ie7 lt-ie8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="es" class="ie8"> <![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!-->
+<html lang="es">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Banco de Pruebas</title>
+<meta name="description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
+<meta name="author" content="Presidencia de la Nación">
+<link rel="shortcut icon" href="img/favicon.ico">
+
+<!-- Nav and address bar color -->
+<meta name="theme-color" content="#0072b8">
+<meta name="msapplication-navbutton-color" content="#0072b8">
+<meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
+<meta property="og:url" content="http://localhost:4000/proyectos/argentina/pagina-area.html" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Banco de Pruebas" />
+<meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+<meta property="og:image" content="/ejemplos/img/jumbotron.jpg" />
+<meta property="og:locale" content="es_AR" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Banco de Pruebas" />
+<meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+<meta name="twitter:image" content="/ejemplos/img/jumbotron.jpg" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../../node_modules/ar-poncho/dist/css/poncho.min.css">
+<link rel="stylesheet" href="../../node_modules/ar-poncho/dist/css/icono-arg.css">
+<link rel="stylesheet" href="../../node_modules/ar-poncho/dist/css/argentina.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> 
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script> 
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries --> 
+<!--[if lt IE 9]>
+      <script src="/node_modules/html5shiv/html5shiv.js"></script>
+      <script src="/node_modules/respond.js/respond.min.js"></script>
+  <![endif]-->
+
+<style>
+@media print {
+section, .jumbotron {
+    padding: 0;
+}
+main .jumbotron_bar {
+    display: none;
+}
+/* ANCHO 90% TODO EL CONTENIDO GENERAL Y CENTRADO */
+main {
+    width: 90%;
+    margin: 0 auto;
+}
+.jumbotron_body {
+    padding: 25px 0 !important;
+}
+.content_for {
+    margin: 0;
+}
+.content_format h2 {
+    margin-top: 0;
+}
+.icon-item {
+    text-align: center;
+    margin: 10px 0;
+}
+/* Quitar o No Mostrar Rutas Internas */
+a[href]:after {
+    display: none;
+}
+/* Rutas que empiecen con http */
+a[href^=http]:after {
+    content: " (" attr(href) ")";
+    display: block;
+}
+/* AGREGAR UN ESPACIADO ALGUN FIX QUE ROMPA*/
+.page-break {
+    display: block;
+    height: 100px;
+    width: 100%;
+}
+.panel-default {
+    color: #2897D4 !important;
+    border: 1px solid #333;
+    border-radius: 5px;
+    padding: 20px;
+}
+.panel-heading {
+    display: none;
+}
+.panel-heading.img:after {
+    /*background: #333 url('./img/01.jpg') no-repeat !important;
+    background-size: cover;*/
+    content: "img";
+    position: absolute;
+    left: 25%;
+    top: 25%;
+    transform: translate(-50%, -50%);
+}
+/*.print-after {
+    page-break-after: always;
+    }
+
+    .print-before {
+    page-break-before: always;
+    }*/
+section .panels-row .panel {
+    width: 50%;
+    margin: 10 auto;
+}
+a.btn.btn-primary {
+    border: 3px solid #333;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    padding: 10px 25px;
+    text-transform: uppercase;
+}
+}
+.icon-item {
+    text-align: center;
+    margin: 10px 0;
+}
+/* Generar mas contraste con este color al texto*/
+.h3.section-title {
+    color: #333; /* archivo tipography.scss line 43 le agrega por defecto color: #707070 */
+}
+/* Las listas despegables que se corran a la izquierda */
+.dropdown-menu-right {
+    left: 0;
+    right: auto;
+}
+/* Reducir padding  */
+
+.jumbotron .jumbotron_body {
+    padding: 60px 0;
+}
+/* hover mas contraste   */
+.nav.nav-icons li a:hover i, .nav.nav-icons li a:focus i {
+    color: #0072bb !important;
+    background: #fff !important;
+    box-shadow: 0px 0px 3px 2px #707070;
+}
+/* afecta tambien nav.scss line 369*/
+.nav.nav-icons.nav-icons-selected li:not(.active) a:hover i {
+    color: #0072bb !important;
+    background: #fff !important;
+    box-shadow: 0px 0px 3px 2px #707070;
+}
+.nav.nav-icons li a span {
+    color: #333;
+}
+/* que no tengan la clase active ni el hover ni el focus
+  .nav.nav-icons.nav-icons-selected li:not(.active):not(:hover) a:not(:focus) i {
+    background: #CCC !important;
+    color: #707070 !important;
+  }*/
+
+  /* Mejorar contraste a etiqueta time en paneles noticias destacadas */
+.panel time {
+    opacity: 1;
+}
+/* modificar paneles sacar headings por parrafos o span */
+.panel .h3_title, .h3_title { /* panel.scss line 34, 16, 142(transicion)*/
+    font-size: 1.3em !important;
+    font-weight: 500 !important;
+    line-height: 1.3 !important;
+    margin: .25em 0 !important;/*color: red; cambiar color para visualizar mejor que se esta cambiando*/
+}
+/* modificar paneles sacar headings por parrafos o span */
+.icon-item .h3_title {
+    font-size: 1.6em !important; /* global.scss line 90*/
+    margin-top: 0 !important; /* global.scss line 85*/
+    margin-bottom: 0.2em;
+
+    font-weight: 600;/*color: red; cambiar color para visualizar mejor que se esta cambiando*/
+}
+
+.nro-tramite{ padding: 5px 7px;
+    text-align: center;}
+
+
+
+</style>
+</head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+
+<body>
+<header>
+  <nav class="navbar navbar-top navbar-default bg-celeste-argentina" role="navigation">
+    <div class="container">
+      <div>
+        <div class="navbar-header"> <a class="navbar-brand" href="/proyectos/argentina/" aria-label="Argentina.gob.ar Presidencia de la Nación"> <img alt="Argentina.gob.ar" src="img/argentinagob-2.svg" height="50"> </a> <a class="btn btn-mi-argentina btn-login visible-xs"
+                            href="/proyectos/mi-argentina/v3/"><i class="icono-arg-mi-argentina fa-fw"></i></a> <a class="btn bg-white btn-login visible-xs" href="#" onclick="$('.navbar.navbar-top').addClass('state-search');"><span class="fa fa-search fa-fw"></span></a> </div>
+        <div class="nav navbar-nav navbar-right hidden-xs"> <a href="#" onclick="$('.navbar.navbar-top').removeClass('state-search');" class="btn btn-mi-argentina visible-xs"> <i class="fa fa-times"></i> </a>
+          <div style="float: left">
+            <div class="input-group">
+              <input id="buscar" type="text" class="form-control input-search" aria-label="Buscar trámites, servicios o áreas" placeholder="Buscar trámites, servicios o áreas ...">
+              <span class="input-group-btn">
+              <button class="btn bg-white"  type="button" aria-label="Buscar"><i class="fa fa-search text-primary"></i></button>
+              </span> </div>
+          </div>
+          <a href="#" class="dropdown-toggle btn btn-mi-argentina hidden-xs bg-white" aria-label="Ingresar a Mi Argentina" data-toggle="dropdown"> miArgentina</a> </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<script type="text/javascript">
+  var busqueda = document.getElementById('buscar');
+  var buscar = document.getElementById('buscar-btn');
+  buscar.onclick = function () {
+    var buscado = busqueda.value;
+    location.href = "http://www.argentina.gob.ar/buscar/" + buscado;
+  };
+  
+  //PONCHO LABS
+  var url_string = window.location.href;
+  var url = new URL(url_string);
+  var lab = url.searchParams.get("lab");
+  
+  
+  if(lab == ""){
+    $("head").append('<link href="/proyectos/poncho/css/poncho_lab.css" rel="stylesheet">');
+  }
+</script>
+<main role="main">
+  <section class="jumbotron" style="background-image: url('img/modernizacion.jpg');">
+    <div class="jumbotron_bar">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <ol class="breadcrumb pull-left">
+              <li><a href="">Argentina</a></li>
+              <li class="active"><span>TramitAr</span></li>
+            </ol>
+            <ul class="list-inline pull-right">
+              <li>
+                <div class="dropdown">
+                  <ul class="list-inline pull-right">
+                    <li>
+                      <div class="dropdown"> <a href="#" class="dropdown-toggle" id="jumbo-menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Institucional <span class="caret"></span> </a>
+                        <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="jumbo-menu">
+                          <li><a href="#">Acción</a></li>
+                          <li><a href="#">Acción secundaria</a></li>
+                          <li><a href="#">Misiones y funciones</a></li>
+                        </ul>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="dropdown"> <a href="#" class="dropdown-toggle" id="jumbo-menu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Institucional2 <span class="caret"></span> </a>
+                        <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="jumbo-menu2">
+                          <li><a href="#">Acción</a></li>
+                          <li><a href="#">Acción secundaria</a></li>
+                          <li><a href="#">Misiones y funcioness</a></li>
+                          <li><a href="#">Acción</a></li>
+                          <li><a href="#">Acción secundaria</a></li>
+                          <li><a href="#">Misiones y funcioness</a></li>
+                        </ul>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="dropdown"> <a href="#" class="dropdown-toggle" id="jumbo-menu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Institucional3 <span class="caret"></span> </a>
+                        <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="jumbo-menu3">
+                          <li><a href="#">Acción</a></li>
+                          <li><a href="#">Acción secundaria</a></li>
+                          <li><a href="#">Misiones y funcioness</a></li>
+                          <li><a href="#">Acción</a></li>
+                        </ul>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="jumbotron_body">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-md-8 col-md-offset-2 text-center">
+            <h1>TramitAr</h1>
+            <p>Encontrá todos los trámites y servicios nacionales por tema, organismo, y con gestión y turnos online.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel-pane pane-block pane-argentinagobar-search-apachesolrinput box-campania">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            
+            <div class="input-group input-tramitar">
+              <label  for="edit-keys" style="display: table-caption">Buscar trámites y servicios nacionales</label>
+              <input  id="edit-keys" class="input-search form-control form-text " aria-label="Buscar trámites y servicios nacionales" type="text" name="keys" value="" size="20" maxlength="255" style="border: 1px solid #ddd!important" >
+              <span class="input-group-btn">
+              <button class="bg-primary btn-search-reset btn btn-default form-submit" aria-labelledby="edit-keys" aria-label="Buscar" type="submit" id="edit-submit" name="op" value="<i class=&quot;fa fa-search text-primary&quot;></i>" style="border: none!important; padding: 11px 16px!important	;	"><i class="fa fa-search text-white"></i></button>
+              </span></div>
+
+
+<div style="
+    padding: 0 40px 10px 0;
+">    
+    <input class="custom-control-input" id="" autocomplete="off" name="" type="checkbox" value="">
+            <label for="#" class="custom-control-label m">Filtrar por tema</label>    
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="container mt-3">
+        <div class="panel-pane pane-atajos">
+          <div class="pane-content">
+            <div class="row panels-row">
+              <div class="col-md-2"> <a class="panel panel-default" href="#">
+                <div class="panel-body">
+                  <div class="media text-center">
+                    <div class="padding-5"> <i class="fa fa-phone fa-fw fa-3x text-escarapela"></i> </div>
+                    <div class="media-body">
+                      <p>Tema uno</p>
+                    </div>
+                  </div>
+                </div>
+                </a> </div>
+              <div class="col-md-2"> <a class="panel panel-default" href="#">
+                <div class="panel-body">
+                  <div class="media text-center">
+                    <div class="padding-5"> <i class="fa fa-phone fa-fw fa-3x text-fucsia"></i> </div>
+                    <div class="media-body">
+                      <p>Tema Dos</p>
+                    </div>
+                  </div>
+                </div>
+                </a> </div>
+              <div class="col-md-2"> <a class="panel panel-default" href="#">
+                <div class="panel-body">
+                  <div class="media text-center">
+                    <div class="padding-5"> <i class="fa fa-phone fa-fw fa-3x text-lavanda"></i> </div>
+                    <div class="media-body">
+                      <p>Tema Tres</p>
+                    </div>
+                  </div>
+                </div>
+                </a> </div>
+              <div class="col-md-2"> <a class="panel panel-default" href="#">
+                <div class="panel-body">
+                  <div class="media text-center">
+                    <div class="padding-5"> <i class="fa fa-phone fa-fw fa-3x text-palta"></i> </div>
+                    <div class="media-body">
+                      <p>Tema Cuatro</p>
+                    </div>
+                  </div>
+                </div>
+                </a> </div>
+              <div class="col-md-2"> <a class="panel panel-default" href="#">
+                <div class="panel-body">
+                  <div class="media text-center">
+                    <div class=" padding-5"> <i class="fa fa-phone fa-fw fa-3x text-mandarina"></i> </div>
+                    <div class="media-body">
+                      <p>Tema Cinco</p>
+                    </div>
+                  </div>
+                </div>
+                </a> </div>
+              <div class="col-md-2"> <a class="panel panel-default" href="#">
+                <div class="panel-body">
+                  <div class="media text-center">
+                    <div class="padding-5"> <i class="fa fa-phone fa-fw fa-3x text-escarapela"></i> </div>
+                    <div class="media-body">
+                      <p>Tema Seis</p>
+                    </div>
+                  </div>
+                </div>
+                </a> </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section>
+    <article class="container content_format">
+      <div class="row">
+        <div class="col-md-12">
+          <p class="activities-sidbar">3 resultados para <strong>“certificado”</strong> del tema “COVID-19” <a href="#">(borrar todo)</a>
+</p>
+
+<div class="panels-row m-t-2 row">
+
+          <div class="col-md-4"> <a href="https://www.argentina.gob.ar/interior/dni/caracteristicas-y-medidas-de-seguridad-de-tu-dni-en-el-celular" class="panel panel-default">
+            <div class="panel-body">
+              <h2 class="h3"> Características y medidas de seguridad de tu DNI en el Celular<br>
+                <small> Conocé las características técnicas que hacen que tu <strong>DNI</strong> en el Celular sea seguro. 1- No ... 11- Código de lectura mecánico. Idioma Español Tramitar el <strong>DNI</strong> Infografía- Características y medidas ... de seguridad de tu <strong>DNI</strong> en el Celular ...
+
+
+                </small>
+
+
+              </h2>
+                <p  class="btn btn-default btn-sm">Turnos en línea</p> <p  class="btn btn-default btn-sm">Trámites en línea</p>
+
+
+            </div>
+            </a> </div>
+          <div class="col-md-4"> <a href="https://www.argentina.gob.ar/interior/dni/caracteristicas-y-medidas-de-seguridad-de-tu-dni-en-el-celular" class="panel panel-default">
+            <div class="panel-body">
+              <h2 class="h3"> Características y medidas de seguridad de tu DNI en el Celular<br>
+                <small> Conocé las características técnicas que hacen que tu <strong>DNI</strong> en el Celular sea seguro. 1- No ... 11- Código de lectura mecánico. Idioma Español.</small></h2>
+
+<p  class="btn btn-default btn-sm">COVID-19</p>
+
+            </div>
+            </a> </div>
+          <div class="col-md-4"> <a href="https://www.argentina.gob.ar/interior/dni/caracteristicas-y-medidas-de-seguridad-de-tu-dni-en-el-celular" class="panel panel-default">
+            <div class="panel-body">
+              <h2 class="h3"> Características y medidas de seguridad de tu DNI en el Celular<br>
+                <small> Conocé las características técnicas que hacen que tu <strong>DNI</strong> en el Celular sea seguro. 1- No ... 11- Código de lectura mecánico. Idioma Español Tramitar el <strong>DNI</strong> Infografía- Características y medidas ... de seguridad de tu <strong>DNI</strong> en el Celular ...</small></h2>
+            </div>
+            </a> </div>
+
+
+
+
+</div>
+
+<div class="text-center col-md-12"><ul class="pagination"><li class="active"><span>1</span></li><li><a title="Ir a la página 2" href="#">2</a></li><li><a title="Ir a la página 3" href="#">3</a></li><li><a title="Ir a la página 4" href="#">4</a></li><li class="next"><a href="#">&gt;</a></li><li class="pager-last"><a href="#">&gt;&gt;</a></li></ul></div>
+
+
+        </div>
+      </div>
+    </article>
+  </section>
+  <div class="page-break"></div>
+  <div class="page-break"></div>
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center m-b-4">
+          <h2 class="m-b-3">¿Cómo hago mis trámites?</h2>
+          <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-4">
+              <div > <i class="icono-tramitar-redondo icono-arg-numero-1 bg-primary nro-tramite"></i>
+                <p class="h3_title"><strong>Buscá el trámite</strong></p>
+                <p>Hacelo por tema, por palabra clave o por nombre del organismo.</p>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4">
+              <div> <i class="icono-tramitar-redondo icono-arg-numero-2 bg-primary nro-tramite"></i>
+                <p class="h3_title"><strong>Conocé cómo hacerlo</strong></p>
+                <p>Te explicamos los requisitos y la documentación que necesitás.</p>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4">
+              <div> <i class="icono-tramitar-redondo icono-arg-numero-3 bg-primary nro-tramite"></i>
+                <p class="h3_title"><strong>Comenzalo en línea</strong></p>
+                <p>Sacá turno o hacelo en línea con tu perfil de Mi Argentina.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="page-break"></div>
+</main>
+<footer class="main-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-sm-6">
+        <div class="region region-footer1">
+          <section id="block-menu-menu-footer-1" class="block block-menu clearfix">
+            <h2 class="block-title h3 section-title h3 section-title">Trámites</h2>
+            <ul class="menu nav">
+              <li class="first leaf"><a href="/turnos">Turnos</a></li>
+              <li class="leaf"><a href="#">Trámites a distancia</a></li>
+              <li class="last leaf"><a href="#">Atención al ciudadano</a></li>
+            </ul>
+          </section>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6">
+        <div class="region region-footer2">
+          <section id="block-menu-menu-footer-2" class="block block-menu clearfix">
+            <h2 class="block-title h3 section-title h3 section-title">Acerca de la República Argentina</h2>
+            <ul class="menu nav">
+              <li class="first leaf"><a href="#">Leyes argentinas</a></li>
+              <li class="leaf"><a href="#">Organismos</a></li>
+              <li class="last leaf"><a href="#">Mapa del Estado</a></li>
+            </ul>
+          </section>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6">
+        <div class="region region-footer3">
+          <section id="block-menu-menu-footer-3" class="block block-menu clearfix">
+            <h2 class="block-title h3 section-title h3 section-title">Acerca de Argentina.gob.ar</h2>
+            <ul class="menu nav">
+              <li class="first leaf"><a href="#">Acerca de este sitio</a></li>
+              <li class="leaf"><a href="#">Términos y condiciones</a></li>
+              <li class="last leaf"><a href="#">Contacto</a></li>
+            </ul>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row sub-footer">
+      <div class="container">
+        <div class="col-sm-6 m-y-1 p-x-0"> <img class="image-responsive" width="288" height="40" src="img/logo_argentina_unida-blanco.svg" alt="Argentina Unida"></div>
+      </div>
+    </div>
+  </div>
+</footer>
+<script>
+    let ul = document.querySelectorAll("ul.dropdown-menu.dropdown-menu-right");
+    
+    for (let i = 0; i < ul.length; i++){
+      let item_listas = ul[i].querySelectorAll('li');
+      console.log(item_listas);
+      codigo(item_listas);
+    }
+
+    function codigo(elementos){
+      
+      
+      let ultimoitem = elementos.length - 1;
+      //console.log(elementos[0].parentNode.parentNode);
+
+      // recorro los item de la lista
+      for (let i = 0; i < elementos.length; i++) {
+        
+        
+        // Primer item de la lista
+        if(i == 0){
+          elementos[i].addEventListener("keydown", function(e) {
+            /* tecla shift + (keycode = 9) es igual a la tecla de tabulacion */
+            if(e.shiftKey && e.keyCode == 9){
+              
+              
+              elementos[i].parentNode.parentNode.classList.remove("open");
+               
+
+              elementos[i].parentNode.parentNode.firstElementChild.setAttribute("aria-expanded", 'false');
+
+              
+              
+              
+              //alert('close1');
+            }
+            /* (keycode = 38) es igual a la tecla flecha arriba */
+            if(e.keyCode == 38){
+              
+              elementos[i].parentNode.parentNode.classList.remove("open");
+               
+
+              elementos[i].parentNode.parentNode.firstElementChild.setAttribute("aria-expanded", 'false');  
+                
+              
+            //  elementos[i].firstElementChild.focus();
+            }
+          });
+          // ultimo item de la lista
+        }else if (ultimoitem == i ) {
+          elementos[i].addEventListener("keydown", function(e) {
+            /* tecla shift + (keycode = 9) es igual a la tecla de tabulacion */
+          if(e.shiftKey && e.keyCode == 9){
+              
+              elementos[i].parentNode.parentNode.classList.add("open");
+              elementos[i].parentNode.parentNode.firstElementChild.setAttribute("aria-expanded", 'true');
+              //alert('subi');
+
+             /* (keycode = 9) es igual a la tecla de tabulacion */
+            }else if(e.keyCode == 9){
+              
+              elementos[i].parentNode.parentNode.classList.remove("open");
+              elementos[i].parentNode.parentNode.firstElementChild.setAttribute("aria-expanded", 'false');
+              //alert('close2' + elementos[i]);
+            }
+            /* (keycode = 40) es igual a la tecla flecha abajo */
+            if(e.keyCode == 40){
+              
+              elementos[i].parentNode.parentNode.classList.remove("open");
+               
+
+              elementos[i].parentNode.parentNode.firstElementChild.setAttribute("aria-expanded", 'false');  
+                
+              
+            //  elementos[i].firstElementChild.focus();
+            }
+          });
+          
+        }
+ 
+      }
+
+    }
+    
+  </script> 
+<script>
+  /*document.addEventListener("click", function() {
+    document.querySelector('dropdown-toggle').classList.add("open");
+  });*/
+  
+
+
+  </script>
+</body>
+</html>

@@ -1,5 +1,10 @@
+lang: "es"
+lang_direction: "ltr"
+name: "Poncho"
+
+
 # Where things are
-source              : .
+source              : src
 destination         : _site
 collections_dir     : .
 plugins_dir         : _plugins
@@ -15,7 +20,7 @@ collections:
 # Handling Reading
 safe                : false
 include             : [".htaccess", node_modules]
-exclude             : ["Gemfile", "Gemfile.lock", "node_modules", "vendor/bundle/", "vendor/cache/", "vendor/gems/", "vendor/ruby/"]
+exclude             : ["config.ru", "Gemfile", "Gemfile.lock", "vendor/bundle/", "vendor/cache/", "vendor/gems/", "vendor/ruby/"]
 keep_files          : [".git", ".svn"]
 encoding            : "utf-8"
 markdown_ext        : "markdown,mkdown,mkdn,mkd,md"

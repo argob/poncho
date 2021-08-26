@@ -1,0 +1,721 @@
+---
+name: Series de Tiempo | Poncho
+---
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]> <html lang="es"class="iem7"> <![endif]-->
+<!--[if lt IE 7 ]> <html lang="es" class="ie6 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="es" class="ie7 lt-ie8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="es" class="ie8"> <![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!-->
+<html lang="es">
+<!--<![endif]-->
+    {% include head.html %}
+
+<body>
+
+    <header>
+        <nav class="navbar navbar-top navbar-default" role="navigation">
+            <div class="container">
+                <div>
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="/poncho/" class="navbar-brand">
+            <img alt="Poncho" src="https://argob.github.io/poncho/img/poncho.gif" height="50">
+            <h1>Poncho</h1>
+          </a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="main-navbar-collapse" data-seccion="Componentes"></div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="jumbotron bg-primary">
+        <div class="container">
+            <div class="col-sm-12">
+                <ol class="breadcrumb">
+                    <li><a href="/poncho/">Inicio</a></li>
+                    <li><a href="/poncho/componentes/botones/">Componentes</a></li>
+                    <li class="active">Destacados con íconos y números</li>
+                </ol>
+                <div class="jumbotron_body p-t-2 p-b-2">
+                    <h1>Componentes</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3" id="menuLateral" data-seccion="8"></div>
+                <div class="col-sm-9">
+                    <section>
+                        <article class="row">
+                            <div class="col-sm-12">
+                                <h1>Series de tiempo</h1>
+                                <p>Las series de tiempo son indicadores numéricos con evolución temporal. Estos componentes se pueden usar con todas las series publicadas en la <a href="https://apis.datos.gob.ar/series">API de Series de Tiempo de la República Argentina</a>.</p>
+                                <hr>
+                                <fieldset>
+                                    <h2>Tarjetas</h2>
+                                    <p>Sirven para mostrar el valor más reciente de un indicador.</p>
+                                    <p>Para usarlas debe importarse dos CSS's y un JS adicional:</p>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <pre><code class="language-html">
+
+                        &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/datosgobar/series-tiempo-ar-explorer@ts_components_2.6.2/dist/css/components.css" type="text/css">
+
+                        &lt;link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" type="text/css">
+
+                        &lt;script type='text/javascript' src='https://cdn.jsdelivr.net/gh/datosgobar/series-tiempo-ar-explorer@ts_components_2.6.2/dist/js/components.js'>&lt;/script>
+
+                      </code></pre>
+                                        </div>
+                                    </div>
+                                    <p>Debe ubicarse un div con un id en el html, y crear un objeto TSComponentes.Card en un script:</p>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <pre><code class="language-html">
+
+                        &lt;div id='reservas-card'>&lt;/div>
+                      </code></pre>
+                                            <pre><code class="language-js">
+window.onload = function() {
+&emsp;&emsp;TSComponents.Card.render('reservas-card', {
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;serieId: '174.1_RRVAS_IDOS_0_0_36:percent_change',
+&emsp;&emsp;&emsp;&emsp;explicitSign: true,
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;color: '#F9A822',
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;hasChart: 'small',
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;title: "Reservas Internacionales"
+&emsp;&emsp;&emsp;&emsp;})
+}
+
+                      </code></pre>
+                                        </div>
+                                    </div>
+                                    <p>Para que se vean mejor, conviene ubicar las tarjetas en una row y agregar algunos estilos:</p>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <pre><code class="language-html">
+&lt;style>
+.row {
+&emsp;&emsp;&emsp;&emsp;display: flex;
+&emsp;&emsp;&emsp;&emsp;justify-content: space-around;
+}
+&lt;/style>
+
+&lt;div class="row">
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&lt;div id='reservas-card'>&lt;/div>
+&lt;/div>
+                      </code></pre>
+                                        </div>
+                                    </div>
+                                    <p>Ver la <a href="https://datosgobar.github.io/series-tiempo-ar-explorer/reference/ts-components/card/">documentación completa del objeto "Card"</a>.</p>
+                                    <div class="title">
+                                        <h3>Card: default</h3>
+                                    </div>
+                                    <div class="row">
+                                        <div id='reservas-card'></div>
+                                        <div id='tn-card'></div>
+                                        <div id='faafem-card'></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <pre><code class="language-html">
+                                    &lt;div class="row">
+                                    &emsp;&emsp;&emsp;&emsp;&lt;div id='reservas-card'>&lt;/div>
+                                    &emsp;&emsp;&emsp;&emsp;&lt;div id='tn-card'>&lt;/div>
+                                    &emsp;&emsp;&emsp;&emsp;&lt;div id='faafem-card'>&lt;/div>
+                                    &lt;/div>
+                      </code></pre>
+                                            <pre><code class="language-js">
+        TSComponents.Card.render('reservas-card', {
+        &emsp;&emsp;&emsp;&emsp;serieId: '174.1_RRVAS_IDOS_0_0_36:percent_change',
+        &emsp;&emsp;&emsp;&emsp;explicitSign: true,
+        &emsp;&emsp;&emsp;&emsp;color: '#F9A822',
+        &emsp;&emsp;&emsp;&emsp;hasChart: 'small',
+        &emsp;&emsp;&emsp;&emsp;title: "Reservas Internacionales"
+        })
+
+        TSComponents.Card.render('tn-card', {
+        &emsp;&emsp;&emsp;&emsp;serieId: '452.3_RESULTADO_RIO_0_M_18_54',
+        &emsp;&emsp;&emsp;&emsp;hasChart: 'small',
+        &emsp;&emsp;&emsp;&emsp;title: "Tasa de Natalidad de Argentina"
+        })
+
+        TSComponents.Card.render('faafem-card', {
+        &emsp;&emsp;&emsp;&emsp;serieId: 'defensa_FAA_0006',
+        &emsp;&emsp;&emsp;&emsp;color: '#EC407A',
+        &emsp;&emsp;&emsp;&emsp;hasChart: 'small',
+        &emsp;&emsp;&emsp;&emsp;title: "Personal femenino de la Fuerza Aérea"
+        })
+
+                      </code></pre>
+                                        </div>
+                                    </div>
+                                    <div class="title">
+                                        <h3>Card: menos links</h3>
+                                    </div>
+                                    <div class="row">
+                                        <div id='reservas-card-links2'></div>
+                                        <div id='tn-card-links2'></div>
+                                        <div id='faafem-card-links2'></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <pre><code class="language-html">
+                                    &lt;div class="row">
+                                    &emsp;&emsp;&emsp;&emsp;&lt;div id='reservas-card-links2'>&lt;/div>
+                                    &emsp;&emsp;&emsp;&emsp;&lt;div id='tn-card-links2'>&lt;/div>
+                                    &emsp;&emsp;&emsp;&emsp;&lt;div id='faafem-card-links2'>&lt;/div>
+                                    &lt;/div>
+                      </code></pre>
+                                            <pre><code class="language-js">
+        TSComponents.Card.render('reservas-card-links2', {
+        &emsp;&emsp;&emsp;&emsp;serieId: '174.1_RRVAS_IDOS_0_0_36:percent_change',
+        &emsp;&emsp;&emsp;&emsp;explicitSign: true,
+        &emsp;&emsp;&emsp;&emsp;color: '#F9A822',
+        &emsp;&emsp;&emsp;&emsp;hasChart: 'small',
+        &emsp;&emsp;&emsp;&emsp;links: "small",
+        &emsp;&emsp;&emsp;&emsp;title: "Reservas Internacionales"
+        })
+
+        TSComponents.Card.render('tn-card-links2', {
+        &emsp;&emsp;&emsp;&emsp;serieId: 'tn_arg',
+        &emsp;&emsp;&emsp;&emsp;hasChart: 'small',
+        &emsp;&emsp;&emsp;&emsp;links: "small",
+        &emsp;&emsp;&emsp;&emsp;title: "Tasa de Natalidad de Argentina"
+        })
+
+        TSComponents.Card.render('faafem-card-links2', {
+        &emsp;&emsp;&emsp;&emsp;serieId: 'defensa_FAA_0006',
+        &emsp;&emsp;&emsp;&emsp;color: '#EC407A',
+        &emsp;&emsp;&emsp;&emsp;hasChart: 'small',
+        &emsp;&emsp;&emsp;&emsp;links: "small",
+        &emsp;&emsp;&emsp;&emsp;title: "Personal femenino de la Fuerza Aérea"
+        })
+                      </code></pre>
+                                        </div>
+                                    </div>
+                                    <div class="title">
+                                        <h3>Card: sin links</h3>
+                                    </div>
+                                    <div class="row">
+                                        <div id='reservas-card-med'></div>
+                                        <div id='tn-card-med'></div>
+                                        <div id='faafem-card-med'></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <pre><code class="language-html">
+                                    &lt;div class="row">
+                                    &emsp;&emsp;&emsp;&emsp;&lt;div id='reservas-card-med'>&lt;/div>
+                                    &emsp;&emsp;&emsp;&emsp;&lt;div id='tn-card-med'>&lt;/div>
+                                    &emsp;&emsp;&emsp;&emsp;&lt;div id='faafem-card-med'>&lt;/div>
+                                    &lt;/div>
+                      </code></pre>
+                                            <pre><code class="language-js">
+        TSComponents.Card.render('reservas-card-med', {
+        &emsp;&emsp;&emsp;&emsp;serieId: '174.1_RRVAS_IDOS_0_0_36:percent_change',
+        &emsp;&emsp;&emsp;&emsp;explicitSign: true,
+        &emsp;&emsp;&emsp;&emsp;color: '#F9A822',
+        &emsp;&emsp;&emsp;&emsp;hasChart: 'small',
+        &emsp;&emsp;&emsp;&emsp;links: "none",
+        &emsp;&emsp;&emsp;&emsp;title: "Reservas Internacionales"
+        })
+
+        TSComponents.Card.render('tn-card-med', {
+        &emsp;&emsp;&emsp;&emsp;serieId: 'tn_arg',
+        &emsp;&emsp;&emsp;&emsp;hasChart: 'small',
+        &emsp;&emsp;&emsp;&emsp;links: "none",
+        &emsp;&emsp;&emsp;&emsp;title: "Tasa de Natalidad de Argentina",
+        &emsp;&emsp;&emsp;&emsp;hasFrame: false
+        })
+
+        TSComponents.Card.render('faafem-card-med', {
+        &emsp;&emsp;&emsp;&emsp;serieId: 'defensa_FAA_0006',
+        &emsp;&emsp;&emsp;&emsp;color: '#EC407A',
+        &emsp;&emsp;&emsp;&emsp;hasChart: 'small',
+        &emsp;&emsp;&emsp;&emsp;links: "none",
+        &emsp;&emsp;&emsp;&emsp;title: "Personal femenino de la Fuerza Aérea",
+        &emsp;&emsp;&emsp;&emsp;hasColorBar: false
+        })
+                      </code></pre>
+                                        </div>
+                                    </div>
+                                    <div class="title">
+                                        <h3>Card: mínima</h3>
+                                    </div>
+                                    <div class="row">
+                                        <div id='reservas-card-min'></div>
+                                        <div id='tn-card-min'></div>
+                                        <div id='faafem-card-min'></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <pre><code class="language-html">
+                                    &lt;div class="row">
+                                    &emsp;&emsp;&emsp;&emsp;&lt;div id='reservas-card-min'>&lt;/div>
+                                    &emsp;&emsp;&emsp;&emsp;&lt;div id='tn-card-min'>&lt;/div>
+                                    &emsp;&emsp;&emsp;&emsp;&lt;div id='faafem-card-min'>&lt;/div>
+                                    &lt;/div>
+                                    &lt;div class="row">
+                      </code></pre>
+                                            <pre><code class="language-js">
+        TSComponents.Card.render('reservas-card-min', {
+        &emsp;&emsp;&emsp;&emsp;serieId: '174.1_RRVAS_IDOS_0_0_36:percent_change',
+        &emsp;&emsp;&emsp;&emsp;explicitSign: true,
+        &emsp;&emsp;&emsp;&emsp;color: '#F9A822',
+        &emsp;&emsp;&emsp;&emsp;links: 'none',
+        &emsp;&emsp;&emsp;&emsp;hasChart: "none",
+        &emsp;&emsp;&emsp;&emsp;title: "Reservas Internacionales"
+        })
+
+        TSComponents.Card.render('tn-card-min', {
+        &emsp;&emsp;&emsp;&emsp;serieId: 'tn_arg',
+        &emsp;&emsp;&emsp;&emsp;links: 'none',
+        &emsp;&emsp;&emsp;&emsp;hasChart: "none",
+        &emsp;&emsp;&emsp;&emsp;title: "Tasa de Natalidad de Argentina",
+        &emsp;&emsp;&emsp;&emsp;hasColorBar: true
+        })
+
+        TSComponents.Card.render('faafem-card-min', {
+        &emsp;&emsp;&emsp;&emsp;serieId: 'defensa_FAA_0006',
+        &emsp;&emsp;&emsp;&emsp;color: '#EC407A',
+        &emsp;&emsp;&emsp;&emsp;links: 'none',
+        &emsp;&emsp;&emsp;&emsp;hasChart: "none",
+        &emsp;&emsp;&emsp;&emsp;title: "Personal femenino de la Fuerza Aérea",
+        &emsp;&emsp;&emsp;&emsp;hasFrame: true
+        })
+                      </code></pre>
+                                        </div>
+                                    </div>
+                                    <div class="title">
+                                        <h3>Card: mínima (eliminando elementos)</h3>
+                                    </div>
+                                    <div class="row">
+                                        <div id='reservas-card-min-xtreme'></div>
+                                        <div id='tn-card-min-xtreme'></div>
+                                        <div id='faafem-card-min-xtreme'></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <pre><code class="language-html">
+                                    &lt;div class="row">
+                                        &emsp;&emsp;&emsp;&emsp;&lt;div id='reservas-card-min-xtreme'>&lt;/div>
+                                        &emsp;&emsp;&emsp;&emsp;&lt;div id='tn-card-min-xtreme'>&lt;/div>
+                                        &emsp;&emsp;&emsp;&emsp;&lt;div id='faafem-card-min-xtreme'>&lt;/div>
+                                    &lt;/div>
+
+                      </code></pre>
+                                            <pre><code class="language-js">
+        TSComponents.Card.render('reservas-card-min-xtreme', {
+        &emsp;&emsp;&emsp;&emsp;serieId: '174.1_RRVAS_IDOS_0_0_36:percent_change',
+        &emsp;&emsp;&emsp;&emsp;explicitSign: true,
+        &emsp;&emsp;&emsp;&emsp;links: 'none',
+        &emsp;&emsp;&emsp;&emsp;hasChart: "none",
+        &emsp;&emsp;&emsp;&emsp;title: "",
+        &emsp;&emsp;&emsp;&emsp;units: "",
+        &emsp;&emsp;&emsp;&emsp;source: ""
+        })
+
+        TSComponents.Card.render('tn-card-min-xtreme', {
+        &emsp;&emsp;&emsp;&emsp;serieId: 'tn_arg',
+        &emsp;&emsp;&emsp;&emsp;links: 'none',
+        &emsp;&emsp;&emsp;&emsp;hasChart: "none",
+        &emsp;&emsp;&emsp;&emsp;title: "",
+        &emsp;&emsp;&emsp;&emsp;units: "",
+        &emsp;&emsp;&emsp;&emsp;source: "",
+        &emsp;&emsp;&emsp;&emsp;hasColorBar: true
+        })
+
+        TSComponents.Card.render('faafem-card-min-xtreme', {
+        &emsp;&emsp;&emsp;&emsp;serieId: 'defensa_FAA_0006',
+        &emsp;&emsp;&emsp;&emsp;color: '#EC407A',
+        &emsp;&emsp;&emsp;&emsp;links: 'none',
+        &emsp;&emsp;&emsp;&emsp;hasChart: "none",
+        &emsp;&emsp;&emsp;&emsp;title: "",
+        &emsp;&emsp;&emsp;&emsp;units: "",
+        &emsp;&emsp;&emsp;&emsp;source: "",
+        &emsp;&emsp;&emsp;&emsp;hasFrame: true
+        })
+                      </code></pre>
+                                        </div>
+                                    </div>
+                                    <h2>Gráficos</h2>
+                                    <p>Sirven para mostrar la evolución temporal de un indicador.</p>
+                                    <p>Ver la <a href="https://datosgobar.github.io/series-tiempo-ar-explorer/reference/ts-components/card/">documentación completa del objeto "Graphic"</a>.</p>
+                                    <div class="title">
+                                        <h3>Gráfico: completo</h3>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12" id="tsChartFull"></div>
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <pre><code class="language-html">
+                                    &lt;div class="row">
+                                        &emsp;&emsp;&emsp;&emsp;&lt;div class="col-sm-12" id="tsChartFull">&lt;/div>
+                                    &lt;/div>
+
+                      </code></pre>
+                                            <pre><code class="language-js">
+        TSComponents.Graphic.render('tsChartFull', {
+            &emsp;&emsp;&emsp;&emsp;graphicUrl: 'https://apis.datos.gob.ar/series/api/series/?ids=143.3_NO_PR_2004_A_21:percent_change_a_year_ago,116.4_TCRZE_2015_D_36_4',
+            &emsp;&emsp;&emsp;&emsp;zoom: true,
+            &emsp;&emsp;&emsp;&emsp;chartTypes: {'143.3_NO_PR_2004_A_21:percent_change_a_year_ago': 'column'},
+            &emsp;&emsp;&emsp;&emsp;title: 'Nivel de Actividad y Tipo de Cambio Real Multilateral',
+            &emsp;&emsp;&emsp;&emsp;source: 'Fuente: Instituto Nacional de Estadística y Censos (INDEC), Banco Central de la República Argentina (BCRA)',
+            &emsp;&emsp;&emsp;&emsp;navigator: true
+        })
+
+
+                      </code></pre>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <div class="title">
+                                        <h3>Gráfico: medio</h3>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6" id="tsChartSmall1"></div>
+                                        <div class="col-sm-6" id="tsChartSmall2"></div>
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <pre><code class="language-html">
+                                    &lt;div class="row">
+                                        &emsp;&emsp;&emsp;&emsp;&lt;div class="col-sm-6" id="tsChartSmall1">&lt;/div>
+                                        &emsp;&emsp;&emsp;&emsp;&lt;div class="col-sm-6" id="tsChartSmall2">&lt;/div>
+                                    &lt;/div>
+                      </code></pre>
+                                            <pre><code class="language-js">
+        TSComponents.Graphic.render('tsChartSmall1', {
+            &emsp;&emsp;&emsp;&emsp;graphicUrl: 'https://apis.datos.gob.ar/series/api/series/?ids=11.3_VMATC_2004_M_12:percent_change_a_year_ago,143.3_NO_PR_2004_A_21:percent_change_a_year_ago',
+            &emsp;&emsp;&emsp;&emsp;zoom: false,
+            &emsp;&emsp;&emsp;&emsp;datePickerEnabled: false,
+            &emsp;&emsp;&emsp;&emsp;navigator: false,
+            &emsp;&emsp;&emsp;&emsp;title: 'Apagando todos los elementos',
+            &emsp;&emsp;&emsp;&emsp;chartTypes: { '11.3_VMATC_2004_M_12:percent_change_a_year_ago': 'area', '143.3_NO_PR_2004_A_21:percent_change_a_year_ago': 'area' },
+            &emsp;&emsp;&emsp;&emsp;source: 'Fuente: Instituto Nacional de Estadística y Censos (INDEC)',
+            &emsp;&emsp;&emsp;&emsp;legendLabel: { "11.3_VMATC_2004_M_12": "mi propio label", '143.3_NO_PR_2004_A_21': "el otro label" }
+        })
+
+        TSComponents.Graphic.render('tsChartSmall2', {
+            &emsp;&emsp;&emsp;&emsp;graphicUrl: 'https://apis.datos.gob.ar/series/api/series/?ids=151.1_TL_SIN_TAC_2012_M_15,151.1_TL_ESTADAD_2012_M_20',
+            &emsp;&emsp;&emsp;&emsp;title: 'Prendiendo todos los elementos',
+            &emsp;&emsp;&emsp;&emsp;navigator: true,
+            &emsp;&emsp;&emsp;&emsp;zoom: true,
+            &emsp;&emsp;&emsp;&emsp;datePickerEnabled: true
+        })
+                      </code></pre>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <div class="title">
+                                        <h3>Gráfico: mínimo</h3>
+                                    </div>
+                                    <div class="row" style="height: 400px">
+                                        <div class="col-sm-4" id="tsChartMin1"></div>
+                                        <div class="col-sm-4" id="tsChartMin2"></div>
+                                        <div class="col-sm-4" id="tsChartMin4"></div>
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <div class="row m-y-4">
+                                        <div class="col-sm-12 m-t-4">
+                                            <pre><code class="language-html">
+                                    &lt;div class="row" style="height: 400px">
+                                        &emsp;&emsp;&emsp;&emsp;&lt;div class="col-sm-4" id="tsChartMin1">&lt;/div>
+                                        &emsp;&emsp;&emsp;&emsp;&lt;div class="col-sm-4" id="tsChartMin2">&lt;/div>
+                                        &emsp;&emsp;&emsp;&emsp;&lt;div class="col-sm-4" id="tsChartMin4">&lt;/div>
+                                    &lt;/div>
+                      </code></pre>
+                                            <pre><code class="language-js">
+        TSComponents.Graphic.render('tsChartMin1', {
+        &emsp;&emsp;&emsp;&emsp;graphicUrl: 'https://apis.datos.gob.ar/series/api/series/?ids=33.2_I_2004_M_4',
+        &emsp;&emsp;&emsp;&emsp;title: "Apagando todos los elementos",
+        &emsp;&emsp;&emsp;&emsp;source: 'Fuente: Instituto Nacional de Estadística y Censos (INDEC)',
+        })
+
+        TSComponents.Graphic.render('tsChartMin2', {
+        &emsp;&emsp;&emsp;&emsp;graphicUrl: 'https://apis.datos.gob.ar/series/api/series/?ids=143.3_NO_PR_2004_A_21:percent_change_a_year_ago',
+        &emsp;&emsp;&emsp;&emsp;title: 'Prendiendo algunos elementos',
+        &emsp;&emsp;&emsp;&emsp;zoom: true,
+        &emsp;&emsp;&emsp;&emsp;datePickerEnabled: true,
+        &emsp;&emsp;&emsp;&emsp;source: 'Fuente: Instituto Nacional de Estadística y Censos (INDEC)',
+        &emsp;&emsp;&emsp;&emsp;chartTypes: { '143.3_NO_PR_2004_A_21': 'column' }
+        })
+
+        TSComponents.Graphic.render('tsChartMin4', {
+        &emsp;&emsp;&emsp;&emsp;graphicUrl: 'https://apis.datos.gob.ar/series/api/series/?ids=14.2_E_M_2004_0_3',
+        &emsp;&emsp;&emsp;&emsp;title: 'Sin fuente',
+        &emsp;&emsp;&emsp;&emsp;zoom: false,
+        &emsp;&emsp;&emsp;&emsp;datePickerEnabled: false
+        })
+                      </code></pre>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <br>
+                                </fieldset>
+                            </div>
+                        </article>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="main-footer hidden">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <img class="image-responsive" alt="Argentina.gob.ar - Presidencia de la Nación" src="img/argentinagob.svg">
+                    <p class="text-muted small">Los contenidos de Argentina.gob.ar están licenciados bajo <a href="https://creativecommons.org/licenses/by/2.5/ar/">Creative Commons Reconocimiento 2.5 Argentina License</a></p>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <ul>
+                        <li><a href="/servicios">Trámites y servicios</a></li>
+                        <li><a href="/organismos">Organismos del Estado</a></li>
+                        <li><a href="/pais">Nuestro país</a></li>
+                        <li><a href="https://mapadelestado.modernizacion.gob.ar/">Mapa del Estado</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <ul>
+                        <li><a href="/ayuda">Ayuda</a></li>
+                        <li><a href="/sugerencias">Hacer una sugerencia</a></li>
+                        <li><a href="/acerca">Acerca de este sitio</a></li>
+                        <li><a href="/terminos-y-condiciones">Términos y condiciones</a></li>
+                        <li><a href="/creditos">Créditos</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+    window.onload = function() {
+        // COLORES SUGERIDOS "#0072BB","#2E7D33","#C62828","#F9A822","#6A1B99", "#EC407A","#C2185B","#6A1B99","#039BE5","#6EA100"
+        // componentes de series de tiempo
+        TSComponents.Card.render('reservas-card', {
+            serieId: '174.1_RRVAS_IDOS_0_0_36:percent_change',
+            explicitSign: true,
+            color: '#F9A822',
+            hasChart: 'small',
+            title: "Reservas Internacionales"
+        })
+        TSComponents.Card.render('tn-card', {
+            serieId: '452.3_RESULTADO_RIO_0_M_18_54',
+            hasChart: 'small',
+            title: "Tasa de Natalidad de Argentina"
+        })
+        TSComponents.Card.render('faafem-card', {
+            serieId: 'defensa_FAA_0006',
+            color: '#EC407A',
+            hasChart: 'small',
+            title: "Personal femenino de la Fuerza Aérea"
+        })
+        TSComponents.Card.render('reservas-card-links2', {
+            serieId: '174.1_RRVAS_IDOS_0_0_36:percent_change',
+            explicitSign: true,
+            color: '#F9A822',
+            hasChart: 'small',
+            links: "small",
+            title: "Reservas Internacionales"
+        })
+        TSComponents.Card.render('tn-card-links2', {
+            serieId: 'tn_arg',
+            hasChart: 'small',
+            links: "small",
+            title: "Tasa de Natalidad de Argentina"
+        })
+        TSComponents.Card.render('faafem-card-links2', {
+            serieId: 'defensa_FAA_0006',
+            color: '#EC407A',
+            hasChart: 'small',
+            links: "small",
+            title: "Personal femenino de la Fuerza Aérea"
+        })
+        TSComponents.Card.render('reservas-card-med', {
+            serieId: '174.1_RRVAS_IDOS_0_0_36:percent_change',
+            explicitSign: true,
+            color: '#F9A822',
+            hasChart: 'small',
+            links: "none",
+            title: "Reservas Internacionales"
+        })
+        TSComponents.Card.render('tn-card-med', {
+            serieId: 'tn_arg',
+            hasChart: 'small',
+            links: "none",
+            title: "Tasa de Natalidad de Argentina",
+            hasFrame: false
+        })
+        TSComponents.Card.render('faafem-card-med', {
+            serieId: 'defensa_FAA_0006',
+            color: '#EC407A',
+            hasChart: 'small',
+            links: "none",
+            title: "Personal femenino de la Fuerza Aérea",
+            hasColorBar: false
+        })
+        TSComponents.Card.render('reservas-card-min', {
+            serieId: '174.1_RRVAS_IDOS_0_0_36:percent_change',
+            explicitSign: true,
+            color: '#F9A822',
+            links: 'none',
+            hasChart: "none",
+            title: "Reservas Internacionales"
+        })
+        TSComponents.Card.render('tn-card-min', {
+            serieId: 'tn_arg',
+            links: 'none',
+            hasChart: "none",
+            title: "Tasa de Natalidad de Argentina",
+            hasColorBar: true
+        })
+        TSComponents.Card.render('faafem-card-min', {
+            serieId: 'defensa_FAA_0006',
+            color: '#EC407A',
+            links: 'none',
+            hasChart: "none",
+            title: "Personal femenino de la Fuerza Aérea",
+            hasFrame: true
+        })
+        TSComponents.Card.render('reservas-card-min-xtreme', {
+            serieId: '174.1_RRVAS_IDOS_0_0_36:percent_change',
+            explicitSign: true,
+            links: 'none',
+            hasChart: "none",
+            title: "",
+            units: "",
+            source: ""
+        })
+        TSComponents.Card.render('tn-card-min-xtreme', {
+            serieId: 'tn_arg',
+            links: 'none',
+            hasChart: "none",
+            title: "",
+            units: "",
+            source: "",
+            hasColorBar: true
+        })
+        TSComponents.Card.render('faafem-card-min-xtreme', {
+            serieId: 'defensa_FAA_0006',
+            color: '#EC407A',
+            links: 'none',
+            hasChart: "none",
+            title: "",
+            units: "",
+            source: "",
+            hasFrame: true
+        })
+        // Gráfico de series de tiempo completo
+        TSComponents.Graphic.render('tsChartFull', {
+            graphicUrl: 'https://apis.datos.gob.ar/series/api/series/?ids=143.3_NO_PR_2004_A_21:percent_change_a_year_ago,116.4_TCRZE_2015_D_36_4',
+            zoom: true,
+            chartTypes: { '143.3_NO_PR_2004_A_21:percent_change_a_year_ago': 'column' },
+            title: 'Nivel de Actividad y Tipo de Cambio Real Multilateral',
+            source: 'Fuente: Instituto Nacional de Estadística y Censos (INDEC), Banco Central de la República Argentina (BCRA)',
+            navigator: true
+        })
+        // Gráficos de series de tiempo chicos
+        TSComponents.Graphic.render('tsChartSmall1', {
+            graphicUrl: 'https://apis.datos.gob.ar/series/api/series/?ids=11.3_VMATC_2004_M_12:percent_change_a_year_ago,143.3_NO_PR_2004_A_21:percent_change_a_year_ago',
+            zoom: false,
+            datePickerEnabled: false,
+            navigator: false,
+            title: 'Apagando todos los elementos',
+            chartTypes: { '11.3_VMATC_2004_M_12:percent_change_a_year_ago': 'area', '143.3_NO_PR_2004_A_21:percent_change_a_year_ago': 'area' },
+            source: 'Fuente: Instituto Nacional de Estadística y Censos (INDEC)',
+            legendLabel: { "11.3_VMATC_2004_M_12": "mi propio label", '143.3_NO_PR_2004_A_21': "el otro label" }
+        })
+        TSComponents.Graphic.render('tsChartSmall2', {
+            graphicUrl: 'https://apis.datos.gob.ar/series/api/series/?ids=151.1_TL_SIN_TAC_2012_M_15,151.1_TL_ESTADAD_2012_M_20',
+            title: 'Prendiendo todos los elementos',
+            navigator: true,
+            zoom: true,
+            datePickerEnabled: true
+        })
+        // Gráficos de series de tiempo mono-serie
+        TSComponents.Graphic.render('tsChartMin1', {
+            graphicUrl: 'https://apis.datos.gob.ar/series/api/series/?ids=33.2_I_2004_M_4',
+            title: "Apagando todos los elementos",
+            source: 'Fuente: Instituto Nacional de Estadística y Censos (INDEC)',
+        })
+        TSComponents.Graphic.render('tsChartMin2', {
+            graphicUrl: 'https://apis.datos.gob.ar/series/api/series/?ids=143.3_NO_PR_2004_A_21:percent_change_a_year_ago',
+            title: 'Prendiendo algunos elementos',
+            zoom: true,
+            datePickerEnabled: true,
+            source: 'Fuente: Instituto Nacional de Estadística y Censos (INDEC)',
+            chartTypes: { '143.3_NO_PR_2004_A_21': 'column' }
+        })
+        TSComponents.Graphic.render('tsChartMin4', {
+            graphicUrl: 'https://apis.datos.gob.ar/series/api/series/?ids=14.2_E_M_2004_0_3',
+            title: 'Sin fuente',
+            zoom: false,
+            datePickerEnabled: false
+        })
+    }
+    </script>
+    <script>
+    $(function() {
+        jQuery(function($) {
+            $.syntax({ theme: 'bright' });
+        });
+        $("#menuLateral").load("../../includes/componentes_menu.html", function() {
+            var seccion = $("#menuLateral").data("seccion");
+            $("#menuLateral ul li a[data-seccion=" + seccion + "]").parent().addClass("active");
+        });
+        var tabla = $(".dataTables").DataTable({
+            "lengthChange": false,
+            "autoWidth": false,
+            "language": {
+                "sProcessing": "Procesando...",
+                "sLengthMenu": "Mostrar _MENU_ registros",
+                "sZeroRecords": "No se encontraron resultados",
+                "sEmptyTable": "Ningún dato disponible en esta tabla",
+                "sInfo": "_TOTAL_ resultados",
+                "sInfoEmpty": "No hay resultados",
+                "sInfoFiltered": "",
+                "sInfoPostFix": "",
+                "sSearch": "Buscar:",
+                "sUrl": "",
+                "sInfoThousands": ",",
+                "sLoadingRecords": "Cargando...",
+                "oPaginate": {
+                    "sFirst": "<<",
+                    "sLast": ">>",
+                    "sNext": ">",
+                    "sPrevious": "<"
+                },
+                "oAria": {
+                    "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                    "sSortDescending": ": Activar para ordenar la columna de manera descendente",
+                    "paginate": {
+                        "first": 'Ir a la primera página',
+                        "previous": 'Ir a la página anterior',
+                        "next": 'Ir a la página siguiente',
+                        "last": 'Ir a la última página'
+                    }
+                }
+            }
+        });
+    })
+    </script>
+</body>
+
+</html>

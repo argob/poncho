@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]> <html lang="es"class="iem7"> <![endif]-->
+<!--[if lt IE 7 ]> <html lang="es" class="ie6 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="es" class="ie7 lt-ie8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="es" class="ie8"> <![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="ES"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tablas - responsive | Poncho</title>
+  <meta name="description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
+  <meta name="author" content="Presidencia de la Nación">
+  <link rel="shortcut icon" href="/poncho/favicon.ico">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P68ZXT');</script>
+  <!-- End Google Tag Manager -->
+
+  <!-- Nav and address bar color -->
+  <meta name="theme-color" content="#0072b8">
+  <meta name="msapplication-navbutton-color" content="#0072b8">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
+
+  <meta property="og:site_name" content="Documentación Poncho"/>
+  <meta property="og:url" content="http://argob.github.io/poncho/plantillas/tablas/tabla-responsive.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Tablas - responsive" />
+  <meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta property="og:image" content="http://argob.github.io/poncho/img/poncho_social.jpg" />
+  <meta property="og:locale" content="es_AR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Tablas - responsive" />
+  <meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta name="twitter:image" content="http://argob.github.io/poncho/img/poncho_social.jpg" />
+
+  <link href="../../node_modules/ar-poncho/dist/css/roboto-fontface.css" rel="stylesheet">
+  <link href="../../node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+  <link href="../../node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="" rel="stylesheet">
+  <link href="../../node_modules/ar-poncho/dist/css/poncho.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/dt-1.10.18/r-2.2.2/datatables.min.css"/>
+
+  <link href="../../node_modules/ar-poncho/dist/css/documentacion.css" rel="stylesheet">
+  <link href="../../css/prism.css" rel="stylesheet">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="http://poncheado.herokuapp.com/node_modules/html5shiv/html5shiv.js"></script>
+      <script src="http://poncheado.herokuapp.com/node_modules/respond.js/respond.min.js"></script>
+      <![endif]-->  
+
+      <script src="../../node_modules/jquery/dist/jquery.js"></script>
+      <script type="text/javascript" src="../../js/prism.js"></script>
+      <script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.18/r-2.2.2/datatables.min.js"></script>
+      <script src="../../js/scripts.js"></script>
+      <!-- <script src="https://id.argentina.gob.ar/static/js/chosen.jquery.js"></script> -->
+
+    </head>
+    <body>
+
+
+
+     <main>
+       <div class="container">
+
+         <section>
+
+
+               <h1>Tabla Responsive</h1>
+
+          
+
+               <hr>
+                <div class="row">
+                  <div class="col-md-12">
+                    <!-- TABLA RESPONSIVE SIMPLE -->
+
+
+
+
+                    <table class="table table-responsive-poncho">
+                      <thead>
+                        <th>Título 1</th>
+                        <th>Título 2</th>
+                        <th>Título 3</th>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td data-label="Título 1">Lorem iipsum dolor</td>
+                          <td data-label="Título 2">Lorem iipsum dolor</td>
+                          <td data-label="Título 3">Lorem ipsum dolor sit amet</td>
+                        </tr>
+                        <tr>
+                          <td data-label="Título 1">Lorem iipsum dolor</td>
+                          <td data-label="Título 2">Lorem iipsum dolor</td>
+                          <td data-label="Título 3">Lorem ipsum dolor sit amet</td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <pre><code class="language-html">
+      &lt;table class="table table-responsive-poncho">
+        &emsp;&emsp;&lt;thead>
+          &emsp;&emsp;&emsp;&emsp;&lt;th>Título 1&lt;/th>
+          &emsp;&emsp;&emsp;&emsp;&lt;th>Título 2&lt;/th>
+          &emsp;&emsp;&emsp;&emsp;&lt;th>Título 3&lt;/th>
+        &emsp;&emsp;&lt;/thead>
+        &emsp;&emsp;&lt;tbody>
+          &emsp;&emsp;&emsp;&emsp;&lt;tr>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&lt;td data-label="Título 1">Lorem iipsum dolor&lt;/td>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&lt;td data-label="Título 2">Lorem iipsum dolor&lt;/td>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&lt;td data-label="Título 3">Lorem ipsum dolor sit amet&lt;/td>
+          &emsp;&emsp;&emsp;&emsp;&lt;/tr>
+          &emsp;&emsp;&emsp;&emsp;&lt;tr>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&lt;td data-label="Título 1">Lorem iipsum dolor&lt;/td>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&lt;td data-label="Título 2">Lorem iipsum dolor&lt;/td>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&lt;td data-label="Título 3">Lorem ipsum dolor sit amet&lt;/td>
+          &emsp;&emsp;&emsp;&emsp;&lt;/tr>      
+        &emsp;&emsp;&lt;/tbody>
+      &lt;/table>
+
+    </code></pre>
+                  </div>
+                </div>
+
+              
+
+             
+         </section>
+
+       </div>
+     </main>
+		
+		<footer>
+  <div class="container-fluid">
+    <div class="row sub-footer">
+      <div class="container">
+        <div class="col-sm-6 m-y-1 p-x-0">
+                          <img class="image-responsive" width="288" height="40" src="../paginas-de-argentina/img/logo_argentina_unida-blanco.svg" alt="Argentina Unida"/>
+                        <!-- <p class="text-muted small m-b-2">
+              <a href="https://creativecommons.org/licenses/by/4.0/deed.es" target="_blank" rel="noreferrer">Los contenidos de Argentina.gob.ar están licenciados bajo Creative Commons Atribución 4.0 Internacional</a>            </p> -->
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]> <html lang="es"class="iem7"> <![endif]-->
+<!--[if lt IE 7 ]> <html lang="es" class="ie6 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="es" class="ie7 lt-ie8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="es" class="ie8"> <![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="es"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pestañas | Poncho</title>
+  <meta name="description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
+  <meta name="author" content="Presidencia de la Nación">
+  <link rel="shortcut icon" href="/poncho/favicon.ico">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P68ZXT');</script>
+  <!-- End Google Tag Manager -->
+
+  <!-- Nav and address bar color -->
+  <meta name="theme-color" content="#0072b8">
+  <meta name="msapplication-navbutton-color" content="#0072b8">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
+
+  <meta property="og:site_name" content="Documentación Poncho"/>
+  <meta property="og:url" content="http://argob.github.io/poncho/componentes/Pestañas/index.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Pestañas" />
+  <meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta property="og:image" content="http://argob.github.io/poncho/img/poncho_social.jpg" />
+  <meta property="og:locale" content="es_AR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Pestañas" />
+  <meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta name="twitter:image" content="http://argob.github.io/poncho/img/poncho_social.jpg" />
+
+  <link href="../../node_modules/ar-poncho/dist/css/roboto-fontface.css" rel="stylesheet">
+  <link href="../../node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+  <link href="../../node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="https://id.argentina.gob.ar/static/css/chosen/chosen.css" rel="stylesheet">
+  <link href="../../node_modules/ar-poncho/dist/css/poncho.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/dt-1.10.18/r-2.2.2/datatables.min.css"/>
+
+  <link href="../../node_modules/ar-poncho/dist/css/documentacion.css" rel="stylesheet">
+  <link href="../../css/prism.css" rel="stylesheet">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="http://poncheado.herokuapp.com/node_modules/html5shiv/html5shiv.js"></script>
+      <script src="http://poncheado.herokuapp.com/node_modules/respond.js/respond.min.js"></script>
+      <![endif]-->  
+  <style>
+    .bd-example {
+      position: relative;
+      border: solid #dee2e6;
+      padding: 1.5rem;
+      margin-right: 0;
+      margin-left: 0;
+      border-width: .2rem;
+    }
+    .row-ejemplo{
+      margin-left: 0;
+      margin-right: 0;
+    }
+    .col-ejemplo{
+      padding-top: .75rem;
+      padding-bottom: .75rem;
+      background-color: rgba(86,61,124,.15);
+      border: 1px solid rgba(86,61,124,.2);
+    }
+  </style>
+  </head>
+  
+  <script src="../../node_modules/jquery/dist/jquery.js"></script>
+  <script type="text/javascript" src="../../js/prism.js"></script>
+  <script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.18/r-2.2.2/datatables.min.js"></script>
+  <script src="../../js/scripts.js"></script>
+
+    <style>
+      /* EXPERIMéNTAL */
+      .btn,.btn:hover,.btn-link, .btn-link:hover{border:3px solid transparent;letter-spacing: 1.5px}
+
+      /* PRIMARY */
+      #btn-primary-hover{background-color: #005388!important;}
+
+      .btn-focus{border: 3px solid #FEC221!important;}
+    </style>
+  <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P68ZXT" 
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+    <header>
+
+
+      <nav class="navbar navbar-top navbar-default" role="navigation">
+    <div class="container">
+      <div>
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="/poncho/" class="navbar-brand">
+            <img alt="Poncho" src="/poncho/img/poncho.gif" height="50">
+            <h1>Poncho</h1>
+          </a>
+        </div>
+        <div class="collapse navbar-collapse" id="main-navbar-collapse" data-seccion="Componentes"></div>
+      </div>
+    </div>
+  </nav>
+
+    </header>
+
+<div class="jumbotron bg-primary" style="background-image:url('https://www.argentina.gob.ar/sites/default/files/jumbotron-poncho.png');">
+  <div class="container">
+  <div class="col-sm-12">
+      <ol class="breadcrumb">
+        <li><a href="/poncho/">Inicio</a></li>
+        <li><a href="/poncho/componentes/botones/">Componentes</a></li>
+        <li class="active">Pestañas</li>
+      </ol>
+
+<div class="jumbotron_body p-t-2 p-b-2">
+      <h1>Componentes</h1>
+      </div>
+
+      
+  </div>
+  </div>
+</div>
+    <main>
+    <div class="container">
+
+<div class="row">
+      <div class="col-sm-3" id="menuLateral" data-seccion="7"></div>
+
+      <div class="col-sm-9">
+
+        <section>
+          <article class="row">
+            <div class="col-sm-12">
+                <h1>Pestañas</h1>
+                
+                <hr>
+                <div class="alert alert-warning">
+                  <p>Este componente sólo se puede usar en sitios externos a argentina.gob.ar.</p>
+                </div>
+
+                <fieldset>
+
+                <h3>Tabs</h3>
+
+                <div class="bd-example">
+                  <div class="row row-ejemplo">
+                      <ul class="nav nav-tabs" style="margin-top: 0;">
+                          <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
+                          <li><a data-toggle="tab" href="#seccion">Sección</a></li>
+                          <li><a data-toggle="tab" href="#contacto">Contacto</a></li>
+                      </ul>
+                        <div class="tab-content bg-white" style="padding:20px;border: 1px solid #ddd;border-top:none;">
+                          <div id="home" class="tab-pane fade in active">
+                            <h3>HOME</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus porro officia hic fugit nihil, rem dolorum inventore nulla, dignissimos aut. Beatae omnis asperiores incidunt, reprehenderit suscipit eligendi? Voluptas, facilis, eveniet.</p>
+                          </div>
+                          <div id="seccion" class="tab-pane fade">
+                            <h3>Sección</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus porro officia hic fugit nihil, rem dolorum inventore nulla, dignissimos aut. Beatae omnis asperiores incidunt, reprehenderit suscipit eligendi? Voluptas, facilis, eveniet.</p>
+                          </div>
+                          <div id="contacto" class="tab-pane fade">
+                            <h3>Contacto</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus porro officia hic fugit nihil, rem dolorum inventore nulla, dignissimos aut. Beatae omnis asperiores incidunt, reprehenderit suscipit eligendi? Voluptas, facilis, eveniet.</p>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <pre><code class="language-html">
+                      &lt;ul class="nav nav-tabs">
+                          &emsp;&emsp;&lt;li class="active">&lt;a data-toggle="tab" href="#home">Home&lt;/a>&lt;/li>
+                          &emsp;&emsp;&lt;li>&lt;a data-toggle="tab" href="#seccion">Sección&lt;/a>&lt;/li>
+                          &emsp;&emsp;&lt;li>&lt;a data-toggle="tab" href="#contacto">Contacto&lt;/a>&lt;/li>
+                      &lt;/ul>
+                      &lt;div class="tab-content bg-white" style="padding:20px;border: 1px solid #ddd;border-top:none;">
+                          &emsp;&emsp;&lt;div id="home" class="tab-pane fade in active">
+                            &emsp;&emsp;&emsp;&emsp;&lt;h3>HOME&lt;/h3>
+                            &emsp;&emsp;&emsp;&emsp;&lt;p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas, facilis, eveniet.&lt;/p>
+                          &emsp;&emsp;&lt;/div>
+                          &emsp;&emsp;&lt;div id="seccion" class="tab-pane fade">
+                            &emsp;&emsp;&emsp;&emsp;&lt;h3>Sección&lt;/h3>
+                            &emsp;&emsp;&emsp;&emsp;&lt;p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas, facilis, eveniet.&lt;/p>
+                          &emsp;&emsp;&lt;/div>
+                          &emsp;&emsp;&lt;div id="contacto" class="tab-pane fade">
+                            &emsp;&emsp;&emsp;&emsp;&lt;h3>Contacto&lt;/h3>
+                            &emsp;&emsp;&emsp;&emsp;&lt;p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas, facilis, eveniet.&lt;/p>
+                          &emsp;&emsp;&lt;/div>
+                      &lt;/div>
+                      </code></pre>
+                  </div>
+                </div>
+
+                <h3>Pills</h3>
+
+                <div class="bd-example">
+                  <div class="row row-ejemplo">
+                      <ul class="nav nav-pills" style="margin-top: 0;">
+                        <li class="active"><a data-toggle="tab" href="#home1">Home</a></li>
+                        <li><a data-toggle="tab" href="#seccion1">Sección</a></li>
+                        <li><a data-toggle="tab" href="#contacto1">Contacto</a></li>
+                      </ul>
+                        <div class="tab-content">
+                          <div id="home1" class="tab-pane fade in active">
+                            <h3>Home</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus porro officia hic fugit nihil, rem dolorum inventore nulla, dignissimos aut. Beatae omnis asperiores incidunt, reprehenderit suscipit eligendi? Voluptas, facilis, eveniet.</p>
+                          </div>
+                          <div id="seccion1" class="tab-pane fade">
+                            <h3>Sección</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus porro officia hic fugit nihil, rem dolorum inventore nulla, dignissimos aut. Beatae omnis asperiores incidunt, reprehenderit suscipit eligendi? Voluptas, facilis, eveniet.</p>
+                          </div>
+                          <div id="contacto1" class="tab-pane fade">
+                            <h3>Contacto</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus porro officia hic fugit nihil, rem dolorum inventore nulla, dignissimos aut. Beatae omnis asperiores incidunt, reprehenderit suscipit eligendi? Voluptas, facilis, eveniet.</p>
+                          </div>
+                        </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <pre><code class="language-html">
+                      &lt;ul class="nav nav-pills">
+                          &emsp;&emsp;&lt;li class="active">&lt;a data-toggle="tab" href="#home">Home&lt;/a>&lt;/li>
+                          &emsp;&emsp;&lt;li>&lt;a data-toggle="tab" href="#seccion">Sección&lt;/a>&lt;/li>
+                          &emsp;&emsp;&lt;li>&lt;a data-toggle="tab" href="#contacto">Contacto&lt;/a>&lt;/li>
+                      &lt;/ul>
+                      &lt;div class="tab-content bg-white">
+                          &emsp;&emsp;&lt;div id="home" class="tab-pane fade in active">
+                            &emsp;&emsp;&emsp;&emsp;&lt;h3>HOME&lt;/h3>
+                            &emsp;&emsp;&emsp;&emsp;&lt;p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas, facilis, eveniet.&lt;/p>
+                          &emsp;&emsp;&lt;/div>
+                          &emsp;&emsp;&lt;div id="seccion" class="tab-pane fade">
+                            &emsp;&emsp;&emsp;&emsp;&lt;h3>Sección&lt;/h3>
+                            &emsp;&emsp;&emsp;&emsp;&lt;p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas, facilis, eveniet.&lt;/p>
+                          &emsp;&emsp;&lt;/div>
+                          &emsp;&emsp;&lt;div id="contacto" class="tab-pane fade">
+                            &emsp;&emsp;&emsp;&emsp;&lt;h3>Contacto&lt;/h3>
+                            &emsp;&emsp;&emsp;&emsp;&lt;p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas, facilis, eveniet.&lt;/p>
+                          &emsp;&emsp;&lt;/div>
+                      &lt;/div>
+                      </code></pre>
+                  </div>
+                </div>
+
+                <h3>Pills verticales</h3>
+
+
+                <div class="bd-example">
+                  <div class="row row-ejemplo">
+                    <div class="col-sm-3">
+                      <h4 class="text-muted">Title</h4>
+                      <ul class="nav nav-pills nav-stacked" style="margin-top: 0;">
+                        <li class="active"><a data-toggle="tab" href="#home2">Home</a></li>
+                        <li><a data-toggle="tab" href="#seccion2">Sección</a></li>
+                        <li><a data-toggle="tab" href="#contacto2">Contacto</a></li>
+                      </ul>
+                    </div>
+                    <div class="col-sm-9">
+                        <div class="tab-content">
+                          <div id="home2" class="tab-pane fade in active">
+                            <h3>HOME</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus porro officia hic fugit nihil, rem dolorum inventore nulla, dignissimos aut. Beatae omnis asperiores incidunt, reprehenderit suscipit eligendi? Voluptas, facilis, eveniet.</p>
+                          </div>
+                          <div id="seccion2" class="tab-pane fade">
+                            <h3>Sección</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus porro officia hic fugit nihil, rem dolorum inventore nulla, dignissimos aut. Beatae omnis asperiores incidunt, reprehenderit suscipit eligendi? Voluptas, facilis, eveniet.</p>
+                          </div>
+                          <div id="contacto2" class="tab-pane fade">
+                            <h3>Contacto</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus porro officia hic fugit nihil, rem dolorum inventore nulla, dignissimos aut. Beatae omnis asperiores incidunt, reprehenderit suscipit eligendi? Voluptas, facilis, eveniet.</p>
+                          </div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <pre><code class="language-html">
+                      &lt;div class="row">
+                        &emsp;&emsp;&lt;div class="col-sm-3">
+                          &emsp;&emsp;&emsp;&emsp;&lt;h4>Title&lt;/h4>
+                          &emsp;&emsp;&emsp;&emsp;&lt;ul class="nav nav-pills nav-stacked" style="margin-top: 0;">
+                            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&lt;li class="active">&lt;a data-toggle="tab" href="#home">Home&lt;/a>&lt;/li>
+                            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&lt;li>&lt;a data-toggle="tab" href="#seccion">Sección&lt;/a>&lt;/li>
+                            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&lt;li>&lt;a data-toggle="tab" href="#contacto">Contacto&lt;/a>&lt;/li>
+                          &emsp;&emsp;&emsp;&emsp;&lt;/ul>
+                        &emsp;&emsp;&lt;/div>
+                        &emsp;&emsp;&lt;div class="col-sm-9">
+                            &emsp;&emsp;&emsp;&emsp;&lt;div class="tab-content">
+                              &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&lt;div id="home" class="tab-pane fade in active">
+                                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&lt;h3>HOME&lt;/h3>
+                                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&lt;p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.&lt;/p>
+                              &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&lt;/div>
+                              &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&lt;div id="seccion" class="tab-pane fade">
+                                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&lt;h3>Sección&lt;/h3>
+                                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&lt;p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.&lt;/p>
+                              &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&lt;/div>
+                              &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&lt;div id="contacto" class="tab-pane fade">
+                                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&lt;h3>Contacto&lt;/h3>
+                                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&lt;p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.&lt;/p>
+                              &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&lt;/div>
+                            &emsp;&emsp;&emsp;&emsp;&lt;/div>
+                        &emsp;&emsp;&lt;/div>
+                      &lt;/div>
+                      </code></pre>
+                  </div>
+                </div>
+
+                
+                  
+                </fieldset>
+
+
+            </div>
+
+
+            
+          </article>
+          </section>              
+      </div>
+    </div>
+
+    </div>
+
+        
+      </main>
+
+
+    <script>
+      $(function(){
+
+        jQuery(function($) {
+          $.syntax({theme: 'bright'});
+        });
+
+        $("#menuLateral").load("../../includes/componentes_menu.html",function(){
+          var seccion = $("#menuLateral").data("seccion");
+          $("#menuLateral ul li a[data-seccion="+seccion+"]").parent().addClass("active");
+        });
+
+        var tabla =  $(".dataTables").DataTable({
+            "lengthChange": false,
+            "autoWidth" : false,
+             "language": {
+                "sProcessing": "Procesando...",
+                "sLengthMenu": "Mostrar _MENU_ registros",
+                "sZeroRecords": "No se encontraron resultados",
+                "sEmptyTable": "Ningún dato disponible en esta tabla",
+                "sInfo": "_TOTAL_ resultados",
+                "sInfoEmpty": "No hay resultados",
+                "sInfoFiltered": "",
+                "sInfoPostFix": "",
+                "sSearch": "Buscar:",
+                "sUrl": "",
+                "sInfoThousands": ",",
+                "sLoadingRecords": "Cargando...",
+
+                "oPaginate": {
+                    "sFirst": "<<",
+                    "sLast": ">>",
+                    "sNext": ">",
+                    "sPrevious": "<"
+                },
+                "oAria": {
+                    "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                    "sSortDescending": ": Activar para ordenar la columna de manera descendente",
+                    "paginate": {
+                        "first": 'Ir a la primera página',
+                        "previous": 'Ir a la página anterior',
+                        "next": 'Ir a la página siguiente',
+                        "last": 'Ir a la última página'
+                    }
+                }
+            }
+        });
+
+      })
+    </script>
+    </body>
+    </html>
