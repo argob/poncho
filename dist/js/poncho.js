@@ -84,12 +84,9 @@ function ponchoTable(opt) {
 
                             //Detectar si es fecha
                             if (filteredTitle[index].includes("fecha-") && filas) {
-                                var dteSplit = filas.split("/");
-                                var yearh = dteSplit[2];
-                                var month = dteSplit[1];
-                                var day = dteSplit[0];
-                                var finalDate = yearh + "-" + month + "-" + day;
-                                filas = '<span style="display:none;">' + finalDate + '</span>' + filas;
+                                var dateSplit = filas.split("/");
+                                var finalDate = new Date(dateSplit[2], dateSplit[1] - 1, dateSplit[0]),
+                                filas = '<span style="display:none;">' + finalDate.getTime() + '</span>' + filas;
                             }
 
                             if (!filas) {
