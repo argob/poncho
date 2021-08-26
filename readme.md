@@ -1,4 +1,4 @@
-![Poncho](img/poncho.gif)
+![Poncho](src/img/poncho.gif)
 
 # Poncho
 
@@ -8,7 +8,7 @@ En este repositorio podés descargar los archivos de Poncho para trabajar de man
 Esta nueva versión de Poncho incluye cambios de colores y otros elementos que mejoran cuestiones de accesibilidad.
 
 Para usar Poncho en un sitio, ver [la documentación](http://argob.github.io/poncho).  
-Tambien estamos en [NPM](https://www.npmjs.com/package/ar-poncho).
+También estamos en [NPM](https://www.npmjs.com/package/ar-poncho).
 
 ## ¿Cómo instalar Poncho?
 
@@ -20,9 +20,9 @@ Tambien estamos en [NPM](https://www.npmjs.com/package/ar-poncho).
 
 * También podés [descargar las plantillas de Poncho](http://argob.github.io/poncho/plantillas/paginas-de-argentina/) o crear archivos html nuevos, asegurándote de que en los html estén declaradas estas dependencias:
   
-#### Fuente Tipográfica - Roboto
+#### Fuente Tipográfica - Encode
 
-* ``` <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet"> ```
+* ``` <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Encode+Sans:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" media="all" /> ```
 
 #### CSS - Bootstrap (v-3.4.1), Font Awesome (v-4.7.0), Poncho, Iconos
 
@@ -33,6 +33,6 @@ Tambien estamos en [NPM](https://www.npmjs.com/package/ar-poncho).
 
 #### JavaScript -  Jquery, Bootstrap (v-3.4.1)
 
-* ``` <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> ```
+* ``` <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> ```
 * ``` <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js”></script> ```
 
