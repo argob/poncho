@@ -7,7 +7,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: 🛎 Check out gh-pages-new
-        uses: actions/checkout@gh-pages-new
+      - name: actions/checkout
+        uses: actions/checkout@v2.0.0
+      - name: actions/setup-node
+        uses: actions/setup-node@v1.4.1
+        with:
+          node-version: "13.9.0"
       - name: npm install
-        uses: argob/poncho@gh-pages-new
+        uses: jaid/action-npm-install@v1.2.1
