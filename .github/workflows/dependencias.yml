@@ -1,12 +1,13 @@
 name: Instala dependencias con NPM
 on:
   push:
-    branches: [gh-pages-new]
+    branches: 
+      - gh-pages-new
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-        with:
-          directory: src
+      - name: 🛎 Check out gh-pages-new
+        uses: actions/checkout@gh-pages-new
       - name: npm install
         uses: argob/poncho@gh-pages-new
