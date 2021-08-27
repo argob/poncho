@@ -9,11 +9,9 @@ jobs:
     steps:
       - name: actions/checkout
         uses: actions/checkout@v2.0.0
-      - name: actions/setup-node
-        uses: actions/setup-node@v1.4.1
+      - name: c-hive/gha-npm-cache@v1
+        uses: c-hive/gha-npm-cache@v1
         with:
-          node-version: "14.17.5"
+          directory: "src/"
       - name: npm install
-        uses: jaid/action-npm-install@v1.2.1
-        with:
-          working_directory: src/
+        run: npm install
