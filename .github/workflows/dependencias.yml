@@ -7,6 +7,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
         with:
-          working-directory: src
+          directory: src
       - name: npm install
         uses: argob/poncho@gh-pages-new
