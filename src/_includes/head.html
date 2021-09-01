@@ -39,7 +39,7 @@
     <link href="/poncho/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="/poncho/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <link href="/poncho/node_modules/ar-poncho/dist/css/poncho.min.css" rel="stylesheet">
-   <link href="/poncho/node_modules/ar-poncho/dist/css/documentacion.css" rel="stylesheet">
+    <link href="/poncho/node_modules/ar-poncho/dist/css/documentacion.css" rel="stylesheet">
     <link href="/poncho/node_modules/ar-poncho/dist/icono-arg.css" rel="stylesheet">
     <link href="/poncho/css/prism.css" rel="stylesheet">
     <script src="/poncho/node_modules/jquery/dist/jquery.min.js"></script>
@@ -47,17 +47,16 @@
     <script src="/poncho/js/scripts.js"></script>
     <script src="/poncho/js/prism.js"></script>
 
+    
+    {% if site.title == "Series de Tiempo - Poncho" %}
     <!--solo para Series de Tiempo-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/datosgobar/series-tiempo-ar-explorer@ts_components_2.6.2/dist/css/components.css" type="text/css">
     <script src='https://cdn.jsdelivr.net/gh/datosgobar/series-tiempo-ar-explorer@ts_components_2.6.2/dist/js/components.js'></script>
-   
-	 <script src="../../node_modules/jquery/dist/jquery.js"></script>
-  <script type="text/javascript" src="../../js/prism.js"></script>
-  <script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
- 
-  <script src="../../js/scripts.js"></script>
-	
-    
+    {% endif %}
+
+
+
+
     <!--Solo para tablas con buscador-->
     <script src="/poncho/node_modules/datatables.net/js/jquery.dataTables.min.js"></script>
     <link href="/poncho/node_modules/datatables.net-dt/css/jquery.dataTables.min.css" rel="stylesheet" />
