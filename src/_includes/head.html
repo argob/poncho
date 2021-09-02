@@ -42,10 +42,12 @@
     <link href="/poncho/node_modules/ar-poncho/dist/css/documentacion.css" rel="stylesheet">
     <link href="/poncho/node_modules/ar-poncho/dist/icono-arg.css" rel="stylesheet">
     <link href="/poncho/css/prism.css" rel="stylesheet">
-    <script src="/poncho/node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="/poncho/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="/poncho/js/scripts.js"></script>
-    <script src="/poncho/js/prism.js"></script>
+
+    
+    <script src="{{ '/node_modules/jquery/dist/jquery.min.js' | prepend: site.baseurl }}"></script>
+    <script src="{{ '/node_modules/bootstrap/dist/js/bootstrap.min.js' | prepend: site.baseurl }}"></script>
+    <script src="{{ '/js/scripts.js' | prepend: site.baseurl }}"></script>
+    <script src="{{ '/js/prism.js' | prepend: site.baseurl }}"></script>
 
     
     {% if site.title == "Series de Tiempo - Poncho" %}
