@@ -2,10 +2,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
     <meta name="description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
     <meta name="author" content="Presidencia de la Nación">
-    <link rel="shortcut icon" href="/poncho/favicon.ico">
   
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -14,12 +12,17 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-P68ZXT');</script>
     <!-- End Google Tag Manager -->
-  
+
+
+    <link rel="shortcut icon" href="{{ '/favicon.ico' | prepend: site.baseurl }}">
+    <link rel="apple-touch-icon" href="{{ '/proyectos/argentina/img/icon-192x192.png' | prepend: site.baseurl }}">
+    <link rel="manifest" href="{{ '/manifest.json' | prepend: site.baseurl }}">
+
     <!-- Nav and address bar color -->
-    <meta name="theme-color" content="#0072b8">
-    <meta name="msapplication-navbutton-color" content="#0072b8">
-    <meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
-  
+    <meta name="theme-color" content="{% if page.color %}{{ page.color }}{% else %}{{ site.color }}{% endif %}">
+    <meta name="msapplication-navbutton-color" content="{% if page.color %}{{ page.color }}{% else %}{{ site.color }}{% endif %}">
+    <meta name="apple-mobile-web-app-status-bar-style" content="{% if page.color %}{{ page.color }}{% else %}{{ site.color }}{% endif %}">
+  <!--  
     <meta property="og:site_name" content="Documentación Poncho"/>
     <meta property="og:url" content="/poncho/">
     <meta property="og:type" content="article">
@@ -33,15 +36,15 @@
     <meta name="twitter:title" content="Poncho">
     <meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
     <meta name="twitter:image" content="http://argob.github.io/poncho/img/poncho_social.jpg" />
+  -->
   
-  
-    <link href="/poncho/node_modules/ar-poncho/dist/css/roboto-fontface.css" rel="stylesheet">
-    <link href="/poncho/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/poncho/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link href="/poncho/node_modules/ar-poncho/dist/css/poncho.min.css" rel="stylesheet">
-    <link href="/poncho/node_modules/ar-poncho/dist/css/documentacion.css" rel="stylesheet">
-    <link href="/poncho/node_modules/ar-poncho/dist/icono-arg.css" rel="stylesheet">
-    <link href="/poncho/css/prism.css" rel="stylesheet">
+    <link href="{{ '/node_modules/ar-poncho/dist/css/roboto-fontface.css' | prepend: site.baseurl }}" rel="stylesheet">
+    <link href="{{ '/node_modules/bootstrap/dist/css/bootstrap.min.css' | prepend: site.baseurl }}" rel="stylesheet">
+    <link href="{{ '/node_modules/font-awesome/css/font-awesome.min.css' | prepend: site.baseurl }}" rel="stylesheet">
+    <link href="{{ '/node_modules/ar-poncho/dist/css/poncho.min.css' | prepend: site.baseurl }}" rel="stylesheet">
+    <link href="{{ '/node_modules/ar-poncho/dist/css/documentacion.css' | prepend: site.baseurl }}" rel="stylesheet">
+    <link href="{{ '/node_modules/ar-poncho/dist/icono-arg.css' | prepend: site.baseurl }}" rel="stylesheet">
+    <link href="{{ '/css/prism.css' | prepend: site.baseurl }}" rel="stylesheet">
 
     
     <script src="{{ '/node_modules/jquery/dist/jquery.min.js' | prepend: site.baseurl }}"></script>
@@ -74,5 +77,5 @@
       <![endif]-->
 
     <link href="https://id.argentina.gob.ar/static/css/chosen/chosen.css" rel="stylesheet">
-
+    {% seo %}  
 </head>
