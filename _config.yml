@@ -37,7 +37,7 @@ unpublished         : false
 
 # Plugins
 whitelist           : []
-plugins             : [jekyll-seo-tag]
+plugins             : [jekyll-seo-tag, jekyll-sitemap]
 
 # Conversion
 markdown            : kramdown
@@ -60,7 +60,12 @@ timezone            : null
 
 quiet               : false
 verbose             : false
-defaults            : []
+defaults            : 
+  -
+    scope:
+      path: "node_modules"
+    values:
+      sitemap: false
 
 liquid:
   error_mode        : warn
