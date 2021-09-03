@@ -1,4 +1,6 @@
 <section class="jumbotron bg-primary"  style="background-image:url('/poncho/img/jumbotron-poncho.png');">
+    {% if page.title == "Inicio | Poncho" %}
+    {% else %}
     <div class="jumbotron_bar">
     <div class="container">
       <div class="row">
@@ -8,6 +10,8 @@
       </div>
     </div>
   </div>
+  {% else %}
+                  {% endif %}
 
 
     <div class="jumbotron_body">
