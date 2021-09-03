@@ -31,6 +31,28 @@ code[class*="language-"], pre[class*="language-"]{
   }
 }
 
+/*Visualización listado de iconos*/
+#listaPoncho i,#listaFontawesome i{
+    display: block;
+    font-size: 50px
+  }
+  .name{
+
+  }
+  .modal-body .label{
+    margin-right: 5px;
+    margin-top: 5px;
+  }
+
+  pre{
+    text-align: left;
+    margin-top: 15px;
+  }
+
+  .icono:hover{cursor:pointer;}
+  .icono:hover i{color:#0072bb ;}
+/**/
+
 .cardtiempo {
             display: flex;
             justify-content: space-around;
