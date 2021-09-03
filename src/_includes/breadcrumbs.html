@@ -1,11 +1,11 @@
 <ol class="breadcrumb" id="breadcrumbs">
-    {% assign crumbs = page.url | remove:'/index.html' | split: '/' %}
-    <li><a href="/">Inicio</a></li>
+    {% assign crumbs = page.url | prepend: site.baseurl | remove:'/index.html' | split: '/' %}
+    <li><a href="{{'/' | prepend: site.baseurl}}">Inicio</a></li>
     {% for crumb in crumbs offset: 1 %}
       {% if forloop.last %}
         <li>{{ page.title }}</li>
       {% else %}
-        <li><a href="{% assign crumb_limit = forloop.index | plus: 1 %}{% for crumb in crumbs limit: crumb_limit %}{{ crumb | append: '/' }}{% endfor %}">{{ crumb | replace:'-',' ' | remove:'.html' | capitalize }}</a></li>
+        <li><a href="{% assign crumb_limit = forloop.index | plus: 1 %}{% for crumb in crumbs limit: crumb_limit %}{{ crumb | append: '/'  }}{% endfor %}">{{ crumb | replace:'-',' ' | remove:'.html' | capitalize }}</a></li>
       {% endif %}
     {% endfor %}
 </ol>
