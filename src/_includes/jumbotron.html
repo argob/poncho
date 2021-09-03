@@ -1,14 +1,33 @@
 <section class="jumbotron bg-primary"  style="background-image:url('/poncho/img/jumbotron-poncho.png');">
+    <div class="jumbotron_bar">
+    <div class="container">
+      <div class="row">
+        {% if page.title != "Inicio | Poncho" %}
+                {% include breadcrumbs.html %}
+                {% endif %}
+      </div>
+    </div>
+  </div>
+
+
     <div class="jumbotron_body">
         <div class="container">
             <div class="row">
-                {% if page.title != "Inicio | Poncho" %}
-                {% include breadcrumbs.html %}
-                {% endif %}
+           
+               {% if page.title == "Inicio | Poncho" %}
                 <div class="col-xs-12 col-md-8 col-md-offset-2 text-center">
                     <h1>{% if page.nombre_grupo %}{{ page.nombre_grupo }}{% else %}{{ site.title }}{% endif %}</h1>
                     <p>{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}</p>
                 </div>
+              
+
+                {% else %}
+                <div class="col-md-12">
+                    <h1>{% if page.nombre_grupo %}{{ page.nombre_grupo }}{% else %}{{ site.title }}{% endif %}</h1>
+                   
+                </div>
+                {% else %}
+                  {% endif %}
             </div>
         </div>
     </div>
