@@ -46,7 +46,7 @@ layout: none
   ],
   "theme_color": "{{ site.color }}",
   "background_color": "{{ site.color }}",
-  "start_url": {{ "/" | prepend: site.baseurl | jsonify }},
+  "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "orientation": "natural",

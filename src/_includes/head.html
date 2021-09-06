@@ -52,7 +52,19 @@
     <script src="{{ '/js/scripts.js' | prepend: site.baseurl }}"></script>
     <script src="{{ '/js/prism.js' | prepend: site.baseurl }}"></script>
 
-    
+    <!--PWA ServiceWorker-->
+    <script type="module"> 
+      if (navigator.serviceWorker.controller) { 
+          console.log("Active service worker found, no need to register"); 
+      }else{ 
+           // Register the service worker 
+          navigator.serviceWorker.register("{{ '/js/pwabuilder-sw.js | prepend: site.baseurl }}", { scope: "./" }).then(function (reg) { console.log("Service worker has been registered"); })
+        } 
+    </script>
+
+
+
+
     {% if page.title == "Series de Tiempo" %}
     <!--solo para Series de Tiempo-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/datosgobar/series-tiempo-ar-explorer@ts_components_2.6.2/dist/css/components.css" type="text/css">
@@ -61,11 +73,11 @@
 
 
 
-     {% if page.title == "Iconos" %}
-       <!--solo para Listado de iconos-->
-  <script src="https://argob.github.io/iconos/js/list.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
-        {% endif %}
+    {% if page.title == "Iconos" %}
+    <!--solo para Listado de iconos-->
+    <script src="{{ '/node_modules/list.js/dist/list.min.js' | prepend: site.baseurl }}"></script>
+    <script src="{{ '/node_modules/clipboard/dist/clipboard.min.js' | prepend: site.baseurl }}"></script>
+    {% endif %}
 
 
 

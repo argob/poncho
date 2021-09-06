@@ -6,17 +6,31 @@
 <!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="es"><!--<![endif]-->
     {% include head.html %}
     <body data-spy="scroll" data-target="#navbar-docs">
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P68ZXT" 
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-  
-    {% include header.html %}
-    {% include jumbotron.html %}
-    <main>
-      {{ content }}
-    </main>
+      <!-- Google Tag Manager (noscript) -->
+      <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P68ZXT" 
+      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+      <!-- End Google Tag Manager (noscript) -->
     
+      {% include header.html %}
+      {% include jumbotron.html %}
+      <main>
+        {{ content }}
+      </main>
+      <script type="module">
+        // This is the service worker with the combined offline experience (Offline page + Offline copy of pages)
 
+        // Add this below content to your HTML page inside a <script type="module"></script> tag, or add the js file to your page at the very top to register service worker
+        // If you get an error about not being able to import, double check that you have type="module" on your <script /> tag
+
+        /*
+        This code uses the pwa-update web component https://github.com/pwa-builder/pwa-update to register your service worker,
+        tell the user when there is an update available and let the user know when your PWA is ready to use offline.
+        */
+
+        import 'https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate';
+
+        const el = document.createElement('pwa-update');
+        document.body.appendChild(el);
+    </script>
     </body>
 </html>
