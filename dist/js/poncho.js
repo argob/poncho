@@ -86,7 +86,7 @@ function ponchoTable(opt) {
                             if (filteredTitle[index].includes("fecha-") && filas) {
                                 var dateSplit = filas.split("/");
                                 var finalDate = new Date(dateSplit[2], dateSplit[1] - 1, dateSplit[0]),
-                                filas = '<span style="display:none;">' + finalDate.getTime() + '</span>' + filas;
+                                filas = '<span style="display:none;">' + finalDate.toISOString().split('T')[0] + '</span>' + filas;
                             }
 
                             if (!filas) {
@@ -663,4 +663,3 @@ function gapi_legacy(response){
   return {"feed": {"entry": entry}};
 }
 //-->
-
