@@ -162,7 +162,7 @@
   
         <div class="col-md-8">
         <div class="form-group item-form">
-        <label for="numDoc" id="mostrar-tipo">Numero de DNI</label>
+        <label for="numDoc" id="mostrar-tipo">Número de DNI</label>
         <input type="number" min="1" class="form-control" id="numDoc" required="" aria-required="true">
         <p class="help-block">Sin guiones ni barras</p>
         <p class="help-block error hidden">Ingresá tu número de documento</p>
@@ -310,13 +310,13 @@ function pophidde(){
 
 <script>
   $(document).ready(function(){
-    $('#mostrar-tipo').text('Numero de DNI');
+    $('#mostrar-tipo').text('Número de DNI');
     $("select[name=tipodoc]").change(function(){
       //alert($('select[name=tipodoc]').val());
     if($('select[name=tipodoc]').val() === 'DNI') {
-      $('#mostrar-tipo').text('Numero de DNI');
+      $('#mostrar-tipo').text('Número de DNI');
     }else if ($('select[name=tipodoc]').val() === 'Pasaporte extranjero') {
-      $('#mostrar-tipo').text('Numero de Pasaporte');
+      $('#mostrar-tipo').text('Número de Pasaporte');
     }
       //$('#mostrar-tipo').text('Pasaporte');
     });
