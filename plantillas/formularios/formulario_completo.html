@@ -11,7 +11,7 @@
   <title>Formularios - Ejemplo completo | Poncho</title>
   <meta name="description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
   <meta name="author" content="Presidencia de la Nación">
-  <link rel="shortcut icon" href="/poncho/favicon.ico">
+  <link rel="shortcut icon" href="/favicon.ico">
 
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -38,14 +38,14 @@
   <meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
   <meta name="twitter:image" content="http://argob.github.io/poncho/img/poncho_social.jpg" />
 
-  <link href="../../node_modules/ar-poncho/dist/css/roboto-fontface.css" rel="stylesheet">
+  <link href="../../node_modules/argob-poncho/dist/css/roboto-fontface.css" rel="stylesheet">
   
   <link href="../../node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
   <link href="../../node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
   <!-- <link href="https://id.argentina.gob.ar/static/css/chosen/chosen.css" rel="stylesheet"> -->
-  <link href="../../node_modules/ar-poncho/dist/css/poncho.min.css" rel="stylesheet">
+  <link href="../../node_modules/argob-poncho/dist/css/poncho.min.css" rel="stylesheet">
   <!--  -->
-  <link href="../../node_modules/ar-poncho/dist/css/documentacion.css" rel="stylesheet">
+  <link href="../../node_modules/argob-poncho/dist/css/documentacion.css" rel="stylesheet">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -197,7 +197,7 @@
   <fieldset>
     <legend>
      <label>Sexo</label>
-   <span class="help-block">Como aparece en tu DNI</span>
+   <p class="help-block">Como aparece en tu DNI</p>
    </legend>
    <div class="form-group item-form">
      <label for="f" class="radio-inline">
@@ -289,7 +289,21 @@
   <div class="form-group item-form">
     <div class="col-xs-12">
       <label for="nro-tramite">Número de trámite del DNI</label>
-   
+      <p>
+        <a onclick="popshow()" role="button" data-toggle="popover" data-trigger="focus">¿Dónde encuentro mi número de trámite?</a>
+      </p>
+      <div class="content-popover hidden bg-white" id="content-popover">
+        <div class="arrow-popover"></div>
+        <div class='col-xs-12 p-x-0'>
+          <span class='close'  onclick="pophidde()">&times;</span>
+        </div>
+        <div>
+          <p>El número de trámite de tu DNI se encuentra en el frente en la parte inferior.</p>
+        </div>
+        <div class='m-x-1'>
+          <img src='../../img/dni_id.png' alt='imagen-dni' class='img-responsive'>
+        </div>
+      </div>
       <div class="row">
         <div class="col-md-6">
           <div class="form-group  item-form">
@@ -299,14 +313,6 @@
       </div>
     </div>
   </div>
-  <div class="form-group col-md-12">
-                    <details>
-                        <summary class="btn btn-link btn-sm consulta-tramite">&nbsp;&nbsp;&nbsp;Consultá el número de trámite según la versión de tu DNI</summary>
-                        <div class="col-xs-12 con-sm-12">
-                        <figure> <img src="../../img/version-dni.jpeg" class="img-responsive" alt="se ubica luego del vencimiento. En la versión anterior de DNI figura en el dorso, bajo la foto" title="Ubicación del número de trámite" width="443"> </figure>
-                        </div>
-                    </details>
-                </div>
 </div>
 
 <div class="row">
@@ -610,7 +616,7 @@
               </div>
             <div class="form-group col-xs-12 col-sm-4 item-form">
               <div class="input-group">
-                <label class="input-group-addon">0</label>
+                <span class="input-group-addon">0</span>
                 <input aria-label="Código de area de teléfono móvil" class="form-control" id="cellphone_area_code" required aria-required="true" type="text"> 
               </div>
               <p class="help-block error hidden">Ingresá el código de área</p>
@@ -618,7 +624,7 @@
             <div class="form-group col-xs-12 col-sm-8 item-form">
               <div class="input-group">
 
-                <label class="input-group-addon">15</label>
+                <span class="input-group-addon">15</span>
                 <input aria-label="número de teléfono móvil" class="form-control" id="cellphone_number" required aria-required="true" type="text"> 
               </div>
               <p class="help-block error hidden">Ingresá tu número de teléfono móvil</p>
@@ -639,7 +645,7 @@
               </div>
              <div class="form-group col-xs-12 col-sm-4 item-form">
               <div class="input-group">
-                <label class="input-group-addon">0</label>
+                <span class="input-group-addon">0</span>
                 <input aria-label="Código de area de teléfono fijo" class="form-control" id="phone_area_code" required aria-required="true" type="text"> 
               </div>
               <p class="help-block error hidden">Ingresá el código de área</p>
@@ -1308,13 +1314,13 @@ function pophidde(){
 
 <script>
   $(document).ready(function(){
-    $('#mostrar-tipo').text('Número de DNI');
+    $('#mostrar-tipo').text('Numero de DNI');
     $("select[name=tipodoc]").change(function(){
       //alert($('select[name=tipodoc]').val());
     if($('select[name=tipodoc]').val() === 'DNI') {
-      $('#mostrar-tipo').text('Número de DNI');
+      $('#mostrar-tipo').text('Numero de DNI');
     }else if ($('select[name=tipodoc]').val() === 'Pasaporte extranjero') {
-      $('#mostrar-tipo').text('Número de Pasaporte');
+      $('#mostrar-tipo').text('Numero de Pasaporte');
     }
       //$('#mostrar-tipo').text('Pasaporte');
     });
