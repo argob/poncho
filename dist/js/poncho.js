@@ -26,15 +26,21 @@ function ponchoTable(opt) {
 
     function getSheetName(id) {
         jQuery.getJSON('https://sheets.googleapis.com/v4/spreadsheets/' + opt.idSpread + '/?alt=json&key=AIzaSyCq2wEEKL9-6RmX-TkW23qJsrmnFHFf5tY', function function_name(response) {
-            getSheetValues(response.sheets[id - 1].properties.title)
+            var sheetName = response.sheets[id - 1].properties.title;
+            var url = 'https://sheets.googleapis.com/v4/spreadsheets/' + opt.idSpread + '/values/' + sheetName + '?alt=json&key=AIzaSyCq2wEEKL9-6RmX-TkW23qJsrmnFHFf5tY';
+            getSheetValues(url);
         });
     }
 
-    getSheetName(opt.hojaNumero);
+    if (opt.jsonUrl) {
+        getSheetValues(opt.jsonUrl);
+    } else {
+        getSheetName(opt.hojaNumero);
+    }
 
-    function getSheetValues(sheetName) {
+    function getSheetValues(url) {
 
-        jQuery.getJSON('https://sheets.googleapis.com/v4/spreadsheets/' + opt.idSpread + '/values/' + sheetName + '?alt=json&key=AIzaSyCq2wEEKL9-6RmX-TkW23qJsrmnFHFf5tY',
+        jQuery.getJSON(url,
 
             function(data) {
                 listado = data['values'];
