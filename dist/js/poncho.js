@@ -630,6 +630,515 @@ var ponchoUbicacion = function(options) {
 }
 
 //#####################################################################
+//########################  PONCHO Chart  #############################
+//#####################################################################
+function ponchoChart(opt) {
+    "use strict";
+    var etiquetas = [];
+    var filteredTitleName = [];
+    var filteredTitlePos = [];
+    var color = '';
+    var colores = [];
+    var codigosColores = [];
+    var columnas = [];
+    var valores = [];
+    var datos = [];
+    var cantDatos = 0;
+    var toltips = "";
+
+    //iniciaizo variables
+    var url = opt.urlJson ? opt.urlJson : 
+                            'https://sheets.googleapis.com/v4/spreadsheets/' + opt.idSpread + '/values/' + opt.hojaNombre + '?alt=json&key=AIzaSyCq2wEEKL9-6RmX-TkW23qJsrmnFHFf5tY';
+
+    var posicionLeyendas = opt.posicionLeyendas ? opt.posicionLeyendas : 'top';
+    var tipoGrafico = getTipoGrafico(opt.tipoGrafico);
+
+    if (chequeoOpcionesObligatorias()) {
+
+        jQuery.getJSON(url,
+
+            function(data) {
+                var listado = data['values'];
+
+                //TITULOS
+                jQuery.each(Object.keys(listado[0]), function(index, key) {
+                    if (listado[0][index].substr(0, 5) == 'eje-y') {
+                        var split = listado[0][index].split('-');
+                        var pos = split[0] + split[1];
+                        filteredTitleName.push(pos);
+                        filteredTitlePos.push(index);
+                    }
+                });
+
+                jQuery.each(listado, function(row, value) {
+                    if (row == 0) { //construyo arrays para los dataset, recupero colores y labels
+                        jQuery.each(filteredTitlePos, function(index, title) {
+                            var split = listado[row][filteredTitlePos[index]].split('-');
+                            var pos = split[0] + split[1];
+                            valores[pos] = []; //construyo los array para los dataset
+                            colores.push(split[2]); //recupero colores
+                        });
+                    }
+
+                    if (row == 1) {
+                        jQuery.each(filteredTitlePos, function(index, title) {
+                            if (tipoGrafico != 'pie') {
+                                columnas.push(listado[row][filteredTitlePos[index]]); //recupero columnas para label
+                                cantDatos = cantDatos + 1;
+                            } else {
+                                etiquetas.push(listado[row][filteredTitlePos[index]]); //recupero las etiquetas de la torta
+                            }
+                        });
+                    }
+
+                    if (row > 1) { //recupero los datos para los dataset y los colores para torta
+                        var label = false;
+                        jQuery.each(filteredTitlePos, function(index, title) {
+                            //Detectar si es etiqueta x
+                            var split = listado[0][filteredTitlePos[index]].split('-');
+                            var pos = split[0] + split[1];
+                            if (tipoGrafico == 'pie') { //recupero datos para la torta
+                                valores[pos].push(listado[row][filteredTitlePos[index]]);
+                            } else {
+                                if (label == false) {
+                                    etiquetas.push(listado[row][0]); //recupero las etiquetas
+                                    label = true;
+                                }
+                                valores[pos].push(listado[row][filteredTitlePos[index]]); //recupero datos
+                            }
+                        });
+                    }
+                });
+
+                if (tipoGrafico == 'pie') {
+                    var datosTorta = [];
+
+                    jQuery.each(Object.keys(filteredTitleName), function(index, key) {
+                        var pos = filteredTitleName[index];
+
+                        if (valores.hasOwnProperty(pos)) {
+                            datosTorta.push(valores[pos]);
+                        }
+                    });
+                    datos = datosTorta;
+
+                } else if (cantDatos == 1) { //es un solo juego de datos
+
+                    jQuery.each(Object.keys(filteredTitleName), function(index, key) {
+                        var pos = filteredTitleName[index];
+
+                        if (valores.hasOwnProperty(pos)) {
+                            datos = valores[pos];
+                        }
+                    });
+                }
+
+                //seteo toltips para mostrar porcentaje o no
+                if (opt.porcentajes == true) {
+                    //seteo tooltips
+                    toltips = {
+                        enabled: true,
+                        callbacks: {
+                            label: function(tooltipItem, data) {
+                                return data.labels[tooltipItem.index] + ' (' + data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] + '%)';
+                            }
+                        }
+                    };
+                } else {
+                    //seteo tooltips
+                    toltips = {
+                        enabled: true,
+                    };
+                }
+
+                //llamo a los constructores para cada tipo de grafico
+                if (tipoGrafico == 'pie') {
+
+                    colores.forEach(function(valor, indice, array) {
+                        codigosColores.push(getColor(valor));
+                    });
+
+                    console.log('etiquetas --> ' + etiquetas);
+                    console.log('datos --> ' + datos);
+                    console.log('colores --> ' + codigosColores);
+
+                    graficoTorta(etiquetas, datos, tipoGrafico, codigosColores, opt.idComponenteGrafico, posicionLeyendas, toltips);
+                }
+
+                if (cantDatos == 1) {
+
+                    console.log('etiquetas --> ' + etiquetas);
+                    console.log('datos --> ' + datos);
+
+                    color = getColor(colores[0]);
+                    console.log('color --> ' + color);
+
+                    if (opt.tipoGrafico == 'Line') {
+                        graficoLineaSimple(etiquetas, datos, tipoGrafico, color, columnas[0], opt.ejeYenCero, opt.idComponenteGrafico, posicionLeyendas, toltips);
+                    }
+
+                    if (tipoGrafico == 'bar' || opt.tipoGrafico == 'Area' || tipoGrafico == 'horizontalBar') {
+                        graficoAreaBarraSimple(etiquetas, datos, tipoGrafico, color, columnas[0], opt.ejeYenCero, opt.idComponenteGrafico, posicionLeyendas, toltips);
+                    }
+
+                }
+
+                if (cantDatos > 1) {
+
+                    var datasets = [];
+                    var indiceColor = 0;
+
+                    //getColores
+                    colores.forEach(function(valor, indice, array) {
+                        codigosColores.push(getColor(valor));
+                    });
+
+                    console.log('colores --> ' + codigosColores);
+
+                    //getDatos
+                    jQuery.each(Object.keys(filteredTitleName), function(index, key) {
+                        var pos = filteredTitleName[index];
+                        if (valores.hasOwnProperty(pos)) {
+
+                            datos = valores[pos];
+
+                            console.log('datos --> ' + datos);
+
+                            if (opt.tipoGrafico == 'Line') {
+                                //construyo datasets
+                                var dataset = {
+                                    label: columnas[indiceColor],
+                                    data: datos,
+                                    borderColor: codigosColores[indiceColor],
+                                    fill: false,
+                                    borderWidth: 2,
+                                    lineTension: 0,
+                                };
+                            } else if (opt.tipoGrafico == 'Bar' || opt.tipoGrafico == 'Area' || opt.tipoGrafico == 'Horizontal Bar' || opt.tipoGrafico == 'Stacked Bar') {
+                                //construyo datasets
+                                var dataset = {
+                                    label: columnas[indiceColor],
+                                    data: datos,
+                                    borderColor: codigosColores[indiceColor],
+                                    backgroundColor: codigosColores[indiceColor], //BARRAS y AREA
+                                    borderWidth: 2,
+                                    lineTension: 0, //linea  y area
+                                };
+                            }
+
+                            datasets.push(dataset);
+
+                            indiceColor = indiceColor + 1;
+
+                        }
+                    });
+
+                    console.log('etiquetas --> ' + etiquetas);
+
+                    if (opt.tipoGrafico == 'Stacked Bar') graficoComplejoStacked(etiquetas, tipoGrafico, datasets, opt.idComponenteGrafico, opt.ejeYenCero, posicionLeyendas, toltips);
+                    else graficoComplejo(etiquetas, tipoGrafico, datasets, opt.idComponenteGrafico, opt.ejeYenCero, posicionLeyendas, toltips);
+
+
+                }
+
+                //verifica si viene titulo del grafico, si no viene no dibuja nada
+                if (opt.tituloGrafico != "" && typeof opt.tituloGrafico != 'undefined') {
+                    graficaTitulo(opt.idTagTituloGrafico, opt.tituloGrafico);
+                }
+            }
+        );
+
+    } else {
+
+        //informo por consola el faltante
+        if (typeof opt.idSpread == 'undefined' || opt.idSpread == "") {
+            console.log('Completar valor para la opción de Configuración idSpread');
+        }
+
+        if (typeof opt.hojaNombre == 'undefined' || opt.hojaNombre == "") {
+            console.log('Completar valor para la opción de Configuración hojaNombre');
+        }
+
+        if (typeof opt.tipoGrafico == 'undefined' || opt.tipoGrafico == "") {
+            console.log('Completar valor para la opción de Configuración tipoGrafico');
+        }
+
+        if (typeof opt.idComponenteGrafico == 'undefined' || opt.idComponenteGrafico == "") {
+            console.log('Completar valor para la opción de Configuración idComponenteGrafico');
+        }
+
+        if (tipoGrafico == "") {
+            console.log('Ingrese un tipo de gafico válido');
+        }
+    }
+
+    function getTipoGrafico(tipo) {
+        var grafico = '';
+        if (tipo == 'Line') grafico = 'line';
+        if (tipo == 'Bar') grafico = 'bar';
+        if (tipo == 'Pie') grafico = 'pie';
+        if (tipo == 'Area') grafico = 'line';
+        if (tipo == 'Horizontal Bar') grafico = 'horizontalBar';
+        if (tipo == 'Stacked Bar') grafico = 'bar';
+
+        return grafico;
+    }
+
+    function getColor(color) {
+        var codigoColor = '';
+        switch (color) {
+            case 'celeste':
+                codigoColor = '#2897d4';
+                break;
+            case 'verde':
+                codigoColor = '#2e7d33';
+                break;
+            case 'rojo':
+                codigoColor = '#c62828';
+                break;
+            case 'amarillo':
+                codigoColor = '#f9a822';
+                break;
+            case 'azul':
+                codigoColor = '#0072bb';
+                break;
+            case 'negro':
+                codigoColor = '#333';
+                break;
+            case 'uva':
+                codigoColor = '#6a1b99';
+                break;
+            case 'gris':
+                codigoColor = '#525252';
+                break;
+            case 'grisintermedio':
+                codigoColor = '#f2f2f2';
+                break;
+            case 'celesteargentina':
+                codigoColor = '#37bbed';
+                break;
+            case 'fucsia':
+                codigoColor = '#ec407a';
+                break;
+            case 'arandano':
+                codigoColor = '#c2185b';
+                break;
+            case 'uva':
+                codigoColor = '#6a1b99';
+                break;
+            case 'cielo':
+                codigoColor = '#039be5';
+                break;
+            case 'verdin':
+                codigoColor = '#6ea100';
+                break;
+            case 'lima':
+                codigoColor = '#cddc39';
+                break;
+            case 'maíz':
+                codigoColor = '#ffce00';
+                break;
+            case 'tomate':
+                codigoColor = '#ef5350';
+                break;
+            case 'naranjaoscuro':
+                codigoColor = '#EF6C00';
+                break;
+            case 'verdeazulado':
+                codigoColor = '#008388';
+                break;
+            case 'escarapela':
+                codigoColor = '#2cb9ee';
+                break;
+            case 'lavanda':
+                codigoColor = '#9284be';
+                break;
+            case 'mandarina':
+                codigoColor = '#f79525';
+                break;
+            case 'palta':
+                codigoColor = '#50b7b2';
+                break;
+            case 'cereza':
+                codigoColor = '#ed3d8f';
+                break;
+            case 'limon':
+                codigoColor = '#d7df23';
+                break;
+            case 'verdejade':
+                codigoColor = '#d7df23';
+                break;
+            case 'verdealoe':
+                codigoColor = '#d7df23';
+                break;
+            case 'verdecemento':
+                codigoColor = '#d7df23';
+                break;
+            default:
+                console.log('No existe color ' + color);
+        }
+
+        return codigoColor;
+    }
+
+    function graficoTorta(etiquetas, datos, tipoGrafico, colores, idGrafico, posicionLeyendas, toltips) {
+        const $grafica = document.getElementById(idGrafico);
+        const dataset = {
+            data: datos,
+            borderColor: colores,
+            backgroundColor: colores,
+            borderWidth: 2,
+        };
+        new Chart($grafica, {
+            type: tipoGrafico,
+            data: {
+                labels: etiquetas,
+                datasets: [
+                    dataset,
+                ]
+            },
+            //options: options
+            options: {
+                legend: { display: true, position: posicionLeyendas },
+                responsive: true,
+                tooltips: toltips,
+            }
+
+        });
+    }
+
+    function graficoLineaSimple(etiquetas, datos, tipoGrafico, color, label, empiezaYenCero, idGrafico, posicionLeyendas, toltips) {
+        const $grafica = document.getElementById(idGrafico);
+        const dataset = {
+            data: datos,
+            borderColor: color,
+            borderWidth: 2,
+            lineTension: 0,
+            fill: false,
+            label: label,
+        };
+        new Chart($grafica, {
+            type: tipoGrafico,
+            data: {
+                labels: etiquetas,
+                datasets: [
+                    dataset,
+                ]
+            },
+            options: {
+                legend: { display: true, position: posicionLeyendas },
+                tooltips: toltips,
+                responsive: true,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: empiezaYenCero,
+                        }
+                    }]
+                }
+            }
+        });
+    }
+
+    function graficoAreaBarraSimple(etiquetas, datos, tipoGrafico, color, label, empiezaYenCero, idGrafico, posicionLeyendas, toltips) {
+        const $grafica = document.getElementById(idGrafico);
+        const dataset = {
+            data: datos,
+            borderColor: color,
+            backgroundColor: color,
+            borderWidth: 2,
+            lineTension: 0,
+            label: label,
+        };
+        new Chart($grafica, {
+            type: tipoGrafico,
+            data: {
+                labels: etiquetas,
+                datasets: [
+                    dataset,
+                ]
+            },
+            options: {
+                legend: { display: true, position: posicionLeyendas },
+                tooltips: toltips,
+                responsive: true,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: empiezaYenCero,
+                        }
+                    }]
+                }
+            }
+        });
+    }
+
+    function graficoComplejo(etiquetas, tipoGrafico, datos, idGrafico, empiezaYenCero, posicionLeyendas, toltips) {
+        const $grafica = document.getElementById(idGrafico);
+        new Chart($grafica, {
+            type: tipoGrafico,
+            data: {
+                labels: etiquetas,
+                datasets: datos
+            },
+            options: {
+                legend: { display: true, position: posicionLeyendas, labels: { textAlign: 'center' } },
+                tooltips: toltips,
+                responsive: true,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: empiezaYenCero,
+                        }
+                    }],
+                },
+            }
+        });
+    }
+
+
+    function graficoComplejoStacked(etiquetas, tipoGrafico, datos, idGrafico, empiezaYenCero, posicionLeyendas, toltips) { //Stacked Bar
+        const $grafica = document.getElementById(idGrafico);
+        new Chart($grafica, {
+            type: tipoGrafico,
+            data: {
+                labels: etiquetas,
+                datasets: datos
+            },
+            options: {
+                legend: { display: true, position: posicionLeyendas, labels: { textAlign: 'center' } },
+                tooltips: toltips,
+                responsive: true,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: empiezaYenCero,
+                        },
+                        stacked: true,
+                    }],
+                    xAxes: [{ stacked: true }],
+                },
+            }
+        });
+    }
+
+    function graficaTitulo(idTag, titulo) {
+        if (document.getElementById(idTag)) {
+            document.getElementById(idTag).innerHTML = titulo;
+        }
+    }
+
+    function chequeoOpcionesObligatorias() {
+        var chequeo = false;
+        if ((typeof opt.idSpread != 'undefined' && opt.idSpread != "") && (typeof opt.hojaNombre != 'undefined' && opt.hojaNombre != "") && (typeof opt.tipoGrafico != 'undefined' && opt.tipoGrafico != "") && (typeof opt.idComponenteGrafico != 'undefined' && opt.idComponenteGrafico != "") && (tipoGrafico != ""))
+            chequeo = true;
+        return chequeo;
+    }
+
+}
+
+
+//#####################################################################
 //####################### GAPI LEGACY #################################
 //#####################################################################
 //<!--
