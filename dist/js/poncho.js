@@ -1130,7 +1130,7 @@ function ponchoChart(opt) {
 
     function chequeoOpcionesObligatorias() {
         var chequeo = false;
-        if ((typeof opt.idSpread != 'undefined' && opt.idSpread != "") && (typeof opt.hojaNombre != 'undefined' && opt.hojaNombre != "") && (typeof opt.tipoGrafico != 'undefined' && opt.tipoGrafico != "") && (typeof opt.idComponenteGrafico != 'undefined' && opt.idComponenteGrafico != "") && (tipoGrafico != ""))
+        if ( ((opt.idSpread  && opt.hojaNombre) || opt.jsonUrl) && (typeof opt.tipoGrafico != 'undefined' && opt.tipoGrafico != "") && (typeof opt.idComponenteGrafico != 'undefined' && opt.idComponenteGrafico != "") && (tipoGrafico != ""))
             chequeo = true;
         return chequeo;
     }
