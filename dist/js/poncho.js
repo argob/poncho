@@ -647,7 +647,7 @@ function ponchoChart(opt) {
     var toltips = "";
 
     //iniciaizo variables
-    var url = opt.urlJson ? opt.urlJson : 
+    var url = opt.jsonUrl ? opt.jsonUrl : 
                             'https://sheets.googleapis.com/v4/spreadsheets/' + opt.idSpread + '/values/' + opt.hojaNombre + '?alt=json&key=AIzaSyCq2wEEKL9-6RmX-TkW23qJsrmnFHFf5tY';
 
     var posicionLeyendas = opt.posicionLeyendas ? opt.posicionLeyendas : 'top';
