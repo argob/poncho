@@ -316,7 +316,7 @@ font-weight: 600;
  }
  .markerCSScluster {
     text-align: center;
-    background-image: url('/img/m1.png');
+    /*background-image: url('/img/m1.png');*/
  }
  .textCluster {
     color: white;
