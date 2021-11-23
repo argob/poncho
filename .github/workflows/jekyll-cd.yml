@@ -26,9 +26,10 @@ jobs:
             rm -rf docs/*
           fi
       - name: 🔨 Build site
-        run: |
-          npm update
-          bundle exec jekyll build -d docs
+        working-directory: ./src
+        run: npm update
+        working-directory: ./
+        run: bundle exec jekyll build -d docs
       - name: 🧪 Deploy build
         run: |
           git config user.name "${GITHUB_ACTOR}"
