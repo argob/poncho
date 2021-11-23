@@ -1,0 +1,36 @@
+
+name: jekyll-cd
+
+on:
+  push:
+    branches:
+      - gh-pages-new
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🛎 Check out master
+        uses: actions/checkout@gh-pages-new
+        with:
+          fetch-depth: 1
+      - name: 🎩 Install Jekyll
+        run: |
+          sudo gem install bundler jekyll
+          sudo bundle install
+      - name: 🧹 Clean site
+        run: |
+          if [ -d "docs" ]; then
+            rm -rf docs/*
+          fi
+      - name: 🔨 Build site
+        run: bundle exec jekyll build -d docs
+      - name: 🧪 Deploy build
+        run: |
+          git config user.name "${GITHUB_ACTOR}"
+          git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+          git add .
+          git commit -am "🧪 Deploy with ${GITHUB_WORKFLOW}"
+          git push --all -f https://${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git
