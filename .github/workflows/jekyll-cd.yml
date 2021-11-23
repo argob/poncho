@@ -13,7 +13,7 @@ jobs:
 
     steps:
       - name: 🛎 Check out master
-        uses: actions/checkout@master
+        uses: actions/checkout@gh-pages
         with:
           fetch-depth: 1
       - name: 🎩 Install Jekyll
