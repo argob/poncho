@@ -25,9 +25,10 @@ jobs:
           if [ -d "docs" ]; then
             rm -rf docs/*
           fi
-      - name: 🔨 Build site
+      - name: Instalamos dependencias
         working-directory: ./src
         run: npm update
+      - name: 🔨 Build site
         working-directory: ./
         run: bundle exec jekyll build -d docs
       - name: 🧪 Deploy build
