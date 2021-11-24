@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]> <html lang="es"class="iem7"> <![endif]-->
+<!--[if lt IE 7 ]> <html lang="es" class="ie6 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="es" class="ie7 lt-ie8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="es" class="ie8"> <![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="es"><!--<![endif]-->
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Presidencia de la Nación">
+  
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-P68ZXT');</script>
+    <!-- End Google Tag Manager -->
+
+
+    <link rel="shortcut icon" href="/poncho/favicon.ico">
+    <link rel="apple-touch-icon" href="/poncho/img/iconos/icon-192x192.png">
+    <link rel="manifest" href="/poncho/manifest.json">
+
+    <!-- Nav and address bar color -->
+    <meta name="theme-color" content="#0072b8">
+    <meta name="msapplication-navbutton-color" content="#0072b8">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
+  <!--  
+    <meta property="og:site_name" content="Documentación Poncho"/>
+    <meta property="og:url" content="/poncho/">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Poncho">
+    <meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
+    <meta property="og:image" content="http://argob.github.io/poncho/img/poncho_social.jpg" />
+    <meta property="og:locale" content="es_AR">
+  
+   
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Poncho">
+    <meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
+    <meta name="twitter:image" content="http://argob.github.io/poncho/img/poncho_social.jpg" />
+  -->
+
+  <link href="/poncho/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/poncho/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="/poncho/css/prism.css" rel="stylesheet">
+
+  <!-- PONCHO CSS:
+    Recomendamos que descargues o instales 'ar-poncho' en tu proyecto.
+    <link href="/poncho/node_modules/ar-poncho/dist/css/roboto-fontface.css" rel="stylesheet">
+    <link href="/poncho/node_modules/ar-poncho/dist/css/poncho.min.css" rel="stylesheet">
+    <link href="/poncho/node_modules/ar-poncho/dist/css/documentacion.css" rel="stylesheet">
+    <link href="/poncho/node_modules/ar-poncho/dist/icono-arg.css" rel="stylesheet">
+    Al solo efecto de esta documentación, usaremos los estilos en línea en el proyecto GitHub Poncho
+  -->
+    <link href="https://cdn.jsdelivr.net/gh/argob/poncho@master/dist/css/encode-fontface.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/gh/argob/poncho@master/dist/css/poncho.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/gh/argob/poncho@master/dist/css/documentacion.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/gh/argob/poncho@master/dist/icono-arg.css" rel="stylesheet">
+ <!-- FIN PONCHO -->
+
+
+    
+    <script src="/poncho/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/poncho/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/poncho/js/scripts.js"></script>
+    <script src="/poncho/js/prism.js"></script>
+
+    <!--PWA ServiceWorker-->
+    <script type="module"> 
+      if (navigator.serviceWorker.controller) { 
+          console.log("Active service worker found, no need to register"); 
+      }else{ 
+           // Register the service worker 
+          navigator.serviceWorker.register("/poncho", { scope: "./" }).then(function (reg) { console.log("Service worker has been registered"); })
+        } 
+    </script>
+
+
+
+
+    
+
+
+
+    
+
+
+
+    <!--Solo para tablas con buscador-->
+    <script src="/poncho/node_modules/datatables.net/js/jquery.dataTables.min.js"></script>
+    <link href="/poncho/node_modules/datatables.net-dt/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <script src="/poncho/node_modules/intl/dist/Intl.min.js"></script>
+    <link href="https://www.argentina.gob.ar/sites/default/files/ponchotable/ponchotable-1.1.css" rel="stylesheet" />
+
+    <script src="/poncho/node_modules/showdown/dist/showdown.min.js"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://poncheado.herokuapp.com/node_modules/html5shiv/html5shiv.js"></script>
+      <script src="https://poncheado.herokuapp.com/node_modules/respond.js/respond.min.js"></script>
+      <![endif]-->
+
+    <link href="https://id.argentina.gob.ar/static/css/chosen/chosen.css" rel="stylesheet">
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Tipografía | Sitio Demo Poncho</title>
+<meta name="generator" content="Jekyll v3.9.1" />
+<meta property="og:title" content="Tipografía" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="La librería de estilos y componentes oficiales para diseñar y desarrollar sitios web y aplicaciones móviles del Gobierno de la República Argentina." />
+<meta property="og:description" content="La librería de estilos y componentes oficiales para diseñar y desarrollar sitios web y aplicaciones móviles del Gobierno de la República Argentina." />
+<meta property="og:site_name" content="Sitio Demo Poncho" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Tipografía" />
+<script type="application/ld+json">
+{"@type":"WebPage","headline":"Tipografía","url":"/poncho/identidad/tipografia/","description":"La librería de estilos y componentes oficiales para diseñar y desarrollar sitios web y aplicaciones móviles del Gobierno de la República Argentina.","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+  
+</head>
+    <body data-spy="scroll" data-target="#navbar-docs">
+      <!-- Google Tag Manager (noscript) -->
+      <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P68ZXT" 
+      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+      <!-- End Google Tag Manager (noscript) -->
+    
+      <header>
+    <nav class="navbar navbar-top navbar-default">
+      <div class="container">
+        <div>
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar-collapse">
+              <span class="sr-only">Toggle navigationn</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a href="/poncho/" class="navbar-brand">
+              <img alt="Poncho" src="/poncho/img/poncho.gif" height="50">
+              <h1>Poncho</h1>
+            </a>
+          </div>
+          <div class="collapse navbar-collapse" id="main-navbar-collapse" data-seccion="Identidad"></div>
+        </div>
+      </div>
+    </nav>
+</header>  
+      <section class="jumbotron bg-primary"  style="background-image:url('/poncho/img/jumbotron-poncho.png');">
+    
+    <div class="jumbotron_bar">
+    <div class="container">
+      <div class="row">
+		  <div class="col-md-12">
+        
+                <ol class="breadcrumb" id="breadcrumbs">
+    
+    <!--<li><a href="/poncho/">Inicio</a></li>-->
+    
+      
+        <li><a href="/poncho/">Poncho</a></li>
+      
+    
+      
+        <li><a href="/poncho/identidad/">Identidad</a></li>
+      
+    
+      
+        <li>Tipografía</li>
+      
+    
+</ol>
+                
+		  </div>
+		</div>
+    </div>
+  </div>
+  
+
+
+    <div class="jumbotron_body">
+        <div class="container">
+            <div class="row">
+           
+               
+                <div class="col-md-12">
+                    <h1>Identidad</h1>
+                   
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</section>
+      <main>
+            <div class="container">
+      
+      <div class="row">
+      <div class="col-sm-3" id="menuLateral" data-seccion="3"></div>
+
+      <div class="col-sm-9">
+
+        <section>
+          <article class="row">
+            <div class="col-sm-12">
+<h1>Tipografía</h1>
+
+<p>La tipografía de Poncho es <a href="https://fonts.google.com/specimen/Encode+Sans?query=Encode">Encode</a>. <!--Es la tipografía usada en los dispositivos con Android.--></p>
+
+<hr>
+
+<fieldset>
+
+<!-- TÍTULOS -->
+  <h2>Títulos y encabezados</h2>
+  <p>Una página sólo puede tener un título h1 pero varios encabezados. Siempre debe respetarse el orden (h1 al h5) y no saltearse encabezados.</p>
+  <table class="table">
+    <thead>
+      <tr>
+      <th>Título</th>
+      <th>Código</th>
+    </tr>
+    </thead>
+    <tbody>
+  <tr>
+  <td><h1>h1. Esto es un título</h1></td>
+    <td>
+    <code class="language-html">&lt;h1&gt;Título&lt;/h1&gt;</code>
+  </td>
+  </tr>
+  <tr>
+  <td><h2>h2. Esto es un título</h2></td>
+    <td>
+    <code class="language-html">&lt;h2&gt;Título&lt;/h2&gt;</code>
+  </td>
+  </tr>
+  <tr>
+  <td><h3>h3. Esto es un título</h3></td>
+    <td>
+    <code class="language-html">&lt;h3&gt;Título&lt;/h3&gt;</code>
+  </td>
+  </tr>
+  <tr>
+  <td><h4>h4. Esto es un título</h4></td>
+    <td>
+    <code class="language-html">&lt;h4&gt;Título&lt;/h4&gt;</code>
+  </td>
+  </tr>
+  <tr>
+  <td><h5>h5. Esto es un título</h5></td>
+    <td>
+    <code class="language-html">&lt;h5&gt;Título&lt;/h5&gt;</code>
+  </td>
+  </tr>
+    </tbody>
+  </table>
+
+
+<hr>
+
+<!-- FORMATOS -->
+
+  <h2>Formatos de texto</h2>
+  <p>Estos son los elementos de texto que pueden encontrarse dentro de un cuerpo de texto (páginas, noticias) y algunos elementos interactivos (tarjetas, tablas).</p>
+
+  <table class="table">
+    <thead>
+      <tr>
+      <th style="width: 250px">Formato</th>
+      <th>Código</th>
+      <th>Utilización</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+    <td>Parrafo</td>
+    <td><code class="language-html">&lt;p&gt;Parrafo&lt;/p&gt;</code></td>
+    <td>Para texto general</td>
+  </tr>
+    <tr>
+    <td><strong>Negrita</strong></td>
+    <td><code class="language-html">&lt;strong&gt;Negrita&lt;/strong&gt;</code></td>
+    <td>Resaltar palabras. No parrafos completos.</td>
+  </tr>
+    <tr>
+    <td><i>Cursiva</i></td>
+    <td><code class="language-html">&lt;i&gt;Cursiva&lt;/i&gt;</code></td>
+    <td>Para indicar que una palabra o grupo de palabras tiene un sentido especial que no se corresponde con el del léxico común de la lengua</td>
+  </tr>
+    <tr>
+      <td><small>Small</small></td>
+      <td><code class="language-html">&lt;small&gt;Small&lt;/small&gt;</code></td>
+      <td>Para textos con información complementaria (ej: ayuda en campos de formulario, información legal, etc).</td>
+    </tr>
+    <tr>
+      <td><p class="lead">Lead</p></td>
+      <td><code class="language-html">&lt;p class="lead"&gt;Lead&lt;/p&gt;</code></td>
+      <td>Para textos destacados que no son encabezados (ej: bajadas de titulos de páginas).</td>
+    </tr>
+    <tr>
+      <td><blockquote >Citas</blockquote ></td>
+      <td><code class="language-html">&lt;blockquote&gt;Citas&lt;/blockquote&gt;</code></td>
+      <td>Utilizar en un parrafo aparte</td>
+    </tr>
+</tbody>
+</table>
+
+<hr>
+
+<!-- COLORES -->
+
+  <h2>Colores de textos</h2>
+  <p>Los textos mayormente usan color negro salvo excepciones de algunos elementos interactivos (indicar estados, mensajes de error). No se deben usar de forma decorativa.</p>
+
+  <h3>Paleta principal</h3>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil sed natus dignissimos unde in officiis incidunt, architecto vitae! Amet natus laboriosam eos, ducimus, voluptas officiis ipsa perferendis modi sunt qui.</p>
+<table class="table">
+    <thead>
+      <tr>
+      <th>Color</th>
+      <th>Código</th>
+      <th>Utilización</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td><strong>Negro</strong></td>
+      <td><code class="language-html">&lt;p>Negro&lt;/p></code></td>
+      <td>Color de texto por defecto</td>
+    </tr>       
+    <tr>
+      <td><strong class="text-gray">Gris oscuro</strong></td>
+      <td><code class="language-html">&lt;p class="text-gray">Gris oscuro&lt;/p></code></td>
+      <td>Para links</td>
+    </tr>       
+    <tr>
+      <td><strong class="text-muted">Gris claro</strong></td>
+      <td><code class="language-html">&lt;p class="text-muted">Gris claro&lt;/p></code></td>
+      <td>Para links</td>
+    </tr>
+    <tr>
+      <td><strong class="text-primary">Azul</strong></td>
+      <td><code class="language-html">&lt;p class="text-primary">Azul&lt;/p></code></td>
+      <td>Para links</td>
+    </tr>
+    <tr>
+      <td><strong class="text-success">Verde</strong></td>
+      <td><code class="language-html">&lt;p class="text-success">Verde&lt;/p></code></td>
+      <td>Para links</td>
+    </tr>
+    <tr>
+      <td><strong class="text-danger">Rojo</strong></td>
+      <td><code class="language-html">&lt;p class="text-danger">Rojo&lt;/p></code></td>
+      <td>Para links</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<!-- Divisiones -->
+<h2>Divisiones horizontales</h2>
+Las divisiones se usan para separar grupos de elementos dentro de una página.
+
+<pre><code class="language-html">
+  &lt;hr>
+</code></pre>
+
+</fieldset>
+
+            </div>
+          </article>
+          </section>
+
+                
+      </div>
+    </div>
+
+      </div>
+
+
+
+    <script>
+      $(function(){
+        $("#menuLateral").load("../../includes/identidad_menu.html",function(){
+          var seccion = $("#menuLateral").data("seccion");
+          $("#menuLateral ul li a[data-seccion="+seccion+"]").parent().addClass("active");
+        });
+      })
+    </script>
+
+      </main>
+      <script type="module">
+        
+        import 'https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate';
+
+        const el = document.createElement('pwa-update');
+        document.body.appendChild(el);
+    </script>
+    </body>
+</html>

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]> <html lang="es"class="iem7"> <![endif]-->
+<!--[if lt IE 7 ]> <html lang="es" class="ie6 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="es" class="ie7 lt-ie8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="es" class="ie8"> <![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="es"><!--<![endif]-->
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Presidencia de la Nación">
+  
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-P68ZXT');</script>
+    <!-- End Google Tag Manager -->
+
+
+    <link rel="shortcut icon" href="/poncho/favicon.ico">
+    <link rel="apple-touch-icon" href="/poncho/img/iconos/icon-192x192.png">
+    <link rel="manifest" href="/poncho/manifest.json">
+
+    <!-- Nav and address bar color -->
+    <meta name="theme-color" content="#0072b8">
+    <meta name="msapplication-navbutton-color" content="#0072b8">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
+  <!--  
+    <meta property="og:site_name" content="Documentación Poncho"/>
+    <meta property="og:url" content="/poncho/">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Poncho">
+    <meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
+    <meta property="og:image" content="http://argob.github.io/poncho/img/poncho_social.jpg" />
+    <meta property="og:locale" content="es_AR">
+  
+   
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Poncho">
+    <meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
+    <meta name="twitter:image" content="http://argob.github.io/poncho/img/poncho_social.jpg" />
+  -->
+
+  <link href="/poncho/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/poncho/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="/poncho/css/prism.css" rel="stylesheet">
+
+  <!-- PONCHO CSS:
+    Recomendamos que descargues o instales 'ar-poncho' en tu proyecto.
+    <link href="/poncho/node_modules/ar-poncho/dist/css/roboto-fontface.css" rel="stylesheet">
+    <link href="/poncho/node_modules/ar-poncho/dist/css/poncho.min.css" rel="stylesheet">
+    <link href="/poncho/node_modules/ar-poncho/dist/css/documentacion.css" rel="stylesheet">
+    <link href="/poncho/node_modules/ar-poncho/dist/icono-arg.css" rel="stylesheet">
+    Al solo efecto de esta documentación, usaremos los estilos en línea en el proyecto GitHub Poncho
+  -->
+    <link href="https://cdn.jsdelivr.net/gh/argob/poncho@master/dist/css/encode-fontface.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/gh/argob/poncho@master/dist/css/poncho.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/gh/argob/poncho@master/dist/css/documentacion.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/gh/argob/poncho@master/dist/icono-arg.css" rel="stylesheet">
+ <!-- FIN PONCHO -->
+
+
+    
+    <script src="/poncho/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/poncho/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/poncho/js/scripts.js"></script>
+    <script src="/poncho/js/prism.js"></script>
+
+    <!--PWA ServiceWorker-->
+    <script type="module"> 
+      if (navigator.serviceWorker.controller) { 
+          console.log("Active service worker found, no need to register"); 
+      }else{ 
+           // Register the service worker 
+          navigator.serviceWorker.register("/poncho", { scope: "./" }).then(function (reg) { console.log("Service worker has been registered"); })
+        } 
+    </script>
+
+
+
+
+    
+
+
+
+    
+
+
+
+    <!--Solo para tablas con buscador-->
+    <script src="/poncho/node_modules/datatables.net/js/jquery.dataTables.min.js"></script>
+    <link href="/poncho/node_modules/datatables.net-dt/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <script src="/poncho/node_modules/intl/dist/Intl.min.js"></script>
+    <link href="https://www.argentina.gob.ar/sites/default/files/ponchotable/ponchotable-1.1.css" rel="stylesheet" />
+
+    <script src="/poncho/node_modules/showdown/dist/showdown.min.js"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://poncheado.herokuapp.com/node_modules/html5shiv/html5shiv.js"></script>
+      <script src="https://poncheado.herokuapp.com/node_modules/respond.js/respond.min.js"></script>
+      <![endif]-->
+
+    <link href="https://id.argentina.gob.ar/static/css/chosen/chosen.css" rel="stylesheet">
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Paneles | Sitio Demo Poncho</title>
+<meta name="generator" content="Jekyll v3.9.1" />
+<meta property="og:title" content="Paneles" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="La librería de estilos y componentes oficiales para diseñar y desarrollar sitios web y aplicaciones móviles del Gobierno de la República Argentina." />
+<meta property="og:description" content="La librería de estilos y componentes oficiales para diseñar y desarrollar sitios web y aplicaciones móviles del Gobierno de la República Argentina." />
+<meta property="og:site_name" content="Sitio Demo Poncho" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Paneles" />
+<script type="application/ld+json">
+{"@type":"WebPage","headline":"Paneles","url":"/poncho/plantillas/destacados-sin-enlace/","description":"La librería de estilos y componentes oficiales para diseñar y desarrollar sitios web y aplicaciones móviles del Gobierno de la República Argentina.","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+  
+</head>
+    <body data-spy="scroll" data-target="#navbar-docs">
+      <!-- Google Tag Manager (noscript) -->
+      <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P68ZXT" 
+      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+      <!-- End Google Tag Manager (noscript) -->
+    
+      <header>
+    <nav class="navbar navbar-top navbar-default">
+      <div class="container">
+        <div>
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar-collapse">
+              <span class="sr-only">Toggle navigationn</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a href="/poncho/" class="navbar-brand">
+              <img alt="Poncho" src="/poncho/img/poncho.gif" height="50">
+              <h1>Poncho</h1>
+            </a>
+          </div>
+          <div class="collapse navbar-collapse" id="main-navbar-collapse" data-seccion="Plantillas"></div>
+        </div>
+      </div>
+    </nav>
+</header>  
+      <section class="jumbotron bg-primary"  style="background-image:url('/poncho/img/jumbotron-poncho.png');">
+    
+    <div class="jumbotron_bar">
+    <div class="container">
+      <div class="row">
+		  <div class="col-md-12">
+        
+                <ol class="breadcrumb" id="breadcrumbs">
+    
+    <!--<li><a href="/poncho/">Inicio</a></li>-->
+    
+      
+        <li><a href="/poncho/">Poncho</a></li>
+      
+    
+      
+        <li><a href="/poncho/plantillas/">Plantillas</a></li>
+      
+    
+      
+        <li>Paneles</li>
+      
+    
+</ol>
+                
+		  </div>
+		</div>
+    </div>
+  </div>
+  
+
+
+    <div class="jumbotron_body">
+        <div class="container">
+            <div class="row">
+           
+               
+                <div class="col-md-12">
+                    <h1>Plantillas</h1>
+                   
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</section>
+      <main>
+            <div class="container">
+
+    <div class="row">
+        <div class="col-sm-3" id="menuLateral" data-seccion="8"></div>
+
+        <div class="col-sm-9">
+
+            <section>
+                <article class="row">
+                    <div class="col-sm-12">
+                        <h2 class="h1">Destacados sin enlace</h2>
+                        <hr>
+
+                        <div class="col-md-12">
+
+                            <div class="row panels-row">
+          
+                                <div class="col-sm-6">
+                                    <a class="panel panel-default" href="destacados-iconos.html">
+                                      <!-- <div class="panel-heading" style="background-image: url(../../../poncho/img/dt-1.png)">
+                                      </div> -->
+                                      <div class="panel-body">
+                                        <div class="media-body">
+                                          <h3>Íconos</h3>
+                                          <p>Sirven para mostrar conceptos como principios, valores, funcionalidades y otros atributos.</p>
+                                        </div>
+                                      </div>
+                                    </a>
+                                  </div>
+                                  <div class="col-sm-6">
+                                    <a class="panel panel-default" href="destacados-numeros.html">
+                                      <!-- <div class="panel-heading" style="background-image: url(../../../poncho/img/dt-2.png)">
+                                      </div> -->
+                                      <div class="panel-body">
+                                        <div class="media-body">
+                                          <h3>Números</h3>
+                                          <p>Sirven para mostrar cifras estadísticas.</p>
+                                        </div>
+                                      </div>
+                                    </a>
+                                  </div>
+                                  <div class="col-sm-6">
+                                      <a class="panel panel-default" href="destacados-imagenes.html">
+                                        <!-- <div class="panel-heading" style="background-image: url(../../../poncho/img/dt-3.png)">
+                                        </div> -->
+                                        <div class="panel-body">
+                                          <div class="media-body">
+                                            <h3>Imágenes</h3>
+                                            <p>Sirven para mostrar información con imagen y texto.</p>
+                                          </div>
+                                        </div>
+                                      </a>
+                                    </div>
+                            </div>
+          
+          
+                          </div>
+                           
+
+                    </div>
+
+                </article>
+            </section>
+        </div>
+    </div>
+
+    </div>
+
+
+
+    <script>
+      $(function(){
+        $("#menuLateral").load("../../includes/plantillas_menu.html",function(){
+          var seccion = $("#menuLateral").data("seccion");
+          $("#menuLateral ul li a[data-seccion="+seccion+"]").parent().addClass("active");
+        });
+      });
+    </script>
+
+
+      </main>
+      <script type="module">
+        
+        import 'https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate';
+
+        const el = document.createElement('pwa-update');
+        document.body.appendChild(el);
+    </script>
+    </body>
+</html>

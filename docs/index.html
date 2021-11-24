@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]> <html lang="es"class="iem7"> <![endif]-->
+<!--[if lt IE 7 ]> <html lang="es" class="ie6 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="es" class="ie7 lt-ie8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="es" class="ie8"> <![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="es"><!--<![endif]-->
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Presidencia de la Nación">
+  
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-P68ZXT');</script>
+    <!-- End Google Tag Manager -->
+
+
+    <link rel="shortcut icon" href="/poncho/favicon.ico">
+    <link rel="apple-touch-icon" href="/poncho/img/iconos/icon-192x192.png">
+    <link rel="manifest" href="/poncho/manifest.json">
+
+    <!-- Nav and address bar color -->
+    <meta name="theme-color" content="#0072b8">
+    <meta name="msapplication-navbutton-color" content="#0072b8">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
+  <!--  
+    <meta property="og:site_name" content="Documentación Poncho"/>
+    <meta property="og:url" content="/poncho/">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Poncho">
+    <meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
+    <meta property="og:image" content="http://argob.github.io/poncho/img/poncho_social.jpg" />
+    <meta property="og:locale" content="es_AR">
+  
+   
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Poncho">
+    <meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
+    <meta name="twitter:image" content="http://argob.github.io/poncho/img/poncho_social.jpg" />
+  -->
+
+  <link href="/poncho/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/poncho/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="/poncho/css/prism.css" rel="stylesheet">
+
+  <!-- PONCHO CSS:
+    Recomendamos que descargues o instales 'ar-poncho' en tu proyecto.
+    <link href="/poncho/node_modules/ar-poncho/dist/css/roboto-fontface.css" rel="stylesheet">
+    <link href="/poncho/node_modules/ar-poncho/dist/css/poncho.min.css" rel="stylesheet">
+    <link href="/poncho/node_modules/ar-poncho/dist/css/documentacion.css" rel="stylesheet">
+    <link href="/poncho/node_modules/ar-poncho/dist/icono-arg.css" rel="stylesheet">
+    Al solo efecto de esta documentación, usaremos los estilos en línea en el proyecto GitHub Poncho
+  -->
+    <link href="https://cdn.jsdelivr.net/gh/argob/poncho@master/dist/css/encode-fontface.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/gh/argob/poncho@master/dist/css/poncho.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/gh/argob/poncho@master/dist/css/documentacion.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/gh/argob/poncho@master/dist/icono-arg.css" rel="stylesheet">
+ <!-- FIN PONCHO -->
+
+
+    
+    <script src="/poncho/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/poncho/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/poncho/js/scripts.js"></script>
+    <script src="/poncho/js/prism.js"></script>
+
+    <!--PWA ServiceWorker-->
+    <script type="module"> 
+      if (navigator.serviceWorker.controller) { 
+          console.log("Active service worker found, no need to register"); 
+      }else{ 
+           // Register the service worker 
+          navigator.serviceWorker.register("/poncho", { scope: "./" }).then(function (reg) { console.log("Service worker has been registered"); })
+        } 
+    </script>
+
+
+
+
+    
+
+
+
+    
+
+
+
+    <!--Solo para tablas con buscador-->
+    <script src="/poncho/node_modules/datatables.net/js/jquery.dataTables.min.js"></script>
+    <link href="/poncho/node_modules/datatables.net-dt/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <script src="/poncho/node_modules/intl/dist/Intl.min.js"></script>
+    <link href="https://www.argentina.gob.ar/sites/default/files/ponchotable/ponchotable-1.1.css" rel="stylesheet" />
+
+    <script src="/poncho/node_modules/showdown/dist/showdown.min.js"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://poncheado.herokuapp.com/node_modules/html5shiv/html5shiv.js"></script>
+      <script src="https://poncheado.herokuapp.com/node_modules/respond.js/respond.min.js"></script>
+      <![endif]-->
+
+    <link href="https://id.argentina.gob.ar/static/css/chosen/chosen.css" rel="stylesheet">
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Inicio Poncho | Sitio Demo Poncho</title>
+<meta name="generator" content="Jekyll v3.9.1" />
+<meta property="og:title" content="Inicio Poncho" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="La librería de estilos y componentes oficiales para diseñar y desarrollar sitios web y aplicaciones móviles del Gobierno de la República Argentina." />
+<meta property="og:description" content="La librería de estilos y componentes oficiales para diseñar y desarrollar sitios web y aplicaciones móviles del Gobierno de la República Argentina." />
+<meta property="og:site_name" content="Sitio Demo Poncho" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Inicio Poncho" />
+<script type="application/ld+json">
+{"@type":"WebSite","headline":"Inicio Poncho","url":"/poncho/","description":"La librería de estilos y componentes oficiales para diseñar y desarrollar sitios web y aplicaciones móviles del Gobierno de la República Argentina.","name":"Sitio Demo Poncho","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+  
+</head>
+    <body data-spy="scroll" data-target="#navbar-docs">
+      <!-- Google Tag Manager (noscript) -->
+      <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P68ZXT" 
+      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+      <!-- End Google Tag Manager (noscript) -->
+    
+      <header>
+    <nav class="navbar navbar-top navbar-default">
+      <div class="container">
+        <div>
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar-collapse">
+              <span class="sr-only">Toggle navigationn</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a href="/poncho/" class="navbar-brand">
+              <img alt="Poncho" src="/poncho/img/poncho.gif" height="50">
+              <h1>Poncho</h1>
+            </a>
+          </div>
+          <div class="collapse navbar-collapse" id="main-navbar-collapse" data-seccion="Poncho"></div>
+        </div>
+      </div>
+    </nav>
+</header>  
+      <section class="jumbotron bg-primary"  style="background-image:url('/poncho/img/jumbotron-poncho.png');">
+    
+    
+
+
+    <div class="jumbotron_body">
+        <div class="container">
+            <div class="row">
+           
+               
+                <div class="col-xs-12 col-md-8 col-md-offset-2 text-center">
+                    <h1>Poncho</h1>
+                    <p>La librería de estilos y componentes oficiales para diseñar y desarrollar sitios web y aplicaciones móviles del Gobierno de la República Argentina.</p>
+                </div>
+              
+
+                
+            </div>
+        </div>
+    </div>
+</section>
+      <main>
+          <!-- Inicio Como Instalar Poncho -->
+  <section>
+    <div class="container m-t-2">
+		
+		<div class="row text-center">
+      <div class="col-md-8 col-md-offset-2">
+        <h2 class="m-b-3">¿Por qué usar Poncho?</h2>
+      </div>
+        <div class="col-sm-4">
+          <i class="icono-arg-genero fa-4x text-primary"></i>
+          <h3>Experiencia unificada</h3>
+          <p>Los ciudadanos van a reconocer el sitio como parte de los sitios oficiales del Gobierno.</p>
+        </div>
+        <div class="col-sm-4 ">
+          <i class="icono-arg-sitios-accesibles fa-4x text-primary"></i>
+          <h3>Sitios accesibles</h3>
+          <p>Los componentes fueron mejorados para que los usen personas con discapacidad.</p>
+        </div>
+        <div class="col-sm-4">
+          <i class="icono-arg-reloj fa-4x text-primary"></i>
+          <h3>Menos tiempo de trabajo</h3>
+          <p>Copiá y pegá componentes y plantillas sin necesidad de desarrollar desde cero.</p>
+        </div>
+      </div>
+		
+		
+		
+ 
+    </div>
+  </section>
+  <!-- Fin Por Que Usar Poncho -->
+  <!-- Inicio Como Instalar Poncho -->
+  <section>
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md-8 col-md-offset-2">
+          <h2>¿Cómo instalar Poncho?</h2>
+          <p>Poncho usa de base los estilos y scripts de Bootstrap 3.</p>
+          <div class="alert alert-info hidden">
+            <p class="small">También tenemos una prueba de <a href="/poncho/bs4/" target="_blank">Poncho para Bootstrap 4.</a> Estamos trabajando en la documentación completa.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="well m-b-0">
+              <h3 class="h4">Si usás NPM</h3>
+              <p>Ejecutá en la consola el comando <strong>npm i ar-poncho</strong></p>
+            </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="well">
+              <div class="row">
+                <div class="col-md-12">
+                  <h3 class="h4 m-t-2">Si descargás los archivos manualmente</h3>
+                  <!-- <p>También podés <a href="/poncho/plantillas/paginas-de-argentina">descargar las plantillas de Poncho</a> o crear archivos html nuevos, asegurándote de que en los html estén declaradas estas dependencias:</p> -->
+                  <p>Creá archivos html con estas dependencias:</p>
+                </div>
+              </div>
+
+              <!-- <div class="row">
+                <div class="col-md-12">
+                  <h4 class="h5 m-t-2">Fuente Tipográfica - Roboto</h4>
+                      <pre><code>&lt;link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet"></code></pre> 
+                </div>
+              </div> -->
+              
+              <div class="row">
+                <div class="col-md-12">
+                  <h4 class="h5 m-t-2">CSS - Bootstrap (v-3.4.1), Font Awesome (v-4.7.0), Poncho, Iconos</h4>
+
+                    <pre><code>&lt;link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"  rel="stylesheet"&gt;</code></pre>
+                    <pre><code>&lt;link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"&gt;</code></pre>
+                    <pre><code>&lt;link href="dist/css/poncho.min.css" rel="stylesheet"&gt;</code></pre>
+                    <pre><code>&lt;link href="dist/css/icono-arg.css" rel="stylesheet"&gt;</code></pre>
+
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <h4 class="h5 m-t-2">JavaScript - Bootstrap (v-3.4.1), JQuery</h4>
+
+                    <pre><code>&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js&gt;&lt;/script&gt;</code></pre>
+                    <pre><code>&lt;script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js”&gt;&lt;/script&gt;</code></pre>
+
+                </div>
+              </div>
+
+              <hr>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <p>Todas las dependencias son rutas absolutas excepto poncho.min.css e icono-arg.css, que los debés descargar del repositorio de Poncho en github y usar de manera local.</p>
+                </div>
+              </div>
+
+              <div class="row m-y-1">
+                <div class="col-md-12">
+                  <a href="https://github.com/argob/poncho" class="btn btn-success ">Descargar Poncho en Github</a>
+                </div>
+              </div>
+
+            </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Fin Como Instalar Poncho -->
+  <!-- Inicio Comenza a usar Poncho -->
+  <section class="p-t-0">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-sm-12">
+          <h2 class="m-b-3">Comenzá a usar Poncho</h2>
+        </div>
+      </div>
+
+<div class="row panels-row">
+
+  <div class="col-md-4 col-xs-12 col-sm-6 col-md-offset-2">
+     <a href="/poncho/identidad/iconos/" class="panel panel-default panel-icon panel-primary">
+        <div class="panel-heading hidden-xs">
+           <i class="icono-arg-colores-tipografia"></i>
+        </div>
+        <div class="panel-body">
+           <h3><span class="visible-xs-inline"><i class="icono-arg-colores-tipografia"></i>&nbsp; </span>Identidad</h3>
+           <div class="text-muted">
+              <p>Íconos oficiales, colores, tipografía y uso de marca de Presidencia.</p>
+           </div>
+        </div>
+     </a>
+  </div>
+
+  <div class="col-md-4 col-xs-12 col-sm-6">
+     <a href="/poncho/componentes/botones/" class="panel panel-default panel-icon panel-primary">
+        <div class="panel-heading hidden-xs">
+           <i class="icono-arg-componentes"></i> 
+        </div>
+        <div class="panel-body">
+           <h3><span class="visible-xs-inline"><i class="icono-arg-componentes"></i>&nbsp; </span>Componentes</h3>
+           <div class="text-muted">
+              <p>Botones, paneles, alertas y otros elementos para construír páginas.</p>
+           </div>
+        </div>
+     </a>
+  </div>
+
+<!--  <div class="col-md-3 col-xs-12 col-sm-6">
+     <a href="/poncho/plantillas/paginas-de-argentina/" class="panel panel-default panel-icon panel-primary">
+        <div class="panel-heading hidden-xs">
+           <i class="icono-arg-plantillas"></i>
+        </div>
+        <div class="panel-body">
+           <h3><span class="visible-xs-inline"><i class="icono-arg-plantillas"></i>&nbsp; </span>Plantillas </h3>
+           <div class="text-muted">
+              <p>Páginas estandarizadas con componentes específicos, listas para usar.</p>
+           </div>
+        </div>
+     </a>
+  </div>
+
+  <div class="col-md-4 col-xs-12 col-sm-6">
+     <a href="/poncho/apps/componentes-apps" class="panel panel-default panel-icon panel-primary">
+        <div class="panel-heading hidden-xs">
+           <i class="icono-arg-celular"></i>
+        </div>
+        <div class="panel-body">
+           <h3><span class="visible-xs-inline"><i class="icono-arg-nube-bajar-datos"></i>&nbsp; </span>Apps móviles</h3>
+           <div class="text-muted">
+              <p>Componentes para diseñar aplicaciones para iOS y Android.</p>
+           </div>
+        </div>
+     </a>
+  </div>-->
+
+</div>
+    </div>
+
+
+  </section>
+<!-- Fin Comenza a usar Poncho -->
+
+  <div class="container">
+
+<section class="p-t-0" style="padding-bottom: 140px;">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <div class="row text-center">
+            <div class="col-sm-12">
+              <h2 class="m-b-3">Acerca de Poncho</h2>
+            </div>
+          </div>
+
+          <div class="row text-center">
+            <div class="col-md-12">
+              <p>Poncho es administrado por la <strong>Subsecretaría de Gobierno Abierto y País Digital.</strong></p>
+              <p>Si querés hacer una sugerencia podés <a href="https://github.com/argob/poncho/issues">cargar un issue en el repositorio de Poncho en Github.</a></p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </div>
+
+
+    
+    <!-- <script>
+      $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+        $('[data-toggle="popover"]').popover();
+      })
+    </script> -->
+
+
+
+      </main>
+      <script type="module">
+        
+        import 'https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate';
+
+        const el = document.createElement('pwa-update');
+        document.body.appendChild(el);
+    </script>
+    </body>
+</html>

@@ -1,0 +1,131 @@
+ /* PONCHO LABS */
+
+
+/* TIPOGRAFIA */
+ body{
+     font-size: 16px;
+     line-height: 1.45;
+}
+ p{
+     margin-bottom: 1.3em!important;
+}
+ p, li, table, a{
+     font-size: 1em!important;
+     font-weight: 400;
+     line-height: 1.471em;
+}
+ .lead{
+     font-size: 1.2em;
+}
+ h1,h2, h3, h4, h5 {
+     margin: 1.414em 0 0.5em;
+     line-height: 1.2;
+}
+ h1 {
+     margin-top: 0;
+}
+ h1{
+    font-size: 2.5em;
+}
+ h2{
+    font-size: 2em;
+}
+ h3{
+    font-size: 1.5em;
+}
+ h4{
+    font-size: 1.2em;
+}
+ h5{
+    font-size: 1.1em;
+}
+ small, .font_small {
+    font-size: 0.78em;
+}
+/* PRUEBA JUMBOTRON 2.0 */
+ .jumbotron2 h1,.jumbotron2 p{
+     text-align: left;
+     color:#FFF;
+}
+ .jumbotron2 .jumbotron_body .col-xs-12{
+     background-color: rgba(0, 114, 187, 1);
+     padding: 20px;
+}
+ .jumbotron2 .overlay{
+     display:none;
+}
+/* PRUEBA JUMBOTRON 3.0 */
+ .jumbotron3 h1, .jumbotron3 p{
+     text-align: left;
+     color:#FFF;
+}
+ .jumbotron3 .jumbotron_body .col-xs-12{
+     text-align: left;
+     padding: 20px;
+}
+ .jumbotron3 .overlay{
+     display:none;
+}
+ .jumbotron2 .jumbotron_body .col-xs-12 .btn{
+     background-color:#FFF;
+     color:#000;
+     border:1px solid #CCC;
+}
+ .jumbotron3 .jumbotron_body p, .jumbotron3 .jumbotron_body h1{
+     display: inline-block;
+     background-color:rgba(0, 114, 187, 1);
+     padding: 10px;
+     margin: 0;
+}
+/*COLORES*/
+ .btn-primary {
+     background-color: #0072bb;
+}
+ .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.focus, .btn-primary.active {
+     background-color: #01579b;
+}
+ .btn-success {
+     background-color: #2e7d33;
+}
+ .btn-success:hover, .btn-success:focus {
+     background-color: #1b5e20;
+}
+ .btn-info {
+     background-color: #0072bb;
+}
+ .btn-info:hover, .btn-info:focus {
+     background-color: #01579b;
+}
+ .btn-warning {
+     background-color: #c62828;
+}
+ .btn-warning:hover, .btn-warning:focus {
+     background-color: #b71c1c;
+}
+ .btn-danger {
+     background-color: #c62828;
+}
+ .btn-danger:hover, .btn-danger:focus {
+     background-color: #b71c1c;
+}
+ .btn-link {
+     border-radius: 4px;
+     border:3px solid #DEE2E6!important;
+     color: #0072bb!important;
+     background-color: #FFF!important;
+}
+ .btn-link:hover, .btn-link:focus {
+     text-decoration: none !important;
+     background-color: #F8f8f8!important;
+     color: #0072bb!important;
+}
+ .btn:focus{
+    border: 3px solid #FEC221!important;
+    outline: none;
+}
+ .btn,.btn:hover,.btn-link, .btn-link:hover{
+    border:3px solid transparent;
+    letter-spacing: 1.5px;
+    padding-left:1em!important;
+    padding-right:1em!important;
+}
