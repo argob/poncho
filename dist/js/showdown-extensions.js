@@ -226,7 +226,7 @@ if(showdown){ // IF showdown
         type: 'lang',
         filter: function(text, converter, options) {
 
-          const regex = /(\[([^\[\]]+)\]\((blank:#)?([a-zA-Z0-9\.\-\~\!\*\'\(\)\;\:\@\&\=\+\$\,\/\?\%\#]+)\)\{([\w_\-.]+?)\})/gm;
+          const regex = /(\[([^\[\]]+)\]\((blank:#)?([a-zA-Z0-9\_\.\-\~\!\*\'\(\)\;\:\@\&\=\+\$\,\/\?\%\#]+)\)\{([\w_\-.]+?)\})/gm;
 
           var main_regex = new RegExp(regex, "gmi");
 
