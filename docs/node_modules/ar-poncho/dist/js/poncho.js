@@ -261,13 +261,13 @@ function ponchoTable(opt) {
             jQuery('#ponchoTableFiltroCont').show();
         }
         jQuery('#ponchoTableFiltro').on('change', function() {
-            var filtro = jQuery(this).val();
+            var filtro = jQuery.fn.DataTable.ext.type.search.string(jQuery(this).val());
             if (filtro != "") {
                 tabla.column(filtroColumna).every(function() {
                     var that = this;
                     that
-                        .search(jQuery.fn.DataTable.ext.type.search.string(filtro))
-                        .draw();
+                    .search(filtro ? '^'+filtro+'$':'', true,false)
+                  .draw();
                 });
             } else {
                 tabla.search('').columns().search('').draw();
