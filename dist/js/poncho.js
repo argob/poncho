@@ -692,7 +692,7 @@ function ponchoChart(opt) {
                                 if (split.length > 3){ //ingresaron un tipo de grafico
                                   //verifico que sea un tipo de grafico valido
                                   if (split[3] == 'barra' || split[3] == 'linea') {
-                                    tipoGraficosMixed.push(split[3]);//recupero tipo de grafico para cada dataset
+                                    tipoGraficosMixed.push(split[3]);//recupero tipo de grafico para cada dataset   
                                   } else { //seteo graficos por defecto
                                      if (index == 0) tipoGraficosMixed.push('barra');//por defecto seteo barra
                                      if (index == 1) tipoGraficosMixed.push('linea');//por defecto seteo linea
@@ -767,7 +767,7 @@ function ponchoChart(opt) {
 
                 //seteo toltips para mostrar porcentaje o no
                 if (opt.porcentajes == true) {
-
+              
                     if (tipoGrafico == 'line' && cantDatos > 1){
                         //seteo tooltips
                         toltips = {
@@ -871,6 +871,7 @@ function ponchoChart(opt) {
                                     fill: false,
                                     borderWidth: 2,
                                     lineTension: 0,
+                                    backgroundColor: codigosColores[indiceColor], 
                                 };
                             } else if (opt.tipoGrafico == 'Bar' || opt.tipoGrafico == 'Area' || opt.tipoGrafico == 'Horizontal Bar' || opt.tipoGrafico == 'Stacked Bar') {
                                 //construyo datasets
@@ -882,13 +883,13 @@ function ponchoChart(opt) {
                                     borderWidth: 2,
                                     lineTension: 0, //linea  y area
                                 };
-                            } else if (opt.tipoGrafico == 'Mixed'){
+                            } else if (opt.tipoGrafico == 'Mixed'){ 
                                 var tipo = tipoGraficosMixed[indiceMixed];
                                 //construyo datasets
                                 if (tipo == 'barra') {
                                   var dataset = {
                                     label: columnas[indiceColor],
-                                    data: datos,
+                                    data: datos, 
                                     borderColor: codigosColores[indiceColor],
                                     borderWidth: 1,
                                     // This binds the dataset to the left y axis
@@ -899,7 +900,7 @@ function ponchoChart(opt) {
                                 } else if (tipo == 'linea'){
                                     var dataset = {
                                       label: columnas[indiceColor],
-                                      data: datos,
+                                      data: datos, 
                                       borderColor: codigosColores[indiceColor],
                                       // Changes this dataset to become a line
                                       type: 'line',
@@ -933,7 +934,7 @@ function ponchoChart(opt) {
                         }
                     });
 
-                    if (opt.tipoGrafico == 'Mixed'){
+                    if (opt.tipoGrafico == 'Mixed'){ 
                         if (porcentajesMixed.length == 2) {
                             indicePorcentajeMixed = 2; //los 2 dataset usan porcentaje
                         } else if (porcentajesMixed.length == 1){
@@ -1245,7 +1246,7 @@ function ponchoChart(opt) {
                 labels: etiquetas,
                 datasets: datos
             },
-            options: {
+            options: { 
               legend: { display: mostrarLeyendas, position: posicionLeyendas, labels: {textAlign: 'center'} },
               tooltips: {
                 enabled: true,
@@ -1254,7 +1255,7 @@ function ponchoChart(opt) {
                    label: function(tooltipItems, data) {
                     var text = '';
                     if (indice == 2) text = '%';
-                    else if (tooltipItems.datasetIndex == indice) text = '%';
+                    else if (tooltipItems.datasetIndex == indice) text = '%';                 
                     return data.datasets[tooltipItems.datasetIndex].label + ': ' + tooltipItems.yLabel + ' ' + text;
                   }
                 }
@@ -1270,7 +1271,7 @@ function ponchoChart(opt) {
                         beginAtZero: empiezaYenCero,
                         callback: function(value) {
                           var text = '';
-                          if (indice == 0 || indice == 2) text = '%';
+                          if (indice == 0 || indice == 2) text = '%'; 
                           return value + text;
                         }
                     },
@@ -1315,7 +1316,6 @@ function ponchoChart(opt) {
             chequeo = true;
         return chequeo;
     }
-
 }
 
 
