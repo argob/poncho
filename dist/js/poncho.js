@@ -818,7 +818,7 @@ function ponchoChart(opt) {
                     console.log('datos --> ' + datos);
                     console.log('colores --> ' + codigosColores);
 
-                    graficoTorta(etiquetas, datos, tipoGrafico, codigosColores, opt.idComponenteGrafico, posicionLeyendas, toltips);
+                    graficoTorta(etiquetas, datos, tipoGrafico, codigosColores, opt.idComponenteGrafico, posicionLeyendas, toltips, mostrarLeyendas);
                 }
 
                 if (cantDatos == 1) {
@@ -830,11 +830,11 @@ function ponchoChart(opt) {
                     console.log('color --> ' + color);
 
                     if (opt.tipoGrafico == 'Line') {
-                        graficoLineaSimple(etiquetas, datos, tipoGrafico, color, columnas[0], opt.ejeYenCero, opt.idComponenteGrafico, posicionLeyendas, toltips);
+                        graficoLineaSimple(etiquetas, datos, tipoGrafico, color, columnas[0], opt.ejeYenCero, opt.idComponenteGrafico, posicionLeyendas, toltips, mostrarLeyendas);
                     }
 
                     if (tipoGrafico == 'bar' || opt.tipoGrafico == 'Area' || tipoGrafico == 'horizontalBar') {
-                        graficoAreaBarraSimple(etiquetas, datos, tipoGrafico, color, columnas[0], opt.ejeYenCero, opt.idComponenteGrafico, posicionLeyendas, toltips);
+                        graficoAreaBarraSimple(etiquetas, datos, tipoGrafico, color, columnas[0], opt.ejeYenCero, opt.idComponenteGrafico, posicionLeyendas, toltips, mostrarLeyendas);
                     }
 
                 }
@@ -890,11 +890,9 @@ function ponchoChart(opt) {
                                   var dataset = {
                                     label: columnas[indiceColor],
                                     data: datos, 
-                                    borderColor: codigosColores[indiceColor],
-                                    borderWidth: 1,
+                                    backgroundColor: codigosColores[indiceColor],
                                     // This binds the dataset to the left y axis
                                     yAxisID: 'left-y-axis',
-                                    borderSkipped: 'bottom',
                                     type: 'bar',
                                   };
                                 } else if (tipo == 'linea'){
@@ -902,24 +900,12 @@ function ponchoChart(opt) {
                                       label: columnas[indiceColor],
                                       data: datos, 
                                       borderColor: codigosColores[indiceColor],
+                                      backgroundColor: codigosColores[indiceColor],
                                       // Changes this dataset to become a line
                                       type: 'line',
                                       // This binds the dataset to the right y axis
                                       yAxisID: 'right-y-axis',
-                                      fill: true,
-                                      lineTension: 0.1,
-                                      borderCapStyle: 'butt',
-                                      borderDash: [],
-                                      borderDashOffset: 0.0,
-                                      borderJoinStyle: 'miter',
-                                      borderWidth: 1,
-                                      pointBorderWidth: 1,
-                                      pointHoverRadius: 4,
-                                      pointHoverBackgroundColor: 'rgb(75, 214, 238)',
-                                      pointHoverBorderColor: 'rgb(75, 214, 238)',
-                                      pointHoverBorderWidth: 3,
-                                      pointRadius: 5,
-                                      pointHitRadius: 10,
+                                      fill: false,
                                     };
                                 }
                             }
@@ -934,7 +920,7 @@ function ponchoChart(opt) {
                         }
                     });
 
-                    if (opt.tipoGrafico == 'Mixed'){ 
+                    if (tipoGrafico == 'mixed') { 
                         if (porcentajesMixed.length == 2) {
                             indicePorcentajeMixed = 2; //los 2 dataset usan porcentaje
                         } else if (porcentajesMixed.length == 1){
@@ -945,7 +931,7 @@ function ponchoChart(opt) {
                             }
                         } else  indicePorcentajeMixed = 3; //ningun dataset usa escala de porcentaje
                     }
-
+                    
                     console.log('etiquetas --> ' + etiquetas);
 
                     if (opt.tipoGrafico == 'Stacked Bar') graficoComplejoStacked(etiquetas, tipoGrafico, datasets, opt.idComponenteGrafico, opt.ejeYenCero, posicionLeyendas, toltips, mostrarLeyendas);
@@ -1096,7 +1082,7 @@ function ponchoChart(opt) {
         return codigoColor;
     }
 
-    function graficoTorta(etiquetas, datos, tipoGrafico, colores, idGrafico, posicionLeyendas, toltips) {
+    function graficoTorta(etiquetas, datos, tipoGrafico, colores, idGrafico, posicionLeyendas, toltips, mostrarLeyendas) {
         const $grafica = document.getElementById(idGrafico);
         const dataset = {
             data: datos,
@@ -1114,7 +1100,7 @@ function ponchoChart(opt) {
             },
             //options: options
             options: {
-                legend: { display: true, position: posicionLeyendas },
+                legend: { display: mostrarLeyendas, position: posicionLeyendas },
                 responsive: true,
                 tooltips: toltips,
             }
@@ -1122,7 +1108,7 @@ function ponchoChart(opt) {
         });
     }
 
-    function graficoLineaSimple(etiquetas, datos, tipoGrafico, color, label, empiezaYenCero, idGrafico, posicionLeyendas, toltips) {
+    function graficoLineaSimple(etiquetas, datos, tipoGrafico, color, label, empiezaYenCero, idGrafico, posicionLeyendas, toltips, mostrarLeyendas) {
         const $grafica = document.getElementById(idGrafico);
         const dataset = {
             data: datos,
@@ -1141,7 +1127,7 @@ function ponchoChart(opt) {
                 ]
             },
             options: {
-                legend: { display: true, position: posicionLeyendas },
+                legend: { display: mostrarLeyendas, position: posicionLeyendas },
                 tooltips: toltips,
                 responsive: true,
                 scales: {
@@ -1155,7 +1141,7 @@ function ponchoChart(opt) {
         });
     }
 
-    function graficoAreaBarraSimple(etiquetas, datos, tipoGrafico, color, label, empiezaYenCero, idGrafico, posicionLeyendas, toltips) {
+    function graficoAreaBarraSimple(etiquetas, datos, tipoGrafico, color, label, empiezaYenCero, idGrafico, posicionLeyendas, toltips, mostrarLeyendas) {
         const $grafica = document.getElementById(idGrafico);
         const dataset = {
             data: datos,
@@ -1174,7 +1160,7 @@ function ponchoChart(opt) {
                 ]
             },
             options: {
-                legend: { display: true, position: posicionLeyendas },
+                legend: { display: mostrarLeyendas, position: posicionLeyendas },
                 tooltips: toltips,
                 responsive: true,
                 scales: {
@@ -1271,14 +1257,14 @@ function ponchoChart(opt) {
                         beginAtZero: empiezaYenCero,
                         callback: function(value) {
                           var text = '';
-                          if (indice == 0 || indice == 2) text = '%'; 
+                          if (indice == 1 || indice == 2) text = '%'; 
                           return value + text;
                         }
                     },
                      scaleLabel: {
                         display: true,
-                        labelString: label1,
-                        fontColor: "red"
+                        labelString: label2,
+                        fontColor: "black"
                       }
                   }, {
                     id: 'right-y-axis',
@@ -1288,14 +1274,14 @@ function ponchoChart(opt) {
                         beginAtZero: empiezaYenCero,
                         callback: function(value) {
                           var text = '';
-                          if (indice == 1 || indice == 2) text = '%';
+                          if (indice == 0 || indice == 2) text = '%';
                           return value + text;
                         }
                     },
                        scaleLabel: {
                         display: true,
-                        labelString: label2,
-                        fontColor: "green"
+                        labelString: label1,
+                        fontColor: "black"
                       }
                   }
                 ],
@@ -1316,6 +1302,7 @@ function ponchoChart(opt) {
             chequeo = true;
         return chequeo;
     }
+
 }
 
 
