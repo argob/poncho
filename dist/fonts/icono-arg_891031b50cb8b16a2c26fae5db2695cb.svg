@@ -1,11 +1,11 @@
 <?xml version="1.0" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
 <!--
-2022-4-4: Created with FontForge (http://fontforge.org)
+2022-4-18: Created with FontForge (http://fontforge.org)
 -->
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
 <metadata>
-Created by FontForge 20190801 at Mon Apr  4 18:29:00 2022
+Created by FontForge 20190801 at Mon Apr 18 15:29:25 2022
  By 
 
 </metadata>
@@ -22,7 +22,7 @@ Created by FontForge 20190801 at Mon Apr  4 18:29:00 2022
     bbox="-0.569219 -59 506 444"
     underline-thickness="38.4"
     underline-position="-76.8"
-    unicode-range="U+0020-F68E"
+    unicode-range="U+0020-F68F"
   />
     <missing-glyph />
     <glyph glyph-name="space" unicode=" " horiz-adv-x="200" 
@@ -4173,6 +4173,8 @@ c2 -1 5 -1 7 -1zM307 176v0h8v0c3 0 9 0 12 1l-18 9zM211 272v-2c-1 -7 -1 -19 -1 -3
 c-3 1 -7 3 -9 5c-1 -2 -2 -5 -3 -7c-4 -6 -14 -11 -21 -11h-5l-40 -65c-1 0 33 69 31 72s-4 8 -4 12s2 11 5 15c4 6 12 11 19 12c-4 3 -10 5 -15 5c-9 -1 -19 -25 -29 -49c-6 -17 -19 -44 -28 -60c-1 -1 -2 -2 -4 -2v0v0h-3c-1 1 -2 3 -2 5v3c9 16 21 41 27 58
 c13 31 22 54 37 56h2c6 0 13 -3 18 -6c-9 13 -17 21 -22 20c-19 -5 -28 -28 -40 -57c-5 -14 -16 -35 -23 -48c-1 -1 -3 -3 -5 -3v0c-1 0 -2 1 -3 1c-1 1 -3 3 -3 5c0 1 1 2 1 3c7 12 18 33 23 46c12 30 24 58 48 64c15 3 31 -20 41 -37c1 1 3 2 4 2c22 53 22 53 26 52
 c2 -1 4 -3 4 -5zM199 228v14c-2 -4 -4 -9 -6 -14h6zM220 234c-1 -2 -2 -5 -3 -8l4 -1c0 3 -1 6 -1 9z" />
+    <glyph glyph-name="sintra" unicode="&#xf68f;" horiz-adv-x="503" 
+d="M503 192l-187 -187l-55 56l130 131l-75 75l-130 -131l-56 56l186 186zM317 248l56 -56l-187 -186l-186 186l186 187l56 -56l-126 -126l-5 -5l71 -70l4 -4l5 4z" />
     <glyph glyph-name="sistema-de-consulta-aprender" unicode="&#xf64d;" horiz-adv-x="440" 
 d="M23 61c9 25 28 63 57 89c-30 -26 -48 -64 -57 -89zM197 150c6 2 12 3 17 6c-6 -2 -11 -4 -17 -6zM249 142c14 -14 25 -30 33 -45c-9 15 -20 31 -33 45zM290 81c6 -12 10 -23 12 -31c-3 8 -6 19 -12 31zM225 221c10 10 17 23 22 36c-4 -14 -12 -26 -22 -36zM204 204
 c-6 -3 -12 -5 -18 -7c6 2 12 4 18 7zM186 197c-9 -3 -19 -4 -28 -4c10 0 19 1 28 4zM90 347c-12 -13 -20 -30 -23 -48c3 18 11 35 23 48zM438 312c1 -2 2 -4 2 -6l-1 -142c0 -1 -1 -2 -1 -3v-1v-1l-49 -74c-2 -3 -5 -4 -8 -4h-59c-2 5 -4 10 -7 16h62l39 58h-140
