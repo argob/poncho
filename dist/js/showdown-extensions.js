@@ -462,6 +462,7 @@ if(showdown){ // IF showdown
   });
 
 
+ 
   /**
    * Crea la etiqueta details con un summary.
    *
@@ -473,28 +474,28 @@ if(showdown){ // IF showdown
       {
         type: 'lang',
         filter: function(text, converter, options) {
-          const regex = /^col([1-4])<<[\s\S]*?\[\{summary(-open|-close)?\}\[(.*?)\]\]([\s\S]*?)>>$/;
+          const regex = /^\[\[details(-open|-close)?\s?\{\[([\s\S]*?)\]\[([\s\S]*?)\]\}\]\]$/mg;
           const main_regex = new RegExp(regex, "gmi");
 
           text = text.replace(main_regex, function(e){
             const main_regex = new RegExp(regex, "gmi")
-            var rgx = main_regex.exec(e);
-            var cols = {
+            let rgx = main_regex.exec(e);
+            let cols = {
                 '2': '6',
                 '3': '4',
                 '4': '3',
                 '1': '12'
             };
-            var open = (rgx[2] == '-open')? 'true' : false;
+            let open = (rgx[1] == '-open')? 'true' : false;
 
-            var details = document.createElement('details');
+            let details = document.createElement('details');
             if(open){
               details.setAttribute('open', 'true');
             }
-            details.className = `col-xs-12 col-sm-${cols[rgx[1]]} col-md-${cols[rgx[1]]}`;
-            var summary = document.createElement('summary');
+            // Summary o título
+            let summary = document.createElement('summary');
             summary.innerHTML = cleanner(
-                converter.makeHtml(rgx[3]),
+                converter.makeHtml(rgx[2]),
                 [
                     'h1',
                     'h2',
@@ -507,12 +508,13 @@ if(showdown){ // IF showdown
                     'i'
                 ]
             );
-            var div = document.createElement('div');
-            div.innerHTML = converter.makeHtml(rgx[4]);
+            // Contenido
+            let div = document.createElement('div');
+            div.innerHTML = converter.makeHtml(rgx[3]);
             details.appendChild(summary);
             details.appendChild(div);
 
-            var html = details.outerHTML;
+            let html = details.outerHTML;
             return html;
           });
           return text;
