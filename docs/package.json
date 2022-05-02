@@ -13,7 +13,7 @@
     "type": "git",
     "url": "https://github.com/argob/poncho"
   },
-  "author": "Subsecretaría de Gobierno Abierto y País Digital - Secretaría de Innovación Pública",
+  "author": "Subsecretaría de Servicios y País Digital - Secretaría de Innovación Tecnológica del Sector Público",
   "license": "MIT",
   "dependencies": {
     "ar-poncho": "^2.0.153",
