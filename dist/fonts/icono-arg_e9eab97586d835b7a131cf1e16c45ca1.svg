@@ -1,11 +1,11 @@
 <?xml version="1.0" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
 <!--
-2022-5-2: Created with FontForge (http://fontforge.org)
+2022-5-3: Created with FontForge (http://fontforge.org)
 -->
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
 <metadata>
-Created by FontForge 20190801 at Mon May  2 15:54:10 2022
+Created by FontForge 20190801 at Tue May  3 12:19:47 2022
  By 
 
 </metadata>
@@ -22,7 +22,7 @@ Created by FontForge 20190801 at Mon May  2 15:54:10 2022
     bbox="-0.569219 -59 508 444"
     underline-thickness="38.4"
     underline-position="-76.8"
-    unicode-range="U+0020-F692"
+    unicode-range="U+0020-F693"
   />
     <missing-glyph />
     <glyph glyph-name="space" unicode=" " horiz-adv-x="200" 
@@ -3610,6 +3610,8 @@ c0 -2 -1 -5 -3 -6c-1 -1 -3 -2 -5 -2h-3l10 -45c0 -1 1 -2 1 -3c0 -4 -4 -8 -8 -8h-3
 d="M319 105c5 0 9 -4 9 -7v-87c0 -5 -4 -9 -9 -9h-87c-5 0 -9 4 -9 9v87c0 5 4 9 9 9h35v44c-25 4 -45 24 -49 49h-81l-57 -57v-1v-25c28 -4 50 -28 50 -57c0 -32 -27 -59 -59 -59s-59 27 -59 59c0 29 22 53 50 57v25v1l-59 59c-2 1 -3 4 -3 6s1 4 3 6l59 59v30h-40
 c-5 0 -9 4 -9 9v76c0 5 4 9 9 9h99c5 0 9 -4 9 -9v-75c0 -5 -4 -9 -9 -9h-41v-30l57 -57h81c4 28 29 50 58 50c32 0 59 -27 59 -59c0 -29 -22 -54 -50 -58v-42v-3h34zM31 379v-58h81v58h-81zM112 58c0 22 -18 40 -41 40c-22 0 -41 -18 -41 -40s19 -41 41 -41s41 19 41 41z
 M72 158l49 49l-49 48l-49 -48zM236 207c0 -22 19 -41 41 -41s40 19 40 41s-18 40 -40 40s-41 -18 -41 -40zM310 18v69h-69v-69h69z" />
+    <glyph glyph-name="pav" unicode="&#xf693;" horiz-adv-x="453" 
+d="M0 -34v135h294v-135h-294zM0 283v135h135v-135h-135zM0 124v136h135v-136h-135zM159 124v135h135v-135h-135zM206 218v-58l49 29zM318 124v136h135v-136h-135zM159 283v135h294v-135h-294zM318 -34v135h135v-135h-135z" />
     <glyph glyph-name="pd-punto-digital" unicode="&#xf5f6;" horiz-adv-x="422" 
 d="M211 440c117 -1 211 -95 211 -211c0 -64 -26 -113 -72 -159c-61 -59 -117 -115 -117 -115c-6 -6 -14 -9 -22 -9v0v0v0v0c-8 0 -16 3 -22 9c0 0 -56 55 -117 115c-46 46 -72 95 -72 159c0 117 94 211 211 211v0v0zM211 37c105 0 190 86 190 191s-85 191 -190 191
 s-191 -86 -191 -191s86 -191 191 -191zM97 266v-24h-8v70c6 1 12 2 18 2c9 0 17 -2 22 -6s7 -10 7 -18s-2 -14 -7 -18s-13 -6 -23 -6h-9zM97 306h1v-33c3 -1 6 -1 9 -1c7 0 14 1 17 4s5 7 5 13c0 7 -2 11 -5 14s-9 4 -16 4c-4 0 -8 0 -11 -1zM179 247c-2 -2 -4 -4 -9 -4
