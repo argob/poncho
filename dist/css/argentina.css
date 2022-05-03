@@ -16,7 +16,7 @@ body {
 
 
 
-main a[href^="http://"][target^="_blank"]:after, main a[href^="https://"][target^="_blank"]:after, main a[href^="https://"][target^="_blank"]:after, main footer[href^="http://"][target^="_blank"]:after, main footer[href^="http://"][target^="_blank"]:after, main footer[href^="https://"][target^="_blank"]:after, main footer[href^="https://"][target^="_blank"]:after {
+main a[href^="http://"][target^="_blank"]:after,  main a[href^="https://"][target^="_blank"]:after, main footer[href^="http://"][target^="_blank"]:after,  main footer[href^="https://"][target^="_blank"]:after {
   content: " \f08e";
   display: inline-block;
   margin-left: 5px;
@@ -24,7 +24,7 @@ main a[href^="http://"][target^="_blank"]:after, main a[href^="https://"][target
   font: normal normal normal 14px/1 FontAwesome;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased; }
-main a.btn:after, main a[href^="http://www.argentina.gob.ar"]:after, main a[href^="https://www.argentina.gob.ar"]:after, main a.panel:after, main a.btn:after, main a.not-external:after, main footer.btn:after, main footer[href^="http://www.argentina.gob.ar"]:after, main footer[href^="https://www.argentina.gob.ar"]:after, main footer.panel:after, main footer.btn:after, main footer.not-external:after {
+main a.btn:after, main a[href^="http://www.argentina.gob.ar"]:after, main a[href^="https://www.argentina.gob.ar"]:after, main a.panel:after, main a.not-external:after, main footer.btn:after, main footer[href^="http://www.argentina.gob.ar"]:after, main footer[href^="https://www.argentina.gob.ar"]:after, main footer.panel:after, main footer.btn:after, main footer.not-external:after {
   content: none !important; }
 main .social-share a:after,
 main .panel a:after,
