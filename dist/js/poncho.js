@@ -634,449 +634,18 @@ var ponchoUbicacion = function(options) {
 //#####################################################################
 function ponchoChart(opt) {
     "use strict";
-    var etiquetas = [];
-    var filteredTitleName = [];
-    var filteredTitlePos = [];
-    var color = '';
-    var colores = [];
-    var codigosColores = [];
-    var columnas = [];
-    var valores = [];
-    var datos = [];
-    var cantDatos = 0;
-    var urlOrigen = "";
-    var toltips = "";
-    var tipoGraficosMixed = [];
-    var indicePorcentajeMixed = 0;
-    var porcentajesMixed = [];
-    var labelsYCortos = [];
-    var indiceNombreCorto = 0;
 
-    //iniciaizo variables
-    var url = opt.jsonUrl ? opt.jsonUrl : 
-                            'https://sheets.googleapis.com/v4/spreadsheets/' + opt.idSpread + '/values/' + opt.hojaNombre + '?alt=json&key=AIzaSyCq2wEEKL9-6RmX-TkW23qJsrmnFHFf5tY';
-
-    var posicionLeyendas = opt.posicionLeyendas ? opt.posicionLeyendas : 'top';
-
-    var mostrarLeyendas = '';
-    if (typeof opt.mostrarLeyendas == 'undefined'){
-        mostrarLeyendas = true;
-    } else {
-        mostrarLeyendas = opt.mostrarLeyendas;
-    }
-    var tipoGrafico = getTipoGrafico(opt.tipoGrafico);
-
-    if (chequeoOpcionesObligatorias()) {
-
-        jQuery.getJSON(url,
-
-            function(data) {
-
-                var listado = data['values'];
-
-                //TITULOS
-                jQuery.each(Object.keys(listado[0]), function(index, key) {
-                    if (listado[0][index].substr(0, 5) == 'eje-y') {
-                        var split = listado[0][index].split('-');
-                        var pos = split[0] + split[1];
-                        filteredTitleName.push(pos);
-                        filteredTitlePos.push(index);
-                    } else if (listado[0][index] == 'nombre-corto'){
-                        if (tipoGrafico == 'heatmap'){
-                            indiceNombreCorto = index;
-                        }
-                    }
-                });
-
-                jQuery.each(listado, function(row, value) {
-                    if (row == 0) { //construyo arrays para los dataset, recupero colores y labels
-                        jQuery.each(filteredTitlePos, function(index, title) {
-                            var split = listado[row][filteredTitlePos[index]].split('-');
-                            var pos = split[0] + split[1];
-                            valores[pos] = []; //construyo los array para los dataset
-                            colores.push(split[2]); //recupero colores
-                            if (tipoGrafico == 'mixed') {
-                                if (split.length > 3){ //ingresaron un tipo de grafico
-                                  //verifico que sea un tipo de grafico valido
-                                  if (split[3] == 'barra' || split[3] == 'linea') {
-                                    tipoGraficosMixed.push(split[3]);//recupero tipo de grafico para cada dataset   
-                                  } else { //seteo graficos por defecto
-                                     if (index == 0) tipoGraficosMixed.push('barra');//por defecto seteo barra
-                                     if (index == 1) tipoGraficosMixed.push('linea');//por defecto seteo linea
-                                  }
-                                } else { //seteo graficos por defecto
-                                  if (index == 0) tipoGraficosMixed.push('barra');//por defecto seteo barra
-                                  if (index == 1) tipoGraficosMixed.push('linea');//por defecto seteo linea
-                                }
-                            }
-                        });
-                    }
-
-                    if (row == 1) {
-                        jQuery.each(filteredTitlePos, function(index, title) {
-                            if (tipoGrafico != 'pie') {
-                                if (tipoGrafico == 'heatmap') {
-                                    etiquetas.push(listado[row][filteredTitlePos[index]]); //recupero etiquetas (eje x)
-                                } else {
-                                    columnas.push(listado[row][filteredTitlePos[index]]); //recupero columnas para label
-                                    cantDatos = cantDatos + 1;
-                                }
-                            } else {
-                                etiquetas.push(listado[row][filteredTitlePos[index]]); //recupero las etiquetas de la torta
-                            }
-                        });
-                    }
-
-                    if (row > 1) { //recupero los datos para los dataset y los colores para torta
-                        var label = false;
-                        jQuery.each(filteredTitlePos, function(index, title) {
-                            //Detectar si es etiqueta x
-                            var split = listado[0][filteredTitlePos[index]].split('-');
-                            var pos = split[0] + split[1];
-                            if (tipoGrafico == 'pie') { //recupero datos para la torta
-                                valores[pos].push(listado[row][filteredTitlePos[index]]);
-                            } else {
-                                if (tipoGrafico == 'heatmap') {
-                                    if (label == false) {
-                                        columnas.push(listado[row][0]); //recupero las columnas (eje y)
-                                        label = true;
-                                        cantDatos = cantDatos + 1;
-                                    }
-                                    if (index != indiceNombreCorto) valores[pos].push(listado[row][filteredTitlePos[index]]); //recupero datos
-                                    if (index + 2 == indiceNombreCorto) {
-                                        if (typeof listado[row][index + 2] == 'undefined') labelsYCortos.push("*"); //en caso que no completen nombre-corto
-                                        else labelsYCortos.push(listado[row][index + 2]); //recupero labels Y cortos
-                                    }
-                                } else {
-                                    if (label == false) {
-                                        etiquetas.push(listado[row][0]); //recupero las etiquetas
-                                        label = true;
-                                    }
-                                    valores[pos].push(listado[row][filteredTitlePos[index]]); //recupero datos
-                                }
-                            }
-                        });
-                    }
-                });
-
-                if (tipoGrafico == 'pie') {
-                    var datosTorta = [];
-
-                    jQuery.each(Object.keys(filteredTitleName), function(index, key) {
-                        var pos = filteredTitleName[index];
-
-                        if (valores.hasOwnProperty(pos)) {
-                            datosTorta.push(valores[pos]);
-                        }
-                    });
-                    datos = datosTorta;
-
-                } else if (cantDatos == 1) { //es un solo juego de datos
-
-                    jQuery.each(Object.keys(filteredTitleName), function(index, key) {
-                        var pos = filteredTitleName[index];
-
-                        if (valores.hasOwnProperty(pos)) {
-                            datos = valores[pos];
-                        }
-                    });
-                }
-
-                if (tipoGrafico == 'mixed') {
-                    var cadena = opt.porcentajesMixed ? opt.porcentajesMixed : '';
-                    if (cadena.length > 0) {
-                        porcentajesMixed = cadena.split(',');
-                    }
-                }
-
-                //seteo toltips para mostrar porcentaje o no
-                if (opt.porcentajes == true) {
-              
-                    if (tipoGrafico == 'line' && cantDatos > 1){
-                        //seteo tooltips
-                        toltips = {
-                            enabled: true,
-                            callbacks: {
-                                label: function(tooltipItem, data) {
-                                    return data.datasets[tooltipItem.datasetIndex].label + ': ' +  data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] + '%';
-                                }
-                            },
-                            mode: 'index',
-                            intersect: false,
-                        };
-                    } else if  (tipoGrafico == 'pie'){
-
-                        //seteo tooltips
-                        toltips = {
-                            enabled: true,
-                            callbacks: {
-                                label: function(tooltipItem, data) {
-                                    return data["labels"][tooltipItem.index] + ': ' +  data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] + '%';
-                                }
-                            }
-                        };
-
-                    } else {
-
-                        //seteo tooltips
-                        toltips = {
-                            enabled: true,
-                            callbacks: {
-                                label: function(tooltipItem, data) {
-                                    return data.datasets[tooltipItem.datasetIndex].label + ': ' +  data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] + '%';
-                                }
-                            }
-                        };
-                    }
-
-                } else {
-
-                     if (tipoGrafico == 'line' && cantDatos > 1){
-                        //seteo tooltips
-                        toltips = {
-                            enabled: true,
-                            mode: 'index',
-                            intersect: false,
-                        };
-                     } else {
-                        //seteo tooltips
-                        toltips = {
-                            enabled: true,
-                        };
-                     }
-                }
-
-                //llamo a los constructores para cada tipo de grafico
-                if (tipoGrafico == 'pie') {
-
-                    colores.forEach(function(valor, indice, array) {
-                        codigosColores.push(getColor(valor));
-                    });
-
-                    console.log('etiquetas --> ' + etiquetas);
-                    console.log('datos --> ' + datos);
-                    console.log('colores --> ' + codigosColores);
-
-                    graficoTorta(etiquetas, datos, tipoGrafico, codigosColores, opt.idComponenteGrafico, posicionLeyendas, toltips, mostrarLeyendas);
-                }
-
-                if (cantDatos == 1) {
-
-                    console.log('etiquetas --> ' + etiquetas);
-                    console.log('datos --> ' + datos);
-
-                    color = getColor(colores[0]);
-                    console.log('color --> ' + color);
-
-                    if (opt.tipoGrafico == 'Line') {
-                        graficoLineaSimple(etiquetas, datos, tipoGrafico, color, columnas[0], opt.ejeYenCero, opt.idComponenteGrafico, posicionLeyendas, toltips, mostrarLeyendas);
-                    }
-
-                    if (tipoGrafico == 'bar' || opt.tipoGrafico == 'Area') {
-                        graficoAreaBarraSimple(etiquetas, datos, tipoGrafico, color, columnas[0], opt.ejeYenCero, opt.idComponenteGrafico, posicionLeyendas, toltips, mostrarLeyendas);
-                    }
-
-                    if (tipoGrafico == 'horizontalBar') {
-                        graficoBarraHorizontalSimple(etiquetas, datos, tipoGrafico, color, columnas[0], opt.ejeYenCero, opt.idComponenteGrafico, posicionLeyendas, toltips, mostrarLeyendas);
-                    }
-
-                }
-
-                if (cantDatos > 1) {
-
-                    if (tipoGrafico == 'heatmap') {
-
-                       if ((typeof opt.heatMapColors != 'undefined' && opt.heatMapColors != "") && (typeof opt.heatMapColorsRange != 'undefined' && opt.heatMapColorsRange != "")){
-
-                            var datosFull = [];
-
-                            var labelX = 'labelFila';
-                            var labelY = 'labelColumna';
-                            var labelValor = 'labelValor';
-
-                            if ((typeof opt.datosTooltip != 'undefined') && (opt.datosTooltip.length > 0)){
-                                if ((typeof opt.datosTooltip[0] != 'undefined') && (typeof opt.datosTooltip[0].labelFila != 'undefined')) labelX = opt.datosTooltip[0].labelFila;
-                                if ((typeof opt.datosTooltip[1] != 'undefined') && (typeof opt.datosTooltip[1].labelColumna != 'undefined')) labelY = opt.datosTooltip[1].labelColumna;
-                                if ((typeof opt.datosTooltip[2] != 'undefined') && (typeof opt.datosTooltip[2].labelValor != 'undefined')) labelValor = opt.datosTooltip[2].labelValor;
-                            }                        
-
-                            //getDatos
-                            jQuery.each(Object.keys(filteredTitleName), function(index, key) {
-
-                                var pos = filteredTitleName[index];
-
-                                if (valores.hasOwnProperty(pos)) {
-
-                                    datos = valores[pos];
-
-                                    datosFull.push(datos);
-                                };
-                            });
-
-                            var series = [];
-
-                            for (var i=0;i<columnas.length;i++) {
-
-                                var data = [];
-
-                                for (var l=0;l<etiquetas.length;l++) {
-                                
-                                    var datos = {
-                                        x: etiquetas[l],
-                                        y: parseInt(datosFull[l][i])
-                                    };
-
-                                    data.push(datos);
-                                } 
-
-                                var serie = {
-                                    name: labelsYCortos[i] != '*' ? labelsYCortos[i] : columnas[i],
-                                    data: data
-                                } 
-
-                                series.push(serie);
-                            }   
-
-                            var rango = [];
-
-                            //construyo range object
-                            for (var i=0; i<opt.heatMapColorsRange.length -1; i++){
-                                  var data = {
-                                    from: opt.heatMapColorsRange[i],
-                                    to: opt.heatMapColorsRange[i + 1],
-                                    color: getColor(opt.heatMapColors[i])
-                                  };
-                               rango.push(data);
-                            }
-
-                            var mostrarYaxis = '';
-                            if (typeof opt.mostrarEjeY == 'undefined'){
-                                mostrarYaxis = true;
-                            } else {
-                                mostrarYaxis = opt.mostrarEjeY;
-                            }
-
-                           graficoHeatMap(etiquetas, series, opt.idComponenteGrafico, columnas, rango, labelX, labelY, labelValor, opt.tituloGrafico, mostrarYaxis, posicionLeyendas, mostrarLeyendas);
-
-                        } else {
-                            //informo por consola el faltante
-                            if (typeof opt.heatMapColors == 'undefined' || opt.heatMapColors == "") {
-                                console.log('Completar vector con valores para los colores');
-                            }
-
-                            if (typeof opt.heatMapColorsRange == 'undefined' || opt.heatMapColorsRange == "") {
-                                console.log('Completar vector con el rango de valores para los colores');
-                            }
-                        }
-                    } else {
-
-                        var datasets = [];
-                        var indiceColor = 0;
-
-                        //getColores
-                        colores.forEach(function(valor, indice, array) {
-                            codigosColores.push(getColor(valor));
-                        });
-
-                        console.log('colores --> ' + codigosColores);
-
-                        var indiceMixed = 0;
-
-                        //getDatos
-                        jQuery.each(Object.keys(filteredTitleName), function(index, key) {
-                            var pos = filteredTitleName[index];
-                            if (valores.hasOwnProperty(pos)) {
-
-                                datos = valores[pos];
-
-                                console.log('datos --> ' + datos);
-
-                                if (opt.tipoGrafico == 'Line') {
-                                    //construyo datasets
-                                    var dataset = {
-                                        label: columnas[indiceColor],
-                                        data: datos,
-                                        borderColor: codigosColores[indiceColor],
-                                        fill: false,
-                                        borderWidth: 2,
-                                        lineTension: 0,
-                                        backgroundColor: codigosColores[indiceColor], 
-                                    };
-                                } else if (opt.tipoGrafico == 'Bar' || opt.tipoGrafico == 'Area' || opt.tipoGrafico == 'Horizontal Bar' || opt.tipoGrafico == 'Stacked Bar') {
-                                    //construyo datasets
-                                    var dataset = {
-                                        label: columnas[indiceColor],
-                                        data: datos,
-                                        borderColor: codigosColores[indiceColor],
-                                        backgroundColor: codigosColores[indiceColor], //BARRAS y AREA
-                                        borderWidth: 2,
-                                        lineTension: 0, //linea  y area
-                                    };
-                                } else if (opt.tipoGrafico == 'Mixed'){ 
-                                    var tipo = tipoGraficosMixed[indiceMixed];
-                                    //construyo datasets
-                                    if (tipo == 'barra') {
-                                      var dataset = {
-                                        label: columnas[indiceColor],
-                                        data: datos, 
-                                        backgroundColor: codigosColores[indiceColor],
-                                        // This binds the dataset to the left y axis
-                                        yAxisID: 'left-y-axis',
-                                        type: 'bar',
-                                      };
-                                    } else if (tipo == 'linea'){
-                                        var dataset = {
-                                          label: columnas[indiceColor],
-                                          data: datos, 
-                                          borderColor: codigosColores[indiceColor],
-                                          backgroundColor: codigosColores[indiceColor],
-                                          // Changes this dataset to become a line
-                                          type: 'line',
-                                          // This binds the dataset to the right y axis
-                                          yAxisID: 'right-y-axis',
-                                          fill: false,
-                                        };
-                                    }
-                                }
-
-
-                                datasets.push(dataset);
-
-                                indiceColor = indiceColor + 1;
-
-                                indiceMixed = indiceMixed + 1;
-
-                            }
-                        });
-
-                        if (tipoGrafico == 'mixed') { 
-                            if (porcentajesMixed.length == 2) {
-                                indicePorcentajeMixed = 2; //los 2 dataset usan porcentaje
-                            } else if (porcentajesMixed.length == 1){
-                                if (porcentajesMixed[0] == 'eje-y1') {
-                                    indicePorcentajeMixed = 0; //solo el primer dataset usa porcentaje
-                                } else if (porcentajesMixed[0] == 'eje-y2') {
-                                    indicePorcentajeMixed = 1; //solo el segundo dataset usa porcentaje
-                                }
-                            } else  indicePorcentajeMixed = 3; //ningun dataset usa escala de porcentaje
-                        }
-                        
-                        console.log('etiquetas --> ' + etiquetas);
-
-                        if (opt.tipoGrafico == 'Stacked Bar') graficoComplejoStacked(etiquetas, tipoGrafico, datasets, opt.idComponenteGrafico, opt.ejeYenCero, posicionLeyendas, toltips, mostrarLeyendas);
-                        else if (opt.tipoGrafico == 'Mixed') graficoComplejoMixed(etiquetas, 'bar', datasets, opt.idComponenteGrafico, opt.ejeYenCero, posicionLeyendas, indicePorcentajeMixed, columnas[0], columnas[1], mostrarLeyendas);
-                        else if (opt.tipoGrafico == 'Horizontal Bar') graficoComplejoHorizontal(etiquetas, tipoGrafico, datasets, opt.idComponenteGrafico, opt.ejeYenCero, posicionLeyendas, toltips, mostrarLeyendas);
-                         else graficoComplejo(etiquetas, tipoGrafico, datasets, opt.idComponenteGrafico, opt.ejeYenCero, posicionLeyendas, toltips, mostrarLeyendas);
-                    }
-
-                }
-
-                //verifica si viene titulo del grafico, si no viene no dibuja nada
-                if (opt.tituloGrafico != "" && typeof opt.tituloGrafico != 'undefined') {
-                    graficaTitulo(opt.idTagTituloGrafico, opt.tituloGrafico);
-                }
-            }
-        );
+    if (chequeoOpcionesObligatorias(opt)) {
+        if (opt.jsonInput) {
+            console.log(opt.jsonInput);
+            drawChart(jQuery.parseJSON(opt.jsonInput), opt);
+        } else {
+            var url = opt.jsonUrl ? opt.jsonUrl : 
+                'https://sheets.googleapis.com/v4/spreadsheets/' + opt.idSpread + '/values/' + opt.hojaNombre + '?alt=json&key=AIzaSyCq2wEEKL9-6RmX-TkW23qJsrmnFHFf5tY';
+            jQuery.getJSON(url, function(data) {
+                drawChart(data, opt)
+            });
+        }
 
     } else {
 
@@ -1097,7 +666,7 @@ function ponchoChart(opt) {
             console.log('Completar valor para la opción de Configuración idComponenteGrafico');
         }
 
-        if (tipoGrafico == "") {
+        if (getTipoGrafico(opt.tipoGrafico) == "") {
             console.log('Ingrese un tipo de gafico válido');
         }
     }
@@ -1244,6 +813,7 @@ function ponchoChart(opt) {
         const dataset = {
             data: datos,
             borderColor: color,
+            backgroundColor: color,
             borderWidth: 2,
             lineTension: 0,
             fill: false,
@@ -1430,8 +1000,11 @@ function ponchoChart(opt) {
                    label: function(tooltipItems, data) {
                     var text = '';
                     if (indice == 2) text = '%';
-                    else if (tooltipItems.datasetIndex == indice) text = '%';                 
-                    return data.datasets[tooltipItems.datasetIndex].label + ': ' + tooltipItems.yLabel + ' ' + text;
+                    else if (tooltipItems.datasetIndex == indice) text = '%'; 
+                    var value = tooltipItems.yLabel.toString();
+                    value = value.replace('.',',');
+                    value = value.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".");
+                    return data.datasets[tooltipItems.datasetIndex].label + ': ' + value + ' ' + text;
                   }
                 }
               },
@@ -1497,10 +1070,14 @@ function ponchoChart(opt) {
             },
             tooltip: {
                custom: function({series, seriesIndex, dataPointIndex, w}) {
+                var value = series[seriesIndex][dataPointIndex];
+                value = value.toString();
+                value = value.replace('.',',');
+                value = value.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".");
                 return '<div class="arrow_box">' +
                   '<span>' + labelX + ": " + labelsY[seriesIndex] + '<br>' +
                   labelY + ": " + w.globals.labels[dataPointIndex] + '<br>' +
-                  labelValor + ": " + series[seriesIndex][dataPointIndex] + '</span>' +
+                  labelValor + ": " + value + '</span>' +
                   '</div>'
               }
             },
@@ -1551,11 +1128,532 @@ function ponchoChart(opt) {
         }
     }
 
-    function chequeoOpcionesObligatorias() {
+    function chequeoOpcionesObligatorias(opt) {
         var chequeo = false;
-        if ( ((opt.idSpread  && opt.hojaNombre) || opt.jsonUrl) && (typeof opt.tipoGrafico != 'undefined' && opt.tipoGrafico != "") && (typeof opt.idComponenteGrafico != 'undefined' && opt.idComponenteGrafico != "") && (tipoGrafico != ""))
+        if ( ((opt.idSpread  && opt.hojaNombre) || opt.jsonUrl || opt.jsonInput) && (typeof opt.tipoGrafico != 'undefined' && opt.tipoGrafico != "") && (typeof opt.idComponenteGrafico != 'undefined' && opt.idComponenteGrafico != "") && (getTipoGrafico(opt.tipoGrafico) != ""))
             chequeo = true;
         return chequeo;
+    }
+
+    function drawChart(data, opt) {
+
+        var etiquetas = [];
+        var filteredTitleName = [];
+        var filteredTitlePos = [];
+        var color = '';
+        var colores = [];
+        var codigosColores = [];
+        var columnas = [];
+        var valores = [];
+        var datos = [];
+        var cantDatos = 0;
+        var urlOrigen = "";
+        var toltips = "";
+        var tipoGraficosMixed = [];
+        var indicePorcentajeMixed = 0;
+        var porcentajesMixed = [];
+        var labelsYCortos = [];
+        var indiceNombreCorto = 0;
+        var posicionLeyendas = opt.posicionLeyendas ? opt.posicionLeyendas : 'top';
+
+        var mostrarLeyendas = '';
+        if (typeof opt.mostrarLeyendas == 'undefined'){
+            mostrarLeyendas = true;
+        } else {
+            mostrarLeyendas = opt.mostrarLeyendas;
+        }
+        var tipoGrafico = getTipoGrafico(opt.tipoGrafico);
+
+        var listado = data['values'];
+
+        //TITULOS
+        jQuery.each(Object.keys(listado[0]), function(index, key) {
+            if (listado[0][index].substr(0, 5) == 'eje-y') {
+                var split = listado[0][index].split('-');
+                var pos = split[0] + split[1];
+                filteredTitleName.push(pos);
+                filteredTitlePos.push(index);
+            } else if (listado[0][index] == 'nombre-corto'){
+                if (tipoGrafico == 'heatmap'){
+                    indiceNombreCorto = index;
+                }
+            }
+        });
+
+        jQuery.each(listado, function(row, value) {
+            if (row == 0) { //construyo arrays para los dataset, recupero colores y labels
+                jQuery.each(filteredTitlePos, function(index, title) {
+                    var split = listado[row][filteredTitlePos[index]].split('-');
+                    var pos = split[0] + split[1];
+                    valores[pos] = []; //construyo los array para los dataset
+                    colores.push(split[2]); //recupero colores
+                    if (tipoGrafico == 'mixed') {
+                        if (split.length > 3){ //ingresaron un tipo de grafico
+                          //verifico que sea un tipo de grafico valido
+                          if (split[3] == 'barra' || split[3] == 'linea') {
+                            tipoGraficosMixed.push(split[3]);//recupero tipo de grafico para cada dataset
+                          } else { //seteo graficos por defecto
+                             if (index == 0) tipoGraficosMixed.push('barra');//por defecto seteo barra
+                             if (index == 1) tipoGraficosMixed.push('linea');//por defecto seteo linea
+                          }
+                        } else { //seteo graficos por defecto
+                          if (index == 0) tipoGraficosMixed.push('barra');//por defecto seteo barra
+                          if (index == 1) tipoGraficosMixed.push('linea');//por defecto seteo linea
+                        }
+                    }
+                });
+            }
+
+            if (row == 1) {
+                jQuery.each(filteredTitlePos, function(index, title) {
+                    if (tipoGrafico != 'pie') {
+                        if (tipoGrafico == 'heatmap') {
+                            etiquetas.push(listado[row][filteredTitlePos[index]]); //recupero etiquetas (eje x)
+                        } else {
+                            columnas.push(listado[row][filteredTitlePos[index]]); //recupero columnas para label
+                            cantDatos = cantDatos + 1;
+                        }
+                    } else {
+                        etiquetas.push(listado[row][filteredTitlePos[index]]); //recupero las etiquetas de la torta
+                    }
+                });
+            }
+
+            if (row > 1) { //recupero los datos para los dataset y los colores para torta
+                var label = false;
+                jQuery.each(filteredTitlePos, function(index, title) {
+                    //Detectar si es etiqueta x
+                    var split = listado[0][filteredTitlePos[index]].split('-');
+                    var pos = split[0] + split[1];
+                    if (tipoGrafico == 'pie') { //recupero datos para la torta
+                        valores[pos].push(listado[row][filteredTitlePos[index]]);
+                    } else {
+                        if (tipoGrafico == 'heatmap') {
+                            if (label == false) {
+                                columnas.push(listado[row][0]); //recupero las columnas (eje y)
+                                label = true;
+                                cantDatos = cantDatos + 1;
+                            }
+                            if (index != indiceNombreCorto) valores[pos].push(listado[row][filteredTitlePos[index]]); //recupero datos
+                            if (index + 2 == indiceNombreCorto) {
+                                if (typeof listado[row][index + 2] == 'undefined') labelsYCortos.push("*"); //en caso que no completen nombre-corto
+                                else labelsYCortos.push(listado[row][index + 2]); //recupero labels Y cortos
+                            }
+                        } else {
+                            if (label == false) {
+                                etiquetas.push(listado[row][0]); //recupero las etiquetas
+                                label = true;
+                            }
+                            valores[pos].push(listado[row][filteredTitlePos[index]]); //recupero datos
+                        }
+                    }
+                });
+            }
+        });
+
+        if (tipoGrafico == 'pie') {
+            var datosTorta = [];
+
+            jQuery.each(Object.keys(filteredTitleName), function(index, key) {
+                var pos = filteredTitleName[index];
+
+                if (valores.hasOwnProperty(pos)) {
+                    datosTorta.push(valores[pos]);
+                }
+            });
+            datos = datosTorta;
+
+        } else if (cantDatos == 1) { //es un solo juego de datos
+
+            jQuery.each(Object.keys(filteredTitleName), function(index, key) {
+                var pos = filteredTitleName[index];
+
+                if (valores.hasOwnProperty(pos)) {
+                    datos = valores[pos];
+                }
+            });
+        }
+
+        if (tipoGrafico == 'mixed') {
+            var cadena = opt.porcentajesMixed ? opt.porcentajesMixed : '';
+            if (cadena.length > 0) {
+                porcentajesMixed = cadena.split(',');
+            }
+        }
+
+        //seteo toltips para mostrar porcentaje o no
+        if (opt.porcentajes == true) {
+
+            if (tipoGrafico == 'line' && cantDatos > 1){
+                //seteo tooltips
+                toltips = {
+                    enabled: true,
+                    callbacks: {
+                        label: function(tooltipItem, data) {
+                            var value = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+                            value = value.toString();
+                            value = value.replace('.',',');
+                            value = value.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".");
+                            return data.datasets[tooltipItem.datasetIndex].label + ': ' + value + '%';
+                        }
+                    },
+                    mode: 'index',
+                    intersect: false,
+                };
+            } else if  (tipoGrafico == 'pie'){
+                //seteo tooltips
+                toltips = {
+                    enabled: true,
+                    callbacks: {
+                        label: function(tooltipItem, data) {
+                            var value = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+                            value = value.toString();
+                            value = value.replace('.',',');
+                            value = value.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".");
+                            return data["labels"][tooltipItem.index] + ': ' +  value + '%';
+                        }
+                    }
+                };
+
+            } else if  (opt.tipoGrafico == 'Stacked Bar'){
+                //seteo tooltips
+                toltips = {
+                    enabled: true,
+                    mode: 'index',
+                    callbacks: {
+                        label: function(tooltipItem, data) {
+                            var value = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+                            value = value.toString();
+                            value = value.replace('.',',');
+                            value = value.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".");
+                            return data.datasets[tooltipItem.datasetIndex].label + ': ' +  value + '%';
+                        },
+                        footer: (tooltipItems, data) => {
+                          let total = tooltipItems.reduce((a, e) => a + parseInt(e.yLabel), 0);
+                          return 'Total: ' + total + '%';
+                        }
+                    }
+                };
+
+            } else {
+                //seteo tooltips
+                toltips = {
+                    enabled: true,
+                    mode: 'index',
+                    callbacks: {
+                        label: function(tooltipItem, data) {
+                            var value = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+                            value = value.toString();
+                            value = value.replace('.',',');
+                            value = value.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".");
+                            return data.datasets[tooltipItem.datasetIndex].label + ': ' +  value + '%';
+                        }
+                    }
+                };
+            }
+
+        } else {
+
+             if (tipoGrafico == 'line' && cantDatos > 1){
+                //seteo tooltips
+                toltips = {
+                    enabled: true,
+                    callbacks: {
+                        label: function(tooltipItem, data) {
+                            var value = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+                            value = value.toString();
+                            value = value.replace('.',',');
+                            value = value.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".");
+                            return data.datasets[tooltipItem.datasetIndex].label + ': ' + value;
+                        }
+                    },
+                    mode: 'index',
+                    intersect: false,
+                };
+             } else if  (tipoGrafico == 'pie'){
+                //seteo tooltips
+                toltips = {
+                    enabled: true,
+                    callbacks: {
+                        label: function(tooltipItem, data) {
+                            var value = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+                            value = value.toString();
+                            value = value.replace('.',',');
+                            value = value.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".");
+                            return data["labels"][tooltipItem.index] + ': ' +  value;
+                        }
+                    }
+                };
+
+            } else if (opt.tipoGrafico == 'Stacked Bar' && cantDatos > 1){
+                //seteo tooltips
+                toltips = {
+                    enabled: true,
+                    mode: 'index',
+                    intersect: false,
+                      callbacks: {
+                        label: function(tooltipItem, data) {
+                            var value = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+                            value = value.toString();
+                            value = value.replace('.',',');
+                            value = value.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".");
+                            return data.datasets[tooltipItem.datasetIndex].label + ': ' + value;
+                        },
+                        footer: (tooltipItems, data) => {
+                          let total = tooltipItems.reduce((a, e) => a + parseInt(e.yLabel), 0);
+                          return 'Total: ' + total;
+                        }
+                      }
+                };
+             } else {
+                //seteo tooltips
+                toltips = {
+                    enabled: true,
+                    mode: 'index',
+                    callbacks: {
+                        label: function(tooltipItem, data) {
+                            var value = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+                            value = value.toString();
+                            value = value.replace('.',',');
+                            value = value.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".");
+                            return data.datasets[tooltipItem.datasetIndex].label + ': ' +  value;
+                        }
+                    }
+                };
+             }
+        }
+
+        //llamo a los constructores para cada tipo de grafico
+        if (tipoGrafico == 'pie') {
+
+            colores.forEach(function(valor, indice, array) {
+                codigosColores.push(getColor(valor));
+            });
+
+            console.log('etiquetas --> ' + etiquetas);
+            console.log('datos --> ' + datos);
+            console.log('colores --> ' + codigosColores);
+
+            graficoTorta(etiquetas, datos, tipoGrafico, codigosColores, opt.idComponenteGrafico, posicionLeyendas, toltips, mostrarLeyendas);
+        }
+
+        if (cantDatos == 1) {
+
+            console.log('etiquetas --> ' + etiquetas);
+            console.log('datos --> ' + datos);
+
+            color = getColor(colores[0]);
+            console.log('color --> ' + color);
+
+            if (opt.tipoGrafico == 'Line') {
+                graficoLineaSimple(etiquetas, datos, tipoGrafico, color, columnas[0], opt.ejeYenCero, opt.idComponenteGrafico, posicionLeyendas, toltips, mostrarLeyendas);
+            }
+
+            if (tipoGrafico == 'bar' || opt.tipoGrafico == 'Area') {
+                graficoAreaBarraSimple(etiquetas, datos, tipoGrafico, color, columnas[0], opt.ejeYenCero, opt.idComponenteGrafico, posicionLeyendas, toltips, mostrarLeyendas);
+            }
+
+            if (tipoGrafico == 'horizontalBar') {
+                graficoBarraHorizontalSimple(etiquetas, datos, tipoGrafico, color, columnas[0], opt.ejeYenCero, opt.idComponenteGrafico, posicionLeyendas, toltips, mostrarLeyendas);
+            }
+
+        }
+
+        if (cantDatos > 1) {
+
+            if (tipoGrafico == 'heatmap') {
+
+               if ((typeof opt.heatMapColors != 'undefined' && opt.heatMapColors != "") && (typeof opt.heatMapColorsRange != 'undefined' && opt.heatMapColorsRange != "")){
+
+                    var datosFull = [];
+
+                    var labelX = 'labelFila';
+                    var labelY = 'labelColumna';
+                    var labelValor = 'labelValor';
+
+                    if ((typeof opt.datosTooltip != 'undefined') && (opt.datosTooltip.length > 0)){
+                        if ((typeof opt.datosTooltip[0] != 'undefined') && (typeof opt.datosTooltip[0].labelFila != 'undefined')) labelX = opt.datosTooltip[0].labelFila;
+                        if ((typeof opt.datosTooltip[1] != 'undefined') && (typeof opt.datosTooltip[1].labelColumna != 'undefined')) labelY = opt.datosTooltip[1].labelColumna;
+                        if ((typeof opt.datosTooltip[2] != 'undefined') && (typeof opt.datosTooltip[2].labelValor != 'undefined')) labelValor = opt.datosTooltip[2].labelValor;
+                    }
+
+                    //getDatos
+                    jQuery.each(Object.keys(filteredTitleName), function(index, key) {
+
+                        var pos = filteredTitleName[index];
+
+                        if (valores.hasOwnProperty(pos)) {
+
+                            datos = valores[pos];
+
+                            datosFull.push(datos);
+                        };
+                    });
+
+                    var series = [];
+
+                    for (var i=0;i<columnas.length;i++) {
+
+                        var data = [];
+
+                        for (var l=0;l<etiquetas.length;l++) {
+
+                            var datos = {
+                                x: etiquetas[l],
+                                y: parseInt(datosFull[l][i])
+                            };
+
+                            data.push(datos);
+                        } 
+
+                        var serie = {
+                            name: labelsYCortos[i] != '*' ? labelsYCortos[i] : columnas[i],
+                            data: data
+                        } 
+
+                        series.push(serie);
+                    }
+
+                    var rango = [];
+
+                    //construyo range object
+                    for (var i=0; i<opt.heatMapColorsRange.length -1; i++){
+                          var data = {
+                            from: opt.heatMapColorsRange[i],
+                            to: opt.heatMapColorsRange[i + 1],
+                            color: getColor(opt.heatMapColors[i])
+                          };
+                       rango.push(data);
+                    }
+
+                    var mostrarYaxis = '';
+                    if (typeof opt.mostrarEjeY == 'undefined'){
+                        mostrarYaxis = true;
+                    } else {
+                        mostrarYaxis = opt.mostrarEjeY;
+                    }
+
+                   graficoHeatMap(etiquetas, series, opt.idComponenteGrafico, columnas, rango, labelX, labelY, labelValor, opt.tituloGrafico, mostrarYaxis, posicionLeyendas, mostrarLeyendas);
+
+                } else {
+                    //informo por consola el faltante
+                    if (typeof opt.heatMapColors == 'undefined' || opt.heatMapColors == "") {
+                        console.log('Completar vector con valores para los colores');
+                    }
+
+                    if (typeof opt.heatMapColorsRange == 'undefined' || opt.heatMapColorsRange == "") {
+                        console.log('Completar vector con el rango de valores para los colores');
+                    }
+                }
+            } else {
+
+                var datasets = [];
+                var indiceColor = 0;
+
+                //getColores
+                colores.forEach(function(valor, indice, array) {
+                    codigosColores.push(getColor(valor));
+                });
+
+                console.log('colores --> ' + codigosColores);
+
+                var indiceMixed = 0;
+
+                //getDatos
+                jQuery.each(Object.keys(filteredTitleName), function(index, key) {
+                    var pos = filteredTitleName[index];
+                    if (valores.hasOwnProperty(pos)) {
+
+                        datos = valores[pos];
+
+                        console.log('datos --> ' + datos);
+
+                        if (opt.tipoGrafico == 'Line') {
+                            //construyo datasets
+                            var dataset = {
+                                label: columnas[indiceColor],
+                                data: datos,
+                                borderColor: codigosColores[indiceColor],
+                                fill: false,
+                                borderWidth: 2,
+                                lineTension: 0,
+                                backgroundColor: codigosColores[indiceColor], 
+                            };
+                        } else if (opt.tipoGrafico == 'Bar' || opt.tipoGrafico == 'Area' || opt.tipoGrafico == 'Horizontal Bar' || opt.tipoGrafico == 'Stacked Bar') {
+                            //construyo datasets
+                            var dataset = {
+                                label: columnas[indiceColor],
+                                data: datos,
+                                borderColor: codigosColores[indiceColor],
+                                backgroundColor: codigosColores[indiceColor], //BARRAS y AREA
+                                borderWidth: 2,
+                                lineTension: 0, //linea  y area
+                            };
+                        } else if (opt.tipoGrafico == 'Mixed'){ 
+                            var tipo = tipoGraficosMixed[indiceMixed];
+                            //construyo datasets
+                            if (tipo == 'barra') {
+                              var dataset = {
+                                label: columnas[indiceColor],
+                                data: datos, 
+                                backgroundColor: codigosColores[indiceColor],
+                                // This binds the dataset to the left y axis
+                                yAxisID: 'left-y-axis',
+                                type: 'bar',
+                              };
+                            } else if (tipo == 'linea'){
+                                var dataset = {
+                                  label: columnas[indiceColor],
+                                  data: datos, 
+                                  borderColor: codigosColores[indiceColor],
+                                  backgroundColor: codigosColores[indiceColor],
+                                  // Changes this dataset to become a line
+                                  type: 'line',
+                                  // This binds the dataset to the right y axis
+                                  yAxisID: 'right-y-axis',
+                                  fill: false,
+                                };
+                            }
+                        }
+
+
+                        datasets.push(dataset);
+
+                        indiceColor = indiceColor + 1;
+
+                        indiceMixed = indiceMixed + 1;
+
+                    }
+                });
+
+                if (tipoGrafico == 'mixed') { 
+                    if (porcentajesMixed.length == 2) {
+                        indicePorcentajeMixed = 2; //los 2 dataset usan porcentaje
+                    } else if (porcentajesMixed.length == 1){
+                        if (porcentajesMixed[0] == 'eje-y1') {
+                            indicePorcentajeMixed = 0; //solo el primer dataset usa porcentaje
+                        } else if (porcentajesMixed[0] == 'eje-y2') {
+                            indicePorcentajeMixed = 1; //solo el segundo dataset usa porcentaje
+                        }
+                    } else  indicePorcentajeMixed = 3; //ningun dataset usa escala de porcentaje
+                }
+
+                console.log('etiquetas --> ' + etiquetas);
+
+                console.log('toltip -->' + JSON.stringify(toltips));
+
+                if (opt.tipoGrafico == 'Stacked Bar') graficoComplejoStacked(etiquetas, tipoGrafico, datasets, opt.idComponenteGrafico, opt.ejeYenCero, posicionLeyendas, toltips, mostrarLeyendas);
+                else if (opt.tipoGrafico == 'Mixed') graficoComplejoMixed(etiquetas, 'bar', datasets, opt.idComponenteGrafico, opt.ejeYenCero, posicionLeyendas, indicePorcentajeMixed, columnas[0], columnas[1], mostrarLeyendas);
+                else if (opt.tipoGrafico == 'Horizontal Bar') graficoComplejoHorizontal(etiquetas, tipoGrafico, datasets, opt.idComponenteGrafico, opt.ejeYenCero, posicionLeyendas, toltips, mostrarLeyendas);
+                 else graficoComplejo(etiquetas, tipoGrafico, datasets, opt.idComponenteGrafico, opt.ejeYenCero, posicionLeyendas, toltips, mostrarLeyendas);
+            }
+
+        }
+
+        //verifica si viene titulo del grafico, si no viene no dibuja nada
+        if (opt.tituloGrafico != "" && typeof opt.tituloGrafico != 'undefined') {
+            graficaTitulo(opt.idTagTituloGrafico, opt.tituloGrafico);
+        }
     }
 
 }
