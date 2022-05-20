@@ -1001,9 +1001,7 @@ function ponchoChart(opt) {
                     var text = '';
                     if (indice == 2) text = '%';
                     else if (tooltipItems.datasetIndex == indice) text = '%'; 
-                    var value = tooltipItems.yLabel.toString();
-                    value = value.replace('.',',');
-                    value = value.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".");
+                    var value = numeroFormateado(tooltipItems.yLabel);
                     return data.datasets[tooltipItems.datasetIndex].label + ': ' + value + ' ' + text;
                   }
                 }
@@ -1071,9 +1069,7 @@ function ponchoChart(opt) {
             tooltip: {
                custom: function({series, seriesIndex, dataPointIndex, w}) {
                 var value = series[seriesIndex][dataPointIndex];
-                value = value.toString();
-                value = value.replace('.',',');
-                value = value.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".");
+                value = numeroFormateado(value);
                 return '<div class="arrow_box">' +
                   '<span>' + labelX + ": " + labelsY[seriesIndex] + '<br>' +
                   labelY + ": " + w.globals.labels[dataPointIndex] + '<br>' +
@@ -1135,6 +1131,18 @@ function ponchoChart(opt) {
         return chequeo;
     }
 
+    function numeroFormateado(numero) {
+        var value = numero.toString().replace('.',',');
+        var array = value.split(",");
+        var result1 = new Intl.NumberFormat('es').format(array[0]);
+        if (array.length > 1) 
+            value = result1.concat(",",array[1]);
+        else 
+            value = result1;
+
+        return value;
+    }
+
     function drawChart(data, opt) {
 
         var etiquetas = [];
@@ -1191,7 +1199,7 @@ function ponchoChart(opt) {
                         if (split.length > 3){ //ingresaron un tipo de grafico
                           //verifico que sea un tipo de grafico valido
                           if (split[3] == 'barra' || split[3] == 'linea') {
-                            tipoGraficosMixed.push(split[3]);//recupero tipo de grafico para cada dataset
+                            tipoGraficosMixed.push(split[3]);//recupero tipo de grafico para cada dataset   
                           } else { //seteo graficos por defecto
                              if (index == 0) tipoGraficosMixed.push('barra');//por defecto seteo barra
                              if (index == 1) tipoGraficosMixed.push('linea');//por defecto seteo linea
@@ -1283,7 +1291,7 @@ function ponchoChart(opt) {
 
         //seteo toltips para mostrar porcentaje o no
         if (opt.porcentajes == true) {
-
+      
             if (tipoGrafico == 'line' && cantDatos > 1){
                 //seteo tooltips
                 toltips = {
@@ -1291,9 +1299,7 @@ function ponchoChart(opt) {
                     callbacks: {
                         label: function(tooltipItem, data) {
                             var value = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
-                            value = value.toString();
-                            value = value.replace('.',',');
-                            value = value.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".");
+                            value = numeroFormateado(value);
                             return data.datasets[tooltipItem.datasetIndex].label + ': ' + value + '%';
                         }
                     },
@@ -1307,9 +1313,7 @@ function ponchoChart(opt) {
                     callbacks: {
                         label: function(tooltipItem, data) {
                             var value = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
-                            value = value.toString();
-                            value = value.replace('.',',');
-                            value = value.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".");
+                            value = numeroFormateado(value);
                             return data["labels"][tooltipItem.index] + ': ' +  value + '%';
                         }
                     }
@@ -1323,9 +1327,7 @@ function ponchoChart(opt) {
                     callbacks: {
                         label: function(tooltipItem, data) {
                             var value = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
-                            value = value.toString();
-                            value = value.replace('.',',');
-                            value = value.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".");
+                            value = numeroFormateado(value);
                             return data.datasets[tooltipItem.datasetIndex].label + ': ' +  value + '%';
                         },
                         footer: (tooltipItems, data) => {
@@ -1343,9 +1345,7 @@ function ponchoChart(opt) {
                     callbacks: {
                         label: function(tooltipItem, data) {
                             var value = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
-                            value = value.toString();
-                            value = value.replace('.',',');
-                            value = value.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".");
+                            value = numeroFormateado(value);
                             return data.datasets[tooltipItem.datasetIndex].label + ': ' +  value + '%';
                         }
                     }
@@ -1361,9 +1361,7 @@ function ponchoChart(opt) {
                     callbacks: {
                         label: function(tooltipItem, data) {
                             var value = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
-                            value = value.toString();
-                            value = value.replace('.',',');
-                            value = value.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".");
+                            value = numeroFormateado(value);
                             return data.datasets[tooltipItem.datasetIndex].label + ': ' + value;
                         }
                     },
@@ -1377,9 +1375,7 @@ function ponchoChart(opt) {
                     callbacks: {
                         label: function(tooltipItem, data) {
                             var value = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
-                            value = value.toString();
-                            value = value.replace('.',',');
-                            value = value.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".");
+                            value = numeroFormateado(value);
                             return data["labels"][tooltipItem.index] + ': ' +  value;
                         }
                     }
@@ -1394,9 +1390,7 @@ function ponchoChart(opt) {
                       callbacks: {
                         label: function(tooltipItem, data) {
                             var value = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
-                            value = value.toString();
-                            value = value.replace('.',',');
-                            value = value.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".");
+                            value = numeroFormateado(value);
                             return data.datasets[tooltipItem.datasetIndex].label + ': ' + value;
                         },
                         footer: (tooltipItems, data) => {
@@ -1413,9 +1407,7 @@ function ponchoChart(opt) {
                     callbacks: {
                         label: function(tooltipItem, data) {
                             var value = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
-                            value = value.toString();
-                            value = value.replace('.',',');
-                            value = value.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".");
+                            value = numeroFormateado(value);
                             return data.datasets[tooltipItem.datasetIndex].label + ': ' +  value;
                         }
                     }
@@ -1475,7 +1467,7 @@ function ponchoChart(opt) {
                         if ((typeof opt.datosTooltip[0] != 'undefined') && (typeof opt.datosTooltip[0].labelFila != 'undefined')) labelX = opt.datosTooltip[0].labelFila;
                         if ((typeof opt.datosTooltip[1] != 'undefined') && (typeof opt.datosTooltip[1].labelColumna != 'undefined')) labelY = opt.datosTooltip[1].labelColumna;
                         if ((typeof opt.datosTooltip[2] != 'undefined') && (typeof opt.datosTooltip[2].labelValor != 'undefined')) labelValor = opt.datosTooltip[2].labelValor;
-                    }
+                    }                        
 
                     //getDatos
                     jQuery.each(Object.keys(filteredTitleName), function(index, key) {
@@ -1497,7 +1489,7 @@ function ponchoChart(opt) {
                         var data = [];
 
                         for (var l=0;l<etiquetas.length;l++) {
-
+                        
                             var datos = {
                                 x: etiquetas[l],
                                 y: parseInt(datosFull[l][i])
@@ -1512,7 +1504,7 @@ function ponchoChart(opt) {
                         } 
 
                         series.push(serie);
-                    }
+                    }   
 
                     var rango = [];
 
@@ -1637,7 +1629,7 @@ function ponchoChart(opt) {
                         }
                     } else  indicePorcentajeMixed = 3; //ningun dataset usa escala de porcentaje
                 }
-
+                
                 console.log('etiquetas --> ' + etiquetas);
 
                 console.log('toltip -->' + JSON.stringify(toltips));
@@ -1655,7 +1647,6 @@ function ponchoChart(opt) {
             graficaTitulo(opt.idTagTituloGrafico, opt.tituloGrafico);
         }
     }
-
 }
 
 //#####################################################################
