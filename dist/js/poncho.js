@@ -1134,7 +1134,8 @@ function ponchoChart(opt) {
     function numeroFormateado(numero) {
         var value = numero.toString().replace('.',',');
         var array = value.split(",");
-        var result1 = new Intl.NumberFormat('es').format(array[0]);
+        //var result1 = new Intl.NumberFormat('es').format(array[0]);
+        var result1 = new Intl.NumberFormat('es-AR', {maximumFractionDigits:2 }).format(array[0]);
         if (array.length > 1) 
             value = result1.concat(",",array[1]);
         else 
@@ -1170,6 +1171,14 @@ function ponchoChart(opt) {
         } else {
             mostrarLeyendas = opt.mostrarLeyendas;
         }
+
+        var mostrarTotal = '';
+        if (typeof opt.mostrarTotalStacked == 'undefined'){
+            mostrarTotal = true;
+        } else {
+            mostrarTotal = opt.mostrarTotalStacked;
+        }
+
         var tipoGrafico = getTipoGrafico(opt.tipoGrafico);
 
         var listado = data['values'];
@@ -1321,22 +1330,35 @@ function ponchoChart(opt) {
 
             } else if  (opt.tipoGrafico == 'Stacked Bar'){
                 //seteo tooltips
-                toltips = {
-                    enabled: true,
-                    mode: 'index',
-                    callbacks: {
-                        label: function(tooltipItem, data) {
-                            var value = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
-                            value = numeroFormateado(value);
-                            return data.datasets[tooltipItem.datasetIndex].label + ': ' +  value + '%';
-                        },
-                        footer: (tooltipItems, data) => {
-                          let total = tooltipItems.reduce((a, e) => a + parseInt(e.yLabel), 0);
-                          return 'Total: ' + total + '%';
+                if (mostrarTotal == true) {
+                    toltips = {
+                        enabled: true,
+                        mode: 'index',
+                        callbacks: {
+                            label: function(tooltipItem, data) {
+                                var value = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+                                value = numeroFormateado(value);
+                                return data.datasets[tooltipItem.datasetIndex].label + ': ' +  value + '%';
+                            },
+                            footer: (tooltipItems, data) => {
+                              let total = tooltipItems.reduce((a, e) => a + parseFloat(e.yLabel), 0);
+                              return 'Total: ' + total + '%';
+                            }
                         }
-                    }
-                };
-
+                    };
+                } else {
+                    toltips = {
+                        enabled: true,
+                        mode: 'index',
+                        callbacks: {
+                            label: function(tooltipItem, data) {
+                                var value = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+                                value = numeroFormateado(value);
+                                return data.datasets[tooltipItem.datasetIndex].label + ': ' +  value + '%';
+                            }
+                        }
+                    };
+                }
             } else {
                 //seteo tooltips
                 toltips = {
@@ -1383,7 +1405,25 @@ function ponchoChart(opt) {
 
             } else if (opt.tipoGrafico == 'Stacked Bar' && cantDatos > 1){
                 //seteo tooltips
-                toltips = {
+                if (mostrarTotal == true) {
+                    toltips = {
+                        enabled: true,
+                        mode: 'index',
+                        intersect: false,
+                          callbacks: {
+                            label: function(tooltipItem, data) {
+                                var value = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+                                value = numeroFormateado(value);
+                                return data.datasets[tooltipItem.datasetIndex].label + ': ' + value;
+                            },
+                            footer: (tooltipItems, data) => {
+                              let total = tooltipItems.reduce((a, e) => a + parseFloat(e.yLabel), 0);
+                              return 'Total: ' + total;
+                            }
+                          }
+                    };
+                } else {
+                    toltips = {
                     enabled: true,
                     mode: 'index',
                     intersect: false,
@@ -1392,13 +1432,10 @@ function ponchoChart(opt) {
                             var value = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
                             value = numeroFormateado(value);
                             return data.datasets[tooltipItem.datasetIndex].label + ': ' + value;
-                        },
-                        footer: (tooltipItems, data) => {
-                          let total = tooltipItems.reduce((a, e) => a + parseInt(e.yLabel), 0);
-                          return 'Total: ' + total;
                         }
                       }
-                };
+                    };
+                }
              } else {
                 //seteo tooltips
                 toltips = {
