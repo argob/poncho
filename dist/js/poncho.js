@@ -1342,7 +1342,7 @@ function ponchoChart(opt) {
                             },
                             footer: (tooltipItems, data) => {
                               let total = tooltipItems.reduce((a, e) => a + parseFloat(e.yLabel), 0);
-                              return 'Total: ' + total + '%';
+                              return 'Total: ' + new Intl.NumberFormat('es-AR', {maximumFractionDigits:2 }).format(total) + '%';
                             }
                         }
                     };
@@ -1418,7 +1418,7 @@ function ponchoChart(opt) {
                             },
                             footer: (tooltipItems, data) => {
                               let total = tooltipItems.reduce((a, e) => a + parseFloat(e.yLabel), 0);
-                              return 'Total: ' + total;
+                              return 'Total: ' + new Intl.NumberFormat('es-AR', {maximumFractionDigits:2 }).format(total);
                             }
                           }
                     };
