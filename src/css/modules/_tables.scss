@@ -137,6 +137,8 @@ $color_lochmara_approx: #0072bb;
 @media(max-width: 992px) {
   table.table-responsive-poncho {
     border: 0;
+    display: inline-block;
+    width: 100%;
     thead {
       border: none;
       clip: rect(0, 0, 0, 0);
@@ -145,7 +147,12 @@ $color_lochmara_approx: #0072bb;
       overflow: hidden;
       padding: 0;
       position: absolute;
-      width: 1px;
+      width: 100%;
+      display: inline-block;
+    }
+    tbody {
+      display: inline-block;
+      width: 100%;
     }
     tr {
       display: block;
