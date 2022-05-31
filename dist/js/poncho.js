@@ -1137,7 +1137,7 @@ function ponchoChart(opt) {
         //var result1 = new Intl.NumberFormat('es').format(array[0]);
         var result1 = new Intl.NumberFormat('es-AR', {maximumFractionDigits:2 }).format(array[0]);
         if (array.length > 1) 
-            value = result1.concat(",",array[1]);
+            value = result1.concat(",",array[1].substr(0,2));
         else 
             value = result1;
 
