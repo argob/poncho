@@ -831,6 +831,16 @@ width: auto!important;    height: 35px!important;
 .container-campania {
     width: 750px!important;
 }}
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .container-campania.jumbotron {
+      height: 275px;
+      margin-bottom: 150px
+  }
+  .panel.panel-default.panel-border-escarapela.etapa2.panel-camp-principal {
+      margin-bottom: 30px;
+      margin-top: 162px
+  }
+}
 @media (min-width: 992px){
 .container-campania {
     width: 970px!important;
