@@ -629,7 +629,7 @@ var ponchoUbicacion = function(options) {
             return nameA.localeCompare(nameB);
         });
         select = getDropDownList('sLocalidades', 'sLocalidades', 
-                                 locaSelect, required, false, iLocalidad.val());
+                                 locaSelect, required, true, iLocalidad.val());
     }
 
     return select;
