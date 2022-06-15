@@ -479,8 +479,11 @@ function pophidde(){
 //#####################################################################
 
 var ponchoUbicacion = function(options) {
-    var urlProvincias =  '/profiles/argentinagobar/themes/contrib/poncho/resources/jsons/geoprovincias.json';
-    var urlLocalidades = '/profiles/argentinagobar/themes/contrib/poncho/resources/jsons/geolocalidades.json';
+
+    var defaultUrlProvincias = '/profiles/argentinagobar/themes/contrib/poncho/resources/jsons/geoprovincias.json';
+    var defaultUrlLocalidades = '/profiles/argentinagobar/themes/contrib/poncho/resources/jsons/geolocalidades.json';
+    var urlProvincias = options.json_provincias ? options.json_provincias : defaultUrlProvincias;
+    var urlLocalidades = options.json_localidades ? options.json_localidades : defaultUrlLocalidades;
     var provincias;
     var localidades;
     var iProvincia = jQuery('input[name="submitted[' + options.provincia + ']"]');
@@ -585,17 +588,17 @@ var ponchoUbicacion = function(options) {
     }
 
     function getSelectProvincias(provincias) {
-    var provinciasOptions = [];
+        var provinciasOptions = [];
 
-    provinciasOptions = provincias.sort(function(a, b) {
-        var nameA = a.nombre.toUpperCase(); // ignore upper and lowercase
-        var nameB = b.nombre.toUpperCase(); // ignore upper and lowercase
-        return nameA.localeCompare(nameB);
-    });
-    var required = iProvincia.prop('required');
-    var select = getDropDownList('sProvincias', 'sProvincias', provinciasOptions, 
-                                 required, true, iProvincia.val());
-    return select;
+        provinciasOptions = provincias.sort(function(a, b) {
+            var nameA = a.nombre.toUpperCase(); // ignore upper and lowercase
+            var nameB = b.nombre.toUpperCase(); // ignore upper and lowercase
+            return nameA.localeCompare(nameB);
+        });
+        var required = iProvincia.prop('required');
+        var select = getDropDownList('sProvincias', 'sProvincias', provinciasOptions, 
+                                    required, true, iProvincia.val());
+        return select;
     }
 
     function getSelectLocalidades(localidades, provincia) {
