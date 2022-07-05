@@ -1232,8 +1232,9 @@ input[type='text']:-ms-input-placeholder { color: #555; }
 .table-scroll { overflow-x: auto; }
 .table-scroll table th { white-space: nowrap; }
 
-@media (max-width: 992px) { table.table-responsive-poncho { border: 0; }
-  table.table-responsive-poncho thead { border: none; clip: rect(0, 0, 0, 0); height: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute; width: 1px; }
+@media (max-width: 992px) { table.table-responsive-poncho { border: 0; display: inline-block; width: 100%; }
+  table.table-responsive-poncho thead { border: none; clip: rect(0, 0, 0, 0); height: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute; width: 100%; display: inline-block; }
+  table.table-responsive-poncho tbody { display: inline-block; width: 100%; }
   table.table-responsive-poncho tr { display: block; margin-bottom: .625em; }
   table.table-responsive-poncho td { border-bottom: 1px solid #ddd; display: block; }
   table.table-responsive-poncho td:last-child { border-bottom-color: #0072bb; border-bottom-width: 3px; }
