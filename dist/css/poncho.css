@@ -952,6 +952,9 @@ a.panel:hover .panel-heading, a.panel:focus .panel-heading { opacity: .8; }
 
 .arrow-popover:after { content: " "; border-width: 10px; box-sizing: border-box; position: absolute; display: block; width: 0; height: 0; border-color: transparent; border-style: solid; bottom: 1px; margin-left: -10px; border-top-color: #fff; border-bottom-width: 0; }
 
+/* Modifica el alto mínimo de los label */
+form .panel.panel-default .panel-heading { float: left; min-height: 1rem; margin-bottom: 10px; }
+
 .overlay { position: absolute; top: 0; left: 0; background: rgba(0, 0, 0, 0.5); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000,endColorstr=#99000000); height: 100%; width: 100%; }
 
 .jumbotron { position: relative; background-position: center center; background-size: cover; color: #fff; margin-bottom: 0; padding: 0; }

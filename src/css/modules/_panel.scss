@@ -639,3 +639,11 @@ a {
  border-top-color: #fff;
  border-bottom-width: 0;
 }
+
+
+/* Modifica el alto mínimo de los label */
+form .panel.panel-default .panel-heading{
+  float: left;
+  min-height: 1rem;
+  margin-bottom: 10px;
+}
