@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head>
+  <link rel="profile" href="http://www.w3.org/1999/xhtml/vocab" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://capacita-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css?rfqjsh">
+  <link rel="stylesheet" href="../../dist/css/poncho.css" />
+  <title>Mapa Efectores</title>
+</head>
+<body>
+<!-- INCLUDE CSS -->
+<link href="https://gis.argentina.gob.ar/js/leaflet/leaflet.css" rel="stylesheet"/>
+<link href="https://gis.argentina.gob.ar/js/leaflet/MarkerCluster.Default.css" rel="stylesheet"/>
+<link href="https://gis.argentina.gob.ar/js/leaflet/MarkerCluster.css" rel="stylesheet"/>
+<!-- / INCLUDE CSS -->
+
+<!-- INCLUDE SCRIPTS -->
+<script src="https://gis.argentina.gob.ar/js/leaflet/leaflet.js"></script>
+<script src="https://gis.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script>
+<script src="../../dist/js/poncho.min.js"></script>
+<script src="./js/template-efectores.js"></script>
+<!-- / INCLUDE SCRIPTS -->
+
+
+<div class="container-fluid">
+  <div class="row">
+    <div style="height: 500px;" class="col-md-12">
+      <h1 class="text-cielo">Efectores</h1>
+    </div>
+    <div class="col-md-12 m-b-2">
+      <!-- poncho map -->
+      <div class="poncho-map" data-scope="uno">
+        <!-- leaflet -->
+        <div
+            class="leaflet-container leaflet-touch leaflet-fade-anim 
+                  leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
+            id="map"
+            style="height: 700px;width: 100%;"
+            tabindex="0">
+        </div>
+        <!-- / leaflet -->
+      </div>
+      <!-- / poncho map -->
+
+    </div>
+  </div>
+</div>
+<!-- SCRIPTS -->
+<script>
+  // init
+  (async() => {
+    // GApi helpers
+    const gapi = new GapiSheetData();
+    // fetch data
+    // const googlesheet_data = await fetch_json(gapi.url('dataset', '1pYOIEL4n5364RSDaSxnUI5vMMat0lU7FxeK_3Ctk8kg')); 
+    const googlesheet_data = await fetch_json('./data/response-efectores.json'); 
+    const gapi_data = gapi.json_data(googlesheet_data);
+    // map options
+    const options = {
+      'template': popup_template,
+      'template_structure' : {
+          'title': 'name',
+          'values': [],
+          'exclude': ['id', 'inhibicion_puberal', 'hormonizacion_adolescentes', 
+                      'hormonizacion_adultos', 'latitud', 'longitud', 'name']
+      },
+      'scope':'uno',
+      'slider':true,
+      'headers': gapi_data.headers,
+      'hash': true,
+      'scroll': true,
+      'marker': 'mandarina',
+      'filters' :[
+        {
+          'legend' : '',
+          'fields' : [
+              ['hormonizacion_adultos', 'Hormonización adultos', ['SI'], 'checked'],
+              ['hormonizacion_adolescentes', 'Hormonización adolescentes', ['SI'], 'checked'],
+              ['inhibicion_puberal', 'Inhibición puberal', ['SI'], 'checked'],
+          ]
+        },
+      ],
+    };
+    // render map
+    const filter = new PonchoMapFilter(gapi_data.entries, options);
+    filter.render();
+
+  })();
+</script>
+<!-- / SCRIPTS -->
+</body>
+</html>

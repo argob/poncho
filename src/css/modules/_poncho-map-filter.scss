@@ -1,0 +1,145 @@
+/**
+ * Poncho Map y Poncho Filter
+ */
+@keyframes slidein {
+  0% {
+    right: calc(-1 * var(--slider-width));
+    opacity: 0;
+  }
+
+  100% {
+    right: var(--slider-right);
+    opacity: 1;
+  }
+}
+
+.poncho-map {
+  --slider-width: 300px;
+  --map-background: grey;
+  --slider-max-width: 50%;
+  --slider-background: white;
+  --slider-border: none;
+  --slider-shadow:0 0 10px rgba(0, 0, 0, 0.2);
+  --slider-top: 10px;
+  --slider-right: 10px;
+  --slider-left: 10px;
+  --slider-bottom: 10px;
+  --slider-radius: 16px;
+
+  background-color: var(--map-background);
+  overflow: hidden;
+  position: relative;
+  
+  .slider {
+    &.slider--in {
+      right: var(--slider-right);
+      animation-duration: 0.3s;
+      animation-name: slidein;
+    }
+    z-index: 999;
+    position: absolute;
+    top: var(--slider-top);
+    border: var(--slider-border);
+    right: calc(-1 * var(--slider-width));
+    background: var(--slider-background);
+    height: calc(100% - var(--slider-bottom) - var(--slider-top));
+    max-width: var(--slider-max-width);
+    width: var(--slider-width);
+    border-radius: var(--slider-radius);
+    box-shadow: var(--slider-shadow);
+
+    .content-container{
+      padding: 2.75rem .25rem .5rem .25rem;
+      height: calc(100%);
+    }
+
+    .content {
+      color:#5a5a5a;
+      height: 100%;
+      width: 100%;
+      overflow-y: auto;
+      overflow-x: hidden;
+      box-shadow: 0 -10px 20px #fff inset;
+      padding: 0 .75rem 1.5rem .75rem;
+
+      &:after {
+        content: '';
+        background: rgb(255,255,255);
+        background: -moz-linear-gradient(0deg, rgba(255,255,255,1) 60%, rgba(255,255,255,0) 100%);
+        background: -webkit-linear-gradient(0deg, rgba(255,255,255,1) 60%, rgba(255,255,255,0) 100%);
+        background: linear-gradient(0deg, rgba(255,255,255,1) 60%, rgba(255,255,255,0) 100%);
+        position:absolute;
+        left:.25rem;
+        width:calc(100% - 1.5rem);
+        height: 40px;
+        bottom: .25rem;
+        border-bottom-left-radius: 12px
+      }
+    }
+
+    .btn-close {
+      border-radius: 50%;
+      aspect-ratio: 1 / 1;
+      position: absolute;
+      top: 0.75rem;
+      right: 0.75rem;
+      background-color: transparent;
+      
+    }
+  }
+
+  /* leaflet controls*/
+  .leaflet-control-zoom.leaflet-bar {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--slider-shadow);
+    border: 1px solid #ddd;
+  }
+  .leaflet-control-zoom.leaflet-control a {
+    width: 38px;
+    height: 38px;
+    line-height: 38px;
+    color: #888;
+  }
+  .leaflet-control-zoom-in,
+  .leaflet-control-zoom-out {
+    font: 400 18px "Lucida Console", Monaco, monospace;
+    text-indent: 1px;
+  }
+
+  .leaflet-control-zoom-out {
+    font-size: 22px;
+  }
+
+  .leaflet-touch {
+    .leaflet-control-zoom-in {
+      font-size: 22px;
+    }
+
+    .leaflet-control-zoom-out {
+      font-size: 24px;
+    }
+    a.leaflet-control-zoom-out {
+      line-height: 32px;
+    }
+  }
+  .leaflet-container a.leaflet-popup-close-button.leaflet-popup-close-button {
+    top:5px;
+    right: 5px;
+  }
+
+
+  // Filter
+  .poncho-map-filters {
+    position: absolute;
+    z-index: 998;
+    bottom:var(--slider-bottom);
+    left:var(--slider-left);
+    padding: 1em;
+    border-radius: var(--slider-radius);
+    box-shadow: var(--slider-shadow);
+    background-color: white;
+  }
+}
+
+
