@@ -1887,7 +1887,7 @@ function gapi_legacy(response){
    * Ejecuta toggle_slider en el onclick
    */
   click_toggle_slider = () => document
-        .querySelectorAll(`${this.scope_selector} .${this.slider_selector}`)
+        .querySelectorAll(`${this.scope_selector} ${this.slider_close_selector}`)
         .forEach(e => e.addEventListener('click', this.toggle_slider));
 
   /**
@@ -1949,7 +1949,7 @@ function gapi_legacy(response){
     // Creo el slider
     let close_button = document.createElement('button');
     close_button.classList.add("btn", "btn-xs", "btn-secondary", "btn-close", 
-                               this.slider_close_selector);
+                               this.selector_name(this.slider_close_selector));
     close_button.setAttribute("title", "Cerrar panel");
     close_button.innerHTML = '<span class="sr-only">Cerrar</span>✕';
 
@@ -2201,7 +2201,6 @@ function gapi_legacy(response){
   };
 };
 // End class.
-
 
 
 //#####################################################################
