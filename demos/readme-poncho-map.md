@@ -25,7 +25,7 @@ La siguiente es una lista de las opciones con su descripción y tipo.
 | map_anchor_zoom | `integer` | 16 | Configuración del zoom para los markers que se deben visualizar pasándo por hash el id del marker.| *Opcional* |
 | map_zoom | `integer` | 4 | Configuración del valor inicial para el zoom del mapa.| *Opcional* |
 | map_view | `Array Object` | `[-40.44, -63.59]` | Geoposicionamiento inicial del mapa. | *Opcional* |
-| marker_cluster_options | `Object` | _(ver en clase)_ | Opciones Leaflet. Ver <https://github.com/Leaflet/Leaflet.markercluster> | *opcional* |
+| marker_cluster_options | `Object` | <pre>'marker_cluster_options': {<br>    'spiderfyOnMaxZoom': true,<br>    'showCoverageOnHover': false,<br>    'zoomToBoundsOnClick': true,<br>    'maxClusterRadius': 10,<br>    'spiderfyDistanceMultiplier': 1.5,<br>    'spiderLegPolylineOptions': {<br>        'weight': 1,<br>        'color': "#666",<br>        'opacity': 0.5,<br>    }<br>}</pre> | Opciones Leaflet. Ver <https://github.com/Leaflet/Leaflet.markercluster> | *opcional* |
 
 
 ## Markers
