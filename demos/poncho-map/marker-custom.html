@@ -78,9 +78,9 @@
         const icon_div = (color) => {
             return new L.divIcon({
                 html : 
-                  `<div style='background-color:white; border-radius:50%; font-size:24px; line-height:24px; text-align:center'>
+                  `<div style='background-color:transparent; font-size:24px; line-height:24px; text-align:center'>
                   <i class='icono-arg-marcador-ubicacion-2 text-${color}'></div>`,
-                iconSize: [38, 24],
+                iconSize: [24, 36],
                 iconAnchor: [22, 41],
                 popupAnchor: [-3, -40]
             });
@@ -106,7 +106,7 @@
             return self.icon('mandarina');
         }
 
-        return icon_img(img_url('alcaucil'));
+        return icon_img(img_url('choclo'));
       },
     };
     // render map
