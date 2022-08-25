@@ -9,7 +9,10 @@
 */  
 const template_punto_digital = (row, header) => {
   
-  
+  const days = [
+      '', 'lunes', 'martes',
+      'miércoles', 'jueves', 'viernes', 'sábado', 'domingo'
+  ];
 
   /**
    * Agrupa los horarios por día.
@@ -31,11 +34,6 @@ const template_punto_digital = (row, header) => {
   const days_avaiable = (data) => {
     if(!data)
       return [];
-
-    const days = [
-          'all', 'lunes', 'martes',
-          'miércoles', 'jueves', 'viernes', 'sábado', 'domingo'
-    ];
     const horarios_map = new Map();
     for(const i of data.split(' <>')){
         const split_horarios = i.split(','); 
@@ -67,21 +65,39 @@ const template_punto_digital = (row, header) => {
     return `${hms.getHours()}:${String(hms.getMinutes()).padStart(2, '0')}`;
   };
 
+  /**
+   * Rangos horarios en cadena de texto
+   * @param {array} day 
+   * @returns {string}
+   */
+  const time_tostring = (day) => { 
+    return day.map(e => `de ${e.map(i => time_format(i)).join(' a ')}`).join(' y '); 
+  };
+
   // Preparo la información horaria según el formato de 
   // salida en HTML.
-  const horarios_list = days_avaiable(row.horario); 
-  let horarios = horarios_list.map(day => {
-      let datos = day[1].map(e => `de ${e.map(i => time_format(i)).join(' a ')}`).join(' y ');
-      return `<li><strong>${day[0]}</strong>: ${datos} horas.</li>`;
+  const day_week = new Date().getDay();
+  const time_list = days_avaiable(row.horario); 
+  const today = time_list.find(e => e[0] ==  days[day_week]);
+
+  let horarios = time_list.map(day => {
+      const style = day[0] == days[day_week] ? 'text-arandano' : '';
+      let datos = time_tostring(day[1]);
+      return `<li class="${style}"><strong>${day[0]}</strong>: ${datos} h.</li>`;
   }).join('');
 
   if(horarios){
     horarios = 
-      `<dt>
+      `<dt class="sr-only">
         <i class="icono-arg-reloj text-primary"></i> 
-        Horarios de atención</dt>
-      <dd class="m-l-2">
+        Horarios
+      </dt>
+      ${today ? '<dd class="text-arandano" style="font-weight:bold"><i class="icono-arg-reloj text-arandano"></i><span> Hoy abierto '+ time_tostring(today[1])+' h.</span></dd>' : ''}
+      <dd class="_m-l-2">
+        <details style="font-size:.93em" close>
+        <summary class="text-black p-b-0 p-t-0">Horarios de atención</summary>
         <ul class="list-unstyled m-t-0">${horarios}</ul>
+        </details>
       </dd>`;
   }
 
@@ -123,7 +139,6 @@ const template_punto_digital = (row, header) => {
           <dd class="m-l-2">
             ${[row.municipio_nombre, row.provincia].join(', ')}.
           </dd>
-          <dd class="m-l-2">
           ${horarios}
           ${row.telefono ? telefono : ''}
           ${row.email ? email : ''}
@@ -133,3 +148,8 @@ const template_punto_digital = (row, header) => {
       
   return template;
 };
+
+
+
+
+
