@@ -2413,7 +2413,8 @@ async function fetch_json(url, method='GET'){
     url,{
       method: method, 
       headers: {
-        "Accept": "application/json", "Content-Type": "application/json"
+        "Accept": "application/json", "Content-Type": "application/json",
+        'Access-Control-Allow-Origin':'*'
       }
     }
   );
