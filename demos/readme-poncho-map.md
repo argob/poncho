@@ -1,5 +1,4 @@
-# Poncho Map & Poncho Map Filter
-
+# Poncho Map & Poncho Map Filter
 
 ## Opciones
 
@@ -32,7 +31,7 @@ La siguiente es una lista de las opciones con su descripción y tipo.
 
 ### Colores
 
-La opción `marker` nos permite definir el color de los *markers* asignando el nombre de color Poncho (ver colores poncho), de la siguiente manera:
+La opción `marker` nos permite definir el color de los *markers* asignando el nombre de [color poncho](https://argob.github.io/poncho/identidad/colores/) del siguiente modo:
 
 ```js
 const options = {
@@ -60,7 +59,7 @@ const options = {
 
 ### Modificando el tipo de marker
 
-Esta opción también nos ofrece la posibilidad de crear markers utilizando imágenes o en formato html. En el siguiente ejemplo se ve como se puede aplicar un icóno de Poncho Fonts en un marker. Cuando se utiliza la función de esta manera la función debe retornan una instancia de `L.icon` o variantes *leaflet*.
+Esta opción también ofrece la posibilidad de crear *markers* utilizando imágenes o en formato html. En el siguiente ejemplo se ve como se puede aplicar un icóno de Poncho Fonts en un *marker*. Cuando se utiliza la función de esta manera debe retornan una instancia de `L.icon` o variantes *leaflet*.
 
 ```js
 const options = {
@@ -89,17 +88,17 @@ const options = {
 
 ## Templates
 
-Existen tres formar de modificar cómo se va a visualizar la información tanto en los popUps como en el slider.
+Existen tres formas de modificar cómo se va a visualizar la información, tanto en los popUps como en el slider.
 
 ### Automático
 
-Si no se define un template el programa lista todos los elementos de cada item (fila) y los acomoda agregando el término y su definición. Si se agregaron Headers los utiliza para mejorar la lectura.
+Si no se define un *template*, el programa lista todos los elementos de cada item (fila) y los acomoda agregando el término y su definición. Si se agregaron [Headers](#headers) los utiliza para mejorar la lectura.
 
 ### Definir estructura
 
 El segundo modo es definir que elementos se utilizarán en el mensaje. Para esto debemos utilizar la opción `template_structure` en las opciones y definir que elementos queremos excluir o cuales queremos utilizar. La elección depende de la practicidad.
 
-A la estructura también se le puede asignar cual de las columnas se utilizará como titulo.
+A la estructura también se le puede asignar cual de las columnas se utilizará como título.
 
 #### Excluyendo elementos de la entrada de datos
 
@@ -127,7 +126,7 @@ const options = {
 
 ### Asignando una función
 
-Es posible incluir una función que defina las particularidades que debe tener el mensaje. Este es un modo avanzado en el que se deben tener conocimientos de *JavaScript* para crear la lógica del template.
+Es posible incluir una función que defina las particularidades que debe tener el mensaje. Este es un modo avanzado en el que se deben tener conocimientos de *JavaScript* para crear la lógica del *template*.
 
 #### Ejemplo
 
@@ -150,7 +149,7 @@ const opciones = {
 };
 ```
 
-O teniendo la función del template separada del objeto de opciones. 
+O teniendo la función del *template* separada del objeto de opciones. 
 
 ```js
 /**
@@ -181,7 +180,7 @@ const opciones = {
 ```
 \*. El método `self.header()`, permite retornar el nombre asignado a la columna si éste hubiera sido ofrecido en las opciones. Se le pasa como argumento el nombre de columna y retorna el header si lo tiene o el nombre de columna por defecto.
 
-## Headers
+## <a name="headers"></a>Headers
 
 La opción `headers`, permite mapear los nombres de columna con un nombre apropiado para mostrar en pantalla. 
 
@@ -198,6 +197,7 @@ const opciones = {
 };
 ```
 
+***
 
 ## Filtros
 
@@ -228,7 +228,7 @@ const options = {
 };
 ```
 
-Este ejemplo tiene dos filtros generales: estado_funcionamiento y provincia. Éstas son columnas de la tabla —o entrada—, donde se obtienen los datos. El usuario deberá configurar cada una de las entradas asignando los siguientes parámetros asignados en cada posición del Array():
+Este ejemplo tiene dos filtros generales: estado_funcionamiento y provincia. Éstas son columnas de la tabla —o entrada—, donde se obtienen los datos. El usuario deberá configurar cada una de las entradas asignando parámetros del siguiente modo:
 
 ```js
 ['provincia', 'Noreste Argentino', ['Chaco', 'Corrientes', 'Formosa', 'Misiones'], 'checked'],
@@ -244,7 +244,7 @@ Este ejemplo tiene dos filtros generales: estado_funcionamiento y provincia. És
 | 3 | { `string` \| `boolean`, ['checked',`false`] } | Designa el estado inicial del checkbox. |
 | 4 | { `string` \| `boolean`, ['strict',`false`] }  | Si se usa el modo *strict*, la condición de que el valor se encuentre en la búsqueda será obligatoria. |
 
-
+***
 
 ## Modo de uso
 

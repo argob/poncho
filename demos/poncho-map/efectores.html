@@ -61,25 +61,18 @@
     // map options
     const options = {
       'template': popup_template,
-      'template_structure' : {
-          'title': 'name',
-          'values': [],
-          'exclude': ['id', 'inhibicion_puberal', 'hormonizacion_adolescentes', 
-                      'hormonizacion_adultos', 'latitud', 'longitud', 'name']
-      },
-      'scope':'uno',
-      'slider':true,
       'headers': gapi_data.headers,
+      'scope':'uno',
+      'slider':false,
       'hash': true,
       'scroll': true,
-      'marker': 'mandarina',
       'filters' :[
         {
           'legend' : '',
           'fields' : [
-              ['hormonizacion_adultos', 'Hormonización adultos', ['SI'], 'checked'],
-              ['hormonizacion_adolescentes', 'Hormonización adolescentes', ['SI'], 'checked'],
-              ['inhibicion_puberal', 'Inhibición puberal', ['SI'], 'checked'],
+              ['filtro-hormonizacion-adultos', 'Hormonización adultos', ['SI'], 'checked'],
+              ['filtro-hormonizacion-adolescentes', 'Hormonización adolescentes', ['SI'], 'checked'],
+              ['filtro-inhibicion-puberal', 'Inhibición puberal', ['SI'], 'checked'],
           ]
         },
       ],
@@ -87,6 +80,7 @@
     // render map
     const filter = new PonchoMapFilter(gapi_data.entries, options);
     filter.render();
+
 
   })();
 </script>
