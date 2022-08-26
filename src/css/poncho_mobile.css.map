@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": ";AAAA;;;;;;GAMG;AAEH,eAAe;AAKf,UAAW;EACP,SAAS,EAAE,IAAI;;AAGnB,oDAAqD;EACjD,MAAM,EAAE,KAAK;;AAGjB,OAAQ;EACN,WAAW,EAAE,GAAG;EAChB,KAAK,ECfkB,IAAI;;ADkB7B;;;;KAIM;EAAE,WAAW,EAAE,GAAG",
-"sources": ["poncho_mobile.scss","modules/_variables.scss"],
-"names": [],
-"file": "poncho_mobile.css"
-}

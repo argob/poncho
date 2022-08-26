@@ -4962,6 +4962,35 @@ details[open] > summary::-webkit-details-marker:before {
   transform: rotate(225deg);
 }
 
+:root {
+  --white: #fff;
+  --black: #333333;
+  --primary: #0072bb;
+  --success: #2e7d33;
+  --info: #2897D4;
+  --danger: #c62828;
+  --warning: #f9a822;
+  --fucsia: #EC407A;
+  --arandano: #C2185B;
+  --uva: #6A1B99;
+  --cielo: #039BE5;
+  --verdin: #6EA100;
+  --lima: #CDDC39;
+  --maiz: #FFCE00;
+  --tomate: #EF5350;
+  --naranja: #EF6C00;
+  --verde-azulado: #008388;
+  --mandarina: #F79525;
+  --cereza: #ED3D8F;
+  --lavanda: #9284BE;
+  --escarapela: #2CB9EE;
+  --palta: #50B7B2;
+  --limon: #D7DF23;
+  --verde-jade: #006666;
+  --verde-aloe: #4FBB73;
+  --verde-cemento: #B4BEBA;
+}
+
 .row-news {
   margin-bottom: 24px;
 }
@@ -8360,6 +8389,55 @@ body .main-footer {
     break-inside: avoid !important;
   }
 }
+#map-container {
+  height: 100vh;
+}
+
+#map {
+  height: 100%;
+}
+
+@media (max-width: 480px) {
+  #map-container .navbar .container .navbar-header .navbar-brand {
+    width: auto;
+  }
+}
+#map-container .separarGuiones span:before {
+  content: "-";
+  display: inline-block;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+#map-container .separarGuiones span:nth-child(2):before {
+  content: none;
+}
+
+#map-container .media-body .fa {
+  margin-right: 5px;
+  width: 15px;
+  color: #9b9b9b;
+  text-align: center;
+}
+
+#map-container .media-body h4 {
+  margin: 0px 0px 10px 0px;
+}
+
+#map-container .media-body div {
+  margin-bottom: 10px;
+  font-size: 13px;
+}
+
+#map-container .media-body hr {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+#map-container .media-body small {
+  font-weight: 600;
+}
+
 /**
  * Poncho Map y Poncho Filter
  */
@@ -8375,7 +8453,7 @@ body .main-footer {
 }
 .poncho-map {
   --slider-width: 300px;
-  --slider-title-color: #0072bb;
+  --slider-title-color: var(#0072bb);
   --map-background: grey;
   --slider-max-width: 50%;
   --slider-color: inherit;
@@ -8509,132 +8587,6 @@ body .main-footer {
 }
 .poncho-map .poncho-map-filters .form-check .form-check-label {
   color: var(--slider-color) !important;
-}
-
-/**
- * Poncho Map y Poncho Filter
- */
-@keyframes slidein {
-  0% {
-    right: calc(-1 * var(--slider-width));
-    opacity: 0;
-  }
-  100% {
-    right: var(--slider-right);
-    opacity: 1;
-  }
-}
-.poncho-map {
-  --slider-width: 300px;
-  --map-background: grey;
-  --slider-max-width: 50%;
-  --slider-background: white;
-  --slider-border: none;
-  --slider-shadow:0 0 10px rgba(0, 0, 0, 0.2);
-  --slider-top: 10px;
-  --slider-right: 10px;
-  --slider-left: 10px;
-  --slider-bottom: 10px;
-  --slider-radius: 16px;
-  background-color: var(--map-background);
-  overflow: hidden;
-  position: relative;
-  /* leaflet controls*/
-}
-.poncho-map .slider {
-  z-index: 999;
-  position: absolute;
-  top: var(--slider-top);
-  border: var(--slider-border);
-  right: calc(-1 * var(--slider-width));
-  background: var(--slider-background);
-  height: calc(100% - var(--slider-bottom) - var(--slider-top));
-  max-width: var(--slider-max-width);
-  width: var(--slider-width);
-  border-radius: var(--slider-radius);
-  box-shadow: var(--slider-shadow);
-}
-.poncho-map .slider.slider--in {
-  right: var(--slider-right);
-  animation-duration: 0.3s;
-  animation-name: slidein;
-}
-.poncho-map .slider .content-container {
-  padding: 2.75rem 0.25rem 0.5rem 0.25rem;
-  height: calc(100%);
-}
-.poncho-map .slider .content {
-  color: #5a5a5a;
-  height: 100%;
-  width: 100%;
-  overflow-y: auto;
-  overflow-x: hidden;
-  box-shadow: 0 -10px 20px #fff inset;
-  padding: 0 0.75rem 1.5rem 0.75rem;
-}
-.poncho-map .slider .content:after {
-  content: "";
-  background: white;
-  background: -moz-linear-gradient(0deg, white 60%, rgba(255, 255, 255, 0) 100%);
-  background: -webkit-linear-gradient(0deg, white 60%, rgba(255, 255, 255, 0) 100%);
-  background: linear-gradient(0deg, white 60%, rgba(255, 255, 255, 0) 100%);
-  position: absolute;
-  left: 0.25rem;
-  width: calc(100% - 1.5rem);
-  height: 40px;
-  bottom: 0.25rem;
-  border-bottom-left-radius: 12px;
-}
-.poncho-map .slider .btn-close {
-  border-radius: 50%;
-  aspect-ratio: 1/1;
-  position: absolute;
-  top: 0.75rem;
-  right: 0.75rem;
-  background-color: transparent;
-}
-.poncho-map .leaflet-control-zoom.leaflet-bar {
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: var(--slider-shadow);
-  border: 1px solid #ddd;
-}
-.poncho-map .leaflet-control-zoom.leaflet-control a {
-  width: 38px;
-  height: 38px;
-  line-height: 38px;
-  color: #888;
-}
-.poncho-map .leaflet-control-zoom-in,
-.poncho-map .leaflet-control-zoom-out {
-  font: 400 18px "Lucida Console", Monaco, monospace;
-  text-indent: 1px;
-}
-.poncho-map .leaflet-control-zoom-out {
-  font-size: 22px;
-}
-.poncho-map .leaflet-touch .leaflet-control-zoom-in {
-  font-size: 22px;
-}
-.poncho-map .leaflet-touch .leaflet-control-zoom-out {
-  font-size: 24px;
-}
-.poncho-map .leaflet-touch a.leaflet-control-zoom-out {
-  line-height: 32px;
-}
-.poncho-map .leaflet-container a.leaflet-popup-close-button.leaflet-popup-close-button {
-  top: 5px;
-  right: 5px;
-}
-.poncho-map .poncho-map-filters {
-  position: absolute;
-  z-index: 998;
-  bottom: var(--slider-bottom);
-  left: var(--slider-left);
-  padding: 1em;
-  border-radius: var(--slider-radius);
-  box-shadow: var(--slider-shadow);
-  background-color: white;
 }
 
 .dashboard ol {

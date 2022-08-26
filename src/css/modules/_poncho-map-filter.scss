@@ -1,7 +1,7 @@
 /**
  * Poncho Map y Poncho Filter
  */
-@keyframes slidein {
+ @keyframes slidein {
   0% {
     right: calc(-1 * var(--slider-width));
     opacity: 0;
@@ -15,9 +15,11 @@
 
 .poncho-map {
   --slider-width: 300px;
+  --slider-title-color: var(#0072bb);
   --map-background: grey;
   --slider-max-width: 50%;
-  --slider-background: white;
+  --slider-color: inherit;
+  --slider-background: rgba(255,255,255,1);
   --slider-border: none;
   --slider-shadow:0 0 10px rgba(0, 0, 0, 0.2);
   --slider-top: 10px;
@@ -29,6 +31,10 @@
   background-color: var(--map-background);
   overflow: hidden;
   position: relative;
+
+  .title {
+    color: var(--slider-title-color);
+  }
   
   .slider {
     &.slider--in {
@@ -48,26 +54,28 @@
     border-radius: var(--slider-radius);
     box-shadow: var(--slider-shadow);
 
+
     .content-container{
       padding: 2.75rem .25rem .5rem .25rem;
       height: calc(100%);
     }
 
+
     .content {
-      color:#5a5a5a;
+      color:var(--slider-color);
       height: 100%;
       width: 100%;
       overflow-y: auto;
       overflow-x: hidden;
-      box-shadow: 0 -10px 20px #fff inset;
+      box-shadow: 0 -10px 20px var(--slider-background) inset;
       padding: 0 .75rem 1.5rem .75rem;
 
       &:after {
         content: '';
-        background: rgb(255,255,255);
-        background: -moz-linear-gradient(0deg, rgba(255,255,255,1) 60%, rgba(255,255,255,0) 100%);
-        background: -webkit-linear-gradient(0deg, rgba(255,255,255,1) 60%, rgba(255,255,255,0) 100%);
-        background: linear-gradient(0deg, rgba(255,255,255,1) 60%, rgba(255,255,255,0) 100%);
+        background: var(--slider-background);
+        background: -moz-linear-gradient(0deg, var(--slider-background) 60%, rgba(255,255,255,0) 100%);
+        background: -webkit-linear-gradient(0deg, var(--slider-background) 60%, rgba(255,255,255,0) 100%);
+        background: linear-gradient(0deg, var(--slider-background) 60%, rgba(255,255,255,0) 100%);
         position:absolute;
         left:.25rem;
         width:calc(100% - 1.5rem);
@@ -84,8 +92,27 @@
       top: 0.75rem;
       right: 0.75rem;
       background-color: transparent;
+      color:var(--slider-color);
       
     }
+  }
+
+  /* leaflet popup */
+  .leaflet-popup-content-wrapper, .leaflet-popup-tip {
+    background: var(--slider-background);
+    color: var(--slider-color);
+
+    .leaflet-popup-content {
+      // height: 360px !important;
+      // overflow-y: auto;
+
+      .info-container {
+        max-height: 800px;
+        overflow-y: auto;
+        width: 100% !important;
+      }
+    }
+
   }
 
   /* leaflet controls*/
@@ -121,6 +148,12 @@
     }
     a.leaflet-control-zoom-out {
       line-height: 32px;
+
+    }
+    a.leaflet-control-zoom-in, a.leaflet-control-zoom-out {
+      background-color:var(--slider-background);
+      color:var(--slider-color);
+      border-color:var(--slider-color);
     }
   }
   .leaflet-container a.leaflet-popup-close-button.leaflet-popup-close-button {
@@ -138,7 +171,12 @@
     padding: 1em;
     border-radius: var(--slider-radius);
     box-shadow: var(--slider-shadow);
-    background-color: white;
+    color:var(--slider-color);
+    background-color: var(--slider-background);
+
+    .form-check .form-check-label {
+      color: var(--slider-color) !important; 
+    }
   }
 }
 
