@@ -7,7 +7,7 @@
 * markers. 
 * @return {string} Bloque HTML. 
 */  
-const template_punto_digital = (row, header) => {
+const template_punto_digital = (self, row) => {
   
   const days = [
       '', 'lunes', 'martes',

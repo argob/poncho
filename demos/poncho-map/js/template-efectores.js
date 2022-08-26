@@ -1,7 +1,7 @@
 /**
  * Template para el popup del mapa
  */
- const popup_template = (row) => {
+ const popup_template = (self, row) => {
 
   const opening_time = 
     `<dt>

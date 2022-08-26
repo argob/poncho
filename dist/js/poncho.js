@@ -1742,7 +1742,6 @@ function gapi_legacy(response){
 //#####################################################################
 //####################### PONCHO MAP ##################################
 //#####################################################################
-
 /**
  * PONCHO MAP
  * 
@@ -1757,11 +1756,12 @@ function gapi_legacy(response){
     this.data = data;
     // Confs
     const defaults = {
-        'template': (e) => this.default_template(e),
+        'template': (self, element) => this.default_template(self, element),
         'template_structure': {},
         'template_container_class_list':['info-container'],
         'template_title_class_list':['h4','text-primary'],
         'template_dl_class_list':['definition-list'],
+        'template_innerhtml': false,
         'scope': '',
         'slider': false,
         'scroll': false,
@@ -1798,6 +1798,7 @@ function gapi_legacy(response){
     this.template_title_class_list = opts.template_title_class_list;
     this.template_dl_class_list = opts.template_dl_class_list;
     this.template_container_class_list = opts.template_container_class_list;
+    this.template_innerhtml = opts.template_innerhtml;
     this.map_selector = opts.map_selector;
     this.headers = opts.headers;
     this.hash = opts.hash;
@@ -1908,7 +1909,7 @@ function gapi_legacy(response){
     if(!this.is_open()){
       this.toggle_slider();
     }
-    const html = this.template(data, this.header);
+    const html = this.template(this, data);
     document.querySelector(`.${this.slider_selector} .js-content-${this.token}`)
             .innerHTML = html;
   };
@@ -2084,7 +2085,7 @@ function gapi_legacy(response){
    * pasado cómo argumento. 
    * @param {object} row - Entrada para dibujar un marker.
    */  
-  default_template = (row) => {
+  default_template = (self, row) => {
     const tpl_list = this.template_list(row);
     const tpl_title = this.template_title(row);
 
@@ -2097,7 +2098,7 @@ function gapi_legacy(response){
     
     for(const key of tpl_list){
       // excluyo los items vacíos.
-      if(row.hasOwnProperty(key) && toString(row[key]).trim() == '')
+      if(row.hasOwnProperty(key) && !row[key])
         continue;
 
       const dt = document.createElement('dt');
@@ -2105,7 +2106,9 @@ function gapi_legacy(response){
 
       const dd = document.createElement('dd');
       dd.textContent = row[key];
-
+      if(this.template_innerhtml)
+        dd.innerHTML = row[key];
+      
       dl.appendChild(dt);
       dl.appendChild(dd);
     };
@@ -2174,7 +2177,7 @@ function gapi_legacy(response){
       icon ? marker_attr.icon = icon : null;
       const marker = new L.marker([latitud, longitud], marker_attr);
       this.markers.addLayer(marker);
-      !this.slider ? marker.bindPopup(this.template(row)) : null;
+      !this.slider ? marker.bindPopup(this.template(this, row)) : null;
     });
     this.map.addLayer(this.markers)
   };
@@ -2201,7 +2204,6 @@ function gapi_legacy(response){
   };
 };
 // End class.
-
 
 //#####################################################################
 //##################### PONCHO MAP FILER ##############################

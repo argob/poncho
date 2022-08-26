@@ -12,6 +12,7 @@ La siguiente es una lista de las opciones con su descripción y tipo.
 | longitud | `string` | longitud | Nombre de la columna con el valor de longitud. Si la fuente de datos usa otro nombre se define con esta opción. Ej. `'longitud':'lng'`.| *Opcional* |
 | template | `object` | `null` | Define la función que controla el template para el popUp o el slider.| *Opcional* |
 | template_structure | `object` | `{}` | Permite definir un listado de valores a mostarar en el template por defecto o excluir valores que no se deseen mostrar.| *Opcional* |
+| template_innerhtml | `boolean` | `false` | Permite incrustar html dentro de la descripción.| *Opcional* |
 | template_container_class_list | `Array()` | `['info-container']` | Define la lista de clases CSS que pueden agregarse al contenedor del listado de terminos y descripciones. | *Opcional* |
 | template_title_class_list | `Array()` | `['h4','text-primary']` | Define la función que controla el template para el popUp o el slider.| *Opcional* |
 | template_dl_class_list | `Array()` | `['definition-list']` | Define la función que controla el template para el popUp o el slider.| *Opcional* |
@@ -128,11 +129,13 @@ const options = {
 
 Es posible incluir una función que defina las particularidades que debe tener el mensaje. Este es un modo avanzado en el que se deben tener conocimientos de *JavaScript* para crear la lógica del *template*.
 
-#### Ejemplo
+#### Ejemplos
+
+##### Función dentro y fuera del grupo de opciones
 
 ```js
 const opciones = {
-    'template': (row, headers) => {
+    'template': (self, row) => {
       const html = `
         <h1>${row.title}</h1>
         <h2>${row.subtitle}</h2>
@@ -179,6 +182,39 @@ const opciones = {
 };
 ```
 \*. El método `self.header()`, permite retornar el nombre asignado a la columna si éste hubiera sido ofrecido en las opciones. Se le pasa como argumento el nombre de columna y retorna el header si lo tiene o el nombre de columna por defecto.
+
+##### Modificando la entrada y retornando el template por defecto
+
+Otra alternativa es modificar valores de la entrada para crear una nueva utilizando el template por default .
+
+```js
+const options = {
+  'template': (self, row) => {
+      row['entrada_personalizada'] = 'Mi valor personalizado';
+      row['address'] = [row.address, row.locality, row.province].join(', ');
+      return self.default_template(self, row);
+  },
+  ...
+};
+```
+
+##### Utilizando markdown en una de las entradas
+
+```js
+const options = {
+  'template_innerhtml': true,
+  'template': (self, row) => {
+    // showdown
+    const converter = new showdown.Converter();
+    row['custom_entry'] = converter.makeHtml(
+          'Prueba *markdown* [argentina.gob.ar](https://www.argentina.gob.ar/)'
+    );
+    const html = self.default_template(self, row);
+    return converter.makeHtml(html);
+  },
+  ...
+};
+```
 
 ## <a name="headers"></a>Headers
 
