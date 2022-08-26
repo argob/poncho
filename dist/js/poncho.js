@@ -1742,6 +1742,7 @@ function gapi_legacy(response){
 //#####################################################################
 //####################### PONCHO MAP ##################################
 //#####################################################################
+
 /**
  * PONCHO MAP
  * 
@@ -1759,7 +1760,7 @@ function gapi_legacy(response){
         'template': (self, element) => this.default_template(self, element),
         'template_structure': {},
         'template_container_class_list':['info-container'],
-        'template_title_class_list':['h4','text-primary'],
+        'template_title_class_list':['h4','title'],
         'template_dl_class_list':['definition-list'],
         'template_innerhtml': false,
         'scope': '',
@@ -2205,6 +2206,24 @@ function gapi_legacy(response){
 };
 // End class.
 
+/**
+ * Fetch data
+ */
+async function fetch_json(url, method='GET'){
+  const response = await fetch(
+    url,{
+      method: method, 
+      headers: {
+        "Accept": "application/json", "Content-Type": "application/json"
+      }
+    }
+  );
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
+  return await response.json();
+};
+
 //#####################################################################
 //##################### PONCHO MAP FILER ##############################
 //#####################################################################
@@ -2257,6 +2276,7 @@ function gapi_legacy(response){
         input.type = "checkbox";
         input.id = `id__${field[0]}__${key}`;
         input.name = `${field[0]}__${key}`;
+        input.className = 'form-check-input';
         input.value = 1;
         if(typeof field[3] !== 'undefined' && field[3]=='checked')
             input.setAttribute("checked", 'checked');
@@ -2264,9 +2284,11 @@ function gapi_legacy(response){
         const label = document.createElement('label');
         label.style.marginLeft = '.33rem';
         label.textContent=field[1];
+        label.className = "form-check-label";
         label.setAttribute("for", `id__${field[0]}__${key}`);
 
         const field_container = document.createElement('div');
+        field_container.className = "form-check";
         field_container.appendChild(input);
         field_container.appendChild(label);
 
@@ -2401,7 +2423,6 @@ function gapi_legacy(response){
     setTimeout(this.showitem, this.anchor_delay);
   }
 }
-// END CLASS
 
 //#####################################################################
 //############################# FETCH #################################
