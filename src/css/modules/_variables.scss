@@ -87,4 +87,31 @@ $font-family-serif: 'Droid Serif', serif;
 $font-family-sans-serif: 'Encode Sans', Arial, sans-serif;
 
 
-
+:root {
+  --white: #{$white};
+  --black: #{$black};
+  --primary: #{$brand-primary};
+  --success: #{$brand-success};
+  --info: #{$brand-info};
+  --danger: #{$brand-danger};
+  --warning: #{$brand-warning};
+  --fucsia: #{$brand-fucsia};
+  --arandano: #{$brand-arandano};
+  --uva: #{$brand-uva};
+  --cielo: #{$brand-cielo};
+  --verdin: #{$brand-verdin};
+  --lima: #{$brand-lima};
+  --maiz: #{$brand-maiz};
+  --tomate: #{$brand-tomate};
+  --naranja: #{$brand-naranja};
+  --verde-azulado: #{$brand-verde-azulado};
+  --mandarina: #{$brand-mandarina};
+  --cereza: #{$brand-cereza};
+  --lavanda: #{$brand-lavanda};
+  --escarapela: #{$brand-escarapela};
+  --palta: #{$brand-palta};
+  --limon: #{$brand-limon};
+  --verde-jade: #{$brand-verde-jade};
+  --verde-aloe: #{$brand-verde-aloe};
+  --verde-cemento: #{$brand-verde-cemento};
+}

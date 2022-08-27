@@ -19,7 +19,7 @@
           --slider-width: 400px;
           --slider-background: #333;
           --slider-color: #f4f4f4;
-          --slider-title-color:#ffce00;
+          --slider-title-color:var(--maiz);
         }
     }
   
@@ -39,7 +39,7 @@
 <!-- INCLUDE SCRIPTS -->
 <script src="https://gis.argentina.gob.ar/js/leaflet/leaflet.js"></script>
 <script src="https://gis.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script>
-<script src="../../dist/js/poncho.min.js"></script>
+<script src="https://raw.githack.com/argob/poncho/master/dist/js/poncho.min.js"></script>
 <script src="./js/template-efectores.js"></script>
 <!-- / INCLUDE SCRIPTS -->
 
@@ -96,7 +96,7 @@
           return converter.makeHtml(html);
       },
       'scope':'uno',
-      'slider':true,
+      'slider':false,
       'hash': true,
       // 'scroll': true,
       'filters' :[
