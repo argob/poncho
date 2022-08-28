@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/argob/poncho"
+    "url": "git+https://github.com/argob/poncho.git"
   },
   "keywords": [
     "template",
@@ -24,5 +24,16 @@
   "bugs": {
     "url": "https://github.com/argob/poncho/issues"
   },
-  "homepage": "https://argob.github.io/poncho"
+  "homepage": "https://argob.github.io/poncho",
+  "devDependencies": {
+    "@babel/preset-env": "^7.18.2",
+    "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-jshint": "^2.1.0",
+    "gulp-plumber": "^1.2.1",
+    "gulp-sass": "^5.1.0",
+    "gulp-uglify": "^3.0.2",
+    "gulp-uglifyes": "^0.2.1"
+  }
 }

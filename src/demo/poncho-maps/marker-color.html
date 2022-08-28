@@ -7,7 +7,7 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
   <link rel="stylesheet" href="https://capacita-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css?rfqjsh">
-  <link rel="stylesheet" href="../../dist/css/poncho.css" />
+  <link rel="stylesheet" href="../../../dist/css/poncho.css" />
   <title>Mapa Puntos Digitales</title>
   <style>
     div.leaflet-div-icon {
@@ -28,35 +28,35 @@
 <script src="https://gis.argentina.gob.ar/js/leaflet/leaflet.js"></script>
 <script src="https://gis.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script>
 <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
-<script src="../../dist/js/poncho.min.js"></script>
+<script src="../../../dist/js/poncho.min.js"></script>
 <script src="./js/template-punto-digital.js"></script>
 <!-- / INCLUDE SCRIPTS -->
-
 <div class="container-fluid">
   <div class="row">
     <div style="height: 500px;" class="col-md-12">
       <h1 class="text-cielo">Mapa</h1>
     </div>
     <div class="col-md-12 m-b-2">
+
       <!-- poncho map -->
-      <div class="poncho-map" data-scope="uno">
+      <div class="poncho-map" data-scope="poncho-map">
         <!-- leaflet -->
         <div
             class="leaflet-container leaflet-touch leaflet-fade-anim 
                   leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
             id="map"
-            style="height: 700px;width: 100%;"
+            style="height: 700px; width: 100%;"
             tabindex="0">
         </div>
         <!-- / leaflet -->
       </div>
       <!-- / poncho map -->
+
     </div>
   </div>
 </div>
 <!-- SCRIPTS -->
 <script>
-
   // init
   (async() => {
     // fetch data
@@ -66,40 +66,17 @@
     // map options
     const options = {
       'template': template_punto_digital,
-      'scope':'uno',
+      'scope':'poncho-map',
       'id': 'id_pd',
       'latitud': 'lat',
       'longitud': 'long',
       'hash': true,
       'slider': true,
       'scroll': true,
-      'marker': (self, ele) => { 
-          let color = "cielo";
-          if(ele.estado_funcionamiento == '3'){
-              color = "mandarina";
-          } else if(ele.estado_funcionamiento == '5'){
-              color = 'rojo';
-          }
-          return color;
-      },
-      'filters': [
-          {
-              'legend': 'Ver',
-              'fields': [
-                  ['estado_funcionamiento', 'Abiertos', ['1'], 'checked', 'strict'],
-                  ['estado_funcionamiento', 'Cerrados temporalmente', ['3'], false, 'strict'],
-                  ['provincia', 'Buenos Aires', ['Buenos Aires', 'Ciudad Autónoma de Buenos Aires'], 'checked'],
-                  ['provincia', 'Noreste Argentino', ['Chaco', 'Corrientes', 'Formosa', 'Misiones'], 'checked'],
-                  ['provincia', 'Noroeste Argentino', ['Catamarca', 'Jujuy', 'La Rioja', 'Salta', 'Santiago del Estero', 'Tucumán']],
-                  ['provincia', 'Región Centro', ['Córdoba', 'Entre Ríos', 'Santa Fe']],
-                  ['provincia', 'Región Cuyo', ['La Pampa', 'Mendoza', 'San Juan', 'San Luis']],
-                  ['provincia', 'Región Patagonia', ['Chubut', 'Neuquén', 'Río Negro', 'Santa Cruz', 'Tierra del Fuego']],
-              ]
-          },
-      ],
+      'marker': 'arandano',
     };
     // render map
-    const filter = new PonchoMapFilter(gdata, options);
+    const filter = new PonchoMap(gdata, options);
     filter.render();
   })();
 </script>

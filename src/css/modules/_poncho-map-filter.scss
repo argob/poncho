@@ -15,19 +15,21 @@
 
 .poncho-map {
   --slider-width: 300px;
-  --slider-title-color: var(#0072bb);
+  --slider-title-color: var(--primary);
   --map-background: grey;
-  --slider-max-width: 50%;
+  // --slider-max-width: 50%;
   --slider-color: inherit;
-  --slider-background: rgba(255,255,255,1);
+  --slider-background: rgba(255, 255, 255, 1);
   --slider-border: none;
-  --slider-shadow:0 0 10px rgba(0, 0, 0, 0.2);
+  --slider-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   --slider-top: 10px;
   --slider-right: 10px;
   --slider-left: 10px;
   --slider-bottom: 10px;
   --slider-radius: 16px;
-
+  --active-marker-color: 255, 206, 0;
+  --active-marker-alpha: .3;
+  --slider-media-mobile-height: 45%;
   background-color: var(--map-background);
   overflow: hidden;
   position: relative;
@@ -35,13 +37,22 @@
   .title {
     color: var(--slider-title-color);
   }
-  
+
+  .marker--active {
+    --color: 247, 149, 37;
+    position: relative;
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(var(--active-marker-color), 1);
+    background: radial-gradient(circle, rgba(var(--active-marker-color), var(--active-marker-alpha)) 10%, rgba(var(--active-marker-color), var(--active-marker-alpha)) 80%);
+  }
+
   .slider {
     &.slider--in {
       right: var(--slider-right);
       animation-duration: 0.3s;
       animation-name: slidein;
     }
+
     z-index: 999;
     position: absolute;
     top: var(--slider-top);
@@ -49,20 +60,19 @@
     right: calc(-1 * var(--slider-width));
     background: var(--slider-background);
     height: calc(100% - var(--slider-bottom) - var(--slider-top));
-    max-width: var(--slider-max-width);
+    // max-width: var(--slider-max-width);
     width: var(--slider-width);
     border-radius: var(--slider-radius);
     box-shadow: var(--slider-shadow);
 
-
-    .content-container{
+    .content-container {
       padding: 2.75rem .25rem .5rem .25rem;
       height: calc(100%);
     }
 
-
     .content {
-      color:var(--slider-color);
+      inline-size: min-content;
+      color: var(--slider-color);
       height: 100%;
       width: 100%;
       overflow-y: auto;
@@ -73,16 +83,17 @@
       &:after {
         content: '';
         background: var(--slider-background);
-        background: -moz-linear-gradient(0deg, var(--slider-background) 60%, rgba(255,255,255,0) 100%);
-        background: -webkit-linear-gradient(0deg, var(--slider-background) 60%, rgba(255,255,255,0) 100%);
-        background: linear-gradient(0deg, var(--slider-background) 60%, rgba(255,255,255,0) 100%);
-        position:absolute;
-        left:.25rem;
-        width:calc(100% - 1.5rem);
+        background: -moz-linear-gradient(0deg, var(--slider-background) 60%, rgba(255, 255, 255, 0) 100%);
+        background: -webkit-linear-gradient(0deg, var(--slider-background) 60%, rgba(255, 255, 255, 0) 100%);
+        background: linear-gradient(0deg, var(--slider-background) 60%, rgba(255, 255, 255, 0) 100%);
+        position: absolute;
+        left: .25rem;
+        width: calc(100% - 1.5rem);
         height: 40px;
         bottom: .25rem;
         border-bottom-left-radius: 12px
       }
+
     }
 
     .btn-close {
@@ -92,25 +103,31 @@
       top: 0.75rem;
       right: 0.75rem;
       background-color: transparent;
-      color:var(--slider-color);
-      
+      color: var(--slider-color);
     }
+
   }
 
   /* leaflet popup */
-  .leaflet-popup-content-wrapper, .leaflet-popup-tip {
+  .leaflet-popup-content-wrapper {
+    border-radius: 16px;
+  }
+
+  .leaflet-popup-content-wrapper,
+  .leaflet-popup-tip {
     background: var(--slider-background);
     color: var(--slider-color);
 
     .leaflet-popup-content {
-      // height: 360px !important;
-      // overflow-y: auto;
+      width: calc(100% - 26px);
+      inline-size: min-content;
 
       .info-container {
         max-height: 800px;
         overflow-y: auto;
-        width: 100% !important;
+        width: 100%;
       }
+
     }
 
   }
@@ -122,12 +139,14 @@
     box-shadow: var(--slider-shadow);
     border: 1px solid #ddd;
   }
+
   .leaflet-control-zoom.leaflet-control a {
     width: 38px;
     height: 38px;
     line-height: 38px;
     color: #888;
   }
+
   .leaflet-control-zoom-in,
   .leaflet-control-zoom-out {
     font: 400 18px "Lucida Console", Monaco, monospace;
@@ -146,38 +165,84 @@
     .leaflet-control-zoom-out {
       font-size: 24px;
     }
+
     a.leaflet-control-zoom-out {
       line-height: 32px;
+    }
 
+    a.leaflet-control-zoom-in,
+    a.leaflet-control-zoom-out {
+      background-color: var(--slider-background);
+      color: var(--slider-color);
+      border-color: var(--slider-color);
     }
-    a.leaflet-control-zoom-in, a.leaflet-control-zoom-out {
-      background-color:var(--slider-background);
-      color:var(--slider-color);
-      border-color:var(--slider-color);
-    }
+
   }
+
   .leaflet-container a.leaflet-popup-close-button.leaflet-popup-close-button {
-    top:5px;
+    top: 5px;
     right: 5px;
   }
-
 
   // Filter
   .poncho-map-filters {
     position: absolute;
     z-index: 998;
-    bottom:var(--slider-bottom);
-    left:var(--slider-left);
+    bottom: var(--slider-bottom);
+    left: var(--slider-left);
     padding: 1em;
     border-radius: var(--slider-radius);
     box-shadow: var(--slider-shadow);
-    color:var(--slider-color);
+    color: var(--slider-color);
     background-color: var(--slider-background);
 
     .form-check .form-check-label {
-      color: var(--slider-color) !important; 
+      color: var(--slider-color) !important;
     }
+
+  }
+
+}
+
+/*------------------------------------*\
+  #MOBILE
+\*------------------------------------*/
+@keyframes slideinmobile {
+  0% {
+    right: var(--slider-right);
+    bottom: calc(-1 * var(--slider-media-mobile-height));
+    opacity: 0;
+  }
+
+  100% {
+    bottom: var(--slider-bottom);
+    opacity: 1;
+    right: var(--slider-right);
   }
 }
 
+@media (max-width:575.98px) {
 
+  /* smartphones, iPhone, portrait 480x320 phones */
+  .poncho-map {
+    .slider {
+      height: 45%;
+      top: auto;
+      bottom: calc(-1 * var(--slider-media-mobile-height));
+      right: var(--slider-right);
+      max-width: 100%;
+      width: calc(100% - var(--slider-bottom) - var(--slider-top));
+
+      &.slider--in {
+        animation-name: slideinmobile;
+        bottom: var(--slider-bottom);
+      }
+    }
+
+    .poncho-map-filters {
+      width: calc(100% - var(--slider-bottom) - var(--slider-top));
+    }
+
+  }
+
+}
