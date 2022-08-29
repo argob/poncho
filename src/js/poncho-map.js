@@ -155,9 +155,14 @@ class PonchoMap {
    * 
    * @return {boolean} - ture si esta abierto, false si esta cerrado.
    */
+  // is_open = () => document
+  //       .querySelectorAll(`${this.scope_selector} .${this.slider_selector}`)
+  //       .forEach(ele => ele.classList.contains(`${this.slider_selector}--in`));
   is_open = () => document
-      .querySelector(`${this.scope_selector} .${this.slider_selector}`)
-      .classList.contains(`${this.slider_selector}--in`);
+        .querySelector(`${this.scope_selector} .${this.slider_selector}`)
+.classList.contains(`${this.slider_selector}--in`);
+
+
 
   /**
    * Imprime la información del Punto Digital en el slider.
@@ -169,7 +174,7 @@ class PonchoMap {
       this.toggle_slider();
     }
     const html = this.template(this, data);
-    document.querySelector(`.${this.slider_selector} .js-content-${this.token}`)
+    document.querySelector(`${this.scope_selector} .js-content-${this.token}`)
             .innerHTML = html;
   };
 
@@ -224,7 +229,7 @@ class PonchoMap {
     container.classList.add("slider");
     container.appendChild(close_button);
     container.appendChild(content_container);
-    document.querySelector('.poncho-map').appendChild(container);
+    document.querySelector(`${this.scope_selector}`).appendChild(container);
   };
 
   /**
@@ -432,7 +437,7 @@ class PonchoMap {
       const latitud = row[this.latitud];
       const longitud = row[this.longitud];
 
-      if(!this.validateLatLng(latitud) && !this.validateLatLng(longitud))
+      if(!this.validateLatLng(latitud) || !this.validateLatLng(longitud))
         return;
 
       let marker_attr = {};
