@@ -160,9 +160,7 @@ class PonchoMap {
   //       .forEach(ele => ele.classList.contains(`${this.slider_selector}--in`));
   is_open = () => document
         .querySelector(`${this.scope_selector} .${this.slider_selector}`)
-.classList.contains(`${this.slider_selector}--in`);
-
-
+        .classList.contains(`${this.slider_selector}--in`);
 
   /**
    * Imprime la información del Punto Digital en el slider.
@@ -264,7 +262,7 @@ class PonchoMap {
     const pd = this.entry(id);
     this.markers.eachLayer(layer => {
       if(layer.options.id == id){
-        if(this.slider){
+        if(this.slider && this.hash){
           this.show_slider(layer, pd);
         } else {
           this.show_popup(layer);
