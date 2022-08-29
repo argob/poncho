@@ -1689,6 +1689,12 @@ class PonchoMap {
   };
 
   /**
+   * Limpia el contenido.
+   */
+  clear_content = () => document
+        .querySelector(`${this.scope_selector} .js-content`).innerHTML = '';
+
+  /**
    * Abre o cierra el slider.
    */
   toggle_slider = () => document
@@ -1700,16 +1706,17 @@ class PonchoMap {
    */
   click_toggle_slider = () => document
         .querySelectorAll(`${this.scope_selector} ${this.slider_close_selector}`)
-        .forEach(e => e.addEventListener('click', this.toggle_slider));
+        .forEach(e => e.addEventListener('click', () => {
+              this.clear_content();
+              this.toggle_slider();
+        }
+  ));
 
   /**
    * Estado del slider.
    * 
    * @return {boolean} - ture si esta abierto, false si esta cerrado.
    */
-  // is_open = () => document
-  //       .querySelectorAll(`${this.scope_selector} .${this.slider_selector}`)
-  //       .forEach(ele => ele.classList.contains(`${this.slider_selector}--in`));
   is_open = () => document
         .querySelector(`${this.scope_selector} .${this.slider_selector}`)
         .classList.contains(`${this.slider_selector}--in`);
@@ -1720,11 +1727,11 @@ class PonchoMap {
    * @return {string} - HTML del contenido del slider.
    */
   set_content = (data) => {
-    if(!this.is_open()){
-      this.toggle_slider();
-    }
+    if(!this.is_open())
+        this.toggle_slider();
+    
     const html = this.template(this, data);
-    document.querySelector(`${this.scope_selector} .js-content-${this.token}`)
+    document.querySelector(`${this.scope_selector} .js-content`)
             .innerHTML = html;
   };
 
@@ -1772,7 +1779,7 @@ class PonchoMap {
     content_container.classList.add("content-container");
 
     let content = document.createElement('div');
-    content.classList.add("content", `js-content-${this.token}`);
+    content.classList.add("content", `js-content`);
     content_container.appendChild(content);
 
     let container = document.createElement('div');
