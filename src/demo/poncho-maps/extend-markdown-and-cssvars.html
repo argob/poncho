@@ -32,7 +32,10 @@
 <!-- INCLUDE SCRIPTS -->
 <script src="https://gis.argentina.gob.ar/js/leaflet/leaflet.js"></script>
 <script src="https://gis.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script>
-<script src="../../../dist/js/poncho.min.js"></script>
+<!-- <script src="../../../dist/js/poncho.min.js"></script> -->
+<script src="../../js/poncho-map.js"></script>
+<script src="../../js/poncho-map-filter.js"></script>
+<script src="../../js/gapi-sheet-data.js"></script>
 <script src="./js/template-efectores.js"></script>
 <!-- / INCLUDE SCRIPTS -->
 
@@ -96,9 +99,9 @@
         {
           'legend' : '',
           'fields' : [
-            ['filtro-hormonizacion-adultos', 'Hormonización adultos', ['SI'], 'checked'],
-            ['filtro-hormonizacion-adolescentes', 'Hormonización adolescentes', ['SI'], 'checked'],
-            ['filtro-inhibicion-puberal', 'Inhibición puberal', ['SI'], 'checked'],
+            ['filtro-hormonizacion-adultos', 'Hormonización adultos', ['SI']],
+            ['filtro-hormonizacion-adolescentes', 'Hormonización adolescentes', ['SI']],
+            ['filtro-inhibicion-puberal', 'Inhibición puberal', ['SI']],
           ]
         },
       ],

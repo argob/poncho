@@ -2166,11 +2166,14 @@ class PonchoMapFilter extends PonchoMap {
   };
 
   /**
-   * Filtra los markers
+   * Filtra los markers.
    */ 
   filter_data = () => {
       this.markers.clearLayers();
       const available_filters = this.form_filters();
+      if(available_filters.length == 0)
+          return [];
+
       const feed = this.json_data.filter(row => {
         let strict_items = [];
         let optional_items = [];
