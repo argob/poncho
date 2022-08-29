@@ -83,4 +83,4 @@ gulp.task('compress', function () {
 });
 
 
-gulp.task('develop', gulp.series('compress', 'poncho', 'ponchomin'))
+gulp.task('default', gulp.series('compress', 'poncho', 'ponchomin'))

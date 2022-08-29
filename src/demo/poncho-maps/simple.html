@@ -50,6 +50,20 @@
         <!-- / leaflet -->
       </div>
       <!-- / poncho map -->
+      <hr>
+      <!-- poncho map -->
+      <div class="poncho-map" data-scope="poncho-map-dos">
+        <!-- leaflet -->
+        <div
+            class="leaflet-container leaflet-touch leaflet-fade-anim 
+                  leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
+            id="map2"
+            style="height: 700px;width: 100%;"
+            tabindex="0">
+        </div>
+        <!-- / leaflet -->
+      </div>
+      <!-- / poncho map -->
     </div>
   </div>
 </div>
@@ -98,6 +112,37 @@
     // render map
     const filter = new PonchoMap(gdata, options);
     filter.render();
+
+
+
+
+        // map options
+    const options2 = {
+      'scope':'poncho-map-dos',
+      'id': 'id_pd', 
+      'latitud': 'lat', 
+      'longitud': 'long',
+      'slider': true,
+      'map_selector' : 'map2',
+      'headers': {
+        'codigo_postal':'CP',
+        'calle': 'Calle',
+        'provincia': 'Provincia',
+        'localidad':'Localidad',
+        'nombre_municipio': 'Municipio',
+        'horario':'Horarios'
+      },
+      'template_structure' : {
+        'title': 'nombre',
+        'values': ['provincia', 'localidad', 'nombre_municipio', 'calle', 'codigo_postal', 'horario'],
+        'exclude':['lat', 'long', 'nombre', 'id_departamento', 'id_municipio', 
+                   'estado_funcionamiento', 'id_localidad', 'id_provincia', 
+                   'id_pd', 'imagen', 'abreviatura']
+      }
+    };
+    // render map
+    const filter2 = new PonchoMap(gdata, options2);
+    filter2.render();
   })();
 </script>
 <!-- / SCRIPTS -->
