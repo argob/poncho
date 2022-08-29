@@ -49,6 +49,51 @@ $brand-verde-jade:      #006666 !default;
 $brand-verde-aloe:      #4FBB73 !default;
 $brand-verde-cemento:   #B4BEBA !default;
 
+// as list
+$colores : ('white', $white),
+    ('black', $black),
+    ('gray-base', $gray-base),
+    ('gray', $gray),
+    ('gray-dark', $gray-dark),
+    ('gray-border', $gray-border),
+    ('gray-hover', $gray-hover),
+    ('gray-hover-light', $gray-hover-light),
+    ('gray-background', $gray-background),
+    ('gray-light', $gray-light),
+    ('gray-lighter', $gray-lighter),
+    ('default', $brand-default),
+    ('primary', $brand-primary),
+    ('primary-alt', $brand-primary-alt),
+    ('primary-light', $brand-primary-light),
+    ('secondary', $brand-secondary),
+    ('complementary', $brand-complementary),
+    ('success', $brand-success),
+    ('info', $brand-info),
+    ('warning', $brand-warning),
+    ('danger', $brand-danger),
+    ('celeste-argentina', $brand-celeste-argentina),
+    ('fucsia', $brand-fucsia),
+    ('arandano', $brand-arandano),
+    ('uva', $brand-uva),
+    ('cielo', $brand-cielo),
+    ('verdin', $brand-verdin),
+    ('lima', $brand-lima),
+    ('maiz', $brand-maiz),
+    ('tomate', $brand-tomate),
+    ('naranja', $brand-naranja),
+    ('verde-azulado', $brand-verde-azulado),
+    ('mandarina', $brand-mandarina),
+    ('cereza', $brand-cereza),
+    ('lavanda', $brand-lavanda),
+    ('escarapela', $brand-escarapela),
+    ('palta', $brand-palta),
+    ('limon', $brand-limon),
+    ('verde-jade', $brand-verde-jade),
+    ('verde-aloe', $brand-verde-aloe),
+    ('verde-cemento', $brand-verde-cemento)
+;
+
+
 
 // Variables agregados para etiqueta details/summary
 $arrow_open_base: 8px;
@@ -85,3 +130,11 @@ $shadow: 0 2px 2px rgba(0, 0, 0, .2);
 
 $font-family-serif: 'Droid Serif', serif;
 $font-family-sans-serif: 'Encode Sans', Arial, sans-serif;
+
+
+// Root color definitions
+:root {
+    @each $name, $color in $colores {
+      --#{$name}: #{$color};
+    }
+}
