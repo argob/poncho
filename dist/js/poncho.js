@@ -1689,6 +1689,12 @@ class PonchoMap {
   };
 
   /**
+   * Limpia el contenido.
+   */
+  clear_content = () => document
+        .querySelector(`${this.scope_selector} .js-content`).innerHTML = '';
+
+  /**
    * Abre o cierra el slider.
    */
   toggle_slider = () => document
@@ -1700,16 +1706,17 @@ class PonchoMap {
    */
   click_toggle_slider = () => document
         .querySelectorAll(`${this.scope_selector} ${this.slider_close_selector}`)
-        .forEach(e => e.addEventListener('click', this.toggle_slider));
+        .forEach(e => e.addEventListener('click', () => {
+              this.clear_content();
+              this.toggle_slider();
+        }
+  ));
 
   /**
    * Estado del slider.
    * 
    * @return {boolean} - ture si esta abierto, false si esta cerrado.
    */
-  // is_open = () => document
-  //       .querySelectorAll(`${this.scope_selector} .${this.slider_selector}`)
-  //       .forEach(ele => ele.classList.contains(`${this.slider_selector}--in`));
   is_open = () => document
         .querySelector(`${this.scope_selector} .${this.slider_selector}`)
         .classList.contains(`${this.slider_selector}--in`);
@@ -1720,11 +1727,11 @@ class PonchoMap {
    * @return {string} - HTML del contenido del slider.
    */
   set_content = (data) => {
-    if(!this.is_open()){
-      this.toggle_slider();
-    }
+    if(!this.is_open())
+        this.toggle_slider();
+    
     const html = this.template(this, data);
-    document.querySelector(`${this.scope_selector} .js-content-${this.token}`)
+    document.querySelector(`${this.scope_selector} .js-content`)
             .innerHTML = html;
   };
 
@@ -1772,7 +1779,7 @@ class PonchoMap {
     content_container.classList.add("content-container");
 
     let content = document.createElement('div');
-    content.classList.add("content", `js-content-${this.token}`);
+    content.classList.add("content", `js-content`);
     content_container.appendChild(content);
 
     let container = document.createElement('div');
@@ -2045,10 +2052,12 @@ class PonchoMapFilter extends PonchoMap {
 
     const defaults = {
         'filters': {},
+        'filters_visible': false
     };
     let opts = Object.assign({}, defaults, options);
     this.filters = opts.filters;
-  }
+    this.filters_visible = opts.filters_visible;
+  };
 
   /**
    * Obtiene el índice del filtro
@@ -2062,7 +2071,27 @@ class PonchoMapFilter extends PonchoMap {
     const regex = /__([0-9]+)$/gm;
     const rgx =  regex.exec(str) 
     return rgx ? parseInt(rgx[1]) : null;
-  }
+  };
+
+  /**
+   * Abre o cierra el slider.
+   */
+  toggle_filtro = () => document
+      .querySelector(`${this.scope_selector} .js-poncho-map-filters`)
+      .classList.toggle(`filter--in`);
+
+
+  /**
+   * Ejecuta toggle_slider en el onclick
+   */
+  click_toggle_filtro = () => document
+      .querySelectorAll(`${this.scope_selector} .js-close-filter`)
+      .forEach(e => e.addEventListener('click', (e) => { 
+            e.preventDefault();
+            this.toggle_filtro(); 
+      }
+  ));
+
 
   /**
    * Arma un grupo de inputs
@@ -2071,6 +2100,8 @@ class PonchoMapFilter extends PonchoMap {
    */
   fields = (fields_items) => {
     const fields_container = document.createElement('div');
+    fields_container.classList.add('field-list');
+
     for(const key in fields_items){
         const field = fields_items[key];
 
@@ -2103,6 +2134,20 @@ class PonchoMapFilter extends PonchoMap {
   };
 
   /**
+   * Crea el botón para los filtros
+   */
+  filter_button = () => {
+    const button = document.createElement('button');
+    button.classList.add("btn","btn-secondary","btn-filter","js-close-filter");
+    button.innerHTML = '<i class="fa fa-filter" aria-hidden="true"></i>'
+        + '<span class="sr-only">Filtrar</span>';
+
+    const container = document
+          .querySelector(`.poncho-map${this.scope_selector}`);
+    container.appendChild(button);
+  }
+
+  /**
    * Crea el contenedor para los filtros.
    */
   filter_container = () => {
@@ -2114,31 +2159,42 @@ class PonchoMapFilter extends PonchoMap {
       button.classList.add('js-poncho-map-filter', 'btn', 'btn-sm', 
                             'btn-primary', 'm-t-1', 'm-b-0'); 
 
+      const close_button = document.createElement('button');
+      close_button.classList.add("btn", "btn-xs", "btn-secondary", "btn-close", 
+                                 'js-close-filter');
+      close_button.setAttribute("title", "Cerrar panel");
+      close_button.innerHTML = '<span class="sr-only">Cerrar</span>✕';
+
       const button_container = document.createElement('div');
-      button_container.className = "text-center";
+      button_container.classList.add("text-center", 'button-container');
       button_container.appendChild(button);
 
-      const container = document.createElement('div');
-      container.className = "poncho-map-filters";
-      container.appendChild(fields_container); 
-      container.appendChild(button_container); 
-
       const form = document.createElement('form');
-      form.className = "js-formulario";
-      form.appendChild(container);
+      form.classList.add("js-formulario", 'map-filter');
+      form.appendChild(fields_container); 
+      form.appendChild(button_container); 
+      form.appendChild(close_button); 
 
-      document.querySelector(this.scope_selector).appendChild(form);
-  }
+      const container = document.createElement('div');
+      container.classList.add("js-poncho-map-filters", "poncho-map-filters");
+      if(this.filters_visible)
+            container.classList.add('filter--in');
+
+      container.appendChild(form); 
+
+      document.querySelector(this.scope_selector).appendChild(container);
+  };
 
   /**
    * Crea los checkbox para los filtros.
    */ 
   create_filters = (data) => {
-    const form_filters = document.querySelector(`${this.scope_selector} .js-filters`);
+    const form_filters = document
+          .querySelector(`${this.scope_selector} .js-filters`);
 
     data.forEach(item => {
       let legend = document.createElement('legend');
-      legend.classList.add("m-b-1", 'text-muted');
+      // legend.classList.add("m-b-1", 'text-muted');
       legend.textContent = item.legend;
 
       let fieldset = document.createElement('fieldset');
@@ -2152,43 +2208,47 @@ class PonchoMapFilter extends PonchoMap {
   /**
    * Obtengo los checkbox marcados.
    */ 
-   form_filters = () => {
-    const form_filters = document.querySelector(`${this.scope_selector} .js-formulario`);
+  form_filters = () => {
+    const form_filters = document
+          .querySelector(`${this.scope_selector} .js-formulario`);
     const form_data = new FormData(form_filters);
     return Array.from(form_data).map(ele => this.filter_position(ele[0]));
   };
 
   /**
-   * Filtra los markers
+   * Filtra los markers.
    */ 
   filter_data = () => {
-      this.markers.clearLayers();
-      const available_filters = this.form_filters();
-      const feed = this.json_data.filter(row => {
-        let strict_items = [];
-        let optional_items = [];
+    this.markers.clearLayers();
+    const available_filters = this.form_filters();
+    if(available_filters.length == 0)
+        return [];
 
-        for(const key of available_filters){
-          const filter = this.filters[0].fields[key];
-          const search_for = filter[2];
-          const is_strict = (typeof filter[4] !== 'undefined' && filter[4] === 'strict') ? true : false;
-          const found = search_for.includes(row[filter[0]]) ? true : false;
-          is_strict ? strict_items.push(found) : optional_items.push(found);
-        }
+    const feed = this.json_data.filter(row => {
+      let strict_items = [];
+      let optional_items = [];
 
-        let validate = [];
-        if(optional_items.length > 0)
-          validate.push(optional_items.some(e => e));
+      for(const key of available_filters){
+        const filter = this.filters[0].fields[key];
+        const search_for = filter[2];
+        const is_strict = (typeof filter[4] !== 'undefined' && filter[4] === 'strict') ? true : false;
+        const found = search_for.includes(row[filter[0]]) ? true : false;
+        is_strict ? strict_items.push(found) : optional_items.push(found);
+      }
 
-        if(strict_items.length > 0)
-          validate.push(strict_items.every(e => e));
+      let validate = [];
+      if(optional_items.length > 0)
+        validate.push(optional_items.some(e => e));
 
-        if(validate.every(e => e))
-          return row;
-      });
+      if(strict_items.length > 0)
+        validate.push(strict_items.every(e => e));
+
+      if(validate.every(e => e))
+        return row;
+    });
 
     return feed;
-  }
+  };
 
   /**
    * Render de funciones 
@@ -2207,14 +2267,15 @@ class PonchoMapFilter extends PonchoMap {
 
     if(this.scroll)
       this.scroll_center();
-
   };
 
   /**
    * imprime el mapa
    */ 
   render = () =>{
+    this.filter_button();
     this.filter_container();
+    this.click_toggle_filtro();
 
     const btn = document.querySelector(`${this.scope_selector} .js-poncho-map-filter`);
     btn.addEventListener('click', (e) => {
@@ -2224,7 +2285,7 @@ class PonchoMapFilter extends PonchoMap {
     this.create_filters(this.filters);
     this.filtered_data();
     setTimeout(this.showitem, this.anchor_delay);
-  }
+  };
 }
 
 //#####################################################################

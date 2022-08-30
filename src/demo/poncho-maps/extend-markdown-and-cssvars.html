@@ -4,9 +4,22 @@
   <link rel="profile" href="http://www.w3.org/1999/xhtml/vocab" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="https://capacita-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css?rfqjsh">
+  <script 
+      src="https://code.jquery.com/jquery-3.6.0.min.js" 
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+      crossorigin="anonymous"></script>
+  <link 
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+  <link
+      rel="stylesheet" 
+      href="https://capacita-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css?rfqjsh">
+      <link 
+      rel="stylesheet" 
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" 
+      integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+      crossorigin="anonymous" 
+      referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="../../../dist/css/poncho.css?v=1" />
   <title>Mapa Efectores</title>
   <style>
@@ -16,10 +29,17 @@
             --slider-width: 350px;
             --slider-background: var(--black);
             --slider-color: var(--gray-light);
-            --slider-title-color:var(--maiz);
+            --slider-title-color:var(--escarapela);
             /* --active-marker-color:55, 187, 237; */
         }
     }
+    div.poncho-map {
+      --slider-media-mobile-height: 45%;
+      /* --active-marker-color:55, 187, 237; */
+      --active-marker-alpha: .6;
+    }
+
+
   </style>
 </head>
 <body>
@@ -32,7 +52,10 @@
 <!-- INCLUDE SCRIPTS -->
 <script src="https://gis.argentina.gob.ar/js/leaflet/leaflet.js"></script>
 <script src="https://gis.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script>
-<script src="../../../dist/js/poncho.min.js"></script>
+<!-- <script src="../../../dist/js/poncho.min.js"></script> -->
+<script src="../../js/poncho-map.js"></script>
+<script src="../../js/poncho-map-filter.js"></script>
+<script src="../../js/gapi-sheet-data.js"></script>
 <script src="./js/template-efectores.js"></script>
 <!-- / INCLUDE SCRIPTS -->
 
@@ -46,14 +69,16 @@
     <div class="col-md-12 m-b-2 m-t-2">
       <!-- poncho map -->
       <div class="poncho-map" data-scope="uno">
+
         <!-- leaflet -->
         <div
             class="leaflet-container leaflet-touch leaflet-fade-anim 
                   leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
             id="map"
-            style="height: 700px;width: 100%;"
+            style="height: 600px;width: 100%;"
             tabindex="0">
         </div>
+
         <!-- / leaflet -->
       </div>
       <!-- / poncho map -->
@@ -72,7 +97,7 @@
     const gapi_data = gapi.json_data(googlesheet_data);
 
     const options = {
-      'marker':'escarapela',
+      'marker':'cielo',
       'template_innerhtml' :true,
       'template' : (self, row) => {
           // showdown
@@ -91,10 +116,11 @@
       'scope':'uno',
       'slider':true,
       'hash': true,
+      'filters_visible':false,
       // 'scroll': true,
       'filters' :[
         {
-          'legend' : '',
+          'legend' : 'Filtros',
           'fields' : [
             ['filtro-hormonizacion-adultos', 'Hormonización adultos', ['SI'], 'checked'],
             ['filtro-hormonizacion-adolescentes', 'Hormonización adolescentes', ['SI'], 'checked'],
@@ -102,11 +128,11 @@
           ]
         },
       ],
-      // 'template_structure' : {
-      //     'title': 'name',
-      //     'values': ['address',  'phone', 'email', 'reference'],
-      //     'exclude': []
-      // },
+      'template_structure' : {
+          'title': 'name',
+          'values': ['custom_entry','address',  'phone', 'email', 'reference'],
+          'exclude': []
+      },
       'headers': {
           'custom_entry': 'Prueba Markdown',
           'address': "Dirección",
