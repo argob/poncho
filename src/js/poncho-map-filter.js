@@ -103,6 +103,7 @@ class PonchoMapFilter extends PonchoMap {
    */
   filter_button = () => {
     const button = document.createElement('button');
+    button.title = "Filtrar elementos en el mapa";
     button.classList.add("btn","btn-secondary","btn-filter","js-close-filter");
     button.innerHTML = '<i class="fa fa-filter" aria-hidden="true"></i>'
         + '<span class="sr-only">Filtrar</span>';

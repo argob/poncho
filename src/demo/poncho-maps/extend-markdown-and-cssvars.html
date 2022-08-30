@@ -23,22 +23,28 @@
   <link rel="stylesheet" href="../../../dist/css/poncho.css?v=1" />
   <title>Mapa Efectores</title>
   <style>
+
+    body { background-color: var(--white);}
+    div.poncho-map {
+      /* --slider-width: 300px;
+      --slider-media-mobile-height: 45%;
+      --active-marker-color:55, 187, 237;
+      --active-marker-alpha: .4;
+      --slider-color: rgba(0,0,0,.6);
+      --slider-background: var(--lima);
+      --slider-title-color:var(--arandano); */
+    }
+
     @media (prefers-color-scheme: dark) {
         body {background-color:var(--black);}
         div.poncho-map {
-            --slider-width: 350px;
+            --slider-width: 300px;
             --slider-background: var(--black);
             --slider-color: var(--gray-light);
             --slider-title-color:var(--escarapela);
             /* --active-marker-color:55, 187, 237; */
         }
     }
-    div.poncho-map {
-      --slider-media-mobile-height: 45%;
-      /* --active-marker-color:55, 187, 237; */
-      --active-marker-alpha: .6;
-    }
-
 
   </style>
 </head>
@@ -64,7 +70,7 @@
 <script src="https://raw.githack.com/argob/poncho/master/dist/js/showdown-extensions.js"></script>
 <!-- / showdown -->
 
-<div class="container">
+<div class="container-fluid">
   <div class="row">
     <div class="col-md-12 m-b-2 m-t-2">
       <!-- poncho map -->
@@ -78,7 +84,6 @@
             style="height: 600px;width: 100%;"
             tabindex="0">
         </div>
-
         <!-- / leaflet -->
       </div>
       <!-- / poncho map -->
@@ -97,7 +102,7 @@
     const gapi_data = gapi.json_data(googlesheet_data);
 
     const options = {
-      'marker':'cielo',
+      'marker':'azul',
       'template_innerhtml' :true,
       'template' : (self, row) => {
           // showdown
@@ -117,7 +122,7 @@
       'slider':true,
       'hash': true,
       'filters_visible':false,
-      // 'scroll': true,
+      'scroll': true,
       'filters' :[
         {
           'legend' : 'Filtros',
@@ -139,12 +144,10 @@
           'phone': "Teléfono",
           'reference': "Referencia para acceder a los servicios"
       },
-
     };
     // render map
     const filter = new PonchoMapFilter(gapi_data.entries, options);
     filter.render();
-
   })();
 </script>
 <!-- / SCRIPTS -->
