@@ -3,13 +3,13 @@ var gulp = require('gulp');
 var jshint = require('gulp-jshint');
 var uglify = require('gulp-uglify');
 var uglifyes = require('gulp-uglifyes');
-var sass = require('gulp-sass');
+var sass = require('gulp-sass')(require('sass'));
 var plumber = require('gulp-plumber');
 var concat = require('gulp-concat');
 var babel = require('gulp-babel');
 var SRC = './src/js/*.js';
 var DEST = './dist/js/*.js';
-
+var rename = require('gulp-rename');
 
 gulp.task('poncho', function(){
   return gulp.src([
@@ -28,6 +28,22 @@ gulp.task('poncho', function(){
       .pipe(gulp.dest('dist/js/'));
 });
 
+gulp.task('sassmin', function(){
+  return gulp.src([
+        './src/css/poncho.scss'
+    ])
+    .pipe(sass.sync({outputStyle: 'compressed'}).on('error', sass.logError))
+    .pipe(rename('poncho.min.css'))
+    .pipe(gulp.dest('./dist/css'))
+});
+
+gulp.task('sass', function(){
+  return gulp.src([
+        './src/css/poncho.scss'
+    ])
+    .pipe(sass())
+    .pipe(gulp.dest('./dist/css'))
+});
 
 // gulp.task('babel', function(){
 //   return gulp.src([
@@ -39,7 +55,6 @@ gulp.task('poncho', function(){
 //       .pipe(babel())
 //       .pipe(gulp.dest('dist/js/'));
 // });
-
 
 gulp.task('ponchomin', function(){
   return gulp.src([
@@ -83,4 +98,4 @@ gulp.task('compress', function () {
 });
 
 
-gulp.task('default', gulp.series('compress', 'poncho', 'ponchomin'))
+gulp.task('default', gulp.series('sass','sassmin', 'compress', 'poncho', 'ponchomin'))

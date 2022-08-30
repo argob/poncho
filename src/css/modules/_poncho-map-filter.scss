@@ -239,7 +239,8 @@
     a.leaflet-control-zoom-out {
       background-color: var(--slider-background);
       color: var(--slider-color);
-      border-color: var(--slider-color);
+      // border-color: var(--slider-color);
+      border-color: #ddd;
     }
 
   }

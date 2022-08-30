@@ -6,6 +6,12 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+  <link 
+      rel="stylesheet" 
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" 
+      integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+      crossorigin="anonymous" 
+      referrerpolicy="no-referrer" />    
   <link rel="stylesheet" href="https://capacita-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css?rfqjsh">
   <link rel="stylesheet" href="../../../dist/css/poncho.css" />
   <title>Mapa Puntos Digitales</title>
@@ -76,7 +82,7 @@
       'marker': (self, ele) => { 
           let color = "cielo";
           if(ele.estado_funcionamiento == '3'){
-              color = "mandarina";
+              color = "arandano";
           } else if(ele.estado_funcionamiento == '5'){
               color = 'rojo';
           }

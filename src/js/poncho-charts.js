@@ -106,6 +106,8 @@ function ponchoChart(opt) {
           case 'lima':
               codigoColor = '#cddc39';
               break;
+          case 'maiz':
+              codigoColor = '#ffce00';
           case 'maíz':
               codigoColor = '#ffce00';
               break;
