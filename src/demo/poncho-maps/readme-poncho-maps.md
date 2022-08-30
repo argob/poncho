@@ -22,6 +22,7 @@ La siguiente es una lista de las opciones con su descripción y tipo.
 | anchor_delay | `integer` | 0 | Tiempo de demora entre que se carga la página y se muestra el marker pasado por url. El valor es en milisegundos (1" = 1000). | *Opcional* |
 | scroll | `boolean` | `false` | Hace un scroll para posisionar la página en el borde superior del mapa cuando se carga la página.| *Opcional* |
 | marker | `string` \| `function` | azul | Permite asignar un color distinto o usar una función para cambiar la lógica en la que se muestran los colores o usar iconos de otro tipo. (Ver ejemplos.) | *Opcional* |
+| filters_visible | `boolean` | `false` | Configura el estado inicial del panel de filtros. | *Opcional* |
 | map_anchor_zoom | `integer` | 16 | Configuración del zoom para los markers que se deben visualizar pasándo por hash el id del marker.| *Opcional* |
 | map_zoom | `integer` | 4 | Configuración del valor inicial para el zoom del mapa.| *Opcional* |
 | map_view | `Array Object` | `[-40.44, -63.59]` | Geoposicionamiento inicial del mapa. | *Opcional* |
@@ -372,18 +373,20 @@ El componente permite modificar alguno de los atributos del slider y los compone
 ```css
 .poncho-map {
     --slider-width: 300px;
-    --slider-title-color: #0072bb;
+    --slider-title-color: var(--primary);
     --map-background: grey;
-    --slider-max-width: 50%;
     --slider-color: inherit;
-    --slider-background: rgba(255,255,255,1);
+    --slider-background: rgba(255, 255, 255, 1);
     --slider-border: none;
-    --slider-shadow:0 0 10px rgba(0, 0, 0, 0.2);
+    --slider-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     --slider-top: 10px;
     --slider-right: 10px;
     --slider-left: 10px;
     --slider-bottom: 10px;
     --slider-radius: 16px;
+    --active-marker-color: 255, 206, 0;
+    --active-marker-alpha: .5;
+    --slider-media-mobile-height: 45%;
 }
 ```
 

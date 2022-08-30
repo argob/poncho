@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head>
+  <link rel="profile" href="http://www.w3.org/1999/xhtml/vocab" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://capacita-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css?rfqjsh">
+  <link rel="stylesheet" href="../../../dist/css/poncho.css" />
+  <title>Mapa Efectores</title>
+</head>
+<body>
+<!-- 
+* Template externo
+* Marker por defeccto
+* Pop UP
+* headers desde Google Sheet
+* dos mapas uno con pop up y otro con slider
+-->
+<!-- INCLUDE CSS -->
+<link href="https://gis.argentina.gob.ar/js/leaflet/leaflet.css" rel="stylesheet"/>
+<link href="https://gis.argentina.gob.ar/js/leaflet/MarkerCluster.Default.css" rel="stylesheet"/>
+<link href="https://gis.argentina.gob.ar/js/leaflet/MarkerCluster.css" rel="stylesheet"/>
+<!-- <link rel="stylesheet" href="https://raw.githack.com/argob/poncho/master/dist/css/poncho.min.css" /> -->
+<!-- / INCLUDE CSS -->
+
+<!-- INCLUDE SCRIPTS -->
+<script src="https://gis.argentina.gob.ar/js/leaflet/leaflet.js"></script>
+<script src="https://gis.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script>
+<!-- <script src="https://raw.githack.com/argob/poncho/master/dist/js/poncho.min.js"></script>
+<script src="https://raw.githack.com/argob/poncho/master/src/demo/poncho-maps/js/template-efectores.js"></script> -->
+<script src="../../js/poncho-map.js"></script>
+<script src="../../js/poncho-map-filter.js"></script>
+<script src="../../js/gapi-sheet-data.js"></script>
+<script src="./js/template-efectores.js"></script>
+<!-- / INCLUDE SCRIPTS -->
+
+
+<!-- poncho map -->
+<div class="poncho-map" data-scope="uno">
+  <!-- leaflet -->
+  <div
+      class="leaflet-container leaflet-touch leaflet-fade-anim 
+            leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
+      id="map"
+      style="height: 700px;width: 100%;"
+      tabindex="0">
+  </div>
+  <!-- / leaflet -->
+</div>
+<!-- / poncho map -->
+
+<hr>
+
+<!-- poncho map -->
+<div class="poncho-map" data-scope="dos">
+  <!-- leaflet -->
+  <div
+      class="leaflet-container leaflet-touch leaflet-fade-anim 
+            leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
+      id="map2"
+      style="height: 700px;width: 100%;"
+      tabindex="0">
+  </div>
+  <!-- / leaflet -->
+</div>
+<!-- / poncho map -->
+
+<!-- SCRIPTS -->
+<script>
+  // init
+  (async() => {
+    // GApi helpers
+    const gapi = new GapiSheetData();
+    // fetch data
+    const googlesheet_data = await fetch_json(gapi.url('dataset', '1pYOIEL4n5364RSDaSxnUI5vMMat0lU7FxeK_3Ctk8kg')); 
+    const gapi_data = gapi.json_data(googlesheet_data);
+    // map options
+    const options = {
+      'template': popup_template,
+      'headers': gapi_data.headers,
+      'scope':'uno',
+      'hash': true,
+      'scroll': true,
+      'slider':true
+    };
+    // render map
+    const filter = new PonchoMap(gapi_data.entries, options);
+    filter.render();
+
+    // map options
+    const options_dos = {
+      'template': popup_template,
+      'headers': gapi_data.headers,
+      'map_selector':'map2',
+      'scope':'dos',
+      'slider': false
+    };
+    // render map
+    const filter2 = new PonchoMap(gapi_data.entries, options_dos);
+    filter2.render();
+  })();
+</script>
+<!-- / SCRIPTS -->
+</body>
+</html>

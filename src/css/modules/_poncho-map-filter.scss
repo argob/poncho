@@ -28,7 +28,7 @@
   --slider-bottom: 10px;
   --slider-radius: 16px;
   --active-marker-color: 255, 206, 0;
-  --active-marker-alpha: .3;
+  --active-marker-alpha: .5;
   --slider-media-mobile-height: 45%;
   background-color: var(--map-background);
   overflow: hidden;
@@ -38,6 +38,15 @@
     color: var(--slider-title-color);
   }
 
+  .btn-close {
+    border-radius: 50%;
+    aspect-ratio: 1 / 1;
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    background-color: transparent;
+    color: var(--slider-color);
+  }
   .marker--active {
     --color: 247, 149, 37;
     position: relative;
@@ -53,7 +62,7 @@
       animation-name: slidein;
     }
 
-    z-index: 999;
+    z-index: 990;
     position: absolute;
     top: var(--slider-top);
     border: var(--slider-border);
@@ -95,18 +104,76 @@
       }
 
     }
+  }
 
-    .btn-close {
-      border-radius: 50%;
-      aspect-ratio: 1 / 1;
+  
+  // Botón para hacer un toggle con los filtros
+  .btn-filter {
+    position: absolute;
+    top: 98px;
+    left: 10px;
+    width: 39px;
+    height: 39px;
+    z-index: 999;
+    text-align: center;
+    background: var(--slider-background, white);
+    padding: 0;
+    box-shadow: var(--slider-shadow);
+    line-height: 39px;
+    color: var(--slider-color);
+  }
+
+  // Filter
+  .poncho-map-filters {
+    height: calc(100% - 158px);
+    min-height: 140px;
+    display: none;
+    position: absolute;
+    z-index: 998;
+    min-width: 260px;
+    bottom: var(--slider-bottom);
+    left: var(--slider-left);
+    padding: 1em;
+    border-radius: var(--slider-radius);
+    box-shadow: var(--slider-shadow);
+    color: var(--slider-color);
+    background-color: var(--slider-background);
+
+    legend {
+      color:  var(--slider-color);
+      margin-bottom:.75em;
+      opacity: .8;
+    }
+    fieldset {
+      border: none;
+    }
+
+    &.filter--in {
+      display: block;
+    }
+
+    .form-check .form-check-label {
+      color: var(--slider-color) !important;
+    }
+
+    .field-list {
+      min-height: 40px;
+      max-height: calc(100% - 110px);
+      overflow: auto;
       position: absolute;
-      top: 0.75rem;
-      right: 0.75rem;
-      background-color: transparent;
-      color: var(--slider-color);
+      width: calc(100% - 30px);
+    }
+
+    .button-container {
+      width: calc(100% - 30px);
+      position: absolute;
+      bottom: 15px;
     }
 
   }
+
+
+
 
   /* leaflet popup */
   .leaflet-popup-content-wrapper {
@@ -127,9 +194,7 @@
         overflow-y: auto;
         width: 100%;
       }
-
     }
-
   }
 
   /* leaflet controls*/
@@ -183,25 +248,6 @@
     top: 5px;
     right: 5px;
   }
-
-  // Filter
-  .poncho-map-filters {
-    position: absolute;
-    z-index: 998;
-    bottom: var(--slider-bottom);
-    left: var(--slider-left);
-    padding: 1em;
-    border-radius: var(--slider-radius);
-    box-shadow: var(--slider-shadow);
-    color: var(--slider-color);
-    background-color: var(--slider-background);
-
-    .form-check .form-check-label {
-      color: var(--slider-color) !important;
-    }
-
-  }
-
 }
 
 /*------------------------------------*\
@@ -226,7 +272,7 @@
   /* smartphones, iPhone, portrait 480x320 phones */
   .poncho-map {
     .slider {
-      height: 45%;
+      height: var(--slider-media-mobile-height);
       top: auto;
       bottom: calc(-1 * var(--slider-media-mobile-height));
       right: var(--slider-right);
@@ -240,6 +286,7 @@
     }
 
     .poncho-map-filters {
+      max-width: 50%;
       width: calc(100% - var(--slider-bottom) - var(--slider-top));
     }
 
