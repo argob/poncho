@@ -1,5 +1,4 @@
 var gulp = require('gulp');
-
 var jshint = require('gulp-jshint');
 var uglify = require('gulp-uglify');
 var uglifyes = require('gulp-uglifyes');
@@ -10,6 +9,7 @@ var babel = require('gulp-babel');
 var SRC = './src/js/*.js';
 var DEST = './dist/js/*.js';
 var rename = require('gulp-rename');
+const gulpIF = require('gulp-if');
 
 gulp.task('poncho', function(){
   return gulp.src([
@@ -28,20 +28,13 @@ gulp.task('poncho', function(){
       .pipe(gulp.dest('dist/js/'));
 });
 
-gulp.task('sassmin', function(){
-  return gulp.src([
-        './src/css/poncho.scss'
-    ])
-    .pipe(sass.sync({outputStyle: 'compressed'}).on('error', sass.logError))
-    .pipe(rename('poncho.min.css'))
-    .pipe(gulp.dest('./dist/css'))
-});
-
 gulp.task('sass', function(){
   return gulp.src([
-        './src/css/poncho.scss'
+        './src/scss/*.scss'
     ])
-    .pipe(sass())
+    // .pipe(sass())
+    .pipe(sass.sync({outputStyle: 'compressed'}).on('error', sass.logError))
+    .pipe(gulpIF(function(file){return file.path.match('poncho.css')}, rename('poncho.min.css')))
     .pipe(gulp.dest('./dist/css'))
 });
 
@@ -98,4 +91,4 @@ gulp.task('compress', function () {
 });
 
 
-gulp.task('default', gulp.series('sass','sassmin', 'compress', 'poncho', 'ponchomin'))
+gulp.task('default', gulp.series( 'sass', 'compress', 'poncho', 'ponchomin'))

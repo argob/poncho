@@ -7,7 +7,6 @@
  */
 
 /* Libraries */
-
 @import "modules/bootstrap/mixins";
 @import "modules/bourbon/bourbon";
 
@@ -38,10 +37,7 @@
 @import "modules/print";
 @import "modules/poncho-map";
 @import "modules/poncho-map-filter";
-
-
 // Charts and big numbers
 @import "modules/dashboard";
-
 // Cool stuff from Bootstrap 4
 @import "modules/utilities";

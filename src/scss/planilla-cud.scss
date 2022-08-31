@@ -1,0 +1,142 @@
+@page {
+    size: legal portrait;
+}
+
+.page-sidebar {
+    display: none;
+}
+
+body.sticky-footer .main-footer {
+    display: none;
+}
+
+.jumbotron {
+    display: none;
+}
+
+.navbar {
+    display: none;
+}
+
+.sidebar {
+    display: none;
+}
+
+@media print {
+    html,
+    body[size=legal] {
+        margin: 0px !important;
+        -webkit-print-color-adjust: exact !important;
+        width: 203, 2mm !important;
+        height: 355, 6mm !important;
+    }
+
+    .page-sidebar {
+        display: none;
+    }
+
+    .btn {
+        display: none;
+    }
+
+    .main-footer .container {
+        display: none;
+    }
+
+    .btn {
+        display: none;
+    }
+
+    a {
+        display: none;
+    }
+
+    section {
+        padding: 0px !important;
+        margin: 0px !important;
+    }
+
+    .screen-only,
+    header {
+        display: none !important;
+    }
+
+    body.sticky-footer .main-footer {
+        display: none;
+    }
+
+}
+
+@media screen {
+    #planilla-completa {
+        max-width: 1200px;
+        margin: auto;
+    }
+
+}
+
+#planilla-completa {
+    width: 100% !important;
+    color: black !important;
+    font-family: 'Arial', 'times' !important;
+    font-weight: bolder !important;
+    font-size: 11px !important;
+}
+
+.bajada {
+    text-transform: lowercase;
+}
+
+.bajada:first-letter {
+    text-transform: uppercase;
+}
+
+.planilla-header {
+    height: 100px !important;
+    background-color: black !important;
+}
+
+.planilla h2 {
+    text-align: center !important;
+    letter-spacing: 2px !important;
+    font-size: 16px !important;
+}
+
+.planilla-header h2 {
+    color: white !important;
+    padding: 5px !important;
+    text-align: center !important;
+    letter-spacing: 2px !important;
+    font-size: 16px !important;
+}
+
+td {
+    width: 100%;
+}
+
+.td-border {
+    border: 1px solid #000 !important;
+}
+
+.titulos {
+    text-align: center !important;/* ... the rest of the rules ... */
+}
+
+p.titulos {
+    font-size: 14px !important;
+}
+
+p {
+    padding: 0px 10px !important;
+    margin-top: 5px !important;
+    margin-bottom: 5px !important;
+    text-transform: uppercase;
+}
+
+.grey-fill {
+    background-color: #cccbcb !important;
+}
+
+.light-grey-fill {
+    background-color: #eaeaea !important;
+}
