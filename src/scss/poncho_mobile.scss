@@ -7,26 +7,38 @@
  */
 
 /* Resources */
-
 @import "modules/variables";
 
-
-html, body {
+html,
+body {
     font-size: 16px;
 }
 
-h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
     margin: 1em 0;
 }
 
-h3, .h3 {
-  font-weight: 500;
-  color: $gray;
+h3,
+.h3 {
+    font-weight: 500;
+    color: $gray;
 }
 
 p,
 ul,
 ol,
 p,
-table { font-weight: 400; }
-
+table {
+    font-weight: 400;
+}
