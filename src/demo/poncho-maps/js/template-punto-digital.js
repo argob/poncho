@@ -92,7 +92,7 @@ const template_punto_digital = (self, row) => {
         <i class="icono-arg-reloj text-primary"></i> 
         Horarios
       </dt>
-      ${today ? '<dd class="text-arandano" style="font-weight:bold"><i class="icono-arg-reloj text-arandano"></i><span> Hoy abierto '+ time_tostring(today[1])+' h.</span></dd>' : ''}
+      ${today ? '<dd class="text-arandano" style="font-weight:bold; margin-bottom:0"><i class="icono-arg-reloj text-arandano"></i><span> Hoy abierto '+ time_tostring(today[1])+' h.</span></dd>' : ''}
       <dd class="_m-l-2">
         <details style="font-size:.93em" close>
         <summary class="text-black p-b-0 p-t-0">Horarios de atención</summary>
@@ -100,6 +100,13 @@ const template_punto_digital = (self, row) => {
         </details>
       </dd>`;
   }
+
+  let institucion = 
+      `<dt class="sr-only">Tipo de institución</dt>
+      <dd class="_m-l-2">
+        <i class="icono-arg-institucion  text-primary"></i> 
+        <b>${row.institucion}</b>
+      </dd>`;
 
   let telefono = 
       `<dt>
@@ -120,7 +127,7 @@ const template_punto_digital = (self, row) => {
   let sin_funcionamiento = 
       `<div class="alert alert-warning" style="padding:.5em .75em;">
         <p class="text-mandarina">
-          <strong>Sin funcionamiento (proxmamente)</strong>
+          <strong>Próximamente</strong>
         </p>
       </div>`;
   let template = 
@@ -128,6 +135,7 @@ const template_punto_digital = (self, row) => {
         <h1 class="h4 text-primary p-t-0 m-t-0">${row.nombre}</h1>
         ${row.estado_funcionamiento == '3' ? sin_funcionamiento : ''}
         <dl style="font-size:1rem">
+          ${institucion}
           <dt>
             <i class="icono-arg-marcador-ubicacion-1 text-primary" 
                 style="padding-right:.25rem;"></i> 

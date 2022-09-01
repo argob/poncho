@@ -257,14 +257,19 @@ class PonchoMap {
     });
   };
 
+  has_hash = () => {
+    let id = window.location.hash.replace('#', '');
+    return id || false;
+  };
+
   /**
    * Obtiene un hash, hace zoom sobre el marker y abre su popUp o 
    * el slider.
    */
   showitem = () => {
-    let id = window.location.hash.replace('#', '');
+    let id = this.has_hash();
     if(!id)
-      return;
+        return;
 
     const pd = this.entry(id);
     this.markers.eachLayer(layer => {
@@ -471,7 +476,7 @@ class PonchoMap {
     if(this.hash)
       this.url_hash();
 
-    if(this.scroll)
+    if(this.scroll && this.has_hash())
       this.scroll_center();
 
     setTimeout(this.showitem, this.anchor_delay);

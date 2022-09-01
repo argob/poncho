@@ -231,7 +231,7 @@ class PonchoMapFilter extends PonchoMap {
     if(this.hash)
       this.url_hash();
 
-    if(this.scroll)
+    if(this.scroll && this.has_hash())
       this.scroll_center();
   };
 
