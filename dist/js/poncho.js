@@ -2193,11 +2193,6 @@ class PonchoMapFilter extends PonchoMap {
 
       container.appendChild(form); 
       document.querySelector(this.scope_selector + ' .js-filter-container').appendChild(container);
-
-      const pos = document.querySelector(this.scope_selector + ' .js-poncho-map-filters');
-      const height = pos.offsetHeight - 45;
-      document.querySelector(this.scope_selector + ' .js-filters').style.height = height + 'px';
-
   };
 
   /**
@@ -2306,7 +2301,6 @@ class PonchoMapFilter extends PonchoMap {
     this.filtered_data();
     this.filter_listener();
     setTimeout(this.showitem, this.anchor_delay);
-
   };
 }
 
