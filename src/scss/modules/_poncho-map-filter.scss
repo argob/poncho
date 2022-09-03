@@ -109,35 +109,55 @@
   
   // Botón para hacer un toggle con los filtros
   .btn-filter {
-    position: absolute;
-    top: 98px;
-    left: 10px;
-    width: 39px;
-    height: 39px;
-    z-index: 999;
+
     text-align: center;
     background: var(--slider-background, white);
     padding: 0;
     box-shadow: var(--slider-shadow);
     line-height: 39px;
     color: var(--slider-color);
+    width: 39px;
+    height: 39px;
   }
 
+  .filter-container {
+    position: absolute;
+    top: 98px;
+    left: 10px;
+    z-index: 999;
+    height: 100%;
+  }
+
+  .js-filters {
+    overflow: auto;
+  }
   // Filter
   .poncho-map-filters {
-    height: calc(100% - 158px);
-    min-height: 140px;
+    max-height: calc(100% - 158px);
+    min-height: 150px;
     display: none;
-    position: absolute;
+    position: relative;
     z-index: 998;
     min-width: 260px;
-    bottom: var(--slider-bottom);
-    left: var(--slider-left);
-    padding: 1em;
+    padding: 30px 15px 15px;
     border-radius: var(--slider-radius);
     box-shadow: var(--slider-shadow);
     color: var(--slider-color);
     background-color: var(--slider-background);
+
+    &::after{
+      content: ' ';
+        width: 0; 
+        height: 0; 
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;     
+        border-bottom: 10px solid var(--slider-background);
+        position: absolute;
+        top:-6px;
+        left:10px;
+        z-index: 990;
+      
+    }
 
     legend {
       color:  var(--slider-color);
@@ -160,7 +180,7 @@
       min-height: 40px;
       max-height: calc(100% - 110px);
       overflow: auto;
-      position: absolute;
+      // position: absolute;
       width: calc(100% - 30px);
     }
 

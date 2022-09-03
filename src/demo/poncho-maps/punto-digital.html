@@ -4,23 +4,26 @@
   <link rel="profile" href="http://www.w3.org/1999/xhtml/vocab" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+  <script 
+      src="https://code.jquery.com/jquery-3.6.0.min.js" 
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+      crossorigin="anonymous">
+    </script>
+  <link 
+      rel="stylesheet" 
+      href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
   <link 
       rel="stylesheet" 
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" 
       integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
       crossorigin="anonymous" 
       referrerpolicy="no-referrer" />  
-  <link rel="stylesheet" href="https://capacita-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css?rfqjsh">
+  <link 
+      rel="stylesheet" 
+      href="https://capacita-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css">
+  <!-- Dev files -->
   <link rel="stylesheet" href="../../../dist/css/poncho.min.css" />
   <title>Mapa Puntos Digitales</title>
-  <style>
-    div.leaflet-div-icon {
-      background-color: transparent;
-      border: none;
-    }
-  </style>
 </head>
 <body>
 
@@ -33,34 +36,32 @@
 <!-- INCLUDE SCRIPTS -->
 <script src="https://gis.argentina.gob.ar/js/leaflet/leaflet.js"></script>
 <script src="https://gis.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script>
-<script src="../../../dist/js/poncho.min.js"></script>
+
+<!-- <script src="../../../dist/js/poncho.min.js"></script> -->
+<script src="../../../src/js/poncho-map.js"></script>
+<script src="../../../src/js/poncho-map-filter.js"></script>
+<script src="../../../src/js/gapi-sheet-data.js"></script>
+
 <script src="./js/template-punto-digital.js"></script>
 <!-- / INCLUDE SCRIPTS -->
 
-<div class="container-fluid">
-  <div class="row">
-    <div style="height: 500px;" class="col-md-12">
-      <h1 class="text-cielo">Punto Digital</h1>
-    </div>
-    <div class="col-md-12 m-b-2">
-      <!-- poncho map -->
-      <div class="poncho-map" data-scope="poncho-map">
-        <!-- leaflet -->
-        <div
-            class="leaflet-container leaflet-touch leaflet-fade-anim 
-                  leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
-            id="map"
-            style="height: 700px;width: 100%;"
-            tabindex="0">
-        </div>
-        <!-- / leaflet -->
-      </div>
-      <!-- / poncho map -->
-    </div>
+<!-- poncho map -->
+<div class="poncho-map" data-scope="poncho-map">
+  <!-- leaflet -->
+  <div
+      class="leaflet-container leaflet-touch leaflet-fade-anim 
+            leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
+      id="map"
+      style="height:700px;width: 100%;"
+      tabindex="0">
   </div>
+  <!-- / leaflet -->
 </div>
+<!-- / poncho map -->
+
 <!-- SCRIPTS -->
 <script>
+  var filter;
   // init
   (async() => {
     // fetch data
@@ -80,7 +81,17 @@
       'marker':'cielo',
       'filters' :[
         {
-          'legend' : 'Filtros',
+          'legend' : 'Filtrar por estado',
+          'type' : 'radio',
+          'fields' : [
+              ['estado_funcionamiento', 'Todos', ['1', '3'], false, 'strict'],
+              ['estado_funcionamiento', 'Abiertos', ['1'], 'checked', 'strict'],
+              ['estado_funcionamiento', 'Próximamente', ['3'], false, 'strict'],
+          ]
+        },
+        {
+          'legend' : 'Filtrar por región',
+          'type' : 'checkbox',
           'fields' : [
               ['provincia', 'Buenos Aires', ['Buenos Aires', 'Ciudad Autónoma de Buenos Aires'], 'checked'],
               ['provincia', 'Noreste Argentino', ['Chaco', 'Corrientes', 'Formosa', 'Misiones'], 'checked'],
@@ -99,7 +110,7 @@
         }
     };
     // render map
-    const filter = new PonchoMapFilter(gdata, options);
+    filter = new PonchoMapFilter(gdata, options);
     filter.render();
   })();
 </script>

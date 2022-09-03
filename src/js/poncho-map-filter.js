@@ -1,7 +1,3 @@
-//#####################################################################
-//######################## PONCHO MAP FILTER ##########################
-//#####################################################################
-
 /**
  * PONCHO MAP FILTER
  * 
@@ -33,19 +29,28 @@ class PonchoMapFilter extends PonchoMap {
    * 1
    */
   filter_position = (str) => {
-    const regex = /__([0-9]+)$/gm;
+    const regex = /(?:__([0-9]+))(?:__([0-9]+))?$/gm;
     const rgx =  regex.exec(str) 
     return rgx ? parseInt(rgx[1]) : null;
   };
 
   /**
-   * Abre o cierra el slider.
+   * Ejecuta los filtros.
    */
   toggle_filtro = () => document
       .querySelector(`${this.scope_selector} .js-poncho-map-filters`)
       .classList.toggle(`filter--in`);
 
-
+  /**
+   * Asigna el tamaño en pixeles para el contenedor de inputs.
+   */
+  filter_container_height = () => {
+    const pos = document.querySelector(this.scope_selector + ' .js-poncho-map-filters');
+    // const padding = window.getComputedStyle(pos).getPropertyValue('padding').split(' ');
+    const height = pos.offsetHeight - 45;
+    document.querySelector(this.scope_selector + ' .js-filters').style.height = height + 'px';
+  }
+      
   /**
    * Ejecuta toggle_slider en el onclick
    */
@@ -54,28 +59,35 @@ class PonchoMapFilter extends PonchoMap {
       .forEach(e => e.addEventListener('click', (e) => { 
             e.preventDefault();
             this.toggle_filtro(); 
+            this.filter_container_height();
       }
   ));
-
 
   /**
    * Arma un grupo de inputs
    *
    * @param {object} fields_items - Listado de opciones para los fields. 
    */
-  fields = (fields_items) => {
+  fields = (fields_items, group) => {
+
     const fields_container = document.createElement('div');
     fields_container.classList.add('field-list');
 
-    for(const key in fields_items){
-        const field = fields_items[key];
+    for(const key in fields_items.fields){
+        const field = fields_items.fields[key];
 
         const input = document.createElement('input');
-        input.type = "checkbox";
-        input.id = `id__${field[0]}__${key}`;
-        input.name = `${field[0]}__${key}`;
+        input.type =fields_items.type;
+        input.id = `id__${field[0]}__${group}__${key}`;
+        
+        if(fields_items.type == 'radio'){
+          input.name = `${field[0]}__${group}`;
+        } else {
+          input.name = `${field[0]}__${group}__${key}`;
+        }
+
         input.className = 'form-check-input';
-        input.value = 1;
+        input.value = key;
         if(typeof field[3] !== 'undefined' && field[3]=='checked')
             input.setAttribute("checked", 'checked');
 
@@ -83,7 +95,7 @@ class PonchoMapFilter extends PonchoMap {
         label.style.marginLeft = '.33rem';
         label.textContent=field[1];
         label.className = "form-check-label";
-        label.setAttribute("for", `id__${field[0]}__${key}`);
+        label.setAttribute("for", `id__${field[0]}__${group}__${key}`);
 
         const field_container = document.createElement('div');
         field_container.className = "form-check";
@@ -92,6 +104,7 @@ class PonchoMapFilter extends PonchoMap {
 
         fields_container.appendChild(field_container);
     }
+
     const fieldset = document.createElement('div');
     fieldset.appendChild(fields_container);
     
@@ -108,9 +121,13 @@ class PonchoMapFilter extends PonchoMap {
     button.innerHTML = '<i class="fa fa-filter" aria-hidden="true"></i>'
         + '<span class="sr-only">Filtrar</span>';
 
+    const button_container = document.createElement('div');
+    button_container.classList.add('js-filter-container', 'filter-container');
+    button_container.appendChild(button);
+
     const container = document
           .querySelector(`.poncho-map${this.scope_selector}`);
-    container.appendChild(button);
+    container.appendChild(button_container);
   }
 
   /**
@@ -120,25 +137,15 @@ class PonchoMapFilter extends PonchoMap {
       const fields_container = document.createElement('div');
       fields_container.className = "js-filters";  
 
-      const button = document.createElement('button');
-      button.textContent = 'Filtrar';
-      button.classList.add('js-poncho-map-filter', 'btn', 'btn-sm', 
-                            'btn-primary', 'm-t-1', 'm-b-0'); 
-
       const close_button = document.createElement('button');
       close_button.classList.add("btn", "btn-xs", "btn-secondary", "btn-close", 
                                  'js-close-filter');
       close_button.setAttribute("title", "Cerrar panel");
       close_button.innerHTML = '<span class="sr-only">Cerrar</span>✕';
 
-      const button_container = document.createElement('div');
-      button_container.classList.add("text-center", 'button-container');
-      button_container.appendChild(button);
-
       const form = document.createElement('form');
       form.classList.add("js-formulario", 'map-filter');
       form.appendChild(fields_container); 
-      form.appendChild(button_container); 
       form.appendChild(close_button); 
 
       const container = document.createElement('div');
@@ -147,8 +154,12 @@ class PonchoMapFilter extends PonchoMap {
             container.classList.add('filter--in');
 
       container.appendChild(form); 
+      document.querySelector(this.scope_selector + ' .js-filter-container').appendChild(container);
 
-      document.querySelector(this.scope_selector).appendChild(container);
+      const pos = document.querySelector(this.scope_selector + ' .js-poncho-map-filters');
+      const height = pos.offsetHeight - 45;
+      document.querySelector(this.scope_selector + ' .js-filters').style.height = height + 'px';
+
   };
 
   /**
@@ -158,14 +169,14 @@ class PonchoMapFilter extends PonchoMap {
     const form_filters = document
           .querySelector(`${this.scope_selector} .js-filters`);
 
-    data.forEach(item => {
+    data.forEach((item, group) => {
       let legend = document.createElement('legend');
-      // legend.classList.add("m-b-1", 'text-muted');
       legend.textContent = item.legend;
+      // legend.classList.add('text-primary')
 
       let fieldset = document.createElement('fieldset');
       fieldset.appendChild(legend);
-      fieldset.appendChild(this.fields(item.fields));
+      fieldset.appendChild(this.fields(item, group));
 
       form_filters.appendChild(fieldset);
     });
@@ -178,7 +189,7 @@ class PonchoMapFilter extends PonchoMap {
     const form_filters = document
           .querySelector(`${this.scope_selector} .js-formulario`);
     const form_data = new FormData(form_filters);
-    return Array.from(form_data).map(ele => this.filter_position(ele[0]));
+    return Array.from(form_data).map(ele => [this.filter_position(ele[0]), parseInt(ele[1])]);
   };
 
   /**
@@ -195,7 +206,10 @@ class PonchoMapFilter extends PonchoMap {
       let optional_items = [];
 
       for(const key of available_filters){
-        const filter = this.filters[0].fields[key];
+        let group, index;
+        [group, index] = key;
+
+        const filter = this.filters[group].fields[index];
         const search_for = filter[2];
         const is_strict = (typeof filter[4] !== 'undefined' && filter[4] === 'strict') ? true : false;
         const found = search_for.includes(row[filter[0]]) ? true : false;
@@ -236,20 +250,26 @@ class PonchoMapFilter extends PonchoMap {
   };
 
   /**
+   * Filtra los markers en el onchange de los filtros
+   * @returns {void}
+   */
+  filter_listener = () => document
+      .querySelectorAll('.js-filters input')
+      .forEach(e => e.addEventListener('change', this.filtered_data));
+
+  /**
    * imprime el mapa
    */ 
   render = () =>{
     this.filter_button();
     this.filter_container();
     this.click_toggle_filtro();
-
-    const btn = document.querySelector(`${this.scope_selector} .js-poncho-map-filter`);
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      this.filtered_data();
-    });
     this.create_filters(this.filters);
     this.filtered_data();
+    this.filter_listener();
     setTimeout(this.showitem, this.anchor_delay);
+
   };
 }
+
+
