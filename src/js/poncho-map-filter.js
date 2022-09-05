@@ -18,6 +18,7 @@ class PonchoMapFilter extends PonchoMap {
     let opts = Object.assign({}, defaults, options);
     this.filters = opts.filters;
     this.filters_visible = opts.filters_visible;
+    this.filtered_entries = [];
   };
 
   /**
@@ -71,7 +72,7 @@ class PonchoMapFilter extends PonchoMap {
   fields = (fields_items, group) => {
 
     const fields_container = document.createElement('div');
-    fields_container.classList.add('field-list');
+    fields_container.classList.add('field-list', 'p-b-1');
 
     for(const key in fields_items.fields){
         const field = fields_items.fields[key];
@@ -141,12 +142,12 @@ class PonchoMapFilter extends PonchoMap {
       close_button.classList.add("btn", "btn-xs", "btn-secondary", "btn-close", 
                                  'js-close-filter');
       close_button.setAttribute("title", "Cerrar panel");
-      close_button.innerHTML = '<span class="sr-only">Cerrar</span>✕';
+      close_button.innerHTML = '<span class="sr-only">Cerrar </span>✕';
 
       const form = document.createElement('form');
-      form.classList.add("js-formulario", 'map-filter');
-      form.appendChild(fields_container); 
+      form.classList.add("js-formulario");
       form.appendChild(close_button); 
+      form.appendChild(fields_container); 
 
       const container = document.createElement('div');
       container.classList.add("js-poncho-map-filters", "poncho-map-filters");
@@ -154,7 +155,9 @@ class PonchoMapFilter extends PonchoMap {
             container.classList.add('filter--in');
 
       container.appendChild(form); 
-      document.querySelector(this.scope_selector + ' .js-filter-container').appendChild(container);
+      document
+            .querySelector(this.scope_selector + ' .js-filter-container')
+            .appendChild(container);
   };
 
   /**
@@ -167,7 +170,7 @@ class PonchoMapFilter extends PonchoMap {
     data.forEach((item, group) => {
       let legend = document.createElement('legend');
       legend.textContent = item.legend;
-      // legend.classList.add('text-primary')
+      legend.classList.add('m-b-1','text-primary', 'h6')
 
       let fieldset = document.createElement('fieldset');
       fieldset.appendChild(legend);
@@ -185,6 +188,38 @@ class PonchoMapFilter extends PonchoMap {
           .querySelector(`${this.scope_selector} .js-formulario`);
     const form_data = new FormData(form_filters);
     return Array.from(form_data).map(ele => [this.filter_position(ele[0]), parseInt(ele[1])]);
+  };
+
+  /**
+   * Total de ocurrencias por clave y valor sobre entradas dadas.
+   * @param {object} arr Entradas
+   * @param {array} val Array con los elementos a buscar.
+   * @param {string} index Clave de la entrada de datos. 
+   */
+  count_occurrences = (arr, val, index) => {
+    return arr.reduce((a, v) => (val.some(e => v[index].includes(e)) ? a + 1 : a), 0)
+  };
+
+  /**
+   * Total de resultados por filtro marcado.
+   * @returns {Array} — retorna un array estructurado del siguiente modo:
+   *      [
+   *        {nombre del filtro},
+   *        {total coincidencias},
+   *        {indice de grupo de filtros},
+   *        {indice input dentro del grupo}
+   *      ]
+   */
+  totals = () => {
+    const results = this.form_filters().map(e => {
+      const item = this.filters[e[0]].fields[e[1]];
+      return [
+          item[1],
+          this.count_occurrences(this.filtered_entries, item[2], item[0]),
+          ...e
+      ];
+    });
+    return results;
   };
 
   /**
@@ -207,8 +242,12 @@ class PonchoMapFilter extends PonchoMap {
         const filter = this.filters[group].fields[index];
         const search_for = filter[2];
         const is_strict = (typeof filter[4] !== 'undefined' && filter[4] === 'strict') ? true : false;
-        const found = search_for.includes(row[filter[0]]) ? true : false;
-        is_strict ? strict_items.push(found) : optional_items.push(found);
+        const found = search_for.some(e => row[filter[0]].includes(e));
+        if(is_strict){
+          strict_items.push(found);
+        } else {
+          optional_items.push(found);
+        }
       }
 
       let validate = [];
@@ -221,7 +260,7 @@ class PonchoMapFilter extends PonchoMap {
       if(validate.every(e => e))
         return row;
     });
-
+    this.filtered_entries = feed;
     return feed;
   };
 
@@ -249,7 +288,7 @@ class PonchoMapFilter extends PonchoMap {
    * @returns {void}
    */
   filter_listener = () => document
-      .querySelectorAll('.js-filters input')
+      .querySelectorAll(`${this.scope_selector} .js-filters input`)
       .forEach(e => e.addEventListener('change', this.filtered_data));
 
   /**
@@ -258,11 +297,13 @@ class PonchoMapFilter extends PonchoMap {
   render = () =>{
     this.filter_button();
     this.filter_container();
-    this.click_toggle_filtro();
     this.create_filters(this.filters);
+    this.click_toggle_filtro();
     this.filtered_data();
     this.filter_listener();
     setTimeout(this.showitem, this.anchor_delay);
+    if(this.filters_visible)
+        this.filter_container_height();
   };
 }
 

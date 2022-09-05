@@ -24,6 +24,31 @@
   <!-- Dev files -->
   <link rel="stylesheet" href="../../../dist/css/poncho.min.css" />
   <title>Mapa Puntos Digitales</title>
+  <style>
+    @media (prefers-color-scheme:dark) {
+      :root {
+        --temp :#072538;}
+      div.poncho-map {
+        --slider-background: var(--cielo);
+        --color-base: rgba(255,255,255,.8);
+        --color-primary:var(--temp) ;
+      }
+      *.text-arandano { color: var(--temp) !important;}
+      summary { color:white; }
+    }
+
+    .charts_box { 
+         background:rgba(0,0,0,.75); 
+         color: rgba(255,255,255,.8); 
+         padding:1em; 
+         border-radius: 15px; 
+         box-shadow: 0 0 6px rgba(0,0,0,.3);
+         width: 100%;
+    }
+    .charts_box > h1 {
+      color:var(--cielo);
+    }
+  </style>
 </head>
 <body>
 
@@ -45,6 +70,9 @@
 <script src="./js/template-punto-digital.js"></script>
 <!-- / INCLUDE SCRIPTS -->
 
+<div class="container m-t-2">
+  <div class="row">
+    <div class="col-md-12">
 <!-- poncho map -->
 <div class="poncho-map" data-scope="poncho-map">
   <!-- leaflet -->
@@ -52,13 +80,32 @@
       class="leaflet-container leaflet-touch leaflet-fade-anim 
             leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
       id="map"
-      style="height:700px;width: 100%;"
+      style="height:500px;width: 100%;"
       tabindex="0">
   </div>
   <!-- / leaflet -->
 </div>
 <!-- / poncho map -->
+</div>
+<div class="col-md-12  m-t-1">
+  <div class="row">
+    <div class="col-md-4">
+      <section class="charts_box">
+        <h1 class="h6">Totales</h1>  
+        <div id="totals"></div>
+      </section>
 
+    </div>
+    <div class="col-md-4">
+      <section class="charts_box">
+        <h1 class="h6">Totales por provincia</h1>  
+        <div id="totals_provinces"></div>
+      </section>
+    </div>
+  </div>
+</div>
+</div>
+</div>
 <!-- SCRIPTS -->
 <script>
   var filter;
@@ -71,6 +118,21 @@
     // map options
     const options = {
       'template': template_punto_digital,
+      // 'template': (self, ele) => {
+      //     ele.address = [ele.calle, ele.localidad, ele.provincia].filter(e => e).join(', ');
+      //     return self.default_template(self,ele);
+      // },
+      'template_structure':{
+          'title' : 'nombre',
+          'values': ['institucion', 'address', 'email', 'telefono']
+      },
+      'headers' :{
+        'institucion':'Tipo de institución',
+        'address':'Dirección',
+        'email':'Correo electrónico',
+        'provincia':'Provincia',
+        'localidad':'Localidad',
+      },
       'scope':'poncho-map',
       'id': 'id_pd',
       'latitud': 'lat',
@@ -79,22 +141,23 @@
       'slider': true,
       'scroll': true,
       'marker':'cielo',
-      'filters_visible':false,
+      'filters_visible':true,
       'filters' :[
         {
           'legend' : 'Filtrar por estado',
-          'type' : 'radio',
+          'type' : 'checkbox',
           'fields' : [
-              ['estado_funcionamiento', 'Todos', ['1', '3'], false, 'strict'],
+              // ['estado_funcionamiento', 'Todos', ['1', '3'], 'checked', 'strict'],
               ['estado_funcionamiento', 'Abiertos', ['1'], 'checked', 'strict'],
-              ['estado_funcionamiento', 'Próximamente', ['3'], false, 'strict'],
+              ['estado_funcionamiento', 'Próximamente', ['3'], 'checked','strict' ],
           ]
         },
         {
           'legend' : 'Filtrar por región',
           'type' : 'checkbox',
           'fields' : [
-              ['provincia', 'Buenos Aires y Ciudad Autónoma de Buenos Aires', ['Buenos Aires', 'Ciudad Autónoma de Buenos Aires'], 'checked'],
+
+              ['provincia', 'Buenos Aires y CABA', ['Buenos Aires', 'Ciudad Autónoma de Buenos Aires'], 'checked'],
               ['provincia', 'Noreste Argentino', ['Chaco', 'Corrientes', 'Formosa', 'Misiones'], 'checked'],
               ['provincia', 'Noroeste Argentino', ['Catamarca', 'Jujuy', 'La Rioja', 'Salta', 'Santiago del Estero', 'Tucumán'], 'checked'],
               ['provincia', 'Región Centro', ['Córdoba', 'Entre Ríos', 'Santa Fe'], 'checked'],
@@ -113,6 +176,53 @@
     // render map
     filter = new PonchoMapFilter(gdata, options);
     filter.render();
+    
+    // implementación para extender el módulo
+    const provincias = [
+          'Salta','Buenos Aires','Ciudad Autónoma de Buenos Aires',
+          'San Luis','Entre Ríos','La Rioja','Santiago del Estero',
+          'Chaco','San Juan','Catamarca','La Pampa','Mendoza',
+          'Misiones','Formosa','Neuquén','Río Negro','Santa Fe',
+          'Tucumán','Chubut','Tierra del Fuego','Corrientes',
+          'Córdoba','Jujuy','Santa Cruz'
+    ];
+ 
+    totales_provincia = (obj) => {
+      const chart = document.getElementById('totals_provinces');
+      chart.innerHTML = '';
+      for(const i of provincias){
+        const total = obj.count_occurrences(obj.filtered_entries, [i], 'provincia');
+        if(total < 1)
+            continue;
+        const element = document.createElement('p');
+        element.classList.add('m-b-0');
+        element.textContent = [i, obj.count_occurrences(obj.filtered_entries, [i], 'provincia')].join(': ');
+        chart.appendChild(element);
+      }
+    }
+    totales_provincia(filter);
+
+
+    const total_charts = (obj) => {
+        const chart = document.getElementById('totals');
+        chart.innerHTML = '';
+        for(const i of obj.totals()){
+            const element = document.createElement('p');
+            element.classList.add('m-b-0');
+            element.textContent = [i[0], i[1]].join(': ');
+            chart.appendChild(element);
+          }
+    };
+
+    total_charts(filter);
+    const change = document.querySelectorAll('.js-formulario input');
+    change.forEach(k => k.addEventListener('change', () => {
+        total_charts(filter);
+        totales_provincia(filter);
+      })
+    )
+
+
   })();
 </script>
 <!-- / SCRIPTS -->

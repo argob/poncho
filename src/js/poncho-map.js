@@ -377,11 +377,14 @@ class PonchoMap {
 
       const dt = document.createElement('dt');
       dt.textContent = this.header(key);
+      if(this.template_innerhtml)
+          // alert('hello')
+          dt.innerHTML = this.header(key);
 
       const dd = document.createElement('dd');
       dd.textContent = row[key];
       if(this.template_innerhtml)
-        dd.innerHTML = row[key];
+          dd.innerHTML = row[key];
       
       dl.appendChild(dt);
       dl.appendChild(dd);
