@@ -2338,11 +2338,13 @@ class PonchoMapFilter extends PonchoMap {
   render = () =>{
     this.filter_button();
     this.filter_container();
-    this.click_toggle_filtro();
     this.create_filters(this.filters);
+    this.click_toggle_filtro();
     this.filtered_data();
     this.filter_listener();
     setTimeout(this.showitem, this.anchor_delay);
+    if(this.filters_visible)
+        this.filter_container_height();
   };
 }
 
