@@ -1,323 +1,332 @@
 /**
  * Poncho Map y Poncho Filter
  */
- @keyframes slidein {
-  0% {
-    right: calc(-1 * var(--slider-width));
-    opacity: 0;
-  }
+@keyframes slidein {
+    0% {
+        right: calc(-1 * var(--slider-width));
+        opacity: 0;
+    }
 
-  100% {
-    right: var(--slider-right);
-    opacity: 1;
-  }
+    100% {
+        right: var(--slider-right);
+        opacity: 1;
+    }
+
 }
 
 .poncho-map {
-  --slider-width: 300px;
-  --slider-title-color: var(--primary);
-  --map-background: grey;
-  // --slider-max-width: 50%;
-  --slider-color: inherit;
-  --slider-background: rgba(255, 255, 255, 1);
-  --slider-border: none;
-  --slider-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  --slider-top: 10px;
-  --slider-right: 10px;
-  --slider-left: 10px;
-  --slider-bottom: 10px;
-  --slider-radius: 16px;
-  --active-marker-color: 255, 206, 0;
-  --active-marker-alpha: .5;
-  --slider-media-mobile-height: 45%;
-  background-color: var(--map-background);
-  overflow: hidden;
-  position: relative;
-
-  .title {
-    color: var(--slider-title-color);
-  }
-
-  .btn-close {
-    border-radius: 50%;
-    aspect-ratio: 1 / 1;
-    position: absolute;
-    top: 0.75rem;
-    right: 0.75rem;
-    background-color: transparent;
-    color: var(--slider-color);
-  }
-  .marker--active {
-    --color: 247, 149, 37;
-    position: relative;
-    border-radius: 50%;
-    box-shadow: 0 0 20px rgba(var(--active-marker-color), 1);
-    background: radial-gradient(circle, rgba(var(--active-marker-color), var(--active-marker-alpha)) 10%, rgba(var(--active-marker-color), var(--active-marker-alpha)) 80%);
-  }
-
-  .slider {
-    &.slider--in {
-      right: var(--slider-right);
-      animation-duration: 0.3s;
-      animation-name: slidein;
-    }
-
-    z-index: 990;
-    position: absolute;
-    top: var(--slider-top);
-    border: var(--slider-border);
-    right: calc(-1 * var(--slider-width));
-    background: var(--slider-background);
-    height: calc(100% - var(--slider-bottom) - var(--slider-top));
-    // max-width: var(--slider-max-width);
-    width: var(--slider-width);
-    border-radius: var(--slider-radius);
-    box-shadow: var(--slider-shadow);
-
-    .content-container {
-      padding: 2.75rem .25rem .5rem .25rem;
-      height: calc(100%);
-    }
-
-    .content {
-      inline-size: min-content;
-      color: var(--slider-color);
-      height: 100%;
-      width: 100%;
-      overflow-y: auto;
-      overflow-x: hidden;
-      box-shadow: 0 -10px 20px var(--slider-background) inset;
-      padding: 0 .75rem 1.5rem .75rem;
-
-      &:after {
-        content: '';
-        background: var(--slider-background);
-        background: -moz-linear-gradient(0deg, var(--slider-background) 60%, rgba(255, 255, 255, 0) 100%);
-        background: -webkit-linear-gradient(0deg, var(--slider-background) 60%, rgba(255, 255, 255, 0) 100%);
-        background: linear-gradient(0deg, var(--slider-background) 60%, rgba(255, 255, 255, 0) 100%);
-        position: absolute;
-        left: .25rem;
-        width: calc(100% - 1.5rem);
-        height: 40px;
-        bottom: .25rem;
-        border-bottom-left-radius: 12px
-      }
-
-    }
-  }
-
-  
-  // Botón para hacer un toggle con los filtros
-  .btn-filter {
-
-    text-align: center;
-    background: var(--slider-background, white);
-    padding: 0;
-    box-shadow: var(--slider-shadow);
-    line-height: 39px;
-    color: var(--slider-color);
-    width: 39px;
-    height: 39px;
-  }
-
-  .filter-container {
-    position: absolute;
-    top: 98px;
-    left: 10px;
-    z-index: 999;
-    height: 100%;
-  }
-
-  .js-filters {
-    overflow: auto;
-  }
-  // Filter
-  .poncho-map-filters {
-    max-height: calc(100% - 158px);
-    min-height: 150px;
-    display: none;
-    position: relative;
-    z-index: 998;
-    min-width: 200px;
-    max-width: 260px;
-    padding: 30px 15px 15px;
-    border-radius: var(--slider-radius);
-    box-shadow: var(--slider-shadow);
-    color: var(--slider-color);
-    background-color: var(--slider-background);
-
-    // parche fix hasta que se use bootstrap > 4
-    .form-check {
-      display: flex;
-      align-items: baseline;
-    }
-
-    &::after{
-      content: ' ';
-        width: 0; 
-        height: 0; 
-        border-left: 10px solid transparent;
-        border-right: 10px solid transparent;     
-        border-bottom: 10px solid var(--slider-background);
-        position: absolute;
-        top:-6px;
-        left:10px;
-        z-index: 990;
-      
-    }
-
-    legend {
-      color:  var(--slider-color);
-      margin-bottom:.75em;
-      opacity: .8;
-    }
-    fieldset {
-      border: none;
-    }
-
-    &.filter--in {
-      display: block;
-    }
-
-    .form-check .form-check-label {
-      color: var(--slider-color) !important;
-    }
-
-    .field-list {
-      min-height: 40px;
-      max-height: calc(100% - 110px);
-      overflow: auto;
-      // position: absolute;
-      width: calc(100% - 30px);
-    }
-
-    .button-container {
-      width: calc(100% - 30px);
-      position: absolute;
-      bottom: 15px;
-    }
-
-  }
-
-
-
-
-  /* leaflet popup */
-  .leaflet-popup-content-wrapper {
-    border-radius: 16px;
-  }
-
-  .leaflet-popup-content-wrapper,
-  .leaflet-popup-tip {
-    background: var(--slider-background);
-    color: var(--slider-color);
-
-    .leaflet-popup-content {
-      width: calc(100% - 26px);
-      inline-size: min-content;
-
-      .info-container {
-        max-height: 800px;
-        overflow-y: auto;
-        width: 100%;
-      }
-    }
-  }
-
-  /* leaflet controls*/
-  .leaflet-control-zoom.leaflet-bar {
-    border-radius: 20px;
+    --slider-width: 300px;
+    --color-primary: var(--primary, black);
+    --map-background: var(--default, gray);
+    --color-base: inherit;
+    --slider-background: rgba(255, 255, 255, 1);
+    --slider-border: none;
+    --slider-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    --slider-top: 10px;
+    --slider-right: 10px;
+    --slider-left: 10px;
+    --slider-bottom: 10px;
+    --slider-radius: 16px;
+    --slider-media-mobile-height: 45%;
+    --active-marker-color: 255, 206, 0;
+    // define el color del halo para el marker activo
+    --active-marker-alpha: .5;
+    // define la opacidad para el color del halo.
+    background-color: var(--map-background);
     overflow: hidden;
-    box-shadow: var(--slider-shadow);
-    border: 1px solid #ddd;
-  }
+    position: relative;
 
-  .leaflet-control-zoom.leaflet-control a {
-    width: 38px;
-    height: 38px;
-    line-height: 38px;
-    color: #888;
-  }
+    .title, *.text-primary {
+        color: var(--color-primary) !important;
+    }
 
-  .leaflet-control-zoom-in,
-  .leaflet-control-zoom-out {
-    font: 400 18px "Lucida Console", Monaco, monospace;
-    text-indent: 1px;
-  }
+    .btn-close {
+        border-radius: 50%;
+        aspect-ratio: 1 / 1;
+        position: absolute;
+        top: 0.75rem;
+        right: 0.75rem;
+        background-color: transparent;
+        color: var(--color-base);
+    }
 
-  .leaflet-control-zoom-out {
-    font-size: 22px;
-  }
+    .marker--active {
+        --color: 247, 149, 37;
+        position: relative;
+        border-radius: 50%;
+        box-shadow: 0 0 20px rgba(var(--active-marker-color), 1);
+        background: radial-gradient(circle, rgba(var(--active-marker-color), var(--active-marker-alpha)) 10%, rgba(var(--active-marker-color), var(--active-marker-alpha)) 80%);
+    }
 
-  .leaflet-touch {
-    .leaflet-control-zoom-in {
-      font-size: 22px;
+    .slider {
+        &.slider--in {
+            right: var(--slider-right);
+            animation-duration: 0.3s;
+            animation-name: slidein;
+        }
+
+        z-index: 990;
+        position: absolute;
+        top: var(--slider-top);
+        border: var(--slider-border);
+        right: calc(-1 * var(--slider-width));
+        background: var(--slider-background);
+        height: calc(100% - var(--slider-bottom) - var(--slider-top));
+        width: var(--slider-width);
+        border-radius: var(--slider-radius);
+        box-shadow: var(--slider-shadow);
+
+        .content-container {
+            padding: 2.75rem .25rem .5rem .25rem;
+            height: calc(100%);
+        }
+
+        .content {
+            inline-size: min-content;
+            color: var(--color-base);
+            height: 100%;
+            width: 100%;
+            overflow-y: auto;
+            overflow-x: hidden;
+            box-shadow: 0 -10px 20px var(--slider-background) inset;
+            padding: 0 .75rem 1.5rem .75rem;
+            word-break:break-word;
+
+            &:after {
+                content: '';
+                background: var(--slider-background);
+                background: -moz-linear-gradient(0deg, var(--slider-background) 60%, rgba(255, 255, 255, 0) 100%);
+                background: -webkit-linear-gradient(0deg, var(--slider-background) 60%, rgba(255, 255, 255, 0) 100%);
+                background: linear-gradient(0deg, var(--slider-background) 60%, rgba(255, 255, 255, 0) 100%);
+                position: absolute;
+                left: .25rem;
+                width: calc(100% - 1.5rem);
+                height: 40px;
+                bottom: .25rem;
+                border-bottom-left-radius: 12px
+            }
+
+        }
+
+    }
+
+    // Filtros
+    .filter-container {
+        position: absolute;
+        top: 98px;
+        left: 10px;
+        z-index: 999;
+        height: 100%;
+
+        // Botón para hacer un toggle con los filtros
+        .btn-filter {
+            text-align: center;
+            background: var(--slider-background, white);
+            padding: 0;
+            box-shadow: var(--slider-shadow);
+            line-height: 39px;
+            color: var(--color-base);
+            width: 39px;
+            height: 39px;
+        }
+
+        .js-filters {
+            overflow: auto;
+        }
+
+        // Filter
+        .poncho-map-filters {
+            max-height: calc(100% - 158px);
+            min-height: 150px;
+            display: none;
+            position: relative;
+            z-index: 998;
+            width: 250px;
+            max-width: 300px;
+            padding: 30px 15px 15px;
+            border-radius: var(--slider-radius);
+            box-shadow: var(--slider-shadow);
+            color: var(--color-base);
+            background-color: var(--slider-background);
+
+            // Define el estado abierto del panel de filtro.
+            &.filter--in {
+                display: block;
+            }
+
+            // Flecha contenedor filtros
+            &::after {
+                content: ' ';
+                width: 0;
+                height: 0;
+                border-left: 10px solid transparent;
+                border-right: 10px solid transparent;
+                border-bottom: 10px solid var(--slider-background);
+                position: absolute;
+                top: -6px;
+                left: 10px;
+                z-index: 990;
+            }
+
+            // Contenedor de fieldsets
+            .field-list {
+                min-height: 40px;
+                max-height: calc(100% - 110px);
+                overflow: auto;
+                width: calc(100% - 30px);
+            }
+
+            legend {
+                color: var(--color-base);
+                margin-bottom: .75em;
+                opacity: .8;
+            }
+
+            fieldset {
+                border: none;
+            }
+
+            // setea el color para el fondo de los checkbox e inputs.
+            input[type=checkbox],
+            input[type=radio] {
+                accent-color: var(--color-primary) !important;
+            }
+
+            // parche fix hasta que se use bootstrap > 4
+            .form-check {
+                display: flex;
+                align-items: baseline;
+            }
+
+            .form-check .form-check-label {
+                color: var(--color-base) !important;
+            }
+
+        }
+
+    }
+
+    /* leaflet popup */
+    .leaflet-popup-content-wrapper {
+        border-radius: 16px;
+    }
+
+    .leaflet-popup-content-wrapper,
+    .leaflet-popup-tip {
+        background: var(--slider-background);
+        color: var(--color-base);
+
+        .leaflet-popup-content {
+            width: calc(100% - 26px);
+            inline-size: min-content;
+
+            .info-container {
+                max-height: 800px;
+                overflow-y: auto;
+                width: 100%;
+            }
+
+        }
+
+    }
+
+    /* leaflet controls*/
+    .leaflet-control-zoom.leaflet-bar {
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: var(--slider-shadow);
+        border: 1px solid #ddd;
+    }
+
+    .leaflet-control-zoom.leaflet-control a {
+        width: 38px;
+        height: 38px;
+        line-height: 38px;
+        color: #888;
+    }
+
+    .leaflet-control-zoom-in,
+    .leaflet-control-zoom-out {
+        font: 400 18px "Lucida Console", Monaco, monospace;
+        text-indent: 1px;
     }
 
     .leaflet-control-zoom-out {
-      font-size: 24px;
+        font-size: 22px;
     }
 
-    a.leaflet-control-zoom-out {
-      line-height: 32px;
+    .leaflet-touch {
+        .leaflet-control-zoom-in {
+            font-size: 22px;
+        }
+
+        .leaflet-control-zoom-out {
+            font-size: 24px;
+        }
+
+        a.leaflet-control-zoom-out {
+            line-height: 32px;
+        }
+
+        a.leaflet-control-zoom-in,
+        a.leaflet-control-zoom-out {
+            background-color: var(--slider-background);
+            color: var(--color-base);
+            // border-color: var(--color-base);
+            border-color: #ddd;
+        }
+
     }
 
-    a.leaflet-control-zoom-in,
-    a.leaflet-control-zoom-out {
-      background-color: var(--slider-background);
-      color: var(--slider-color);
-      // border-color: var(--slider-color);
-      border-color: #ddd;
+    .leaflet-container a.leaflet-popup-close-button.leaflet-popup-close-button {
+        top: 5px;
+        right: 5px;
     }
 
-  }
-
-  .leaflet-container a.leaflet-popup-close-button.leaflet-popup-close-button {
-    top: 5px;
-    right: 5px;
-  }
 }
 
 /*------------------------------------*\
-  #MOBILE
+#MOBILE
 \*------------------------------------*/
 @keyframes slideinmobile {
-  0% {
-    right: var(--slider-right);
-    bottom: calc(-1 * var(--slider-media-mobile-height));
-    opacity: 0;
-  }
+    0% {
+        right: var(--slider-right);
+        bottom: calc(-1 * var(--slider-media-mobile-height));
+        opacity: 0;
+    }
 
-  100% {
-    bottom: var(--slider-bottom);
-    opacity: 1;
-    right: var(--slider-right);
-  }
+    100% {
+        bottom: var(--slider-bottom);
+        opacity: 1;
+        right: var(--slider-right);
+    }
+
 }
 
 @media (max-width:575.98px) {
 
-  /* smartphones, iPhone, portrait 480x320 phones */
-  .poncho-map {
-    .slider {
-      height: var(--slider-media-mobile-height);
-      top: auto;
-      bottom: calc(-1 * var(--slider-media-mobile-height));
-      right: var(--slider-right);
-      max-width: 100%;
-      width: calc(100% - var(--slider-bottom) - var(--slider-top));
+    /* smartphones, iPhone, portrait 480x320 phones */
+    .poncho-map {
+        .slider {
+            height: var(--slider-media-mobile-height);
+            top: auto;
+            bottom: calc(-1 * var(--slider-media-mobile-height));
+            right: var(--slider-right);
+            max-width: 100%;
+            width: calc(100% - var(--slider-bottom) - var(--slider-top));
 
-      &.slider--in {
-        animation-name: slideinmobile;
-        bottom: var(--slider-bottom);
-      }
+            &.slider--in {
+                animation-name: slideinmobile;
+                bottom: var(--slider-bottom);
+            }
+
+        }
+
+        .poncho-map-filters {
+            max-width: 50%;
+            width: calc(100% - var(--slider-bottom) - var(--slider-top));
+        }
+
     }
-
-    .poncho-map-filters {
-      max-width: 50%;
-      width: calc(100% - var(--slider-bottom) - var(--slider-top));
-    }
-
-  }
 
 }

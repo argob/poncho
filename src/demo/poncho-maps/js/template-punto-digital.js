@@ -87,15 +87,26 @@ const template_punto_digital = (self, row) => {
   }).join('');
 
   if(horarios){
+    let today_text = false;
+    if(today){
+       today_text = 
+          `<dd class="text-arandano" style="font-weight:bold; margin-bottom:0">
+              <i class="icono-arg-reloj text-arandano"></i>
+              Hoy abierto
+          </dd> 
+          <dd class="m-l-2 text-arandano">${time_tostring(today[1])} h.
+          </dd>`;
+    }
+
     horarios = 
       `<dt class="sr-only">
         <i class="icono-arg-reloj text-primary"></i> 
         Horarios
       </dt>
-      ${today ? '<dd class="text-arandano" style="font-weight:bold; margin-bottom:0"><i class="icono-arg-reloj text-arandano"></i><span> Hoy abierto '+ time_tostring(today[1])+' h.</span></dd>' : ''}
+      ${today_text}
       <dd class="_m-l-2">
         <details style="font-size:.93em" close>
-        <summary class="text-black p-b-0 p-t-0">Horarios de atención</summary>
+        <summary class="p-b-0 p-t-0">Horarios de atención</summary>
         <ul class="list-unstyled m-t-0">${horarios}</ul>
         </details>
       </dd>`;
