@@ -1566,12 +1566,13 @@ class PonchoMap {
     this.data = data;
     // Confs
     const defaults = {
-        'template': (self, element) => this.default_template(self, element),
+        'template': false,
         'template_structure': {},
         'template_container_class_list':['info-container'],
-        'template_title_class_list':['h4','title'],
+        'template_title_class_list':['h4','title','m-t-0'],
         'template_dl_class_list':['definition-list'],
         'template_innerhtml': false,
+        'template_header': false,
         'scope': '',
         'slider': false,
         'scroll': false,
@@ -1609,6 +1610,7 @@ class PonchoMap {
     this.template_dl_class_list = opts.template_dl_class_list;
     this.template_container_class_list = opts.template_container_class_list;
     this.template_innerhtml = opts.template_innerhtml;
+    this.template_header = opts.template_header;
     this.map_selector = opts.map_selector;
     this.headers = opts.headers;
     this.hash = opts.hash;
@@ -1878,13 +1880,25 @@ class PonchoMap {
    */
   template_title = (row) => {
     const structure = this.template_structure;
-    if(structure.hasOwnProperty('title') && structure.title.length > 0){
-      const title = document.createElement('h1');
+    if(!structure.hasOwnProperty('title') && structure.title.length < 1)
+        return false
+
+    let title;
+
+    if(this.template_header){
+      const wrapper = document.createElement('div');
+      wrapper.innerHTML = this.template_header(this, row);
+      title = wrapper;
+    } else {
+      title = document.createElement('h1');
       title.classList.add(... this.template_title_class_list);
       title.textContent = row[structure.title];
-      return title;
     }
-    return false;
+
+    const header = document.createElement('header');
+    header.className = "header";
+    header.appendChild(title);
+    return header;
   }
 
   /**

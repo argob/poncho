@@ -117,15 +117,21 @@
     const gdata = Object.keys(sheet_data.aPDs).map(e => sheet_data.aPDs[e]).flat();
     // map options
     const options = {
-      'template': template_punto_digital,
-      // 'template': (self, ele) => {
-      //     ele.address = [ele.calle, ele.localidad, ele.provincia].filter(e => e).join(', ');
-      //     return self.default_template(self,ele);
-      // },
+      '_template': template_punto_digital,
+      'template': (self, ele) => {
+          ele.address = [ele.calle, ele.localidad, ele.provincia].filter(e => e).join(', ');
+          console.log(ele)
+          return self.default_template(self,ele);
+      },
+      'template_header': (self, row) => {
+        return  `<p class="badge bg-cielo m-b-1">Punto digital</p>
+            <h1 class="h4 text-primary m-t-0">${row.nombre}</h1>`;
+      },
       'template_structure':{
           'title' : 'nombre',
           'values': ['institucion', 'address', 'email', 'telefono']
       },
+      'template_innerhtml':true,
       'headers' :{
         'institucion':'Tipo de institución',
         'address':'Dirección',
@@ -145,11 +151,11 @@
       'filters' :[
         {
           'legend' : 'Filtrar por estado',
-          'type' : 'checkbox',
+          'type' : 'radio',
           'fields' : [
-              // ['estado_funcionamiento', 'Todos', ['1', '3'], 'checked', 'strict'],
-              ['estado_funcionamiento', 'Abiertos', ['1'], 'checked', 'strict'],
-              ['estado_funcionamiento', 'Próximamente', ['3'], 'checked','strict' ],
+              ['estado_funcionamiento', 'Todos', ['1', '3'], 'checked', 'strict'],
+              ['estado_funcionamiento', 'Abiertos', ['1'], false, 'strict'],
+              ['estado_funcionamiento', 'Próximamente', ['3'], false,'strict' ],
           ]
         },
         {
