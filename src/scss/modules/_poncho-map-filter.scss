@@ -37,7 +37,7 @@
     position: relative;
 
     .title, *.text-primary {
-        color: var(--color-primary) !important;
+        color: var(--primary, #0072bb) !important;
     }
 
     .btn-close {
