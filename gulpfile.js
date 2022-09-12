@@ -34,8 +34,7 @@ gulp.task('sass', function(){
         './src/scss/*.scss'
     ])
     // .pipe(sass())
-    // .pipe(sass.sync({outputStyle: 'compressed'}).on('error', sass.logError))
-    .pipe(sass.sync().on('error', sass.logError))
+    .pipe(sass.sync({outputStyle: 'compressed'}).on('error', sass.logError))
     .pipe(gulpIF(function(file){return file.path.match('poncho.css')}, rename('poncho.min.css')))
     .pipe(gulp.dest('./dist/css'))
 });
