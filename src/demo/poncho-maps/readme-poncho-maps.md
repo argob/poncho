@@ -1,8 +1,11 @@
-# Poncho Map & Poncho Map Filter
 
-## Opciones
+# PonchoMap
 
-La siguiente es una lista de las opciones con su descripción y tipo.
+
+
+## Opciones para PonchoMap, PonchoMapFilter y PonchoMapSearch
+
+### PonchoMap
 
 | Parámetro | Tipo | Default | Descripción | Tipo de uso |
 |:---|:---|:---|:---|:---|
@@ -22,12 +25,144 @@ La siguiente es una lista de las opciones con su descripción y tipo.
 | anchor_delay | `integer` | 0 | Tiempo de demora entre que se carga la página y se muestra el marker pasado por url. El valor es en milisegundos (1" = 1000). | *Opcional* |
 | scroll | `boolean` | `false` | Hace un scroll para posisionar la página en el borde superior del mapa cuando se carga la página.| *Opcional* |
 | marker | `string` \| `function` | azul | Permite asignar un color distinto o usar una función para cambiar la lógica en la que se muestran los colores o usar iconos de otro tipo. (Ver ejemplos.) | *Opcional* |
-| filters_visible | `boolean` | `false` | Configura el estado inicial del panel de filtros. | *Opcional* |
+| reset_zoom | `boolean` | `false` | Habilita el un botón en medio del botón *zoom-out* y *zoom-in* para mostrar el mapa completo con sus *markers*.| *Opcional* |
 | map_anchor_zoom | `integer` | 16 | Configuración del zoom para los markers que se deben visualizar pasándo por hash el id del marker.| *Opcional* |
 | map_zoom | `integer` | 4 | Configuración del valor inicial para el zoom del mapa.| *Opcional* |
 | map_view | `Array Object` | `[-40.44, -63.59]` | Geoposicionamiento inicial del mapa. | *Opcional* |
+
+#### Clusters de Leaflet
+
+| Parámetro | Tipo | Default | Descripción | Tipo de uso |
+|:---|:---|:---|:---|:---|
 | marker_cluster_options | `Object` | <pre>'marker_cluster_options': {<br>    'spiderfyOnMaxZoom': true,<br>    'showCoverageOnHover': false,<br>    'zoomToBoundsOnClick': true,<br>    'maxClusterRadius': 10,<br>    'spiderfyDistanceMultiplier': 1.5,<br>    'spiderLegPolylineOptions': {<br>        'weight': 1,<br>        'color': "#666",<br>        'opacity': 0.5,<br>    }<br>}</pre> | Opciones Leaflet. Ver <https://github.com/Leaflet/Leaflet.markercluster> | *opcional* |
 
+### PonchoMapFilter
+
+| Parámetro | Tipo | Default | Descripción | Tipo de uso |
+|:---|:---|:---|:---|:---|
+| filters | object |  | Permite configurar opciones para filtrar los markers | _Obligatorio_ usando `PonchoMapFilter`|
+| filters_visible | `boolean` | `false` | Configura el estado inicial del panel de filtros. | *Opcional* |
+
+#### Ejemplo de implementación de filtros
+```js
+const options = {
+  ...
+  'filters' :[
+    {
+      'legend' : 'Ver',
+      'type': 'checkbox',
+      'fields' : [
+          ['estado_funcionamiento', 'Abiertos', ['1'], 'checked', 'strict'],
+          ['estado_funcionamiento', 'Cerrados temporalmente', ['3'], false, 'strict'],
+          ['provincia', 'Buenos Aires', ['Buenos Aires', 'Ciudad Autónoma de Buenos Aires'], 'checked'],
+          ['provincia', 'Noreste Argentino', ['Chaco', 'Corrientes', 'Formosa', 'Misiones'], 'checked'],
+          ['provincia', 'Noroeste Argentino', ['Catamarca', 'Jujuy', 'La Rioja', 'Salta', 'Santiago del Estero', 'Tucumán']],
+          ['provincia', 'Región Centro', ['Córdoba', 'Entre Ríos', 'Santa Fe']],
+          ['provincia', 'Región Cuyo', ['La Pampa', 'Mendoza', 'San Juan', 'San Luis']],
+          ['provincia', 'Región Patagonia', ['Chubut', 'Neuquén', 'Río Negro', 'Santa Cruz', 'Tierra del Fuego']],
+      ]
+    },
+  ],
+};
+```
+
+Este ejemplo tiene dos filtros generales: estado_funcionamiento y provincia. Éstas son columnas de la tabla —o entrada—, donde se obtienen los datos. El usuario deberá configurar cada una de las entradas asignando parámetros del siguiente modo:
+
+```js
+['provincia', 'Noreste Argentino', ['Chaco', 'Corrientes', 'Formosa', 'Misiones'], 'checked'],
+```
+
+### Opciones
+
+| Posición | Tipo | Descripción |
+|:---|:---|:---|
+| 0 | `string` | Nombre de la columna por la que se quiere filtrar. |
+| 1 | `string` | Nombre que se verá en el `<label>` del checkbox |
+| 2 | `Array()` | Listado de valores que se deberá buscar en cada iteración de búsqueda. |
+| 3 | { `string` \| `boolean`, ['checked',`false`] } | Designa el estado inicial del checkbox. |
+| 4 | { `string` \| `boolean`, ['strict',`false`] }  | Si se usa el modo *strict*, la condición de que el valor se encuentre en la búsqueda será obligatoria. |
+
+***
+
+
+
+### PonchoMapSearch
+
+PorchoMapSearch utiilza el compoenente select2<sup>[1]</sup> para visualizar el listado de markers y realizar búsquedas sobre la entrada activa.
+
+| Parámetro | Tipo | Default | Descripción | Tipo de uso |
+|:---|:---|:---|:---|:---|
+| scope | object |  | s | _Requerido_ |
+| text | `string` | text | Define el índice que debe utilizarse para mostrar en el listado desplegable. | *Requerido* |
+| id | `string` | id | Define el índice que debe utilizarse para identificar cada una de las entradas. | *Requerido* |
+| placeholder | `string` | Su búsqueda | Texto de ayuda que aparece en un tono medio en el selector de items, complementa al label de un form. | *Opcional* |
+| search_fields | `object` | [] | Define los índices que se utilizan para realizar la búsqueda. Ej. `['provincia', 'localidad', 'nombre']` | *Opcional* |
+| sort | `boolean` | `false` | Si es `true` las entradas se ordenan alfa-numéricamente en forma ascendente. | *Opcional* |
+| sort_reverse | `boolean` | `false` | Si es `true` las entradas se ordenan alfa-numéricamente en forma descendente. Esta opción tiene prioridad sobre la opción *sort*. | *Opcional* |
+| sort_key | `string` | text | Define el índice por el que se ordenarán las entradas. | *Opcional* |
+| theme | `string` | poncho | Define el tema que se utiliza para el componente select2. El tema *poncho*, está incluido en el estilo general de Argentina.gob.ar. | *Opcional* |
+| template | `object` | false | Permite definir una estructura html para mostrar en el listado. La función debe retornar un *string*. Ver ejemplo. | *Opcional* |
+
+#### Ejemplo de uso para el buscador
+
+```javascript
+// PonchoMap
+const options = {...};
+const poncho_map = new PonchoMap(entradas_json, options);
+poncho_map.render();
+
+// Configuración de PonchoMapSearch
+const search_options = {
+  'scope':'search-efectores',
+  'text': 'nombre',
+  'id':'id_pd',
+  'placeholder':'Buscá tu Punto Digital',
+  'template': (self, entry) => {
+    const tpl = `<p class="badge">
+        <i class="icono-arg-institucion"></i> 
+        ${entry.institucion}
+        </p>
+        <dl>
+          <dt>${entry.nombre}</dt>
+          <dd>${entry.provincia}, ${entry.localidad}</dd>
+        </dl>`;
+    return tpl;
+  },
+  'search_fields': [
+      "nombre",
+      "institucion",
+      "localidad",
+      "provincia",
+      "municipio_nombre"
+  ]
+};
+search = new PonchoMapSearch(poncho_map, search_options);
+search.render();
+```
+
+## Métodos
+
+### PonchoMap
+
+| Método | Retrono | Descripción |
+|--|--|--|
+| reset_view | `void` | Reestablece la posión y el zoom del mapa y los *markers* a su posición inicial por defecto. |
+| has_hash | boolean:false \| string | Retorna el identificador del *marker* pasado por URL. |
+| goto_entry | `void` | Retorna el identificador del *marker* pasado por URL. |
+| goto_hashed_entry | `void` | Obtiene el hash desde la url y hace zoom sobre el marker con ese identificador. Según la configuración puede abrir un popUp o el slider. |
+| entries | `object` | Objeto con las entradas iniciales, sin filtrar o procesar. |
+| map | `object` | Objeto map de leaflet. |
+| markers | `object` | Objeto markers de leaflet. |
+
+### PonchoMapFilter
+
+| Método | Retrono | Descripción |
+|--|--|--|
+| filtered_entries | `object` | Objeto con las entradas filtradas. |
+| totals | `object` | Retorna la cantidad de markers por cada uno de los filtros. Asi como retorna los totales también la posición del filtro. |
+| form_filters | `object` | Retorna los fitros marcados. Los datos de retorno son: el grupo de filtro y el indice en el grupo. |
+
+----
 
 ## Markers
 
@@ -250,6 +385,7 @@ const options = {
   'filters' :[
     {
       'legend' : 'Ver',
+      'type': 'checkbox',
       'fields' : [
           ['estado_funcionamiento', 'Abiertos', ['1'], 'checked', 'strict'],
           ['estado_funcionamiento', 'Cerrados temporalmente', ['3'], false, 'strict'],
@@ -288,31 +424,31 @@ Este ejemplo tiene dos filtros generales: estado_funcionamiento y provincia. És
 ### Incluir los archivos JavaScript y JavaScript dependientes
 
 ```html
-<!-- INCLUDE SCRIPTS -->
+<!-- INCLUDES -->
+<link  href="https://gis.argentina.gob.ar/js/leaflet/leaflet.css" rel="stylesheet"/>
+<link  href="https://gis.argentina.gob.ar/js/leaflet/MarkerCluster.Default.css" rel="stylesheet"/>
+<link  href="https://gis.argentina.gob.ar/js/leaflet/MarkerCluster.css" rel="stylesheet"/>
 <script src="https://gis.argentina.gob.ar/js/leaflet/leaflet.js"></script>
 <script src="https://gis.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script>
-<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
-<!-- / INCLUDE SCRIPTS -->
+<script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
+<!-- / INCLUDES -->
 ```
 
 
 ### Estructura HTML
 
-
 ```html
-<!-- poncho map -->
+<!-- PONCHO MAP -->
 <div class="poncho-map" data-scope="poncho-map">
-<!-- leaflet -->
-<div
-    class="leaflet-container leaflet-touch leaflet-fade-anim 
-           leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
-    id="map"
-    style="height:800px; width:100%;"
-    tabindex="0">
+  <div
+      class="leaflet-container leaflet-touch leaflet-fade-anim 
+            leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
+      id="map"
+      style="height:700px; width:100%;"
+      tabindex="0">
+  </div>
 </div>
-<!-- / leaflet -->
-</div>
-<!-- / poncho map -->
+<!-- / PONCHO MAP -->
 ```
 
 ### JavaScript
@@ -351,6 +487,7 @@ O Poncho Map filters
           'filters' :[
               {
                 'legend': 'Ver',
+                'type': 'checkbox',
                 'fields': [
                     ['provincia', 'Buenos Aires', ['Buenos Aires'], 'checked', 'strct'],
                     ['provincia', 'Noreste Argentino', ['Chaco', 'Corrientes', 'Formosa', 'Misiones'], 'checked'],
@@ -362,6 +499,120 @@ O Poncho Map filters
       mapa.render();
   })();
 </script>
+```
+### PonchoMapSearch
+
+1. Incluimos el script para el componente select2.
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+```
+
+2. Incluimos el bloque HTML para el buscador.
+```html
+<!-- PONCHO MAP SEARCH -->
+<form>
+    <div class="form-group webform-component">
+        <label for="poncho_map_search">Buscá tu Punto Digital</label>
+        <select 
+            class="form-control poncho-map-search"
+            data-scope="search-puntos-digitales"
+            name="search">
+        </select>
+    </div>
+</form>
+<!-- / PONCHO MAP SEARCH -->
+```
+3. Incluimos el bloque HTML para el mapa.
+```html
+<!-- PONCHO MAP -->
+<div class="poncho-map" data-scope="poncho-map">
+  <div
+      class="leaflet-container leaflet-touch leaflet-fade-anim 
+            leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
+      id="map"
+      style="height:700px; width:100%;"
+      tabindex="0">
+  </div>
+</div>
+<!-- / PONCHO MAP -->
+```
+4. incluimos el script para el mapa con las configuraciones que se necesiten.
+```js
+<!-- SCRIPTS -->
+<script>
+  (async() => {
+    // FETCH DATA
+    const url = './data/response.json';
+    const sheet_data = await fetch_json(url); 
+    const gdata = Object.keys(sheet_data.aPDs).map(e => sheet_data.aPDs[e]).flat();
+    
+    // MAPA
+    const options = {
+      'template': template_punto_digital,
+      'scope': 'poncho-map',
+      'id': 'id_pd',
+      'latitud': 'lat',
+      'longitud': 'long',
+      'hash': true,
+      'slider': true,
+      'scroll': true,
+      'marker': 'cielo',
+      'reset_zoom': true,
+      'filters': [
+        {
+          'legend': 'Filtrar por región',
+          'type': 'checkbox',
+          'fields': [
+              ['provincia', 'Buenos Aires y CABA', ['Buenos Aires', 'Ciudad Autónoma de Buenos Aires'], 'checked'],
+              ['provincia', 'Noreste Argentino', ['Chaco', 'Corrientes', 'Formosa', 'Misiones'], 'checked'],
+              ['provincia', 'Noroeste Argentino', ['Catamarca', 'Jujuy', 'La Rioja', 'Salta', 'Santiago del Estero', 'Tucumán'], 'checked'],
+              ['provincia', 'Región Centro', ['Córdoba', 'Entre Ríos', 'Santa Fe'], 'checked'],
+              ['provincia', 'Región Cuyo', ['La Pampa', 'Mendoza', 'San Juan', 'San Luis'], 'checked'],
+              ['provincia', 'Región Patagonia', ['Chubut', 'Neuquén', 'Río Negro', 'Santa Cruz', 'Tierra del Fuego'], 'checked'],
+          ]
+        },
+      ],
+      'marker_cluster_options': {
+          'spiderfyOnMaxZoom': true,
+          'showCoverageOnHover': false,
+          'zoomToBoundsOnClick': true,
+          'maxClusterRadius': 45,
+        }
+    };
+    const poncho_map_filter = new PonchoMapFilter(gdata, options);
+    poncho_map_filter.render();
+</script>
+```
+5. Agregamos el método para el buscador. Le configuramos las opciones y le agregamos como primer parámetro la instancia de la clase **PonchoMapFilter** o **PonchoMap**.
+```js
+<script>
+    // BUSCADOR DE MARKERS
+    const search_options = {
+      'scope': 'search-puntos-digitales',
+      'text': 'nombre',
+      'id': 'id_pd',
+      'placeholder': 'Buscá tu Punto Digital',
+      'template': (self, entry) => {
+          return '<dl class="p-b-0 m-y-0">' 
+              + '<dt>' + entry.nombre + '</dt>'
+              + '<dd class="m-b-0 small">' 
+              + entry.provincia + ', ' + entry.localidad 
+              + '</dd></dl>';
+      },
+      'search_fields': [
+          "nombre",
+          "institucion",
+          "localidad",
+          "provincia",
+          "municipio_nombre"
+      ]
+    };
+    search = new PonchoMapSearch(poncho_map_filter, search_options);
+    search.render();
+  })();
+</script>
+<!-- / SCRIPTS -->
 ```
 
 ## Estilo gráfico
@@ -412,3 +663,9 @@ El componente permite modificar alguno de los atributos del slider y los compone
 ```
 
 ![Tema oscuro](img/dark-mode.jpg "Dark mode")
+
+
+## Referencias
+1. jQuery
+2. leaftlet
+3. select2 ****

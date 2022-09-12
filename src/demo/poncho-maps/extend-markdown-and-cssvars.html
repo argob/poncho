@@ -20,7 +20,7 @@
       integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
       crossorigin="anonymous" 
       referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="../../../dist/css/poncho.css?v=1" />
+  <link rel="stylesheet" href="../../../dist/css/poncho.min.css?v=1" />
   <title>Mapa Efectores</title>
   <style>
 
@@ -98,51 +98,51 @@
     // GApi helpers
     const gapi = new GapiSheetData();
     // fetch data
-    const googlesheet_data = await fetch_json('./data/response-efectores.json'); 
+    const googlesheet_data = await fetch_json("./data/response-efectores.json"); 
     const gapi_data = gapi.json_data(googlesheet_data);
 
     const options = {
-      'marker':'azul',
-      'template_innerhtml' :true,
-      'template' : (self, row) => {
+      "marker":"azul",
+      "template_innerhtml" :true,
+      "template" : (self, row) => {
           // showdown
           const converter = new showdown.Converter({
-            extensions:['video']
+            extensions:["video"]
           });
-          row['custom_entry'] = converter.makeHtml(
-              '[[youtube-{16by9}-{5WNxaslb1eI}]] '
-              + '*Listados*\n'
-              + ' * Item uno\n * Item dos\n * Item tres\n\n'
-              + '------'
+          row["custom_entry"] = converter.makeHtml(
+              "[[youtube-{16by9}-{5WNxaslb1eI}]] "
+              + "*Listados*\n"
+              + " * Item uno\n * Item dos\n * Item tres\n\n"
+              + "------"
           );
-          const html = self.default_template(self, row);
+          const html = self.defaultTemplate(self, row);
           return converter.makeHtml(html);
       },
-      'scope':'uno',
-      'slider':true,
-      'hash': true,
-      'filters_visible':false,
-      'scroll': true,
-      'filters' :[
+      "scope":"uno",
+      "slider":true,
+      "hash": true,
+      "filters_visible":false,
+      "scroll": true,
+      "filters" :[
         {
-          'legend' : 'Filtros',
-          'fields' : [
-            ['filtro-hormonizacion-adultos', 'Hormonización adultos', ['SI'], 'checked'],
-            ['filtro-hormonizacion-adolescentes', 'Hormonización adolescentes', ['SI'], 'checked'],
-            ['filtro-inhibicion-puberal', 'Inhibición puberal', ['SI'], 'checked'],
+          "legend" : "Filtros",
+          "fields" : [
+            ["filtro-hormonizacion-adultos", "Hormonización adultos", ["SI"], "checked"],
+            ["filtro-hormonizacion-adolescentes", "Hormonización adolescentes", ["SI"], "checked"],
+            ["filtro-inhibicion-puberal", "Inhibición puberal", ["SI"], "checked"],
           ]
         },
       ],
-      'template_structure' : {
-          'title': 'name',
-          'values': ['custom_entry','address',  'phone', 'email', 'reference'],
-          'exclude': []
+      "template_structure" : {
+          "title": "name",
+          "values": ["custom_entry","address",  "phone", "email", "reference"],
+          "exclude": []
       },
-      'headers': {
-          'custom_entry': 'Prueba Markdown',
-          'address': "Dirección",
-          'phone': "Teléfono",
-          'reference': "Referencia para acceder a los servicios"
+      "headers": {
+          "custom_entry": "Prueba Markdown",
+          "address": "Dirección",
+          "phone": "Teléfono",
+          "reference": "Referencia para acceder a los servicios"
       },
     };
     // render map

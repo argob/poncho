@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head>
+  <link rel="profile" href="http://www.w3.org/1999/xhtml/vocab" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <script 
+      src="https://code.jquery.com/jquery-3.6.0.min.js" 
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+      crossorigin="anonymous">
+    </script>
+  <link 
+      rel="stylesheet" 
+      href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+  <link 
+      rel="stylesheet" 
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" 
+      integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+      crossorigin="anonymous" 
+      referrerpolicy="no-referrer" />  
+  <link 
+      rel="stylesheet" 
+      href="https://capacita-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css">
+  <!-- Dev files -->
+  <link rel="stylesheet" href="../../../dist/css/poncho.min.css" />
+  <title>Mapa Puntos Digitales</title>
+  <style>
+    @media (prefers-color-scheme:dark) {
+        div.poncho-map {
+            --gray-base: rgba(255,255,255,.8);
+            --slider-background: var(--black);
+            --color-base: var(--gray-base);
+            --color-primary:var(--cielo) ;
+            --active-marker-alpha: 1;
+        }
+        div.poncho-map .text-primary {color:var(--celeste-argentina) !important;}
+        div.poncho-map .text-arandano {color: var(--lima) !important;}
+        div.poncho-map summary {color:var(--gray-base);}
+    }
+  </style>
+</head>
+<body>
+  <!-- INCLUDE SCRIPTS -->
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+<link href="https://gis.argentina.gob.ar/js/leaflet/leaflet.css" rel="stylesheet"/>
+<link href="https://gis.argentina.gob.ar/js/leaflet/MarkerCluster.Default.css" rel="stylesheet"/>
+<link href="https://gis.argentina.gob.ar/js/leaflet/MarkerCluster.css" rel="stylesheet"/>
+
+<script src="https://gis.argentina.gob.ar/js/leaflet/leaflet.js"></script>
+<script src="https://gis.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script>
+
+<script src="../../../dist/js/poncho.min.js"></script>
+<!-- <script src="../../../src/js/poncho-map.js"></script>
+<script src="../../../src/js/poncho-map-filter.js"></script>
+<script src="../../../src/js/poncho-map-search.js"></script>
+<script src="../../../src/js/gapi-sheet-data.js"></script> -->
+
+<script src="./js/template-punto-digital.js"></script>
+<!-- / INCLUDE SCRIPTS -->
+<div class="container m-t-2">
+  <div class="row">
+      <div class="col-md-push-2 col-md-8 m-y-1">
+        <h1 class="h2 text-cielo">Punto Digital</h1>
+        <!-- PONCHO MAP SEARCH -->
+        <form>
+          <div  class="form-group webform-component">
+              <label for="poncho_map_search">Buscá tu Punto Digital</label>
+              <select 
+                  class="form-control poncho-map-search"
+                  data-scope="search-puntos-digitales"
+                  name="search">
+              </select>
+          </div>
+        </form>
+        <!-- / PONCHO MAP SEARCH -->
+      </div>
+      <div class="col-md-12">
+        <!-- poncho map -->
+        <div class="poncho-map" data-scope="poncho-map">
+          <!-- leaflet -->
+          <div
+              class="leaflet-container leaflet-touch leaflet-fade-anim 
+                    leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
+              id="map"
+              style="height:700px;width: 100%;"
+              tabindex="0">
+          </div>
+          <!-- / leaflet -->
+        </div>
+        <!-- / poncho map -->
+      </div>
+  </div>
+</div>
+<!-- SCRIPTS -->
+<script>
+  let filter;
+  (async() => {
+    // FETCH DATA
+    const url = "./data/response.json";
+    const sheet_data = await fetch_json(url); 
+    const gdata = Object.keys(sheet_data.aPDs).map(e => sheet_data.aPDs[e]).flat();
+    
+    // MAPA
+    const options = {
+      "template": template_punto_digital,
+      "scope": "poncho-map",
+      "id": "id_pd",
+      "latitud": "lat",
+      "longitud": "long",
+      "hash": true,
+      "slider": true,
+      "scroll": true,
+      "marker": "cielo",
+      "reset_zoom": true,
+      "filters": [
+        {
+          "legend": "Filtrar por región",
+          "type": "checkbox",
+          "fields": [
+              ["provincia", "Buenos Aires y CABA", ["Buenos Aires", "Ciudad Autónoma de Buenos Aires"], "checked"],
+              ["provincia", "Noreste Argentino", ["Chaco", "Corrientes", "Formosa", "Misiones"], "checked"],
+              ["provincia", "Noroeste Argentino", ["Catamarca", "Jujuy", "La Rioja", "Salta", "Santiago del Estero", "Tucumán"], "checked"],
+              ["provincia", "Región Centro", ["Córdoba", "Entre Ríos", "Santa Fe"], "checked"],
+              ["provincia", "Región Cuyo", ["La Pampa", "Mendoza", "San Juan", "San Luis"], "checked"],
+              ["provincia", "Región Patagonia", ["Chubut", "Neuquén", "Río Negro", "Santa Cruz", "Tierra del Fuego"], "checked"],
+          ]
+        },
+      ],
+      "marker_cluster_options": {
+          "spiderfyOnMaxZoom": true,
+          "showCoverageOnHover": false,
+          "zoomToBoundsOnClick": true,
+          "maxClusterRadius": 45,
+        }
+    };
+    filter = new PonchoMapFilter(gdata, options);
+    filter.render();
+    
+    // BUSCADOR DE MARKERS
+    const search_options = {
+      "scope": "search-puntos-digitales",
+      "text": "nombre",
+      "id": "id_pd",
+      "placeholder": "Buscá tu Punto Digital",
+      "template": (self, entry) => {
+          return "<dl class=\"p-b-0 m-y-0\">" 
+              + "<dt>" + entry.nombre + "</dt>"
+              + "<dd class=\"m-b-0 small\">" 
+              + entry.provincia + ", " + entry.localidad 
+              + "</dd></dl>";
+      },
+      "search_fields": [
+          "nombre",
+          "institucion",
+          "localidad",
+          "provincia",
+          "municipio_nombre"
+      ]
+    };
+    search = new PonchoMapSearch(filter, search_options);
+    search.render();
+  })();
+</script>
+<!-- / SCRIPTS -->
+</body>
+</html>
+
+
+

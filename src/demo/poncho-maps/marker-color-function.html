@@ -13,7 +13,7 @@
       crossorigin="anonymous" 
       referrerpolicy="no-referrer" />    
   <link rel="stylesheet" href="https://capacita-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css?rfqjsh">
-  <link rel="stylesheet" href="../../../dist/css/poncho.css" />
+  <link rel="stylesheet" href="../../../dist/css/poncho.min.css" />
   <title>Mapa Puntos Digitales</title>
   <style>
     div.leaflet-div-icon {
@@ -33,7 +33,6 @@
 <!-- INCLUDE SCRIPTS -->
 <script src="https://gis.argentina.gob.ar/js/leaflet/leaflet.js"></script>
 <script src="https://gis.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script>
-<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
 <script src="../../../dist/js/poncho.min.js"></script>
 <script src="./js/template-punto-digital.js"></script>
 <!-- / INCLUDE SCRIPTS -->
@@ -66,40 +65,38 @@
   // init
   (async() => {
     // fetch data
-    const url = './data/response.json';
+    const url = "./data/response.json";
     const sheet_data = await fetch_json(url); 
     const gdata = Object.keys(sheet_data.aPDs).map(e => sheet_data.aPDs[e]).flat();
     // map options
     const options = {
-      'template': template_punto_digital,
-      'scope':'uno',
-      'id': 'id_pd',
-      'latitud': 'lat',
-      'longitud': 'long',
-      'hash': true,
-      'slider': true,
-      'scroll': true,
-      'marker': (self, ele) => { 
+      "template": template_punto_digital,
+      "scope":"uno",
+      "id": "id_pd",
+      "latitud": "lat",
+      "longitud": "long",
+      "hash": true,
+      "slider": true,
+      "scroll": true,
+      "marker": (self, ele) => { 
           let color = "cielo";
-          if(ele.estado_funcionamiento == '3'){
+          if(ele.estado_funcionamiento == "3"){
               color = "arandano";
-          } else if(ele.estado_funcionamiento == '5'){
-              color = 'rojo';
+          } else if(ele.estado_funcionamiento == "5"){
+              color = "rojo";
           }
           return color;
       },
-      'filters': [
+      "filters": [
           {
-              'legend': 'Ver',
-              'fields': [
-                  ['estado_funcionamiento', 'Abiertos', ['1'], 'checked', 'strict'],
-                  ['estado_funcionamiento', 'Cerrados temporalmente', ['3'], false, 'strict'],
-                  ['provincia', 'Buenos Aires', ['Buenos Aires', 'Ciudad Autónoma de Buenos Aires'], 'checked'],
-                  ['provincia', 'Noreste Argentino', ['Chaco', 'Corrientes', 'Formosa', 'Misiones'], 'checked'],
-                  ['provincia', 'Noroeste Argentino', ['Catamarca', 'Jujuy', 'La Rioja', 'Salta', 'Santiago del Estero', 'Tucumán']],
-                  ['provincia', 'Región Centro', ['Córdoba', 'Entre Ríos', 'Santa Fe']],
-                  ['provincia', 'Región Cuyo', ['La Pampa', 'Mendoza', 'San Juan', 'San Luis']],
-                  ['provincia', 'Región Patagonia', ['Chubut', 'Neuquén', 'Río Negro', 'Santa Cruz', 'Tierra del Fuego']],
+              "legend": "Ver",
+              "fields": [
+                  ["provincia", "Buenos Aires", ["Buenos Aires", "Ciudad Autónoma de Buenos Aires"], "checked"],
+                  ["provincia", "Noreste Argentino", ["Chaco", "Corrientes", "Formosa", "Misiones"], "checked"],
+                  ["provincia", "Noroeste Argentino", ["Catamarca", "Jujuy", "La Rioja", "Salta", "Santiago del Estero", "Tucumán"]],
+                  ["provincia", "Región Centro", ["Córdoba", "Entre Ríos", "Santa Fe"]],
+                  ["provincia", "Región Cuyo", ["La Pampa", "Mendoza", "San Juan", "San Luis"]],
+                  ["provincia", "Región Patagonia", ["Chubut", "Neuquén", "Río Negro", "Santa Cruz", "Tierra del Fuego"]],
               ]
           },
       ],

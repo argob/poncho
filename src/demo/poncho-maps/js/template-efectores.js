@@ -40,7 +40,7 @@
 
   const template = 
     `<article>
-        <h1 class="h5 text-primary p-t-1">${row.name} ${row.id}</h1>
+        <h1 class="h5 text-primary p-t-0">${row.name}</h1>
         <h2 class="h6">Servicios que se brindan</h2>
         <ul class="m-y-0 m-x-0">
           ${row['filtro-hormonizacion-adolescentes'] == 'SI' ? hormonizacion_adolescentes : ''}

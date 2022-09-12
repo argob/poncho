@@ -13,7 +13,7 @@
       crossorigin="anonymous" 
       referrerpolicy="no-referrer" />  
   <link rel="stylesheet" href="https://capacita-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css?rfqjsh">
-  <link rel="stylesheet" href="../../../dist/css/poncho.css" />
+  <link rel="stylesheet" href="../../../dist/css/poncho.min.css" />
   <title>Mapa Puntos Digitales</title>
   <style>
     div.leaflet-div-icon {
@@ -33,7 +33,6 @@
 <!-- INCLUDE SCRIPTS -->
 <script src="https://gis.argentina.gob.ar/js/leaflet/leaflet.js"></script>
 <script src="https://gis.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script>
-<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
 <script src="../../../dist/js/poncho.min.js"></script>
 <script src="./js/template-punto-digital.js"></script>
 <!-- / INCLUDE SCRIPTS -->
@@ -66,26 +65,26 @@
   // init
   (async() => {
     // fetch data
-    const url = './data/response.json';
+    const url = "./data/response.json";
     const sheet_data = await fetch_json(url); 
     const gdata = Object.keys(sheet_data.aPDs).map(e => sheet_data.aPDs[e]).flat();
     // map options
     const options = {
-      'template': template_punto_digital,
-      'scope':'uno',
-      'id': 'id_pd',
-      'latitud': 'lat',
-      'longitud': 'long',
-      'hash': true,
-      'slider': true,
-      'scroll': true,
-      'marker': (self, ele) => {
+      "template": template_punto_digital,
+      "scope":"uno",
+      "id": "id_pd",
+      "latitud": "lat",
+      "longitud": "long",
+      "hash": true,
+      "slider": true,
+      "scroll": true,
+      "marker": (self, ele) => {
         // icono tipo html
         const icon_div = (color) => {
             return new L.divIcon({
                 html : 
-                  `<div style='background-color:transparent; font-size:24px; line-height:24px; text-align:center'>
-                  <i class='icono-arg-marcador-ubicacion-2 text-${color}'></div>`,
+                  `<div style="background-color:transparent; font-size:24px; line-height:24px; text-align:center">
+                  <i class="icono-arg-marcador-ubicacion-2 text-${color}"></div>`,
                 iconSize: [24, 36],
                 iconAnchor: [22, 41],
                 popupAnchor: [-3, -40]
@@ -103,16 +102,16 @@
         };
 
         const img_url = (fruta_verdura) => `https://back.argentina.gob.ar/sites/default/files/img_2/img/${fruta_verdura}.svg`;
-        const prov = (typeof ele !== 'undefined'  && ele.hasOwnProperty('provincia')) ? ele.provincia : false;
+        const prov = (typeof ele !== "undefined"  && ele.hasOwnProperty("provincia")) ? ele.provincia : false;
         if(prov == "Misiones"){
-            return icon_div('cereza');
+            return icon_div("cereza");
         } else if (prov == "Salta"){
-            return icon_div('cielo');
+            return icon_div("cielo");
         } else if (prov == "Buenos Aires"){
-            return self.icon('mandarina');
+            return self.icon("mandarina");
         }
 
-        return icon_img(img_url('choclo'));
+        return icon_img(img_url("choclo"));
       },
     };
     // render map

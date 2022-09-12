@@ -17,7 +17,7 @@
 .poncho-map {
     --slider-width: 300px;
     --color-primary: var(--primary, black);
-    --map-background: var(--default, gray);
+    --map-background: transparent;
     --color-base: inherit;
     --slider-background: rgba(255, 255, 255, 1);
     --slider-border: none;
@@ -116,7 +116,12 @@
         top: 98px;
         left: 10px;
         z-index: 999;
-        height: 100%;
+        max-height: calc(100% - 80px);
+
+
+      &.filter-container--zoom-expand {
+        top: 135px;
+      }
 
         // Botón para hacer un toggle con los filtros
         .btn-filter {
@@ -269,10 +274,10 @@
         }
 
         a.leaflet-control-zoom-in,
+        a.leaflet-control-zoom-reset,
         a.leaflet-control-zoom-out {
             background-color: var(--slider-background);
             color: var(--color-base);
-            // border-color: var(--color-base);
             border-color: #ddd;
         }
 
