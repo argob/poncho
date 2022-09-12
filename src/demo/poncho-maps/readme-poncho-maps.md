@@ -78,7 +78,7 @@ Este ejemplo tiene dos filtros generales: estado_funcionamiento y provincia. És
 |:---|:---|:---|
 | 0 | `string` | Nombre de la columna por la que se quiere filtrar. |
 | 1 | `string` | Nombre que se verá en el `<label>` del checkbox |
-| 2 | `Array()` | Listado de valores que se deberá buscar en cada iteración de búsqueda. |
+| 2 | `object` | Listado de valores que se deberá buscar en cada iteración de búsqueda. |
 | 3 | { `string` \| `boolean`, ['checked',`false`] } | Designa el estado inicial del checkbox. |
 | 4 | { `string` \| `boolean`, ['strict',`false`] }  | Si se usa el modo *strict*, la condición de que el valor se encuentre en la búsqueda será obligatoria. |
 
@@ -92,7 +92,7 @@ PorchoMapSearch utiilza el compoenente select2<sup>[1]</sup> para visualizar el 
 
 | Parámetro | Tipo | Default | Descripción | Tipo de uso |
 |:---|:---|:---|:---|:---|
-| scope | object |  | s | _Requerido_ |
+| scope | object |  | Scope se utiliza para asegurarse de que todas las funciones serán sobre el ambiente de un buscado y un mapa determinados. | _Requerido_ |
 | text | `string` | text | Define el índice que debe utilizarse para mostrar en el listado desplegable. | *Requerido* |
 | id | `string` | id | Define el índice que debe utilizarse para identificar cada una de las entradas. | *Requerido* |
 | placeholder | `string` | Su búsqueda | Texto de ayuda que aparece en un tono medio en el selector de items, complementa al label de un form. | *Opcional* |
@@ -146,10 +146,10 @@ search.render();
 
 | Método | Retrono | Descripción |
 |--|--|--|
-| reset_view | `void` | Reestablece la posión y el zoom del mapa y los *markers* a su posición inicial por defecto. |
-| has_hash | boolean:false \| string | Retorna el identificador del *marker* pasado por URL. |
-| goto_entry | `void` | Retorna el identificador del *marker* pasado por URL. |
-| goto_hashed_entry | `void` | Obtiene el hash desde la url y hace zoom sobre el marker con ese identificador. Según la configuración puede abrir un popUp o el slider. |
+| resetView | `void` | Reestablece la posión y el zoom del mapa y los *markers* a su posición inicial por defecto. |
+| hasHash | boolean:false \| string | Retorna el identificador del *marker* pasado por URL. |
+| gotoEntry | `void` | Retorna el identificador del *marker* pasado por URL. |
+| gotoHashedEntry | `void` | Obtiene el hash desde la url y hace zoom sobre el marker con ese identificador. Según la configuración puede abrir un popUp o el slider. |
 | entries | `object` | Objeto con las entradas iniciales, sin filtrar o procesar. |
 | map | `object` | Objeto map de leaflet. |
 | markers | `object` | Objeto markers de leaflet. |
@@ -158,9 +158,9 @@ search.render();
 
 | Método | Retrono | Descripción |
 |--|--|--|
-| filtered_entries | `object` | Objeto con las entradas filtradas. |
+| filteredEntries | `object` | Objeto con las entradas filtradas. |
 | totals | `object` | Retorna la cantidad de markers por cada uno de los filtros. Asi como retorna los totales también la posición del filtro. |
-| form_filters | `object` | Retorna los fitros marcados. Los datos de retorno son: el grupo de filtro y el indice en el grupo. |
+| formFilters | `object` | Retorna los fitros marcados. Los datos de retorno son: el grupo de filtro y el indice en el grupo. |
 
 ----
 
@@ -371,53 +371,6 @@ const opciones = {
 
 ***
 
-## Filtros
-
-Los filtros son un componente que se incluye en _PonchoMapFilters_. Se utiliza de forma independiente a _PonchoMaps_ pero incluye todas las opciones de éste.
-
-### Código
-
-Las opciones para los filtros se incluyen en las opcioens generales del mapa. 
-
-```js
-const options = {
-  ...
-  'filters' :[
-    {
-      'legend' : 'Ver',
-      'type': 'checkbox',
-      'fields' : [
-          ['estado_funcionamiento', 'Abiertos', ['1'], 'checked', 'strict'],
-          ['estado_funcionamiento', 'Cerrados temporalmente', ['3'], false, 'strict'],
-          ['provincia', 'Buenos Aires', ['Buenos Aires', 'Ciudad Autónoma de Buenos Aires'], 'checked'],
-          ['provincia', 'Noreste Argentino', ['Chaco', 'Corrientes', 'Formosa', 'Misiones'], 'checked'],
-          ['provincia', 'Noroeste Argentino', ['Catamarca', 'Jujuy', 'La Rioja', 'Salta', 'Santiago del Estero', 'Tucumán']],
-          ['provincia', 'Región Centro', ['Córdoba', 'Entre Ríos', 'Santa Fe']],
-          ['provincia', 'Región Cuyo', ['La Pampa', 'Mendoza', 'San Juan', 'San Luis']],
-          ['provincia', 'Región Patagonia', ['Chubut', 'Neuquén', 'Río Negro', 'Santa Cruz', 'Tierra del Fuego']],
-      ]
-    },
-  ],
-};
-```
-
-Este ejemplo tiene dos filtros generales: estado_funcionamiento y provincia. Éstas son columnas de la tabla —o entrada—, donde se obtienen los datos. El usuario deberá configurar cada una de las entradas asignando parámetros del siguiente modo:
-
-```js
-['provincia', 'Noreste Argentino', ['Chaco', 'Corrientes', 'Formosa', 'Misiones'], 'checked'],
-```
-
-### Opciones
-
-| Posición | Tipo | Descripción |
-|:---|:---|:---|
-| 0 | `string` | Nombre de la columna por la que se quiere filtrar. |
-| 1 | `string` | Nombre que se verá en el `<label>` del checkbox |
-| 2 | `Array()` | Listado de valores que se deberá buscar en cada iteración de búsqueda. |
-| 3 | { `string` \| `boolean`, ['checked',`false`] } | Designa el estado inicial del checkbox. |
-| 4 | { `string` \| `boolean`, ['strict',`false`] }  | Si se usa el modo *strict*, la condición de que el valor se encuentre en la búsqueda será obligatoria. |
-
-***
 
 ## Modo de uso
 
@@ -666,6 +619,6 @@ El componente permite modificar alguno de los atributos del slider y los compone
 
 
 ## Referencias
-1. jQuery
-2. leaftlet
-3. select2 ****
+1. jQuery <[https://jquery.com/](https://jquery.com/)>
+2. Leaftlet <[https://leafletjs.com/](https://leafletjs.com/)>
+3. select2 <[https://select2.org/](https://select2.org/)> 
