@@ -326,7 +326,7 @@ class PonchoMap {
         try {
           e.sourceTarget._icon.classList.add("marker--active");
         } catch (error) {
-          console.error(error);
+          // console.error(error);
         }
 
         const content = this.entries.find(e => e[this.id]==layer.options.id);

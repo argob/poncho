@@ -1893,7 +1893,7 @@ class PonchoMap {
         try {
           e.sourceTarget._icon.classList.add("marker--active");
         } catch (error) {
-          console.error(error);
+          // console.error(error);
         }
 
         const content = this.entries.find(e => e[this.id]==layer.options.id);
@@ -2636,7 +2636,7 @@ class PonchoMapSearch {
      * @returns {objecct|null}
      */
     matcher = (params, data) => {
-        if ($.trim(params.term) === ""){
+        if (params.term.trim() === ""){
             return data;
         }
 
@@ -2652,7 +2652,6 @@ class PonchoMapSearch {
               if(field.includes(term)){
                   return data;
               }
-
           } catch (error) {
               console.error(error);
           }
@@ -2684,7 +2683,7 @@ class PonchoMapSearch {
             data_select = this.dataSelect(data);
         }
 
-        $(`.poncho-map-search${this.search_scope_selector}`).select2({
+        jQuery(`.poncho-map-search${this.search_scope_selector}`).select2({
             data: data_select,
             matcher: this.matcher,
             tags:true,
@@ -2702,8 +2701,8 @@ class PonchoMapSearch {
                 return data.text;
             },
         }).on("select2:select", e => {
-            filter.gotoEntry(e.params.data.id);
-        }).on("select2:open", e => {
+            this.data.gotoEntry(e.params.data.id);
+        }).on("select2:open", () => {
             document
                 .querySelectorAll(".select2-search__field")
                 .forEach(e => e.focus());
