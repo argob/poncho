@@ -2636,7 +2636,8 @@ class PonchoMapSearch {
      * @returns {objecct|null}
      */
     matcher = (params, data) => {
-        if (params.term.trim() === ""){
+        // console.log(typeof params.term)
+        if ( typeof(params.term) === "undefined" || params.term.toString().trim() === "" ){
             return data;
         }
 
