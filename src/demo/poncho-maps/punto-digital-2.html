@@ -58,6 +58,8 @@
 
 <script src="./js/template-punto-digital.js"></script>
 <!-- / INCLUDE SCRIPTS -->
+
+<div style="height:500px;"></div>
 <div class="container m-t-2">
   <div class="row">
       <div class="col-md-push-2 col-md-8 m-y-1">
@@ -111,7 +113,15 @@
       "hash": true,
       "slider": true,
       "scroll": true,
-      "marker": "cielo",
+      "marker": (self, ele) => { 
+          let color = "cielo";
+          if(ele.estado_funcionamiento == "3"){
+              color = "mandarina";
+          } else if(ele.estado_funcionamiento == "5"){
+              color = "rojo";
+          }
+          return color;
+      },
       "reset_zoom": true,
       "filters": [
         {
