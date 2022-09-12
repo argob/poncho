@@ -2,6 +2,8 @@
 //####################### GAPI LEGACY #################################
 //#####################################################################
 /**
+ * GAPI LEGACY
+ * 
  * Retorna la estructura de la versión 3 de la API GoogleSheets.
  *
  * La estructura del objeto que retorna es de este modo:
@@ -24,10 +26,9 @@
 
   response.values.forEach((v, k) => {
     if(k > 0){
-
       let zip = {};
-      for(var i in keys){
-        var d = (v.hasOwnProperty(i))? v[i].trim() : "";
+      for(const i in keys){
+        const d = (v.hasOwnProperty(i))? v[i].trim() : "";
         zip[`gsx$${ keys[i].toLowerCase().replace(regex, '') }`] = {"$t": d};
       }
       entry.push(zip);

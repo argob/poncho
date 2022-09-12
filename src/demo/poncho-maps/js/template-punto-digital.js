@@ -10,7 +10,7 @@
 const template_punto_digital = (self, row) => {
   
   const days = [
-      '', 'lunes', 'martes',
+      'domingo', 'lunes', 'martes',
       'miércoles', 'jueves', 'viernes', 'sábado', 'domingo'
   ];
 
@@ -79,7 +79,6 @@ const template_punto_digital = (self, row) => {
   const day_week = new Date().getDay();
   const time_list = days_avaiable(row.horario); 
   const today = time_list.find(e => e[0] ==  days[day_week]);
-
   let horarios = time_list.map(day => {
       const style = day[0] == days[day_week] ? 'text-arandano' : '';
       let datos = time_tostring(day[1]);
@@ -103,7 +102,7 @@ const template_punto_digital = (self, row) => {
         <i class="icono-arg-reloj text-primary"></i> 
         Horarios
       </dt>
-      ${today_text}
+      ${today_text ? today_text : ''}
       <dd class="_m-l-2">
         <details style="font-size:.93em" close>
         <summary class="p-b-0 p-t-0">Horarios de atención</summary>

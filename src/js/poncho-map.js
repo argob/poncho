@@ -12,39 +12,40 @@ class PonchoMap {
     this.data = data;
     // Confs
     const defaults = {
-        'template': false,
-        'template_structure': {},
-        'template_container_class_list':['info-container'],
-        'template_title_class_list':['h4','title','m-t-0'],
-        'template_dl_class_list':['definition-list'],
-        'template_innerhtml': false,
-        'template_header': false,
-        'scope': '',
-        'slider': false,
-        'scroll': false,
-        'hash': false,
-        'headers': {},
-        'map_selector': 'map',
-        'anchor_delay':0,
-        'slider_selector': '.slider',
-        'slider_close_selector': '.js-close-slider',
-        'map_view': [-40.44, -63.59],
-        'map_anchor_zoom':16,
-        'map_zoom':4,
-        'id': 'id',
-        'latitud':'latitud',
-        'longitud':'longitud',
-        'marker': 'azul',
-        'marker_cluster_options': {
-            'spiderfyOnMaxZoom': true,
-            'showCoverageOnHover': false,
-            'zoomToBoundsOnClick': true,
-            'maxClusterRadius': 10,
-            'spiderfyDistanceMultiplier': 1.5,
-            'spiderLegPolylineOptions': {
-                'weight': 1,
-                'color': "#666",
-                'opacity': 0.5,
+        "template": false,
+        "template_structure": {},
+        "template_container_class_list":["info-container"],
+        "template_title_class_list":["h4","title","m-t-0"],
+        "template_dl_class_list":["definition-list"],
+        "template_innerhtml": false,
+        "template_header": false,
+        "scope": "",
+        "slider": false,
+        "scroll": false,
+        "hash": false,
+        "headers": {},
+        "map_selector": "map",
+        "anchor_delay":0,
+        "slider_selector": ".slider",
+        "slider_close_selector": ".js-close-slider",
+        "map_view": [-40.44, -63.59],
+        "map_anchor_zoom":16,
+        "map_zoom":4,
+        "id": "id",
+        "reset_zoom":false,
+        "latitud":"latitud",
+        "longitud":"longitud",
+        "marker": "azul",
+        "marker_cluster_options": {
+            "spiderfyOnMaxZoom": true,
+            "showCoverageOnHover": false,
+            "zoomToBoundsOnClick": true,
+            "maxClusterRadius": 10,
+            "spiderfyDistanceMultiplier": 1.5,
+            "spiderLegPolylineOptions": {
+                "weight": 1,
+                "color": "#666",
+                "opacity": 0.5,
           }
         }
     };
@@ -71,14 +72,16 @@ class PonchoMap {
     this.latitud = opts.latitud;
     this.longitud = opts.longitud;
     this.slider = opts.slider;
-    this.slider_selector=this.selector_name(opts.slider_selector);
+    this.reset_zoom = opts.reset_zoom;
+    this.slider_selector=this.selectorName(opts.slider_selector);
     this.slider_close_selector = opts.slider_close_selector;
+
 
     // OSM
     this.map = new L.map(this.map_selector,{preferCanvas: true})
         .setView(this.map_view, this.map_zoom);
     new L.tileLayer(
-        'https://gis.argentina.gob.ar/osm/{z}/{x}/{y}.png', 
+        "https://gis.argentina.gob.ar/osm/{z}/{x}/{y}.png", 
         { attribution: `&copy; Contribuidores <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>`}
     ).addTo(this.map);
     this.markers = new L.markerClusterGroup(this.marker_cluster_options);
@@ -90,8 +93,16 @@ class PonchoMap {
   * JSON input
   * @return {object}
   */
-  get json_data(){
+  get entries(){
     return this.data;
+  }
+
+  /**
+   * Agrega el hash en la barra de url.
+   * @param {string|integer} value 
+   */
+  addHash = (value) => {
+      window.location.hash = `#${value}`;
   }
 
   /**
@@ -100,7 +111,7 @@ class PonchoMap {
   * @return {object}
   */
   entry = (id) => {
-    return this.json_data.find(v => v[this.id]==id);
+    return this.entries.find(v => v[this.id]==id);
   }
 
   /**
@@ -109,20 +120,20 @@ class PonchoMap {
    * @param {string} selector - Selector a quitarle la definición.
    * @return {string}
    * 
-   * >>> selector_name('.foo')
-   * 'foo'
-   * >>> selector_name('#foo')
-   * 'foo'
+   * >>> selectorName(".foo")
+   * "foo"
+   * >>> selectorName("#foo")
+   * "foo"
    */
-  selector_name = (selector) => {
-    return selector.replace(/^(\.|\#)/, '');
+  selectorName = (selector) => {
+    return selector.replace(/^(\.|\#)/, "");
   };
 
   /**
-   * Acomoda la pantalla ubicando el mapa en el borde superior del 
+   * Acomoda la pantalla ubicando el mapa en el borde superior del
    * navegador.
    */
-  scroll_center = () => {
+  scrollCenter = () => {
     const pos = document.getElementById(this.map_selector);
     const rect = pos.getBoundingClientRect();
     const pos_center_horizontal = (pos.offsetLeft + pos.offsetWidth) / 2;
@@ -130,31 +141,31 @@ class PonchoMap {
     window.scrollTo({
         top: pos_center_vertical,
         left: pos_center_horizontal,
-        behavior: 'smooth'
+        behavior: "smooth"
     });
   };
 
   /**
    * Limpia el contenido.
    */
-  clear_content = () => document
-        .querySelector(`${this.scope_selector} .js-content`).innerHTML = '';
+  clearContent = () => document
+        .querySelector(`${this.scope_selector} .js-content`).innerHTML = "";
 
   /**
    * Abre o cierra el slider.
    */
-  toggle_slider = () => document
+  toggleSlider = () => document
         .querySelector(`${this.scope_selector} .${this.slider_selector}`)
         .classList.toggle(`${this.slider_selector}--in`);
 
   /**
-   * Ejecuta toggle_slider en el onclick
+   * Ejecuta toggleSlider en el onclick
    */
-  click_toggle_slider = () => document
+  clickToggleSlider = () => document
         .querySelectorAll(`${this.scope_selector} ${this.slider_close_selector}`)
-        .forEach(e => e.addEventListener('click', () => {
-              this.clear_content();
-              this.toggle_slider();
+        .forEach(e => e.addEventListener("click", () => {
+              this.clearContent();
+              this.toggleSlider();
         }
   ));
 
@@ -163,7 +174,7 @@ class PonchoMap {
    * 
    * @return {boolean} - ture si esta abierto, false si esta cerrado.
    */
-  is_open = () => document
+  isOpen = () => document
         .querySelector(`${this.scope_selector} .${this.slider_selector}`)
         .classList.contains(`${this.slider_selector}--in`);
 
@@ -172,11 +183,13 @@ class PonchoMap {
    * 
    * @return {string} - HTML del contenido del slider.
    */
-  set_content = (data) => {
-    if(!this.is_open())
-        this.toggle_slider();
-    
-    const html = this.template(this, data);
+  setContent = (data) => {
+    if(!this.isOpen()){
+        this.toggleSlider();
+    }
+
+    const html = (typeof this.template == 'function') ? 
+          this.template(this, data) : this.defaultTemplate(this, data);
     document.querySelector(`${this.scope_selector} .js-content`)
             .innerHTML = html;
   };
@@ -187,7 +200,7 @@ class PonchoMap {
    * @return {string} key - key del item.
    */
   header = (key) => {
-    return this.headers.hasOwnProperty(key) ? this.headers[key] : key;
+    return (this.headers.hasOwnProperty(key) ? this.headers[key] : key);
   };
 
   /**
@@ -209,26 +222,26 @@ class PonchoMap {
   /**
    * Crea el bloque html para el slider.
    */
-  render_slider = () => {
+  renderSlider = () => {
     // Remuevo el slider
     document.querySelectorAll(`${this.scope_selector} .slider`)
             .forEach(e => e.remove());
 
     // Creo el slider
-    let close_button = document.createElement('button');
+    let close_button = document.createElement("button");
     close_button.classList.add("btn", "btn-xs", "btn-secondary", "btn-close", 
-                               this.selector_name(this.slider_close_selector));
+                               this.selectorName(this.slider_close_selector));
     close_button.setAttribute("title", "Cerrar panel");
-    close_button.innerHTML = '<span class="sr-only">Cerrar</span>✕';
+    close_button.innerHTML = "<span class=\"sr-only\">Cerrar</span>✕";
 
-    let content_container = document.createElement('div');
+    let content_container = document.createElement("div");
     content_container.classList.add("content-container");
 
-    let content = document.createElement('div');
+    let content = document.createElement("div");
     content.classList.add("content", `js-content`);
     content_container.appendChild(content);
 
-    let container = document.createElement('div');
+    let container = document.createElement("div");
     container.classList.add("slider");
     container.appendChild(close_button);
     container.appendChild(content_container);
@@ -238,25 +251,29 @@ class PonchoMap {
   /**
    * Proyecta el slider y hace zoom en el marker.
    */
-  show_slider = (layer, item) => {
+  showSlider = (layer, item) => {
     this.map.setView(
         [item[this.latitud], item[this.longitud]], this.map_anchor_zoom
     );
-    layer.fireEvent('click');
+    layer.fireEvent("click");
   };
 
   /**
    * Proyecta el popUp y hace zoom en el marker.
    */
-  show_popup = (layer) => {
+  showPopup = (layer) => {
     this.markers.zoomToShowLayer(layer, () => {
       layer.__parent.spiderfy();
       layer.openPopup();
     });
   };
 
-  has_hash = () => {
-    let id = window.location.hash.replace('#', '');
+  /**
+   * Si la URL tiene un valor por hash lo obtiene considerandolo su id.
+   * @returns {void}
+   */
+  hasHash = () => {
+    let id = window.location.hash.replace("#", "");
     return id || false;
   };
 
@@ -264,35 +281,56 @@ class PonchoMap {
    * Obtiene un hash, hace zoom sobre el marker y abre su popUp o 
    * el slider.
    */
-  showitem = () => {
-    let id = this.has_hash();
-    if(!id)
-        return;
+  gotoHashedEntry = () => {
+    let id = this.hasHash();
+    if(!id){
+        return; 
+    }
+    
+    this.gotoEntry(id);
+  };
 
-    const pd = this.entry(id);
-    this.markers.eachLayer(layer => {
-      if(layer.options.id == id){
-        if(this.slider && this.hash){
-          this.show_slider(layer, pd);
-        } else {
-          this.show_popup(layer);
+  /**
+   * Muestra un marker pasándo por parámetro su id.
+   * @param {string|integer} id - valor identificador del marker. 
+   */
+  gotoEntry = (id) => {
+      const entry = this.entry(id);
+      this.markers.eachLayer(layer => {
+        if(layer.options.id == id){
+
+          if(this.hash){
+              this.addHash(id);
+          }
+
+          if(this.slider && this.hash){
+              this.showSlider(layer, entry);
+          } else {
+              this.showPopup(layer);
+          }
         }
-      }
-    });
+      });
   };
 
   /**
    * Setea los markers para ejecutarse en un evento onlick
-   */   
-  clickeable_markers = () => {
+   * @TODO Usar un método para escapar el error cuando no encuentra la
+   * propiedad classList.
+   */
+  clickeableMarkers = () => {
     this.markers.eachLayer(layer => {
-      layer.on('click', (e) => {
+      layer.on("click", (e) => {
 
-        document.querySelectorAll('.marker--active').forEach(e => e.classList.remove('marker--active'))
-        e.sourceTarget._icon.classList.add('marker--active');
-        
-        const content = this.json_data.find(e => e[this.id]==layer.options.id);
-        this.set_content(content);
+        document.querySelectorAll(".marker--active")
+                .forEach(e => e.classList.remove("marker--active"))
+        try {
+          e.sourceTarget._icon.classList.add("marker--active");
+        } catch (error) {
+          console.error(error);
+        }
+
+        const content = this.entries.find(e => e[this.id]==layer.options.id);
+        this.setContent(content);
       });
     });
   };
@@ -300,10 +338,10 @@ class PonchoMap {
   /**
    * Setea los markers para ejecutarse en un evento onlick
    */   
-   url_hash = () => {
+   urlHash = () => {
       this.markers.eachLayer(layer => {
-          layer.on('click', (e) => {
-            window.location.hash = `#${layer.options.id}`;
+          layer.on("click", (e) => {
+            this.addHash(layer.options.id);
           });
       });
   };
@@ -313,10 +351,11 @@ class PonchoMap {
    * @param {object} list Array de elementos
    * @param {string} key Elemento a remover 
    */
-  remove_list_element = (list, key) => {
+  removeListElement = (list, key) => {
     const index = list.indexOf(key);
-    if(index > -1)
+    if(index > -1){
       list.splice(index,1);
+    }
     return list;
   };
 
@@ -324,24 +363,24 @@ class PonchoMap {
    * Titulo para el default template
    * @param {object} row Entrada 
    */
-  template_title = (row) => {
+  templateTitle = (row) => {
     const structure = this.template_structure;
-    if(!structure.hasOwnProperty('title') && structure.title.length < 1)
-        return false
-
+    if(!structure.hasOwnProperty("title")){
+        return false;
+    }
     let title;
 
     if(this.template_header){
-      const wrapper = document.createElement('div');
+      const wrapper = document.createElement("div");
       wrapper.innerHTML = this.template_header(this, row);
       title = wrapper;
     } else {
-      title = document.createElement('h1');
+      title = document.createElement("h1");
       title.classList.add(... this.template_title_class_list);
       title.textContent = row[structure.title];
     }
 
-    const header = document.createElement('header');
+    const header = document.createElement("header");
     header.className = "header";
     header.appendChild(title);
     return header;
@@ -351,16 +390,16 @@ class PonchoMap {
    * Listado de keys para mistrar en una entrada del default template.
    * @param {object} row — Entrada de datos 
    */
-  template_list = (row) => {
+  templateList = (row) => {
     const estructura = this.template_structure;
     let lista = Object.keys(row);
 
     let list = lista;
-    if(estructura.hasOwnProperty('values') && estructura.values.length > 0){
+    if(estructura.hasOwnProperty("values") && estructura.values.length > 0){
         list = estructura.values;
-    } else if(estructura.hasOwnProperty('exclude') && estructura.exclude.length > 0){
+    } else if(estructura.hasOwnProperty("exclude") && estructura.exclude.length > 0){
       for(const key of estructura.exclude)
-         list = this.remove_list_element(lista, key);
+         list = this.removeListElement(lista, key);
     }
 
     return list;
@@ -373,39 +412,40 @@ class PonchoMap {
    * pasado cómo argumento. 
    * @param {object} row - Entrada para dibujar un marker.
    */  
-  default_template = (self, row) => {
-    const tpl_list = this.template_list(row);
-    const tpl_title = this.template_title(row);
+  defaultTemplate = (self, row) => {
+    const tpl_list = this.templateList(row);
+    const tpl_title = this.templateTitle(row);
 
-    const container = document.createElement('article');
+    const container = document.createElement("article");
     container.classList.add(... this.template_container_class_list);
 
-    const dl = document.createElement('dl');
+    const dl = document.createElement("dl");
     dl.classList.add(...this.template_dl_class_list);
     dl.style.fontSize = "1rem";
-    
+
     for(const key of tpl_list){
       // excluyo los items vacíos.
-      if(row.hasOwnProperty(key) && !row[key])
+      if(row.hasOwnProperty(key) && !row[key]){
         continue;
+      }
 
-      const dt = document.createElement('dt');
+      const dt = document.createElement("dt");
       dt.textContent = this.header(key);
-      if(this.template_innerhtml)
-          // alert('hello')
+      if(this.template_innerhtml){
           dt.innerHTML = this.header(key);
-
-      const dd = document.createElement('dd');
+      }
+      const dd = document.createElement("dd");
       dd.textContent = row[key];
-      if(this.template_innerhtml)
+      if(this.template_innerhtml){
           dd.innerHTML = row[key];
-      
+      }
       dl.appendChild(dt);
       dl.appendChild(dd);
     };
 
-    if(tpl_title)
+    if(tpl_title){
       container.appendChild(tpl_title);
+    }
 
     container.appendChild(dl);
     return container.outerHTML;
@@ -418,14 +458,55 @@ class PonchoMap {
    * @param {string} color - Nombre del color según poncho colores. 
    * @returns {object}
    */
-   icon = (color='azul') => {
+   icon = (color="azul") => {
     return new L.icon({
       iconUrl: `https://www.argentina.gob.ar/sites/default/files/marcador-${color}.svg`,
-      iconSize: [38, 38],
-      iconAnchor: [22, 41],
-      popupAnchor: [-3, -40]
+      iconSize: [27, 38],
+      iconAnchor: [13, 38],
+      popupAnchor: [0, -37]
     });
   };
+
+  /**
+   * Resetea el mapa a su punto inicial por defecto.
+   * @returns 
+   */
+  resetView = () => this.map.setView(this.map_view, this.map_zoom);
+
+  /**
+   * Agrega un botón entre zoom-in y zoom-out para volver a la vista
+   * original. 
+   */
+  resetViewButton = () => {
+    if(!this.reset_zoom){
+       return;
+    }
+    // función a evaluar. Busca y remueve un botón de reset si existiera.
+    document.querySelectorAll(
+          `${this.scope_selector} .js-reset-view`).forEach(e => e.remove());
+    document
+          .querySelectorAll(`${this.scope_selector} .leaflet-control-zoom-in`)
+          .forEach(ele => {
+
+        const icon = document.createElement("i");
+        icon.classList.add("fa", "fa-expand");
+        icon.setAttribute("aria-hidden","true");
+
+        const button = document.createElement("a");
+        button.classList.add("js-reset-view", "leaflet-control-zoom-reset");
+        button.href = "#";
+        button.title = "Ver todo el mapa";
+        button.appendChild(icon);
+
+        button.onclick = (e) => {
+          e.preventDefault();
+          this.resetView();
+        };
+        ele.after(button);
+    });
+
+  };
+
 
   /**
    * Define el objeto icon.
@@ -435,17 +516,17 @@ class PonchoMap {
   marker = (row) => {
     // Si marker_color no viene o es null usa el marker por defecto 
     // de Open Street Map
-    if(!this.marker_color || typeof this.marker_color == 'boolean')
+    if(!this.marker_color || typeof this.marker_color == "boolean")
       return null;
 
-    if(typeof this.marker_color === 'string'){
+    if(typeof this.marker_color === "string"){
       return this.icon(this.marker_color);
 
-    } else if (typeof this.marker_color(this, row) === 'string'){
+    } else if (typeof this.marker_color(this, row) === "string"){
       const color = this.marker_color(this, row);
       return this.icon(color);
 
-    } else if (typeof this.marker_color === 'function'){
+    } else if (typeof this.marker_color === "function"){
       return this.marker_color(this, row);
     }
   };
@@ -453,22 +534,31 @@ class PonchoMap {
   /**
    * Prepara las características del mapa y de cada uno de los markers.
    */
-   markers_map = (json_data) => {
-    json_data.forEach(row => {
+   markersMap = (entries) => {
+    entries.forEach(row => {
       const icon = this.marker(row);
       const id = row[this.id];
       const latitud = row[this.latitud];
       const longitud = row[this.longitud];
 
-      if(!this.validateLatLng(latitud) || !this.validateLatLng(longitud))
+      if(!this.validateLatLng(latitud) || !this.validateLatLng(longitud)){ 
         return;
-
+      }
       let marker_attr = {};
-      id ? marker_attr.id = id : null;
-      icon ? marker_attr.icon = icon : null;
+      if(id){
+        marker_attr.id = id;
+      }
+      if(icon){
+        marker_attr.icon = icon;
+      }
       const marker = new L.marker([latitud, longitud], marker_attr);
       this.markers.addLayer(marker);
-      !this.slider ? marker.bindPopup(this.template(this, row)) : null;
+
+      if(!this.slider){
+        const html = (typeof this.template == 'function') ? 
+              this.template(this, row) : this.defaultTemplate(this, row);
+        marker.bindPopup(html);
+      }
     });
     this.map.options.minZoom = 2;
     this.map.addLayer(this.markers)
@@ -478,21 +568,24 @@ class PonchoMap {
    * Hace el render del mapa.
    */
   render = () => {
-    this.markers_map(this.json_data);
+    this.resetViewButton();
+    this.markersMap(this.entries);
 
     if(this.slider){
-        this.render_slider();
-        this.clickeable_markers();
-        this.click_toggle_slider();
+        this.renderSlider();
+        this.clickeableMarkers();
+        this.clickToggleSlider();
     }
 
-    if(this.hash)
-      this.url_hash();
+    if(this.hash){
+      this.urlHash();
+    }
 
-    if(this.scroll && this.has_hash())
-      this.scroll_center();
+    if(this.scroll && this.hasHash()){
+      this.scrollCenter();
+    }
 
-    setTimeout(this.showitem, this.anchor_delay);
+    setTimeout(this.gotoHashedEntry, this.anchor_delay);
   };
 };
 // End class.

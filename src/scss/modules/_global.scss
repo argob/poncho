@@ -1070,12 +1070,12 @@ summary {
     border: {
       right: {
         style: solid;
-        color: $gray-dark;
+        color: var(--gray-base, $gray-base);
         width: 3px;
       }
       bottom: {
         style: solid;
-        color: $gray-dark;
+        color: var(--gray-base,$gray-base);
         width: 3px;
       }
     }

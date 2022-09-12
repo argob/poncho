@@ -4,38 +4,60 @@
   <link rel="profile" href="http://www.w3.org/1999/xhtml/vocab" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+  <script 
+      src="https://code.jquery.com/jquery-3.6.0.min.js" 
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+      crossorigin="anonymous">
+    </script>
+  <link 
+      rel="stylesheet" 
+      href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
   <link 
       rel="stylesheet" 
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" 
       integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
       crossorigin="anonymous" 
       referrerpolicy="no-referrer" />  
-  <link rel="stylesheet" href="https://capacita-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css?rfqjsh">
-  <link rel="stylesheet" href="../../../dist/css/poncho.min.css" />
-  <title>Mapa Efectores</title>
-</head>
-<body>
-<!-- INCLUDE CSS -->
+  <link 
+      rel="stylesheet" 
+      href="https://capacita-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css?rfqjsh">
+  <!-- /Base -->
+      
+      <link rel="stylesheet" href="../../../dist/css/poncho.min.css" />
+      <title>Mapa Efectores</title>
+    </head>
+    <body class="select-component">
+<!-- INCLUDE SCRIPTS -->
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="http://localhost:5500/select2/dist/css/select2-poncho.css">
+
 <link href="https://gis.argentina.gob.ar/js/leaflet/leaflet.css" rel="stylesheet"/>
 <link href="https://gis.argentina.gob.ar/js/leaflet/MarkerCluster.Default.css" rel="stylesheet"/>
-<link href="https://gis.argentina.gob.ar/js/leaflet/MarkerCluster.css" rel="stylesheet"/>
-<!-- / INCLUDE CSS -->
-
-<!-- INCLUDE SCRIPTS -->
+<link href="https://gis.argentina.gob.ar/js/leaflet/MarkerCluster.css" rel="stylesheet"/> 
 <script src="https://gis.argentina.gob.ar/js/leaflet/leaflet.js"></script>
 <script src="https://gis.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script>
-<script src="../../../dist/js/poncho.min.js"></script>
+
+<!-- <script src="../../../dist/js/poncho.min.js"></script> -->
+<script src="../../../src/js/poncho-map.js"></script>
+<script src="../../../src/js/poncho-map-filter.js"></script>
+<script src="../../../src/js/poncho-map-search.js"></script>
+<script src="../../../src/js/gapi-sheet-data.js"></script>
 <script src="./js/template-efectores.js"></script>
 <!-- / INCLUDE SCRIPTS -->
 
 
 <div class="container-fluid">
   <div class="row">
-    <div style="height: 500px;" class="col-md-12">
+    <div style="height:auto" class="col-md-12">
       <h1 class="text-cielo">Efectores</h1>
     </div>
+    <div class="col-md-6 m-b-2">
+    <div class="form-group m-b-0 webform-component">
+      <select class="form-control poncho-map-search" data-scope="search-efectores" name="search"></select>
+    </div>
+    </div>
+
     <div class="col-md-12 m-b-2">
       <!-- poncho map -->
       <div class="poncho-map" data-scope="uno">
@@ -44,7 +66,7 @@
             class="leaflet-container leaflet-touch leaflet-fade-anim 
                   leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
             id="map"
-            style="height: 700px;width: 100%;"
+            style="height: 600px; width: 100%;"
             tabindex="0">
         </div>
         <!-- / leaflet -->
@@ -57,37 +79,59 @@
 <!-- SCRIPTS -->
 <script>
   // init
+  let data_select;
+  let filter;
+  let search;
   (async() => {
     // GApi helpers
     const gapi = new GapiSheetData();
     // fetch data
-    // const googlesheet_data = await fetch_json(gapi.url('dataset', '1pYOIEL4n5364RSDaSxnUI5vMMat0lU7FxeK_3Ctk8kg')); 
-    const googlesheet_data = await fetch_json('./data/response-efectores.json'); 
+    // const googlesheet_data = await fetch_json(gapi.url("dataset", "1pYOIEL4n5364RSDaSxnUI5vMMat0lU7FxeK_3Ctk8kg")); 
+    const googlesheet_data = await fetch_json("./data/response-efectores.json"); 
     const gapi_data = gapi.json_data(googlesheet_data);
     // map options
     const options = {
-      'template': popup_template,
-      'headers': gapi_data.headers,
-      'scope':'uno',
-      'slider':true,
-      'hash': true,
-      'scroll': true,
-      'filters' :[
+      "template": popup_template,
+      "headers": gapi_data.headers,
+      "scope":"uno",
+      "slider": true,
+      "hash": true,
+      "scroll": false,
+      "reset_zoom": true,
+      "filters" :[
         {
-          'legend' : '',
-          'fields' : [
-              ['filtro-hormonizacion-adultos', 'Hormonización adultos', ['SI'], 'checked'],
-              ['filtro-hormonizacion-adolescentes', 'Hormonización adolescentes', ['SI'], 'checked'],
-              ['filtro-inhibicion-puberal', 'Inhibición puberal', ['SI'], 'checked'],
+          "legend" : "Filtrar",
+          "type": "checkbox",
+          "fields" : [
+              ["filtro-hormonizacion-adultos", "Hormonización adultos", ["SI"], "checked"],
+              ["filtro-hormonizacion-adolescentes", "Hormonización adolescentes", ["SI"], "checked"],
+              ["filtro-inhibicion-puberal", "Inhibición puberal", ["SI"], "checked"],
           ]
         },
       ],
     };
     // render map
-    const filter = new PonchoMapFilter(gapi_data.entries, options);
+    filter = new PonchoMapFilter(gapi_data.entries, options);
     filter.render();
 
+    // Buscador
+    const search_options = {
+        "scope":"search-efectores",
+        "text": "name",
+        "id":"id",
+        "placeholder":"Buscar centros",
+        "template": (self, entry) => {
+          return "<dl class=\"p-b-0 m-y-0\">" 
+              + "<dt>" + entry.name + "</dt>"
+              + "<dd class=\"m-b-0 small\">" 
+              + [entry.locality, entry.province].filter(e => e).join(", ")
+              + "</dd></dl>";
 
+        },
+        "search_fields": ["province", "locality", "address", "reference"]
+    };
+    search = new PonchoMapSearch(filter, search_options);
+    search.render();
   })();
 </script>
 <!-- / SCRIPTS -->

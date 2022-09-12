@@ -13,7 +13,7 @@
       crossorigin="anonymous" 
       referrerpolicy="no-referrer" />  
   <link rel="stylesheet" href="https://capacita-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css?rfqjsh">
-  <link rel="stylesheet" href="../../../dist/css/poncho.css" />
+  <link rel="stylesheet" href="../../../dist/css/poncho.min.css" />
   <title>Mapa Efectores</title>
 </head>
 <body>
@@ -61,37 +61,37 @@
     // GApi helpers
     const gapi = new GapiSheetData();
     // fetch data
-    // const googlesheet_data = await fetch_json(gapi.url('dataset', '1pYOIEL4n5364RSDaSxnUI5vMMat0lU7FxeK_3Ctk8kg')); 
-    const googlesheet_data = await fetch_json('./data/response-efectores.json'); 
+    // const googlesheet_data = await fetch_json(gapi.url("dataset", "1pYOIEL4n5364RSDaSxnUI5vMMat0lU7FxeK_3Ctk8kg")); 
+    const googlesheet_data = await fetch_json("./data/response-efectores.json"); 
     const gapi_data = gapi.json_data(googlesheet_data);
     // map options
     const options = {
-      'template_structure' : {
-          'title': 'name',
-          'values': ['address', 'locality', 'province', 'phone', 'email', 'reference'],
-          // 'exclude': ['id', 'inhibicion_puberal', 'hormonizacion_adolescentes', 
-          //             'hormonizacion_adultos', 'latitud', 'longitud', 'name']
+      "template_structure" : {
+          "title": "name",
+          "values": ["address", "locality", "province", "phone", "email", "reference"],
+          // "exclude": ["id", "inhibicion_puberal", "hormonizacion_adolescentes", 
+          //             "hormonizacion_adultos", "latitud", "longitud", "name"]
       },
-      'headers': {
-          'address': "Dirección",
-          'email': "Correo electrónico",
-          'hormonizacion_adolescentes': "Hormonización adolescentes (testosterona/estrógenos)",
-          'hormonizacion_adultos': "Hormonización personas adultas (testosterona/estrógenos)",
-          'id': "Código SISA",
-          'inhibicion_puberal': "Inhibición puberal",
-          'latitud': "Latitud",
-          'locality': "Localidad",
-          'longitud': "Longitud",
-          'name': "Nombre",
-          'phone': "Teléfono",
-          'province': "Provincia",
-          'reference': "Referencia para acceder a los servicios"
+      "headers": {
+          "address": "Dirección",
+          "email": "Correo electrónico",
+          "hormonizacion_adolescentes": "Hormonización adolescentes (testosterona/estrógenos)",
+          "hormonizacion_adultos": "Hormonización personas adultas (testosterona/estrógenos)",
+          "id": "Código SISA",
+          "inhibicion_puberal": "Inhibición puberal",
+          "latitud": "Latitud",
+          "locality": "Localidad",
+          "longitud": "Longitud",
+          "name": "Nombre",
+          "phone": "Teléfono",
+          "province": "Provincia",
+          "reference": "Referencia para acceder a los servicios"
       },
-      'scope':'uno',
-      'slider':true,
-      'hash': true,
-      'scroll': true,
-      'marker': 'mandarina',
+      "scope":"uno",
+      "slider":true,
+      "hash": true,
+      "scroll": true,
+      "marker": "mandarina",
     };
     // render map
     const filter = new PonchoMap(gapi_data.entries, options);
