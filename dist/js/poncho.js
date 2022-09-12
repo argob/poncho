@@ -1643,13 +1643,16 @@ class PonchoMap {
     this.slider_selector=this.selectorName(opts.slider_selector);
     this.slider_close_selector = opts.slider_close_selector;
 
-
     // OSM
     this.map = new L.map(this.map_selector,{preferCanvas: true})
         .setView(this.map_view, this.map_zoom);
     new L.tileLayer(
         "https://gis.argentina.gob.ar/osm/{z}/{x}/{y}.png", 
-        { attribution: `&copy; Contribuidores <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>`}
+        { 
+          attribution: ("&copy; Contribuidores "
+              + "<a href=\"https://www.openstreetmap.org/copyright\">" 
+              + "OpenStreetMap</a>")
+        }
     ).addTo(this.map);
     this.markers = new L.markerClusterGroup(this.marker_cluster_options);
     //
@@ -1755,7 +1758,7 @@ class PonchoMap {
         this.toggleSlider();
     }
 
-    const html = (typeof this.template == 'function') ? 
+    const html = (typeof this.template == "function") ? 
           this.template(this, data) : this.defaultTemplate(this, data);
     document.querySelector(`${this.scope_selector} .js-content`)
             .innerHTML = html;
@@ -2122,7 +2125,7 @@ class PonchoMap {
       this.markers.addLayer(marker);
 
       if(!this.slider){
-        const html = (typeof this.template == 'function') ? 
+        const html = (typeof this.template == "function") ? 
               this.template(this, row) : this.defaultTemplate(this, row);
         marker.bindPopup(html);
       }
@@ -2156,8 +2159,6 @@ class PonchoMap {
   };
 };
 // End class.
-
-
 
 /**
  * PONCHO MAP FILTER
@@ -2354,7 +2355,7 @@ class PonchoMapFilter extends PonchoMap {
 
       container.appendChild(form); 
       document
-            .querySelector(this.scope_selector + " .js-filter-container")
+            .querySelector(`${this.scope_selector} .js-filter-container`)
             .appendChild(container);
   };
 
@@ -2397,7 +2398,7 @@ class PonchoMapFilter extends PonchoMap {
    */
   countOccurrences = (arr, val, index) => {
     return arr.reduce(
-          (a, v) => (val.some(e => (v[index].includes(e)) ? a + 1 : a)), 0);
+          (a, v) => val.some(e => v[index].includes(e)) ? a + 1 : a, 0);
   };
 
   /**
@@ -2482,10 +2483,6 @@ class PonchoMapFilter extends PonchoMap {
     if(this.hash){
       this.urlHash();
     }
-
-    if(this.scroll && this.hasHash()){
-      this.scrollCenter();
-    }
   };
 
   /**
@@ -2506,6 +2503,11 @@ class PonchoMapFilter extends PonchoMap {
     this.createFilters(this.filters);
     this.clickToggleFilter();
     this.filteredData();
+
+    if(this.scroll && this.hasHash()){
+      this.scrollCenter();
+    }
+
     this.filterListener();
     setTimeout(this.gotoHashedEntry, this.anchor_delay);
     if(this.filters_visible){
