@@ -8,7 +8,7 @@
 class GapiSheetData {
   constructor(options){
     const defaults = {
-      'gapi_key': 'AIzaSyAll9EH1aTmZDewNSyM_CU_AIsGOiEDyZs',
+      "gapi_key": "AIzaSyAll9EH1aTmZDewNSyM_CU_AIsGOiEDyZs",
     };
     let opts = Object.assign({}, defaults, options);
     this.gapi_key = opts.gapi_key;
@@ -23,10 +23,10 @@ class GapiSheetData {
    */
   url = (page, spreadsheet) => {
    return [
-      'https://sheets.googleapis.com/v4/spreadsheets/',
-      spreadsheet, '/values/', page,
-      '?key=', this.gapi_key, '&alt=json'
-    ].join('');
+      "https://sheets.googleapis.com/v4/spreadsheets/",
+      spreadsheet, "/values/", page,
+      "?key=", this.gapi_key, "&alt=json"
+    ].join("");
   };
 
   /**
@@ -35,9 +35,9 @@ class GapiSheetData {
   json_data = (json) => {
     const feed = this.feed(json);
     return {
-        'feed': feed,
-        'entries': this.entries(feed),
-        'headers': this.headers(feed)
+        "feed": feed,
+        "entries": this.entries(feed),
+        "headers": this.headers(feed)
     };
   };
 
@@ -57,7 +57,7 @@ class GapiSheetData {
         let zip = {};
         for(var i in keys){
           var d = (v.hasOwnProperty(i))? v[i].trim() : "";
-          zip[`${ keys[i].toLowerCase().replace(regex, '') }`] = d;
+          zip[`${ keys[i].toLowerCase().replace(regex, "") }`] = d;
         }
         entry.push(zip);
       }
@@ -68,13 +68,13 @@ class GapiSheetData {
   /**
   * Variables.
   */
-  gapi_feed_row = (data, separator='-', filter_prefix=true) => {
-    const prefix = filter_prefix ? 'filtro-' : '';
+  gapi_feed_row = (data, separator="-", filter_prefix=true) => {
+    const prefix = filter_prefix ? "filtro-" : "";
     const feed_keys = Object.entries(data);
-    const clean = k => k.replace('gsx$', '')
-                        .replace(prefix, '').replace(/-/g, separator);
+    const clean = k => k.replace("gsx$", "")
+                        .replace(prefix, "").replace(/-/g, separator);
     let list = {};
-    feed_keys.map(v => list[clean(v[0])] = v[1]['$t']);
+    feed_keys.map(v => list[clean(v[0])] = v[1]["$t"]);
     return list;
   };
 
@@ -97,11 +97,10 @@ class GapiSheetData {
   }
 };
 
-
 /**
  * Fetch data
  */
- async function fetch_json(url, method='GET'){
+ async function fetch_json(url, method="GET"){
   const response = await fetch(
     url,{
       method: method, 

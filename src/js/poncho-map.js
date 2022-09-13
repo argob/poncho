@@ -6,6 +6,30 @@
  * @author Agustín Bouillet bouilleta@jefatura.gob.ar, august 2022
  * @requires leaflet.js,leaflet.markercluster.js,leaflet.css,
  * MarkerCluster.Default.css,MarkerCluster.css
+ * @see https://github.com/argob/poncho/blob/master/src/demo/poncho-maps/readme-poncho-maps.md
+ * 
+ * 
+ * MIT License
+ *
+ * Copyright (c) 2022 Argentina.gob.ar
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  */
 class PonchoMap {
   constructor(data, options){
@@ -75,6 +99,8 @@ class PonchoMap {
     this.reset_zoom = opts.reset_zoom;
     this.slider_selector=this.selectorName(opts.slider_selector);
     this.slider_close_selector = opts.slider_close_selector;
+    this.selected_marker;
+    this.scope_selector = `[data-scope="${this.scope}"]`;
 
     // OSM
     this.map = new L.map(this.map_selector,{preferCanvas: true})
@@ -88,8 +114,6 @@ class PonchoMap {
         }
     ).addTo(this.map);
     this.markers = new L.markerClusterGroup(this.marker_cluster_options);
-    //
-    this.scope_selector = `[data-scope="${this.scope}"]`;
   }
 
   /**
@@ -301,6 +325,8 @@ class PonchoMap {
       const entry = this.entry(id);
       this.markers.eachLayer(layer => {
         if(layer.options.id == id){
+          // seteo el marker activo porque se produzco sin un clic.
+          this.setSelectedMarker(id, layer);
 
           if(this.hash){
               this.addHash(id);
@@ -331,7 +357,6 @@ class PonchoMap {
         } catch (error) {
           // console.error(error);
         }
-
         const content = this.entries.find(e => e[this.id]==layer.options.id);
         this.setContent(content);
       });
@@ -510,7 +535,6 @@ class PonchoMap {
 
   };
 
-
   /**
    * Define el objeto icon.
    * @param {object} row - entrada de json 
@@ -568,11 +592,32 @@ class PonchoMap {
   };
 
   /**
+   * Setea el marker activo.
+   */
+  setSelectedMarker = (id, instance) => {
+      const val = {entry: this.entry(id), marker: instance};
+      this.selected_marker = val;
+      return val;
+  };
+
+  /**
+   * 
+   */
+  selectedMarker = () => {
+      this.markers.eachLayer(layer => {
+          layer.on("click", (e) => {
+              this.setSelectedMarker(layer.options.id, layer);
+          });
+      });
+  };
+
+  /**
    * Hace el render del mapa.
    */
   render = () => {
     this.resetViewButton();
     this.markersMap(this.entries);
+    this.selectedMarker();
 
     if(this.slider){
         this.renderSlider();
@@ -587,8 +632,6 @@ class PonchoMap {
     if(this.scroll && this.hasHash()){
       this.scrollCenter();
     }
-
     setTimeout(this.gotoHashedEntry, this.anchor_delay);
   };
 };
-// End class.

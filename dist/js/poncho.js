@@ -283,12 +283,12 @@ function ponchoTable(opt) {
 //####################### POPOVER #####################################
 //#####################################################################
 
-var content_popover = document.getElementById('content-popover');
+var content_popover = document.getElementById("content-popover");
 function popshow(){
- content_popover.classList.toggle('hidden');
+    content_popover.classList.toggle("hidden");
 }
 function pophidde(){
- content_popover.classList.add('hidden');
+    content_popover.classList.add("hidden");
 }
 
 
@@ -1525,15 +1525,12 @@ function ponchoChart(opt) {
 }
 
 
-//#####################################################################
-//####################### GAPI LEGACY #################################
-//#####################################################################
 /**
  * GAPI LEGACY
- * 
  * Retorna la estructura de la versión 3 de la API GoogleSheets.
- *
- * La estructura del objeto que retorna es de este modo:
+ * 
+ * @author Agustín Bouillet bouilleta@jefatura.gob.ar, 2021.
+ * @summary La estructura del objeto que retorna es de este modo:
  *  .
  *  \--feed
  *      \-- entry
@@ -1541,11 +1538,11 @@ function ponchoChart(opt) {
  *          |   \-- $t
  *          |-- gsx$[nombre columna]
  *          |   \-- $t
- *
+ * 
  * @param  {object} response Response JSON.
  * @return {void}
  */
- function gapi_legacy(response){
+ const gapi_legacy = (response) => {
 
   const keys = response.values[0];
   const regex = / |\/|_/ig;
@@ -1553,17 +1550,17 @@ function ponchoChart(opt) {
 
   response.values.forEach((v, k) => {
     if(k > 0){
-      let zip = {};
-      for(const i in keys){
-        const d = (v.hasOwnProperty(i))? v[i].trim() : "";
-        zip[`gsx$${ keys[i].toLowerCase().replace(regex, '') }`] = {"$t": d};
-      }
-      entry.push(zip);
+        let zip = {};
+        for(const i in keys){
+            const d = (v.hasOwnProperty(i))? v[i].trim() : "";
+            zip[`gsx$${keys[i].toLowerCase().replace(regex, "")}`] = {"$t": d};
+        }
+        entry.push(zip);
     }
   });
 
   return {"feed": {"entry": entry}};
-}
+};
 
 /**
  * PONCHO MAP
@@ -1573,6 +1570,30 @@ function ponchoChart(opt) {
  * @author Agustín Bouillet bouilleta@jefatura.gob.ar, august 2022
  * @requires leaflet.js,leaflet.markercluster.js,leaflet.css,
  * MarkerCluster.Default.css,MarkerCluster.css
+ * @see https://github.com/argob/poncho/blob/master/src/demo/poncho-maps/readme-poncho-maps.md
+ * 
+ * 
+ * MIT License
+ *
+ * Copyright (c) 2022 Argentina.gob.ar
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  */
 class PonchoMap {
   constructor(data, options){
@@ -1642,6 +1663,8 @@ class PonchoMap {
     this.reset_zoom = opts.reset_zoom;
     this.slider_selector=this.selectorName(opts.slider_selector);
     this.slider_close_selector = opts.slider_close_selector;
+    this.selected_marker;
+    this.scope_selector = `[data-scope="${this.scope}"]`;
 
     // OSM
     this.map = new L.map(this.map_selector,{preferCanvas: true})
@@ -1655,8 +1678,6 @@ class PonchoMap {
         }
     ).addTo(this.map);
     this.markers = new L.markerClusterGroup(this.marker_cluster_options);
-    //
-    this.scope_selector = `[data-scope="${this.scope}"]`;
   }
 
   /**
@@ -1868,6 +1889,8 @@ class PonchoMap {
       const entry = this.entry(id);
       this.markers.eachLayer(layer => {
         if(layer.options.id == id){
+          // seteo el marker activo porque se produzco sin un clic.
+          this.setSelectedMarker(id, layer);
 
           if(this.hash){
               this.addHash(id);
@@ -1898,7 +1921,6 @@ class PonchoMap {
         } catch (error) {
           // console.error(error);
         }
-
         const content = this.entries.find(e => e[this.id]==layer.options.id);
         this.setContent(content);
       });
@@ -2077,7 +2099,6 @@ class PonchoMap {
 
   };
 
-
   /**
    * Define el objeto icon.
    * @param {object} row - entrada de json 
@@ -2135,11 +2156,32 @@ class PonchoMap {
   };
 
   /**
+   * Setea el marker activo.
+   */
+  setSelectedMarker = (id, instance) => {
+      const val = {entry: this.entry(id), marker: instance};
+      this.selected_marker = val;
+      return val;
+  };
+
+  /**
+   * 
+   */
+  selectedMarker = () => {
+      this.markers.eachLayer(layer => {
+          layer.on("click", (e) => {
+              this.setSelectedMarker(layer.options.id, layer);
+          });
+      });
+  };
+
+  /**
    * Hace el render del mapa.
    */
   render = () => {
     this.resetViewButton();
     this.markersMap(this.entries);
+    this.selectedMarker();
 
     if(this.slider){
         this.renderSlider();
@@ -2154,11 +2196,9 @@ class PonchoMap {
     if(this.scroll && this.hasHash()){
       this.scrollCenter();
     }
-
     setTimeout(this.gotoHashedEntry, this.anchor_delay);
   };
 };
-// End class.
 
 /**
  * PONCHO MAP FILTER
@@ -2169,6 +2209,30 @@ class PonchoMap {
  * @author Agustín Bouillet bouilleta@jefatura.gob.ar, august 2022
  * @requires leaflet.js,leaflet.markercluster.js,leaflet.css,
  * MarkerCluster.Default.css,MarkerCluster.css, PonchoMap
+ * @see https://github.com/argob/poncho/blob/master/src/demo/poncho-maps/readme-poncho-maps.md
+ * 
+ * 
+ * MIT License
+ *
+ * Copyright (c) 2022 Argentina.gob.ar
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  */
 class PonchoMapFilter extends PonchoMap {
   constructor(data, options){
@@ -2474,7 +2538,7 @@ class PonchoMapFilter extends PonchoMap {
   filteredData = () => {
     const feed = this.filterData();
     this.markersMap(feed); 
-
+    this.selectedMarker();
     if(this.slider){
         this.renderSlider();
         this.clickeableMarkers();
@@ -2526,6 +2590,30 @@ class PonchoMapFilter extends PonchoMap {
  * @requires leaflet.js,leaflet.markercluster.js,leaflet.css,
  * MarkerCluster.Default.css,MarkerCluster.css, PonchoMap, 
  * PonchoMapFilter, select2.js
+ * @see https://github.com/argob/poncho/blob/master/src/demo/poncho-maps/readme-poncho-maps.md
+ * 
+ * 
+ * MIT License
+ *
+ * Copyright (c) 2022 Argentina.gob.ar
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  */
 class PonchoMapSearch {
     constructor(filter, options){
@@ -2686,7 +2774,7 @@ class PonchoMapSearch {
             data_select = this.dataSelect(data);
         }
 
-        jQuery(`.poncho-map-search${this.search_scope_selector}`).select2({
+      const select = jQuery(`.poncho-map-search${this.search_scope_selector}`).select2({
             data: data_select,
             matcher: this.matcher,
             tags:true,
@@ -2747,7 +2835,6 @@ class PonchoMapSearch {
     }  
 };
 
-
 //#####################################################################
 //######################### GAPI HELPERS ##############################
 //#####################################################################
@@ -2758,7 +2845,7 @@ class PonchoMapSearch {
 class GapiSheetData {
   constructor(options){
     const defaults = {
-      'gapi_key': 'AIzaSyAll9EH1aTmZDewNSyM_CU_AIsGOiEDyZs',
+      "gapi_key": "AIzaSyAll9EH1aTmZDewNSyM_CU_AIsGOiEDyZs",
     };
     let opts = Object.assign({}, defaults, options);
     this.gapi_key = opts.gapi_key;
@@ -2773,10 +2860,10 @@ class GapiSheetData {
    */
   url = (page, spreadsheet) => {
    return [
-      'https://sheets.googleapis.com/v4/spreadsheets/',
-      spreadsheet, '/values/', page,
-      '?key=', this.gapi_key, '&alt=json'
-    ].join('');
+      "https://sheets.googleapis.com/v4/spreadsheets/",
+      spreadsheet, "/values/", page,
+      "?key=", this.gapi_key, "&alt=json"
+    ].join("");
   };
 
   /**
@@ -2785,9 +2872,9 @@ class GapiSheetData {
   json_data = (json) => {
     const feed = this.feed(json);
     return {
-        'feed': feed,
-        'entries': this.entries(feed),
-        'headers': this.headers(feed)
+        "feed": feed,
+        "entries": this.entries(feed),
+        "headers": this.headers(feed)
     };
   };
 
@@ -2807,7 +2894,7 @@ class GapiSheetData {
         let zip = {};
         for(var i in keys){
           var d = (v.hasOwnProperty(i))? v[i].trim() : "";
-          zip[`${ keys[i].toLowerCase().replace(regex, '') }`] = d;
+          zip[`${ keys[i].toLowerCase().replace(regex, "") }`] = d;
         }
         entry.push(zip);
       }
@@ -2818,13 +2905,13 @@ class GapiSheetData {
   /**
   * Variables.
   */
-  gapi_feed_row = (data, separator='-', filter_prefix=true) => {
-    const prefix = filter_prefix ? 'filtro-' : '';
+  gapi_feed_row = (data, separator="-", filter_prefix=true) => {
+    const prefix = filter_prefix ? "filtro-" : "";
     const feed_keys = Object.entries(data);
-    const clean = k => k.replace('gsx$', '')
-                        .replace(prefix, '').replace(/-/g, separator);
+    const clean = k => k.replace("gsx$", "")
+                        .replace(prefix, "").replace(/-/g, separator);
     let list = {};
-    feed_keys.map(v => list[clean(v[0])] = v[1]['$t']);
+    feed_keys.map(v => list[clean(v[0])] = v[1]["$t"]);
     return list;
   };
 
@@ -2847,11 +2934,10 @@ class GapiSheetData {
   }
 };
 
-
 /**
  * Fetch data
  */
- async function fetch_json(url, method='GET'){
+ async function fetch_json(url, method="GET"){
   const response = await fetch(
     url,{
       method: method, 
