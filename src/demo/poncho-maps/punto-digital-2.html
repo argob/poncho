@@ -154,7 +154,9 @@
       "id": "id_pd",
       "placeholder": "Buscá tu Punto Digital",
       "template": (self, entry) => {
-          return "<p class=\"m-b-0\"><b>" + entry.nombre + "</b></p>" + "<p class=\"m-b-0 small\">" + entry.provincia + ", " + entry.localidad + "</p>";
+          return "<p class=\"m-b-0\"><b>" + entry.nombre + "</b></p>" 
+          + "<p class=\"m-b-0 small\">" + entry.provincia + ", " 
+          + entry.localidad + "</p>";
       },
       "search_fields": [
           "nombre",
