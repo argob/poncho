@@ -75,7 +75,7 @@ function ponchoChart(opt) {
               codigoColor = '#f9a822';
               break;
           case 'azul':
-          case 'info':
+          case 'primary':
               codigoColor = '#0072bb';
               break;
           case 'negro':

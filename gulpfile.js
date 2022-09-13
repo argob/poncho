@@ -39,6 +39,21 @@ gulp.task('sass', function(){
     .pipe(gulp.dest('./dist/css'))
 });
 
+
+gulp.task('sass_poncho', function(){
+  return gulp.src([
+        './src/scss/poncho.scss'
+    ])
+    .pipe(sass())
+    // .pipe(gulpIF(function(file){
+    //     return file.path.match('poncho.css');
+    //   };
+    // ))
+    .pipe(gulp.dest('./dist/css'))
+});
+
+
+
 // gulp.task('babel', function(){
 //   return gulp.src([
 //           './dist/js/poncho.js',
@@ -93,4 +108,4 @@ gulp.task('compress', function () {
 });
 
 
-gulp.task('default', gulp.series( 'sass', 'compress', 'poncho', 'ponchomin'))
+gulp.task('default', gulp.series( 'sass', 'sass_poncho', 'compress', 'poncho', 'ponchomin'))
