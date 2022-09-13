@@ -2279,8 +2279,10 @@ class PonchoMapFilter extends PonchoMap {
    * `overflow:auto` en la hoja de estilos.
    */
   filterContainerHeight = () => {    
-    const filter_container = document.querySelector(".js-filter-container");
-    const filter_button = document.querySelector(".js-close-filter");
+    const filter_container = document
+          .querySelector(`${this.scope_selector} .js-filter-container`);
+    const filter_button = document
+          .querySelector(`${this.scope_selector} .js-close-filter`);
 
     const poncho_map_height = filter_container.offsetParent.offsetHeight;
     // Valor tomado de la hoja de estilos
