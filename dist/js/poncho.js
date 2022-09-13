@@ -545,8 +545,8 @@ function ponchoChart(opt) {
               codigoColor = '#525252';
               break;
           case 'grisintermedio':
-          case 'gray':
           case 'gris-area':
+          case 'gray':
               codigoColor = '#f2f2f2';
               break;
           case 'celesteargentina':
