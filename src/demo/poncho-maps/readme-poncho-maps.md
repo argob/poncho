@@ -146,6 +146,8 @@ search.render();
 
 | Método | Retrono | Descripción |
 |--|--|--|
+| entry | `object` | Retrona una entrada pasándo su id por parámetro. |
+| selected_marker | `object` | Retorna el último marker seleccionado en un objeto con dos índices; el primero es la entrada asignada al *marker* y el segundo es la instancia *leaflet* de ese *marker*  |
 | resetView | `void` | Reestablece la posión y el zoom del mapa y los *markers* a su posición inicial por defecto. |
 | hasHash | boolean:false \| string | Retorna el identificador del *marker* pasado por URL. |
 | gotoEntry | `void` | Retorna el identificador del *marker* pasado por URL. |

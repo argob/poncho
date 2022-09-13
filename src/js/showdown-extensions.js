@@ -34,8 +34,8 @@
  *
  * var converter = new showdown.Converter({
  *   extensions:[
- *       'images', 'alerts', 'numbers', 'ejes', 'button', 'target',
- *       'bootstrap-tables', 'video'
+ *       "images", "alerts", "numbers", "ejes", "button", "target",
+ *       "bootstrap-tables", "video"
  *   ]
  * });
  * var html = converter.makeHtml(clean_input);
@@ -108,7 +108,7 @@ var classlist = function(obj, index) {
       }
     });
   }
-  return class_list.length > 0 ? class_list.join(" ") : '';
+  return class_list.length > 0 ? class_list.join(" ") : "";
 }
 
 
@@ -138,15 +138,15 @@ if(showdown){ // IF showdown
    * presentar una tabla bootstrap
    * @return {string}    Objeto html <table>
    */
-  showdown.extension('bootstrap-tables', function () {
+  showdown.extension("bootstrap-tables", function () {
     return [{
       type: "output",
       filter: function (html, converter, options) {
-        var liveHtml = jQuery('<div></div>').html(html);
-        jQuery('table', liveHtml).each(function(){
+        var liveHtml = jQuery("<div></div>").html(html);
+        jQuery("table", liveHtml).each(function(){
           var table = jQuery(this);
-          table.addClass('table table-bordered')
-               .wrap('<div class="class table-responsive"></div>');
+          table.addClass("table table-bordered")
+               .wrap("<div class=\"class table-responsive\"></div>");
         });
         return liveHtml.html();
       }
@@ -162,10 +162,10 @@ if(showdown){ // IF showdown
    *         fuera ¿cuales serian esos estilos?
    */
   showdown.extension("images", function() {
-    'use strict';
+    "use strict";
     return [
       {
-        type: 'lang',
+        type: "lang",
         filter: function(text, converter, options) {
           const regex = /\!\[([^\[\]]{0,255})\]\(([-\_\.\~\!\*\'\(\)\;\:\@\&\=\+\$\,\/\?\%\#\[\]\!\¿\?\¡0-9a-zA-Záéíóúñ\s]{1,255})\)\{([\w\.-]+)\}/;
           var main_regex = new RegExp(regex, "gm");
@@ -174,7 +174,7 @@ if(showdown){ // IF showdown
             var rgx_data  = main_regex.exec(e);
 
             // Creo el objeto <img/>
-            var img       = document.createElement('img');
+            var img       = document.createElement("img");
             img.src       = rgx_data[2];
             img.className = classlist(rgx_data, 3);
             img.alt       = rgx_data[1];
@@ -195,10 +195,10 @@ if(showdown){ // IF showdown
    * @regexp https://regex101.com/r/pgbDhz/7
    */
   showdown.extension("target", function() {
-    'use strict';
+    "use strict";
     return [
       {
-        type: 'lang',
+        type: "lang",
         filter: function(text, converter, options) {
           var main_regex = new RegExp(
               /(\[(.*?)\]\(((blank):#)([-\_\.\~\!\*\'\(\)\;\:\@\&\=\+\$\,\/\?\%\#\[\]\!\¿\?\¡0-9a-zA-Záéíóúñ]*)\))/,
@@ -220,10 +220,10 @@ if(showdown){ // IF showdown
    * 
    */
   showdown.extension("button", function() {
-    'use strict';
+    "use strict";
     return [
       {
-        type: 'lang',
+        type: "lang",
         filter: function(text, converter, options) {
 
           const regex = /(\[([^\[\]]+)\]\((blank:#)?([a-zA-Z0-9\_\.\-\~\!\*\'\(\)\;\:\@\&\=\+\$\,\/\?\%\#]+)\)\{([\w_\-.]+?)\})/gm;
@@ -236,16 +236,16 @@ if(showdown){ // IF showdown
             var main_regex = new RegExp(regex, "gm");
             var rgx  = main_regex.exec(e);
 
-            var a = document.createElement('a');
+            var a = document.createElement("a");
             a.href = rgx[4];
             if(rgx[3]){
-              a.target = '_blank';
+              a.target = "_blank";
             }
             if(rgx[5] != undefined){
               a.className = classlist(rgx, 5);
             }
             a.textContent = rgx[2];
-            a.dataset.created = 'true';
+            a.dataset.created = "true";
 
             return a.outerHTML;
           });
@@ -264,10 +264,10 @@ if(showdown){ // IF showdown
    * @regexp https://regex101.com/r/99J0oH/3/
    */
   showdown.extension("video", function() {
-    'use strict';
+    "use strict";
     return [
       {
-        type: 'lang',
+        type: "lang",
         filter: function(text, converter, options) {
         const regex = /\[\[(youtube|vimeo)-\{(16by9|4by3)\}-\{([a-zA-Z0-9]+)\}\]\]/;
 
@@ -280,8 +280,8 @@ if(showdown){ // IF showdown
           if(rgx_data){
             var video_ratio = rgx_data[2];
             var video_code  = rgx_data[3];
-            var video_html  = '';
-            if(rgx_data[1] == 'vimeo'){
+            var video_html  = "";
+            if(rgx_data[1] == "vimeo"){
                     video_html = `<div 
                         class="embed-responsive embed-responsive-${video_ratio}">
                       <iframe
@@ -299,7 +299,7 @@ if(showdown){ // IF showdown
                           data-gtm-yt-inspected-1807370_618="true">
                       </iframe>
                     </div>`;
-                } else if(rgx_data[1] == 'youtube'){
+                } else if(rgx_data[1] == "youtube"){
                     video_html = `<div 
                         class="embed-responsive embed-responsive-${video_ratio}">
                       <iframe
@@ -332,10 +332,10 @@ if(showdown){ // IF showdown
    * @regexp https://regex101.com/r/MgRi47/3/
    */
   showdown.extension("alerts", function() {
-    'use strict';
+    "use strict";
     return [
       {
-        type: 'lang',
+        type: "lang",
         filter: function(text, converter, options) {
           const regex = /\[\[alerta-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([\w-\s]*?)\}-\{(warning|danger|info|success)\}\]\]/;
 
@@ -384,10 +384,10 @@ if(showdown){ // IF showdown
    * @regexp https://regex101.com/r/e0SSyh/2/
    */
   showdown.extension("ejes", function() {
-    'use strict';
+    "use strict";
     return [
       {
-        type: 'lang',
+        type: "lang",
         filter: function(text, converter, options){
           const regex = /(col([1-4])<<)[\s\S]*?\[\[ejes-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}\]\][\s\S]*?(>>)/
           var main_regex = new RegExp(regex, "gmi");
@@ -396,10 +396,10 @@ if(showdown){ // IF showdown
             var main_regex = new RegExp(regex, "gmi");
             var rgx = main_regex.exec(e);
             var cols = {
-                '2': '6',
-                '3': '4',
-                '4': '3',
-                '1': '12'
+                "2": "6",
+                "3": "4",
+                "4": "3",
+                "1": "12"
             };
 
             var html = `<div class="col-xs-12 col-sm-${cols[rgx[2]]} col-md-${cols[rgx[2]]}">
@@ -427,10 +427,10 @@ if(showdown){ // IF showdown
    * @regexp https://regex101.com/r/HSPGZn/4/
    */
   showdown.extension("numbers", function() {
-    'use strict';
+    "use strict";
     return [
       {
-        type: 'lang',
+        type: "lang",
         filter: function(text, converter, options) {
           const regex = /(col([1-4])<<)[\s\S]*?\[\[numeros-\{([^\{\}-]*?)-([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}\]\][\s\S]*?(>>)/;
           const main_regex = new RegExp(regex, "gmi");
@@ -440,10 +440,10 @@ if(showdown){ // IF showdown
           const main_regex = new RegExp(regex, "gmi");
           var rgx = main_regex.exec(e);
           var cols = {
-              '2': '6',
-              '3': '4',
-              '4': '3',
-              '1': '12'
+              "2": "6",
+              "3": "4",
+              "4": "3",
+              "1": "12"
           };
 
           var html = `<div class="col-xs-12 col-sm-${cols[rgx[2]]} col-md-${cols[rgx[2]]}">
@@ -469,10 +469,10 @@ if(showdown){ // IF showdown
    * @regexp https://regex101.com/r/ojH22w/2/
    */
   showdown.extension("details", function() {
-    'use strict';
+    "use strict";
     return [
       {
-        type: 'lang',
+        type: "lang",
         filter: function(text, converter, options) {
           const regex = /^\[\[details(-open|-close)?\s?\{\[([\s\S]*?)\]\[([\s\S]*?)\]\}\]\]$/mg;
           const main_regex = new RegExp(regex, "gmi");
@@ -481,35 +481,35 @@ if(showdown){ // IF showdown
             const main_regex = new RegExp(regex, "gmi")
             let rgx = main_regex.exec(e);
             let cols = {
-                '2': '6',
-                '3': '4',
-                '4': '3',
-                '1': '12'
+                "2": "6",
+                "3": "4",
+                "4": "3",
+                "1": "12"
             };
-            let open = (rgx[1] == '-open')? 'true' : false;
+            let open = (rgx[1] == "-open")? "true" : false;
 
-            let details = document.createElement('details');
+            let details = document.createElement("details");
             if(open){
-              details.setAttribute('open', 'true');
+              details.setAttribute("open", "true");
             }
             // Summary o título
-            let summary = document.createElement('summary');
+            let summary = document.createElement("summary");
             summary.innerHTML = cleanner(
                 converter.makeHtml(rgx[2]),
                 [
-                    'h1',
-                    'h2',
-                    'h3',
-                    'h4',
-                    'h5',
-                    'h6',
-                    'strong',
-                    'em',
-                    'i'
+                    "h1",
+                    "h2",
+                    "h3",
+                    "h4",
+                    "h5",
+                    "h6",
+                    "strong",
+                    "em",
+                    "i"
                 ]
             );
             // Contenido
-            let div = document.createElement('div');
+            let div = document.createElement("div");
             div.innerHTML = converter.makeHtml(rgx[3]);
             details.appendChild(summary);
             details.appendChild(div);
