@@ -378,15 +378,23 @@ const opciones = {
 ### Ejemplos en [Codepen.io](https://codepen.io/)
 
 Simple
+
 [https://codepen.io/agustinbouillet/pen/Rwyoaoa](https://codepen.io/agustinbouillet/pen/Rwyoaoa)
 
 Simple con mdificación en el template
+
 [https://codepen.io/agustinbouillet/pen/zYjodpR](https://codepen.io/agustinbouillet/pen/zYjodpR)
 
+Template con markdown y modificación de índices
+
+[https://codepen.io/agustinbouillet/pen/bGMBoyM](https://codepen.io/agustinbouillet/pen/bGMBoyM)
+
 Mapa con modificaciones en el template y filtros
+
 [https://codepen.io/agustinbouillet/pen/abGBLmM](https://codepen.io/agustinbouillet/pen/abGBLmM)
 
 Mapa con filtro y buscador
+
 [https://codepen.io/agustinbouillet/pen/poVNWeV](https://codepen.io/agustinbouillet/pen/poVNWeV)
 
 
