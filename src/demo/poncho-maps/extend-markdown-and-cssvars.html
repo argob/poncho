@@ -36,13 +36,18 @@
     }
 
     @media (prefers-color-scheme: dark) {
-        body {background-color:var(--black);}
-        div.poncho-map {
+        body {
+          background-color:var(--black);}
+          div.poncho-map {
+            --color-base: rgba(255,255,255,.8);
             --slider-width: 300px;
             --slider-background: var(--black);
             --slider-color: var(--gray-light);
-            --slider-title-color:var(--escarapela);
+            --text-primary: var(--cielo, red) !important;
             /* --active-marker-color:55, 187, 237; */
+        }
+        div.poncho-map .title {
+          color:var(--cielo) !important;
         }
     }
 

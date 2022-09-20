@@ -33,22 +33,22 @@
  * SOFTWARE.
  */
 class PonchoMapSearch {
-    constructor(filter, options){
+    constructor(instance, options){
         const defaults = {
             "scope": false,
             "text": "text",
             "id": "id",
             "template": false,
-            "allow_clear": true,
+            "allow_clear": false,
             "placeholder": "Su búsqueda",
             "theme": "poncho",
             "minimum_input_length": 0,
-            "search_fields": [],
+            "search_fields": instance.search_fields,
             "sort": true,
             "sort_reverse": false,
-            "sort_key": "text"
+            "sort_key": "text",
         };
-        this.data = filter;
+        this.instance = instance;
         let opts = Object.assign({}, defaults, options);
         this.theme = opts.theme;
         this.template = (
@@ -57,54 +57,15 @@ class PonchoMapSearch {
         this.id = opts.id;
         this.placeholder = opts.placeholder;
         this.allow_clear = opts.allow_clear;
-        this.search_fields = opts.search_fields;
         this.scope = opts.scope;
         this.sort_key = opts.sort_key;
         this.minimum_input_length = opts.minimum_input_length;
         this.sort = opts.sort;
         this.sort_reverse = opts.sort_reverse;
         this.search_scope_selector = (
-              this.scope ? `[data-scope="${this.scope}"]`: "");
-    };
+          this.scope ? `[data-scope="${this.scope}"]`: "");
 
-    /**
-     * Remueve acentos y caracteres especiales.
-     * @param {string} data - cadena de texto a limpiar. 
-     * @returns {string}
-     * 
-     * >>> removeAccents("Acción Murciélago árbol")
-     * Accion murcielago arbol
-     */
-    removeAccents = (data) => {
-        if(!data){
-            return "";
-        }
-
-        return data
-            .replace(/έ/g, "ε")
-            .replace(/[ύϋΰ]/g, "υ")
-            .replace(/ό/g, "ο")
-            .replace(/ώ/g, "ω")
-            .replace(/ά/g, "α")
-            .replace(/[ίϊΐ]/g, "ι")
-            .replace(/ή/g, "η")
-            .replace(/\n/g, " ")
-            .replace(/[áÁ]/g, "a")
-            .replace(/[éÉ]/g, "e")
-            .replace(/[íÍ]/g, "i")
-            .replace(/[óÓ]/g, "o")
-            .replace(/[Öö]/g, "o")
-            .replace(/[úÚ]/g, "u")
-            .replace(/ê/g, "e")
-            .replace(/î/g, "i")
-            .replace(/ô/g, "o")
-            .replace(/è/g, "e")
-            .replace(/ï/g, "i")
-            .replace(/ü/g, "u")
-            .replace(/ã/g, "a")
-            .replace(/õ/g, "o")
-            .replace(/ç/g, "c")
-            .replace(/ì/g, "i");
+        this.instance.search_fields = opts.search_fields;
     };
 
     /**
@@ -115,7 +76,7 @@ class PonchoMapSearch {
      */
     sortData = (entries, key) => {
       let order = entries.sort((a, b) => {
-        const clearString = e => this.removeAccents(e).toUpperCase();
+        const clearString = e => this.instance.removeAccents(e).toUpperCase();
         if (clearString(a[key]) < clearString(b[key])){
           return -1;
         }
@@ -142,29 +103,12 @@ class PonchoMapSearch {
      * @param {objecct} data - Entrada donde hacer la búsqueda.
      * @returns {objecct|null}
      */
-    matcher = (params, data) => {
-        // console.log(typeof params.term)
-        if ( typeof(params.term) === "undefined" || params.term.toString().trim() === "" ){
-            return data;
+    matchTerm = (params, data) => {
+        if (typeof(params.term) === "undefined" || 
+            params.term.toString().trim() === ""){
+          return data;
         }
-
-        const search_for = [...["text"], ...this.search_fields].filter(e => e);
-        for(const item of search_for){
-          if(!data.hasOwnProperty(item)){
-              continue;
-          }
-
-          const term = this.removeAccents(params.term).toUpperCase();
-          const field = this.removeAccents(data[item]).toString().toUpperCase();
-          try {
-              if(field.includes(term)){
-                  return data;
-              }
-          } catch (error) {
-              console.error(error);
-          }
-        }
-        return null;
+        return this.instance.searchTerm(params.term, data);
     };
 
     /**
@@ -180,41 +124,53 @@ class PonchoMapSearch {
     };
 
     /**
-     * Configuración para el componenete select2.
+     * Prepara el listado de entradas que se utilizará para la búsqueda.
+     * @returns {object}
      */
-    selectTwo = () => {
-        const data = ((this.data instanceof PonchoMapFilter) ? 
-              this.data.filtered_entries : this.data.entries);
+    dataset = () => {
+        const data = ((this.instance instanceof PonchoMapFilter) ? 
+                      this.instance.filtered_entries : this.instance.entries);
         let data_select = this.dataSelect(this.sortData(data, this.sort_key));
 
         if(!this.sort){
             data_select = this.dataSelect(data);
         }
+        return data_select;
+    };
 
-      const select = jQuery(`.poncho-map-search${this.search_scope_selector}`).select2({
-            data: data_select,
-            matcher: this.matcher,
-            tags:true,
-            allowClear: this.allow_clear,
-            theme: this.theme,
-            minimumInputLength: this.minimum_input_length,
-            placeholder : this.placeholder,
-            escapeMarkup: function(markup) {
-                return markup;
-            },
-            templateResult: function(data) {
-                return data.html;
-            },
-            templateSelection: function(data) {
-                return data.text;
-            },
-        }).on("select2:select", e => {
-            this.data.gotoEntry(e.params.data.id);
-        }).on("select2:open", () => {
-            document
-                .querySelectorAll(".select2-search__field")
-                .forEach(e => e.focus());
-        });
+    /**
+     * Configuración para el componenete select2.
+     */
+    selectTwo = () => {
+        jQuery(`${this.search_scope_selector} .js-poncho-map-search__select2`).select2({
+              data: this.dataset(),
+              matcher: this.matchTerm,
+              tags:true,
+              language: {
+                  inputTooShort: function () {
+                      return `Debe introducir al menos 2 caracteres…`;
+                  }
+              },
+              allowClear: this.allow_clear,
+              theme: this.theme,
+              minimumInputLength: this.minimum_input_length,
+              placeholder: this.placeholder,
+              escapeMarkup: function(markup) {
+                  return markup;
+              },
+              templateResult: function(data) {
+                  return data.html;
+              },
+              templateSelection: function(data) {
+                  return data.text;
+              },
+          }).on("select2:select", e => {
+              this.instance.gotoEntry(e.params.data.id);
+          }).on("select2:open", () => {
+              document
+                  .querySelectorAll(".select2-search__field")
+                  .forEach(e => e.focus());
+          });
     };
 
     /**
@@ -222,32 +178,166 @@ class PonchoMapSearch {
      * del select.
      */
     firstEmptyOption = () => document
-          .querySelectorAll(`.poncho-map-search${this.search_scope_selector}`)
-          .forEach(e => {
-      e.innerHTML = "";
-      e.appendChild(document.createElement("option"));
+          .querySelectorAll(
+              `${this.search_scope_selector} .js-poncho-map-search__select2`)
+          .forEach(element => {
+      element.innerHTML = "";
+      element.appendChild(document.createElement("option"));
     });
 
     /**
-     * Cambia la lista de markers en función de la selección de 
-     * los filtros en PonchoMapFilter.
-     * @TODO Ver el modo de hacer focus sobre el scope
+     * Ejecuta una búsqueda desde un input text
+     * @returns 
+     */
+    triggerSearch = () => {
+        const input = document.querySelector(
+            `${this.search_scope_selector} .js-poncho-map-search__input`);
+        const submit = document.querySelectorAll(
+                `${this.search_scope_selector} .js-poncho-map-search__submit`);
+        
+        submit.forEach(e => {
+            e.onclick = (event => {
+                event.preventDefault();
+                const element = document.querySelector(
+                      `#js-search-input${this.instance.scope_sufix}`);
+                element.value = input.value;
+                const term = input.value;
+                this.renderSearch(term);
+            });
+        });
+        
+
+    }
+
+    /**
+     * en el keyup copia el value al input hidden de filtros.
+     */
+    keyup = () => {
+        const input = document.querySelectorAll(
+              `${this.search_scope_selector} .js-poncho-map-search__input`);
+        input.forEach(ele => {
+
+            const filter_search_input = document.querySelector(
+                `#js-search-input${this.instance.scope_sufix}`);
+            ele.onkeyup = (() => {
+              filter_search_input.value = ele.value;
+            });
+            ele.onkeydown = (() => {
+              filter_search_input.value = ele.value;
+            });
+        });
+    };
+
+    /**
+     * Límpia del input search el término de búsqueda. 
      * @returns {void}
      */
-    change = () => document
-        .querySelectorAll(`${this.data.scope_selector} .js-formulario input`)
-        .forEach(k => {
-            k.addEventListener("change", () => {
-                this.selectTwo();
-            });
+    cleanInput = () => document
+        .querySelector(
+            `${this.search_scope_selector} .js-poncho-map-search__input`)
+        .value = "";
+
+    /**
+     * Vacía el contenido del elemento que contiene los textos de ayuda.
+     * @returns {void}
+     */
+    cleanHelpText = () => document
+        .querySelector(
+            `${this.instance.scope_selector} .js-poncho-map__help`)
+        .innerHTML = "";
+
+    /**
+     * Hace una búsqueda basado en el término escrito en el input de
+     * búsqueda.
+     */
+    renderSearch = (term) => {
+        const entries = this.instance.filterData();
+        // Renderizo el mapa
+        // @see PonchoMap
+        this.instance.markersMap(entries); 
+        if(this.instance.slider){
+            this.instance.renderSlider();
+            this.instance.clickeableMarkers();
+            this.instance.clickToggleSlider();
+          }
+
+        if(this.instance.hash){
+            this.instance.urlHash();
+        }
+        // Alejo el mapa a su posición por defecto.
+        // @see PonchoMap resetView()
+        this.instance.resetView();
+        // Si la búsqueda encontró una sola entrada, voy a esa
+        // entrada y muestro la info, ya sea un popUp o un slider.
+        // Si hay más de una entrada muestro los markers y hago 
+        // zoom abarcando el límite de todos ellos.
+        if(entries.length == 1){
+            this.instance.gotoEntry(entries[0][this.instance.id]);
+        } else if(term.trim() != "") {
+            this.instance.removeHash();
+            setTimeout(this.instance.fitBounds, 350);
+        }
+
+        this.instance.helpText(entries);
+        this.instance.resetSearch();
+        this.instance.clickToggleFilter();
+    };
+  
+    /**
+     * Agrega options en el claslist del input de búsqueda.
+     * <datalist>
+     *     <option>Agregado 1</option>
+     *     <option>Agregado 2</option>
+     *     ...
+     * </datalist>
+     */
+    addDataListOptions = () => document
+        .querySelectorAll(
+            `${this.search_scope_selector} #js-porcho-map-search__list`)
+        .forEach(element => {
+            element.innerHTML = new Date();
+            const options = (content) => {
+                const opt = document.createElement("option"); 
+                opt.textContent = content; 
+                return opt;
+            };
+
+            this.instance.filtered_entries.forEach(e => 
+                element.appendChild(options(e[this.text]))
+            );
     });
 
     /**
      * Ejecuta el componente select2 y activa el listener de los filtros.
      */
     render = () => {
+        console.log(
+            "%cPonchoFilterSearch",
+            'padding:5px;border-radius:6px;background: #ff4400;color: #fff');
+
         this.firstEmptyOption();
         this.selectTwo();
-        this.change();
+        this.triggerSearch();
+        
+        this.addDataListOptions();
+        this.instance.filterChange((event) => {
+            // console.log("%cPonchoFilterSearch (listener)", 'color: #ff4400;');
+            event.preventDefault();
+            this.instance.filteredData();
+            this.addDataListOptions();
+        })
+        this.keyup();
+        /*
+        jQuery(document).on('keyup keypress keydown', ".select2-search__field", 
+            function (e) {
+            if (e.which == 13) {
+                search.renderSearch( 
+                    document
+                        .querySelector(`.select2-selection__rendered`)
+                        .textContent
+                )
+            }
+        });
+        */
     }  
 };

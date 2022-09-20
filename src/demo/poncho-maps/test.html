@@ -50,14 +50,18 @@
 
       <div class="col-md-12 m-y-1">
         <!-- PONCHO MAP SEARCH -->
-        <form>
-          <div  class="form-group webform-component">
-              <label for="poncho_map_search">Buscá tu Punto Digital</label>
-              <select 
-                  class="form-control poncho-map-search"
-                  data-scope="search-puntos-digitales"
-                  name="search">
-              </select>
+        <form action="">
+          <div data-scope="search">
+
+            <div class="form-group m-b-2 webform-component">
+            <select class="form-control poncho-map-search js-poncho-map-search__select2" name="search">
+            </select>
+            </div>
+            
+          
+            <div data-scope="poncho-map">
+              <div class="js-poncho-map__help" style="color:var(--default, gray)"></div>
+            </div>
           </div>
         </form>
         <!-- / PONCHO MAP SEARCH -->
@@ -129,12 +133,12 @@
           "maxClusterRadius": 45,
         }
     };
-    filter = new PonchoMapFilter(gdata, options);
+    filter = new PonchoMap(gdata, options);
     filter.render();
     
     // BUSCADOR DE MARKERS
     const search_options = {
-      "scope": "search-puntos-digitales",
+      "scope": "search",
       "text": "nombre",
       "id": "id_pd",
       "placeholder": "Buscá tu Punto Digital",

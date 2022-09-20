@@ -8902,6 +8902,7 @@ body .main-footer {
   0% {
     right: calc(-1 * var(--slider-width));
     opacity: 0;
+    box-shadow: none;
   }
   100% {
     right: var(--slider-right);
@@ -8959,12 +8960,12 @@ body .main-footer {
   height: calc(100% - var(--slider-bottom) - var(--slider-top));
   width: var(--slider-width);
   border-radius: var(--slider-radius);
-  box-shadow: var(--slider-shadow);
 }
 .poncho-map .slider.slider--in {
   right: var(--slider-right);
   animation-duration: 0.3s;
   animation-name: slidein;
+  box-shadow: var(--slider-shadow);
 }
 .poncho-map .slider .content-container {
   padding: 2.75rem 0.25rem 0.5rem 0.25rem;

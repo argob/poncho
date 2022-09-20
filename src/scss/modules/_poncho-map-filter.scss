@@ -5,6 +5,7 @@
     0% {
         right: calc(-1 * var(--slider-width));
         opacity: 0;
+        box-shadow: none;
     }
 
     100% {
@@ -63,6 +64,7 @@
             right: var(--slider-right);
             animation-duration: 0.3s;
             animation-name: slidein;
+            box-shadow: var(--slider-shadow);
         }
 
         z-index: 990;
@@ -74,7 +76,6 @@
         height: calc(100% - var(--slider-bottom) - var(--slider-top));
         width: var(--slider-width);
         border-radius: var(--slider-radius);
-        box-shadow: var(--slider-shadow);
 
         .content-container {
             padding: 2.75rem .25rem .5rem .25rem;

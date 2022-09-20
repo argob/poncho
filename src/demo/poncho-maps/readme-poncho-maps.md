@@ -52,8 +52,8 @@ const options = {
       'legend' : 'Ver',
       'type': 'checkbox',
       'fields' : [
-          ['estado_funcionamiento', 'Abiertos', ['1'], 'checked', 'strict'],
-          ['estado_funcionamiento', 'Cerrados temporalmente', ['3'], false, 'strict'],
+          ['estado_funcionamiento', 'Abiertos', ['1'], 'checked'],
+          ['estado_funcionamiento', 'Cerrados temporalmente', ['3'], false],
           ['provincia', 'Buenos Aires', ['Buenos Aires', 'Ciudad Autónoma de Buenos Aires'], 'checked'],
           ['provincia', 'Noreste Argentino', ['Chaco', 'Corrientes', 'Formosa', 'Misiones'], 'checked'],
           ['provincia', 'Noroeste Argentino', ['Catamarca', 'Jujuy', 'La Rioja', 'Salta', 'Santiago del Estero', 'Tucumán']],
@@ -80,7 +80,6 @@ Este ejemplo tiene dos filtros generales: estado_funcionamiento y provincia. És
 | 1 | `string` | Nombre que se verá en el `<label>` del checkbox |
 | 2 | `object` | Listado de valores que se deberá buscar en cada iteración de búsqueda. |
 | 3 | { `string` \| `boolean`, ['checked',`false`] } | Designa el estado inicial del checkbox. |
-| 4 | { `string` \| `boolean`, ['strict',`false`] }  | Si se usa el modo *strict*, la condición de que el valor se encuentre en la búsqueda será obligatoria. |
 
 ***
 
