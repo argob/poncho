@@ -51,26 +51,25 @@ class PonchoMap {
         "map_selector": "map",
         "anchor_delay":0,
         "slider_selector": ".slider",
-        "slider_close_selector": ".js-close-slider",
         "map_view": [-40.44, -63.59],
         "map_anchor_zoom":16,
         "map_zoom":4,
         "id": "id",
-        "reset_zoom":false,
+        "reset_zoom":true,
         "latitud":"latitud",
         "longitud":"longitud",
-        "marker": "azul",
+        "marker": "cielo",
         "marker_cluster_options": {
-            "spiderfyOnMaxZoom": true,
+            "spiderfyOnMaxZoom": false,
             "showCoverageOnHover": false,
             "zoomToBoundsOnClick": true,
-            "maxClusterRadius": 10,
-            "spiderfyDistanceMultiplier": 1.5,
+            "maxClusterRadius": 45,
+            "spiderfyDistanceMultiplier": 0.1,
             "spiderLegPolylineOptions": {
                 "weight": 1,
                 "color": "#666",
                 "opacity": 0.5,
-          }
+            }
         }
     };
     let opts = Object.assign({}, defaults, options);
@@ -98,12 +97,12 @@ class PonchoMap {
     this.slider = opts.slider;
     this.reset_zoom = opts.reset_zoom;
     this.slider_selector=this.selectorName(opts.slider_selector);
-    this.slider_close_selector = opts.slider_close_selector;
     this.selected_marker;
     this.scope_selector = `[data-scope="${this.scope}"]`;
+    this.scope_sufix = `--${this.scope}`;
 
     // OSM
-    this.map = new L.map(this.map_selector,{preferCanvas: true})
+    this.map = new L.map(this.map_selector,{preferCanvas: false})
         .setView(this.map_view, this.map_zoom);
     new L.tileLayer(
         "https://gis.argentina.gob.ar/osm/{z}/{x}/{y}.png", 
@@ -138,8 +137,49 @@ class PonchoMap {
   * @return {object}
   */
   entry = (id) => {
-    return this.entries.find(v => v[this.id]==id);
+      return this.entries.find(v => v[this.id]==id);
   }
+
+  /**
+   * Busca un término en un listado de entradas.
+   * @param {string} term - término a buscar.
+   * @returns {object} - listado filtrado por los match
+   */
+  searchEntry = (term, dataset) => {
+      dataset = (typeof dataset === "undefined" ? this.entries: dataset);
+      if(!term){
+          return dataset;
+      }
+      const entries = dataset.filter(e => {
+        if(this.searchTerm(term, e)){
+            return e;
+        };
+      })
+      return entries;
+  };
+
+  /**
+   * Busca un término en cada uno de los indices de una entrada.
+   */
+  searchTerm = (search_term, data) => {
+      // [text] es solo por si se usa select2
+      const search_for = [...["text"], ...this.search_fields].filter(e => e);
+      for(const item of search_for){
+        if(!data.hasOwnProperty(item)){
+            continue;
+        }
+        const term = this.removeAccents(search_term).toUpperCase();
+        const field = this.removeAccents(data[item]).toString().toUpperCase();
+        try {
+            if(field.includes(term)){
+                return data;
+            }
+        } catch (error) {
+            console.error(error);
+        }
+      }
+      return null;
+  };
 
   /**
    * Quita la definición a un selector.
@@ -176,20 +216,20 @@ class PonchoMap {
    * Limpia el contenido.
    */
   clearContent = () => document
-        .querySelector(`${this.scope_selector} .js-content`).innerHTML = "";
+        .querySelector(`.js-content${this.scope_sufix}`).innerHTML = "";
 
   /**
    * Abre o cierra el slider.
    */
   toggleSlider = () => document
-        .querySelector(`${this.scope_selector} .${this.slider_selector}`)
+        .querySelector(`.js-slider${this.scope_sufix}`)
         .classList.toggle(`${this.slider_selector}--in`);
 
   /**
    * Ejecuta toggleSlider en el onclick
    */
   clickToggleSlider = () => document
-        .querySelectorAll(`${this.scope_selector} ${this.slider_close_selector}`)
+        .querySelectorAll(`.js-close-slider${this.scope_sufix}`)
         .forEach(e => e.addEventListener("click", () => {
               this.clearContent();
               this.toggleSlider();
@@ -202,7 +242,7 @@ class PonchoMap {
    * @return {boolean} - ture si esta abierto, false si esta cerrado.
    */
   isOpen = () => document
-        .querySelector(`${this.scope_selector} .${this.slider_selector}`)
+        .querySelector(`.js-slider${this.scope_sufix}`)
         .classList.contains(`${this.slider_selector}--in`);
 
   /**
@@ -217,8 +257,9 @@ class PonchoMap {
 
     const html = (typeof this.template == "function") ? 
           this.template(this, data) : this.defaultTemplate(this, data);
-    document.querySelector(`${this.scope_selector} .js-content`)
+    document.querySelector(`.js-content${this.scope_sufix}`)
             .innerHTML = html;
+    // document.querySelector('#js-anchor-slider'+this.scope_sufix).focus()
   };
 
   /**
@@ -247,32 +288,81 @@ class PonchoMap {
   };
 
   /**
+   * Remueve acentos y caracteres especiales.
+   * @param {string} data - cadena de texto a limpiar. 
+   * @returns {string}
+   * 
+   * >>> removeAccents("Acción Murciélago árbol")
+   * Accion murcielago arbol
+   */
+  removeAccents = (data) => {
+      if(!data){
+          return "";
+      }
+
+      return data
+          .replace(/έ/g, "ε")
+          .replace(/[ύϋΰ]/g, "υ")
+          .replace(/ό/g, "ο")
+          .replace(/ώ/g, "ω")
+          .replace(/ά/g, "α")
+          .replace(/[ίϊΐ]/g, "ι")
+          .replace(/ή/g, "η")
+          .replace(/\n/g, " ")
+          .replace(/[áÁ]/g, "a")
+          .replace(/[éÉ]/g, "e")
+          .replace(/[íÍ]/g, "i")
+          .replace(/[óÓ]/g, "o")
+          .replace(/[Öö]/g, "o")
+          .replace(/[úÚ]/g, "u")
+          .replace(/ê/g, "e")
+          .replace(/î/g, "i")
+          .replace(/ô/g, "o")
+          .replace(/è/g, "e")
+          .replace(/ï/g, "i")
+          .replace(/ü/g, "u")
+          .replace(/ã/g, "a")
+          .replace(/õ/g, "o")
+          .replace(/ç/g, "c")
+          .replace(/ì/g, "i");
+  };
+
+  /**
    * Crea el bloque html para el slider.
    */
   renderSlider = () => {
     // Remuevo el slider
-    document.querySelectorAll(`${this.scope_selector} .slider`)
+    document.querySelectorAll(`.js-slider${this.scope_sufix}`)
             .forEach(e => e.remove());
 
     // Creo el slider
-    let close_button = document.createElement("button");
+    const close_button = document.createElement("button");
     close_button.classList.add("btn", "btn-xs", "btn-secondary", "btn-close", 
-                               this.selectorName(this.slider_close_selector));
+                               `js-close-slider${this.scope_sufix}`);
     close_button.setAttribute("title", "Cerrar panel");
     close_button.innerHTML = "<span class=\"sr-only\">Cerrar</span>✕";
 
-    let content_container = document.createElement("div");
+    const anchor = document.createElement("a");
+    anchor.href = "#";
+    // anchor.textContent = "";
+    anchor.id = `js-anchor-slider${this.scope_sufix}`;
+
+    const content_container = document.createElement("div");
     content_container.classList.add("content-container");
 
-    let content = document.createElement("div");
-    content.classList.add("content", `js-content`);
+    const content = document.createElement("div");
+    content.classList.add("content", `js-content${this.scope_sufix}`);
     content_container.appendChild(content);
 
-    let container = document.createElement("div");
-    container.classList.add("slider");
+    const container = document.createElement("div");
+    // container.id = `js-anchor-slider${this.scope_sufix}`;
+    container.setAttribute("role", "region");
+    container.setAttribute("aria-live", "polite");
+    container.classList.add("slider",`js-slider${this.scope_sufix}`);
     container.appendChild(close_button);
+    container.appendChild(anchor);
     container.appendChild(content_container);
-    document.querySelector(`${this.scope_selector}`).appendChild(container);
+    document.querySelector(`${this.scope_selector}.poncho-map`).appendChild(container);
   };
 
   /**
@@ -294,6 +384,12 @@ class PonchoMap {
       layer.openPopup();
     });
   };
+
+  /**
+   * Borra el hash de la url
+   * @returns {void}
+   */
+  removeHash = () => history.replaceState(null, null, ' ');
 
   /**
    * Si la URL tiene un valor por hash lo obtiene considerandolo su id.
@@ -497,9 +593,19 @@ class PonchoMap {
 
   /**
    * Resetea el mapa a su punto inicial por defecto.
-   * @returns 
    */
   resetView = () => this.map.setView(this.map_view, this.map_zoom);
+
+  /**
+   * Hace zoom hasta los límites de los markers
+   */
+  fitBounds = () => {
+      try {
+        this.map.fitBounds(this.markers.getBounds());
+      } catch (error) {
+        console.error(error);
+      }
+  };
 
   /**
    * Agrega un botón entre zoom-in y zoom-out para volver a la vista
@@ -511,7 +617,7 @@ class PonchoMap {
     }
     // función a evaluar. Busca y remueve un botón de reset si existiera.
     document.querySelectorAll(
-          `${this.scope_selector} .js-reset-view`).forEach(e => e.remove());
+          `.js-reset-view${this.scope_sufix}`).forEach(e => e.remove());
     document
           .querySelectorAll(`${this.scope_selector} .leaflet-control-zoom-in`)
           .forEach(ele => {
@@ -521,7 +627,8 @@ class PonchoMap {
         icon.setAttribute("aria-hidden","true");
 
         const button = document.createElement("a");
-        button.classList.add("js-reset-view", "leaflet-control-zoom-reset");
+        button.classList.add(`js-reset-view${this.scope_sufix}`, 
+                            "leaflet-control-zoom-reset");
         button.href = "#";
         button.title = "Ver todo el mapa";
         button.appendChild(icon);
@@ -562,6 +669,7 @@ class PonchoMap {
    * Prepara las características del mapa y de cada uno de los markers.
    */
    markersMap = (entries) => {
+    this.markers.clearLayers();
     entries.forEach(row => {
       const icon = this.marker(row);
       const id = row[this.id];
@@ -580,15 +688,19 @@ class PonchoMap {
       }
       const marker = new L.marker([latitud, longitud], marker_attr);
       this.markers.addLayer(marker);
-
+      
       if(!this.slider){
         const html = (typeof this.template == "function") ? 
               this.template(this, row) : this.defaultTemplate(this, row);
         marker.bindPopup(html);
       }
+
     });
     this.map.options.minZoom = 2;
     this.map.addLayer(this.markers)
+
+    // var endTime = performance.now()
+    // console.log(`[markersMap] ${endTime - startTime} milliseconds`)
   };
 
   /**

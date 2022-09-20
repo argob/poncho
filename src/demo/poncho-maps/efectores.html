@@ -53,9 +53,32 @@
       <h1 class="text-cielo">Efectores</h1>
     </div>
     <div class="col-md-6 m-b-2">
-    <div class="form-group m-b-0 webform-component">
-      <select class="form-control poncho-map-search" data-scope="search-efectores" name="search"></select>
-    </div>
+
+      
+      <form action="">
+        <div data-scope="search-efectores">
+          <div class="input-group m-b-0 p-b-0 webform-component">
+              <input 
+                  type="search" 
+                  id="search"
+                  name="search" 
+                  class="js-poncho-map-search__input form-control" 
+                  list="js-porcho-map-search__list">
+              <datalist id="js-porcho-map-search__list"></datalist>
+              <span class="input-group-btn">
+                <button class="js-poncho-map-search__submit btn btn-primary">
+                  <i class="fa fa-search text-white"></i>
+                </button>
+              </span>
+          </div>
+          <div data-scope="uno">
+            <div class="js-poncho-map__help" style="color:var(--default, gray)"></div>
+          </div>
+        </div>
+      </form>
+
+
+
     </div>
 
     <div class="col-md-12 m-b-2">
@@ -94,10 +117,12 @@
       "template": popup_template,
       "headers": gapi_data.headers,
       "scope":"uno",
+      "marker": "cielo",
       "slider": true,
       "hash": true,
       "scroll": false,
       "reset_zoom": true,
+      // "search_fields": ["province", "locality", "address", "reference"],
       "filters" :[
         {
           "legend" : "Filtrar",
@@ -120,6 +145,7 @@
         "text": "name",
         "id":"id",
         "placeholder":"Buscar centros",
+        "search_fields": ["province", "locality", "address", "reference"],
         "template": (self, entry) => {
           return "<dl class=\"p-b-0 m-y-0\">" 
               + "<dt>" + entry.name + "</dt>"
@@ -128,7 +154,7 @@
               + "</dd></dl>";
 
         },
-        "search_fields": ["province", "locality", "address", "reference"]
+       
     };
     search = new PonchoMapSearch(filter, search_options);
     search.render();
