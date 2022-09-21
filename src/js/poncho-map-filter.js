@@ -322,16 +322,12 @@ class PonchoMapFilter extends PonchoMap {
       close_button.setAttribute("title", "Cerrar panel");
       close_button.innerHTML = "<span class=\"sr-only\">Cerrar </span>✕";
 
-      const search = document.createElement("input");
-      search.type ="hidden";
-      // search.className = "sr-only";
-      search.name = `js-search-input${this.scope_sufix}`;
-      search.id = `js-search-input${this.scope_sufix}`;
+
       
       const form = document.createElement("form");
       form.classList.add(`js-formulario${this.scope_sufix}`);
       form.appendChild(close_button); 
-      form.appendChild(search); 
+      // form.appendChild(search); 
       form.appendChild(fields_container); 
 
       const container = document.createElement("div");
@@ -350,9 +346,9 @@ class PonchoMapFilter extends PonchoMap {
       // container.appendChild(button)
 
       container.appendChild(form); 
-      document
-            .querySelector(`.js-filter-container${this.scope_sufix}`)
-            .appendChild(container);
+      document.querySelectorAll(`.js-filter-container${this.scope_sufix}`)
+          .forEach(element => element.appendChild(container));
+          
   };
 
   /**
@@ -379,6 +375,9 @@ class PonchoMapFilter extends PonchoMap {
    * Obtengo los checkbox marcados.
    */ 
   formFilters = () => {
+    if(this.filters.length < 1){
+      return [];
+    }
     const form_filters = document
           .querySelector(`.js-formulario${this.scope_sufix}`);
     const form_data = new FormData(form_filters);
@@ -538,7 +537,9 @@ class PonchoMapFilter extends PonchoMap {
             row => this._validateEntry(row, available_filters)
       );
       feed = this.searchEntry(this.inputSearchValue, feed);
-      feed = (available_filters.length > 0 ? feed : []);
+      feed = (this.filters.length < 1 || 
+              available_filters.length > 0 ? feed : []);
+
       this.filtered_entries = feed;
       return feed;
   };
@@ -605,14 +606,16 @@ class PonchoMapFilter extends PonchoMap {
    */ 
   render = () =>{
     console.log(
-        "%cPonchoFilter",
+        "%cPonchoMapFilter",
         'padding:5px;border-radius:6px;background: #aaff00;color: #000');
-
+    this.hiddenSearchInput();
     this.resetViewButton(); 
-    if(this.filters.length > 0)
-    this.filterButton();
-    this.filterContainer();
-    this.createFilters(this.filters);
+    
+    if(this.filters.length > 0){        
+        this.filterButton();
+        this.filterContainer();
+        this.createFilters(this.filters);
+    }
 
     this.filteredData();
 
@@ -622,7 +625,6 @@ class PonchoMapFilter extends PonchoMap {
 
     this.filterChange((event) => {
         // console.log(">>> PonchoFilter (listener)");
-
         event.preventDefault();
         this.filteredData();
     })

@@ -22,17 +22,19 @@
       rel="stylesheet" 
       href="https://capacita-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css?rfqjsh">
   <!-- /Base -->
-      
-      <link rel="stylesheet" href="../../../dist/css/poncho.min.css" />
-      <script src="../../../dist/js/poncho.min.js"></script>
-      <title>Mapa Efectores</title>
-    </head>
-    <body class="select-component">
-
-
+  <link rel="stylesheet" href="../../../dist/css/poncho.min.css" />
+  <title>Mapa con filtro y buscador</title>
+</head>
+<body class="select-component">
+  <script src="../../../src/js/poncho-map.js"></script>
+  <script src="../../../src/js/poncho-map-filter.js"></script>
+  <script src="../../../src/js/poncho-map-search.js"></script>
+  <script src="../../../src/js/gapi-sheet-data.js"></script>
 
 <!-- 
 MAPA CON BUSCADOR FILTRO  
+
+COPIAR DESDE ACÁ…
 -->
 <div class="col-md-12">
 <!-- PONCHO MAP SEARCH -->
@@ -73,12 +75,14 @@ MAPA CON BUSCADOR FILTRO
 <!-- / PONCHO MAP -->
 </div>
 
-
 <!-- INCLUDE SCRIPTS -->
+<!-- si se usa markdown -->
+<script src="https://www.argentina.gob.ar/sites/default/files/ponchotable/showdown.js"></script>
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/extensiones/showdown-extensions.js"></script>
+<!-- obligatorios -->
 <link href="https://gis.argentina.gob.ar/js/leaflet/leaflet.css" rel="stylesheet"/>
 <link href="https://gis.argentina.gob.ar/js/leaflet/MarkerCluster.Default.css" rel="stylesheet"/>
 <link href="https://gis.argentina.gob.ar/js/leaflet/MarkerCluster.css" rel="stylesheet"/> 
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script src="https://gis.argentina.gob.ar/js/leaflet/leaflet.js"></script>
 <script src="https://gis.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script>
 <script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
@@ -91,87 +95,96 @@ MAPA CON BUSCADOR FILTRO
     // GApi helpers
     const gapi = new GapiSheetData();
     // fetch data
-    // const googlesheet_data = await fetch_json(gapi.url("[nombre pagina google sheet]", "[id google sheet]")); 
-    const googlesheet_data = await fetch_json("./data/response-efectores.json"); 
+    const googlesheet_data = await fetch_json( gapi.url("dataset", "13fMXLCN-aqeAVo6YH9eNP1ojljFWB0ocRR3sWNMYaIg") ); 
     const gapi_data = gapi.json_data(googlesheet_data);
     // map options
     const options = {
-      // "template": popup_template,
-      // Define la estructura básica para el popUp o slider.
-      "template_structure" : {
-          // Defino cual es la columna para el título.
-          "title": "name",
-          // Defino los valores que deseo mostrar o excluyo los que 
-          // están de más. El uso depende de la practicidad.
-          "values": ["address", "locality", "province", "phone", "email", "reference"],
-          // "exclude": ["id", "inhibicion_puberal", "hormonizacion_adolescentes", 
-          //             "hormonizacion_adultos", "latitud", "longitud", "name"]
-      },
-      // Define los headers. En este caso usa los definidos el la 
-      // fila dos del sheet.
-      "headers": gapi_data.headers,
       // El programa asume que los valores de latitud y longitud se 
       // obtienen de columnas con esos mismos nombres. Si no fuera ese
       // el caso, se debe especificar el nombre. 
       //     "latidud": "lat",
       //     "longitud": "lon",
-      // Ámbito/alcance del componente. Cambiar solo si hay dos mapas.
+      // Ámbito/alcance del componente. Cambiar acá y en el html solo 
+      // si hay más de un mapa.
       "scope": "poncho-map",
-      // Define el color del marker. En este caso, si existe la columna 
-      // «color» y ésta tiene definido un nombre de color Poncho*, 
-      // reemplaza el color del marker.
-      "marker" : (self, ele) => (typeof ele.color !== "undefined" && ele.color != "" ? ele.color : "azul"),
-      
-      // Con el id se puede utilizar las tres siguientes opciones. 
       // El id se utiliza para identificar un marcador con una entrada.
       // El programa usa el nombre «id» por defecto, si la columna tuviera
-      // otro nombre se reemplaza.
-      //    "id" : "id_con_otro_nombre",
-      // Slider con información. Sin ésta opción o con su valor en «false»
-      // reemplaza el slider por un PopUp. (ID REQUERIDO)
-      //    "slider": true, // Activo/Inactivo
-      // Si existe id cuando se hace clic sobre un marcador el id se
-      // imprime en la barra de url. (ID REQUERIDO)
-      //    "hash": true, // Activo/Inactivo
+      // otro nombre se debe reemplazar. 
+      //     Si el documento no necesita o no tiene un ID el programa 
+      // lo genera automáticamente para identificar el marker.
+      //     "id" : "id_con_otro_nombre",
+      // Nombre que se utiliza como título por defecto para los markers.
+      // También es importante para mejorar aspectos de accesibilidad.
+      "title": "nombre",
+      // Si se neceista usar markdown en los valores se activa con (true).
+      // Por defecto viene en (false). Incluye algunas extensiones Poncho.
+      "template_markdown": true,
+      // Define la estructura básica para el popUp o slider.
+      "template_structure" : {
+          // Defino los valores que deseo mostrar o excluyo los que 
+          // están de más. El uso depende de la practicidad.
+          "values": ["tipo", "descripcion", "direccion", "telefono", "email"],
+          //     "exclude": ["id", "inhibicion_puberal", "hormonizacion_adolescentes"]
+          // Con mixing puedo armar grupo de columnas separadas con 
+          // un caracter. El key, sea uno inventado o uno que forma 
+          // parte del JSON, debo agregarlo en «values».
+          "mixing": [
+              {
+                  "key": "direccion",
+                  "values": ["direccion", "localidad", "provincia"],
+                  "separator": ", "
+              }
+          ],
+      },
+      // Define los headers. En este caso usa los definidos el la 
+      // fila 2 del GoogleSheet.
+      "headers": gapi_data.headers,
+      // Define el color del marker. En este caso, si existe la columna 
+      // «color» y ésta tiene definido un nombre de color Poncho*, 
+      // reemplaza el color del marker. También se puede usar "marker":"azul".
+      "marker" : (self, ele) => (typeof ele.color !== "undefined" && ele.color != "" ? ele.color : "azul"),
+      "marker": "cielo",
+      // Slider con información. Sin ésta opción o con su valor en (false)
+      // reemplaza el PopUp por un slider.
+      "slider": true, // Activo/Inactivo
+      // Imprime el identificador de la entrada la barra de url.
+      "hash": true, // Activo/Inactivo
       // Cuando se accede por primera vez a la página y en la dirección
       // hay un hash con id, la página hace scroll hasta llegar a la
-      // ubicación del mapa. (ID REQUERIDO)
+      // ubicación del mapa.
       //    "scroll": true, // Activo/Inactivo
-      //
       // Grupos de filtros.
       "filters" :[
         {
           // Lenged para el fileset
-          "legend" : "Filtrar",
+          "legend" : "Filtrar por tipo",
           "fields" : [
-              // [nombre de columna, titulo para el checkbos, valores a buscar en la columna ej: ["A", "B"], "checked"/false]
-              ["filtro-hormonizacion-adultos", "Hormonización adultos", ["SI"], "checked"],
-              //["filtro-hormonizacion-adolescentes", "Hormonización adolescentes", ["SI"], "checked"],
-              //["filtro-inhibicion-puberal", "Inhibición puberal", ["SI"], "checked"],
+              // [nombre de columna, titulo para el checkbox, valores a buscar en la columna ej: ["A", "B"], "checked" o false]
+              ["tipo", "Archivo provincial", ["Archivo provincial"], "checked"],
+              ["tipo", "Archivo nacional", ["Archivo nacional"], "checked"],
           ]
         },
       ],
     };
     // render map
-    const filter = new PonchoMapFilter(gapi_data.entries, options);
-    filter.render();
+    const poncho_filter = new PonchoMapFilter(gapi_data.entries, options);
+    poncho_filter.render();
 
     // Buscador
     const search_options = {
         // Ámbito/alcance del componente. Cambiar solo si hay dos mapas.
         "scope": "poncho-map-search", 
-        // Nombre de la columna que aparece en el desplegable del buscador.
-        "text": "name", 
         // Placeholder del campo de formulario «search»
-        "placeholder": "Buscar centros",
+        "placeholder": "Buscar centro",
         // Columnas donde debe buscar un término.
-        "search_fields": ["name", "province", "locality", "address", "reference"] 
+        "search_fields": ["nombre", "provincia", "localidad", "descripcion"] 
     };
-    const search = new PonchoMapSearch(filter, search_options);
+    const search = new PonchoMapSearch(poncho_filter, search_options);
     search.render();
   })();
 </script>
 <!-- / SCRIPTS -->
+
 
 </body>
 </html>

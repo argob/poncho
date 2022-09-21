@@ -41,27 +41,6 @@
       *.text-arandano { color: var(--temp) !important;}
       summary { color:var(--gray-base); }
     }
-
-    .charts_box { 
-         background:rgba(0,0,0,.75); 
-         color: rgba(255,255,255,.8); 
-         padding:1em; 
-         border-radius: 15px; 
-         box-shadow: 0 0 6px rgba(0,0,0,.3);
-         width: 100%;
-    }
-    .charts_box > h1 {
-      color:var(--cielo);
-    }
-
-
-#foo {
-  position: absolute; background: whitesmoke; padding:1em;
-  font-size: 80%;
-  left:1em;
-}
-
-
   </style>
 </head>
 <body>
@@ -187,9 +166,9 @@
       "slider": true,
       "scroll": true,
       // "marker" : (self, ele) => (typeof ele.color !== "undefined" && ele.color != "" ? ele.color : "azul"),
-      "marker": (self, ele) => ele.estado_funcionamiento == "3" ? "mandarina" : "azul",
+      "marker": (self, ele) => (ele.hasOwnProperty("estado_funcionamiento") && ele.estado_funcionamiento == "3" ? "mandarina" : "azul"),
       "search_fields": ["nombre", "institucion", "localidad", "provincia", "municipio_nombre"],
-      "filters" :[
+      "__filters" :[
         {
           "legend" : "Filtrar por estado",
           "type" : "checkbox",

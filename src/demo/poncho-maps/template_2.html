@@ -23,40 +23,23 @@
       href="https://capacita-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css?rfqjsh">
   <!-- /Base -->
   <link rel="stylesheet" href="../../../dist/css/poncho.min.css" />
-  <title>Mapa con filtro y buscador</title>
+  <title>Mapa con filtro</title>
 </head>
 <body class="select-component">
-
+  <script src="../../../src/js/poncho-map.js"></script>
+  <script src="../../../src/js/poncho-map-filter.js"></script>
+  <script src="../../../src/js/poncho-map-search.js"></script>
+  <script src="../../../src/js/gapi-sheet-data.js"></script>
 
 <!-- 
 MAPA CON BUSCADOR FILTRO  
+
+COPIAR DESDE ACÁ…
 -->
 <div class="col-md-12">
-<!-- PONCHO MAP SEARCH -->
-<form action="" id="poncho-map-search">
-    <div data-scope="poncho-map-search">
-        <div class="input-group">
-            <input 
-                type="search" 
-                id="search"
-                name="search" 
-                class="js-poncho-map-search__input form-control" 
-                list="js-porcho-map-search__list">
-            <datalist id="js-porcho-map-search__list"></datalist>
-            <span class="input-group-btn">
-              <button class="js-poncho-map-search__submit btn btn-primary">
-                  <i class="fa fa-search text-white"></i>
-              </button>
-            </span>
-        </div>
-        <div data-scope="poncho-map" class="m-b-1">
-            <div class="js-poncho-map__help small text-default"></div>
-        </div>
-    </div>
-</form>
-<!-- / PONCHO MAP SEARCH -->
+<div data-scope="poncho-map" class="m-b-1">
+    <div class="js-poncho-map__help small text-default"></div>
 </div>
-<div class="col-md-12">
 <!-- PONCHO MAP -->
 <div class="poncho-map" data-scope="poncho-map">
     <div
@@ -70,16 +53,11 @@ MAPA CON BUSCADOR FILTRO
 <!-- / PONCHO MAP -->
 </div>
 
-
-<script src="../../../src/js/poncho-map.js"></script>
-<script src="../../../src/js/poncho-map-filter.js"></script>
-<script src="../../../src/js/poncho-map-search.js"></script>
-<script src="../../../src/js/gapi-sheet-data.js"></script>
-
 <!-- INCLUDE SCRIPTS -->
+<!-- si se usa markdown -->
 <script src="https://www.argentina.gob.ar/sites/default/files/ponchotable/showdown.js"></script>
 <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/extensiones/showdown-extensions.js"></script>
-
+<!-- obligatorios -->
 <link href="https://gis.argentina.gob.ar/js/leaflet/leaflet.css" rel="stylesheet"/>
 <link href="https://gis.argentina.gob.ar/js/leaflet/MarkerCluster.Default.css" rel="stylesheet"/>
 <link href="https://gis.argentina.gob.ar/js/leaflet/MarkerCluster.css" rel="stylesheet"/> 
@@ -95,7 +73,6 @@ MAPA CON BUSCADOR FILTRO
     // GApi helpers
     const gapi = new GapiSheetData();
     // fetch data
-    // const googlesheet_data = await fetch_json(gapi.url("[nombre pagina google sheet]", "[id google sheet]")); 
     const googlesheet_data = await fetch_json( gapi.url("dataset", "13fMXLCN-aqeAVo6YH9eNP1ojljFWB0ocRR3sWNMYaIg") ); 
     const gapi_data = gapi.json_data(googlesheet_data);
     // map options
@@ -117,11 +94,6 @@ MAPA CON BUSCADOR FILTRO
       // Nombre que se utiliza como título por defecto para los markers.
       // También es importante para mejorar aspectos de accesibilidad.
       "title": "nombre",
-      "template": (self, row) => {
-          row['html_imagen'] = `![Fachada de ${row.nombre}](${row.imagen})`;
-          row['html_boton'] = `[Visitar sitio web](${row.boton}){.btn.btn-primary.btn-sm.m-t-1}`;
-          return self.defaultTemplate(null, row);
-      },
       // Si se neceista usar markdown en los valores se activa con (true).
       // Por defecto viene en (false). Incluye algunas extensiones Poncho.
       "template_markdown": true,
@@ -129,7 +101,7 @@ MAPA CON BUSCADOR FILTRO
       "template_structure" : {
           // Defino los valores que deseo mostrar o excluyo los que 
           // están de más. El uso depende de la practicidad.
-          "values": ["tipo",  "html_imagen","descripcion", "direccion", "telefono", "email", "html_boton"],
+          "values": ["tipo", "descripcion", "direccion", "telefono", "email"],
           //     "exclude": ["id", "inhibicion_puberal", "hormonizacion_adolescentes"]
           // Con mixing puedo armar grupo de columnas separadas con 
           // un caracter. El key, sea uno inventado o uno que forma 
@@ -145,7 +117,6 @@ MAPA CON BUSCADOR FILTRO
       // Define los headers. En este caso usa los definidos el la 
       // fila 2 del GoogleSheet.
       "headers": gapi_data.headers,
-      "headers": {...gapi_data.headers, ...{"html_imagen": "", "html_boton":"Sitio web", "tipo":""}},
       // Define el color del marker. En este caso, si existe la columna 
       // «color» y ésta tiene definido un nombre de color Poncho*, 
       // reemplaza el color del marker. También se puede usar "marker":"azul".
@@ -176,18 +147,6 @@ MAPA CON BUSCADOR FILTRO
     // render map
     const poncho_filter = new PonchoMapFilter(gapi_data.entries, options);
     poncho_filter.render();
-
-    // Buscador
-    const search_options = {
-        // Ámbito/alcance del componente. Cambiar solo si hay dos mapas.
-        "scope": "poncho-map-search", 
-        // Placeholder del campo de formulario «search»
-        "placeholder": "Buscar centro",
-        // Columnas donde debe buscar un término.
-        "search_fields": ["nombre", "provincia", "localidad", "descripcion"] 
-    };
-    const search = new PonchoMapSearch(poncho_filter, search_options);
-    search.render();
   })();
 </script>
 <!-- / SCRIPTS -->

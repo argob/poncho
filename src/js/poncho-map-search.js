@@ -36,8 +36,6 @@ class PonchoMapSearch {
     constructor(instance, options){
         const defaults = {
             "scope": false,
-            "text": "text",
-            "id": "id",
             "template": false,
             "allow_clear": false,
             "placeholder": "Su búsqueda",
@@ -53,8 +51,7 @@ class PonchoMapSearch {
         this.theme = opts.theme;
         this.template = (
               typeof(opts.template) === "function" ? opts.template: false);
-        this.text = opts.text;
-        this.id = opts.id;
+        this.text = (instance.title ? instance.title : false);
         this.placeholder = opts.placeholder;
         this.allow_clear = opts.allow_clear;
         this.scope = opts.scope;
@@ -117,7 +114,7 @@ class PonchoMapSearch {
      */
     dataSelect = (entries) => {
         return entries.map( (e) => {
-            let entry = {id: e[this.id], text: e[this.text]};
+            let entry = {id: e[this.instance.id], text: e[this.text]};
             entry.html = (this.template ? this.template(this, e) : e[this.text]);
             return ({...e, ...entry, ...{selected:false}});
         });
@@ -142,6 +139,10 @@ class PonchoMapSearch {
      * Configuración para el componenete select2.
      */
     selectTwo = () => {
+        if(!jQuery.isFunction( jQuery.fn.select2 )){
+            return;
+        }
+
         jQuery(`${this.search_scope_selector} .js-poncho-map-search__select2`).select2({
               data: this.dataset(),
               matcher: this.matchTerm,
@@ -198,9 +199,13 @@ class PonchoMapSearch {
         submit.forEach(e => {
             e.onclick = (event => {
                 event.preventDefault();
+
+
                 const element = document.querySelector(
                       `#js-search-input${this.instance.scope_sufix}`);
                 element.value = input.value;
+
+
                 const term = input.value;
                 this.renderSearch(term);
             });
@@ -238,6 +243,20 @@ class PonchoMapSearch {
         .value = "";
 
     /**
+     * Agrega el placeholder si fué seteado en las opciones. 
+     * @returns {void}
+     */
+    placeHolder = () => {
+        if(!this.placeholder){
+            return "";
+        }
+       
+        document.querySelectorAll(
+              `${this.search_scope_selector} .js-poncho-map-search__input`)
+            .forEach(element => element.placeholder = this.placeholder.toString());
+    };
+
+    /**
      * Vacía el contenido del elemento que contiene los textos de ayuda.
      * @returns {void}
      */
@@ -259,7 +278,7 @@ class PonchoMapSearch {
             this.instance.renderSlider();
             this.instance.clickeableMarkers();
             this.instance.clickToggleSlider();
-          }
+        }
 
         if(this.instance.hash){
             this.instance.urlHash();
@@ -312,13 +331,13 @@ class PonchoMapSearch {
      */
     render = () => {
         console.log(
-            "%cPonchoFilterSearch",
+            "%cPonchoMapFilterSearch",
             'padding:5px;border-radius:6px;background: #ff4400;color: #fff');
 
         this.firstEmptyOption();
         this.selectTwo();
+        this.placeHolder();
         this.triggerSearch();
-        
         this.addDataListOptions();
         this.instance.filterChange((event) => {
             // console.log("%cPonchoFilterSearch (listener)", 'color: #ff4400;');
