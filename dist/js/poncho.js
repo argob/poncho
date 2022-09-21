@@ -1599,8 +1599,8 @@ class PonchoMap {
   constructor(data, options){
     // Confs
     const defaults = {
-        "title": false,
-        "id": "id",
+        "title": false,        "id": "id",
+
         "template": false,
         "template_structure": {},
         "template_container_class_list":["info-container"],
@@ -1612,6 +1612,18 @@ class PonchoMap {
         "template_dl": "dl",
         "template_dt": "dt",
         "template_dd": "dd",
+        "markdown_options": {
+            extensions :[
+                "images", 
+                "alerts", 
+                // "numbers", 
+                // "ejes", 
+                "button", 
+                "target",
+                // "bootstrap-tables",
+                "video"
+            ]
+        },
         "scope": "",
         "slider": false,
         "scroll": false,
@@ -1649,6 +1661,7 @@ class PonchoMap {
     this.template_container_class_list = opts.template_container_class_list;
     this.template_innerhtml = opts.template_innerhtml;
     this.template_markdown = opts.template_markdown;
+    this.markdown_options = opts.markdown_options;
     this.template_header = opts.template_header;
     this.template_dl = opts.template_dl;
     this.template_dt = opts.template_dt;
@@ -2171,7 +2184,7 @@ class PonchoMap {
    */
   mdToHtml = (text) => {
       if(this.markdownEnable()){
-          const converter = new showdown.Converter();
+          const converter = new showdown.Converter(this.markdown_options);
           return converter.makeHtml(text);
       }
       return text;
@@ -3242,6 +3255,10 @@ class PonchoMapSearch {
      * Configuración para el componenete select2.
      */
     selectTwo = () => {
+        if(!jQuery.isFunction( jQuery.fn.select2 )){
+            return;
+        }
+
         jQuery(`${this.search_scope_selector} .js-poncho-map-search__select2`).select2({
               data: this.dataset(),
               matcher: this.matchTerm,
@@ -3353,8 +3370,6 @@ class PonchoMapSearch {
         document.querySelectorAll(
               `${this.search_scope_selector} .js-poncho-map-search__input`)
             .forEach(element => element.placeholder = this.placeholder.toString());
-        
-
     };
 
     /**
