@@ -175,11 +175,22 @@ class PonchoMapFilter extends PonchoMap {
   };
 
   /**
+   * Estado del slider.
+   * 
+   * @return {boolean} - ture si esta abierto, false si esta cerrado.
+   */
+   isFilterOpen = () => document
+      .querySelector(`.js-poncho-map-filters${this.scope_sufix}`)
+      .classList.contains("filter--in");
+
+  /**
    * Ejecuta los filtros.
    */
-  toggleFilter = () => document
-      .querySelector(`.js-poncho-map-filters${this.scope_sufix}`)
-      .classList.toggle("filter--in");
+  toggleFilter = () => {
+      document
+          .querySelector(`.js-poncho-map-filters${this.scope_sufix}`)
+          .classList.toggle("filter--in");
+  };
 
   /**
    * Altura para el contenedor de filtros.
@@ -227,6 +238,7 @@ class PonchoMapFilter extends PonchoMap {
             event.preventDefault();
             this.toggleFilter(); 
             this.filterContainerHeight();
+           
       });
 
   /**
@@ -254,8 +266,9 @@ class PonchoMapFilter extends PonchoMap {
 
         input.className = "form-check-input";
         input.value = key;
-        if(typeof field[3] !== "undefined" && field[3]=="checked")
+        if(typeof field[3] !== "undefined" && field[3]=="checked"){
             input.setAttribute("checked", "checked");
+        }
 
         const label = document.createElement("label");
         label.style.marginLeft = ".33rem";
@@ -285,15 +298,24 @@ class PonchoMapFilter extends PonchoMap {
     filter_icon.classList.add("fa", "fa-filter");
 
     const button_text = document.createElement("span");
-    button_text.textContent = "Filtrar";
+    button_text.textContent = "Abre o cierra el filtro de búsqueda";
     button_text.classList.add("sr-only");
-
+   
     const button = document.createElement("button");
-    button.title = "Filtrar elementos en el mapa";
+    // button.title = "Filtrar elementos en el mapa";
     button.classList.add("btn","btn-secondary","btn-filter",
                          `js-close-filter${this.scope_sufix}`);
+    button.id = `filtrar-busqueda${this.scope_sufix}`
     button.appendChild(filter_icon);
     button.appendChild(button_text);
+    button.setAttribute("role", "button");
+    button.setAttribute("aria-label", "Abre o cierra el filtro de búsqueda");
+    button.setAttribute("aria-controls", `poncho-map-filters${this.scope_sufix}`);
+    // if(this.filters_visible){
+    //     button.setAttribute("aria-expanded", "true");
+    // } else {
+    //     button.setAttribute("aria-expanded", "false");
+    // }
 
     const button_container = document.createElement("div");
     button_container.classList.add(`js-filter-container${this.scope_sufix}`, 
@@ -319,7 +341,9 @@ class PonchoMapFilter extends PonchoMap {
       const close_button = document.createElement("button");
       close_button.classList.add("btn", "btn-xs", "btn-secondary", "btn-close", 
                                  `js-close-filter${this.scope_sufix}`);
-      close_button.setAttribute("title", "Cerrar panel");
+      close_button.title = "Cerrar panel";
+      close_button.setAttribute("role", "button");
+      close_button.setAttribute("aria-label", "Cerrar panel de filtros");
       close_button.innerHTML = "<span class=\"sr-only\">Cerrar </span>✕";
 
 
@@ -335,15 +359,11 @@ class PonchoMapFilter extends PonchoMap {
                               "poncho-map-filters");
       container.setAttribute("role", "region");
       container.setAttribute("aria-live", "polite");
+      container.id = `poncho-map-filters${this.scope_sufix}`;
 
       if(this.filters_visible){
           container.classList.add("filter--in");
       }
-      // const button = document.createElement("button");
-      // button.title = "Filtrar elementos en el mapa";
-      // button.classList.add("btn","btn-info", "btn-sm", "js-filter-form");
-      // button.textContent = "Filtrar";
-      // container.appendChild(button)
 
       container.appendChild(form); 
       document.querySelectorAll(`.js-filter-container${this.scope_sufix}`)
@@ -554,7 +574,7 @@ class PonchoMapFilter extends PonchoMap {
       this.helpText(feed);
       this.resetSearch();
       this.clickToggleFilter();
-      
+    
       if(this.slider){
           this.renderSlider();
           this.clickeableMarkers();
@@ -585,7 +605,6 @@ class PonchoMapFilter extends PonchoMap {
                   this.resetFormFilters();
                   this.filteredData(this.entries);
                   this.clearSearchInput();
-                  // this.resetView();
           });
    });
 
@@ -633,6 +652,7 @@ class PonchoMapFilter extends PonchoMap {
     if(this.filters_visible){
         this.filterContainerHeight();
     }
+    this.accesibleMenu();
   };
 };
 // end of class
