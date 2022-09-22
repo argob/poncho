@@ -104,7 +104,7 @@ MAPA CON BUSCADOR FILTRO
   // init
   (async() => {
     // GApi helpers
-    const gapi = new GapiSheetData();
+    const gapi = new GapiSheetData({"gapi_key": "AIzaSyCq2wEEKL9-6RmX-TkW23qJsrmnFHFf5tY"});
     // fetch data
     // const googlesheet_data = await fetch_json(gapi.url("[nombre pagina google sheet]", "[id google sheet]")); 
     const googlesheet_data = await fetch_json( gapi.url("dataset", "13fMXLCN-aqeAVo6YH9eNP1ojljFWB0ocRR3sWNMYaIg") ); 

@@ -3622,7 +3622,7 @@ class PonchoMapSearch {
 class GapiSheetData {
   constructor(options){
     const defaults = {
-      "gapi_key": "AIzaSyAll9EH1aTmZDewNSyM_CU_AIsGOiEDyZs",
+        "gapi_key": "AIzaSyCq2wEEKL9-6RmX-TkW23qJsrmnFHFf5tY",
     };
     let opts = Object.assign({}, defaults, options);
     this.gapi_key = opts.gapi_key;
@@ -3635,12 +3635,11 @@ class GapiSheetData {
    * @param {string} spreadsheet Id del documento Google Sheet.
    * @returns {string} URL
    */
-  url = (page, spreadsheet) => {
-   return [
-      "https://sheets.googleapis.com/v4/spreadsheets/",
-      spreadsheet, "/values/", page,
-      "?key=", this.gapi_key, "&alt=json"
-    ].join("");
+  url = (page, spreadsheet, api_key) => {
+      const key = (typeof api_key !== "undefined" ? api_key : this.gapi_key);
+      return [
+          "https://sheets.googleapis.com/v4/spreadsheets/",
+          spreadsheet, "/values/", page, "?key=", key, "&alt=json"].join("");
   };
 
   /**
