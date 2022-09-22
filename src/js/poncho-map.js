@@ -376,7 +376,9 @@ class PonchoMap {
 
     var animation = document.querySelector('.slider--in');
     animation.addEventListener("animationend", function(e) {
-        document.querySelector('#js-anchor-slider'+this.scope_sufix).focus()
+        document
+            .querySelectorAll(`#js-anchor-slider${this.scope_sufix}`)
+            .forEach(ele => ele.focus());
     });
   };
 
