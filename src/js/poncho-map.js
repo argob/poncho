@@ -35,8 +35,8 @@ class PonchoMap {
   constructor(data, options){
     // Confs
     const defaults = {
-        "title": false,        "id": "id",
-
+        "title": false,        
+        "id": "id",
         "template": false,
         "template_structure": {},
         "template_container_class_list":["info-container"],
@@ -74,7 +74,7 @@ class PonchoMap {
         "reset_zoom":true,
         "latitud":"latitud",
         "longitud":"longitud",
-        "marker": "cielo",
+        "marker": "azul",
         "marker_cluster_options": {
             "spiderfyOnMaxZoom": false,
             "showCoverageOnHover": false,
@@ -326,9 +326,18 @@ class PonchoMap {
   /**
    * Abre o cierra el slider.
    */
-  toggleSlider = () => document
-        .querySelector(`.js-slider${this.scope_sufix}`)
-        .classList.toggle(`${this.slider_selector}--in`);
+  toggleSlider = () =>{ 
+      document
+          .querySelector(`.js-slider${this.scope_sufix}`)
+          .classList.toggle(`${this.slider_selector}--in`);
+    
+      const panel = document.querySelector(`.js-slider${this.scope_sufix}`);
+      if(this.isSliderOpen()){
+          panel.style.display = "block";
+      } else {
+          panel.style.display = "none";
+      }
+  }
 
   /**
    * Ejecuta toggleSlider en el onclick
@@ -346,7 +355,7 @@ class PonchoMap {
    * 
    * @return {boolean} - ture si esta abierto, false si esta cerrado.
    */
-  isOpen = () => document
+  isSliderOpen = () => document
         .querySelector(`.js-slider${this.scope_sufix}`)
         .classList.contains(`${this.slider_selector}--in`);
 
@@ -356,7 +365,7 @@ class PonchoMap {
    * @return {string} - HTML del contenido del slider.
    */
   setContent = (data) => {
-    if(!this.isOpen()){
+    if(!this.isSliderOpen()){
         this.toggleSlider();
     }
 
@@ -364,7 +373,11 @@ class PonchoMap {
           this.template(this, data) : this.defaultTemplate(this, data);
     document.querySelector(`.js-content${this.scope_sufix}`)
             .innerHTML = html;
-    // document.querySelector('#js-anchor-slider'+this.scope_sufix).focus()
+
+    var animation = document.querySelector('.slider--in');
+    animation.addEventListener("animationend", function(e) {
+        document.querySelector('#js-anchor-slider'+this.scope_sufix).focus()
+    });
   };
 
   /**
@@ -405,6 +418,8 @@ class PonchoMap {
     close_button.classList.add("btn", "btn-xs", "btn-secondary", "btn-close", 
                                `js-close-slider${this.scope_sufix}`);
     close_button.title = "Cerrar panel";
+    close_button.setAttribute("role", "button");
+    close_button.setAttribute("aria-label", "Cerrar panel de información");
     close_button.innerHTML = "<span class=\"sr-only\">Cerrar</span>✕";
 
     const anchor = document.createElement("a");
@@ -420,10 +435,12 @@ class PonchoMap {
     content_container.appendChild(content);
 
     const container = document.createElement("div");
+    container.style.display = "none";
     // container.id = `js-anchor-slider${this.scope_sufix}`;
     container.setAttribute("role", "region");
     container.setAttribute("aria-live", "polite");
     container.classList.add("slider",`js-slider${this.scope_sufix}`);
+    container.id = `slider${this.scope_sufix}`;
     container.appendChild(close_button);
     container.appendChild(anchor);
     container.appendChild(content_container);
@@ -510,7 +527,7 @@ class PonchoMap {
    */
   clickeableMarkers = () => {
     this.markers.eachLayer(layer => {
-      layer.on("click", (e) => {
+      layer.on("keypress click", (e) => {
 
         document.querySelectorAll(".marker--active")
                 .forEach(e => e.classList.remove("marker--active"))
@@ -551,6 +568,21 @@ class PonchoMap {
 
   /**
    * Titulo para el default template
+   * 
+   * @summary El título puede tener un formato por defecto, tomando el
+   * índice de la entrada seleccionada a tal fin en this.title, cuya
+   * asignación es general y se utiliza para otras propiedades como:
+   * texto alterantivo de los markers o title de un marker.
+   *     También se puede especificar un title particular en la entrada
+   * `template_structure.title`, ésta opción se ofrece como una 
+   * alternativa que puede estar dada por el formato en el texto u
+   * otras características consideradas por el editor. 
+   *     Por último puede recibir de: this.template_header, una función
+   * que retorne un html en formato string. Es importante tener en cuenta
+   * que el uso de markdown y la insersión directa de html puedo producir
+   * una vulnerabilidad XSS, tenga a bien asignar cuidadosamente el 
+   * uso de estas opciones. 
+   * @see https://showdownjs.com/docs/xss/#strip-html-tags-is-not-enough
    * @param {object} row Entrada 
    */
   templateTitle = (row) => {
@@ -560,7 +592,7 @@ class PonchoMap {
     const optons_title = (this.title ? this.title : false);
     
     // si intencionalmente no se quiere usar el titulo y se 
-    // agrega la opción fale en structure title. 
+    // agrega la opción `false` en `template_structure.title`. 
     if(structure.hasOwnProperty("title") && typeof structure.title == "boolean"){
         return false;
     } 
@@ -568,14 +600,14 @@ class PonchoMap {
     else if(!structure_title && !optons_title){
         return false;
     }
-    // defino el title que voy a usar.
+    // Defino el title que voy a usar.
     // template_structure.title tiene precedencia
     const use_title = (structure_title ? structure_title : optons_title);
     
     let title;
     if(this.template_header){
         const wrapper = document.createElement("div");
-        wrapper.innerHTML = this.template_header(this, row);
+        wrapper.innerHTML = this.mdToHtml(this.template_header(this, row));
         title = wrapper;
     } else {
         title = document.createElement("h1");
@@ -590,8 +622,14 @@ class PonchoMap {
   };
 
   /**
-   * Listado de keys para mistrar en una entrada del default template.
-   * @param {object} row — Entrada de datos 
+   * Listado de keys para mostrar en una entrada del default template.
+   * 
+   * @summary Si el usuario configuró los valores en 
+   * `template_structure.values` o `template_structure.exclude` se obtiene
+   * el listado de índices, consideranto `values` con presedencia ante
+   * `exclude` y retorna el objeto que se utilizará en `defaultTemplate()`.
+   * @param {object} row — Entrada de datos.
+   * @return {object} Listado de índices seleccionados de la entrada.
    */
   templateList = (row) => {
     const estructura = this.template_structure;
@@ -617,9 +655,10 @@ class PonchoMap {
    * sin procesar.
    * @param {string} text - Texto a convertir 
    * @returns {string}
+   * @see https://showdownjs.com/
    */
   mdToHtml = (text) => {
-      if(this.markdownEnable()){
+      if(this.template_markdown && this.markdownEnable()){
           const converter = new showdown.Converter(this.markdown_options);
           return converter.makeHtml(text);
       }
@@ -627,8 +666,10 @@ class PonchoMap {
   }
 
   /**
-   * Verifica si se puede parsear de markdown a html
-   * @returns {booolean}
+   * Showdown habilitado.
+   * 
+   * Verifica si la librería _showdown_ está disponible.
+   * @returns {boolean}
    */
   markdownEnable = () => {
       if(typeof showdown !== "undefined" && 
@@ -640,21 +681,31 @@ class PonchoMap {
 
   /**
    * Si el usuario usó la opción mixing reformulamos la entrada.
+   * 
+   * @summary La opción mixing, permite concatenar el valor de los
+   * índices de la entrada asignados en el índice 
+   * `template_structure.mixing.values`, utilizando como separador una
+   * cadena de texto asignada en el índice `template_structure.mixing.separator`
    * @param {object} row - Entrada del json 
    * @returns {object}
    */
   templateMixing = (row) => {
       if(this.template_structure.hasOwnProperty("mixing") && 
         this.template_structure.mixing.length > 0){
-              const mixing = this.template_structure.mixing;
-              let new_row = {}; 
-              mixing.forEach(e => {
-                new_row[e["key"]] = e.values
+            const mixing = this.template_structure.mixing;
+
+            let new_row = {}; 
+            mixing.forEach(element => {
+                const {values, separator = ", ", key} = element;
+                if(typeof key === "undefined"){
+                  throw 'Mixing requiere un valor en la variable «key».';
+                }
+                new_row[key] = values
                       .map(i => row[i])
-                      .filter(e => e)
-                      .join(e.separator);
-              });
-              return Object.assign({}, row, new_row);
+                      .filter(v => v)
+                      .join(separator);
+            });
+            return Object.assign({}, row, new_row);
       }
       return row;
   };
@@ -769,8 +820,11 @@ class PonchoMap {
         button.classList.add(`js-reset-view${this.scope_sufix}`, 
                             "leaflet-control-zoom-reset");
         button.href = "#";
-        button.title = "Ver todo el mapa";
+        button.title = "Zoom para ver todo el mapa";
+        button.setAttribute("role", "button");
+        button.setAttribute("aria-label", "Zoom para ver todo el mapa");
         button.appendChild(icon);
+
 
         button.onclick = (e) => {
           e.preventDefault();
@@ -882,6 +936,62 @@ class PonchoMap {
   }
 
   /**
+   * Experimental. Agrega anclas y enlaces para un menú accesible.
+   */
+  accesibleMenu = () => {
+    // Anclas que se deben crear.
+    const anchors = [
+        [
+            `${this.scope_selector} .leaflet-marker-pane`, 
+            `leaflet-marker-pane${this.scope_sufix}`],
+        [
+            `${this.scope_selector} .leaflet-control-zoom`,
+            `leaflet-control-zoom${this.scope_sufix}`
+        ],
+    ];
+    anchors.forEach(anchor => document.querySelector(anchor[0]).id = anchor[1]);
+
+    // Enlaces
+    const values = [
+      {
+        "text" :"Ir a los marcadores del mapa",
+        "anchor" : "#" + anchors[0][1]
+      },
+      // {
+      //   text :"Ir al panel de información",
+      //   anchor : `#slider${this.scope_sufix}`
+      // },
+      {
+        "text" :"Ir al panel de zoom",
+        "anchor": "#" + anchors[1][1]
+      },
+    ]
+    if(typeof this.filters !== "undefined"){
+        values.push({
+            "text" :"Ir al panel de filtros",
+            "anchor": `#filtrar-busqueda${this.scope_sufix}`
+        });
+    }
+
+    const ul = document.createElement("ul");
+    ul.className = "sr-only";
+    values.forEach(link => {
+        const a = document.createElement("a");
+        a.textContent = link.text;
+        a.href = link.anchor;
+        const li = document.createElement("li");
+        li.appendChild(a);
+        ul.appendChild(li);
+    })
+
+    document.querySelectorAll(`${this.scope_selector}`).forEach(element => {
+        element.insertBefore(ul, element.children[0])
+     });
+  };
+
+
+
+  /**
    * Hace el render del mapa.
    */
   render = () => {
@@ -897,6 +1007,7 @@ class PonchoMap {
     if(this.slider){
         this.renderSlider();
         this.clickeableMarkers();
+        this.toggleSlider();
         this.clickToggleSlider();
     }
 
@@ -907,6 +1018,8 @@ class PonchoMap {
     if(this.scroll && this.hasHash()){
       this.scrollCenter();
     }
+
+    this.accesibleMenu();
     setTimeout(this.gotoHashedEntry, this.anchor_delay);
   };
 };

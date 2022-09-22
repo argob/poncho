@@ -27,10 +27,18 @@
 </head>
 <body class="select-component">
 
+  <style>
+    button[aria-expanded="true"] {
+        background-color: #0072bb !important; color:white !important;
+    }
+  </style>
 
 <!-- 
 MAPA CON BUSCADOR FILTRO  
 -->
+<div class="container">
+  <div class="row">
+
 <div class="col-md-12">
 <!-- PONCHO MAP SEARCH -->
 <form action="" id="poncho-map-search">
@@ -42,7 +50,7 @@ MAPA CON BUSCADOR FILTRO
                 name="search" 
                 class="js-poncho-map-search__input form-control" 
                 list="js-porcho-map-search__list">
-            <datalist id="js-porcho-map-search__list"></datalist>
+            <datalist id="js-porcho-map-search__list" spellcheck="false"></datalist>
             <span class="input-group-btn">
               <button class="js-poncho-map-search__submit btn btn-primary">
                   <i class="fa fa-search text-white"></i>
@@ -70,6 +78,9 @@ MAPA CON BUSCADOR FILTRO
 <!-- / PONCHO MAP -->
 </div>
 
+
+</div>
+</div>
 
 <script src="../../../src/js/poncho-map.js"></script>
 <script src="../../../src/js/poncho-map-filter.js"></script>
@@ -100,6 +111,7 @@ MAPA CON BUSCADOR FILTRO
     const gapi_data = gapi.json_data(googlesheet_data);
     // map options
     const options = {
+      "template_title_class_list":["h4","text-cielo","m-t-0"],
       // El programa asume que los valores de latitud y longitud se 
       // obtienen de columnas con esos mismos nombres. Si no fuera ese
       // el caso, se debe especificar el nombre. 
@@ -117,11 +129,6 @@ MAPA CON BUSCADOR FILTRO
       // Nombre que se utiliza como título por defecto para los markers.
       // También es importante para mejorar aspectos de accesibilidad.
       "title": "nombre",
-      "template": (self, row) => {
-          row['html_imagen'] = `![Fachada de ${row.nombre}](${row.imagen})`;
-          row['html_boton'] = `[Visitar sitio web](${row.boton}){.btn.btn-primary.btn-sm.m-t-1}`;
-          return self.defaultTemplate(null, row);
-      },
       // Si se neceista usar markdown en los valores se activa con (true).
       // Por defecto viene en (false). Incluye algunas extensiones Poncho.
       "template_markdown": true,
@@ -129,7 +136,7 @@ MAPA CON BUSCADOR FILTRO
       "template_structure" : {
           // Defino los valores que deseo mostrar o excluyo los que 
           // están de más. El uso depende de la practicidad.
-          "values": ["tipo",  "html_imagen","descripcion", "direccion", "telefono", "email", "html_boton"],
+          "values": ["tipo","imagen","descripcion", "direccion", "telefono", "email", "boton"],
           //     "exclude": ["id", "inhibicion_puberal", "hormonizacion_adolescentes"]
           // Con mixing puedo armar grupo de columnas separadas con 
           // un caracter. El key, sea uno inventado o uno que forma 
@@ -137,7 +144,7 @@ MAPA CON BUSCADOR FILTRO
           "mixing": [
               {
                   "key": "direccion",
-                  "values": ["direccion", "localidad", "provincia"],
+                  "values": ["direccion", "localidad", "filtro-provincia"],
                   "separator": ", "
               }
           ],
@@ -145,12 +152,10 @@ MAPA CON BUSCADOR FILTRO
       // Define los headers. En este caso usa los definidos el la 
       // fila 2 del GoogleSheet.
       "headers": gapi_data.headers,
-      "headers": {...gapi_data.headers, ...{"html_imagen": "", "html_boton":"Sitio web", "tipo":""}},
       // Define el color del marker. En este caso, si existe la columna 
       // «color» y ésta tiene definido un nombre de color Poncho*, 
       // reemplaza el color del marker. También se puede usar "marker":"azul".
       "marker" : (self, ele) => (typeof ele.color !== "undefined" && ele.color != "" ? ele.color : "azul"),
-      "marker": "cielo",
       // Slider con información. Sin ésta opción o con su valor en (false)
       // reemplaza el PopUp por un slider.
       "slider": true, // Activo/Inactivo
@@ -171,7 +176,7 @@ MAPA CON BUSCADOR FILTRO
               ["tipo", "Archivo nacional", ["Archivo nacional"], "checked"],
           ]
         },
-      ],
+      ]
     };
     // render map
     const poncho_filter = new PonchoMapFilter(gapi_data.entries, options);

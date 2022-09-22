@@ -44,7 +44,7 @@
   </style>
 </head>
 <body>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> -->
 <!-- INCLUDE CSS -->
 <link href="https://gis.argentina.gob.ar/js/leaflet/leaflet.css" rel="stylesheet"/>
 <link href="https://gis.argentina.gob.ar/js/leaflet/MarkerCluster.Default.css" rel="stylesheet"/>
@@ -158,6 +158,7 @@
       //     "provincia":"Provincia",
       //     "localidad":"Localidad",
       // },
+      "title":"nombre",
       "scope":"ponchomap",
       "latitud": "lat",
       "longitud": "long",
@@ -168,7 +169,7 @@
       // "marker" : (self, ele) => (typeof ele.color !== "undefined" && ele.color != "" ? ele.color : "azul"),
       "marker": (self, ele) => (ele.hasOwnProperty("estado_funcionamiento") && ele.estado_funcionamiento == "3" ? "mandarina" : "azul"),
       "search_fields": ["nombre", "institucion", "localidad", "provincia", "municipio_nombre"],
-      "__filters" :[
+      "filters" :[
         {
           "legend" : "Filtrar por estado",
           "type" : "checkbox",
