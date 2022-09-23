@@ -130,7 +130,7 @@ MAPA CON BUSCADOR FILTRO
     const gapi = new GapiSheetData({"gapi_key": "AIzaSyCq2wEEKL9-6RmX-TkW23qJsrmnFHFf5tY"});
     // fetch data
     // const googlesheet_data = await fetch_json(gapi.url("[nombre pagina google sheet]", "[id google sheet]")); 
-    const googlesheet_data = await fetch_json( gapi.url("dataset", "13fMXLCN-aqeAVo6YH9eNP1ojljFWB0ocRR3sWNMYaIg") ); 
+    const googlesheet_data = await fetch_json( gapi.url("dataset", "1odAYQJJtl53_6jbgew3ueGwAanU4SkofmlxoTsfPK4o") ); 
     const gapi_data = gapi.json_data(googlesheet_data);
     // map options
     const options = {
@@ -151,7 +151,7 @@ MAPA CON BUSCADOR FILTRO
       //     "id" : "id_con_otro_nombre",
       // Nombre que se utiliza como título por defecto para los markers.
       // También es importante para mejorar aspectos de accesibilidad.
-      "title": "nombre",
+      "title": "ente-ejecutor",
       // Si se neceista usar markdown en los valores se activa con (true).
       // Por defecto viene en (false). Incluye algunas extensiones Poncho.
       "template_markdown": true,
@@ -159,15 +159,19 @@ MAPA CON BUSCADOR FILTRO
       "template_structure" : {
           // Defino los valores que deseo mostrar o excluyo los que 
           // están de más. El uso depende de la practicidad.
-          "values": ["tipo","imagen","descripcion", "direccion", "telefono", "email", "boton"],
+          "values": [
+              "ente-ejecutor", "Ubicación", "modalidad-gestion",
+              "estado-obra", "n-proyecto", "lotes-generados",
+              "expediente-origen", "inversion-total","inversion-lote"
+          ],
           //     "exclude": ["id", "inhibicion_puberal", "hormonizacion_adolescentes"]
           // Con mixing puedo armar grupo de columnas separadas con 
           // un caracter. El key, sea uno inventado o uno que forma 
           // parte del JSON, debo agregarlo en «values».
           "mixing": [
               {
-                  "key": "direccion",
-                  "values": ["direccion", "localidad", "filtro-provincia"],
+                  "key": "Ubicación",
+                  "values": ["localidad", "provincia"],
                   "separator": ", "
               }
           ],
@@ -192,15 +196,27 @@ MAPA CON BUSCADOR FILTRO
       "filters" :[
         {
           // Lenged para el fileset
-          "legend" : "Tipo de institución",
+          "legend" : "Estado de obra",
           "fields" : [
               // [nombre de columna, titulo para el checkbox, valores a buscar en la columna ej: ["A", "B"], "checked" o false]
-              ["tipo", "Archivo provincial", ["Archivo provincial"], "checked"],
-              ["tipo", "Archivo nacional", ["Archivo nacional"], "checked"],
+              ["estado-obra", "En ejecución", ["En ejecución"], "checked"],
+              ["estado-obra", "A ejecutarse", ["A ejecutarse"], "checked"],
+          ]
+        },
+        {
+          // Lenged para el fileset
+          "legend" : "Modalidad",
+          "fields" : [
+              // [nombre de columna, titulo para el checkbox, valores a buscar en la columna ej: ["A", "B"], "checked" o false]
+              ["modalidad-gestion", "Administración", ["Administración"], "checked"],
+              ["modalidad-gestion", "Licitación", ["Licitación"], "checked"],
+              ["modalidad-gestion", "No informa", ["No informa"], "checked"],
+              ["modalidad-gestion", "Compra de suelo", ["Compra de Suelo"], "checked"],
           ]
         },
       ]
     };
+   
     // render map
     const poncho_filter = new PonchoMapFilter(gapi_data.entries, options);
     poncho_filter.render();
@@ -210,9 +226,9 @@ MAPA CON BUSCADOR FILTRO
         // Ámbito/alcance del componente. Cambiar solo si hay dos mapas.
         "scope": "poncho-map-search", 
         // Placeholder del campo de formulario «search»
-        "placeholder": "Buscar centro",
+        "placeholder": "Buscar ente ejecutor",
         // Columnas donde debe buscar un término.
-        "search_fields": ["nombre", "provincia", "localidad", "descripcion"] 
+        "search_fields": ["localidad", "provincia", "ente-ejecutor"] 
     };
     const search = new PonchoMapSearch(poncho_filter, search_options);
     search.render();

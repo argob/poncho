@@ -1710,6 +1710,30 @@ class PonchoMap {
     return this.data;
   }
 
+  /**
+   * Validador de latitud y longitud.
+   * 
+   * @param {float} latlng - Latitud o Longitud.
+   * @return {boolean}
+   * @todo Pasar éste método a una función general de utilidades.
+   */
+  validateLatLng = (latlng) => {
+      let latlngArray = latlng.toString().split(",");
+      for(let i = 0; i < latlngArray.length; i++) {
+          if(isNaN(latlngArray[i]) || latlngArray[i] < -127 || latlngArray[i] > 75){
+            return false;
+          }
+          return true;
+      }
+  };
+
+  /**
+   * Slugify
+   * 
+   * @param {string} string Cadena de texto a convertir 
+   * @returns {string}
+   * @todo Pasar éste método a una función general de utilidades.
+   */
   slugify = (string) => {
       const a = 'àáâäæãåāăąçćčđďèéêëēėęěğǵḧîïíīįìıİłḿñńǹňôöòóœøōõőṕŕřßśšşșťțûüùúūǘůűųẃẍÿýžźż·/_,:;'
       const b = 'aaaaaaaaaacccddeeeeeeeegghiiiiiiiilmnnnnoooooooooprrsssssttuuuuuuuuuwxyyzzz------'
@@ -1729,6 +1753,7 @@ class PonchoMap {
    * Remueve acentos y caracteres especiales.
    * @param {string} data - cadena de texto a limpiar. 
    * @returns {string}
+   * @todo Pasar éste método a una función general de utilidades.
    * 
    * >>> removeAccents("Acción Murciélago árbol")
    * Accion murcielago arbol
@@ -1929,6 +1954,7 @@ class PonchoMap {
    * @return {string} - HTML del contenido del slider.
    */
   setContent = (data) => {
+    this.focusOnSlider();
     if(!this.isSliderOpen()){
         this.toggleSlider();
     }
@@ -1937,13 +1963,27 @@ class PonchoMap {
           this.template(this, data) : this.defaultTemplate(this, data);
     document.querySelector(`.js-content${this.scope_sufix}`)
             .innerHTML = html;
+    
+  };
 
-    var animation = document.querySelector('.slider--in');
-    animation.addEventListener("animationend", function(e) {
-        document
-            .querySelectorAll(`#js-anchor-slider${this.scope_sufix}`)
-            .forEach(ele => ele.focus());
-    });
+  /**
+   * Hace foco en el slider cuando se hace click o keypress sobre un
+   * marker. La idea es que un usuario con lector de pantalla mueva el
+   * foto a la información.
+   */
+  focusOnSlider = () => {
+      if(this.isSliderOpen()){
+          document
+              .getElementById(`js-anchor-slider${this.scope_sufix}`).focus();
+      } else {
+          const animation = document
+              .querySelector(`.js-slider${this.scope_sufix}`);
+          animation.addEventListener("animationend", () => {
+              document
+                  .getElementById(`js-anchor-slider${this.scope_sufix}`)
+                  .focus();
+          });
+      }
   };
 
   /**
@@ -1953,22 +1993,6 @@ class PonchoMap {
    */
   header = (key) => {
     return (this.headers.hasOwnProperty(key) ? this.headers[key] : key);
-  };
-
-  /**
-   * Validador de latitud y longitud.
-   * 
-   * @param {float} latlng - Latitud o Longitud.
-   * @return {boolean}
-   */
-  validateLatLng = (latlng) => {
-    let latlngArray = latlng.toString().split(",");
-    for(let i = 0; i < latlngArray.length; i++) {
-      if(isNaN(latlngArray[i]) || latlngArray[i] < -127 || latlngArray[i] > 75){
-        return false;
-      }
-      return true;
-    }
   };
 
   /**
@@ -1982,15 +2006,16 @@ class PonchoMap {
     // Creo el slider
     const close_button = document.createElement("button");
     close_button.classList.add("btn", "btn-xs", "btn-secondary", "btn-close", 
-                               `js-close-slider${this.scope_sufix}`);
+                              `js-close-slider${this.scope_sufix}`);
     close_button.title = "Cerrar panel";
     close_button.setAttribute("role", "button");
     close_button.setAttribute("aria-label", "Cerrar panel de información");
     close_button.innerHTML = "<span class=\"sr-only\">Cerrar</span>✕";
 
     const anchor = document.createElement("a");
-    anchor.href = "#";
-    anchor.setAttribute("tabindex", "0");
+    //anchor.href = "#";
+    
+    anchor.setAttribute("tabindex", "3");
     anchor.id = `js-anchor-slider${this.scope_sufix}`;
 
     const content_container = document.createElement("div");
@@ -2005,6 +2030,7 @@ class PonchoMap {
     // container.id = `js-anchor-slider${this.scope_sufix}`;
     container.setAttribute("role", "region");
     container.setAttribute("aria-live", "polite");
+    container.setAttribute("aria-label", "Panel de información");
     container.classList.add("slider",`js-slider${this.scope_sufix}`);
     container.id = `slider${this.scope_sufix}`;
     container.appendChild(close_button);
@@ -2226,7 +2252,7 @@ class PonchoMap {
   mdToHtml = (text) => {
       if(this.template_markdown && this.markdownEnable()){
           const converter = new showdown.Converter(this.markdown_options);
-          return converter.makeHtml(text);
+          return converter.makeHtml(`${text}`.trim());
       }
       return text;
   }
@@ -2332,19 +2358,23 @@ class PonchoMap {
   };
 
   /**
-   * Icono poncho
+   * Icono con color Poncho.
    * 
-   * @summary Retorna el color según el parámetro que se le pase. 
+   * @summary Retorna un marker SVG con color poncho. Por defecto se
+   * utiliza el azul (primary), pero se puede cambiar el clor usando
+   * el parámetro «color». Los colores están limitados a los cargados
+   * en Drupal. 
    * @param {string} color - Nombre del color según poncho colores. 
+   * @see https://leafletjs.com/examples/custom-icons/
    * @returns {object}
    */
   icon = (color="azul") => {
-    return new L.icon({
-      iconUrl: `https://www.argentina.gob.ar/sites/default/files/marcador-${color}.svg`,
-      iconSize: [27, 38],
-      iconAnchor: [13, 38],
-      popupAnchor: [0, -37]
-    });
+      return new L.icon({
+          iconUrl: `https://www.argentina.gob.ar/sites/default/files/marcador-${color}.svg`,
+          iconSize: [27, 38],
+          iconAnchor: [13, 38],
+          popupAnchor: [0, -37]
+      });
   };
 
   /**
@@ -2374,9 +2404,10 @@ class PonchoMap {
     // función a evaluar. Busca y remueve un botón de reset si existiera.
     document.querySelectorAll(
           `.js-reset-view${this.scope_sufix}`).forEach(e => e.remove());
+    
     document
-          .querySelectorAll(`${this.scope_selector} .leaflet-control-zoom-in`)
-          .forEach(ele => {
+        .querySelectorAll(`${this.scope_selector} .leaflet-control-zoom-in`)
+        .forEach(ele => {
 
         const icon = document.createElement("i");
         icon.classList.add("fa", "fa-expand");
@@ -2391,10 +2422,9 @@ class PonchoMap {
         button.setAttribute("aria-label", "Zoom para ver todo el mapa");
         button.appendChild(icon);
 
-
         button.onclick = (e) => {
-          e.preventDefault();
-          this.resetView();
+            e.preventDefault();
+            this.resetView();
         };
         ele.after(button);
     });
@@ -2422,7 +2452,6 @@ class PonchoMap {
     } else if (typeof this.marker_color === "function"){
         return this.marker_color(this, row);
     }
-
   };
 
   /**
@@ -2431,40 +2460,39 @@ class PonchoMap {
   markersMap = (entries) => {
     this.markers.clearLayers();
     entries.forEach(row => {
-      const icon = this.marker(row);
-      const id = row[this.id];
-      const latitud = row[this.latitud];
-      const longitud = row[this.longitud];
+        const icon = this.marker(row);
+        const id = row[this.id];
+        const latitud = row[this.latitud];
+        const longitud = row[this.longitud];
 
-      if(!this.validateLatLng(latitud) || !this.validateLatLng(longitud)){ 
-          return;
-      }
-      let marker_attr = {};
-      if(id){
-          marker_attr.id = id;
-      }
-      if(icon){
-          marker_attr.icon = icon;
-      }
-      // Agrego el title y el texto alternativa para proveer mayor 
-      // accesibilidad 
-      marker_attr.title = this.title ? row[this.title] : "";
-      marker_attr.alt = this.title ? `Ubicación en el mapa de ${row[this.title]}` : "";
+        if(!this.validateLatLng(latitud) || !this.validateLatLng(longitud)){ 
+            return;
+        }
+        let marker_attr = {};
+        if(id){
+            marker_attr.id = id;
+        }
+        if(icon){
+            marker_attr.icon = icon;
+        }
+        // Agrego el title y el texto alternativa para proveer mayor 
+        // accesibilidad 
+        if(this.title){
+            marker_attr.title = row[this.title];
+            marker_attr.alt = row[this.title];
+        }
 
-      const marker = new L.marker([latitud, longitud], marker_attr);
-      this.markers.addLayer(marker);
-      
-      if(!this.slider){
-          const html = (typeof this.template == "function") ? 
-                this.template(this, row) : this.defaultTemplate(this, row);
-          marker.bindPopup(html);
-      }
-
+        const marker = new L.marker([latitud, longitud], marker_attr);
+        this.markers.addLayer(marker);
+        
+        if(!this.slider){
+            const html = (typeof this.template == "function" ? 
+                  this.template(this, row) : this.defaultTemplate(this, row));
+            marker.bindPopup(html);
+        }
     });
     this.map.options.minZoom = 2;
-    this.map.addLayer(this.markers)
-    // var endTime = performance.now()
-    // console.log(`[markersMap] ${endTime - startTime} milliseconds`)
+    this.map.addLayer(this.markers);
   };
 
   /**
@@ -2489,6 +2517,11 @@ class PonchoMap {
 
   /**
    * Crea un input hidden dentro del contenedor poncho maps.
+   * 
+   * @summary El input se utiliza cuando está activada la clase 
+   * PonchoMapsFilter y PonchoMapSearch cuando el usuario escribe sobre
+   * el imput visible se copia el texto a este input y desde ahi se
+   * toma el termino a buscar o filtrar.
    */
   hiddenSearchInput = () => {
       const search = document.createElement("input");
@@ -2502,7 +2535,18 @@ class PonchoMap {
   }
 
   /**
-   * Experimental. Agrega anclas y enlaces para un menú accesible.
+   * ¡Experimental! Agrega anclas y enlaces para un menú accesible.
+   * 
+   * @summary El mapa es muy complicado de leer con un lector de pantalla.
+   * El contexto es dificil de entender. Estos enlaces ayudan a navegar
+   * dos o tres de los sectores que contienen y manejan información:
+   * los filtros, los markers y el control de zoom.
+   * @todo Revisar el modo de activar el enlace para visualizar el slider
+   * cuando éste está visible. Como sugerencia se puede utilizar
+   * Aria para setear el estado, pero esto hay que chequearlo con 
+   * expertos.
+   * @see https://www.w3.org/WAI/standards-guidelines/aria/
+   * @see https://developer.mozilla.org/en-US/docs/Learn/Accessibility/WAI-ARIA_basics
    */
   accesibleMenu = () => {
     // Anclas que se deben crear.
@@ -2520,42 +2564,45 @@ class PonchoMap {
     // Enlaces
     const values = [
       {
-        "text" :"Ir a los marcadores del mapa",
-        "anchor" : "#" + anchors[0][1]
+          "text" :"Ir a los marcadores del mapa",
+          "anchor" : `#${anchors[0][1]}`
+      },
+      {
+          "text": "Ir al panel de zoom",
+          "anchor": `#${anchors[1][1]}` 
       },
       // {
-      //   text :"Ir al panel de información",
-      //   anchor : `#slider${this.scope_sufix}`
+      //   "text": "Ir al panel de información",
+      //   "anchor": `#js-anchor-slider${this.scope_sufix}` 
       // },
-      {
-        "text" :"Ir al panel de zoom",
-        "anchor": "#" + anchors[1][1]
-      },
+
+      
     ]
     if(typeof this.filters !== "undefined"){
         values.push({
-            "text" :"Ir al panel de filtros",
+            "text" : "Ir al panel de filtros",
             "anchor": `#filtrar-busqueda${this.scope_sufix}`
         });
     }
 
     const ul = document.createElement("ul");
     ul.className = "sr-only";
-    values.forEach(link => {
+    ul.setAttribute("aria-label", "Menú para el mapa");
+    ul.setAttribute("role", "navigation");
+    values.forEach((link, index) => {
         const a = document.createElement("a");
         a.textContent = link.text;
+        a.setAttribute("tabindex", index + 1);
         a.href = link.anchor;
         const li = document.createElement("li");
         li.appendChild(a);
         ul.appendChild(li);
-    })
+    });
 
     document.querySelectorAll(`${this.scope_selector}`).forEach(element => {
         element.insertBefore(ul, element.children[0])
-     });
+    });
   };
-
-
 
   /**
    * Hace el render del mapa.
@@ -2578,11 +2625,11 @@ class PonchoMap {
     }
 
     if(this.hash){
-      this.urlHash();
+        this.urlHash();
     }
 
     if(this.scroll && this.hasHash()){
-      this.scrollCenter();
+        this.scrollCenter();
     }
 
     this.accesibleMenu();
@@ -2633,16 +2680,26 @@ class PonchoMapFilter extends PonchoMap {
       "filters_visible": false, 
       "search_fields":[],
       "messages": {
-          "reset": "<a href=\"#\" class=\"{{reset_search}}\">Reestablecer</a>",
+          "reset": "<a href=\"#\" class=\"{{reset_search}}\" " 
+          + "title=\"Reestablece el mapa a su estado inicial\">" 
+          + "Reestablecer mapa</a>",
           "initial": "Hay {{total_results}} puntos en el mapa.",
           "no_results_by_term": "No encontramos resultados para tu búsqueda. " 
-                  + "<a href=\"#\" class=\"{{reset_search}}\">Reestablecer</a>",
+                  + "<a href=\"#\" class=\"{{reset_search}}\" " 
+                  + "title=\"Reestablece el mapa a su estado inicial\">" 
+                  + "Reestablecer mapa</a>",
           "no_results": "No se encontraron entradas. " 
-                  + "<a href=\"#\" class=\"{{reset_search}}\">Reestablecer</a>",
+                  + "<a href=\"#\" class=\"{{reset_search}}\" " 
+                  + "title=\"Reestablece el mapa a su estado inicial\">" 
+                  + "Reestablecer mapa</a>",
           "results": "{{total_results}} resultados coinciden con tu búsqueda." 
-                  + " <a href=\"#\" class=\"{{reset_search}}\">Reestablecer</a>",
+                  + " <a href=\"#\" class=\"{{reset_search}}\" " 
+                  + "title=\"Reestablece el mapa a su estado inicial\">" 
+                  + "Reestablecer mapa</a>",
           "one_result": "{{total_results}} resultado coincide con tu búsqueda." 
-                  + " <a href=\"#\" class=\"{{reset_search}}\">Reestablecer</a>",
+                  + " <a href=\"#\" class=\"{{reset_search}}\" " 
+                  + "title=\"Reestablece el mapa a su estado inicial\">" 
+                  + "Reestablecer mapa</a>",
           "has_filters": "<i title=\"¡Advertencia!\" aria-hidden=\"true\" " 
                   + "class=\"fa fa-warning text-mandarina\"></i> " 
                   + "Se están usando " 
@@ -2951,6 +3008,7 @@ class PonchoMapFilter extends PonchoMap {
                               "poncho-map-filters");
       container.setAttribute("role", "region");
       container.setAttribute("aria-live", "polite");
+      container.setAttribute("aria-label", "Panel de filtros");
       container.id = `poncho-map-filters${this.scope_sufix}`;
 
       if(this.filters_visible){
