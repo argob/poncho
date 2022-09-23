@@ -41,16 +41,26 @@ class PonchoMapFilter extends PonchoMap {
       "filters_visible": false, 
       "search_fields":[],
       "messages": {
-          "reset": "<a href=\"#\" class=\"{{reset_search}}\">Reestablecer</a>",
+          "reset": "<a href=\"#\" class=\"{{reset_search}}\" " 
+          + "title=\"Reestablece el mapa a su estado inicial\">" 
+          + "Reestablecer mapa</a>",
           "initial": "Hay {{total_results}} puntos en el mapa.",
           "no_results_by_term": "No encontramos resultados para tu búsqueda. " 
-                  + "<a href=\"#\" class=\"{{reset_search}}\">Reestablecer</a>",
+                  + "<a href=\"#\" class=\"{{reset_search}}\" " 
+                  + "title=\"Reestablece el mapa a su estado inicial\">" 
+                  + "Reestablecer mapa</a>",
           "no_results": "No se encontraron entradas. " 
-                  + "<a href=\"#\" class=\"{{reset_search}}\">Reestablecer</a>",
+                  + "<a href=\"#\" class=\"{{reset_search}}\" " 
+                  + "title=\"Reestablece el mapa a su estado inicial\">" 
+                  + "Reestablecer mapa</a>",
           "results": "{{total_results}} resultados coinciden con tu búsqueda." 
-                  + " <a href=\"#\" class=\"{{reset_search}}\">Reestablecer</a>",
+                  + " <a href=\"#\" class=\"{{reset_search}}\" " 
+                  + "title=\"Reestablece el mapa a su estado inicial\">" 
+                  + "Reestablecer mapa</a>",
           "one_result": "{{total_results}} resultado coincide con tu búsqueda." 
-                  + " <a href=\"#\" class=\"{{reset_search}}\">Reestablecer</a>",
+                  + " <a href=\"#\" class=\"{{reset_search}}\" " 
+                  + "title=\"Reestablece el mapa a su estado inicial\">" 
+                  + "Reestablecer mapa</a>",
           "has_filters": "<i title=\"¡Advertencia!\" aria-hidden=\"true\" " 
                   + "class=\"fa fa-warning text-mandarina\"></i> " 
                   + "Se están usando " 
@@ -359,6 +369,7 @@ class PonchoMapFilter extends PonchoMap {
                               "poncho-map-filters");
       container.setAttribute("role", "region");
       container.setAttribute("aria-live", "polite");
+      container.setAttribute("aria-label", "Panel de filtros");
       container.id = `poncho-map-filters${this.scope_sufix}`;
 
       if(this.filters_visible){
