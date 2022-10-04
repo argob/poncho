@@ -7968,7 +7968,7 @@ form > fieldset > legend {
   font-size: 16px;
   height: 44px;
   padding: 6px 16px;
-  border: solid 1px #DDD;
+  border: solid 1px #555;
   border-radius: 10px;
   box-shadow: none;
 }
