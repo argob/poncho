@@ -327,6 +327,16 @@ class PonchoMapSearch {
     });
 
     /**
+     * Agrega el aria role y aria labe al grupo de buscador.
+     */
+    searchRegion = () => {
+        const element = document.querySelector(this.search_scope_selector);
+        element.setAttribute("role", "region");
+        element.setAttribute("aria-label", "Buscador");
+    };
+
+
+    /**
      * Ejecuta el componente select2 y activa el listener de los filtros.
      */
     render = () => {
@@ -345,7 +355,12 @@ class PonchoMapSearch {
             this.instance.filteredData();
             this.addDataListOptions();
         })
+        this.searchRegion();
         this.keyup();
+        
+
+
+
         /*
         jQuery(document).on('keyup keypress keydown', ".select2-search__field", 
             function (e) {

@@ -100,31 +100,14 @@ MAPA CON BUSCADOR FILTRO
 <!-- / INCLUDE SCRIPTS -->
 
 
-<style>
-    #js-anchor-slider--poncho-map {
-        position: absolute; left: 10px; top: 10px;
-        border-radius: 50%;
-        display: block;
-        width: 9px;
-        outline: none;
-        height: 9px;
-        border:none;
-        background-color: transparent;
-        transition:.3s;
-    }
-    #js-anchor-slider--poncho-map:focus {
-    background: rgb(205, 220, 57);
-    box-shadow: 0 0 6px rgba(205, 220, 57, .5);
-    color:white;
-  }
-  #js-anchor-slider--poncho-map:blur {
-    background: dodgerblue;
-    color:white;
-  }
-</style>
+
 <!-- SCRIPTS -->
 <script>
+  const setFilter = (entries, key, status="checked") => [
+          ...new Set(entries.map(e => e[key]))
+      ].map(e => [key, e, [e], status]);
   // init
+  var filter;
   (async() => {
     // GApi helpers
     const gapi = new GapiSheetData({"gapi_key": "AIzaSyCq2wEEKL9-6RmX-TkW23qJsrmnFHFf5tY"});
@@ -162,7 +145,7 @@ MAPA CON BUSCADOR FILTRO
           "values": [
               "ente-ejecutor", "Ubicación", "modalidad-gestion",
               "estado-obra", "n-proyecto", "lotes-generados",
-              "expediente-origen", "inversion-total","inversion-lote"
+               "inversion-total","inversion-lote","expediente-origen",
           ],
           //     "exclude": ["id", "inhibicion_puberal", "hormonizacion_adolescentes"]
           // Con mixing puedo armar grupo de columnas separadas con 
@@ -195,31 +178,20 @@ MAPA CON BUSCADOR FILTRO
       // Grupos de filtros.
       "filters" :[
         {
-          // Lenged para el fileset
-          "legend" : "Estado de obra",
-          "fields" : [
-              // [nombre de columna, titulo para el checkbox, valores a buscar en la columna ej: ["A", "B"], "checked" o false]
-              ["estado-obra", "En ejecución", ["En ejecución"], "checked"],
-              ["estado-obra", "A ejecutarse", ["A ejecutarse"], "checked"],
-          ]
+          "legend": "Estado de obra",
+          "fields": setFilter(gapi_data.entries, 'estado-obra')
         },
         {
-          // Lenged para el fileset
-          "legend" : "Modalidad",
-          "fields" : [
-              // [nombre de columna, titulo para el checkbox, valores a buscar en la columna ej: ["A", "B"], "checked" o false]
-              ["modalidad-gestion", "Administración", ["Administración"], "checked"],
-              ["modalidad-gestion", "Licitación", ["Licitación"], "checked"],
-              ["modalidad-gestion", "No informa", ["No informa"], "checked"],
-              ["modalidad-gestion", "Compra de suelo", ["Compra de Suelo"], "checked"],
-          ]
-        },
+          "legend": "Modalidad",
+          "fields": false,
+          "field": ["modalidad-gestion"]
+        }
       ]
     };
-   
+
     // render map
-    const poncho_filter = new PonchoMapFilter(gapi_data.entries, options);
-    poncho_filter.render();
+    filter = new PonchoMapFilter(gapi_data.entries, options);
+    filter.render();
 
     // Buscador
     const search_options = {
@@ -230,7 +202,7 @@ MAPA CON BUSCADOR FILTRO
         // Columnas donde debe buscar un término.
         "search_fields": ["localidad", "provincia", "ente-ejecutor"] 
     };
-    const search = new PonchoMapSearch(poncho_filter, search_options);
+    const search = new PonchoMapSearch(filter, search_options);
     search.render();
   })();
 </script>

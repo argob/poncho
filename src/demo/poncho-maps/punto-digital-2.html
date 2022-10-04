@@ -64,22 +64,33 @@
   <div class="row">
       <div class="col-md-push-2 col-md-8 m-y-1">
         <h1 class="h2 text-cielo">Punto Digital</h1>
-        <!-- PONCHO MAP SEARCH -->
-        <form>
-          <div  class="form-group webform-component">
-              <label for="poncho_map_search">Buscá tu Punto Digital</label>
-              <select 
-                  class="form-control poncho-map-search"
-                  data-scope="search-puntos-digitales"
-                  name="search">
-              </select>
-          </div>
-        </form>
-        <!-- / PONCHO MAP SEARCH -->
+<!-- PONCHO MAP SEARCH -->
+<form action="" id="poncho-map-search">
+  <div data-scope="poncho-map-search" role="region" aria-label="Panel de búsqueda">
+      <div class="input-group">
+          <input 
+              type="search" 
+              id="search"
+              name="search" 
+              class="js-poncho-map-search__input form-control" 
+              list="js-porcho-map-search__list">
+          <datalist id="js-porcho-map-search__list" spellcheck="false"></datalist>
+          <span class="input-group-btn">
+            <button class="js-poncho-map-search__submit btn btn-primary">
+                <i class="fa fa-search text-white"></i>
+            </button>
+          </span>
+      </div>
+      <div data-scope="poncho-map" class="m-b-1">
+          <div class="js-poncho-map__help small text-default"></div>
+      </div>
+  </div>
+</form>
+<!-- / PONCHO MAP SEARCH -->
       </div>
       <div class="col-md-12">
         <!-- poncho map -->
-        <div class="poncho-map" data-scope="poncho-map">
+        <div class="poncho-map" data-scope="poncho-map-search">
           <!-- leaflet -->
           <div
               class="leaflet-container leaflet-touch leaflet-fade-anim 
@@ -150,15 +161,10 @@
     
     // BUSCADOR DE MARKERS
     const search_options = {
-      "scope": "search-puntos-digitales",
+      "scope": "poncho-map-search",
       "text": "nombre",
       "id": "id_pd",
       "placeholder": "Buscá tu Punto Digital",
-      "template": (self, entry) => {
-          return "<p class=\"m-b-0\"><b>" + entry.nombre + "</b></p>" 
-          + "<p class=\"m-b-0 small\">" + entry.provincia + ", " 
-          + entry.localidad + "</p>";
-      },
       "search_fields": [
           "nombre",
           "institucion",

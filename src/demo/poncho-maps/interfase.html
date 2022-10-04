@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head>
+  <link rel="profile" href="http://www.w3.org/1999/xhtml/vocab" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <script 
+      src="https://code.jquery.com/jquery-3.6.0.min.js" 
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+      crossorigin="anonymous">
+    </script>
+  <link 
+      rel="stylesheet" 
+      href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+  <link 
+      rel="stylesheet" 
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" 
+      integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+      crossorigin="anonymous" 
+      referrerpolicy="no-referrer" />  
+  <link 
+      rel="stylesheet" 
+      href="https://capacita-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css?rfqjsh">
+  <!-- /Base -->
+  <link rel="stylesheet" href="../../../dist/css/poncho.min.css" />
+  <script src="../../../src/js/poncho-map.js" ></script>
+<script src="../../../src/js/poncho-map-filter.js"></script>
+<script src="../../../src/js/poncho-map-search.js"></script>
+<script src="../../../src/js/gapi-sheet-data.js"></script>
+  <title>Mapa con filtro y buscador</title>
+</head>
+<body>
+<div class="m-t-4"></div>
+<!-- 
+MAPA CON BUSCADOR FILTRO  
+COPIAR DESDE ACA...
+-->
+<div class="col-md-12">
+<!-- PONCHO MAP SEARCH -->
+<form action="" id="poncho-map-search">
+    <div data-scope="poncho-map-search" role="region" aria-label="Panel de búsqueda">
+        <div class="input-group">
+            <input 
+                type="search" 
+                id="search"
+                name="search" 
+                class="js-poncho-map-search__input form-control" 
+                list="js-porcho-map-search__list">
+            <datalist id="js-porcho-map-search__list" spellcheck="false"></datalist>
+            <span class="input-group-btn">
+              <button class="js-poncho-map-search__submit btn btn-primary">
+                  <i class="fa fa-search text-white"></i>
+              </button>
+            </span>
+        </div>
+        <div data-scope="poncho-map" class="m-b-1">
+            <div class="js-poncho-map__help small text-default"></div>
+        </div>
+    </div>
+</form>
+<!-- / PONCHO MAP SEARCH -->
+</div>
+<div class="col-md-12">
+  <!-- PONCHO MAP -->
+  <div class="poncho-map" data-scope="poncho-map">
+      <div
+          class="leaflet-container leaflet-touch leaflet-fade-anim 
+                leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
+          id="map"
+          style="height: 600px; width: 100%;"
+          tabindex="0">
+      </div>
+  </div>
+  <!-- / PONCHO MAP -->
+</div>
+
+<!-- INCLUDE SCRIPTS -->
+<script src="https://www.argentina.gob.ar/sites/default/files/ponchotable/showdown.js"></script>
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/extensiones/showdown-extensions.js"></script>
+<!-- <link href="https://gis.argentina.gob.ar/js/leaflet/leaflet.css" rel="stylesheet"/> -->
+<!-- <link href="https://gis.argentina.gob.ar/js/leaflet/MarkerCluster.Default.css" rel="stylesheet"/> -->
+<!-- <link href="https://gis.argentina.gob.ar/js/leaflet/MarkerCluster.css" rel="stylesheet"/>  -->
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.1/leaflet.css" integrity="sha512-UkezATkM8unVC0R/Z9Kmq4gorjNoFwLMAWR/1yZpINW08I79jEKx/c8NlLSvvimcu7SL8pgeOnynxfRpe+5QpA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.css" integrity="sha512-mQ77VzAakzdpWdgfL/lM1ksNy89uFgibRQANsNneSTMD/bj0Y/8+94XMwYhnbzx8eki2hrbPpDm0vD0CiT2lcg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.Default.min.css" integrity="sha512-fYyZwU1wU0QWB4Yutd/Pvhy5J1oWAwFXun1pt+Bps04WSe4Aq6tyHlT4+MHSJhD8JlLfgLuC4CbCnX5KHSjyCg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.1/leaflet.js" integrity="sha512-y6IQOhEalDvx6StYG9hG/64K2vuX3bVJ2Q3sBd0uP2UlhIAwOc9DEFgQ/oz1dQmsc2XbWwhn5MfpT76+1bx2Gg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.js" integrity="sha512-OFs3W4DIZ5ZkrDhBFtsCP6JXtMEDGmhl0QPlmWYBJay40TT1n3gt2Xuw8Pf/iezgW9CdabjkNChRqozl/YADmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<!-- <script src="https://gis.argentina.gob.ar/js/leaflet/leaflet.js"></script>
+<script src="https://gis.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script> -->
+<script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
+<script src="./js/interfase.js" ></script>
+<!-- / INCLUDE SCRIPTS -->
+<script>
+    ponchoMapFilterSearch({
+        gapi_key: "AIzaSyCq2wEEKL9-6RmX-TkW23qJsrmnFHFf5tY",
+        gsheet_id: "1p9xKDIJhEfeE9vmpyC8EtJsdOuieZO1kx4_wz2IaJWk", 
+        dataset_conf: "dataset_conf", 
+        dataset: "dataset"
+    });
+</script>
+<!-- HASTA ACÁ... -->
+
+
+</body>
+</html>
