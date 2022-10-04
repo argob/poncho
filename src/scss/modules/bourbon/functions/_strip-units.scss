@@ -12,6 +12,8 @@
 ///
 /// @return {Number (Unitless)}
 
+@use "sass:math";
+
 @function strip-units($value) {
-  @return ($value / ($value * 0 + 1));
+  @return math.div($value, $value * 0 + 1);
 }

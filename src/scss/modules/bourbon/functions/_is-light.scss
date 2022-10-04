@@ -11,11 +11,13 @@
 ///
 /// @return {Bool}
 
+@use "sass:math";
+
 @function is-light($hex-color) {
   $-local-red: red(rgba($hex-color, 1));
   $-local-green: green(rgba($hex-color, 1));
   $-local-blue: blue(rgba($hex-color, 1));
-  $-local-lightness: ($-local-red * 0.2126 + $-local-green * 0.7152 + $-local-blue * 0.0722) / 255;
+  $-local-lightness: math.div($-local-red * 0.2126 + $-local-green * 0.7152 + $-local-blue * 0.0722, 255);
 
   @return $-local-lightness > 0.6;
 }

@@ -4,7 +4,8 @@
   "description": "Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "gulp": "gulp"
   },
   "repository": {
     "type": "git",
@@ -19,15 +20,17 @@
     "css",
     "scss"
   ],
-  "author": "Dirección Nacional de Servicios Digitales de la Subsecretaría de Gobierno Abierto y País Digital.",
+  "author": "Dirección Nacional de Servicios Digitales de la Subsecretaría de Servicios y País Digital.",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/argob/poncho/issues"
   },
   "homepage": "https://argob.github.io/poncho",
   "devDependencies": {
-    "@babel/preset-env": "^7.18.2",
+    "@babel/core": "^7.0.0",
+    "@babel/preset-env": "^7.19.3",
     "gulp": "^4.0.2",
+    "gulp-cli": "^2.3.0",
     "gulp-babel": "^8.0.0",
     "gulp-concat": "^2.6.1",
     "gulp-jshint": "^2.1.0",
@@ -39,9 +42,7 @@
     "install": "^0.13.0",
     "npm": "^8.18.0",
     "sass": "^1.54.6",
-    "with": "^7.0.2"
-  },
-  "dependencies": {
+    "with": "^7.0.2",
     "gulp-if": "^3.0.0",
     "uglify-js": "^3.17.0"
   }
