@@ -37,10 +37,6 @@ jobs:
         run: |
           npm install
           npm run gulp
-#      - name: 🔨 Instalamos dependencias para la documentación
-#        working-directory: ./iconos
-#        run: |
-#          cp favicon.ico ./docs/.
       - name: Checkout Iconos Arg
         uses: actions/checkout@master
         with: 
@@ -50,6 +46,7 @@ jobs:
         run: |
           echo "Copying $FILE"
           cp -R ./iconos/dist/css/icono-arg.css ./poncho/dist/css/
+          cp -R ./iconos/dist/fonts/* ./poncho/dist/fonts/
       - name: 🧪 Deploy build
         working-directory: ./poncho
         run: |
