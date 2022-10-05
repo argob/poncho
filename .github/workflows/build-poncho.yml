@@ -34,6 +34,7 @@ jobs:
 #          fi
       - name: 🎩 Compilamos todo
         working-directory: ./poncho
+        run: npm install
         run: npm run gulp
 #      - name: 🔨 Instalamos dependencias para la documentación
 #        working-directory: ./iconos
