@@ -41,6 +41,15 @@ jobs:
 #        working-directory: ./iconos
 #        run: |
 #          cp favicon.ico ./docs/.
+      - name: Checkout Iconos Arg
+        uses: actions/checkout@master
+        with: 
+          repository: argob/iconos
+          path: ./iconos
+      - name: Copy/Create file
+        run: |
+          echo "Copying $FILE"
+          cp -R ./iconos/dist/css/icono-arg.css ./poncho/dist/css/
       - name: 🧪 Deploy build
         working-directory: ./poncho
         run: |
@@ -49,16 +58,7 @@ jobs:
           git add .
           git commit -am "🧪 Deploy with ${GITHUB_WORKFLOW}"
           git push --all -f https://${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git
-      - name: Checkout Iconos Arg
-        uses: actions/checkout@master
-        with: 
-          repository: argob/iconos
-          path: ./iconos
 
-      - name: Copy/Create file
-        run: |
-          echo "Copying $FILE"
-          cp -R ./iconos/dist/css/icono-arg.css ./poncho/dist/css/
 #      - name: Push Project B
 #        run: |
 #          cd ./poncho
