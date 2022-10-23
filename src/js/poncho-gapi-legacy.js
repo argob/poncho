@@ -2,7 +2,7 @@
  * GAPI LEGACY
  * Retorna la estructura de la versión 3 de la API GoogleSheets.
  * 
- * @author Agustín Bouillet bouilleta@jefatura.gob.ar, 2021.
+ * @author Agustín Bouillet <bouilleta@jefatura.gob.ar>
  * @summary La estructura del objeto que retorna es de este modo:
  *  .
  *  \--feed

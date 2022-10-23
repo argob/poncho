@@ -3,7 +3,7 @@
  * 
  * @summary Busca marcadores usando el componente select2
  * 
- * @author Agustín Bouillet bouilleta@jefatura.gob.ar, septiembre 2022
+ * @author Agustín Bouillet <bouilleta@jefatura.gob.ar>
  * @requires leaflet.js,leaflet.markercluster.js,leaflet.css,
  * MarkerCluster.Default.css,MarkerCluster.css, PonchoMap, 
  * PonchoMapFilter, select2.js
@@ -61,7 +61,6 @@ class PonchoMapSearch {
         this.sort_reverse = opts.sort_reverse;
         this.search_scope_selector = (
           this.scope ? `[data-scope="${this.scope}"]`: "");
-
         this.instance.search_fields = opts.search_fields;
     };
 
@@ -87,8 +86,7 @@ class PonchoMapSearch {
 
       if(this.sort_reverse){
         return order.reverse();
-      }
-      
+      }      
       return order;
     };
 
@@ -136,45 +134,6 @@ class PonchoMapSearch {
     };
 
     /**
-     * Configuración para el componenete select2.
-     */
-    selectTwo = () => {
-        if(!jQuery.isFunction( jQuery.fn.select2 )){
-            return;
-        }
-
-        jQuery(`${this.search_scope_selector} .js-poncho-map-search__select2`).select2({
-              data: this.dataset(),
-              matcher: this.matchTerm,
-              tags:true,
-              language: {
-                  inputTooShort: function () {
-                      return `Debe introducir al menos 2 caracteres…`;
-                  }
-              },
-              allowClear: this.allow_clear,
-              theme: this.theme,
-              minimumInputLength: this.minimum_input_length,
-              placeholder: this.placeholder,
-              escapeMarkup: function(markup) {
-                  return markup;
-              },
-              templateResult: function(data) {
-                  return data.html;
-              },
-              templateSelection: function(data) {
-                  return data.text;
-              },
-          }).on("select2:select", e => {
-              this.instance.gotoEntry(e.params.data.id);
-          }).on("select2:open", () => {
-              document
-                  .querySelectorAll(".select2-search__field")
-                  .forEach(e => e.focus());
-          });
-    };
-
-    /**
      * Fix para solucionar el que quede seleccionado el primer option 
      * del select.
      */
@@ -195,24 +154,18 @@ class PonchoMapSearch {
             `${this.search_scope_selector} .js-poncho-map-search__input`);
         const submit = document.querySelectorAll(
                 `${this.search_scope_selector} .js-poncho-map-search__submit`);
-        
+
         submit.forEach(e => {
             e.onclick = (event => {
                 event.preventDefault();
-
-
                 const element = document.querySelector(
                       `#js-search-input${this.instance.scope_sufix}`);
                 element.value = input.value;
-
-
                 const term = input.value;
                 this.renderSearch(term);
             });
         });
-        
-
-    }
+    };
 
     /**
      * en el keyup copia el value al input hidden de filtros.
@@ -234,7 +187,7 @@ class PonchoMapSearch {
     };
 
     /**
-     * Límpia del input search el término de búsqueda. 
+     * Límpia del input search el término de búsqueda.
      * @returns {void}
      */
     cleanInput = () => document
@@ -243,14 +196,14 @@ class PonchoMapSearch {
         .value = "";
 
     /**
-     * Agrega el placeholder si fué seteado en las opciones. 
+     * Agrega el placeholder si fué seteado en las opciones.
      * @returns {void}
      */
     placeHolder = () => {
         if(!this.placeholder){
             return "";
         }
-       
+
         document.querySelectorAll(
               `${this.search_scope_selector} .js-poncho-map-search__input`)
             .forEach(element => element.placeholder = this.placeholder.toString());
@@ -276,6 +229,7 @@ class PonchoMapSearch {
         this.instance.markersMap(entries); 
         if(this.instance.slider){
             this.instance.renderSlider();
+            this.instance.clickeableFeature();
             this.instance.clickeableMarkers();
             this.instance.clickToggleSlider();
         }
@@ -291,7 +245,7 @@ class PonchoMapSearch {
         // Si hay más de una entrada muestro los markers y hago 
         // zoom abarcando el límite de todos ellos.
         if(entries.length == 1){
-            this.instance.gotoEntry(entries[0][this.instance.id]);
+            this.instance.gotoEntry(entries[0].properties[this.instance.id]);
         } else if(term.trim() != "") {
             this.instance.removeHash();
             setTimeout(this.instance.fitBounds, 350);
@@ -301,7 +255,7 @@ class PonchoMapSearch {
         this.instance.resetSearch();
         this.instance.clickToggleFilter();
     };
-  
+
     /**
      * Agrega options en el claslist del input de búsqueda.
      * <datalist>
@@ -320,9 +274,8 @@ class PonchoMapSearch {
                 opt.textContent = content; 
                 return opt;
             };
-
             this.instance.filtered_entries.forEach(e => 
-                element.appendChild(options(e[this.text]))
+                element.appendChild(options(e.properties[this.text]))
             );
     });
 
@@ -340,38 +293,16 @@ class PonchoMapSearch {
      * Ejecuta el componente select2 y activa el listener de los filtros.
      */
     render = () => {
-        console.log(
-            "%cPonchoMapFilterSearch",
-            'padding:5px;border-radius:6px;background: #ff4400;color: #fff');
-
         this.firstEmptyOption();
-        this.selectTwo();
         this.placeHolder();
         this.triggerSearch();
         this.addDataListOptions();
         this.instance.filterChange((event) => {
-            // console.log("%cPonchoFilterSearch (listener)", 'color: #ff4400;');
             event.preventDefault();
             this.instance.filteredData();
             this.addDataListOptions();
         })
         this.searchRegion();
         this.keyup();
-        
-
-
-
-        /*
-        jQuery(document).on('keyup keypress keydown', ".select2-search__field", 
-            function (e) {
-            if (e.which == 13) {
-                search.renderSearch( 
-                    document
-                        .querySelector(`.select2-selection__rendered`)
-                        .textContent
-                )
-            }
-        });
-        */
     }  
 };
