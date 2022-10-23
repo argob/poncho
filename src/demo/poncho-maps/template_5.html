@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head>
+  <link rel="profile" href="http://www.w3.org/1999/xhtml/vocab" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <script 
+      src="https://code.jquery.com/jquery-3.6.0.min.js" 
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+      crossorigin="anonymous">
+    </script>
+  <link 
+      rel="stylesheet" 
+      href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+  <link 
+      rel="stylesheet" 
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" 
+      integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+      crossorigin="anonymous" 
+      referrerpolicy="no-referrer" />  
+  <link 
+      rel="stylesheet" 
+      href="https://capacita-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css?rfqjsh">
+  <!-- /Base -->
+  <link rel="stylesheet" href="../../../dist/css/poncho.min.css" />
+  <title>Mapa con filtro y buscador</title>
+  <style>
+    html, body { height: 100%;}
+    .leaflet-marker-icon.leaflet-div-icon {
+      background-color:transparent;
+      border: none;
+    }
+    .poncho-map__div-icon {
+        background-color:transparent;
+        height:38px;
+        width:38px;
+        position:relative;
+        display:block;
+        margin:auto;
+        text-align:center;
+        border-radius: 50%;
+
+    }
+    .poncho-map__div-icon > i {
+        font-size:1.7em; 
+        position:absolute; 
+        margin:auto; 
+        top: 50%; 
+        right: 50%;
+        transform: translate(50%,-50%);
+        opacity: .9;
+        transition: .2s;
+        text-shadow: 1px 1px 1px rgba(0,0,0,.2);
+    }
+    .poncho-map__div-icon:hover > i {
+      opacity: 1;
+      transition: .2s;
+    } 
+
+
+    body { background-color: var(--white);}
+    div.poncho-map {
+      /* --slider-width: 300px;
+      --slider-media-mobile-height: 45%;
+      --active-marker-color:55, 187, 237;
+      --active-marker-alpha: .4;
+      --slider-color: rgba(0,0,0,.6);
+      --slider-background: var(--lima);
+      --slider-title-color:var(--arandano); */
+    }
+
+    @media (prefers-color-scheme: dark) {
+        body {
+          background:var(--black) !important;
+        }
+          div.poncho-map {
+            --color-base: rgba(255,255,255,.8);
+            --slider-width: 300px;
+            --slider-background: var(--black);
+            --slider-color: var(--gray-light);
+            --text-primary: var(--cielo, red) !important;
+            /* --active-marker-color:55, 187, 237; */
+        }
+        div.poncho-map .header .text-primary {
+          color:var(--maiz) !important;
+        }
+    }
+  </style>
+</head>
+<body class="p-t-3">
+  <script src="../../../src/js/utils.js"></script>
+  <script src="../../../src/js/poncho-map.js"></script>
+  <script src="../../../src/js/poncho-map-filter.js"></script>
+  <script src="../../../src/js/poncho-map-search.js"></script>
+  <script src="../../../src/js/gapi-sheet-data.js"></script>
+  <script src="./data/test-geo.js"></script>
+
+
+<!-- 
+MAPA CON BUSCADOR FILTRO  
+
+COPIAR DESDE ACÁ…
+-->
+<div class="col-md-12">
+<!-- PONCHO MAP SEARCH -->
+<form action="" id="poncho-map-search">
+    <div data-scope="poncho-map-search">
+        <div class="input-group">
+            <input 
+                type="search" 
+                id="search"
+                name="search" 
+                autocomplete="off"
+                class="js-poncho-map-search__input form-control" 
+                list="js-porcho-map-search__list">
+            <datalist id="js-porcho-map-search__list"></datalist>
+            <span class="input-group-btn">
+              <button class="js-poncho-map-search__submit btn btn-primary">
+                  <i class="fa fa-search text-white"></i>
+              </button>
+            </span>
+        </div>
+        <div data-scope="poncho-map" class="m-b-1">
+            <div class="js-poncho-map__help small text-default"></div>
+        </div>
+    </div>
+</form>
+<!-- / PONCHO MAP SEARCH -->
+</div>
+<div class="col-md-12">
+<!-- PONCHO MAP -->
+<div class="poncho-map" data-scope="poncho-map">
+    <div
+        class="leaflet-container leaflet-touch leaflet-fade-anim 
+              leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
+        id="map"
+        style="height: 600px; width: 100%;"
+        tabindex="0">
+    </div>
+</div>
+<!-- / PONCHO MAP -->
+</div>
+
+<!-- INCLUDE SCRIPTS -->
+<script src="https://www.argentina.gob.ar/sites/default/files/ponchotable/showdown.js"></script>
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/extensiones/showdown-extensions.js"></script>
+<!-- <link href="https://gis.argentina.gob.ar/js/leaflet/leaflet.css" rel="stylesheet"/>
+<link href="https://gis.argentina.gob.ar/js/leaflet/MarkerCluster.Default.css" rel="stylesheet"/>
+<link href="https://gis.argentina.gob.ar/js/leaflet/MarkerCluster.css" rel="stylesheet"/> 
+<script src="https://gis.argentina.gob.ar/js/leaflet/leaflet.js"></script>
+<script src="https://gis.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script>
+<script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script> -->
+<!-- / INCLUDE SCRIPTS -->
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.2/leaflet.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.Default.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.min.css" rel="stylesheet"/> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.2/leaflet.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.min.js"></script>
+
+
+<!-- SCRIPTS -->
+<script>
+    /**
+     * Marker HTML con iconos Poncho, FontAwesome o similares.
+     * 
+     * @autor Agustín Bouillet <bouilleta@jefatura.gob.ar>
+     * @see https://argob.github.io/poncho/identidad/iconos/
+     * @see https://fontawesome.com/
+     * @param {string} color Nombre de color Poncho
+     * @param {string} icon Nombre del icono Poncho, FontAwesome o similares.
+     * @param {object} options Objeto con opciones: 
+     * @property {boolean} options.container Define si el icono tiene o 
+     * no, un contenedor.
+     * @property {boolean} options.invert Define si el color se usa de 
+     * fondo o figura. 
+     * @example
+     * // returns Retorna un icono color mandarina, con el dibugo de un cannabis,
+     * // sin contenedor,
+     * iconPoncho("mandarina", "icono-arg-cannabis-medicinal-1",
+     *            {container:false, invert:false})
+     * @return {undefined}
+     */ 
+    const iconPoncho = (color, icon, options={}) => {
+        const {container=true, invert=false} = options;
+        color = ponchoColor(color);
+        let foreground = (invert ? "#FFFFFF" : color);
+        let border = (!container ? '' : `border:2px solid ${color};`);
+        let background = "#FFFFFF";
+        if(invert){
+            background = color;
+        } else if(!container) {
+            background = "";
+        }
+        return new L.divIcon({
+            html: 
+              `<a class="poncho-map__div-icon" 
+                  style="background:${background};${border}">
+                  <i class="${icon}" style="color: ${foreground}"></i>
+              </a>`,
+            iconSize: [40, 40],
+            iconAnchor: [20, 40],
+            popupAnchor: [-3, -40]
+        });
+    };
+
+    /**
+     * Icono tipo imagen
+     * @param {string} url URI de la imagen.
+     * @return {undefined}
+     */
+    const iconImg = (url) => {
+        return new L.icon({
+            iconUrl: url,
+            iconSize: [38, 38],
+            iconAnchor: [22, 41],
+            popupAnchor: [-3, -40]
+        });
+    };
+
+  // init
+  var map;
+  (async() => {
+    // map options
+    const options = {
+      //     "latidud": "lat",
+      //     "longitud": "lon",
+      "scope": "poncho-map",
+      "id": "id",
+      filters_info: false,
+      "title": "title",
+      "template_markdown": true,
+      "template_structure" : {
+          "values": ["title", "id", "direccion"],
+          "exclude": [],
+          "mixing":
+              [
+                  {
+                      "key": "direccion",
+                      "values": ["id", "title"],
+                      "separator": ", "
+                  }
+              ],
+      },
+      "headers":{"title":"Nombre", "id":"Identificador", "direccion":"Ubicación"},
+      "marker": (self, ele) => {
+          const img_url = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTM5hSj0drOJLCyMr4RvesGAxhxA41BTbDU9w&usqp=CAU";
+          const id = (ele.hasOwnProperty("id")) ? ele.id : false;
+          const icon = (ele.hasOwnProperty("icon")) ? ele.icon : false;
+          const icon_color = (ele.hasOwnProperty("icon_color")) ? ele.icon_color : "azul";
+
+          if(id == "8-anita"){
+              return iconPoncho(icon_color, icon, {container:true, invert:true});
+          } else if (id == "2-emilia-bouillet"){
+              return iconPoncho(icon_color, icon, {container:true, invert:false});
+          } else if (id == "13-cannabis"){
+              return iconPoncho(icon_color, icon, {container:true, invert:true});
+          } else if (id == "5-olivia-y-emilia"){
+              return self.icon(icon_color);
+          }
+          return iconImg(img_url);
+      },
+      "slider": true,
+      "hash": true,
+      "scroll": true,
+      "filters": [
+          {
+            "legend" : "Filtrar por título",
+            "field": ["type", "checked"],
+            "fields": false
+          },
+
+      ],
+    };
+    // render map
+    map = new PonchoMapFilter(geodata, options);
+    map.render();
+    // Buscador
+    const search_options = {
+        "scope": "poncho-map-search", 
+        "placeholder": "Buscar en el geoJSON",
+        "search_fields": ["title", "id"] 
+    };
+    const search = new PonchoMapSearch(map, search_options);
+    search.render();
+  })();
+
+</script>
+<!-- / SCRIPTS -->
+
+</body>
+</html>

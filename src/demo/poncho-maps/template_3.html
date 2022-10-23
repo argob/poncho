@@ -31,8 +31,9 @@
   <script src="../../../src/js/poncho-map-search.js"></script>
   <script src="../../../src/js/gapi-sheet-data.js"></script>
 
+
 <!-- 
-MAPA CON BUSCADOR FILTRO  
+MAPA CON BUSCADOR y FILTRO  
 
 COPIAR DESDE ACÁ…
 -->
@@ -85,12 +86,13 @@ COPIAR DESDE ACÁ…
 <link href="https://gis.argentina.gob.ar/js/leaflet/MarkerCluster.css" rel="stylesheet"/> 
 <script src="https://gis.argentina.gob.ar/js/leaflet/leaflet.js"></script>
 <script src="https://gis.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script>
-<script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
+<!-- <script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script> -->
 <!-- / INCLUDE SCRIPTS -->
 
 <!-- SCRIPTS -->
 <script>
   // init
+  var poncho_filter;
   (async() => {
     // GApi helpers
     const gapi = new GapiSheetData();
@@ -114,6 +116,7 @@ COPIAR DESDE ACÁ…
       // lo genera automáticamente para identificar el marker.
       //     "id" : "id_con_otro_nombre",
       "id":"idtabla",
+      filters_info:true,
       // Nombre que se utiliza como título por defecto para los markers.
       // También es importante para mejorar aspectos de accesibilidad.
       "title": "nombre",
@@ -164,14 +167,14 @@ COPIAR DESDE ACÁ…
         {
           // Lenged para el fileset
           "legend" : "Filtrar por categoría",
-          "field": ["filtro-categoria", "checked"],
-          "field": ["filtro-categoria", "checked"],
+          "field": ["filtro-provincia", "checked"],
           "fields" : false
         },
+
       ],
     };
     // render map
-    const poncho_filter = new PonchoMapFilter(gapi_data.entries, options);
+    poncho_filter = new PonchoMapFilter(gapi_data.entries, options);
     poncho_filter.render();
 
     // Buscador
@@ -184,7 +187,7 @@ COPIAR DESDE ACÁ…
         "search_fields": ["keywords", "nombre", "area"] 
     };
     const search = new PonchoMapSearch(poncho_filter, search_options);
-    search.render();
+    // search.render();
   })();
 </script>
 <!-- / SCRIPTS -->

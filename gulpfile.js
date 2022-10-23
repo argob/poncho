@@ -13,8 +13,8 @@ const gulpIF = require('gulp-if');
 
 gulp.task('poncho', function(){
   return gulp.src([
+          './src/js/utils.js',
           './src/js/poncho-table.js',
-          // './src/js/poncho-maps.js',
           './src/js/poncho-popover.js',
           './src/js/poncho-ubicacion.js',
           './src/js/poncho-charts.js',
@@ -67,8 +67,8 @@ gulp.task('sass_poncho', function(){
 
 gulp.task('ponchomin', function(){
   return gulp.src([
+        './src/js/utils.js',
         './src/js/poncho-table.js',
-        // './src/js/poncho-maps.js',
         './src/js/poncho-popover.js',
         './src/js/poncho-ubicacion.js',
         './src/js/poncho-charts.js',
