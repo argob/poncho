@@ -98,18 +98,18 @@ class GapiSheetData {
 /**
  * Fetch data
  */
- async function fetch_json(url, method="GET"){
-  const response = await fetch(
-    url,{
-      method: method, 
-      headers: {
-        "Accept": "application/json", "Content-Type": "application/json"
+async function fetch_json(url, method="GET"){
+    const response = await fetch(
+      url,{
+          method: method, 
+          headers: {
+              "Accept": "application/json", "Content-Type": "application/json"
+          }
       }
+    );
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
     }
-  );
-  if (!response.ok) {
-    throw new Error(`HTTP error! status: ${response.status}`);
-  }
-  return await response.json();
+    return await response.json();
 };
 
