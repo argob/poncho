@@ -675,7 +675,7 @@ class PonchoMap {
      * @param {object} row Entrada 
      */
     templateTitle = (row) => {
-        if(!row.hasOwnProperty("title")){
+        if(!row.hasOwnProperty(this.title)){
             return false;
         }
         const structure = this.template_structure;
