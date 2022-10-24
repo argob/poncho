@@ -84,7 +84,13 @@ gulp.task('ponchomin', function(){
       //   'mangle': false, 
       //   'ecma': 6
       // }))
-      .pipe(uglify())
+      .pipe(uglify({
+          compress: {
+              global_defs: {
+                  "DEBUG": false
+              }
+          }
+      }))
       .pipe(gulp.dest('dist/js/'));
 });
 

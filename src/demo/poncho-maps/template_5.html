@@ -214,7 +214,7 @@ COPIAR DESDE ACÁ…
     const iconImg = (url) => {
         return new L.icon({
             iconUrl: url,
-            iconSize: [38, 38],
+            iconSize: [41, 41],
             iconAnchor: [22, 41],
             popupAnchor: [-3, -40]
         });
@@ -223,6 +223,19 @@ COPIAR DESDE ACÁ…
   // init
   var map;
   (async() => {
+
+    // GApi helpers
+    // Caso GoogleSheet
+    // Obtengo el JSON desde GoogleSheet
+    const gapi = new GapiSheetData();
+    const googlesheet_data = await fetch_json(gapi.url("dataset", "13fMXLCN-aqeAVo6YH9eNP1ojljFWB0ocRR3sWNMYaIg")); 
+    const gapi_data = gapi.json_data(googlesheet_data);
+    let {headers={}, entries={}} = gapi_data;
+    // Caso 2
+    // Levanto datos desde un geoJSON
+    entries = await fetch_json("http://localhost:5500/src/demo/poncho-maps/data/test-data.geojson");
+    headers = {"title":"Nombre", "id":"Identificador", "direccion":"Dirección"};
+
     // map options
     const options = {
       //     "latidud": "lat",
@@ -244,9 +257,9 @@ COPIAR DESDE ACÁ…
                   }
               ],
       },
-      "headers":{"title":"Nombre", "id":"Identificador", "direccion":"Ubicación"},
+      "headers": headers,
       "marker": (self, ele) => {
-          const img_url = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTM5hSj0drOJLCyMr4RvesGAxhxA41BTbDU9w&usqp=CAU";
+          const img_url = "https://cdn0.iconfinder.com/data/icons/maps-and-navigation-2-1/52/86-512.png";
           const id = (ele.hasOwnProperty("id")) ? ele.id : false;
           const icon = (ele.hasOwnProperty("icon")) ? ele.icon : false;
           const icon_color = (ele.hasOwnProperty("icon_color")) ? ele.icon_color : "azul";
@@ -275,7 +288,7 @@ COPIAR DESDE ACÁ…
       ],
     };
     // render map
-    map = new PonchoMapFilter(geodata, options);
+    map = new PonchoMapFilter(entries, options);
     map.render();
     // Buscador
     const search_options = {

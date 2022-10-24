@@ -1,4 +1,4 @@
-var geodata = {
+{
   "type": "FeatureCollection",
   "features": [
     {
@@ -39,7 +39,7 @@ var geodata = {
         "stroke-width": 3,
         "stroke-opacity": "1",
         "fill": "uva",
-        "fill-opacity": .5,
+        "fill-opacity": ".5",
         "title": "Coca",
         "type": "Polygon"
       },
@@ -114,10 +114,10 @@ var geodata = {
     {
       "type": "Feature",
       "properties": {
-        "stroke": "#6a1b99",
-        "stroke-width": 0,
+        "stroke": "verdin",
+        "stroke-width": 2,
         "stroke-opacity": 1,
-        "fill": "#6a1b99",
+        "fill": "verdin",
         "fill-opacity": 0.2,
         "title": "Olivia Bouillet",
         "icon_color": "uva",
@@ -219,7 +219,7 @@ var geodata = {
         "type": "LineString",
         "fill": "",
         "stroke-width": 8,
-        "stroke": "#ed3d8f",
+        "stroke": "limon",
         "stroke-opacity": 1
       },
       "geometry": {
@@ -246,7 +246,7 @@ var geodata = {
         "title": "Anita",
         "stroke": "",
         "icon": "icono-arg-energia-nuclear",
-        "icon_color": "tomate",
+        "icon_color": "escarapela",
         "type": "Point",
         "fill": ""
       },
@@ -476,7 +476,7 @@ var geodata = {
       "properties": {
         "title": "Cannabis",
         "icon": "icono-arg-cannabis-medicinal-1",
-        "icon_color": "uva",
+        "icon_color": "tomate",
         "type": "Point"
       },
       "geometry": {
