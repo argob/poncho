@@ -93,8 +93,10 @@ figure {
   figcaption {
     color: $gray;
     // font-size: 16px;
-    margin-bottom: 24px;
-    text-align: center;
+    margin-bottom: 48px;
+    border-bottom: 1px solid #b4beba;
+    padding-bottom: 16px;
+    font-size: 85%;
   }
 }
 
