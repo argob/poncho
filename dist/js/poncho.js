@@ -140,7 +140,7 @@ const replaceSpecialChars = (data) => {
   const replace = "aaaaaaaaaacccddeeeeeeeegghiiiiiiiilmnnnnooooooooop"
   + "rrsssssttuuuuuuuuuwxyyzzz";
   const a = search + search.toUpperCase();
-  const b = replace + replace.toLocaleUpperCase();
+  const b = replace + replace.toUpperCase();
   const p = new RegExp(a.split("").join("|"), "g");  
   return data.toString().replace(p, c => b.charAt(a.indexOf(c)))
 };
@@ -1730,6 +1730,8 @@ function ponchoChart(opt) {
  * 
  * @author Agustín Bouillet <bouilleta@jefatura.gob.ar>
  * @summary La estructura del objeto que retorna es de este modo:
+ * @example
+ * // Estructura de retorno
  *  .
  *  \--feed
  *      \-- entry
@@ -1739,7 +1741,7 @@ function ponchoChart(opt) {
  *          |   \-- $t
  * 
  * @param  {object} response Response JSON.
- * @return {void}
+ * @return {object} JSON con la estructura V3 de la api de google sheet
  */
 const gapi_legacy = (response) => {
 
