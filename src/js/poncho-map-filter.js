@@ -78,12 +78,13 @@ class PonchoMapFilter extends PonchoMap {
 
   /**
    * Parser de template simple
-   * @param {string} str - Cadena de texto a parsear
-   * @param {object} values
-   * @returns {string}
-   *
-   * >>> tplParser("Mi hija se llama {{ nombre}}.", {nombre:"Olivia"})
-   * Mi hija se llama Olivia.
+   * 
+   * @param {string} value Cadena de texto a parsear
+   * @param {object} kwargs Objeto con clave valor para hacer la sustitución.
+   * @example
+   * // returns Mi hija se llama Olivia.
+   * tplParser("Mi hija se llama {{nombre}}.", {nombre:"Olivia"})
+   * @returns {string} Cadena de texto con los *placeholders* reemplazados.
    */
   tplParser = (value, kwargs) => {
       return Object.keys(kwargs).reduce(function(str, key){
@@ -96,9 +97,10 @@ class PonchoMapFilter extends PonchoMap {
 
   /**
    * Mensajes de ayuda
-   * @param {string} term - Término buscado
-   * @param {object} results - Resultados de la búsqueda.
-   * @returns {void}
+   * 
+   * @param {string} term Término buscado
+   * @param {object} results Resultados de la búsqueda.
+   * @returns {undefined}
    */
   helpText = (results) => {
       const help_container = document.querySelectorAll(
@@ -168,12 +170,12 @@ class PonchoMapFilter extends PonchoMap {
   };
 
   /**
-   * Obtiene el índice del filtro
-   * @param {string} str — Input name attribute.
+   * Obtiene el índice y el grupo del filtro
+   * @param {string} str Input name attribute.
+   * @example
+   * // returns 1
+   * dilter_position("name__1")
    * @returns {string}
-   *
-   * >>> dilter_position("name__1")
-   * 1
    */
   filterPosition = (str) => {
       const regex = /^([\w\-]+?)(?:__([0-9]+))(?:__([0-9]+))?$/gm;
@@ -184,29 +186,32 @@ class PonchoMapFilter extends PonchoMap {
     /**
      * Estado del slider.
      *
-     * @return {boolean} - ture si esta abierto, false si esta cerrado.
+     * @return {boolean} true si esta abierto, false si esta cerrado.
      */
     isFilterOpen = () => document
         .querySelector(`.js-poncho-map-filters${this.scope_sufix}`)
         .classList.contains("filter--in");
 
-  /**
-   * Ejecuta los filtros.
-   */
-  toggleFilter = () => {
-      document
-          .querySelector(`.js-poncho-map-filters${this.scope_sufix}`)
-          .classList.toggle("filter--in");
-  };
+    /**
+     * Abre o cierra el panel de filtros.
+     */
+    toggleFilter = () => {
+        document
+            .querySelector(`.js-poncho-map-filters${this.scope_sufix}`)
+            .classList.toggle("filter--in");
+    };
 
   /**
    * Altura para el contenedor de filtros.
    *
    * @summary En función de la altura del mapa y del tamaño y posición
    * del botón de filtro y su contenedor, se calcula el tamaño que tiene
-   * el popup que contiene los inputs para los filtros. La idea es que,
+   * el *popup* que contiene los inputs para los filtros. La idea es que,
    * si se configuraran muchos filtros se active la función
    * `overflow:auto` en la hoja de estilos.
+   * @todo calcular el valor de `container_position_distance` e 
+   * `inner_padding` dinámicamente.
+   * @return {undefined}
    */
   filterContainerHeight = () => {    
     const filter_container = document
@@ -216,7 +221,6 @@ class PonchoMapFilter extends PonchoMap {
 
     const poncho_map_height = filter_container.offsetParent.offsetHeight;
     // Valor tomado de la hoja de estilos
-    // @todo calcular el valor dinámicamente.
     const container_position_distance = 20;
     const filters_height = poncho_map_height
           - filter_container.offsetTop
@@ -228,7 +232,6 @@ class PonchoMapFilter extends PonchoMap {
     pos.style.maxHeight = `${filters_height}px`;
 
     // Valor tomado de la hoja de estilos
-    // @todo calcular el valor dinámicamente.
     const inner_padding = 45;
     const height = pos.offsetHeight - inner_padding;
     const filters = document.querySelector(`.js-filters${this.scope_sufix}`);
@@ -266,8 +269,8 @@ class PonchoMapFilter extends PonchoMap {
    * 
    * @summary Hay dos modos de configurar filtros
    * template_structure.filters.fields y template_structure.filters.field
-   * 
-   * — Fields, peromite configurar manualmente el listado de entradas por
+   * @example
+   * Fields, peromite configurar manualmente el listado de entradas por
    * las cuales se va a realizar la búsqueda:
    *   [
    *     {label},
@@ -276,9 +279,9 @@ class PonchoMapFilter extends PonchoMap {
    *     {valor a buscar 2}],
    *     {status:"checked"|boolean}
    *   ]
-   * Ejemplo
-   *   ["tipo", "Archivo provincial", ["Archivo provincial"], "checked"],
    * 
+   * ["tipo", "Archivo provincial", ["Archivo provincial"], "checked"],
+   * @example
    * — Field, permite asignar el índice por el cual se quiere filtrar,
    * el programa hace un UNIQUE de los elementos del indice (o columna),
    * y genera un checkbox (o radio), por cada una de los resultados.
@@ -431,18 +434,18 @@ class PonchoMapFilter extends PonchoMap {
    * Crea los checkbox para los filtros.
    */
   createFilters = (data) => {
-    const form_filters = document
-          .querySelector(`.js-filters${this.scope_sufix}`);
+      const form_filters = document
+            .querySelector(`.js-filters${this.scope_sufix}`);
 
-    data.forEach((item, group) => {
-      let legend = document.createElement("legend");
-      legend.textContent = item.legend;
-      legend.classList.add("m-b-1", "text-primary", "h6")
-      let fieldset = document.createElement("fieldset");
-      fieldset.appendChild(legend);
-      fieldset.appendChild(this.fields(item, group));
-      form_filters.appendChild(fieldset);
-    });
+      data.forEach((item, group) => {
+          let legend = document.createElement("legend");
+          legend.textContent = item.legend;
+          legend.classList.add("m-b-1", "text-primary", "h6")
+          let fieldset = document.createElement("fieldset");
+          fieldset.appendChild(legend);
+          fieldset.appendChild(this.fields(item, group));
+          form_filters.appendChild(fieldset);
+      });
   };
 
   /**
@@ -503,7 +506,6 @@ class PonchoMapFilter extends PonchoMap {
    * @return {void}
    */
   resetFormFilters = () => {
-    // Seteo los inputs de acuerdo a las opciones del usuario.
     this.defaultFiltersConfiguration().forEach(e => {
         const field = document.querySelector(`#id__${e[2]}__${e[0]}__${e[1]}`);
         field.checked = e[3];
@@ -512,6 +514,7 @@ class PonchoMapFilter extends PonchoMap {
 
   /**
    * Value del input hidden (search)
+   * @returns {string|boolean} Valor en el input *hidden* o false.
    */
   get inputSearchValue(){
       const search_value = document
@@ -527,7 +530,8 @@ class PonchoMapFilter extends PonchoMap {
    * Total de ocurrencias por clave y valor sobre entradas dadas.
    * @param {object} feature Entradas
    * @param {array} val Array con los elementos a buscar.
-   * @param {string} index Clave de la entrada de datos. 
+   * @param {string} index Clave de la entrada de datos.
+   * @returns {integer} Total de ocurrencias. 
    */
   countOccurrences = (feature, val, index) => {
     const ocurrences = feature.reduce((a, v) => {
@@ -539,12 +543,14 @@ class PonchoMapFilter extends PonchoMap {
   /**
    * Total de resultados por filtro marcado.
    * @returns {Array} — retorna un array estructurado del siguiente modo:
+   * ```
    *      [
    *        {nombre del filtro},
    *        {total coincidencias},
    *        {indice de grupo de filtros},
    *        {indice input dentro del grupo}
    *      ]
+   * ```
    */
   totals = () => {
     const results = this.formFilters().map(e => {
@@ -559,7 +565,7 @@ class PonchoMapFilter extends PonchoMap {
   };
 
   /**
-   * ¡EXPERIMENTAL! Agrega un title con el total de elementos en 
+   * **¡EXPERIMENTAL!** Agrega un title con el total de elementos en 
    * el panel de filtros.
    */
   totalsInfo = () => {
@@ -584,10 +590,11 @@ class PonchoMapFilter extends PonchoMap {
 
   /**
    * Valida una entrada
-   *
+   * @summary
    * 1. Obtengo la cantidad de grupos que tengo.
-   * 2. Evaluo los fields de cada grupo y junto los resultados en un array.
+   * 2. Evaluo los fields de cada grupo y junto los resultados en un array
    * para retornar true los grupos tienen que dar true
+   * @returns {boolean}
    */
   _validateEntry = (row, form_filters) => {
       const fields_group = (group) => form_filters.filter(e => e[0] == group);

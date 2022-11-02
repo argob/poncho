@@ -69,13 +69,15 @@ COPIAR DESDE ACÁ
 
 <!-- SCRIPTS -->
 <script>
+  var gapi;
+  var gapi_data;
   // init
   (async() => {
     // GApi helpers
-    const gapi = new GapiSheetData();
+     gapi = new GapiSheetData();
     // fetch data
     const googlesheet_data = await fetch_json( gapi.url("dataset", "13fMXLCN-aqeAVo6YH9eNP1ojljFWB0ocRR3sWNMYaIg") ); 
-    const gapi_data = gapi.json_data(googlesheet_data);
+    gapi_data = gapi.json_data(googlesheet_data);
     // map options
     const options = {
       // El programa asume que los valores de latitud y longitud se 

@@ -315,9 +315,9 @@ class PonchoMap {
             if(!data.hasOwnProperty(item)){
                 continue;
             }
-            const term = removeAccents(search_term)
+            const term = replaceSpecialChars(search_term)
                     .toUpperCase();
-            const field = removeAccents(data[item])
+            const field = replaceSpecialChars(data[item])
                     .toString()
                     .toUpperCase();
             try {

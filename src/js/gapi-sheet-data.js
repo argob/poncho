@@ -1,7 +1,7 @@
 /**
  * Helpers para manejar los json provenientes de Google Sheets.
  * 
- * @author Agustín Bouillet bouilleta@jefatura.gob.ar, august 2022
+ * @author Agustín Bouillet <bouilleta@jefatura.gob.ar>
  */
 class GapiSheetData {
     constructor(options){
@@ -17,6 +17,7 @@ class GapiSheetData {
      * 
      * @param {string} page Nombre de la página a obtener.
      * @param {string} spreadsheet Id del documento Google Sheet.
+     * @param {string} api_key Google API Key.
      * @returns {string} URL
      */
     url = (page, spreadsheet, api_key) => {
@@ -41,7 +42,7 @@ class GapiSheetData {
 
     /**
      * Retorna con una estructura más cómoda para usar
-     * @param {object} data - Feed Json 
+     * @param {object} response Feed Json 
      * @returns {object}
      */
     feed = (response) => {
@@ -78,8 +79,8 @@ class GapiSheetData {
 
     /**
      * Retrona las entradas excluyendo el primer row, ya que pertenece a los headers.
-     * @param {*} feed 
-     * @returns 
+     * @param {object} feed 
+     * @returns {object}
      */
     entries = (feed) => {
         return  feed.filter((v,k) => k > 0);
@@ -95,21 +96,9 @@ class GapiSheetData {
     };
 };
 
-/**
- * Fetch data
- */
-async function fetch_json(url, method="GET"){
-    const response = await fetch(
-      url,{
-          method: method, 
-          headers: {
-              "Accept": "application/json", "Content-Type": "application/json"
-          }
-      }
-    );
-    if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    return await response.json();
-};
 
+
+// $START_TEST$
+// ¡Atención! Patch para testear non-module
+module.exports = GapiSheetData;
+// $END_TEST$

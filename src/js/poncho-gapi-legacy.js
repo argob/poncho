@@ -4,6 +4,8 @@
  * 
  * @author Agustín Bouillet <bouilleta@jefatura.gob.ar>
  * @summary La estructura del objeto que retorna es de este modo:
+ * @example
+ * // Estructura de retorno
  *  .
  *  \--feed
  *      \-- entry
@@ -13,9 +15,9 @@
  *          |   \-- $t
  * 
  * @param  {object} response Response JSON.
- * @return {void}
+ * @return {object} JSON con la estructura V3 de la api de google sheet
  */
- const gapi_legacy = (response) => {
+const gapi_legacy = (response) => {
 
   const keys = response.values[0];
   const regex = / |\/|_/ig;
@@ -34,3 +36,9 @@
 
   return {"feed": {"entry": entry}};
 };
+
+
+// $START_TEST$
+// ¡Atención! Patch para testear non-module
+module.exports = gapi_legacy;
+// $END_TEST$

@@ -1,20 +1,4 @@
 /**
- * Validador de latitud y longitud.
- * 
- * @param {float} latlng Latitud o Longitud.
- * @return {boolean}
- */
-const validateLatLng = (latlng) => {
-  let latlngArray = latlng.toString().split(",");
-  for(let i = 0; i < latlngArray.length; i++) {
-      if(isNaN(latlngArray[i]) || latlngArray[i] < -127 || latlngArray[i] > 75){
-        return false;
-      }
-      return true;
-  }
-};
-
-/**
  * Colores poncho a hexa
  * 
  * @see https://argob.github.io/poncho/identidad/colores/
@@ -129,11 +113,11 @@ const ponchoColor = (color) => {
             break;
         default:
             codigoColor = color;
-            console.warn(
-                `No se encuentra el color con nombre «${color}». `
-                + `Revise cual aplica en: `
-                + `https://argob.github.io/poncho/identidad/colores/`
-            );
+            // console.warn(
+            //     `No se encuentra el color con nombre «${color}». `
+            //     + `Revise cual aplica en: `
+            //     + `https://argob.github.io/poncho/identidad/colores/`
+            // );
     }
     return codigoColor;
 };
@@ -147,35 +131,18 @@ const ponchoColor = (color) => {
  * removeAccents("Acción Murciélago árbol")
  * @returns {string} Cadena de texto sin acentos.
  */
-const removeAccents = (data) => {
+const replaceSpecialChars = (data) => {
   if(!data){
       return "";
   }
-  return data
-      .replace(/έ/g, "ε")
-      .replace(/[ύϋΰ]/g, "υ")
-      .replace(/ό/g, "ο")
-      .replace(/ώ/g, "ω")
-      .replace(/ά/g, "α")
-      .replace(/[ίϊΐ]/g, "ι")
-      .replace(/ή/g, "η")
-      .replace(/\n/g, " ")
-      .replace(/[áÁ]/g, "a")
-      .replace(/[éÉ]/g, "e")
-      .replace(/[íÍ]/g, "i")
-      .replace(/[óÓ]/g, "o")
-      .replace(/[Öö]/g, "o")
-      .replace(/[úÚ]/g, "u")
-      .replace(/ê/g, "e")
-      .replace(/î/g, "i")
-      .replace(/ô/g, "o")
-      .replace(/è/g, "e")
-      .replace(/ï/g, "i")
-      .replace(/ü/g, "u")
-      .replace(/ã/g, "a")
-      .replace(/õ/g, "o")
-      .replace(/ç/g, "c")
-      .replace(/ì/g, "i");
+  const search = "àáâäæãåāăąçćčđďèéêëēėęěğǵḧîïíīįìıİłḿñńǹňôöòóœøōõőṕ"
+  + "ŕřßśšşșťțûüùúūǘůűųẃẍÿýžźż";
+  const replace = "aaaaaaaaaacccddeeeeeeeegghiiiiiiiilmnnnnooooooooop"
+  + "rrsssssttuuuuuuuuuwxyyzzz";
+  const a = search + search.toUpperCase();
+  const b = replace + replace.toUpperCase();
+  const p = new RegExp(a.split("").join("|"), "g");  
+  return data.toString().replace(p, c => b.charAt(a.indexOf(c)))
 };
 
 /**
@@ -206,3 +173,29 @@ const slugify = (string) =>{
       .replace(/^-+/, "")
       .replace(/-+$/, "");
 };
+
+/**
+ * Fetch data
+ */
+async function fetch_json(url, method="GET"){
+    const response = await fetch(
+      url,{
+          method: method, 
+          headers: {
+              "Accept": "application/json",
+              "Content-Type": "application/json"
+          }
+      }
+    );
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return await response.json();
+};
+
+
+
+// $START_TEST$
+// ¡Atención! Patch para testear non-module
+module.exports = {slugify, ponchoColor, replaceSpecialChars};
+// $END_TEST$

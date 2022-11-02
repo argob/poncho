@@ -1,12 +1,12 @@
 /**
  * PONCHO MAP SEARCH
  * 
- * @summary Busca marcadores usando el componente select2
+ * @summary Busca marcadores 
  * 
  * @author Agustín Bouillet <bouilleta@jefatura.gob.ar>
  * @requires leaflet.js,leaflet.markercluster.js,leaflet.css,
  * MarkerCluster.Default.css,MarkerCluster.css, PonchoMap, 
- * PonchoMapFilter, select2.js
+ * PonchoMapFilter
  * @see https://github.com/argob/poncho/blob/master/src/demo/poncho-maps/readme-poncho-maps.md
  * 
  * 
@@ -91,22 +91,6 @@ class PonchoMapSearch {
     };
 
     /**
-     * Busca el térmono en cada una de las entradas.
-     * 
-     * @param {object} params - Define los parametros de búsqueda del 
-     * componente select2. 
-     * @param {objecct} data - Entrada donde hacer la búsqueda.
-     * @returns {objecct|null}
-     */
-    matchTerm = (params, data) => {
-        if (typeof(params.term) === "undefined" || 
-            params.term.toString().trim() === ""){
-          return data;
-        }
-        return this.instance.searchTerm(params.term, data);
-    };
-
-    /**
      * Prepara las entradas para la búsqueda
      * @param {object} entries 
      */
@@ -132,18 +116,6 @@ class PonchoMapSearch {
         }
         return data_select;
     };
-
-    /**
-     * Fix para solucionar el que quede seleccionado el primer option 
-     * del select.
-     */
-    firstEmptyOption = () => document
-          .querySelectorAll(
-              `${this.search_scope_selector} .js-poncho-map-search__select2`)
-          .forEach(element => {
-      element.innerHTML = "";
-      element.appendChild(document.createElement("option"));
-    });
 
     /**
      * Ejecuta una búsqueda desde un input text
@@ -188,7 +160,7 @@ class PonchoMapSearch {
 
     /**
      * Límpia del input search el término de búsqueda.
-     * @returns {void}
+     * @returns {undefined}
      */
     cleanInput = () => document
         .querySelector(
@@ -197,13 +169,12 @@ class PonchoMapSearch {
 
     /**
      * Agrega el placeholder si fué seteado en las opciones.
-     * @returns {void}
+     * @returns {undefined}
      */
     placeHolder = () => {
         if(!this.placeholder){
             return "";
         }
-
         document.querySelectorAll(
               `${this.search_scope_selector} .js-poncho-map-search__input`)
             .forEach(element => element.placeholder = this.placeholder.toString());
@@ -211,7 +182,7 @@ class PonchoMapSearch {
 
     /**
      * Vacía el contenido del elemento que contiene los textos de ayuda.
-     * @returns {void}
+     * @returns {undefined}
      */
     cleanHelpText = () => document
         .querySelector(
@@ -258,11 +229,13 @@ class PonchoMapSearch {
 
     /**
      * Agrega options en el claslist del input de búsqueda.
+     * ```
      * <datalist>
      *     <option>Agregado 1</option>
      *     <option>Agregado 2</option>
      *     ...
      * </datalist>
+     * ```
      */
     addDataListOptions = () => document
         .querySelectorAll(
@@ -288,12 +261,10 @@ class PonchoMapSearch {
         element.setAttribute("aria-label", "Buscador");
     };
 
-
     /**
      * Ejecuta el componente select2 y activa el listener de los filtros.
      */
     render = () => {
-        this.firstEmptyOption();
         this.placeHolder();
         this.triggerSearch();
         this.addDataListOptions();
