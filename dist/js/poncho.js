@@ -1,20 +1,4 @@
 /**
- * Validador de latitud y longitud.
- * 
- * @param {float} latlng Latitud o Longitud.
- * @return {boolean}
- */
-const validateLatLng = (latlng) => {
-  let latlngArray = latlng.toString().split(",");
-  for(let i = 0; i < latlngArray.length; i++) {
-      if(isNaN(latlngArray[i]) || latlngArray[i] < -127 || latlngArray[i] > 75){
-        return false;
-      }
-      return true;
-  }
-};
-
-/**
  * Colores poncho a hexa
  * 
  * @see https://argob.github.io/poncho/identidad/colores/
@@ -129,11 +113,11 @@ const ponchoColor = (color) => {
             break;
         default:
             codigoColor = color;
-            console.warn(
-                `No se encuentra el color con nombre «${color}». `
-                + `Revise cual aplica en: `
-                + `https://argob.github.io/poncho/identidad/colores/`
-            );
+            // console.warn(
+            //     `No se encuentra el color con nombre «${color}». `
+            //     + `Revise cual aplica en: `
+            //     + `https://argob.github.io/poncho/identidad/colores/`
+            // );
     }
     return codigoColor;
 };
@@ -147,35 +131,18 @@ const ponchoColor = (color) => {
  * removeAccents("Acción Murciélago árbol")
  * @returns {string} Cadena de texto sin acentos.
  */
-const removeAccents = (data) => {
+const replaceSpecialChars = (data) => {
   if(!data){
       return "";
   }
-  return data
-      .replace(/έ/g, "ε")
-      .replace(/[ύϋΰ]/g, "υ")
-      .replace(/ό/g, "ο")
-      .replace(/ώ/g, "ω")
-      .replace(/ά/g, "α")
-      .replace(/[ίϊΐ]/g, "ι")
-      .replace(/ή/g, "η")
-      .replace(/\n/g, " ")
-      .replace(/[áÁ]/g, "a")
-      .replace(/[éÉ]/g, "e")
-      .replace(/[íÍ]/g, "i")
-      .replace(/[óÓ]/g, "o")
-      .replace(/[Öö]/g, "o")
-      .replace(/[úÚ]/g, "u")
-      .replace(/ê/g, "e")
-      .replace(/î/g, "i")
-      .replace(/ô/g, "o")
-      .replace(/è/g, "e")
-      .replace(/ï/g, "i")
-      .replace(/ü/g, "u")
-      .replace(/ã/g, "a")
-      .replace(/õ/g, "o")
-      .replace(/ç/g, "c")
-      .replace(/ì/g, "i");
+  const search = "àáâäæãåāăąçćčđďèéêëēėęěğǵḧîïíīįìıİłḿñńǹňôöòóœøōõőṕ"
+  + "ŕřßśšşșťțûüùúūǘůűųẃẍÿýžźż";
+  const replace = "aaaaaaaaaacccddeeeeeeeegghiiiiiiiilmnnnnooooooooop"
+  + "rrsssssttuuuuuuuuuwxyyzzz";
+  const a = search + search.toUpperCase();
+  const b = replace + replace.toLocaleUpperCase();
+  const p = new RegExp(a.split("").join("|"), "g");  
+  return data.toString().replace(p, c => b.charAt(a.indexOf(c)))
 };
 
 /**
@@ -206,6 +173,29 @@ const slugify = (string) =>{
       .replace(/^-+/, "")
       .replace(/-+$/, "");
 };
+
+/**
+ * Fetch data
+ */
+async function fetch_json(url, method="GET"){
+    const response = await fetch(
+      url,{
+          method: method, 
+          headers: {
+              "Accept": "application/json",
+              "Content-Type": "application/json"
+          }
+      }
+    );
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return await response.json();
+};
+
+
+
+/* module.exports REMOVED */
 
 //#####################################################################
 //####################### PONCHO TABLE #################################
@@ -1751,7 +1741,7 @@ function ponchoChart(opt) {
  * @param  {object} response Response JSON.
  * @return {void}
  */
- const gapi_legacy = (response) => {
+const gapi_legacy = (response) => {
 
   const keys = response.values[0];
   const regex = / |\/|_/ig;
@@ -1770,6 +1760,9 @@ function ponchoChart(opt) {
 
   return {"feed": {"entry": entry}};
 };
+
+
+/* module.exports REMOVED */
 
 /**
  * PONCHO MAP
@@ -2088,9 +2081,9 @@ class PonchoMap {
             if(!data.hasOwnProperty(item)){
                 continue;
             }
-            const term = removeAccents(search_term)
+            const term = replaceSpecialChars(search_term)
                     .toUpperCase();
-            const field = removeAccents(data[item])
+            const field = replaceSpecialChars(data[item])
                     .toString()
                     .toUpperCase();
             try {
@@ -3022,12 +3015,13 @@ class PonchoMapFilter extends PonchoMap {
 
   /**
    * Parser de template simple
-   * @param {string} str - Cadena de texto a parsear
-   * @param {object} values
-   * @returns {string}
-   *
-   * >>> tplParser("Mi hija se llama {{ nombre}}.", {nombre:"Olivia"})
-   * Mi hija se llama Olivia.
+   * 
+   * @param {string} value Cadena de texto a parsear
+   * @param {object} kwargs Objeto con clave valor para hacer la sustitución.
+   * @example
+   * // returns Mi hija se llama Olivia.
+   * tplParser("Mi hija se llama {{nombre}}.", {nombre:"Olivia"})
+   * @returns {string} Cadena de texto con los *placeholders* reemplazados.
    */
   tplParser = (value, kwargs) => {
       return Object.keys(kwargs).reduce(function(str, key){
@@ -3040,9 +3034,10 @@ class PonchoMapFilter extends PonchoMap {
 
   /**
    * Mensajes de ayuda
-   * @param {string} term - Término buscado
-   * @param {object} results - Resultados de la búsqueda.
-   * @returns {void}
+   * 
+   * @param {string} term Término buscado
+   * @param {object} results Resultados de la búsqueda.
+   * @returns {undefined}
    */
   helpText = (results) => {
       const help_container = document.querySelectorAll(
@@ -3112,12 +3107,12 @@ class PonchoMapFilter extends PonchoMap {
   };
 
   /**
-   * Obtiene el índice del filtro
-   * @param {string} str — Input name attribute.
+   * Obtiene el índice y el grupo del filtro
+   * @param {string} str Input name attribute.
+   * @example
+   * // returns 1
+   * dilter_position("name__1")
    * @returns {string}
-   *
-   * >>> dilter_position("name__1")
-   * 1
    */
   filterPosition = (str) => {
       const regex = /^([\w\-]+?)(?:__([0-9]+))(?:__([0-9]+))?$/gm;
@@ -3128,29 +3123,32 @@ class PonchoMapFilter extends PonchoMap {
     /**
      * Estado del slider.
      *
-     * @return {boolean} - ture si esta abierto, false si esta cerrado.
+     * @return {boolean} true si esta abierto, false si esta cerrado.
      */
     isFilterOpen = () => document
         .querySelector(`.js-poncho-map-filters${this.scope_sufix}`)
         .classList.contains("filter--in");
 
-  /**
-   * Ejecuta los filtros.
-   */
-  toggleFilter = () => {
-      document
-          .querySelector(`.js-poncho-map-filters${this.scope_sufix}`)
-          .classList.toggle("filter--in");
-  };
+    /**
+     * Abre o cierra el panel de filtros.
+     */
+    toggleFilter = () => {
+        document
+            .querySelector(`.js-poncho-map-filters${this.scope_sufix}`)
+            .classList.toggle("filter--in");
+    };
 
   /**
    * Altura para el contenedor de filtros.
    *
    * @summary En función de la altura del mapa y del tamaño y posición
    * del botón de filtro y su contenedor, se calcula el tamaño que tiene
-   * el popup que contiene los inputs para los filtros. La idea es que,
+   * el *popup* que contiene los inputs para los filtros. La idea es que,
    * si se configuraran muchos filtros se active la función
    * `overflow:auto` en la hoja de estilos.
+   * @todo calcular el valor de `container_position_distance` e 
+   * `inner_padding` dinámicamente.
+   * @return {undefined}
    */
   filterContainerHeight = () => {    
     const filter_container = document
@@ -3160,7 +3158,6 @@ class PonchoMapFilter extends PonchoMap {
 
     const poncho_map_height = filter_container.offsetParent.offsetHeight;
     // Valor tomado de la hoja de estilos
-    // @todo calcular el valor dinámicamente.
     const container_position_distance = 20;
     const filters_height = poncho_map_height
           - filter_container.offsetTop
@@ -3172,7 +3169,6 @@ class PonchoMapFilter extends PonchoMap {
     pos.style.maxHeight = `${filters_height}px`;
 
     // Valor tomado de la hoja de estilos
-    // @todo calcular el valor dinámicamente.
     const inner_padding = 45;
     const height = pos.offsetHeight - inner_padding;
     const filters = document.querySelector(`.js-filters${this.scope_sufix}`);
@@ -3210,8 +3206,8 @@ class PonchoMapFilter extends PonchoMap {
    * 
    * @summary Hay dos modos de configurar filtros
    * template_structure.filters.fields y template_structure.filters.field
-   * 
-   * — Fields, peromite configurar manualmente el listado de entradas por
+   * @example
+   * Fields, peromite configurar manualmente el listado de entradas por
    * las cuales se va a realizar la búsqueda:
    *   [
    *     {label},
@@ -3220,9 +3216,9 @@ class PonchoMapFilter extends PonchoMap {
    *     {valor a buscar 2}],
    *     {status:"checked"|boolean}
    *   ]
-   * Ejemplo
-   *   ["tipo", "Archivo provincial", ["Archivo provincial"], "checked"],
    * 
+   * ["tipo", "Archivo provincial", ["Archivo provincial"], "checked"],
+   * @example
    * — Field, permite asignar el índice por el cual se quiere filtrar,
    * el programa hace un UNIQUE de los elementos del indice (o columna),
    * y genera un checkbox (o radio), por cada una de los resultados.
@@ -3375,18 +3371,18 @@ class PonchoMapFilter extends PonchoMap {
    * Crea los checkbox para los filtros.
    */
   createFilters = (data) => {
-    const form_filters = document
-          .querySelector(`.js-filters${this.scope_sufix}`);
+      const form_filters = document
+            .querySelector(`.js-filters${this.scope_sufix}`);
 
-    data.forEach((item, group) => {
-      let legend = document.createElement("legend");
-      legend.textContent = item.legend;
-      legend.classList.add("m-b-1", "text-primary", "h6")
-      let fieldset = document.createElement("fieldset");
-      fieldset.appendChild(legend);
-      fieldset.appendChild(this.fields(item, group));
-      form_filters.appendChild(fieldset);
-    });
+      data.forEach((item, group) => {
+          let legend = document.createElement("legend");
+          legend.textContent = item.legend;
+          legend.classList.add("m-b-1", "text-primary", "h6")
+          let fieldset = document.createElement("fieldset");
+          fieldset.appendChild(legend);
+          fieldset.appendChild(this.fields(item, group));
+          form_filters.appendChild(fieldset);
+      });
   };
 
   /**
@@ -3447,7 +3443,6 @@ class PonchoMapFilter extends PonchoMap {
    * @return {void}
    */
   resetFormFilters = () => {
-    // Seteo los inputs de acuerdo a las opciones del usuario.
     this.defaultFiltersConfiguration().forEach(e => {
         const field = document.querySelector(`#id__${e[2]}__${e[0]}__${e[1]}`);
         field.checked = e[3];
@@ -3456,6 +3451,7 @@ class PonchoMapFilter extends PonchoMap {
 
   /**
    * Value del input hidden (search)
+   * @returns {string|boolean} Valor en el input *hidden* o false.
    */
   get inputSearchValue(){
       const search_value = document
@@ -3471,7 +3467,8 @@ class PonchoMapFilter extends PonchoMap {
    * Total de ocurrencias por clave y valor sobre entradas dadas.
    * @param {object} feature Entradas
    * @param {array} val Array con los elementos a buscar.
-   * @param {string} index Clave de la entrada de datos. 
+   * @param {string} index Clave de la entrada de datos.
+   * @returns {integer} Total de ocurrencias. 
    */
   countOccurrences = (feature, val, index) => {
     const ocurrences = feature.reduce((a, v) => {
@@ -3483,12 +3480,14 @@ class PonchoMapFilter extends PonchoMap {
   /**
    * Total de resultados por filtro marcado.
    * @returns {Array} — retorna un array estructurado del siguiente modo:
+   * ```
    *      [
    *        {nombre del filtro},
    *        {total coincidencias},
    *        {indice de grupo de filtros},
    *        {indice input dentro del grupo}
    *      ]
+   * ```
    */
   totals = () => {
     const results = this.formFilters().map(e => {
@@ -3503,7 +3502,7 @@ class PonchoMapFilter extends PonchoMap {
   };
 
   /**
-   * ¡EXPERIMENTAL! Agrega un title con el total de elementos en 
+   * **¡EXPERIMENTAL!** Agrega un title con el total de elementos en 
    * el panel de filtros.
    */
   totalsInfo = () => {
@@ -3528,10 +3527,11 @@ class PonchoMapFilter extends PonchoMap {
 
   /**
    * Valida una entrada
-   *
+   * @summary
    * 1. Obtengo la cantidad de grupos que tengo.
-   * 2. Evaluo los fields de cada grupo y junto los resultados en un array.
+   * 2. Evaluo los fields de cada grupo y junto los resultados en un array
    * para retornar true los grupos tienen que dar true
+   * @returns {boolean}
    */
   _validateEntry = (row, form_filters) => {
       const fields_group = (group) => form_filters.filter(e => e[0] == group);
@@ -3685,12 +3685,12 @@ class PonchoMapFilter extends PonchoMap {
 /**
  * PONCHO MAP SEARCH
  * 
- * @summary Busca marcadores usando el componente select2
+ * @summary Busca marcadores 
  * 
  * @author Agustín Bouillet <bouilleta@jefatura.gob.ar>
  * @requires leaflet.js,leaflet.markercluster.js,leaflet.css,
  * MarkerCluster.Default.css,MarkerCluster.css, PonchoMap, 
- * PonchoMapFilter, select2.js
+ * PonchoMapFilter
  * @see https://github.com/argob/poncho/blob/master/src/demo/poncho-maps/readme-poncho-maps.md
  * 
  * 
@@ -3775,22 +3775,6 @@ class PonchoMapSearch {
     };
 
     /**
-     * Busca el térmono en cada una de las entradas.
-     * 
-     * @param {object} params - Define los parametros de búsqueda del 
-     * componente select2. 
-     * @param {objecct} data - Entrada donde hacer la búsqueda.
-     * @returns {objecct|null}
-     */
-    matchTerm = (params, data) => {
-        if (typeof(params.term) === "undefined" || 
-            params.term.toString().trim() === ""){
-          return data;
-        }
-        return this.instance.searchTerm(params.term, data);
-    };
-
-    /**
      * Prepara las entradas para la búsqueda
      * @param {object} entries 
      */
@@ -3816,18 +3800,6 @@ class PonchoMapSearch {
         }
         return data_select;
     };
-
-    /**
-     * Fix para solucionar el que quede seleccionado el primer option 
-     * del select.
-     */
-    firstEmptyOption = () => document
-          .querySelectorAll(
-              `${this.search_scope_selector} .js-poncho-map-search__select2`)
-          .forEach(element => {
-      element.innerHTML = "";
-      element.appendChild(document.createElement("option"));
-    });
 
     /**
      * Ejecuta una búsqueda desde un input text
@@ -3872,7 +3844,7 @@ class PonchoMapSearch {
 
     /**
      * Límpia del input search el término de búsqueda.
-     * @returns {void}
+     * @returns {undefined}
      */
     cleanInput = () => document
         .querySelector(
@@ -3881,13 +3853,12 @@ class PonchoMapSearch {
 
     /**
      * Agrega el placeholder si fué seteado en las opciones.
-     * @returns {void}
+     * @returns {undefined}
      */
     placeHolder = () => {
         if(!this.placeholder){
             return "";
         }
-
         document.querySelectorAll(
               `${this.search_scope_selector} .js-poncho-map-search__input`)
             .forEach(element => element.placeholder = this.placeholder.toString());
@@ -3895,7 +3866,7 @@ class PonchoMapSearch {
 
     /**
      * Vacía el contenido del elemento que contiene los textos de ayuda.
-     * @returns {void}
+     * @returns {undefined}
      */
     cleanHelpText = () => document
         .querySelector(
@@ -3942,11 +3913,13 @@ class PonchoMapSearch {
 
     /**
      * Agrega options en el claslist del input de búsqueda.
+     * ```
      * <datalist>
      *     <option>Agregado 1</option>
      *     <option>Agregado 2</option>
      *     ...
      * </datalist>
+     * ```
      */
     addDataListOptions = () => document
         .querySelectorAll(
@@ -3972,12 +3945,10 @@ class PonchoMapSearch {
         element.setAttribute("aria-label", "Buscador");
     };
 
-
     /**
      * Ejecuta el componente select2 y activa el listener de los filtros.
      */
     render = () => {
-        this.firstEmptyOption();
         this.placeHolder();
         this.triggerSearch();
         this.addDataListOptions();
@@ -3994,7 +3965,7 @@ class PonchoMapSearch {
 /**
  * Helpers para manejar los json provenientes de Google Sheets.
  * 
- * @author Agustín Bouillet bouilleta@jefatura.gob.ar, august 2022
+ * @author Agustín Bouillet <bouilleta@jefatura.gob.ar>
  */
 class GapiSheetData {
     constructor(options){
@@ -4010,6 +3981,7 @@ class GapiSheetData {
      * 
      * @param {string} page Nombre de la página a obtener.
      * @param {string} spreadsheet Id del documento Google Sheet.
+     * @param {string} api_key Google API Key.
      * @returns {string} URL
      */
     url = (page, spreadsheet, api_key) => {
@@ -4034,7 +4006,7 @@ class GapiSheetData {
 
     /**
      * Retorna con una estructura más cómoda para usar
-     * @param {object} data - Feed Json 
+     * @param {object} response Feed Json 
      * @returns {object}
      */
     feed = (response) => {
@@ -4071,8 +4043,8 @@ class GapiSheetData {
 
     /**
      * Retrona las entradas excluyendo el primer row, ya que pertenece a los headers.
-     * @param {*} feed 
-     * @returns 
+     * @param {object} feed 
+     * @returns {object}
      */
     entries = (feed) => {
         return  feed.filter((v,k) => k > 0);
@@ -4088,21 +4060,6 @@ class GapiSheetData {
     };
 };
 
-/**
- * Fetch data
- */
-async function fetch_json(url, method="GET"){
-    const response = await fetch(
-      url,{
-          method: method, 
-          headers: {
-              "Accept": "application/json", "Content-Type": "application/json"
-          }
-      }
-    );
-    if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    return await response.json();
-};
 
+
+/* module.exports REMOVED */

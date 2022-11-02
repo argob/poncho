@@ -10,6 +10,8 @@ var SRC = './src/js/*.js';
 var DEST = './dist/js/*.js';
 var rename = require('gulp-rename');
 const gulpIF = require('gulp-if');
+var replace = require('gulp-replace');
+
 
 gulp.task('poncho', function(){
   return gulp.src([
@@ -24,6 +26,7 @@ gulp.task('poncho', function(){
           './src/js/poncho-map-search.js',
           './src/js/gapi-sheet-data.js'
       ])
+      .pipe(replace(/\/\/\s?\$START_TEST\$([\s\S]*?)\/\/\s?\$END_TEST\$/gm, '/* module.exports REMOVED */'))
       .pipe(concat('poncho.js', {'newLine':'\n\n'}))
       // .pipe(babel())
       .pipe(gulp.dest('dist/js/'));
@@ -45,25 +48,10 @@ gulp.task('sass_poncho', function(){
         './src/scss/poncho.scss'
     ])
     .pipe(sass())
-    // .pipe(gulpIF(function(file){
-    //     return file.path.match('poncho.css');
-    //   };
-    // ))
     .pipe(gulp.dest('./dist/css'))
 });
 
 
-
-// gulp.task('babel', function(){
-//   return gulp.src([
-//           './dist/js/poncho.js',
-//           './dist/js/poncho.min.js',
-//           './dist/js/showdown-extensions.js',
-//           './dist/js/mapa-argentina.js'
-//       ])
-//       .pipe(babel())
-//       .pipe(gulp.dest('dist/js/'));
-// });
 
 gulp.task('ponchomin', function(){
   return gulp.src([
@@ -78,12 +66,8 @@ gulp.task('ponchomin', function(){
         './src/js/poncho-map-search.js',
         './src/js/gapi-sheet-data.js'
       ])
+      .pipe(replace(/\/\/\s?\$START_TEST\$([\s\S]*?)\/\/\s?\$END_TEST\$/gm, '/* module.exports REMOVED */'))
       .pipe(concat('poncho.min.js'))
-      // si usamos uglifyes nos permite usar ES6
-      // .pipe(uglifyes({ 
-      //   'mangle': false, 
-      //   'ecma': 6
-      // }))
       .pipe(uglify({
           compress: {
               global_defs: {
