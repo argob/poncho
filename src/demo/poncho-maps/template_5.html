@@ -238,7 +238,7 @@ COPIAR DESDE ACÁ…
     const options = {
       "template_dl_classlist":["definition-list"],
       "template_dt_classlist":["h6", "m-b-0", "text-verdin"],
-      "template_dd_classlist":["text-default", "prueba"],
+      "template_dd_classlist":["text-default", "prueba", "table"],
       "template_dl": "div",
       "template_dt": "h2",
       "template_dd": "div",
@@ -246,7 +246,9 @@ COPIAR DESDE ACÁ…
       "id": "ID",
       "filters_info": false,
       "title": "title",
+      // "template_innerhtml": true,
       "template_markdown": true,
+      "allowed_tags": ["div", "a"],
       "lead": {
           key: "type", 
           class: (self, entry, value) => {
@@ -310,7 +312,7 @@ COPIAR DESDE ACÁ…
       },
       "headers": {
           "title":"Nombre",
-          "id":"Identificador",
+          "id":"Identificador <em>hola</em>",
           "description":"Descripción"
       },
       "marker": (self, ele) => {

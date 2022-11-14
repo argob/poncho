@@ -15,7 +15,8 @@
 | longitud | `string` | longitud | Nombre de la columna con el valor de longitud. Si la fuente de datos usa otro nombre se define con esta opción. Ej. `'longitud':'lng'`.| 
 | template | `object` | `null` | Define la función que controla el template para el popUp o el slider.| 
 | template_structure | `object` | `{}` | Permite definir un listado de valores a mostarar en el template por defecto o excluir valores que no se deseen mostrar.| 
-| template_innerhtml | `boolean` | `false` | Permite incrustar html dentro de la descripción.| 
+| template_innerhtml | `boolean` | `false` | Permite incrustar html dentro de la descripción.|
+| allowed_tags | `object` | `[]` | Permite configurar un listado de etiquetas HTML que se imprimirán como parte del DOM y no como un texto. Para habilitar todas las etiquetas se utiliza `["*"]`. Si se quiere especificar cuales deben usarse, ej.: `["a", "strong"]`. |
 | template_container_classlist | `Array()` | `['info-container']` | Define la lista de clases CSS que pueden agregarse al contenedor del listado de terminos y descripciones. | 
 | template_title_classlist | `Array()` | `['h4','title']` | Listado de selectores CSS se que aplicarán en la etiqueta HTML asignada título.| 
 | template_dl_classlist | `Array()` | `['definition-list']` | Listado de selectores CSS se que aplicarán en la etiqueta HTML asignada contenedor del listado de términos y definiciones.| 

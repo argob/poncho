@@ -1,4 +1,4 @@
-const {slugify, ponchoColor, replaceSpecialChars} = require('../src/js/utils');
+const {slugify, ponchoColor, replaceSpecialChars, secureHTML} = require('../src/js/utils');
 test('Slugify', () => {
     expect(slugify('El murciélago remolón')).toBe('el-murcielago-remolon');
     expect(slugify('Inglés Français')).toBe('ingles-francais');
@@ -11,6 +11,12 @@ test('Colores Poncho por nombre', () => {
     expect(ponchoColor('amarillo')).toBe('#f9a822');
     expect(ponchoColor('warning')).toBe('#f9a822');
     expect(ponchoColor('Esto no es un color')).toBe('Esto no es un color');
+});
+
+
+test('Secure HTML', () => {
+  expect(secureHTML('<h1>Hello world!</h1> <a href="#">Link</a>', ["a"]))
+      .toBe('&lt;h1&gt;Hello world!&lt;/h1&gt; <a href="#">Link</a>');
 });
 
 

@@ -65,10 +65,11 @@ class PonchoMap {
                     // "ejes", 
                     "button", 
                     "target",
-                    // "bootstrap-tables",
+                    "bootstrap-tables",
                     //"video"
                 ]
             },
+            "allowed_tags":["a"],
             "scope": "",
             "slider": false,
             "scroll": false,
@@ -112,6 +113,7 @@ class PonchoMap {
         this.template_innerhtml = opts.template_innerhtml;
         this.template_markdown = opts.template_markdown;
         this.markdown_options = opts.markdown_options;
+        this.allowed_tags = opts.allowed_tags;
         this.template_header = opts.template_header;
         this.template_dl = opts.template_dl;
         this.template_dt = opts.template_dt;
@@ -791,7 +793,8 @@ class PonchoMap {
     mdToHtml = (text) => {
         if(this.template_markdown && this.markdownEnable()){
             const converter = new showdown.Converter(this.markdown_options);
-            return converter.makeHtml(`${text}`.trim());
+            const cleannedText = secureHTML(text, this.allowed_tags);
+            return converter.makeHtml(`${cleannedText}`.trim());
         }
         return text;
     }

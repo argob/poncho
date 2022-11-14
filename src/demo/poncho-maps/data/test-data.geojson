@@ -24,7 +24,7 @@
         "icon": "icono-arg-dialogo-corazon",
         "icon_color": "primary",
         "type": "Point",
-        "description":"first line \r second line",
+        "description":"|uno|dos|\n|---|---|\n|Olivia|Emilia|\n \n#hello \n<a href=\"#\">link</a>\n **Este texto en negrita**\n<h1>Agustín</h1><strong>Olivia</strong><a href=\"#\">Emi</a>",
         "fill": ""
       },
       "geometry": {
