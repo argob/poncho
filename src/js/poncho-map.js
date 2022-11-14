@@ -12,25 +12,27 @@
  *
  * 
  * MIT License
- *
+ * 
  * Copyright (c) 2022 Argentina.gob.ar
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * 
+ * Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation
+ * files (the "Software"), to deal in the Software without restriction,
+ * including without limitation the rightsto use, copy, modify, merge,
+ * publish, distribute, sublicense, and/or sell copies of the Software,
+ * and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+ * BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+ * ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+ * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
 class PonchoMap {
@@ -39,18 +41,23 @@ class PonchoMap {
         const defaults = {
             "title": false,
             "id": "id",
+            "lead": [],
             "template": false,
             "template_structure": {},
-            "template_container_class_list": ["info-container"],
-            "template_title_class_list": ["h4","text-primary","m-t-0"],
-            "template_dl_class_list":["definition-list"],
+            "template_container_classlist": ["info-container"],
+            "template_title_classlist": ["h4","text-primary","m-t-0"],
             "template_innerhtml": false,
             "template_markdown": false,
             "template_header": false,
+            "template_dl_classlist":["definition-list"],
+            "template_dt_classlist":["h6", "m-b-0"],
+            "template_dd_classlist":[],
             "template_dl": "dl",
             "template_dt": "dt",
             "template_dd": "dd",
             "markdown_options": {
+                tables: true,
+                simpleLineBreaks: true,
                 extensions :[
                     "images", 
                     "alerts", 
@@ -59,7 +66,7 @@ class PonchoMap {
                     "button", 
                     "target",
                     // "bootstrap-tables",
-                    "video"
+                    //"video"
                 ]
             },
             "scope": "",
@@ -67,6 +74,7 @@ class PonchoMap {
             "scroll": false,
             "hash": false,
             "headers": {},
+            "header_icons": {},
             "map_selector": "map",
             "anchor_delay":0,
             "slider_selector": ".slider",
@@ -93,11 +101,14 @@ class PonchoMap {
         };
         let opts = Object.assign({}, defaults, options);
         this.scope = opts.scope;
+        this.lead = opts.lead;
         this.template = opts.template;
         this.template_structure = opts.template_structure;
-        this.template_title_class_list = opts.template_title_class_list;
-        this.template_dl_class_list = opts.template_dl_class_list;
-        this.template_container_class_list = opts.template_container_class_list;
+        this.template_title_classlist = opts.template_title_classlist;
+        this.template_dl_classlist = opts.template_dl_classlist;
+        this.template_dt_classlist = opts.template_dt_classlist;
+        this.template_dd_classlist = opts.template_dd_classlist;
+        this.template_container_classlist = opts.template_container_classlist;
         this.template_innerhtml = opts.template_innerhtml;
         this.template_markdown = opts.template_markdown;
         this.markdown_options = opts.markdown_options;
@@ -106,7 +117,8 @@ class PonchoMap {
         this.template_dt = opts.template_dt;
         this.template_dd = opts.template_dd;
         this.map_selector = opts.map_selector;
-        this.headers = opts.headers;
+        this.headers = this.setHeaders(opts.headers);
+        this.header_icons = opts.header_icons;
         this.hash = opts.hash;
         this.scroll = opts.scroll;
         this.map_view = opts.map_view;
@@ -117,8 +129,8 @@ class PonchoMap {
         this.marker_color = opts.marker;
         this.id = opts.id;
         this.title = opts.title;
-        this.latitud = opts.latitud;
-        this.longitud = opts.longitud;
+        this.latitude = opts.latitud;
+        this.longitude = opts.longitud;
         this.slider = opts.slider;
         this.reset_zoom = opts.reset_zoom;
         this.slider_selector=this.selectorName(opts.slider_selector);
@@ -139,6 +151,7 @@ class PonchoMap {
             "stroke-width": 2,
             "fill-opacity": .5
         };
+        
         // OSM
         this.map = new L.map(this.map_selector,{preferCanvas: false})
             .setView(this.map_view, this.map_zoom);
@@ -162,11 +175,9 @@ class PonchoMap {
      * @returns {boolean} True o False
      */
     isGeoJSON = (gj)=>{
-        if(typeof gj !== "undefined" && 
-          gj.hasOwnProperty("type") && 
-          gj.type == "FeatureCollection"){
+        if(gj?.type === "FeatureCollection"){
             return true;
-        } 
+        }
         return false;
     };
 
@@ -210,10 +221,10 @@ class PonchoMap {
      * @returns {object} Objeto con formato geoJSON feature.
      */
     feature = (entry) => {
-        const latitude = entry[this.latitud];
-        const longitude = entry[this.longitud];
-        delete entry[this.latitud];
-        delete entry[this.longitud];
+        const latitude = entry[this.latitude];
+        const longitude = entry[this.longitude];
+        delete entry[this.latitude];
+        delete entry[this.longitude];
         return {
             "type": "Feature",
             "properties": entry,
@@ -281,7 +292,7 @@ class PonchoMap {
 
     /**
      * Obtiene una entrada por su id
-     * @property {integer} id Id de Punto Digital
+     * @param {integer} id Id de Punto Digital
      * @return {object}
      */
     entry = (id) => {
@@ -310,7 +321,10 @@ class PonchoMap {
      * Busca un término en cada uno de los indices de una entrada.
      */
     searchTerm = (search_term, data) => {
-        const search_for = [...this.search_fields].filter(e => e);
+        const search_for = [
+            ...new Set([...[this.title], ...this.search_fields])
+        ].filter(e => e);
+
         for(const item of search_for){
             if(!data.hasOwnProperty(item)){
                 continue;
@@ -443,9 +457,34 @@ class PonchoMap {
     };
 
     /**
+     * Compila los headers
+     * 
+     * @summary Compila los headers pasados en el key `headers` con
+     * aquellos incorporados en el key `mixing`.
+     * @param {object} headers Encabezados para las entradas. 
+     * @returns {object} Encabezados con la incoporación de los asignados
+     * en los mixings.
+     */
+    setHeaders = (headers) => {
+        if(![
+              this.template_structure, 
+              this.template_structure.mixing].every(e => e)){
+            return headers;
+        }
+
+        const new_headers = this.template_structure.mixing.reduce((i, e) => {
+            if(![e.key, e.header].every(i => i)){
+                return;
+            }
+            return ({ ...i, ...({ [e.key]: e.header }) });
+        }, {});
+        return {...headers, ...new_headers};
+    };
+
+    /**
      * Mapea los headers.
      * 
-     * @return {string} key - key del item.
+     * @return {string} key Key del item.
      */
     header = (key) => {
         return (this.headers.hasOwnProperty(key) ? this.headers[key] : key);
@@ -702,7 +741,7 @@ class PonchoMap {
             title = wrapper;
         } else {
             title = document.createElement("h1");
-            title.classList.add(... this.template_title_class_list);
+            title.classList.add(... this.template_title_classlist);
             title.textContent = row[use_title];
         }
 
@@ -804,6 +843,79 @@ class PonchoMap {
     };
 
     /**
+     * Prepara un objeto según su tipo
+     * @param {object} ele 
+     * @param {object} entry 
+     * @param {*} value 
+     * @returns {*} De acuerdo a la entrada.
+     */
+    setType = (ele, entry=false, value=false) => {
+        if(typeof(ele) === "function"){
+            return ele(this, entry, value);
+        } 
+        return ele;
+    };
+
+    /**
+     * Imprime una volanta en la estructura por defecto.
+     * 
+     * @returns {object|boolean} Elemento html <p> o false si no 
+     * fué configurado.
+     */
+    _lead  = (entry) => {
+        const {key, class:classlist=false, style=false } = this.lead;
+        const p = document.createElement("p");
+
+        const setClasslist = this.setType(classlist, entry, entry[key]);
+        if(setClasslist){
+            p.classList.add(...setClasslist.split(" "));
+            p.textContent = entry[key];
+            
+            const setStyle = this.setType(style, entry, entry[key]);
+            if(setStyle){
+                p.setAttribute("style", setStyle);
+            }
+            return p;
+        }
+        return false;       
+    } 
+
+    /**
+     * Ícono para el término
+     * @param {string} key Key del header. 
+     * @returns {object|boolean} Si existe el key retorna un objeto 
+     * element de otro modo un boolean `false`.
+     */
+    _termIcon = (row, key) => {
+        if(this.header_icons.hasOwnProperty(key)){
+            const {
+                class:classlist=false,
+                style=false,
+                html=false} = this.header_icons[key];
+
+            const setHtml = this.setType(html, row, key);
+            const setStyle = this.setType(style, row, key);
+            const setClasslist = this.setType(classlist, row, key);
+
+            if(setClasslist){
+                const icon = document.createElement("i");
+                icon.setAttribute("aria-hidden","true");
+                icon.classList.add(...setClasslist.split(" "));
+                if(setStyle){
+                    icon.setAttribute("style", setStyle);
+                }
+                return icon;
+
+            } else if (setHtml){
+                const ic = document.createElement("template");
+                ic.innerHTML = setHtml;
+                return ic.content;
+            }
+        }
+        return false;
+    };
+
+    /**
      * Template por defecto
      * 
      * Arma un listado de datos usando la clave y el valor del objeto
@@ -814,9 +926,9 @@ class PonchoMap {
         const tpl_list = this.templateList(row);
         const tpl_title = this.templateTitle(row);
         const container = document.createElement("article");
-        container.classList.add(... this.template_container_class_list);
+        container.classList.add(... this.template_container_classlist);
         const definitions = document.createElement(this.template_dl);
-        definitions.classList.add(...this.template_dl_class_list);
+        definitions.classList.add(...this.template_dl_classlist);
         definitions.style.fontSize = "1rem";
         row = this.templateMixing(row);
 
@@ -827,10 +939,17 @@ class PonchoMap {
             }
 
             const term = document.createElement(this.template_dt);
-            term.classList.add("h6", "m-b-0")
-            term.textContent = this.header(key);
+            term.classList.add(...this.template_dt_classlist)
+
+            const header_icon = this._termIcon(row, key);
+            if(header_icon){
+                term.appendChild(header_icon);
+                term.insertAdjacentText("beforeend", " ");
+            }
+            term.insertAdjacentText("beforeend", this.header(key));
             
             const definition = document.createElement(this.template_dd);
+            definition.classList.add(...this.template_dd_classlist)
             definition.textContent = row[key];
 
             if(this.template_markdown){
@@ -844,6 +963,11 @@ class PonchoMap {
             }
             definitions.appendChild(definition);
         };
+
+        const tpl_lead = this._lead(row);
+        if(tpl_lead){
+            container.appendChild(tpl_lead);
+        }
 
         if(tpl_title){
             container.appendChild(tpl_title);
@@ -1013,7 +1137,7 @@ class PonchoMap {
                     strokeOpacity: setProp("stroke-opacity"), 
                     weight: setProp("stroke-width"), 
                     fillColor: ponchoColor( setProp("stroke") ), 
-                    opacity:  setProp("stroke-opacity"), 
+                    opacity: setProp("stroke-opacity"), 
                     fillOpacity: setProp("fill-opacity"),
 
                 };  
@@ -1021,6 +1145,7 @@ class PonchoMap {
             
         }).addTo(this.map);  
     };
+
     /**
      * Setea el marker activo.
      */
@@ -1168,3 +1293,6 @@ class PonchoMap {
         setTimeout(this.gotoHashedEntry, this.anchor_delay);
     };
 };
+
+
+

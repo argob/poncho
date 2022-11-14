@@ -4,6 +4,7 @@
     {
       "type": "Feature",
       "properties": {
+        "ID":1,
         "title": "Agustin Bouillet",
         "type": "Point"
       },
@@ -18,10 +19,12 @@
     {
       "type": "Feature",
       "properties": {
+        "ID":2,
         "title": "Emilia Bouillet",
         "icon": "icono-arg-dialogo-corazon",
         "icon_color": "primary",
         "type": "Point",
+        "description":"first line \r second line",
         "fill": ""
       },
       "geometry": {
@@ -35,6 +38,7 @@
     {
       "type": "Feature",
       "properties": {
+        "ID":3,
         "stroke": "uva",
         "stroke-width": 3,
         "stroke-opacity": "1",
@@ -114,6 +118,7 @@
     {
       "type": "Feature",
       "properties": {
+        "ID":4,
         "stroke": "verdin",
         "stroke-width": 2,
         "stroke-opacity": 1,
@@ -166,6 +171,7 @@
     {
       "type": "Feature",
       "properties": {
+        "ID":5,
         "marker-color": "#1fc1d6",
         "marker-size": "medium",
         "marker-symbol": "",
@@ -185,6 +191,7 @@
     {
       "type": "Feature",
       "properties": {
+        "ID":6,
         "type": "LineString",
         "icon": "",
         "stroke-width": 4,
@@ -216,6 +223,7 @@
     {
       "type": "Feature",
       "properties": {
+        "ID":7,
         "type": "LineString",
         "fill": "",
         "stroke-width": 8,
@@ -243,6 +251,7 @@
     {
       "type": "Feature",
       "properties": {
+        "ID":8,
         "title": "Anita",
         "stroke": "",
         "icon": "icono-arg-energia-nuclear",
@@ -261,6 +270,7 @@
     {
       "type": "Feature",
       "properties": {
+        "ID":9,
         "title": "Sector 1",
         "stroke": "amarillo",
         "fill": "amarillo",
@@ -297,6 +307,7 @@
     {
       "type": "Feature",
       "properties": {
+        "ID":10,
         "title": "Vinnie Colaiuta",
         "stroke": "verde-jade",
         "stroke-width": 3,
@@ -335,6 +346,7 @@
     {
       "type": "Feature",
       "properties": {
+        "ID":11,
         "title": "Buddy Rich",
         "stroke": "tomate",
         "stroke-width": 3,
@@ -369,6 +381,7 @@
     {
       "type": "Feature",
       "properties": {
+        "ID":12,
         "title": "Recorrido 1",
         "stroke": "#2e7d33",
         "stroke-width": 6,
@@ -474,6 +487,7 @@
     {
       "type": "Feature",
       "properties": {
+        "ID":13,
         "title": "Cannabis",
         "icon": "icono-arg-cannabis-medicinal-1",
         "icon_color": "tomate",

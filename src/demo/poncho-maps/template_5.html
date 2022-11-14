@@ -233,30 +233,86 @@ COPIAR DESDE ACÁ…
     // Caso 2
     // Levanto datos desde un geoJSON
     entries = await fetch_json("http://localhost:5500/src/demo/poncho-maps/data/test-data.geojson");
-    headers = {"title":"Nombre", "id":"Identificador", "direccion":"Dirección"};
 
     // map options
     const options = {
-      //     "latidud": "lat",
-      //     "longitud": "lon",
+      "template_dl_classlist":["definition-list"],
+      "template_dt_classlist":["h6", "m-b-0", "text-verdin"],
+      "template_dd_classlist":["text-default", "prueba"],
+      "template_dl": "div",
+      "template_dt": "h2",
+      "template_dd": "div",
       "scope": "poncho-map",
-      "id": "id",
-      filters_info: false,
+      "id": "ID",
+      "filters_info": false,
       "title": "title",
       "template_markdown": true,
+      "lead": {
+          key: "type", 
+          class: (self, entry, value) => {
+              if(entry.type == "Polygon"){
+                  return "badge bg-verdin text-white"; 
+              } else if(entry.type == "Point"){
+                  return "badge bg-cereza text-white"; 
+              } else if(entry.type == "LineString"){
+                  return "badge bg-cielo text-white"; 
+              }
+              return false; 
+          },
+          style: "background-color:gold; border-radius:6px; padding:.25em .75em !important;"
+      },
       "template_structure" : {
-          "values": ["title", "id", "direccion"],
+          "values": ["title", "id", "direccion", "test", "description"],
           "exclude": [],
           "mixing":
               [
                   {
                       "key": "direccion",
+                      "header": "Cannabis",
                       "values": ["id", "title"],
-                      "separator": ", "
-                  }
+                      "separator": " - "
+                  },
               ],
       },
-      "headers": headers,
+      "header_icons": {
+          "title": {
+              "class": "icono-arg-cannabis-medicinal-1 text-primary", 
+              "style": (self, entry, value) => {
+                  if(entry.id == "4-olivia-bouillet"){
+                      return "margin-right:1em; background:gold";
+                  }
+              }
+          },
+          "direccion": {
+              "html": (self, entry, value) => {
+                  if(entry.id == "4-olivia-bouillet"){
+                      return `<div>
+                          <hr>
+                          <i
+                              aria-hidden="true"
+                              class="icono-arg-cannabis-medicinal-1 text-verdin 
+                                      fa-3x text-center m-b-1"
+                              style="display:block">
+                          </i>
+                      </div>`;
+                  } else {
+                      return `<i
+                            aria-hidden="true"
+                            class="icono-arg-cannabis-medicinal-1 text-verdin">
+                        </i>`;
+                  }
+              }
+          },
+          "id": {
+              "class": "icono-arg-sitios-accesibles text-arandano",
+              "style": "margin-bottom:3em"
+          }
+      },
+      "headers": {
+          "title":"Nombre",
+          "id":"Identificador",
+          "description":"Descripción"
+      },
       "marker": (self, ele) => {
           const img_url = "https://cdn0.iconfinder.com/data/icons/maps-and-navigation-2-1/52/86-512.png";
           const id = (ele.hasOwnProperty("id")) ? ele.id : false;
@@ -291,9 +347,11 @@ COPIAR DESDE ACÁ…
     map.render();
     // Buscador
     const search_options = {
+        "template": (self, row) => { console.log(row); return `<strong>${row.title}</strong>`; },
         "scope": "poncho-map-search", 
         "placeholder": "Buscar en el geoJSON",
-        "search_fields": ["title", "id"] 
+        "datalist": true,
+        "search_fields": [ "id", "type"] 
     };
     const search = new PonchoMapSearch(map, search_options);
     search.render();

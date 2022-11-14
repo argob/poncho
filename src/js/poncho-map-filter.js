@@ -11,25 +11,27 @@
  * 
  * 
  * MIT License
- *
+ * 
  * Copyright (c) 2022 Argentina.gob.ar
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * 
+ * Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation
+ * files (the "Software"), to deal in the Software without restriction,
+ * including without limitation the rightsto use, copy, modify, merge,
+ * publish, distribute, sublicense, and/or sell copies of the Software,
+ * and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+ * BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+ * ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+ * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
 class PonchoMapFilter extends PonchoMap {
@@ -40,28 +42,16 @@ class PonchoMapFilter extends PonchoMap {
       "filters": [],
       "filters_visible": false,
       "filters_info": false,
-      "search_fields":[],
+      "search_fields": [],
       "messages": {
-          "reset": "<a href=\"#\" class=\"{{reset_search}}\" "
-          + "title=\"Reestablece el mapa a su estado inicial\">"
-          + "Reestablecer mapa</a>",
+          "reset": " <a href=\"#\" class=\"{{reset_search}}\" "
+                  + "title=\"Restablece el mapa a su estado inicial\">"
+                  + "Restablecer mapa</a>",
           "initial": "Hay {{total_results}} puntos en el mapa.",
-          "no_results_by_term": "No encontramos resultados para tu búsqueda. "
-                  + "<a href=\"#\" class=\"{{reset_search}}\" "
-                  + "title=\"Reestablece el mapa a su estado inicial\">"
-                  + "Reestablecer mapa</a>",
-          "no_results": "No se encontraron entradas. "
-                  + "<a href=\"#\" class=\"{{reset_search}}\" "
-                  + "title=\"Reestablece el mapa a su estado inicial\">"
-                  + "Reestablecer mapa</a>",
-          "results": "{{total_results}} resultados coinciden con tu búsqueda."
-                  + " <a href=\"#\" class=\"{{reset_search}}\" " 
-                  + "title=\"Reestablece el mapa a su estado inicial\">" 
-                  + "Reestablecer mapa</a>",
-          "one_result": "{{total_results}} resultado coincide con tu búsqueda."
-                  + " <a href=\"#\" class=\"{{reset_search}}\" "
-                  + "title=\"Reestablece el mapa a su estado inicial\">"
-                  + "Reestablecer mapa</a>",
+          "no_results_by_term": "No encontramos resultados para tu búsqueda.",
+          "no_results": "No s + this.messages.resete encontraron entradas.",
+          "results": "{{total_results}} resultados coinciden con tu búsqueda.",
+          "one_result": "{{total_results}} resultado coincide con tu búsqueda.",
           "has_filters": "<i title=\"¡Advertencia!\" aria-hidden=\"true\" "
                   + "class=\"fa fa-warning text-danger\"></i> "
                   + "Se están usando filtros."
@@ -103,20 +93,21 @@ class PonchoMapFilter extends PonchoMap {
    * @returns {undefined}
    */
   helpText = (results) => {
-      const help_container = document.querySelectorAll(
-          `${this.scope_selector} .js-poncho-map__help`);
+      const help_container = document
+          .querySelectorAll(`${this.scope_selector} .js-poncho-map__help`);
+
+      const values = {
+          "total_results": results.length,
+          "total_entries": this.entries.length,
+          "total_filtered_entries": this.filtered_entries.length,
+          "filter_class": `js-close-filter${this.scope_sufix}`,
+          "anchor": "#",
+          "term": this.inputSearchValue,
+          "reset_search": `js-poncho-map-reset${this.scope_sufix}`
+      };
+
       help_container.forEach(element => {
           element.innerHTML = "";
-          //
-          const values = {
-              "total_results": results.length,
-              "total_entries": this.entries.length,
-              "total_filtered_entries": this.filtered_entries.length,
-              "filter_class": `js-close-filter${this.scope_sufix}`,
-              "anchor": "#",
-              "term": this.inputSearchValue,
-              "reset_search": `js-poncho-map-reset${this.scope_sufix}`
-          };
 
           // Arma el listado de mensajes.
           const ul = document.createElement("ul");
@@ -138,33 +129,37 @@ class PonchoMapFilter extends PonchoMap {
           // 0 entradas con criterio de búsqueda.
           else if(values.total_results < 1){
               ul.appendChild(
-                  li(this.tplParser(this.messages.no_results_by_term, values))
+                  li(this.tplParser(this.messages.no_results_by_term 
+                                    + this.messages.reset, values))
               );
           }
           // 0 entradas, sin creterio de búsqueda.
           else if(this.inputSearchValue === "" && values.total_results < 1){
               ul.appendChild(
-                  li(this.tplParser(this.messages.no_results, values))
+                  li(this.tplParser(this.messages.no_results 
+                                    + this.messages.reset, values))
               );
           }
           // Si solo hay un resultado
           else if(values.total_results == 1){
               ul.appendChild(
-                  li(this.tplParser(this.messages.one_result, values))
+                  li(this.tplParser(this.messages.one_result 
+                                    + this.messages.reset, values))
               );
           }
           // Si hay más de un resultado
           else if(values.total_results > 1){
               ul.appendChild(
-                  li(this.tplParser(this.messages.results, values))
+                  li(this.tplParser(this.messages.results 
+                                    + this.messages.reset, values))
               );
           }
           // Si los resultados están siendo filtrados.
-          // if(!this.usingFilters()){
-          //     ul.appendChild(
-          //         li(this.tplParser(this.messages.has_filters, values))
-          //     );
-          // }
+          if(!this.usingFilters()){
+              // ul.appendChild(
+              //     li(this.tplParser(this.messages.has_filters, values))
+              // );
+          }
           element.appendChild(ul);
       });
   };
@@ -241,6 +236,7 @@ class PonchoMapFilter extends PonchoMap {
       
   /**
    * Ejecuta toggle en el onclick
+   * @return {undefined}
    */
   clickToggleFilter = () => document
       .querySelectorAll(`.js-close-filter${this.scope_sufix}`)
@@ -252,15 +248,34 @@ class PonchoMapFilter extends PonchoMap {
 
   /**
    * Prepara el objeto para los filtros.
-   *
-   * >>> setFilter("clave")
-   * ["clave", "elemento-unico", ["elemento-unico"], "checked"]
+   * 
+   * @summary Obtiene un _distinct_ de elementos asociados a un clave
+   * dentro dentro de las entradas.
+   * @param {object} args Array con dos propiedades, siedo la 
+   * segunda optativa.
+   * @propertie
+   * @example
+   * // returns ["clave", "elemento-unico", ["elemento-unico"], "checked"]
+   * setFilter("clave")
+   * @return {object} Entradas filtradas
    */
   setFilter = (args) => {
-      const [key, status = "checked"] = args;
+      const [key, status="checked"] = args;
       const obj = [...new Set(this.entries.map(entry => entry.properties[key]))]
           .map(item => [key, item, [item], status]);
-      obj.sort((a, b) => a[1] - b[1]);
+
+      obj.sort((a, b) => {
+          const valA = a[1].toUpperCase();
+          const valB = b[1].toUpperCase();
+          if (valA > valB) {
+              return 1;
+          }
+          if (valA < valB) {
+              return -1;
+          }
+          return 0;
+      });
+
       return obj;
   };
 
@@ -503,7 +518,7 @@ class PonchoMapFilter extends PonchoMap {
 
   /**
    * Reestablece los filtros a la configuración creada por el usuario.
-   * @return {void}
+   * @return {undefined}
    */
   resetFormFilters = () => {
     this.defaultFiltersConfiguration().forEach(e => {
@@ -542,7 +557,7 @@ class PonchoMapFilter extends PonchoMap {
 
   /**
    * Total de resultados por filtro marcado.
-   * @returns {Array} — retorna un array estructurado del siguiente modo:
+   * @returns {Array} Retorna un array estructurado del siguiente modo:
    * ```
    *      [
    *        {nombre del filtro},
@@ -576,15 +591,26 @@ class PonchoMapFilter extends PonchoMap {
           const element = document.querySelector(
                   `${this.scope_selector}`
                   +` [data-info="${field[4]}__${field[2]}__${field[3]}"]`);
-          const plurals = (field[1] < 2 ? "resultado" : "resultados");
-          element.innerHTML = 
-              ` <i 
-                    style="cursor:help; opacity:.75;" 
-                    class="fa fa-info-circle small text-info" 
-                    aria-hidden="true" title="${field[1]} ${plurals}"></i>
-                <span class="sr-only">
-                    . <em>${field[1]} ${plurals} coiciden con este filtro.</em>
-                </span>`;
+          const plurals = (field[1] < 2 ? "" : "s");
+          
+          const i = document.createElement("i");
+          i.style.cursor = "help";
+          i.style.opacity = ".75";
+          i.style.marginLeft = ".5em";
+          i.style.marginRight = ".25em";
+          i.classList.add("fa","fa-info-circle","small","text-info");
+          i.title = `${field[1]} resultado${plurals}`;
+          i.setAttribute("aria-hidden", "true");
+
+          const span = document.createElement("span");
+          span.className = "sr-only";
+          span.style.fontWeight = "400";
+          span.textContent = `${field[1]} elemento${plurals}.`;
+
+          const info_container = document.createElement("small");
+          info_container.appendChild(i);
+          info_container.appendChild(span);
+          element.appendChild(info_container);
       });
   };
 
@@ -596,32 +622,33 @@ class PonchoMapFilter extends PonchoMap {
    * para retornar true los grupos tienen que dar true
    * @returns {boolean}
    */
-  _validateEntry = (row, form_filters) => {
+  _validateEntry = (entry, form_filters) => {
       const fields_group = (group) => form_filters.filter(e => e[0] == group);
       // Reviso cuantos grupos tengo que validar.
       const total_groups = this.filters.length;
       let validations = [];
       for(let i = 0; i < total_groups; i++){
           // por cada grupo de fields obtengo un resultado de grupo.
-          validations.push(this._validateGroup(row, fields_group(i)));
+          validations.push(this._validateGroup(entry, fields_group(i)));
       }
       return validations.every(e => e);
   };
 
   /**
    * Valida el campo de un grupo.
-   * @param {object} row 
-   * @param {integer} group 
-   * @param {integer} index 
+   * 
+   * @param {object} entry Entrada de datos
+   * @param {integer} group Índice del grupo de filtros
+   * @param {integer} index Índice del filtro dentro del grupo.
    * @returns {object}
    */
-  _search = (row, group, index) => {
+  _search = (entry, group, index) => {
       const filter = this.fieldsToUse(this.filters[group])[index];
       const search_for = filter[2];
       const found = search_for.filter(i => i).some(e => 
         {
-          if(row.hasOwnProperty(filter[0])){
-            return row[filter[0]].includes(e)
+          if(entry.hasOwnProperty(filter[0])){
+            return entry[filter[0]].includes(e)
           }
         }
         
@@ -631,11 +658,14 @@ class PonchoMapFilter extends PonchoMap {
 
   /**
    * Valida los fields del grupo.
-   * @return boolean
+   * 
+   * @param {object} entry Entrada de datos
+   * @param {object} fields_group 
+   * @return {boolean}
    */
-  _validateGroup = (row, fields_group) => {
+  _validateGroup = (entry, fields_group) => {
       const result = fields_group.map(
-          e => this._search(row, e[0], e[1])
+          e => this._search(entry, e[0], e[1])
       );
       return result.some(e => e);
   };
@@ -686,7 +716,7 @@ class PonchoMapFilter extends PonchoMap {
 
   /**
    * Filtra los markers en el onchange de los filtros
-   * @returns {void}
+   * @returns {undefined}
    */
   resetSearch = () => document
       .querySelectorAll(`.js-poncho-map-reset${this.scope_sufix}`)
@@ -704,7 +734,7 @@ class PonchoMapFilter extends PonchoMap {
    * Cambia la lista de markers en función de la selección de 
    * los filtros en PonchoMapFilter.
    * @TODO Ver el modo de hacer focus sobre el scope
-   * @returns {void}
+   * @returns {undefined}
    */
   filterChange = (callback) => document
       .querySelectorAll(`.js-filters${this.scope_sufix}`)
