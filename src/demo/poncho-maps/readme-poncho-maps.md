@@ -1,4 +1,4 @@
-
+****
 # PonchoMap
 
 
@@ -7,41 +7,49 @@
 
 ### PonchoMap
 
-| Parámetro | Tipo | Default | Descripción | Tipo de uso |
-|:---|:---|:---|:---|:---|
-| scope | `string` | _`empty string`_ | Es el ambiente de trabajo sobre un mapa en particular. Cuando se utiliza más de un mapa en la página esto sirve para diferenciarlos. | *obligatorio* |
-| id | `string` | id | Nombre de la columna donde se encuentra el id. Si la fuente de datos usa otro nombre se define con esta opción. Ej. `'id':'id_punto_digital'`.| *Opcional* |
-| latitud | `string` | latitud | Nombre de la columna con el valor de latitud. Si la fuente de datos usa otro nombre se define con esta opción. Ej. `'latitud':'lat'`.| *Opcional* |
-| longitud | `string` | longitud | Nombre de la columna con el valor de longitud. Si la fuente de datos usa otro nombre se define con esta opción. Ej. `'longitud':'lng'`.| *Opcional* |
-| template | `object` | `null` | Define la función que controla el template para el popUp o el slider.| *Opcional* |
-| template_structure | `object` | `{}` | Permite definir un listado de valores a mostarar en el template por defecto o excluir valores que no se deseen mostrar.| *Opcional* |
-| template_innerhtml | `boolean` | `false` | Permite incrustar html dentro de la descripción.| *Opcional* |
-| template_container_class_list | `Array()` | `['info-container']` | Define la lista de clases CSS que pueden agregarse al contenedor del listado de terminos y descripciones. | *Opcional* |
-| template_title_class_list | `Array()` | `['h4','title']` | Define la función que controla el template para el popUp o el slider.| *Opcional* |
-| template_dl_class_list | `Array()` | `['definition-list']` | Define la función que controla el template para el popUp o el slider.| *Opcional* |
-| headers | `object` | `{}` | Permite definir títulos dinámicos mapeando la clave del objeto que contiene la información con los encabezados | *Opcional* |
-| hash | `boolean` | `false` | Habilita la acción por la cual, cada vez que se hace *clic* en un marker se reemplaza el hash en la barra de dirección del navegador.| *Opcional* |
-| slider | `boolean` | `false` | Habilita el slider y reemplaza el popUp.| *Opcional* |
-| anchor_delay | `integer` | 0 | Tiempo de demora entre que se carga la página y se muestra el marker pasado por url. El valor es en milisegundos (1" = 1000). | *Opcional* |
-| scroll | `boolean` | `false` | Hace un scroll para posisionar la página en el borde superior del mapa cuando se carga la página.| *Opcional* |
-| marker | `string` \| `function` | azul | Permite asignar un color distinto o usar una función para cambiar la lógica en la que se muestran los colores o usar iconos de otro tipo. (Ver ejemplos.) | *Opcional* |
-| reset_zoom | `boolean` | `false` | Habilita el un botón en medio del botón *zoom-out* y *zoom-in* para mostrar el mapa completo con sus *markers*.| *Opcional* |
-| map_anchor_zoom | `integer` | 16 | Configuración del zoom para los markers que se deben visualizar pasándo por hash el id del marker.| *Opcional* |
-| map_zoom | `integer` | 4 | Configuración del valor inicial para el zoom del mapa.| *Opcional* |
-| map_view | `Array Object` | `[-40.44, -63.59]` | Geoposicionamiento inicial del mapa. | *Opcional* |
+| Parámetro | Tipo | Default | Descripción |
+|:---|:---|:---|:---|
+| scope | `string` | _`empty string`_ | Es el ambiente de trabajo sobre un mapa en particular. Cuando se utiliza más de un mapa en la página esto sirve para diferenciarlos. | 
+| id | `string` | id | Nombre de la columna donde se encuentra el id. Si la fuente de datos usa otro nombre se define con esta opción. Ej. `'id':'id_punto_digital'`.| 
+| latitud | `string` | latitud | Nombre de la columna con el valor de latitud. Si la fuente de datos usa otro nombre se define con esta opción. Ej. `'latitud':'lat'`.| 
+| longitud | `string` | longitud | Nombre de la columna con el valor de longitud. Si la fuente de datos usa otro nombre se define con esta opción. Ej. `'longitud':'lng'`.| 
+| template | `object` | `null` | Define la función que controla el template para el popUp o el slider.| 
+| template_structure | `object` | `{}` | Permite definir un listado de valores a mostarar en el template por defecto o excluir valores que no se deseen mostrar.| 
+| template_innerhtml | `boolean` | `false` | Permite incrustar html dentro de la descripción.|
+| allowed_tags | `object` | `[]` | Permite configurar un listado de etiquetas HTML que se imprimirán como parte del DOM y no como un texto. Para habilitar todas las etiquetas se utiliza `["*"]`. Si se quiere especificar cuales deben usarse, ej.: `["a", "strong"]`. |
+| template_container_classlist | `Array()` | `['info-container']` | Define la lista de clases CSS que pueden agregarse al contenedor del listado de terminos y descripciones. | 
+| template_title_classlist | `Array()` | `['h4','title']` | Listado de selectores CSS se que aplicarán en la etiqueta HTML asignada título.| 
+| template_dl_classlist | `Array()` | `['definition-list']` | Listado de selectores CSS se que aplicarán en la etiqueta HTML asignada contenedor del listado de términos y definiciones.| 
+| template_dt_classlist | `Array()` | `['h6', "m-b-0"]` | Listado de selectores CSS se que aplicarán en la etiqueta HTML asignada al término.| 
+| template_dd_classlist | `Array()` | `[]` | Listado de selectores CSS se que aplicarán en la etiqueta HTML asignada a la definición.| 
+| template_dl | `strng` | `dl` | Define la etiqueta HTML que contiene el listado de términos y descripciones.| 
+| template_dt | `strng` | `dt` | Define la etiqueta HTML para el término.| 
+| template_dd | `strng` | `dd` | Define la etiqueta HTML para la descripción.| 
+| headers | `object` | `{}` | Permite definir títulos dinámicos mapeando la clave del objeto que contiene la información con los encabezados | 
+| header_icons | `object` | `{}` | Permite definir un ícono para cada uno de los headers de la entrada. | 
+| lead | `object` | `{}` | Agrega una volanta en el template por defecto. | 
+| hash | `boolean` | `false` | Habilita la acción por la cual, cada vez que se hace *clic* en un marker se reemplaza el hash en la barra de dirección del navegador.| 
+| slider | `boolean` | `false` | Habilita el slider y reemplaza el popUp.| 
+| anchor_delay | `integer` | 0 | Tiempo de demora entre que se carga la página y se muestra el marker pasado por url. El valor es en milisegundos (1" = 1000). | 
+| scroll | `boolean` | `false` | Hace un scroll para posisionar la página en el borde superior del mapa cuando se carga la página.| 
+| marker | `string` \| `function` | azul | Permite asignar un color distinto o usar una función para cambiar la lógica en la que se muestran los colores o usar iconos de otro tipo. (Ver ejemplos.) | 
+| reset_zoom | `boolean` | `false` | Habilita el un botón en medio del botón *zoom-out* y *zoom-in* para mostrar el mapa completo con sus *markers*.| 
+| map_anchor_zoom | `integer` | 16 | Configuración del zoom para los markers que se deben visualizar pasándo por hash el id del marker.| 
+| map_zoom | `integer` | 4 | Configuración del valor inicial para el zoom del mapa.| 
+| map_view | `Array Object` | `[-40.44, -63.59]` | Geoposicionamiento inicial del mapa. | 
 
 #### Clusters de Leaflet
 
-| Parámetro | Tipo | Default | Descripción | Tipo de uso |
-|:---|:---|:---|:---|:---|
-| marker_cluster_options | `Object` | <pre>'marker_cluster_options': {<br>    'spiderfyOnMaxZoom': true,<br>    'showCoverageOnHover': false,<br>    'zoomToBoundsOnClick': true,<br>    'maxClusterRadius': 10,<br>    'spiderfyDistanceMultiplier': 1.5,<br>    'spiderLegPolylineOptions': {<br>        'weight': 1,<br>        'color': "#666",<br>        'opacity': 0.5,<br>    }<br>}</pre> | Opciones Leaflet. Ver <https://github.com/Leaflet/Leaflet.markercluster> | *opcional* |
+| Parámetro | Tipo | Default | Descripción |
+|:---|:---|:---|:---|
+| marker_cluster_options | `Object` | <pre>'marker_cluster_options': {<br>    'spiderfyOnMaxZoom': true,<br>    'showCoverageOnHover': false,<br>    'zoomToBoundsOnClick': true,<br>    'maxClusterRadius': 10,<br>    'spiderfyDistanceMultiplier': 1.5,<br>    'spiderLegPolylineOptions': {<br>        'weight': 1,<br>        'color': "#666",<br>        'opacity': 0.5,<br>    }<br>}</pre> | Opciones Leaflet. Ver <https://github.com/Leaflet/Leaflet.markercluster> |
 
 ### PonchoMapFilter
 
-| Parámetro | Tipo | Default | Descripción | Tipo de uso |
-|:---|:---|:---|:---|:---|
+| Parámetro | Tipo | Default | Descripción |
+|:---|:---|:---|:---|
 | filters | object |  | Permite configurar opciones para filtrar los markers | _Obligatorio_ usando `PonchoMapFilter`|
-| filters_visible | `boolean` | `false` | Configura el estado inicial del panel de filtros. | *Opcional* |
+| filters_visible | `boolean` | `false` | Configura el estado inicial del panel de filtros. |
 
 #### Ejemplo de implementación de filtros
 ```js
@@ -87,46 +95,26 @@ Este ejemplo tiene dos filtros generales: estado_funcionamiento y provincia. És
 
 ### PonchoMapSearch
 
-PorchoMapSearch utiilza el compoenente select2<sup>[1]</sup> para visualizar el listado de markers y realizar búsquedas sobre la entrada activa.
-
 | Parámetro | Tipo | Default | Descripción | Tipo de uso |
 |:---|:---|:---|:---|:---|
 | scope | object |  | Scope se utiliza para asegurarse de que todas las funciones serán sobre el ambiente de un buscado y un mapa determinados. | _Requerido_ |
-| text | `string` | text | Define el índice que debe utilizarse para mostrar en el listado desplegable. | *Requerido* |
-| id | `string` | id | Define el índice que debe utilizarse para identificar cada una de las entradas. | *Requerido* |
 | placeholder | `string` | Su búsqueda | Texto de ayuda que aparece en un tono medio en el selector de items, complementa al label de un form. | *Opcional* |
 | search_fields | `object` | [] | Define los índices que se utilizan para realizar la búsqueda. Ej. `['provincia', 'localidad', 'nombre']` | *Opcional* |
-| sort | `boolean` | `false` | Si es `true` las entradas se ordenan alfa-numéricamente en forma ascendente. | *Opcional* |
-| sort_reverse | `boolean` | `false` | Si es `true` las entradas se ordenan alfa-numéricamente en forma descendente. Esta opción tiene prioridad sobre la opción *sort*. | *Opcional* |
-| sort_key | `string` | text | Define el índice por el que se ordenarán las entradas. | *Opcional* |
-| theme | `string` | poncho | Define el tema que se utiliza para el componente select2. El tema *poncho*, está incluido en el estilo general de Argentina.gob.ar. | *Opcional* |
-| template | `object` | false | Permite definir una estructura html para mostrar en el listado. La función debe retornar un *string*. Ver ejemplo. | *Opcional* |
+| sort_reverse | `boolean` | `false` | Si es `true` las entradas se ordenan alfa-numéricamente en forma descendente. Esta opción tiene prioridad sobre la opción ***sort***. | *Opcional* |
+| datalist | `boolean` | `true` | Despliega un HTML datalis para el input | *Opcional* |
 
 #### Ejemplo de uso para el buscador
 
 ```javascript
 // PonchoMap
 const options = {...};
-const poncho_map = new PonchoMap(entradas_json, options);
+const poncho_map = new PonchoMapFilter(entradas_json, options);
 poncho_map.render();
 
 // Configuración de PonchoMapSearch
 const search_options = {
   'scope':'search-efectores',
-  'text': 'nombre',
-  'id':'id_pd',
   'placeholder':'Buscá tu Punto Digital',
-  'template': (self, entry) => {
-    const tpl = `<p class="badge">
-        <i class="icono-arg-institucion"></i> 
-        ${entry.institucion}
-        </p>
-        <dl>
-          <dt>${entry.nombre}</dt>
-          <dd>${entry.provincia}, ${entry.localidad}</dd>
-        </dl>`;
-    return tpl;
-  },
   'search_fields': [
       "nombre",
       "institucion",

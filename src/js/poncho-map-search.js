@@ -11,56 +11,50 @@
  * 
  * 
  * MIT License
- *
+ * 
  * Copyright (c) 2022 Argentina.gob.ar
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * 
+ * Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation
+ * files (the "Software"), to deal in the Software without restriction,
+ * including without limitation the rightsto use, copy, modify, merge,
+ * publish, distribute, sublicense, and/or sell copies of the Software,
+ * and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+ * BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+ * ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+ * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
 class PonchoMapSearch {
     constructor(instance, options){
         const defaults = {
             "scope": false,
-            "template": false,
-            "allow_clear": false,
             "placeholder": "Su búsqueda",
-            "theme": "poncho",
-            "minimum_input_length": 0,
             "search_fields": instance.search_fields,
             "sort": true,
             "sort_reverse": false,
             "sort_key": "text",
+            "datalist": true
         };
         this.instance = instance;
         let opts = Object.assign({}, defaults, options);
-        this.theme = opts.theme;
-        this.template = (
-              typeof(opts.template) === "function" ? opts.template: false);
         this.text = (instance.title ? instance.title : false);
+        this.datalist = opts.datalist;
         this.placeholder = opts.placeholder;
-        this.allow_clear = opts.allow_clear;
         this.scope = opts.scope;
-        this.sort_key = opts.sort_key;
-        this.minimum_input_length = opts.minimum_input_length;
         this.sort = opts.sort;
         this.sort_reverse = opts.sort_reverse;
         this.search_scope_selector = (
-          this.scope ? `[data-scope="${this.scope}"]`: "");
+            this.scope ? `[data-scope="${this.scope}"]`: "");
         this.instance.search_fields = opts.search_fields;
     };
 
@@ -72,49 +66,22 @@ class PonchoMapSearch {
      */
     sortData = (entries, key) => {
       let order = entries.sort((a, b) => {
-        const clearString = e => this.instance.removeAccents(e).toUpperCase();
-        if (clearString(a[key]) < clearString(b[key])){
-          return -1;
-        }
+          const clearString = e => this.instance.removeAccents(e).toUpperCase();
+          if (clearString(a[key]) < clearString(b[key])){
+            return -1;
+          }
 
-        if (clearString(a[key]) > clearString(b[key])){
-          return 1;
-        }
+          if (clearString(a[key]) > clearString(b[key])){
+            return 1;
+          }
 
-        return 0;
+          return 0;
       });
 
       if(this.sort_reverse){
         return order.reverse();
       }      
       return order;
-    };
-
-    /**
-     * Prepara las entradas para la búsqueda
-     * @param {object} entries 
-     */
-    dataSelect = (entries) => {
-        return entries.map( (e) => {
-            let entry = {id: e[this.instance.id], text: e[this.text]};
-            entry.html = (this.template ? this.template(this, e) : e[this.text]);
-            return ({...e, ...entry, ...{selected:false}});
-        });
-    };
-
-    /**
-     * Prepara el listado de entradas que se utilizará para la búsqueda.
-     * @returns {object}
-     */
-    dataset = () => {
-        const data = ((this.instance instanceof PonchoMapFilter) ? 
-                      this.instance.filtered_entries : this.instance.entries);
-        let data_select = this.dataSelect(this.sortData(data, this.sort_key));
-
-        if(!this.sort){
-            data_select = this.dataSelect(data);
-        }
-        return data_select;
     };
 
     /**
@@ -237,20 +204,24 @@ class PonchoMapSearch {
      * </datalist>
      * ```
      */
-    addDataListOptions = () => document
-        .querySelectorAll(
-            `${this.search_scope_selector} #js-porcho-map-search__list`)
-        .forEach(element => {
-            element.innerHTML = new Date();
-            const options = (content) => {
-                const opt = document.createElement("option"); 
-                opt.textContent = content; 
-                return opt;
-            };
-            this.instance.filtered_entries.forEach(e => 
-                element.appendChild(options(e.properties[this.text]))
-            );
-    });
+    addDataListOptions = () => {
+        if(!this.datalist){
+            return null;
+        }
+        document.querySelectorAll(
+                `${this.search_scope_selector} #js-porcho-map-search__list`)
+            .forEach(element => {
+                element.innerHTML = new Date();
+                const options = (content) => {
+                    const opt = document.createElement("option"); 
+                    opt.textContent = content; 
+                    return opt;
+                };
+                this.instance.filtered_entries.forEach(e => 
+                    element.appendChild(options(e.properties[this.text]))
+                );
+        });
+    };
 
     /**
      * Agrega el aria role y aria labe al grupo de buscador.

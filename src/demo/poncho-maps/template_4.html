@@ -71,6 +71,7 @@ COPIAR DESDE ACÁ
 <script>
   var gapi;
   var gapi_data;
+  var filter;
   // init
   (async() => {
     // GApi helpers
@@ -93,7 +94,7 @@ COPIAR DESDE ACÁ
       // otro nombre se debe reemplazar. 
       //     Si el documento no necesita o no tiene un ID el programa 
       // lo genera automáticamente para identificar el marker.
-      //     "id" : "id_con_otro_nombre",
+      "id" : "id",
       // Nombre que se utiliza como título por defecto para los markers.
       // También es importante para mejorar aspectos de accesibilidad.
       "title": "nombre",
@@ -136,8 +137,8 @@ COPIAR DESDE ACÁ
 
     };
     // render map
-    const poncho_filter = new PonchoMapFilter(gapi_data.entries, options);
-    poncho_filter.render();
+    filter = new PonchoMapFilter(gapi_data.entries, options);
+    filter.render();
 
 
   })();
