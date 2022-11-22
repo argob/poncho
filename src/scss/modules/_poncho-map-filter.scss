@@ -54,7 +54,7 @@
     .marker--active {
         --color: 247, 149, 37;
         position: relative;
-        border-radius: 50%;
+        // border-radius: 50%;
         box-shadow: 0 0 20px rgba(var(--active-marker-color), 1);
         background: radial-gradient(circle, rgba(var(--active-marker-color), var(--active-marker-alpha)) 10%, rgba(var(--active-marker-color), var(--active-marker-alpha)) 80%);
     }

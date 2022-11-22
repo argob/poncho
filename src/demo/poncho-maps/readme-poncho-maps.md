@@ -1,8 +1,6 @@
 ****
 # PonchoMap
 
-
-
 ## Opciones para PonchoMap, PonchoMapFilter y PonchoMapSearch
 
 ### PonchoMap
@@ -17,14 +15,14 @@
 | template_structure | `object` | `{}` | Permite definir un listado de valores a mostarar en el template por defecto o excluir valores que no se deseen mostrar.| 
 | template_innerhtml | `boolean` | `false` | Permite incrustar html dentro de la descripción.|
 | allowed_tags | `object` | `[]` | Permite configurar un listado de etiquetas HTML que se imprimirán como parte del DOM y no como un texto. Para habilitar todas las etiquetas se utiliza `["*"]`. Si se quiere especificar cuales deben usarse, ej.: `["a", "strong"]`. |
-| template_container_classlist | `Array()` | `['info-container']` | Define la lista de clases CSS que pueden agregarse al contenedor del listado de terminos y descripciones. | 
-| template_title_classlist | `Array()` | `['h4','title']` | Listado de selectores CSS se que aplicarán en la etiqueta HTML asignada título.| 
-| template_dl_classlist | `Array()` | `['definition-list']` | Listado de selectores CSS se que aplicarán en la etiqueta HTML asignada contenedor del listado de términos y definiciones.| 
-| template_dt_classlist | `Array()` | `['h6', "m-b-0"]` | Listado de selectores CSS se que aplicarán en la etiqueta HTML asignada al término.| 
-| template_dd_classlist | `Array()` | `[]` | Listado de selectores CSS se que aplicarán en la etiqueta HTML asignada a la definición.| 
-| template_dl | `strng` | `dl` | Define la etiqueta HTML que contiene el listado de términos y descripciones.| 
-| template_dt | `strng` | `dt` | Define la etiqueta HTML para el término.| 
-| template_dd | `strng` | `dd` | Define la etiqueta HTML para la descripción.| 
+| template_structure / template_container_classlist | `Array()` | `['info-container']` | Define la lista de clases CSS que pueden agregarse al contenedor del listado de terminos y descripciones. | 
+| template_structure / template_title_classlist | `Array()` | `['h4','title']` | Listado de selectores CSS se que aplicarán en la etiqueta HTML asignada título.| 
+| template_structure / template_dl_classlist | `Array()` | `['definition-list']` | Listado de selectores CSS se que aplicarán en la etiqueta HTML asignada contenedor del listado de términos y definiciones.| 
+| template_structure / template_dt_classlist | `Array()` | `['h6', "m-b-0"]` | Listado de selectores CSS se que aplicarán en la etiqueta HTML asignada al término.| 
+| template_structure / template_dd_classlist | `Array()` | `[]` | Listado de selectores CSS se que aplicarán en la etiqueta HTML asignada a la definición.| 
+| template_structure / template_dl | `strng` | `dl` | Define la etiqueta HTML que contiene el listado de términos y descripciones.| 
+| template_structure / template_dt | `strng` | `dt` | Define la etiqueta HTML para el término.| 
+| template_structure / template_dd | `strng` | `dd` | Define la etiqueta HTML para la descripción.| 
 | headers | `object` | `{}` | Permite definir títulos dinámicos mapeando la clave del objeto que contiene la información con los encabezados | 
 | header_icons | `object` | `{}` | Permite definir un ícono para cada uno de los headers de la entrada. | 
 | lead | `object` | `{}` | Agrega una volanta en el template por defecto. | 
@@ -48,8 +46,12 @@
 
 | Parámetro | Tipo | Default | Descripción |
 |:---|:---|:---|:---|
-| filters | object |  | Permite configurar opciones para filtrar los markers | _Obligatorio_ usando `PonchoMapFilter`|
+| **filters** |||
+| *legend* | `string` | `false` |
+| field | `Object` | `false` |
+| fields | `Object` | `false` |
 | filters_visible | `boolean` | `false` | Configura el estado inicial del panel de filtros. |
+| filters_info | `boolean` | `false` | Muestra un icono con un _tooltip_ con el total de resultados por filtro. |
 
 #### Ejemplo de implementación de filtros
 ```js

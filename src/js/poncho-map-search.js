@@ -65,30 +65,32 @@ class PonchoMapSearch {
      * @returns {object} - Entradas ordenadas
      */
     sortData = (entries, key) => {
-      let order = entries.sort((a, b) => {
-          const clearString = e => this.instance.removeAccents(e).toUpperCase();
-          if (clearString(a[key]) < clearString(b[key])){
-            return -1;
-          }
+        let order = entries.sort((a, b) => {
+            const clearString = (e) => {
+                this.instance.removeAccents(e).toUpperCase()
+            };
+            if (clearString(a[key]) < clearString(b[key])){
+                return -1;
+            }
 
-          if (clearString(a[key]) > clearString(b[key])){
-            return 1;
-          }
+            if (clearString(a[key]) > clearString(b[key])){
+                return 1;
+            }
 
-          return 0;
-      });
+            return 0;
+        });
 
-      if(this.sort_reverse){
-        return order.reverse();
-      }      
-      return order;
+        if(this.sort_reverse){
+            return order.reverse();
+        }      
+        return order;
     };
 
     /**
      * Ejecuta una búsqueda desde un input text
      * @returns 
      */
-    triggerSearch = () => {
+    _triggerSearch = () => {
         const input = document.querySelector(
             `${this.search_scope_selector} .js-poncho-map-search__input`);
         const submit = document.querySelectorAll(
@@ -101,7 +103,7 @@ class PonchoMapSearch {
                       `#js-search-input${this.instance.scope_sufix}`);
                 element.value = input.value;
                 const term = input.value;
-                this.renderSearch(term);
+                this._renderSearch(term);
             });
         });
     };
@@ -109,7 +111,7 @@ class PonchoMapSearch {
     /**
      * en el keyup copia el value al input hidden de filtros.
      */
-    keyup = () => {
+    _keyup = () => {
         const input = document.querySelectorAll(
               `${this.search_scope_selector} .js-poncho-map-search__input`);
         input.forEach(ele => {
@@ -126,19 +128,10 @@ class PonchoMapSearch {
     };
 
     /**
-     * Límpia del input search el término de búsqueda.
-     * @returns {undefined}
-     */
-    cleanInput = () => document
-        .querySelector(
-            `${this.search_scope_selector} .js-poncho-map-search__input`)
-        .value = "";
-
-    /**
      * Agrega el placeholder si fué seteado en las opciones.
      * @returns {undefined}
      */
-    placeHolder = () => {
+    _placeHolder = () => {
         if(!this.placeholder){
             return "";
         }
@@ -148,32 +141,23 @@ class PonchoMapSearch {
     };
 
     /**
-     * Vacía el contenido del elemento que contiene los textos de ayuda.
-     * @returns {undefined}
-     */
-    cleanHelpText = () => document
-        .querySelector(
-            `${this.instance.scope_selector} .js-poncho-map__help`)
-        .innerHTML = "";
-
-    /**
      * Hace una búsqueda basado en el término escrito en el input de
      * búsqueda.
      */
-    renderSearch = (term) => {
-        const entries = this.instance.filterData();
+    _renderSearch = (term) => {
+        const entries = this.instance._filterData();
         // Renderizo el mapa
         // @see PonchoMap
         this.instance.markersMap(entries); 
         if(this.instance.slider){
-            this.instance.renderSlider();
-            this.instance.clickeableFeature();
-            this.instance.clickeableMarkers();
+            this.instance._renderSlider();
+            this.instance._clickeableFeature();
+            this.instance._clickeableMarkers();
             this.instance.clickToggleSlider();
         }
 
         if(this.instance.hash){
-            this.instance.urlHash();
+            this.instance._urlHash();
         }
         // Alejo el mapa a su posición por defecto.
         // @see PonchoMap resetView()
@@ -189,9 +173,10 @@ class PonchoMapSearch {
             setTimeout(this.instance.fitBounds, 350);
         }
 
-        this.instance.helpText(entries);
+        this.instance._helpText(entries);
         this.instance.resetSearch();
         this.instance.clickToggleFilter();
+        this.instance._setFetureAttributes();
     };
 
     /**
@@ -204,12 +189,12 @@ class PonchoMapSearch {
      * </datalist>
      * ```
      */
-    addDataListOptions = () => {
+    _addDataListOptions = () => {
         if(!this.datalist){
             return null;
         }
         document.querySelectorAll(
-                `${this.search_scope_selector} #js-porcho-map-search__list`)
+                `${this.search_scope_selector} .js-porcho-map-search__list`)
             .forEach(element => {
                 element.innerHTML = new Date();
                 const options = (content) => {
@@ -224,9 +209,10 @@ class PonchoMapSearch {
     };
 
     /**
-     * Agrega el aria role y aria labe al grupo de buscador.
+     * Agrega el aria role y aria label al grupo de buscador.
+     * @accesibility
      */
-    searchRegion = () => {
+    _searchRegion = () => {
         const element = document.querySelector(this.search_scope_selector);
         element.setAttribute("role", "region");
         element.setAttribute("aria-label", "Buscador");
@@ -236,15 +222,15 @@ class PonchoMapSearch {
      * Ejecuta el componente select2 y activa el listener de los filtros.
      */
     render = () => {
-        this.placeHolder();
-        this.triggerSearch();
-        this.addDataListOptions();
+        this._placeHolder();
+        this._triggerSearch();
+        this._addDataListOptions();
         this.instance.filterChange((event) => {
             event.preventDefault();
-            this.instance.filteredData();
-            this.addDataListOptions();
+            this.instance._filteredData();
+            this._addDataListOptions();
         })
-        this.searchRegion();
-        this.keyup();
+        this._searchRegion();
+        this._keyup();
     }  
 };

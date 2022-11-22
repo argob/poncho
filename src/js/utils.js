@@ -127,8 +127,8 @@ const ponchoColor = (color) => {
  * 
  * @param {string} data Cadena de texto a limpiar. 
  * @example
- * // returns Accion murcielago arbol
- * removeAccents("Acción Murciélago árbol")
+ * // returns Accion murcielago arbol nino
+ * removeAccents("Acción Murciélago árbol niño")
  * @returns {string} Cadena de texto sin acentos.
  */
 const replaceSpecialChars = (data) => {
@@ -150,8 +150,8 @@ const replaceSpecialChars = (data) => {
  * 
  * @param {string} string Cadena de texto a convertir.
  * @example
- * // returns el-murcielago-remolon 
- * slugify("El murciélago remolón")
+ * // returns el-murcielago-remolon-parece-un-nino
+ * slugify("El murciélago remolón parece un niño")
  * @returns {string} Cadena de texto en formato slug.
  */
 const slugify = (string) =>{
@@ -176,6 +176,13 @@ const slugify = (string) =>{
 
 /**
  * Fetch data
+ * 
+ * @example
+ * ```js
+ * (async() => {
+ *     const data = await fetch_json("https://som.url.com");
+ * });
+ * ```
  */
 async function fetch_json(url, method="GET"){
     const response = await fetch(
@@ -210,18 +217,38 @@ const secureHTML = (str, exclude=[]) => {
     if(exclude.some(e => e === "*")){
         return str;
     }
-    const regexStart = new RegExp(
-        "&lt;(" + exclude.join("|") + ")(.*?)&gt;", "g");
-    const regexEnd = new RegExp(
-        "&lt;\/(" + exclude.join("|") + ")(.*?)&gt;", "g");
-    const replaceString = str
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replaceAll(regexStart, "<$1$2>")
-        .replace(regexEnd, "</$1>");
 
+    let replaceString = str.toString()
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+
+    if(exclude.length > 0){
+        const regexStart = new RegExp(
+            "&lt;(" + exclude.join("|") + ")(.*?)&gt;", "g");
+        const regexEnd = new RegExp(
+            "&lt;\/(" + exclude.join("|") + ")(.*?)&gt;", "g");
+
+        return replaceString
+            .replace(regexStart, "<$1$2>")
+            .replace(regexEnd, "</$1>");
+    }
     return replaceString;
 };
+
+
+const getScroll = () => {
+  if (window.pageYOffset != undefined) {
+      return [pageXOffset, pageYOffset];
+  } else {
+      var sx, sy, d = document,
+          r = d.documentElement,
+          b = d.body;
+      sx = r.scrollLeft || b.scrollLeft || 0;
+      sy = r.scrollTop || b.scrollTop || 0;
+      return [sx, sy];
+  }
+};
+
 
 // $START_TEST$
 // ¡Atención! Patch para testear non-module

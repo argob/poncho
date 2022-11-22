@@ -12,9 +12,9 @@
  *
  * 
  * MIT License
- * 
+ *
  * Copyright (c) 2022 Argentina.gob.ar
- * 
+ *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
  * files (the "Software"), to deal in the Software without restriction,
@@ -37,39 +37,43 @@
  */
 class PonchoMap {
     constructor(data, options){
-        // Confs
         const defaults = {
             "title": false,
             "id": "id",
-            "lead": [],
             "template": false,
-            "template_structure": {},
-            "template_container_classlist": ["info-container"],
-            "template_title_classlist": ["h4","text-primary","m-t-0"],
+            "template_structure": {
+                "lead": [],
+                "header": false,
+                "title": "",
+                "mixing": [],
+                "values": [],
+                "exclude": [],
+                "container_classlist": ["info-container"],
+                "title_classlist": ["h4","text-primary","m-t-0"],
+                "definition_list_classlist":["definition-list"],
+                "term_classlist": ["h6", "m-b-0"],
+                "definition_classlist": [],
+                "definition_list_tag": "dl",
+                "term_tag": "dt",
+                "definition_tag": "dd",
+            },
+            "allowed_tags": [],
             "template_innerhtml": false,
             "template_markdown": false,
-            "template_header": false,
-            "template_dl_classlist":["definition-list"],
-            "template_dt_classlist":["h6", "m-b-0"],
-            "template_dd_classlist":[],
-            "template_dl": "dl",
-            "template_dt": "dt",
-            "template_dd": "dd",
             "markdown_options": {
                 tables: true,
                 simpleLineBreaks: true,
                 extensions :[
-                    "images", 
-                    "alerts", 
                     // "numbers", 
                     // "ejes", 
+                    //"video"
+                    "images", 
+                    "alerts", 
                     "button", 
                     "target",
                     "bootstrap-tables",
-                    //"video"
                 ]
             },
-            "allowed_tags":["a"],
             "scope": "",
             "slider": false,
             "scroll": false,
@@ -77,15 +81,25 @@ class PonchoMap {
             "headers": {},
             "header_icons": {},
             "map_selector": "map",
-            "anchor_delay":0,
+            "anchor_delay": 0,
             "slider_selector": ".slider",
             "map_view": [-40.44, -63.59],
-            "map_anchor_zoom":16,
-            "map_zoom":4,
-            "reset_zoom":true,
-            "latitud":"latitud",
-            "longitud":"longitud",
+            "map_anchor_zoom": 16,
+            "map_zoom": 4,
+            "min_zoom": 2,
+            "reset_zoom": true,
+            "latitud": "latitud",
+            "longitud": "longitud",
             "marker": "azul",
+            "tooltip": false,
+            "tooltip_options":{
+                // "permanent": false, 
+                "direction": 'auto',
+                // "offset": [15,0], 
+                // "sticky": true,
+                // "opacity": 1,
+                className: 'leaflet-tooltip-own'
+            },
             "marker_cluster_options": {
                 "spiderfyOnMaxZoom": false,
                 "showCoverageOnHover": false,
@@ -102,22 +116,15 @@ class PonchoMap {
         };
         let opts = Object.assign({}, defaults, options);
         this.scope = opts.scope;
-        this.lead = opts.lead;
         this.template = opts.template;
-        this.template_structure = opts.template_structure;
-        this.template_title_classlist = opts.template_title_classlist;
-        this.template_dl_classlist = opts.template_dl_classlist;
-        this.template_dt_classlist = opts.template_dt_classlist;
-        this.template_dd_classlist = opts.template_dd_classlist;
-        this.template_container_classlist = opts.template_container_classlist;
+        this.template_structure = {
+            ...defaults.template_structure, 
+            ...options.template_structure
+        };
         this.template_innerhtml = opts.template_innerhtml;
         this.template_markdown = opts.template_markdown;
         this.markdown_options = opts.markdown_options;
         this.allowed_tags = opts.allowed_tags;
-        this.template_header = opts.template_header;
-        this.template_dl = opts.template_dl;
-        this.template_dt = opts.template_dt;
-        this.template_dd = opts.template_dd;
         this.map_selector = opts.map_selector;
         this.headers = this.setHeaders(opts.headers);
         this.header_icons = opts.header_icons;
@@ -126,7 +133,10 @@ class PonchoMap {
         this.map_view = opts.map_view;
         this.anchor_delay = opts.anchor_delay;
         this.map_zoom = opts.map_zoom;
+        this.min_zoom = opts.min_zoom;
         this.map_anchor_zoom = opts.map_anchor_zoom;
+        this.tooltip_options = opts.tooltip_options;
+        this.tooltip = opts.tooltip;
         this.marker_cluster_options = opts.marker_cluster_options;
         this.marker_color = opts.marker;
         this.id = opts.id;
@@ -135,7 +145,7 @@ class PonchoMap {
         this.longitude = opts.longitud;
         this.slider = opts.slider;
         this.reset_zoom = opts.reset_zoom;
-        this.slider_selector=this.selectorName(opts.slider_selector);
+        this.slider_selector=this._selectorName(opts.slider_selector);
         this.selected_marker;
         this.scope_selector = `[data-scope="${this.scope}"]`;
         this.scope_sufix = `--${this.scope}`;
@@ -148,23 +158,22 @@ class PonchoMap {
             "MultiLineString"
         ];
         this.featureStyle = {
-            "stroke": ponchoColor("primary"),
+            "stroke": "dodgerblue",
             "stroke-opacity": 1,
             "stroke-width": 2,
             "fill-opacity": .5
         };
-        
+        this.geojson;
+
         // OSM
-        this.map = new L.map(this.map_selector,{preferCanvas: false})
-            .setView(this.map_view, this.map_zoom);
-        new L.tileLayer(
-            "https://gis.argentina.gob.ar/osm/{z}/{x}/{y}.png",
-            { 
-              attribution: ("&copy; Contribuidores "
-                  + "<a href=\"https://www.openstreetmap.org/copyright\">"
-                  + "OpenStreetMap</a>")
-            }
-        ).addTo(this.map);
+        this.map = new L.map(
+            this.map_selector, {/*preferCanvas: true,*/ renderer:L.svg()}
+        ).setView(this.map_view, this.map_zoom);
+        new L.tileLayer("https://gis.argentina.gob.ar/osm/{z}/{x}/{y}.png",{ 
+            attribution: ("&copy; Contribuidores "
+                + "<a href=\"https://www.openstreetmap.org/copyright\">"
+                + "OpenStreetMap</a>")
+        }).addTo(this.map);
         this.markers = new L.markerClusterGroup(this.marker_cluster_options);
     }
 
@@ -185,12 +194,15 @@ class PonchoMap {
 
     /**
      * JSON input
-     * @return {object} Listado de entradas con formato feature de geJSON.
+     * @return {object} Listado de entradas con formato feature de geoJSON.
      */
     get entries(){
         return this.data.features;
     }
 
+    /**
+     * Retrona las entradas en fromato geoJSON
+     */
     get geoJSON(){
         return this.featureCollection(this.entries);
     }
@@ -213,7 +225,7 @@ class PonchoMap {
             const features = this.features(input);
             geoJSON = this.featureCollection(features);
         }
-        return this.setIdIfNotExists(geoJSON);
+        return this._setIdIfNotExists(geoJSON);
     };
 
     /**
@@ -247,6 +259,11 @@ class PonchoMap {
         };
     }; 
 
+    /**
+     * Entradas JSON
+     * @param {object} entries Entradas JSON 
+     * @returns {object}
+     */
     features = (entries) => {
         return entries.map(this.feature);
     };
@@ -259,9 +276,9 @@ class PonchoMap {
      * si el usuario asoció una columna a la opción ID de la 
      * configuración, usa esa.
      * @param {object} entries
-     * @return {object} 
+     * @return {object}
      */
-    setIdIfNotExists = (entries) => {
+    _setIdIfNotExists = (entries) => {
         const has_id = entries.features
                 .filter((_,k) => k===0)
                 .every(e => e.properties.hasOwnProperty('id'));
@@ -282,7 +299,7 @@ class PonchoMap {
 
     /**
      * Agrega el hash en la barra de url.
-     * @param {string|integer} value 
+     * @param {string|integer} value
      * @return {undefined}
      */
     addHash = (value) => {
@@ -306,13 +323,13 @@ class PonchoMap {
      * @param {string} term Término a buscar.
      * @returns {object} Listado filtrado por los match
      */
-    searchEntry = (term, dataset) => {
+    searchEntries = (term, dataset) => {
         dataset = (typeof dataset === "undefined" ? this.geoJSON: dataset);
         if(!term){
             return dataset;
         }
         const entries = dataset.filter(e => {
-            if(this.searchTerm(term, e.properties)){
+            if(this.searchEntry(term, e.properties)){
                 return e;
             };
         })
@@ -322,7 +339,7 @@ class PonchoMap {
     /**
      * Busca un término en cada uno de los indices de una entrada.
      */
-    searchTerm = (search_term, data) => {
+    searchEntry = (search_term, data) => {
         const search_for = [
             ...new Set([...[this.title], ...this.search_fields])
         ].filter(e => e);
@@ -353,13 +370,13 @@ class PonchoMap {
      * @param {string} selector Selector a quitarle la definición.
      * @example
      * // returns foo
-     * selectorName(".foo")
+     * _selectorName(".foo")
      * @example
      * // returns foo
-     * selectorName("#foo")
+     * _selectorName("#foo")
      * @return {string} Nombre del selector sin caracter de tipo.
      */
-    selectorName = (selector) => {
+    _selectorName = (selector) => {
         return selector.replace(/^(\.|\#)/, "");
     };
 
@@ -382,7 +399,7 @@ class PonchoMap {
     /**
      * Limpia el contenido.
      */
-    clearContent = () => document
+    _clearContent = () => document
         .querySelector(`.js-content${this.scope_sufix}`).innerHTML = "";
 
     /**
@@ -401,13 +418,34 @@ class PonchoMap {
     };
 
     /**
+     * Hace foto en un feature.
+     * @accesibility
+     * @param {integer} id Id de la entrada
+     * @return {undefined}
+     */
+    _focusOnFeature = (id) => {
+        this.map.eachLayer(e => {
+            if(e?.options?.id != id){
+                return;
+            }
+            if(e?._path){
+                e._path.focus();
+            } else if (e?._icon){
+                e._icon.focus();
+            }
+        });
+    };
+
+    /**
      * Ejecuta `toggleSlider()` en el onclick
+     * @return {undefined} 
      */
     clickToggleSlider = () => document
         .querySelectorAll(`.js-close-slider${this.scope_sufix}`)
         .forEach(e => e.addEventListener("click", () => {
-            this.clearContent();
+            this._clearContent();
             this.toggleSlider();
+            this._focusOnFeature(e.dataset.entryId);
         }
     ));
 
@@ -426,14 +464,17 @@ class PonchoMap {
      * @return {string} HTML del contenido del slider.
      */
     setContent = (data) => {
-        this.focusOnSlider();
+        this._focusOnSlider();
         if(!this.isSliderOpen()){
             this.toggleSlider();
         }
         const html = (typeof this.template == "function") ? 
             this.template(this, data) : this.defaultTemplate(this, data);
+      
         document.querySelector(`.js-content${this.scope_sufix}`)
                 .innerHTML = html;
+        document.querySelector(`.js-close-slider${this.scope_sufix}`)
+                .dataset.entryId = data[this.id];
     };
 
     /**
@@ -443,17 +484,17 @@ class PonchoMap {
      * *keypress* sobre un marker. La idea es que un usuario con lector 
      * de pantalla mueva el foto a la información.
      */
-    focusOnSlider = () => {
+    _focusOnSlider = () => {
         if(this.isSliderOpen()){
-            document
-                .getElementById(`js-anchor-slider${this.scope_sufix}`).focus();
-        } else {
-            const animation = document
-                .querySelector(`.js-slider${this.scope_sufix}`);
-            animation.addEventListener("animationend", () => {
-                document
-                    .getElementById(`js-anchor-slider${this.scope_sufix}`)
+            document.querySelector(`.js-close-slider${this.scope_sufix}`)
                     .focus();
+        } else {
+            const animation = document.querySelector(
+                `.js-slider${this.scope_sufix}`
+            );
+            animation.addEventListener("animationend", () => {
+                document.querySelector(`.js-close-slider${this.scope_sufix}`)
+                        .focus();
             });
         }
     };
@@ -495,7 +536,7 @@ class PonchoMap {
     /**
      * Crea el bloque html para el slider.
      */
-    renderSlider = () => {
+    _renderSlider = () => {
         document.querySelectorAll(`.js-slider${this.scope_sufix}`)
                 .forEach(e => e.remove());
         const close_button = document.createElement("button");
@@ -508,7 +549,7 @@ class PonchoMap {
         close_button.innerHTML = "<span class=\"sr-only\">Cerrar</span>✕";
 
         const anchor = document.createElement("a");
-        
+
         anchor.setAttribute("tabindex", "3");
         anchor.id = `js-anchor-slider${this.scope_sufix}`;
 
@@ -536,7 +577,7 @@ class PonchoMap {
     /**
      * Proyecta el slider y hace zoom en el marker.
      */
-    showSlider = (layer, feature) => {
+    _showSlider = (layer, feature) => {
         if(layer.hasOwnProperty("_latlng")){
             this.map.setView(layer._latlng, this.map_anchor_zoom);
         } else {
@@ -548,7 +589,7 @@ class PonchoMap {
     /**
      * Proyecta el popUp y hace zoom en el marker.
      */
-    showPopup = (layer) => {
+    _showPopup = (layer) => {
         if(layer.hasOwnProperty("_latlng")){
             this.markers.zoomToShowLayer(layer, () => {
                 layer.openPopup();
@@ -581,7 +622,7 @@ class PonchoMap {
     gotoHashedEntry = () => {
         let id = this.hasHash();
         if(!id){
-            return; 
+            return;
         }
         this.gotoEntry(id);
     };
@@ -597,36 +638,35 @@ class PonchoMap {
                 return;
             }
             if(layer.options.id == id){
-                this.setSelectedMarker(id, layer);
+                this._setSelectedMarker(id, layer);
                 if(this.hash){
                     this.addHash(id);
                 }
                 if(this.slider && this.hash){
-                    this.showSlider(layer, entry);
+                    this._showSlider(layer, entry);
                 } else {
-                    this.showPopup(layer);
+                    this._showPopup(layer);
                 }
             }
         };
         this.markers.eachLayer(layer => setAction(layer, id, entry));
         this.map.eachLayer(layer => {
             if(layer.hasOwnProperty("feature") && 
-               layer.feature.geometry.type != "Point"){  
+                layer.feature.geometry.type != "Point"){
                 setAction(layer, id, entry);
             }
         });
     };
 
-
-    setClickeable = (layer) => {
+    _setClickeable = (layer) => {
         layer.on("keypress click", (e) => {
             document.querySelectorAll(".marker--active")
                     .forEach(e => e.classList.remove("marker--active"));
-            
             ["_icon", "_path"].forEach(ele => {
-                if(e.sourceTarget.hasOwnProperty(ele)){
-                    e.sourceTarget[ele].classList.add("marker--active");
+                if(!e.sourceTarget.hasOwnProperty(ele)){
+                    return;
                 }
+                e.sourceTarget[ele].classList.add("marker--active");
             });
             const content = this.entries.find(e => {
                 return e.properties[this.id]==layer.options.id;
@@ -650,24 +690,25 @@ class PonchoMap {
     /**
      * Setea los features para ejecutarse en un evento onlick
      */
-    clickeableFeature = () => {
+    _clickeableFeature = () => {
         this.map.eachLayer(layer => {
-            if(!this.isFeature(layer) || layer.feature.geometry.type == "Point"){
+            if(!this.isFeature(layer) || 
+                layer.feature.geometry.type == "Point"){
                 return;
             }
-            this.setClickeable(layer);
+            this._setClickeable(layer);
         });
     };
 
     /**
      * Setea los markers para ejecutarse en un evento onlick
      */
-    clickeableMarkers = () => this.markers.eachLayer(this.setClickeable);
+    _clickeableMarkers = () => this.markers.eachLayer(this._setClickeable);
 
     /**
      * Setea los markers para ejecutarse en un evento onlick
      */   
-    urlHash = () => {
+    _urlHash = () => {
         const setHash = (layer) => {
             layer.on("click", () => {
                 this.addHash(layer.options.id);
@@ -715,13 +756,13 @@ class PonchoMap {
      * @see https://showdownjs.com/docs/xss/#strip-html-tags-is-not-enough
      * @param {object} row Entrada 
      */
-    templateTitle = (row) => {
+    _templateTitle = (row) => {
         if(!row.hasOwnProperty(this.title)){
             return false;
         }
         const structure = this.template_structure;
         const structure_title = (structure.hasOwnProperty("title") ? 
-            structure.title: false);
+            structure.title : false);
         const optons_title = (this.title ? this.title : false);
         // si intencionalmente no se quiere usar el titulo y se 
         // agrega la opción `false` en `template_structure.title`. 
@@ -737,19 +778,23 @@ class PonchoMap {
         // template_structure.title tiene precedencia
         const use_title = (structure_title ? structure_title : optons_title);
         let title;
-        if(this.template_header){
+        if(structure?.header){
             const wrapper = document.createElement("div");
-            wrapper.innerHTML = this.mdToHtml(this.template_header(this, row));
+            wrapper.innerHTML = this._mdToHtml(structure.header(this, row));
+            if(this.template_innerhtml){
+                wrapper.innerHTML = structure.header(this, row);
+            }
             title = wrapper;
         } else {
             title = document.createElement("h1");
-            title.classList.add(... this.template_title_classlist);
+            title.classList.add(...structure.title_classlist);
             title.textContent = row[use_title];
         }
 
         const header = document.createElement("header");
         header.className = "header";
         header.appendChild(title);
+
         return header;
     };
 
@@ -763,12 +808,12 @@ class PonchoMap {
      * @param {object} row Entrada de datos.
      * @return {object} Listado de índices seleccionados de la entrada.
      */
-    templateList = (row) => {
+    _templateList = (row) => {
         const estructura = this.template_structure;
         let lista = Object.keys(row);
 
         let list = lista;
-        if(estructura.hasOwnProperty("values") && estructura.values.length > 0){
+        if(estructura.hasOwnProperty("values") && estructura?.values?.length > 0){
             list = estructura.values;
         } else if(estructura.hasOwnProperty("exclude") && 
                 estructura.exclude.length > 0){
@@ -776,7 +821,6 @@ class PonchoMap {
                 list = this.removeListElement(lista, key);
             }
         }
-
         return list;
     };
 
@@ -790,8 +834,8 @@ class PonchoMap {
      * @returns {string}
      * @see https://showdownjs.com/
      */
-    mdToHtml = (text) => {
-        if(this.template_markdown && this.markdownEnable()){
+    _mdToHtml = (text) => {
+        if(this.template_markdown && this._markdownEnable()){
             const converter = new showdown.Converter(this.markdown_options);
             const cleannedText = secureHTML(text, this.allowed_tags);
             return converter.makeHtml(`${cleannedText}`.trim());
@@ -805,7 +849,7 @@ class PonchoMap {
      * Verifica si la librería _showdown_ está disponible.
      * @returns {boolean}
      */
-    markdownEnable = () => {
+    _markdownEnable = () => {
         if(typeof showdown !== "undefined" && 
             showdown.hasOwnProperty("Converter")){
                 return true;
@@ -824,7 +868,7 @@ class PonchoMap {
      * @param {object} row Entrada del json 
      * @returns {object}
      */
-    templateMixing = (row) => {
+    _templateMixing = (row) => {
         if(this.template_structure.hasOwnProperty("mixing") && 
             this.template_structure.mixing.length > 0){
                 const mixing = this.template_structure.mixing;
@@ -836,7 +880,7 @@ class PonchoMap {
                         throw "Mixing requiere un valor en la variable «key».";
                     }
                     new_row[key] = values
-                        .map(i => row[i])
+                        .map(i => (i in row ? row[i] : i.toString()))
                         .filter(v => v)
                         .join(separator);
                 });
@@ -852,7 +896,7 @@ class PonchoMap {
      * @param {*} value 
      * @returns {*} De acuerdo a la entrada.
      */
-    setType = (ele, entry=false, value=false) => {
+    _setType = (ele, entry=false, value=false) => {
         if(typeof(ele) === "function"){
             return ele(this, entry, value);
         } 
@@ -866,22 +910,28 @@ class PonchoMap {
      * fué configurado.
      */
     _lead  = (entry) => {
-        const {key, class:classlist=false, style=false } = this.lead;
+        if(!this.template_structure.hasOwnProperty("lead")){
+            return false;
+        }
+        const {
+            key, 
+            class:classlist=false, 
+            style=false } = this.template_structure.lead;
         const p = document.createElement("p");
 
-        const setClasslist = this.setType(classlist, entry, entry[key]);
+        const setClasslist = this._setType(classlist, entry, entry[key]);
         if(setClasslist){
             p.classList.add(...setClasslist.split(" "));
             p.textContent = entry[key];
             
-            const setStyle = this.setType(style, entry, entry[key]);
+            const setStyle = this._setType(style, entry, entry[key]);
             if(setStyle){
                 p.setAttribute("style", setStyle);
             }
             return p;
         }
-        return false;       
-    } 
+        return false;
+    }; 
 
     /**
      * Ícono para el término
@@ -896,9 +946,9 @@ class PonchoMap {
                 style=false,
                 html=false} = this.header_icons[key];
 
-            const setHtml = this.setType(html, row, key);
-            const setStyle = this.setType(style, row, key);
-            const setClasslist = this.setType(classlist, row, key);
+            const setHtml = this._setType(html, row, key);
+            const setStyle = this._setType(style, row, key);
+            const setClasslist = this._setType(classlist, row, key);
 
             if(setClasslist){
                 const icon = document.createElement("i");
@@ -926,24 +976,23 @@ class PonchoMap {
      * @param {object} row Entrada para dibujar un marker.
      */  
     defaultTemplate = (self, row) => {
-        const tpl_list = this.templateList(row);
-        const tpl_title = this.templateTitle(row);
+        const {template_structure:structure} = this;
+        const tpl_list = this._templateList(row);
+        const tpl_title = this._templateTitle(row);
         const container = document.createElement("article");
-        container.classList.add(... this.template_container_classlist);
-        const definitions = document.createElement(this.template_dl);
-        definitions.classList.add(...this.template_dl_classlist);
+        container.classList.add(... structure.container_classlist);
+        const definitions = document.createElement(structure.definition_tag);
+        definitions.classList.add(...structure.definition_list_classlist);
         definitions.style.fontSize = "1rem";
-        row = this.templateMixing(row);
+        row = this._templateMixing(row);
 
         for(const key of tpl_list){
             // excluyo los items vacíos.
             if(!row.hasOwnProperty(key) || !row[key]){
                 continue;
             }
-
-            const term = document.createElement(this.template_dt);
-            term.classList.add(...this.template_dt_classlist)
-
+            const term = document.createElement(structure.term_tag);
+            term.classList.add(...structure.term_classlist)
             const header_icon = this._termIcon(row, key);
             if(header_icon){
                 term.appendChild(header_icon);
@@ -951,14 +1000,14 @@ class PonchoMap {
             }
             term.insertAdjacentText("beforeend", this.header(key));
             
-            const definition = document.createElement(this.template_dd);
-            definition.classList.add(...this.template_dd_classlist)
+            const definition = document.createElement(structure.definition_tag);
+            definition.classList.add(...structure.definition_classlist)
             definition.textContent = row[key];
 
             if(this.template_markdown){
-                definition.innerHTML = this.mdToHtml(row[key]);
+                definition.innerHTML = this._mdToHtml(row[key]);
             } else if(this.template_innerhtml){
-                definition.innerHTML = row[key];
+                definition.innerHTML = secureHTML(row[key], this.allowed_tags);
             }
 
             if(this.header(key) != ""){
@@ -1008,10 +1057,11 @@ class PonchoMap {
 
     /**
      * Hace zoom hasta los límites de los markers
+     * @return {undefined}
      */
     fitBounds = () => {
         try {
-            this.map.fitBounds(this.markers.getBounds());
+            this.map.fitBounds(this.geojson.getBounds());
         } catch (error) {
             console.error(error);
         }
@@ -1021,7 +1071,7 @@ class PonchoMap {
      * Agrega un botón entre zoom-in y zoom-out para volver a la vista
      * original. 
      */
-    resetViewButton = () => {
+    _resetViewButton = () => {
         if(!this.reset_zoom){
             return;
         }
@@ -1076,10 +1126,10 @@ class PonchoMap {
 
     /**
      * Remueve los layers y limpia los markers
-     * #todo buscar una función similar a `markers.clearLayers`, que 
+     * @todo buscar una función similar a `markers.clearLayers`, que 
      * abarque los features.
      */
-    clearLayers = () => {
+    _clearLayers = () => {
         this.markers.clearLayers();
         this.map.eachLayer(e => {
             if(this.isFeature(e)){
@@ -1090,27 +1140,36 @@ class PonchoMap {
 
     /**
      * Prepara las características del mapa y de cada uno de los markers.
+     * @see https://leafletjs.com/reference.html#path
      */
     markersMap = (entries) => { 
         var _this = this;
-        this.clearLayers();
-        new L.geoJson(entries, {
+        this._clearLayers();
+        this.geojson = new L.geoJson(entries, {
             pointToLayer: function(feature, latlng) {
                 const {properties} = feature;
-                let marker_attr = {};
                 const icon = _this.marker(properties);
+                
+                let marker_attr = {};
                 marker_attr.id = properties[_this.id];
                 if(icon){
                     marker_attr.icon = icon;
                 }
                 if(_this.title){
-                    marker_attr.title = properties[_this.title];
                     marker_attr.alt = properties[_this.title];
                 }
+                
                 const marker = new L.marker(latlng, marker_attr);
-                _this.map.options.minZoom = 2;
+                _this.map.options.minZoom = _this.min_zoom;
                 _this.markers.addLayer(marker);
 
+                // Si el usuario eligió usar tooltip
+                if(_this.tooltip && properties[_this.title]){
+                    marker.bindTooltip(
+                        properties[_this.title], _this.tooltip_options
+                    );
+                }
+                // Si el usuario desea utilizar popUp en vez de slider.
                 if(!_this.slider){
                     const html = (typeof _this.template == "function" ? 
                             _this.template(_this, properties) : 
@@ -1123,7 +1182,15 @@ class PonchoMap {
             onEachFeature: function(feature, layer){
                 const {properties, geometry} = feature;
                 layer.options.id = properties[_this.id];
-                layer.options.title = properties[_this.title];
+                feature.properties.name = properties[_this.title];
+
+                // Si el usuario eligió usar tooltip
+                if(_this.tooltip && properties[_this.title] && geometry.type != "Point"){
+                    layer.bindTooltip(
+                        properties[_this.title], _this.tooltip_options
+                    );
+                }
+                
                 if(!_this.slider && geometry.type != "Point"){
                     const html = (typeof _this.template == "function" ? 
                             _this.template(_this, properties) : 
@@ -1136,23 +1203,23 @@ class PonchoMap {
                 const setProp = (key) => (properties.hasOwnProperty(key) ? 
                         properties[key] : _this.featureStyle[key]);
                 return {
-                    color: ponchoColor( setProp("stroke") ), 
+                    color: setProp("stroke"), 
                     strokeOpacity: setProp("stroke-opacity"), 
                     weight: setProp("stroke-width"), 
-                    fillColor: ponchoColor( setProp("stroke") ), 
+                    fillColor: setProp("stroke"), 
                     opacity: setProp("stroke-opacity"), 
-                    fillOpacity: setProp("fill-opacity"),
-
+                    fillOpacity: setProp("fill-opacity")
                 };  
             }, 
             
-        }).addTo(this.map);  
+        });
+        this.geojson.addTo(this.map);  
     };
 
     /**
      * Setea el marker activo.
      */
-    setSelectedMarker = (id, instance) => {
+    _setSelectedMarker = (id, instance) => {
         const val = {entry: this.entry(id), marker: instance};
         this.selected_marker = val;
         return val;
@@ -1169,7 +1236,7 @@ class PonchoMap {
                 return;
             }
             layer.on("click", (e) => {
-                this.setSelectedMarker(layer.options.id, layer);
+                this._setSelectedMarker(layer.options.id, layer);
             });
         });
     };
@@ -1182,7 +1249,7 @@ class PonchoMap {
      * el imput visible se copia el texto a este input y desde ahi se
      * toma el termino a buscar o filtrar.
      */
-    hiddenSearchInput = () => {
+    _hiddenSearchInput = () => {
         const search = document.createElement("input");
         search.type ="hidden";
         search.name = `js-search-input${this.scope_sufix}`;
@@ -1194,8 +1261,37 @@ class PonchoMap {
     }
 
     /**
-     * ¡Experimental! Agrega anclas y enlaces para un menú accesible.
+     * Agrega atributos a los features.
      * 
+     * @accesibility
+     * @summary Cubre un aspecto importante de accesibilidad permitiendo
+     * que el usuario navegue los markers tabulando.
+     * @todo Encontrar el modo de hacerlo en la creación del feature
+     * y no recorriendo cada elemento una vez creados.
+     * @returns {undefined}
+     */
+    _setFetureAttributes = () => {
+        const setAttributes = (ele, key) => {
+            if(!ele.hasOwnProperty(key)){
+                return;
+            }
+            ele[key].setAttribute(
+                "aria-label", ele?.feature?.properties?.[this.title]
+            );
+            ele[key].setAttribute("role", "button");
+            ele[key].setAttribute("tabindex", 0);
+            ele[key].dataset.entryId = ele?.feature?.properties?.[this.id];
+            ele[key].dataset.leafletId = ele._leaflet_id;
+        };
+
+        this.markers.eachLayer(e => setAttributes(e, "_icon"));
+        this.map.eachLayer(e => setAttributes(e, "_path"));
+    };
+
+    /**
+     * Agrega anclas y enlaces para un menú accesible.
+     * 
+     * @accesibility
      * @summary El mapa es muy complicado de leer con un lector de 
      * pantalla. El contexto es dificil de entender. Estos enlaces 
      * ayudan a navegar dos o tres de los sectores que contienen y 
@@ -1208,7 +1304,7 @@ class PonchoMap {
      * @see https://www.w3.org/WAI/standards-guidelines/aria/
      * @see https://developer.mozilla.org/en-US/docs/Learn/Accessibility/WAI-ARIA_basics
      */
-    accesibleMenu = () => {
+    _accesibleMenu = () => {
         // Anclas que se deben crear.
         const anchors = [
             [
@@ -1230,8 +1326,8 @@ class PonchoMap {
             anchor[2].forEach(e => element.setAttribute(e[0], e[1]));
         });
 
-    // Enlace
-    const values = [
+        // Enlace
+        const values = [
             {
                 "text" :"Ir a los marcadores del mapa",
                 "anchor" : `#${anchors[0][1]}`
@@ -1247,24 +1343,35 @@ class PonchoMap {
                 "anchor": `#filtrar-busqueda${this.scope_sufix}`
             });
         }
+        const icon = document.createElement("i");
+        icon.classList.add("icono-arg-sitios-accesibles");
+        icon.style.color = "#d7df23";
+        icon.setAttribute("aria-hidden", "true");
+        
+        const nav = document.createElement("nav");
+        nav.classList.add("accesible-nav");
+        nav.id = `accesible-nav${this.scope_sufix}`;
+        nav.setAttribute("aria-label", "Menú para el mapa");
+        nav.setAttribute("role", "navigation");
+        nav.tabIndex=0;
 
         const ul = document.createElement("ul");
-        ul.className = "sr-only";
-        ul.setAttribute("aria-label", "Menú para el mapa");
-        ul.setAttribute("role", "navigation");
         values.forEach((link, index) => {
             const a = document.createElement("a");
             a.textContent = link.text;
-            a.setAttribute("tabindex", index + 1);
+            a.setAttribute("tabindex", 0);
             a.href = link.anchor;
             const li = document.createElement("li");
             li.appendChild(a);
             ul.appendChild(li);
         });
 
+        // nav.appendChild(icon);
+        nav.appendChild(ul);
+        
         const navigation = document.querySelectorAll(`${this.scope_selector}`);
         navigation.forEach(element => {
-            element.insertBefore(ul, element.children[0]);
+            element.insertBefore(nav, element.children[0]);
         });
     };
 
@@ -1272,28 +1379,29 @@ class PonchoMap {
      * Hace el render del mapa.
      */
     render = () => {
-        this.hiddenSearchInput();
-        this.resetViewButton();
+        this._hiddenSearchInput();
+        this._resetViewButton();
         this.markersMap(this.entries);
         this.selectedMarker();
 
         if(this.slider){
-            this.renderSlider();
-            this.clickeableFeature();
-            this.clickeableMarkers();
+            this._renderSlider();
+            this._clickeableFeature();
+            this._clickeableMarkers();
             this.clickToggleSlider();
         }
 
         if(this.hash){
-            this.urlHash();
+            this._urlHash();
         }
 
         if(this.scroll && this.hasHash()){
             this.scrollCenter();
         }
 
-        this.accesibleMenu();
+        this._accesibleMenu();
         setTimeout(this.gotoHashedEntry, this.anchor_delay);
+        this._setFetureAttributes();
     };
 };
 

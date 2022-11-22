@@ -36,84 +36,182 @@
 * dos mapas uno con pop up y otro con slider
 -->
 <!-- INCLUDES -->
-<link href="https://gis.argentina.gob.ar/js/leaflet/leaflet.css" rel="stylesheet"/>
-<link href="https://gis.argentina.gob.ar/js/leaflet/MarkerCluster.Default.css" rel="stylesheet"/>
-<link href="https://gis.argentina.gob.ar/js/leaflet/MarkerCluster.css" rel="stylesheet"/>
+<script src="https://www.argentina.gob.ar/sites/default/files/ponchotable/showdown.js"></script>
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/extensiones/showdown-extensions.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.2/leaflet.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.Default.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.min.css" rel="stylesheet"/> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.2/leaflet.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.min.js"></script>
 
-<script src="https://gis.argentina.gob.ar/js/leaflet/leaflet.js"></script>
-<script src="https://gis.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script>
-
-<script src="../../js/poncho-map.js"></script>
-<script src="../../js/poncho-map-filter.js"></script>
-<script src="../../js/gapi-sheet-data.js"></script>
-<script src="./js/template-efectores.js"></script>
+<script src="../../../src/js/utils.js"></script>
+<script src="../../../src/js/poncho-map.js"></script>
+<script src="../../../src/js/poncho-map-filter.js"></script>
+<script src="../../../src/js/poncho-map-search.js"></script>
+<script src="../../../src/js/gapi-sheet-data.js"></script>
 <!-- / INCLUDES -->
-
-
-<!-- poncho map -->
-<div class="poncho-map" data-scope="uno">
-  <!-- leaflet -->
-  <div
-      class="leaflet-container leaflet-touch leaflet-fade-anim 
-            leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
-      id="map"
-      style="height: 700px;width: 100%;"
-      tabindex="0">
+<div class="container-fluid">
+<div class="row">
+<div class="col-md-6">
+  <!-- PONCHO MAP SEARCH -->
+  <form action="">
+    <div data-scope="poncho-map-search">
+        <div class="input-group">
+            <input 
+                type="search" 
+                name="search" 
+                autocomplete="off"
+                class="js-poncho-map-search__input form-control" 
+                list="js-porcho-map-search__list">
+            <datalist class="js-porcho-map-search__list"></datalist>
+            <span class="input-group-btn">
+              <button class="js-poncho-map-search__submit btn btn-primary">
+                  <i class="fa fa-search text-white"></i>
+              </button>
+            </span>
+        </div>
+        <div data-scope="uno" class="m-b-1">
+            <div class="js-poncho-map__help small text-default"></div>
+        </div>
+    </div>
+  </form>
+  <!-- / PONCHO MAP SEARCH -->
+  <!-- poncho map -->
+  <div class="poncho-map" data-scope="uno">
+    <div
+        class="leaflet-container leaflet-touch leaflet-fade-anim 
+              leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
+        id="map"
+        style="height: 600px;width: 100%;"
+        tabindex="0">
+    </div>
   </div>
-  <!-- / leaflet -->
+  <!-- / poncho map -->
+
 </div>
-<!-- / poncho map -->
-
-<hr>
-
-<!-- poncho map -->
-<div class="poncho-map" data-scope="dos">
-  <!-- leaflet -->
-  <div
-      class="leaflet-container leaflet-touch leaflet-fade-anim 
-            leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
-      id="map2"
-      style="height: 700px;width: 100%;"
-      tabindex="0">
+<div class="col-md-6">
+  <!-- PONCHO MAP SEARCH -->
+  <form action="" id="___poncho-map-search">
+    <div data-scope="poncho-map-search-2">
+        <div class="input-group">
+            <input 
+                type="search" 
+                name="search" 
+                autocomplete="off"
+                class="js-poncho-map-search__input form-control" 
+                list="js-porcho-map-search__list">
+            <datalist id="js-porcho-map-search__list"></datalist>
+            <span class="input-group-btn">
+              <button class="js-poncho-map-search__submit btn btn-primary">
+                  <i class="fa fa-search text-white"></i>
+              </button>
+            </span>
+        </div>
+        <div data-scope="dos" class="m-b-1">
+            <div class="js-poncho-map__help small text-default"></div>
+        </div>
+    </div>
+  </form>
+  <!-- / PONCHO MAP SEARCH -->
+  <!-- PONCHO MAP -->
+  <div class="poncho-map" data-scope="dos">
+    <div
+    class="leaflet-container leaflet-touch leaflet-fade-anim 
+    leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
+    id="map2"
+    style="height: 600px; width: 100%;"
+    tabindex="0">
   </div>
-  <!-- / leaflet -->
 </div>
-<!-- / poncho map -->
+<!-- / PONCHO MAP -->
+</div>
+</div>
+</div>
 
 <!-- SCRIPTS -->
 <script>
-  // init
+  var filter;
+  var filter2;
   (async() => {
     // GApi helpers
     const gapi = new GapiSheetData();
-    // fetch data
-    const googlesheet_data = await fetch_json(gapi.url(
-          "dataset", "1pYOIEL4n5364RSDaSxnUI5vMMat0lU7FxeK_3Ctk8kg")); 
+    const geoJSON = await fetch_json("http://localhost:5500/src/demo/poncho-maps/data/test-data.geojson");
+    const googlesheet_data = await fetch_json("./data/response-efectores.json"); 
     const gapi_data = gapi.json_data(googlesheet_data);
-    // map options
+    const {entries, headers} = gapi_data;
+  
     const options = {
-      "template": popup_template,
-      "headers": gapi_data.headers,
-      "scope":"uno",
+      "title": "name",
+      "headers": headers,
+      "template_structure" : {
+          "values": ["address", "locality", "province", "phone", "email", "reference"],
+      },
+      "scope": "uno",
       "hash": true,
       "scroll": true,
-      "slider":true
+      "slider": true
     };
-    // render map
-    const filter = new PonchoMap(gapi_data.entries, options);
+    filter = new PonchoMapFilter(entries, options);
     filter.render();
 
-    // map options
-    const options_dos = {
-      "template": popup_template,
-      "headers": gapi_data.headers,
-      "map_selector":"map2",
-      "scope":"dos",
-      "slider": false
+    const search_options = {
+        "scope": "poncho-map-search", 
+        "placeholder": "Buscar en el geoJSON",
+        "datalist": true,
+        "search_fields": ["title"],
+        "datalist": true 
     };
-    // render map
-    const filter2 = new PonchoMap(gapi_data.entries, options_dos);
+    const search = new PonchoMapSearch(filter, search_options);
+    search.render();
+
+
+    // SEgundo mapa
+    const options_dos = {
+      "title": "nombre",
+      "headers": headers,
+      "template_markdown": true,
+      "allowed_tags": ["h1", "strong", "a"],
+      "_template_structure" : {
+          "values": ["ubicacion", "phone", "email", "reference"],
+          "mixing": [
+            {
+                "key": "ubicacion",
+                "header": "Ubicación",
+                "values": ["address", "locality", "province"],
+                "separator": ", "
+            }
+          ]
+      },
+      "map_selector": "map2",
+      "scroll": true,
+      "hash": true,
+      "scope": "dos",
+      "slider": true,
+      "filters": [
+          {
+            "legend" : "Filtrar por título",
+            "field": ["type", "checked"],
+            "fields": false
+          },
+          {
+            "legend":"institución",
+            "field": ["institucion"]
+          }
+      ],
+    };
+
+    filter2 = new PonchoMapFilter(geoJSON, options_dos);
     filter2.render();
+
+    const search_options2 = {
+        "scope": "poncho-map-search-2", 
+        "placeholder": "Buscar en el geoJSON",
+        "datalist": true,
+        "search_fields": ["title"],
+        "datalist": true 
+    };
+    const search2 = new PonchoMapSearch(filter2, search_options2);
+    search2.render();
   })();
 </script>
 <!-- / SCRIPTS -->

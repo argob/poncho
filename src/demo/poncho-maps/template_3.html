@@ -26,6 +26,7 @@
   <title>Mapa con filtro y buscador</title>
 </head>
 <body class="select-component">
+  <script src="../../../src/js/utils.js"></script>
   <script src="../../../src/js/poncho-map.js"></script>
   <script src="../../../src/js/poncho-map-filter.js"></script>
   <script src="../../../src/js/poncho-map-search.js"></script>
@@ -115,8 +116,8 @@ COPIAR DESDE ACÁ…
       //     Si el documento no necesita o no tiene un ID el programa 
       // lo genera automáticamente para identificar el marker.
       //     "id" : "id_con_otro_nombre",
-      "id":"idtabla",
-      filters_info:true,
+      "id": "idtabla",
+      "filters_info": false,
       // Nombre que se utiliza como título por defecto para los markers.
       // También es importante para mejorar aspectos de accesibilidad.
       "title": "nombre",
@@ -184,10 +185,11 @@ COPIAR DESDE ACÁ…
         // Placeholder del campo de formulario «search»
         "placeholder": "Buscar centro",
         // Columnas donde debe buscar un término.
-        "search_fields": ["keywords", "nombre", "area"] 
+        "search_fields": ["keywords", "nombre", "area"] ,
+        "datalist": true
     };
     const search = new PonchoMapSearch(poncho_filter, search_options);
-    // search.render();
+    search.render();
   })();
 </script>
 <!-- / SCRIPTS -->

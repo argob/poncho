@@ -20,7 +20,7 @@
       referrerpolicy="no-referrer" />  
   <link 
       rel="stylesheet" 
-      href="https://capacita-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css?rfqjsh">
+      href="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css">
   <!-- /Base -->
   <link rel="stylesheet" href="../../../dist/css/poncho.min.css" />
   <title>Mapa con filtro y buscador</title>
@@ -56,35 +56,6 @@
       opacity: 1;
       transition: .2s;
     } 
-
-
-    body { background-color: var(--white);}
-    div.poncho-map {
-      /* --slider-width: 300px;
-      --slider-media-mobile-height: 45%;
-      --active-marker-color:55, 187, 237;
-      --active-marker-alpha: .4;
-      --slider-color: rgba(0,0,0,.6);
-      --slider-background: var(--lima);
-      --slider-title-color:var(--arandano); */
-    }
-
-    @media (prefers-color-scheme: dark) {
-        body {
-          background:var(--black) !important;
-        }
-          div.poncho-map {
-            --color-base: rgba(255,255,255,.8);
-            --slider-width: 300px;
-            --slider-background: var(--black);
-            --slider-color: var(--gray-light);
-            --text-primary: var(--cielo, red) !important;
-            /* --active-marker-color:55, 187, 237; */
-        }
-        div.poncho-map .header .text-primary {
-          color:var(--maiz) !important;
-        }
-    }
   </style>
 </head>
 <body class="p-t-3">
@@ -93,7 +64,6 @@
   <script src="../../../src/js/poncho-map-filter.js"></script>
   <script src="../../../src/js/poncho-map-search.js"></script>
   <script src="../../../src/js/gapi-sheet-data.js"></script>
-
 
 <!-- 
 MAPA CON BUSCADOR FILTRO  
@@ -138,8 +108,13 @@ COPIAR DESDE ACÁ…
     </div>
 </div>
 <!-- / PONCHO MAP -->
+<a href="#accesible-nav--poncho-map">Ir a la navegación del mapa</a>
 </div>
-
+<link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.2/leaflet.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.Default.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.min.css" rel="stylesheet"/> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.2/leaflet.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.min.js"></script>
 <!-- INCLUDE SCRIPTS -->
 <script src="https://www.argentina.gob.ar/sites/default/files/ponchotable/showdown.js"></script>
 <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/extensiones/showdown-extensions.js"></script>
@@ -152,12 +127,6 @@ COPIAR DESDE ACÁ…
 <!-- / INCLUDE SCRIPTS -->
 
 
-
-<link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.2/leaflet.css" rel="stylesheet"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.Default.min.css" rel="stylesheet"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.min.css" rel="stylesheet"/> 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.2/leaflet.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.min.js"></script>
 
 
 <!-- SCRIPTS -->
@@ -219,10 +188,10 @@ COPIAR DESDE ACÁ…
         });
     };
 
+
   // init
   var map;
   (async() => {
-
     // GApi helpers
     // Caso GoogleSheet
     // Obtengo el JSON desde GoogleSheet
@@ -236,36 +205,46 @@ COPIAR DESDE ACÁ…
 
     // map options
     const options = {
-      "template_dl_classlist":["definition-list"],
-      "template_dt_classlist":["h6", "m-b-0", "text-verdin"],
-      "template_dd_classlist":["text-default", "prueba", "table"],
-      "template_dl": "div",
-      "template_dt": "h2",
-      "template_dd": "div",
       "scope": "poncho-map",
       "id": "ID",
       "filters_info": false,
-      "title": "title",
-      // "template_innerhtml": true,
+      "title": "nombre",
+      "template_innerhtml": true,
       "template_markdown": true,
-      "allowed_tags": ["div", "a"],
-      "lead": {
-          key: "type", 
-          class: (self, entry, value) => {
-              if(entry.type == "Polygon"){
-                  return "badge bg-verdin text-white"; 
-              } else if(entry.type == "Point"){
-                  return "badge bg-cereza text-white"; 
-              } else if(entry.type == "LineString"){
-                  return "badge bg-cielo text-white"; 
-              }
-              return false; 
-          },
-          style: "background-color:gold; border-radius:6px; padding:.25em .75em !important;"
-      },
+      "allowed_tags": ["a"],
       "template_structure" : {
-          "values": ["title", "id", "direccion", "test", "description"],
-          "exclude": [],
+          "title_classlist": ["h4","text-cereza","m-t-0"],
+          "definition_list_classlist": ["definition-list"],
+          "term_classlist": ["h6", "m-b-0", "text-cereza"],
+          "definition_classlist": ["text-default", "prueba", "table"],
+          "definition_list_tag": "div",
+          "term_tag": "h2",
+          "definition_tag": "div",
+          "lead": {
+              key: "type", 
+              class: (self, entry, value) => {
+                  if(entry.type == "Polygon"){
+                      return "badge bg-verdin text-white"; 
+                  } else if(entry.type == "Point"){
+                      return "badge bg-cereza text-white"; 
+                  } else if(entry.type == "LineString"){
+                      return "badge bg-cielo text-white"; 
+                  }
+                  return false; 
+              },
+              style: "background-color:gold; border-radius:6px;"
+                    + " padding:.25em .75em !important;"
+          },  
+          "title": "nombre",
+          "values": [
+              "title", 
+              "id",
+              "direccion",
+              "test",
+              "description",
+              "email",
+              "ubicacion"
+          ],
           "mixing":
               [
                   {
@@ -273,6 +252,12 @@ COPIAR DESDE ACÁ…
                       "header": "Cannabis",
                       "values": ["id", "title"],
                       "separator": " - "
+                  },
+                  {
+                      "key": "ubicacion",
+                      "header": "Ubicación",
+                      "values": ["municipio_nombre", "provincia"],
+                      "separator": ", "
                   },
               ],
       },
@@ -311,16 +296,21 @@ COPIAR DESDE ACÁ…
           }
       },
       "headers": {
-          "title":"Nombre",
-          "id":"Identificador <em>hola</em>",
-          "description":"Descripción"
+          "title": "Nombre",
+          "id": "Identificador",
+          "description": "Descripción",
+          "email": "Email"
       },
-      "marker": (self, ele) => {
+      "tooltip": false,
+      "marker": "cielo",
+      "_marker": (self, ele) => {
+          const icon_color = (ele.hasOwnProperty("icon_color")) ? ele.icon_color : "azul";
+          return self.icon(icon_color);
+          // Alternativa
           const img_url = "https://cdn0.iconfinder.com/data/icons/maps-and-navigation-2-1/52/86-512.png";
           const id = (ele.hasOwnProperty("id")) ? ele.id : false;
           const icon = (ele.hasOwnProperty("icon")) ? ele.icon : false;
-          const icon_color = (ele.hasOwnProperty("icon_color")) ? ele.icon_color : "azul";
-
+          
           if(id == "8-anita"){
               return iconPoncho(icon_color, icon, {container:true, invert:true});
           } else if (id == "2-emilia-bouillet"){
@@ -341,19 +331,25 @@ COPIAR DESDE ACÁ…
             "field": ["type", "checked"],
             "fields": false
           },
-
+          {
+            "legend" : "Filtrar por provincia",
+            "field": ["provincia", "checked"],
+            "fields": false
+          },
+          {
+            "legend":"institución",
+            "field": ["institucion"]
+          }
       ],
     };
-    // render map
     map = new PonchoMapFilter(entries, options);
     map.render();
-    // Buscador
+
     const search_options = {
-        "template": (self, row) => { console.log(row); return `<strong>${row.title}</strong>`; },
         "scope": "poncho-map-search", 
         "placeholder": "Buscar en el geoJSON",
         "datalist": true,
-        "search_fields": [ "id", "type"] 
+        "search_fields": ["title", "id", "type", "provincia"] 
     };
     const search = new PonchoMapSearch(map, search_options);
     search.render();
