@@ -440,7 +440,7 @@ class PonchoMap {
      * Ejecuta `toggleSlider()` en el onclick
      * @return {undefined} 
      */
-    clickToggleSlider = () => document
+    _clickToggleSlider = () => document
         .querySelectorAll(`.js-close-slider${this.scope_sufix}`)
         .forEach(e => e.addEventListener("click", () => {
             this._clearContent();
@@ -1229,8 +1229,7 @@ class PonchoMap {
      * Haciendo clic en un marker setea el marker como 
      * actualmente seleccionado.
      */
-    selectedMarker = () => {
-        // this.markers.eachLayer(layer => {
+    _selectedMarker = () => {
         this.map.eachLayer(layer => {
             if(!this.isFeature(layer)){
                 return;
@@ -1382,13 +1381,13 @@ class PonchoMap {
         this._hiddenSearchInput();
         this._resetViewButton();
         this.markersMap(this.entries);
-        this.selectedMarker();
+        this._selectedMarker();
 
         if(this.slider){
             this._renderSlider();
             this._clickeableFeature();
             this._clickeableMarkers();
-            this.clickToggleSlider();
+            this._clickToggleSlider();
         }
 
         if(this.hash){

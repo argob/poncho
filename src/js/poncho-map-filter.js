@@ -238,7 +238,7 @@ class PonchoMapFilter extends PonchoMap {
      * Ejecuta toggle en el onclick
      * @return {undefined}
      */
-    clickToggleFilter = () => document
+    _clickToggleFilter = () => document
         .querySelectorAll(`.js-close-filter${this.scope_sufix}`)
         .forEach(element => element.onclick = (event) => {
               event.preventDefault();
@@ -698,15 +698,15 @@ class PonchoMapFilter extends PonchoMap {
         feed = (typeof feed !== "undefined" ? this.entries : 
             this._filterData());
         this.markersMap(feed); 
-        this.selectedMarker();
+        this._selectedMarker();
         this._helpText(feed);
-        this.resetSearch();
-        this.clickToggleFilter();
+        this._resetSearch();
+        this._clickToggleFilter();
         if(this.slider){
             this._renderSlider();
             this._clickeableMarkers();
             this._clickeableFeature();
-            this.clickToggleSlider();
+            this._clickToggleSlider();
         }
 
         if(this.hash){
@@ -730,7 +730,7 @@ class PonchoMapFilter extends PonchoMap {
      * por filtros.
      * @returns {undefined}
      */
-    resetSearch = () => document
+    _resetSearch = () => document
         .querySelectorAll(`.js-poncho-map-reset${this.scope_sufix}`)
         .forEach(e => {
             e.onclick = (event => {

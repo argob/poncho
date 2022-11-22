@@ -35,6 +35,11 @@
  * SOFTWARE.
  */
 class PonchoMapSearch {
+    /**
+     * Constructor
+     * @param {object} instance PonchoMap() o PonchoMapFilter() 
+     * @param {object} options Grupo de opciones para el buscador. 
+     */
     constructor(instance, options){
         const defaults = {
             "scope": false,
@@ -88,7 +93,7 @@ class PonchoMapSearch {
 
     /**
      * Ejecuta una búsqueda desde un input text
-     * @returns 
+     * @returns {undefined}
      */
     _triggerSearch = () => {
         const input = document.querySelector(
@@ -110,6 +115,7 @@ class PonchoMapSearch {
 
     /**
      * en el keyup copia el value al input hidden de filtros.
+     * @returns {undefined}
      */
     _keyup = () => {
         const input = document.querySelectorAll(
@@ -143,6 +149,7 @@ class PonchoMapSearch {
     /**
      * Hace una búsqueda basado en el término escrito en el input de
      * búsqueda.
+     * @returns {undefined}
      */
     _renderSearch = (term) => {
         const entries = this.instance._filterData();
@@ -153,7 +160,7 @@ class PonchoMapSearch {
             this.instance._renderSlider();
             this.instance._clickeableFeature();
             this.instance._clickeableMarkers();
-            this.instance.clickToggleSlider();
+            this.instance._clickToggleSlider();
         }
 
         if(this.instance.hash){
@@ -170,12 +177,12 @@ class PonchoMapSearch {
             this.instance.gotoEntry(entries[0].properties[this.instance.id]);
         } else if(term.trim() != "") {
             this.instance.removeHash();
-            setTimeout(this.instance.fitBounds, 350);
+            setTimeout(this.instance.fitBounds, this.instance.anchor_delay);
         }
 
         this.instance._helpText(entries);
-        this.instance.resetSearch();
-        this.instance.clickToggleFilter();
+        this.instance._resetSearch();
+        this.instance._clickToggleFilter();
         this.instance._setFetureAttributes();
     };
 
@@ -188,6 +195,7 @@ class PonchoMapSearch {
      *     ...
      * </datalist>
      * ```
+     * @returns {undefined}
      */
     _addDataListOptions = () => {
         if(!this.datalist){
@@ -211,6 +219,7 @@ class PonchoMapSearch {
     /**
      * Agrega el aria role y aria label al grupo de buscador.
      * @accesibility
+     * @returns {undefined}
      */
     _searchRegion = () => {
         const element = document.querySelector(this.search_scope_selector);
