@@ -17,6 +17,10 @@ test('Colores Poncho por nombre', () => {
 test('Secure HTML', () => {
   expect(secureHTML('<h1>Hello world!</h1> <a href="#">Link</a>', ["a"]))
       .toBe('&lt;h1&gt;Hello world!&lt;/h1&gt; <a href="#">Link</a>');
+  expect(secureHTML('<h1>Hello world!</h1> <a href="#">Link</a>', []))
+      .toBe('&lt;h1&gt;Hello world!&lt;/h1&gt; &lt;a href="#"&gt;Link&lt;/a&gt;');
+  expect(secureHTML('<h1>Hello world!</h1> <a href="#">Link</a>', ["*"]))
+      .toBe('<h1>Hello world!</h1> <a href="#">Link</a>');
 });
 
 

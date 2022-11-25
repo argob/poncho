@@ -78,7 +78,9 @@ class GapiSheetData {
     };
 
     /**
-     * Retrona las entradas excluyendo el primer row, ya que pertenece a los headers.
+     * Retrona las entradas excluyendo el primer row, ya que 
+     * pertenece a los headers.
+     * 
      * @param {object} feed 
      * @returns {object}
      */

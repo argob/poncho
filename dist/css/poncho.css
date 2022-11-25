@@ -8933,14 +8933,24 @@ body .main-footer {
   --slider-radius: 16px;
   --slider-media-mobile-height: 45%;
   --active-marker-color: 255, 206, 0;
-  --active-marker-alpha: .5;
-  background-color: var(--map-background);
+  --active-marker-alpha: 0.5;
+  --background-color: var(--map-background);
+  --accesible-background: #37bbed;
+  --accesible-background: #f2f2f2;
   overflow: hidden;
   position: relative;
+  /**
+     * Estilos para los markers basados en <div>
+     */
+  /**
+     * Define el estlo para el slider
+     */
+  /* Tooltip Leaflet personalizado */
   /* leaflet popup */
   /* leaflet controls*/
 }
-.poncho-map .title, .poncho-map *.text-primary {
+.poncho-map .title,
+.poncho-map *.text-primary {
   color: var(--primary, #0072bb) !important;
 }
 .poncho-map .btn-close {
@@ -8955,9 +8965,33 @@ body .main-footer {
 .poncho-map .marker--active {
   --color: 247, 149, 37;
   position: relative;
-  border-radius: 50%;
   box-shadow: 0 0 20px rgba(var(--active-marker-color), 1);
   background: radial-gradient(circle, rgba(var(--active-marker-color), var(--active-marker-alpha)) 10%, rgba(var(--active-marker-color), var(--active-marker-alpha)) 80%);
+}
+.poncho-map__div-icon {
+  background-color: transparent;
+  height: 38px;
+  width: 38px;
+  position: relative;
+  display: block;
+  margin: auto;
+  text-align: center;
+  border-radius: 50%;
+}
+.poncho-map__div-icon > i {
+  font-size: 1.7em;
+  position: absolute;
+  margin: auto;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  opacity: 0.9;
+  transition: 0.2s;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+}
+.poncho-map__div-icon:hover > i {
+  opacity: 1;
+  transition: 0.2s;
 }
 .poncho-map .slider {
   z-index: 990;
@@ -9006,6 +9040,70 @@ body .main-footer {
   height: 40px;
   bottom: 0.25rem;
   border-bottom-left-radius: 12px;
+}
+.poncho-map path.marker--active {
+  filter: drop-shadow(2px 2px 2px rgb(249, 168, 34));
+}
+.poncho-map *:focus {
+  outline: 4px solid #37bbed !important;
+  box-sizing: border-box;
+  border-radius: 3px;
+  box-shadow: 0 0 8px #37bbed !important;
+}
+.poncho-map .accesible-nav {
+  outline: none;
+  position: absolute;
+  left: -999em;
+  line-height: 1.5em;
+  z-index: 2000;
+  min-height: 2em;
+  background: rgba(0, 0, 0, 0.75);
+  padding: 6px;
+  border-radius: 16px;
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.4);
+  font-size: small;
+}
+.poncho-map .accesible-nav:focus {
+  outline: 2px solid var(--accesible-background);
+}
+.poncho-map .accesible-nav.top:focus-within {
+  top: 10px;
+  left: 10px;
+}
+.poncho-map .accesible-nav.bottom:focus-within {
+  bottom: 10px;
+  left: 10px;
+}
+.poncho-map .accesible-nav .accesible-nav__icon {
+  margin-left: 3px;
+  font-size: 1.5em;
+  opacity: 1;
+  color: #37bbed !important;
+}
+.poncho-map .accesible-nav ul {
+  font-size: 1rem;
+  margin: 0;
+  padding: 0;
+  font-size: small;
+}
+.poncho-map .accesible-nav ul li {
+  list-style: none;
+}
+.poncho-map .accesible-nav a {
+  text-decoration: none;
+  border-radius: 10px;
+  list-style: none;
+  color: white;
+  margin: 0;
+  min-height: 2em;
+  padding: 5px 10px;
+  display: block;
+}
+.poncho-map .accesible-nav a:focus {
+  outline: 2px solid var(--accesible-background) !important;
+  color: black;
+  box-shadow: none !important;
+  background: var(--accesible-background);
 }
 .poncho-map .filter-container {
   position: absolute;
@@ -9084,24 +9182,64 @@ body .main-footer {
 .poncho-map .filter-container .poncho-map-filters .form-check .form-check-label {
   color: var(--color-base) !important;
 }
-.poncho-map .leaflet-popup-content-wrapper {
+.poncho-map :root {
+  --tooltip: #333;
+  --tooltip-color: white;
+}
+.poncho-map .leaflet-tooltip-left:before {
+  right: 0;
+  margin-right: -12px;
+  border-left-color: var(--tooltip, white);
+}
+.poncho-map .leaflet-tooltip-right:before {
+  left: 0;
+  margin-left: -12px;
+  border-right-color: var(--tooltip, white);
+}
+.poncho-map .leaflet-tooltip-own {
+  position: absolute;
+  padding: 6px 10px;
+  background-color: var(--tooltip, white);
+  border: 0px solid #000;
+  color: var(--tooltip-color, black);
+  white-space: nowrap;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-radius: 8px;
+  pointer-events: none;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
+  transition: opacity 0.2s;
+}
+.poncho-map .leaflet-popup p:first-child {
+  margin-block-start: 0;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+.poncho-map .leaflet-popup .leaflet-popup-content-wrapper {
   border-radius: 16px;
 }
-.poncho-map .leaflet-popup-content-wrapper,
-.poncho-map .leaflet-popup-tip {
+.poncho-map .leaflet-popup .leaflet-popup-content-wrapper,
+.poncho-map .leaflet-popup .leaflet-popup-tip {
   background: var(--slider-background);
   color: var(--color-base);
 }
-.poncho-map .leaflet-popup-content-wrapper .leaflet-popup-content,
-.poncho-map .leaflet-popup-tip .leaflet-popup-content {
+.poncho-map .leaflet-popup .leaflet-popup-content-wrapper .leaflet-popup-content,
+.poncho-map .leaflet-popup .leaflet-popup-tip .leaflet-popup-content {
   width: calc(100% - 26px);
   inline-size: min-content;
 }
-.poncho-map .leaflet-popup-content-wrapper .leaflet-popup-content .info-container,
-.poncho-map .leaflet-popup-tip .leaflet-popup-content .info-container {
+.poncho-map .leaflet-popup .leaflet-popup-content-wrapper .leaflet-popup-content .info-container,
+.poncho-map .leaflet-popup .leaflet-popup-tip .leaflet-popup-content .info-container {
   max-height: 800px;
   overflow-y: auto;
   width: 100%;
+}
+.poncho-map .leaflet-marker-icon.leaflet-div-icon {
+  background-color: transparent;
+  border: none;
 }
 .poncho-map .leaflet-control-zoom.leaflet-bar {
   border-radius: 20px;

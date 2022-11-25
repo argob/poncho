@@ -4,9 +4,21 @@
     {
       "type": "Feature",
       "properties": {
-        "ID":1,
+        "ID": 1,
         "title": "Agustin Bouillet",
-        "type": "Point"
+        "type": "Point",
+        "id_pd": "40",
+        "nombre": "Berisso I",
+        "calle": "33 S/N esquina 169 (Barrio Obrero)",
+        "institucion": "CIC",
+        "localidad": "Berisso",
+        "codigo_postal": "1923",
+        "provincia": "Entre Ríos",
+        "email": "berisso@puntodigital.gob.ar",
+        "horario": "1,08:00:00,17:00:00 <>2,08:00:00,17:00:00 <>3,08:00:00,17:00:00 <>4,08:00:00,17:00:00 <>5,08:00:00,17:00:00",
+        "estado_funcionamiento": "1",
+        "link_facebook": "https://www.facebook.com/nac.berisso/?notif_t=page_name_change&notif_id=1496838879569334",
+        "municipio_nombre": "Berisso"
       },
       "geometry": {
         "coordinates": [
@@ -19,13 +31,25 @@
     {
       "type": "Feature",
       "properties": {
-        "ID":2,
+        "ID": 2,
         "title": "Emilia Bouillet",
         "icon": "icono-arg-dialogo-corazon",
         "icon_color": "primary",
         "type": "Point",
-        "description":"|uno|dos|\n|---|---|\n|Olivia|Emilia|\n \n#hello \n<a href=\"#\">link</a>\n **Este texto en negrita**\n<h1>Agustín</h1><strong>Olivia</strong><a href=\"#\">Emi</a>",
-        "fill": ""
+        "description": "|uno|dos|\n|---|---|\n|Olivia|Emilia|\n \n#hello \n<a href=\"#\">link</a>\n **Este texto en negrita**\n<h1>Agustín</h1><strong>Olivia</strong><a href=\"#\">Emi</a>",
+        "fill": "",
+        "id_pd": "41",
+        "nombre": "Cañuelas",
+        "calle": "Mozotegui 807",
+        "institucion": "Edificio Municipal",
+        "localidad": "Cañuelas",
+        "codigo_postal": "B1814ETQ",
+        "provincia": "Chubut",
+        "email": "canuelas@puntodigital.gob.ar",
+        "horario": "1,08:00:00,18:00:00 <>2,08:00:00,18:00:00 <>3,08:00:00,18:00:00 <>4,08:00:00,18:00:00 <>5,08:00:00,18:00:00",
+        "estado_funcionamiento": "1",
+        "link_facebook": "https://www.facebook.com/Punto-Digital-Cañuelas-814989875248868",
+        "municipio_nombre": "Cañuelas"
       },
       "geometry": {
         "coordinates": [
@@ -38,14 +62,26 @@
     {
       "type": "Feature",
       "properties": {
-        "ID":3,
-        "stroke": "uva",
+        "ID": 3,
+        "stroke": "#f79a18",
         "stroke-width": 3,
-        "stroke-opacity": "1",
-        "fill": "uva",
+        "stroke-opacity": 1,
+        "fill": "#f0ad05",
         "fill-opacity": ".5",
         "title": "Coca",
-        "type": "Polygon"
+        "type": "Polygon",
+        "id_pd": 42,
+        "nombre": "Carmen de Patagones",
+        "calle": "Calle Ramón Ocampo 665",
+        "institucion": "Edificio Municipal",
+        "localidad": "Carmen de Patagones",
+        "codigo_postal": "",
+        "provincia": "Chaco",
+        "email": "cdepatagones@puntodigital.gob.ar",
+        "horario": "1,07:00:00,18:00:00 <>2,07:00:00,18:00:00 <>3,07:00:00,18:00:00 <>4,07:00:00,18:00:00 <>5,07:00:00,18:00:00",
+        "estado_funcionamiento": 1,
+        "link_facebook": "",
+        "municipio_nombre": "Patagones"
       },
       "geometry": {
         "coordinates": [
@@ -118,15 +154,27 @@
     {
       "type": "Feature",
       "properties": {
-        "ID":4,
-        "stroke": "verdin",
+        "ID": 4,
+        "stroke": "#15a89e",
         "stroke-width": 2,
         "stroke-opacity": 1,
-        "fill": "verdin",
+        "fill": "#6ec4b6",
         "fill-opacity": 0.2,
         "title": "Olivia Bouillet",
         "icon_color": "uva",
-        "type": "Polygon"
+        "type": "Polygon",
+        "id_pd": 43,
+        "nombre": "Morón I (Sur)",
+        "calle": "Baradero 1340",
+        "institucion": "Edificio Municipal",
+        "localidad": "Moron",
+        "codigo_postal": 1708,
+        "provincia": "Salta",
+        "email": "moronsur@puntodigital.gob.ar",
+        "horario": "1,08:00:00,16:00:00 <>2,08:00:00,16:00:00 <>3,08:00:00,16:00:00 <>4,08:00:00,16:00:00 <>5,08:00:00,16:00:00 <>6,08:00:00,16:00:00",
+        "estado_funcionamiento": 1,
+        "link_facebook": "https://www.facebook.com/PuntoDigitalMoronSur/?fref=ts",
+        "municipio_nombre": "Morón"
       },
       "geometry": {
         "coordinates": [
@@ -171,14 +219,26 @@
     {
       "type": "Feature",
       "properties": {
-        "ID":5,
+        "ID": 5,
         "marker-color": "#1fc1d6",
         "marker-size": "medium",
         "marker-symbol": "",
         "title": "Olivia y Emilia",
         "stroke": "",
         "type": "Point",
-        "fill": ""
+        "fill": "",
+        "id_pd": "44",
+        "nombre": "Chivilcoy",
+        "calle": "Miguel Calderon 1271",
+        "institucion": "CIC",
+        "localidad": "Chivilcoy",
+        "codigo_postal": "6622",
+        "provincia": "Neuquén",
+        "email": "chivilcoy@puntodigital.gob.ar",
+        "horario": "1,10:00:00,16:00:00 <>2,10:00:00,16:00:00 <>3,10:00:00,16:00:00 <>4,10:00:00,16:00:00 <>5,10:00:00,16:00:00",
+        "estado_funcionamiento": "1",
+        "link_facebook": "",
+        "municipio_nombre": "Chivilcoy"
       },
       "geometry": {
         "coordinates": [
@@ -191,12 +251,24 @@
     {
       "type": "Feature",
       "properties": {
-        "ID":6,
+        "ID": 6,
         "type": "LineString",
         "icon": "",
         "stroke-width": 4,
         "stroke": "#ed3d8f",
-        "stroke-opacity": 1
+        "stroke-opacity": 1,
+        "id_pd": "45",
+        "nombre": "Coronel Suárez I (Colonia Santa María)",
+        "calle": "Avenida 11 de mayo 1263",
+        "institucion": "Institución Educativa",
+        "localidad": "Coronel Suarez",
+        "codigo_postal": "",
+        "provincia": "Buenos Aires",
+        "email": "coronelsuarez@puntodigital.gob.ar",
+        "horario": "1,08:00:00,12:00:00 <>1,14:00:00,18:00:00 <>2,08:00:00,12:00:00 <>2,14:00:00,18:00:00 <>3,08:00:00,12:00:00 <>3,14:00:00,18:00:00 <>4,08:00:00,12:00:00 <>4,14:00:00,18:00:00 <>5,08:00:00,12:00:00 <>5,14:00:00,18:00:00 <>6,15:00:00,20:00:00 <>7,15:00:00,20:00:00",
+        "estado_funcionamiento": "1",
+        "link_facebook": "https://www.facebook.com/PDSantaMariaCoronelSuarez",
+        "municipio_nombre": "Coronel Suárez"
       },
       "geometry": {
         "coordinates": [
@@ -223,12 +295,24 @@
     {
       "type": "Feature",
       "properties": {
-        "ID":7,
+        "ID": 7,
         "type": "LineString",
-        "fill": "",
+        "fill": "#c11571",
         "stroke-width": 8,
-        "stroke": "limon",
-        "stroke-opacity": 1
+        "stroke": "#8d1cca",
+        "stroke-opacity": 1,
+        "id_pd": 46,
+        "nombre": "Coronel Suarez II (CTC)",
+        "calle": "Rivadavia 155",
+        "institucion": "Edificio Municipal",
+        "localidad": "Coronel Suarez",
+        "codigo_postal": "",
+        "provincia": "Buenos Aires",
+        "email": "coronelsuarez2@puntodigital.gob.ar",
+        "horario": "1,07:30:00,14:00:00 <>2,07:30:00,14:00:00 <>3,07:30:00,14:00:00 <>4,07:30:00,14:00:00 <>5,07:30:00,14:00:00",
+        "estado_funcionamiento": 1,
+        "link_facebook": "https://www.facebook.com/naccoronelsuarez.ctc",
+        "municipio_nombre": "Coronel Suárez"
       },
       "geometry": {
         "coordinates": [
@@ -251,13 +335,25 @@
     {
       "type": "Feature",
       "properties": {
-        "ID":8,
+        "ID": 8,
         "title": "Anita",
         "stroke": "",
         "icon": "icono-arg-energia-nuclear",
         "icon_color": "escarapela",
         "type": "Point",
-        "fill": ""
+        "fill": "",
+        "id_pd": "47",
+        "nombre": "Dolores (CAJ)",
+        "calle": "Aristóbulo del Valle 302",
+        "institucion": "CAJ",
+        "localidad": "Dolores",
+        "codigo_postal": "7100",
+        "provincia": "Buenos Aires",
+        "email": "cajdolores@puntodigital.gob.ar",
+        "horario": "1,09:00:00,13:00:00 <>2,09:00:00,13:00:00 <>3,09:00:00,13:00:00 <>4,09:00:00,13:00:00 <>5,09:00:00,13:00:00",
+        "estado_funcionamiento": "1",
+        "link_facebook": "https://www.facebook.com/PuntoDigitalDolores/",
+        "municipio_nombre": "Dolores"
       },
       "geometry": {
         "coordinates": [
@@ -270,11 +366,23 @@
     {
       "type": "Feature",
       "properties": {
-        "ID":9,
+        "ID": 9,
         "title": "Sector 1",
-        "stroke": "amarillo",
-        "fill": "amarillo",
-        "type": "Polygon"
+        "stroke": "#ff0000",
+        "fill": "#e51515",
+        "type": "Polygon",
+        "id_pd": 48,
+        "nombre": "General La Madrid",
+        "calle": "Roque Saenz Peña",
+        "institucion": "Edificio Municipal",
+        "localidad": "General la Madrid",
+        "codigo_postal": "",
+        "provincia": "Buenos Aires",
+        "email": "lamadrid@puntodigital.gob.ar",
+        "horario": "1,08:00:00,12:00:00 <>1,13:00:00,17:00:00 <>2,08:00:00,13:00:00 <>2,13:00:00,17:00:00 <>3,08:00:00,12:00:00 <>3,13:00:00,17:00:00 <>4,08:00:00,12:00:00 <>4,13:00:00,17:00:00 <>5,08:00:00,12:00:00 <>5,13:00:00,17:00:00",
+        "estado_funcionamiento": 1,
+        "link_facebook": "",
+        "municipio_nombre": "General la Madrid"
       },
       "geometry": {
         "coordinates": [
@@ -307,13 +415,25 @@
     {
       "type": "Feature",
       "properties": {
-        "ID":10,
+        "ID": 10,
         "title": "Vinnie Colaiuta",
-        "stroke": "verde-jade",
+        "stroke": "#b784e1",
         "stroke-width": 3,
-        "fill": "verde-jade",
+        "fill": "#b380cb",
         "icon": "",
-        "type": "Polygon"
+        "type": "Polygon",
+        "id_pd": 50,
+        "nombre": "General Las Heras",
+        "calle": "Rivadavia 220",
+        "institucion": "Edificio Municipal",
+        "localidad": "General las Heras",
+        "codigo_postal": 1741,
+        "provincia": "Buenos Aires",
+        "email": "lasheras@puntodigital.gob.ar",
+        "horario": "1,08:00:00,18:30:00 <>2,08:00:00,16:00:00 <>3,08:00:00,21:00:00 <>4,08:00:00,16:30:00 <>5,08:00:00,16:30:00",
+        "estado_funcionamiento": 1,
+        "link_facebook": "https://www.facebook.com/NacLasHeras/",
+        "municipio_nombre": "General las Heras"
       },
       "geometry": {
         "coordinates": [
@@ -346,13 +466,25 @@
     {
       "type": "Feature",
       "properties": {
-        "ID":11,
+        "ID": 11,
         "title": "Buddy Rich",
-        "stroke": "tomate",
+        "stroke": "#2392e7",
         "stroke-width": 3,
-        "fill": "tomate",
+        "fill": "#3282cd",
         "type": "Polygon",
-        "icon": ""
+        "icon": "",
+        "id_pd": 51,
+        "nombre": "General Rodríguez",
+        "calle": "Sarmiento 518",
+        "institucion": "Edificio Municipal",
+        "localidad": "General Rodriguez",
+        "codigo_postal": 1748,
+        "provincia": "Buenos Aires",
+        "email": "generalrodriguez@puntodigital.gob.ar",
+        "horario": "1,08:00:00,18:00:00 <>2,08:00:00,18:00:00 <>3,08:00:00,18:00:00 <>4,08:00:00,18:00:00 <>5,08:00:00,18:00:00 <>6,08:00:00,18:00:00 <>7,08:00:00,18:00:00",
+        "estado_funcionamiento": 1,
+        "link_facebook": "https://www.facebook.com/profile.php?id=100015355507336",
+        "municipio_nombre": "General Rodríguez"
       },
       "geometry": {
         "coordinates": [
@@ -381,14 +513,26 @@
     {
       "type": "Feature",
       "properties": {
-        "ID":12,
+        "ID": 12,
         "title": "Recorrido 1",
         "stroke": "#2e7d33",
         "stroke-width": 6,
         "type": "LineString",
         "fill": "",
         "stroke-opacity": 1,
-        "icon": ""
+        "icon": "",
+        "id_pd": "52",
+        "nombre": "La Matanza II (Villa Palito)",
+        "calle": "Peribebuy y Figueroa Alcorta",
+        "institucion": "Edificio Municipal",
+        "localidad": "San Justo",
+        "codigo_postal": "B1754GNP",
+        "provincia": "Buenos Aires",
+        "email": "villapalito@puntodigital.gob.ar",
+        "horario": "1,08:00:00,13:00:00 <>1,09:00:00,11:30:00 <>2,08:00:00,13:00:00 <>3,08:00:00,13:00:00 <>4,08:00:00,13:00:00 <>5,08:00:00,13:00:00",
+        "estado_funcionamiento": "1",
+        "link_facebook": "",
+        "municipio_nombre": "La Matanza"
       },
       "geometry": {
         "coordinates": [
@@ -487,11 +631,23 @@
     {
       "type": "Feature",
       "properties": {
-        "ID":13,
+        "ID": 13,
         "title": "Cannabis",
         "icon": "icono-arg-cannabis-medicinal-1",
         "icon_color": "tomate",
-        "type": "Point"
+        "type": "Point",
+        "id_pd": "53",
+        "nombre": "Lanús I (Pupi)",
+        "calle": "Monseñor Hladnik 3856",
+        "institucion": "ONG",
+        "localidad": "Remedios Escalada de San Martin",
+        "codigo_postal": "-",
+        "provincia": "Buenos Aires",
+        "email": "pupi@puntodigital.gob.ar",
+        "horario": "1,09:00:00,19:30:00 <>2,09:00:00,19:30:00 <>3,09:00:00,19:30:00 <>4,09:00:00,19:30:00 <>5,09:00:00,19:30:00",
+        "estado_funcionamiento": "1",
+        "link_facebook": "https://www.facebook.com/Punto-Digital-Fundaci%C3%B3n-Pupi-1403503536582769/",
+        "municipio_nombre": "Lanús"
       },
       "geometry": {
         "coordinates": [

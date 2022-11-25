@@ -2,345 +2,501 @@
  * Poncho Map y Poncho Filter
  */
 @keyframes slidein {
-    0% {
-        right: calc(-1 * var(--slider-width));
-        opacity: 0;
-        box-shadow: none;
-    }
+  0% {
+    right: calc(-1 * var(--slider-width));
+    opacity: 0;
+    box-shadow: none;
+  }
 
-    100% {
-        right: var(--slider-right);
-        opacity: 1;
-    }
-
+  100% {
+    right: var(--slider-right);
+    opacity: 1;
+  }
 }
 
 .poncho-map {
-    --slider-width: 326px;
-    --color-primary: var(--primary, black);
-    --map-background: transparent;
-    --color-base: inherit;
-    --slider-background: rgba(255, 255, 255, 1);
-    --slider-border: none;
-    --slider-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    --slider-top: 10px;
-    --slider-right: 10px;
-    --slider-left: 10px;
-    --slider-bottom: 10px;
-    --slider-radius: 16px;
-    --slider-media-mobile-height: 45%;
-    --active-marker-color: 255, 206, 0;
-    // define el color del halo para el marker activo
-    --active-marker-alpha: .5;
-    // define la opacidad para el color del halo.
-    background-color: var(--map-background);
-    overflow: hidden;
+  --slider-width: 326px;
+  --color-primary: var(--primary, black);
+  --map-background: transparent;
+  --color-base: inherit;
+  --slider-background: rgba(255, 255, 255, 1);
+  --slider-border: none;
+  --slider-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  --slider-top: 10px;
+  --slider-right: 10px;
+  --slider-left: 10px;
+  --slider-bottom: 10px;
+  --slider-radius: 16px;
+  --slider-media-mobile-height: 45%;
+  --active-marker-color: 255, 206, 0;
+  // define el color del halo para el marker activo
+  --active-marker-alpha: 0.5;
+  // define la opacidad para el color del halo.
+  --background-color: var(--map-background);
+  --accesible-background: #37bbed;
+  --accesible-background: #f2f2f2;
+
+  overflow: hidden;
+  position: relative;
+
+  .title,
+  *.text-primary {
+    color: var(--primary, #0072bb) !important;
+  }
+
+  .btn-close {
+    border-radius: 50%;
+    aspect-ratio: 1 / 1;
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    background-color: transparent;
+    color: var(--color-base);
+  }
+
+  .marker--active {
+    --color: 247, 149, 37;
     position: relative;
+    // border-radius: 50%;
+    box-shadow: 0 0 20px rgba(var(--active-marker-color), 1);
+    background: radial-gradient(
+      circle,
+      rgba(var(--active-marker-color), var(--active-marker-alpha)) 10%,
+      rgba(var(--active-marker-color), var(--active-marker-alpha)) 80%
+    );
+  }
 
-    .title, *.text-primary {
-        color: var(--primary, #0072bb) !important;
+  /**
+     * Estilos para los markers basados en <div>
+     */
+  &__div-icon {
+    background-color: transparent;
+    height: 38px;
+    width: 38px;
+    position: relative;
+    display: block;
+    margin: auto;
+    text-align: center;
+    border-radius: 50%;
+  }
+  &__div-icon > i {
+    font-size: 1.7em;
+    position: absolute;
+    margin: auto;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -50%);
+    opacity: 0.9;
+    transition: 0.2s;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  }
+  &__div-icon:hover > i {
+    opacity: 1;
+    transition: 0.2s;
+  }
+
+  /**
+     * Define el estlo para el slider
+     */
+  .slider {
+    &.slider--in {
+      right: var(--slider-right);
+      animation-duration: 0.3s;
+      animation-name: slidein;
+      box-shadow: var(--slider-shadow);
+    }
+    img {
+      max-width: 100%;
     }
 
-    .btn-close {
-        border-radius: 50%;
-        aspect-ratio: 1 / 1;
-        position: absolute;
-        top: 0.75rem;
-        right: 0.75rem;
-        background-color: transparent;
-        color: var(--color-base);
+    z-index: 990;
+    position: absolute;
+    top: var(--slider-top);
+    border: var(--slider-border);
+    right: calc(-1 * var(--slider-width));
+    background: var(--slider-background);
+    height: calc(100% - var(--slider-bottom) - var(--slider-top));
+    width: var(--slider-width);
+    border-radius: var(--slider-radius);
+
+    .content-container {
+      padding: 2.75rem 0.25rem 0.5rem 0.25rem;
+      height: calc(100%);
     }
 
-    .marker--active {
-        --color: 247, 149, 37;
-        position: relative;
-        border-radius: 50%;
-        box-shadow: 0 0 20px rgba(var(--active-marker-color), 1);
-        background: radial-gradient(circle, rgba(var(--active-marker-color), var(--active-marker-alpha)) 10%, rgba(var(--active-marker-color), var(--active-marker-alpha)) 80%);
-    }
+    .content {
+      inline-size: min-content;
+      color: var(--color-base);
+      height: 100%;
+      width: 100%;
+      overflow-y: auto;
+      overflow-x: hidden;
+      box-shadow: 0 -10px 20px var(--slider-background) inset;
+      padding: 0 0.75rem 1.5rem 0.75rem;
+      word-break: break-word;
 
-    .slider {
-
-        &.slider--in {
-            right: var(--slider-right);
-            animation-duration: 0.3s;
-            animation-name: slidein;
-            box-shadow: var(--slider-shadow);
-        }
-        img {
-          max-width: 100%;
-        }
-
-        z-index: 990;
-        position: absolute;
-        top: var(--slider-top);
-        border: var(--slider-border);
-        right: calc(-1 * var(--slider-width));
+      &:after {
+        content: "";
         background: var(--slider-background);
-        height: calc(100% - var(--slider-bottom) - var(--slider-top));
-        width: var(--slider-width);
-        border-radius: var(--slider-radius);
+        background: -moz-linear-gradient(
+          0deg,
+          var(--slider-background) 60%,
+          rgba(255, 255, 255, 0) 100%
+        );
+        background: -webkit-linear-gradient(
+          0deg,
+          var(--slider-background) 60%,
+          rgba(255, 255, 255, 0) 100%
+        );
+        background: linear-gradient(
+          0deg,
+          var(--slider-background) 60%,
+          rgba(255, 255, 255, 0) 100%
+        );
+        position: absolute;
+        left: 0.25rem;
+        width: calc(100% - 1.5rem);
+        height: 40px;
+        bottom: 0.25rem;
+        border-bottom-left-radius: 12px;
+      }
+    }
+  }
 
-        .content-container {
-            padding: 2.75rem .25rem .5rem .25rem;
-            height: calc(100%);
-        }
+  path.marker--active {
+    filter: drop-shadow(2px 2px 2px rgb(249, 168, 34, 1));
+  }
+  *:focus {
+    outline: 4px solid #37bbed !important;
+    box-sizing: border-box;
+    border-radius: 3px;
+    box-shadow: 0 0 8px #37bbed !important;
+  }
 
-        .content {
-            inline-size: min-content;
-            color: var(--color-base);
-            height: 100%;
-            width: 100%;
-            overflow-y: auto;
-            overflow-x: hidden;
-            box-shadow: 0 -10px 20px var(--slider-background) inset;
-            padding: 0 .75rem 1.5rem .75rem;
-            word-break:break-word;
+  .accesible-nav {
+    outline: none;
+    position: absolute;
+    left: -999em;
+    line-height: 1.5em;
+    z-index: 2000;
+    min-height: 2em;
+    background: rgba(0, 0, 0, 0.75);
+    padding: 6px;
+    border-radius: 16px;
+    box-shadow: 1px 1px 8px rgb(0, 0, 0, 0.4);
+    font-size: small;
 
-            &:after {
-                content: '';
-                background: var(--slider-background);
-                background: -moz-linear-gradient(0deg, var(--slider-background) 60%, rgba(255, 255, 255, 0) 100%);
-                background: -webkit-linear-gradient(0deg, var(--slider-background) 60%, rgba(255, 255, 255, 0) 100%);
-                background: linear-gradient(0deg, var(--slider-background) 60%, rgba(255, 255, 255, 0) 100%);
-                position: absolute;
-                left: .25rem;
-                width: calc(100% - 1.5rem);
-                height: 40px;
-                bottom: .25rem;
-                border-bottom-left-radius: 12px
-            }
-
-        }
-
+    &:focus {
+      outline: 2px solid var(--accesible-background);
     }
 
-    // Filtros
-    .filter-container {
-        position: absolute;
-        top: 98px;
-        left: 10px;
-        z-index: 999;
-        max-height: calc(100% - 80px);
+    &.top:focus-within {
+      top: 10px;
+      left: 10px;
+    }
+    &.bottom:focus-within {
+      bottom: 10px;
+      left: 10px;
+    }
 
+    .accesible-nav__icon {
+      margin-left: 3px;
+      font-size: 1.5em;
+      opacity: 1;
+      color: #37bbed !important;
+    }
 
-      &.filter-container--zoom-expand {
-        top: 135px;
+    ul {
+      font-size: 1rem;
+      margin: 0;
+      padding: 0;
+      font-size: small;
+      li {
+        list-style: none;
+      }
+    }
+
+    a {
+      text-decoration: none;
+      border-radius: 10px;
+      list-style: none;
+      color: white;
+      margin: 0;
+      min-height: 2em;
+      padding: 5px 10px;
+      display: block;
+
+      &:focus {
+        outline: 2px solid var(--accesible-background) !important;
+        color: black;
+        box-shadow: none !important;
+        background: var(--accesible-background);
+      }
+    }
+  }
+
+  // Filtros
+  .filter-container {
+    position: absolute;
+    top: 98px;
+    left: 10px;
+    z-index: 999;
+    max-height: calc(100% - 80px);
+
+    &.filter-container--zoom-expand {
+      top: 135px;
+    }
+
+    // Botón para hacer un toggle con los filtros
+    .btn-filter {
+      text-align: center;
+      background: var(--slider-background, white);
+      padding: 0;
+      box-shadow: var(--slider-shadow);
+      line-height: 39px;
+      color: var(--color-base);
+      width: 39px;
+      height: 39px;
+    }
+
+    .js-filters {
+      overflow: auto;
+    }
+
+    // Filter
+    .poncho-map-filters {
+      max-height: calc(100% - 158px);
+      min-height: 150px;
+      display: none;
+      position: relative;
+      z-index: 998;
+      width: 250px;
+      max-width: 300px;
+      padding: 30px 15px 15px;
+      border-radius: var(--slider-radius);
+      box-shadow: var(--slider-shadow);
+      color: var(--color-base);
+      background-color: var(--slider-background);
+
+      // Define el estado abierto del panel de filtro.
+      &.filter--in {
+        display: block;
       }
 
-        // Botón para hacer un toggle con los filtros
-        .btn-filter {
-            text-align: center;
-            background: var(--slider-background, white);
-            padding: 0;
-            box-shadow: var(--slider-shadow);
-            line-height: 39px;
-            color: var(--color-base);
-            width: 39px;
-            height: 39px;
-        }
+      // Flecha contenedor filtros
+      &::after {
+        content: " ";
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 10px solid var(--slider-background);
+        position: absolute;
+        top: -6px;
+        left: 10px;
+        z-index: 990;
+      }
 
-        .js-filters {
-            overflow: auto;
-        }
+      // Contenedor de fieldsets
+      .field-list {
+        min-height: 40px;
+        max-height: calc(100% - 110px);
+        overflow: auto;
+        width: calc(100% - 30px);
+      }
 
-        // Filter
-        .poncho-map-filters {
-            max-height: calc(100% - 158px);
-            min-height: 150px;
-            display: none;
-            position: relative;
-            z-index: 998;
-            width: 250px;
-            max-width: 300px;
-            padding: 30px 15px 15px;
-            border-radius: var(--slider-radius);
-            box-shadow: var(--slider-shadow);
-            color: var(--color-base);
-            background-color: var(--slider-background);
+      legend {
+        color: var(--color-base);
+        margin-bottom: 0.75em;
+        opacity: 0.8;
+      }
 
-            // Define el estado abierto del panel de filtro.
-            &.filter--in {
-                display: block;
-            }
+      fieldset {
+        border: none;
+      }
 
-            // Flecha contenedor filtros
-            &::after {
-                content: ' ';
-                width: 0;
-                height: 0;
-                border-left: 10px solid transparent;
-                border-right: 10px solid transparent;
-                border-bottom: 10px solid var(--slider-background);
-                position: absolute;
-                top: -6px;
-                left: 10px;
-                z-index: 990;
-            }
+      // setea el color para el fondo de los checkbox e inputs.
+      input[type="checkbox"],
+      input[type="radio"] {
+        accent-color: var(--color-primary) !important;
+      }
 
-            // Contenedor de fieldsets
-            .field-list {
-                min-height: 40px;
-                max-height: calc(100% - 110px);
-                overflow: auto;
-                width: calc(100% - 30px);
-            }
+      // parche fix hasta que se use bootstrap > 4
+      .form-check {
+        display: flex;
+        align-items: baseline;
+      }
 
-            legend {
-                color: var(--color-base);
-                margin-bottom: .75em;
-                opacity: .8;
-            }
+      .form-check .form-check-label {
+        color: var(--color-base) !important;
+      }
+    }
+  }
 
-            fieldset {
-                border: none;
-            }
+  /* Tooltip Leaflet personalizado */
+  :root {
+    --tooltip: #333;
+    --tooltip-color: white;
+  }
 
-            // setea el color para el fondo de los checkbox e inputs.
-            input[type=checkbox],
-            input[type=radio] {
-                accent-color: var(--color-primary) !important;
-            }
+  .leaflet-tooltip-left:before {
+    right: 0;
+    margin-right: -12px;
+    border-left-color: var(--tooltip, white);
+  }
+  .leaflet-tooltip-right:before {
+    left: 0;
+    margin-left: -12px;
+    border-right-color: var(--tooltip, white);
+  }
 
-            // parche fix hasta que se use bootstrap > 4
-            .form-check {
-                display: flex;
-                align-items: baseline;
-            }
+  .leaflet-tooltip-own {
+    position: absolute;
+    padding: 6px 10px;
+    background-color: var(--tooltip, white);
+    border: 0px solid #000;
+    color: var(--tooltip-color, black);
+    white-space: nowrap;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border-radius: 8px;
+    pointer-events: none;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
+    transition: opacity 0.2s;
+  }
 
-            .form-check .form-check-label {
-                color: var(--color-base) !important;
-            }
-
-        }
-
+  /* leaflet popup */
+  // previene el margen en p
+  .leaflet-popup {
+    p:first-child {
+      margin-block-start: 0;
+      margin-block-end: 1em;
+      margin-inline-start: 0px;
+      margin-inline-end: 0px;
     }
 
-    /* leaflet popup */
     .leaflet-popup-content-wrapper {
-        border-radius: 16px;
+      border-radius: 16px;
     }
 
     .leaflet-popup-content-wrapper,
     .leaflet-popup-tip {
-        background: var(--slider-background);
-        color: var(--color-base);
+      background: var(--slider-background);
+      color: var(--color-base);
 
-        .leaflet-popup-content {
-            width: calc(100% - 26px);
-            inline-size: min-content;
+      .leaflet-popup-content {
+        width: calc(100% - 26px);
+        inline-size: min-content;
 
-            .info-container {
-                max-height: 800px;
-                overflow-y: auto;
-                width: 100%;
-            }
-
+        .info-container {
+          max-height: 800px;
+          overflow-y: auto;
+          width: 100%;
         }
+      }
+    }
+  }
 
+  /* leaflet controls*/
+  .leaflet-marker-icon.leaflet-div-icon {
+    background-color: transparent;
+    border: none;
+  }
+
+  .leaflet-control-zoom.leaflet-bar {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--slider-shadow);
+    border: 1px solid #ddd;
+  }
+
+  .leaflet-control-zoom.leaflet-control a {
+    width: 38px;
+    height: 38px;
+    line-height: 38px;
+    color: #888;
+  }
+
+  .leaflet-control-zoom-in,
+  .leaflet-control-zoom-out {
+    font: 400 18px "Lucida Console", Monaco, monospace;
+    text-indent: 1px;
+  }
+
+  .leaflet-control-zoom-out {
+    font-size: 22px;
+  }
+
+  .leaflet-touch {
+    .leaflet-control-zoom-in {
+      font-size: 22px;
     }
 
-    /* leaflet controls*/
-    .leaflet-control-zoom.leaflet-bar {
-        border-radius: 20px;
-        overflow: hidden;
-        box-shadow: var(--slider-shadow);
-        border: 1px solid #ddd;
-    }
-
-    .leaflet-control-zoom.leaflet-control a {
-        width: 38px;
-        height: 38px;
-        line-height: 38px;
-        color: #888;
-    }
-
-    .leaflet-control-zoom-in,
     .leaflet-control-zoom-out {
-        font: 400 18px "Lucida Console", Monaco, monospace;
-        text-indent: 1px;
+      font-size: 24px;
     }
 
-    .leaflet-control-zoom-out {
-        font-size: 22px;
+    a.leaflet-control-zoom-out {
+      line-height: 32px;
     }
 
-    .leaflet-touch {
-        .leaflet-control-zoom-in {
-            font-size: 22px;
-        }
-
-        .leaflet-control-zoom-out {
-            font-size: 24px;
-        }
-
-        a.leaflet-control-zoom-out {
-            line-height: 32px;
-        }
-
-        a.leaflet-control-zoom-in,
-        a.leaflet-control-zoom-reset,
-        a.leaflet-control-zoom-out {
-            background-color: var(--slider-background);
-            color: var(--color-base);
-            border-color: #ddd;
-        }
-
+    a.leaflet-control-zoom-in,
+    a.leaflet-control-zoom-reset,
+    a.leaflet-control-zoom-out {
+      background-color: var(--slider-background);
+      color: var(--color-base);
+      border-color: #ddd;
     }
+  }
 
-    .leaflet-container a.leaflet-popup-close-button.leaflet-popup-close-button {
-        top: 5px;
-        right: 5px;
-    }
-
+  .leaflet-container a.leaflet-popup-close-button.leaflet-popup-close-button {
+    top: 5px;
+    right: 5px;
+  }
 }
 
 /*------------------------------------*\
 #MOBILE
 \*------------------------------------*/
 @keyframes slideinmobile {
-    0% {
-        right: var(--slider-right);
-        bottom: calc(-1 * var(--slider-media-mobile-height));
-        opacity: 0;
-    }
+  0% {
+    right: var(--slider-right);
+    bottom: calc(-1 * var(--slider-media-mobile-height));
+    opacity: 0;
+  }
 
-    100% {
+  100% {
+    bottom: var(--slider-bottom);
+    opacity: 1;
+    right: var(--slider-right);
+  }
+}
+
+@media (max-width: 575.98px) {
+  /* smartphones, iPhone, portrait 480x320 phones */
+  .poncho-map {
+    .slider {
+      height: var(--slider-media-mobile-height);
+      top: auto;
+      bottom: calc(-1 * var(--slider-media-mobile-height));
+      right: var(--slider-right);
+      max-width: 100%;
+      width: calc(100% - var(--slider-bottom) - var(--slider-top));
+
+      &.slider--in {
+        animation-name: slideinmobile;
         bottom: var(--slider-bottom);
-        opacity: 1;
-        right: var(--slider-right);
+      }
     }
 
-}
-
-@media (max-width:575.98px) {
-
-    /* smartphones, iPhone, portrait 480x320 phones */
-    .poncho-map {
-        .slider {
-            height: var(--slider-media-mobile-height);
-            top: auto;
-            bottom: calc(-1 * var(--slider-media-mobile-height));
-            right: var(--slider-right);
-            max-width: 100%;
-            width: calc(100% - var(--slider-bottom) - var(--slider-top));
-
-            &.slider--in {
-                animation-name: slideinmobile;
-                bottom: var(--slider-bottom);
-            }
-
-        }
-
-        .poncho-map-filters {
-            max-width: 50%;
-            width: calc(100% - var(--slider-bottom) - var(--slider-top));
-        }
-
+    .poncho-map-filters {
+      max-width: 50%;
+      width: calc(100% - var(--slider-bottom) - var(--slider-top));
     }
-
+  }
 }
-
 
 input[type="search"].js-poncho-map-search__input::-webkit-search-cancel-button {
   -webkit-appearance: none;

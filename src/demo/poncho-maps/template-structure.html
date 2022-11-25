@@ -15,19 +15,40 @@
   <link rel="stylesheet" href="https://capacita-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css?rfqjsh">
   <link rel="stylesheet" href="../../../dist/css/poncho.min.css" />
   <title>Mapa Efectores</title>
+  <style>
+
+.info-container dd p:first-child { display: block;
+    margin-block-start: 0;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;}
+  </style>
 </head>
 <body>
-<!-- INCLUDE CSS -->
-<link href="https://gis.argentina.gob.ar/js/leaflet/leaflet.css" rel="stylesheet"/>
-<link href="https://gis.argentina.gob.ar/js/leaflet/MarkerCluster.Default.css" rel="stylesheet"/>
-<link href="https://gis.argentina.gob.ar/js/leaflet/MarkerCluster.css" rel="stylesheet"/>
-<!-- / INCLUDE CSS -->
 
 <!-- INCLUDE SCRIPTS -->
+<script src="https://www.argentina.gob.ar/sites/default/files/ponchotable/showdown.js"></script>
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/extensiones/showdown-extensions.js"></script>
+<!-- <link href="https://gis.argentina.gob.ar/js/leaflet/leaflet.css" rel="stylesheet"/>
+<link href="https://gis.argentina.gob.ar/js/leaflet/MarkerCluster.Default.css" rel="stylesheet"/>
+<link href="https://gis.argentina.gob.ar/js/leaflet/MarkerCluster.css" rel="stylesheet"/> 
 <script src="https://gis.argentina.gob.ar/js/leaflet/leaflet.js"></script>
 <script src="https://gis.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script>
-<script src="../../../dist/js/poncho.min.js"></script>
-<script src="./js/template-efectores.js"></script>
+<script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script> -->
+<!-- / INCLUDE SCRIPTS -->
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.2/leaflet.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.Default.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.min.css" rel="stylesheet"/> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.2/leaflet.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.min.js"></script>
+
+
+<script src="../../../src/js/utils.js"></script>
+<script src="../../../src/js/poncho-map.js"></script>
+<script src="../../../src/js/poncho-map-filter.js"></script>
+<script src="../../../src/js/poncho-map-search.js"></script>
+<script src="../../../src/js/gapi-sheet-data.js"></script>
 <!-- / INCLUDE SCRIPTS -->
 
 
@@ -38,7 +59,7 @@
     </div>
     <div class="col-md-12 m-b-2">
       <!-- poncho map -->
-      <div class="poncho-map" data-scope="uno">
+      <div class="poncho-map" data-scope="map">
         <!-- leaflet -->
         <div
             class="leaflet-container leaflet-touch leaflet-fade-anim 
@@ -60,43 +81,29 @@
   (async() => {
     // GApi helpers
     const gapi = new GapiSheetData();
-    // fetch data
-    // const googlesheet_data = await fetch_json(gapi.url("dataset", "1pYOIEL4n5364RSDaSxnUI5vMMat0lU7FxeK_3Ctk8kg")); 
     const googlesheet_data = await fetch_json("./data/response-efectores.json"); 
     const gapi_data = gapi.json_data(googlesheet_data);
     // map options
     const options = {
-      "template_structure" : {
-          "title": "name",
-          "values": ["address", "locality", "province", "phone", "email", "reference"],
-          // "exclude": ["id", "inhibicion_puberal", "hormonizacion_adolescentes", 
-          //             "hormonizacion_adultos", "latitud", "longitud", "name"]
-      },
-      "headers": {
-          "address": "Dirección",
-          "email": "Correo electrónico",
-          "hormonizacion_adolescentes": "Hormonización adolescentes (testosterona/estrógenos)",
-          "hormonizacion_adultos": "Hormonización personas adultas (testosterona/estrógenos)",
-          "id": "Código SISA",
-          "inhibicion_puberal": "Inhibición puberal",
-          "latitud": "Latitud",
-          "locality": "Localidad",
-          "longitud": "Longitud",
-          "name": "Nombre",
-          "phone": "Teléfono",
-          "province": "Provincia",
-          "reference": "Referencia para acceder a los servicios"
-      },
-      "scope":"uno",
-      "slider":true,
-      "hash": true,
-      "scroll": true,
-      "marker": "mandarina",
+        "title": "name",
+        "template_markdown": true,
+        "template_structure" : {
+            "values": [
+                "ubicacion", "phone", "email", "reference"
+            ],
+            "mixing":[
+                {
+                    "key": "ubicacion",
+                    "header": "Dirección",
+                    "values": ["address", "locality", "province"],
+                    "separator": ", "
+                }
+            ]
+        },
+        "headers": gapi_data.headers
     };
-    // render map
     const filter = new PonchoMap(gapi_data.entries, options);
     filter.render();
-
   })();
 </script>
 <!-- / SCRIPTS -->
