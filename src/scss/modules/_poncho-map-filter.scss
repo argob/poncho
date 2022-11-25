@@ -33,7 +33,6 @@
   --active-marker-alpha: 0.5;
   // define la opacidad para el color del halo.
   --background-color: var(--map-background);
-  --accesible-background: #37bbed;
   --accesible-background: #f2f2f2;
 
   overflow: hidden;
@@ -167,10 +166,10 @@
     filter: drop-shadow(2px 2px 2px rgb(249, 168, 34, 1));
   }
   *:focus {
-    outline: 4px solid #37bbed !important;
+    outline: 3px solid var(--cielo, $brand-cielo) !important;
     box-sizing: border-box;
     border-radius: 3px;
-    box-shadow: 0 0 8px #37bbed !important;
+    box-shadow: 0 0 8px var(--cielo,$brand-cielo) !important;
   }
 
   .accesible-nav {

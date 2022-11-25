@@ -178,8 +178,10 @@ class PonchoMap {
         this.map = new L.map(
             this.map_selector, {/*preferCanvas: true,*/ renderer:L.svg()}
         ).setView(this.map_view, this.map_zoom);
-        new L.tileLayer("https://gis.argentina.gob.ar/osm/{z}/{x}/{y}.png",{ 
-            attribution: ("&copy; Contribuidores "
+        new L.tileLayer("https://mapa-ign.argentina.gob.ar/osm/{z}/{x}/{-y}.png",{ 
+            attribution: ("Contribuidores: "
+                + "<a href=\"https://www.ign.gob.ar/AreaServicios/Argenmap/Introduccion\">"
+                + "Instituto Geográfico Nacional</a>, "
                 + "<a href=\"https://www.openstreetmap.org/copyright\">"
                 + "OpenStreetMap</a>")
         }).addTo(this.map);
