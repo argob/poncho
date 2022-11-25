@@ -56,11 +56,18 @@ class PonchoMapSearch {
         this.datalist = opts.datalist;
         this.placeholder = opts.placeholder;
         this.scope = opts.scope;
+        this.scope_sufix = `--${this.scope}`;
         this.sort = opts.sort;
         this.sort_reverse = opts.sort_reverse;
         this.search_scope_selector = (
             this.scope ? `[data-scope="${this.scope}"]`: "");
         this.instance.search_fields = opts.search_fields;
+        this.instance.accesible_menu_search = [
+            {
+              "text": "Hacer una búsqueda",
+              "anchor": `#id-poncho-map-search${this.scope_sufix}`
+            }
+        ];
     };
 
     /**
@@ -98,6 +105,7 @@ class PonchoMapSearch {
     _triggerSearch = () => {
         const input = document.querySelector(
             `${this.search_scope_selector} .js-poncho-map-search__input`);
+            input.id = `id-poncho-map-search${this.scope_sufix}`;
         const submit = document.querySelectorAll(
                 `${this.search_scope_selector} .js-poncho-map-search__submit`);
 
@@ -158,7 +166,7 @@ class PonchoMapSearch {
         this.instance.markersMap(entries); 
         if(this.instance.slider){
             this.instance._renderSlider();
-            this.instance._clickeableFeature();
+            this.instance._clickeableFeatures();
             this.instance._clickeableMarkers();
             this.instance._clickToggleSlider();
         }
@@ -184,6 +192,7 @@ class PonchoMapSearch {
         this.instance._resetSearch();
         this.instance._clickToggleFilter();
         this.instance._setFetureAttributes();
+        this.instance._accesibleMenu();
     };
 
     /**
@@ -204,12 +213,13 @@ class PonchoMapSearch {
         document.querySelectorAll(
                 `${this.search_scope_selector} .js-porcho-map-search__list`)
             .forEach(element => {
-                element.innerHTML = new Date();
+                element.innerHTML = "";
                 const options = (content) => {
                     const opt = document.createElement("option"); 
                     opt.textContent = content; 
                     return opt;
                 };
+
                 this.instance.filtered_entries.forEach(e => 
                     element.appendChild(options(e.properties[this.text]))
                 );
@@ -228,12 +238,13 @@ class PonchoMapSearch {
     };
 
     /**
-     * Ejecuta el componente select2 y activa el listener de los filtros.
+     * Prepara el componente de búsqueda
      */
     render = () => {
         this._placeHolder();
         this._triggerSearch();
         this._addDataListOptions();
+        
         this.instance.filterChange((event) => {
             event.preventDefault();
             this.instance._filteredData();
@@ -241,5 +252,6 @@ class PonchoMapSearch {
         })
         this._searchRegion();
         this._keyup();
-    }  
+        this.instance._accesibleMenu();
+    }
 };

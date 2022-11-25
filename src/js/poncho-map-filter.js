@@ -64,6 +64,12 @@ class PonchoMapFilter extends PonchoMap {
         this.valid_fields = ["checkbox", "radio"];
         this.search_fields = opts.search_fields;
         this.messages = opts.messages;
+        this.accesible_menu_filter = [
+            {
+                "text": "Ir al panel de filtros",
+                "anchor": `#filtrar-busqueda${this.scope_sufix}`
+            }
+        ];
     }
 
     /**
@@ -705,7 +711,7 @@ class PonchoMapFilter extends PonchoMap {
         if(this.slider){
             this._renderSlider();
             this._clickeableMarkers();
-            this._clickeableFeature();
+            this._clickeableFeatures();
             this._clickToggleSlider();
         }
 

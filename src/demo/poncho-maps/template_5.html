@@ -26,36 +26,6 @@
   <title>Mapa con filtro y buscador</title>
   <style>
     html, body { height: 100%;}
-    .leaflet-marker-icon.leaflet-div-icon {
-      background-color:transparent;
-      border: none;
-    }
-    .poncho-map__div-icon {
-        background-color:transparent;
-        height:38px;
-        width:38px;
-        position:relative;
-        display:block;
-        margin:auto;
-        text-align:center;
-        border-radius: 50%;
-
-    }
-    .poncho-map__div-icon > i {
-        font-size:1.7em; 
-        position:absolute; 
-        margin:auto; 
-        top: 50%; 
-        right: 50%;
-        transform: translate(50%,-50%);
-        opacity: .9;
-        transition: .2s;
-        text-shadow: 1px 1px 1px rgba(0,0,0,.2);
-    }
-    .poncho-map__div-icon:hover > i {
-      opacity: 1;
-      transition: .2s;
-    } 
   </style>
 </head>
 <body class="p-t-3">
@@ -77,12 +47,11 @@ COPIAR DESDE ACÁ…
         <div class="input-group">
             <input 
                 type="search" 
-                id="search"
                 name="search" 
                 autocomplete="off"
                 class="js-poncho-map-search__input form-control" 
-                list="js-porcho-map-search__list">
-            <datalist id="js-porcho-map-search__list"></datalist>
+                list="list">
+            <datalist id="list" class="js-porcho-map-search__list"></datalist>
             <span class="input-group-btn">
               <button class="js-poncho-map-search__submit btn btn-primary">
                   <i class="fa fa-search text-white"></i>
@@ -108,7 +77,6 @@ COPIAR DESDE ACÁ…
     </div>
 </div>
 <!-- / PONCHO MAP -->
-<a href="#accesible-nav--poncho-map">Ir a la navegación del mapa</a>
 </div>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.2/leaflet.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.Default.min.css" rel="stylesheet"/>
@@ -191,6 +159,7 @@ COPIAR DESDE ACÁ…
 
   // init
   var map;
+  var search;
   (async() => {
     // GApi helpers
     // Caso GoogleSheet
@@ -216,7 +185,7 @@ COPIAR DESDE ACÁ…
           "title_classlist": ["h4","text-cereza","m-t-0"],
           "definition_list_classlist": ["definition-list"],
           "term_classlist": ["h6", "m-b-0", "text-cereza"],
-          "definition_classlist": ["text-default", "prueba", "table"],
+          "_definition_classlist": ["text-default", "prueba", "table"],
           "definition_list_tag": "div",
           "term_tag": "h2",
           "definition_tag": "div",
@@ -305,24 +274,24 @@ COPIAR DESDE ACÁ…
       "marker": "cielo",
       "_marker": (self, ele) => {
           const icon_color = (ele.hasOwnProperty("icon_color")) ? ele.icon_color : "azul";
-          return self.icon(icon_color);
+          // return self.icon(icon_color); 
           // Alternativa
           const img_url = "https://cdn0.iconfinder.com/data/icons/maps-and-navigation-2-1/52/86-512.png";
-          const id = (ele.hasOwnProperty("id")) ? ele.id : false;
+          const id = (ele.hasOwnProperty("ID")) ? ele.ID : false;
           const icon = (ele.hasOwnProperty("icon")) ? ele.icon : false;
-          
-          if(id == "8-anita"){
+          console.log(id)
+          if(id == "8"){
               return iconPoncho(icon_color, icon, {container:true, invert:true});
-          } else if (id == "2-emilia-bouillet"){
+          } else if (id == "13"){
               return iconPoncho(icon_color, icon, {container:true, invert:false});
-          } else if (id == "13-cannabis"){
+          } else if (id == "9"){
               return iconPoncho(icon_color, icon, {container:true, invert:true});
-          } else if (id == "5-olivia-y-emilia"){
+          } else if (id == "5"){
               return self.icon(icon_color);
           }
           return iconImg(img_url);
       },
-      "slider": true,
+      "slider": false,
       "hash": true,
       "scroll": true,
       "filters": [
@@ -351,7 +320,7 @@ COPIAR DESDE ACÁ…
         "datalist": true,
         "search_fields": ["title", "id", "type", "provincia"] 
     };
-    const search = new PonchoMapSearch(map, search_options);
+   search = new PonchoMapSearch(map, search_options);
     search.render();
   })();
 

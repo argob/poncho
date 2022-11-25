@@ -112,7 +112,13 @@ class PonchoMap {
                     "opacity": 0.5,
                     "fill-opacity": 0.5
                 }
-            }
+            },
+            "accesible_menu_extras": [
+              {
+                "text": "Ayudá a mejorar el mapa",
+                "anchor": "https://www.argentina.gob.ar/sugerencias"
+              }
+            ]
         };
         let opts = Object.assign({}, defaults, options);
         this.scope = opts.scope;
@@ -163,6 +169,9 @@ class PonchoMap {
             "stroke-width": 2,
             "fill-opacity": .5
         };
+        this.accesible_menu_search = [];
+        this.accesible_menu_filter = [];
+        this.accesible_menu_extras = opts.accesible_menu_extras;
         this.geojson;
 
         // OSM
@@ -690,7 +699,7 @@ class PonchoMap {
     /**
      * Setea los features para ejecutarse en un evento onlick
      */
-    _clickeableFeature = () => {
+    _clickeableFeatures = () => {
         this.map.eachLayer(layer => {
             if(!this.isFeature(layer) || 
                 layer.feature.geometry.type == "Point"){
@@ -1283,9 +1292,43 @@ class PonchoMap {
             ele[key].dataset.leafletId = ele._leaflet_id;
         };
 
-        this.markers.eachLayer(e => setAttributes(e, "_icon"));
+        // this.markers.eachLayer(e => setAttributes(e, "_icon"));
         this.map.eachLayer(e => setAttributes(e, "_path"));
     };
+
+    /**
+     * Anclas de salto
+     * 
+     * @summary Anclas para creadas especialmente para la navegación
+     * por tabs. 
+     * @accesibility
+     * @returns {objects} Objeto con las anclas.
+     */
+    _accesibleAnchors = () => {
+        const anchors = [
+            [
+                `${this.scope_selector} .leaflet-map-pane`, 
+                `leaflet-map-pane${this.scope_sufix}`, [
+                  ["role", "button"]
+                ]
+            ],
+            [
+                `${this.scope_selector} .leaflet-control-zoom`,
+                `leaflet-control-zoom${this.scope_sufix}`,
+                [
+                    ["aria-label", "Herramientas de zoom"],
+                    ["role", "region"],
+                ]   
+            ],
+        ];
+        anchors.forEach(anchor => {
+            const element = document.querySelector(anchor[0]);
+            element.id = anchor[1];
+            anchor[2].forEach(e => element.setAttribute(e[0], e[1]));
+        });
+        return anchors;
+    };
+
 
     /**
      * Agrega anclas y enlaces para un menú accesible.
@@ -1304,51 +1347,42 @@ class PonchoMap {
      * @see https://developer.mozilla.org/en-US/docs/Learn/Accessibility/WAI-ARIA_basics
      */
     _accesibleMenu = () => {
+        // Remuevo instancias anteriores si existieran.
+        document.querySelectorAll(`#accesible-return-nav${this.scope_sufix}`)
+            .forEach(e => e.remove());
+        document.querySelectorAll(`#accesible-nav${this.scope_sufix}`)
+            .forEach(e => e.remove());
         // Anclas que se deben crear.
-        const anchors = [
-            [
-                `${this.scope_selector} .leaflet-marker-pane`, 
-                `leaflet-marker-pane${this.scope_sufix}`, []
-            ],
-            [
-                `${this.scope_selector} .leaflet-control-zoom`,
-                `leaflet-control-zoom${this.scope_sufix}`,
-                [
-                    ["aria-label", "Herramientas de zoom"],
-                    ["role", "region"],
-                ]   
-            ],
-        ];
-        anchors.forEach(anchor => {
-            const element = document.querySelector(anchor[0]);
-            element.id = anchor[1];
-            anchor[2].forEach(e => element.setAttribute(e[0], e[1]));
-        });
+        const anchors = this._accesibleAnchors();
 
         // Enlace
-        const values = [
+        let values = [
             {
-                "text" :"Ir a los marcadores del mapa",
-                "anchor" : `#${anchors[0][1]}`
+                "text": "Ir a los marcadores del mapa",
+                "anchor": `#${anchors[0][1]}`
             },
             {
                 "text": "Ir al panel de zoom",
                 "anchor": `#${anchors[1][1]}` 
             }
         ]
-        if(typeof this.filters !== "undefined"){
-            values.push({
-                "text" : "Ir al panel de filtros",
-                "anchor": `#filtrar-busqueda${this.scope_sufix}`
-            });
-        }
+        values = [
+            ...values,
+            ...this.accesible_menu_filter,
+            ...this.accesible_menu_search,
+            ...this.accesible_menu_extras
+        ];
+
+        // Imprimo los enlaces
         const icon = document.createElement("i");
-        icon.classList.add("icono-arg-sitios-accesibles");
-        icon.style.color = "#d7df23";
+        icon.classList.add(
+            "icono-arg-sitios-accesibles", 
+            "accesible-nav__icon"
+        );
         icon.setAttribute("aria-hidden", "true");
-        
-        const nav = document.createElement("nav");
-        nav.classList.add("accesible-nav");
+
+        const nav = document.createElement("div");
+        nav.classList.add("accesible-nav", "top");
         nav.id = `accesible-nav${this.scope_sufix}`;
         nav.setAttribute("aria-label", "Menú para el mapa");
         nav.setAttribute("role", "navigation");
@@ -1360,17 +1394,30 @@ class PonchoMap {
             a.textContent = link.text;
             a.setAttribute("tabindex", 0);
             a.href = link.anchor;
+
             const li = document.createElement("li");
             li.appendChild(a);
             ul.appendChild(li);
         });
-
-        // nav.appendChild(icon);
-        nav.appendChild(ul);
         
+        nav.appendChild(icon);
+        nav.appendChild(ul);
+
+        // enlace de retorno
+        const back_to_nav = document.createElement("a");
+        back_to_nav.textContent = "Ir a la navegación del mapa";
+        back_to_nav.href = `#accesible-nav${this.scope_sufix}`;
+        back_to_nav.id = `accesible-return-nav${this.scope_sufix}`;
+
+        const return_nav = document.createElement("div");
+        return_nav.classList.add("accesible-nav", "bottom");
+        return_nav.appendChild(icon.cloneNode(true));
+        return_nav.appendChild(back_to_nav);
+
         const navigation = document.querySelectorAll(`${this.scope_selector}`);
         navigation.forEach(element => {
             element.insertBefore(nav, element.children[0]);
+            element.appendChild(return_nav);
         });
     };
 
@@ -1385,7 +1432,7 @@ class PonchoMap {
 
         if(this.slider){
             this._renderSlider();
-            this._clickeableFeature();
+            this._clickeableFeatures();
             this._clickeableMarkers();
             this._clickToggleSlider();
         }
@@ -1398,11 +1445,9 @@ class PonchoMap {
             this.scrollCenter();
         }
 
-        this._accesibleMenu();
         setTimeout(this.gotoHashedEntry, this.anchor_delay);
         this._setFetureAttributes();
+        this._accesibleMenu();
     };
 };
-
-
-
+// end class
