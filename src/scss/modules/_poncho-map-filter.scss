@@ -28,6 +28,8 @@
   --slider-bottom: 10px;
   --slider-radius: 16px;
   --slider-media-mobile-height: 45%;
+  --tooltip: #333;
+  --tooltip-color: white;
   --active-marker-color: 255, 206, 0;
   // define el color del halo para el marker activo
   --active-marker-alpha: 0.5;
@@ -333,11 +335,6 @@
   }
 
   /* Tooltip Leaflet personalizado */
-  :root {
-    --tooltip: #333;
-    --tooltip-color: white;
-  }
-
   .leaflet-tooltip-left:before {
     right: 0;
     margin-right: -12px;

@@ -8932,6 +8932,8 @@ body .main-footer {
   --slider-bottom: 10px;
   --slider-radius: 16px;
   --slider-media-mobile-height: 45%;
+  --tooltip: #333;
+  --tooltip-color: white;
   --active-marker-color: 255, 206, 0;
   --active-marker-alpha: 0.5;
   --background-color: var(--map-background);
@@ -9180,10 +9182,6 @@ body .main-footer {
 }
 .poncho-map .filter-container .poncho-map-filters .form-check .form-check-label {
   color: var(--color-base) !important;
-}
-.poncho-map :root {
-  --tooltip: #333;
-  --tooltip-color: white;
 }
 .poncho-map .leaflet-tooltip-left:before {
   right: 0;

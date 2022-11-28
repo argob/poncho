@@ -1861,6 +1861,7 @@ const gapi_legacy = (response) => {
 class PonchoMap {
     constructor(data, options){
         const defaults = {
+            "no_info": false,
             "title": false,
             "id": "id",
             "template": false,
@@ -1973,6 +1974,7 @@ class PonchoMap {
         this.latitude = opts.latitud;
         this.longitude = opts.longitud;
         this.slider = opts.slider;
+        this.no_info = opts.no_info;
         this.reset_zoom = opts.reset_zoom;
         this.slider_selector=this._selectorName(opts.slider_selector);
         this.selected_marker;
@@ -2004,9 +2006,9 @@ class PonchoMap {
         // new L.tileLayer("https://gis.argentina.gob.ar/osm/{z}/{x}/{y}.png",{ 
         new L.tileLayer("https://mapa-ign.argentina.gob.ar/osm/{z}/{x}/{-y}.png",{ 
             attribution: ("Contribuidores: "
-                + "<a href=\"https://www.ign.gob.ar/AreaServicios/Argenmap/Introduccion\">"
+                + "<a href=\"https://www.ign.gob.ar/AreaServicios/Argenmap/Introduccion\"  target=\"_blank\">"
                 + "Instituto Geográfico Nacional</a>, "
-                + "<a href=\"https://www.openstreetmap.org/copyright\">"
+                + "<a href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\">"
                 + "OpenStreetMap</a>")
         }).addTo(this.map);
         this.markers = new L.markerClusterGroup(this.marker_cluster_options);
@@ -2240,7 +2242,10 @@ class PonchoMap {
     /**
      * Abre o cierra el slider.
      */
-    toggleSlider = () =>{ 
+    toggleSlider = () => { 
+        if(this.no_info){
+            return;
+        }
         document
             .querySelector(`.js-slider${this.scope_sufix}`)
             .classList.toggle(`${this.slider_selector}--in`);
@@ -2289,9 +2294,16 @@ class PonchoMap {
      * 
      * @return {boolean} `true` si esta abierto, `false` si esta cerrado.
      */
-    isSliderOpen = () => document
-        .querySelector(`.js-slider${this.scope_sufix}`)
-        .classList.contains(`${this.slider_selector}--in`);
+    isSliderOpen = () => {
+        let status = [];
+        const qry = document.querySelectorAll(`.js-slider${this.scope_sufix}`);
+        qry.forEach(e => {
+            if(e.classList.contains(`${this.slider_selector}--in`)){
+                status.push(true);
+            }
+        })
+        return status.some(e => e);
+    };
 
     /**
      * Imprime la información del Punto Digital en el slider.
@@ -2299,6 +2311,9 @@ class PonchoMap {
      * @return {string} HTML del contenido del slider.
      */
     setContent = (data) => {
+        if(this.no_info){
+            return;
+        }
         this._focusOnSlider();
         if(!this.isSliderOpen()){
             this.toggleSlider();
@@ -2320,6 +2335,9 @@ class PonchoMap {
      * de pantalla mueva el foto a la información.
      */
     _focusOnSlider = () => {
+        if(this.no_info){
+            return;
+        }
         if(this.isSliderOpen()){
             document.querySelector(`.js-close-slider${this.scope_sufix}`)
                     .focus();
@@ -2372,6 +2390,9 @@ class PonchoMap {
      * Crea el bloque html para el slider.
      */
     _renderSlider = () => {
+        if(this.no_info){
+          return;
+        }
         document.querySelectorAll(`.js-slider${this.scope_sufix}`)
                 .forEach(e => e.remove());
         const close_button = document.createElement("button");
@@ -2538,7 +2559,12 @@ class PonchoMap {
     /**
      * Setea los markers para ejecutarse en un evento onlick
      */
-    _clickeableMarkers = () => this.markers.eachLayer(this._setClickeable);
+    _clickeableMarkers = () => {
+        if(this.no_info){
+            return;
+        }
+        this.markers.eachLayer(this._setClickeable)
+    };
 
     /**
      * Setea los markers para ejecutarse en un evento onlick
@@ -3006,7 +3032,7 @@ class PonchoMap {
                     );
                 }
                 // Si el usuario desea utilizar popUp en vez de slider.
-                if(!_this.slider){
+                if(!_this.no_info && !_this.slider){
                     const html = (typeof _this.template == "function" ? 
                             _this.template(_this, properties) : 
                             _this.defaultTemplate(_this, properties));
@@ -3027,7 +3053,7 @@ class PonchoMap {
                     );
                 }
                 
-                if(!_this.slider && geometry.type != "Point"){
+                if(!_this.no_info && !_this.slider && geometry.type != "Point"){
                     const html = (typeof _this.template == "function" ? 
                             _this.template(_this, properties) : 
                             _this.defaultTemplate(_this, properties));

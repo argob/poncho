@@ -270,7 +270,6 @@ COPIAR DESDE ACÁ…
           "description": "Descripción",
           "email": "Email"
       },
-      "tooltip": false,
       "marker": "cielo",
       "_marker": (self, ele) => {
           const icon_color = (ele.hasOwnProperty("icon_color")) ? ele.icon_color : "azul";
@@ -291,7 +290,9 @@ COPIAR DESDE ACÁ…
           }
           return iconImg(img_url);
       },
-      "slider": true,
+      "tooltip": true,
+      "no_info": true,
+      "slider": false,
       "hash": true,
       "scroll": true,
       "filters": [
