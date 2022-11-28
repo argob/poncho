@@ -41,28 +41,33 @@ MAPA CON BUSCADOR FILTRO
 
 COPIAR DESDE ACÁ…
 -->
+
+
+
+
+
 <div class="col-md-12">
 <!-- PONCHO MAP SEARCH -->
-<form action="" id="poncho-map-search">
-    <div data-scope="poncho-map-search">
-        <div class="input-group">
-            <input 
-                type="search" 
-                name="search" 
-                autocomplete="off"
-                class="js-poncho-map-search__input form-control" 
-                list="list">
-            <datalist id="list" class="js-porcho-map-search__list"></datalist>
-            <span class="input-group-btn">
-              <button class="js-poncho-map-search__submit btn btn-primary">
-                  <i class="fa fa-search text-white"></i>
-              </button>
-            </span>
-        </div>
-        <div data-scope="poncho-map" class="m-b-1">
-            <div class="js-poncho-map__help small text-default"></div>
-        </div>
-    </div>
+<form action="">
+  <div data-scope="poncho-map-search">
+      <div class="input-group">
+          <input 
+              type="search" 
+              name="search" 
+              autocomplete="off"
+              class="js-poncho-map-search__input form-control" 
+              list="list">
+              <datalist id="list" class="js-porcho-map-search__list"></datalist>
+          <span class="input-group-btn">
+            <button class="js-poncho-map-search__submit btn btn-primary">
+              <i class="fa fa-search text-white"> </i>
+            </button>
+          </span>
+      </div>
+      <div data-scope="poncho-map" class="m-b-1">
+          <div class="js-poncho-map__help small text-default"></div>
+      </div>
+  </div>
 </form>
 <!-- / PONCHO MAP SEARCH -->
 </div>
@@ -175,7 +180,7 @@ COPIAR DESDE ACÁ…
       "title": "nombre",
       "template_innerhtml": true,
       "template_markdown": true,
-      "allowed_tags": ["a"],
+      "allowed_tags": ["a", "h1", "p", "strong"],
       "template_structure" : {
           "title_classlist": ["h4","text-cereza","m-t-0"],
           "definition_list_classlist": ["definition-list"],
@@ -185,7 +190,7 @@ COPIAR DESDE ACÁ…
           "term_tag": "h2",
           "definition_tag": "div",
           "lead": {
-              key: "type", 
+              "__key": "type", 
               class: (self, entry, value) => {
                   if(entry.type == "Polygon"){
                       return "badge bg-verdin text-white"; 
@@ -313,7 +318,7 @@ COPIAR DESDE ACÁ…
         "scope": "poncho-map-search", 
         "placeholder": "Buscar en el geoJSON",
         "datalist": true,
-        "search_fields": ["title", "id", "type", "provincia"] 
+        "search_fields": ["provincia"] 
     };
    search = new PonchoMapSearch(map, search_options);
     search.render();

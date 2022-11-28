@@ -1865,12 +1865,12 @@ class PonchoMap {
             "id": "id",
             "template": false,
             "template_structure": {
-                "lead": [],
-                "header": false,
-                "title": "",
-                "mixing": [],
-                "values": [],
-                "exclude": [],
+                // "lead": [],
+                // "header": false,
+                // "title": "",
+                // "mixing": [],
+                // "values": [],
+                // "exclude": [],
                 "container_classlist": ["info-container"],
                 "title_classlist": ["h4","text-primary","m-t-0"],
                 "definition_list_classlist":["definition-list"],
@@ -2001,6 +2001,7 @@ class PonchoMap {
         this.map = new L.map(
             this.map_selector, {/*preferCanvas: true,*/ renderer:L.svg()}
         ).setView(this.map_view, this.map_zoom);
+        // new L.tileLayer("https://gis.argentina.gob.ar/osm/{z}/{x}/{y}.png",{ 
         new L.tileLayer("https://mapa-ign.argentina.gob.ar/osm/{z}/{x}/{-y}.png",{ 
             attribution: ("Contribuidores: "
                 + "<a href=\"https://www.ign.gob.ar/AreaServicios/Argenmap/Introduccion\">"
@@ -2744,21 +2745,22 @@ class PonchoMap {
      * fué configurado.
      */
     _lead  = (entry) => {
-        if(!this.template_structure.hasOwnProperty("lead")){
+        if(!this.template_structure?.lead?.key){
             return false;
         }
         const {
-            key, 
+            key=false, 
             class:classlist=false, 
             style=false } = this.template_structure.lead;
+
         const p = document.createElement("p");
 
-        const setClasslist = this._setType(classlist, entry, entry[key]);
+        const setClasslist = this._setType(classlist, entry);
         if(setClasslist){
             p.classList.add(...setClasslist.split(" "));
             p.textContent = entry[key];
             
-            const setStyle = this._setType(style, entry, entry[key]);
+            const setStyle = this._setType(style, entry);
             if(setStyle){
                 p.setAttribute("style", setStyle);
             }
@@ -4285,7 +4287,9 @@ class PonchoMapSearch {
             return null;
         }
         document.querySelectorAll(
-                `${this.search_scope_selector} .js-porcho-map-search__list`)
+                // se corrige un typo.
+                `${this.search_scope_selector} .js-porcho-map-search__list,`
+                + ` ${this.search_scope_selector} .js-poncho-map-search__list`)
             .forEach(element => {
                 element.innerHTML = "";
                 const options = (content) => {
