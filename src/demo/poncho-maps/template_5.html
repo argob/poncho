@@ -35,33 +35,39 @@
   <script src="../../../src/js/poncho-map-search.js"></script>
   <script src="../../../src/js/gapi-sheet-data.js"></script>
 
+
 <!-- 
 MAPA CON BUSCADOR FILTRO  
 
 COPIAR DESDE ACÁ…
 -->
+
+
+
+
+
 <div class="col-md-12">
 <!-- PONCHO MAP SEARCH -->
-<form action="" id="poncho-map-search">
-    <div data-scope="poncho-map-search">
-        <div class="input-group">
-            <input 
-                type="search" 
-                name="search" 
-                autocomplete="off"
-                class="js-poncho-map-search__input form-control" 
-                list="list">
-            <datalist id="list" class="js-porcho-map-search__list"></datalist>
-            <span class="input-group-btn">
-              <button class="js-poncho-map-search__submit btn btn-primary">
-                  <i class="fa fa-search text-white"></i>
-              </button>
-            </span>
-        </div>
-        <div data-scope="poncho-map" class="m-b-1">
-            <div class="js-poncho-map__help small text-default"></div>
-        </div>
-    </div>
+<form action="">
+  <div data-scope="poncho-map-search">
+      <div class="input-group">
+          <input 
+              type="search" 
+              name="search" 
+              autocomplete="off"
+              class="js-poncho-map-search__input form-control" 
+              list="list">
+              <datalist id="list" class="js-porcho-map-search__list"></datalist>
+          <span class="input-group-btn">
+            <button class="js-poncho-map-search__submit btn btn-primary">
+              <i class="fa fa-search text-white"> </i>
+            </button>
+          </span>
+      </div>
+      <div data-scope="poncho-map" class="m-b-1">
+          <div class="js-poncho-map__help small text-default"></div>
+      </div>
+  </div>
 </form>
 <!-- / PONCHO MAP SEARCH -->
 </div>
@@ -78,22 +84,16 @@ COPIAR DESDE ACÁ…
 </div>
 <!-- / PONCHO MAP -->
 </div>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.2/leaflet.css" rel="stylesheet"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.Default.min.css" rel="stylesheet"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.min.css" rel="stylesheet"/> 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.2/leaflet.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.min.js"></script>
 <!-- INCLUDE SCRIPTS -->
 <script src="https://www.argentina.gob.ar/sites/default/files/ponchotable/showdown.js"></script>
 <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/extensiones/showdown-extensions.js"></script>
-<!-- <link href="https://gis.argentina.gob.ar/js/leaflet/leaflet.css" rel="stylesheet"/>
-<link href="https://gis.argentina.gob.ar/js/leaflet/MarkerCluster.Default.css" rel="stylesheet"/>
-<link href="https://gis.argentina.gob.ar/js/leaflet/MarkerCluster.css" rel="stylesheet"/> 
-<script src="https://gis.argentina.gob.ar/js/leaflet/leaflet.js"></script>
-<script src="https://gis.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script>
-<script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script> -->
+<script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.js"></script>
+<script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script>
+<link href="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.css" rel="stylesheet"/> 
+<link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.css" rel="stylesheet"/> 
+<link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.Default.css" rel="stylesheet"/> 
+<script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
 <!-- / INCLUDE SCRIPTS -->
-
 
 
 
@@ -180,7 +180,7 @@ COPIAR DESDE ACÁ…
       "title": "nombre",
       "template_innerhtml": true,
       "template_markdown": true,
-      "allowed_tags": ["a"],
+      "allowed_tags": ["a", "h1", "p", "strong"],
       "template_structure" : {
           "title_classlist": ["h4","text-cereza","m-t-0"],
           "definition_list_classlist": ["definition-list"],
@@ -190,7 +190,7 @@ COPIAR DESDE ACÁ…
           "term_tag": "h2",
           "definition_tag": "div",
           "lead": {
-              key: "type", 
+              "__key": "type", 
               class: (self, entry, value) => {
                   if(entry.type == "Polygon"){
                       return "badge bg-verdin text-white"; 
@@ -291,7 +291,7 @@ COPIAR DESDE ACÁ…
           }
           return iconImg(img_url);
       },
-      "slider": false,
+      "slider": true,
       "hash": true,
       "scroll": true,
       "filters": [
@@ -318,7 +318,7 @@ COPIAR DESDE ACÁ…
         "scope": "poncho-map-search", 
         "placeholder": "Buscar en el geoJSON",
         "datalist": true,
-        "search_fields": ["title", "id", "type", "provincia"] 
+        "search_fields": ["provincia"] 
     };
    search = new PonchoMapSearch(map, search_options);
     search.render();

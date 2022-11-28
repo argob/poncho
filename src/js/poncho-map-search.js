@@ -211,7 +211,9 @@ class PonchoMapSearch {
             return null;
         }
         document.querySelectorAll(
-                `${this.search_scope_selector} .js-porcho-map-search__list`)
+                // se corrige un typo.
+                `${this.search_scope_selector} .js-porcho-map-search__list,`
+                + ` ${this.search_scope_selector} .js-poncho-map-search__list`)
             .forEach(element => {
                 element.innerHTML = "";
                 const options = (content) => {

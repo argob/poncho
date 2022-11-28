@@ -33,7 +33,6 @@
   --active-marker-alpha: 0.5;
   // define la opacidad para el color del halo.
   --background-color: var(--map-background);
-  --accesible-background: #37bbed;
   --accesible-background: #f2f2f2;
 
   overflow: hidden;
@@ -167,10 +166,10 @@
     filter: drop-shadow(2px 2px 2px rgb(249, 168, 34, 1));
   }
   *:focus {
-    outline: 4px solid #37bbed !important;
+    outline: 3px solid var(--cielo, $brand-cielo) !important;
     box-sizing: border-box;
     border-radius: 3px;
-    box-shadow: 0 0 8px #37bbed !important;
+    box-shadow: 0 0 8px var(--cielo,$brand-cielo) !important;
   }
 
   .accesible-nav {
@@ -505,3 +504,5 @@ input[type="search"].js-poncho-map-search__input::-webkit-search-cancel-button {
   cursor: pointer;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><circle cx='10' cy='10' r='10' fill='whitesmoke'/><polygon points='15.35 6.03 13.97 4.65 10 8.63 6.03 4.65 4.65 6.03 8.63 10 4.65 13.97 6.03 15.35 10 11.38 13.97 15.35 15.35 13.97 11.38 10 15.35 6.03' fill='black'/></svg>");
 }
+
+.leaflet-control-attribution .leaflet-attribution-flag { display: none !important }

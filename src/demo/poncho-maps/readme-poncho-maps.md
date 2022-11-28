@@ -1,9 +1,7 @@
-****
+
 # PonchoMap
 
-## Opciones para PonchoMap, PonchoMapFilter y PonchoMapSearch
-
-### PonchoMap
+## Opciones generales
 
 | Parámetro | Tipo | Default | Descripción |
 |:---|:---|:---|:---|
@@ -12,19 +10,11 @@
 | latitud | `string` | latitud | Nombre de la columna con el valor de latitud. Si la fuente de datos usa otro nombre se define con esta opción. Ej. `'latitud':'lat'`.| 
 | longitud | `string` | longitud | Nombre de la columna con el valor de longitud. Si la fuente de datos usa otro nombre se define con esta opción. Ej. `'longitud':'lng'`.| 
 | template | `object` | `null` | Define la función que controla el template para el popUp o el slider.| 
-| template_structure | `object` | `{}` | Permite definir un listado de valores a mostarar en el template por defecto o excluir valores que no se deseen mostrar.| 
+| template_structure | `object` | `{}` | Permite definir un listado de valores a mostarar en el template por defecto o excluir valores que no se deseen mostrar. | 
 | template_innerhtml | `boolean` | `false` | Permite incrustar html dentro de la descripción.|
-| allowed_tags | `object` | `[]` | Permite configurar un listado de etiquetas HTML que se imprimirán como parte del DOM y no como un texto. Para habilitar todas las etiquetas se utiliza `["*"]`. Si se quiere especificar cuales deben usarse, ej.: `["a", "strong"]`. |
-| template_structure / template_container_classlist | `Array()` | `['info-container']` | Define la lista de clases CSS que pueden agregarse al contenedor del listado de terminos y descripciones. | 
-| template_structure / template_title_classlist | `Array()` | `['h4','title']` | Listado de selectores CSS se que aplicarán en la etiqueta HTML asignada título.| 
-| template_structure / template_dl_classlist | `Array()` | `['definition-list']` | Listado de selectores CSS se que aplicarán en la etiqueta HTML asignada contenedor del listado de términos y definiciones.| 
-| template_structure / template_dt_classlist | `Array()` | `['h6', "m-b-0"]` | Listado de selectores CSS se que aplicarán en la etiqueta HTML asignada al término.| 
-| template_structure / template_dd_classlist | `Array()` | `[]` | Listado de selectores CSS se que aplicarán en la etiqueta HTML asignada a la definición.| 
-| template_structure / template_dl | `strng` | `dl` | Define la etiqueta HTML que contiene el listado de términos y descripciones.| 
-| template_structure / template_dt | `strng` | `dt` | Define la etiqueta HTML para el término.| 
-| template_structure / template_dd | `strng` | `dd` | Define la etiqueta HTML para la descripción.| 
+| allowed_tags | `object` | `[]` | Permite configurar un listado de etiquetas HTML que se imprimirán como parte del DOM y no como un texto. Para habilitar todas las etiquetas se utiliza `["*"]`. Si se quiere especificar cuales deben usarse, ej.: `["a", "strong"]`. 
 | headers | `object` | `{}` | Permite definir títulos dinámicos mapeando la clave del objeto que contiene la información con los encabezados | 
-| header_icons | `object` | `{}` | Permite definir un ícono para cada uno de los headers de la entrada. | 
+| header_icons | `object` | `{}` | Permite definir un ícono para cada uno de los headers de la entrada. (Ver opciones para header_icons) | 
 | lead | `object` | `{}` | Agrega una volanta en el template por defecto. | 
 | hash | `boolean` | `false` | Habilita la acción por la cual, cada vez que se hace *clic* en un marker se reemplaza el hash en la barra de dirección del navegador.| 
 | slider | `boolean` | `false` | Habilita el slider y reemplaza el popUp.| 
@@ -35,6 +25,109 @@
 | map_anchor_zoom | `integer` | 16 | Configuración del zoom para los markers que se deben visualizar pasándo por hash el id del marker.| 
 | map_zoom | `integer` | 4 | Configuración del valor inicial para el zoom del mapa.| 
 | map_view | `Array Object` | `[-40.44, -63.59]` | Geoposicionamiento inicial del mapa. | 
+
+### Opciones para `template_structure`
+
+```js
+const options = {
+    "template_structure": {
+        "lead": [],
+        "header": false,
+        "title": "",
+        "mixing": [],
+        "values": [],
+        "exclude": [],
+        "container_classlist": ["info-container"],
+        "title_classlist": ["h4","text-primary","m-t-0"],
+        "definition_list_classlist":["definition-list"],
+        "term_classlist": ["h6", "m-b-0"],
+        "definition_classlist": [],
+        "definition_list_tag": "dl",
+        "term_tag": "dt",
+        "definition_tag": "dd",
+    }
+}
+```
+
+| Parámetro | Tipo | Default | Descripción |
+|:---|:---|:---|:---|
+| template_container_classlist | `Array()` | `['info-container']` | Define la lista de clases CSS que pueden agregarse al contenedor del listado de terminos y descripciones. | 
+| lead | `object` | `{}` | Volanta _(Ver opciones de lead)_ |
+| mixing | `object` | `{}` | Permite crear una entrada uniendo cadenas de texto o valores de la entrada _(Ver opciones de mixing)_ |
+| header | `function` | `false` | Permite modificar el header del template retornando un `string` desde una función. <br>`"header": (self, entry) => string` |
+| title | `string` | "" | Permite redefinir la clave que se utiliza para el panel de información teniendo precedencia sobre la opción general _`title`_. |
+| template_title_classlist | `Array()` | `['h4','title']` | Listado de selectores CSS se que aplicarán en la etiqueta HTML asignada título.| 
+| template_dl_classlist | `Array()` | `['definition-list']` | Listado de selectores CSS se que aplicarán en la etiqueta HTML asignada contenedor del listado de términos y definiciones.| 
+| template_dt_classlist | `Array()` | `['h6', "m-b-0"]` | Listado de selectores CSS se que aplicarán en la etiqueta HTML asignada al término.| 
+| template_dd_classlist | `Array()` | `[]` | Listado de selectores CSS se que aplicarán en la etiqueta HTML asignada a la definición.| 
+| template_dl | `strng` | `dl` | Define la etiqueta HTML que contiene el listado de términos y descripciones.| 
+| template_dt | `strng` | `dt` | Define la etiqueta HTML para el término.| 
+| template_dd | `strng` | `dd` | Define la etiqueta HTML para la descripción.| 
+
+#### Opciones para `lead`
+
+```js
+"template_structure": {
+    "lead": {
+        "key": "type", 
+        "class": "text-primary bg-warning",
+        "style": "color: orange; font-size:2em; margin: 2em auto;"
+    }
+} 
+```
+
+
+| Parámetro | Tipo | Default | Descripción |
+|:---|:---|:---|:---|
+| key | `string` | "" | Clave de la entrada del JSON o del geoJSON _feature.properties_. | 
+| css | `string|function` | "" | **String**<br>Definición de css, ej: `"text-primary bg-warning"`.<br><br>**Función** <br>`css: (self, entry) => string;`<br>Dónde `self` el la instancia del objeto *PonchoMap* o *PonchoMapFilter* y `entry` corresponde a una entrada o feature del JSON. |
+| style | `string|function` | "" | **String**<br>Definición para _style_, ej:<br>`"color: orange; font-size:2em; margin: 2em auto;"`.<br><br>**Función** <br>`css: (self, entry) => string;`<br>Dónde `self` el la instancia del objeto *PonchoMap* o *PonchoMapFilter* y `entry` corresponde a una entrada o feature del JSON. |
+#### Opciones para `mixing`
+
+```js
+"template_structure": {
+    "mixing":[
+        {
+            "key": "direccion",
+            "header": "Dirección",
+            "values": ["direccion", "localidad", "provincia"],
+            "separator": ", "
+        },
+        ...
+    ]
+}
+```
+
+| Parámetro | Tipo | Default | Descripción |
+|:---|:---|:---|:---|
+| key | `string` | "" | Clave de la entrada del JSON o del geoJSON _feature.properties_. | 
+| header | `string` | "" | Nombre que va a tener el campo como título. |
+| values | `Array` | [] | Listado de keys ordenados según el orden de aparición. |
+| separator | `string` | "" | Caracter o cadena de caracteres con la que se van a concatener los valores. |
+
+
+### Opciones para `header_icons`
+
+```js
+const options = {
+    "header_icons": {
+        "title": {
+            "class": "icono-arg-cannabis-medicinal-1 text-primary", 
+            "style": (self, entry, value) => {
+                if(entry.id == "4"){
+                    return "margin-right:1em; background:gold";
+                }
+            }
+        }
+    },
+    ...
+}
+```
+
+| Parámetro | Tipo | Default | Descripción |
+|:---|:---|:---|:---|
+| title | `string|function` | {} | dsdf |
+
 
 #### Clusters de Leaflet
 
