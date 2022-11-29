@@ -29,6 +29,9 @@
   </style>
 </head>
 <body class="p-t-3">
+  <h1>Template 5</h1>
+
+
   <script src="../../../src/js/utils.js"></script>
   <script src="../../../src/js/poncho-map.js"></script>
   <script src="../../../src/js/poncho-map-filter.js"></script>
@@ -187,7 +190,7 @@ COPIAR DESDE ACÁ…
           "term_classlist": ["h6", "m-b-0", "text-cereza"],
           "_definition_classlist": ["text-default", "prueba", "table"],
           "definition_list_tag": "div",
-          "term_tag": "h2",
+          "term_tag": "h3",
           "definition_tag": "div",
           "lead": {
               "__key": "type", 
@@ -291,8 +294,8 @@ COPIAR DESDE ACÁ…
           return iconImg(img_url);
       },
       "tooltip": true,
-      "no_info": true,
-      "slider": false,
+      "no_info": false,
+      "slider": true,
       "hash": true,
       "scroll": true,
       "filters": [
@@ -319,7 +322,7 @@ COPIAR DESDE ACÁ…
         "scope": "poncho-map-search", 
         "placeholder": "Buscar en el geoJSON",
         "datalist": true,
-        "search_fields": ["provincia"] 
+        "search_fields": ["provincia", "ID", "id", "title"] 
     };
    search = new PonchoMapSearch(map, search_options);
     search.render();

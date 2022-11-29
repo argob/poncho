@@ -115,10 +115,10 @@ class PonchoMap {
                 }
             },
             "accesible_menu_extras": [
-              {
-                "text": "Ayudá a mejorar el mapa",
-                "anchor": "https://www.argentina.gob.ar/sugerencias"
-              }
+                {
+                    "text": "Ayudá a mejorar el mapa",
+                    "anchor": "https://www.argentina.gob.ar/sugerencias",
+                }
             ]
         };
         let opts = Object.assign({}, defaults, options);
@@ -824,7 +824,7 @@ class PonchoMap {
             }
             title = wrapper;
         } else {
-            title = document.createElement("h1");
+            title = document.createElement("h2");
             title.classList.add(...structure.title_classlist);
             title.textContent = row[use_title];
         }
@@ -1378,10 +1378,9 @@ class PonchoMap {
      */
     _accesibleMenu = () => {
         // Remuevo instancias anteriores si existieran.
-        document.querySelectorAll(`#accesible-return-nav${this.scope_sufix}`)
+        document.querySelectorAll(`${this.scope_selector} .accesible-nav`)
             .forEach(e => e.remove());
-        document.querySelectorAll(`#accesible-nav${this.scope_sufix}`)
-            .forEach(e => e.remove());
+
         // Anclas que se deben crear.
         const anchors = this._accesibleAnchors();
 
@@ -1390,6 +1389,11 @@ class PonchoMap {
             {
                 "text": "Ir a los marcadores del mapa",
                 "anchor": `#${anchors[0][1]}`
+            },
+            {
+                "text": "Ajustar marcadores al mapa",
+                "anchor": "#",
+                "class": "js-fit-bounds"
             },
             {
                 "text": "Ir al panel de zoom",
@@ -1424,6 +1428,9 @@ class PonchoMap {
             a.textContent = link.text;
             a.setAttribute("tabindex", 0);
             a.href = link.anchor;
+            if(link.hasOwnProperty("class") && link.class != ""){
+                a.classList.add(...link.class.split(" "))
+            }
 
             const li = document.createElement("li");
             li.appendChild(a);
@@ -1449,7 +1456,21 @@ class PonchoMap {
             element.insertBefore(nav, element.children[0]);
             element.appendChild(return_nav);
         });
+        this.fit();
     };
+
+    /**
+     * Ajusta marcadores a los bordes del mapa en un onclick
+     * @returns {undefined}
+     */
+    fit = () => document
+        .querySelectorAll(`${this.scope_selector} .js-fit-bounds`)
+        .forEach(e => {
+            e.onclick = (event => {
+              event.preventDefault();
+              this.fitBounds();
+        });
+    });
 
     /**
      * Hace el render del mapa.
