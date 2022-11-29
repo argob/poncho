@@ -789,6 +789,7 @@ class PonchoMapFilter extends PonchoMap {
             this._filterContainerHeight();
         }
         this._accesibleMenu();
+ 
     };
 };
 // end of class
