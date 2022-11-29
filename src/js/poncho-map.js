@@ -178,9 +178,8 @@ class PonchoMap {
 
         // OSM
         this.map = new L.map(
-            this.map_selector, {/*preferCanvas: true,*/ renderer:L.svg()}
+            this.map_selector, {renderer:L.svg()}
         ).setView(this.map_view, this.map_zoom);
-        // new L.tileLayer("https://gis.argentina.gob.ar/osm/{z}/{x}/{y}.png",{ 
         new L.tileLayer("https://mapa-ign.argentina.gob.ar/osm/{z}/{x}/{-y}.png",{ 
             attribution: ("Contribuidores: "
                 + "<a href=\"https://www.ign.gob.ar/AreaServicios/Argenmap/Introduccion\"  target=\"_blank\">"
@@ -208,14 +207,14 @@ class PonchoMap {
 
     /**
      * JSON input
-     * @return {object} Listado de entradas con formato feature de geoJSON.
+     * @return {object} Listado de entradas con formato `feature` de geoJSON.
      */
     get entries(){
         return this.data.features;
     }
 
     /**
-     * Retrona las entradas en fromato geoJSON
+     * Retrona las entradas en formato geoJSON
      */
     get geoJSON(){
         return this.featureCollection(this.entries);
@@ -243,7 +242,7 @@ class PonchoMap {
     };
 
     /**
-     * Comprone un feature GeoJSON
+     * Compone un feature GeoJSON
      * 
      * @param {object} entry Entrada JSON
      * @returns {object} Objeto con formato geoJSON feature.
@@ -283,10 +282,10 @@ class PonchoMap {
     };
 
     /**
-     * Crea una entrada ID autonomerada si no posee una.
+     * Crea una entrada ID autonumerada si no posee una.
      * 
      * @summary Verifica si en las claves existe una posición asignada
-     * a id, si no la tuviera genera una automáticamente. Por otro lado, 
+     * a *id*. si no la tuviera genera una automáticamente. Por otro lado, 
      * si el usuario asoció una columna a la opción ID de la 
      * configuración, usa esa.
      * @param {object} entries
@@ -313,6 +312,7 @@ class PonchoMap {
 
     /**
      * Agrega el hash en la barra de url.
+     * 
      * @param {string|integer} value
      * @return {undefined}
      */
@@ -325,6 +325,7 @@ class PonchoMap {
 
     /**
      * Obtiene una entrada por su id
+     * 
      * @param {integer} id Id de Punto Digital
      * @return {object}
      */
@@ -334,6 +335,7 @@ class PonchoMap {
 
     /**
      * Busca un término en un listado de entradas.
+     * 
      * @param {string} term Término a buscar.
      * @returns {object} Listado filtrado por los match
      */
