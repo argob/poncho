@@ -45,7 +45,7 @@ class GapiSheetData {
      * @param {object} response Feed Json 
      * @returns {object}
      */
-    feed = (response) => {
+    feed = (response, lowercase = true) => {
         const keys = response.values[0];
         const regex = / |\/|_/ig;
         let entry = [];
@@ -56,7 +56,11 @@ class GapiSheetData {
             let zip = {};
             for(var i in keys){
                 var d = (v.hasOwnProperty(i))? v[i].trim() : "";
-                zip[`${ keys[i].toLowerCase().replace(regex, "") }`] = d;
+                if(lowercase){
+                    zip[`${ keys[i].toLowerCase().replace(regex, "") }`] = d;
+                } else {
+                    zip[`${ keys[i].replace(regex, "") }`] = d;
+                }
             }
             entry.push(zip);
             }

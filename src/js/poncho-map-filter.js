@@ -68,7 +68,7 @@ class PonchoMapFilter extends PonchoMap {
             {
                 "text": "Ir al panel de filtros",
                 "anchor": `#filtrar-busqueda${this.scope_sufix}`
-            }
+            },
         ];
     }
 
@@ -321,7 +321,10 @@ class PonchoMapFilter extends PonchoMap {
             fields: opt_fields = false, 
             field: opt_field = false} = fields_items;
         if(!opt_fields && !opt_field){
-            throw "Los filtros requieren el legend y fields o field";
+            this.errorMessage(
+                "Filters requiere el uso del atributo `field` o `fields`.",
+                "warning"
+            );
         }
         const fields_to_use = (opt_fields ? opt_fields : 
             this._setFilter(opt_field));
@@ -702,7 +705,8 @@ class PonchoMapFilter extends PonchoMap {
      */ 
     _filteredData = (feed) => {
         feed = (typeof feed !== "undefined" ? this.entries : 
-            this._filterData());
+                this._filterData());
+        
         this.markersMap(feed); 
         this._selectedMarker();
         this._helpText(feed);
@@ -736,17 +740,19 @@ class PonchoMapFilter extends PonchoMap {
      * por filtros.
      * @returns {undefined}
      */
-    _resetSearch = () => document
-        .querySelectorAll(`.js-poncho-map-reset${this.scope_sufix}`)
-        .forEach(e => {
-            e.onclick = (event => {
-                event.preventDefault();
-                this._resetFormFilters();
-                this._filteredData(this.entries);
-                this._clearSearchInput();
-                this.resetView();
+    _resetSearch = () => {  
+        document
+            .querySelectorAll(`.js-poncho-map-reset${this.scope_sufix}`)
+            .forEach(e => {
+                e.onclick = (event => {
+                    event.preventDefault();
+                    this._resetFormFilters();
+                    this._filteredData(this.entries);
+                    this._clearSearchInput();
+                    this.resetView();
+            });
         });
-    });
+    };
 
     /**
      * Cambia la lista de markers en función de la selección de 
@@ -789,7 +795,6 @@ class PonchoMapFilter extends PonchoMap {
             this._filterContainerHeight();
         }
         this._accesibleMenu();
- 
     };
 };
 // end of class

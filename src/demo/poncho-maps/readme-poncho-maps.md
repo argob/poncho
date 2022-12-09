@@ -14,13 +14,14 @@
 | template_innerhtml | `boolean` | `false` | Permite incrustar html dentro de la descripción.|
 | allowed_tags | `object` | `[]` | Permite configurar un listado de etiquetas HTML que se imprimirán como parte del DOM y no como un texto. Para habilitar todas las etiquetas se utiliza `["*"]`. Si se quiere especificar cuales deben usarse, ej.: `["a", "strong"]`. 
 | headers | `object` | `{}` | Permite definir títulos dinámicos mapeando la clave del objeto que contiene la información con los encabezados | 
-| header_icons | `object` | `{}` | Permite definir un ícono para cada uno de los headers de la entrada. (Ver opciones para header_icons) | 
+| header_icons | `object` | `{}` | Permite definir un ícono para cada uno de los headers de la entrada. (Ver opciones para [header_icons](#opciones-para-header-icons) ) | 
 | lead | `object` | `{}` | Agrega una volanta en el template por defecto. | 
 | hash | `boolean` | `false` | Habilita la acción por la cual, cada vez que se hace *clic* en un marker se reemplaza el hash en la barra de dirección del navegador.| 
 | slider | `boolean` | `false` | Habilita el slider y reemplaza el popUp.| 
 | anchor_delay | `integer` | 0 | Tiempo de demora entre que se carga la página y se muestra el marker pasado por url. El valor es en milisegundos (1" = 1000). | 
 | scroll | `boolean` | `false` | Hace un scroll para posisionar la página en el borde superior del mapa cuando se carga la página.| 
 | marker | `string` \| `function` | azul | Permite asignar un color distinto o usar una función para cambiar la lógica en la que se muestran los colores o usar iconos de otro tipo. (Ver ejemplos.) | 
+| no_info | `boolean` | `false` | Permite deshabilitar la información del marker. Cuando esta opción está en false, no se despliega el popUp o el slider. | 
 | reset_zoom | `boolean` | `false` | Habilita el un botón en medio del botón *zoom-out* y *zoom-in* para mostrar el mapa completo con sus *markers*.| 
 | map_anchor_zoom | `integer` | 16 | Configuración del zoom para los markers que se deben visualizar pasándo por hash el id del marker.| 
 | map_zoom | `integer` | 4 | Configuración del valor inicial para el zoom del mapa.| 
@@ -81,7 +82,7 @@ const options = {
 |:---|:---|:---|:---|
 | key | `string` | "" | Clave de la entrada del JSON o del geoJSON _feature.properties_. | 
 | css | `string|function` | "" | **String**<br>Definición de css, ej: `"text-primary bg-warning"`.<br><br>**Función** <br>`css: (self, entry) => string;`<br>Dónde `self` el la instancia del objeto *PonchoMap* o *PonchoMapFilter* y `entry` corresponde a una entrada o feature del JSON. |
-| style | `string|function` | "" | **String**<br>Definición para _style_, ej:<br>`"color: orange; font-size:2em; margin: 2em auto;"`.<br><br>**Función** <br>`css: (self, entry) => string;`<br>Dónde `self` el la instancia del objeto *PonchoMap* o *PonchoMapFilter* y `entry` corresponde a una entrada o feature del JSON. |
+| style | `string\|function` | "" | **String**<br>Definición para _style_, ej:<br>`"color: orange; font-size:2em; margin: 2em auto;"`.<br><br>**Función** <br>`css: (self, entry) => string;`<br>Dónde `self` el la instancia del objeto *PonchoMap* o *PonchoMapFilter* y `entry` corresponde a una entrada o feature del JSON. |
 #### Opciones para `mixing`
 
 ```js
@@ -106,7 +107,9 @@ const options = {
 | separator | `string` | "" | Caracter o cadena de caracteres con la que se van a concatener los valores. |
 
 
-### Opciones para `header_icons`
+### <a id="opciones-para-header-icons"></a> Opciones para `header_icons`
+
+
 
 ```js
 const options = {
@@ -115,7 +118,7 @@ const options = {
             "class": "icono-arg-cannabis-medicinal-1 text-primary", 
             "style": (self, entry, value) => {
                 if(entry.id == "4"){
-                    return "margin-right:1em; background:gold";
+                    **≤return** "margin-right:1em; background:gold";
                 }
             }
         }
@@ -126,7 +129,9 @@ const options = {
 
 | Parámetro | Tipo | Default | Descripción |
 |:---|:---|:---|:---|
-| title | `string|function` | {} | dsdf |
+| class | `string\|function` | {} | **String**<br>Definición de *class*, ej: `"text-primary bg-warning"`.<br><br>**Función** <br>`class: (self, entry) => string;`<br>Dónde `self` es la instancia del objeto *PonchoMap* o *PonchoMapFilter* y `entry` corresponde a una entrada en `feature.properties` del JSON. |
+| style | `string\|function` | {} | **String**<br>Definición de *style*, ej: `"background-color:gold; color:#333;"`.<br><br>**Función** <br>`style: (self, entry) => string;`<br>Dónde `self` es la instancia del objeto *PonchoMap* o *PonchoMapFilter* y `entry` corresponde a una entrada en `feature.properties` del JSON. |
+| html | `string\|function` | {} | dsdf |
 
 
 #### Clusters de Leaflet

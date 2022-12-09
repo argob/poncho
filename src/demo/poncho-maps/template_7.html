@@ -4,11 +4,7 @@
   <link rel="profile" href="http://www.w3.org/1999/xhtml/vocab" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <script 
-      src="https://code.jquery.com/jquery-3.6.0.min.js" 
-      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
-      crossorigin="anonymous">
-    </script>
+
   <link 
       rel="stylesheet" 
       href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
@@ -29,26 +25,13 @@
   </style>
 </head>
 <body class="p-t-3">
-  <h1>Template 5</h1>
-
-
-  <script src="../../../src/js/utils.js"></script>
-  <script src="../../../src/js/poncho-map.js"></script>
-  <script src="../../../src/js/poncho-map-filter.js"></script>
-  <script src="../../../src/js/poncho-map-search.js"></script>
-  <script src="../../../src/js/gapi-sheet-data.js"></script>
-
+  <h1>Template 7</h1>
 
 <!-- 
 MAPA CON BUSCADOR FILTRO  
 
 COPIAR DESDE ACÁ…
 -->
-
-
-
-
-
 <div class="col-md-12">
 <!-- PONCHO MAP SEARCH -->
 <form action="">
@@ -87,6 +70,18 @@ COPIAR DESDE ACÁ…
 </div>
 <!-- / PONCHO MAP -->
 </div>
+
+<script 
+    src="https://code.jquery.com/jquery-3.6.0.min.js" 
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+    crossorigin="anonymous">
+</script>
+<script src="../../../src/js/utils.js"></script>
+<script src="../../../src/js/poncho-map.js"></script>
+<script src="../../../src/js/poncho-map-filter.js"></script>
+<script src="../../../src/js/poncho-map-search.js"></script>
+<script src="../../../src/js/gapi-sheet-data.js"></script>
+
 <!-- INCLUDE SCRIPTS -->
 <script src="https://www.argentina.gob.ar/sites/default/files/ponchotable/showdown.js"></script>
 <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/extensiones/showdown-extensions.js"></script>
@@ -98,6 +93,7 @@ COPIAR DESDE ACÁ…
 <!-- <script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script> -->
 <!-- / INCLUDE SCRIPTS -->
 
+
 <!-- SCRIPTS -->
 <script>
   // init
@@ -105,40 +101,73 @@ COPIAR DESDE ACÁ…
   var search;
   (async() => {
     // Levanto datos desde un geoJSON
-    entries = await fetch_json("./data/provincias.geojson");
+    entries = await fetch_json("./data/municipio.json");
 
     // map options
     const options = {
       "scope": "poncho-map",
-      // "id": "ID",
+      "id": "gid",
       "filters_info": false,
-      "title": "fna",
+      "title": "nam",
       "headers": {
-          "fna": "Provincia",
+          "fna": "FNA",
       },
-      "tooltip_options":{
-                "permanent": true, 
-                "direction": 'center',
-                // "offset": [15,0], 
-                // "sticky": true,
-                // "opacity": 1,
-                className: 'leaflet-tooltip-own'
-            },
       "marker": "cielo",
-      "tooltip": true,
-      "no_info": true,
+      "_no_info": true,
       "slider": true,
       "hash": true,
       "scroll": false,
-      "_filters": [
+      "filters": [
+          // {
+          //   "legend":"Provincia",
+          //   "field": ["provincia", ""]
+          // },
           {
-            "legend":"institución",
-            "field": ["fna"]
+            "legend":"Región",
+            "field": ["region"]
           }
       ],
     };
+
+    const extras = [
+        ['06', 'Región Centro y Buenos Aires', 'Buenos Aires'],
+        ['10', 'Región Noroeste', 'Catamarca'],
+        ['22', 'Región del Noreste', 'Chaco'],
+        ['26', 'Región Patagónica', 'Chubut'],
+        ['02', 'Región Centro y Buenos Aires', 'Ciudad Autónoma de Buenos Aires'],
+        ['14', 'Región Centro y Buenos Aires', 'Córdoba'],
+        ['18', 'Región del Noreste', 'Corrientes'],
+        ['30', 'Región Centro y Buenos Aires', 'Entre Ríos'],
+        ['34', 'Región del Noreste', 'Formosa'],
+        ['38', 'Región Noroeste', 'Jujuy'],
+        ['42', 'Región Nuevo Cuyo', 'La Pampa'],
+        ['46', 'Región Noroeste', 'La Rioja'],
+        ['50', 'Región Nuevo Cuyo', 'Mendoza'],
+        ['54', 'Región del Noreste', 'Misiones'],
+        ['58', 'Región Patagónica', 'Neuquén'],
+        ['62', 'Región Patagónica', 'Río Negro'],
+        ['66', 'Región Noroeste', 'Salta'],
+        ['70', 'Región Nuevo Cuyo', 'San Juan'],
+        ['74', 'Región Nuevo Cuyo', 'San Luis'],
+        ['78', 'Región Patagónica', 'Santa Cruz'],
+        ['82', 'Región Centro y Buenos Aires', 'Santa Fe'],
+        ['86', 'Región Noroeste', 'Santiago del Estero'],
+        ['94', 'Región Patagónica', 'Tierra del Fuego'],
+        ['90', 'Región Noroeste', 'Tucumán']
+    ];
+    const find = (id) => extras.find(e => e[0] == id);
+    entries.features.forEach((e, k) => {
+        const _id = e.properties.in1.substring(0,2);
+        const _extras = find(_id);
+        entries.features[k].properties.id_provincia = _id;
+        entries.features[k].properties.provincia = _extras[2];
+        entries.features[k].properties.region = _extras[1];
+    });
+
+    
     map = new PonchoMapFilter(entries, options);
     map.render();
+
 
     const search_options = {
         "scope": "poncho-map-search", 

@@ -135,7 +135,7 @@
   (async() => {
     // GApi helpers
     const gapi = new GapiSheetData();
-    const geoJSON = await fetch_json("http://localhost:5500/src/demo/poncho-maps/data/test-data.geojson");
+    const geoJSON = await fetch_json("./data/test-data.geojson");
     const googlesheet_data = await fetch_json("./data/response-efectores.json"); 
     const gapi_data = gapi.json_data(googlesheet_data);
     const {entries, headers} = gapi_data;

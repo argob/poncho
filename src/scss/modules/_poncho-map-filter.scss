@@ -14,6 +14,46 @@
   }
 }
 
+
+
+  /* Mensajes de error y warning */
+  .poncho-map--message {  
+    padding: .25em .75em;
+    border-radius: 8px;
+    margin: 1em 0;
+    box-shadow: 0 2px 6px rgb(0,0,0,.15);
+    color: black;
+    
+    &.danger {
+        background: var(--tomate, $brand-tomate);  
+        color: white;
+
+        .title {
+          color: white !important;
+        } 
+        pre {
+          color: rgb(255,255,255,.9);
+        }
+    }
+    &.warning {
+        background: var(--maiz, $brand-maiz);  
+        color: rgb(0,0,0,.8);
+
+        .title {
+          color: rgb(0,0,0,.8) !important;
+        } 
+        pre {
+          color: black 
+        }
+    }
+    pre {
+      background: rgb(0,0,0,.1);
+      border: none;
+    }
+}
+/**/
+
+
 .poncho-map {
   --slider-width: 326px;
   --color-primary: var(--primary, black);
@@ -40,7 +80,10 @@
   overflow: hidden;
   position: relative;
 
-  .title,
+
+
+
+
   *.text-primary {
     color: var(--primary, #0072bb) !important;
   }
@@ -166,6 +209,7 @@
 
   path.marker--active {
     filter: drop-shadow(2px 2px 2px rgb(249, 168, 34, 1));
+    fill-opacity: .8 !important;
   }
   *:focus {
     outline: 3px solid var(--cielo, $brand-cielo) !important;

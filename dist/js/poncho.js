@@ -1861,6 +1861,7 @@ const gapi_legacy = (response) => {
 class PonchoMap {
     constructor(data, options){
         const defaults = {
+            "error_reporting": true,
             "no_info": false,
             "title": false,
             "id": "id",
@@ -1929,7 +1930,7 @@ class PonchoMap {
                 "showCoverageOnHover": false,
                 "zoomToBoundsOnClick": true,
                 "maxClusterRadius": 45,
-                "spiderfyDistanceMultiplier": 0.1,
+                "spiderfyDistanceMultiplier": 3,
                 "spiderLegPolylineOptions": {
                     "weight": 1,
                     "color": "#666",
@@ -1945,6 +1946,7 @@ class PonchoMap {
             ]
         };
         let opts = Object.assign({}, defaults, options);
+        this.error_reporting = opts.error_reporting;
         this.scope = opts.scope;
         this.template = opts.template;
         this.template_structure = {
@@ -2001,9 +2003,8 @@ class PonchoMap {
 
         // OSM
         this.map = new L.map(
-            this.map_selector, {/*preferCanvas: true,*/ renderer:L.svg()}
+            this.map_selector, {renderer:L.svg()}
         ).setView(this.map_view, this.map_zoom);
-        // new L.tileLayer("https://gis.argentina.gob.ar/osm/{z}/{x}/{y}.png",{ 
         new L.tileLayer("https://mapa-ign.argentina.gob.ar/osm/{z}/{x}/{-y}.png",{ 
             attribution: ("Contribuidores: "
                 + "<a href=\"https://www.ign.gob.ar/AreaServicios/Argenmap/Introduccion\"  target=\"_blank\">"
@@ -2031,14 +2032,14 @@ class PonchoMap {
 
     /**
      * JSON input
-     * @return {object} Listado de entradas con formato feature de geoJSON.
+     * @return {object} Listado de entradas con formato `feature` de geoJSON.
      */
     get entries(){
         return this.data.features;
     }
 
     /**
-     * Retrona las entradas en fromato geoJSON
+     * Retrona las entradas en formato geoJSON
      */
     get geoJSON(){
         return this.featureCollection(this.entries);
@@ -2066,7 +2067,45 @@ class PonchoMap {
     };
 
     /**
-     * Comprone un feature GeoJSON
+     * Reporta un error bloqueante
+     * 
+     * @summary Reporta un error bloqueante y ejecuta una excepción 
+     * mostrando un mensaje y removiendo el contenedor del mapa.
+     * @param {string} text Mensaje de error 
+     */
+    errorMessage = (text=false, type="danger") => {
+        document.querySelectorAll(`#js-error-message${this.scope_sufix}`)
+                .forEach(e => e.remove());
+
+        const container = document.createElement("div");
+        container.id = `js-error-message${this.scope_sufix}`;
+        container.classList.add("poncho-map--message", type);
+
+        const title = document.createElement("h2");
+        title.classList.add("h6", "title");
+        title.textContent = "¡Se produjo un error!";
+
+        const content = document.createElement("pre");
+        content.textContent = text;
+
+        container.appendChild(title);
+        container.appendChild(content);
+
+        if(this.error_reporting) {
+            const node = document.querySelector(
+                `${this.scope_selector}.poncho-map`
+            );
+            node.parentNode.insertBefore(container, node);
+        }
+        if(type == "danger"){
+          document.getElementById(this.map_selector).remove();
+        }
+        console.log(this.critical_error)
+        throw text;
+    };
+
+    /**
+     * Compone un feature GeoJSON
      * 
      * @param {object} entry Entrada JSON
      * @returns {object} Objeto con formato geoJSON feature.
@@ -2074,8 +2113,18 @@ class PonchoMap {
     feature = (entry) => {
         const latitude = entry[this.latitude];
         const longitude = entry[this.longitude];
+        [latitude, longitude].forEach(e => {
+            if(isNaN(Number(e))){
+                this.errorMessage(
+                    `El archivo contiene errores en la definición de `
+                    + `latitud y longitud.\n   ${e}`
+                );
+            }
+        });
+
         delete entry[this.latitude];
         delete entry[this.longitude];
+
         return {
             "type": "Feature",
             "properties": entry,
@@ -2106,10 +2155,10 @@ class PonchoMap {
     };
 
     /**
-     * Crea una entrada ID autonomerada si no posee una.
+     * Crea una entrada ID autonumerada si no posee una.
      * 
      * @summary Verifica si en las claves existe una posición asignada
-     * a id, si no la tuviera genera una automáticamente. Por otro lado, 
+     * a *id*. si no la tuviera genera una automáticamente. Por otro lado, 
      * si el usuario asoció una columna a la opción ID de la 
      * configuración, usa esa.
      * @param {object} entries
@@ -2136,11 +2185,12 @@ class PonchoMap {
 
     /**
      * Agrega el hash en la barra de url.
+     * 
      * @param {string|integer} value
      * @return {undefined}
      */
     addHash = (value) => {
-        if(!this.hash){
+        if(!this.hash || this.no_info){
             return null;
         }
         window.location.hash = `#${value}`;
@@ -2148,6 +2198,7 @@ class PonchoMap {
 
     /**
      * Obtiene una entrada por su id
+     * 
      * @param {integer} id Id de Punto Digital
      * @return {object}
      */
@@ -2157,6 +2208,7 @@ class PonchoMap {
 
     /**
      * Busca un término en un listado de entradas.
+     * 
      * @param {string} term Término a buscar.
      * @returns {object} Listado filtrado por los match
      */
@@ -2414,6 +2466,7 @@ class PonchoMap {
 
         const content = document.createElement("div");
         content.classList.add("content", `js-content${this.scope_sufix}`);
+        content.tabIndex = 0;
         content_container.appendChild(content);
 
         const container = document.createElement("div");
@@ -2547,9 +2600,13 @@ class PonchoMap {
      * Setea los features para ejecutarse en un evento onlick
      */
     _clickeableFeatures = () => {
+        if(!this.reset_zoom){
+          return;
+        }
         this.map.eachLayer(layer => {
             if(!this.isFeature(layer) || 
-                layer.feature.geometry.type == "Point"){
+                layer.feature.geometry.type == "Point" ||
+                layer.feature.geometry.type == "MultiPoint"){
                 return;
             }
             this._setClickeable(layer);
@@ -2578,7 +2635,8 @@ class PonchoMap {
         this.markers.eachLayer(setHash);
         this.map.eachLayer(layer => {
             if(!layer.hasOwnProperty("feature") || 
-                    layer.feature.geometry.type == "Point"){
+                layer.feature.geometry.type == "Point" ||
+                layer.feature.geometry.type == "MultiPoint"){
                 return;
             }
             setHash(layer);
@@ -2738,7 +2796,10 @@ class PonchoMap {
                 mixing.forEach(element => {
                     const {values, separator = ", ", key} = element;
                     if(typeof key === "undefined"){
-                        throw "Mixing requiere un valor en la variable «key».";
+                        this.errorMessage(
+                            "Mixing requiere un valor en el atributo «key».",
+                            "warning"
+                        );
                     }
                     new_row[key] = values
                         .map(i => (i in row ? row[i] : i.toString()))
@@ -2772,11 +2833,14 @@ class PonchoMap {
      */
     _lead  = (entry) => {
         if(!this.template_structure?.lead?.key){
-            return false;
+            this.errorMessage(
+                "Lead requiere un valor en el atributo «key».",
+                "warning"
+            );
         }
         const {
             key=false, 
-            class:classlist=false, 
+            class:classlist="badge bg-primary", 
             style=false } = this.template_structure.lead;
 
         const p = document.createElement("p");
@@ -2843,7 +2907,7 @@ class PonchoMap {
         const tpl_title = this._templateTitle(row);
         const container = document.createElement("article");
         container.classList.add(... structure.container_classlist);
-        const definitions = document.createElement(structure.definition_tag);
+        const definitions = document.createElement(structure.definition_list_tag);
         definitions.classList.add(...structure.definition_list_classlist);
         definitions.style.fontSize = "1rem";
         row = this._templateMixing(row);
@@ -3047,13 +3111,15 @@ class PonchoMap {
                 feature.properties.name = properties[_this.title];
 
                 // Si el usuario eligió usar tooltip
-                if(_this.tooltip && properties[_this.title] && geometry.type != "Point"){
+                if(_this.tooltip && properties[_this.title] && 
+                  geometry.type != "Point" && geometry.type != "MultiPoint"){
                     layer.bindTooltip(
                         properties[_this.title], _this.tooltip_options
                     );
                 }
                 
-                if(!_this.no_info && !_this.slider && geometry.type != "Point"){
+                if(!_this.no_info && !_this.slider && 
+                  geometry.type != "Point" && geometry.type != "MultiPoint"){
                     const html = (typeof _this.template == "function" ? 
                             _this.template(_this, properties) : 
                             _this.defaultTemplate(_this, properties));
@@ -3249,7 +3315,7 @@ class PonchoMap {
         values.forEach((link, index) => {
             const a = document.createElement("a");
             a.textContent = link.text;
-            a.setAttribute("tabindex", 0);
+            a.tabIndex = 0;
             a.href = link.anchor;
             if(link.hasOwnProperty("class") && link.class != ""){
                 a.classList.add(...link.class.split(" "))
@@ -4429,7 +4495,7 @@ class GapiSheetData {
      * @param {object} response Feed Json 
      * @returns {object}
      */
-    feed = (response) => {
+    feed = (response, lowercase = true) => {
         const keys = response.values[0];
         const regex = / |\/|_/ig;
         let entry = [];
@@ -4440,7 +4506,11 @@ class GapiSheetData {
             let zip = {};
             for(var i in keys){
                 var d = (v.hasOwnProperty(i))? v[i].trim() : "";
-                zip[`${ keys[i].toLowerCase().replace(regex, "") }`] = d;
+                if(lowercase){
+                    zip[`${ keys[i].toLowerCase().replace(regex, "") }`] = d;
+                } else {
+                    zip[`${ keys[i].replace(regex, "") }`] = d;
+                }
             }
             entry.push(zip);
             }

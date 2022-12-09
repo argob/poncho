@@ -38,6 +38,7 @@
 class PonchoMap {
     constructor(data, options){
         const defaults = {
+            "error_reporting": true,
             "no_info": false,
             "title": false,
             "id": "id",
@@ -106,7 +107,7 @@ class PonchoMap {
                 "showCoverageOnHover": false,
                 "zoomToBoundsOnClick": true,
                 "maxClusterRadius": 45,
-                "spiderfyDistanceMultiplier": 0.1,
+                "spiderfyDistanceMultiplier": 3,
                 "spiderLegPolylineOptions": {
                     "weight": 1,
                     "color": "#666",
@@ -118,10 +119,16 @@ class PonchoMap {
                 {
                     "text": "Ayudá a mejorar el mapa",
                     "anchor": "https://www.argentina.gob.ar/sugerencias",
-                }
+                },
+                {
+                  "text": "Restablecer mapa",
+                  "anchor": `#`,
+                  "class": `js-poncho-map-reset${this.scope_sufix}`
+              }
             ]
         };
         let opts = Object.assign({}, defaults, options);
+        this.error_reporting = opts.error_reporting;
         this.scope = opts.scope;
         this.template = opts.template;
         this.template_structure = {
@@ -207,6 +214,7 @@ class PonchoMap {
 
     /**
      * JSON input
+     * 
      * @return {object} Listado de entradas con formato `feature` de geoJSON.
      */
     get entries(){
@@ -228,7 +236,7 @@ class PonchoMap {
      * cumple con el estándar, es tratado como un JSON de 
      * entradas simples.
      * @see https://geojson.org/
-     * @return {object} Retrona un documento en formato geoJSON
+     * @return {object} Retorna un documento en formato geoJSON
      */
     formatInput = (input) => {
         let geoJSON;
@@ -242,7 +250,54 @@ class PonchoMap {
     };
 
     /**
-     * Compone un feature GeoJSON
+     * Reporta un error bloqueante
+     * 
+     * @summary Reporta un error bloqueante y ejecuta una excepción 
+     * mostrando un mensaje y removiendo el contenedor del mapa.
+     * @param {string} text Mensaje de error 
+     */
+    errorMessage = (text=false, type="danger") => {
+        document.querySelectorAll(`#js-error-message${this.scope_sufix}`)
+                .forEach(e => e.remove());
+
+        const container = document.createElement("div");
+        container.id = `js-error-message${this.scope_sufix}`;
+        container.classList.add("poncho-map--message", type);
+
+        const title = document.createElement("h2");
+        title.classList.add("h6", "title");
+        title.textContent = "¡Se produjo un error!";
+
+        const content = document.createElement("pre");
+        content.textContent = text;
+
+        const help = document.createElement("a");
+        help.href = "https://github.com/argob/poncho/blob/master/" 
+                    + "src/demo/poncho-maps/readme-poncho-maps.md";
+        help.target = "_blank";
+        help.textContent = "Ayuda sobre las opciones de PonchoMap";
+        help.className = "small";
+        help.title = "Abre el enlace en una nueva ventana";
+
+        container.appendChild(title);
+        container.appendChild(content);
+        container.appendChild(help);
+
+        if(this.error_reporting) {
+            const node = document.querySelector(
+                `${this.scope_selector}.poncho-map`
+            );
+            node.parentNode.insertBefore(container, node);
+        }
+        if(type == "danger"){
+          document.getElementById(this.map_selector).remove();
+        }
+        console.log(this.critical_error)
+        throw text;
+    };
+
+    /**
+     * Compone un _feature_ GeoJSON
      * 
      * @param {object} entry Entrada JSON
      * @returns {object} Objeto con formato geoJSON feature.
@@ -250,8 +305,18 @@ class PonchoMap {
     feature = (entry) => {
         const latitude = entry[this.latitude];
         const longitude = entry[this.longitude];
+        [latitude, longitude].forEach(e => {
+            if(isNaN(Number(e))){
+                this.errorMessage(
+                    `El archivo contiene errores en la definición de `
+                    + `latitud y longitud.\n   ${e}`
+                );
+            }
+        });
+
         delete entry[this.latitude];
         delete entry[this.longitude];
+
         return {
             "type": "Feature",
             "properties": entry,
@@ -317,7 +382,7 @@ class PonchoMap {
      * @return {undefined}
      */
     addHash = (value) => {
-        if(!this.hash){
+        if(!this.hash || this.no_info){
             return null;
         }
         window.location.hash = `#${value}`;
@@ -585,7 +650,7 @@ class PonchoMap {
 
         const anchor = document.createElement("a");
 
-        anchor.setAttribute("tabindex", "3");
+        anchor.setAttribute("tabindex", 0);
         anchor.id = `js-anchor-slider${this.scope_sufix}`;
 
         const content_container = document.createElement("div");
@@ -593,6 +658,7 @@ class PonchoMap {
 
         const content = document.createElement("div");
         content.classList.add("content", `js-content${this.scope_sufix}`);
+        content.tabIndex = 0;
         content_container.appendChild(content);
 
         const container = document.createElement("div");
@@ -726,9 +792,13 @@ class PonchoMap {
      * Setea los features para ejecutarse en un evento onlick
      */
     _clickeableFeatures = () => {
+        if(!this.reset_zoom){
+          return;
+        }
         this.map.eachLayer(layer => {
             if(!this.isFeature(layer) || 
-                layer.feature.geometry.type == "Point"){
+                layer.feature.geometry.type == "Point" ||
+                layer.feature.geometry.type == "MultiPoint"){
                 return;
             }
             this._setClickeable(layer);
@@ -757,7 +827,8 @@ class PonchoMap {
         this.markers.eachLayer(setHash);
         this.map.eachLayer(layer => {
             if(!layer.hasOwnProperty("feature") || 
-                    layer.feature.geometry.type == "Point"){
+                layer.feature.geometry.type == "Point" ||
+                layer.feature.geometry.type == "MultiPoint"){
                 return;
             }
             setHash(layer);
@@ -917,7 +988,10 @@ class PonchoMap {
                 mixing.forEach(element => {
                     const {values, separator = ", ", key} = element;
                     if(typeof key === "undefined"){
-                        throw "Mixing requiere un valor en la variable «key».";
+                        this.errorMessage(
+                            "Mixing requiere un valor en el atributo «key».",
+                            "warning"
+                        );
                     }
                     new_row[key] = values
                         .map(i => (i in row ? row[i] : i.toString()))
@@ -950,32 +1024,39 @@ class PonchoMap {
      * fué configurado.
      */
     _lead  = (entry) => {
-        if(!this.template_structure?.lead?.key){
-            return false;
+        if(!this.template_structure.hasOwnProperty("lead")){
+            return;
+        } else if(!this.template_structure.lead.hasOwnProperty("key")){
+            this.errorMessage(
+                "Lead requiere un valor en el atributo «key».",
+                "warning"
+            );
         }
+
         const {
-            key=false, 
-            class:classlist=false, 
-            style=false } = this.template_structure.lead;
+            key = false, 
+            class: classlist = "small", 
+            style = false } = this.template_structure.lead;
 
         const p = document.createElement("p");
-
+        p.textContent = entry[key];
+        
+        // Style definitions
+        const setStyle = this._setType(style, entry);
+        if(setStyle){
+            p.setAttribute("style", setStyle);
+        }
+        // CSS Class
         const setClasslist = this._setType(classlist, entry);
         if(setClasslist){
             p.classList.add(...setClasslist.split(" "));
-            p.textContent = entry[key];
-            
-            const setStyle = this._setType(style, entry);
-            if(setStyle){
-                p.setAttribute("style", setStyle);
-            }
-            return p;
         }
-        return false;
+        return p;
     }; 
 
     /**
      * Ícono para el término
+     * 
      * @param {string} key Key del header. 
      * @returns {object|boolean} Si existe el key retorna un objeto 
      * element de otro modo un boolean `false`.
@@ -1022,7 +1103,7 @@ class PonchoMap {
         const tpl_title = this._templateTitle(row);
         const container = document.createElement("article");
         container.classList.add(... structure.container_classlist);
-        const definitions = document.createElement(structure.definition_tag);
+        const definitions = document.createElement(structure.definition_list_tag);
         definitions.classList.add(...structure.definition_list_classlist);
         definitions.style.fontSize = "1rem";
         row = this._templateMixing(row);
@@ -1226,13 +1307,15 @@ class PonchoMap {
                 feature.properties.name = properties[_this.title];
 
                 // Si el usuario eligió usar tooltip
-                if(_this.tooltip && properties[_this.title] && geometry.type != "Point"){
+                if(_this.tooltip && properties[_this.title] && 
+                  geometry.type != "Point" && geometry.type != "MultiPoint"){
                     layer.bindTooltip(
                         properties[_this.title], _this.tooltip_options
                     );
                 }
                 
-                if(!_this.no_info && !_this.slider && geometry.type != "Point"){
+                if(!_this.no_info && !_this.slider && 
+                  geometry.type != "Point" && geometry.type != "MultiPoint"){
                     const html = (typeof _this.template == "function" ? 
                             _this.template(_this, properties) : 
                             _this.defaultTemplate(_this, properties));
@@ -1428,7 +1511,7 @@ class PonchoMap {
         values.forEach((link, index) => {
             const a = document.createElement("a");
             a.textContent = link.text;
-            a.setAttribute("tabindex", 0);
+            a.tabIndex = 0;
             a.href = link.anchor;
             if(link.hasOwnProperty("class") && link.class != ""){
                 a.classList.add(...link.class.split(" "))
