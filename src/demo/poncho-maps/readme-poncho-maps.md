@@ -2,6 +2,18 @@
 
 # PonchoMap
 
+## Conteidos
+
+* [Opciones generales](#opciones)
+* [Opciones para PonchoMapFilter](#opciones-poncho-map-filter)
+* [Opciones para PonchoSearch](#opciones-poncho-map-search)
+* [Métodos](#metodos)
+  * [Métodos PonchoMap](#metodos-poncho-map)
+  * [Métodos PonchoMapFilter](#metodos-poncho-map-filter)
+* [Modo de uso](#modo-uso)
+
+---
+
 ## <a id="opciones" href="#opciones">¶</a> Opciones generales
 
 | Parámetro | Tipo | Default | Descripción |
@@ -10,17 +22,17 @@
 | id | `string` | id | Nombre de la columna donde se encuentra el id. Si la fuente de datos usa otro nombre se define con esta opción. Ej. `'id':'id_punto_digital'`.| 
 | latitud | `string` | latitud | Nombre de la columna con el valor de latitud. Si la fuente de datos usa otro nombre se define con esta opción. Ej. `'latitud':'lat'`.| 
 | longitud | `string` | longitud | Nombre de la columna con el valor de longitud. Si la fuente de datos usa otro nombre se define con esta opción. Ej. `'longitud':'lng'`.| 
-| template | `object` | `null` | Define la función que controla el template para el popUp o el slider.| 
+| template | `object` | `null` | Define la función que controla el template para el popUp o el slider.<br><br>Ver opciones para [template](#opciones-templates).| 
 | template_structure | `object` | `{}` | Permite definir un listado de valores a mostarar en el template por defecto o excluir valores que no se deseen mostrar. <br><br>Ver opciones para [template_structure](#opciones-template-structure). | 
 | template_innerhtml | `boolean` | `false` | Permite incrustar html dentro de la descripción.|
 | allowed_tags | `object` | `[]` | Permite configurar un listado de etiquetas HTML que se imprimirán como parte del DOM y no como un texto. Para habilitar todas las etiquetas se utiliza `["*"]`. Si se quiere especificar cuales deben usarse, ej.: `["a", "strong"]`. 
 | headers | `object` | `{}` | Permite definir títulos dinámicos mapeando la clave del objeto que contiene la información con los encabezados | 
 | header_icons | `object` | `{}` | Permite definir un ícono para cada uno de los headers de la entrada.<br><br>Ver opciones para [header_icons](#opciones-header-icons). | 
 | hash | `boolean` | `false` | Habilita la acción por la cual, cada vez que se hace *clic* en un marker se reemplaza el hash en la barra de dirección del navegador.| 
-| slider | `boolean` | `false` | Habilita el slider y reemplaza el popUp.| 
+| slider | `boolean|false` | Habilita el slider y reemplaza el popUp.| 
 | anchor_delay | `integer` | 0 | Tiempo de demora entre que se carga la página y se muestra el marker pasado por url. El valor es en milisegundos (1" = 1000). | 
 | scroll | `boolean` | `false` | Hace un scroll para posisionar la página en el borde superior del mapa cuando se carga la página.| 
-| marker | `string` \| `function` | azul | Permite asignar un color distinto o usar una función para cambiar la lógica en la que se muestran los colores o usar iconos de otro tipo. (Ver ejemplos.) | 
+| marker | `string|function` | azul | Permite asignar un color distinto o usar una función para cambiar la lógica en la que se muestran los colores o usar iconos de otro tipo.<br><br>Ver opciones para [marker](#opciones-marker). | 
 | no_info | `boolean` | `false` | Permite deshabilitar la información del marker. Cuando esta opción está en false, no se despliega el popUp o el slider. | 
 | reset_zoom | `boolean` | `false` | Habilita el un botón en medio del botón *zoom-out* y *zoom-in* para mostrar el mapa completo con sus *markers*.| 
 | map_anchor_zoom | `integer` | 16 | Configuración del zoom para los markers que se deben visualizar pasándo por hash el id del marker.| 
@@ -118,7 +130,7 @@ const options = {
             "class": "icono-arg-cannabis-medicinal-1 text-primary", 
             "style": (self, entry, value) => {
                 if(entry.id == "4"){
-                    **≤return** "margin-right:1em; background:gold";
+                    return "margin-right:1em; background:gold";
                 }
             }
         }
@@ -134,34 +146,169 @@ const options = {
 | html | `string|function` | {} | **String**<br>Retornando un string HTML, ej.<br>`<i class="icono-arg-cannabis-medicinal-1"></i>`<br><br>**Función** <br>Retornando un string en una función ej.<br>`(self, entry) => string;` |
 
 
+### <a id="opciones-marker" href="#opciones-marker"></a>Opciones para `marker` [⏎](#opciones "Ir al listado de opciones generales")
+
+#### Definiendo colores
+
+La opción `marker` nos permite definir el color de los *markers* asignando el nombre de [color poncho](https://argob.github.io/poncho/identidad/colores/) del siguiente modo:
+
+```js
+const options = {
+    'marker': 'mandarina'
+};
+```
+
+Otra opción es agregar una función en la que podemos definir una lógica de colores de acuerdo a la fuente de datos que nos llega, por ejemplo: 
+
+```js
+const options = {
+    'marker_color': (self, entry) => (typeof  entry.color !== "undefined" && entry.color != "" ? entry.color : "azul")
+};
+```
+
+#### Modificando el tipo de marker
+
+Esta opción también ofrece la posibilidad de crear *markers* utilizando imágenes o en formato html. En el siguiente ejemplo se ve como se puede aplicar un icóno de Poncho Fonts en un *marker*. Cuando se utiliza la función de esta manera debe retornan una instancia de `L.icon` o variantes *leaflet*.
+
+```js
+const options = {
+    'marker': (self, entry) => {
+      // icono tipo html
+      const icon_div = (color) => {
+          return new L.divIcon({
+              html: `<i class='icono-arg-marcador-ubicacion-2 text-${color}'>`,
+              iconSize: [38, 24],
+              iconAnchor: [22, 41],
+              popupAnchor: [-3, -40]
+          });
+      };
+
+	  if(typeof  entry.color !== "undefined" && entry.color){
+          return icon_div(entry.color);
+      }
+      return icon_div("azul");
+    }
+}
+```
+
+### <a id="opciones-templates"></a> Opciones para `template` [⏎](#opciones)
+
+La opción `template` debe recibir un string de retorno. Para ello, es posible definir el atributo como una función o asignar un string directamente.
+
+#### Ejemplos
+##### Función dentro y fuera del grupo de opciones
+
+```js
+const opciones = {
+    'template': (self, entry) => {
+		const html = `<h1>${entry.title}</h1>
+	        <h2>${entry.subtitle}</h2>
+	        <dl>
+	          <dt>Dirección postal</dt>
+	          <dd>${entry.address}</dd>
+	          <dt>Ubicación</dt>
+	          <dd>${entry.province}, ${entry.locality}</dd>
+	          ...
+	        </dl>`;
+	    return html;
+    }
+};
+```
+
+O, teniendo la función del *template* separada del objeto de opciones. 
+
+```js
+/**
+ * Template
+ * @param {object} self - Definiciones generales de la clase.
+ * @param {object} row - Entrada o fila de la fuente de datos.
+ */ 
+const template = (self, entry) => {
+  const html = `
+    <h1>${entry.title}</h1>
+    <h2>${entry.subtitle}</h2>
+    <dl>
+      <dt>${self.header('address')}</dt>
+      <dd>${entry.address}</dd>
+      <dt>Ubicación</dt>
+      <dd>${entry.province}, ${entry.locality}</dd>
+      ...
+    </dl>`;
+
+  return html;
+};
+
+// Opciones para el mapa.
+const opciones = {
+    'template': template, // Asigno la función 
+};
+```
+\*. El método `self.header()`, permite retornar el nombre asignado a la clave. Se le pasa como argumento el nombre de clave y retorna el header. Si no estuviera asignado retorna la clave.
+
+##### Modificando la entrada y retornando el template por defecto
+
+Otra alternativa es crear nuevos atributos personalizados para cada entrada y usar las opciones de [template_structure](#opciones-template-structure "Ver opciones de template_structure").
+
+```js
+const options = {
+	'template': (self, row) => {
+		row['entrada_personalizada'] = `<p>Mi valor personalizado</p>
+			<img src=\"image.png\" alt=\"Una margarita en una maceta\">`;
+		return self.default_template(self, row);
+	},
+	"template_structure":{
+		"values": ["entrada_personalizada", "clave1", "clave2"]
+	}
+};
+```
+
+
+### <a name="headers"></a>Headers [⏎](#opciones "Ir al listado de opciones generales")
+
+La opción `headers`, permite mapear cada una de las claves de la entrada con un nombre apropiado para mostrar en pantalla. 
+
+```js
+const opciones = {
+    'headers': {
+      'provincia': 'Provincia',
+      'localidad': 'Localidad',
+      'direccion_postal': 'Dirección Postal',
+      'codigo_postal': 'Código Postal'
+    } 
+};
+```
 
 ## <a id="opciones-poncho-map-filter" href="#opciones-poncho-map-filter">¶</a> Opciones para PonchoMapFilter
 
 | Parámetro | Tipo | Default | Descripción |
 |:---|:---|:---|:---|
-| filters |`object`| `false` | |
+| filters |`object`| `false` | Ver opciones para [filters](#opciones-filters)|
 | filters_visible | `boolean` | `false` | Configura el estado inicial del panel de filtros. |
 | filters_info | `boolean` | `false` | Muestra un icono con un _tooltip_ con el total de resultados por filtro. |
 
-### Opciones para `filters`
+### <a id="opciones-filters"></a> Opciones para `filters`   [⏎](#opciones-poncho-map-filter "Ver opciones para PonchoMapFilter")
 
-| Parámetro | Tipo | Default | Descripción |
-|:---|:---|:---|:---|
-| legend | `string` | `false` ||
-| field | `Object` | `false` ||
-| fields | `Object` | `false` ||
-
-
-#### Ejemplo de implementación de filtros
 ```js
 const options = {
-  'filters' :[
+  'filters': [
     {
-      'legend' : 'Ver',
+      'legend': 'Ver',
       'type': 'checkbox',
-      'fields' : [
-          ['estado_funcionamiento', 'Abiertos', ['1'], 'checked'],
-          ['estado_funcionamiento', 'Cerrados temporalmente', ['3'], false],
+      'field': ["provincia", "checked"],
+      'fields': false
+    }
+  ]
+};
+
+// O con filtros armados manualmente
+
+const options = {
+  'filters': [
+    {
+      'legend': 'Ver',
+      'type': 'checkbox',
+      'field': false,
+      'fields': [
           ['provincia', 'Buenos Aires', ['Buenos Aires', 'Ciudad Autónoma de Buenos Aires'], 'checked'],
           ['provincia', 'Noreste Argentino', ['Chaco', 'Corrientes', 'Formosa', 'Misiones'], 'checked'],
           ['provincia', 'Noroeste Argentino', ['Catamarca', 'Jujuy', 'La Rioja', 'Salta', 'Santiago del Estero', 'Tucumán']],
@@ -169,41 +316,79 @@ const options = {
           ['provincia', 'Región Cuyo', ['La Pampa', 'Mendoza', 'San Juan', 'San Luis']],
           ['provincia', 'Región Patagonia', ['Chubut', 'Neuquén', 'Río Negro', 'Santa Cruz', 'Tierra del Fuego']],
       ]
-    },
-  ],
+    }
+  ]
 };
 ```
 
+| Parámetro | Tipo | Default | Descripción |
+|:---|:---|:---|:---|
+| legend | `string` | `false` ||
+| field | `Object` | `false` | Ver opciones para [field](#opciones-field)|
+| fields | `Object` | `false` |Ver opciones para [fields](#opciones-fields)|
+
 Este ejemplo tiene dos filtros generales: estado_funcionamiento y provincia. Éstas son columnas de la tabla —o entrada—, donde se obtienen los datos. El usuario deberá configurar cada una de las entradas asignando parámetros del siguiente modo:
 
-```js
-[
-    'provincia',
-    'Noreste Argentino',
-    ['Chaco', 'Corrientes', 'Formosa', 'Misiones'],
-    'checked'
-],
-```
+####  <a id="opciones-field"></a> Opciones para `field`   [⏎](#opciones-filters "Ver opciones para filters")
 
-### Opciones
+```js
+const options = {
+	"filters": [
+		{
+		    'legend': 'Ver',
+		    'type': 'checkbox',
+		    "field": ["provincia", "checked"],
+		    "fields": false
+		}
+	]
+}
+```
 
 | Posición | Tipo | Descripción |
 |:---|:---|:---|
-| 0 | `string` | Nombre de la columna por la que se quiere filtrar. |
+| 0 | `string` | Clave por la que se quiere filtrar. |
 | 1 | `string` | Nombre que se verá en el `<label>` del checkbox |
 | 2 | `object` | Listado de valores que se deberá buscar en cada iteración de búsqueda. |
 | 3 | {`string|boolean`, ['checked',`false`]} | Designa el estado inicial del checkbox. |
 
+
+
+####  <a id="opciones-fields"></a> Opciones para `fields`   [⏎](#opciones-filters "Ver opciones para filters")
+
+```js
+const options = {
+	"filters": [
+		{
+		    'legend': 'Ver',
+		    'type': 'checkbox',
+		    "field": false,
+		    "fields": [
+				[
+			        'provincia',
+			        'Noreste Argentino',
+			        ['Chaco', 'Corrientes', 'Formosa', 'Misiones'],
+			        'checked'
+			    ]
+		    ]
+		}
+	]
+}
+```
+
+| Posición | Tipo | Descripción |
+|:---|:---|:---|
+| 0 | `string` | Clave por la que se quiere filtrar. |
+| 1 | {`string|boolean`, ['checked',`false`]} | Designa el estado inicial de los checkbox. |
+
 ----
 
-### PonchoMapSearch
+## <a id="opciones-poncho-map-search" href="#opciones-poncho-map-search">¶</a> Opciones para PonchoMapSearch
 
 | Parámetro | Tipo | Default | Descripción | Tipo de uso |
 |:---|:---|:---|:---|:---|
 | scope | object |  | Scope se utiliza para asegurarse de que todas las funciones serán sobre el ambiente de un buscado y un mapa determinados. | _Requerido_ |
 | placeholder | `string` | Su búsqueda | Texto de ayuda que aparece en un tono medio en el selector de items, complementa al label de un form. | *Opcional* |
 | search_fields | `object` | [] | Define los índices que se utilizan para realizar la búsqueda. Ej. `['provincia', 'localidad', 'nombre']` | *Opcional* |
-| sort_reverse | `boolean` | `false` | Si es `true` las entradas se ordenan alfa-numéricamente en forma descendente. Esta opción tiene prioridad sobre la opción ***sort***. | *Opcional* |
 | datalist | `boolean` | `true` | Despliega un HTML datalis para el input | *Opcional* |
 
 #### Ejemplo de uso para el buscador
@@ -230,9 +415,10 @@ search = new PonchoMapSearch(poncho_map, search_options);
 search.render();
 ```
 
+
 ## <a id="metodos" href="#metodos">¶</a> Métodos
 
-### PonchoMap
+### <a id="metodos-poncho-map" href="#metodos-poncho-map">¶</a> PonchoMap
 
 | Método | Retrono | Descripción |
 |:--|:--|:--|
@@ -246,7 +432,7 @@ search.render();
 | map | `object` | Objeto map de leaflet. |
 | markers | `object` | Objeto markers de leaflet. |
 
-### PonchoMapFilter
+### <a id="metodos-poncho-map-filter" href="#metodos-poncho-map-filter">¶</a> PonchoMapFilter
 
 | Método | Retrono | Descripción |
 |:--|:--|:--|
@@ -254,217 +440,10 @@ search.render();
 | totals | `object` | Retorna la cantidad de markers por cada uno de los filtros. Asi como retorna los totales también la posición del filtro. |
 | formFilters | `object` | Retorna los fitros marcados. Los datos de retorno son: el grupo de filtro y el indice en el grupo. |
 
-----
-
-## Markers
-
-### Colores
-
-La opción `marker` nos permite definir el color de los *markers* asignando el nombre de [color poncho](https://argob.github.io/poncho/identidad/colores/) del siguiente modo:
-
-```js
-const options = {
-    'marker_color': 'mandarina',
-    ...
-};
-```
-
-Otra opción es agregar una función en la que podemos definir una lógica de colores de acuerdo a la fuente de datos que nos llega, por ejemplo: 
-
-```js
-const options = {
-    'marker_color': (self, ele) => { 
-        let color = "cielo";
-        if(ele.estado_funcionamiento == '3'){
-            color = "mandarina";
-        } else if(ele.estado_funcionamiento == '5'){
-            color = 'rojo';
-        }
-        return color;
-    }
-    ...
-};
-```
-
-### Modificando el tipo de marker
-
-Esta opción también ofrece la posibilidad de crear *markers* utilizando imágenes o en formato html. En el siguiente ejemplo se ve como se puede aplicar un icóno de Poncho Fonts en un *marker*. Cuando se utiliza la función de esta manera debe retornan una instancia de `L.icon` o variantes *leaflet*.
-
-```js
-const options = {
-    ...
-    'custom_marker': (self, ele) => {
-      // icono tipo html
-      const icon_div = (color) => {
-          return new L.divIcon({
-              html: `<i class='icono-arg-marcador-ubicacion-2 text-${color}'>`,
-              iconSize: [38, 24],
-              iconAnchor: [22, 41],
-              popupAnchor: [-3, -40]
-          });
-      };
-
-      if(ele.provincia == "Misiones"){
-          return icon_div('cereza');
-      } else if (prov == "Buenos Aires"){
-          return self.icon('mandarina');
-      }
-    },
-    ...
-}
-```
 
 
-## Templates
+## <a id="modo-uso" href="#modo-uso">¶</a> Modo de uso
 
-Existen tres formas de modificar cómo se va a visualizar la información, tanto en los popUps como en el slider.
-
-### Automático
-
-Si no se define un *template*, el programa lista todos los elementos de cada item (fila) y los acomoda agregando el término y su definición. Si se agregaron [Headers](#headers) los utiliza para mejorar la lectura.
-
-### Definir estructura
-
-El segundo modo es definir que elementos se utilizarán en el mensaje. Para esto debemos utilizar la opción `template_structure` en las opciones y definir que elementos queremos excluir o cuales queremos utilizar. La elección depende de la practicidad.
-
-A la estructura también se le puede asignar cual de las columnas se utilizará como título.
-
-#### Excluyendo elementos de la entrada de datos
-
-```js
-const options = {
-    'template_structure': {
-        'title': 'col-titulo',
-        'values': [],
-        'exclude': ['col1', 'col2', 'col6'],
-    }
-};
-```
-#### Definiendo solo los valores que se muestran
-
-```js
-const options = {
-    'template_structure': {
-        'title': 'col-titulo',
-        'values': ['col1', 'col2'],
-        'exclude': [],
-    }
-};
-```
-
-
-### Asignando una función
-
-Es posible incluir una función que defina las particularidades que debe tener el mensaje. Este es un modo avanzado en el que se deben tener conocimientos de *JavaScript* para crear la lógica del *template*.
-
-#### Ejemplos
-
-##### Función dentro y fuera del grupo de opciones
-
-```js
-const opciones = {
-    'template': (self, row) => {
-      const html = `
-        <h1>${row.title}</h1>
-        <h2>${row.subtitle}</h2>
-        <dl>
-          <dt>Dirección postal</dt>
-          <dd>${row.address}</dd>
-          <dt>Ubicación</dt>
-          <dd>${row.province}, ${row.locality}</dd>
-          ...
-        </dl>`;
-
-      return html;
-    }
-};
-```
-
-O teniendo la función del *template* separada del objeto de opciones. 
-
-```js
-/**
- * Template
- * @param {object} self - Definiciones generales de la clase.
- * @param {object} row - Entrada o fila de la fuente de datos.
- */ 
-const template = (self, row) => {
-  const html = `
-    <h1>${row.title}</h1>
-    <h2>${row.subtitle}</h2>
-    <dl>
-      <dt>${self.header('address')}</dt>
-      <dd>${row.address}</dd>
-      <dt>Ubicación</dt>
-      <dd>${row.province}, ${row.locality}</dd>
-      ...
-    </dl>`;
-
-  return html;
-};
-
-// Opciones para el mapa.
-const opciones = {
-    'template': template, // Asigno la función 
-    ...
-};
-```
-\*. El método `self.header()`, permite retornar el nombre asignado a la columna si éste hubiera sido ofrecido en las opciones. Se le pasa como argumento el nombre de columna y retorna el header si lo tiene o el nombre de columna por defecto.
-
-##### Modificando la entrada y retornando el template por defecto
-
-Otra alternativa es modificar valores de la entrada para crear una nueva utilizando el template por default .
-
-```js
-const options = {
-  'template': (self, row) => {
-      row['entrada_personalizada'] = 'Mi valor personalizado';
-      row['address'] = [row.address, row.locality, row.province].join(', ');
-      return self.default_template(self, row);
-  },
-  ...
-};
-```
-
-##### Utilizando markdown en una de las entradas
-
-```js
-const options = {
-  'template_innerhtml': true,
-  'template': (self, row) => {
-    // showdown
-    const converter = new showdown.Converter();
-    row['custom_entry'] = converter.makeHtml(
-          'Prueba *markdown* [argentina.gob.ar](https://www.argentina.gob.ar/)'
-    );
-    const html = self.default_template(self, row);
-    return converter.makeHtml(html);
-  },
-  ...
-};
-```
-
-## <a name="headers"></a>Headers
-
-La opción `headers`, permite mapear los nombres de columna con un nombre apropiado para mostrar en pantalla. 
-
-```js
-const opciones = {
-    'headers': {
-      'provincia': 'Provincia',
-      'localidad': 'Localidad',
-      'direccion': 'Dirección Postal',
-      'cp': 'Código Postal',
-      ...
-    } 
-    ...
-};
-```
-
-***
-
-
-## Modo de uso
 ### Ejemplos en [Codepen.io](https://codepen.io/)
 
 Simple
@@ -683,57 +662,8 @@ O Poncho Map filters
 <!-- / SCRIPTS -->
 ```
 
-## Estilo gráfico
-
-El componente permite modificar alguno de los atributos del slider y los componentes que se ayiornan al mapa. El estilo css dispone de variables que pueden modificarse por cada instancia. ejemplo.
-
-### Variables CSS
-
-```css
-.poncho-map {
-    --slider-width: 300px;
-    --slider-title-color: var(--primary);
-    --map-background: grey;
-    --slider-color: inherit;
-    --slider-background: rgba(255, 255, 255, 1);
-    --slider-border: none;
-    --slider-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    --slider-top: 10px;
-    --slider-right: 10px;
-    --slider-left: 10px;
-    --slider-bottom: 10px;
-    --slider-radius: 16px;
-    --active-marker-color: 255, 206, 0;
-    --active-marker-alpha: .5;
-    --slider-media-mobile-height: 45%;
-}
-```
-
-### Ejemplos
-
-#### Usando los estilos para dar color al tema *dark*
-
-```css
-<style>
-  @media (prefers-color-scheme: dark) {
-      div.poncho-map {
-        --slider-width: 400px;
-        --slider-background: #333;
-        --slider-color: #f4f4f4;
-        --slider-title-color:#cddc39;
-      }
-  }
-
-  div.poncho-map {
-      --slider-width: 350px;
-  } 
-</style>
-```
-
-![Tema oscuro](img/dark-mode.jpg "Dark mode")
 
 
 ## Referencias
 1. jQuery <[https://jquery.com/](https://jquery.com/)>
 2. Leaftlet <[https://leafletjs.com/](https://leafletjs.com/)>
-3. select2 <[https://select2.org/](https://select2.org/)> 
