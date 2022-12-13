@@ -2032,6 +2032,7 @@ class PonchoMap {
 
     /**
      * JSON input
+     * 
      * @return {object} Listado de entradas con formato `feature` de geoJSON.
      */
     get entries(){
@@ -2053,7 +2054,7 @@ class PonchoMap {
      * cumple con el estándar, es tratado como un JSON de 
      * entradas simples.
      * @see https://geojson.org/
-     * @return {object} Retrona un documento en formato geoJSON
+     * @return {object} Retorna un documento en formato geoJSON
      */
     formatInput = (input) => {
         let geoJSON;
@@ -2088,8 +2089,17 @@ class PonchoMap {
         const content = document.createElement("pre");
         content.textContent = text;
 
+        const help = document.createElement("a");
+        help.href = "https://github.com/argob/poncho/blob/master/" 
+                    + "src/demo/poncho-maps/readme-poncho-maps.md";
+        help.target = "_blank";
+        help.textContent = "Ayuda sobre las opciones de PonchoMap";
+        help.className = "small";
+        help.title = "Abre el enlace en una nueva ventana";
+
         container.appendChild(title);
         container.appendChild(content);
+        container.appendChild(help);
 
         if(this.error_reporting) {
             const node = document.querySelector(
@@ -2105,7 +2115,7 @@ class PonchoMap {
     };
 
     /**
-     * Compone un feature GeoJSON
+     * Compone un _feature_ GeoJSON
      * 
      * @param {object} entry Entrada JSON
      * @returns {object} Objeto con formato geoJSON feature.
@@ -2287,12 +2297,14 @@ class PonchoMap {
 
     /**
      * Limpia el contenido.
+     * @return {undefined}
      */
     _clearContent = () => document
         .querySelector(`.js-content${this.scope_sufix}`).innerHTML = "";
 
     /**
      * Abre o cierra el slider.
+     * 
      */
     toggleSlider = () => { 
         if(this.no_info){
@@ -2458,7 +2470,7 @@ class PonchoMap {
 
         const anchor = document.createElement("a");
 
-        anchor.setAttribute("tabindex", "3");
+        anchor.setAttribute("tabindex", 0);
         anchor.id = `js-anchor-slider${this.scope_sufix}`;
 
         const content_container = document.createElement("div");
@@ -2516,7 +2528,7 @@ class PonchoMap {
     removeHash = () => history.replaceState(null, null, ' ');
 
     /**
-     * Si la URL tiene un valor por hash lo obtiene considerandolo su id.
+     * Si la URL tiene un valor por _hash_ lo obtiene considerandolo su id.
      * @returns {void}
      */
     hasHash = () => {
@@ -2537,7 +2549,7 @@ class PonchoMap {
     };
 
     /**
-     * Muestra un marker pasándo por parámetro su id.
+     * Muestra un marker
      * @param {string|integer} id Valor identificador del marker. 
      */
     gotoEntry = (id) => {
@@ -2567,6 +2579,12 @@ class PonchoMap {
         });
     };
 
+    /**
+     * Asigna un evento en el onclick a un layer.
+     * @todo Buscar un método más eficiente para lograr esto sin tener
+     * que evaluar el tipo de objeto geoJSON.
+     * @param {object} layer 
+     */
     _setClickeable = (layer) => {
         layer.on("keypress click", (e) => {
             document.querySelectorAll(".marker--active")
@@ -2660,18 +2678,21 @@ class PonchoMap {
      * Titulo para el default template
      * 
      * @summary El título puede tener un formato por defecto, tomando el
-     * índice de la entrada seleccionada a tal fin en this.title, cuya
+     * índice de la entrada seleccionada a tal fin en `this.title`, cuya
      * asignación es general y se utiliza para otras propiedades como:
      * texto alterantivo de los markers o title de un marker.
-     *     También se puede especificar un title particular en la entrada
+     * 
+     * También se puede especificar un title particular en la entrada
      * `template_structure.title`, ésta opción se ofrece como una 
      * alternativa que puede estar dada por el formato en el texto u
      * otras características consideradas por el editor. 
-     *     Por último puede recibir de: this.template_header, una función
+     * 
+     * Por último puede recibir de: this.template_header, una función
      * que retorne un html en formato string. Es importante tener en cuenta
      * que el uso de markdown y la insersión directa de html puedo producir
      * una vulnerabilidad XSS, tenga a bien asignar cuidadosamente el 
      * uso de estas opciones. 
+     * 
      * @see https://showdownjs.com/docs/xss/#strip-html-tags-is-not-enough
      * @param {object} row Entrada 
      */
@@ -2832,35 +2853,39 @@ class PonchoMap {
      * fué configurado.
      */
     _lead  = (entry) => {
-        if(!this.template_structure?.lead?.key){
+        if(!this.template_structure.hasOwnProperty("lead")){
+            return;
+        } else if(!this.template_structure.lead.hasOwnProperty("key")){
             this.errorMessage(
                 "Lead requiere un valor en el atributo «key».",
                 "warning"
             );
         }
+
         const {
-            key=false, 
-            class:classlist="badge bg-primary", 
-            style=false } = this.template_structure.lead;
+            key = false, 
+            class: classlist = "small", 
+            style = false } = this.template_structure.lead;
 
         const p = document.createElement("p");
-
+        p.textContent = entry[key];
+        
+        // Style definitions
+        const setStyle = this._setType(style, entry);
+        if(setStyle){
+            p.setAttribute("style", setStyle);
+        }
+        // CSS Class
         const setClasslist = this._setType(classlist, entry);
         if(setClasslist){
             p.classList.add(...setClasslist.split(" "));
-            p.textContent = entry[key];
-            
-            const setStyle = this._setType(style, entry);
-            if(setStyle){
-                p.setAttribute("style", setStyle);
-            }
-            return p;
         }
-        return false;
+        return p;
     }; 
 
     /**
      * Ícono para el término
+     * 
      * @param {string} key Key del header. 
      * @returns {object|boolean} Si existe el key retorna un objeto 
      * element de otro modo un boolean `false`.
@@ -3462,7 +3487,7 @@ class PonchoMapFilter extends PonchoMap {
             {
                 "text": "Ir al panel de filtros",
                 "anchor": `#filtrar-busqueda${this.scope_sufix}`
-            }
+            },
         ];
     }
 
@@ -3715,7 +3740,10 @@ class PonchoMapFilter extends PonchoMap {
             fields: opt_fields = false, 
             field: opt_field = false} = fields_items;
         if(!opt_fields && !opt_field){
-            throw "Los filtros requieren el legend y fields o field";
+            this.errorMessage(
+                "Filters requiere el uso del atributo `field` o `fields`.",
+                "warning"
+            );
         }
         const fields_to_use = (opt_fields ? opt_fields : 
             this._setFilter(opt_field));
@@ -3920,9 +3948,9 @@ class PonchoMapFilter extends PonchoMap {
     usingFilters = () => {
         const result = this.defaultFiltersConfiguration().every(
             (e) => {
-              return document
-                    .querySelector(`#id__${e[2]}__${e[0]}__${e[1]}`)
-                    .checked;
+                return document
+                      .querySelector(`#id__${e[2]}__${e[0]}__${e[1]}`)
+                      .checked;
         });
         return result;
     };
@@ -3960,10 +3988,10 @@ class PonchoMapFilter extends PonchoMap {
      * @returns {integer} Total de ocurrencias. 
      */
     _countOccurrences = (feature, val, index) => {
-      const ocurrences = feature.reduce((a, v) => {
-          return val.some(e => v.properties[index].includes(e)) ? a + 1 : a
-      }, 0);
-      return ocurrences;
+        const ocurrences = feature.reduce((a, v) => {
+            return val.some(e => v.properties[index].includes(e)) ? a + 1 : a
+        }, 0);
+        return ocurrences;
     };
 
     /**
@@ -4009,7 +4037,7 @@ class PonchoMapFilter extends PonchoMap {
             i.style.opacity = ".75";
             i.style.marginLeft = ".5em";
             i.style.marginRight = ".25em";
-            i.classList.add("fa","fa-info-circle","small","text-info");
+            i.classList.add("fa", "fa-info-circle","small", "text-info");
             i.title = `${field[1]} resultado${plurals}`;
             i.setAttribute("aria-hidden", "true");
 
@@ -4096,7 +4124,8 @@ class PonchoMapFilter extends PonchoMap {
      */ 
     _filteredData = (feed) => {
         feed = (typeof feed !== "undefined" ? this.entries : 
-            this._filterData());
+                this._filterData());
+        
         this.markersMap(feed); 
         this._selectedMarker();
         this._helpText(feed);
@@ -4113,6 +4142,7 @@ class PonchoMapFilter extends PonchoMap {
             this._urlHash();
         }
         this._setFetureAttributes();
+        this._accesibleMenu();
     };
 
     /**
@@ -4130,17 +4160,19 @@ class PonchoMapFilter extends PonchoMap {
      * por filtros.
      * @returns {undefined}
      */
-    _resetSearch = () => document
-        .querySelectorAll(`.js-poncho-map-reset${this.scope_sufix}`)
-        .forEach(e => {
-            e.onclick = (event => {
-                event.preventDefault();
-                this._resetFormFilters();
-                this._filteredData(this.entries);
-                this._clearSearchInput();
-                this.resetView();
+    _resetSearch = () => {  
+        document
+            .querySelectorAll(`.js-poncho-map-reset${this.scope_sufix}`)
+            .forEach(e => {
+                e.onclick = (event => {
+                    event.preventDefault();
+                    this._resetFormFilters();
+                    this._filteredData(this.entries);
+                    this._clearSearchInput();
+                    this.resetView();
+            });
         });
-    });
+    };
 
     /**
      * Cambia la lista de markers en función de la selección de 
@@ -4176,14 +4208,12 @@ class PonchoMapFilter extends PonchoMap {
         this.filterChange((event) => {
             event.preventDefault();
             this._filteredData();
-        })
+        });
 
         setTimeout(this.gotoHashedEntry, this.anchor_delay);
         if(this.filters_visible){
             this._filterContainerHeight();
         }
-        this._accesibleMenu();
- 
     };
 };
 // end of class
@@ -4274,11 +4304,9 @@ class PonchoMapSearch {
             if (clearString(a[key]) < clearString(b[key])){
                 return -1;
             }
-
             if (clearString(a[key]) > clearString(b[key])){
                 return 1;
             }
-
             return 0;
         });
 
