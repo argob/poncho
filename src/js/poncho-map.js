@@ -1041,7 +1041,7 @@ class PonchoMap {
 
         const {
             key = false, 
-            class: classlist = "small", 
+            css: classlist = "small", 
             style = false } = this.template_structure.lead;
 
         const p = document.createElement("p");

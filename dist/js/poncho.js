@@ -2864,7 +2864,7 @@ class PonchoMap {
 
         const {
             key = false, 
-            class: classlist = "small", 
+            css: classlist = "small", 
             style = false } = this.template_structure.lead;
 
         const p = document.createElement("p");
@@ -4439,7 +4439,14 @@ class PonchoMapSearch {
                     opt.textContent = content; 
                     return opt;
                 };
-
+                // Conexto el input con el datalist.
+                const search_input = document.querySelector(
+                  `${this.search_scope_selector} .js-poncho-map-search__input`
+                );
+                const datalist_id = `id-datalist${this.scope_sufix}`;
+                search_input.setAttribute("list", datalist_id);
+                element.id = datalist_id;
+                
                 this.instance.filtered_entries.forEach(e => 
                     element.appendChild(options(e.properties[this.text]))
                 );

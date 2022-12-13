@@ -11,6 +11,8 @@
   * [Métodos PonchoMap](#metodos-poncho-map)
   * [Métodos PonchoMapFilter](#metodos-poncho-map-filter)
 * [Modo de uso](#modo-uso)
+  * [Código](#codigo)
+  * [Ejemplos en codepen.io](#ejemplos-codepen)
 
 ---
 
@@ -444,7 +446,90 @@ search.render();
 
 ## <a id="modo-uso" href="#modo-uso">¶</a> Modo de uso
 
-### Ejemplos en [Codepen.io](https://codepen.io/)
+### <a id="codigo" href="#codigo"></a>Estructura HTML
+
+Lo conveniente es tener la asignación de documentos CSS dentro de la etiqueta `<head>` y la llamada a los documentos JavaScript inmediatamente antes del cierre del body (`</body>`).
+
+```html
+<!-- CSS FILES -->
+<link href="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.css" rel="stylesheet"/>
+<link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.css" rel="stylesheet"/>
+<link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.Default.css" rel="stylesheet"/>
+<!-- / CSS FILES -->
+```
+
+```html
+<!-- JAVASCRIPT FILES -->
+<script src="https://www.argentina.gob.ar/sites/default/files/ponchotable/showdown.js"></script>
+<script  src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/extensiones/showdown-extensions.js"></script>
+<script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.js"></script>
+<script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script>
+<script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
+<!-- / JAVASCRIPT FILES -->
+```
+
+Si se desea utilizar el buscador debe incluirse el siguiente código. El código puede ubicarse en el lugar de la página donde sea más conveniente. 
+
+```html
+<!-- PONCHO MAP SEARCH -->
+<form>
+  <div data-scope="poncho-map-search-scope">
+      <div class="input-group">
+          <input 
+              type="search" 
+              name="search" 
+              autocomplete="off"
+              class="js-poncho-map-search__input form-control" 
+              list="list">
+              <datalist id="list" class="js-porcho-map-search__list"></datalist>
+          <span class="input-group-btn">
+            <button class="js-poncho-map-search__submit btn btn-primary">
+              <i class="fa fa-search text-white">&nbsp;</i>
+            </button>
+          </span>
+      </div>
+      <div data-scope="poncho-map-scope" class="m-b-1">
+          <div class="js-poncho-map__help small text-default"></div>
+      </div>
+  </div>
+</form>
+<!-- / PONCHO MAP SEARCH -->
+```
+Para que se imprima el mapa con todas las opciones de PonchoMap se debe incluir el siguiente código.  Pueden agregarse atributos, pero  `data-scope=""` y la clase `poncho-map` deben estar presentes.
+```html
+<!-- PONCHO MAP -->
+<div class="poncho-map" data-scope="poncho-map-scope">
+    <div
+        class="leaflet-container leaflet-touch leaflet-fade-anim 
+              leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
+        id="map"
+        style="height: 600px; width: 100%;">
+    </div>
+</div>
+<!-- / PONCHO MAP -->
+```
+Por último agregamos la llamada al mapa.
+
+```js
+<script>
+  // init
+  (async() => {
+      // fetch data
+      const url = '[URL endpoint]';
+      const sheet_data = await fetch_json(url); 
+      // render map
+      const options = {
+          'template': template,
+          'scope': 'poncho-map'
+      };
+      const mapa = new PonchoMap(sheet_data, options);
+      mapa.render();
+  })();
+</script>
+```
+
+
+### <a id="ejemplos-codepen" href="#ejemplos-codepen"></a>Ejemplos en [Codepen.io](https://codepen.io/)
 
 Simple
 
@@ -465,202 +550,6 @@ Mapa con modificaciones en el template y filtros
 Mapa con filtro y buscador
 
 [https://codepen.io/agustinbouillet/pen/poVNWeV](https://codepen.io/agustinbouillet/pen/poVNWeV)
-
-
-
-### Incluir los archivos JavaScript y JavaScript dependientes
-
-```html
-<!-- INCLUDES -->
-<link  href="https://gis.argentina.gob.ar/js/leaflet/leaflet.css" rel="stylesheet"/>
-<link  href="https://gis.argentina.gob.ar/js/leaflet/MarkerCluster.Default.css" rel="stylesheet"/>
-<link  href="https://gis.argentina.gob.ar/js/leaflet/MarkerCluster.css" rel="stylesheet"/>
-<script src="https://gis.argentina.gob.ar/js/leaflet/leaflet.js"></script>
-<script src="https://gis.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script>
-<script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
-<!-- / INCLUDES -->
-```
-
-
-### Estructura HTML
-
-```html
-<!-- PONCHO MAP -->
-<div class="poncho-map" data-scope="poncho-map">
-  <div
-      class="leaflet-container leaflet-touch leaflet-fade-anim 
-            leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
-      id="map"
-      style="height:700px; width:100%;"
-      tabindex="0">
-  </div>
-</div>
-<!-- / PONCHO MAP -->
-```
-
-### JavaScript
-
-```js
-<script>
-  // init
-  (async() => {
-      // fetch data
-      const url = '[URL endpoint]';
-      const sheet_data = await fetch_json(url); 
-      // render map
-      const options = {
-          'template': template,
-          'scope': 'poncho-map'
-      };
-      const mapa = new PonchoMap(sheet_data, options);
-      mapa.render();
-  })();
-</script>
-```
-
-O Poncho Map filters
-
-```js
-<script>
-  // init
-  (async() => {
-      // fetch data
-      const url = '[URL endpoint]';
-      const sheet_data = await fetch_json(url); 
-      // render map
-      const options = {
-          'template': template,
-          'scope': 'poncho-map-filter',
-          'filters' :[
-              {
-                'legend': 'Ver',
-                'type': 'checkbox',
-                'fields': [
-                    ['provincia', 'Buenos Aires', ['Buenos Aires'], 'checked', 'strct'],
-                    ['provincia', 'Noreste Argentino', ['Chaco', 'Corrientes', 'Formosa', 'Misiones'], 'checked'],
-                ]
-              },
-          ],
-      };
-      const mapa = new PonchoMapFilter(sheet_data, options);
-      mapa.render();
-  })();
-</script>
-```
-### PonchoMapSearch
-
-1. Incluimos el script para el componente select2.
-
-```html
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-```
-
-2. Incluimos el bloque HTML para el buscador.
-```html
-<!-- PONCHO MAP SEARCH -->
-<form>
-    <div class="form-group webform-component">
-        <label for="poncho_map_search">Buscá tu Punto Digital</label>
-        <select 
-            class="form-control poncho-map-search"
-            data-scope="search-puntos-digitales"
-            name="search">
-        </select>
-    </div>
-</form>
-<!-- / PONCHO MAP SEARCH -->
-```
-3. Incluimos el bloque HTML para el mapa.
-```html
-<!-- PONCHO MAP -->
-<div class="poncho-map" data-scope="poncho-map">
-  <div
-      class="leaflet-container leaflet-touch leaflet-fade-anim 
-            leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
-      id="map"
-      style="height:700px; width:100%;"
-      tabindex="0">
-  </div>
-</div>
-<!-- / PONCHO MAP -->
-```
-4. incluimos el script para el mapa con las configuraciones que se necesiten.
-```js
-<!-- SCRIPTS -->
-<script>
-  (async() => {
-    // FETCH DATA
-    const url = './data/response.json';
-    const sheet_data = await fetch_json(url); 
-    const gdata = Object.keys(sheet_data.aPDs).map(e => sheet_data.aPDs[e]).flat();
-    
-    // MAPA
-    const options = {
-      'template': template_punto_digital,
-      'scope': 'poncho-map',
-      'id': 'id_pd',
-      'latitud': 'lat',
-      'longitud': 'long',
-      'hash': true,
-      'slider': true,
-      'scroll': true,
-      'marker': 'cielo',
-      'reset_zoom': true,
-      'filters': [
-        {
-          'legend': 'Filtrar por región',
-          'type': 'checkbox',
-          'fields': [
-              ['provincia', 'Buenos Aires y CABA', ['Buenos Aires', 'Ciudad Autónoma de Buenos Aires'], 'checked'],
-              ['provincia', 'Noreste Argentino', ['Chaco', 'Corrientes', 'Formosa', 'Misiones'], 'checked'],
-              ['provincia', 'Noroeste Argentino', ['Catamarca', 'Jujuy', 'La Rioja', 'Salta', 'Santiago del Estero', 'Tucumán'], 'checked'],
-              ['provincia', 'Región Centro', ['Córdoba', 'Entre Ríos', 'Santa Fe'], 'checked'],
-              ['provincia', 'Región Cuyo', ['La Pampa', 'Mendoza', 'San Juan', 'San Luis'], 'checked'],
-              ['provincia', 'Región Patagonia', ['Chubut', 'Neuquén', 'Río Negro', 'Santa Cruz', 'Tierra del Fuego'], 'checked'],
-          ]
-        },
-      ],
-      'marker_cluster_options': {
-          'spiderfyOnMaxZoom': true,
-          'showCoverageOnHover': false,
-          'zoomToBoundsOnClick': true,
-          'maxClusterRadius': 45,
-        }
-    };
-    const poncho_map_filter = new PonchoMapFilter(gdata, options);
-    poncho_map_filter.render();
-</script>
-```
-5. Agregamos el método para el buscador. Le configuramos las opciones y le agregamos como primer parámetro la instancia de la clase **PonchoMapFilter** o **PonchoMap**.
-```js
-<script>
-    // BUSCADOR DE MARKERS
-    const search_options = {
-      'scope': 'search-puntos-digitales',
-      'text': 'nombre',
-      'id': 'id_pd',
-      'placeholder': 'Buscá tu Punto Digital',
-      'template': (self, entry) => {
-          return '<dl class="p-b-0 m-y-0">' 
-              + '<dt>' + entry.nombre + '</dt>'
-              + '<dd class="m-b-0 small">' 
-              + entry.provincia + ', ' + entry.localidad 
-              + '</dd></dl>';
-      },
-      'search_fields': [
-          "nombre",
-          "institucion",
-          "localidad",
-          "provincia",
-          "municipio_nombre"
-      ]
-    };
-    search = new PonchoMapSearch(poncho_map_filter, search_options);
-    search.render();
-  })();
-</script>
-<!-- / SCRIPTS -->
-```
 
 
 
