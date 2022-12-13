@@ -38,6 +38,7 @@
 class PonchoMap {
     constructor(data, options){
         const defaults = {
+            "error_reporting": true,
             "no_info": false,
             "title": false,
             "id": "id",
@@ -106,7 +107,7 @@ class PonchoMap {
                 "showCoverageOnHover": false,
                 "zoomToBoundsOnClick": true,
                 "maxClusterRadius": 45,
-                "spiderfyDistanceMultiplier": 0.1,
+                "spiderfyDistanceMultiplier": 3,
                 "spiderLegPolylineOptions": {
                     "weight": 1,
                     "color": "#666",
@@ -122,6 +123,7 @@ class PonchoMap {
             ]
         };
         let opts = Object.assign({}, defaults, options);
+        this.error_reporting = opts.error_reporting;
         this.scope = opts.scope;
         this.template = opts.template;
         this.template_structure = {
@@ -178,9 +180,8 @@ class PonchoMap {
 
         // OSM
         this.map = new L.map(
-            this.map_selector, {/*preferCanvas: true,*/ renderer:L.svg()}
+            this.map_selector, {renderer:L.svg()}
         ).setView(this.map_view, this.map_zoom);
-        // new L.tileLayer("https://gis.argentina.gob.ar/osm/{z}/{x}/{y}.png",{ 
         new L.tileLayer("https://mapa-ign.argentina.gob.ar/osm/{z}/{x}/{-y}.png",{ 
             attribution: ("Contribuidores: "
                 + "<a href=\"https://www.ign.gob.ar/AreaServicios/Argenmap/Introduccion\"  target=\"_blank\">"
@@ -208,14 +209,15 @@ class PonchoMap {
 
     /**
      * JSON input
-     * @return {object} Listado de entradas con formato feature de geoJSON.
+     * 
+     * @return {object} Listado de entradas con formato `feature` de geoJSON.
      */
     get entries(){
         return this.data.features;
     }
 
     /**
-     * Retrona las entradas en fromato geoJSON
+     * Retrona las entradas en formato geoJSON
      */
     get geoJSON(){
         return this.featureCollection(this.entries);
@@ -229,7 +231,7 @@ class PonchoMap {
      * cumple con el estándar, es tratado como un JSON de 
      * entradas simples.
      * @see https://geojson.org/
-     * @return {object} Retrona un documento en formato geoJSON
+     * @return {object} Retorna un documento en formato geoJSON
      */
     formatInput = (input) => {
         let geoJSON;
@@ -243,7 +245,54 @@ class PonchoMap {
     };
 
     /**
-     * Comprone un feature GeoJSON
+     * Reporta un error bloqueante
+     * 
+     * @summary Reporta un error bloqueante y ejecuta una excepción 
+     * mostrando un mensaje y removiendo el contenedor del mapa.
+     * @param {string} text Mensaje de error 
+     */
+    errorMessage = (text=false, type="danger") => {
+        document.querySelectorAll(`#js-error-message${this.scope_sufix}`)
+                .forEach(e => e.remove());
+
+        const container = document.createElement("div");
+        container.id = `js-error-message${this.scope_sufix}`;
+        container.classList.add("poncho-map--message", type);
+
+        const title = document.createElement("h2");
+        title.classList.add("h6", "title");
+        title.textContent = "¡Se produjo un error!";
+
+        const content = document.createElement("pre");
+        content.textContent = text;
+
+        const help = document.createElement("a");
+        help.href = "https://github.com/argob/poncho/blob/master/" 
+                    + "src/demo/poncho-maps/readme-poncho-maps.md";
+        help.target = "_blank";
+        help.textContent = "Ayuda sobre las opciones de PonchoMap";
+        help.className = "small";
+        help.title = "Abre el enlace en una nueva ventana";
+
+        container.appendChild(title);
+        container.appendChild(content);
+        container.appendChild(help);
+
+        if(this.error_reporting) {
+            const node = document.querySelector(
+                `${this.scope_selector}.poncho-map`
+            );
+            node.parentNode.insertBefore(container, node);
+        }
+        if(type == "danger"){
+          document.getElementById(this.map_selector).remove();
+        }
+        console.log(this.critical_error)
+        throw text;
+    };
+
+    /**
+     * Compone un _feature_ GeoJSON
      * 
      * @param {object} entry Entrada JSON
      * @returns {object} Objeto con formato geoJSON feature.
@@ -251,8 +300,18 @@ class PonchoMap {
     feature = (entry) => {
         const latitude = entry[this.latitude];
         const longitude = entry[this.longitude];
+        [latitude, longitude].forEach(e => {
+            if(isNaN(Number(e))){
+                this.errorMessage(
+                    `El archivo contiene errores en la definición de `
+                    + `latitud y longitud.\n   ${e}`
+                );
+            }
+        });
+
         delete entry[this.latitude];
         delete entry[this.longitude];
+
         return {
             "type": "Feature",
             "properties": entry,
@@ -283,10 +342,10 @@ class PonchoMap {
     };
 
     /**
-     * Crea una entrada ID autonomerada si no posee una.
+     * Crea una entrada ID autonumerada si no posee una.
      * 
      * @summary Verifica si en las claves existe una posición asignada
-     * a id, si no la tuviera genera una automáticamente. Por otro lado, 
+     * a *id*. si no la tuviera genera una automáticamente. Por otro lado, 
      * si el usuario asoció una columna a la opción ID de la 
      * configuración, usa esa.
      * @param {object} entries
@@ -313,11 +372,12 @@ class PonchoMap {
 
     /**
      * Agrega el hash en la barra de url.
+     * 
      * @param {string|integer} value
      * @return {undefined}
      */
     addHash = (value) => {
-        if(!this.hash){
+        if(!this.hash || this.no_info){
             return null;
         }
         window.location.hash = `#${value}`;
@@ -325,6 +385,7 @@ class PonchoMap {
 
     /**
      * Obtiene una entrada por su id
+     * 
      * @param {integer} id Id de Punto Digital
      * @return {object}
      */
@@ -334,6 +395,7 @@ class PonchoMap {
 
     /**
      * Busca un término en un listado de entradas.
+     * 
      * @param {string} term Término a buscar.
      * @returns {object} Listado filtrado por los match
      */
@@ -412,12 +474,14 @@ class PonchoMap {
 
     /**
      * Limpia el contenido.
+     * @return {undefined}
      */
     _clearContent = () => document
         .querySelector(`.js-content${this.scope_sufix}`).innerHTML = "";
 
     /**
      * Abre o cierra el slider.
+     * 
      */
     toggleSlider = () => { 
         if(this.no_info){
@@ -583,7 +647,7 @@ class PonchoMap {
 
         const anchor = document.createElement("a");
 
-        anchor.setAttribute("tabindex", "3");
+        anchor.setAttribute("tabindex", 0);
         anchor.id = `js-anchor-slider${this.scope_sufix}`;
 
         const content_container = document.createElement("div");
@@ -591,6 +655,7 @@ class PonchoMap {
 
         const content = document.createElement("div");
         content.classList.add("content", `js-content${this.scope_sufix}`);
+        content.tabIndex = 0;
         content_container.appendChild(content);
 
         const container = document.createElement("div");
@@ -640,7 +705,7 @@ class PonchoMap {
     removeHash = () => history.replaceState(null, null, ' ');
 
     /**
-     * Si la URL tiene un valor por hash lo obtiene considerandolo su id.
+     * Si la URL tiene un valor por _hash_ lo obtiene considerandolo su id.
      * @returns {void}
      */
     hasHash = () => {
@@ -661,7 +726,7 @@ class PonchoMap {
     };
 
     /**
-     * Muestra un marker pasándo por parámetro su id.
+     * Muestra un marker
      * @param {string|integer} id Valor identificador del marker. 
      */
     gotoEntry = (id) => {
@@ -691,6 +756,12 @@ class PonchoMap {
         });
     };
 
+    /**
+     * Asigna un evento en el onclick a un layer.
+     * @todo Buscar un método más eficiente para lograr esto sin tener
+     * que evaluar el tipo de objeto geoJSON.
+     * @param {object} layer 
+     */
     _setClickeable = (layer) => {
         layer.on("keypress click", (e) => {
             document.querySelectorAll(".marker--active")
@@ -724,9 +795,13 @@ class PonchoMap {
      * Setea los features para ejecutarse en un evento onlick
      */
     _clickeableFeatures = () => {
+        if(!this.reset_zoom){
+          return;
+        }
         this.map.eachLayer(layer => {
             if(!this.isFeature(layer) || 
-                layer.feature.geometry.type == "Point"){
+                layer.feature.geometry.type == "Point" ||
+                layer.feature.geometry.type == "MultiPoint"){
                 return;
             }
             this._setClickeable(layer);
@@ -755,7 +830,8 @@ class PonchoMap {
         this.markers.eachLayer(setHash);
         this.map.eachLayer(layer => {
             if(!layer.hasOwnProperty("feature") || 
-                    layer.feature.geometry.type == "Point"){
+                layer.feature.geometry.type == "Point" ||
+                layer.feature.geometry.type == "MultiPoint"){
                 return;
             }
             setHash(layer);
@@ -779,18 +855,21 @@ class PonchoMap {
      * Titulo para el default template
      * 
      * @summary El título puede tener un formato por defecto, tomando el
-     * índice de la entrada seleccionada a tal fin en this.title, cuya
+     * índice de la entrada seleccionada a tal fin en `this.title`, cuya
      * asignación es general y se utiliza para otras propiedades como:
      * texto alterantivo de los markers o title de un marker.
-     *     También se puede especificar un title particular en la entrada
+     * 
+     * También se puede especificar un title particular en la entrada
      * `template_structure.title`, ésta opción se ofrece como una 
      * alternativa que puede estar dada por el formato en el texto u
      * otras características consideradas por el editor. 
-     *     Por último puede recibir de: this.template_header, una función
+     * 
+     * Por último puede recibir de: this.template_header, una función
      * que retorne un html en formato string. Es importante tener en cuenta
      * que el uso de markdown y la insersión directa de html puedo producir
      * una vulnerabilidad XSS, tenga a bien asignar cuidadosamente el 
      * uso de estas opciones. 
+     * 
      * @see https://showdownjs.com/docs/xss/#strip-html-tags-is-not-enough
      * @param {object} row Entrada 
      */
@@ -915,7 +994,10 @@ class PonchoMap {
                 mixing.forEach(element => {
                     const {values, separator = ", ", key} = element;
                     if(typeof key === "undefined"){
-                        throw "Mixing requiere un valor en la variable «key».";
+                        this.errorMessage(
+                            "Mixing requiere un valor en el atributo «key».",
+                            "warning"
+                        );
                     }
                     new_row[key] = values
                         .map(i => (i in row ? row[i] : i.toString()))
@@ -948,32 +1030,39 @@ class PonchoMap {
      * fué configurado.
      */
     _lead  = (entry) => {
-        if(!this.template_structure?.lead?.key){
-            return false;
+        if(!this.template_structure.hasOwnProperty("lead")){
+            return;
+        } else if(!this.template_structure.lead.hasOwnProperty("key")){
+            this.errorMessage(
+                "Lead requiere un valor en el atributo «key».",
+                "warning"
+            );
         }
+
         const {
-            key=false, 
-            class:classlist=false, 
-            style=false } = this.template_structure.lead;
+            key = false, 
+            class: classlist = "small", 
+            style = false } = this.template_structure.lead;
 
         const p = document.createElement("p");
-
+        p.textContent = entry[key];
+        
+        // Style definitions
+        const setStyle = this._setType(style, entry);
+        if(setStyle){
+            p.setAttribute("style", setStyle);
+        }
+        // CSS Class
         const setClasslist = this._setType(classlist, entry);
         if(setClasslist){
             p.classList.add(...setClasslist.split(" "));
-            p.textContent = entry[key];
-            
-            const setStyle = this._setType(style, entry);
-            if(setStyle){
-                p.setAttribute("style", setStyle);
-            }
-            return p;
         }
-        return false;
+        return p;
     }; 
 
     /**
      * Ícono para el término
+     * 
      * @param {string} key Key del header. 
      * @returns {object|boolean} Si existe el key retorna un objeto 
      * element de otro modo un boolean `false`.
@@ -1020,7 +1109,7 @@ class PonchoMap {
         const tpl_title = this._templateTitle(row);
         const container = document.createElement("article");
         container.classList.add(... structure.container_classlist);
-        const definitions = document.createElement(structure.definition_tag);
+        const definitions = document.createElement(structure.definition_list_tag);
         definitions.classList.add(...structure.definition_list_classlist);
         definitions.style.fontSize = "1rem";
         row = this._templateMixing(row);
@@ -1224,13 +1313,15 @@ class PonchoMap {
                 feature.properties.name = properties[_this.title];
 
                 // Si el usuario eligió usar tooltip
-                if(_this.tooltip && properties[_this.title] && geometry.type != "Point"){
+                if(_this.tooltip && properties[_this.title] && 
+                  geometry.type != "Point" && geometry.type != "MultiPoint"){
                     layer.bindTooltip(
                         properties[_this.title], _this.tooltip_options
                     );
                 }
                 
-                if(!_this.no_info && !_this.slider && geometry.type != "Point"){
+                if(!_this.no_info && !_this.slider && 
+                  geometry.type != "Point" && geometry.type != "MultiPoint"){
                     const html = (typeof _this.template == "function" ? 
                             _this.template(_this, properties) : 
                             _this.defaultTemplate(_this, properties));
@@ -1426,7 +1517,7 @@ class PonchoMap {
         values.forEach((link, index) => {
             const a = document.createElement("a");
             a.textContent = link.text;
-            a.setAttribute("tabindex", 0);
+            a.tabIndex = 0;
             a.href = link.anchor;
             if(link.hasOwnProperty("class") && link.class != ""){
                 a.classList.add(...link.class.split(" "))

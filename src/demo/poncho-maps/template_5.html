@@ -62,7 +62,7 @@ COPIAR DESDE ACÁ…
               list="list">
               <datalist id="list" class="js-porcho-map-search__list"></datalist>
           <span class="input-group-btn">
-            <button class="js-poncho-map-search__submit btn btn-primary">
+            <button class="js-poncho-map-search__submit btn btn-primary" aria-label="Buscar puntos">
               <i class="fa fa-search text-white"> </i>
             </button>
           </span>
@@ -173,7 +173,7 @@ COPIAR DESDE ACÁ…
     let {headers={}, entries={}} = gapi_data;
     // Caso 2
     // Levanto datos desde un geoJSON
-    entries = await fetch_json("http://localhost:5500/src/demo/poncho-maps/data/test-data.geojson");
+    entries = await fetch_json("./data/test-data.geojson");
 
     // map options
     const options = {
@@ -193,7 +193,7 @@ COPIAR DESDE ACÁ…
           "term_tag": "h3",
           "definition_tag": "div",
           "lead": {
-              "__key": "type", 
+              "key": "type", 
               class: (self, entry, value) => {
                   if(entry.type == "Polygon"){
                       return "badge bg-verdin text-white"; 
@@ -273,8 +273,8 @@ COPIAR DESDE ACÁ…
           "description": "Descripción",
           "email": "Email"
       },
-      "marker": "cielo",
-      "_marker": (self, ele) => {
+      "marker": "tomate",
+      "marker": (self, ele) => {
           const icon_color = (ele.hasOwnProperty("icon_color")) ? ele.icon_color : "azul";
           // return self.icon(icon_color); 
           // Alternativa
@@ -293,7 +293,7 @@ COPIAR DESDE ACÁ…
           }
           return iconImg(img_url);
       },
-      "tooltip": true,
+      "_tooltip": true,
       "no_info": false,
       "slider": true,
       "hash": true,

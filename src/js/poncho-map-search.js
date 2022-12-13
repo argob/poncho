@@ -84,11 +84,9 @@ class PonchoMapSearch {
             if (clearString(a[key]) < clearString(b[key])){
                 return -1;
             }
-
             if (clearString(a[key]) > clearString(b[key])){
                 return 1;
             }
-
             return 0;
         });
 

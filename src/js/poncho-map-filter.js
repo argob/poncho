@@ -68,7 +68,7 @@ class PonchoMapFilter extends PonchoMap {
             {
                 "text": "Ir al panel de filtros",
                 "anchor": `#filtrar-busqueda${this.scope_sufix}`
-            }
+            },
         ];
     }
 
@@ -321,7 +321,10 @@ class PonchoMapFilter extends PonchoMap {
             fields: opt_fields = false, 
             field: opt_field = false} = fields_items;
         if(!opt_fields && !opt_field){
-            throw "Los filtros requieren el legend y fields o field";
+            this.errorMessage(
+                "Filters requiere el uso del atributo `field` o `fields`.",
+                "warning"
+            );
         }
         const fields_to_use = (opt_fields ? opt_fields : 
             this._setFilter(opt_field));
@@ -526,9 +529,9 @@ class PonchoMapFilter extends PonchoMap {
     usingFilters = () => {
         const result = this.defaultFiltersConfiguration().every(
             (e) => {
-              return document
-                    .querySelector(`#id__${e[2]}__${e[0]}__${e[1]}`)
-                    .checked;
+                return document
+                      .querySelector(`#id__${e[2]}__${e[0]}__${e[1]}`)
+                      .checked;
         });
         return result;
     };
@@ -566,10 +569,10 @@ class PonchoMapFilter extends PonchoMap {
      * @returns {integer} Total de ocurrencias. 
      */
     _countOccurrences = (feature, val, index) => {
-      const ocurrences = feature.reduce((a, v) => {
-          return val.some(e => v.properties[index].includes(e)) ? a + 1 : a
-      }, 0);
-      return ocurrences;
+        const ocurrences = feature.reduce((a, v) => {
+            return val.some(e => v.properties[index].includes(e)) ? a + 1 : a
+        }, 0);
+        return ocurrences;
     };
 
     /**
@@ -615,7 +618,7 @@ class PonchoMapFilter extends PonchoMap {
             i.style.opacity = ".75";
             i.style.marginLeft = ".5em";
             i.style.marginRight = ".25em";
-            i.classList.add("fa","fa-info-circle","small","text-info");
+            i.classList.add("fa", "fa-info-circle","small", "text-info");
             i.title = `${field[1]} resultado${plurals}`;
             i.setAttribute("aria-hidden", "true");
 
@@ -702,7 +705,8 @@ class PonchoMapFilter extends PonchoMap {
      */ 
     _filteredData = (feed) => {
         feed = (typeof feed !== "undefined" ? this.entries : 
-            this._filterData());
+                this._filterData());
+        
         this.markersMap(feed); 
         this._selectedMarker();
         this._helpText(feed);
@@ -719,6 +723,7 @@ class PonchoMapFilter extends PonchoMap {
             this._urlHash();
         }
         this._setFetureAttributes();
+        this._accesibleMenu();
     };
 
     /**
@@ -736,17 +741,19 @@ class PonchoMapFilter extends PonchoMap {
      * por filtros.
      * @returns {undefined}
      */
-    _resetSearch = () => document
-        .querySelectorAll(`.js-poncho-map-reset${this.scope_sufix}`)
-        .forEach(e => {
-            e.onclick = (event => {
-                event.preventDefault();
-                this._resetFormFilters();
-                this._filteredData(this.entries);
-                this._clearSearchInput();
-                this.resetView();
+    _resetSearch = () => {  
+        document
+            .querySelectorAll(`.js-poncho-map-reset${this.scope_sufix}`)
+            .forEach(e => {
+                e.onclick = (event => {
+                    event.preventDefault();
+                    this._resetFormFilters();
+                    this._filteredData(this.entries);
+                    this._clearSearchInput();
+                    this.resetView();
+            });
         });
-    });
+    };
 
     /**
      * Cambia la lista de markers en función de la selección de 
@@ -782,14 +789,12 @@ class PonchoMapFilter extends PonchoMap {
         this.filterChange((event) => {
             event.preventDefault();
             this._filteredData();
-        })
+        });
 
         setTimeout(this.gotoHashedEntry, this.anchor_delay);
         if(this.filters_visible){
             this._filterContainerHeight();
         }
-        this._accesibleMenu();
- 
     };
 };
 // end of class

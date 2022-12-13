@@ -8918,6 +8918,40 @@ body .main-footer {
     opacity: 1;
   }
 }
+/* Mensajes de error y warning */
+.poncho-map--message {
+  padding: 0.25em 0.75em;
+  border-radius: 8px;
+  margin: 1em 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  color: black;
+}
+.poncho-map--message.danger {
+  background: var(--tomate, #EF5350);
+  color: white;
+}
+.poncho-map--message.danger .title {
+  color: white !important;
+}
+.poncho-map--message.danger pre {
+  color: rgba(255, 255, 255, 0.9);
+}
+.poncho-map--message.warning {
+  background: var(--maiz, #FFCE00);
+  color: rgba(0, 0, 0, 0.8);
+}
+.poncho-map--message.warning .title {
+  color: rgba(0, 0, 0, 0.8) !important;
+}
+.poncho-map--message.warning pre {
+  color: black;
+}
+.poncho-map--message pre {
+  background: rgba(0, 0, 0, 0.1);
+  border: none;
+}
+
+/**/
 .poncho-map {
   --slider-width: 326px;
   --color-primary: var(--primary, black);
@@ -8950,7 +8984,6 @@ body .main-footer {
   /* leaflet popup */
   /* leaflet controls*/
 }
-.poncho-map .title,
 .poncho-map *.text-primary {
   color: var(--primary, #0072bb) !important;
 }
@@ -9044,6 +9077,7 @@ body .main-footer {
 }
 .poncho-map path.marker--active {
   filter: drop-shadow(2px 2px 2px rgb(249, 168, 34));
+  fill-opacity: 0.8 !important;
 }
 .poncho-map *:focus {
   outline: 3px solid var(--cielo, #039BE5) !important;

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head>
+  <link rel="profile" href="http://www.w3.org/1999/xhtml/vocab" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+  <link 
+      rel="stylesheet" 
+      href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+  <link 
+      rel="stylesheet" 
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" 
+      integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+      crossorigin="anonymous" 
+      referrerpolicy="no-referrer" />  
+  <link 
+      rel="stylesheet" 
+      href="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css">
+  <!-- /Base -->
+  <link rel="stylesheet" href="../../../dist/css/poncho.min.css" />
+  <title>Mapa con filtro y buscador</title>
+  <style>
+    html, body { height: 100%;}
+  </style>
+</head>
+<body class="p-t-3">
+  <h1>Template 7</h1>
+
+<!-- 
+MAPA CON BUSCADOR FILTRO  
+
+COPIAR DESDE ACÁ…
+-->
+<div class="col-md-12">
+<!-- PONCHO MAP SEARCH -->
+<form action="">
+  <div data-scope="poncho-map-search">
+      <div class="input-group">
+          <input 
+              type="search" 
+              name="search" 
+              autocomplete="off"
+              class="js-poncho-map-search__input form-control" 
+              list="list">
+              <datalist id="list" class="js-porcho-map-search__list"></datalist>
+          <span class="input-group-btn">
+            <button class="js-poncho-map-search__submit btn btn-primary">
+              <i class="fa fa-search text-white"> </i>
+            </button>
+          </span>
+      </div>
+      <div data-scope="poncho-map" class="m-b-1">
+          <div class="js-poncho-map__help small text-default"></div>
+      </div>
+  </div>
+</form>
+<!-- / PONCHO MAP SEARCH -->
+</div>
+<div class="col-md-12">
+<!-- PONCHO MAP -->
+<div class="poncho-map" data-scope="poncho-map">
+    <div
+        class="leaflet-container leaflet-touch leaflet-fade-anim 
+              leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
+        id="map"
+        style="height: 600px; width: 100%;"
+        tabindex="0">
+    </div>
+</div>
+<!-- / PONCHO MAP -->
+</div>
+
+<script 
+    src="https://code.jquery.com/jquery-3.6.0.min.js" 
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+    crossorigin="anonymous">
+</script>
+<script src="../../../src/js/utils.js"></script>
+<script src="../../../src/js/poncho-map.js"></script>
+<script src="../../../src/js/poncho-map-filter.js"></script>
+<script src="../../../src/js/poncho-map-search.js"></script>
+<script src="../../../src/js/gapi-sheet-data.js"></script>
+
+<!-- INCLUDE SCRIPTS -->
+<script src="https://www.argentina.gob.ar/sites/default/files/ponchotable/showdown.js"></script>
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/extensiones/showdown-extensions.js"></script>
+<script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.js"></script>
+<script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script>
+<link href="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.css" rel="stylesheet"/> 
+<link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.css" rel="stylesheet"/> 
+<link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.Default.css" rel="stylesheet"/> 
+<!-- <script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script> -->
+<!-- / INCLUDE SCRIPTS -->
+
+
+<!-- SCRIPTS -->
+<script>
+  // init
+  var map;
+  var search;
+  (async() => {
+    // Levanto datos desde un geoJSON
+    entries = await fetch_json("./data/municipio.json");
+
+    // map options
+    const options = {
+      "scope": "poncho-map",
+      "id": "gid",
+      "filters_info": false,
+      "title": "nam",
+      "headers": {
+          "fna": "FNA",
+      },
+      "marker": "cielo",
+      "_no_info": true,
+      "slider": true,
+      "hash": true,
+      "scroll": false,
+      "filters": [
+          // {
+          //   "legend":"Provincia",
+          //   "field": ["provincia", ""]
+          // },
+          {
+            "legend":"Región",
+            "field": ["region"]
+          }
+      ],
+    };
+
+    const extras = [
+        ['06', 'Región Centro y Buenos Aires', 'Buenos Aires'],
+        ['10', 'Región Noroeste', 'Catamarca'],
+        ['22', 'Región del Noreste', 'Chaco'],
+        ['26', 'Región Patagónica', 'Chubut'],
+        ['02', 'Región Centro y Buenos Aires', 'Ciudad Autónoma de Buenos Aires'],
+        ['14', 'Región Centro y Buenos Aires', 'Córdoba'],
+        ['18', 'Región del Noreste', 'Corrientes'],
+        ['30', 'Región Centro y Buenos Aires', 'Entre Ríos'],
+        ['34', 'Región del Noreste', 'Formosa'],
+        ['38', 'Región Noroeste', 'Jujuy'],
+        ['42', 'Región Nuevo Cuyo', 'La Pampa'],
+        ['46', 'Región Noroeste', 'La Rioja'],
+        ['50', 'Región Nuevo Cuyo', 'Mendoza'],
+        ['54', 'Región del Noreste', 'Misiones'],
+        ['58', 'Región Patagónica', 'Neuquén'],
+        ['62', 'Región Patagónica', 'Río Negro'],
+        ['66', 'Región Noroeste', 'Salta'],
+        ['70', 'Región Nuevo Cuyo', 'San Juan'],
+        ['74', 'Región Nuevo Cuyo', 'San Luis'],
+        ['78', 'Región Patagónica', 'Santa Cruz'],
+        ['82', 'Región Centro y Buenos Aires', 'Santa Fe'],
+        ['86', 'Región Noroeste', 'Santiago del Estero'],
+        ['94', 'Región Patagónica', 'Tierra del Fuego'],
+        ['90', 'Región Noroeste', 'Tucumán']
+    ];
+    const find = (id) => extras.find(e => e[0] == id);
+    entries.features.forEach((e, k) => {
+        const _id = e.properties.in1.substring(0,2);
+        const _extras = find(_id);
+        entries.features[k].properties.id_provincia = _id;
+        entries.features[k].properties.provincia = _extras[2];
+        entries.features[k].properties.region = _extras[1];
+    });
+
+    
+    map = new PonchoMapFilter(entries, options);
+    map.render();
+
+
+    const search_options = {
+        "scope": "poncho-map-search", 
+        "placeholder": "Buscar en el geoJSON",
+        "datalist": true,
+        "search_fields": ["fna"] 
+    };
+  search = new PonchoMapSearch(map, search_options);
+    search.render();
+  })();
+
+</script>
+<!-- / SCRIPTS -->
+</body>
+</html>

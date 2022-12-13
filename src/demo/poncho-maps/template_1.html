@@ -9,6 +9,7 @@
       integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
       crossorigin="anonymous">
     </script>
+
   <link 
       rel="stylesheet" 
       href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
@@ -21,29 +22,82 @@
   <link 
       rel="stylesheet" 
       href="https://capacita-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css?rfqjsh">
-  <!-- /Base -->
-  <link rel="stylesheet" href="../../../dist/css/poncho.min.css" />
-  <title>Mapa con buscador</title>
+  <link 
+      rel="stylesheet" 
+      href="../../../dist/css/poncho.min.css" />
+  <title>Mapa Efectores</title>
 </head>
-<body class="select-component">
-  <script src="../../../src/js/utils.js"></script>
-  <script src="../../../src/js/poncho-map.js"></script>
-  <script src="../../../src/js/poncho-map-filter.js"></script>
-  <script src="../../../src/js/poncho-map-search.js"></script>
-  <script src="../../../src/js/gapi-sheet-data.js"></script>
-
+<body>
 <!-- 
-MAPA CON BUSCADOR FILTRO  
+* Template externo
+* Marker por defeccto
+* Pop UP
+* headers desde Google Sheet
+* dos mapas uno con pop up y otro con slider
 -->
-<div class="col-md-12">
-<!-- PONCHO MAP SEARCH -->
-<form action="" id="poncho-map-search">
+<!-- INCLUDES -->
+<script src="https://www.argentina.gob.ar/sites/default/files/ponchotable/showdown.js"></script>
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/extensiones/showdown-extensions.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.2/leaflet.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.Default.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.min.css" rel="stylesheet"/> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.2/leaflet.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.min.js"></script>
+
+<script src="../../../src/js/utils.js"></script>
+<script src="../../../src/js/poncho-map.js"></script>
+<script src="../../../src/js/poncho-map-filter.js"></script>
+<script src="../../../src/js/poncho-map-search.js"></script>
+<script src="../../../src/js/gapi-sheet-data.js"></script>
+<!-- / INCLUDES -->
+<div class="container-fluid">
+<div class="row">
+<div class="col-md-6">
+  <!-- PONCHO MAP SEARCH -->
+  <form action="">
     <div data-scope="poncho-map-search">
         <div class="input-group">
             <input 
                 type="search" 
-                id="search"
                 name="search" 
+                autocomplete="off"
+                class="js-poncho-map-search__input form-control" 
+                list="js-porcho-map-search__list">
+            <datalist class="js-porcho-map-search__list"></datalist>
+            <span class="input-group-btn">
+              <button class="js-poncho-map-search__submit btn btn-primary">
+                  <i class="fa fa-search text-white"></i>
+              </button>
+            </span>
+        </div>
+        <div data-scope="uno" class="m-b-1">
+            <div class="js-poncho-map__help small text-default"></div>
+        </div>
+    </div>
+  </form>
+  <!-- / PONCHO MAP SEARCH -->
+  <!-- poncho map -->
+  <div class="poncho-map" data-scope="uno">
+    <div
+        class="leaflet-container leaflet-touch leaflet-fade-anim 
+              leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
+        id="map"
+        style="height: 600px;width: 100%;"
+        tabindex="0">
+    </div>
+  </div>
+  <!-- / poncho map -->
+
+</div>
+<div class="col-md-6">
+  <!-- PONCHO MAP SEARCH -->
+  <form action="" id="___poncho-map-search">
+    <div data-scope="poncho-map-search-2">
+        <div class="input-group">
+            <input 
+                type="search" 
+                name="search" 
+                autocomplete="off"
                 class="js-poncho-map-search__input form-control" 
                 list="js-porcho-map-search__list">
             <datalist id="js-porcho-map-search__list"></datalist>
@@ -53,124 +107,113 @@ MAPA CON BUSCADOR FILTRO
               </button>
             </span>
         </div>
-        <div data-scope="poncho-map" class="m-b-1">
+        <div data-scope="dos" class="m-b-1">
             <div class="js-poncho-map__help small text-default"></div>
         </div>
     </div>
-</form>
-<!-- / PONCHO MAP SEARCH -->
-</div>
-<div class="col-md-12">
-<!-- PONCHO MAP -->
-<div class="poncho-map" data-scope="poncho-map">
+  </form>
+  <!-- / PONCHO MAP SEARCH -->
+  <!-- PONCHO MAP -->
+  <div class="poncho-map" data-scope="dos">
     <div
-        class="leaflet-container leaflet-touch leaflet-fade-anim 
-              leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
-        id="map"
-        style="height: 600px; width: 100%;"
-        tabindex="0">
-    </div>
+    class="leaflet-container leaflet-touch leaflet-fade-anim 
+    leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
+    id="map2"
+    style="height: 600px; width: 100%;"
+    tabindex="0">
+  </div>
 </div>
 <!-- / PONCHO MAP -->
 </div>
-
-<!-- INCLUDE SCRIPTS -->
-<!-- si se usa markdown -->
-<script src="https://www.argentina.gob.ar/sites/default/files/ponchotable/showdown.js"></script>
-<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/extensiones/showdown-extensions.js"></script>
-<!-- obligatorios -->
-<link href="https://gis.argentina.gob.ar/js/leaflet/leaflet.css" rel="stylesheet"/>
-<link href="https://gis.argentina.gob.ar/js/leaflet/MarkerCluster.Default.css" rel="stylesheet"/>
-<link href="https://gis.argentina.gob.ar/js/leaflet/MarkerCluster.css" rel="stylesheet"/> 
-<script src="https://gis.argentina.gob.ar/js/leaflet/leaflet.js"></script>
-<script src="https://gis.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script>
-<script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
-<!-- / INCLUDE SCRIPTS -->
+</div>
+</div>
 
 <!-- SCRIPTS -->
 <script>
-  // init
+  var filter;
+  var filter2;
   (async() => {
     // GApi helpers
     const gapi = new GapiSheetData();
-    // fetch data
-    const googlesheet_data = await fetch_json( gapi.url("dataset", "13fMXLCN-aqeAVo6YH9eNP1ojljFWB0ocRR3sWNMYaIg") ); 
+    const geoJSON = await fetch_json("./data/test-data.geojson");
+    const googlesheet_data = await fetch_json("./data/response-efectores.json"); 
     const gapi_data = gapi.json_data(googlesheet_data);
-    // map options
+    const {entries, headers} = gapi_data;
+  
     const options = {
-      // El programa asume que los valores de latitud y longitud se 
-      // obtienen de columnas con esos mismos nombres. Si no fuera ese
-      // el caso, se debe especificar el nombre. 
-      //     "latidud": "lat",
-      //     "longitud": "lon",
-      // Ámbito/alcance del componente. Cambiar acá y en el html solo 
-      // si hay más de un mapa.
-      "scope": "poncho-map",
-      // El id se utiliza para identificar un marcador con una entrada.
-      // El programa usa el nombre «id» por defecto, si la columna tuviera
-      // otro nombre se debe reemplazar. 
-      //     Si el documento no necesita o no tiene un ID el programa 
-      // lo genera automáticamente para identificar el marker.
-      //     "id" : "id_con_otro_nombre",
-      // Nombre que se utiliza como título por defecto para los markers.
-      // También es importante para mejorar aspectos de accesibilidad.
-      "title": "nombre",
-      // Si se neceista usar markdown en los valores se activa con (true).
-      // Por defecto viene en (false). Incluye algunas extensiones Poncho.
-      "template_markdown": true,
-      // Define la estructura básica para el popUp o slider.
+      "title": "name",
+      "headers": headers,
       "template_structure" : {
-          // Defino los valores que deseo mostrar o excluyo los que 
-          // están de más. El uso depende de la practicidad.
-          "values": ["tipo", "descripcion", "direccion", "telefono", "email"],
-          //     "exclude": ["id", "inhibicion_puberal", "hormonizacion_adolescentes"]
-          // Con mixing puedo armar grupo de columnas separadas con 
-          // un caracter. El key, sea uno inventado o uno que forma 
-          // parte del JSON, debo agregarlo en «values».
-          "mixing": [
-              {
-                  "key": "direccion",
-                  "values": ["direccion", "localidad", "provincia"],
-                  "separator": ", "
-              },
-          ],
+          "values": ["address", "locality", "province", "phone", "email", "reference"],
       },
-      // Define los headers. En este caso usa los definidos el la 
-      // fila 2 del GoogleSheet.
-      "headers": gapi_data.headers,
-      // Define el color del marker. En este caso, si existe la columna 
-      // «color» y ésta tiene definido un nombre de color Poncho*, 
-      // reemplaza el color del marker. También se puede usar "marker":"azul".
-      "marker" : (self, ele) => (typeof ele.color !== "undefined" && ele.color != "" ? ele.color : "azul"),
-      // Slider con información. Sin ésta opción o con su valor en (false)
-      // reemplaza el PopUp por un slider.
-      "slider": true, // Activo/Inactivo
-      // Imprime el identificador de la entrada la barra de url.
-      "hash": true, // Activo/Inactivo
-      // Cuando se accede por primera vez a la página y en la dirección
-      // hay un hash con id, la página hace scroll hasta llegar a la
-      // ubicación del mapa.
-      //    "scroll": true, // Activo/Inactivo
+      "scope": "uno",
+      "hash": true,
+      "scroll": true,
+      "slider": true
     };
-    // render map
-    const poncho_filter = new PonchoMapFilter(gapi_data.entries, options);
-    poncho_filter.render();
+    filter = new PonchoMapFilter(entries, options);
+    filter.render();
 
-    // Buscador
     const search_options = {
-        // Ámbito/alcance del componente. Cambiar solo si hay dos mapas. (REQUERIdo)
         "scope": "poncho-map-search", 
-        // Placeholder del campo de formulario «search»
-        "placeholder": "Buscar centro",
-        // Columnas donde debe buscar un término.
-        "search_fields": ["nombre", "provincia", "localidad", "descripcion"] 
+        "placeholder": "Buscar en el geoJSON",
+        "datalist": true,
+        "search_fields": ["title"],
+        "datalist": true 
     };
-    const search = new PonchoMapSearch(poncho_filter, search_options);
+    const search = new PonchoMapSearch(filter, search_options);
     search.render();
+
+
+    // SEgundo mapa
+    const options_dos = {
+      "title": "nombre",
+      "headers": headers,
+      "template_markdown": true,
+      "allowed_tags": ["h1", "strong", "a"],
+      "_template_structure" : {
+          "values": ["ubicacion", "phone", "email", "reference"],
+          "mixing": [
+            {
+                "key": "ubicacion",
+                "header": "Ubicación",
+                "values": ["address", "locality", "province"],
+                "separator": ", "
+            }
+          ]
+      },
+      "map_selector": "map2",
+      "scroll": true,
+      "hash": true,
+      "scope": "dos",
+      "slider": true,
+      "filters": [
+          {
+            "legend" : "Filtrar por título",
+            "field": ["type", "checked"],
+            "fields": false
+          },
+          {
+            "legend":"institución",
+            "field": ["institucion"]
+          }
+      ],
+    };
+
+    filter2 = new PonchoMapFilter(geoJSON, options_dos);
+    filter2.render();
+
+    const search_options2 = {
+        "scope": "poncho-map-search-2", 
+        "placeholder": "Buscar en el geoJSON",
+        "datalist": true,
+        "search_fields": ["title"],
+        "datalist": true 
+    };
+    const search2 = new PonchoMapSearch(filter2, search_options2);
+    search2.render();
   })();
 </script>
 <!-- / SCRIPTS -->
-
-
 </body>
 </html>
