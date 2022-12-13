@@ -529,9 +529,9 @@ class PonchoMapFilter extends PonchoMap {
     usingFilters = () => {
         const result = this.defaultFiltersConfiguration().every(
             (e) => {
-              return document
-                    .querySelector(`#id__${e[2]}__${e[0]}__${e[1]}`)
-                    .checked;
+                return document
+                      .querySelector(`#id__${e[2]}__${e[0]}__${e[1]}`)
+                      .checked;
         });
         return result;
     };
@@ -569,10 +569,10 @@ class PonchoMapFilter extends PonchoMap {
      * @returns {integer} Total de ocurrencias. 
      */
     _countOccurrences = (feature, val, index) => {
-      const ocurrences = feature.reduce((a, v) => {
-          return val.some(e => v.properties[index].includes(e)) ? a + 1 : a
-      }, 0);
-      return ocurrences;
+        const ocurrences = feature.reduce((a, v) => {
+            return val.some(e => v.properties[index].includes(e)) ? a + 1 : a
+        }, 0);
+        return ocurrences;
     };
 
     /**
@@ -618,7 +618,7 @@ class PonchoMapFilter extends PonchoMap {
             i.style.opacity = ".75";
             i.style.marginLeft = ".5em";
             i.style.marginRight = ".25em";
-            i.classList.add("fa","fa-info-circle","small","text-info");
+            i.classList.add("fa", "fa-info-circle","small", "text-info");
             i.title = `${field[1]} resultado${plurals}`;
             i.setAttribute("aria-hidden", "true");
 
@@ -723,6 +723,7 @@ class PonchoMapFilter extends PonchoMap {
             this._urlHash();
         }
         this._setFetureAttributes();
+        this._accesibleMenu();
     };
 
     /**
@@ -788,13 +789,12 @@ class PonchoMapFilter extends PonchoMap {
         this.filterChange((event) => {
             event.preventDefault();
             this._filteredData();
-        })
+        });
 
         setTimeout(this.gotoHashedEntry, this.anchor_delay);
         if(this.filters_visible){
             this._filterContainerHeight();
         }
-        this._accesibleMenu();
     };
 };
 // end of class

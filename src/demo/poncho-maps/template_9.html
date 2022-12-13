@@ -24,25 +24,6 @@
   <!-- /Base -->
   <link rel="stylesheet" href="../../../dist/css/poncho.min.css" />
   <title>Mapa con filtro y buscador</title>
-  <style>
-    html, body { height: 100%;}
-    *.font-weight-normal { font-weight: 400;}
-
-    /* The animation code */
-    @keyframes example {
-      0% { filter: grayscale(1);}
-      25% { filter:grayscale(.5);}
-      100% {filter: grayscale(0) }
-    }
-
-    /* The element to apply the animation to */
-    .img-in {
-      animation-name: example;
-      animation-duration: 3s;
-    }
-
-
-  </style>
 </head>
 <body class="p-t-3">
   <h1>Template 9</h1>
@@ -51,8 +32,6 @@
   <script src="../../../src/js/poncho-map-filter.js"></script>
   <script src="../../../src/js/poncho-map-search.js"></script>
   <script src="../../../src/js/gapi-sheet-data.js"></script>
-
-
 <!-- 
 MAPA CON BUSCADOR FILTRO  
 
@@ -123,9 +102,10 @@ COPIAR DESDE ACÁ…
 
     // map options
     const options = {
+      "template": (a, b) => "<h2>" + b.nombre + "</h2><ul><li>" +  Object.values(b).filter(e => e).join("</li><li>") + "</li></ul>",
       "error_reporting": 1,
       "template": (self, entry) => {
-          entry.foto_html = (entry.foto ? `<img class="img-in" alt="${entry.name}" src="${entry.foto}" style="border-radius:9px; border:1px solid #ddd" />` : ""); 
+          entry.foto_html = (entry.foto ? `<img class="img-in" alt="${entry.name}" src="${entry.foto}" style="border-radius:6px; border:1px solid #eee" />` : ""); 
           entry.boton_html = (entry.boton ? 
               `<a href="${entry.boton}">Conocer más sobre ${entry.nombre}</a>` : "");
           return self.defaultTemplate(self, entry);
@@ -138,7 +118,7 @@ COPIAR DESDE ACÁ…
       "title": "nombre",
       "template_innerhtml": true,
       "template_markdown": true,
-      "allowed_tags": [ "a", "sup", "img"],
+      "allowed_tags": ["a", "sup", "img"],
       "marker_cluster_options": {
                 "spiderfyOnMaxZoom": true,
                 "showCoverageOnHover": false,

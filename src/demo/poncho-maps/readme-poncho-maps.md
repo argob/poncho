@@ -1,7 +1,8 @@
 
+
 # PonchoMap
 
-## Opciones generales
+## <a id="opciones" href="#opciones">¶</a> Opciones generales
 
 | Parámetro | Tipo | Default | Descripción |
 |:---|:---|:---|:---|
@@ -10,12 +11,11 @@
 | latitud | `string` | latitud | Nombre de la columna con el valor de latitud. Si la fuente de datos usa otro nombre se define con esta opción. Ej. `'latitud':'lat'`.| 
 | longitud | `string` | longitud | Nombre de la columna con el valor de longitud. Si la fuente de datos usa otro nombre se define con esta opción. Ej. `'longitud':'lng'`.| 
 | template | `object` | `null` | Define la función que controla el template para el popUp o el slider.| 
-| template_structure | `object` | `{}` | Permite definir un listado de valores a mostarar en el template por defecto o excluir valores que no se deseen mostrar. | 
+| template_structure | `object` | `{}` | Permite definir un listado de valores a mostarar en el template por defecto o excluir valores que no se deseen mostrar. <br><br>Ver opciones para [template_structure](#opciones-template-structure). | 
 | template_innerhtml | `boolean` | `false` | Permite incrustar html dentro de la descripción.|
 | allowed_tags | `object` | `[]` | Permite configurar un listado de etiquetas HTML que se imprimirán como parte del DOM y no como un texto. Para habilitar todas las etiquetas se utiliza `["*"]`. Si se quiere especificar cuales deben usarse, ej.: `["a", "strong"]`. 
 | headers | `object` | `{}` | Permite definir títulos dinámicos mapeando la clave del objeto que contiene la información con los encabezados | 
-| header_icons | `object` | `{}` | Permite definir un ícono para cada uno de los headers de la entrada. (Ver opciones para [header_icons](#opciones-para-header-icons) ) | 
-| lead | `object` | `{}` | Agrega una volanta en el template por defecto. | 
+| header_icons | `object` | `{}` | Permite definir un ícono para cada uno de los headers de la entrada.<br><br>Ver opciones para [header_icons](#opciones-header-icons). | 
 | hash | `boolean` | `false` | Habilita la acción por la cual, cada vez que se hace *clic* en un marker se reemplaza el hash en la barra de dirección del navegador.| 
 | slider | `boolean` | `false` | Habilita el slider y reemplaza el popUp.| 
 | anchor_delay | `integer` | 0 | Tiempo de demora entre que se carga la página y se muestra el marker pasado por url. El valor es en milisegundos (1" = 1000). | 
@@ -26,8 +26,10 @@
 | map_anchor_zoom | `integer` | 16 | Configuración del zoom para los markers que se deben visualizar pasándo por hash el id del marker.| 
 | map_zoom | `integer` | 4 | Configuración del valor inicial para el zoom del mapa.| 
 | map_view | `Array Object` | `[-40.44, -63.59]` | Geoposicionamiento inicial del mapa. | 
+| marker_cluster_options | `Object` | <pre style="font-size:80%">'marker_cluster_options': {<br>    'spiderfyOnMaxZoom': true,<br>    'showCoverageOnHover': false,<br>    'zoomToBoundsOnClick': true,<br>    'maxClusterRadius': 10,<br>    'spiderfyDistanceMultiplier': 1.5,<br>    'spiderLegPolylineOptions': {<br>        'weight': 1,<br>        'color': "#666",<br>        'opacity': 0.5,<br>    }<br>}</pre> | Opciones [Leaflet Clusters](https://github.com/Leaflet/Leaflet.markercluster). |
 
-### Opciones para `template_structure`
+
+### <a id="opciones-template-structure"></a>Opciones para `template_structure` [⏎](#opciones "Ir al listado de opciones generales")
 
 ```js
 const options = {
@@ -53,8 +55,8 @@ const options = {
 | Parámetro | Tipo | Default | Descripción |
 |:---|:---|:---|:---|
 | template_container_classlist | `Array()` | `['info-container']` | Define la lista de clases CSS que pueden agregarse al contenedor del listado de terminos y descripciones. | 
-| lead | `object` | `{}` | Volanta _(Ver opciones de lead)_ |
-| mixing | `object` | `{}` | Permite crear una entrada uniendo cadenas de texto o valores de la entrada _(Ver opciones de mixing)_ |
+| lead | `object` | `{}` | Volanta.<br><br>Ver opciones para [lead](#opciones-para-lead). |
+| mixing | `object` | `{}` | Permite crear una entrada uniendo cadenas de texto o valores de la entrada.<br><br>Ver opciones para [mixing](#opciones-para-mixing). |
 | header | `function` | `false` | Permite modificar el header del template retornando un `string` desde una función. <br>`"header": (self, entry) => string` |
 | title | `string` | "" | Permite redefinir la clave que se utiliza para el panel de información teniendo precedencia sobre la opción general _`title`_. |
 | template_title_classlist | `Array()` | `['h4','title']` | Listado de selectores CSS se que aplicarán en la etiqueta HTML asignada título.| 
@@ -65,7 +67,7 @@ const options = {
 | template_dt | `strng` | `dt` | Define la etiqueta HTML para el término.| 
 | template_dd | `strng` | `dd` | Define la etiqueta HTML para la descripción.| 
 
-#### Opciones para `lead`
+#### <a id="opciones-para-lead"></a>Opciones para `lead` [⏎](#opciones-template-structure "Ir al listado de opciones para template_structure")
 
 ```js
 "template_structure": {
@@ -83,7 +85,7 @@ const options = {
 | key | `string` | "" | Clave de la entrada del JSON o del geoJSON _feature.properties_. | 
 | css | `string|function` | "" | **String**<br>Definición de css, ej: `"text-primary bg-warning"`.<br><br>**Función** <br>`css: (self, entry) => string;`<br>Dónde `self` el la instancia del objeto *PonchoMap* o *PonchoMapFilter* y `entry` corresponde a una entrada o feature del JSON. |
 | style | `string\|function` | "" | **String**<br>Definición para _style_, ej:<br>`"color: orange; font-size:2em; margin: 2em auto;"`.<br><br>**Función** <br>`css: (self, entry) => string;`<br>Dónde `self` el la instancia del objeto *PonchoMap* o *PonchoMapFilter* y `entry` corresponde a una entrada o feature del JSON. |
-#### Opciones para `mixing`
+#### <a id="opciones-para-mixing"></a>Opciones para `mixing` [⏎](#opciones-template-structure)
 
 ```js
 "template_structure": {
@@ -107,9 +109,7 @@ const options = {
 | separator | `string` | "" | Caracter o cadena de caracteres con la que se van a concatener los valores. |
 
 
-### <a id="opciones-para-header-icons"></a> Opciones para `header_icons`
-
-
+### <a id="opciones-header-icons"></a> Opciones para `header_icons` [⏎](#opciones)
 
 ```js
 const options = {
@@ -129,32 +129,32 @@ const options = {
 
 | Parámetro | Tipo | Default | Descripción |
 |:---|:---|:---|:---|
-| class | `string\|function` | {} | **String**<br>Definición de *class*, ej: `"text-primary bg-warning"`.<br><br>**Función** <br>`class: (self, entry) => string;`<br>Dónde `self` es la instancia del objeto *PonchoMap* o *PonchoMapFilter* y `entry` corresponde a una entrada en `feature.properties` del JSON. |
-| style | `string\|function` | {} | **String**<br>Definición de *style*, ej: `"background-color:gold; color:#333;"`.<br><br>**Función** <br>`style: (self, entry) => string;`<br>Dónde `self` es la instancia del objeto *PonchoMap* o *PonchoMapFilter* y `entry` corresponde a una entrada en `feature.properties` del JSON. |
-| html | `string\|function` | {} | dsdf |
+| class | `string|function` | {} | **String**<br>Definición de *class*, ej: `"text-primary bg-warning"`.<br><br>**Función** <br>`class: (self, entry) => string;`<br>Dónde `self` es la instancia del objeto *PonchoMap* o *PonchoMapFilter* y `entry` corresponde a una entrada en `feature.properties` del JSON. |
+| style | `string|function` | {} | **String**<br>Definición de *style*, ej: `"background-color:gold; color:#333;"`.<br><br>**Función** <br>`style: (self, entry) => string;`<br>Dónde `self` es la instancia del objeto *PonchoMap* o *PonchoMapFilter* y `entry` corresponde a una entrada en `feature.properties` del JSON. |
+| html | `string|function` | {} | **String**<br>Retornando un string HTML, ej.<br>`<i class="icono-arg-cannabis-medicinal-1"></i>`<br><br>**Función** <br>Retornando un string en una función ej.<br>`(self, entry) => string;` |
 
 
-#### Clusters de Leaflet
 
-| Parámetro | Tipo | Default | Descripción |
-|:---|:---|:---|:---|
-| marker_cluster_options | `Object` | <pre>'marker_cluster_options': {<br>    'spiderfyOnMaxZoom': true,<br>    'showCoverageOnHover': false,<br>    'zoomToBoundsOnClick': true,<br>    'maxClusterRadius': 10,<br>    'spiderfyDistanceMultiplier': 1.5,<br>    'spiderLegPolylineOptions': {<br>        'weight': 1,<br>        'color': "#666",<br>        'opacity': 0.5,<br>    }<br>}</pre> | Opciones Leaflet. Ver <https://github.com/Leaflet/Leaflet.markercluster> |
-
-### PonchoMapFilter
+## <a id="opciones-poncho-map-filter" href="#opciones-poncho-map-filter">¶</a> Opciones para PonchoMapFilter
 
 | Parámetro | Tipo | Default | Descripción |
 |:---|:---|:---|:---|
-| **filters** |||
-| *legend* | `string` | `false` |
-| field | `Object` | `false` |
-| fields | `Object` | `false` |
+| filters |`object`| `false` | |
 | filters_visible | `boolean` | `false` | Configura el estado inicial del panel de filtros. |
 | filters_info | `boolean` | `false` | Muestra un icono con un _tooltip_ con el total de resultados por filtro. |
+
+### Opciones para `filters`
+
+| Parámetro | Tipo | Default | Descripción |
+|:---|:---|:---|:---|
+| legend | `string` | `false` ||
+| field | `Object` | `false` ||
+| fields | `Object` | `false` ||
+
 
 #### Ejemplo de implementación de filtros
 ```js
 const options = {
-  ...
   'filters' :[
     {
       'legend' : 'Ver',
@@ -177,7 +177,12 @@ const options = {
 Este ejemplo tiene dos filtros generales: estado_funcionamiento y provincia. Éstas son columnas de la tabla —o entrada—, donde se obtienen los datos. El usuario deberá configurar cada una de las entradas asignando parámetros del siguiente modo:
 
 ```js
-['provincia', 'Noreste Argentino', ['Chaco', 'Corrientes', 'Formosa', 'Misiones'], 'checked'],
+[
+    'provincia',
+    'Noreste Argentino',
+    ['Chaco', 'Corrientes', 'Formosa', 'Misiones'],
+    'checked'
+],
 ```
 
 ### Opciones
@@ -187,11 +192,9 @@ Este ejemplo tiene dos filtros generales: estado_funcionamiento y provincia. És
 | 0 | `string` | Nombre de la columna por la que se quiere filtrar. |
 | 1 | `string` | Nombre que se verá en el `<label>` del checkbox |
 | 2 | `object` | Listado de valores que se deberá buscar en cada iteración de búsqueda. |
-| 3 | { `string` \| `boolean`, ['checked',`false`] } | Designa el estado inicial del checkbox. |
+| 3 | {`string|boolean`, ['checked',`false`]} | Designa el estado inicial del checkbox. |
 
-***
-
-
+----
 
 ### PonchoMapSearch
 
@@ -227,12 +230,12 @@ search = new PonchoMapSearch(poncho_map, search_options);
 search.render();
 ```
 
-## Métodos
+## <a id="metodos" href="#metodos">¶</a> Métodos
 
 ### PonchoMap
 
 | Método | Retrono | Descripción |
-|--|--|--|
+|:--|:--|:--|
 | entry | `object` | Retrona una entrada pasándo su id por parámetro. |
 | selected_marker | `object` | Retorna el último marker seleccionado en un objeto con dos índices; el primero es la entrada asignada al *marker* y el segundo es la instancia *leaflet* de ese *marker*  |
 | resetView | `void` | Reestablece la posión y el zoom del mapa y los *markers* a su posición inicial por defecto. |
@@ -246,7 +249,7 @@ search.render();
 ### PonchoMapFilter
 
 | Método | Retrono | Descripción |
-|--|--|--|
+|:--|:--|:--|
 | filteredEntries | `object` | Objeto con las entradas filtradas. |
 | totals | `object` | Retorna la cantidad de markers por cada uno de los filtros. Asi como retorna los totales también la posición del filtro. |
 | formFilters | `object` | Retorna los fitros marcados. Los datos de retorno son: el grupo de filtro y el indice en el grupo. |

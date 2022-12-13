@@ -119,12 +119,7 @@ class PonchoMap {
                 {
                     "text": "Ayudá a mejorar el mapa",
                     "anchor": "https://www.argentina.gob.ar/sugerencias",
-                },
-                {
-                  "text": "Restablecer mapa",
-                  "anchor": `#`,
-                  "class": `js-poncho-map-reset${this.scope_sufix}`
-              }
+                }
             ]
         };
         let opts = Object.assign({}, defaults, options);
@@ -479,12 +474,14 @@ class PonchoMap {
 
     /**
      * Limpia el contenido.
+     * @return {undefined}
      */
     _clearContent = () => document
         .querySelector(`.js-content${this.scope_sufix}`).innerHTML = "";
 
     /**
      * Abre o cierra el slider.
+     * 
      */
     toggleSlider = () => { 
         if(this.no_info){
@@ -708,7 +705,7 @@ class PonchoMap {
     removeHash = () => history.replaceState(null, null, ' ');
 
     /**
-     * Si la URL tiene un valor por hash lo obtiene considerandolo su id.
+     * Si la URL tiene un valor por _hash_ lo obtiene considerandolo su id.
      * @returns {void}
      */
     hasHash = () => {
@@ -729,7 +726,7 @@ class PonchoMap {
     };
 
     /**
-     * Muestra un marker pasándo por parámetro su id.
+     * Muestra un marker
      * @param {string|integer} id Valor identificador del marker. 
      */
     gotoEntry = (id) => {
@@ -759,6 +756,12 @@ class PonchoMap {
         });
     };
 
+    /**
+     * Asigna un evento en el onclick a un layer.
+     * @todo Buscar un método más eficiente para lograr esto sin tener
+     * que evaluar el tipo de objeto geoJSON.
+     * @param {object} layer 
+     */
     _setClickeable = (layer) => {
         layer.on("keypress click", (e) => {
             document.querySelectorAll(".marker--active")
@@ -852,18 +855,21 @@ class PonchoMap {
      * Titulo para el default template
      * 
      * @summary El título puede tener un formato por defecto, tomando el
-     * índice de la entrada seleccionada a tal fin en this.title, cuya
+     * índice de la entrada seleccionada a tal fin en `this.title`, cuya
      * asignación es general y se utiliza para otras propiedades como:
      * texto alterantivo de los markers o title de un marker.
-     *     También se puede especificar un title particular en la entrada
+     * 
+     * También se puede especificar un title particular en la entrada
      * `template_structure.title`, ésta opción se ofrece como una 
      * alternativa que puede estar dada por el formato en el texto u
      * otras características consideradas por el editor. 
-     *     Por último puede recibir de: this.template_header, una función
+     * 
+     * Por último puede recibir de: this.template_header, una función
      * que retorne un html en formato string. Es importante tener en cuenta
      * que el uso de markdown y la insersión directa de html puedo producir
      * una vulnerabilidad XSS, tenga a bien asignar cuidadosamente el 
      * uso de estas opciones. 
+     * 
      * @see https://showdownjs.com/docs/xss/#strip-html-tags-is-not-enough
      * @param {object} row Entrada 
      */
