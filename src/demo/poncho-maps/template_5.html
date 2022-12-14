@@ -194,7 +194,7 @@ COPIAR DESDE ACÁ…
           "definition_tag": "div",
           "lead": {
               "key": "type", 
-              class: (self, entry, value) => {
+              css: (self, entry, value) => {
                   if(entry.type == "Polygon"){
                       return "badge bg-verdin text-white"; 
                   } else if(entry.type == "Point"){
@@ -233,40 +233,24 @@ COPIAR DESDE ACÁ…
                   },
               ],
       },
-      "header_icons": {
-          "title": {
-              "class": "icono-arg-cannabis-medicinal-1 text-primary", 
-              "style": (self, entry, value) => {
-                  if(entry.id == "4-olivia-bouillet"){
-                      return "margin-right:1em; background:gold";
-                  }
-              }
+      "header_icons": [
+          {
+              "key": "title",
+              "css": "icono-arg-cannabis-medicinal-1 text-primary"
           },
-          "direccion": {
-              "html": (self, entry, value) => {
-                  if(entry.id == "4-olivia-bouillet"){
-                      return `<div>
-                          <hr>
-                          <i
-                              aria-hidden="true"
-                              class="icono-arg-cannabis-medicinal-1 text-verdin 
-                                      fa-3x text-center m-b-1"
-                              style="display:block">
-                          </i>
-                      </div>`;
-                  } else {
-                      return `<i
-                            aria-hidden="true"
-                            class="icono-arg-cannabis-medicinal-1 text-verdin">
-                        </i>`;
-                  }
-              }
+          {
+              "key": "direccion",
+              "html": `<i aria-hidden="true"
+                          class="icono-arg-cannabis-medicinal-1 text-verdin">
+                        </i>`
+
           },
-          "id": {
-              "class": "icono-arg-sitios-accesibles text-arandano",
+          {
+              "key": "id",
+              "css": "icono-arg-sitios-accesibles text-arandano",
               "style": "margin-bottom:3em"
           }
-      },
+      ],
       "headers": {
           "title": "Nombre",
           "id": "Identificador",
@@ -274,14 +258,14 @@ COPIAR DESDE ACÁ…
           "email": "Email"
       },
       "marker": "tomate",
-      "marker": (self, ele) => {
+      "_marker": (self, ele) => {
           const icon_color = (ele.hasOwnProperty("icon_color")) ? ele.icon_color : "azul";
           // return self.icon(icon_color); 
           // Alternativa
           const img_url = "https://cdn0.iconfinder.com/data/icons/maps-and-navigation-2-1/52/86-512.png";
           const id = (ele.hasOwnProperty("ID")) ? ele.ID : false;
           const icon = (ele.hasOwnProperty("icon")) ? ele.icon : false;
-          console.log(id)
+
           if(id == "8"){
               return iconPoncho(icon_color, icon, {container:true, invert:true});
           } else if (id == "13"){
@@ -327,6 +311,10 @@ COPIAR DESDE ACÁ…
    search = new PonchoMapSearch(map, search_options);
     search.render();
   })();
+
+
+
+
 
 </script>
 <!-- / SCRIPTS -->
