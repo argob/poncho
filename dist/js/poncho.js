@@ -1904,7 +1904,7 @@ class PonchoMap {
             "scroll": false,
             "hash": false,
             "headers": {},
-            "header_icons": {},
+            "header_icons": [],
             "map_selector": "map",
             "anchor_delay": 0,
             "slider_selector": ".slider",
@@ -2863,20 +2863,18 @@ class PonchoMap {
         }
 
         const {
-            key = false, 
-            css: classlist = "small", 
-            style = false } = this.template_structure.lead;
+            key = false, css = "small", style = false 
+        } = this.template_structure.lead;
 
         const p = document.createElement("p");
         p.textContent = entry[key];
-        
         // Style definitions
         const setStyle = this._setType(style, entry);
         if(setStyle){
             p.setAttribute("style", setStyle);
         }
         // CSS Class
-        const setClasslist = this._setType(classlist, entry);
+        const setClasslist = this._setType(css, entry);
         if(setClasslist){
             p.classList.add(...setClasslist.split(" "));
         }
@@ -2886,20 +2884,19 @@ class PonchoMap {
     /**
      * Ícono para el término
      * 
+     * @param {object} entry Entrada de datos. 
      * @param {string} key Key del header. 
      * @returns {object|boolean} Si existe el key retorna un objeto 
      * element de otro modo un boolean `false`.
      */
-    _termIcon = (row, key) => {
-        if(this.header_icons.hasOwnProperty(key)){
-            const {
-                class:classlist=false,
-                style=false,
-                html=false} = this.header_icons[key];
+    _termIcon = (entry, key) => {
+        const item = this.header_icons.find(e => e.key == key);
 
-            const setHtml = this._setType(html, row, key);
-            const setStyle = this._setType(style, row, key);
-            const setClasslist = this._setType(classlist, row, key);
+        if(item){
+            const {css=false, style=false, html=false} = item;
+            const setHtml = this._setType(html, entry, key);
+            const setStyle = this._setType(style, entry, key);
+            const setClasslist = this._setType(css, entry, key);
 
             if(setClasslist){
                 const icon = document.createElement("i");
@@ -3537,7 +3534,7 @@ class PonchoMapFilter extends PonchoMap {
             // Arma el listado de mensajes.
             const ul = document.createElement("ul");
             ul.classList.add("m-b-0", "list-unstyled");
-            ul.setAttribute("role", "region");
+            // ul.setAttribute("role", "region");
             ul.setAttribute("aria-live", "polite");
             const li = content => { 
                 const item = document.createElement("li"); 
