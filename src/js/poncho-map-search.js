@@ -216,7 +216,7 @@ class PonchoMapSearch {
                 element.innerHTML = "";
                 const options = (content) => {
                     const opt = document.createElement("option"); 
-                    opt.textContent = content; 
+                    opt.value = content; 
                     return opt;
                 };
                 // Conexto el input con el datalist.
