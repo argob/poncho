@@ -32,8 +32,10 @@
 <script src="../../../src/js/poncho-map-search.js"></script>
 <script src="../../../src/js/gapi-sheet-data.js"></script>
 
-
-
+<link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
 
 <!-- PONCHO MAP -->
 <div class="poncho-map" data-scope="poncho-map">
@@ -41,11 +43,30 @@
         class="leaflet-container leaflet-touch leaflet-fade-anim 
               leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
         id="map"
-        style="height: 270px; width: 100%;"
+        style="height: 400px; width: 100%;"
         tabindex="0">
     </div>
 </div>
 <!-- / PONCHO MAP -->
+
+<h1>Un solo punto</h1>
+<p>Mapa de un solo punto sin sin el uso de popUp o slider. </p>
+
+<pre><code class="language-html">&lt;!-- SCRIPTS --&gt;
+&lt;script&gt;
+    const latitude = -34.60759;
+    const longitude = -58.37393;
+    const mapOptions = {
+      "scope": "poncho-map",
+      "no_info": true,
+      "map_zoom": 17, 
+      "map_view": [latitude, longitude]
+    };
+    const filter = new PonchoMap([{"latitud": latitude, "longitud": longitude}], mapOptions);
+    filter.render();
+&lt;/script&gt;
+&lt;!-- / SCRIPTS --&gt;</code></pre>
+
 
 <!-- INCLUDE SCRIPTS -->
 <script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.js"></script>

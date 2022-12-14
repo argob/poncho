@@ -40,10 +40,10 @@
 | map_anchor_zoom | `integer` | 16 | Configuración del zoom para los markers que se deben visualizar pasándo por hash el id del marker.| 
 | map_zoom | `integer` | 4 | Configuración del valor inicial para el zoom del mapa.| 
 | map_view | `Array Object` | `[-40.44, -63.59]` | Geoposicionamiento inicial del mapa. | 
-| marker_cluster_options | `Object` | <pre style="font-size:80%">'marker_cluster_options': {<br>    'spiderfyOnMaxZoom': true,<br>    'showCoverageOnHover': false,<br>    'zoomToBoundsOnClick': true,<br>    'maxClusterRadius': 10,<br>    'spiderfyDistanceMultiplier': 1.5,<br>    'spiderLegPolylineOptions': {<br>        'weight': 1,<br>        'color': "#666",<br>        'opacity': 0.5,<br>    }<br>}</pre> | Opciones [Leaflet Clusters](https://github.com/Leaflet/Leaflet.markercluster). |
+| marker_cluster_options | `Object` | `"marker_cluster_options": {}` | Ver opciones para [marker_cluster_options](#opciones-marker-cluster-options) |
 
 
-### <a id="opciones-template-structure"></a>Opciones para `template_structure` [⏎](#opciones "Ir al listado de opciones generales")
+### <a id="opciones-template-structure"></a>Opciones para `template_structure` [⏎](#opciones "Ir al listado de opciones generales").
 
 ```js
 const options = {
@@ -127,23 +127,26 @@ const options = {
 
 ```js
 const options = {
-    "header_icons": {
-        "title": {
-            "class": "icono-arg-cannabis-medicinal-1 text-primary", 
-            "style": (self, entry, value) => {
-                if(entry.id == "4"){
-                    return "margin-right:1em; background:gold";
-                }
-            }
-        }
-    },
-    ...
+    "header_icons": [
+        {
+            "key": "title",
+            "css": "icono-arg-cannabis-medicinal-1 text-primary", 
+            "style": "border:2px solid black;"
+        },
+        {
+            "key": "ubicacion",
+            "css": "icono-arg-marker text-arandano", 
+            "style": "border:2px solid black;"
+        },
+        ...
+    ]
 }
 ```
 
 | Parámetro | Tipo | Default | Descripción |
 |:---|:---|:---|:---|
-| class | `string|function` | {} | **String**<br>Definición de *class*, ej: `"text-primary bg-warning"`.<br><br>**Función** <br>`class: (self, entry) => string;`<br>Dónde `self` es la instancia del objeto *PonchoMap* o *PonchoMapFilter* y `entry` corresponde a una entrada en `feature.properties` del JSON. |
+| key | `string` |  | Define la clave a la que se le asigna el icono. |
+| css | `string|function` | {} | **String**<br>Definición de *css*, ej: `"text-primary bg-warning"`.<br><br>**Función** <br>`css: (self, entry) => string;`<br>Dónde `self` es la instancia del objeto *PonchoMap* o *PonchoMapFilter* y `entry` corresponde a una entrada en `feature.properties` del JSON. |
 | style | `string|function` | {} | **String**<br>Definición de *style*, ej: `"background-color:gold; color:#333;"`.<br><br>**Función** <br>`style: (self, entry) => string;`<br>Dónde `self` es la instancia del objeto *PonchoMap* o *PonchoMapFilter* y `entry` corresponde a una entrada en `feature.properties` del JSON. |
 | html | `string|function` | {} | **String**<br>Retornando un string HTML, ej.<br>`<i class="icono-arg-cannabis-medicinal-1"></i>`<br><br>**Función** <br>Retornando un string en una función ej.<br>`(self, entry) => string;` |
 
@@ -278,6 +281,26 @@ const opciones = {
       'codigo_postal': 'Código Postal'
     } 
 };
+```
+
+### <a id="opciones-marker-cluster-options"></a>Opciones para `marker_cluster_options` [⏎](#opciones "Ir al listado de opciones generales")
+
+Se puede obtener el extenso listado de opciones y su documentación en [Leaflet Clusters](https://github.com/Leaflet/Leaflet.markercluster). 
+
+#### Valores por defecto
+```js
+‘marker_cluster_options’: {  
+    ‘spiderfyOnMaxZoom’: true,  
+    ‘showCoverageOnHover’: false,  
+    ‘zoomToBoundsOnClick’: true,  
+    ‘maxClusterRadius’: 10,  
+    ‘spiderfyDistanceMultiplier’: 1.5,  
+    ‘spiderLegPolylineOptions’: {  
+        ‘weight’: 1,  
+        ‘color’: “#666”,  
+        ‘opacity’: 0.5,  
+    }  
+}
 ```
 
 ## <a id="opciones-poncho-map-filter" href="#opciones-poncho-map-filter">¶</a> Opciones para PonchoMapFilter
