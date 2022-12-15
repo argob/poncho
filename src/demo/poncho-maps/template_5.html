@@ -258,7 +258,7 @@ COPIAR DESDE ACÁ…
           "email": "Email"
       },
       "marker": "tomate",
-      "_marker": (self, ele) => {
+      "marker": (self, ele) => {
           const icon_color = (ele.hasOwnProperty("icon_color")) ? ele.icon_color : "azul";
           // return self.icon(icon_color); 
           // Alternativa
@@ -274,6 +274,8 @@ COPIAR DESDE ACÁ…
               return iconPoncho(icon_color, icon, {container:true, invert:true});
           } else if (id == "5"){
               return self.icon(icon_color);
+          } else if (id == "2"){
+              return "arandano";
           }
           return iconImg(img_url);
       },
