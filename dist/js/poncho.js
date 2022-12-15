@@ -3535,7 +3535,6 @@ class PonchoMapFilter extends PonchoMap {
             // Arma el listado de mensajes.
             const ul = document.createElement("ul");
             ul.classList.add("m-b-0", "list-unstyled");
-            // ul.setAttribute("role", "region");
             ul.setAttribute("aria-live", "polite");
             const li = content => { 
                 const item = document.createElement("li"); 
