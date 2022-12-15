@@ -101,23 +101,32 @@ COPIAR DESDE ACÁ…
   var search;
   (async() => {
     // Levanto datos desde un geoJSON
-    entries = await fetch_json("./data/municipio.json");
+    entries = await fetch_json("./data/rutas.json");
 
     // map options
     const options = {
       "scope": "poncho-map",
-      "id": "gid",
+      // "id": "gid",
       "filters_info": false,
-      "title": "nam",
-      "headers": {
+      // "title": "nam",
+      "title": "FNA",
+      "_headers": {
           "fna": "FNA",
       },
+      "tooltip": true,
       "marker": "cielo",
-      "_no_info": true,
+      "no_info": false,
       "slider": true,
       "hash": true,
       "scroll": false,
-      "filters": [
+      filters_info: true,
+      "filters":[
+        {
+          "legend": "Sentido",
+          "field": ["Sentido", "checked"]
+        }
+      ],
+      "_filters": [
           // {
           //   "legend":"Provincia",
           //   "field": ["provincia", ""]
@@ -129,40 +138,43 @@ COPIAR DESDE ACÁ…
       ],
     };
 
-    const extras = [
-        ['06', 'Región Centro y Buenos Aires', 'Buenos Aires'],
-        ['10', 'Región Noroeste', 'Catamarca'],
-        ['22', 'Región del Noreste', 'Chaco'],
-        ['26', 'Región Patagónica', 'Chubut'],
-        ['02', 'Región Centro y Buenos Aires', 'Ciudad Autónoma de Buenos Aires'],
-        ['14', 'Región Centro y Buenos Aires', 'Córdoba'],
-        ['18', 'Región del Noreste', 'Corrientes'],
-        ['30', 'Región Centro y Buenos Aires', 'Entre Ríos'],
-        ['34', 'Región del Noreste', 'Formosa'],
-        ['38', 'Región Noroeste', 'Jujuy'],
-        ['42', 'Región Nuevo Cuyo', 'La Pampa'],
-        ['46', 'Región Noroeste', 'La Rioja'],
-        ['50', 'Región Nuevo Cuyo', 'Mendoza'],
-        ['54', 'Región del Noreste', 'Misiones'],
-        ['58', 'Región Patagónica', 'Neuquén'],
-        ['62', 'Región Patagónica', 'Río Negro'],
-        ['66', 'Región Noroeste', 'Salta'],
-        ['70', 'Región Nuevo Cuyo', 'San Juan'],
-        ['74', 'Región Nuevo Cuyo', 'San Luis'],
-        ['78', 'Región Patagónica', 'Santa Cruz'],
-        ['82', 'Región Centro y Buenos Aires', 'Santa Fe'],
-        ['86', 'Región Noroeste', 'Santiago del Estero'],
-        ['94', 'Región Patagónica', 'Tierra del Fuego'],
-        ['90', 'Región Noroeste', 'Tucumán']
-    ];
-    const find = (id) => extras.find(e => e[0] == id);
-    entries.features.forEach((e, k) => {
-        const _id = e.properties.in1.substring(0,2);
-        const _extras = find(_id);
-        entries.features[k].properties.id_provincia = _id;
-        entries.features[k].properties.provincia = _extras[2];
-        entries.features[k].properties.region = _extras[1];
-    });
+    const color = ["#c2185b","#6EA100", "#EF6C00" , "#2897d4", "#6a1b99"]
+
+    // const extras = [
+    //     ['06', 'Región Centro y Buenos Aires', color[2], 'Buenos Aires'],
+    //     ['10', 'Región Noroeste', color[0], 'Catamarca'],
+    //     ['22', 'Región del Noreste', color[1], 'Chaco'],
+    //     ['26', 'Región Patagónica', color[3], 'Chubut'],
+    //     ['02', 'Región Centro y Buenos Aires', color[2], 'Ciudad Autónoma de Buenos Aires'],
+    //     ['14', 'Región Centro y Buenos Aires', color[2], 'Córdoba'],
+    //     ['18', 'Región del Noreste', color[1], 'Corrientes'],
+    //     ['30', 'Región Centro y Buenos Aires', color[2], 'Entre Ríos'],
+    //     ['34', 'Región del Noreste', color[1], 'Formosa'],
+    //     ['38', 'Región Noroeste', color[0], 'Jujuy'],
+    //     ['42', 'Región Nuevo Cuyo', color[4], 'La Pampa'],
+    //     ['46', 'Región Noroeste', color[0], 'La Rioja'],
+    //     ['50', 'Región Nuevo Cuyo', color[4], 'Mendoza'],
+    //     ['54', 'Región del Noreste', color[1], 'Misiones'],
+    //     ['58', 'Región Patagónica', color[3], 'Neuquén'],
+    //     ['62', 'Región Patagónica', color[3], 'Río Negro'],
+    //     ['66', 'Región Noroeste', color[0], 'Salta'],
+    //     ['70', 'Región Nuevo Cuyo', color[4], 'San Juan'],
+    //     ['74', 'Región Nuevo Cuyo', color[4], 'San Luis'],
+    //     ['78', 'Región Patagónica', color[3], 'Santa Cruz'],
+    //     ['82', 'Región Centro y Buenos Aires', color[2], 'Santa Fe'],
+    //     ['86', 'Región Noroeste', color[0], 'Santiago del Estero'],
+    //     ['94', 'Región Patagónica', color[3], 'Tierra del Fuego'],
+    //     ['90', 'Región Noroeste', color[0], 'Tucumán']
+    // ];
+    // const find = (id) => extras.find(e => e[0] == id);
+    // entries.features.forEach((e, k) => {
+    //     const _id = e.properties.in1.substring(0,2);
+    //     const _extras = find(_id);
+    //     entries.features[k].properties.id_provincia = _id;
+    //     entries.features[k].properties.provincia = _extras[3];
+    //     entries.features[k].properties.region = _extras[1];
+    //     entries.features[k].properties.stroke =  _extras[2];
+    // });
 
     
     map = new PonchoMapFilter(entries, options);
@@ -183,3 +195,6 @@ COPIAR DESDE ACÁ…
 <!-- / SCRIPTS -->
 </body>
 </html>
+
+
+
