@@ -1834,6 +1834,7 @@ const gapi_legacy = (response) => {
  * @see https://leafletjs.com/
  *
  * 
+ * 
  * MIT License
  *
  * Copyright (c) 2022 Argentina.gob.ar
@@ -3534,7 +3535,6 @@ class PonchoMapFilter extends PonchoMap {
             // Arma el listado de mensajes.
             const ul = document.createElement("ul");
             ul.classList.add("m-b-0", "list-unstyled");
-            // ul.setAttribute("role", "region");
             ul.setAttribute("aria-live", "polite");
             const li = content => { 
                 const item = document.createElement("li"); 
