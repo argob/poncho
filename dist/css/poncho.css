@@ -9076,8 +9076,7 @@ body .main-footer {
   border-bottom-left-radius: 12px;
 }
 .poncho-map path.marker--active {
-  filter: drop-shadow(2px 2px 2px rgb(249, 168, 34));
-  fill-opacity: 0.8 !important;
+  fill-opacity: 0.75 !important;
 }
 .poncho-map *:focus {
   outline: 3px solid var(--cielo, #039BE5) !important;
@@ -9228,8 +9227,7 @@ body .main-footer {
   border-right-color: var(--tooltip, white);
 }
 .poncho-map .leaflet-tooltip-own {
-  position: absolute;
-  padding: 6px 10px;
+  padding: 3px 9px;
   background-color: var(--tooltip, white);
   border: 0px solid #000;
   color: var(--tooltip-color, black);
@@ -9238,10 +9236,12 @@ body .main-footer {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  border-radius: 8px;
+  border-radius: 6px;
   pointer-events: none;
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
   transition: opacity 0.2s;
+  font-size: 0.75rem;
+  font-weight: normal;
 }
 .poncho-map .leaflet-popup p:first-child {
   margin-block-start: 0;

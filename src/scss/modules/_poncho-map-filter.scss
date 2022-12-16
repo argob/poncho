@@ -208,8 +208,8 @@
   }
 
   path.marker--active {
-    filter: drop-shadow(2px 2px 2px rgb(249, 168, 34, 1));
-    fill-opacity: .8 !important;
+    // filter: drop-shadow(2px 2px 2px rgb(249, 168, 34, 1));
+    fill-opacity: .75 !important;
   }
   *:focus {
     outline: 3px solid var(--cielo, $brand-cielo) !important;
@@ -391,8 +391,7 @@
   }
 
   .leaflet-tooltip-own {
-    position: absolute;
-    padding: 6px 10px;
+    padding: 3px 9px;
     background-color: var(--tooltip, white);
     border: 0px solid #000;
     color: var(--tooltip-color, black);
@@ -401,10 +400,12 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    border-radius: 8px;
+    border-radius: 6px;
     pointer-events: none;
-    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
-    transition: opacity 0.2s;
+    box-shadow: 0 1px 6px rgb(0 0 0 / 40%);
+    transition: opacity .2s;
+    font-size: .75rem;
+    font-weight: normal;
   }
 
   /* leaflet popup */
