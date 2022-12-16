@@ -1900,12 +1900,14 @@ class PonchoMap {
                     "bootstrap-tables",
                 ]
             },
+            "render_slider": true,
             "scope": "",
             "slider": false,
             "scroll": false,
             "hash": false,
             "headers": {},
             "header_icons": [],
+            "content_selector": false,
             "map_selector": "map",
             "anchor_delay": 0,
             "slider_selector": ".slider",
@@ -1922,7 +1924,7 @@ class PonchoMap {
                 // "permanent": false, 
                 "direction": 'auto',
                 // "offset": [15,0], 
-                // "sticky": true,
+                // "sticky": true,sdf
                 // "opacity": 1,
                 className: 'leaflet-tooltip-own'
             },
@@ -1949,6 +1951,7 @@ class PonchoMap {
         let opts = Object.assign({}, defaults, options);
         this.error_reporting = opts.error_reporting;
         this.scope = opts.scope;
+        this.render_slider = opts.render_slider;
         this.template = opts.template;
         this.template_structure = {
             ...defaults.template_structure, 
@@ -1983,6 +1986,8 @@ class PonchoMap {
         this.selected_marker;
         this.scope_selector = `[data-scope="${this.scope}"]`;
         this.scope_sufix = `--${this.scope}`;
+        this.content_selector = (opts.content_selector ? 
+            opts.content_selector : `.js-content${this.scope_sufix}`);
         this.data = this.formatInput(data);
         this.geometryTypes = [
             "Point", 
@@ -2312,14 +2317,16 @@ class PonchoMap {
             return;
         }
         document
-            .querySelector(`.js-slider${this.scope_sufix}`)
-            .classList.toggle(`${this.slider_selector}--in`);
-        const panel = document.querySelector(`.js-slider${this.scope_sufix}`);
-        if(this.isSliderOpen()){
-            panel.style.display = "block";
-        } else {
-            panel.style.display = "none";
-        }
+            .querySelectorAll(`.js-slider${this.scope_sufix}`)
+            .forEach(e => {
+                e.classList.toggle(`${this.slider_selector}--in`);
+            });
+
+        document
+            .querySelectorAll(`.js-slider${this.scope_sufix}`)
+            .forEach(panel => {
+                panel.style.display = (this.isSliderOpen() ? "block" : "none");  
+            });
     };
 
     /**
@@ -2366,7 +2373,7 @@ class PonchoMap {
             if(e.classList.contains(`${this.slider_selector}--in`)){
                 status.push(true);
             }
-        })
+        });
         return status.some(e => e);
     };
 
@@ -2385,11 +2392,17 @@ class PonchoMap {
         }
         const html = (typeof this.template == "function") ? 
             this.template(this, data) : this.defaultTemplate(this, data);
-      
-        document.querySelector(`.js-content${this.scope_sufix}`)
-                .innerHTML = html;
-        document.querySelector(`.js-close-slider${this.scope_sufix}`)
-                .dataset.entryId = data[this.id];
+
+        document
+            .querySelectorAll(this.content_selector)
+            .forEach(e => {
+                e.innerHTML = html;
+            });
+        document
+            .querySelectorAll(`.js-close-slider${this.scope_sufix}`)
+            .forEach(e => {
+                e.dataset.entryId = data[this.id];
+            });      
     };
 
     /**
@@ -2410,10 +2423,14 @@ class PonchoMap {
             const animation = document.querySelector(
                 `.js-slider${this.scope_sufix}`
             );
-            animation.addEventListener("animationend", () => {
-                document.querySelector(`.js-close-slider${this.scope_sufix}`)
+            if(animation){
+                animation.addEventListener("animationend", () => {
+                    document
+                        .querySelector(`.js-close-slider${this.scope_sufix}`)
                         .focus();
-            });
+                });
+            }
+
         }
     };
 
@@ -2455,11 +2472,14 @@ class PonchoMap {
      * Crea el bloque html para el slider.
      */
     _renderSlider = () => {
-        if(this.no_info){
-          return;
+        if(!this.render_slider){
+            return;
+        } else if(this.no_info){
+            return;
         }
-        document.querySelectorAll(`.js-slider${this.scope_sufix}`)
-                .forEach(e => e.remove());
+        document
+            .querySelectorAll(`.js-slider${this.scope_sufix}`)
+            .forEach(e => e.remove());
         const close_button = document.createElement("button");
         close_button.classList.add(
                 "btn", "btn-xs", "btn-secondary", "btn-close", 
@@ -2492,7 +2512,8 @@ class PonchoMap {
         container.appendChild(close_button);
         container.appendChild(anchor);
         container.appendChild(content_container);
-        document.querySelector(`${this.scope_selector}.poncho-map`)
+        document
+            .querySelector(`${this.scope_selector}.poncho-map`)
             .appendChild(container);
     };
 
@@ -2588,8 +2609,10 @@ class PonchoMap {
      */
     _setClickeable = (layer) => {
         layer.on("keypress click", (e) => {
-            document.querySelectorAll(".marker--active")
-                    .forEach(e => e.classList.remove("marker--active"));
+            document
+                .querySelectorAll(".marker--active")
+                .forEach(e => e.classList.remove("marker--active"));
+                
             ["_icon", "_path"].forEach(ele => {
                 if(!e.sourceTarget.hasOwnProperty(ele)){
                     return;
@@ -3251,7 +3274,7 @@ class PonchoMap {
             [
                 `${this.scope_selector} .leaflet-map-pane`, 
                 `leaflet-map-pane${this.scope_sufix}`, [
-                  ["role", "button"]
+                  ["role", "region"]
                 ]
             ],
             [

@@ -24,6 +24,8 @@
 | id | `string` | id | Nombre de la columna donde se encuentra el id. Si la fuente de datos usa otro nombre se define con esta opción. Ej. `'id':'id_punto_digital'`.| 
 | latitud | `string` | latitud | Nombre de la columna con el valor de latitud. Si la fuente de datos usa otro nombre se define con esta opción. Ej. `'latitud':'lat'`.| 
 | longitud | `string` | longitud | Nombre de la columna con el valor de longitud. Si la fuente de datos usa otro nombre se define con esta opción. Ej. `'longitud':'lng'`.| 
+| content_selector | `boolean` | `false` | Permite esetablecer un selector alternativo donde se quiera imprimir el contenido. |
+| render_slider | `boolean` | `true` | Permite que se cree el componente _slider_ en el mapa. |
 | template | `object` | `null` | Define la función que controla el template para el popUp o el slider.<br><br>Ver opciones para [template](#opciones-templates).| 
 | template_structure | `object` | `{}` | Permite definir un listado de valores a mostarar en el template por defecto o excluir valores que no se deseen mostrar. <br><br>Ver opciones para [template_structure](#opciones-template-structure). | 
 | template_innerhtml | `boolean` | `false` | Permite incrustar html dentro de la descripción.|
@@ -43,7 +45,7 @@
 | marker_cluster_options | `Object` | `"marker_cluster_options": {}` | Ver opciones para [marker_cluster_options](#opciones-marker-cluster-options) |
 
 
-### <a id="opciones-template-structure"></a>Opciones para `template_structure` [⏎](#opciones "Ir al listado de opciones generales").
+### <a id="opciones-template-structure"></a>Opciones para `template_structure` [⏎](#opciones "Ir al listado de opciones generales")
 
 ```js
 const options = {

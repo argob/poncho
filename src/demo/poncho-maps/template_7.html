@@ -26,7 +26,8 @@
 </head>
 <body class="p-t-3">
   <h1>Template 7</h1>
-
+<div class="container-fluid">
+<div class="row">
 <!-- 
 MAPA CON BUSCADOR FILTRO  
 
@@ -57,18 +58,25 @@ COPIAR DESDE ACÁ…
 </form>
 <!-- / PONCHO MAP SEARCH -->
 </div>
-<div class="col-md-12">
+<div class="col-md-8">
 <!-- PONCHO MAP -->
 <div class="poncho-map" data-scope="poncho-map">
     <div
         class="leaflet-container leaflet-touch leaflet-fade-anim 
               leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
         id="map"
-        style="height: 600px; width: 100%;"
+        style="height: 700px; width: 100%;"
         tabindex="0">
     </div>
 </div>
 <!-- / PONCHO MAP -->
+</div>
+
+
+
+<div class="js-foo col-md-4"></div>
+
+</div>
 </div>
 
 <script 
@@ -101,18 +109,37 @@ COPIAR DESDE ACÁ…
   var search;
   (async() => {
     // Levanto datos desde un geoJSON
-    entries = await fetch_json("./data/rutas.json");
+    entries = await fetch_json("./data/provincias.json");
 
     // map options
     const options = {
+      "content_selector": ".js-foo", // permite esetablecer un selector alternativo donde se quiera imprimir el contenido.
+      "render_slider": false, // Permite que se cree el componente slider en el mapa.
       "scope": "poncho-map",
       // "id": "gid",
       "filters_info": false,
-      // "title": "nam",
-      "title": "FNA",
+      "title": "nam",
+      "_title": "FNA",
       "_headers": {
           "fna": "FNA",
       },
+      "template_structure": {
+        "title_classlist": ["h2","text-cielo","m-t-0"],
+        "definition_list_tag": "div",
+        "term_tag": "h3",
+        "definition_tag": "p",
+        "term_classlist": ["h5", "m-b-0", "text-cielo",  "text-uppercase"],
+        "definition_classlist": ["text-muted"],
+      },
+      "tooltip_options":{
+                // "permanent": true, 
+                "direction": 'center',
+                // "offset": [15,0], 
+                // "sticky": true,
+                // "opacity": 1,
+                className: 'leaflet-tooltip-own'
+            },
+
       "tooltip": true,
       "marker": "cielo",
       "no_info": false,
@@ -120,13 +147,13 @@ COPIAR DESDE ACÁ…
       "hash": true,
       "scroll": false,
       filters_info: true,
-      "filters":[
+      "_filters":[
         {
           "legend": "Sentido",
           "field": ["Sentido", "checked"]
         }
       ],
-      "_filters": [
+      "filters": [
           // {
           //   "legend":"Provincia",
           //   "field": ["provincia", ""]
@@ -138,43 +165,45 @@ COPIAR DESDE ACÁ…
       ],
     };
 
-    const color = ["#c2185b","#6EA100", "#EF6C00" , "#2897d4", "#6a1b99"]
+    // const color = ["#c2185b","#6EA100", "#EF6C00" , "#2897d4", "#6a1b99"];
+    const color = ['#2897D4',  '#6EA100', '#F9A822', '#EF5350', '#EC407A', '#9284BE', '#50B7B2', '#CDDC39', '#FFCE00', '#0072BB', '#EF6C00', '#2E7D33',  '#C62828', '#C2185B', '#6A1B99', '#37BBED', '#50B7B2', '#F9A822', '#EF5350', '#EC407A', '#6EA100', '#9284BE', '#C2185B'];
 
-    // const extras = [
-    //     ['06', 'Región Centro y Buenos Aires', color[2], 'Buenos Aires'],
-    //     ['10', 'Región Noroeste', color[0], 'Catamarca'],
-    //     ['22', 'Región del Noreste', color[1], 'Chaco'],
-    //     ['26', 'Región Patagónica', color[3], 'Chubut'],
-    //     ['02', 'Región Centro y Buenos Aires', color[2], 'Ciudad Autónoma de Buenos Aires'],
-    //     ['14', 'Región Centro y Buenos Aires', color[2], 'Córdoba'],
-    //     ['18', 'Región del Noreste', color[1], 'Corrientes'],
-    //     ['30', 'Región Centro y Buenos Aires', color[2], 'Entre Ríos'],
-    //     ['34', 'Región del Noreste', color[1], 'Formosa'],
-    //     ['38', 'Región Noroeste', color[0], 'Jujuy'],
-    //     ['42', 'Región Nuevo Cuyo', color[4], 'La Pampa'],
-    //     ['46', 'Región Noroeste', color[0], 'La Rioja'],
-    //     ['50', 'Región Nuevo Cuyo', color[4], 'Mendoza'],
-    //     ['54', 'Región del Noreste', color[1], 'Misiones'],
-    //     ['58', 'Región Patagónica', color[3], 'Neuquén'],
-    //     ['62', 'Región Patagónica', color[3], 'Río Negro'],
-    //     ['66', 'Región Noroeste', color[0], 'Salta'],
-    //     ['70', 'Región Nuevo Cuyo', color[4], 'San Juan'],
-    //     ['74', 'Región Nuevo Cuyo', color[4], 'San Luis'],
-    //     ['78', 'Región Patagónica', color[3], 'Santa Cruz'],
-    //     ['82', 'Región Centro y Buenos Aires', color[2], 'Santa Fe'],
-    //     ['86', 'Región Noroeste', color[0], 'Santiago del Estero'],
-    //     ['94', 'Región Patagónica', color[3], 'Tierra del Fuego'],
-    //     ['90', 'Región Noroeste', color[0], 'Tucumán']
-    // ];
-    // const find = (id) => extras.find(e => e[0] == id);
-    // entries.features.forEach((e, k) => {
-    //     const _id = e.properties.in1.substring(0,2);
-    //     const _extras = find(_id);
-    //     entries.features[k].properties.id_provincia = _id;
-    //     entries.features[k].properties.provincia = _extras[3];
-    //     entries.features[k].properties.region = _extras[1];
-    //     entries.features[k].properties.stroke =  _extras[2];
-    // });
+    const extras = [
+        ['06', 'Región Centro y Buenos Aires', color[2], 'Buenos Aires'],
+        ['10', 'Región Noroeste', color[0], 'Catamarca'],
+        ['22', 'Región del Noreste', color[1], 'Chaco'],
+        ['26', 'Región Patagónica', color[3], 'Chubut'],
+        ['02', 'Región Centro y Buenos Aires', color[2], 'Ciudad Autónoma de Buenos Aires'],
+        ['14', 'Región Centro y Buenos Aires', color[2], 'Córdoba'],
+        ['18', 'Región del Noreste', color[1], 'Corrientes'],
+        ['30', 'Región Centro y Buenos Aires', color[2], 'Entre Ríos'],
+        ['34', 'Región del Noreste', color[1], 'Formosa'],
+        ['38', 'Región Noroeste', color[0], 'Jujuy'],
+        ['42', 'Región Nuevo Cuyo', color[4], 'La Pampa'],
+        ['46', 'Región Noroeste', color[0], 'La Rioja'],
+        ['50', 'Región Nuevo Cuyo', color[4], 'Mendoza'],
+        ['54', 'Región del Noreste', color[1], 'Misiones'],
+        ['58', 'Región Patagónica', color[3], 'Neuquén'],
+        ['62', 'Región Patagónica', color[3], 'Río Negro'],
+        ['66', 'Región Noroeste', color[0], 'Salta'],
+        ['70', 'Región Nuevo Cuyo', color[4], 'San Juan'],
+        ['74', 'Región Nuevo Cuyo', color[4], 'San Luis'],
+        ['78', 'Región Patagónica', color[3], 'Santa Cruz'],
+        ['82', 'Región Centro y Buenos Aires', color[2], 'Santa Fe'],
+        ['86', 'Región Noroeste', color[0], 'Santiago del Estero'],
+        ['94', 'Región Patagónica', color[3], 'Tierra del Fuego'],
+        ['90', 'Región Noroeste', color[0], 'Tucumán']
+    ];
+    const find = (id) => extras.find(e => e[0] == id);
+    entries.features.forEach((e, k) => {
+        const _id = e.properties.in1.substring(0,2);
+        const _extras = find(_id);
+        console.log(k)
+        entries.features[k].properties.id_provincia = _id;
+        entries.features[k].properties.provincia = _extras[3];
+        entries.features[k].properties.region = _extras[1];
+        entries.features[k].properties.stroke =  color[k];
+    });
 
     
     map = new PonchoMapFilter(entries, options);
