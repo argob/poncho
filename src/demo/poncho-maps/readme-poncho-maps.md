@@ -21,6 +21,7 @@
 | Parámetro | Tipo | Default | Descripción |
 |:---|:---|:---|:---|
 | scope | `string` | _`empty string`_ | Es el ambiente de trabajo sobre un mapa en particular. Cuando se utiliza más de un mapa en la página esto sirve para diferenciarlos. | 
+| map_selector | `string` | map | Nombre del id que utiliza Leaflet para hacer el _render_ del mapa. | 
 | id | `string` | id | Nombre de la columna donde se encuentra el id. Si la fuente de datos usa otro nombre se define con esta opción. Ej. `'id':'id_punto_digital'`.| 
 | latitud | `string` | latitud | Nombre de la columna con el valor de latitud. Si la fuente de datos usa otro nombre se define con esta opción. Ej. `'latitud':'lat'`.| 
 | longitud | `string` | longitud | Nombre de la columna con el valor de longitud. Si la fuente de datos usa otro nombre se define con esta opción. Ej. `'longitud':'lng'`.| 
