@@ -190,9 +190,11 @@ class PonchoMap {
         ).setView(this.map_view, this.map_zoom);
         new L.tileLayer("https://mapa-ign.argentina.gob.ar/osm/{z}/{x}/{-y}.png",{ 
             attribution: ("Contribuidores: "
-                + "<a href=\"https://www.ign.gob.ar/AreaServicios/Argenmap/Introduccion\"  target=\"_blank\">"
+                + "<a href=\"https://www.ign.gob.ar/AreaServicios/Argenmap/Introduccion\" " 
+                + "target=\"_blank\">"
                 + "Instituto Geográfico Nacional</a>, "
-                + "<a href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\">"
+                + "<a href=\"https://www.openstreetmap.org/copyright\" "
+                + "target=\"_blank\">"
                 + "OpenStreetMap</a>")
         }).addTo(this.map);
         this.markers = new L.markerClusterGroup(this.marker_cluster_options);
@@ -240,6 +242,13 @@ class PonchoMap {
      * @return {object} Retorna un documento en formato geoJSON
      */
     formatInput = (input) => {
+        if(input.length < 1){
+            this.errorMessage(
+                "No se puede visualizar el mapa, el documento está vacío", 
+                "warning"
+            );
+        }
+
         let geoJSON;
         if(this.isGeoJSON(input)){
             geoJSON = input;

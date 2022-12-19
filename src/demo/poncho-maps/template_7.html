@@ -74,7 +74,7 @@ COPIAR DESDE ACÁ…
 
 
 
-<div class="js-foo col-md-4"></div>
+<div class="js-foo col-md-4" aria-live="polite"></div>
 
 </div>
 </div>
@@ -116,10 +116,8 @@ COPIAR DESDE ACÁ…
       "content_selector": ".js-foo", // permite esetablecer un selector alternativo donde se quiera imprimir el contenido.
       "render_slider": false, // Permite que se cree el componente slider en el mapa.
       "scope": "poncho-map",
-      // "id": "gid",
       "filters_info": false,
       "title": "nam",
-      "_title": "FNA",
       "_headers": {
           "fna": "FNA",
       },
@@ -132,32 +130,16 @@ COPIAR DESDE ACÁ…
         "definition_classlist": ["text-muted"],
       },
       "tooltip_options":{
-                // "permanent": true, 
-                "direction": 'center',
-                // "offset": [15,0], 
-                // "sticky": true,
-                // "opacity": 1,
-                className: 'leaflet-tooltip-own'
-            },
-
+          "direction": 'center',
+          "opacity": .7,
+          "className": 'leaflet-tooltip-own'
+      },
       "tooltip": true,
-      "marker": "cielo",
-      "no_info": false,
       "slider": true,
       "hash": true,
       "scroll": false,
-      filters_info: true,
-      "_filters":[
-        {
-          "legend": "Sentido",
-          "field": ["Sentido", "checked"]
-        }
-      ],
+      "filters_info": true,
       "filters": [
-          // {
-          //   "legend":"Provincia",
-          //   "field": ["provincia", ""]
-          // },
           {
             "legend":"Región",
             "field": ["region"]
@@ -165,9 +147,7 @@ COPIAR DESDE ACÁ…
       ],
     };
 
-    // const color = ["#c2185b","#6EA100", "#EF6C00" , "#2897d4", "#6a1b99"];
-    const color = ['#2897D4',  '#6EA100', '#F9A822', '#EF5350', '#EC407A', '#9284BE', '#50B7B2', '#CDDC39', '#FFCE00', '#0072BB', '#EF6C00', '#2E7D33',  '#C62828', '#C2185B', '#6A1B99', '#37BBED', '#50B7B2', '#F9A822', '#EF5350', '#EC407A', '#6EA100', '#9284BE', '#C2185B'];
-
+    const color = ["#c2185b","#6EA100", "#EF6C00" , "#2897d4", "#6a1b99"];
     const extras = [
         ['06', 'Región Centro y Buenos Aires', color[2], 'Buenos Aires'],
         ['10', 'Región Noroeste', color[0], 'Catamarca'],
@@ -202,7 +182,7 @@ COPIAR DESDE ACÁ…
         entries.features[k].properties.id_provincia = _id;
         entries.features[k].properties.provincia = _extras[3];
         entries.features[k].properties.region = _extras[1];
-        entries.features[k].properties.stroke =  color[k];
+        entries.features[k].properties.stroke =  _extras[2];
     });
 
     
