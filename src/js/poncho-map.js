@@ -1134,6 +1134,7 @@ class PonchoMap {
      * @param {object} row Entrada para dibujar un marker.
      */  
     defaultTemplate = (self, row) => {
+        row = this._templateMixing(row);
         const {template_structure:structure} = this;
         const tpl_list = this._templateList(row);
         const tpl_title = this._templateTitle(row);
@@ -1142,7 +1143,6 @@ class PonchoMap {
         const definitions = document.createElement(structure.definition_list_tag);
         definitions.classList.add(...structure.definition_list_classlist);
         definitions.style.fontSize = "1rem";
-        row = this._templateMixing(row);
 
         for(const key of tpl_list){
             // excluyo los items vacíos.

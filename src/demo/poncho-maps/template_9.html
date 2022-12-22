@@ -155,14 +155,17 @@ COPIAR DESDE ACÁ…
                   }
               ],
       },
-      "header_icons": {
-          "boton_html": {
-              "class": (self, e) => `fa fa-info-circle fa-1x fa-1x text-cielo`
+      "header_icons": [
+          {
+              "key":"boton_html",
+              "css": (self, e) => `fa fa-info-circle fa-1x fa-1x text-cielo`
           },
-          "ubicacion": {
-              "class": (self, e) => `icono-arg-marcador-ubicacion-2 fa-1x text-cielo`, 
+          {
+            "key":"ubicacion",
+            "css": (self, e) => `icono-arg-marcador-ubicacion-2 fa-1x text-cielo`, 
           },
-          "direccion": {
+          {
+              "key":"direccion",
               "html": (self, entry, value) => {
                   if(entry.id == "4-olivia-bouillet"){
                       return `<div>
@@ -182,11 +185,12 @@ COPIAR DESDE ACÁ…
                   }
               }
           },
-          "id": {
-              "class": "icono-arg-sitios-accesibles text-arandano",
+          {
+              "key": "id",
+              "css": "icono-arg-sitios-accesibles text-arandano",
               "style": "margin-bottom:3em"
           }
-      },
+      ],
       "headers": {...headers, ...{"foto_html":"", "boton_html":"Más información", "descripcion":""}},
       "marker": (self, ele) => {
           const icon_color = (ele.hasOwnProperty("color")) ? ele.color : "azul";
