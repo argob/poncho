@@ -23,9 +23,9 @@
 |:---|:---|:---|:---|
 | scope | `string` | _`empty string`_ | Es el ambiente de trabajo sobre un mapa en particular. Cuando se utiliza más de un mapa en la página esto sirve para diferenciarlos. | 
 | map_selector | `string` | map | Nombre del id que utiliza Leaflet para hacer el _render_ del mapa. | 
-| id | `string` | id | Nombre de la columna donde se encuentra el id. Si la fuente de datos usa otro nombre se define con esta opción. Ej. `'id':'id_punto_digital'`.| 
-| latitud | `string` | latitud | Nombre de la columna con el valor de latitud. Si la fuente de datos usa otro nombre se define con esta opción. Ej. `'latitud':'lat'`.| 
-| longitud | `string` | longitud | Nombre de la columna con el valor de longitud. Si la fuente de datos usa otro nombre se define con esta opción. Ej. `'longitud':'lng'`.| 
+| id | `string` | id | Nombre de la columna donde se encuentra el id. Si la fuente de datos usa otro nombre se define con esta opción. Ej. `"id":"id_punto_digital"`.| 
+| latitud | `string` | latitud | Nombre de la columna con el valor de latitud. Si la fuente de datos usa otro nombre se define con esta opción. Ej. `"latitud":"lat"`.| 
+| longitud | `string` | longitud | Nombre de la columna con el valor de longitud. Si la fuente de datos usa otro nombre se define con esta opción. Ej. `"longitud":"lng"`.| 
 | content_selector | `boolean` | `false` | Permite esetablecer un selector alternativo donde se quiera imprimir el contenido. |
 | render_slider | `boolean` | `true` | Permite que se cree el componente _slider_ en el mapa. |
 | template | `object` | `null` | Define la función que controla el template para el popUp o el slider.<br><br>Ver opciones para [template](#opciones-templates).| 
@@ -72,14 +72,14 @@ const options = {
 
 | Parámetro | Tipo | Default | Descripción |
 |:---|:---|:---|:---|
-| template_container_classlist | `Array()` | `['info-container']` | Define la lista de clases CSS que pueden agregarse al contenedor del listado de terminos y descripciones. | 
+| template_container_classlist | `Array()` | `["info-container"]` | Define la lista de clases CSS que pueden agregarse al contenedor del listado de terminos y descripciones. | 
 | lead | `object` | `{}` | Volanta.<br><br>Ver opciones para [lead](#opciones-para-lead). |
 | mixing | `object` | `{}` | Permite crear una entrada uniendo cadenas de texto o valores de la entrada.<br><br>Ver opciones para [mixing](#opciones-para-mixing). |
 | header | `function` | `false` | Permite modificar el header del template retornando un `string` desde una función. <br>`"header": (self, entry) => string` |
 | title | `string` | "" | Permite redefinir la clave que se utiliza para el panel de información teniendo precedencia sobre la opción general _`title`_. |
-| template_title_classlist | `Array()` | `['h4','title']` | Listado de selectores CSS se que aplicarán en la etiqueta HTML asignada título.| 
-| template_dl_classlist | `Array()` | `['definition-list']` | Listado de selectores CSS se que aplicarán en la etiqueta HTML asignada contenedor del listado de términos y definiciones.| 
-| template_dt_classlist | `Array()` | `['h6', "m-b-0"]` | Listado de selectores CSS se que aplicarán en la etiqueta HTML asignada al término.| 
+| template_title_classlist | `Array()` | `["h4","title"]` | Listado de selectores CSS se que aplicarán en la etiqueta HTML asignada título.| 
+| template_dl_classlist | `Array()` | `["definition-list"]` | Listado de selectores CSS se que aplicarán en la etiqueta HTML asignada contenedor del listado de términos y definiciones.| 
+| template_dt_classlist | `Array()` | `["h6", "m-b-0"]` | Listado de selectores CSS se que aplicarán en la etiqueta HTML asignada al término.| 
 | template_dd_classlist | `Array()` | `[]` | Listado de selectores CSS se que aplicarán en la etiqueta HTML asignada a la definición.| 
 | template_dl | `strng` | `dl` | Define la etiqueta HTML que contiene el listado de términos y descripciones.| 
 | template_dt | `strng` | `dt` | Define la etiqueta HTML para el término.| 
@@ -163,7 +163,7 @@ La opción `marker` nos permite definir el color de los *markers* asignando el n
 
 ```js
 const options = {
-    'marker': 'mandarina'
+    "marker": "mandarina"
 };
 ```
 
@@ -171,7 +171,7 @@ Otra opción es agregar una función en la que podemos definir una lógica de co
 
 ```js
 const options = {
-    'marker_color': (self, entry) => (typeof  entry.color !== "undefined" && entry.color != "" ? entry.color : "azul")
+    "marker_color": (self, entry) => (typeof  entry.color !== "undefined" && entry.color != "" ? entry.color : "azul")
 };
 ```
 
@@ -181,11 +181,11 @@ Esta opción también ofrece la posibilidad de crear *markers* utilizando imáge
 
 ```js
 const options = {
-    'marker': (self, entry) => {
+    "marker": (self, entry) => {
       // icono tipo html
       const icon_div = (color) => {
           return new L.divIcon({
-              html: `<i class='icono-arg-marcador-ubicacion-2 text-${color}'>`,
+              html: `<i class="icono-arg-marcador-ubicacion-2 text-${color}">`,
               iconSize: [38, 24],
               iconAnchor: [22, 41],
               popupAnchor: [-3, -40]
@@ -209,7 +209,7 @@ La opción `template` debe recibir un string de retorno. Para ello, es posible d
 
 ```js
 const opciones = {
-    'template': (self, entry) => {
+    "template": (self, entry) => {
 		const html = `<h1>${entry.title}</h1>
 	        <h2>${entry.subtitle}</h2>
 	        <dl>
@@ -237,7 +237,7 @@ const template = (self, entry) => {
     <h1>${entry.title}</h1>
     <h2>${entry.subtitle}</h2>
     <dl>
-      <dt>${self.header('address')}</dt>
+      <dt>${self.header("address")}</dt>
       <dd>${entry.address}</dd>
       <dt>Ubicación</dt>
       <dd>${entry.province}, ${entry.locality}</dd>
@@ -249,7 +249,7 @@ const template = (self, entry) => {
 
 // Opciones para el mapa.
 const opciones = {
-    'template': template, // Asigno la función 
+    "template": template, // Asigno la función 
 };
 ```
 \*. El método `self.header()`, permite retornar el nombre asignado a la clave. Se le pasa como argumento el nombre de clave y retorna el header. Si no estuviera asignado retorna la clave.
@@ -260,8 +260,8 @@ Otra alternativa es crear nuevos atributos personalizados para cada entrada y us
 
 ```js
 const options = {
-	'template': (self, row) => {
-		row['entrada_personalizada'] = `<p>Mi valor personalizado</p>
+	"template": (self, row) => {
+		row["entrada_personalizada"] = `<p>Mi valor personalizado</p>
 			<img src=\"image.png\" alt=\"Una margarita en una maceta\">`;
 		return self.default_template(self, row);
 	},
@@ -278,11 +278,11 @@ La opción `headers`, permite mapear cada una de las claves de la entrada con un
 
 ```js
 const opciones = {
-    'headers': {
-      'provincia': 'Provincia',
-      'localidad': 'Localidad',
-      'direccion_postal': 'Dirección Postal',
-      'codigo_postal': 'Código Postal'
+    "headers": {
+      "provincia": "Provincia",
+      "localidad": "Localidad",
+      "direccion_postal": "Dirección Postal",
+      "codigo_postal": "Código Postal"
     } 
 };
 ```
@@ -319,12 +319,12 @@ Se puede obtener el extenso listado de opciones y su documentación en [Leaflet 
 
 ```js
 const options = {
-  'filters': [
+  "filters": [
     {
-      'legend': 'Ver',
-      'type': 'checkbox',
-      'field': ["provincia", "checked"],
-      'fields': false
+      "legend": "Ver",
+      "type": "checkbox",
+      "field": ["provincia", "checked"],
+      "fields": false
     }
   ]
 };
@@ -332,18 +332,18 @@ const options = {
 // O con filtros armados manualmente
 
 const options = {
-  'filters': [
+  "filters": [
     {
-      'legend': 'Ver',
-      'type': 'checkbox',
-      'field': false,
-      'fields': [
-          ['provincia', 'Buenos Aires', ['Buenos Aires', 'Ciudad Autónoma de Buenos Aires'], 'checked'],
-          ['provincia', 'Noreste Argentino', ['Chaco', 'Corrientes', 'Formosa', 'Misiones'], 'checked'],
-          ['provincia', 'Noroeste Argentino', ['Catamarca', 'Jujuy', 'La Rioja', 'Salta', 'Santiago del Estero', 'Tucumán']],
-          ['provincia', 'Región Centro', ['Córdoba', 'Entre Ríos', 'Santa Fe']],
-          ['provincia', 'Región Cuyo', ['La Pampa', 'Mendoza', 'San Juan', 'San Luis']],
-          ['provincia', 'Región Patagonia', ['Chubut', 'Neuquén', 'Río Negro', 'Santa Cruz', 'Tierra del Fuego']],
+      "legend": "Ver",
+      "type": "checkbox",
+      "field": false,
+      "fields": [
+          ["provincia", "Buenos Aires", ["Buenos Aires", "Ciudad Autónoma de Buenos Aires"], "checked"],
+          ["provincia", "Noreste Argentino", ["Chaco", "Corrientes", "Formosa", "Misiones"], "checked"],
+          ["provincia", "Noroeste Argentino", ["Catamarca", "Jujuy", "La Rioja", "Salta", "Santiago del Estero", "Tucumán"]],
+          ["provincia", "Región Centro", ["Córdoba", "Entre Ríos", "Santa Fe"]],
+          ["provincia", "Región Cuyo", ["La Pampa", "Mendoza", "San Juan", "San Luis"]],
+          ["provincia", "Región Patagonia", ["Chubut", "Neuquén", "Río Negro", "Santa Cruz", "Tierra del Fuego"]],
       ]
     }
   ]
@@ -363,8 +363,8 @@ const options = {
 const options = {
 	"filters": [
 		{
-		    'legend': 'Ver',
-		    'type': 'checkbox',
+		    "legend": "Ver",
+		    "type": "checkbox",
 		    "field": ["provincia", "checked"],
 		    "fields": false
 		}
@@ -374,7 +374,7 @@ const options = {
 | Posición | Tipo | Descripción |
 |:---|:---|:---|
 | 0 | `string` | Clave por la que se quiere filtrar. |
-| 1 | {`string|boolean`, ['checked',`false`]} | Designa el estado inicial de los checkbox. |
+| 1 | {`string|boolean`, ["checked",`false`]} | Designa el estado inicial de los checkbox. |
 
 
 ####  <a id="opciones-fields"></a> Opciones para `fields`   [⏎](#opciones-filters "Ver opciones para filters")
@@ -383,15 +383,15 @@ const options = {
 const options = {
 	"filters": [
 		{
-		    'legend': 'Ver',
-		    'type': 'checkbox',
+		    "legend": "Ver",
+		    "type": "checkbox",
 		    "field": false,
 		    "fields": [
 				[
-			        'provincia',
-			        'Noreste Argentino',
-			        ['Chaco', 'Corrientes', 'Formosa', 'Misiones'],
-			        'checked'
+			        "provincia",
+			        "Noreste Argentino",
+			        ["Chaco", "Corrientes", "Formosa", "Misiones"],
+			        "checked"
 			    ]
 		    ]
 		}
@@ -405,7 +405,7 @@ const options = {
 | 0 | `string` | Clave por la que se quiere filtrar. |
 | 1 | `string` | Nombre que se verá en el `<label>` del checkbox |
 | 2 | `object` | Listado de valores que se deberá buscar en cada iteración de búsqueda. |
-| 3 | {`string|boolean`, ['checked',`false`]} | Designa el estado inicial del checkbox. |
+| 3 | {`string|boolean`, ["checked",`false`]} | Designa el estado inicial del checkbox. |
 
 
 
@@ -417,7 +417,7 @@ const options = {
 |:---|:---|:---|:---|:---|
 | scope | object |  | Scope se utiliza para asegurarse de que todas las funciones serán sobre el ambiente de un buscado y un mapa determinados. | _Requerido_ |
 | placeholder | `string` | Su búsqueda | Texto de ayuda que aparece en un tono medio en el selector de items, complementa al label de un form. | *Opcional* |
-| search_fields | `object` | [] | Define los índices que se utilizan para realizar la búsqueda. Ej. `['provincia', 'localidad', 'nombre']` | *Opcional* |
+| search_fields | `object` | [] | Define los índices que se utilizan para realizar la búsqueda. Ej. `["provincia", "localidad", "nombre"]` | *Opcional* |
 | datalist | `boolean` | `true` | Despliega un HTML datalis para el input | *Opcional* |
 
 #### Ejemplo de uso para el buscador
@@ -430,9 +430,9 @@ poncho_map.render();
 
 // Configuración de PonchoMapSearch
 const search_options = {
-  'scope':'search-efectores',
-  'placeholder':'Buscá tu Punto Digital',
-  'search_fields': [
+  "scope":"search-efectores",
+  "placeholder":"Buscá tu Punto Digital",
+  "search_fields": [
       "nombre",
       "institucion",
       "localidad",
@@ -542,12 +542,12 @@ Por último agregamos la llamada al mapa.
   // init
   (async() => {
       // fetch data
-      const url = '[URL endpoint]';
+      const url = "[URL endpoint]";
       const sheet_data = await fetch_json(url); 
       // render map
       const options = {
-          'template': template,
-          'scope': 'poncho-map'
+          "template": template,
+          "scope": "poncho-map"
       };
       const mapa = new PonchoMapFilter(sheet_data, options);
       mapa.render();
