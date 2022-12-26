@@ -194,7 +194,7 @@ COPIAR DESDE ACÁ…
           "definition_tag": "div",
           "lead": {
               "key": "type", 
-              css: (self, entry, value) => {
+              "css": (self, entry, value) => {
                   if(entry.type == "Polygon"){
                       return "badge bg-verdin text-white"; 
                   } else if(entry.type == "Point"){
@@ -207,7 +207,7 @@ COPIAR DESDE ACÁ…
               style: "background-color:gold; border-radius:6px;"
                     + " padding:.25em .75em !important;"
           },  
-          "title": "nombre",
+          "title": "direccion",
           "values": [
               "title", 
               "id",
@@ -222,8 +222,8 @@ COPIAR DESDE ACÁ…
                   {
                       "key": "direccion",
                       "header": "Cannabis",
-                      "values": ["id", "title"],
-                      "separator": " - "
+                      "values": ["id", "title",],
+                      "separator": ", "
                   },
                   {
                       "key": "ubicacion",
@@ -260,8 +260,6 @@ COPIAR DESDE ACÁ…
       "marker": "tomate",
       "marker": (self, ele) => {
           const icon_color = (ele.hasOwnProperty("icon_color")) ? ele.icon_color : "azul";
-          // return self.icon(icon_color); 
-          // Alternativa
           const img_url = "https://cdn0.iconfinder.com/data/icons/maps-and-navigation-2-1/52/86-512.png";
           const id = (ele.hasOwnProperty("ID")) ? ele.ID : false;
           const icon = (ele.hasOwnProperty("icon")) ? ele.icon : false;
@@ -279,7 +277,6 @@ COPIAR DESDE ACÁ…
           }
           return iconImg(img_url);
       },
-      "_tooltip": true,
       "no_info": false,
       "slider": true,
       "hash": true,

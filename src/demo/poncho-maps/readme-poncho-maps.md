@@ -1,5 +1,6 @@
 
 
+
 # PonchoMap
 
 ## Conteidos
@@ -21,6 +22,7 @@
 | Parámetro | Tipo | Default | Descripción |
 |:---|:---|:---|:---|
 | scope | `string` | _`empty string`_ | Es el ambiente de trabajo sobre un mapa en particular. Cuando se utiliza más de un mapa en la página esto sirve para diferenciarlos. | 
+| map_selector | `string` | map | Nombre del id que utiliza Leaflet para hacer el _render_ del mapa. | 
 | id | `string` | id | Nombre de la columna donde se encuentra el id. Si la fuente de datos usa otro nombre se define con esta opción. Ej. `'id':'id_punto_digital'`.| 
 | latitud | `string` | latitud | Nombre de la columna con el valor de latitud. Si la fuente de datos usa otro nombre se define con esta opción. Ej. `'latitud':'lat'`.| 
 | longitud | `string` | longitud | Nombre de la columna con el valor de longitud. Si la fuente de datos usa otro nombre se define con esta opción. Ej. `'longitud':'lng'`.| 
@@ -33,10 +35,10 @@
 | headers | `object` | `{}` | Permite definir títulos dinámicos mapeando la clave del objeto que contiene la información con los encabezados | 
 | header_icons | `object` | `{}` | Permite definir un ícono para cada uno de los headers de la entrada.<br><br>Ver opciones para [header_icons](#opciones-header-icons). | 
 | hash | `boolean` | `false` | Habilita la acción por la cual, cada vez que se hace *clic* en un marker se reemplaza el hash en la barra de dirección del navegador.| 
-| slider | `boolean|false` | Habilita el slider y reemplaza el popUp.| 
+| slider | `boolean` | `false` | Habilita el slider y reemplaza el popUp.| 
 | anchor_delay | `integer` | 0 | Tiempo de demora entre que se carga la página y se muestra el marker pasado por url. El valor es en milisegundos (1" = 1000). | 
 | scroll | `boolean` | `false` | Hace un scroll para posisionar la página en el borde superior del mapa cuando se carga la página.| 
-| marker | `string|function` | azul | Permite asignar un color distinto o usar una función para cambiar la lógica en la que se muestran los colores o usar iconos de otro tipo.<br><br>Ver opciones para [marker](#opciones-marker). | 
+| marker | `string, function` | azul | Permite asignar un color distinto o usar una función para cambiar la lógica en la que se muestran los colores o usar iconos de otro tipo.<br><br>Ver opciones para [marker](#opciones-marker). | 
 | no_info | `boolean` | `false` | Permite deshabilitar la información del marker. Cuando esta opción está en false, no se despliega el popUp o el slider. | 
 | reset_zoom | `boolean` | `false` | Habilita el un botón en medio del botón *zoom-out* y *zoom-in* para mostrar el mapa completo con sus *markers*.| 
 | map_anchor_zoom | `integer` | 16 | Configuración del zoom para los markers que se deben visualizar pasándo por hash el id del marker.| 
@@ -99,8 +101,8 @@ const options = {
 | Parámetro | Tipo | Default | Descripción |
 |:---|:---|:---|:---|
 | key | `string` | "" | Clave de la entrada del JSON o del geoJSON _feature.properties_. | 
-| css | `string|function` | "" | **String**<br>Definición de css, ej: `"text-primary bg-warning"`.<br><br>**Función** <br>`css: (self, entry) => string;`<br>Dónde `self` el la instancia del objeto *PonchoMap* o *PonchoMapFilter* y `entry` corresponde a una entrada o feature del JSON. |
-| style | `string\|function` | "" | **String**<br>Definición para _style_, ej:<br>`"color: orange; font-size:2em; margin: 2em auto;"`.<br><br>**Función** <br>`css: (self, entry) => string;`<br>Dónde `self` el la instancia del objeto *PonchoMap* o *PonchoMapFilter* y `entry` corresponde a una entrada o feature del JSON. |
+| css | `string, function` | "" | **String**<br>Definición de css, ej: `"text-primary bg-warning"`.<br><br>**Función** <br>`css: (self, entry) => string;`<br>Dónde `self` el la instancia del objeto *PonchoMap* o *PonchoMapFilter* y `entry` corresponde a una entrada o feature del JSON. |
+| style | `string, function` | "" | **String**<br>Definición para _style_, ej:<br>`"color: orange; font-size:2em; margin: 2em auto;"`.<br><br>**Función** <br>`css: (self, entry) => string;`<br>Dónde `self` el la instancia del objeto *PonchoMap* o *PonchoMapFilter* y `entry` corresponde a una entrada o feature del JSON. |
 #### <a id="opciones-para-mixing"></a>Opciones para `mixing` [⏎](#opciones-template-structure)
 
 ```js
@@ -148,9 +150,9 @@ const options = {
 | Parámetro | Tipo | Default | Descripción |
 |:---|:---|:---|:---|
 | key | `string` |  | Define la clave a la que se le asigna el icono. |
-| css | `string|function` | {} | **String**<br>Definición de *css*, ej: `"text-primary bg-warning"`.<br><br>**Función** <br>`css: (self, entry) => string;`<br>Dónde `self` es la instancia del objeto *PonchoMap* o *PonchoMapFilter* y `entry` corresponde a una entrada en `feature.properties` del JSON. |
-| style | `string|function` | {} | **String**<br>Definición de *style*, ej: `"background-color:gold; color:#333;"`.<br><br>**Función** <br>`style: (self, entry) => string;`<br>Dónde `self` es la instancia del objeto *PonchoMap* o *PonchoMapFilter* y `entry` corresponde a una entrada en `feature.properties` del JSON. |
-| html | `string|function` | {} | **String**<br>Retornando un string HTML, ej.<br>`<i class="icono-arg-cannabis-medicinal-1"></i>`<br><br>**Función** <br>Retornando un string en una función ej.<br>`(self, entry) => string;` |
+| css | `string, function` | {} | **String**<br>Definición de *css*, ej: `"text-primary bg-warning"`.<br><br>**Función** <br>`css: (self, entry) => string;`<br>Dónde `self` es la instancia del objeto *PonchoMap* o *PonchoMapFilter* y `entry` corresponde a una entrada en `feature.properties` del JSON. |
+| style | `string, function` | {} | **String**<br>Definición de *style*, ej: `"background-color:gold; color:#333;"`.<br><br>**Función** <br>`style: (self, entry) => string;`<br>Dónde `self` es la instancia del objeto *PonchoMap* o *PonchoMapFilter* y `entry` corresponde a una entrada en `feature.properties` del JSON. |
+| html | `string, function` | {} | **String**<br>Retornando un string HTML, ej.<br>`<i class="icono-arg-cannabis-medicinal-1"></i>`<br><br>**Función** <br>Retornando un string en una función ej.<br>`(self, entry) => string;` |
 
 
 ### <a id="opciones-marker" href="#opciones-marker"></a>Opciones para `marker` [⏎](#opciones "Ir al listado de opciones generales")
@@ -350,11 +352,10 @@ const options = {
 
 | Parámetro | Tipo | Default | Descripción |
 |:---|:---|:---|:---|
-| legend | `string` | `false` ||
-| field | `Object` | `false` | Ver opciones para [field](#opciones-field)|
-| fields | `Object` | `false` |Ver opciones para [fields](#opciones-fields)|
+| legend | `string` | `false` | Establece un nombre para el legend en el fieldset de opciones. |
+| field | `Object` | `false` | Permite crear un filtro en base a una de las claves en la entrada de datos.<br><br>Ver opciones para [field](#opciones-field)|
+| fields | `Object` | `false` | A diferencia de *field*, permite componer un filtro en base a criterios definidos por el usuario.<br><br>Ver opciones para [fields](#opciones-fields)|
 
-Este ejemplo tiene dos filtros generales: estado_funcionamiento y provincia. Éstas son columnas de la tabla —o entrada—, donde se obtienen los datos. El usuario deberá configurar cada una de las entradas asignando parámetros del siguiente modo:
 
 ####  <a id="opciones-field"></a> Opciones para `field`   [⏎](#opciones-filters "Ver opciones para filters")
 
@@ -370,14 +371,10 @@ const options = {
 	]
 }
 ```
-
 | Posición | Tipo | Descripción |
 |:---|:---|:---|
 | 0 | `string` | Clave por la que se quiere filtrar. |
-| 1 | `string` | Nombre que se verá en el `<label>` del checkbox |
-| 2 | `object` | Listado de valores que se deberá buscar en cada iteración de búsqueda. |
-| 3 | {`string|boolean`, ['checked',`false`]} | Designa el estado inicial del checkbox. |
-
+| 1 | {`string|boolean`, ['checked',`false`]} | Designa el estado inicial de los checkbox. |
 
 
 ####  <a id="opciones-fields"></a> Opciones para `fields`   [⏎](#opciones-filters "Ver opciones para filters")
@@ -402,10 +399,15 @@ const options = {
 }
 ```
 
+
 | Posición | Tipo | Descripción |
 |:---|:---|:---|
 | 0 | `string` | Clave por la que se quiere filtrar. |
-| 1 | {`string|boolean`, ['checked',`false`]} | Designa el estado inicial de los checkbox. |
+| 1 | `string` | Nombre que se verá en el `<label>` del checkbox |
+| 2 | `object` | Listado de valores que se deberá buscar en cada iteración de búsqueda. |
+| 3 | {`string|boolean`, ['checked',`false`]} | Designa el estado inicial del checkbox. |
+
+
 
 ----
 
@@ -547,34 +549,12 @@ Por último agregamos la llamada al mapa.
           'template': template,
           'scope': 'poncho-map'
       };
-      const mapa = new PonchoMap(sheet_data, options);
+      const mapa = new PonchoMapFilter(sheet_data, options);
       mapa.render();
   })();
 </script>
 ```
 
-
-### <a id="ejemplos-codepen" href="#ejemplos-codepen"></a>Ejemplos en [Codepen.io](https://codepen.io/)
-
-Simple
-
-[https://codepen.io/agustinbouillet/pen/Rwyoaoa](https://codepen.io/agustinbouillet/pen/Rwyoaoa)
-
-Simple con mdificación en el template
-
-[https://codepen.io/agustinbouillet/pen/zYjodpR](https://codepen.io/agustinbouillet/pen/zYjodpR)
-
-Template con markdown y modificación de índices
-
-[https://codepen.io/agustinbouillet/pen/bGMBoyM](https://codepen.io/agustinbouillet/pen/bGMBoyM)
-
-Mapa con modificaciones en el template y filtros
-
-[https://codepen.io/agustinbouillet/pen/abGBLmM](https://codepen.io/agustinbouillet/pen/abGBLmM)
-
-Mapa con filtro y buscador
-
-[https://codepen.io/agustinbouillet/pen/poVNWeV](https://codepen.io/agustinbouillet/pen/poVNWeV)
 
 
 
