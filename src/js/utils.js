@@ -222,6 +222,11 @@ const secureHTML = (str, exclude=[]) => {
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;");
 
+    // let replaceString = str.toString()
+    //     .replace(/<(?=[a-zA-Z])([^<>]*)>/gm, "&lt;$1&gt;")
+    //     .replace(/<\/(?=[a-zA-Z])([^<>]*)>/gm, "&lt;/$1&gt;");
+
+
     if(exclude.length > 0){
         const regexStart = new RegExp(
             "&lt;(" + exclude.join("|") + ")(.*?)&gt;", "g");

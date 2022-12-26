@@ -1,5 +1,6 @@
 
 
+
 # PonchoMap
 
 ## Conteidos
@@ -351,11 +352,10 @@ const options = {
 
 | Parámetro | Tipo | Default | Descripción |
 |:---|:---|:---|:---|
-| legend | `string` | `false` ||
-| field | `Object` | `false` | Ver opciones para [field](#opciones-field)|
-| fields | `Object` | `false` |Ver opciones para [fields](#opciones-fields)|
+| legend | `string` | `false` | Establece un nombre para el legend en el fieldset de opciones. |
+| field | `Object` | `false` | Permite crear un filtro en base a una de las claves en la entrada de datos.<br><br>Ver opciones para [field](#opciones-field)|
+| fields | `Object` | `false` | A diferencia de *field*, permite componer un filtro en base a criterios definidos por el usuario.<br><br>Ver opciones para [fields](#opciones-fields)|
 
-Este ejemplo tiene dos filtros generales: estado_funcionamiento y provincia. Éstas son columnas de la tabla —o entrada—, donde se obtienen los datos. El usuario deberá configurar cada una de las entradas asignando parámetros del siguiente modo:
 
 ####  <a id="opciones-field"></a> Opciones para `field`   [⏎](#opciones-filters "Ver opciones para filters")
 
@@ -371,14 +371,10 @@ const options = {
 	]
 }
 ```
-
 | Posición | Tipo | Descripción |
 |:---|:---|:---|
 | 0 | `string` | Clave por la que se quiere filtrar. |
-| 1 | `string` | Nombre que se verá en el `<label>` del checkbox |
-| 2 | `object` | Listado de valores que se deberá buscar en cada iteración de búsqueda. |
-| 3 | {`string|boolean`, ['checked',`false`]} | Designa el estado inicial del checkbox. |
-
+| 1 | {`string|boolean`, ['checked',`false`]} | Designa el estado inicial de los checkbox. |
 
 
 ####  <a id="opciones-fields"></a> Opciones para `fields`   [⏎](#opciones-filters "Ver opciones para filters")
@@ -403,10 +399,15 @@ const options = {
 }
 ```
 
+
 | Posición | Tipo | Descripción |
 |:---|:---|:---|
 | 0 | `string` | Clave por la que se quiere filtrar. |
-| 1 | {`string|boolean`, ['checked',`false`]} | Designa el estado inicial de los checkbox. |
+| 1 | `string` | Nombre que se verá en el `<label>` del checkbox |
+| 2 | `object` | Listado de valores que se deberá buscar en cada iteración de búsqueda. |
+| 3 | {`string|boolean`, ['checked',`false`]} | Designa el estado inicial del checkbox. |
+
+
 
 ----
 
@@ -548,34 +549,12 @@ Por último agregamos la llamada al mapa.
           'template': template,
           'scope': 'poncho-map'
       };
-      const mapa = new PonchoMap(sheet_data, options);
+      const mapa = new PonchoMapFilter(sheet_data, options);
       mapa.render();
   })();
 </script>
 ```
 
-
-### <a id="ejemplos-codepen" href="#ejemplos-codepen"></a>Ejemplos en [Codepen.io](https://codepen.io/)
-
-Simple
-
-[https://codepen.io/agustinbouillet/pen/Rwyoaoa](https://codepen.io/agustinbouillet/pen/Rwyoaoa)
-
-Simple con mdificación en el template
-
-[https://codepen.io/agustinbouillet/pen/zYjodpR](https://codepen.io/agustinbouillet/pen/zYjodpR)
-
-Template con markdown y modificación de índices
-
-[https://codepen.io/agustinbouillet/pen/bGMBoyM](https://codepen.io/agustinbouillet/pen/bGMBoyM)
-
-Mapa con modificaciones en el template y filtros
-
-[https://codepen.io/agustinbouillet/pen/abGBLmM](https://codepen.io/agustinbouillet/pen/abGBLmM)
-
-Mapa con filtro y buscador
-
-[https://codepen.io/agustinbouillet/pen/poVNWeV](https://codepen.io/agustinbouillet/pen/poVNWeV)
 
 
 

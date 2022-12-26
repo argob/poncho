@@ -266,9 +266,14 @@ class PonchoMapFilter extends PonchoMap {
      */
     _setFilter = (args) => {
         const [key, status="checked"] = args;
-        const obj = [
-            ...new Set(this.entries.map(entry => entry.properties[key]))
-        ].map(item => [key, item, [item], status]);
+        const entries = this.entries.map(entry => {
+            if(entry.properties.hasOwnProperty(key)){
+                return entry.properties[key];
+            }
+        }).filter(e => e);
+
+        const obj = [...new Set(entries)]
+                .map(item => [key, item, [item], status]);
 
         obj.sort((a, b) => {
             const valA = a[1].toUpperCase();

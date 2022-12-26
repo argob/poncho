@@ -67,14 +67,15 @@ class PonchoMap {
                 tables: true,
                 simpleLineBreaks: true,
                 extensions :[
-                    // "numbers", 
-                    // "ejes", 
-                    //"video"
-                    "images", 
-                    "alerts", 
-                    "button", 
-                    "target",
-                    "bootstrap-tables",
+                    'details', 
+                    'images', 
+                    'alerts', 
+                    'numbers', 
+                    'ejes', 
+                    'button', 
+                    'target',
+                    'bootstrap-tables', 
+                    // 'video'
                 ]
             },
             "render_slider": true,
@@ -637,10 +638,10 @@ class PonchoMap {
         }
 
         const new_headers = this.template_structure.mixing.reduce((i, e) => {
-            if(![e.key, e.header].every(i => i)){
+            if(![e.key].every(i => i)){
                 return;
             }
-            return ({ ...i, ...({ [e.key]: e.header }) });
+            return ({ ...i, ...({[e.key]: (e.header ? e.header : "")})});
         }, {});
         return {...headers, ...new_headers};
     };
