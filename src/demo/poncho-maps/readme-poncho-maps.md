@@ -328,9 +328,9 @@ const options = {
     }
   ]
 };
-
-// O con filtros armados manualmente
-
+```
+O con filtros armados manualmente
+```js
 const options = {
   "filters": [
     {
@@ -353,8 +353,9 @@ const options = {
 | Parámetro | Tipo | Default | Descripción |
 |:---|:---|:---|:---|
 | legend | `string` | `false` | Establece un nombre para el legend en el fieldset de opciones. |
+| type | `string` | checkbox | Define el tipo de input que debe reproducir el filtro. Dos opciones son las posibles: checkbox y radio.  |
 | field | `Object` | `false` | Permite crear un filtro en base a una de las claves en la entrada de datos.<br><br>Ver opciones para [field](#opciones-field)|
-| fields | `Object` | `false` | A diferencia de *field*, permite componer un filtro en base a criterios definidos por el usuario.<br><br>Ver opciones para [fields](#opciones-fields)|
+| fields | `Object` | `false` | A diferencia de *field*, permite componer un filtro en base a criterios definidos por el usuario utilizando datos existentes en las entradas.<br><br>Ver opciones para [fields](#opciones-fields)|
 
 
 ####  <a id="opciones-field"></a> Opciones para `field`   [⏎](#opciones-filters "Ver opciones para filters")
