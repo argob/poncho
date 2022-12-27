@@ -3,6 +3,8 @@
 
 # PonchoMap
 
+![Poncho Map](./img/map.png)
+
 ## Conteidos
 
 * [Opciones generales](#opciones)
@@ -44,6 +46,7 @@
 | map_anchor_zoom | `integer` | 16 | Configuración del zoom para los markers que se deben visualizar pasándo por hash el id del marker.| 
 | map_zoom | `integer` | 4 | Configuración del valor inicial para el zoom del mapa.| 
 | map_view | `Array Object` | `[-40.44, -63.59]` | Geoposicionamiento inicial del mapa. | 
+| error_reporting | `boolean` | true | Activa la visualización de errores o warnings en el mapa. | 
 | marker_cluster_options | `Object` | `"marker_cluster_options": {}` | Ver opciones para [marker_cluster_options](#opciones-marker-cluster-options) |
 
 
@@ -128,6 +131,8 @@ const options = {
 
 
 ### <a id="opciones-header-icons"></a> Opciones para `header_icons` [⏎](#opciones)
+
+![Header icons](./img/header-icons.png)
 
 ```js
 const options = {
