@@ -3,6 +3,8 @@
 
 # PonchoMap
 
+![Poncho Map](./img/map.png)
+
 ## Conteidos
 
 * [Opciones generales](#opciones)
@@ -128,6 +130,8 @@ const options = {
 
 
 ### <a id="opciones-header-icons"></a> Opciones para `header_icons` [⏎](#opciones)
+
+![Header icons](./img/header-icons.png)
 
 ```js
 const options = {
