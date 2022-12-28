@@ -75,7 +75,7 @@ class PonchoMap {
                     'button', 
                     'target',
                     'bootstrap-tables', 
-                    // 'video'
+                    'video'
                 ]
             },
             "render_slider": true,
