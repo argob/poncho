@@ -1,6 +1,7 @@
 
 
 
+
 # PonchoMap
 
 ![Poncho Map](./img/map.png)
@@ -33,6 +34,8 @@
 | template | `object` | `null` | Define la función que controla el template para el popUp o el slider.<br><br>Ver opciones para [template](#opciones-templates).| 
 | template_structure | `object` | `{}` | Permite definir un listado de valores a mostarar en el template por defecto o excluir valores que no se deseen mostrar. <br><br>Ver opciones para [template_structure](#opciones-template-structure). | 
 | template_innerhtml | `boolean` | `false` | Permite incrustar html dentro de la descripción.|
+| template_markdown | `boolean` | `false` | Habilita el uso del _plugin_ [showdown.js](https://showdownjs.com).|
+| markdown_options | `object` | | Permite configurar las opciones del _plugin_ showdown.js<br><br>[Ver opciones para markdow_options](#opciones-markdown-options)|
 | allowed_tags | `object` | `[]` | Permite configurar un listado de etiquetas HTML que se imprimirán como parte del DOM y no como un texto. Para habilitar todas las etiquetas se utiliza `["*"]`. Si se quiere especificar cuales deben usarse, ej.: `["a", "strong"]`. 
 | headers | `object` | `{}` | Permite definir títulos dinámicos mapeando la clave del objeto que contiene la información con los encabezados | 
 | header_icons | `object` | `{}` | Permite definir un ícono para cada uno de los headers de la entrada.<br><br>Ver opciones para [header_icons](#opciones-header-icons). | 
@@ -107,6 +110,8 @@ const options = {
 | css | `string, function` | "" | **String**<br>Definición de css, ej: `"text-primary bg-warning"`.<br><br>**Función** <br>`css: (self, entry) => string;`<br>Dónde `self` el la instancia del objeto *PonchoMap* o *PonchoMapFilter* y `entry` corresponde a una entrada o feature del JSON. |
 | style | `string, function` | "" | **String**<br>Definición para _style_, ej:<br>`"color: orange; font-size:2em; margin: 2em auto;"`.<br><br>**Función** <br>`css: (self, entry) => string;`<br>Dónde `self` el la instancia del objeto *PonchoMap* o *PonchoMapFilter* y `entry` corresponde a una entrada o feature del JSON. |
 #### <a id="opciones-para-mixing"></a>Opciones para `mixing` [⏎](#opciones-template-structure)
+
+![Mixing](./img/mixing.png)
 
 ```js
 "template_structure": {
@@ -311,6 +316,33 @@ Se puede obtener el extenso listado de opciones y su documentación en [Leaflet 
     }  
 }
 ```
+
+### <a id="opciones-markdown-options"></a>Opciones para `markdown_options` [⏎](#opciones "Ir al listado de opciones generales")
+
+#### Valores por defecto
+
+La opción markdown_options permite incorporar todas las opciones que ofrece el plugin. Visite la sección [configuración de la documentación Showdown](https://showdownjs.com/docs/configuration/) para más información. 
+
+```js
+const options = {
+	"markdown_options": {
+	    "tables": true,
+	    "simpleLineBreaks": true,
+	    "extensions": [
+	        'details', 
+	        'images', 
+	        'alerts', 
+	        'numbers', 
+	        'ejes', 
+	        'button', 
+	        'target',
+	        'bootstrap-tables', 
+	        'video'
+	    ]
+	},
+};
+```
+
 
 ## <a id="opciones-poncho-map-filter" href="#opciones-poncho-map-filter">¶</a> Opciones para PonchoMapFilter
 

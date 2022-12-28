@@ -32,9 +32,8 @@ const template_punto_digital = (self, row) => {
    * }
    */
   const days_avaiable = (data) => {
-    if(!data){
-        return [];
-    }
+    if(!data)
+      return [];
     const horarios_map = new Map();
     for(const i of data.split(' <>')){
         const split_horarios = i.split(','); 
@@ -86,45 +85,89 @@ const template_punto_digital = (self, row) => {
       return `<li class="${style}"><strong>${day[0]}</strong>: ${datos} h.</li>`;
   }).join('');
 
-  let horarios_list = "sdf";
-
   if(horarios){
-
     let today_text = false;
     if(today){
-        today_text = "<dd class=\"text-arandano\" style=\"font-weight:bold; margin-bottom:0\">"
-            + "<i class=\"fa fa-clock-o text-arandano\"></i>&nbsp;"
-            + "Hoy abierto"
-            + "</dd>" 
-            + "<dd class=\"text-arandano\">" 
-            + time_tostring(today[1]) + "h."
-            + "</dd>";
+       today_text = 
+          `<dd class="text-arandano" style="font-weight:bold; margin-bottom:0">
+              <i class="icono-arg-reloj text-arandano"></i>
+              Hoy abierto
+          </dd> 
+          <dd class="m-l-2 text-arandano">${time_tostring(today[1])} h.
+          </dd>`;
     }
 
-    horarios_list = "<dl><dt class=\"sr-only\">"
-        + "<i class=\"fa fa-clock-o text-primary\"></i>"
-        + "Horarios"
-        + "</dt>"
-        + (today_text ? today_text : '')
-        + "<dd class=\"_m-l-2\">"
-        + "<details style=\"font-size:.93em\" close>"
-        + "<summary class=\"p-b-0 p-t-0\">Horarios de atención</summary>"
-        + "<ul class=\"list-unstyled m-t-0\">"
-        + horarios
-        + "</ul>"
-        + "</details>"
-        + "</dd></dl>";
+    horarios = 
+      `<dt class="sr-only">
+        <i class="icono-arg-reloj text-primary"></i> 
+        Horarios
+      </dt>
+      ${today_text ? today_text : ''}
+      <dd class="_m-l-2">
+        <details style="font-size:.93em" close>
+        <summary class="p-b-0 p-t-0">Horarios de atención</summary>
+        <ul class="list-unstyled m-t-0">${horarios}</ul>
+        </details>
+      </dd>`;
   }
 
-  const sin_funcionamiento = "<div class=\"alert alert-warning\" style=\"padding:.5em .75em;\">"
-      + "<p class=\"text-mandarina\">"
-      + "<strong>Próximamente</strong>"
-      + "</p>"
-      + "</div>";
+  let institucion = 
+      `<dt class="sr-only">Tipo de institución</dt>
+      <dd class="_m-l-2">
+        <i class="icono-arg-institucion  text-primary"></i> 
+        <b>${row.institucion}</b>
+      </dd>`;
 
-  row.estado_funcionamiento_custom = (row.estado_funcionamiento == '3' ? 
-        sin_funcionamiento : '');
-  row.horarios_custom = horarios_list;
-
-  return self.defaultTemplate(self, row);
+  let telefono = 
+      `<dt>
+          <i class="icono-arg-telefono-lineal text-primary"></i> 
+          Teléfono del centro
+      </dt>
+      <dd class="m-l-2">${row.telefono}</dd>`;
+  let email = 
+      `<dt>
+          <i class="icono-arg-mail-1 text-primary"></i> Correo electrónico
+      </dt>
+      <dd class="m-l-2">${row.email}</dd>`;
+  let facebook =
+      `<dt><i class="fa fa-link text-primary"></i> Página web</dt>
+      <dd class="m-l-2">
+        <a href="${row.facebook}" target="_blank">${row.facebook}</a>
+      </dd>`;
+  let sin_funcionamiento = 
+      `<div class="alert alert-warning" style="padding:.5em .75em;">
+        <p class="text-mandarina">
+          <strong>Próximamente</strong>
+        </p>
+      </div>`;
+  let template = 
+      `<article>
+        <h1 class="h4 text-primary p-t-0 m-t-0">${row.nombre}</h1>
+        ${row.estado_funcionamiento == '3' ? sin_funcionamiento : ''}
+        <dl style="font-size:1rem">
+          ${institucion}
+          <dt>
+            <i class="icono-arg-marcador-ubicacion-1 text-primary" 
+                style="padding-right:.25rem;"></i> 
+            Ubicación
+          </dt>
+          <dd class="m-l-2 m-b-0">
+          ${row.calle}.
+          </dd>
+          <dd class="m-l-2">
+            ${[row.municipio_nombre, row.provincia].join(', ')}.
+          </dd>
+          ${horarios}
+          ${row.telefono ? telefono : ''}
+          ${row.email ? email : ''}
+          ${row.facebook ? facebook : ''}
+        </dl>
+      </article>`;
+      
+  return template;
 };
+
+
+
+
+
