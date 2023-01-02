@@ -106,7 +106,7 @@ const template_punto_digital = (self, row) => {
         + "Horarios"
         + "</dt>"
         + (today_text ? today_text : '')
-        + "<dd class=\"_m-l-2\">"
+        + "<dd>"
         + "<details style=\"font-size:.93em\" close>"
         + "<summary class=\"p-b-0 p-t-0\">Horarios de atención</summary>"
         + "<ul class=\"list-unstyled m-t-0\">"
