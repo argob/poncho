@@ -532,3 +532,13 @@ li.breadcrumbs__toggle {
 		}
 	}
 }
+  @media only screen and (min-width:990px) {
+    .jumbotron_bar .container .breadcrumb,
+    .jumbotron_bar .container .breadcrumbs {
+        padding: 11px 0px 5px
+    }
+    .breadcrumb.breadcrumb_overflow,
+    .breadcrumbs.breadcrumbs_overflow {
+        margin: 18px 0 0;
+    }
+  }
