@@ -1,0 +1,1086 @@
+{
+  "range": "instituciones!A1:Z1000",
+  "majorDimension": "ROWS",
+  "values": [
+    [
+      "institucion",
+      "direccion",
+      "provincia",
+      "filtro-zona",
+      "institucion",
+      "usuaries",
+      "prestacion",
+      "reconocimiento"
+    ],
+    [
+      "Institución",
+      "Dirección",
+      "Provincia",
+      "Zona",
+      "Tipo de institución",
+      "Usuaries",
+      "Prestación",
+      "Nivel de reconocimiento"
+    ],
+    [
+      "Atajo Dock Sud ",
+      "25 de Mayo y Pje. Figueroa A",
+      "Buenos Aires",
+      "Avellaneda",
+      "Acceso a la Justicia",
+      "General",
+      "Recibir y derivar denuncias, evacuar consultas jurídicas con lenguaje claro, acceso a información judicial.",
+      "Cooperación"
+    ],
+    [
+      "Atajo Moreno",
+      "-",
+      "Buenos Aires",
+      "Moreno",
+      "Acceso a la Justicia",
+      "General",
+      "Recibir y derivar denuncias, evacuar consultas jurídicas con lenguaje claro, acceso a información judicial.",
+      "Cooperación"
+    ],
+    [
+      "CAJ Constitución",
+      "Av. Brasil 996",
+      "Ciudad Autónoma de Buenos Aires",
+      "Constitución",
+      "Acceso a la Justicia",
+      "General",
+      "Orientación en problemas de seguridad social, familia, trabajo y documentación. Gestión de DNI",
+      "Reconocimiento"
+    ],
+    [
+      "Programa Acercar Derechos del Ministerio de las Mujeres, Géneros y Diversidad de La Nación",
+      "Pueyrredón 19",
+      "Ciudad Autónoma de Buenos Aires",
+      "Once",
+      "Acceso a la Justicia",
+      "Mujeres / Diversidades",
+      "Acompañamiento psicosocial y jurídico a víctimas de violencia en CABA. Grupo de apoyo. Ingreso a Acompañar. Derivación asistida",
+      "Conocimiento"
+    ],
+    [
+      "Centro de Justicia de la Mujer",
+      "Pedro de Mendoza 2689",
+      "Ciudad Autónoma de Buenos Aires",
+      "La Boca",
+      "Acceso a la Justicia",
+      "Mujeres / Travesti / Trans",
+      "Acceso a derechos. Penal y civil. Violencia general. Discapacidad. Tienen camionetas de traslado para ir a buscar pacientes con turnos programados",
+      "Cooperación"
+    ],
+    [
+      "Centro de Justicia de la Mujer",
+      "Av. de Mayo 654",
+      "Ciudad Autónoma de Buenos Aires",
+      "Balvanera",
+      "Acceso a la Justicia",
+      "Mujeres / Travesti / Trans",
+      "Acceso a derechos. Penal y civil. Violencia general. Discapacidad. Tienen camionetas de traslado para ir a buscar pacientes con turnos programados",
+      "Cooperación"
+    ],
+    [
+      "Atajo Constitución",
+      "Luis Sáenz Peña 1488",
+      "Ciudad Autónoma de Buenos Aires",
+      "Constitución",
+      "Acceso a la Justicia",
+      "General",
+      "Recibir y derivar denuncias, evacuar consultas jurídicas con lenguaje claro, acceso a información judicial.",
+      "Cooperación"
+    ],
+    [
+      "Atajo CAJ Eva Perón-Once",
+      "Av. Rivadavia 2690",
+      "Ciudad Autónoma de Buenos Aires",
+      "Once",
+      "Acceso a la Justicia",
+      "General",
+      "Recibir y derivar denuncias, evacuar consultas jurídicas con lenguaje claro, acceso a información judicial.",
+      "Cooperación"
+    ],
+    [
+      "Atajo Villa 1-11-14 (Bajo Flores)",
+      "Av. Riestra y Camilo Torres",
+      "Ciudad Autónoma de Buenos Aires",
+      "Flores",
+      "Acceso a la Justicia",
+      "General",
+      "Recibir y derivar denuncias, evacuar consultas jurídicas con lenguaje claro, acceso a información judicial.",
+      "Cooperación"
+    ],
+    [
+      "Atajo Villa 15 (Ciudad Oculta)",
+      "Manzana 29, Casa 159, Zuviria y Herrera",
+      "Ciudad Autónoma de Buenos Aires",
+      "Lugano",
+      "Acceso a la Justicia",
+      "General",
+      "Recibir y derivar denuncias, evacuar consultas jurídicas con lenguaje claro, acceso a información judicial.",
+      "Cooperación"
+    ],
+    [
+      "Atajo Villa 20 (Lugano)",
+      "-",
+      "Ciudad Autónoma de Buenos Aires",
+      "Lugano",
+      "Acceso a la Justicia",
+      "General",
+      "Recibir y derivar denuncias, evacuar consultas jurídicas con lenguaje claro, acceso a información judicial.",
+      "Cooperación"
+    ],
+    [
+      "Atajo Villa 21-24 (Barracas)",
+      "Av. Iriarte 3500",
+      "Ciudad Autónoma de Buenos Aires",
+      "Barracas",
+      "Acceso a la Justicia",
+      "General",
+      "Recibir y derivar denuncias, evacuar consultas jurídicas con lenguaje claro, acceso a información judicial.",
+      "Cooperación"
+    ],
+    [
+      "Atajo Villa 31 (Retiro)",
+      "Calle Playón, Galpón N° 1 de la estación de carga del Ferrocarril Gral. San Martín y Cristo Obrero",
+      "Ciudad Autónoma de Buenos Aires",
+      "Retiro",
+      "Acceso a la Justicia",
+      "General",
+      "Recibir y derivar denuncias, evacuar consultas jurídicas con lenguaje claro, acceso a información judicial.",
+      "Cooperación"
+    ],
+    [
+      "Atajo Móvil CABA",
+      "Barrios Fátima y Ramón Carrillo",
+      "Ciudad Autónoma de Buenos Aires",
+      "Villa Soldati",
+      "Acceso a la Justicia",
+      "General",
+      "Recibir y derivar denuncias, evacuar consultas jurídicas con lenguaje claro, acceso a información judicial.",
+      "Cooperación"
+    ],
+    [
+      "Prog. Fortalecimiento Derechos Población Travesti Trans",
+      "-",
+      "Ciudad Autónoma de Buenos Aires",
+      "-",
+      "Acceso a la Justicia / Asistencia Económica",
+      "Travesti / Trans",
+      "Acceso a derechos. Rectificación por identidad de género. Administran programa de asistencia económica directa. Para apoyo económico las personas trans pueden solicitarlo directamente al mail",
+      "Reconocimiento"
+    ],
+    [
+      "ANDIS Comisión Nacional de Pensiones No Contributivas",
+      "Hipólito Irigoyen 1417",
+      "Ciudad Autónoma de Buenos Aires",
+      "Congreso",
+      "Acceso a la Justicia / Asistencia Económica",
+      "Personas con discapacidad",
+      "Gestión de pensión no contributiva. Asesoramiento. Entrega de CMO papel",
+      "Cooperación"
+    ],
+    [
+      "Ciudadania Porteña",
+      "Salguero 979",
+      "Ciudad Autónoma de Buenos Aires",
+      "Palermo",
+      "Asistencia Económica",
+      "General",
+      "Subsidio económico para acceso a productos de primera necesidad (alimentos, limpieza e higiene personal)",
+      "Reconocimiento"
+    ],
+    [
+      "Dirección de Políticas Sociales y Adicciones",
+      "Cochabamba 1575 2° piso",
+      "Ciudad Autónoma de Buenos Aires",
+      "Constitución",
+      "Centros de Día",
+      "General",
+      " Residencias.  Atención a mujeres embarazadas y /o con hijxs. Dispositivos propios o conveniados.",
+      "Cooperación"
+    ],
+    [
+      "Centro de Integración Ernesto Che Guevara",
+      "San Antonio 971",
+      "Ciudad Autónoma de Buenos Aires",
+      "Barracas",
+      "Consumos problemáticos",
+      "General",
+      "Acompañamiento a personas con consumo problemático. Talleres y proyectos colectivos y productivos. Alojan personas con discapacidad ",
+      "Reconocimiento"
+    ],
+    [
+      "Centro Defensa",
+      "Defensa 1431",
+      "Ciudad Autónoma de Buenos Aires",
+      "San Telmo",
+      "Educación no Formal",
+      "General",
+      "Ofrece cursos de formación para el trabajo, culturales y recreativos",
+      "Cooperación"
+    ],
+    [
+      "Ofrece cursos para el trabajo",
+      "Av. Suárez 2570",
+      "Ciudad Autónoma de Buenos Aires",
+      "Barracas",
+      "Educación no Formal",
+      "General",
+      "Ofrece cursos de Panadería, Pastelería, Calzado artesanal, Marroquinería, Costura y Lencería , Reparación de bicicletas, Cocinas, hornos y estufas de energías",
+      "Cooperación"
+    ],
+    [
+      "Centro Casa Trans",
+      "Jujuy 1353",
+      "Ciudad Autónoma de Buenos Aires",
+      "San Cristobal",
+      "Educación no Formal",
+      "",
+      "Ofrece cursos de formacion en lencería y corcetería",
+      "Cooperación"
+    ],
+    [
+      "Centro Seis Esquinas",
+      "Av. Garay 2900",
+      "Ciudad Autónoma de Buenos Aires",
+      "San Cristobal",
+      "Educación no Formal",
+      "General",
+      "Ofrece cursos para el trabajo y artísticos",
+      "Cooperación"
+    ],
+    [
+      "Centro Integrador Almafuerte",
+      "Av. San Juan 2128",
+      "Ciudad Autónoma de Buenos Aires",
+      "San Cristobal",
+      "Educación no Formal",
+      "General",
+      "Ofrece cursos artísticos",
+      "Cooperación"
+    ],
+    [
+      "Puentes Escolares",
+      "Estados Unidos 2957",
+      "Ciudad Autónoma de Buenos Aires",
+      "San Cristobal",
+      "Educación no Formal",
+      "General de 16 a 30 años",
+      "Talleres",
+      "Cooperación"
+    ],
+    [
+      "Alberdi",
+      "Av. Juan B. Alberdi 4755",
+      "Ciudad Autónoma de Buenos Aires",
+      "Villa Luro",
+      "Educación no Formal",
+      "General",
+      "campusnoformal.org",
+      "Cooperación"
+    ],
+    [
+      "AMIA",
+      "Uriburu 650",
+      "Ciudad Autónoma de Buenos Aires",
+      "Balvanera",
+      "Educación no Formal",
+      "General",
+      "campusnoformal.org",
+      "Cooperación"
+    ],
+    [
+      "Anchorena",
+      "Tomás de Anchorena 441",
+      "Ciudad Autónoma de Buenos Aires",
+      "Balvanera",
+      "Educación no Formal",
+      "General",
+      "campusnoformal.org",
+      "Cooperación"
+    ],
+    [
+      "Angel Gallardo",
+      "Av. Ángel Gallardo 246/250",
+      "Ciudad Autónoma de Buenos Aires",
+      "Caballito",
+      "Educación no Formal",
+      "General",
+      "campusnoformal.org",
+      "Cooperación"
+    ],
+    [
+      "Aranguren",
+      "Aranguren 2400",
+      "Ciudad Autónoma de Buenos Aires",
+      "Flores",
+      "Educación no Formal",
+      "General",
+      "campusnoformal.org",
+      "Cooperación"
+    ],
+    [
+      "Arévalo",
+      "Arévalo 1408",
+      "Ciudad Autónoma de Buenos Aires",
+      "Palermo",
+      "Educación no Formal",
+      "General",
+      "campusnoformal.org",
+      "Cooperación"
+    ],
+    [
+      "Cabildo",
+      "Av. Cabildo 3615",
+      "Ciudad Autónoma de Buenos Aires",
+      "Nuñez",
+      "Educación no Formal",
+      "General",
+      "campusnoformal.org",
+      "Cooperación"
+    ],
+    [
+      "Cafayate",
+      "Cafayate 5388",
+      "Ciudad Autónoma de Buenos Aires",
+      "Villa Lugano",
+      "Educación no Formal",
+      "General",
+      "campusnoformal.org",
+      "Cooperación"
+    ],
+    [
+      "Cáritas Lugano",
+      "Corvalán 3565",
+      "Ciudad Autónoma de Buenos Aires",
+      "Villa Lugano",
+      "Educación no Formal",
+      "General",
+      "campusnoformal.org",
+      "Cooperación"
+    ],
+    [
+      "Carrillo",
+      "Martínez Castro y Pasaje D",
+      "Ciudad Autónoma de Buenos Aires",
+      "Villa Soldati",
+      "Educación no Formal",
+      "General",
+      "campusnoformal.org",
+      "Cooperación"
+    ],
+    [
+      "CETBA",
+      "Agrelo 3231",
+      "Ciudad Autónoma de Buenos Aires",
+      "Balvanera",
+      "Educación no Formal",
+      "General",
+      "campusnoformal.org",
+      "Cooperación"
+    ],
+    [
+      "Construyendo Sueños",
+      "Av. Riestra y Laguna",
+      "Ciudad Autónoma de Buenos Aires",
+      "Villa Soldati",
+      "Educación no Formal",
+      "General",
+      "campusnoformal.org",
+      "Cooperación"
+    ],
+    [
+      "Conviven",
+      "Martiniano Leguizamón 2974",
+      "Ciudad Autónoma de Buenos Aires",
+      "Villa Lugano",
+      "Educación no Formal",
+      "General",
+      "campusnoformal.org",
+      "Cooperación"
+    ],
+    [
+      "Corrales",
+      "Corrales 3420",
+      "Ciudad Autónoma de Buenos Aires",
+      "Villa Soldati",
+      "Educación no Formal",
+      "General",
+      "campusnoformal.org",
+      "Cooperación"
+    ],
+    [
+      "Correa",
+      "Correa 3930",
+      "Ciudad Autónoma de Buenos Aires",
+      "Saavedra",
+      "Educación no Formal",
+      "General",
+      "campusnoformal.org",
+      "Cooperación"
+    ],
+    [
+      "Cuba",
+      "Cuba 2039",
+      "Ciudad Autónoma de Buenos Aires",
+      "Belgrano",
+      "Educación no Formal",
+      "General",
+      "campusnoformal.org",
+      "Cooperación"
+    ],
+    [
+      "Devoto",
+      "Av. Francisco Beiró 3945",
+      "Ciudad Autónoma de Buenos Aires",
+      "Belgrano",
+      "Educación no Formal",
+      "General",
+      "campusnoformal.org",
+      "Cooperación"
+    ],
+    [
+      "Don Bosco",
+      "Don Bosco 4200",
+      "Ciudad Autónoma de Buenos Aires",
+      "Almagro",
+      "Educación no Formal",
+      "General",
+      "campusnoformal.org",
+      "Cooperación"
+    ],
+    [
+      "Gualeguaychú",
+      "Gualeguaychú 550",
+      "Ciudad Autónoma de Buenos Aires",
+      "Floresta",
+      "Educación no Formal",
+      "General",
+      "campusnoformal.org",
+      "Cooperación"
+    ],
+    [
+      "Homero",
+      "Homero 2159",
+      "Ciudad Autónoma de Buenos Aires",
+      "Parque Avellaneda",
+      "Educación no Formal",
+      "General",
+      "campusnoformal.org",
+      "Cooperación"
+    ],
+    [
+      "Hogar San José",
+      "Moreno 2472",
+      "Ciudad Autónoma de Buenos Aires",
+      "Monserrat",
+      "Educación no Formal",
+      "General",
+      "campusnoformal.org",
+      "Cooperación"
+    ],
+    [
+      "INTA",
+      "Los Robles y Pje. del Palo Santo - Manzana 3 - Módulo 16",
+      "Ciudad Autónoma de Buenos Aires",
+      "Villa Lugano",
+      "Educación no Formal",
+      "General",
+      "campusnoformal.org",
+      "Cooperación"
+    ],
+    [
+      "Isauro Arancibia",
+      "Av. Paseo Colón 1366",
+      "Ciudad Autónoma de Buenos Aires",
+      "San Telmo",
+      "Educación no Formal",
+      "General",
+      "campusnoformal.org",
+      "Cooperación"
+    ],
+    [
+      "Juan Agustín García",
+      "J.A. García 1511",
+      "Ciudad Autónoma de Buenos Aires",
+      "Paternal",
+      "Educación no Formal",
+      "General",
+      "campusnoformal.org",
+      "Cooperación"
+    ],
+    [
+      "Juncal",
+      "Juncal 3131/3185",
+      "Ciudad Autónoma de Buenos Aires",
+      "Palermo",
+      "Educación no Formal",
+      "General",
+      "campusnoformal.org",
+      "Cooperación"
+    ],
+    [
+      "Lambaré",
+      "Lambaré 975",
+      "Ciudad Autónoma de Buenos Aires",
+      "Almagro",
+      "Educación no Formal",
+      "General",
+      "campusnoformal.org",
+      "Cooperación"
+    ],
+    [
+      "Manantiales",
+      "Echeandía 6041",
+      "Ciudad Autónoma de Buenos Aires",
+      "Villa Lugano",
+      "Educación no Formal",
+      "General",
+      "campusnoformal.org",
+      "Cooperación"
+    ],
+    [
+      "Mirares",
+      "Bmé Mitre 2815 - Piso 4 Oficina 408",
+      "Ciudad Autónoma de Buenos Aires",
+      "Once",
+      "Educación no Formal",
+      "General",
+      "campusnoformal.org",
+      "Cooperación"
+    ],
+    [
+      "Montiel",
+      "Montiel 153",
+      "Ciudad Autónoma de Buenos Aires",
+      "Liniers",
+      "Educación no Formal",
+      "General",
+      "campusnoformal.org",
+      "Cooperación"
+    ],
+    [
+      "Museo Quinquela Martín",
+      "Av. Pedro de Mendoza 1835",
+      "Ciudad Autónoma de Buenos Aires",
+      "La Boca",
+      "Educación no Formal",
+      "General",
+      "campusnoformal.org",
+      "Cooperación"
+    ],
+    [
+      "Nido 1-11-14",
+      "Av. Perito Moreno y Erezcano",
+      "Ciudad Autónoma de Buenos Aires",
+      "Parque Chacabuco",
+      "Educación no Formal",
+      "General",
+      "campusnoformal.org",
+      "Cooperación"
+    ],
+    [
+      "Nido Soldati",
+      "Corrales 3400",
+      "Ciudad Autónoma de Buenos Aires",
+      "Villa Soldati",
+      "Educación no Formal",
+      "General",
+      "campusnoformal.org",
+      "Cooperación"
+    ],
+    [
+      "Nido Villa 20",
+      "Av. Escalada 3850",
+      "Ciudad Autónoma de Buenos Aires",
+      "Villa Lugano",
+      "Educación no Formal",
+      "General",
+      "campusnoformal.org",
+      "Cooperación"
+    ],
+    [
+      "Pola",
+      "Pola 4250",
+      "Ciudad Autónoma de Buenos Aires",
+      "Villa Soldati",
+      "Educación no Formal",
+      "General",
+      "campusnoformal.org",
+      "Cooperación"
+    ],
+    [
+      "Pringles",
+      "Pringles 1165",
+      "Ciudad Autónoma de Buenos Aires",
+      "Almagro",
+      "Educación no Formal",
+      "General",
+      "campusnoformal.org",
+      "Cooperación"
+    ],
+    [
+      "Rawson",
+      "Rawson 42 - Comuna 5 - D.E. Nº 7",
+      "Ciudad Autónoma de Buenos Aires",
+      "Almagro",
+      "Educación no Formal",
+      "General",
+      "campusnoformal.org",
+      "Cooperación"
+    ],
+    [
+      "Retiro Norte",
+      "Latitud 34.580945- Longitud 58.388774 Sede: Cholas Occurrentes",
+      "Ciudad Autónoma de Buenos Aires",
+      "Retiro",
+      "Educación no Formal",
+      "General",
+      "campusnoformal.org",
+      "Cooperación"
+    ],
+    [
+      "Retiro Cedel",
+      "Manzana 109 - Playón Este, Bo. San Martín - Barrio 31 Bis",
+      "Ciudad Autónoma de Buenos Aires",
+      "Retiro",
+      "Educación no Formal",
+      "General",
+      "campusnoformal.org",
+      "Cooperación"
+    ],
+    [
+      "Rincón de Venezuela",
+      "Venezuela 3259",
+      "Ciudad Autónoma de Buenos Aires",
+      "San Cristobal",
+      "Educación no Formal",
+      "General",
+      "campusnoformal.org",
+      "Cooperación"
+    ],
+    [
+      "San Cayetano",
+      "Cuzco 220",
+      "Ciudad Autónoma de Buenos Aires",
+      "Liniers",
+      "Educación no Formal",
+      "General",
+      "campusnoformal.org",
+      "Cooperación"
+    ],
+    [
+      "San Nicolás",
+      "San Nicolás 588",
+      "Ciudad Autónoma de Buenos Aires",
+      "Floresta",
+      "Educación no Formal",
+      "General",
+      "campusnoformal.org",
+      "Cooperación"
+    ],
+    [
+      "Saraza",
+      "Saraza 470",
+      "Ciudad Autónoma de Buenos Aires",
+      "Parque Chacabuco",
+      "Educación no Formal",
+      "General",
+      "campusnoformal.org",
+      "Cooperación"
+    ],
+    [
+      "Sarmiento",
+      "Sarmiento 2250",
+      "Ciudad Autónoma de Buenos Aires",
+      "Balvanera",
+      "Educación no Formal",
+      "General",
+      "campusnoformal.org",
+      "Cooperación"
+    ],
+    [
+      "Seis Esquinas",
+      "Juan Garay 2900",
+      "Ciudad Autónoma de Buenos Aires",
+      "Parque Patricios",
+      "Educación no Formal",
+      "General",
+      "campusnoformal.org",
+      "Cooperación"
+    ],
+    [
+      "Traful",
+      "Traful 3847",
+      "Ciudad Autónoma de Buenos Aires",
+      "Nueva Pompeya",
+      "Educación no Formal",
+      "General",
+      "campusnoformal.org",
+      "Cooperación"
+    ],
+    [
+      "UTHGRA",
+      "Salta 1301",
+      "Ciudad Autónoma de Buenos Aires",
+      "Constitución",
+      "Educación no Formal",
+      "General",
+      "campusnoformal.org",
+      "Cooperación"
+    ],
+    [
+      "Varela",
+      "Varela 753",
+      "Ciudad Autónoma de Buenos Aires",
+      "Flores",
+      "Educación no Formal",
+      "General",
+      "campusnoformal.org",
+      "Cooperación"
+    ],
+    [
+      "Venezuela",
+      "Venezuela 3259",
+      "Ciudad Autónoma de Buenos Aires",
+      "Balvanera",
+      "Educación no Formal",
+      "General",
+      "campusnoformal.org",
+      "Cooperación"
+    ],
+    [
+      "Yo no fui",
+      "Gavilan 252",
+      "Ciudad Autónoma de Buenos Aires",
+      "Flores",
+      "Educación no Formal",
+      "Mujeres / Diversidades",
+      "Talleres de artes, oficios y en la casa colectiva ubicada en el barrio de Flores.",
+      "Cooperación"
+    ],
+    [
+      "Gerencia Operativa de Paradores y Hogares",
+      "",
+      "Ciudad Autónoma de Buenos Aires",
+      "",
+      "Hogares y paradores",
+      "Personas con discapacidad",
+      "Derivaciones a hogares conveniados",
+      "Reconocimiento"
+    ],
+    [
+      "Hogar San José",
+      "Moreno 2472",
+      "Ciudad Autónoma de Buenos Aires",
+      "Congreso",
+      "Hogares y paradores",
+      "Varones",
+      "Hogar de noche. Cena y desayuno",
+      "Reconocimiento"
+    ],
+    [
+      "Centro de Integracion Frida",
+      "15 de Noviembre de 1889 n° 2315",
+      "Ciudad Autónoma de Buenos Aires",
+      "Parque Patricios",
+      "Hogares y paradores",
+      "Mujeres cis y trans. Niñxs",
+      "Alojamiento ",
+      "Reconocimiento"
+    ],
+    [
+      "Centro de Integración Monteagudo",
+      "Monteagudo 862",
+      "Ciudad Autónoma de Buenos Aires",
+      "Parque Patricios",
+      "Hogares y paradores",
+      "Varones",
+      "Alojamiento a varones en situacion de calle. ",
+      "Reconocimiento"
+    ],
+    [
+      "Red Puentes. Centro Integral Pompeya",
+      "Dr. Domingo Cabred 4708",
+      "Ciudad Autónoma de Buenos Aires",
+      "Pompeya",
+      "Hogares y paradores",
+      "Mujeres / Diversidades",
+      "Un mes de internación y un mes de acompañamiento afuera. Mujeres sin consumo",
+      "Conocimiento"
+    ],
+    [
+      "Centro Solidario San José",
+      "Guaraní 272",
+      "Ciudad Autónoma de Buenos Aires",
+      "Parque Patricios",
+      "Hogares y paradores",
+      "Varones",
+      "Hogar para varones cis en situación de calle.",
+      "Colaboración"
+    ],
+    [
+      "Dirección de Políticas Sociales y Adicciones",
+      "Cochabamba 1575 2° Piso",
+      "Ciudad Autónoma de Buenos Aires",
+      "Constitución",
+      "Hogares y paradores",
+      "General",
+      "Residencias. Dispositivos propios o conveniados. Disponibilidad de atención a mujeres embarazadas y o con hijos",
+      "Cooperación"
+    ],
+    [
+      "Programa de Acompañamiento e Inclusión Sociolaboral",
+      "Av. Entre Ríos 1419",
+      "Ciudad Autónoma de Buenos Aires",
+      "Balvanera",
+      "Hogares y paradores",
+      "General",
+      "Para personas usuarias del subidio habitacional. Gestiones de programas y turnos de salud, externadxs o con tratamiento ambulatorio de hoteles de CABA",
+      "Cooperación"
+    ],
+    [
+      "Atajo La Plata - Calle 6 N° 822 (entre 48 y 49)",
+      "Lunes en 25 y 62– (Pastoral Social La Plata) / Miércoles en 208 y 531 (Abasto Mte Rural)",
+      "Buenos Aires",
+      "La Plata",
+      "Acceso a la Justicia",
+      "General",
+      "Recibir y derivar denuncias, evacuar consultas jurídicas con lenguaje claro, acceso a información judicial.",
+      "Cooperación"
+    ],
+    [
+      "Secretaría de Salud La Matanza",
+      "Alma Fuerte 3050 1° Piso",
+      "Buenos Aires",
+      "La Matanza",
+      "Salud",
+      "General",
+      "Centros de APS con psicología y psiquiatría",
+      "Reconocimiento"
+    ],
+    [
+      "Dirección de Salud Mental y Adicciones el Municipio de Alte. Brown",
+      "Rosales 1312, Adrogué",
+      "Buenos Aires",
+      "Alte. Brown",
+      "Salud",
+      "General",
+      "Psicología, Psiquiatría de Adultos, Infanto-Juvenil,Psicopedagogía,TS, Psicología Social, Operador Socio-Terapéuticos, Neuropediatría, Neurología",
+      "Reconocimiento"
+    ],
+    [
+      "Secretaría de Salud de Avellaneda",
+      "San Martín 1302",
+      "Buenos Aires",
+      "Avellaneda",
+      "Salud",
+      "General",
+      "Unidades Sanitarias con Atención Psicológica",
+      "Reconocimiento"
+    ],
+    [
+      "Instituto Municipal de Prevención y Atención de Adicciones IMPA",
+      "E. Zeballos 2527, Sarandí",
+      "Buenos Aires",
+      "Avellaneda",
+      "Salud",
+      "",
+      "Atención psicosocial. TTo psiquiatrico",
+      "Reconocimiento"
+    ],
+    [
+      "Secretaría de Salud de Berazategui",
+      "Av. 14 E/ 131 y 131A",
+      "Buenos Aires",
+      "Berazategui",
+      "Salud",
+      "General",
+      "CAPS con atención psicológica",
+      "Reconocimiento"
+    ],
+    [
+      "Centro de Salud Mental Dr. Ramón Carrillo",
+      "14 entre 131 y 132",
+      "Buenos Aires",
+      "Berazategui",
+      "Salud",
+      "General",
+      "",
+      "Reconocimiento"
+    ],
+    [
+      "Hospital Profesor Alejandro Posadas",
+      "Avenida Presidente Arturo U. Illia S/N y Marconi",
+      "Buenos Aires",
+      "Morón",
+      "Salud",
+      "General",
+      "https://www.argentina.gob.ar/salud/hospital-nacional-posadas",
+      "Asociación"
+    ],
+    [
+      "Centro de Atención Inmediata (CAI) Sedronar Zona Oeste",
+      "Gazeta de Buenos Aires 3550",
+      "Buenos Aires",
+      "Ciudadela",
+      "Salud",
+      "General",
+      "Evaluación y derivación a tratamiento personas con consumo problemático de sustancias. Modalidad residencial, ambulatoria jornada simple y completa y atención",
+      "Reconocimiento"
+    ],
+    [
+      "Cesac 9",
+      "Irala 1254",
+      "Ciudad Autónoma de Buenos Aires",
+      "La Boca",
+      "Salud",
+      "General",
+      "Centro de Atención primaria de la salud",
+      "Reconocimiento"
+    ],
+    [
+      "Hospital General de Agudos Dr. T. Álvarez",
+      "Dr. Juan Felipe Aranguren 2701",
+      "Ciudad Autónoma de Buenos Aires",
+      "Flores",
+      "Salud",
+      "General",
+      "https://www.buenosaires.gob.ar/hospitalalvarez",
+      "Reconocimiento"
+    ],
+    [
+      "Hospital General de Agudos Dr. C. Argerich",
+      "Pi y Margal 750",
+      "Ciudad Autónoma de Buenos Aires",
+      "La Boca",
+      "Salud",
+      "General",
+      "Hospital General de Agudos Dr. C. Argerich",
+      "Reconocimiento"
+    ],
+    [
+      "Hospital General de Agudos Dr. C. Durand",
+      "Díaz Vélez 5044",
+      "Ciudad Autónoma de Buenos Aires",
+      "Caballito",
+      "Salud",
+      "General",
+      "Hospital General de Agudos Dr. C. Durand",
+      "Reconocimiento"
+    ],
+    [
+      "Hospital General de Agudos Dr. J. A. Fernández",
+      "Cerviño 3356",
+      "Ciudad Autónoma de Buenos Aires",
+      "Palermo",
+      "Salud",
+      "General",
+      "Hospital General de Agudos Dr. J. A. Fernandez",
+      "Reconocimiento"
+    ],
+    [
+      "Hospital General de Agudos Dra. Cecilia Grierson",
+      "Av. Fernandez de La Cruz 4402",
+      "Ciudad Autónoma de Buenos Aires",
+      "Villa Lugano",
+      "Salud",
+      "General",
+      "Hospital General de Agudos Dra. Cecilia Grierson",
+      "Reconocimiento"
+    ],
+    [
+      "Hospital General de Agudos J. M. Penna",
+      "Pedro Chutro 3380",
+      "Ciudad Autónoma de Buenos Aires",
+      "Parque Patricios",
+      "Salud",
+      "General",
+      "Hospital General de Agudos J. M. Penna",
+      "Reconocimiento"
+    ],
+    [
+      "Hospital General de Agudos P. Piñero",
+      "Varela 1301",
+      "Ciudad Autónoma de Buenos Aires",
+      "Flores",
+      "Salud",
+      "General",
+      "Hospital General de Agudos P. Piñero",
+      "Reconocimiento"
+    ],
+    [
+      "Hospital General de Agudos Dr. I. Pirovano",
+      "Monroe 3555",
+      "Ciudad Autónoma de Buenos Aires",
+      "Coghlan",
+      "Salud",
+      "General",
+      "Hospital General de Agudos Dr. I. Pirovano",
+      "Reconocimiento"
+    ],
+    [
+      "Hospital General de Agudos J. M. Ramos Mejía",
+      "General Urquiza 609",
+      "Ciudad Autónoma de Buenos Aires",
+      "Balvanera",
+      "Salud",
+      "General",
+      "Hospital General de Agudos J. M. Ramos Mejía",
+      "Reconocimiento"
+    ],
+    [
+      "Hospital General de Agudos B. Rivadavia",
+      "Av. General Las Heras 2670",
+      "Ciudad Autónoma de Buenos Aires",
+      "Recoleta",
+      "Salud",
+      "General",
+      "Hospital General de Agudos B. Rivadavia",
+      "Reconocimiento"
+    ],
+    [
+      "Hospital General de Agudos Donación F. Santojanni",
+      "Pilar 950",
+      "Ciudad Autónoma de Buenos Aires",
+      "Mataderos",
+      "Salud",
+      "General",
+      "Hospital General de Agudos Donación F. Santojanni",
+      "Reconocimiento"
+    ],
+    [
+      "Hospital General de Agudos Dr. E. Tornú",
+      "Combatientes de Malvinas 3002",
+      "Ciudad Autónoma de Buenos Aires",
+      "Villa Ortuzar",
+      "Salud",
+      "General",
+      "Hospital General de Agudos Dr. E. Tornu",
+      "Reconocimiento"
+    ],
+    [
+      "Hospital General de Agudos D. Vélez Sarsfield",
+      "Pedro Calderon de la Barca 1550",
+      "Ciudad Autónoma de Buenos Aires",
+      "Monte Castro",
+      "Salud",
+      "General",
+      "Hospital General de Agudos D. Velez Sarsfield",
+      "Reconocimiento"
+    ],
+    [
+      "Hospital General de Agudos A. Zubizarreta",
+      "Nueva York 3952",
+      "Ciudad Autónoma de Buenos Aires",
+      "Villa Devoto",
+      "Salud",
+      "General",
+      "Hospital General de Agudos A. Zubizarreta",
+      "Reconocimiento"
+    ]
+  ]
+}
