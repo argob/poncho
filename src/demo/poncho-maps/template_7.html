@@ -113,11 +113,10 @@ COPIAR DESDE ACÁ…
 
     // map options
     const options = {
-      "content_selector": ".js-foo", // permite esetablecer un selector alternativo donde se quiera imprimir el contenido.
-      "render_slider": false, // Permite que se cree el componente slider en el mapa.
+      // "content_selector": ".js-foo", // permite esetablecer un selector alternativo donde se quiera imprimir el contenido.
+      "render_slider": true, // Permite que se cree el componente slider en el mapa.
       "scope": "poncho-map",
       // "id": "gid",
-      "filters_info": false,
       "title": "nam",
       "_title": "FNA",
       "_headers": {
@@ -146,7 +145,7 @@ COPIAR DESDE ACÁ…
       "slider": true,
       "hash": true,
       "scroll": false,
-      filters_info: true,
+      "filters_info": false,
       "_filters":[
         {
           "legend": "Sentido",
@@ -202,7 +201,7 @@ COPIAR DESDE ACÁ…
         entries.features[k].properties.id_provincia = _id;
         entries.features[k].properties.provincia = _extras[3];
         entries.features[k].properties.region = _extras[1];
-        entries.features[k].properties.stroke =  color[k];
+        // entries.features[k].properties.stroke =  color[k];
     });
 
     

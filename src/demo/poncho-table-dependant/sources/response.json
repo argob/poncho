@@ -1,0 +1,5553 @@
+
+{
+  "range": "tablavisible!A1:X1000",
+  "majorDimension": "ROWS",
+  "values": [
+    [
+      "filtro-provincia",
+      "filtro-ruta",
+      "filtro-tramo",
+      "estado",
+      "calzada",
+      "extension",
+      "conoce-mas",
+      "observaciones",
+      "actualizado"
+    ],
+    [
+      "Provincia",
+      "Ruta",
+      "Tramo",
+      "Estado",
+      "Calzada",
+      "Extensión (Km)",
+      "Conocé más",
+      "Observaciones",
+      "Actualizado"
+    ],
+    [
+      "Buenos Aires",
+      "3",
+      "Avda. G. Torres - Empalme RN 33 El Cholo",
+      "\u003cspan class='label bg-mandarina'\u003eCORTE PARCIAL\u003c/span\u003e",
+      "PAVIMENTO",
+      "12",
+      "\u003ca href=\"https://www.google.com\" title=\"Ruta natural\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/la-ruta-natural.svg\" style=\"height:1rem;margin-top: -8px\" alt=\"La ruta natural\"\u003e\u003c/a\u003e\u003ca href=\"SI\" title=\"Telepeaje\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/transporte-telepase-2080538950_mod-1323985427.svg\" style=\"height:1.2rem;margin-top: -8px\" alt=\"Telepeaje\"\u003e\u003c/a\u003e\u003ca href=\"Prueba\" title=\"Paso bajonivel\" target=\"_blank\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/paso-bajo-nivel_2_mod-1933788867.svg\" style=\"height:1.3rem;margin-top: -8px\" alt=\"Paso bajonivel\"\u003e\u003c/a\u003e",
+      "",
+      "1-2-2023 12:00"
+    ],
+    [
+      "Buenos Aires",
+      "3",
+      "Azul - Chillar",
+      "\u003cspan class='label bg-tomate'\u003eCORTE TOTAL\u003c/span\u003e",
+      "PAVIMENTO",
+      "",
+      "",
+      "",
+      "5-5-2023 14:00"
+    ],
+    [
+      "Buenos Aires",
+      "3",
+      "Bajo Hondo (Km. 652) - Empalme RN 229 (Km. 670)",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "18"
+    ],
+    [
+      "Buenos Aires",
+      "3",
+      "Chillar - Juarez",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Buenos Aires",
+      "3",
+      "Cnel. Dorrego - Bajo Hondo",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Buenos Aires",
+      "3",
+      "El Triángulo (Km. 677) - Ex J. N. Granos (Km.682,46)",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "5"
+    ],
+    [
+      "Buenos Aires",
+      "3",
+      "Emp. RN 22 - Tte.Origone",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "37"
+    ],
+    [
+      "Buenos Aires",
+      "3",
+      "Empalme RN N° 229 (Km. 670) - El Triángulo (Km.677)",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "7"
+    ],
+    [
+      "Buenos Aires",
+      "3",
+      "Ex J. N. Granos (Km.682,46) - Avda. G. Torres (Km. 684)",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "2"
+    ],
+    [
+      "Buenos Aires",
+      "3",
+      "Gonzalez Chavez - Tres Arroyos",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "",
+      "\u003ca href=\"SI\" title=\"Telepeaje\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/transporte-telepase-2080538950_mod-1323985427.svg\" style=\"height:1.2rem;margin-top: -8px\" alt=\"Telepeaje\"\u003e\u003c/a\u003e"
+    ],
+    [
+      "Buenos Aires",
+      "3",
+      "Juarez - Gonzalez Chavez",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Buenos Aires",
+      "3",
+      "Pedro Luro - Stroeder",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "73"
+    ],
+    [
+      "Buenos Aires",
+      "3",
+      "Stroeder - Patagones",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Buenos Aires",
+      "3",
+      "Tres Arroyos - Cnel. Dorrego",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "100"
+    ],
+    [
+      "Buenos Aires",
+      "3",
+      "Tte.Origone - Pedro Luro",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "52"
+    ],
+    [
+      "Buenos Aires",
+      "22",
+      "Empalme R.N.3 - Medanos",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "14"
+    ],
+    [
+      "Buenos Aires",
+      "22",
+      "Lte. Con La Pampa - Rio Colorado",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "59"
+    ],
+    [
+      "Buenos Aires",
+      "22",
+      "Medanos - Lte.con La Pampa",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "60"
+    ],
+    [
+      "Buenos Aires",
+      "33",
+      "Empalme Ex RN N° 33 - La Viticola",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "16"
+    ],
+    [
+      "Buenos Aires",
+      "33",
+      "Empalme RN N° 3 - Empalme Ex RN N° 33",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "8"
+    ],
+    [
+      "Buenos Aires",
+      "33",
+      "General Villegas - L/Santa Fe",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "76"
+    ],
+    [
+      "Buenos Aires",
+      "33",
+      "Guamini - Trenque Lauquen",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Buenos Aires",
+      "33",
+      "La Viticola - Tornquist",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "45"
+    ],
+    [
+      "Buenos Aires",
+      "33",
+      "Pigüé - Guamini",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Buenos Aires",
+      "33",
+      "Tornquist - Pigüé",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Buenos Aires",
+      "35",
+      "Bahía Blanca - Nueva Roma",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Buenos Aires",
+      "35",
+      "Nueva Roma - San Germán",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Buenos Aires",
+      "35",
+      "San Germán - Límite con La Pampa",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Buenos Aires",
+      "228",
+      "Acc. a San Cayetano - Camp. A Belloq",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Buenos Aires",
+      "228",
+      "Camp. A Belloq - Tres Arroyos",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Buenos Aires",
+      "228",
+      "Necochea - Acc. a San Cayetano",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Buenos Aires",
+      "229",
+      "Empalme. R.N.3 - B. Marisol P. Alta",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Buenos Aires",
+      "249",
+      "Empalme R.N.3 - Emp. R.N. 229 P. Alta",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Buenos Aires",
+      "252",
+      "Emp RN N° 3 - Puente La Niña",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "",
+      "\u003ca href=\"SI\" title=\"Telepeaje\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/transporte-telepase-2080538950_mod-1323985427.svg\" style=\"height:1.2rem;margin-top: -8px\" alt=\"Telepeaje\"\u003e\u003c/a\u003e"
+    ],
+    [
+      "Buenos Aires",
+      "252",
+      "Rotonda Velez Sarsfield - Emp. RN N° 3",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "44871"
+    ],
+    [
+      "Buenos Aires",
+      "1V03",
+      "Emp. R.N. N° 3 El Triángulo - Rotonda Ex Indiada",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "304"
+    ],
+    [
+      "Buenos Aires",
+      "3",
+      "CABA - Cañuelas",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "",
+      "\u003ca href=\"SI\" title=\"Telepeaje\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/transporte-telepase-2080538950_mod-1323985427.svg\" style=\"height:1.2rem;margin-top: -8px\" alt=\"Telepeaje\"\u003e\u003c/a\u003e"
+    ],
+    [
+      "Buenos Aires",
+      "3",
+      "Cañuelas - Azul",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Buenos Aires",
+      "3",
+      "Empalme RN N° 33 El Cholo - Empalme RN N° 22",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "21"
+    ],
+    [
+      "Buenos Aires",
+      "5",
+      "Lujan - Lte. La Pampa",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "",
+      "\u003ca href=\"SI\" title=\"Telepeaje\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/transporte-telepase-2080538950_mod-1323985427.svg\" style=\"height:1.2rem;margin-top: -8px\" alt=\"Telepeaje\"\u003e\u003c/a\u003e"
+    ],
+    [
+      "Buenos Aires",
+      "7",
+      "CABA - Luján",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "50",
+      "\u003ca href=\"SI\" title=\"Telepeaje\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/transporte-telepase-2080538950_mod-1323985427.svg\" style=\"height:1.2rem;margin-top: -8px\" alt=\"Telepeaje\"\u003e\u003c/a\u003e"
+    ],
+    [
+      "Buenos Aires",
+      "7",
+      "Luján - Lte. Santa Fe",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "",
+      "\u003ca href=\"SI\" title=\"Telepeaje\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/transporte-telepase-2080538950_mod-1323985427.svg\" style=\"height:1.2rem;margin-top: -8px\" alt=\"Telepeaje\"\u003e\u003c/a\u003e"
+    ],
+    [
+      "Buenos Aires",
+      "8",
+      "Pilar - Lte. Santa Fe",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "226",
+      "\u003ca href=\"SI\" title=\"Telepeaje\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/transporte-telepase-2080538950_mod-1323985427.svg\" style=\"height:1.2rem;margin-top: -8px\" alt=\"Telepeaje\"\u003e\u003c/a\u003e"
+    ],
+    [
+      "Buenos Aires",
+      "9",
+      "CABA - Campana",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "",
+      "\u003ca href=\"SI\" title=\"Telepeaje\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/transporte-telepase-2080538950_mod-1323985427.svg\" style=\"height:1.2rem;margin-top: -8px\" alt=\"Telepeaje\"\u003e\u003c/a\u003e"
+    ],
+    [
+      "Buenos Aires",
+      "9",
+      "Campana - Lte. Santa Fe",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "160",
+      "\u003ca href=\"SI\" title=\"Telepeaje\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/transporte-telepase-2080538950_mod-1323985427.svg\" style=\"height:1.2rem;margin-top: -8px\" alt=\"Telepeaje\"\u003e\u003c/a\u003e"
+    ],
+    [
+      "Buenos Aires",
+      "12",
+      "Zarate - Lte. Entre Rios",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "32"
+    ],
+    [
+      "Buenos Aires",
+      "33",
+      "Trenque Lauquen - General Villegas",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Buenos Aires",
+      "188",
+      "Junín - L/La Pampa",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Buenos Aires",
+      "188",
+      "Pergamino - Junín",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Buenos Aires",
+      "188",
+      "San Nicolás - Pergamino",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Buenos Aires",
+      "193",
+      "Int. RN Nº 9 - Int. RN Nº 8",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "44773"
+    ],
+    [
+      "Buenos Aires",
+      "205",
+      "Cañuelas - Emp. RN 3",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "44593"
+    ],
+    [
+      "Buenos Aires",
+      "205",
+      "Cañuelas - Int. RP 51",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "",
+      "\u003ca href=\"SI\" title=\"Telepeaje\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/transporte-telepase-2080538950_mod-1323985427.svg\" style=\"height:1.2rem;margin-top: -8px\" alt=\"Telepeaje\"\u003e\u003c/a\u003e"
+    ],
+    [
+      "Buenos Aires",
+      "226",
+      "Mar del Plata - Olavarria",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "",
+      "\u003ca href=\"SI\" title=\"Telepeaje\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/transporte-telepase-2080538950_mod-1323985427.svg\" style=\"height:1.2rem;margin-top: -8px\" alt=\"Telepeaje\"\u003e\u003c/a\u003e"
+    ],
+    [
+      "Buenos Aires",
+      "226",
+      "Olavarria - Gral. Villegas",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Buenos Aires",
+      "A-001",
+      "Puente La Noria - Empalme Avda. Lugones y Cantilo",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "16"
+    ],
+    [
+      "Buenos Aires",
+      "Au. Ezeiza Cañuelas",
+      "Fin Autopista Jorge Newbery - Cañuelas",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "",
+      "\u003ca href=\"SI\" title=\"Telepeaje\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/transporte-telepase-2080538950_mod-1323985427.svg\" style=\"height:1.2rem;margin-top: -8px\" alt=\"Telepeaje\"\u003e\u003c/a\u003e"
+    ],
+    [
+      "Buenos Aires",
+      "Au. Riccheri",
+      "AV. Gral. Paz - Aeropuerto Ezeiza",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "",
+      "\u003ca href=\"SI\" title=\"Telepeaje\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/transporte-telepase-2080538950_mod-1323985427.svg\" style=\"height:1.2rem;margin-top: -8px\" alt=\"Telepeaje\"\u003e\u003c/a\u003e"
+    ],
+    [
+      "Buenos Aires",
+      "Av. Jorge Newbery",
+      "AU Riccheri (Distribuidor El Trébol) - Inicio de AU Ezeiza - Cañuelas",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "3"
+    ],
+    [
+      "Buenos Aires",
+      "Puentes Riachuelo",
+      "Puente Alsina y accesos",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Buenos Aires",
+      "Puentes Riachuelo",
+      "Puente Avellaneda y accesos",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Buenos Aires",
+      "Puentes Riachuelo",
+      "Puente La Noria y accesos",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Buenos Aires",
+      "Puentes Riachuelo",
+      "Puente Pueyrredon y accesos",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Buenos Aires",
+      "Puentes Riachuelo",
+      "Puente Victorino de la Plaza y accesos",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Catamarca",
+      "38",
+      "Fín Avda. Circunvalación - Lte. Con Tucumán",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Catamarca",
+      "38",
+      "Lte. Con La Rioja - Fin Avda. Circunvalación",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Catamarca",
+      "40",
+      "Belén - Río Agua Clara",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "44723"
+    ],
+    [
+      "Catamarca",
+      "40",
+      "Emp. RN 60 - Belén",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Catamarca",
+      "40",
+      "Río Agua Clara - Río Las Cuevas",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "36"
+    ],
+    [
+      "Catamarca",
+      "40",
+      "Río Las Cuevas - Santa María",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Catamarca",
+      "40",
+      "Santa María -Lte. Con Tucumán",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "14"
+    ],
+    [
+      "Catamarca",
+      "60",
+      "Cortaderas - Lte. Int. Con Chile",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "",
+      "\u003ca href=\"Ruta de los seismiles\" title=\"Ruta natural\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/la-ruta-natural.svg\" style=\"height:1rem;margin-top: -8px\" alt=\"La ruta natural\"\u003e\u003c/a\u003e"
+    ],
+    [
+      "Catamarca",
+      "60",
+      "Emp. RN 157 - Emp RP 33",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "109"
+    ],
+    [
+      "Catamarca",
+      "60",
+      "Emp. RN 38 - Lte. Con La Rioja",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "42"
+    ],
+    [
+      "Catamarca",
+      "60",
+      "Emp. RP 33 - Emp. RN 38",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "60"
+    ],
+    [
+      "Catamarca",
+      "60",
+      "Fiambalá - Cortaderas",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "",
+      "\u003ca href=\"Ruta de los seismiles\" title=\"Ruta natural\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/la-ruta-natural.svg\" style=\"height:1rem;margin-top: -8px\" alt=\"La ruta natural\"\u003e\u003c/a\u003e"
+    ],
+    [
+      "Catamarca",
+      "60",
+      "Lte. Con Córdoba - Emp. RN 157",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "9"
+    ],
+    [
+      "Catamarca",
+      "60",
+      "Lte. Con La Rioja - Tinogasta",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Catamarca",
+      "60",
+      "Tinogasta - Fiambalá",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Catamarca",
+      "64",
+      "Lte. Con Sgo. Del Estero - Lte. Con Tucuman",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Catamarca",
+      "157",
+      "Lte. Con Sgo. Del Estero - Emp. RN 60",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "92"
+    ],
+    [
+      "Chaco",
+      "11",
+      "Lte. Con Sta. Fe - Resistencia",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Chaco",
+      "11",
+      "Resistencia - Lte. Con Formosa",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Chaco",
+      "16",
+      "Emp. RN 11 - Pcia. Roque Saenz Peña",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "",
+      "\u003ca href=\"SI\" title=\"Telepeaje\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/transporte-telepase-2080538950_mod-1323985427.svg\" style=\"height:1.2rem;margin-top: -8px\" alt=\"Telepeaje\"\u003e\u003c/a\u003e"
+    ],
+    [
+      "Chaco",
+      "16",
+      "Emp. RN 95 - Pampa del Infierno",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Chaco",
+      "16",
+      "Emp. RP 63 - Emp. RN 11",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "12"
+    ],
+    [
+      "Chaco",
+      "16",
+      "Lte. Con Sgo. Del Estero - Lte. Con Salta",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Chaco",
+      "16",
+      "Pampa del Infierno - Lte. Con Sgo. Del Estero",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Chaco",
+      "16",
+      "Pte. Gral. M. Belgrano - Emp. RP 63",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "4"
+    ],
+    [
+      "Chaco",
+      "89",
+      "Avia Terai - Gral. Pinedo",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Chaco",
+      "89",
+      "Gral. Pinedo -Lte. Sgo. Del Estero",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Chaco",
+      "95",
+      "Emp. RN 16 - Acc. a Tres Isletas",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "67"
+    ],
+    [
+      "Chaco",
+      "95",
+      "Emp. RP 3 - Lte. Con Formosa",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "10"
+    ],
+    [
+      "Chaco",
+      "95",
+      "Emp. RP 9 - Emp. RP 3",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "116"
+    ],
+    [
+      "Chaco",
+      "95",
+      "Lte. Con Sta. Fe - Emp. RN 16",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "158"
+    ],
+    [
+      "Chubut",
+      "3",
+      "Aº Verde - Pto.Madryn",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Chubut",
+      "3",
+      "C.Rivadavia - Lte.Sta.Cruz",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Chubut",
+      "3",
+      "Garayalde - C.Rivadavia",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "178"
+    ],
+    [
+      "Chubut",
+      "3",
+      "Pto.Madryn - Trelew",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Chubut",
+      "3",
+      "Trelew - Garayalde",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "198"
+    ],
+    [
+      "Chubut",
+      "25",
+      "Las Plumas - Los Altares",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "103"
+    ],
+    [
+      "Chubut",
+      "25",
+      "Los Altares - Paso de Indios",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "57"
+    ],
+    [
+      "Chubut",
+      "25",
+      "Paso de Indios - Tecka",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "164"
+    ],
+    [
+      "Chubut",
+      "25",
+      "Rawson - Las Plumas",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "205"
+    ],
+    [
+      "Chubut",
+      "26",
+      "Emp. RN 40 - Sarmiento",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Chubut",
+      "26",
+      "Sarmiento - Cro. Rivadavia",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "138"
+    ],
+    [
+      "Chubut",
+      "40",
+      "Acc. a Cholila - Emp. RN 259",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "105"
+    ],
+    [
+      "Chubut",
+      "40",
+      "El Bolson - Acc.Cholila",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Chubut",
+      "40",
+      "Emp. RN 26 - Gob.Costa",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "178"
+    ],
+    [
+      "Chubut",
+      "40",
+      "Gob.Costa - Tecka",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Chubut",
+      "40",
+      "Lte. Sta. Cruz - Rio Mayo",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Chubut",
+      "40",
+      "RAWSON - TRELEW - LOS ALTARES - TECKA - ESQUEL / Tecka - Esquel",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Chubut",
+      "40",
+      "Rio Mayo - Emp. RN 26",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Chubut",
+      "40",
+      "Tecka - Emp. RN 259",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Chubut",
+      "259",
+      "Emp. RN 40 - Esquel",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "44725"
+    ],
+    [
+      "Chubut",
+      "259",
+      "Esquel - Trevelin",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Chubut",
+      "259",
+      "Trevelin - Lte. Con Chile",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "RIPIO"
+    ],
+    [
+      "Chubut",
+      "260",
+      "Emp. RN 40 - Lte. Con Chile",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "RIPIO"
+    ],
+    [
+      "Chubut",
+      "1S40",
+      "El Maiten - Lte. con Rio Negro",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "RIPIO",
+      "7"
+    ],
+    [
+      "Chubut",
+      "1S40",
+      "Emp. RN 40 - Emp. RP 70",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "RIPIO",
+      "44731"
+    ],
+    [
+      "Chubut",
+      "1S40",
+      "Emp. RP 70 - El Maiten",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "44604"
+    ],
+    [
+      "Córdoba",
+      "7",
+      "Lte. C/Santa Fe - Lte. C/San Luis",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "221",
+      "\u003ca href=\"SI\" title=\"Telepeaje\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/transporte-telepase-2080538950_mod-1323985427.svg\" style=\"height:1.2rem;margin-top: -8px\" alt=\"Telepeaje\"\u003e\u003c/a\u003e"
+    ],
+    [
+      "Córdoba",
+      "8",
+      "Lte. C/Santa Fe - Lte. C/San Luis",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "291",
+      "\u003ca href=\"SI\" title=\"Telepeaje\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/transporte-telepase-2080538950_mod-1323985427.svg\" style=\"height:1.2rem;margin-top: -8px\" alt=\"Telepeaje\"\u003e\u003c/a\u003e"
+    ],
+    [
+      "Córdoba",
+      "9",
+      "Córdoba - Jesús María (entrada)",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "40",
+      "\u003ca href=\"SI\" title=\"Telepeaje\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/transporte-telepase-2080538950_mod-1323985427.svg\" style=\"height:1.2rem;margin-top: -8px\" alt=\"Telepeaje\"\u003e\u003c/a\u003e"
+    ],
+    [
+      "Córdoba",
+      "9",
+      "Jesús María ( Entrada ) - Jesús María ( Salida )",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "8"
+    ],
+    [
+      "Córdoba",
+      "9",
+      "Jesús María (salida) - Lte. Sgo del Estero",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "155"
+    ],
+    [
+      "Córdoba",
+      "9",
+      "Lte. C/Santa Fe - Pilar",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "246",
+      "\u003ca href=\"SI\" title=\"Telepeaje\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/transporte-telepase-2080538950_mod-1323985427.svg\" style=\"height:1.2rem;margin-top: -8px\" alt=\"Telepeaje\"\u003e\u003c/a\u003e"
+    ],
+    [
+      "Córdoba",
+      "9",
+      "Pilar - Córdoba",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "54",
+      "\u003ca href=\"SI\" title=\"Telepeaje\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/transporte-telepase-2080538950_mod-1323985427.svg\" style=\"height:1.2rem;margin-top: -8px\" alt=\"Telepeaje\"\u003e\u003c/a\u003e"
+    ],
+    [
+      "Córdoba",
+      "19",
+      "Arroyito - Tránsito",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "44666"
+    ],
+    [
+      "Córdoba",
+      "19",
+      "Cda. Jean Marie - Arroyito",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Córdoba",
+      "19",
+      "Río Primero - Córdoba",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "",
+      "\u003ca href=\"SI\" title=\"Telepeaje\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/transporte-telepase-2080538950_mod-1323985427.svg\" style=\"height:1.2rem;margin-top: -8px\" alt=\"Telepeaje\"\u003e\u003c/a\u003e"
+    ],
+    [
+      "Córdoba",
+      "19",
+      "San Francisco - Cda. Jean Marie",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "",
+      "\u003ca href=\"SI\" title=\"Telepeaje\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/transporte-telepase-2080538950_mod-1323985427.svg\" style=\"height:1.2rem;margin-top: -8px\" alt=\"Telepeaje\"\u003e\u003c/a\u003e"
+    ],
+    [
+      "Córdoba",
+      "19",
+      "Tránsito - Río Primero",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Córdoba",
+      "20",
+      "Córdoba - Emp RN 38",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Córdoba",
+      "20",
+      "Villa Dolores - Lte. Con San Luis",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "17"
+    ],
+    [
+      "Córdoba",
+      "20",
+      "Villa Dolores - Lte. C/San Luis",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "17"
+    ],
+    [
+      "Córdoba",
+      "35",
+      "Lte. Con La Pampa - Emp. RN 8",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "203"
+    ],
+    [
+      "Córdoba",
+      "36",
+      "Emp. RN 8 - Int. RN A-005",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "5"
+    ],
+    [
+      "Córdoba",
+      "36",
+      "Río Cuarto - Córdoba",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "216",
+      "\u003ca href=\"SI\" title=\"Telepeaje\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/transporte-telepase-2080538950_mod-1323985427.svg\" style=\"height:1.2rem;margin-top: -8px\" alt=\"Telepeaje\"\u003e\u003c/a\u003e"
+    ],
+    [
+      "Córdoba",
+      "38",
+      "Cruz del Eje - Lte. C/La Rioja",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Córdoba",
+      "38",
+      "Emp RN 20 - Villa Carlos Paz",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "12"
+    ],
+    [
+      "Córdoba",
+      "38",
+      "Villa Carlos Paz - Cruz del Eje",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "109"
+    ],
+    [
+      "Córdoba",
+      "60",
+      "Emp RN 9 - Lte. C/Catamarca",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "154"
+    ],
+    [
+      "Córdoba",
+      "148",
+      "Lte. C/San Luis - Emp RP 14",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Córdoba",
+      "148",
+      "Villa Dolores - Lte. Con San Luis",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "43"
+    ],
+    [
+      "Córdoba",
+      "158",
+      "San Francisco - Río Cuarto",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "286"
+    ],
+    [
+      "Córdoba",
+      "A005",
+      "Emp RN 8 -Emp RN 36",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "11"
+    ],
+    [
+      "Córdoba",
+      "A019",
+      "Avda. Circunvalación de Córdoba",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "30"
+    ],
+    [
+      "Corrientes",
+      "12",
+      "Corrientes - Itatí",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "60"
+    ],
+    [
+      "Corrientes",
+      "12",
+      "Cuatro Bocas - Saladas",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "69"
+    ],
+    [
+      "Corrientes",
+      "12",
+      "Esquina - Goya",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "114"
+    ],
+    [
+      "Corrientes",
+      "12",
+      "Esquina - Lte. Con Entre Ríos",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Corrientes",
+      "12",
+      "Goya - Cuatro Bocas",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "76"
+    ],
+    [
+      "Corrientes",
+      "12",
+      "Itatí - Ituzaingó",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "167"
+    ],
+    [
+      "Corrientes",
+      "12",
+      "Ituzaingo - Lte. Con Misiones",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "69",
+      "\u003ca href=\"SI\" title=\"Telepeaje\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/transporte-telepase-2080538950_mod-1323985427.svg\" style=\"height:1.2rem;margin-top: -8px\" alt=\"Telepeaje\"\u003e\u003c/a\u003e"
+    ],
+    [
+      "Corrientes",
+      "12",
+      "Saladas - Corrientes",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "90",
+      "\u003ca href=\"SI\" title=\"Telepeaje\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/transporte-telepase-2080538950_mod-1323985427.svg\" style=\"height:1.2rem;margin-top: -8px\" alt=\"Telepeaje\"\u003e\u003c/a\u003e"
+    ],
+    [
+      "Corrientes",
+      "14",
+      "Bompland - Paso de los Libres",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "28"
+    ],
+    [
+      "Corrientes",
+      "14",
+      "Emp. RN 119 - Bompland",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "63"
+    ],
+    [
+      "Corrientes",
+      "14",
+      "Gdor. Virasoro - Lte. Con Misiones",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "37"
+    ],
+    [
+      "Corrientes",
+      "14",
+      "Lte. Con Entre Ríos - Emp. RN 119 y 127",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "62",
+      "\u003ca href=\"SI\" title=\"Telepeaje\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/transporte-telepase-2080538950_mod-1323985427.svg\" style=\"height:1.2rem;margin-top: -8px\" alt=\"Telepeaje\"\u003e\u003c/a\u003e"
+    ],
+    [
+      "Corrientes",
+      "14",
+      "Paso de los Libres - Yapeyú",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "55"
+    ],
+    [
+      "Corrientes",
+      "14",
+      "Santo Tomé - Gdor. Virasoro",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "63"
+    ],
+    [
+      "Corrientes",
+      "14",
+      "Yapeyú - Santo Tomé",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "132"
+    ],
+    [
+      "Corrientes",
+      "117",
+      "Acc. a Paso de los Libres - Acc. Aeropuerto",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "8"
+    ],
+    [
+      "Corrientes",
+      "117",
+      "Acc. Aeropuerto - Puente Internacional T. Neves",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "5"
+    ],
+    [
+      "Corrientes",
+      "118",
+      "Saladas - Santa Rosa",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "68"
+    ],
+    [
+      "Corrientes",
+      "118",
+      "San Miguel - Emp. RN 12",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "126"
+    ],
+    [
+      "Corrientes",
+      "118",
+      "Santa Rosa - San Miguel",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "59"
+    ],
+    [
+      "Corrientes",
+      "119",
+      "Emp. RN 14 y 127 - Km 70",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "70"
+    ],
+    [
+      "Corrientes",
+      "119",
+      "Km. 70 - Mercedes",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "39"
+    ],
+    [
+      "Corrientes",
+      "120",
+      "Emp. RN 14 - Puente (Río Aguapey)",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "30"
+    ],
+    [
+      "Corrientes",
+      "120",
+      "Puente (Río Aguapey) - Embalse Yaciretá",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "27"
+    ],
+    [
+      "Corrientes",
+      "121",
+      "Acc. a Santo Tomé - Pte Internacional con Brasil",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "8"
+    ],
+    [
+      "Corrientes",
+      "122",
+      "Acc. a Yapeyú - Centro Yapeyú",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "6"
+    ],
+    [
+      "Corrientes",
+      "123",
+      "Emp. RN 12 - Desmochado",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "31"
+    ],
+    [
+      "Corrientes",
+      "123",
+      "Emp. RN 12 - Mercedes",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "73"
+    ],
+    [
+      "Corrientes",
+      "123",
+      "Mercedes - Emp. RN 14",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "110"
+    ],
+    [
+      "Corrientes",
+      "127",
+      "Lte. Con Entre Ríos - Emp. RN 14 y 119",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "32"
+    ],
+    [
+      "Entre Ríos",
+      "12",
+      "Ceibas - Gualeguay",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "70"
+    ],
+    [
+      "Entre Ríos",
+      "12",
+      "Cerrito - Emp. RN 127",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "18"
+    ],
+    [
+      "Entre Ríos",
+      "12",
+      "Complejo Zarate Brazo Largo - Ceibas",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "48"
+    ],
+    [
+      "Entre Ríos",
+      "12",
+      "Emp. RN 131 - Paraná",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Entre Ríos",
+      "12",
+      "Emp. RP 39 - Nogoyá",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "47"
+    ],
+    [
+      "Entre Ríos",
+      "12",
+      "Emp.RN 127 - Hernandarias",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Entre Ríos",
+      "12",
+      "Galarza - Emp. RP 39",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "43"
+    ],
+    [
+      "Entre Ríos",
+      "12",
+      "Gualeguay - Galarza",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "46"
+    ],
+    [
+      "Entre Ríos",
+      "12",
+      "Hernandarias - La Paz",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "65"
+    ],
+    [
+      "Entre Ríos",
+      "12",
+      "La Paz - Lte. c/Corrientes",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "46"
+    ],
+    [
+      "Entre Ríos",
+      "12",
+      "Nogoyá - Emp. RN 131",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "64"
+    ],
+    [
+      "Entre Ríos",
+      "12",
+      "Paraná - Cerrito",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Entre Ríos",
+      "14",
+      "Ceibas - Lte. con Corrientes",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "343",
+      "\u003ca href=\"SI\" title=\"Telepeaje\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/transporte-telepase-2080538950_mod-1323985427.svg\" style=\"height:1.2rem;margin-top: -8px\" alt=\"Telepeaje\"\u003e\u003c/a\u003e"
+    ],
+    [
+      "Entre Ríos",
+      "18",
+      "Paraná - Villaguay",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "135"
+    ],
+    [
+      "Entre Ríos",
+      "18",
+      "San Salvador - Emp. RN 14",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "62"
+    ],
+    [
+      "Entre Ríos",
+      "18",
+      "Villaguay - San Salvador",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "30"
+    ],
+    [
+      "Entre Ríos",
+      "127",
+      "Emp. RN 12 - Emp. RP 6",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "77"
+    ],
+    [
+      "Entre Ríos",
+      "127",
+      "Emp. RP 6 - Federal",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Entre Ríos",
+      "127",
+      "Federal - Miñones",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "34"
+    ],
+    [
+      "Entre Ríos",
+      "127",
+      "La Hierra - Lte. Con Corrientes",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "44646"
+    ],
+    [
+      "Entre Ríos",
+      "127",
+      "Miñones - La Hierra",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Entre Ríos",
+      "130",
+      "Emp. RN 14 - Villaguay",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "82"
+    ],
+    [
+      "Entre Ríos",
+      "131",
+      "Emp. RP 11 - Emp. RN 12",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "41"
+    ],
+    [
+      "Entre Ríos",
+      "135",
+      "Emp. RN 14 - Pte. Internac. Gervasio Artigas",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Entre Ríos",
+      "136",
+      "Emp. RP 20 - Pte. Internacional General San Martín",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Entre Ríos",
+      "174",
+      "Victoria - Rosario",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "57",
+      "\u003ca href=\"SI\" title=\"Telepeaje\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/transporte-telepase-2080538950_mod-1323985427.svg\" style=\"height:1.2rem;margin-top: -8px\" alt=\"Telepeaje\"\u003e\u003c/a\u003e"
+    ],
+    [
+      "Entre Ríos",
+      "A015",
+      "Emp. RN 14 - Acc. a Salto Grande",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Formosa",
+      "11",
+      "Lucio Mansilla - Pte. San. Ignacio de Loyola",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Formosa",
+      "81",
+      "Formosa - Las Lomitas",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "285"
+    ],
+    [
+      "Formosa",
+      "81",
+      "Ing. Juarez - Km 25,5",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Formosa",
+      "81",
+      "Juan Bazan - Acc. a P. del Mortero",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "44644"
+    ],
+    [
+      "Formosa",
+      "81",
+      "Km. 25,5 - Lte. Con Salta",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "44706"
+    ],
+    [
+      "Formosa",
+      "81",
+      "Laguna Yema - Los Chiriguanos",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "29"
+    ],
+    [
+      "Formosa",
+      "81",
+      "Las Lomitas - J. G. Bazan",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "44803"
+    ],
+    [
+      "Formosa",
+      "81",
+      "Los Chiriguanos - Ing. Juarez",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "46"
+    ],
+    [
+      "Formosa",
+      "81",
+      "Pozo del Mortero - Laguna Yema",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "44739"
+    ],
+    [
+      "Formosa",
+      "86",
+      "C. Zalazar - El Remanso",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Formosa",
+      "86",
+      "Clorinda - El Cogoik",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "169"
+    ],
+    [
+      "Formosa",
+      "86",
+      "El Cogoik - Villa Gral. Güemes",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "30"
+    ],
+    [
+      "Formosa",
+      "86",
+      "El Remanso -Guadalcazar",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Formosa",
+      "86",
+      "El Solitario - M. San Martin",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Formosa",
+      "86",
+      "Fortin Leyes - San Martin 2",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Formosa",
+      "86",
+      "San Martin 2 - C. Zalazar",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Formosa",
+      "86",
+      "Villa Gral. Güemes - Fortin Leyes",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Formosa",
+      "95",
+      "Emp. RN 81 - Km. 29,9",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "44833"
+    ],
+    [
+      "Formosa",
+      "95",
+      "Km. 29,9 - Fortin Lavalle",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "44649"
+    ],
+    [
+      "Formosa",
+      "95",
+      "Villa. Gral Güemes - Emp. RN 81",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Formosa",
+      "11-AO11",
+      "Acc. a Pto. Pilcomayo",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "11"
+    ],
+    [
+      "Jujuy",
+      "9",
+      "Abra Pampa - Lte. C/Bolivia",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "71"
+    ],
+    [
+      "Jujuy",
+      "9",
+      "Acc. a Dique La Ciénaga - Río Perico",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "9"
+    ],
+    [
+      "Jujuy",
+      "9",
+      "Acc. a Iturbe - Abra Pampa",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "60"
+    ],
+    [
+      "Jujuy",
+      "9",
+      "Emp. RN 52 - Paraje San Pedrito",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "40"
+    ],
+    [
+      "Jujuy",
+      "9",
+      "Lte. Con Salta - Acc. a Dique La Ciénaga",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "44725"
+    ],
+    [
+      "Jujuy",
+      "9",
+      "Paraje San Pedrito - Acc. a Iturbe",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "50"
+    ],
+    [
+      "Jujuy",
+      "9",
+      "Río Perico - S.S. de Jujuy",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "23"
+    ],
+    [
+      "Jujuy",
+      "9",
+      "S.S. de Jujuy -Yala",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "14"
+    ],
+    [
+      "Jujuy",
+      "9",
+      "Volcán - Emp. RN 52",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "20"
+    ],
+    [
+      "Jujuy",
+      "9",
+      "Yala - Volcán",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "31"
+    ],
+    [
+      "Jujuy",
+      "34",
+      "Acc. a San Pedro -Lte. Con Salta",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "91"
+    ],
+    [
+      "Jujuy",
+      "34",
+      "Lte. Con Salta - Acc. Norte a San Pedro",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "37"
+    ],
+    [
+      "Jujuy",
+      "40",
+      "Lte. Con Salta - Emp. RN 9",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "RIPIO",
+      "408"
+    ],
+    [
+      "Jujuy",
+      "52",
+      "Emp. RN 9- Purmamarca",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "44684"
+    ],
+    [
+      "Jujuy",
+      "52",
+      "Emp. RP 79 - Susques",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "89"
+    ],
+    [
+      "Jujuy",
+      "52",
+      "Purmamarca - Emp. RP 79",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "59",
+      "\u003ca href=\"Cuesta del Lipan\" title=\"Ruta natural\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/la-ruta-natural.svg\" style=\"height:1rem;margin-top: -8px\" alt=\"La ruta natural\"\u003e\u003c/a\u003e"
+    ],
+    [
+      "Jujuy",
+      "52",
+      "Susques ) - Lte. con Chile",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "105"
+    ],
+    [
+      "Jujuy",
+      "66",
+      "El Cadillal - Emp. RN 34",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "34"
+    ],
+    [
+      "Jujuy",
+      "66",
+      "Emp. RN 9 - El Cadillal",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "4"
+    ],
+    [
+      "Jujuy",
+      "IV66",
+      "Emp. RN 66 - Emp.RN 34",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "11"
+    ],
+    [
+      "La Pampa",
+      "5",
+      "Lte. Con Bs. As. - Santa Rosa",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "La Pampa",
+      "22",
+      "Lte. Con Bs. As. - Lte. Con Río Negro",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "La Pampa",
+      "35",
+      "Ataliva Roca - Santa Rosa",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "La Pampa",
+      "35",
+      "Eduardo Castex - Lte. con Córdoba",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "101"
+    ],
+    [
+      "La Pampa",
+      "35",
+      "Emp. RN 5 - Acc. a Santa Rosa",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "2"
+    ],
+    [
+      "La Pampa",
+      "35",
+      "Emp. RP 18 - Ataliva Roca",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "10"
+    ],
+    [
+      "La Pampa",
+      "35",
+      "Gral. San Martín - Padre Buodo",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "La Pampa",
+      "35",
+      "Lte. Con Bs As - Gral. San Martín",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "21"
+    ],
+    [
+      "La Pampa",
+      "35",
+      "Padre Buodo - Emp. RP 18",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "30"
+    ],
+    [
+      "La Pampa",
+      "35",
+      "Rotonda Sur Acc. a Santa Rosa. - Emp. Ruta Nacional Nº 5",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "3"
+    ],
+    [
+      "La Pampa",
+      "35",
+      "Santa Rosa - Winifreda",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "45"
+    ],
+    [
+      "La Pampa",
+      "35",
+      "Winifreda - Eduardo Castex",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "La Pampa",
+      "143",
+      "Chacharramendi - Emp. RN 151",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "CALZADA NATURAL",
+      "194"
+    ],
+    [
+      "La Pampa",
+      "143",
+      "El Carancho - Chacharramendi",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "La Pampa",
+      "143",
+      "Emp. RN 151 - Sta. Isabel",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "21"
+    ],
+    [
+      "La Pampa",
+      "143",
+      "Emp. RP 10 - Emp. RN 143",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "15"
+    ],
+    [
+      "La Pampa",
+      "143",
+      "Sta . Isabel - Lte.- Con Mendoza",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "La Pampa",
+      "151",
+      "25 de Mayo - Emp. RP 20",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "158"
+    ],
+    [
+      "La Pampa",
+      "151",
+      "Emp. RP 14 - Emp. RN 143",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "8"
+    ],
+    [
+      "La Pampa",
+      "151",
+      "Emp. RP 20 - Puelén",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "La Pampa",
+      "151",
+      "Puelén - Emp. RP 14",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "115"
+    ],
+    [
+      "La Pampa",
+      "152",
+      "El Carancho - Lihué Calel",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "La Pampa",
+      "152",
+      "Gral. Acha - El Carancho",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "La Pampa",
+      "152",
+      "Lihué Calel - Puelches",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "La Pampa",
+      "152",
+      "Padre Buodo - Gral. Acha",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "La Pampa",
+      "152",
+      "Puelches - Casa de Piedra",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "La Pampa",
+      "154",
+      "Emp. RN 35 - Emp. RN 22",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "La Pampa",
+      "188",
+      "Lte. Con Bs. As. - Realicó",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "La Pampa",
+      "188",
+      "Quetrequén - Lte. Con San Luis",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "La Pampa",
+      "188",
+      "Realicó - Quetrequén",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "44643"
+    ],
+    [
+      "La Pampa",
+      "232",
+      "Emp. RN 152 - Emp. RP 30",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "44816"
+    ],
+    [
+      "La Pampa",
+      "232",
+      "Emp. RP 30 - Lte. con Río Negro",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "RIPIO"
+    ],
+    [
+      "La Rioja",
+      "38",
+      "Chamical - Patquia",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "67"
+    ],
+    [
+      "La Rioja",
+      "38",
+      "Emp. RN 75 - Emp. RP 5",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "5"
+    ],
+    [
+      "La Rioja",
+      "38",
+      "La Rioja - Lte. Con Catamarca",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "84"
+    ],
+    [
+      "La Rioja",
+      "38",
+      "Lte. Con Córdoba - Chamical",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "77"
+    ],
+    [
+      "La Rioja",
+      "38",
+      "Patquia - La Rioja",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "67"
+    ],
+    [
+      "La Rioja",
+      "40",
+      "Cachiyuyal - Nonogasta",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "24"
+    ],
+    [
+      "La Rioja",
+      "40",
+      "Los Tambillos - Cachiyuyal",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "18",
+      "\u003ca href=\"Cuesta de Miranda\" title=\"Ruta natural\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/la-ruta-natural.svg\" style=\"height:1rem;margin-top: -8px\" alt=\"La ruta natural\"\u003e\u003c/a\u003e"
+    ],
+    [
+      "La Rioja",
+      "40",
+      "Lte. Con San Juan - Villa Unión",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "53"
+    ],
+    [
+      "La Rioja",
+      "40",
+      "Nonogasta - Lte. Con Catamarca",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "163"
+    ],
+    [
+      "La Rioja",
+      "40",
+      "Villa Unión - Los Tambillos",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "49",
+      "\u003ca href=\"Cuesta de Miranda\" title=\"Ruta natural\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/la-ruta-natural.svg\" style=\"height:1rem;margin-top: -8px\" alt=\"La ruta natural\"\u003e\u003c/a\u003e"
+    ],
+    [
+      "La Rioja",
+      "60",
+      "Aimogasta - Lte. Con Catamarca",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "45"
+    ],
+    [
+      "La Rioja",
+      "60",
+      "Villa Mazan - Aimogasta",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "31"
+    ],
+    [
+      "La Rioja",
+      "73",
+      "Anguinan - Fin del tramo",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "8"
+    ],
+    [
+      "La Rioja",
+      "73",
+      "Emp. RN 75 -Pampa de la Viuda",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "18"
+    ],
+    [
+      "La Rioja",
+      "74",
+      "Los Colorados - Nonogasta",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "80"
+    ],
+    [
+      "La Rioja",
+      "74",
+      "Patquia - Los Colorados",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "33"
+    ],
+    [
+      "La Rioja",
+      "75",
+      "Aminga - Aimogasta",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "35"
+    ],
+    [
+      "La Rioja",
+      "75",
+      "Huaco - Aminga",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "41"
+    ],
+    [
+      "La Rioja",
+      "75",
+      "La Rioja - Los Sauces",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "18"
+    ],
+    [
+      "La Rioja",
+      "75",
+      "Los Sauces - Sanagasta",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "14"
+    ],
+    [
+      "La Rioja",
+      "75",
+      "Sanagasta - Huaco",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "15"
+    ],
+    [
+      "La Rioja",
+      "76",
+      "Acc. a Talampaya - Pagancillo",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "29"
+    ],
+    [
+      "La Rioja",
+      "76",
+      "Alto Jagüe - Queb. Santo Domingo",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "35",
+      "\u003ca href=\"Altos Andes Riojanos\" title=\"Ruta natural\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/la-ruta-natural.svg\" style=\"height:1rem;margin-top: -8px\" alt=\"La ruta natural\"\u003e\u003c/a\u003e"
+    ],
+    [
+      "La Rioja",
+      "76",
+      "Barrancas Blanca - Lte. Con Chile",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "RIPIO",
+      "",
+      "\u003ca href=\"Altos Andes Riojanos\" title=\"Ruta natural\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/la-ruta-natural.svg\" style=\"height:1rem;margin-top: -8px\" alt=\"La ruta natural\"\u003e\u003c/a\u003e"
+    ],
+    [
+      "La Rioja",
+      "76",
+      "Emp. RN 150 - Acc. a Talampaya",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "58"
+    ],
+    [
+      "La Rioja",
+      "76",
+      "Pegancillo - Villa Unión",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "25"
+    ],
+    [
+      "La Rioja",
+      "76",
+      "Queb. Santo Domingo - Barrancas Blanca",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "88",
+      "\u003ca href=\"Altos Andes Riojanos\" title=\"Ruta natural\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/la-ruta-natural.svg\" style=\"height:1rem;margin-top: -8px\" alt=\"La ruta natural\"\u003e\u003c/a\u003e"
+    ],
+    [
+      "La Rioja",
+      "76",
+      "Villa Unión - Vinchina",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "68"
+    ],
+    [
+      "La Rioja",
+      "76",
+      "Vinchina - Alto Jagüe",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "30",
+      "\u003ca href=\"Altos Andes Riojanos\" title=\"Ruta natural\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/la-ruta-natural.svg\" style=\"height:1rem;margin-top: -8px\" alt=\"La ruta natural\"\u003e\u003c/a\u003e"
+    ],
+    [
+      "La Rioja",
+      "77",
+      "Emp. RN 79 - Lte. Con Córdoba",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "77"
+    ],
+    [
+      "La Rioja",
+      "78",
+      "Campanas - Lte. Con Catamarca",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "20"
+    ],
+    [
+      "La Rioja",
+      "78",
+      "Emp. RN 40 - Famatina",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "9"
+    ],
+    [
+      "La Rioja",
+      "78",
+      "Famatina - Campanas",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "49"
+    ],
+    [
+      "La Rioja",
+      "79",
+      "Chamical - Casa de Piedra",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "126"
+    ],
+    [
+      "La Rioja",
+      "79",
+      "Emp. RN 141 - S. Rita de Catuna",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "45"
+    ],
+    [
+      "La Rioja",
+      "79",
+      "Lte. Con San Luis - Emp. RN 141",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "85"
+    ],
+    [
+      "La Rioja",
+      "79",
+      "S. Rita de Catuna - Emp. RN N° 38",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "72"
+    ],
+    [
+      "La Rioja",
+      "141",
+      "Emp. RN 79 - Lte. Con San Juan",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "80"
+    ],
+    [
+      "La Rioja",
+      "150",
+      "Emp. RN 38 - Lte. Con San Juan",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "86"
+    ],
+    [
+      "Mendoza",
+      "7",
+      "Empalme RN 40 - Potrerillos",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "46"
+    ],
+    [
+      "Mendoza",
+      "7",
+      "Lte.Con San Luis - Mendoza",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "175",
+      "\u003ca href=\"SI\" title=\"Telepeaje\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/transporte-telepase-2080538950_mod-1323985427.svg\" style=\"height:1.2rem;margin-top: -8px\" alt=\"Telepeaje\"\u003e\u003c/a\u003e"
+    ],
+    [
+      "Mendoza",
+      "7",
+      "Polvaredas- Uspallata",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "40"
+    ],
+    [
+      "Mendoza",
+      "7",
+      "Puente Del Inca - Las Cuevas",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "44786"
+    ],
+    [
+      "Mendoza",
+      "7",
+      "Punta De Vacas - Puente Del Inca",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "26"
+    ],
+    [
+      "Mendoza",
+      "7",
+      "Tunel Internacional",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "",
+      "\u003ca href=\"SI\" title=\"Telepeaje\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/transporte-telepase-2080538950_mod-1323985427.svg\" style=\"height:1.2rem;margin-top: -8px\" alt=\"Telepeaje\"\u003e\u003c/a\u003e"
+    ],
+    [
+      "Mendoza",
+      "7",
+      "Uspallata - Punta De Vacas",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "51"
+    ],
+    [
+      "Mendoza",
+      "40",
+      "A. Hondo - Pareditas",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "67"
+    ],
+    [
+      "Mendoza",
+      "40",
+      "Emp. RP 221 - La Pasarela",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "RIPIO"
+    ],
+    [
+      "Mendoza",
+      "40",
+      "Empalme RN 144 - A. Hondo",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "96"
+    ],
+    [
+      "Mendoza",
+      "40",
+      "La Pasarela - Bardas Blancas",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "RIPIO"
+    ],
+    [
+      "Mendoza",
+      "40",
+      "Lte. Con Neuquen - Emp. RP 221",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Mendoza",
+      "40",
+      "Malargue - Bardas Blanca",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Mendoza",
+      "40",
+      "Malargüe - Emp. RN 144",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Mendoza",
+      "40",
+      "Mendoza - Lte. Con San Juan",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "76"
+    ],
+    [
+      "Mendoza",
+      "40",
+      "Pareditas - Tunuyan",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Mendoza",
+      "40",
+      "Tunuyan - Mendoza",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "87"
+    ],
+    [
+      "Mendoza",
+      "142",
+      "Jocoli - G. Grande",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "S/D",
+      "35"
+    ],
+    [
+      "Mendoza",
+      "143",
+      "Carmensa - San Rafael",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "114"
+    ],
+    [
+      "Mendoza",
+      "143",
+      "Lte. Con La Pampa - Carmensa",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "106"
+    ],
+    [
+      "Mendoza",
+      "143",
+      "San Rafael - Pareditas",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "104"
+    ],
+    [
+      "Mendoza",
+      "144",
+      "Las Salinas - El Sosneado",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "56"
+    ],
+    [
+      "Mendoza",
+      "144",
+      "San Rafael - Las Salinas",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "70"
+    ],
+    [
+      "Mendoza",
+      "145",
+      "Bardas Blancas - Las Loicas",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "35"
+    ],
+    [
+      "Mendoza",
+      "145",
+      "Cajón Grande - Lte. Internacional",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "10"
+    ],
+    [
+      "Mendoza",
+      "145",
+      "Las Loicas - Cajón Grande",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "30"
+    ],
+    [
+      "Mendoza",
+      "145",
+      "Lte. Internacional El Pehuenche",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "5"
+    ],
+    [
+      "Mendoza",
+      "146",
+      "Lte. con San Luis - Monte Coman",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "124"
+    ],
+    [
+      "Mendoza",
+      "146",
+      "San Rafael - Monte Coman",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Mendoza",
+      "149",
+      "Uspallata - Lte. Con San Juan",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO / RIPIO",
+      "60"
+    ],
+    [
+      "Mendoza",
+      "188",
+      "General Alvear - Malargue",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "CALZADA NATURAL / RIPIO",
+      "230"
+    ],
+    [
+      "Mendoza",
+      "188",
+      "Lte. Con San Luis - Gral. Alvear",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "111"
+    ],
+    [
+      "Misiones",
+      "12",
+      "Acc. a Puerto Iguazu - Puente Inter. Tancredo Neves",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "3"
+    ],
+    [
+      "Misiones",
+      "12",
+      "Acc. Aer. Posadas - Emp. RN 105",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "44698"
+    ],
+    [
+      "Misiones",
+      "12",
+      "Eldorado - Emp. RN 101",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "",
+      "\u003ca href=\"SI\" title=\"Telepeaje\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/transporte-telepase-2080538950_mod-1323985427.svg\" style=\"height:1.2rem;margin-top: -8px\" alt=\"Telepeaje\"\u003e\u003c/a\u003e"
+    ],
+    [
+      "Misiones",
+      "12",
+      "Emp. RN 101 - Acc. a Puerto Iguazu",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "14"
+    ],
+    [
+      "Misiones",
+      "12",
+      "Emp. RN 105 - Santa Ana",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "33",
+      "\u003ca href=\"SI\" title=\"Telepeaje\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/transporte-telepase-2080538950_mod-1323985427.svg\" style=\"height:1.2rem;margin-top: -8px\" alt=\"Telepeaje\"\u003e\u003c/a\u003e"
+    ],
+    [
+      "Misiones",
+      "12",
+      "Lte. Con Corrientes - Acc. Aer. Posadas",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "44605"
+    ],
+    [
+      "Misiones",
+      "12",
+      "Puente Inter. \"Tancredo Neves\" - Puerto Iguazu (Arg)",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "1"
+    ],
+    [
+      "Misiones",
+      "12",
+      "Santa Ana - Eldorado",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "161"
+    ],
+    [
+      "Misiones",
+      "14",
+      "Campo Grande - San Vicente",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "61"
+    ],
+    [
+      "Misiones",
+      "14",
+      "Emp. RP 17 - Bernardo De Irigoyen",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "11"
+    ],
+    [
+      "Misiones",
+      "14",
+      "Gramado - Piñalito",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "CALZADA NATURAL",
+      "35"
+    ],
+    [
+      "Misiones",
+      "14",
+      "Lte. Con Corrientes - San José",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "44627"
+    ],
+    [
+      "Misiones",
+      "14",
+      "Oberá - Campo Grande",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "40"
+    ],
+    [
+      "Misiones",
+      "14",
+      "Piñalito - Emp. RP 17",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "CALZADA NATURAL",
+      "44702"
+    ],
+    [
+      "Misiones",
+      "14",
+      "San José - Oberá",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "77"
+    ],
+    [
+      "Misiones",
+      "14",
+      "San Vicente - Gramado",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Misiones",
+      "101",
+      "Acc. Aer. Iguazu - Empalme RN 12",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "6"
+    ],
+    [
+      "Misiones",
+      "101",
+      "Bdo. De Irigoyen - San Antonio",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "32"
+    ],
+    [
+      "Misiones",
+      "101",
+      "Empalme RP 19 - Lte. Parque Nacional Iguazu",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "CALZADA NATURAL",
+      "11"
+    ],
+    [
+      "Misiones",
+      "101",
+      "Lte. Parque Nacional Iguazu - Acc. Aer. Iguazu",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "CALZADA NATURAL",
+      "32"
+    ],
+    [
+      "Misiones",
+      "101",
+      "Piñalito Norte - Emp. RP 19",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "44771"
+    ],
+    [
+      "Misiones",
+      "101",
+      "San Antonio - Piñalito Norte",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "27"
+    ],
+    [
+      "Misiones",
+      "105",
+      "Posadas - San José",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "35"
+    ],
+    [
+      "Misiones",
+      "S/N",
+      "Pte. Internacional Posadas - Encarnación (Par)",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "1"
+    ],
+    [
+      "Neuquén",
+      "22",
+      "Arroyito - Zapala",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "136"
+    ],
+    [
+      "Neuquén",
+      "22",
+      "Plottier - Arroyito",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Neuquén",
+      "40",
+      "Catan Lil - Zapala",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "133"
+    ],
+    [
+      "Neuquén",
+      "40",
+      "Chos Malal - Lte. con Mendoza",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "128"
+    ],
+    [
+      "Neuquén",
+      "40",
+      "Emp. RN 231 - Lago Villarino",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "50",
+      "\u003ca href=\"Ruta de los Siete Lagos\" title=\"Ruta natural\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/la-ruta-natural.svg\" style=\"height:1rem;margin-top: -8px\" alt=\"La ruta natural\"\u003e\u003c/a\u003e"
+    ],
+    [
+      "Neuquén",
+      "40",
+      "Lago Villarino- San Martín de los Andes",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "50",
+      "\u003ca href=\"Ruta de los Siete Lagos\" title=\"Ruta natural\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/la-ruta-natural.svg\" style=\"height:1rem;margin-top: -8px\" alt=\"La ruta natural\"\u003e\u003c/a\u003e"
+    ],
+    [
+      "Neuquén",
+      "40",
+      "Las Lajas - Chos Malal",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Neuquén",
+      "40",
+      "Lte. con Río Negro - Emp. RN 231",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Neuquén",
+      "40",
+      "Rinconada - Catan Lil",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Neuquén",
+      "40",
+      "San Martín de los Andes - Rinconada",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "70"
+    ],
+    [
+      "Neuquén",
+      "40",
+      "Zapala - Las Lajas",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Neuquén",
+      "231",
+      "Aduana - Lte. con Chile",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "1"
+    ],
+    [
+      "Neuquén",
+      "231",
+      "Emp. RN 40 - Aduana",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "31"
+    ],
+    [
+      "Neuquén",
+      "234",
+      "Rinconada - Emp. RN 237",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Neuquén",
+      "237",
+      "Arroyito - Piedra del Aguila",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "176"
+    ],
+    [
+      "Neuquén",
+      "237",
+      "Arroyo Limay Chico - Emp. RN 40",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "67"
+    ],
+    [
+      "Neuquén",
+      "237",
+      "Piedra del Aguila - Arroyo Limay Chico",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "117"
+    ],
+    [
+      "Neuquén",
+      "242",
+      "Aduana - Lte. con Chile",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "1"
+    ],
+    [
+      "Neuquén",
+      "242",
+      "Las Lajas - Aduana",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "58"
+    ],
+    [
+      "Neuquén",
+      "Vº RN 22",
+      "Lte. Con Río Negro - Vinculación Autovía Norte",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "6"
+    ],
+    [
+      "Neuquén",
+      "Vº RN 22",
+      "Vinculación Autovía Norte - Emp. RN 22",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "25"
+    ],
+    [
+      "Río Negro",
+      "3",
+      "S.A. Oeste - Sierra Grande",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "125"
+    ],
+    [
+      "Río Negro",
+      "3",
+      "Sierra Grande - Lte. Con Chubut",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "40"
+    ],
+    [
+      "Río Negro",
+      "3",
+      "Viedma - S.A. Oeste",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "185"
+    ],
+    [
+      "Río Negro",
+      "22",
+      "Allen - Cipolletti",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "355"
+    ],
+    [
+      "Río Negro",
+      "22",
+      "Chimpay - Allen",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "146"
+    ],
+    [
+      "Río Negro",
+      "22",
+      "Río Colorado - Chimpay",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "193"
+    ],
+    [
+      "Río Negro",
+      "23",
+      "C. Oneli - Comallo",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "CALZADA NATURAL /PAVIMENTO",
+      "41"
+    ],
+    [
+      "Río Negro",
+      "23",
+      "Comallo - Pilcaniyeu",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "CALZADA NATURAL /PAVIMENTO",
+      "56"
+    ],
+    [
+      "Río Negro",
+      "23",
+      "Emp. RN 3 - Valcheta",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "78"
+    ],
+    [
+      "Río Negro",
+      "23",
+      "Ingeniero Jacobacci - C. Oneli",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "CALZADA NATURAL /PAVIMENTO",
+      "47"
+    ],
+    [
+      "Río Negro",
+      "23",
+      "Los Menucos - Maquinchao",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "71"
+    ],
+    [
+      "Río Negro",
+      "23",
+      "Maquinchao - Ingeniero Jacobacci",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "69"
+    ],
+    [
+      "Río Negro",
+      "23",
+      "Mtro. Ramos Mexia - Los Menucos",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "89"
+    ],
+    [
+      "Río Negro",
+      "23",
+      "Pilcaniyeu - Emp. RN 40",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "CALZADA NATURAL /PAVIMENTO",
+      "64"
+    ],
+    [
+      "Río Negro",
+      "23",
+      "Valcheta - Mtro. Ramos Mexia",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "104"
+    ],
+    [
+      "Río Negro",
+      "40",
+      "El Bolsón - Villa Mascardi",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "90"
+    ],
+    [
+      "Río Negro",
+      "40",
+      "Inicio Circunv - Lte. Con Neuquen",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "25"
+    ],
+    [
+      "Río Negro",
+      "40",
+      "S.C. de Bariloche - El Bolson",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "121"
+    ],
+    [
+      "Río Negro",
+      "40",
+      "Villa Mascardi - S.C. De Bariloche",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "44801"
+    ],
+    [
+      "Río Negro",
+      "151",
+      "Cipolletti - Lte Con La Pampa",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "147"
+    ],
+    [
+      "Río Negro",
+      "232",
+      "Lte. Con La Pampa - Emp. RN 22",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "40"
+    ],
+    [
+      "Río Negro",
+      "250",
+      "Emp. RN 3 - Gral. Conesa",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "112"
+    ],
+    [
+      "Río Negro",
+      "250",
+      "Gral. Conesa - Pomona",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "145"
+    ],
+    [
+      "Río Negro",
+      "250",
+      "Pomona - Emp. RN 22",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "28"
+    ],
+    [
+      "Río Negro",
+      "251",
+      "Emp.RN 22 - Gral.Conesa",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "119"
+    ],
+    [
+      "Río Negro",
+      "251",
+      "Gral. Conesa - S.A.Oeste",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "84"
+    ],
+    [
+      "Río Negro",
+      "1S40",
+      "Emp. RN 23 - Límite con Chubut",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "CALZADA NATURAL",
+      "149"
+    ],
+    [
+      "Río Negro",
+      "1S40",
+      "Paso Flores - Emp. RN 23",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "CALZADA NATURAL",
+      "80"
+    ],
+    [
+      "Río Negro",
+      "A025",
+      "Acceso Puerto S.A. Este (Km 0,00 - Km 28,14)",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "28"
+    ],
+    [
+      "Río Negro",
+      "A026",
+      "Acceso San Antonio Oeste (Km. 0,00 - Km 8,71)",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "44750"
+    ],
+    [
+      "Río Negro",
+      "Parques Nacionales",
+      "Acc. a Lago Steffen - Villegas",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "RIPIO"
+    ],
+    [
+      "Río Negro",
+      "Parques Nacionales",
+      "Acc. a Puerto Blest - Puerto Frias",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "RIPIO"
+    ],
+    [
+      "Río Negro",
+      "Parques Nacionales",
+      "Acc. a Puerto Blest - Puerto Frias",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "RIPIO"
+    ],
+    [
+      "Río Negro",
+      "Parques Nacionales",
+      "Acceso a C° Tronador - C. Los Alerces",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "RIPIO"
+    ],
+    [
+      "Río Negro",
+      "Parques Nacionales",
+      "Acceso a Refugio Chalhuaco",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "RIPIO"
+    ],
+    [
+      "Río Negro",
+      "Parques Nacionales",
+      "Arroyo del Medio - Ruta N° 80",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "RIPIO"
+    ],
+    [
+      "Salta",
+      "9",
+      "Emp. RN 34 - Torzalito",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "125",
+      "",
+      "Concesión p/peaje"
+    ],
+    [
+      "Salta",
+      "9",
+      "Lte. Con Tucuman - Emp. RN 34",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "182",
+      "",
+      "Concesión p/peaje"
+    ],
+    [
+      "Salta",
+      "9",
+      "Torzalito - Acc. Salta",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "48",
+      "",
+      "Concesión DVS"
+    ],
+    [
+      "Salta",
+      "9",
+      "Vaqueros - Lte. Con Jujuy",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "",
+      "\u003ca href=\"SI\" title=\"Telepeaje\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/transporte-telepase-2080538950_mod-1323985427.svg\" style=\"height:1.2rem;margin-top: -8px\" alt=\"Telepeaje\"\u003e\u003c/a\u003e",
+      "Sistema p/Administración"
+    ],
+    [
+      "Salta",
+      "16",
+      "El Quebrachal - Emp. RN 9/34",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "129",
+      "",
+      "Sistema p/Administración"
+    ],
+    [
+      "Salta",
+      "16",
+      "Lte. Con Chaco - El Quebrachal",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "",
+      "",
+      "Obra"
+    ],
+    [
+      "Salta",
+      "34",
+      "Embarcación - Gral. E. Mosconi",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "",
+      "",
+      "Sistema C.Re.Ma - Malla 434"
+    ],
+    [
+      "Salta",
+      "34",
+      "Gral. E. Mosconi - Tartagal",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "10",
+      "",
+      "Sistema C.Re.Ma - Malla 434"
+    ],
+    [
+      "Salta",
+      "34",
+      "Lte. Con Jujuy - Pichanal",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "40",
+      "",
+      "Sistema C.Re.Ma - Malla 406"
+    ],
+    [
+      "Salta",
+      "34",
+      "Lte. Con Sgo. Del Estero - Emp. RN 9",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "67",
+      "",
+      "Sistema C.Re.Ma - Malla 431"
+    ],
+    [
+      "Salta",
+      "34",
+      "Pichanal - Embarcación",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "44823",
+      "",
+      "Sistema C.Re.Ma - Malla 434"
+    ],
+    [
+      "Salta",
+      "34",
+      "Tartagal - Lte. Con Bolivia",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "57",
+      "",
+      "Sistema C.Re.Ma - Malla 434"
+    ],
+    [
+      "Salta",
+      "34",
+      "Torzalito - Lte. Con Jujuy",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "20",
+      "",
+      "Concesión p/peaje"
+    ],
+    [
+      "Salta",
+      "40",
+      "Cachi - La Poma",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "RIPIO",
+      "",
+      "",
+      "Sistema Modular"
+    ],
+    [
+      "Salta",
+      "40",
+      "La Darsena - Seclantas",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "RIPIO",
+      "105",
+      "\u003ca href=\"Quebrada de las flechas\" title=\"Ruta natural\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/la-ruta-natural.svg\" style=\"height:1rem;margin-top: -8px\" alt=\"La ruta natural\"\u003e\u003c/a\u003e",
+      "Sistema p/Administración"
+    ],
+    [
+      "Salta",
+      "40",
+      "La Poma - La Quesera",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "RIPIO",
+      "197",
+      "",
+      "Sistema Modular"
+    ],
+    [
+      "Salta",
+      "40",
+      "La Quesera - Emp. RN 51",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "RIPIO",
+      "35",
+      "",
+      "Sistema Modular"
+    ],
+    [
+      "Salta",
+      "40",
+      "Lte. Con Tucuman - La Darsena",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "57",
+      "",
+      "Sistema C.Re.Ma - Malla 401 - A"
+    ],
+    [
+      "Salta",
+      "40",
+      "San Antonio De Los Cobres - Lte. Con Jujuy",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "RIPIO",
+      "",
+      "",
+      "Sistema Modular"
+    ],
+    [
+      "Salta",
+      "40",
+      "Seclantas - Cachi",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "RIPIO",
+      "29",
+      "",
+      "Sistema Modular"
+    ],
+    [
+      "Salta",
+      "50",
+      "Acc. a Oran - Lte. Con Bolivia",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "46",
+      "",
+      "Sistema C.Re.Ma - Malla 406"
+    ],
+    [
+      "Salta",
+      "50",
+      "Emp. RN 34 - Acc. a Oran",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "28",
+      "",
+      "Obra Autopista Multitrocha"
+    ],
+    [
+      "Salta",
+      "51",
+      "Campo Quijano - San Antonio De Los Cobres",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "134",
+      "\u003ca href=\"A las nubes\" title=\"Ruta natural\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/la-ruta-natural.svg\" style=\"height:1rem;margin-top: -8px\" alt=\"La ruta natural\"\u003e\u003c/a\u003e",
+      "Obra"
+    ],
+    [
+      "Salta",
+      "51",
+      "El Aybal - Campo Quijano",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "22",
+      "",
+      "Sistema p/Administración"
+    ],
+    [
+      "Salta",
+      "51",
+      "San Antonio De Los Cobres - Paso De Sico",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "143",
+      "",
+      "Sistema Modular"
+    ],
+    [
+      "Salta",
+      "68",
+      "Emp. RN 40 - Talapampa",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "",
+      "\u003ca href=\"Quebrada de las Conchas\" title=\"Ruta natural\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/la-ruta-natural.svg\" style=\"height:1rem;margin-top: -8px\" alt=\"La ruta natural\"\u003e\u003c/a\u003e",
+      "Sistema p/Administración"
+    ],
+    [
+      "Salta",
+      "68",
+      "Talapampa - Rio Ancho",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "",
+      "",
+      "Sistema p/Administración"
+    ],
+    [
+      "Salta",
+      "81",
+      "Lte. Con Formosa - Emp. RN 34",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "182",
+      "",
+      "Sistema C.Re.Ma - Malla 439"
+    ],
+    [
+      "Salta",
+      "86",
+      "Tonono - Tartagal",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "CALZADA NATURAL",
+      "",
+      "",
+      "Sistema p/Administración"
+    ],
+    [
+      "San Juan",
+      "20",
+      "Km 578 - Km 582 (circunvalación)",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "4",
+      "",
+      "Circular con precaución. Centro de atención al usuario: 0800-222-6272- Lun a vie de 9 a 18hs-."
+    ],
+    [
+      "San Juan",
+      "20",
+      "Caucete - Km 578",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "22",
+      "",
+      "Circular con precaución. Centro de atención al usuario: 0800-222-6272."
+    ],
+    [
+      "San Juan",
+      "20",
+      "Encon - Las Casuarinas",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "60",
+      "",
+      "Precaución. Posible presencia de animales sueltos. Centro de atención al usuario: 0800-222-6272.."
+    ],
+    [
+      "San Juan",
+      "20",
+      "Las Casuarinas - Caucete",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "26",
+      "",
+      "Precaución. Posible presencia de animales sueltos. Centro de atención al usuario: 0800-222-6272."
+    ],
+    [
+      "San Juan",
+      "20",
+      "Lte. Con S.Luis - Encon",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "56",
+      "",
+      "Precaución. Posible presencia de animales sueltos. Centro de atención al usuario: 0800-222-6272.."
+    ],
+    [
+      "San Juan",
+      "40",
+      "Huaco - Lte. Con La Rioja",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "62",
+      "",
+      "Precaución por posible presencia de animales sueltos. Centro de atención al usuario: 0800-222-6272.."
+    ],
+    [
+      "San Juan",
+      "40",
+      "Jachal - Huaco",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "40",
+      "",
+      "Centro de atención al usuario: 0800-222-6272."
+    ],
+    [
+      "San Juan",
+      "40",
+      "Lte. Con Mendoza - Va. Media Agua",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "33",
+      "",
+      "Sectores con deformaciones en calzada. Suma precaución por Obra de construcción de autopista entre Tres Esquinas y Media Agua. Sectores con desvíos."
+    ],
+    [
+      "San Juan",
+      "40",
+      "Matagusanos - Talacasto",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "35",
+      "",
+      "Precaución en zona de badenes. Centro de atención al usuario: 0800-222-6272.."
+    ],
+    [
+      "San Juan",
+      "40",
+      "San Juan - Matagusanos",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "16",
+      "",
+      "Precaución en zona de badenes. Equipos viales trabajando. Centro de atención al usuario: 0800-222-6272."
+    ],
+    [
+      "San Juan",
+      "40",
+      "Talacasto -Tucunuco",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "57",
+      "",
+      "Precaución! Obra de recuperación de calzada. Desvíos a la altura del Km 3.558; circulación por zona de camino. Equipos viales trabajando. Centro de atención al usuario: 0800-222-6272."
+    ],
+    [
+      "San Juan",
+      "40",
+      "Tucunuco - Jachal",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "34",
+      "",
+      "Precaución en zona de badenes. Centro de atención al usuario: 0800-222-6272."
+    ],
+    [
+      "San Juan",
+      "40",
+      "Va. Media Agua-Acceso Sur San Juan",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "51",
+      "",
+      "Precaución por obra de construcción de autopista. Sectores con desvíos."
+    ],
+    [
+      "San Juan",
+      "141",
+      "Lte.Con La Rioja - Bermejo",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "58",
+      "",
+      "Precaución. Probable presencia de animales sueltos.Atención al usuario: 0800-222-6272."
+    ],
+    [
+      "San Juan",
+      "149",
+      "Calingasta - Pachaco",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "42",
+      "",
+      "Mantenimiento a cargo de Vialidad Provincial"
+    ],
+    [
+      "San Juan",
+      "149",
+      "Emp. RP 436 - Las Flores",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "102",
+      "",
+      "Mantenimiento a cargo de Vialidad Provincial."
+    ],
+    [
+      "San Juan",
+      "149",
+      "Lte. Con Mendoza - Calingasta",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "91",
+      "",
+      "Centro de atención al usuario: 0800-222-6272- Lun a vie de 9 a 18hs-."
+    ],
+    [
+      "San Juan",
+      "149",
+      "Pachaco - Emp. RP 436",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "50",
+      "",
+      "Mantenimiento a cargo de Vialidad Provincial."
+    ],
+    [
+      "San Juan",
+      "150",
+      "Arrequintin - Lte. Con Chile",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "RIPIO",
+      "56",
+      "",
+      "Paso Internacional Agua Negra CERRADO."
+    ],
+    [
+      "San Juan",
+      "150",
+      "Emp. RN 40 - Jachal",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "13",
+      "",
+      "Centro de atención al usuario: 0800-222-6272."
+    ],
+    [
+      "San Juan",
+      "150",
+      "Ischigualasto - Huaco",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "85",
+      "\u003ca href=\"De los dinosaurios\" title=\"Ruta natural\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/la-ruta-natural.svg\" style=\"height:1rem;margin-top: -8px\" alt=\"La ruta natural\"\u003e\u003c/a\u003e",
+      "Precaución. Probabilidad de desprendimientos en zona de túneles. Centro de atención al usuario: 0800-222-6272."
+    ],
+    [
+      "San Juan",
+      "150",
+      "Jachal - Rodeo",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "40",
+      "",
+      "Centro de atención al usuario: 0800-222-6272."
+    ],
+    [
+      "San Juan",
+      "150",
+      "Las Flores - Arrequintin",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "37",
+      "",
+      "Inhabilitado por temporada invernal. Centro de atención al usuario: 0800-222-6272- Lun a vie de 9 a 18hs-."
+    ],
+    [
+      "San Juan",
+      "150",
+      "Lte. Con La Rioja - Ischigualasto",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "21",
+      "\u003ca href=\"De los dinosaurios\" title=\"Ruta natural\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/la-ruta-natural.svg\" style=\"height:1rem;margin-top: -8px\" alt=\"La ruta natural\"\u003e\u003c/a\u003e",
+      "Centro de atención al usuario: 0800-222-6272."
+    ],
+    [
+      "San Juan",
+      "150",
+      "Rodeo - Las Flores",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "23",
+      "",
+      "Centro de atención al usuario: 0800-222-6272."
+    ],
+    [
+      "San Juan",
+      "153",
+      "Km 57,80 - Emp. RN 149",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "CALZADA NATURAL",
+      "50",
+      "",
+      "A Barreal, departamento Calingasta, únicamente por RN 149.Centro de atención al usuario: 0800-222-6272."
+    ],
+    [
+      "San Juan",
+      "153",
+      "Media Agua - Pedernal",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "38",
+      "",
+      "Deformaciones en calzada. Centro de atención al usuario: 0800-222-6272."
+    ],
+    [
+      "San Juan",
+      "153",
+      "Pedernal - Km 57,80",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "20",
+      "",
+      "Sectores en mantenimiento. Centro de atención al usuario: 0800-222-6272."
+    ],
+    [
+      "San Juan",
+      "A014",
+      "Av. De Circunvalación",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "15",
+      "",
+      "0"
+    ],
+    [
+      "San Luis",
+      "7",
+      "Lte. Con Córdoba - Lte. Con Mendoza",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "211",
+      "\u003ca href=\"SI\" title=\"Telepeaje\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/transporte-telepase-2080538950_mod-1323985427.svg\" style=\"height:1.2rem;margin-top: -8px\" alt=\"Telepeaje\"\u003e\u003c/a\u003e",
+      "Concesión por Peaje - Provincia de San Luis - Estacion La Cumbre Tel: 0266-4439287/4429504/08002220797 / Centro de atención al usuario: 0800-222-6272 lun a vie de 9 a 18 hs."
+    ],
+    [
+      "San Luis",
+      "8",
+      "Villa Mercedes - Lte. Con Cordoba",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "33",
+      "",
+      "Concesión por Peaje a cargo de Corredor Central SA- 08005550444 - Puesto de Peaje Sampacho, Tel: 03582420729 / Centro de atención al usuario: 0800-222-6272 lun a vie de 9 a 18 hs."
+    ],
+    [
+      "San Luis",
+      "20",
+      "Lte. Con Cordoba - Lte. Con San Juan",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "198",
+      "",
+      "Sistema C.Re.Ma. Malla 307 - Centro de atención al usuario: 0800-222-6272 lun a vie de 9 a 18 hs."
+    ],
+    [
+      "San Luis",
+      "79",
+      "Emp. RN 20 - Lte. Con La Rioja",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "40",
+      "",
+      "Sistema C.Re.Ma. Malla 307 - Centro de atención al usuario: 0800-222-6272 lun a vie de 9 a 18 hs."
+    ],
+    [
+      "San Luis",
+      "146",
+      "Emp. RN 7 - Lte. Con Mendoza",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "93",
+      "",
+      "Mantenimiento a cargo de la DNV 14º DISTRITO - SAN LUIS Centro de atención al usuario: 0800-222-6272 lun a vie de 9 a 18 hs."
+    ],
+    [
+      "San Luis",
+      "146",
+      "Lujan - Emp. RN 147",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "120",
+      "",
+      "Sistema C.Re.Ma.Malla 301 - Centro de atención al usuario: 0800-222-6272 lun a vie de 9 a 18 hs."
+    ],
+    [
+      "San Luis",
+      "147",
+      "Emp.RN V146 - La Chañarienta",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "118",
+      "",
+      "Sistema C.Re.Ma. Malla 301 - Centro de atención al usuario: 0800-222-6272 lun a vie de 9 a 18 hs."
+    ],
+    [
+      "San Luis",
+      "188",
+      "Lte. Con La Pampa - Lte. Con Mendoza",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "127",
+      "",
+      "Sistema C.Re.Ma. Malla 129. Unión - Lte. c/Mendoza -\u003e Mantenimiento a cargo de la DNV 14º DISTRITO - SAN LUIS Centro de atención al usuario: 0800-222-6272 lun a vie de 9 a 18 hs."
+    ],
+    [
+      "San Luis",
+      "V146",
+      "Emp. RN 147 - Emp. RN 7",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "",
+      "",
+      "Mantenimiento a cargo de la DNV 14º DISTRITO - SAN LUIS - Centro de atención al usuario: 0800-222-6272 lun a vie de 9 a 18 hs."
+    ],
+    [
+      "Santa Cruz",
+      "3",
+      "Caleta Olivia - Fitz Roy",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "70",
+      "",
+      "Convenio Interadministrativo con AGVP"
+    ],
+    [
+      "Santa Cruz",
+      "3",
+      "Chimen Aike - Estancia 3 De Enero",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "20",
+      "",
+      "VIALIDAD NACIONAL"
+    ],
+    [
+      "Santa Cruz",
+      "3",
+      "El Salado - Puerto San Julian",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "67",
+      "",
+      "Convenio Interadministrativo con AGVP"
+    ],
+    [
+      "Santa Cruz",
+      "3",
+      "Estancia 3 De Enero - Monte Aymond",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "35",
+      "",
+      "VIALIDAD NACIONAL"
+    ],
+    [
+      "Santa Cruz",
+      "3",
+      "Fitz Roy - Tres Cerros",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "133",
+      "",
+      "Convenio Interadministrativo con AGVP"
+    ],
+    [
+      "Santa Cruz",
+      "3",
+      "Gran Bajo De San Julian - Piedrabuena",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "",
+      "",
+      "Convenio Interadministrativo con AGVP"
+    ],
+    [
+      "Santa Cruz",
+      "3",
+      "Güer Aike - Rio Gallegos",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "44770",
+      "",
+      "VIALIDAD NACIONAL"
+    ],
+    [
+      "Santa Cruz",
+      "3",
+      "Lemarchand- Güer Aike",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "103",
+      "",
+      "VIALIDAD NACIONAL"
+    ],
+    [
+      "Santa Cruz",
+      "3",
+      "Lte. Con Chubut - Caleta Olivia",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "",
+      "",
+      "CPC S.A"
+    ],
+    [
+      "Santa Cruz",
+      "3",
+      "Piedra Buena- Lemarchand",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "104",
+      "",
+      "Convenio Interadministrativo con AGVP"
+    ],
+    [
+      "Santa Cruz",
+      "3",
+      "Puerto San Julian- Gran Bajo De San Julian",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "51",
+      "",
+      "Convenio Interadministrativo con AGVP"
+    ],
+    [
+      "Santa Cruz",
+      "3",
+      "Rio Gallegos - Chimen Aike",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "12",
+      "",
+      "VIALIDAD NACIONAL"
+    ],
+    [
+      "Santa Cruz",
+      "3",
+      "Tres Cerros - El Salado",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "66",
+      "",
+      "Convenio Interadministrativo con AGVP"
+    ],
+    [
+      "Santa Cruz",
+      "40",
+      "28 De Noviembre - Rospentek",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "15",
+      "",
+      "Convenio Interadministrativo con AGVP"
+    ],
+    [
+      "Santa Cruz",
+      "40",
+      "Bajada De Miguez - El Cerrito",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "4",
+      "",
+      "Convenio Interadministrativo con AGVP"
+    ],
+    [
+      "Santa Cruz",
+      "40",
+      "Bajo Caracoles - Río Olnie",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "27",
+      "",
+      "Convenio Interadministrativo con AGVP"
+    ],
+    [
+      "Santa Cruz",
+      "40",
+      "Bella Vista - Güer Aike",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "",
+      "",
+      "VIALIDAD NACIONAL"
+    ],
+    [
+      "Santa Cruz",
+      "40",
+      "Casa Riera - Gobernador Gregores",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "63",
+      "",
+      "Convenio Interadministrativo con AGVP"
+    ],
+    [
+      "Santa Cruz",
+      "40",
+      "El Cerrito - La Esperanza",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "5",
+      "",
+      "Convenio interadministrativo con AGVP"
+    ],
+    [
+      "Santa Cruz",
+      "40",
+      "El Zurdo - Bella Vista",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "",
+      "",
+      "VIALIDAD NACIONAL"
+    ],
+    [
+      "Santa Cruz",
+      "40",
+      "Emp. RN 3 - Punta Loyola",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "44706",
+      "",
+      "VIALIDAD NACIONAL"
+    ],
+    [
+      "Santa Cruz",
+      "40",
+      "Emp. RP 11 - Bajada De Miguez",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "62",
+      "",
+      "Convenio Interadministrativo con AGVP"
+    ],
+    [
+      "Santa Cruz",
+      "40",
+      "Gobernador Gregores - Lago Cardiel",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "58",
+      "",
+      "Convenio Interadministrativo con AGVP"
+    ],
+    [
+      "Santa Cruz",
+      "40",
+      "La Esperanza - Tapi Aike",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "65",
+      "",
+      "Convenio Interadministrativo con AGVP"
+    ],
+    [
+      "Santa Cruz",
+      "40",
+      "La Irene - Emp. RP 11",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "",
+      "",
+      "Convenio Interadministrativo con AGVP"
+    ],
+    [
+      "Santa Cruz",
+      "40",
+      "La Leona - La Irene",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "",
+      "",
+      "Convenio Interadministrativo con AGVP"
+    ],
+    [
+      "Santa Cruz",
+      "40",
+      "Lago Cardiel - Tres Lagos",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "CALZADA NATURAL",
+      "115",
+      "",
+      "Convenio Interadministrativo con AGVP"
+    ],
+    [
+      "Santa Cruz",
+      "40",
+      "Las Horquetas - Tamel Aike",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "22",
+      "",
+      "Convenio Interadministrativo con AGVP"
+    ],
+    [
+      "Santa Cruz",
+      "40",
+      "Lte Con Chubut-Perito Moreno",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "",
+      "",
+      "Convenio Interadministrativo con AGVP"
+    ],
+    [
+      "Santa Cruz",
+      "40",
+      "Perito Moreno - Río Pinturas",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "71",
+      "",
+      "Convenio Interadministrativo con AGVP"
+    ],
+    [
+      "Santa Cruz",
+      "40",
+      "Puente Blanco - El Zurdo",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "CALZADA NATURAL",
+      "",
+      "",
+      "Convenio Interadministrativo con AGVP"
+    ],
+    [
+      "Santa Cruz",
+      "40",
+      "Punta Del Monte - 28 De Noviembre",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "36",
+      "",
+      "Convenio Interadministrativo con AGVP"
+    ],
+    [
+      "Santa Cruz",
+      "40",
+      "Río Olnie - Las Horquetas",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "70",
+      "",
+      "Convenio Interadministrativo con AGVP"
+    ],
+    [
+      "Santa Cruz",
+      "40",
+      "Rio Pinturas - Bajo Caracoles",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "58",
+      "",
+      "Convenio Interadministrativo con AGVP"
+    ],
+    [
+      "Santa Cruz",
+      "40",
+      "Rospentek - Turbio Viejo",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "6",
+      "",
+      "Convenio Interadministrativo con AGVP"
+    ],
+    [
+      "Santa Cruz",
+      "40",
+      "Tamel Aike - Casa Riera",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "41",
+      "",
+      "Convenio Interadministrativo con AGVP"
+    ],
+    [
+      "Santa Cruz",
+      "40",
+      "Tapi Aike - Punta Del Monte",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "87",
+      "",
+      "Convenio Interadministrativo con AGVP"
+    ],
+    [
+      "Santa Cruz",
+      "40",
+      "Tres Lagos - La Leona",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "",
+      "",
+      "Convenio Interadministrativo con AGVP"
+    ],
+    [
+      "Santa Cruz",
+      "40",
+      "Turbio Viejo -Puente Blanco",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "CALZADA NATURAL",
+      "",
+      "",
+      "Convenio Interadministrativo con AGVP"
+    ],
+    [
+      "Santa Cruz",
+      "281",
+      "Km 60 - Emp. RN 3",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "",
+      "",
+      "Convenio Interadministrativo con AGVP"
+    ],
+    [
+      "Santa Cruz",
+      "281",
+      "Puerto Deseado - Tellier",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "16",
+      "",
+      "Convenio Interadministrativo con AGVP"
+    ],
+    [
+      "Santa Cruz",
+      "281",
+      "Tellier - Km 60",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "44",
+      "",
+      "Convenio Interadministrativo con AGVP"
+    ],
+    [
+      "Santa Cruz",
+      "288",
+      "Emp. RN 3 - Estancia La Julia",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "",
+      "",
+      "Convenio Interadministrativo con AGVP"
+    ],
+    [
+      "Santa Cruz",
+      "288",
+      "Estancia La Julia - Laguna Grande",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "CALZADA NATURAL",
+      "",
+      "",
+      "Convenio Interadministrativo con AGVP"
+    ],
+    [
+      "Santa Cruz",
+      "288",
+      "Laguna Grande - Tres Lagos",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "CALZADA NATURAL",
+      "97",
+      "",
+      "Convenio Interadministrativo con AGVP"
+    ],
+    [
+      "Santa Cruz",
+      "288",
+      "Puerto Santa Cruz - Emp. RN 3",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "",
+      "",
+      "Convenio Interadministrativo con AGVP"
+    ],
+    [
+      "Santa Cruz",
+      "288",
+      "Punta Quilla - Puerto Santa Cruz",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "44695",
+      "",
+      "Convenio Interadministrativo con AGVP"
+    ],
+    [
+      "Santa Cruz",
+      "293",
+      "Emp. RN 40 - Lte.Con Chile",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "CALZADA NATURAL",
+      "",
+      "",
+      "Convenio Interadministrativo con AGVP"
+    ],
+    [
+      "Santa Fe",
+      "7",
+      "Lte. Con Bs.As. - Lte. Con Cordoba",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO"
+    ],
+    [
+      "Santa Fe",
+      "8",
+      "Lte. Con Santafe - Lte. Con Cordoba",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "118",
+      "\u003ca href=\"SI\" title=\"Telepeaje\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/transporte-telepase-2080538950_mod-1323985427.svg\" style=\"height:1.2rem;margin-top: -8px\" alt=\"Telepeaje\"\u003e\u003c/a\u003e"
+    ],
+    [
+      "Santa Fe",
+      "9",
+      "Carcaraña - Lte. Con Cordoba",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "",
+      "\u003ca href=\"SI\" title=\"Telepeaje\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/transporte-telepase-2080538950_mod-1323985427.svg\" style=\"height:1.2rem;margin-top: -8px\" alt=\"Telepeaje\"\u003e\u003c/a\u003e"
+    ],
+    [
+      "Santa Fe",
+      "9",
+      "Gral. Lagos - Rosario",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "9",
+      "\u003ca href=\"SI\" title=\"Telepeaje\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/transporte-telepase-2080538950_mod-1323985427.svg\" style=\"height:1.2rem;margin-top: -8px\" alt=\"Telepeaje\"\u003e\u003c/a\u003e",
+      "TRABAJOS DE MANTENIMIENTO GENERAL - POSIBLES REDUCCIONES DE CARRIL PUNTUALES POR TAREAS EN CALZADA- Concesionada sistema de Peaje - Centro de Atención al Usuario 0800-222-6272"
+    ],
+    [
+      "Santa Fe",
+      "9",
+      "Lte. Con Bs. As. - Gral. Lagos",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "50",
+      "\u003ca href=\"SI\" title=\"Telepeaje\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/transporte-telepase-2080538950_mod-1323985427.svg\" style=\"height:1.2rem;margin-top: -8px\" alt=\"Telepeaje\"\u003e\u003c/a\u003e"
+    ],
+    [
+      "Santa Fe",
+      "9",
+      "Rosario - Carcaraña",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "",
+      "",
+      "PRECAUCION POR OBRAS - PRECAUCION REDUCCION DE UN CARRIL EN ZONA CON TRABAJOS ENTRE ROSARIO (RN A008) Y ROLDAN (RN A012) - PRECAUCION MANO A ROSARIO ENTRE ROLDÁN Y FUNES POR TRAMO CON MEDIA CALZADA PAVIMENTADA Y MEDIA FRESADA, TRANSITAR CON CUIDADO - CONCESIONADA SIST PEAJE - Centro de Atención al Usuario 0800-222-6272"
+    ],
+    [
+      "Santa Fe",
+      "11",
+      "Arocena - Santa Fe",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "52",
+      "",
+      "PRECAUCIÓN TRABAJOS EN CALZADA CON REDUCCIONES DE CARRIL Y PASO ALTERNADO DE A UNA MANO POR VEZ - Centro de Atención al Usuario 0800-222-6272"
+    ],
+    [
+      "Santa Fe",
+      "11",
+      "Rosario - San Lorenzo",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "",
+      "",
+      "Centro de Atención al Usuario 0800-222-6272"
+    ],
+    [
+      "Santa Fe",
+      "11",
+      "San Lorenzo - Arocena",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "86",
+      "",
+      "PRECAUCIÓN TRABAJOS EN CALZADA CON REDUCCIONES DE CARRIL Y PASO ALTERNADO DE A UNA MANO POR VEZ EN TRAMOS CON OBRAS - Centro de Atención al Usuario 0800-222-6272"
+    ],
+    [
+      "Santa Fe",
+      "11",
+      "Santa Fe - Lte. Con Chaco",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "482",
+      "\u003ca href=\"SI\" title=\"Telepeaje\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/transporte-telepase-2080538950_mod-1323985427.svg\" style=\"height:1.2rem;margin-top: -8px\" alt=\"Telepeaje\"\u003e\u003c/a\u003e",
+      "PRECAUCION - CORTE DE PASTO EN BANQUINAS Y ZONA DE CAMINO. ENTRE CANDIOTI E IRIONDO PRECAUCION POR MOVIMIENTO EQUIPOS OBRAS EN ZONA FERROVIARIA, CORTES INTERMITENTES SEÑALIZADOS POR BANDERILLEROS EN ZONAS DE INGRESO Y EGRESO DE CAMIONES. Centro de Atención al Usuario 0800-222-6272"
+    ],
+    [
+      "Santa Fe",
+      "19",
+      "Santo Tomé - San francisco",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "",
+      "\u003ca href=\"SI\" title=\"Telepeaje\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/transporte-telepase-2080538950_mod-1323985427.svg\" style=\"height:1.2rem;margin-top: -8px\" alt=\"Telepeaje\"\u003e\u003c/a\u003e"
+    ],
+    [
+      "Santa Fe",
+      "33",
+      "Lte. Con Bs.As. - Rufino",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "22",
+      "",
+      "TRABAJOS DE MANTENIMIENTO GENERAL - POSIBLES REDUCCIONES DE CARRIL PUNTUALES POR TAREAS EN CALZADA - Centro de Atención al Usuario 0800-222-6272"
+    ],
+    [
+      "Santa Fe",
+      "33",
+      "Rufino - Zavalla",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "235",
+      "\u003ca href=\"SI\" title=\"Telepeaje\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/transporte-telepase-2080538950_mod-1323985427.svg\" style=\"height:1.2rem;margin-top: -8px\" alt=\"Telepeaje\"\u003e\u003c/a\u003e",
+      "TRABAJOS FUERA DE CALZADA ENTRE RUFINO Y AMENABAR CON MOVIMIENTO DE EQUIPOS POR CONSTRUCCION AUTOPISTA - PRECAUCION - TRABAJOS ENTRE VENADO TUERTO Y CASILDA CON POSIBLES REDUCCIONES DE CARRIL - Centro de Atención al Usuario 0800-222-6272"
+    ],
+    [
+      "Santa Fe",
+      "33",
+      "Zavalla - Rosario",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "19",
+      "",
+      "Centro de Atención al Usuario 0800-222-6272"
+    ],
+    [
+      "Santa Fe",
+      "34",
+      "Emp. RN A-012 - Emp. RN Nº 19",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "206"
+    ],
+    [
+      "Santa Fe",
+      "34",
+      "Emp. RN19 - Lte. Con Sgo. Del Estero",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "209",
+      "\u003ca href=\"SI\" title=\"Telepeaje\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/transporte-telepase-2080538950_mod-1323985427.svg\" style=\"height:1.2rem;margin-top: -8px\" alt=\"Telepeaje\"\u003e\u003c/a\u003e",
+      "OBRAS DE AUTOPISTA ENTRE RN 19 Y RAFAELA - KM 190 A 214HABILITADA CON PRECAUCION SEGUNDA CALZADA- DESVIOS EN EMPALME NORTE VARIANTE OESTE RAFAELA - PRECAUCION TRAMO EN OBRAS TAMBIEN ENTRE RP 13 Y SUNCHALES - CONCESIONADA SIST PEAJE- Centro de Atención al Usuario 0800-222-6272"
+    ],
+    [
+      "Santa Fe",
+      "34",
+      "Rosario - Emp. RN A-012",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "16",
+      "",
+      "TRABAJOS DE MANTENIMIENTO GENERAL - Centro de Atención al Usuario 0800-222-6272"
+    ],
+    [
+      "Santa Fe",
+      "95",
+      "Ceres - Tostado",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "CALZADA NATURAL",
+      "",
+      "",
+      "TRABAJOS DE MANTENIMIENTO - Centro de Atención al Usuario 0800-222-6272º"
+    ],
+    [
+      "Santa Fe",
+      "95",
+      "Tostado - Lte. Con Chaco",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "",
+      "",
+      "TRABAJOS DE MANTENIMIENTO GENERAL- Centro de Atención al Usuario 0800-222-6272"
+    ],
+    [
+      "Santa Fe",
+      "95",
+      "Tostado - Villa Minetti",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "",
+      "",
+      "PRECAUCION ENTRE SAN BERNARDO Y VILLA MINETTI CALZADA EN MAL ESTADO - MANTENIMIENTO GENERAL - Centro de Atención al Usuario 0800-222-6272"
+    ],
+    [
+      "Santa Fe",
+      "98",
+      "Tostado - Lte. Sgo del Estero",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "70",
+      "",
+      "TRABAJOS DE MANTENIMIENTO GENERAL - Centro de Atención al Usuario 0800-222-6272"
+    ],
+    [
+      "Santa Fe",
+      "98",
+      "Vera Tostado",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "155",
+      "",
+      "TRABAJOS DE MANTENIMIENTO GENERAL - Centro de Atención al Usuario 0800-222-6272"
+    ],
+    [
+      "Santa Fe",
+      "168",
+      "Santa Fe - Parana",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "17",
+      "",
+      "TRABAJOS DE MANTENIMIENTO GENERAL - Centro de Atención al Usuario 0800-222-6272"
+    ],
+    [
+      "Santa Fe",
+      "173",
+      "Emp. RN 11 - Puerto Aragon",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "CALZADA NATURAL",
+      "",
+      "",
+      "ALERTA: (INTRANSITABLE DÍAS DE LLUVIA E INMEDIATOS POSTERIORES) Centro de Atención al Usuario 0800-222-6272"
+    ],
+    [
+      "Santa Fe",
+      "174",
+      "Rosario - Victoria",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "44714"
+    ],
+    [
+      "Santa Fe",
+      "175",
+      "Emp. RN 11 - Puerto San Martin",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "3",
+      "",
+      "Centro de Atención al Usuario 0800-222-6272"
+    ],
+    [
+      "Santa Fe",
+      "178",
+      "Acc. a Villa Eloisa - Las Rosas",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "58",
+      "",
+      "NORMAL - Centro de Atención al Usuario 0800-222-6272"
+    ],
+    [
+      "Santa Fe",
+      "178",
+      "Emp.RN 33 - Acc. a Villa Eloisa",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "30",
+      "",
+      "TRABAJOS DE MANTENIMIENTO GENERAL - Centro de Atención al Usuario 0800-222-6272"
+    ],
+    [
+      "Santa Fe",
+      "178",
+      "Lte. Con Bs. As. - Emp. RN 33",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "69",
+      "",
+      "TRABAJOS DE MANTENIMIENTO GENERAL - Centro de Atención al Usuario 0800-222-6272"
+    ],
+    [
+      "Santa Fe",
+      "1v09",
+      "Emp. RN 178 - Lte. Con Córdoba",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "44703",
+      "",
+      "TRABAJOS DE MANTENIMIENTO GENERAL - POSIBLES REDUCCIONES DE CARRIL PUNTUALES POR TAREAS EN CALZADA - TRABAJOS EN TRAMA URBANA CAÑADA DE GOMEZ CON DESVIOS SOBRE LA MISMA TRAZA - Centro de Atención al Usuario 0800-222-6272"
+    ],
+    [
+      "Santa Fe",
+      "1v09",
+      "Roldan - Emp. RN 178",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "69",
+      "",
+      "TRABAJOS DE MANTENIMIENTO GENERAL - POSIBLES REDUCCIONES DE CARRIL PUNTUALES POR TAREAS EN CALZADA - Centro de Atención al Usuario 0800-222-6272"
+    ],
+    [
+      "Santa Fe",
+      "1v09",
+      "Rosario - Roldan",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "16",
+      "",
+      "TRABAJOS DE MANTENIMIENTO GENERAL - POSIBLES REDUCCIONES DE CARRIL PUNTUALES POR TAREAS EN CALZADA - Centro de Atención al Usuario 0800-222-6272"
+    ],
+    [
+      "Santa Fe",
+      "A007",
+      "Emp. RN 11 - Calle Juan De Garay",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "44685",
+      "",
+      "TRABAJOS DE MANTENIMIENTO GENERAL - Centro de Atención al Usuario 0800-222-6272"
+    ],
+    [
+      "Santa Fe",
+      "A007",
+      "Emp. RN 11 - Emp RN 1V11",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "44744",
+      "",
+      "TRABAJOS DE MANTENIMIENTO GENERAL - POSIBLES REDUCCIONES DE CARRIL PUNTUALES POR TAREAS EN CALZADA- Centro de Atención al Usuario 0800-222-6272"
+    ],
+    [
+      "Santa Fe",
+      "A008",
+      "Emp. RN 9 - Acc. Sur a Puerto",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "44733",
+      "",
+      "TRABAJOS DE MANTENIMIENTO GENERAL - Centro de Atención al Usuario 0800-222-6272"
+    ],
+    [
+      "Santa Fe",
+      "A008",
+      "Rio Parana - Emp. RN 9",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "",
+      "",
+      "TRABAJOS DE MANTENIMIENTO GENERAL - Centro de Atención al Usuario 0800-222-6272"
+    ],
+    [
+      "Santa Fe",
+      "A009",
+      "Puerto Reconquista - Emp. RN 11",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "12",
+      "",
+      "CONCESIONADA SIST PEAJE - Centro de Atención al Usuario 0800-222-6272"
+    ],
+    [
+      "Santa Fe",
+      "A012",
+      "Alto Nivel RN 9(S) - Emp.RN 9",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "42",
+      "",
+      "CONCESIONADA SIST PEAJE - TRABAJOS DE MANTENIMIENTO GENERAL - POSIBLES REDUCCIONES DE CARRIL PUNTUALES POR TAREAS EN CALZADA -TRANSITO INTENSO DE CAMIONES - Centro de Atención al Usuario 0800-222-6272"
+    ],
+    [
+      "Santa Fe",
+      "A012",
+      "Emp. RN 9 (O) - San Lorenzo",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "25",
+      "",
+      "TRABAJOS DE MANTENIMIENTO GENERAL - POSIBLES REDUCCIONES DE CARRIL PUNTUALES POR TAREAS EN CALZADA CONCESIONADA SIST PEAJE -TRANSITO INTENSO DE CAMIONES - Centro de Atención al Usuario 0800-222-6272"
+    ],
+    [
+      "Santiago del Estero",
+      "9",
+      "Loreto - Santiago Del Estero",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "60",
+      "",
+      "Transito normal PRESENCIA DE ANIMALES SUELTOS CONDUCIR CON PRECAUCIÓN SE RECOMIENDA A AUTOMOVILISTAS HORARIOS DE VIAJE CON LUZ SOLAR CENTRO de ATENCIÓN al USUARIO 0800-222-6272 atencionalusuario@vialidad.gob.ar"
+    ],
+    [
+      "Santiago del Estero",
+      "9",
+      "Lte. Con Córdoba - Río Saladillo",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "97",
+      "",
+      "Transito normal PRESENCIA DE ANIMALES SUELTOS CONDUCIR CON PRECAUCIÓN SE RECOMIENDA A AUTOMOVILISTAS HORARIOS DE VIAJE CON LUZ SOLAR CENTRO de ATENCIÓN al USUARIO 0800-222-6272 atencionalusuario@vialidad.gob.ar"
+    ],
+    [
+      "Santiago del Estero",
+      "9",
+      "Río Saladillo - Loreto",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "68",
+      "",
+      "PUESTO FIJO DE PESAJE LORETO - PRESENCIA DE ANIMALES SUELTOS SE RECOMIENDA A AUTOMOVILISTAS HORARIOS DE VIAJE CON LUZ SOLAR. CENTRO de ATENCIÓN al USUARIO 0800-222-6272 atencionalusuario@vialidad.gob.ar"
+    ],
+    [
+      "Santiago del Estero",
+      "9",
+      "Ruta 9 (S) - Ruta 9 (N)",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "4",
+      "",
+      "Transito normal SE RECOMIENDA A AUTOMOVILISTAS HORARIOS DE VIAJE CON LUZ SOLAR CENTRO de ATENCIÓN al USUARIO 0800-222-6272 atencionalusuario@vialidad.gob.ar"
+    ],
+    [
+      "Santiago del Estero",
+      "9",
+      "Santiago Del Estero - Lte Con Tucuman",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "85",
+      "\u003ca href=\"SI\" title=\"Telepeaje\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/transporte-telepase-2080538950_mod-1323985427.svg\" style=\"height:1.2rem;margin-top: -8px\" alt=\"Telepeaje\"\u003e\u003c/a\u003e",
+      "Transito normal PRESENCIA DE ANIMALES SUELTOS CONDUCIR CON PRECAUCIÓN SE RECOMIENDA A AUTOMOVILISTAS HORARIOS DE VIAJE CON LUZ SOLAR CENTRO de ATENCIÓN al USUARIO 0800-222-6272 atencionalusuario@vialidad.gob.ar"
+    ],
+    [
+      "Santiago del Estero",
+      "16",
+      "El Caburé - Lte. Con Chaco",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "96",
+      "",
+      "Circulación con mucha precaución por baches y calzada deformada. Carpeta asfaltica muy dañada. PRESENCIA DE ANIMALES SUELTOS CONDUCIR CON PRECAUCIÓN SE RECOMIENDA A AUTOMOVILISTAS HORARIOS DE VIAJE CON LUZ SOLAR CENTRO de ATENCIÓN al USUARIO 0800-222-6272 atencionalusuario@vialidad.gob.ar"
+    ],
+    [
+      "Santiago del Estero",
+      "16",
+      "Lte. Con Chaco - El Caburé",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "70",
+      "",
+      "Se recomienda transitar con precaucion por de baches en la calzada. PRESENCIA DE ANIMALES SUELTOS CONDUCIR CON PRECAUCIÓN SE RECOMIENDA A AUTOMOVILISTAS HORARIOS DE VIAJE CON LUZ SOLAR CENTRO de ATENCIÓN al USUARIO 0800-222-6272 atencionalusuario@vialidad.gob.ar"
+    ],
+    [
+      "Santiago del Estero",
+      "34",
+      "Antilla - Rosario De La Frontera",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "",
+      "",
+      "Conducir con mucha precaución por presencia de personal y equipos viales en la zona. PRESENCIA DE ANIMALES SUELTOS CONDUCIR CON PRECAUCIÓN SE RECOMIENDA A AUTOMOVILISTAS HORARIOS DE VIAJE CON LUZ SOLAR CENTRO de ATENCIÓN al USUARIO 0800-222-6272 atencionalusuario@vialidad.gob.ar"
+    ],
+    [
+      "Santiago del Estero",
+      "34",
+      "Garmendia - Antilla",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "",
+      "",
+      "Conducir con mucha precaución por presencia de personal y equipos viales en la zona. PRESENCIA DE ANIMALES SUELTOS CONDUCIR CON PRECAUCIÓN SE RECOMIENDA A AUTOMOVILISTAS HORARIOS DE VIAJE CON LUZ SOLAR CENTRO de ATENCIÓN al USUARIO 0800-222-6272 atencionalusuario@vialidad.gob.ar"
+    ],
+    [
+      "Santiago del Estero",
+      "34",
+      "La Banda - Pozo Hondo",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "77",
+      "\u003ca href=\"SI\" title=\"Telepeaje\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/transporte-telepase-2080538950_mod-1323985427.svg\" style=\"height:1.2rem;margin-top: -8px\" alt=\"Telepeaje\"\u003e\u003c/a\u003e",
+      "Sistema CReMa - MALLA 431 A. Se informa a la población que se reestablecio el transito en el Km 862, a la altura de Garmendia, de igual manera se solicita a la ciudadania transitar con precaucion. PRESENCIA DE ANIMALES SUELTOS CONDUCIR CON PRECAUCIÓN SE RECOMIENDA A AUTOMOVILISTAS HORARIOS DE VIAJE CON LUZ SOLAR CENTRO de ATENCIÓN al USUARIO 0800-222-6272 atencionalusuario@vialidad.gob.ar"
+    ],
+    [
+      "Santiago del Estero",
+      "34",
+      "Lte. Con Santa Fe - La Banda",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "321",
+      "",
+      "PUESTO PEAJE (FERNANDEZ) PRESENCIA DE ANIMALES SUELTOS CONDUCIR CON PRECAUCIÓN SE RECOMIENDA A AUTOMOVILISTAS HORARIOS DE VIAJE CON LUZ SOLAR CENTRO de ATENCIÓN al USUARIO 0800-222-6272 atencionalusuario@vialidad.gob.ar"
+    ],
+    [
+      "Santiago del Estero",
+      "34",
+      "Pozo Hondo - Garmendia",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "66",
+      "",
+      "Sistema CReMa - MALLA 431 A. Se informa a la población que se reestablecio el transito en el Km 862, a la altura de Garmendia, de igual manera se solicita a la ciudadania transitar con precaucion. PRESENCIA DE ANIMALES SUELTOS CONDUCIR CON PRECAUCIÓN SE RECOMIENDA A AUTOMOVILISTAS HORARIOS DE VIAJE CON LUZ SOLAR CENTRO de ATENCIÓN al USUARIO 0800-222-6272 atencionalusuario@vialidad.gob.ar"
+    ],
+    [
+      "Santiago del Estero",
+      "64",
+      "La Banda - Sgo. Secc. Km 418 - Pte Sobre Rio Dulce (Pte Carretero - Pte Viejo)",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "12",
+      "",
+      "Transito Normal SE RECOMIENDA A LOS AUTOMOVILISTAS, VIAJAR CON LUZ SOLAR CENTRO de ATENCIÓN al USUARIO 0800-222-6272 atencionalusuario@vialidad.gob.ar"
+    ],
+    [
+      "Santiago del Estero",
+      "64",
+      "Puerta Chiquita - Lte. Con Catamarca",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "25",
+      "",
+      "Circulación normal, respetar señalización vertical y horizontal. PRESENCIA DE ANIMALES SUELTOS CONDUCIR CON PRECAUCIÓN SE RECOMIENDA A AUTOMOVILISTAS HORARIOS DE VIAJE CON LUZ SOLAR CENTRO de ATENCIÓN al USUARIO 0800-222-6272 atencionalusuario@vialidad.gob.ar"
+    ],
+    [
+      "Santiago del Estero",
+      "64",
+      "Santa Catalina (Emp Ruta Prov 3) - Puerta Chiquita",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "44782",
+      "",
+      "RECOMENDACIÓN de NO CIRCULACIÓN a Transporte pesado, camiones con acoplado y semirremolque, por limitaciones en el diseño geométrico. DESVÍOS: RP6 Santa Catalina - Frias y RN157 Frias - Lavalle PRESENCIA DE ANIMALES SUELTOS CONDUCIR CON PRECAUCIÓN SE RECOMIENDA A AUTOMOVILISTAS HORARIOS DE VIAJE CON LUZ SOLAR CENTRO de ATENCIÓN al USUARIO 0800-222-6272 atencionalusuario@vialidad.gob.ar"
+    ],
+    [
+      "Santiago del Estero",
+      "64",
+      "Santiago Del Estero (Salida) - Santa Catalina (Emp Ruta Prov 3)",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "",
+      "",
+      "PRESENCIA DE ANIMALES SUELTOS CONDUCIR CON PRECAUCIÓN SE RECOMIENDA A AUTOMOVILISTAS HORARIOS DE VIAJE CON LUZ SOLAR CENTRO de ATENCIÓN al USUARIO 0800-222-6272 atencionalusuario@vialidad.gob.ar"
+    ],
+    [
+      "Santiago del Estero",
+      "89",
+      "Lte. Con Chaco - Quimilí",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "",
+      "",
+      "En el km. 276, puente metálico de emergencia. Se transita de manera alternada por una mano. Solicitamos circular a baja velocidad atendiendo las indicaciones de la cartelería y banderilleros que están apostados allí. Acumulación de agua en zona de caminos. Respetar la señalización. Tambien se recomienda al usuario transitar con precaucion desde el km 311 hasta el km 370 por presencia de baches aislados. PRESENCIA DE ANIMALES SUELTOS CONDUCIR CON PRECAUCIÓN - SE RECOMIENDA A AUTOMOVILISTAS HORARIOS DE VIAJE CON LUZ SOLAR CENTRO de ATENCIÓN al USUARIO 0800-222-6272 atencionalusuario@vialidad.gob.ar"
+    ],
+    [
+      "Santiago del Estero",
+      "89",
+      "Quimilí - Suncho Corral",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "112",
+      "",
+      "Transitable con normalidad. PRESENCIA DE ANIMALES SUELTOS CONDUCIR CON PRECAUCIÓN - SE RECOMIENDA A AUTOMOVILISTAS HORARIOS DE VIAJE CON LUZ SOLAR CENTRO de ATENCIÓN al USUARIO 0800-222-6272 atencionalusuario@vialidad.gob.ar"
+    ],
+    [
+      "Santiago del Estero",
+      "89",
+      "Suncho Corral - Emp RN 34",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "28",
+      "",
+      "PRESENCIA DE ANIMALES SUELTOS CONDUCIR CON PRECAUCIÓN - SE RECOMIENDA A AUTOMOVILISTAS HORARIOS DE VIAJE CON LUZ SOLAR CENTRO de ATENCIÓN al USUARIO 0800-222-6272 atencionalusuario@vialidad.gob.ar"
+    ],
+    [
+      "Santiago del Estero",
+      "98",
+      "Bandera - Los Tableros",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "13",
+      "",
+      "En días de lluvia conducir con precaución y a baja velocidad SE RECOMIENDA A AUTOMOVILISTAS HORARIOS DE VIAJE CON LUZ SOLAR CENTRO de ATENCIÓN al USUARIO 0800-222-6272 atencionalusuario@vialidad.gob.ar"
+    ],
+    [
+      "Santiago del Estero",
+      "98",
+      "Los Tableros - Pinto",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "CALZADA NATURAL",
+      "47",
+      "",
+      "Tramo sin pavimento. Tránsito en forma intermitente. Se recomienda la NO CIRCULACIÓN en días de lluvia. SE RECOMIENDA A AUTOMOVILISTAS HORARIOS DE VIAJE CON LUZ SOLAR CENTRO de ATENCIÓN al USUARIO 0800-222-6272 atencionalusuario@vialidad.gob.ar"
+    ],
+    [
+      "Santiago del Estero",
+      "157",
+      "Frías - Llavalle",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "50",
+      "",
+      "Km. 1049 Frente a planta de Biodiesel DEFORMACIÓN DE CALZADA, circular con precaución. PRESENCIA DE ANIMALES SUELTOS CONDUCIR CON PRECAUCIÓN SE RECOMIENDA A AUTOMOVILISTAS HORARIOS DE VIAJE CON LUZ SOLAR CENTRO de ATENCIÓN al USUARIO 0800-222-6272 atencionalusuario@vialidad.gob.ar"
+    ],
+    [
+      "Santiago del Estero",
+      "157",
+      "Lavalle - Lte. Con Tucumán",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "32",
+      "",
+      "Circulación Normal PRESENCIA DE ANIMALES SUELTOS CONDUCIR CON PRECAUCIÓN SE RECOMIENDA A AUTOMOVILISTAS HORARIOS DE VIAJE CON LUZ SOLAR CENTRO de ATENCIÓN al USUARIO 0800-222-6272 atencionalusuario@vialidad.gob.ar"
+    ],
+    [
+      "Tierra del Fuego, Antártida e Islas del Atlántico Sur",
+      "3",
+      "Cabo Espíritu Santo - San Sebastián",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "RIPIO",
+      "",
+      "",
+      "TRANSITAR C/ SUMA PRECAUCIÓN -"
+    ],
+    [
+      "Tierra del Fuego, Antártida e Islas del Atlántico Sur",
+      "3",
+      "La Herradura - Rancho Hambre",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "11",
+      "\u003ca href=\"Tolhuin - Bahia Lapataia\" title=\"Ruta natural\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/la-ruta-natural.svg\" style=\"height:1rem;margin-top: -8px\" alt=\"La ruta natural\"\u003e\u003c/a\u003e",
+      "TRANSITAR C/ EXTREMA PRECAUCIÓN -. EQUIPOS TRABAJANDO EN PLAN DE MANTENIMIENTO INVERNAL."
+    ],
+    [
+      "Tierra del Fuego, Antártida e Islas del Atlántico Sur",
+      "3",
+      "Puente Justicia - Tolhuin",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "44608",
+      "",
+      "TRANSITAR C/SUMA PRECAUCIÓN . EQUIPOS TRABAJANDO EN PLAN DE MANTENIMIENTO INVERNAL"
+    ],
+    [
+      "Tierra del Fuego, Antártida e Islas del Atlántico Sur",
+      "3",
+      "Rancho Hambre - Ushuaia",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "",
+      "\u003ca href=\"Tolhuin - Bahia Lapataia\" title=\"Ruta natural\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/la-ruta-natural.svg\" style=\"height:1rem;margin-top: -8px\" alt=\"La ruta natural\"\u003e\u003c/a\u003e",
+      "TRANSITAR C/ EXTREMA PRECAUCIÓN -. EQUIPOS TRABAJANDO EN PLAN DE MANTENIMIENTO INVERNAL."
+    ],
+    [
+      "Tierra del Fuego, Antártida e Islas del Atlántico Sur",
+      "3",
+      "Río Grande - Puente Justicia",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "",
+      "",
+      "TRANSITAR C/SUMA PRECAUCIÓN . EQUIPOS TRABAJANDO EN PLAN DE MANTENIMIENTO INVERNAL"
+    ],
+    [
+      "Tierra del Fuego, Antártida e Islas del Atlántico Sur",
+      "3",
+      "San Sebastián - Río Grande",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "",
+      "",
+      "TRANSITAR C/SUMA PRECAUCIÓN . EQUIPOS TRABAJANDO EN PLAN DE MANTENIMIENTO INVERNAL"
+    ],
+    [
+      "Tierra del Fuego, Antártida e Islas del Atlántico Sur",
+      "3",
+      "Tolhuin - La Herradura",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "56",
+      "\u003ca href=\"Tolhuin - Bahia Lapataia\" title=\"Ruta natural\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/la-ruta-natural.svg\" style=\"height:1rem;margin-top: -8px\" alt=\"La ruta natural\"\u003e\u003c/a\u003e",
+      "TRANSITAR C/SUMA PRECAUCIÓN . EQUIPOS TRABAJANDO EN PLAN DE MANTENIMIENTO INVERNAL."
+    ],
+    [
+      "Tierra del Fuego, Antártida e Islas del Atlántico Sur",
+      "3",
+      "Ushuaia - Bahía Lapataia",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "RIPIO",
+      "18",
+      "\u003ca href=\"Tolhuin - Bahia Lapataia\" title=\"Ruta natural\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/la-ruta-natural.svg\" style=\"height:1rem;margin-top: -8px\" alt=\"La ruta natural\"\u003e\u003c/a\u003e",
+      "TRANSITAR C/ EXTREMA PRECAUCIÓN -. EQUIPOS TRABAJANDO EN PLAN DE MANTENIMIENTO INVERNAL."
+    ],
+    [
+      "Tierra del Fuego, Antártida e Islas del Atlántico Sur",
+      "Compl A",
+      "Emp. RN 3 - Río Lainez",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "RIPIO",
+      "66",
+      "",
+      "TRANSITAR C/ SUMA PRECAUCIÓN"
+    ],
+    [
+      "Tierra del Fuego, Antártida e Islas del Atlántico Sur",
+      "Compl B",
+      "Emp. RN 3 - Puesto Radman",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "RIPIO",
+      "70",
+      "",
+      "TRANSITAR C/ SUMA PRECAUCIÓN"
+    ],
+    [
+      "Tierra del Fuego, Antártida e Islas del Atlántico Sur",
+      "Compl I",
+      "Emp. RN 3 - Limite Con Chile",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "RIPIO",
+      "11",
+      "",
+      "TRANSITAR C/ SUMA PRECAUCIÓN"
+    ],
+    [
+      "Tierra del Fuego, Antártida e Islas del Atlántico Sur",
+      "Compl J",
+      "Emp. RN 3 - Puesto Moat",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "RIPIO",
+      "91",
+      "",
+      "TRANSITAR C/ SUMA PRECAUCIÓN"
+    ],
+    [
+      "Tierra del Fuego, Antártida e Islas del Atlántico Sur",
+      "Región XII - Chile",
+      "Barcaza (Primera Angostura)",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "",
+      "",
+      "Información Transbordadora Austral Broom."
+    ],
+    [
+      "Tierra del Fuego, Antártida e Islas del Atlántico Sur",
+      "Región XII - Chile",
+      "Monte Aymond - Integración Austral",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "",
+      "",
+      "Estado de rutas provincia de Santa Cruz"
+    ],
+    [
+      "Tierra del Fuego, Antártida e Islas del Atlántico Sur",
+      "Región XII - Chile",
+      "San Sebastián - Paso Fronterizo",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "",
+      "",
+      "Estado de rutas hasta el Estrecho de Magallanes"
+    ],
+    [
+      "Tucumán",
+      "9",
+      "Acc. al Cadillal - Lte. Con Salta",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "55",
+      "\u003ca href=\"SI\" title=\"Telepeaje\" target=\"_blank\" style=\"margin-right:.75em\"\u003e\u003cimg src=\"https://back.argentina.gob.ar/sites/default/files/transporte-telepase-2080538950_mod-1323985427.svg\" style=\"height:1.2rem;margin-top: -8px\" alt=\"Telepeaje\"\u003e\u003c/a\u003e",
+      "km 1365: Acceso a Trancas, por la ejecución de obras en el nuevo acceso a la ciudad el tránsito se desvía por colectora este. Se solicita respetar la señalización transitoria de obras y las indicaciones de los banderilleros. Velocidad máxima 40km/h. Tramo concesionado - Corredores Viales S.A. - Teléfono 24 hs. 0800-888-8662. // Centro de Atención al Usuario 0800-222-6272"
+    ],
+    [
+      "Tucumán",
+      "9",
+      "Avda. de Circunvalación - Las Talitas",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "14",
+      "",
+      "Centro de Atención al Usuario 0800-222-6272."
+    ],
+    [
+      "Tucumán",
+      "9",
+      "Las Talitas - Acc. al Cadillal",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "18",
+      "",
+      "Tramo concesionado - Corredores Viales S.A. - Teléfono 24 hs. 0800-888-8662 // Centro de Atención al Usuario 0800-222-6272."
+    ],
+    [
+      "Tucumán",
+      "9",
+      "Lte. Con Sgo. Del Estero - San Andres",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "56",
+      "",
+      "Tramo concesionado - Corredores Viales S.A. - Teléfono 24 hs. 0800-888-8662. // Centro de Atención al Usuario 0800-222-6272."
+    ],
+    [
+      "Tucumán",
+      "9",
+      "San Andres - S. M. de Tucuman",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "",
+      "",
+      "Por obras en ejecucición se solicita respetar la señalización transitoria de obras. Personal y equipos viales trabajan en la zona de camino. Centro de Atención al Usuario 0800-222-6273."
+    ],
+    [
+      "Tucumán",
+      "38",
+      "Concepción - Famaillá",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "43",
+      "",
+      "Centro de Atención al Usuario 0800-222-6272."
+    ],
+    [
+      "Tucumán",
+      "38",
+      "Famaillá - S. M. de Tucumán",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "31",
+      "",
+      "Centro de Atención al Usuario 0800-222-6272."
+    ],
+    [
+      "Tucumán",
+      "38",
+      "Lte. Con Catamarca - Concepción.",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "72",
+      "",
+      "Centro de Atención al Usuario 0800-222-6272"
+    ],
+    [
+      "Tucumán",
+      "40",
+      "Acc. a Ruinas de Quilmes - Lte. Con Salta",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "23",
+      "",
+      "kilómetro 4285: equipos y personal vial realizará tareas de limpieza en calzada. Precaución al transitar, disminuir velocidad en la zona de trabajo. Centro de Atención al Usuario 0800-222-6272."
+    ],
+    [
+      "Tucumán",
+      "40",
+      "Lte. Con CAtamarca - Acc. a Ruinas de Quilmes",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "14",
+      "",
+      "Informes 11º Distrito Catamarca. tel. (03834) 430-049. Centro de Atención al Usuario 0800-222-6272."
+    ],
+    [
+      "Tucumán",
+      "65",
+      "Alpachiri - Lte. Con Catamarca",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "RIPIO",
+      "35",
+      "",
+      "Centro de Atención al Usuario 0800-222-6272."
+    ],
+    [
+      "Tucumán",
+      "65",
+      "Int RN 1V 38 - In RN 38",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "3",
+      "",
+      "Centro de Atención al Usuario 0800-222-6272."
+    ],
+    [
+      "Tucumán",
+      "65",
+      "Int. RN 38 - Alpachiri",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "44698",
+      "",
+      "Concepción: perfilado de banquina con aporte de material. Precaución al transitar por el tramo, disminuir la velocidad y respetar las indicaciones de los banderilleros. Centro de Atención al Usuario 0800-222-6272."
+    ],
+    [
+      "Tucumán",
+      "157",
+      "Bella Vista - S. M. de Tucuman",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "75",
+      "",
+      "Sistema C.Re.Ma - Malla 409 A. Centro de Atención al Usuario 0800-222-6272."
+    ],
+    [
+      "Tucumán",
+      "157",
+      "Lte. Con Sgo. Del Estero - Monteagudo",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "",
+      "",
+      "Centro de Atención al Usuario 0800-222-6272."
+    ],
+    [
+      "Tucumán",
+      "157",
+      "Monteagudo - Bella Vista",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "",
+      "",
+      "Sistema C.Re.Ma - Malla 409 A. Centro de Atención al Usuario 0800-222-6272."
+    ],
+    [
+      "Tucumán",
+      "1V38",
+      "Acc. a Aguilares - Acc. a Concepción",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "6",
+      "",
+      "Centro de Atención al Usuario 0800-222-6272."
+    ],
+    [
+      "Tucumán",
+      "1V38",
+      "Acc. a Concepción - Acc. a Monteros",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "24",
+      "",
+      "Centro de Atención al Usuario 0800-222-6272."
+    ],
+    [
+      "Tucumán",
+      "1V38",
+      "Acc. a Monteros - Emp RN 38",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "19",
+      "",
+      "Centro de Atención al Usuario 0800-222-6272."
+    ],
+    [
+      "Tucumán",
+      "1V38",
+      "Rio Marapa - Acc. a Aguilares",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "21",
+      "",
+      "J.B. Alberdi - Aguilares: equipos viales realizan desmalezamiento en zonas de camino. Centro de Atención al Usuario 0800-222-6272."
+    ],
+    [
+      "Tucumán",
+      "A016",
+      "Aerop. Inter. - S. M. de Tucumán",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "",
+      "",
+      "Centro de Atención al Usuario 0800-222-6272."
+    ],
+    [
+      "Tucumán",
+      "Ex 34",
+      "Gdor. Garmendia - Lte. Con Salta",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "RIPIO",
+      "28",
+      "",
+      "Centro de Atención al Usuario 0800-222-6272."
+    ],
+    [
+      "Tucumán",
+      "Ex 34",
+      "Lte. Con Salta - Gdor. Garmendia",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "RIPIO",
+      "39",
+      "",
+      "Piedrabuena - San Arturo: perfilado de calzada con aporte de material. // Piedrabuena - Garmendia: desmalezamiento manual en zona de camino. Centro de Atención al Usuario 0800-222-6272."
+    ],
+    [
+      "Tucumán",
+      "Ex 9",
+      "San Andrés - S. M. de Tucumán",
+      "\u003cspan class='label bg-verdin'\u003eHABILITADA\u003c/span\u003e",
+      "PAVIMENTO",
+      "3",
+      "",
+      "Centro de Atención al Usuario 0800-222-6272."
+    ]
+  ]
+}
