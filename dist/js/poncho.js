@@ -5115,9 +5115,11 @@ class GapiSheetData {
     constructor(options){
         const defaults = {
             "gapi_key": "AIzaSyCq2wEEKL9-6RmX-TkW23qJsrmnFHFf5tY",
+            "gapi_uri": "https://sheets.googleapis.com/v4/spreadsheets/"
         };
         let opts = Object.assign({}, defaults, options);
         this.gapi_key = opts.gapi_key;
+        this.gapi_uri = opts.gapi_uri;
     }
 
     /**
