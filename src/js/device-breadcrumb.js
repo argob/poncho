@@ -13,6 +13,7 @@ const expandButton = () => {
   btn.dataset.title = "Expandir menú";
   // btn.title = "Expandir menú";
   btn.setAttribute("aria-hidden", true);
+  btn.setAttribute("aria-label", "Expande el menú de miga de pan");
   return btn;
 };
 
@@ -29,6 +30,7 @@ const btn = document.createElement("button");
   );
   btn.dataset.title = "Contraer menú";
   btn.setAttribute("aria-hidden", true);
+  btn.setAttribute("aria-label", "Cierra el menú de miga de pan");
   return btn;
 };
 
