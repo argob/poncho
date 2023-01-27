@@ -43,17 +43,22 @@ gulp.task('sass', function(){
     .pipe(gulp.dest('./dist/css'))
 });
 
-
+/**
+ * Compila los archivso SASS
+ */
 gulp.task('sass_poncho', function(){
   return gulp.src([
-        './src/scss/poncho.scss'
+        './src/scss/poncho.scss',
+        './src/scss/device-breadcrumb/device-breadcrumb.scss',
     ])
-    .pipe(sass())
+    .pipe(sass.sync({outputStyle: 'compressed'}).on('error', sass.logError))
+    // .pipe(sass())
     .pipe(gulp.dest('./dist/css'))
 });
 
-
-
+/**
+ * Compila y minifica los archivs JS en poncho.min.js
+ */
 gulp.task('ponchomin', function(){
   return gulp.src([
         './src/js/utils.js',
@@ -68,7 +73,12 @@ gulp.task('ponchomin', function(){
         './src/js/poncho-map-search.js',
         './src/js/gapi-sheet-data.js'
       ])
-      .pipe(replace(/\/\/\s?\$START_TEST\$([\s\S]*?)\/\/\s?\$END_TEST\$/gm, '/* module.exports REMOVED */'))
+      .pipe(
+          replace(
+              /\/\/\s?\$START_TEST\$([\s\S]*?)\/\/\s?\$END_TEST\$/gm, 
+              '/* module.exports REMOVED */'
+          )
+      )
       .pipe(concat('poncho.min.js'))
       .pipe(uglify({
           compress: {
@@ -80,7 +90,6 @@ gulp.task('ponchomin', function(){
       .pipe(gulp.dest('dist/js/'));
 });
 
-
 gulp.task('jshint', function(){
   return gulp.src([SRC], {"allowEmpty": true})
       .pipe(plumber())
@@ -88,11 +97,17 @@ gulp.task('jshint', function(){
       .pipe(jshint.reporter('default'));
 });
 
-
+/**
+ * Minifica los siguientes componentes
+ * — Mapa de argentina en SVG
+ * — Extensiones showdown markdown
+ * — omponente para controlar las migas de pan en Argentina.gob.ar
+ */
 gulp.task('compress', function () {
   return gulp.src([
           './src/js/showdown-extensions.js',
-          './src/js/mapa-argentina.js'
+          './src/js/mapa-argentina.js',
+          './src/js/device-breadcrumb.js'
       ])
       .pipe(babel())
       .pipe(uglify())

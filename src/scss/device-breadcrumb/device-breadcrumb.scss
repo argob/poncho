@@ -1,0 +1,71 @@
+.device-breadcrumb {
+  &--expanded &__expand-button {
+    display: none;
+  }
+
+  &__compress-button {
+    display: none;
+    padding: 0 0.75em;
+    margin-top: 0.25em;
+  }
+
+  &__expand-button {
+    border: 0 solid transparent;
+    background: transparent;
+    border-radius: 0;
+    padding: 0;
+    height: auto;
+  }
+
+  &__expand-button::after,
+  &__last-visible-item::after {
+    padding: 0 5px;
+    color: #555;
+    content: "/\00a0";
+  }
+
+  &__expand-button:hover {
+    border-bottom: 0 solid transparent;
+    background: transparent;
+  }
+
+  // Busca el último <li>. Si dentro no hay un <a> lo oculta.
+  & li + li:not(:has(a)) {
+    position: absolute;
+    left: -999em;
+    top: -999em;
+  }
+  // Oculta los enlaces de inicio que tengan / terminen en 
+  // argentina.gob.ar 
+  & li:has(a[href="/"]),
+  & li:has(a[href$="argentina.gob.ar"]),
+  & li:has(a[href$="argentina.gob.ar/"]) {
+    position: absolute;
+    left: -999em;
+    top: -999em;
+  }
+}
+
+@media (max-width: 991px) {
+  .device-breadcrumb {
+    &__expand-button {
+      display: inline-block;
+    }
+
+    &__toggle-item {
+      position: absolute;
+      left: -9999em;
+      top: -9999em;
+    }
+
+    &--expanded &__compress-button {
+      display: block;
+    }
+
+    &--expanded &__toggle-item {
+      position: initial;
+      left: 0;
+      top: 0;
+    }
+  }
+}
