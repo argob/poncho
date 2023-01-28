@@ -1,6 +1,37 @@
 /**
- * Cambia el layout de los bredcrumbs depende del tamaño del navegador
- */ 
+ * DEVICE BREADCRUMB
+ *
+ * @summary Cambia el layout de los bredcrumbs depende del 
+ * tamaño del navegador
+ *
+ * @author Agustín Bouillet <bouilleta@jefatura.gob.ar>
+ *
+ * 
+ * 
+ * MIT License
+ *
+ * Copyright (c) 2022 Argentina.gob.ar
+ *
+ * Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation
+ * files (the "Software"), to deal in the Software without restriction,
+ * including without limitation the rightsto use, copy, modify, merge,
+ * publish, distribute, sublicense, and/or sell copies of the Software,
+ * and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+ * BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+ * ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+ * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
 
 /**
  * Crea el botón expandir
@@ -41,7 +72,7 @@ const removeDeviceHidden = (menus) => menus
     .forEach(e => e.classList.add("device-breadcrumb--expanded"));
 
 /**
-* Agraga la clase global device-breadcrumbs
+* Agrega la clase global device-breadcrumbs
 * @returns {undefined}
 */
 const addGlobalClass = () => document
@@ -95,7 +126,7 @@ const isTextItem = (element) => (!element.firstChild.tagName != "A" &&
     element.firstChild.textContent != "");
 
 /**
- * Verifica si el último li tiene un enlace dentro.
+ * Verifica si el último <li/> tiene un enlace dentro.
  * @param {object} menuItems Retorno del selector 
  * @returns {boolean}
  */
@@ -138,7 +169,7 @@ function deviceBreadcrumb(innerWidth){
       }
       // Si es el último (o único), item y no tiene anchor.
       else if (isTextItem(element) && key == totalItems - 1){
-        element.classList.add("device-breadcrumb__last-item");
+          element.classList.add("device-breadcrumb__last-item");
       }
   });
 
@@ -147,15 +178,14 @@ function deviceBreadcrumb(innerWidth){
   totals = (firstElementHome ? totals - 1 : totals);
 
   if(innerWidth <= breakPoint && totals > 1){
-      // Agrega el botón expandir.
-      const sp2 = menuItems[0];
-      const parentDiv = sp2.parentNode;
-      parentDiv.insertBefore(expandButton(), sp2);
+      // Agrega el botón expandir antes del primer <li/>.
+      const firstItem = menuItems[0];
+      const parentDiv = firstItem.parentNode;
+      parentDiv.insertBefore(expandButton(), firstItem);
       
       // Agrega el botón de cerrar.
       breadcrumb.forEach(menu => {
-          const li = closeButton();
-          menu.appendChild(li);
+          menu.appendChild(closeButton());
       });
   } 
 
