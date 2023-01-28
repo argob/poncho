@@ -57,6 +57,20 @@ const removeExpanded = (menus) => menus
   .forEach(e => e.classList.remove("device-breadcrumb--expanded"));
 
 /**
+ * Chequea si es un enlace de inicio
+ * @param {object} element Elemento li 
+ * @returns {boolean}
+ */
+const isHomeLink = (element) => {
+    const href = element.firstChild.getAttribute("href");
+    const rgx = new RegExp('(^/$|argentina.gob.ar$|argentina.gob.ar/$)');
+    if(rgx.exec(href)){
+        return true;
+    }
+    return false;
+};
+
+/**
  * Tiene o no página de inicio.
  * @param {object} menuItems Retorno del selector
  * @returns {boolean}
@@ -65,15 +79,19 @@ const isFirstElementHome = (menuItems) => {
     let result = false;
     menuItems.forEach((e, k) => {
         if(k == 0){
-            const href = e.firstChild.getAttribute("href");
-            const rgx = new RegExp('(/|argentina.gob.ar|argentina.gob.ar/)');
-            if(rgx.exec(href)){
-                result = true;
-            }  
+            result = isHomeLink(e); 
         }
     });
     return result;
 };
+
+/**
+ * Chequea si el elemento es texto y no un link
+ * @param {object} element Elemento li 
+ * @returns {boolean}
+ */
+const isTextItem = (element) => (!element.firstChild.tagName != "A" && 
+    element.firstChild.textContent != "");
 
 /**
  * Verifica si el último li tiene un enlace dentro.
@@ -81,22 +99,13 @@ const isFirstElementHome = (menuItems) => {
  * @returns {boolean}
  */
 const isLastElementText = (menuItems) => {
-  let result = [];
-  menuItems.forEach(e => {
-      if(
-          !e.firstChild.tagName != "A" && 
-          e.firstChild.textContent != ""
-      ){
-          result.push(true);
-      } else {
-          result.push(false);
-      }
-  });
-  return result.some(s => s);
+  let result;
+  menuItems.forEach(e => result = isTextItem(e));
+  return result;
 }
 
 /**
-* 
+* Procesa la lógica de las migas de pan
 * @param {integer} innerWidth Tamaño en pixeles de la pantalla.
 */
 function deviceBreadcrumb(innerWidth){
@@ -115,14 +124,20 @@ function deviceBreadcrumb(innerWidth){
   const counter = (lastElementText ? totalItems - 2 : totalItems - 1);
 
   menuItems.forEach((element, key) => {
+      if(isHomeLink(element) && totalItems > 1){
+          element.classList.add("device-breadcrumb__hidden-item");
+      }
       // Agrego una clase al último elemento visible
       // Hack por si no está el dash final.
-      if(lastElementText && key == totalItems - 2){
+      else if(lastElementText && key == totalItems - 2){
           element.classList.add("device-breadcrumb__last-visible-item");
       }
       // Toggle items
-      if(key < counter){
+      else if(key < counter){
           element.classList.add("device-breadcrumb__toggle-item");
+      }
+      else if (isTextItem(element) ){
+        element.classList.add("device-breadcrumb__last-item");
       }
   });
 
