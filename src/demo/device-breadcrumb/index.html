@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <link rel="profile" href="http://www.w3.org/1999/xhtml/vocab" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -22,6 +23,13 @@
     body {
       padding: 1em;
     }
+
+    .case {
+      background-color: #eee;
+      padding: 1em 1em .5em;
+      border-radius: 9px;
+      box-shadow: 1px 1px 2px rgb(0 0 0 / .25);
+    }
   </style>
 </head>
 
@@ -32,21 +40,46 @@
     <div class="row">
       <div class="col-md-12">
         <h1 class="h3">Device breadcrumb JS</h1>
-        <h2 class="h5 text-tomate">Casos de uso</h2>
-
-
-
-        <ol class="breadcrumbs">
-          <li><a href="https://argentina.gob.ar">Inicio</a></li>
-          <!-- <li><a href="/mas">Item</a></li> -->
-          <!-- <li class="active"><span>Subsidios</span></li> -->
-      </ol>
+        <h2 class="h4 text-tomate">Casos de uso</h2>
+        <h3 class="h5">Caso 1</h3>
+        <p>Migas de pan con enlace de inicio y título de página.</p>
+        <p>Resultado esperado: Solo se debe visualizar el título de página.</p>
+        <div class="case">
+          <ol class="_breadcrumbs">
+            <li><a href="https://www.argentina.gob.ar">Inicio</a></li>
+            <li class="active">Device breadcrumb JS</li>
+          </ol>
+        </div>
+        <hr>
+        <h3 class="h5">Caso 2</h3>
+        <p>Migas de pan con enlace de inicio, enlace intermedio y título de página.</p>
+        <p>Resultado esperado: Solo se debe visualizar el enlace intermedio.</p>
+        <div class="case">
+          <ol class="breadcrumbs">
+            <li><a href="https://www.argentina.gob.ar">Inicio</a></li>
+            <li><a href="#">Tomates</a></li>
+            <li class="active">Device breadcrumb JS</li>
+          </ol>
+        </div>
       </div>
     </div>
   </div>
   <!-- / Example -->
 
-  <script src="../../../src/js/device-breadcrumb.js"></script>
+<hr>
+
+
+  <ol class="_breadcrumbs">
+    <li><a href="https://www.argentina.gob.ar">Inicio</a></li>
+    <li><a href="#">Tomates</a></li>
+    <li><a href="#">Verdes</a></li>
+    <li><a href="#">Fritos</a></li>
+    <li class="active">Device breadcrumb JS</li>
+  </ol>
+
+
+
+  <script src="../../../dist/js/device-breadcrumb.js"></script>
 </body>
 
 </html>
