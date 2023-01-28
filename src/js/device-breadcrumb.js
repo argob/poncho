@@ -62,15 +62,14 @@ const removeExpanded = (menus) => menus
  * @returns {boolean}
  */
 const isHomeLink = (element) => {
-  if(typeof element.firstChild === "object" && 
-     element.firstChild !== null &&  "getAttribute" in element.firstChild){
-        const href = element.firstChild.getAttribute("href");
-        const rgx = new RegExp('(^/$|argentina.gob.ar$|argentina.gob.ar$)');
-        if(rgx.exec(href)){
-            return true;
-        }
+    let rgxResult;
+    if(typeof element.firstChild === "object" && 
+      element.firstChild !== null && "getAttribute" in element.firstChild){
+          const href = element.firstChild.getAttribute("href");
+          const rgx = new RegExp('(^/$|argentina.gob.ar$|argentina.gob.ar/$)');
+          rgxResult = rgx.exec(href);
     }
-    return false;
+    return rgxResult || false;
 };
 
 /**
