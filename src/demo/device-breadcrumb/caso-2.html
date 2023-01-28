@@ -18,44 +18,52 @@
   <link rel="stylesheet"
     href="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/poncho.min.css" />
   <link rel="stylesheet" href="../../../dist/css/device-breadcrumb.css" />
-  <title>Device breadcrumb JS | Inicio</title>
-  <style>
-    body {
-      padding: 1em;
-    }
-
-    .case {
-      background-color: #eee;
-      padding: 1em 1em .5em;
-      border-radius: 9px;
-      box-shadow: 1px 1px 2px rgb(0 0 0 / .25);
-    }
-
-    .case-container {
-      border-bottom: 1px solid gray;
-      padding-bottom: 2em;
-      margin-bottom: 2em;
-    }
-  </style>
+  <title>Device breadcrumb JS | Caso 2</title>
+  <link rel="stylesheet" href="./css/main.css">
 </head>
 <body>
   <!-- Example -->
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <h1 class="h3">Device breadcrumb JS</h1>
-        <h2 class="h4 text-tomate">Casos de uso</h2>
-        <ul>
-          <li><a href="./caso-1.html">Migas de pan con enlace de inicio y título de página</a></li>
-          <li><a href="./caso-2.html">Migas de pan con enlace de inicio, enlace intermedio y título de página</a></li>
-          <li><a href="./caso-3.html">Migas de pan con enlace de inicio, enlaces intermedios y título de página</a></li>
-          <li><a href="./caso-4.html">Item de nombre de página unicamente</a></li>
-          <li><a href="./caso-5.html">Enlace de página de inicio unicamente</a></li>
-        </ul>
-    </div>
+
+          <nav class="navbar">
+            <ul class="list-unstyled">
+              <li><a href="./index.html">Inicio</a></li>
+            </ul>
+          </nav>
+        <div class="case-container">
+          <h1 class="h5">Caso 2</h1>
+          <p>Migas de pan con enlace de inicio, enlace intermedio y título de página.</p>
+          <h2 class="h6 m-t-2">Resultado esperado</h2>
+          <ul>
+            <li>Solo se debe visualizar el enlace intermedio.</li>
+            <li>No deben activarse los botones de expandir o contraer migas de pan.</li>
+          </ul>
+          <h2 class="h6 m-t-2">Ejemplo</h2>
+          <div class="case">
+            <ol class="breadcrumbs">
+              <li><a href="https://www.argentina.gob.ar">Inicio</a></li>
+              <li><a href="#">Tomates</a></li>
+              <li class="active">Device breadcrumb JS</li>
+            </ol>
+          </div>
+          <h2 class="h6 m-t-2">HTML</h2>
+          <div class="case">
+            <ol>
+              <li><a href="https://www.argentina.gob.ar">Inicio</a></li>
+              <li><a href="#">Tomates</a></li>
+              <li class="active">Device breadcrumb JS</li>
+            </ol>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <!-- / Example -->
+
+
   <script src="../../../dist/js/device-breadcrumb.js"></script>
 </body>
+
 </html>
