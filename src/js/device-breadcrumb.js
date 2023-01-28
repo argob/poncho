@@ -7,14 +7,13 @@
  * @returns {object}
  */ 
 const expandButton = () => {
-  const btn = document.createElement("button");
-  btn.textContent = "…";
-  btn.classList.add("js-ellip", "device-breadcrumb__expand-button");
-  btn.dataset.title = "Expandir menú";
-  // btn.title = "Expandir menú";
-  btn.setAttribute("aria-hidden", true);
-  btn.setAttribute("aria-label", "Expande el menú de miga de pan");
-  return btn;
+    const btn = document.createElement("button");
+    btn.textContent = "…";
+    btn.classList.add("js-ellip", "device-breadcrumb__expand-button");
+    btn.dataset.title = "Expandir menú";
+    btn.setAttribute("aria-hidden", true);
+    btn.setAttribute("aria-label", "Expande el menú de miga de pan");
+    return btn;
 };
 
 /**
@@ -22,16 +21,16 @@ const expandButton = () => {
 * @returns {object}
 */ 
 const closeButton = () => {
-const btn = document.createElement("button");
-  btn.textContent = "Cerrar";
-  btn.classList.add(
-      "js-close", "btn-default", "btn-sm", 
-      "device-breadcrumb__compress-button"
-  );
-  btn.dataset.title = "Contraer menú";
-  btn.setAttribute("aria-hidden", true);
-  btn.setAttribute("aria-label", "Cierra el menú de miga de pan");
-  return btn;
+    const btn = document.createElement("button");
+    btn.textContent = "Cerrar";
+    btn.classList.add(
+        "js-close", "btn-default", "btn-sm", 
+        "device-breadcrumb__compress-button"
+    );
+    btn.dataset.title = "Contraer menú";
+    btn.setAttribute("aria-hidden", true);
+    btn.setAttribute("aria-label", "Cierra el menú de miga de pan");
+    return btn;
 };
 
 /**
@@ -39,22 +38,22 @@ const btn = document.createElement("button");
 * @returns {undefined}
 */ 
 const removeDeviceHidden = (menus) => menus
-  .forEach(e => e.classList.add("device-breadcrumb--expanded"));
+    .forEach(e => e.classList.add("device-breadcrumb--expanded"));
 
 /**
 * Agraga la clase global device-breadcrumbs
 * @returns {undefined}
 */
 const addGlobalClass = () => document
-  .querySelectorAll(".breadcrumbs, .breadcrumb")
-  .forEach(e => e.classList.add("device-breadcrumb"));
+    .querySelectorAll(".breadcrumbs, .breadcrumb")
+    .forEach(e => e.classList.add("device-breadcrumb"));
 
 /**
 * Remueve la clase expanded
 * @returns {undefined}
 */ 
 const removeExpanded = (menus) => menus
-  .forEach(e => e.classList.remove("device-breadcrumb--expanded"));
+    .forEach(e => e.classList.remove("device-breadcrumb--expanded"));
 
 /**
  * Chequea si es un enlace de inicio
@@ -101,9 +100,9 @@ const isTextItem = (element) => (!element.firstChild.tagName != "A" &&
  * @returns {boolean}
  */
 const isLastElementText = (menuItems) => {
-  let result;
-  menuItems.forEach(e => result = isTextItem(e));
-  return result;
+    let result;
+    menuItems.forEach(e => result = isTextItem(e));
+    return result;
 }
 
 /**
@@ -114,8 +113,7 @@ function deviceBreadcrumb(innerWidth){
   document
       .querySelectorAll(".js-ellip, .js-close")
       .forEach(ele => ele.remove());
-  
-  const wSize = 991;
+  const breakPoint = 991;
   const menuItems = document.querySelectorAll(
       ".breadcrumbs li, .breadcrumb li");
   const breadcrumb = document.querySelectorAll(
@@ -138,7 +136,8 @@ function deviceBreadcrumb(innerWidth){
       else if(key < counter){
           element.classList.add("device-breadcrumb__toggle-item");
       }
-      else if (isTextItem(element) ){
+      // Si es el último (o único), item y no tiene anchor.
+      else if (isTextItem(element) && key == totalItems - 1){
         element.classList.add("device-breadcrumb__last-item");
       }
   });
@@ -147,19 +146,17 @@ function deviceBreadcrumb(innerWidth){
   totals = (lastElementText ? totals - 1 : totals);
   totals = (firstElementHome ? totals - 1 : totals);
 
-  if(innerWidth <= wSize){
-      if(totals > 1){
-          // Agrega el botón expandir.
-          const sp2 = menuItems[0];
-          const parentDiv = sp2.parentNode;
-          parentDiv.insertBefore(expandButton(), sp2);
-          
-          // Agrega el botón de cerrar.
-          breadcrumb.forEach(menu => {
-              const li = closeButton();
-              menu.appendChild(li);
-          });
-      }
+  if(innerWidth <= breakPoint && totals > 1){
+      // Agrega el botón expandir.
+      const sp2 = menuItems[0];
+      const parentDiv = sp2.parentNode;
+      parentDiv.insertBefore(expandButton(), sp2);
+      
+      // Agrega el botón de cerrar.
+      breadcrumb.forEach(menu => {
+          const li = closeButton();
+          menu.appendChild(li);
+      });
   } 
 
   // Agrego el listener para los butones
