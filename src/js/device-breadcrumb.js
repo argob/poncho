@@ -1,12 +1,18 @@
 /**
  * DEVICE BREADCRUMB
  *
- * @summary Cambia el layout de los bredcrumbs depende del 
- * tamaño del navegador
+ * @summary Cambia el layout de los bredcrumb dependiendo del 
+ * Media query. Cuando un usuario entra al sitio de Argentina.gob.ar 
+ * desde un dispositivo móbil, las migas suelen ser muy extensas por
+ * la cantidad de caracteres en los títulos o por la profundidad del 
+ * árbol jerárquico en la navegación. Para ello se ocultan los items 
+ * que anteceden al nivel dónde se está situado y se ofrece la opción
+ * de expandir la miga de pan para visualizarla completa.
+ * 
+ * Se pueden ver algunos ejemplos dentro de src/demos/device-breadcrum
  *
  * @author Agustín Bouillet <bouilleta@jefatura.gob.ar>
  *
- * 
  * 
  * MIT License
  *
@@ -103,7 +109,7 @@ const isHomeLink = (element) => {
 };
 
 /**
- * Tiene o no página de inicio.
+ * Tiene o no tiene, página de inicio.
  * @param {object} menuItems Retorno del selector
  * @returns {boolean}
  */
@@ -118,7 +124,7 @@ const isFirstElementHome = (menuItems) => {
 };
 
 /**
- * Chequea si el elemento es texto y no un link
+ * Chequea si el elemento es texto y no un enlace.
  * @param {object} element Elemento li 
  * @returns {boolean}
  */
@@ -144,23 +150,23 @@ const removeButtons = () => document
     .querySelectorAll(".js-ellip, .js-close").forEach(ele => ele.remove());
 
 /**
-* Procesa la lógica de las migas de pan
+* Procesa la lógica de las migas de pan.
 * @param {integer} innerWidth Tamaño en pixeles de la pantalla.
+* @todo Remover la llamada a `.breadcrumbs` (con S) y `.breadcrumbs li`
+* una vez armado el CSS.
 */
 function deviceBreadcrumb(innerWidth){
   removeButtons();
   const breakPoint = 991;
-  const menuItems = document.querySelectorAll(
-      ".breadcrumbs li, .breadcrumb li");
-  const breadcrumb = document.querySelectorAll(
-      '.breadcrumbs, .breadcrumb');
+  const menuItems = document.querySelectorAll(".breadcrumbs li, .breadcrumb li");
+  const breadcrumb = document.querySelectorAll('.breadcrumbs, .breadcrumb');
   const totalItems = menuItems.length;
   const lastElementText = isLastElementText(menuItems); 
   const firstElementHome = isFirstElementHome(menuItems);
   const counter = (lastElementText ? totalItems - 2 : totalItems - 1);
 
   menuItems.forEach((element, key) => {
-
+      // si es página de inicio le agrega una clase para distinguirlo.
       if(isHomeLink(element) && totalItems > 1){
           element.classList.add("device-breadcrumb__hidden-item");
       }
