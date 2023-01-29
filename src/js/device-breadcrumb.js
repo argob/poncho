@@ -122,7 +122,7 @@ const isFirstElementHome = (menuItems) => {
  * @param {object} element Elemento li 
  * @returns {boolean}
  */
-const isTextItem = (element) => (!element.firstChild.tagName != "A" && 
+const isTextItem = (element) => (element.firstChild.tagName != "A" && 
     element.firstChild.textContent != "");
 
 /**
@@ -137,13 +137,18 @@ const isLastElementText = (menuItems) => {
 }
 
 /**
+ * Borra los botones de expandir y contraer
+ * @returns {undefined}
+ */
+const removeButtons = () => document
+    .querySelectorAll(".js-ellip, .js-close").forEach(ele => ele.remove());
+
+/**
 * Procesa la lógica de las migas de pan
 * @param {integer} innerWidth Tamaño en pixeles de la pantalla.
 */
 function deviceBreadcrumb(innerWidth){
-  document
-      .querySelectorAll(".js-ellip, .js-close")
-      .forEach(ele => ele.remove());
+  removeButtons();
   const breakPoint = 991;
   const menuItems = document.querySelectorAll(
       ".breadcrumbs li, .breadcrumb li");
@@ -155,6 +160,7 @@ function deviceBreadcrumb(innerWidth){
   const counter = (lastElementText ? totalItems - 2 : totalItems - 1);
 
   menuItems.forEach((element, key) => {
+
       if(isHomeLink(element) && totalItems > 1){
           element.classList.add("device-breadcrumb__hidden-item");
       }

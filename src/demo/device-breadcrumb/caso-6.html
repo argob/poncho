@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
   <link rel="stylesheet" href="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/poncho.min.css" />
   <link rel="stylesheet" href="../../../dist/css/device-breadcrumb.css" />
-  <title>Device breadcrumb JS | Caso 3</title>
+  <title>Device breadcrumb JS | Caso 6</title>
   <link rel="stylesheet" href="./css/main.css">
 </head>
 <body>
@@ -24,35 +24,28 @@
 
 
         <div class="case-container">
-          <h3 class="h5">Caso 3</h3>
-          <p>Migas de pan con enlace de inicio, enlaces intermedios y título de página.</p>
+          <h3 class="h5">Caso 6</h3>
+          <p>Migas de pan con sin enlace de inicio y sin título de página.</p>
           <h4 class="h6 m-t-2">Resultado esperado</h4>
           <ul>
-
-
-            <li>El enlace de inicio debe permanecer oculto siempre</li>
-            <li>El item con el título de la página debe permanecer oculto siempre.</li>
+            <li>En display mobile se debe ver el item Fritos con el botón de expandir.</li>
             <li>En modo completo deben visualizarse los items: Tomates, Verdes y Fritos.</li>
             <li>Los botones de control se deben ver cuando el tamaño de la página se achica.</li>
           </ul>
           <h4 class="h6 m-t-2">Ejemplo</h4>
           <div class="case">
             <ol class="breadcrumbs">
-              <li><a href="https://www.argentina.gob.ar">Inicio</a></li>
               <li><a href="#">Tomates</a></li>
               <li><a href="#">Verdes</a></li>
               <li><a href="#">Fritos</a></li>
-              <li class="active">Device breadcrumb JS</li>
             </ol>
           </div>
           <h4 class="h6 m-t-2">HTML</h4>
           <div class="case">
             <ol>
-              <li><a href="https://www.argentina.gob.ar">Inicio</a></li>
               <li><a href="#">Tomates</a></li>
               <li><a href="#">Verdes</a></li>
               <li><a href="#">Fritos</a></li>
-              <li class="active">Device breadcrumb JS</li>
             </ol>
           </div>
         </div>
@@ -67,7 +60,7 @@
   <!-- / Example -->
 
 
-  <script src="../../../dist/js/device-breadcrumb.js"></script>
+  <script src="../../../src/js/device-breadcrumb.js"></script>
 </body>
 
 </html>
