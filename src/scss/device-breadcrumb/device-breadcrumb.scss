@@ -36,12 +36,16 @@
     left: -9999em;
     top: -9999em;
   }
-
-  & &__last-visible-item + li:not(:has(a)) {
+  & &__last-visible-item + li:not(a) {
     position: absolute;
     left: -9999em;
     top: -9999em;
   }
+  // & &__last-visible-item + li:not(:has(a)) {
+  //   position: absolute;
+  //   left: -9999em;
+  //   top: -9999em;
+  // }
 }
 /*
 @keyframes device-breadcrumb-tooltip {
