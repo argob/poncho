@@ -3,7 +3,7 @@
  *
  * @summary Cambia el layout de los bredcrumb dependiendo del 
  * Media query. Cuando un usuario entra al sitio de Argentina.gob.ar 
- * desde un dispositivo móbil, las migas suelen ser muy extensas por
+ * desde un dispositivo móvil, las migas suelen ser muy extensas por
  * la cantidad de caracteres en los títulos o por la profundidad del 
  * árbol jerárquico en la navegación. Para ello se ocultan los items 
  * que anteceden al nivel dónde se está situado y se ofrece la opción
@@ -82,7 +82,7 @@ const removeDeviceHidden = (menus) => menus
 * @returns {undefined}
 */
 const addGlobalClass = () => document
-    .querySelectorAll(".breadcrumbs, .breadcrumb")
+    .querySelectorAll(".breadcrumb")
     .forEach(e => e.classList.add("device-breadcrumb"));
 
 /**
@@ -102,7 +102,7 @@ const isHomeLink = (element) => {
     if(typeof element.firstChild === "object" && 
       element.firstChild !== null && "getAttribute" in element.firstChild){
           const href = element.firstChild.getAttribute("href");
-          const rgx = new RegExp('(^/$|argentina.gob.ar$|argentina.gob.ar/$)');
+          const rgx = new RegExp("(^/$|argentina.gob.ar$|argentina.gob.ar/$)");
           rgxResult = rgx.exec(href);
     }
     return rgxResult || false;
@@ -124,7 +124,7 @@ const isFirstElementHome = (menuItems) => {
 };
 
 /**
- * Chequea si el elemento es texto y no un enlace.
+ * Verifica si el elemento es texto y no un enlace.
  * @param {object} element Elemento li 
  * @returns {boolean}
  */
@@ -152,67 +152,70 @@ const removeButtons = () => document
 /**
 * Procesa la lógica de las migas de pan.
 * @param {integer} innerWidth Tamaño en pixeles de la pantalla.
-* @todo Remover la llamada a `.breadcrumbs` (con S) y `.breadcrumbs li`
-* una vez armado el CSS.
 */
 function deviceBreadcrumb(innerWidth){
-  removeButtons();
-  const breakPoint = 991;
-  const menuItems = document.querySelectorAll(".breadcrumbs li, .breadcrumb li");
-  const breadcrumb = document.querySelectorAll('.breadcrumbs, .breadcrumb');
-  const totalItems = menuItems.length;
-  const lastElementText = isLastElementText(menuItems); 
-  const firstElementHome = isFirstElementHome(menuItems);
-  const counter = (lastElementText ? totalItems - 2 : totalItems - 1);
+    removeButtons();
+    const breakPoint = 991;
+    const menuItems = document.querySelectorAll(".breadcrumb li");
+    const breadcrumb = document.querySelectorAll('.breadcrumb');
+    const totalItems = menuItems.length;
+    const lastElementText = isLastElementText(menuItems); 
+    const firstElementHome = isFirstElementHome(menuItems);
+    const counter = (lastElementText ? totalItems - 2 : totalItems - 1);
 
-  menuItems.forEach((element, key) => {
-      // si es página de inicio le agrega una clase para distinguirlo.
-      if(isHomeLink(element) && totalItems > 1){
-          element.classList.add("device-breadcrumb__hidden-item");
-      }
-      // Agrego una clase al último elemento visible
-      // Hack por si no está el dash final.
-      else if(lastElementText && key == totalItems - 2){
-          element.classList.add("device-breadcrumb__last-visible-item");
-      }
-      // Toggle items
-      else if(key < counter){
-          element.classList.add("device-breadcrumb__toggle-item");
-      }
-      // Si es el último (o único), item y no tiene anchor.
-      else if (isTextItem(element) && key == totalItems - 1){
-          element.classList.add("device-breadcrumb__last-item");
-      }
-  });
+    menuItems.forEach((element, key) => {
+        // si es página de inicio le agrega una clase para distinguirlo.
+        if(isHomeLink(element) && totalItems > 1){
+            element.classList.add("device-breadcrumb__hidden-item");
+        }
+        // Agrego una clase al último elemento visible
+        // Hack por si no está el dash final.
+        else if(lastElementText && key == totalItems - 2){
+            element.classList.add("device-breadcrumb__last-visible-item");
+        }
+        // Toggle items
+        else if(key < counter){
+            element.classList.add("device-breadcrumb__toggle-item");
+        }
+        // Si es el último (o único), item y no tiene anchor.
+        else if (isTextItem(element) && key == totalItems - 1){
+            element.classList.add("device-breadcrumb__last-item");
+        }
+        // Si es el último (o único), item y no tiene anchor.
+        // else if (key == totalItems - 1 && totalItems > 1){
+        //     element.classList.add("device-breadcrumb__mobile-visible-item");
+        // }
 
-  let totals = totalItems;
-  totals = (lastElementText ? totals - 1 : totals);
-  totals = (firstElementHome ? totals - 1 : totals);
+    });
 
-  if(innerWidth <= breakPoint && totals > 1){
-      // Agrega el botón expandir antes del primer <li/>.
-      const firstItem = menuItems[0];
-      const parentDiv = firstItem.parentNode;
-      parentDiv.insertBefore(expandButton(), firstItem);
-      
-      // Agrega el botón de cerrar.
-      breadcrumb.forEach(menu => {
-          menu.appendChild(closeButton());
-      });
-  } 
+    let totals = totalItems;
+    totals = (lastElementText ? totals - 1 : totals);
+    totals = (firstElementHome ? totals - 1 : totals);
 
-  // Agrego el listener para los butones
-  document
-      .querySelectorAll(".js-ellip")
-      .forEach(e => e.addEventListener(
-          "click", () => removeDeviceHidden(breadcrumb) 
-      ));
+    if(innerWidth <= breakPoint && totals > 1){
+        // Agrega el botón expandir antes del primer <li/>.
+        const firstItem = menuItems[0];
+        const parentDiv = firstItem.parentNode;
+        parentDiv.insertBefore(expandButton(), firstItem);
+        
+        // Agrega el botón de cerrar.
+        breadcrumb.forEach(menu => {
+            menu.appendChild(closeButton());
+        });
+    } 
 
-  document
-      .querySelectorAll(".js-close")
-      .forEach(e => e.addEventListener(
-          "click", () => removeExpanded(breadcrumb)
-      ));
+    // Agrego el listener para los butones
+    document
+        .querySelectorAll(".js-ellip")
+        .forEach(e => e.addEventListener(
+            "click", () => removeDeviceHidden(breadcrumb) 
+        ));
+
+    document
+        .querySelectorAll(".js-close")
+        .forEach(e => e.addEventListener(
+            "click", () => removeExpanded(breadcrumb)
+        ));
 };
 
 // resize

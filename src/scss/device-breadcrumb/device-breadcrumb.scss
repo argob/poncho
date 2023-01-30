@@ -29,22 +29,6 @@
     background: transparent;
   }
 
-  // Busca el último <li>. Si dentro no hay un <a> lo oculta.
-  // & li + li:not(:has(a)) {
-  //   position: absolute;
-  //   left: -999em;
-  //   top: -999em;
-  // }
-  // Oculta los enlaces de inicio que tengan / terminen en
-  // argentina.gob.ar
-  // & li:has(a[href="/"]),
-  // & li:has(a[href$="argentina.gob.ar"]),
-  // & li:has(a[href$="argentina.gob.ar/"]) {
-  //   position: absolute;
-  //   left: -999em;
-  //   top: -999em;
-  // }
-
   & &__hidden-item {
     position: absolute;
     left: -9999em;
