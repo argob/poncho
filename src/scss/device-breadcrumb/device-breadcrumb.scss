@@ -41,7 +41,7 @@
     top: -9999em;
   }
 }
-
+/*
 @keyframes device-breadcrumb-tooltip {
   from {
     opacity: 0;
@@ -53,15 +53,15 @@
     left: 30px;
   }
 }
-
+*/
 @media (max-width: 991px) {
   .device-breadcrumb {
     &__expand-button {
       position: relative;
       &:hover {
         &:before {
-          animation-name: device-breadcrumb-tooltip;
-          animation-duration: 0.5s;
+          // animation-name: device-breadcrumb-tooltip;
+          // animation-duration: 0.5s;
           font-size: 0.83em;
           content: attr(data-title);
           position: absolute;
