@@ -17,12 +17,14 @@
     height: auto;
   }
 
+  /*
   &__expand-button::after,
   &__last-visible-item::after {
     padding: 0 5px;
     color: #555;
     content: "/\00a0";
   }
+  */
 
   &__expand-button:hover {
     border-bottom: 0 solid transparent;
