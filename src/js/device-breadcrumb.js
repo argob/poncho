@@ -60,10 +60,7 @@ const expandButton = () => {
 const closeButton = () => {
     const btn = document.createElement("button");
     btn.textContent = "Cerrar";
-    btn.classList.add(
-        "js-close", "btn-default", "btn-sm", 
-        "device-breadcrumb__compress-button"
-    );
+    btn.classList.add("js-close", "device-breadcrumb__compress-button");
     btn.dataset.title = "Contraer menú";
     btn.setAttribute("aria-hidden", true);
     btn.setAttribute("aria-label", "Cierra el menú de miga de pan");

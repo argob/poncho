@@ -26,6 +26,14 @@
   }
   */
 
+&__expand-button::after {
+    padding: 0 5px;
+    color: inherit;
+    content: "/";
+}
+
+
+
   &__expand-button:hover {
     border-bottom: 0 solid transparent;
     background: transparent;
