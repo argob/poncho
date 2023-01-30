@@ -6326,6 +6326,9 @@ a.list-group-item:hover, a.list-group-item:focus, a.list-group-item:hover small,
   margin-top: 0;
 }
 
+.steps h5, .steps .h5 {
+  margin-top: 0.25em;
+}
 .steps .step {
   position: relative;
   min-height: 32px;
