@@ -1,4 +1,7 @@
 .device-breadcrumb {
+  &__hidden {
+      display: none;
+  }
   &--expanded &__expand-button {
     display: none;
   }
