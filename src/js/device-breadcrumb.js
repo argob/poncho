@@ -1,15 +1,16 @@
 /**
  * DEVICE BREADCRUMB
- *
- * @summary Cambia el layout de los bredcrumb dependiendo del 
- * Media query. Cuando un usuario entra al sitio de Argentina.gob.ar 
- * desde un dispositivo móvil, las migas suelen ser muy extensas por
- * la cantidad de caracteres en los títulos o por la profundidad del 
- * árbol jerárquico en la navegación. Para ello se ocultan los items 
- * que anteceden al nivel dónde se está situado y se ofrece la opción
- * de expandir la miga de pan para visualizarla completa.
+ * Cambia el layout de los breadcrumb dependiendo del Media query. 
  * 
- * Se pueden ver algunos ejemplos dentro de src/demos/device-breadcrum
+ * @summary Cuando un usuario entra al sitio de <Argentina.gob.ar> desde 
+ * un dispositivo móvil, las migas de pan (o del inglés, breadcrumb), 
+ * suelen ser muy extensas; por la cantidad de caracteres en los 
+ * títulos o por la profundidad del árbol jerárquico en la navegación. 
+ * 
+ * Para resolver este problema este script oculta los ítems que 
+ * anteceden al nivel dónde se está situado y se ofrece la opción de 
+ * expandir o contraer las migas de pan si el usuario necesita 
+ * ese modelo de navegación.
  *
  * @author Agustín Bouillet <bouilleta@jefatura.gob.ar>
  *
