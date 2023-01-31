@@ -109,7 +109,7 @@ gulp.task('compress', function () {
           './src/js/mapa-argentina.js',
           './src/js/device-breadcrumb.js'
       ])
-      .pipe(babel())
+      // .pipe(babel())
       .pipe(uglify())
       .pipe(gulp.dest('./dist/js/'));
 });
