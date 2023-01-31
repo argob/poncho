@@ -206,11 +206,6 @@ class DeviceBreadcrumb {
             else if (this.isTextItem(element) && key == totalItems - 1){
                 element.classList.add("device-breadcrumb__last-item");
             }
-            // Si es el último (o único), item y no tiene anchor.
-            // else if (key == totalItems - 1 && totalItems > 1){
-            //     element.classList.add("device-breadcrumb__mobile-visible-item");
-            // }
-
         });
 
         let totals = totalItems;
@@ -238,11 +233,10 @@ class DeviceBreadcrumb {
 
 
 // CALL
-
 document.addEventListener("DOMContentLoaded", () => {
     const deviceBreadcrumb = new DeviceBreadcrumb();
     deviceBreadcrumb.render(window.innerWidth);
 });
-window.addEventListener('resize', () =>  {
+window.addEventListener("resize", () =>  {
     const deviceBreadcrumb = new DeviceBreadcrumb();
     deviceBreadcrumb.render(window.innerWidth)}, true);
