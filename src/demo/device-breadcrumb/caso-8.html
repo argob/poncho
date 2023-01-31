@@ -9,7 +9,7 @@
   <link rel="stylesheet"
     href="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/poncho.min.css" />
   <link rel="stylesheet" href="../../../dist/css/device-breadcrumb.css" />
-  <title>Device breadcrumb JS | Caso 1</title>
+  <title>Device breadcrumb JS | Caso 8</title>
   <link rel="stylesheet" href="./css/main.css">
 </head>
 
@@ -24,41 +24,48 @@
             <li><a href="./index.html">Inicio</a></li>
           </ul>
         </nav>
-
         <div class="case-container">
-          <h1 class="h5">Caso 1</h1>
-          <p>Migas de pan con enlace de inicio y título de página.</p>
-          <h2 class="h6 m-t-2">Resultado esperado</h2>
+          <h3 class="h5">Caso 8</h3>
+          <p>Oculta jumbotón en caso donde no debe ir miga de pan.</p>
+          <h4 class="h6 m-t-2">Resultado esperado</h4>
           <ul>
-            <li>No se debe visualizar el breadcrumb</li>
-            <li>No deben activarse los botones de expandir o contraer migas de pan.</li>
+            <li>La barra de jumbotron debe desaparecer</li>
           </ul>
-          <h2 class="h6 m-t-2">Ejemplo</h2>
+          <h4 class="h6 m-t-2">Ejemplo</h4>
           <div class="case">
-            <ol class="breadcrumb">
-              <li><a href="https://www.argentina.gob.ar">Inicio</a></li>
-              <li class="active">Device breadcrumb JS</li>
-            </ol>
+            <div class="jumbotron_bar">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-12">
+                    <ol class="breadcrumb">
+                      <li><a href="/">Inicio</a></li>
+                      <li class="_hidden">Punto Digital</li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <h2 class="h6 m-t-2">HTML</h2>
+          <h4 class="h6 m-t-2">HTML</h4>
           <div class="case">
-            <ol>
-              <li><a href="https://www.argentina.gob.ar">Inicio</a></li>
-              <li class="active">Device breadcrumb JS</li>
-            </ol>
+            <div>
+              <div>
+                <div>
+                  <div>
+                    <ol>
+                      <li><a href="/">Inicio</a></li>
+                      <li>Punto Digital</li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-
-
-
-
-
       </div>
     </div>
   </div>
   <!-- / Example -->
-
-
   <script src="../../../src/js/device-breadcrumb.js"></script>
 </body>
 

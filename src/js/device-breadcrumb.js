@@ -176,6 +176,32 @@ class DeviceBreadcrumb {
             "click", () => this._removeExpanded(breadcrumb)
         ));
 
+
+    _isJumbotron = (element) => {
+        const jumbotronBarClosest = element.closest(".jumbotron_bar");
+        if(jumbotronBarClosest){
+            return true;
+        }
+        return false;
+    };
+
+    /**
+     * Oculta la barra del jumbotron
+     * @param {object} breadcrumb Resultado del selector .breadcrumb 
+     * @returns {undefined}
+     */
+    _hideBreadcrumb = (breadcrumb) => {
+        breadcrumb.forEach(element => {
+            if(this._isJumbotron(element)){
+                element
+                    .closest(".jumbotron_bar")
+                    .classList.add("device-breadcrumb__hidden");
+            } else {
+                element.classList.add("device-breadcrumb__hidden");
+            }
+        });
+    };
+
     /**
     * Procesa la lógica de las migas de pan.
     * @param {integer} innerWidth Tamaño en pixeles de la pantalla.
@@ -189,9 +215,24 @@ class DeviceBreadcrumb {
         const firstElementHome = this._isFirstElementHome(menuItems);
         const counter = (lastElementText ? totalItems - 2 : totalItems - 1);
 
+
+        let totals = totalItems;
+        totals = (lastElementText ? totals - 1 : totals);
+        totals = (firstElementHome ? totals - 1 : totals);
+
+        if(totals == 0){
+            this._hideBreadcrumb(breadcrumb);
+            return;
+        }
+
         menuItems.forEach((element, key) => {
             // si es página de inicio le agrega una clase para distinguirlo.
-            if(this.isHomeLink(element) && totalItems > 1){
+            // if(this.isHomeLink(element) && totalItems > 1){
+            if(this.isHomeLink(element)){
+                element.classList.add("device-breadcrumb__hidden-item");
+            }
+            // Si es el último (o único), item y no tiene anchor.
+            else if (this.isTextItem(element) && key == totalItems - 1){
                 element.classList.add("device-breadcrumb__hidden-item");
             }
             // Agrego una clase al último elemento visible
@@ -203,15 +244,7 @@ class DeviceBreadcrumb {
             else if(key < counter){
                 element.classList.add("device-breadcrumb__toggle-item");
             }
-            // Si es el último (o único), item y no tiene anchor.
-            else if (this.isTextItem(element) && key == totalItems - 1){
-                element.classList.add("device-breadcrumb__last-item");
-            }
         });
-
-        let totals = totalItems;
-        totals = (lastElementText ? totals - 1 : totals);
-        totals = (firstElementHome ? totals - 1 : totals);
 
         if(innerWidth <= this.breakPoint && totals > 1){
             // Agrega el botón expandir antes del primer <li/>.
