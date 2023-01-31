@@ -40,6 +40,8 @@
  */
 class DeviceBreadcrumb {
     constructor(options){
+        this.breakPoint = 991;
+        this.selector = ".breadcrumb";
         this.addGlobalClass();
     }
 
@@ -150,15 +152,37 @@ class DeviceBreadcrumb {
     removeButtons = () => document
         .querySelectorAll(".js-ellip, .js-close").forEach(ele => ele.remove());
 
+
+    /**
+     * Agrega el listener para el botón expandir
+     * @param {object} breadcrumb Resultado del selector .breadcrumb 
+     * @returns {undefined}
+     */
+    _onClickExpandButton = (breadcrumb) => document
+            .querySelectorAll(".js-ellip")
+            .forEach(e => e.addEventListener(
+                "click", () => this._removeDeviceHidden(breadcrumb) 
+            ));
+
+    /**
+     * Agrega el listener para el botón cerrar
+     * @param {object} breadcrumb Resultado del selector .breadcrumb 
+     * @returns {undefined}
+     */
+    _onClickCloseButton = (breadcrumb) => document
+            .querySelectorAll(".js-close")
+            .forEach(e => e.addEventListener(
+                "click", () => this._removeExpanded(breadcrumb)
+            ));
+
     /**
     * Procesa la lógica de las migas de pan.
     * @param {integer} innerWidth Tamaño en pixeles de la pantalla.
     */
     render = (innerWidth) => {
         this.removeButtons();
-        const breakPoint = 991;
-        const menuItems = document.querySelectorAll(".breadcrumb li");
-        const breadcrumb = document.querySelectorAll('.breadcrumb');
+        const menuItems = document.querySelectorAll(`${this.selector} li`);
+        const breadcrumb = document.querySelectorAll(this.selector);
         const totalItems = menuItems.length;
         const lastElementText = this._isLastElementText(menuItems); 
         const firstElementHome = this._isFirstElementHome(menuItems);
@@ -193,7 +217,7 @@ class DeviceBreadcrumb {
         totals = (lastElementText ? totals - 1 : totals);
         totals = (firstElementHome ? totals - 1 : totals);
 
-        if(innerWidth <= breakPoint && totals > 1){
+        if(innerWidth <= this.breakPoint && totals > 1){
             // Agrega el botón expandir antes del primer <li/>.
             const firstItem = menuItems[0];
             const parentDiv = firstItem.parentNode;
@@ -205,18 +229,9 @@ class DeviceBreadcrumb {
             });
         } 
 
-        // Agrego el listener para los butones
-        document
-            .querySelectorAll(".js-ellip")
-            .forEach(e => e.addEventListener(
-                "click", () => this._removeDeviceHidden(breadcrumb) 
-            ));
-
-        document
-            .querySelectorAll(".js-close")
-            .forEach(e => e.addEventListener(
-                "click", () => this._removeExpanded(breadcrumb)
-            ));
+        // Listeners
+        this._onClickExpandButton(breadcrumb);
+        this._onClickCloseButton(breadcrumb);
     };
 };
 // end class
