@@ -153,7 +153,6 @@ class DeviceBreadcrumb {
     removeButtons = () => document
         .querySelectorAll(".js-ellip, .js-close").forEach(ele => ele.remove());
 
-
     /**
      * Contrae el menú
      * @param {object} breadcrumb Resultado del selector .breadcrumb 
@@ -214,7 +213,6 @@ class DeviceBreadcrumb {
         const lastElementText = this._isLastElementText(menuItems); 
         const firstElementHome = this._isFirstElementHome(menuItems);
         const counter = (lastElementText ? totalItems - 2 : totalItems - 1);
-
 
         let totals = totalItems;
         totals = (lastElementText ? totals - 1 : totals);
