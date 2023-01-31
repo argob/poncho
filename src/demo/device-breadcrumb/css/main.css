@@ -1,0 +1,21 @@
+body {
+  padding: 1em;
+}
+
+.case {
+  background-color: #eee;
+  padding: 1em 1em 0.5em;
+  border-radius: 9px;
+  box-shadow: 1px 1px 2px rgb(0 0 0 / 0.25);
+}
+
+.case-container {
+  padding-bottom: 2em;
+  margin-bottom: 2em;
+}
+.navbar {
+  border-bottom: 1px solid #ddd;
+  padding: 0;
+  margin-bottom: 4em;
+  min-height: 2em;
+}
