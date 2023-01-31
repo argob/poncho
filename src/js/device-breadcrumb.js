@@ -159,10 +159,10 @@ class DeviceBreadcrumb {
      * @returns {undefined}
      */
     _onClickExpandButton = (breadcrumb) => document
-            .querySelectorAll(".js-ellip")
-            .forEach(e => e.addEventListener(
-                "click", () => this._removeDeviceHidden(breadcrumb) 
-            ));
+        .querySelectorAll(".js-ellip")
+        .forEach(e => e.addEventListener(
+            "click", () => this._removeDeviceHidden(breadcrumb) 
+        ));
 
     /**
      * Expande el menu
@@ -170,10 +170,10 @@ class DeviceBreadcrumb {
      * @returns {undefined}
      */
     _onClickCloseButton = (breadcrumb) => document
-            .querySelectorAll(".js-close")
-            .forEach(e => e.addEventListener(
-                "click", () => this._removeExpanded(breadcrumb)
-            ));
+        .querySelectorAll(".js-close")
+        .forEach(e => e.addEventListener(
+            "click", () => this._removeExpanded(breadcrumb)
+        ));
 
     /**
     * Procesa la lógica de las migas de pan.
@@ -238,8 +238,11 @@ class DeviceBreadcrumb {
 
 
 // CALL
-const deviceBreadcrumb = new DeviceBreadcrumb();
-document.addEventListener(
-    "DOMContentLoaded", deviceBreadcrumb.render(window.innerWidth));
-window.addEventListener(
-    'resize', deviceBreadcrumb.render(window.innerWidth), true);
+
+document.addEventListener("DOMContentLoaded", () => {
+    const deviceBreadcrumb = new DeviceBreadcrumb();
+    deviceBreadcrumb.render(window.innerWidth);
+});
+window.addEventListener('resize', () =>  {
+    const deviceBreadcrumb = new DeviceBreadcrumb();
+    deviceBreadcrumb.render(window.innerWidth)}, true);
