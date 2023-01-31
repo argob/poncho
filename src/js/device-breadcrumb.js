@@ -154,7 +154,7 @@ class DeviceBreadcrumb {
 
 
     /**
-     * Agrega el listener para el botón expandir
+     * Contrae el menú
      * @param {object} breadcrumb Resultado del selector .breadcrumb 
      * @returns {undefined}
      */
@@ -165,7 +165,7 @@ class DeviceBreadcrumb {
             ));
 
     /**
-     * Agrega el listener para el botón cerrar
+     * Expande el menu
      * @param {object} breadcrumb Resultado del selector .breadcrumb 
      * @returns {undefined}
      */

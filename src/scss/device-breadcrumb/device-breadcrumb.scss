@@ -17,22 +17,11 @@
     height: auto;
   }
 
-  /*
-  &__expand-button::after,
-  &__last-visible-item::after {
-    padding: 0 5px;
-    color: #555;
-    content: "/\00a0";
-  }
-  */
-
-&__expand-button::after {
+  &__expand-button::after {
     padding: 0 5px;
     color: inherit;
     content: "/";
-}
-
-
+  }
 
   &__expand-button:hover {
     border-bottom: 0 solid transparent;
@@ -44,56 +33,16 @@
     left: -9999em;
     top: -9999em;
   }
+
   & &__last-visible-item + li:not(a) {
     position: absolute;
     left: -9999em;
     top: -9999em;
   }
-  // & &__last-visible-item + li:not(:has(a)) {
-  //   position: absolute;
-  //   left: -9999em;
-  //   top: -9999em;
-  // }
 }
-/*
-@keyframes device-breadcrumb-tooltip {
-  from {
-    opacity: 0;
-    left: 0;
-  }
 
-  to {
-    opacity: 1;
-    left: 30px;
-  }
-}
-*/
 @media (max-width: 991px) {
   .device-breadcrumb {
-
-    /*
-    &__expand-button {
-      position: relative;
-      &:hover {
-        &:before {
-          animation-name: device-breadcrumb-tooltip;
-          animation-duration: 0.5s;
-          font-size: 0.83em;
-          content: attr(data-title);
-          position: absolute;
-          background: rgb(0 0 0 / 0.75);
-          border-radius: 4px;
-          color: white;
-          top: 50%;
-          left: 30px;
-          transform: translateY(-50%);
-          padding: 3px 1em;
-          box-shadow: 1px 1px 4px rgb(0 0 0 / 0.3);
-        }
-      }
-    }
-    */
-
     &__expand-button {
       display: inline-block;
     }
