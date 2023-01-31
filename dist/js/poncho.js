@@ -915,7 +915,7 @@ function ponchoTableDependant(opt) {
    */
   const _dependantFilters = (filterIndex, label) => {
       const filtros = Object.keys(filtro);
-
+      const filterValues = _filterValues();
       // Redibujo los _option_ por cada `select` (filtro).
       // Hago un `for()` iniciando en el hijo de filterIndex.
       for(let i = filterIndex + 1; i <= filtros.length; i++){
@@ -928,9 +928,12 @@ function ponchoTableDependant(opt) {
           }
           const select = document.querySelector(`#${filtros[i]}`);
           select.innerHTML = "";
+
           select.appendChild(_optionSelect(i, "Todos", "", true));
           itemList.forEach(e => {
-              select.appendChild(_optionSelect(i, e, e));
+              // Mantengo el filtro del hijo si existe en el listado filtrado.
+              let checked = (filterValues[i] == e ? true : false);
+              select.appendChild(_optionSelect(i, e, e, checked));
           });
       }
   };
@@ -1042,22 +1045,19 @@ function ponchoTableDependant(opt) {
           tabla.columns().search("").columns().search("").draw();
 
           const filters = Object.keys(filtro);
-          const values = _filterValues();
+          const filterValues = _filterValues();
           const filterIndex = (filter) => {
               return Object
                     .keys(gapi_data.headers)
                     .indexOf(`filtro-${filter}`);
           };
-          values.forEach((f, k) => {
+          filterValues.forEach((f, k) => {
               const columnIndex = filterIndex(filters[k]);
-              const term = _searchTerm(values[k]);
-              const cleanTerm = _searchTerm(replaceSpecialChars(values[k]));
-
-
-            console.log(`^(${term}|${cleanTerm})$`, columnIndex)
+              const term = _searchTerm(filterValues[k]);
+              const cleanTerm = _searchTerm(replaceSpecialChars(filterValues[k]));
 
               tabla.columns(columnIndex).search(
-                  (values[k] ? `^(${term}|${cleanTerm})$` : ""), 
+                  (filterValues[k] ? `^(${term}|${cleanTerm})$` : ""), 
                   true, false, true  
               )
           });
