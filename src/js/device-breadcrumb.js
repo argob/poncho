@@ -3,9 +3,9 @@
  * Cambia el layout de los breadcrumb dependiendo del Media query. 
  * 
  * @summary Cuando un usuario entra al sitio de <Argentina.gob.ar> desde 
- * un dispositivo móvil, las migas de pan (o del inglés, breadcrumb), 
- * suelen ser muy extensas; por la cantidad de caracteres en los 
- * títulos o por la profundidad del árbol jerárquico en la navegación. 
+ * un dispositivo móvil, las migas de pan, suelen ser muy extensas; 
+ * por la cantidad de caracteres en los títulos o por la profundidad del 
+ * árbol jerárquico en la navegación. 
  * 
  * Para resolver este problema este script oculta los ítems que 
  * anteceden al nivel dónde se está situado y se ofrece la opción de 
@@ -43,6 +43,10 @@ class DeviceBreadcrumb {
     constructor(options){
         this.breakPoint = 991;
         this.selector = ".breadcrumb";
+        document.querySelectorAll(this.selector).forEach(e => {
+            e.setAttribute("role", "navigation");
+            e.setAttribute("aria-label", "Migas de pan");
+        })
         this.addGlobalClass();
     }
 
@@ -153,7 +157,6 @@ class DeviceBreadcrumb {
     removeButtons = () => document
         .querySelectorAll(".js-ellip, .js-close").forEach(ele => ele.remove());
 
-
     /**
      * Contrae el menú
      * @param {object} breadcrumb Resultado del selector .breadcrumb 
@@ -176,7 +179,11 @@ class DeviceBreadcrumb {
             "click", () => this._removeExpanded(breadcrumb)
         ));
 
-
+    /**
+     * Es o no es jumbotron
+     * @param {object} element Elemento <li /> 
+     * @returns {boolean}
+     */
     _isJumbotron = (element) => {
         const jumbotronBarClosest = element.closest(".jumbotron_bar");
         if(jumbotronBarClosest){
@@ -215,25 +222,24 @@ class DeviceBreadcrumb {
         const firstElementHome = this._isFirstElementHome(menuItems);
         const counter = (lastElementText ? totalItems - 2 : totalItems - 1);
 
-
         let totals = totalItems;
         totals = (lastElementText ? totals - 1 : totals);
         totals = (firstElementHome ? totals - 1 : totals);
 
-        if(totals == 0){
+        if(totals <= 0){
             this._hideBreadcrumb(breadcrumb);
             return;
         }
 
         menuItems.forEach((element, key) => {
-            // si es página de inicio le agrega una clase para distinguirlo.
-            // if(this.isHomeLink(element) && totalItems > 1){
+            // Si es página de inicio le agrega una clase para distinguirlo.
             if(this.isHomeLink(element)){
                 element.classList.add("device-breadcrumb__hidden-item");
             }
             // Si es el último (o único), item y no tiene anchor.
             else if (this.isTextItem(element) && key == totalItems - 1){
                 element.classList.add("device-breadcrumb__hidden-item");
+                element.setAttribute("aria-current", "page");
             }
             // Agrego una clase al último elemento visible
             // Hack por si no está el dash final.
