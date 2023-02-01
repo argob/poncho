@@ -171,7 +171,8 @@ class PonchoMap {
             "stroke": "dodgerblue",
             "stroke-opacity": 1,
             "stroke-width": 2,
-            "fill-opacity": .5
+            "fill-opacity": .5,
+            "color": "white"
         };
         this.accesible_menu_search = [];
         this.accesible_menu_filter = [];
@@ -1333,7 +1334,7 @@ class PonchoMap {
                 const setProp = (key) => (properties.hasOwnProperty(key) ? 
                         properties[key] : _this.featureStyle[key]);
                 return {
-                    color: setProp("stroke"), 
+                    color: setProp("color"), 
                     strokeOpacity: setProp("stroke-opacity"), 
                     weight: setProp("stroke-width"), 
                     fillColor: setProp("stroke"), 

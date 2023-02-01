@@ -272,8 +272,8 @@ class PonchoMapFilter extends PonchoMap {
         ].map(item => [key, item, [item], status]);
 
         obj.sort((a, b) => {
-            const valA = a[1].toUpperCase();
-            const valB = b[1].toUpperCase();
+            const valA = a[1].toString().toUpperCase();
+            const valB = b[1].toString().toUpperCase();
             if (valA > valB) {
                 return 1;
             }
@@ -570,7 +570,7 @@ class PonchoMapFilter extends PonchoMap {
      */
     _countOccurrences = (feature, val, index) => {
         const ocurrences = feature.reduce((a, v) => {
-            return val.some(e => v.properties[index].includes(e)) ? a + 1 : a
+            return val.some(e => v.properties[index].toString().includes(e)) ? a + 1 : a
         }, 0);
         return ocurrences;
     };
@@ -667,7 +667,7 @@ class PonchoMapFilter extends PonchoMap {
         const search_for = filter[2];
         const found = search_for.filter(i => i).some(e => {
             if(entry.hasOwnProperty(filter[0])){
-                return entry[filter[0]].includes(e)
+                return entry[filter[0]].toString().includes(e);
             }
         });
         return found;

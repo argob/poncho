@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head>
+  <link rel="profile" href="http://www.w3.org/1999/xhtml/vocab" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+  <link 
+      rel="stylesheet" 
+      href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+  <link 
+      rel="stylesheet" 
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" 
+      integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+      crossorigin="anonymous" 
+      referrerpolicy="no-referrer" />  
+  <link 
+      rel="stylesheet" 
+      href="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css">
+  <!-- /Base -->
+  <link rel="stylesheet" href="../../../dist/css/poncho.min.css" />
+  <title>Mapa con filtro y buscador</title>
+  <style>
+    html, body { height: 100%;}
+  </style>
+</head>
+<body class="p-t-3">
+  <h1>Template 7</h1>
+
+<!-- 
+MAPA CON BUSCADOR FILTRO  
+
+COPIAR DESDE ACÁ…
+-->
+<div class="col-md-12">
+<!-- PONCHO MAP SEARCH -->
+<form action="">
+  <div data-scope="poncho-map-search">
+      <div class="input-group">
+          <input 
+              type="search" 
+              name="search" 
+              autocomplete="off"
+              class="js-poncho-map-search__input form-control" 
+              list="list">
+              <datalist id="list" class="js-porcho-map-search__list"></datalist>
+          <span class="input-group-btn">
+            <button class="js-poncho-map-search__submit btn btn-primary">
+              <i class="fa fa-search text-white"> </i>
+            </button>
+          </span>
+      </div>
+      <div data-scope="poncho-map" class="m-b-1">
+          <div class="js-poncho-map__help small text-default"></div>
+      </div>
+  </div>
+</form>
+<!-- / PONCHO MAP SEARCH -->
+</div>
+<div class="col-md-12">
+<!-- PONCHO MAP -->
+<div class="poncho-map" data-scope="poncho-map">
+    <div
+        class="leaflet-container leaflet-touch leaflet-fade-anim 
+              leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
+        id="map"
+        style="height: 600px; width: 100%;"
+        tabindex="0">
+    </div>
+</div>
+<!-- / PONCHO MAP -->
+</div>
+
+<script 
+    src="https://code.jquery.com/jquery-3.6.0.min.js" 
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+    crossorigin="anonymous">
+</script>
+<script src="../../../src/js/utils.js"></script>
+<script src="../../../src/js/poncho-map.js"></script>
+<script src="../../../src/js/poncho-map-filter.js"></script>
+<script src="../../../src/js/poncho-map-search.js"></script>
+<script src="../../../src/js/gapi-sheet-data.js"></script>
+
+<!-- INCLUDE SCRIPTS -->
+<script src="https://www.argentina.gob.ar/sites/default/files/ponchotable/showdown.js"></script>
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/extensiones/showdown-extensions.js"></script>
+<script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.js"></script>
+<script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script>
+<link href="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.css" rel="stylesheet"/> 
+<link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.css" rel="stylesheet"/> 
+<link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.Default.css" rel="stylesheet"/> 
+<!-- <script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script> -->
+<!-- / INCLUDE SCRIPTS -->
+
+<style>
+    .leaflet-top, .leaflet-bottom {
+    z-index: 800;
+  }
+  .legend {
+      line-height: 1.5rem;
+      color: #5a5a5a;
+      background-color: rgb(255 255 255 / .75);
+      padding:.75em .75em .25em;
+      border-radius: 6px;
+      box-shadow: 1px 1px 6px rgb(0 0 0 / .1);
+
+  }
+  .legend i {
+      width: 18px;
+      height: 18px;
+      float: left;
+      margin-right: 8px;
+
+      border-radius: 3px;
+  }
+</style>
+<!-- SCRIPTS -->
+<script>
+  // init
+  (async() => {
+    // Levanto datos desde un geoJSON
+    let entries = await fetch_json("./data/renabap_2.json");
+    /**
+     * Calcula la equivalencia
+     * @param {float} value Valor de equivalencia.
+     * @return {integer} Posición para escalas.
+     */ 
+    const equivalence = function(value) {
+        if (value <= 1.1){
+            value = 0;
+        } else if (value > 1.1 && value <= 3.5){
+            value = 1;
+        } else if (value > 3.5 && value <= 7.7){
+            value = 2;
+        } else if (value > 7.7 && value <= 13.2){
+            value = 3;
+        } else if (value > 13.2 && value <= 22){
+            value = 4;
+        } else if (value > 22 && value <= 32){ 
+            value = 5;
+        } else if (value > 32 && value <= 40) {
+            value = 6;
+        }
+        return value;
+    }
+    
+    const grades = [1.1, 3.5, 7.7, 13.2, 22, 32, 40];
+    const color = [
+        '#4d9ccf','#1a80c2','#0072bb','#0067a8','#005083','#00395e','#002238'];
+    const labels = [
+        'Hasta 1,1', 'Entre 1,1 y 3,5', 'Entre 3,5 y 7,7',
+        'Entre 7,7 y 13,2', 'Entre 13,2 y 22','Entre 22 y 32',
+        'Entre 32 y 40'
+    ];
+
+    // Agrego entradas.
+    entries.features.forEach((e, k) => {
+        entries.features[k].properties["label-equivalencia"] = labels[equivalence(e.properties.Equivalen)];
+        entries.features[k].properties.stroke = color[equivalence(e.properties.Equivalen)];
+        entries.features[k].properties["fill-opacity"] = 1;
+        entries.features[k].properties["stroke-width"] = 1;
+        entries.features[k].properties["stroke-opacity"] = .8;
+    });
+    // Configuro las referencias.
+    const legend = L.control({"position": 'bottomright'});
+    legend.onAdd = function(map) {
+        let div = L.DomUtil.create('ul', 'info legend list-unstyled');
+        for (var i = 0; i < grades.length; i++){
+            div.innerHTML +=
+                `<li><i style="background:${color[i]}"></i> ${labels[i]}</li>`;
+        }
+        return div;
+    };
+
+    // MAP OPTIONS
+    const options = {
+        "scope": "poncho-map",
+        "id": "id",
+        "filters_info": false,
+        "title": "Nombre",
+        "headers": {
+            "Equivalen": "Equivalencia",
+            "Nombre":"Nombre"
+        },
+        "template_structure":{
+            "title": "Provincia",
+            "values":["Nombre", "Equivalen"]
+        },
+        "marker": "cielo",
+        "hash": true,
+        "scroll": true,
+        "filters_info": true,
+        "filters": [
+            {
+              "legend":"Equivalencia",
+              "field": ["label-equivalencia"]
+            }
+        ],
+    };
+    const map = new PonchoMapFilter(entries, options);
+    legend.addTo(map.map);
+    map.render();
+    // SEARCH
+    const search_options = {
+        "scope": "poncho-map-search", 
+        "placeholder": "Buscar región o provincia",
+        "datalist": true,
+        "search_fields": ["Nombre", "Provincia"] 
+    };
+    const search = new PonchoMapSearch(map, search_options);
+    search.render();
+})();
+</script>
+<!-- / SCRIPTS -->
+</body>
+</html>
