@@ -43,11 +43,7 @@ class DeviceBreadcrumb {
     constructor(options){
         this.breakPoint = 991;
         this.selector = ".breadcrumb";
-        document.querySelectorAll(this.selector).forEach(e => {
-            e.setAttribute("role", "navigation");
-            e.setAttribute("aria-label", "Migas de pan");
-        })
-        this.addGlobalClass();
+        this.addGlobalAttributes();
     }
 
     /**
@@ -89,9 +85,13 @@ class DeviceBreadcrumb {
     * Agrega la clase global device-breadcrumbs
     * @returns {undefined}
     */
-    addGlobalClass = () => document
-        .querySelectorAll(".breadcrumb")
-        .forEach(e => e.classList.add("device-breadcrumb"));
+    addGlobalAttributes = () => document
+        .querySelectorAll(this.selector)
+        .forEach(element => {
+            element.classList.add("device-breadcrumb");
+            element.setAttribute("role", "navigation");
+            element.setAttribute("aria-label", "Migas de pan");
+        });
 
     /**
     * Remueve la clase expanded
