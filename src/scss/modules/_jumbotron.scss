@@ -359,7 +359,7 @@
     }
     /* FONDO PARA LA BARRA DE JUMBOTRON */
     .jumbotron .jumbotron_bar{
-        background: rgba(0,0,0,0.6);
+        background: $black;
     }
     /* Nunca se interpreta como marcado
     .jumbotron_body p::after {
