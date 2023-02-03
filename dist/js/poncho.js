@@ -4088,6 +4088,7 @@ class PonchoMapFilter extends PonchoMap {
             "filters": [],
             "filters_visible": false,
             "filters_info": false,
+            "check_uncheck_all": false,
             "search_fields": [],
             "messages": {
                 "reset": " <a href=\"#\" class=\"{{reset_search}}\" "
@@ -4107,6 +4108,7 @@ class PonchoMapFilter extends PonchoMap {
         this.filters = opts.filters;
         this.filters_info = opts.filters_info;
         this.filters_visible = opts.filters_visible;
+        this.check_uncheck_all = opts.check_uncheck_all;
         this.valid_fields = ["checkbox", "radio"];
         this.search_fields = opts.search_fields;
         this.messages = opts.messages;
@@ -4516,6 +4518,38 @@ class PonchoMapFilter extends PonchoMap {
     };
 
     /**
+     * Crea los botones para seleccionar o des-seleccionar todos
+     * los filtros.
+     * @param {object} item Objetos con los nombres de grupo e 
+     * indice de grupo.
+     * @returns {object} Objeto HTML
+     */
+    _checkUncheckButtons = (item) => {
+        const checkAllButton = document.createElement("button");
+        checkAllButton.classList.add(
+            "js-select-items","select-items__button");
+        checkAllButton.textContent = "Marcar todos";
+        checkAllButton.dataset.field = item.field;
+        checkAllButton.dataset.value = 1;
+
+        const uncheckAllButton = document.createElement("button");
+        uncheckAllButton.classList.add(
+            "js-select-items","select-items__button");
+        uncheckAllButton.textContent = "Desmarcar todos";
+        uncheckAllButton.dataset.field = item.field;
+        uncheckAllButton.dataset.value = 0;
+        
+
+        const checkAllItems = document.createElement("div");
+        checkAllItems.classList.add("select-items");
+        checkAllItems.appendChild(checkAllButton);
+        checkAllItems.appendChild(uncheckAllButton);
+
+        return checkAllItems;
+    }
+
+
+    /**
      * Crea los checkbox para los filtros.
      */
     _createFilters = (data) => {
@@ -4526,8 +4560,12 @@ class PonchoMapFilter extends PonchoMap {
             let legend = document.createElement("legend");
             legend.textContent = item.legend;
             legend.classList.add("m-b-1", "text-primary", "h6")
+
             let fieldset = document.createElement("fieldset");
             fieldset.appendChild(legend);
+            if(this.check_uncheck_all){
+                fieldset.appendChild(this._checkUncheckButtons(item));
+            }
             fieldset.appendChild(this._fields(item, group));
             form_filters.appendChild(fieldset);
         });
@@ -4818,6 +4856,29 @@ class PonchoMapFilter extends PonchoMap {
     });
 
     /**
+     * Marca o desmarca todos los filtros
+     * @returns {undefined}
+     */
+    checkUncheckFilters = () => {
+        if(!this.check_uncheck_all){
+            return none;
+        }
+        const buttons = document.querySelectorAll(
+            `${this.scope_selector} .js-select-items`);
+        buttons.forEach(element => {
+            element.onclick = (event) => {
+                event.preventDefault();
+                const inputs = document.querySelectorAll(
+                    `${this.scope_selector} [id^=id__${element.dataset.field}]`);
+                inputs.forEach(input => {
+                    input.checked = parseInt(element.dataset.value);
+                });
+                this._filteredData();
+            };
+        });
+    };
+
+    /**
      * imprime el mapa
      */ 
     render = () =>{
@@ -4836,6 +4897,7 @@ class PonchoMapFilter extends PonchoMap {
             this.scrollCenter();
         }
 
+        this.checkUncheckFilters();
         this.filterChange((event) => {
             event.preventDefault();
             this._filteredData();
@@ -4845,6 +4907,8 @@ class PonchoMapFilter extends PonchoMap {
         if(this.filters_visible){
             this._filterContainerHeight();
         }
+
+
     };
 };
 // end of class
