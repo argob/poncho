@@ -453,6 +453,14 @@
         width: calc(100% - 26px);
         inline-size: min-content;
 
+
+        & .btn.btn-info,
+        & .btn.btn-success,
+        & .btn.btn-warning,
+        & .btn.btn-primary {
+            color: white
+        }
+
         .info-container {
           max-height: 800px;
           overflow-y: auto;
