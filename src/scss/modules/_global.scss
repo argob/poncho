@@ -117,7 +117,7 @@ aside {
 }
 
 // Paleta principal
-
+.bg-azul,
 .bg-primary {
   background-color: $brand-primary !important;
 }
@@ -333,7 +333,7 @@ a.bg-danger {
     font-size: 16px;
   }
 }
-
+.text-azul,
 .text-primary {
   color: $brand-primary !important;
 }
@@ -365,6 +365,7 @@ a.bg-danger {
 
 
 //
+
 .text-fucsia {
   color: $brand-fucsia !important;
 }
