@@ -14,45 +14,47 @@
   }
 }
 
+/* Mensajes de error y warning */
+.poncho-map--message {
+  padding: 0.25em 0.75em;
+  border-radius: 8px;
+  margin: 1em 0;
+  box-shadow: 0 2px 6px rgb(0, 0, 0, 0.15);
+  color: black;
 
+  &.danger {
+    background: var(--tomate, $brand-tomate);
+    color: white;
 
-  /* Mensajes de error y warning */
-  .poncho-map--message {  
-    padding: .25em .75em;
-    border-radius: 8px;
-    margin: 1em 0;
-    box-shadow: 0 2px 6px rgb(0,0,0,.15);
-    color: black;
-    
-    &.danger {
-        background: var(--tomate, $brand-tomate);  
-        color: white;
-
-        .title {
-          color: white !important;
-        } 
-        pre {
-          color: rgb(255,255,255,.9);
-        }
+    .title {
+      color: white !important;
     }
-    &.warning {
-        background: var(--maiz, $brand-maiz);  
-        color: rgb(0,0,0,.8);
 
-        .title {
-          color: rgb(0,0,0,.8) !important;
-        } 
-        pre {
-          color: black 
-        }
-    }
     pre {
-      background: rgb(0,0,0,.1);
-      border: none;
+      color: rgb(255, 255, 255, 0.9);
     }
-}
-/**/
+  }
 
+  &.warning {
+    background: var(--maiz, $brand-maiz);
+    color: rgb(0, 0, 0, 0.8);
+
+    .title {
+      color: rgb(0, 0, 0, 0.8) !important;
+    }
+
+    pre {
+      color: black;
+    }
+  }
+
+  pre {
+    background: rgb(0, 0, 0, 0.1);
+    border: none;
+  }
+}
+
+/**/
 
 .poncho-map {
   --slider-width: 326px;
@@ -80,10 +82,6 @@
   overflow: hidden;
   position: relative;
 
-
-
-
-
   *.text-primary {
     color: var(--primary, #0072bb) !important;
   }
@@ -103,11 +101,9 @@
     position: relative;
     // border-radius: 50%;
     box-shadow: 0 0 20px rgba(var(--active-marker-color), 1);
-    background: radial-gradient(
-      circle,
-      rgba(var(--active-marker-color), var(--active-marker-alpha)) 10%,
-      rgba(var(--active-marker-color), var(--active-marker-alpha)) 80%
-    );
+    background: radial-gradient(circle,
+        rgba(var(--active-marker-color), var(--active-marker-alpha)) 10%,
+        rgba(var(--active-marker-color), var(--active-marker-alpha)) 80%);
   }
 
   /**
@@ -123,7 +119,8 @@
     text-align: center;
     border-radius: 50%;
   }
-  &__div-icon > i {
+
+  &__div-icon>i {
     font-size: 1.7em;
     position: absolute;
     margin: auto;
@@ -134,7 +131,8 @@
     transition: 0.2s;
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
   }
-  &__div-icon:hover > i {
+
+  &__div-icon:hover>i {
     opacity: 1;
     transition: 0.2s;
   }
@@ -149,6 +147,7 @@
       animation-name: slidein;
       box-shadow: var(--slider-shadow);
     }
+
     img {
       max-width: 100%;
     }
@@ -182,21 +181,15 @@
       &:after {
         content: "";
         background: var(--slider-background);
-        background: -moz-linear-gradient(
-          0deg,
-          var(--slider-background) 60%,
-          rgba(255, 255, 255, 0) 100%
-        );
-        background: -webkit-linear-gradient(
-          0deg,
-          var(--slider-background) 60%,
-          rgba(255, 255, 255, 0) 100%
-        );
-        background: linear-gradient(
-          0deg,
-          var(--slider-background) 60%,
-          rgba(255, 255, 255, 0) 100%
-        );
+        background: -moz-linear-gradient(0deg,
+            var(--slider-background) 60%,
+            rgba(255, 255, 255, 0) 100%);
+        background: -webkit-linear-gradient(0deg,
+            var(--slider-background) 60%,
+            rgba(255, 255, 255, 0) 100%);
+        background: linear-gradient(0deg,
+            var(--slider-background) 60%,
+            rgba(255, 255, 255, 0) 100%);
         position: absolute;
         left: 0.25rem;
         width: calc(100% - 1.5rem);
@@ -209,13 +202,14 @@
 
   path.marker--active {
     // filter: drop-shadow(2px 2px 2px rgb(249, 168, 34, 1));
-    fill-opacity: .75 !important;
+    fill-opacity: 0.75 !important;
   }
+
   *:focus {
     outline: 3px solid var(--cielo, $brand-cielo) !important;
     box-sizing: border-box;
     border-radius: 3px;
-    box-shadow: 0 0 8px var(--cielo,$brand-cielo) !important;
+    box-shadow: 0 0 8px var(--cielo, $brand-cielo) !important;
   }
 
   .accesible-nav {
@@ -239,6 +233,7 @@
       top: 10px;
       left: 10px;
     }
+
     &.bottom:focus-within {
       bottom: 10px;
       left: 10px;
@@ -256,6 +251,7 @@
       margin: 0;
       padding: 0;
       font-size: small;
+
       li {
         list-style: none;
       }
@@ -277,6 +273,31 @@
         box-shadow: none !important;
         background: var(--accesible-background);
       }
+    }
+  }
+
+  .select-items {
+    padding: 0 0 0.75em;
+
+    &__button {
+      font-size: 0.75rem;
+      border: none !important;
+      border-radius: 9px;
+      padding: 1px 0.75em;
+      margin: 0 2px;
+      color: var(--color-primary, #ddd);
+      transition: 0.2s;
+    }
+
+    &__button:hover {
+      background-color: var(--primary, #5a5a5a);
+      color: white;
+      transition: 0.2s;
+      box-shadow: 0 0 3px rgb(0 0 0 / 0.15);
+    }
+
+    &__button:first-of-type {
+      margin-left: 0;
     }
   }
 
@@ -384,6 +405,7 @@
     margin-right: -12px;
     border-left-color: var(--tooltip, white);
   }
+
   .leaflet-tooltip-right:before {
     left: 0;
     margin-left: -12px;
@@ -403,8 +425,8 @@
     border-radius: 6px;
     pointer-events: none;
     box-shadow: 0 1px 6px rgb(0 0 0 / 40%);
-    transition: opacity .2s;
-    font-size: .75rem;
+    transition: opacity 0.2s;
+    font-size: 0.75rem;
     font-weight: normal;
   }
 
@@ -430,6 +452,14 @@
       .leaflet-popup-content {
         width: calc(100% - 26px);
         inline-size: min-content;
+
+
+        & .btn.btn-info,
+        & .btn.btn-success,
+        & .btn.btn-warning,
+        & .btn.btn-primary {
+            color: white
+        }
 
         .info-container {
           max-height: 800px;
@@ -516,6 +546,7 @@
 }
 
 @media (max-width: 575.98px) {
+
   /* smartphones, iPhone, portrait 480x320 phones */
   .poncho-map {
     .slider {
@@ -547,4 +578,6 @@ input[type="search"].js-poncho-map-search__input::-webkit-search-cancel-button {
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><circle cx='10' cy='10' r='10' fill='whitesmoke'/><polygon points='15.35 6.03 13.97 4.65 10 8.63 6.03 4.65 4.65 6.03 8.63 10 4.65 13.97 6.03 15.35 10 11.38 13.97 15.35 15.35 13.97 11.38 10 15.35 6.03' fill='black'/></svg>");
 }
 
-.leaflet-control-attribution .leaflet-attribution-flag { display: none !important }
+.leaflet-control-attribution .leaflet-attribution-flag {
+  display: none !important;
+}

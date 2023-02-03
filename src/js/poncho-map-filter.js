@@ -483,14 +483,14 @@ class PonchoMapFilter extends PonchoMap {
         checkAllButton.classList.add(
             "js-select-items","select-items__button");
         checkAllButton.textContent = "Marcar todos";
-        checkAllButton.dataset.field = item.field;
+        checkAllButton.dataset.field = item.field[0];
         checkAllButton.dataset.value = 1;
 
         const uncheckAllButton = document.createElement("button");
         uncheckAllButton.classList.add(
             "js-select-items","select-items__button");
         uncheckAllButton.textContent = "Desmarcar todos";
-        uncheckAllButton.dataset.field = item.field;
+        uncheckAllButton.dataset.field = item.field[0];
         uncheckAllButton.dataset.value = 0;
         
 
