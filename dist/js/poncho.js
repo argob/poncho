@@ -4857,6 +4857,7 @@ class PonchoMapFilter extends PonchoMap {
 
     /**
      * Marca o desmarca todos los filtros
+     * 
      * @returns {undefined}
      */
     checkUncheckFilters = () => {
