@@ -4861,7 +4861,7 @@ class PonchoMapFilter extends PonchoMap {
      */
     checkUncheckFilters = () => {
         if(!this.check_uncheck_all){
-            return none;
+            return null;
         }
         const buttons = document.querySelectorAll(
             `${this.scope_selector} .js-select-items`);
