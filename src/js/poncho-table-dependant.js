@@ -1,5 +1,5 @@
 /**
- * PONCHO TABLE DEPENDANT +
+ * PONCHO TABLE DEPENDANT
  *
  * @summary PonchoTable con filtros dependientes
  *
@@ -39,6 +39,7 @@ function ponchoTableDependant(opt) {
   var gapi_data;
   var filtersList = [];
   var filtro = {};
+  var asFilter = {};
 
   // Loader
   document.querySelector("#ponchoTable").classList.add("state-loading");
@@ -278,9 +279,8 @@ function ponchoTableDependant(opt) {
       let filters = {};
       filtersList.forEach((filter, key) => {
           let entiresByFilter = [];
-          if(opt.hasOwnProperty("asFilter") 
-              && opt.asFilter.hasOwnProperty(filtersList[key])){
-              entiresByFilter = opt.asFilter[filtersList[key]];
+          if(asFilter.hasOwnProperty(filtersList[key])){
+              entiresByFilter = asFilter[filtersList[key]];
           } else {
               entiresByFilter = gapi_data.entries.map(entry => entry[filter]);
           }
@@ -390,20 +390,18 @@ function ponchoTableDependant(opt) {
   };
 
 
-  _isCustomFilter = (key, filtro = {}) => {
+  _isCustomFilter = (key) => {
       const filtersKeys = Object.keys(filtro);
-      if(opt.hasOwnProperty("asFilter") && 
-        opt.asFilter.hasOwnProperty(`filtro-${filtersKeys[key]}`)){
+      if(asFilter.hasOwnProperty(`filtro-${filtersKeys[key]}`)){
           return true   
       }
       return false;
   };
 
-  _customFilter = (key, filtro = {}) => {
+  _customFilter = (key) => {
       const filtersKeys = Object.keys(filtro);
-      if(opt.hasOwnProperty("asFilter") && 
-        opt.asFilter.hasOwnProperty(`filtro-${filtersKeys[key]}`)){
-          return opt.asFilter[`filtro-${filtersKeys[key]}`];   
+      if(asFilter.hasOwnProperty(`filtro-${filtersKeys[key]}`)){
+          return asFilter[`filtro-${filtersKeys[key]}`];   
       }
       return [];
   };
@@ -447,9 +445,6 @@ function ponchoTableDependant(opt) {
   function initDataTable(){
       let searchType = jQuery.fn.DataTable.ext.type.search;
       searchType.string = function(data) {
-          // return (!data ? "": data.toString());
-
-
           return (!data ? "": 
               (typeof data === "string" ? replaceSpecialChars(data) : data));
       };
@@ -560,11 +555,13 @@ function ponchoTableDependant(opt) {
 
               const columnIndex = filterIndex(filters[k]);
               const term = _searchTerm(filterValues[k]);
-              const cleanTerm = _searchTerm(replaceSpecialChars(filterValues[k]));
+              const cleanTerm = _searchTerm(
+                  replaceSpecialChars(filterValues[k]));
               if(_isCustomFilter(k, filtro)){
                   tabla
                       .columns(columnIndex)
-                      .search(replaceSpecialChars(filterValues[k]), false, true, false);
+                      .search(replaceSpecialChars(filterValues[k]),
+                      false, true, false);
               } else {
                   tabla
                       .columns(columnIndex)
@@ -598,7 +595,9 @@ function ponchoTableDependant(opt) {
                 .keys(gapi_data.headers)
                 .filter(e => e.startsWith("filtro-"));
 
+          asFilter = (opt.asFilter ? opt.asFilter(gapi_data.entries) : {});
           filtro = flterMatrix(gapi_data, filtersList);
+
           createTable(gapi_data);
           createFilters(gapi_data); 
 
@@ -639,4 +638,4 @@ function ponchoTableDependant(opt) {
       throw "¡Error! No hay datos suficientes para crear la tabla.";
   }
 
-  }
+}
