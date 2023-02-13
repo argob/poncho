@@ -1,5 +1,5 @@
 /**
- * PONCHO TABLE DEPENDANT
+ * PONCHO TABLE DEPENDANT +
  *
  * @summary PonchoTable con filtros dependientes
  *
@@ -113,7 +113,7 @@ function ponchoTableDependant(opt) {
    * Retorna los valores de los filtros
    */
   const _filterValues = () => {
-    return [...document.querySelectorAll("[data-filter]")].map(e => e.value);
+      return [...document.querySelectorAll("[data-filter]")].map(e => e.value);
   };
 
   /**
@@ -229,7 +229,7 @@ function ponchoTableDependant(opt) {
       // CONTENIDO FILAS
       gapi_data.entries.forEach(entry => {
           // si se desea modificar la entrada desde opciones
-          entry = (opt.customEntry ? opt.customEntry(entry) : entry);
+          entry = (typeof opt.customEntry === "function" && opt.customEntry !== null ? opt.customEntry(entry) : entry);
 
           // Inserta el row.
           const tbodyRow = tableTbody.insertRow();
@@ -277,7 +277,14 @@ function ponchoTableDependant(opt) {
   const flterMatrix = (gapi_data, filtersList) => {
       let filters = {};
       filtersList.forEach((filter, key) => {
-          const entiresByFilter = gapi_data.entries.map(entry => entry[filter]);
+          let entiresByFilter = [];
+          if(opt.hasOwnProperty("asFilter") 
+              && opt.asFilter.hasOwnProperty(filtersList[key])){
+              entiresByFilter = opt.asFilter[filtersList[key]];
+          } else {
+              entiresByFilter = gapi_data.entries.map(entry => entry[filter]);
+          }
+
           const uniqueEntries = distinct(entiresByFilter);
           uniqueEntries.sort(sortAlphaNumeric);
           filter = filter.replace("filtro-", "");
@@ -327,11 +334,19 @@ function ponchoTableDependant(opt) {
    * @return {object} Listado de elementos únicos para el select.
    */ 
   const _allFromParent = (parent, children, label) => {
-      const filterList = gapi_data.entries.map(e => {
+      const filterList = gapi_data.entries.flatMap(e => {
+          const evaluatedEntry = e[filtersList[_parentElement(children)]];
           if(e[filtersList[_parentElement(parent)]] == label || label == ""){
-              return e[filtersList[_parentElement(children)]];
+              if(_isCustomFilter(children, filtro)){
+                  const customFilters = _customFilter(children, filtro).filter(e => {
+                      return evaluatedEntry.includes(e);
+                  });
+                  return customFilters;
+              } 
+              return evaluatedEntry;
           } 
           return false;
+
       }).filter(f => f);
 
       const uniqueList = distinct(filterList);
@@ -351,12 +366,20 @@ function ponchoTableDependant(opt) {
       const values = _filterValues();
 
       // Recorro todas las entradas del JSON
-      const items = gapi_data.entries.map(entry => {
+      const items = gapi_data.entries.flatMap(entry => {
           const range = _validateSteps(parent, entry, label, values);
           if(
               (entry[filtersList[_parentElement(children - 1)]] == label) && 
               (range)){
-              return entry[filtersList[_parentElement(children)]];
+                const evaluatedEntry = entry[filtersList[_parentElement(children)]];
+                if(_isCustomFilter(children, filtro)){
+                    const customFilters = _customFilter(children, filtro)
+                        .filter(e => evaluatedEntry.includes(e));
+                    return customFilters;
+                } else {
+                    return evaluatedEntry;
+                }
+
           }
           return;
       }).filter(f => f);
@@ -364,6 +387,25 @@ function ponchoTableDependant(opt) {
       const uniqueList = distinct(items);
       uniqueList.sort(sortAlphaNumeric);
       return uniqueList;
+  };
+
+
+  _isCustomFilter = (key, filtro = {}) => {
+      const filtersKeys = Object.keys(filtro);
+      if(opt.hasOwnProperty("asFilter") && 
+        opt.asFilter.hasOwnProperty(`filtro-${filtersKeys[key]}`)){
+          return true   
+      }
+      return false;
+  };
+
+  _customFilter = (key, filtro = {}) => {
+      const filtersKeys = Object.keys(filtro);
+      if(opt.hasOwnProperty("asFilter") && 
+        opt.asFilter.hasOwnProperty(`filtro-${filtersKeys[key]}`)){
+          return opt.asFilter[`filtro-${filtersKeys[key]}`];   
+      }
+      return [];
   };
 
   /**
@@ -405,6 +447,9 @@ function ponchoTableDependant(opt) {
   function initDataTable(){
       let searchType = jQuery.fn.DataTable.ext.type.search;
       searchType.string = function(data) {
+          // return (!data ? "": data.toString());
+
+
           return (!data ? "": 
               (typeof data === "string" ? replaceSpecialChars(data) : data));
       };
@@ -512,14 +557,22 @@ function ponchoTableDependant(opt) {
                     .indexOf(`filtro-${filter}`);
           };
           filterValues.forEach((f, k) => {
+
               const columnIndex = filterIndex(filters[k]);
               const term = _searchTerm(filterValues[k]);
               const cleanTerm = _searchTerm(replaceSpecialChars(filterValues[k]));
-
-              tabla.columns(columnIndex).search(
-                  (filterValues[k] ? `^(${term}|${cleanTerm})$` : ""), 
-                  true, false, true  
-              )
+              if(_isCustomFilter(k, filtro)){
+                  tabla
+                      .columns(columnIndex)
+                      .search(replaceSpecialChars(filterValues[k]), false, true, false);
+              } else {
+                  tabla
+                      .columns(columnIndex)
+                      .search(
+                          (filterValues[k] ? `^(${term}|${cleanTerm})$` : ""), 
+                          true, false, true  
+                      );
+              }
           });
           tabla.draw();
       });
@@ -534,6 +587,12 @@ function ponchoTableDependant(opt) {
       jQuery.getJSON(url, function(data){
           const gapi = new GapiSheetData();
           gapi_data = gapi.json_data(data);
+
+          gapi_data.entries = (
+              typeof opt.refactorEntries === "function" && 
+              opt.refactorEntries !== null ? 
+              opt.refactorEntries(gapi_data.entries) : gapi_data.entries
+          );
           // Listado de filtros
           filtersList = Object
                 .keys(gapi_data.headers)
@@ -580,4 +639,4 @@ function ponchoTableDependant(opt) {
       throw "¡Error! No hay datos suficientes para crear la tabla.";
   }
 
-}
+  }
