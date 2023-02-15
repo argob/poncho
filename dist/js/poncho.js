@@ -712,7 +712,8 @@ function ponchoTableDependant(opt) {
               .sort(sortAlphaNumeric);
 
           const tplCol = document.createElement("div");
-          tplCol.className = (opt.filterClassList ? opt.filterClassList : "col-sm-4");
+          tplCol.className = (opt.filterClassList ? 
+              opt.filterClassList : "col-sm-4");
 
           const tplForm = document.createElement("div");
           tplForm.className = "form-group";
@@ -770,7 +771,8 @@ function ponchoTableDependant(opt) {
       // CONTENIDO FILAS
       gapi_data.entries.forEach(entry => {
           // si se desea modificar la entrada desde opciones
-          entry = (typeof opt.customEntry === "function" && opt.customEntry !== null ? opt.customEntry(entry) : entry);
+          entry = (typeof opt.customEntry === "function" && 
+              opt.customEntry !== null ? opt.customEntry(entry) : entry);
 
           // Inserta el row.
           const tbodyRow = tableTbody.insertRow();
@@ -878,8 +880,10 @@ function ponchoTableDependant(opt) {
           const evaluatedEntry = e[filtersList[_parentElement(children)]];
           if(e[filtersList[_parentElement(parent)]] == label || label == ""){
               if(_isCustomFilter(children, filtro)){
-                  const customFilters = _customFilter(children, filtro).filter(e => {
-                      return evaluatedEntry.includes(e);
+                  const customFilters = _customFilter(children, filtro)
+                      .filter(e => {
+                          return _toCompareString(evaluatedEntry)
+                              .includes(_toCompareString(e));
                   });
                   return customFilters;
               } 
@@ -893,6 +897,14 @@ function ponchoTableDependant(opt) {
       uniqueList.sort(sortAlphaNumeric);
       return uniqueList;
   };
+
+  /**
+   * Prepara un string para una comparación case sensitive y sin
+   * caracteres especiales.
+   * @param {string} value Valor a comparar. 
+   * @returns {boolean}
+   */
+  const _toCompareString = (value) => replaceSpecialChars(value.toLowerCase());
 
   /**
    * Lista los valores que deben ir en un filtro según su parent.
@@ -914,7 +926,10 @@ function ponchoTableDependant(opt) {
                 const evaluatedEntry = entry[filtersList[_parentElement(children)]];
                 if(_isCustomFilter(children, filtro)){
                     const customFilters = _customFilter(children, filtro)
-                        .filter(e => evaluatedEntry.includes(e));
+                        .filter(e => {
+                            return _toCompareString(evaluatedEntry)
+                                  .includes(_toCompareString(e));
+                        });
                     return customFilters;
                 } else {
                     return evaluatedEntry;
@@ -929,7 +944,11 @@ function ponchoTableDependant(opt) {
       return uniqueList;
   };
 
-
+  /**
+   * Tiene filtros personalizados
+   * @param {integer} key Indice de filtro
+   * @returns {boolean}
+   */
   _isCustomFilter = (key) => {
       const filtersKeys = Object.keys(filtro);
       if(asFilter.hasOwnProperty(`filtro-${filtersKeys[key]}`)){
@@ -938,6 +957,11 @@ function ponchoTableDependant(opt) {
       return false;
   };
 
+  /**
+   * Listado de filtros personalizado
+   * @param {integer} key Indice de filtro
+   * @returns {object}
+   */
   _customFilter = (key) => {
       const filtersKeys = Object.keys(filtro);
       if(asFilter.hasOwnProperty(`filtro-${filtersKeys[key]}`)){
@@ -971,7 +995,8 @@ function ponchoTableDependant(opt) {
 
           select.appendChild(_optionSelect(i, "Todos", "", true));
           itemList.forEach(e => {
-              // Mantengo el filtro del hijo si existe en el listado filtrado.
+              // Mantengo el filtro del hijo si existe en el 
+              // listado filtrado.
               let checked = (filterValues[i] == e ? true : false);
               select.appendChild(_optionSelect(i, e, e, checked));
           });
@@ -1035,8 +1060,10 @@ function ponchoTableDependant(opt) {
                   "sPrevious": "<"
               },
               "oAria": {
-                  "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-                  "sSortDescending": ": Activar para ordenar la columna de manera descendente",
+                  "sSortAscending": 
+                      ": Activar para ordenar la columna de manera ascendente",
+                  "sSortDescending": 
+                      ": Activar para ordenar la columna de manera descendente",
                   "paginate": {
                       "first": 'Ir a la primera página',
                       "previous": 'Ir a la página anterior',
@@ -1098,10 +1125,7 @@ function ponchoTableDependant(opt) {
               const cleanTerm = _searchTerm(
                   replaceSpecialChars(filterValues[k]));
               if(_isCustomFilter(k, filtro)){
-                  tabla
-                      .columns(columnIndex)
-                      .search(replaceSpecialChars(filterValues[k]),
-                      false, true, false);
+                  tabla.columns(columnIndex).search(filterValues[k]);
               } else {
                   tabla
                       .columns(columnIndex)
@@ -1141,8 +1165,10 @@ function ponchoTableDependant(opt) {
           createTable(gapi_data);
           createFilters(gapi_data); 
 
-          document.querySelector("#ponchoTableSearchCont").style.display = "block";
-          document.querySelector("#ponchoTable").classList.remove("state-loading");
+          document.querySelector("#ponchoTableSearchCont")
+              .style.display = "block";
+          document.querySelector("#ponchoTable")
+              .classList.remove("state-loading");
           initDataTable();
       }); // end async
   };
