@@ -585,7 +585,8 @@ function ponchoTableDependant(opt) {
               const cleanTerm = _searchTerm(
                   replaceSpecialChars(filterValues[k]));
               if(_isCustomFilter(k, filtro)){
-                  tabla.columns(columnIndex).search(filterValues[k]);
+                  tabla.columns(columnIndex)
+                      .search(_toCompareString(filterValues[k]));
               } else {
                   tabla
                       .columns(columnIndex)
