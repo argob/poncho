@@ -40,6 +40,21 @@ function ponchoTableDependant(opt) {
   var filtersList = [];
   var filtro = {};
   var asFilter = {};
+  let markdownOptions = {
+      "tables": true,
+      "simpleLineBreaks": true,
+      "extensions": [
+          'details', 
+          'images', 
+          'alerts', 
+          'numbers', 
+          'ejes', 
+          'button', 
+          'target',
+          'bootstrap-tables', 
+          'video'
+      ]
+  };
 
   // Loader
   document.querySelector("#ponchoTable").classList.add("state-loading");
@@ -116,6 +131,20 @@ function ponchoTableDependant(opt) {
   const _filterValues = () => {
       return [...document.querySelectorAll("[data-filter]")].map(e => e.value);
   };
+
+  /**
+   * Showdown habilitado.
+   * 
+   * Verifica si la librería _showdown_ está disponible.
+   * @returns {boolean}
+   */
+  _markdownEnable = () => {
+      if(typeof showdown !== "undefined" && 
+          showdown.hasOwnProperty("Converter")){
+              return true;
+      }
+      return false;
+  } 
 
   /**
    * Botón poncho
@@ -229,20 +258,23 @@ function ponchoTableDependant(opt) {
       tableTbody.innerHTML = "";
 
       // CONTENIDO FILAS
-      gapi_data.entries.forEach(entry => {
+      gapi_data.entries.forEach((entry, key) => {
           // si se desea modificar la entrada desde opciones
           entry = (typeof opt.customEntry === "function" && 
               opt.customEntry !== null ? opt.customEntry(entry) : entry);
 
           // Inserta el row.
           const tbodyRow = tableTbody.insertRow();
+          tbodyRow.id = "id_" + key;
 
           // Recorro cada uno de los títulos
           Object.keys(gapi_data.headers).forEach(header => {
               filas = entry[header];
 
               if (header.startsWith("btn-") && filas != "") {
-                  filas = button(gapi_data.headers[header], filas);
+                  filas = button(
+                      header.replace("btn-", "").replace("-", " "), filas
+                  );
               } else if (header.startsWith("fecha-") && filas != "") {
                   filas = tdDate(filas);
               }
@@ -252,8 +284,16 @@ function ponchoTableDependant(opt) {
               if (filas == ""){
                   cell.className = "hidden-xs";
               }
-              const converter = new showdown.Converter();
-              cell.innerHTML = converter.makeHtml(filas);
+
+              // Si showdown está incluido lo uso
+              if(_markdownEnable()){
+                  const sdOptions = (opt.hasOwnProperty("markdownOptions") ? 
+                          opt.markdownOptions : markdownOptions);
+                  const converter = new showdown.Converter(sdOptions);
+                  cell.innerHTML = converter.makeHtml(filas);
+              } else {
+                  cell.innerHTML = filas;
+              }
           });
       });
   };
@@ -547,9 +587,10 @@ function ponchoTableDependant(opt) {
       // REMUEVE LOS FILTROS
       jQuery("#ponchoTable_filter").parent().parent().remove();
 
-      // FILTRO PERSONALIZADO
-      if (jQuery("#ponchoTableFiltro option").length > 1) {
-          jQuery("#ponchoTableFiltroCont").show();
+      // MUESTRA FILTRO PERSONALIZADO
+      const ponchoTableOption = document.querySelectorAll("#ponchoTableFiltro option");
+      if (ponchoTableOption.length > 1) {
+          document.querySelector("#ponchoTableFiltroCont").style.display = "block";
       }
 
       /**
@@ -578,8 +619,8 @@ function ponchoTableDependant(opt) {
                     .keys(gapi_data.headers)
                     .indexOf(`filtro-${filter}`);
           };
-          filterValues.forEach((f, k) => {
 
+          filterValues.forEach((f, k) => {
               const columnIndex = filterIndex(filters[k]);
               const term = _searchTerm(filterValues[k]);
               const cleanTerm = _searchTerm(
