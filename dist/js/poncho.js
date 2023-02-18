@@ -573,7 +573,7 @@ function ponchoTable(opt) {
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-function ponchoTableDependant(opt) {
+const ponchoTableDependant = opt => {
   // return ponchoTable(opt);
 
   var gapi_data;
@@ -621,7 +621,7 @@ function ponchoTableDependant(opt) {
    * resultados únicos.
    * @returns {object}
    */
-  const distinct = (list) => [... new Set(list)];
+  const distinct = list => [... new Set(list)];
   
   /**
    * Select option
@@ -656,14 +656,14 @@ function ponchoTableDependant(opt) {
    * _searchTerm("Simbrón (3.180)")
    * @return {string}
    */
-  const _searchTerm = (term) => {
+  const _searchTerm = term => {
       return term.toString().replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   };
 
   /**
    * Evita un valor negativo
    */
-  const _parentElement = (value) => (value <= 0 ? 0 : value);
+  const _parentElement = value => (value <= 0 ? 0 : value);
 
   /**
    * Retorna los valores de los filtros
@@ -678,7 +678,7 @@ function ponchoTableDependant(opt) {
    * Verifica si la librería _showdown_ está disponible.
    * @returns {boolean}
    */
-  _markdownEnable = () => {
+  const _isMarkdownEnable = () => {
       if(typeof showdown !== "undefined" && 
           showdown.hasOwnProperty("Converter")){
               return true;
@@ -711,7 +711,7 @@ function ponchoTableDependant(opt) {
   * y el ordenamiento.
   * @return {undefined}
   */ 
-  const tdDate = (value) => {
+  const tdDate = value => {
       const dteSplit = value.split("/");
       dteSplit.reverse();
       const finalDate = dteSplit.join("-");
@@ -728,7 +728,7 @@ function ponchoTableDependant(opt) {
    * @param {object} gapi_data Objeto con la información separada del
    * documento Google Sheet
    */
-  const createFilters = (gapi_data) => {
+  const createFilters = gapi_data => {
       // Contenedor
       const tableFiltroCont = document.querySelector("#ponchoTableFiltro");
       tableFiltroCont.innerHTML = "";
@@ -774,7 +774,7 @@ function ponchoTableDependant(opt) {
    * @param {object} gapi_data Objeto con la información separada del
    * documento Google Sheet
    */
-  const createTable = (gapi_data) => {
+  const createTable = gapi_data => {
       // Table thead > th
       const thead = document.querySelector("#ponchoTable thead");
       thead.innerHTML = "";
@@ -826,7 +826,7 @@ function ponchoTableDependant(opt) {
               }
 
               // Si showdown está incluido lo uso
-              if(_markdownEnable()){
+              if(_isMarkdownEnable()){
                   const sdOptions = (opt.hasOwnProperty("markdownOptions") ? 
                           opt.markdownOptions : markdownOptions);
                   const converter = new showdown.Converter(sdOptions);
@@ -944,7 +944,7 @@ function ponchoTableDependant(opt) {
    * @param {string} value Valor a comparar. 
    * @returns {boolean}
    */
-  const _toCompareString = (value) => replaceSpecialChars(value.toLowerCase());
+  const _toCompareString = value => replaceSpecialChars(value.toLowerCase());
 
   /**
    * Lista los valores que deben ir en un filtro según su parent.
@@ -989,7 +989,7 @@ function ponchoTableDependant(opt) {
    * @param {integer} key Indice de filtro
    * @returns {boolean}
    */
-  const _isCustomFilter = (key) => {
+  const _isCustomFilter = key => {
       const filtersKeys = Object.keys(filtro);
       if(asFilter.hasOwnProperty(`filtro-${filtersKeys[key]}`)){
           return true   
@@ -1002,7 +1002,7 @@ function ponchoTableDependant(opt) {
    * @param {integer} key Indice de filtro
    * @returns {object}
    */
-  const _customFilter = (key) => {
+  const _customFilter = key => {
       const filtersKeys = Object.keys(filtro);
       if(asFilter.hasOwnProperty(`filtro-${filtersKeys[key]}`)){
           return asFilter[`filtro-${filtersKeys[key]}`];   
@@ -1047,7 +1047,7 @@ function ponchoTableDependant(opt) {
    * Si la URL tiene un valor por _hash_ lo obtiene considerandolo su id.
    * @returns {void}
    */
-  hasHash = () => {
+  const hasHash = () => {
       let hash = window.location.hash.replace("#", "");
       return hash || false;
   };
@@ -1056,7 +1056,7 @@ function ponchoTableDependant(opt) {
    * Inicializa DataTable() y modifica elementos para adaptarlos a 
    * GoogleSheets y requerimientos de ArGob.
    */
-  function initDataTable(){
+  const initDataTable = () => {
       let searchType = jQuery.fn.DataTable.ext.type.search;
       searchType.string = function(data) {
           return (!data ? "": 
@@ -1163,7 +1163,7 @@ function ponchoTableDependant(opt) {
 
           const filters = Object.keys(filtro);
           const filterValues = _filterValues();
-          const filterIndex = (filter) => {
+          const filterIndex = filter => {
               return Object
                     .keys(gapi_data.headers)
                     .indexOf(`filtro-${filter}`);
@@ -1204,7 +1204,7 @@ function ponchoTableDependant(opt) {
    * 
    * @param {string} url URL del dataset JSON
    */
-  const getSheetValues = (url) => {
+  const getSheetValues = url => {
       jQuery.getJSON(url, function(data){
           const gapi = new GapiSheetData();
           gapi_data = gapi.json_data(data);
@@ -1238,7 +1238,7 @@ function ponchoTableDependant(opt) {
    * 
    * @param {integer} sheetNumber Número de hoja sin iniciar en 0.
    */
-  const getSheetName = (sheetNumber) => {
+  const getSheetName = sheetNumber => {
       const gapi = new GapiSheetData();
       const uriApi = [
           'https://sheets.googleapis.com/v4/spreadsheets/',
@@ -1264,7 +1264,7 @@ function ponchoTableDependant(opt) {
       throw "¡Error! No hay datos suficientes para crear la tabla.";
   }
 
-}
+};
 
 //#####################################################################
 //####################### POPOVER #####################################
