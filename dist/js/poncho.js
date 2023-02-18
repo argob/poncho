@@ -989,7 +989,7 @@ function ponchoTableDependant(opt) {
    * @param {integer} key Indice de filtro
    * @returns {boolean}
    */
-  _isCustomFilter = (key) => {
+  const _isCustomFilter = (key) => {
       const filtersKeys = Object.keys(filtro);
       if(asFilter.hasOwnProperty(`filtro-${filtersKeys[key]}`)){
           return true   
@@ -1002,7 +1002,7 @@ function ponchoTableDependant(opt) {
    * @param {integer} key Indice de filtro
    * @returns {object}
    */
-  _customFilter = (key) => {
+  const _customFilter = (key) => {
       const filtersKeys = Object.keys(filtro);
       if(asFilter.hasOwnProperty(`filtro-${filtersKeys[key]}`)){
           return asFilter[`filtro-${filtersKeys[key]}`];   
@@ -1041,6 +1041,15 @@ function ponchoTableDependant(opt) {
               select.appendChild(_optionSelect(i, e, e, checked));
           });
       }
+  };
+
+  /**
+   * Si la URL tiene un valor por _hash_ lo obtiene considerandolo su id.
+   * @returns {void}
+   */
+  hasHash = () => {
+      let hash = window.location.hash.replace("#", "");
+      return hash || false;
   };
 
   /**
@@ -1179,6 +1188,15 @@ function ponchoTableDependant(opt) {
           });
           tabla.draw();
       });
+
+      // Si está habilitada la búsqueda por hash.
+      if(opt.hasOwnProperty("hash") && opt.hash){
+          const term = hasHash();
+          const searchTerm = (term ? decodeURIComponent(term) : "");          
+          const element = document.querySelector("#ponchoTableSearch");
+          element.value = searchTerm;
+          tabla.search(searchTerm).draw();
+      }
   } // end initDataTable
 
   /**
