@@ -33,7 +33,7 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-const ponchoTableDependant = opt => {
+const ponchoTableDependant2 = opt => {
   // return ponchoTable(opt);
 
   var gapi_data;
@@ -201,8 +201,14 @@ const ponchoTableDependant = opt => {
               .sort(sortAlphaNumeric);
 
           const tplCol = document.createElement("div");
-          tplCol.className = (opt.filterClassList ? 
-              opt.filterClassList : "col-sm-4");
+
+          if(opt.hasOwnProperty("filterClassList")){
+              const classList = (typeof opt.filterClassList === "string" ? 
+                    opt.filterClassList.split(" ") : opt.filterClassList);
+              tplCol.classList.add(...classList);     
+          } else {
+              tplCol.classList.add("col-sm-4");     
+          }
 
           const tplForm = document.createElement("div");
           tplForm.className = "form-group";
