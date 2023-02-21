@@ -34,8 +34,6 @@
  * SOFTWARE.
  */
 const ponchoTableDependant = opt => {
-  // return ponchoTable(opt);
-
   var gapi_data;
   var filtersList = [];
   var filtro = {};
