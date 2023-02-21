@@ -33,7 +33,7 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-const ponchoTableDependant2 = opt => {
+const ponchoTableDependant = opt => {
   // return ponchoTable(opt);
 
   var gapi_data;
