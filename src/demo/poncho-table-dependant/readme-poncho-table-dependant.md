@@ -2,7 +2,7 @@
 
 Se trata de una variación a PonchoTable incluida en la librería de *scripts* en `poncho.min.js`.
 
-Para esta versión se programó que los filtros sean dependientes uno del otro utilizando el mismo criterio de nombre de columna en GoogleSheet.
+Para esta versión se **programó** que los filtros sean dependientes uno del otro utilizando el mismo criterio de nombre de columna en GoogleSheet.
 
 Para que los filtros funcionen en las tablas de Google, se debe usar el prefijo **filtro-**[nombre]. Entonces, una columna para un filtro de provincias quedaría: **filtro-provincia**.
 
@@ -24,7 +24,11 @@ Para que los filtros funcionen en las tablas de Google, se debe usar el prefijo 
 | ocultarColumnas | `Array` | Lista de columnas que se desea ocultar |
 | cantidadItems | `integer` | Cantidad de registros por página |
 | jsonUrl | `string` | URL del documento o servicio JSON |
-
+| hash | `boolean` | Permite hacer una búsqueda pasándo un hash pro URL. Ej: <br>`www.argentina.gob.ar#mi-busqueda` |
+| filterClassList | `object` | Listado de selectores css para asignar en cada columna de filtros. Ej: <br>`filterClassList:["col-sm-6", "col-md-4"],` |
+| asFilter | `object` | Permite definir un listado de items asignados a un filtro. <br>`"asFilter":  (row) => row,` |
+| customEntry | `object` | Permite modificar la entrada que se mostrará en la tabla manteniendo la entrada original para el uso global de los datos.<br>`"customEntry": (row) => row,` |
+| refactorEntries | `object` | Permite modificar el documento JSON en su totalidad.<br>`"refactorEntries": (row) => row,` |
 
 ## Código HTML
 
