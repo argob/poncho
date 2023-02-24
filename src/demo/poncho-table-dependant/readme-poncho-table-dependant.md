@@ -24,7 +24,7 @@ Para que los filtros funcionen en las tablas de Google, se debe usar el prefijo 
 | ocultarColumnas | `Array` | Lista de columnas que se desea ocultar |
 | cantidadItems | `integer` | Cantidad de registros por página |
 | jsonUrl | `string` | URL del documento o servicio JSON |
-| hash | `boolean` | Permite hacer una búsqueda pasándo un hash pro URL. Ej: <br>`www.argentina.gob.ar#mi-busqueda` |
+| hash | `boolean` | Permite hacer una búsqueda pasándo un _hash_ por URL. Ej: <br>`www.argentina.gob.ar#mi-busqueda` |
 | filterClassList | `object` | Listado de selectores css para asignar en cada columna de filtros. Ej: <br>`filterClassList:["col-sm-6", "col-md-4"],` |
 | asFilter | `object` | Permite definir un listado de items asignados a un filtro. <br>`"asFilter":  (row) => row,` |
 | customEntry | `object` | Permite modificar la entrada que se mostrará en la tabla manteniendo la entrada original para el uso global de los datos.<br>`"customEntry": (row) => row,` |
@@ -73,11 +73,6 @@ Para que los filtros funcionen en las tablas de Google, se debe usar el prefijo 
 <!-- / HTML TABLE -->
 ```
 
-## Script PonchoTableDependant
-
-```html
-<script src="[URL]/poncho-table-dependant.js"></script>
-```
 
 ## Código JavaScript para llamar a PonchoTable
 
@@ -85,13 +80,18 @@ Para que los filtros funcionen en las tablas de Google, se debe usar el prefijo 
 <script>
 (function($) {
     const options = {
-        "hojaNombre": "tablavisible", 
-        "idSpread": "15ae-c5palH__3ZCtw-moukH1zrd04HJLDyqsHdi_XJg",
+        "hojaNombre": "dataset", 
+        "idSpread": "15ae-c5palH...XJg",
         "tituloTabla": "Vialidad",
         "ordenColumna": 1,
         "ordenTipo": "asc",
         "ocultarColumnas": [],
-        "cantidadItems": 15
+        "cantidadItems": 15,
+        "hash": false,
+        "filterClassList": ["col-sm-6", "col-md-4"],
+        // "asFilter":  (row) => row,
+        // "customEntry": (row) => row,
+        // "refactorEntries": (row) => row,
     };
     ponchoTableDependant(options);
 })(jQuery);
