@@ -30,7 +30,7 @@ Para que los filtros funcionen en las tablas de Google, se debe usar el prefijo 
 | customEntry | `object` | Permite modificar la entrada que se mostrará en la tabla manteniendo la entrada original para el uso global de los datos.<br>`"customEntry": (row) => row,` |
 | refactorEntries | `object` | Permite modificar el documento JSON en su totalidad.<br>`"refactorEntries": (row) => row,` |
 
-## Código HTML
+## Scripts
 
 ```html
 <!-- INCLUDE SCRIPTS -->
@@ -40,28 +40,24 @@ Para que los filtros funcionen en las tablas de Google, se debe usar el prefijo 
 <script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
 <link href="/profiles/argentinagobar/themes/contrib/poncho/css/ponchoTable-1.1.css" rel="stylesheet">
 <!-- / INCLUDE SCRIPTS -->
+```
 
+## Código HTML
+
+```html
 <!-- FILTERS -->
 <div class="row">
-  <div class="col-sm-12 col-md-12" id="ponchoTableFiltroCont" style="display: none">
+  <div class="col-sm-12 col-md-12" id="ponchoTableFiltroCont" style="display:none">
     <div class="row" id="ponchoTableFiltro"></div>
   </div>
   <div class="col-sm-12 col-md-12" id="ponchoTableSearchCont" style="display: none">
     <div class="form-group">
-      <label for="ponchoTableSearch">Buscá por palabra clave</label> 
-      <input class="form-control" id="ponchoTableSearch" type="text"></div>
+      <label for="ponchoTableSearch">Buscá por palabra clave</label>
+      <input class="form-control" id="ponchoTableSearch" type="search">
     </div>
   </div>
-</div>
-<!-- / FILTERS -->
-<!-- HTML TABLE -->
-<div class="row">
-  <div class="col-sm-8" id="ponchoTableSearchCont" style="display:none">
-    <div class="form-group">
-      <label for="ponchoTableSearch">Buscar por palabra clave</label> 
-      <input class="form-control" id="ponchoTableSearch" type="text">
-    </div>
-  </div>
+  <!-- / FILTERS -->
+  <!-- TABLE -->
   <div class="col-md-12 m-b-4">
     <table class="table table-condensed table-striped" id="ponchoTable">
       <caption></caption>
@@ -70,7 +66,7 @@ Para que los filtros funcionen en las tablas de Google, se debe usar el prefijo 
     </table>
   </div>
 </div>
-<!-- / HTML TABLE -->
+<!-- / TABLE -->
 ```
 
 
