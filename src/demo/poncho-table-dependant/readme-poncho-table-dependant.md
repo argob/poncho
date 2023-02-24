@@ -76,17 +76,21 @@ Para que los filtros funcionen en las tablas de Google, se debe usar el prefijo 
 
 ```html
 <script>
+<script>
 (function($) {
-    const options = {
-        "hojaNombre": "dataset", 
-        "idSpread": "15ae-c5palH...XJg",
-        "tituloTabla": "Vialidad",
+    const gapi = new GapiSheetData();
+    const province = location.pathname.split("/").findLast(last => last);
+    const url = gapi.url("dataset", "1vVSk7givsit7u74FBr32voWxrwwW8KaeI5VfC2TKBwM");
+    var options = {
+        "jsonUrl": url,
+        "tituloTabla": "Listado de escuelas",
         "ordenColumna": 1,
         "ordenTipo": "asc",
-        "ocultarColumnas": [],
-        "cantidadItems": 15,
-        "hash": false,
-        "filterClassList": ["col-sm-6", "col-md-4"],
+        // "tipoNumero": 0,
+        // "ocultarColumnas": [],
+        "cantidadItems": 15, 
+        "hash": true,
+        "filterClassList": ["col-sm-12","col-md-6"],
         // "asFilter":  (row) => row,
         // "customEntry": (row) => row,
         // "refactorEntries": (row) => row,
