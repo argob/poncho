@@ -47,17 +47,19 @@ Para que los filtros funcionen en las tablas de Google, se debe usar el prefijo 
 ```html
 <!-- FILTERS -->
 <div class="row">
-  <div class="col-sm-12 col-md-12" id="ponchoTableFiltroCont" style="display:none">
+  <div class="col-sm-12 col-md-8" id="ponchoTableFiltroCont" style="display:none">
     <div class="row" id="ponchoTableFiltro"></div>
   </div>
-  <div class="col-sm-12 col-md-12" id="ponchoTableSearchCont" style="display: none">
+  <div class="col-sm-12 col-md-4" id="ponchoTableSearchCont" style="display: none">
     <div class="form-group">
       <label for="ponchoTableSearch">Buscá por palabra clave</label>
       <input class="form-control" id="ponchoTableSearch" type="search">
     </div>
   </div>
-  <!-- / FILTERS -->
-  <!-- TABLE -->
+</div>
+<!-- / FILTERS -->
+<!-- TABLE -->
+<div class="row">
   <div class="col-md-12 m-b-4">
     <table class="table table-condensed table-striped" id="ponchoTable">
       <caption></caption>
