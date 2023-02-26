@@ -292,7 +292,7 @@ const ponchoTableDependant = opt => {
               // Si showdown está incluido lo uso
               if(_isMarkdownEnable()){
                   const sdOptions = (opt.hasOwnProperty("markdownOptions") ? 
-                          opt.markdownOptions : markdownOptions);
+                          opt.markdownOptions : {});
                   const converter = new showdown.Converter(sdOptions);
                   cell.innerHTML = converter.makeHtml(filas);
               } else {
