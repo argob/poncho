@@ -1,9 +1,69 @@
 //#####################################################################
 //####################### PONCHO TABLE #################################
 //#####################################################################
-jQuery('#ponchoTable').addClass('state-loading');
+
+
+
+/**
+ * 
+ */
+ponchoTableLegacyPatch = () => {
+    // Temporal. Muestra que en esa página tiene un código html legacy
+    const style = document.createElement("style");
+    style.innerHTML = ".js-poncho-table select{" 
+            + "position:relative;"
+            + "}"
+            + ".js-poncho-table:after{" 
+            + "font-size:9px !important;" 
+            + "border-radius:50%;" 
+            + "color:white;" 
+            + "position:absolute;" 
+            + "background:var(--lima);" 
+            + "width:6px;"
+            + "position:absolute;" 
+            + "left:0;" 
+            + "top:1em;" 
+            + "height:6px;" 
+            + "}"
+            + ".js-poncho-table.legacy:after{" 
+            + "background:var(--tomate);" 
+            + "}";
+
+    document.querySelector("head").appendChild(style);
+    document
+        .querySelectorAll("div[id=ponchoTableFiltro]")
+        .forEach(element => {
+            element.classList.add("js-poncho-table");
+    });
+    document
+        .querySelectorAll("select[id=ponchoTableFiltro]")
+        .forEach(element => {
+            // const node = element.closest(".form-group");
+            const node = element.parentElement;
+            // Creo un contenedor
+            const newElement = document.createElement("div");
+            newElement.id = "ponchoTableFiltro";
+            newElement.classList.add("row");
+            newElement.classList.add("js-poncho-table");
+            newElement.classList.add("legacy");
+            node.parentElement.appendChild(newElement);
+            // Borro el viejo elemento
+            node.remove();
+    });
+
+    
+
+
+};
+
+
+// jQuery('#ponchoTable').addClass('state-loading');
 
 function ponchoTable(opt) {
+    ponchoTableLegacyPatch();
+    return ponchoTableDependant(opt);
+
+  /* Comento todo el código 
     var listado = [];
     var filteredTitle = [];
     var filteredTitleGsx = [];
@@ -276,4 +336,5 @@ function ponchoTable(opt) {
         });
 
     }
+    */
 }

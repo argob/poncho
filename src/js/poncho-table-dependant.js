@@ -205,7 +205,7 @@ const ponchoTableDependant = opt => {
                     opt.filterClassList.split(" ") : opt.filterClassList);
               tplCol.classList.add(...classList);     
           } else {
-              tplCol.classList.add("col-sm-4");     
+              tplCol.classList.add("col-sm-12", "col-md-12");     
           }
 
           const tplForm = document.createElement("div");
@@ -522,15 +522,9 @@ const ponchoTableDependant = opt => {
    */
   const initDataTable = () => {
       let searchType = jQuery.fn.DataTable.ext.type.search;
-      searchType.string = function(data) {
-          return (!data ? "": 
-              (typeof data === "string" ? replaceSpecialChars(data) : data));
-      };
-      searchType.html = function(data) {
-          return (!data ? "" : 
-              (typeof data === "string" ? 
-              replaceSpecialChars(data.replace(/<.*?>/g, "")) : data));
-      };
+      searchType.string = data => (!data ? "" : data);
+      searchType.html = data => (!data ? "" : 
+              (typeof data === "string" ? data.replace(/<.*?>/g, "") : data));
 
       /**
        * Instacia DataTable()
