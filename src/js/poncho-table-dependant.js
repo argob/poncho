@@ -142,7 +142,23 @@ const ponchoTableDependant = opt => {
               return true;
       }
       return false;
-  } 
+  }; 
+
+  /**
+   * Verifica si las extensiones showdown están definidas.
+   * 
+   * @param {object} extensions 
+   * @returns {boolean}
+   */
+  const _isShowdownExtensionEnable = extensions => 
+      extensions.every(e => {
+          try {
+              showdown.extension(e);
+              return true;
+          } catch (error) {
+              return false;
+          }
+  });
 
   /**
    * Botón poncho
@@ -271,6 +287,15 @@ const ponchoTableDependant = opt => {
           const tbodyRow = tableTbody.insertRow();
           tbodyRow.id = "id_" + key;
 
+          // Verifico sin las extensiones showdown existen
+          let showdownOptions;
+          if(_isMarkdownEnable()){
+              const registeredOptions = (opt.hasOwnProperty("markdownOptions") ? 
+                    opt.markdownOptions : markdownOptions);
+              showdownOptions = (_isShowdownExtensionEnable(
+                    registeredOptions.extensions) ? registeredOptions : {});
+          }
+
           // Recorro cada uno de los títulos
           Object.keys(gapi_data.headers).forEach(header => {
               filas = entry[header];
@@ -290,10 +315,9 @@ const ponchoTableDependant = opt => {
               }
 
               // Si showdown está incluido lo uso
+              // @todo Usar showdown fuera de la función. Usarlo en options.
               if(_isMarkdownEnable()){
-                  const sdOptions = (opt.hasOwnProperty("markdownOptions") ? 
-                          opt.markdownOptions : {});
-                  const converter = new showdown.Converter(sdOptions);
+                  const converter = new showdown.Converter(showdownOptions);
                   cell.innerHTML = converter.makeHtml(filas);
               } else {
                   cell.innerHTML = filas;
