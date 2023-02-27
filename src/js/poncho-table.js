@@ -26,7 +26,7 @@ ponchoTableLegacyPatch = () => {
             + "height:6px;" 
             + "}"
             + ".js-poncho-table.legacy:after{" 
-            + "background:var(--tomate);" 
+            + "background:var(--cielo);" 
             + "}";
 
     document.querySelector("head").appendChild(style);
