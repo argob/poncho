@@ -1157,10 +1157,22 @@ const ponchoTableDependant = opt => {
    * GoogleSheets y requerimientos de ArGob.
    */
   const initDataTable = () => {
-      let searchType = jQuery.fn.DataTable.ext.type.search;
-      searchType.string = data => (!data ? "" : data);
-      searchType.html = data => (!data ? "" : 
-              (typeof data === "string" ? data.replace(/<.*?>/g, "") : data));
+      const searchType = jQuery.fn.DataTable.ext.type.search;
+      searchType.string = data => {
+        return (!data ?
+            "" :
+            (typeof data === "string" ?
+                replaceSpecialChars(data) :
+                data));
+      };
+
+      searchType.html = data => {
+        return (!data ?
+            "" :
+            (typeof data === "string" ?
+                replaceSpecialChars(data.replace( /<.*?>/g, "")) :
+                data));
+      };
 
       /**
        * Instacia DataTable()
@@ -1289,7 +1301,12 @@ const ponchoTableDependant = opt => {
           const searchTerm = (term ? decodeURIComponent(term) : "");          
           const element = document.querySelector("#ponchoTableSearch");
           element.value = searchTerm;
-          tabla.search(searchTerm).draw();
+          // const event = new Event("keyup");
+          // element.dispatchEvent(event);
+          tabla
+              .search(jQuery.fn.DataTable.ext.type.search.string(searchTerm))
+              .draw();
+
       }
   } // end initDataTable
 
