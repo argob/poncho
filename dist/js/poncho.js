@@ -839,6 +839,9 @@ const ponchoTableDependant = opt => {
           select.id = f;
           select.appendChild(_optionSelect(columna, "Todos", "", true));
           list_filter.forEach(item => {
+              if(!item){
+                  return;
+              }
               select.appendChild(_optionSelect(columna, item, item, false));
           });
 
@@ -880,6 +883,11 @@ const ponchoTableDependant = opt => {
 
       // CONTENIDO FILAS
       gapi_data.entries.forEach((entry, key) => {
+
+          if(!Object.values(entry).some(f => f.trim())){
+              return;
+          }
+
           // si se desea modificar la entrada desde opciones
           entry = (typeof opt.customEntry === "function" && 
               opt.customEntry !== null ? opt.customEntry(entry) : entry);
@@ -1112,7 +1120,7 @@ const ponchoTableDependant = opt => {
       // Redibujo los _option_ por cada `select` (filtro).
       // Hago un `for()` iniciando en el hijo de filterIndex.
       for(let i = filterIndex + 1; i <= filtros.length; i++){
-          if(filtros.length == i){ 
+          if(filtros.length == i ){ 
               break; 
           }
           let itemList = _filterOptionList(filterIndex, i, label);
@@ -1124,6 +1132,9 @@ const ponchoTableDependant = opt => {
 
           select.appendChild(_optionSelect(i, "Todos", "", true));
           itemList.forEach(e => {
+              if(!e.trim()){
+                  return;
+              }
               // Mantengo el filtro del hijo si existe en el 
               // listado filtrado.
               let checked = (filterValues[i] == e ? true : false);
