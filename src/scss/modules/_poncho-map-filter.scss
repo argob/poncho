@@ -58,7 +58,7 @@
 
 .poncho-map {
   --slider-width: 326px;
-  --color-primary: var(--primary, black);
+  --color-primary: var(--primary, $brand-primary);
   --map-background: transparent;
   --color-base: inherit;
   --slider-background: rgba(255, 255, 255, 1);
@@ -79,17 +79,22 @@
   --background-color: var(--map-background);
   --accesible-background: #f2f2f2;
 
+  .sr-only { position: absolute; left:-9999em; top:-9999em;}
+
   overflow: hidden;
   position: relative;
 
   *.text-primary {
-    color: var(--primary, #0072bb) !important;
+    color: var(--primary, $brand-primary) !important;
   }
 
   .btn-close {
     border-radius: 50%;
     aspect-ratio: 1 / 1;
     position: absolute;
+    background-image: none;
+    width: auto;
+    height: auto;
     top: 0.75rem;
     right: 0.75rem;
     background-color: transparent;

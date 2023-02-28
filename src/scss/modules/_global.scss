@@ -1,3 +1,11 @@
+// Root color definitions
+:root, html {
+  @each $name, $color in $colores {
+    --#{$name}: #{$color};
+  }
+}
+
+
 html,
 body {
   font-size: 16px;
