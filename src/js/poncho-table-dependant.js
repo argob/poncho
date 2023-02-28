@@ -221,7 +221,8 @@ const ponchoTableDependant = opt => {
                     opt.filterClassList.split(" ") : opt.filterClassList);
               tplCol.classList.add(...classList);     
           } else {
-              tplCol.classList.add("col-sm-12", "col-md-12");     
+              const cols = Math.floor(12 / Object.keys(filtro).length);
+              tplCol.classList.add("col-sm-12", `col-md-${cols}`);     
           }
 
           const tplForm = document.createElement("div");
