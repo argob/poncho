@@ -57,6 +57,17 @@ gulp.task('sass_poncho', function(){
 });
 
 
+/**
+ * Compila los archivso SASS
+ */
+gulp.task('sass_poncho-map', function(){
+  return gulp.src([
+        './src/scss/poncho-map.scss'
+    ])
+    .pipe(sass.sync({outputStyle: 'compressed'}).on('error', sass.logError))
+    // .pipe(sass())
+    .pipe(gulp.dest('./dist/css'))
+});
 
 
 
