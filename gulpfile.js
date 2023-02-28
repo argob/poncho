@@ -56,6 +56,10 @@ gulp.task('sass_poncho', function(){
     .pipe(gulp.dest('./dist/css'))
 });
 
+
+
+
+
 /**
  * Compila y minifica los archivs JS en poncho.min.js
  */
@@ -115,4 +119,4 @@ gulp.task('compress', function () {
 });
 
 
-gulp.task('default', gulp.series( 'sass', 'sass_poncho', 'compress', 'poncho', 'ponchomin'))
+gulp.task('default', gulp.series( 'sass', 'sass_poncho', 'compress', 'poncho', 'ponchomin', "sass_poncho-map"))

@@ -133,9 +133,3 @@ $font-family-serif: 'Droid Serif', serif;
 $font-family-sans-serif: 'Encode Sans', Arial, sans-serif;
 
 
-// Root color definitions
-:root, html {
-    @each $name, $color in $colores {
-      --#{$name}: #{$color};
-    }
-}
