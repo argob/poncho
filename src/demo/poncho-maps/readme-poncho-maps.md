@@ -97,7 +97,7 @@ const options = {
 "template_structure": {
     "lead": {
         "key": "type", 
-        "css`": "text-primary bg-warning",
+        "css": "text-primary bg-warning",
         "style": "color: orange; font-size:2em; margin: 2em auto;"
     }
 } 
