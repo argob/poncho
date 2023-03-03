@@ -4027,7 +4027,6 @@ class PonchoMapFilter extends PonchoMap {
             "filters": [],
             "filters_visible": false,
             "filters_info": false,
-            "check_uncheck_all": false,
             "search_fields": [],
             "messages": {
                 "reset": " <a href=\"#\" class=\"{{reset_search}}\" "
@@ -4047,7 +4046,6 @@ class PonchoMapFilter extends PonchoMap {
         this.filters = opts.filters;
         this.filters_info = opts.filters_info;
         this.filters_visible = opts.filters_visible;
-        this.check_uncheck_all = opts.check_uncheck_all;
         this.valid_fields = ["checkbox", "radio"];
         this.search_fields = opts.search_fields;
         this.messages = opts.messages;
@@ -4487,11 +4485,11 @@ class PonchoMapFilter extends PonchoMap {
         return checkAllItems;
     }
 
-
     /**
      * Crea los checkbox para los filtros.
      */
     _createFilters = (data) => {
+      // debugger
         const form_filters = document
             .querySelector(`.js-filters${this.scope_sufix}`);
 
@@ -4502,7 +4500,7 @@ class PonchoMapFilter extends PonchoMap {
 
             let fieldset = document.createElement("fieldset");
             fieldset.appendChild(legend);
-            if(this.check_uncheck_all){
+            if(item.hasOwnProperty("check_uncheck_all") && item.check_uncheck_all){
                 fieldset.appendChild(this._checkUncheckButtons(item));
             }
             fieldset.appendChild(this._fields(item, group));
@@ -4800,9 +4798,6 @@ class PonchoMapFilter extends PonchoMap {
      * @returns {undefined}
      */
     checkUncheckFilters = () => {
-        if(!this.check_uncheck_all){
-            return null;
-        }
         const buttons = document.querySelectorAll(
             `${this.scope_selector} .js-select-items`);
         buttons.forEach(element => {
@@ -4847,8 +4842,6 @@ class PonchoMapFilter extends PonchoMap {
         if(this.filters_visible){
             this._filterContainerHeight();
         }
-
-
     };
 };
 // end of class
