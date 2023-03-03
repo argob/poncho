@@ -37,8 +37,8 @@ COPIAR DESDE ACÁ…
 
 <!-- INCLUDE SCRIPTS -->
 <link href="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/ponchoTable-1.1.css" rel="stylesheet">
-<!-- <script src="https://www.argentina.gob.ar/sites/default/files/ponchotable/showdown.js"></script> -->
-<!-- <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/extensiones/showdown-extensions.js"></script> -->
+<script src="https://www.argentina.gob.ar/sites/default/files/ponchotable/showdown.js"></script>
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/extensiones/showdown-extensions.js"></script>
 <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/datatables.min.js"></script>
 <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/intl.min.js"></script>
 <!-- <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script> -->
@@ -48,50 +48,67 @@ COPIAR DESDE ACÁ…
 <script src="../../../src/js/gapi-sheet-data.js"></script>
 <script src="../../../src/js/poncho-table-dependant.js"></script>
 <script src="../../../src/js/poncho-table.js"></script>
+
+<script>
+  // const imports = [
+  //       "https://www.argentina.gob.ar/sites/default/files/ponchotable/showdown.js",
+  //       "https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/extensiones/showdown-extensions.js",
+  //       "https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/datatables.min.js",
+  //       "https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/intl.min.js",
+  //       "../../../src/js/utils.js",
+  //       "../../../src/js/gapi-sheet-data.js",
+  //       "../../../src/js/poncho-table-dependant.js",
+  //       "../../../src/js/poncho-table.js",
+  // ];
+  // const head = document.querySelector("head");
+  // imports.forEach(i => {
+  //     const script = document.createElement("script");
+  //     script.src = i;  
+  //     head.appendChild(script);
+  // });
+</script>
+
 </script>
 
 
-
-    <div class="row">
-      <div class="col-sm-4" id="ponchoTableFiltroCont" style="display:none">
-        <!-- <div class="form-group"><label for="ponchoTableFiltro" id="tituloFiltro">Filtro</label> <select class="form-control"
-            id="ponchoTableFiltro" name="ponchoTableFiltro">
-            <option value="">Todos</option>
-          </select>
-        </div>  -->
-        <div class="row" id="ponchoTableFiltro"></div>
-      </div>
-      <div class="col-sm-8" id="ponchoTableSearchCont" style="display:none">
-        <div class="form-group"><label for="ponchoTableSearch">Buscar por palabra clave</label> <input class="form-control"
-            id="ponchoTableSearch" type="search" /></div>
-      </div>
-      <div class="col-md-12 m-b-4">
-        <table class="table tabla-condensed table-striped" id="ponchoTable">
-          <caption> </caption>
-          <thead>
-    
-          </thead>
-          <tbody></tbody>
-        </table>
-      </div>
+<!-- FILTERS -->
+<div class="row">
+  <div class="col-sm-12 col-md-4" id="ponchoTableFiltroCont" style="display:none">
+    <div class="row" id="ponchoTableFiltro"></div>
+  </div>
+  <div class="col-sm-12 col-md-8" id="ponchoTableSearchCont" style="display: none">
+    <div class="form-group">
+      <label for="ponchoTableSearch">Buscá por palabra clave</label>
+      <input class="form-control" id="ponchoTableSearch" type="search">
     </div>
-
+  </div>
+</div>
+<!-- / FILTERS -->
+<!-- TABLE -->
+<div class="row">
+  <div class="col-md-12 m-b-4">
+    <table class="table table-condensed table-striped" id="ponchoTable">
+      <caption></caption>
+      <thead></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</div>
+<!-- / TABLE -->
 
 <script>
     (function($) {
         var ponchoTableOpciones = {
-            "idSpread": "1P1aOHYZC1oYqiFARQbwg0tZMkGSB0RIvvWOfjl-6998", // SIEMPRE PUBLICAR SPREADSHEET, el id va entre comillas
-            "hojaNumero": 1, // SIEMPRE VERIFICAR PESTAÑA DE LA PLANILLA, default: 1
-            "tituloTabla": "titulo", // EDITAR SIEMPRE - Título corto entre comillas para accesibilidad
-            "ordenColumna": 1, // SIEMPRE VERIFICAR POR CUÁL COLUMNA ORDENA, la primera columna es 1
+            "idSpread": "1pkw-pxiPVbSeXG1tJundeL9Iej8GknEZBcRny9T7rdI", // SIEMPRE PUBLICAR SPREADSHEET Y QUE EL ENLACE SEA PÚBLICO, el id va entre comillas
+            "hojaNombre": "3 oferta_cargos", // ESCRIBÍ ENTRE COMILLAS EL NOMBRE DE LA PESTAÑA DE LA PLANILLA
+            "tituloTabla": "oferta", // EDITAR SIEMPRE - Título corto entre comillas para accesibilidad
+            "ordenColumna": 5, // SIEMPRE VERIFICAR POR CUÁL COLUMNA ORDENA, la primera columna es 1
             "ordenTipo": "asc", // SIEMPRE VERIFICAR TIPO DE ORDEN, ASCENDENTE O DESCENDENTE, "asc" es de A a Z y de menor a mayor, "desc" es de Z a A y mayor a menor
-            //"ocultarColumnas":[], // SI HAY QUE OCULTAR UNA O VARIAS COLUMNAS, ELIMINAR DOBLE BARRA DEL INICIO DE LA LÍNEA Y AGREGAR NÚMERO DE COL,UMNA ENTRE CORCHETES, la primera columna es cero, para varias columnas se las separa con comas
-            "cantidadItems": 20 // DETERMINA CANTIDAD DE FILAS QUE SE MUESTRAN A LA VEZ, default 10
+            "ocultarColumnas": [9,10], // SI HAY QUE OCULTAR UNA O VARIAS COLUMNAS, AGREGAR NÚMERO DE COLUMNA ENTRE LOS CORCHETES, la primera columna es cero, para varias columnas se las separa con comas
+            "cantidadItems": 40 // DETERMINA CANTIDAD DE FILAS QUE SE MUESTRAN A LA VEZ, default 10
         };
         ponchoTable(ponchoTableOpciones);
     })(jQuery);
-
-
 </script>
 <!-- / PONCHOTABLE -->
 </body>
