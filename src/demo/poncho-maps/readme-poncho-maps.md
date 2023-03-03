@@ -78,18 +78,18 @@ const options = {
 
 | Parámetro | Tipo | Default | Descripción |
 |:---|:---|:---|:---|
-| template_container_classlist | `Array()` | `["info-container"]` | Define la lista de clases CSS que pueden agregarse al contenedor del listado de terminos y descripciones. | 
+| container_classlist | `Array()` | `["info-container"]` | Define la lista de clases CSS que pueden agregarse al contenedor del listado de terminos y descripciones. | 
 | lead | `object` | `{}` | Volanta.<br><br>Ver opciones para [lead](#opciones-para-lead). |
 | mixing | `object` | `{}` | Permite crear una entrada uniendo cadenas de texto o valores de la entrada.<br><br>Ver opciones para [mixing](#opciones-para-mixing). |
 | header | `function` | `false` | Permite modificar el header del template retornando un `string` desde una función. <br>`"header": (self, entry) => string` |
 | title | `string` | "" | Permite redefinir la clave que se utiliza para el panel de información teniendo precedencia sobre la opción general _`title`_. |
-| template_title_classlist | `Array()` | `["h4","title"]` | Listado de selectores CSS se que aplicarán en la etiqueta HTML asignada título.| 
-| template_dl_classlist | `Array()` | `["definition-list"]` | Listado de selectores CSS se que aplicarán en la etiqueta HTML asignada contenedor del listado de términos y definiciones.| 
-| template_dt_classlist | `Array()` | `["h6", "m-b-0"]` | Listado de selectores CSS se que aplicarán en la etiqueta HTML asignada al término.| 
-| template_dd_classlist | `Array()` | `[]` | Listado de selectores CSS se que aplicarán en la etiqueta HTML asignada a la definición.| 
-| template_dl | `strng` | `dl` | Define la etiqueta HTML que contiene el listado de términos y descripciones.| 
-| template_dt | `strng` | `dt` | Define la etiqueta HTML para el término.| 
-| template_dd | `strng` | `dd` | Define la etiqueta HTML para la descripción.| 
+| title_classlist | `Array()` | `["h4","title"]` | Listado de selectores CSS se que aplicarán en la etiqueta HTML asignada título.| 
+| definition_list_classlist | `Array()` | `["definition-list"]` | Listado de selectores CSS se que aplicarán en la etiqueta HTML asignada contenedor del listado de términos y definiciones.| 
+| term_classlist | `Array()` | `["h6", "m-b-0"]` | Listado de selectores CSS se que aplicarán en la etiqueta HTML asignada al término.| 
+| definition_classlist | `Array()` | `[]` | Listado de selectores CSS se que aplicarán en la etiqueta HTML asignada a la definición.| 
+| definition_list_tag | `strng` | `dl` | Define la etiqueta HTML que contiene el listado de términos y descripciones.| 
+| term_tag | `strng` | `dt` | Define la etiqueta HTML para el término.| 
+| definition_tag | `strng` | `dd` | Define la etiqueta HTML para la descripción.| 
 
 #### <a id="opciones-para-lead"></a>Opciones para `lead` [⏎](#opciones-template-structure "Ir al listado de opciones para template_structure")
 
@@ -97,7 +97,7 @@ const options = {
 "template_structure": {
     "lead": {
         "key": "type", 
-        "class": "text-primary bg-warning",
+        "css`": "text-primary bg-warning",
         "style": "color: orange; font-size:2em; margin: 2em auto;"
     }
 } 
@@ -361,7 +361,8 @@ const options = {
       "legend": "Ver",
       "type": "checkbox",
       "field": ["provincia", "checked"],
-      "fields": false
+      "fields": false,
+      "check_uncheck_all": false
     }
   ]
 };
@@ -393,6 +394,7 @@ const options = {
 | type | `string` | checkbox | Define el tipo de input que debe reproducir el filtro. Dos opciones son las posibles: checkbox y radio.  |
 | field | `Object` | `false` | Permite crear un filtro en base a una de las claves en la entrada de datos.<br><br>Ver opciones para [field](#opciones-field)|
 | fields | `Object` | `false` | A diferencia de *field*, permite componer un filtro en base a criterios definidos por el usuario utilizando datos existentes en las entradas.<br><br>Ver opciones para [fields](#opciones-fields)|
+| check_uncheck_all | `boolean` | `false` | Si se habilita dentro de cada fieldset, debajo del legend, se pueden visualizar los botones de: _marcar todos_ y _desmarcar todos_, los checkbox de ese filtro. |
 
 
 ####  <a id="opciones-field"></a> Opciones para `field`   [⏎](#opciones-filters "Ver opciones para filters")
@@ -599,3 +601,4 @@ Por último agregamos la llamada al mapa.
 ## Referencias
 1. jQuery <[https://jquery.com/](https://jquery.com/)>
 2. Leaftlet <[https://leafletjs.com/](https://leafletjs.com/)>
+****
