@@ -99,13 +99,13 @@ COPIAR DESDE ACÁ…
 <script>
     (function($) {
         var ponchoTableOpciones = {
-            "idSpread": "1pkw-pxiPVbSeXG1tJundeL9Iej8GknEZBcRny9T7rdI", // SIEMPRE PUBLICAR SPREADSHEET Y QUE EL ENLACE SEA PÚBLICO, el id va entre comillas
-            "hojaNombre": "3 oferta_cargos", // ESCRIBÍ ENTRE COMILLAS EL NOMBRE DE LA PESTAÑA DE LA PLANILLA
-            "tituloTabla": "oferta", // EDITAR SIEMPRE - Título corto entre comillas para accesibilidad
-            "ordenColumna": 5, // SIEMPRE VERIFICAR POR CUÁL COLUMNA ORDENA, la primera columna es 1
+            "idSpread": "1tCdJSWlHXjMUuv95VA1l8gT6tjqvk0NG6nbIw_o_m60", // SIEMPRE PUBLICAR SPREADSHEET, el id va entre comillas
+            "hojaNumero": 1, // SIEMPRE VERIFICAR PESTAÑA DE LA PLANILLA, default: 1
+            "tituloTabla": "Consultá contenidos digitales", // EDITAR SIEMPRE - Título corto entre comillas para accesibilidad
+            "ordenColumna": 1, // SIEMPRE VERIFICAR POR CUÁL COLUMNA ORDENA, la primera columna es 1
             "ordenTipo": "asc", // SIEMPRE VERIFICAR TIPO DE ORDEN, ASCENDENTE O DESCENDENTE, "asc" es de A a Z y de menor a mayor, "desc" es de Z a A y mayor a menor
-            "ocultarColumnas": [9,10], // SI HAY QUE OCULTAR UNA O VARIAS COLUMNAS, AGREGAR NÚMERO DE COLUMNA ENTRE LOS CORCHETES, la primera columna es cero, para varias columnas se las separa con comas
-            "cantidadItems": 40 // DETERMINA CANTIDAD DE FILAS QUE SE MUESTRAN A LA VEZ, default 10
+            //"ocultarColumnas":[], // SI HAY QUE OCULTAR UNA O VARIAS COLUMNAS, ELIMINAR DOBLE BARRA DEL INICIO DE LA LÍNEA Y AGREGAR NÚMERO DE COL,UMNA ENTRE CORCHETES, la primera columna es cero, para varias columnas se las separa con comas
+            "cantidadItems": 10 // DETERMINA CANTIDAD DE FILAS QUE SE MUESTRAN A LA VEZ, default 10
         };
         ponchoTable(ponchoTableOpciones);
     })(jQuery);

@@ -186,14 +186,15 @@ const ponchoTableDependant = opt => {
   * @return {undefined}
   */ 
   const tdDate = value => {
-      const dteSplit = value.split("/");
-      dteSplit.reverse();
-      const finalDate = dteSplit.join("-");
+      const dateSplit = value.split("/");
+      const finalDateIso = new Date(
+          dateSplit[2], dateSplit[1] - 1, dateSplit[0]
+      );
 
-      const datetime = document.createElement("datetime");
-      datetime.setAttribute("datetime", finalDate);
-      datetime.textContent = value;
-      return datetime.outerHTML;
+      const hiddenSpan = document.createElement("span");
+      hiddenSpan.style.display = "none";
+      hiddenSpan.textContent = finalDateIso.toISOString().split('T')[0];
+      return hiddenSpan.outerHTML + value;
   };
 
   /**
