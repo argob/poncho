@@ -283,7 +283,7 @@ function ponchoTable(opt) {
 
 
 /**
- * PONCHO TABLE DEPENDANT
+ * PONCHO TABLE
  *
  * @summary PonchoTable con filtros dependientes
  *
@@ -487,7 +487,7 @@ const ponchoTableDependant = opt => {
    * @param {object} gapi_data Objeto con la información separada del
    * documento Google Sheet
    */
-  const createFilters = gapi_data => {
+  const _createFilters = gapi_data => {
       // Contenedor
       const tableFiltroCont = document.querySelector("#ponchoTableFiltro");
       tableFiltroCont.innerHTML = "";
@@ -543,7 +543,7 @@ const ponchoTableDependant = opt => {
    * @param {object} gapi_data Objeto con la información separada del
    * documento Google Sheet
    */
-  const createTable = gapi_data => {
+  const _createTable = gapi_data => {
       // Table thead > th
       const thead = document.querySelector("#ponchoTable thead");
       thead.innerHTML = "";
@@ -829,6 +829,30 @@ const ponchoTableDependant = opt => {
   };
 
   /**
+   * Asigna selectores al contenedor de los filtros.
+   * @returns {undefined}
+   */
+  const _filtersContainerClassList = () =>{
+      if(opt.hasOwnProperty("filterContClassList") && opt.filterContClassList){
+          const fc = document.getElementById("ponchoTableFiltroCont");
+          fc.removeAttribute("class");
+          fc.classList.add(...opt.filterContClassList);
+      }
+  };
+
+  /**
+   * Asigna selectores al contenedor del buscador.
+   * @returns {undefined}
+   */
+  const _searchContainerClassList = () =>{
+    if(opt.hasOwnProperty("searchContClassList") && opt.searchContClassList){
+        const element = document.getElementById("ponchoTableSearchCont");
+        element.removeAttribute("class");
+        element.classList.add(...opt.searchContClassList)
+    }
+  };
+
+  /**
    * Si la URL tiene un valor por _hash_ lo obtiene considerandolo su id.
    * @returns {void}
    */
@@ -1018,8 +1042,10 @@ const ponchoTableDependant = opt => {
           asFilter = (opt.asFilter ? opt.asFilter(gapi_data.entries) : {});
           filtro = flterMatrix(gapi_data, filtersList);
 
-          createTable(gapi_data);
-          createFilters(gapi_data); 
+          _filtersContainerClassList();
+          _searchContainerClassList();
+          _createTable(gapi_data);
+          _createFilters(gapi_data); 
 
           document.querySelector("#ponchoTableSearchCont")
               .style.display = "block";
@@ -1061,6 +1087,7 @@ const ponchoTableDependant = opt => {
   }
 
 };
+
 
 //#####################################################################
 //####################### POPOVER #####################################
