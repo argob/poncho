@@ -49,34 +49,13 @@ COPIAR DESDE ACÁ…
 <script src="../../../src/js/poncho-table-dependant.js"></script>
 <script src="../../../src/js/poncho-table.js"></script>
 
-<script>
-  // const imports = [
-  //       "https://www.argentina.gob.ar/sites/default/files/ponchotable/showdown.js",
-  //       "https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/extensiones/showdown-extensions.js",
-  //       "https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/datatables.min.js",
-  //       "https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/intl.min.js",
-  //       "../../../src/js/utils.js",
-  //       "../../../src/js/gapi-sheet-data.js",
-  //       "../../../src/js/poncho-table-dependant.js",
-  //       "../../../src/js/poncho-table.js",
-  // ];
-  // const head = document.querySelector("head");
-  // imports.forEach(i => {
-  //     const script = document.createElement("script");
-  //     script.src = i;  
-  //     head.appendChild(script);
-  // });
-</script>
-
-</script>
-
 
 <!-- FILTERS -->
 <div class="row">
-  <div class="col-sm-12 col-md-4" id="ponchoTableFiltroCont" style="display:none">
+  <div class="col-sm-12 col-md-12" id="ponchoTableFiltroCont" style="display:none">
     <div class="row" id="ponchoTableFiltro"></div>
   </div>
-  <div class="col-sm-12 col-md-8" id="ponchoTableSearchCont" style="display: none">
+  <div class="col-sm-12 col-md-12" id="ponchoTableSearchCont" style="display: none">
     <div class="form-group">
       <label for="ponchoTableSearch">Buscá por palabra clave</label>
       <input class="form-control" id="ponchoTableSearch" type="search">
@@ -97,18 +76,19 @@ COPIAR DESDE ACÁ…
 <!-- / TABLE -->
 
 <script>
-    (function($) {
-        var ponchoTableOpciones = {
-            "idSpread": "1tCdJSWlHXjMUuv95VA1l8gT6tjqvk0NG6nbIw_o_m60", // SIEMPRE PUBLICAR SPREADSHEET, el id va entre comillas
-            "hojaNumero": 1, // SIEMPRE VERIFICAR PESTAÑA DE LA PLANILLA, default: 1
-            "tituloTabla": "Consultá contenidos digitales", // EDITAR SIEMPRE - Título corto entre comillas para accesibilidad
-            "ordenColumna": 1, // SIEMPRE VERIFICAR POR CUÁL COLUMNA ORDENA, la primera columna es 1
-            "ordenTipo": "asc", // SIEMPRE VERIFICAR TIPO DE ORDEN, ASCENDENTE O DESCENDENTE, "asc" es de A a Z y de menor a mayor, "desc" es de Z a A y mayor a menor
-            //"ocultarColumnas":[], // SI HAY QUE OCULTAR UNA O VARIAS COLUMNAS, ELIMINAR DOBLE BARRA DEL INICIO DE LA LÍNEA Y AGREGAR NÚMERO DE COL,UMNA ENTRE CORCHETES, la primera columna es cero, para varias columnas se las separa con comas
-            "cantidadItems": 10 // DETERMINA CANTIDAD DE FILAS QUE SE MUESTRAN A LA VEZ, default 10
-        };
-        ponchoTable(ponchoTableOpciones);
-    })(jQuery);
+  (function ($) {
+    var ponchoTableOpciones = {
+      "idSpread": "13VUzy1PXOUts30jySNjxSqWQt-JMOgjNf_N2fBgJHJ8",
+      "hojaNumero": 1,
+      "tituloTabla": "Fabricantes talleres",
+      "ordenColumna": 1,
+      "ordenTipo": "desc",
+      filterClassList: ["col-md-2"],
+      filterContClassList: ["col-md-12"],
+      searchContClassList: ["col-md-12"],
+    };
+    ponchoTable(ponchoTableOpciones);
+  })(jQuery);
 </script>
 <!-- / PONCHOTABLE -->
 </body>
