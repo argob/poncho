@@ -26,9 +26,12 @@ Para que los filtros funcionen en las tablas de Google, se debe usar el prefijo 
 | jsonUrl | `string` | URL del documento o servicio JSON |
 | hash | `boolean` | Permite hacer una búsqueda pasándo un _hash_ por URL. Ej: <br>`www.argentina.gob.ar#mi-busqueda` |
 | filterClassList | `object` | Listado de selectores css para asignar en cada columna de filtros. Ej: <br>`filterClassList:["col-sm-6", "col-md-4"],` |
+| filterContClassList | `object` | Listado de selectores css para asignar al contenedor de filtros. Ej: <br>`filterContClassList:["col-sm-6", "col-md-4"],` |
+| searchContClassList | `object` | Listado de selectores css para asignar al contenedor del input de búsqueda. Ej: <br>`searchContClassList:["col-sm-6", "col-md-4"],` |
 | asFilter | `object` | Permite definir un listado de items asignados a un filtro. <br>`"asFilter":  (row) => row,` |
 | customEntry | `object` | Permite modificar la entrada que se mostrará en la tabla manteniendo la entrada original para el uso global de los datos.<br>`"customEntry": (row) => row,` |
 | refactorEntries | `object` | Permite modificar el documento JSON en su totalidad.<br>`"refactorEntries": (row) => row,` |
+
 
 ## Scripts
 
