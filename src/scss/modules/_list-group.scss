@@ -157,7 +157,10 @@ a {
     }
     .description {
       padding-bottom: 40px;
+      
+      h5 { margin-top: .25em;}
     }
+
 
     &:last-of-type .description {
       padding: 0;
