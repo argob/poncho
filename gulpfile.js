@@ -122,7 +122,8 @@ gulp.task('compress', function () {
   return gulp.src([
           './src/js/showdown-extensions.js',
           './src/js/mapa-argentina.js',
-          './src/js/device-breadcrumb.js'
+          './src/js/device-breadcrumb.js',
+          './src/js/national-holidays.js'
       ])
       // .pipe(babel())
       .pipe(uglify())
