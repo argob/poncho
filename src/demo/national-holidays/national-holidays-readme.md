@@ -142,12 +142,13 @@ const holidays = [
 ## Script
 
 ```javascript
-jQuery(document).ready(function() {
+document.addEventListener("DOMContentLoaded", function() {
     const calendarOptions = {
-        "calendarYear": 2021,
+        "calendarYear": 2020,
+        "allowHTML": true,
         "containerId": "#calendar-container",
         "templateId": "#month-tpl",
-        "markers": [holidays],
+        "markers": [holidays2020],
         "holidays_type": {
             "inamovible": "primary",
             "trasladable": "success",

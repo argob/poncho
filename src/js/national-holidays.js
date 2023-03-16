@@ -1,5 +1,8 @@
 /**
+ * FERIADOS NACIONALES
  * 
+ * @summary Hace un render de un calendario anual de los feriados 
+ * Nacionales de la República Argentina. 
  */
 const calendar = {
   TODAY: null,
