@@ -160,7 +160,7 @@
 <!-- / Calendar -->
 
     <!-- <script src="../../../src/js/national-holidays.js"></script> -->
-    <link rel="stylesheet" href="http://127.0.0.1:5501/src/demo/feriados-nacionales/css/main.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5501/src/demo/national-holidays/css/main.css">
     <script src="http://127.0.0.1:5501/src/js/national-holidays.js"></script>
   
     <script>
@@ -308,13 +308,13 @@
         { "date": "01/01/2021", "label": "Año Nuevo", "type": "inamovible" },
     ];
 
-jQuery(document).ready(function() {
+document.addEventListener("DOMContentLoaded", function() {
     const calendarOptions = {
-        "calendarYear": 2020,
+        "calendarYear": 2023,
         "allowHTML": true,
         "containerId": "#calendar-container",
         "templateId": "#month-tpl",
-        "markers": [holidays2020],
+        "markers": [holidays2023],
         "holidays_type": {
             "inamovible": "primary",
             "trasladable": "success",
