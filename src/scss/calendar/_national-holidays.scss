@@ -14,11 +14,12 @@
   }
 
   .calendar {
-    display: inline-grid;
+    display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-auto-rows: min-content;
     grid-column-gap: 2.5em;
     grid-row-gap: 1em;
+    clear: both;
   }
   .day {
     font-weight: 500;
