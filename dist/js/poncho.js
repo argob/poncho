@@ -322,6 +322,7 @@ const ponchoTableDependant = opt => {
   var filtersList = [];
   var filtro = {};
   var asFilter = {};
+  var allowedTags = ["*"];
   let markdownOptions = {
       "tables": true,
       "simpleLineBreaks": true,
@@ -610,11 +611,14 @@ const ponchoTableDependant = opt => {
 
               // Si showdown está incluido lo uso
               // @todo Usar showdown fuera de la función. Usarlo en options.
+              const allowed_tags = (opt.hasOwnProperty("allowedTags") ? 
+                    opt.allowedTags : allowedTags);
+              const cleannedText = secureHTML(filas, allowed_tags);
               if(_isMarkdownEnable()){
                   const converter = new showdown.Converter(showdownOptions);
-                  cell.innerHTML = converter.makeHtml(filas);
+                  cell.innerHTML = converter.makeHtml(cleannedText);
               } else {
-                  cell.innerHTML = filas;
+                  cell.innerHTML = cleannedText;
               }
           });
       });
