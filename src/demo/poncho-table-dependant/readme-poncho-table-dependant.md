@@ -31,6 +31,7 @@ Para que los filtros funcionen en las tablas de Google, se debe usar el prefijo 
 | asFilter | `object` | Permite definir un listado de items asignados a un filtro. <br>`"asFilter":  (row) => row,` |
 | customEntry | `object` | Permite modificar la entrada que se mostrará en la tabla manteniendo la entrada original para el uso global de los datos.<br>`"customEntry": (row) => row,` |
 | refactorEntries | `object` | Permite modificar el documento JSON en su totalidad.<br>`"refactorEntries": (row) => row,` |
+| allowedTags | `object` | Permite configurar un listado de etiquetas HTML que se imprimirán como parte del DOM y no como un texto. Para habilitar todas las etiquetas se utiliza `["*"]`. Si se quiere especificar cuales deben usarse, ej.: `["a", "strong"]`. |
 
 
 ## Scripts
@@ -94,9 +95,9 @@ Para que los filtros funcionen en las tablas de Google, se debe usar el prefijo 
         "cantidadItems": 15, 
         "hash": true,
         "filterClassList": ["col-sm-12","col-md-6"],
-        // "asFilter":  (row) => row,
-        // "customEntry": (row) => row,
-        // "refactorEntries": (row) => row,
+        "allowedTags": ["*"],
+        "asFilter":  (row) => row,
+        "customEntry": (row) => row,
     };
     ponchoTableDependant(options);
 })(jQuery);

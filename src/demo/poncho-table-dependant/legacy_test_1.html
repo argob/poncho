@@ -78,14 +78,15 @@ COPIAR DESDE ACÁ…
 <script>
   (function ($) {
     var ponchoTableOpciones = {
-      "idSpread": "13VUzy1PXOUts30jySNjxSqWQt-JMOgjNf_N2fBgJHJ8",
+      "idSpread": "13fwIEw_x34JZyfmYrRfRzvJ3SLUoGikjEEJTGINtvKw",
       "hojaNumero": 1,
       "tituloTabla": "Fabricantes talleres",
       "ordenColumna": 1,
       "ordenTipo": "desc",
-      filterClassList: ["col-md-2"],
-      filterContClassList: ["col-md-12"],
-      searchContClassList: ["col-md-12"],
+      // filterClassList: ["col-md-2"],
+      filterContClassList: ["col-md-4"],
+      searchContClassList: ["col-md-8"],
+      allowedTags : ["*"] // PERMITE ACTIVAR ETIQUETAS HTML. * = TODAS LAS ETIQUETAS. EJ. ["strong", "button"] = ETIQUETA <strong> y <button>. VALOR POR DEFECT *
     };
     ponchoTable(ponchoTableOpciones);
   })(jQuery);
