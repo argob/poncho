@@ -36,7 +36,7 @@
 | template_innerhtml | `boolean` | `false` | Permite incrustar html dentro de la descripción.|
 | template_markdown | `boolean` | `false` | Habilita el uso del _plugin_ [showdown.js](https://showdownjs.com).|
 | markdown_options | `object` | | Permite configurar las opciones del _plugin_ showdown.js<br><br>[Ver opciones para markdow_options](#opciones-markdown-options)|
-| allowed_tags | `object` | `[]` | Permite configurar un listado de etiquetas HTML que se imprimirán como parte del DOM y no como un texto. Para habilitar todas las etiquetas se utiliza `["*"]`. Si se quiere especificar cuales deben usarse, ej.: `["a", "strong"]`. 
+| allowed_tags | `object` | `[]` | Permite configurar un listado de etiquetas HTML que se imprimirán como parte del DOM y no como un texto. Para habilitar todas las etiquetas se utiliza `["*"]`. Si se quiere especificar cuales deben usarse, ej.: `["a", "strong"]`. |
 | headers | `object` | `{}` | Permite definir títulos dinámicos mapeando la clave del objeto que contiene la información con los encabezados | 
 | header_icons | `object` | `{}` | Permite definir un ícono para cada uno de los headers de la entrada.<br><br>Ver opciones para [header_icons](#opciones-header-icons). | 
 | hash | `boolean` | `false` | Habilita la acción por la cual, cada vez que se hace *clic* en un marker se reemplaza el hash en la barra de dirección del navegador.| 
