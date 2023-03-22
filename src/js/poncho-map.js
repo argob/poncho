@@ -39,7 +39,7 @@
 class PonchoMap {
   constructor(data, options){
       const defaults = {
-          "error_reporting": true,
+          "error_reporting": false,
           "no_info": false,
           "title": false,
           "id": "id",
