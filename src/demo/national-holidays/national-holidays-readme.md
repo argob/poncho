@@ -4,7 +4,7 @@
 
 ```html
 <!-- Calendar -->
-<section class="national-holidays">
+<section class="national-holidays col-md-12">
   <div>
       <!-- Bloque dinámico -->
       <div aria-hidden="true" id="js-hoynoes" role="presentation" class="">
