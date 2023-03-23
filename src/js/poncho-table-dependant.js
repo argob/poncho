@@ -327,8 +327,13 @@ const ponchoTableDependant = opt => {
 
               // Si showdown está incluido lo uso
               // @todo Usar showdown fuera de la función. Usarlo en options.
-              const allowed_tags = (opt.hasOwnProperty("allowedTags") ? 
+              let allowed_tags = (opt.hasOwnProperty("allowedTags") ? 
                     opt.allowedTags : allowedTags);
+              
+              // Anchor como filtro está permitido por defecto.
+              allowed_tags = (  header.startsWith("btn-") && filas != "" ? 
+                    [...allowed_tags, "a"] : allowed_tags);
+              
               const cleannedText = secureHTML(filas, allowed_tags);
               if(_isMarkdownEnable()){
                   const converter = new showdown.Converter(showdownOptions);
