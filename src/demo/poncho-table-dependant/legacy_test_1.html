@@ -78,15 +78,17 @@ COPIAR DESDE ACÁ…
 <script>
   (function ($) {
     var ponchoTableOpciones = {
-      "idSpread": "13fwIEw_x34JZyfmYrRfRzvJ3SLUoGikjEEJTGINtvKw",
-      "hojaNumero": 1,
-      "tituloTabla": "Fabricantes talleres",
-      "ordenColumna": 1,
-      "ordenTipo": "desc",
+      "idSpread": "13VUzy1PXOUts30jySNjxSqWQt-JMOgjNf_N2fBgJHJ8", // SIEMPRE PUBLICAR SPREADSHEET, el id va entre comillas
+      "hojaNumero": 1, // SIEMPRE VERIFICAR PESTAÑA DE LA PLANILLA, default: 1
+      "tituloTabla": "titulo", // EDITAR SIEMPRE - Título corto entre comillas para accesibilidad
+      "ordenColumna": 1, // SIEMPRE VERIFICAR POR CUÁL COLUMNA ORDENA, la primera columna es 1
+      "ordenTipo": "asc", // SIEMPRE VERIFICAR TIPO DE ORDEN, ASCENDENTE O DESCENDENTE, "asc" es de A a Z y de menor a mayor, "desc" es de Z a A y mayor a menor
+      //"ocultarColumnas":[], // SI HAY QUE OCULTAR UNA O VARIAS COLUMNAS, ELIMINAR DOBLE BARRA DEL INICIO DE LA LÍNEA Y AGREGAR NÚMERO DE COL,UMNA ENTRE CORCHETES, la primera columna es cero, para varias columnas se las separa con comas
+      "cantidadItems": 20, // DETERMINA CANTIDAD DE FILAS QUE SE MUESTRAN A LA VEZ, default 10,
       // filterClassList: ["col-md-2"],
-      filterContClassList: ["col-md-4"],
-      searchContClassList: ["col-md-8"],
-      allowedTags : ["*"] // PERMITE ACTIVAR ETIQUETAS HTML. * = TODAS LAS ETIQUETAS. EJ. ["strong", "button"] = ETIQUETA <strong> y <button>. VALOR POR DEFECT *
+      filterContClassList: ["col-md-12"],
+      searchContClassList: ["col-md-12"],
+      allowedTags : [] // PERMITE ACTIVAR ETIQUETAS HTML. * = TODAS LAS ETIQUETAS. EJ. ["strong", "button"] = ETIQUETA <strong> y <button>. VALOR POR DEFECT *
     };
     ponchoTable(ponchoTableOpciones);
   })(jQuery);
