@@ -1019,14 +1019,49 @@ const ponchoTableDependant = opt => {
           const searchTerm = (term ? decodeURIComponent(term) : "");          
           const element = document.querySelector("#ponchoTableSearch");
           element.value = searchTerm;
-          // const event = new Event("keyup");
-          // element.dispatchEvent(event);
           tabla
               .search(jQuery.fn.DataTable.ext.type.search.string(searchTerm))
               .draw();
 
       }
   } // end initDataTable
+
+  /**
+   * Imprime DataTable
+   * 
+   * @param {object} data JSON data
+   */
+  const render = data => {
+      // Defino la variable global
+      gapi_data = data;
+      // Defino las entradas
+      gapi_data.entries = (
+          typeof opt.refactorEntries === "function" && 
+          opt.refactorEntries !== null ? 
+          opt.refactorEntries(gapi_data.entries) : gapi_data.entries
+      );
+      // Defino los headers que se van a utilizar
+      gapi_data.headers = (opt.hasOwnProperty("headers") && opt.headers ?
+            opt.headers : gapi_data.headers);
+      // Listado de filtros
+      filtersList = Object
+            .keys(gapi_data.headers)
+            .filter(e => e.startsWith("filtro-"));
+
+      asFilter = (opt.asFilter ? opt.asFilter(gapi_data.entries) : {});
+      filtro = flterMatrix(gapi_data, filtersList);
+
+      _filtersContainerClassList();
+      _searchContainerClassList();
+      _createTable(gapi_data);
+      _createFilters(gapi_data); 
+
+      document.querySelector("#ponchoTableSearchCont")
+          .style.display = "block";
+      document.querySelector("#ponchoTable")
+          .classList.remove("state-loading");
+      initDataTable();
+  };
 
   /**
    * Obtiene el sheet e inicializa la tabla y filtros.
@@ -1037,30 +1072,8 @@ const ponchoTableDependant = opt => {
       jQuery.getJSON(url, function(data){
           const gapi = new GapiSheetData();
           gapi_data = gapi.json_data(data);
-
-          gapi_data.entries = (
-              typeof opt.refactorEntries === "function" && 
-              opt.refactorEntries !== null ? 
-              opt.refactorEntries(gapi_data.entries) : gapi_data.entries
-          );
-          // Listado de filtros
-          filtersList = Object
-                .keys(gapi_data.headers)
-                .filter(e => e.startsWith("filtro-"));
-
-          asFilter = (opt.asFilter ? opt.asFilter(gapi_data.entries) : {});
-          filtro = flterMatrix(gapi_data, filtersList);
-
-          _filtersContainerClassList();
-          _searchContainerClassList();
-          _createTable(gapi_data);
-          _createFilters(gapi_data); 
-
-          document.querySelector("#ponchoTableSearchCont")
-              .style.display = "block";
-          document.querySelector("#ponchoTable")
-              .classList.remove("state-loading");
-          initDataTable();
+          
+          render(gapi_data);
       }); // end async
   };
 
@@ -1084,7 +1097,13 @@ const ponchoTableDependant = opt => {
   };
 
   // Según el caso en optiones.
-  if (opt.jsonUrl) {
+  if (opt.jsonData){
+      const headers = Object.fromEntries(
+          Object.keys(opt.jsonData[0]).map(e => [e,e])
+      );
+      const data = {entries: opt.jsonData, headers: headers};
+      render(data);
+  } else if (opt.jsonUrl) {
       getSheetValues(opt.jsonUrl);
   } else if(opt.hojaNombre && opt.idSpread){
       const url = new GapiSheetData().url(opt.hojaNombre, opt.idSpread);
