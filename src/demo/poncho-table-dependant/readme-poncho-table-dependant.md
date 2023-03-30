@@ -32,19 +32,32 @@ Para que los filtros funcionen en las tablas de Google, se debe usar el prefijo 
 | customEntry | `object` | Permite modificar la entrada que se mostrará en la tabla manteniendo la entrada original para el uso global de los datos.<br>`"customEntry": (row) => row,` |
 | refactorEntries | `object` | Permite modificar el documento JSON en su totalidad.<br>`"refactorEntries": (row) => row,` |
 | allowedTags | `object` | Permite configurar un listado de etiquetas HTML que se imprimirán como parte del DOM y no como un texto. Para habilitar todas las etiquetas se utiliza `["*"]`. Si se quiere especificar cuales deben usarse, ej.: `["a", "strong"]`. |
+| jsonData | `json object` | Permite utilizar un documento JSON local o de una ubicación no asociada a Google API. |
+| headers | `object` | Permite definir o redefinir los headers por cada clave. Ejemplo `{"key": "value"}`|
 
 
 ## Scripts
 
+### PonchoTable
+
 ```html
 <!-- INCLUDE SCRIPTS -->
-<script src="/sites/default/files/ponchotable/showdown.js"></script>
-<script src="/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/extensiones/showdown-extensions.js"></script>
 <script src="/profiles/argentinagobar/themes/contrib/poncho/js/datatables.min.js"></script>
 <script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
 <link href="/profiles/argentinagobar/themes/contrib/poncho/css/ponchoTable-1.1.css" rel="stylesheet">
 <!-- / INCLUDE SCRIPTS -->
 ```
+
+### Scripts complementarios
+
+
+```html
+<!-- INCLUDE COMPLEMENTARY SCRIPTS -->
+<script src="/sites/default/files/ponchotable/showdown.js"></script>
+<script src="/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/extensiones/showdown-extensions.js"></script>
+<!-- / INCLUDE COMPLEMENTARY SCRIPTS -->
+```
+
 
 ## Código HTML
 
