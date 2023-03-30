@@ -735,8 +735,6 @@ const ponchoTableDependant = opt => {
           const searchTerm = (term ? decodeURIComponent(term) : "");          
           const element = document.querySelector("#ponchoTableSearch");
           element.value = searchTerm;
-          // const event = new Event("keyup");
-          // element.dispatchEvent(event);
           tabla
               .search(jQuery.fn.DataTable.ext.type.search.string(searchTerm))
               .draw();
