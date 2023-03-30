@@ -78,6 +78,7 @@ COPIAR DESDE ACÁ…
 <script>
   (function ($) {
     var ponchoTableOpciones = {
+      "jsonData": "",
       "idSpread": "13VUzy1PXOUts30jySNjxSqWQt-JMOgjNf_N2fBgJHJ8", // SIEMPRE PUBLICAR SPREADSHEET, el id va entre comillas
       "hojaNumero": 1, // SIEMPRE VERIFICAR PESTAÑA DE LA PLANILLA, default: 1
       "tituloTabla": "titulo", // EDITAR SIEMPRE - Título corto entre comillas para accesibilidad
@@ -88,10 +89,51 @@ COPIAR DESDE ACÁ…
       // filterClassList: ["col-md-2"],
       filterContClassList: ["col-md-12"],
       searchContClassList: ["col-md-12"],
-      allowedTags : [] // PERMITE ACTIVAR ETIQUETAS HTML. * = TODAS LAS ETIQUETAS. EJ. ["strong", "button"] = ETIQUETA <strong> y <button>. VALOR POR DEFECT *
+      allowedTags : ["*"] // PERMITE ACTIVAR ETIQUETAS HTML. * = TODAS LAS ETIQUETAS. EJ. ["strong", "button"] = ETIQUETA <strong> y <button>. VALOR POR DEFECT *
     };
-    ponchoTable(ponchoTableOpciones);
+    // ponchoTable(ponchoTableOpciones);
   })(jQuery);
+</script>
+
+
+
+
+
+<script>
+  // init
+  var map;
+  var search;
+  (async() => {
+    const gapi = new GapiSheetData();
+    const googlesheet_data = await fetch_json("./data/data-test-1.json"); 
+    const gapi_data = gapi.json_data(googlesheet_data);
+
+    var options = {
+      "_jsonData": gapi_data.entries,
+      "_headers": {
+          "filtro-categoría": "categoría",
+          "filtro-reino": "reino",
+          "filtro-division": "division",
+          "filtro-clase": "clase",
+          "filtro-familia": "familia",
+          "nombre": "Nombre II"
+      },
+      "idSpread": "13VUzy1PXOUts30jySNjxSqWQt-JMOgjNf_N2fBgJHJ8",
+      "hojaNumero": 1,
+      "tituloTabla": "titulo", 
+      "ordenColumna": 1, 
+      "ordenTipo": "asc", 
+      //"ocultarColumnas":[], 
+      "cantidadItems": 10, 
+      filterClassList: ["col-md-2"],
+      filterContClassList: ["col-md-12"],
+      searchContClassList: ["col-md-12"],
+      allowedTags : ["*"]
+    };
+    ponchoTable(options);
+
+  })();
+
 </script>
 <!-- / PONCHOTABLE -->
 </body>
