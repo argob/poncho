@@ -1,0 +1,1 @@
+const panelMenu=()=>{var e=document.querySelectorAll(".device-panel-menu");991<=window.innerWidth?e.forEach(e=>e.setAttribute("open",!0)):window.innerWidth<991&&e.forEach(e=>e.removeAttribute("open"))};document.addEventListener("DOMContentLoaded",panelMenu),window.addEventListener("resize",panelMenu,!0);
