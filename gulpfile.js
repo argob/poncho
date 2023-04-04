@@ -123,7 +123,8 @@ gulp.task('compress', function () {
           './src/js/showdown-extensions.js',
           './src/js/mapa-argentina.js',
           './src/js/device-breadcrumb.js',
-          './src/js/national-holidays.js'
+          './src/js/national-holidays.js',
+          './src/js/device-panel-menu.js'
       ])
       // .pipe(babel())
       .pipe(uglify())
