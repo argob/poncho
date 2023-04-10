@@ -1,12 +1,16 @@
+
 .listas-destacadas {
-  list-style: none;
-  padding: 0;
-
-  li * {
-    list-style-type: disc;
+  > ul {
+    list-style: none;
+    padding: 0;
   }
+  
+ > ul li * {
+    list-style-type: disc;
+}
 
-  > li {
+
+ > ul > li {
     padding: 0;
     list-style: none;
     color: inherit;
@@ -14,25 +18,28 @@
     font-weight: 500;
     line-height: 1.2;
     margin: 0 0 1.5rem;
-  }
+}
 
-  > li:before {
+ > ul > li:before {
     content: "\f061";
     display: inline-grid;
     vertical-align: top;
     font-size: 2rem;
     font-family: FontAwesome;
     line-height: 24px;
-    margin-right: 0.5rem;
+    margin-right: .5rem;
     font-weight: normal;
     font-style: normal;
     font-variant: normal;
-    color:var(--primary);
-  }
+}
 
+
+
+  
+  
   @each $name, $color in $colores {
-    &.#{$name} > li:before {
-      color: var(--#{$name});
+    &.#{$name} > ul li:before {
+      color: var(--#{$name}, dodgerblue);
     }
   }
 }
