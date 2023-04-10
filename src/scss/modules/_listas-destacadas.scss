@@ -27,6 +27,7 @@
     font-weight: normal;
     font-style: normal;
     font-variant: normal;
+    color:var(--primary);
   }
 
   @each $name, $color in $colores {
