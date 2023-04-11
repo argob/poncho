@@ -458,8 +458,10 @@ const ponchoTableDependant = opt => {
       btn.setAttribute("aria-label", label);
       btn.classList.add(
           "btn", "btn-primary", "btn-sm", "margin-btn");
+      btn.target = "_blank";
       btn.href = value;
       btn.textContent = label;
+      btn.setAttribute("rel", "noopener noreferrer");
       return btn.outerHTML;
   };
 
