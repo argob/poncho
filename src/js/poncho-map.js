@@ -299,11 +299,12 @@ class PonchoMap {
               `${this.scope_selector}.poncho-map`
           );
           node.parentNode.insertBefore(container, node);
+          if(type == "danger"){
+              document.getElementById(this.map_selector).remove();
+          }
       }
-      if(type == "danger"){
-        document.getElementById(this.map_selector).remove();
-      }
-      console.log(this.critical_error)
+
+      console.error(this.critical_error)
       throw text;
   };
 
