@@ -4,7 +4,7 @@
  * @summary PonchoTable con filtros dependientes
  *
  * @author Agustín Bouillet <bouilleta@jefatura.gob.ar>
- * @requires 
+ * @requires jQuery
  * @see https://github.com/argob/poncho/blob/master/src/demo/poncho-maps/readme-poncho-maps.md
  * @see https://datatables.net
  *
@@ -37,6 +37,8 @@ const ponchoTableDependant = opt => {
   var gapi_data;
   var filtersList = [];
   var filtro = {};
+  var orderFilter = (opt.hasOwnProperty("orderFilter") && opt.orderFilter ? 
+        true : false);
   var asFilter = {};
   var allowedTags = ["*"];
   let markdownOptions = {
@@ -65,13 +67,25 @@ const ponchoTableDependant = opt => {
   /**
    * Ordena alfanuméricamente
    * @example
-   * // ["Arroa", "zorro"]
-   * ["zorro", "Arroz"].sort(sortAlphaNumeric)
+   * // ["Arroz", "zorro"]
+   * ["zorro", "Arroz"].sort(_sortAlphaNumeric)
    * @return {object}
    */
   const sortAlphaNumeric = (a, b) => {
       return a.toString().localeCompare(b.toString(), "es", {numeric: true});
   };
+
+  /**
+   * De acuerdo a las opciones del usuario, ordena el listado o lo deja
+   * en la secuencia en la que llega.
+   * 
+   * @summary Alias de sortAlphaNumeric
+   * @param {object} a 
+   * @param {object} b 
+   * @returns {object}
+   */
+  const _sortAlphaNumeric = (a, b) => (orderFilter ? 
+      sortAlphaNumeric(a, b) : null);
 
   /**
    * Resultados únicos
@@ -216,7 +230,7 @@ const ponchoTableDependant = opt => {
           const columna = filtro[f][0].columna ? filtro[f][0].columna : 0;
           const list_filter = filtro[f]
               .map(e => e.value)
-              .sort(sortAlphaNumeric);
+              .sort(_sortAlphaNumeric);
 
           const tplCol = document.createElement("div");
 
@@ -377,7 +391,7 @@ const ponchoTableDependant = opt => {
           }
 
           const uniqueEntries = distinct(entiresByFilter);
-          uniqueEntries.sort(sortAlphaNumeric);
+          uniqueEntries.sort(_sortAlphaNumeric);
           filter = filter.replace("filtro-", "");
           filters[filter] = [];
           uniqueEntries.forEach(entry => {
@@ -443,7 +457,7 @@ const ponchoTableDependant = opt => {
       }).filter(f => f);
 
       const uniqueList = distinct(filterList);
-      uniqueList.sort(sortAlphaNumeric);
+      uniqueList.sort(_sortAlphaNumeric);
       return uniqueList;
   };
 
@@ -489,7 +503,7 @@ const ponchoTableDependant = opt => {
       }).filter(f => f);
 
       const uniqueList = distinct(items);
-      uniqueList.sort(sortAlphaNumeric);
+      uniqueList.sort(_sortAlphaNumeric);
       return uniqueList;
   };
 
