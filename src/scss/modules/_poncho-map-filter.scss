@@ -19,12 +19,24 @@
   padding: 0.25em 0.75em;
   border-radius: 8px;
   margin: 1em 0;
-  box-shadow: 0 2px 6px rgb(0, 0, 0, 0.15);
+  box-shadow: 0 2px 6px rgb(0, 0, 0, 0.1);
   color: black;
 
+  &__icon {
+    color:var(--gray-lighter);
+    line-height: 1;
+    font-size: 4rem;
+    display: block;
+    text-align: center;
+    padding: 1rem;
+    opacity: .5;
+  }
+
   &.danger {
-    background: var(--tomate, $brand-tomate);
-    color: white;
+    // background: var(--tomate, $brand-tomate);
+    padding: 1rem;
+    background: var(--default, gray);
+    color:var(--white, white);
 
     .title {
       color: white !important;
