@@ -302,7 +302,7 @@ const ponchoTableDependant = opt => {
       // CONTENIDO FILAS
       gapi_data.entries.forEach((entry, key) => {
 
-          if(!Object.values(entry).some(f => f.trim())){
+          if(!Object.values(entry).some(f => String(f).trim())){
               return;
           }
 
