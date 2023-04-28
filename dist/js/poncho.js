@@ -2462,7 +2462,7 @@ const gapi_legacy = (response) => {
 class PonchoMap {
   constructor(data, options){
       const defaults = {
-          "error_reporting": false,
+          "error_reporting": true,
           "no_info": false,
           "title": false,
           "id": "id",
@@ -2698,35 +2698,63 @@ class PonchoMap {
       container.id = `js-error-message${this.scope_sufix}`;
       container.classList.add("poncho-map--message", type);
 
+
+      const mapIcon = document.createElement("i");
+      mapIcon.classList.add("icono-arg-mapa-argentina", "poncho-map--message__icon");
+      // mapIcon.style.lineHeight = 1;
+      // mapIcon.style.fontSize = "4rem";
+      // mapIcon.style.display = "block";
+      // mapIcon.style.textAlign = "center";
+      // mapIcon.style.padding = "1rem";
+      
       const title = document.createElement("h2");
-      title.classList.add("h6", "title");
+      title.classList.add("h6", "title", "sr-only");
       title.textContent = "¡Se produjo un error!";
 
-      const content = document.createElement("pre");
-      content.textContent = text;
+      // const content = document.createElement("pre");
+      // content.textContent = text;
 
-      const help = document.createElement("a");
-      help.href = "https://github.com/argob/poncho/blob/master/" 
-                  + "src/demo/poncho-maps/readme-poncho-maps.md";
-      help.target = "_blank";
-      help.textContent = "Ayuda sobre las opciones de PonchoMap";
-      help.className = "small";
-      help.title = "Abre el enlace en una nueva ventana";
+      // const help = document.createElement("a");
+      // help.href = "https://github.com/argob/poncho/blob/master/" 
+      //             + "src/demo/poncho-maps/readme-poncho-maps.md";
+      // help.target = "_blank";
+      // help.textContent = "Ayuda sobre las opciones de PonchoMap";
+      // help.className = "small";
+      // help.title = "Abre el enlace en una nueva ventana";
 
+      container.appendChild(mapIcon);
       container.appendChild(title);
-      container.appendChild(content);
-      container.appendChild(help);
+
+      const messagesList = [
+          ["En estos momentos tenemos inconvenientes para cargar el mapa.", "text-center"],
+          ["<em>Disculpe las molestias</em>", "text-center", "p"]
+      ]
+
+      messagesList.forEach(entry => {
+          const elementTag = (tag) => typeof tag !== "undefined" || tag ? tag : "p"; 
+          const message = document.createElement(elementTag(entry[2]));
+          if(typeof entry[1] !== "undefined" || entry[1]){
+              message.className = entry[1];
+          }
+          message.innerHTML = entry[0];
+          container.appendChild(message);
+      });
+
+
+      // container.appendChild(content);
+      // container.appendChild(help);
 
       if(this.error_reporting) {
           const node = document.querySelector(
               `${this.scope_selector}.poncho-map`
           );
           node.parentNode.insertBefore(container, node);
+          if(type == "danger"){
+              document.getElementById(this.map_selector).remove();
+          }
       }
-      if(type == "danger"){
-        document.getElementById(this.map_selector).remove();
-      }
-      console.log(this.critical_error)
+
+      console.error(this.critical_error)
       throw text;
   };
 
