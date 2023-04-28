@@ -76,30 +76,6 @@ COPIAR DESDE ACÁ…
 <!-- / TABLE -->
 
 <script>
-  (function ($) {
-    var ponchoTableOpciones = {
-      "jsonData": "",
-      "idSpread": "13VUzy1PXOUts30jySNjxSqWQt-JMOgjNf_N2fBgJHJ8", // SIEMPRE PUBLICAR SPREADSHEET, el id va entre comillas
-      "hojaNumero": 1, // SIEMPRE VERIFICAR PESTAÑA DE LA PLANILLA, default: 1
-      "tituloTabla": "titulo", // EDITAR SIEMPRE - Título corto entre comillas para accesibilidad
-      "ordenColumna": 1, // SIEMPRE VERIFICAR POR CUÁL COLUMNA ORDENA, la primera columna es 1
-      "ordenTipo": "asc", // SIEMPRE VERIFICAR TIPO DE ORDEN, ASCENDENTE O DESCENDENTE, "asc" es de A a Z y de menor a mayor, "desc" es de Z a A y mayor a menor
-      //"ocultarColumnas":[], // SI HAY QUE OCULTAR UNA O VARIAS COLUMNAS, ELIMINAR DOBLE BARRA DEL INICIO DE LA LÍNEA Y AGREGAR NÚMERO DE COL,UMNA ENTRE CORCHETES, la primera columna es cero, para varias columnas se las separa con comas
-      "cantidadItems": 20, // DETERMINA CANTIDAD DE FILAS QUE SE MUESTRAN A LA VEZ, default 10,
-      // filterClassList: ["col-md-2"],
-      filterContClassList: ["col-md-12"],
-      searchContClassList: ["col-md-12"],
-      allowedTags : ["*"] // PERMITE ACTIVAR ETIQUETAS HTML. * = TODAS LAS ETIQUETAS. EJ. ["strong", "button"] = ETIQUETA <strong> y <button>. VALOR POR DEFECT *
-    };
-    // ponchoTable(ponchoTableOpciones);
-  })(jQuery);
-</script>
-
-
-
-
-
-<script>
   // init
   var map;
   var search;
@@ -123,12 +99,13 @@ COPIAR DESDE ACÁ…
       "tituloTabla": "titulo", 
       "ordenColumna": 1, 
       "ordenTipo": "asc", 
-      //"ocultarColumnas":[], 
-      "cantidadItems": 10, 
-      filterClassList: ["col-md-2"],
+      "ocultarColumnas":[], 
+      "cantidadItems": 15, 
+      // filterClassList: ["col-md-2"],
       filterContClassList: ["col-md-12"],
       searchContClassList: ["col-md-12"],
-      allowedTags : ["*"]
+      // allowedTags : ["span", "strong", "em"],
+      orderFilter: true, // Permite ordenar Alfanuméricamente el listado de items en en cada filtro. False por defecto.
     };
     ponchoTable(options);
 

@@ -31,9 +31,11 @@ Para que los filtros funcionen en las tablas de Google, se debe usar el prefijo 
 | asFilter | `object` | Permite definir un listado de items asignados a un filtro. <br>`"asFilter":  (row) => row,` |
 | customEntry | `object` | Permite modificar la entrada que se mostrará en la tabla manteniendo la entrada original para el uso global de los datos.<br>`"customEntry": (row) => row,` |
 | refactorEntries | `object` | Permite modificar el documento JSON en su totalidad.<br>`"refactorEntries": (row) => row,` |
-| allowedTags | `object` | Permite configurar un listado de etiquetas HTML que se imprimirán como parte del DOM y no como un texto. Para habilitar todas las etiquetas se utiliza `["*"]`. Si se quiere especificar cuales deben usarse, ej.: `["a", "strong"]`. |
+| allowedTags | `object` | Permite configurar un listado de etiquetas HTML que se imprimirán como parte del DOM (del inglés, *Document Object Model*), y no como un texto. Para habilitar todas las etiquetas se utiliza `["*"]`. Si se quiere especificar cuales deben usarse, ej.: `["a", "strong"]`. Para evitar etiquetas HTML: `[]` |
 | jsonData | `json object` | Permite utilizar un documento JSON local o de una ubicación no asociada a Google API. |
 | headers | `object` | Permite definir o redefinir los headers por cada clave. Ejemplo `{"key": "value"}`|
+| orderFilter | `boolean` | Permite ordenar Alfanuméricamente el listado de items en en cada filtro. `false` por defecto. |
+
 
 
 ## Scripts
@@ -96,7 +98,6 @@ Para que los filtros funcionen en las tablas de Google, se debe usar el prefijo 
 <script>
 (function($) {
     const gapi = new GapiSheetData();
-    const province = location.pathname.split("/").findLast(last => last);
     const url = gapi.url("dataset", "1vVSk7givsit7u74FBr32voWxrwwW8KaeI5VfC2TKBwM");
     var options = {
         "jsonUrl": url,
@@ -104,13 +105,14 @@ Para que los filtros funcionen en las tablas de Google, se debe usar el prefijo 
         "ordenColumna": 1,
         "ordenTipo": "asc",
         // "tipoNumero": 0,
-        // "ocultarColumnas": [],
+        "ocultarColumnas": [],
         "cantidadItems": 15, 
         "hash": true,
-        "filterClassList": ["col-sm-12","col-md-6"],
+        "filterClassList": ["col-sm-12", "col-md-6"],
         "allowedTags": ["*"],
         "asFilter":  (row) => row,
         "customEntry": (row) => row,
+        "orderFilter": true, 
     };
     ponchoTableDependant(options);
 })(jQuery);
