@@ -30,6 +30,8 @@
 </head>
 <body class="p-t-3">
   <h1>PonchoTable legacy un solo filtro</h1>
+  <div class="m-b-4">  [<a href="#con-dni">Con DNI</a>]
+    [<a href="#sin-dni">Sin DNI</a>]</div>
   <!-- 
 
       "headers":{
@@ -130,15 +132,23 @@ COPIAR DESDE ACÁ…
 <!-- / TABLE -->
 
 <script>
-  var googlesheet_data;
   (async() => {
-    googlesheet_data = await fetch_json("https://pruebas-turnos-api.argentina.gob.ar/api/v1.0/tramites?offset=0&limit=700&json="); 
+    const googlesheet_data = await fetch_json(
+        "https://pruebas-turnos-api.argentina.gob.ar/api/v1.0/tramites?offset=0&limit=700&json="
+    ); 
     
+    const switchEvent = {
+        "sin-dni": "Personas sin DNI argentino",
+        "con-dni": "Personas con DNI argentino"
+    };
+
     /**
-     * Rearmo el JSON para agregar filtros. 
+     * Refactoriza el documento JSON 
+     * @summary Rearma el documento asignando filtros y columnas 
+     * especiales.
+     * @returns {object} — Objeto JSON
      */
-    const entries = [];
-    googlesheet_data.result.forEach(a => {
+    const entries = googlesheet_data.result.reduce((newEntry, obj) => {
         // ícono miArgentina
         const miArgentinaIcon = "<i "
             + "class=\"icono-arg-mi-argentina text-primary\" "
@@ -151,26 +161,54 @@ COPIAR DESDE ACÁ…
 
         // Composite descripción.
         const customDescription = [
-                `${a.descripcion ? a.descripcion : ""}`,
-                `${a.descripcionAdicional ? a.descripcionAdicional : ""}`]
+                `${obj.descripcion ? obj.descripcion : ""}`,
+                `${obj.descripcionAdicional ? obj.descripcionAdicional : ""}`]
             .filter(f => f)
-            .join("<br>");
+            .join("<br />");
 
         const entry = {
-            "nombre": a.nombre,
-            "filtro-organismo": a.organismo,
-            "miArgentina": (a.miArgentina ? miArgentinaIcon : ""),
-            "btn-ver": `https://turnos.argentina.gob.ar/turnos/seleccionTurno/${a.id}`,
-            "descripcionCustom": customDescription
+            "nombre": obj.nombre,
+            "filtro-etiquetas": (String(obj.etiquetas).includes("solo-extranjeros") ? 
+                  switchEvent["sin-dni"] : switchEvent["con-dni"]),
+            "filtro-organismo": obj.organismo,
+            "miArgentina": (obj.miArgentina ? miArgentinaIcon : ""),
+            "btn-ver": `https://turnos.argentina.gob.ar/turnos/seleccionTurno/${obj.id}`,
+            "descripcionCustom": customDescription, 
         };
-        entries.push(entry);
-    });
+        
+        newEntry.push(entry);
+        return newEntry;
+    }, []);
+
+    /**
+     * Ejecuta el evento change en un select.
+     * @param {string} val - Atributo `value` del `select`.
+     * @param {string} selector - Selector para definir el `select`.
+     * @example
+     * // returns void
+     * changeFilter("No tiene DNI", "#etiquetas");
+     * @return {undefined}
+     */ 
+    changeFilter = (val, selector) => {
+        const e = new Event("change");
+        const element = document.querySelector(selector);
+        element.value = val;
+        element.dispatchEvent(e);
+    }
+
+    // On hash change
+    window.addEventListener("hashchange", event => {
+        event.preventDefault(); 
+        const urlHash = window.location.hash.replace("#", "");
+        changeFilter(switchEvent[ urlHash ], "#etiquetas");
+    }, false);
 
     // Opciones ponchoTable
     var options = {
         "jsonData": entries,
         "headers": {
             "nombre": "Nombre",
+            "filtro-etiquetas": "¿Quién puede sacar el turno?",
             "filtro-organismo": "Organismo",
             "descripcionCustom": "Descripción",
             "miArgentina": "miArgentina",
@@ -179,13 +217,12 @@ COPIAR DESDE ACÁ…
         "tituloTabla": "titulo", 
         "ordenColumna": 1, 
         "ordenTipo": "asc", 
-        "ocultarColumnas":[],
+        "ocultarColumnas":[1],
         "cantidadItems": 15, 
-        // filterClassList: ["col-md-2"],
-        filterContClassList: ["col-md-4"],
-        searchContClassList: ["col-md-8"],
-        allowedTags : ["*"],
-        orderFilter: true
+        "filterContClassList": ["col-md-6"],
+        "searchContClassList": ["col-md-6"],
+        "allowedTags" : ["*"],
+        "orderFilter": false
     };
     ponchoTable(options);
   })();
@@ -193,3 +230,5 @@ COPIAR DESDE ACÁ…
 <!-- / PONCHOTABLE -->
 </body>
 </html>
+
+
