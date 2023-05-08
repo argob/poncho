@@ -95,12 +95,13 @@ COPIAR DESDE ACÁ…
 
 <!-- SCRIPTS -->
 <script>
-  var start1 = performance.now();
+
   
   
  // init
  (async() => {
-    const data = await fetch_json( "https://144.argentina.gob.ar/api/v1/places" ); 
+  var start1 = performance.now();
+   const data = await fetch_json( "https://144.argentina.gob.ar/api/v1/places" ); 
     // map options
     const options = {
       "latitud": "lat",
@@ -175,7 +176,7 @@ COPIAR DESDE ACÁ…
       "marker" : (self, ele) => (typeof ele.color !== "undefined" && ele.color != "" ? ele.color : "azul"),
       "slider": true,
       "hash": true,
-      "_filters" :[
+      "filters" :[
           {
             "legend" : "Filtrar por tipo",
             "field": ["category", "checked"],
@@ -197,10 +198,14 @@ COPIAR DESDE ACÁ…
     };
     const search = new PonchoMapSearch(poncho_filter, search_options);
     search.render();
+    
+     var end1 = performance.now();
+  console.log("[PERFORMANCE] TOTAL TIME", (end1 - start1) / 1000 );
+  
+    
+    
   })();
-  var end1 = performance.now();
-  console.log("[PERFORMANCE] TOTAL TIME", (end1 - star);
-  </script><!-- / SCRIPTS -->
+</script><!-- / SCRIPTS -->
 
 
 </body>

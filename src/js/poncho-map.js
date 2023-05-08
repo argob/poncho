@@ -416,6 +416,7 @@ class PonchoMap {
    * @returns {object} Listado filtrado por los match
    */
   searchEntries = (term, dataset) => {
+      const start = performance.now();
       dataset = (typeof dataset === "undefined" ? this.geoJSON: dataset);
       if(!term){
           return dataset;
@@ -424,7 +425,9 @@ class PonchoMap {
           if(this.searchEntry(term, e.properties)){
               return e;
           };
-      })
+      });
+      const end = performance.now();
+      console.log("[PERFORMANCE] searchEntries()", (end - start)/1000 );
       return entries;
   };
 

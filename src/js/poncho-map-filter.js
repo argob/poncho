@@ -682,14 +682,17 @@ class PonchoMapFilter extends PonchoMap {
      * para retornar true los grupos tienen que dar true
      * @returns {boolean}
      */
-    _validateEntry = (entry, form_filters) => {
+     _fields_group = (group, form_filters) => form_filters.filter(e => e[0] == group);
+ 
+     _validateEntry = (entry, form_filters) => {
         const fields_group = (group) => form_filters.filter(e => e[0] == group);
         // Reviso cuantos grupos tengo que validar.
         const total_groups = this.filters.length;
         let validations = [];
         for(let i = 0; i < total_groups; i++){
             // por cada grupo de fields obtengo un resultado de grupo.
-            validations.push(this._validateGroup(entry, fields_group(i)));
+            //validations.push(this._validateGroup(entry,  fields_group(i)  ));
+            validations.push(this._validateGroup(entry,  fields_group(i)  ));
         }
         return validations.every(e => e);
     };
@@ -729,14 +732,37 @@ class PonchoMapFilter extends PonchoMap {
      * Filtra los markers.
      */ 
     _filterData = () => {
+        const start = performance.now();
+        
+        const st1 = performance.now();
         const available_filters = this.formFilters();
+        const et1 = performance.now();
+        console.log("[PERFORMANCE] formFilters()", (st1 - et1)/1000 )
+        
+        let st2 = performance.now();
         let feed = this.entries.filter(
             entry => this._validateEntry(entry.properties, this.formFilters())
         );
+        let et2 = performance.now();
+        console.log("[PERFORMANCE] Filter and validate", (st2 - et2)/1000 )
+        
+        
+        const st3 = performance.now();
         feed = this.searchEntries(this.inputSearchValue, feed);
+        const et3 = performance.now();
+        console.log("[PERFORMANCE] searchEntires()", (st3 - et3)/1000 )
+        
+        const st4 = performance.now();
         feed = (this.filters.length < 1 || 
                 available_filters.length > 0 ? feed : []);
+        const et4 = performance.now();
+        console.log("[PERFORMANCE] feed", (st4 - et4)/1000 )
+        
+                
         this.filtered_entries = feed;
+        
+        const end = performance.now();
+        console.log("[PERFORMANCE] _filterData() +", (end - start)/1000 )
         return feed;
     };
 
