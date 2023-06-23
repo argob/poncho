@@ -1,13 +1,25 @@
 .table {
-
   th {
     line-height: 1.2;
 
     a {
       color: $text-color;
-      &:hover {text-decoration: underline; cursor: pointer; }
+      &:hover {
+        text-decoration: underline;
+        cursor: pointer;
       }
     }
+
+    &[align="right"] {
+      text-align: right;
+    }
+    &[align="center"] {
+      text-align: center;
+    }
+    &[align="left"] {
+      text-align: left;
+    }
+  }
 
   td {
     small {
@@ -39,11 +51,10 @@
     hyphens: auto;
   }
 
-
   &.table-align-middle {
     td {
       vertical-align: middle;
-      }
+    }
   }
 
   &.table-spaced {
@@ -54,20 +65,24 @@
   }
 
   &.table-striped {
-
   }
   &.table-striped > tbody > tr:nth-of-type(odd) {
-      background-color: $gray-hover-light;
+    background-color: $gray-hover-light;
   }
 
   &.table-mobile td span.td-label {
     display: none;
   }
 
-  @media only screen and (max-width: 767px), (min-width: 768px) and (max-width: 1024px)  {
-
+  @media only screen and (max-width: 767px),
+    (min-width: 768px) and (max-width: 1024px) {
     &.table-mobile {
-      table, thead, tbody, th, td, tr {
+      table,
+      thead,
+      tbody,
+      th,
+      td,
+      tr {
         display: block;
       }
 
@@ -84,13 +99,12 @@
       td {
         border: none !important;
         position: relative;
-        padding-left: 50%!important;
+        padding-left: 50% !important;
       }
 
       .not-thead td {
-        padding-left: 5%!important;
+        padding-left: 5% !important;
       }
-
 
       td span.td-label {
         display: block;
@@ -104,26 +118,20 @@
       }
 
       tr:nth-child(even) {
-        background: #fff
+        background: #fff;
       }
       tr:nth-child(odd) {
-        background: #f0f0f0
+        background: #f0f0f0;
       }
     }
-
-
   }
-
 }
-
-
 
 .table-hover > tbody > tr {
   &:hover {
     background-color: $gray-hover;
   }
 }
-
 
 $color_alto_approx: #ddd;
 $color_lochmara_approx: #0072bb;
@@ -134,7 +142,7 @@ $color_lochmara_approx: #0072bb;
     white-space: nowrap;
   }
 }
-@media(max-width: 992px) {
+@media (max-width: 992px) {
   table.table-responsive-poncho {
     border: 0;
     display: inline-block;
@@ -156,7 +164,7 @@ $color_lochmara_approx: #0072bb;
     }
     tr {
       display: block;
-      margin-bottom: .625em;
+      margin-bottom: 0.625em;
     }
     td {
       border-bottom: 1px solid $color_alto_approx;
@@ -167,7 +175,7 @@ $color_lochmara_approx: #0072bb;
         border-bottom-width: 3px;
       }
       &:first-child {
-        border-top: 0!important;
+        border-top: 0 !important;
       }
     }
     td::before {
@@ -180,17 +188,15 @@ $color_lochmara_approx: #0072bb;
   }
 }
 
-
-
-
 /* PONCHO TABLES */
-#ponchoTable caption{
+#ponchoTable caption {
   display: none;
 }
-#ponchoTableFiltroCont label:first-letter,#ponchoTable th:first-letter{
+#ponchoTableFiltroCont label:first-letter,
+#ponchoTable th:first-letter {
   text-transform: uppercase;
 }
 
-#ponchoTable caption{
+#ponchoTable caption {
   display: none;
 }
