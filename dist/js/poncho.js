@@ -252,12 +252,17 @@ const ponchoColor = color => ponchoColorDefinitions(color)?.color || color;
  * @param {string} value Valor hexadecimal 
  * @returns {string}
  */
-const hexToBinary = value => {
-    let hex = value.toString().replace("#", "").trim();
+const cleanUpHex = value => {
+    let hex = value
+            .toString()
+            .replace("#", "")
+            .trim()
+            .toUpperCase();
+
     if(hex.length == 3){
         hex = Array.from(hex).map(a => a.repeat(2)).join("");
     }
-    return (parseInt(hex, 16).toString(2)).padStart(8, '0');
+    return hex;
 };
 
 
@@ -279,8 +284,8 @@ const hexToBinary = value => {
  * @returns {object} Objecto con la defición del color
  */
 const findPonchoColorByHex = value => ponchoColorDefinitionsList.find(f => {
-    const colorToFind = hexToBinary(value);
-    const colorToCompare = hexToBinary(f.color);
+    const colorToFind = cleanUpHex(value);
+    const colorToCompare = cleanUpHex(f.color);
     if(colorToFind == colorToCompare){
         return true;
     }
