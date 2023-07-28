@@ -510,7 +510,7 @@ function ponchoChart(opt) {
                 custom: function({series, seriesIndex, dataPointIndex, w}) {
                 var value = series[seriesIndex][dataPointIndex];
                 value = numeroFormateado(value);
-                return "<div class="arrow_box">" +
+                return "<div class=\"arrow_box\">" +
                     "<span>" + labelX + ": " + labelsY[seriesIndex] + "<br>" +
                     labelY + ": " + w.globals.labels[dataPointIndex] + "<br>" +
                     labelValor + ": " + value + "</span>" +
