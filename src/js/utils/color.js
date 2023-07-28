@@ -203,6 +203,22 @@ const ponchoColorDefinitionsList = [
 
 
 /**
+ * Variaciones de color
+ */
+const colorVariations = {
+    hight: [
+        "primary","verde-jade","success","naranja","danger","arandano",
+        "uva","celeste-argentina","palta","verdin","warning","tomate",
+        "fucsia","lavanda","black"
+    ],
+    medium: [
+        "info","verde-azulado","verdin","warning","tomate","fucsia",
+        "lavanda","palta","lima","maiz","muted"
+    ]
+};
+
+
+/**
  * Definición por color
  * 
  * @see ponchoColorDefinitionsList
