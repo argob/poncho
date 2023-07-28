@@ -1,4 +1,4 @@
-const gapi_legacy = require('../src/js/poncho-gapi-legacy');
+const gapi_legacy = require('../src/js/utils/gapi-legacy');
 const jsonData = require('./resources/response');
 
 test('GApi legacy', () => {

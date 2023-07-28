@@ -108,10 +108,10 @@ class DeviceBreadcrumb {
     isHomeLink = (element) => {
         let rgxResult;
         if(typeof element.firstChild === "object" && 
-          element.firstChild !== null && "getAttribute" in element.firstChild){
-              const href = element.firstChild.getAttribute("href");
-              const rgx = new RegExp("(^/$|argentina.gob.ar$|argentina.gob.ar/$)");
-              rgxResult = rgx.exec(href);
+            element.firstChild !== null && "getAttribute" in element.firstChild){
+                const href = element.firstChild.getAttribute("href");
+                const rgx = new RegExp("(^/$|argentina.gob.ar$|argentina.gob.ar/$)");
+                rgxResult = rgx.exec(href);
         }
         return rgxResult || false;
     };
