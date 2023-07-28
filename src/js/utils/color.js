@@ -246,7 +246,49 @@ const ponchoColorDefinitions = color => {
 const ponchoColor = color => ponchoColorDefinitions(color)?.color || color;
 
 
+/**
+ * Conversor de hex a binary
+ * 
+ * @param {string} value Valor hexadecimal 
+ * @returns {string}
+ */
+const hexToBinary = value => {
+    let hex = value.toString().replace("#", "").trim();
+    if(hex.length == 3){
+        hex = Array.from(hex).map(a => a.repeat(2)).join("");
+    }
+    return (parseInt(hex, 16).toString(2)).padStart(8, '0');
+};
+
+
+/**
+ * Retorna el código de color poncho por hexadecimal.
+ * @param {string} value Valor hexadecimal a buscar 
+ * @see ponchoColorDefinitionsList
+ * @example
+ * // {
+ * //    "description": "",
+ * //    "name": "Mandarina",
+ * //    "color": "#f79525",
+ * //    "code": "mandarina",
+ * //    "alias": [
+ * //        "mandarina"
+ * //    ]
+ * // }
+ * findByHex("#f79525");
+ * @returns {object} Objecto con la defición del color
+ */
+const findPonchoColorByHex = value => ponchoColorDefinitionsList.find(f => {
+    const colorToFind = hexToBinary(value);
+    const colorToCompare = hexToBinary(f.color);
+    if(colorToFind == colorToCompare){
+        return true;
+    }
+    return false;
+});
+
+
 // $START_TEST$
 // ¡Atención! Patch para testear non-module
-module.exports = {ponchoColorDefinitionsList, ponchoColorDefinitions, ponchoColor};
+module.exports = {ponchoColorDefinitionsList, ponchoColorDefinitions, ponchoColor, findPonchoColorByHex};
 // $END_TEST$
