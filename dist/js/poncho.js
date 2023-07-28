@@ -313,6 +313,8 @@ const slugify = (string) =>{
 };
 
 
+/* module.exports REMOVED */
+
 /**
  * Impide que se impriman etiquetas HTML.
  * 
@@ -352,6 +354,10 @@ const secureHTML = (str, exclude=[]) => {
     }
     return replaceString;
 };
+
+
+
+/* module.exports REMOVED */
 
 /**
  * 
