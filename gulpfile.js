@@ -10,6 +10,11 @@ const gulpIF = require('gulp-if');
 var replace = require('gulp-replace');
 
 
+var generalCompressOptions = {
+    compress: {
+        drop_console: true
+    }
+};
 
 const ponchoMinList = [
     './src/js/utils/color.js',
@@ -51,13 +56,7 @@ gulp.task('ponchomin', function(){
             )
         )
         .pipe(concat('poncho.min.js'))
-        .pipe(uglify({
-            compress: {
-                global_defs: {
-                    "DEBUG": false
-                }
-            }
-        }))
+        .pipe(uglify(generalCompressOptions))
         .pipe(gulp.dest('dist/js/'));
 });
 
@@ -85,7 +84,7 @@ gulp.task('compress', function () {
             './src/js/device-panel-menu/device-panel-menu.js'
         ])
         // .pipe(babel())
-        .pipe(uglify())
+        .pipe(uglify(generalCompressOptions))
         .pipe(gulp.dest('./dist/js/'));
 });
 
