@@ -1634,10 +1634,7 @@ function ponchoChart(opt) {
         return (options[tipo] || options["default"]);
     }
 
-
-    var getColor = ponchoColor;
-
-    //   function getColor(color) {
+    //   function ponchoColor(color) {
     //       var codigoColor = '';
     //       switch (color) {
     //           case 'celeste':
@@ -2603,7 +2600,7 @@ function ponchoChart(opt) {
         if (tipoGrafico == 'pie') {
 
             colores.forEach(function(valor, indice, array) {
-                codigosColores.push(getColor(valor));
+                codigosColores.push(ponchoColor(valor));
             });
 
             console.log('etiquetas --> ' + etiquetas);
@@ -2618,7 +2615,7 @@ function ponchoChart(opt) {
             console.log('etiquetas --> ' + etiquetas);
             console.log('datos --> ' + datos);
 
-            color = getColor(colores[0]);
+            color = ponchoColor(colores[0]);
             console.log('color --> ' + color);
 
             if (opt.tipoGrafico == 'Line') {
@@ -2692,7 +2689,7 @@ function ponchoChart(opt) {
                             var data = {
                             from: opt.heatMapColorsRange[i],
                             to: opt.heatMapColorsRange[i + 1],
-                            color: getColor(opt.heatMapColors[i])
+                            color: ponchoColor(opt.heatMapColors[i])
                             };
                         rango.push(data);
                     }
@@ -2726,7 +2723,7 @@ function ponchoChart(opt) {
 
                 //getColores
                 colores.forEach(function(valor, indice, array) {
-                    codigosColores.push(getColor(valor));
+                    codigosColores.push(ponchoColor(valor));
                 });
                 var indiceMixed = 0;
 
