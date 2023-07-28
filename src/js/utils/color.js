@@ -206,7 +206,7 @@ const ponchoColorDefinitionsList = [
  * Variaciones de color
  */
 const colorVariations = {
-    hight: [
+    high: [
         "primary","verde-jade","success","naranja","danger","arandano",
         "uva","celeste-argentina","palta","verdin","warning","tomate",
         "fucsia","lavanda","black"
