@@ -37,3 +37,10 @@ const secureHTML = (str, exclude=[]) => {
     }
     return replaceString;
 };
+
+
+
+// $START_TEST$
+// ¡Atención! Patch para testear non-module
+module.exports = {secureHTML};
+// $END_TEST$

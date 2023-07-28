@@ -1,4 +1,4 @@
-const GapiSheetData = require('../src/js/gapi-sheet-data');
+const GapiSheetData = require('../src/js/gapi-sheet-data/gapi-sheet-data');
 const jsonData = require('./resources/response');
 
 test('GAPI', () => {

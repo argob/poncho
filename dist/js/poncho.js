@@ -1,4 +1,223 @@
 /**
+ * Definición de colores Poncho
+ */
+const ponchoColorDefinitionsList = [
+    {
+        description: "",
+        name: "Azul",
+        color: "#0072bb",
+        code: "primary",
+        alias: ["azul", "primary"],
+    },
+    {
+        description: "Acción principal o exitosa",
+        name: "Verde",
+        color: "#2e7d33",
+        code: "success",
+        alias: ["verde", "success"],
+    },
+    {
+        description: "Atención o peligro",
+        name: "Rojo",
+        color: "#c62828",
+        code: "danger",
+        alias: ["rojo", "danger"],
+    },
+    {
+        description: "Foco o alerta",
+        name: "Amarillo",
+        color: "#f9a822",
+        code: "warning",
+        alias: ["amarillo", "warning"],
+    },
+    {
+        description: "",
+        name: "Celeste",
+        color: "#2897d4",
+        code: "info",
+        alias: ["celeste", "info"],
+    },
+    {
+        description: "Elementos básicos",
+        name: "Negro",
+        color: "#333",
+        code: "black",
+        alias: ["negro", "black"],
+    },
+    {
+        description: "Enlace visitado",
+        name: "Uva",
+        color: "#6a1b99",
+        code: "uva",
+        alias: ["uva"],
+    },
+    {
+        description: "Texto secundario (subtitulos)",
+        name: "Gris",
+        color: "#525252",
+        code: "muted",
+        alias: ["gris", "muted"],
+    },
+    {
+        description: "Gris área",
+        name: "Gris intermedio",
+        color: "#f2f2f2",
+        code: "gray",
+        alias: ["grisintermedio", "gris-area", "gray"],
+    },
+    {
+        description: "Fondo footer/header",
+        name: "Celeste Argentina",
+        color: "#37bbed",
+        code: "celeste-argentina",
+        alias: ["celesteargentina", "celeste-argentina"],
+    },
+    {
+        description: "",
+        name: "Fucsia",
+        color: "#ec407a",
+        code: "fucsia",
+        code: "fucsia",
+        alias: ["fucsia"],
+    },
+    {
+        description: "",
+        name: "Arándano",
+        color: "#c2185b",
+        code: "arandano",
+        alias: ["arandano"],
+    },
+    {
+        description: "",
+        name: "Cielo",
+        color: "#039be5",
+        code: "cielo",
+        alias: ["cielo"],
+    },
+    {
+        description: "",
+        name: "Verdin",
+        color: "#6ea100",
+        code: "verdin",
+        alias: ["verdin"],
+    },
+    {
+        description: "",
+        name: "Lima",
+        color: "#cddc39",
+        code: "lima",
+        alias: ["lima"],
+    },
+    {
+        description: "",
+        name: "Maiz",
+        color: "#ffce00",
+        code: "maiz",
+        alias: ["maiz", "maíz"],
+    },
+    {
+        description: "",
+        name: "Tomate",
+        color: "#ef5350",
+        code: "tomate",
+        alias: ["tomate"],
+    },
+    {
+        description: "",
+        name: "Naranja oscuro",
+        color: "#EF6C00",
+        code: "naranja",
+        alias: ["naranjaoscuro", "naranja"],
+    },
+    {
+        description: "",
+        name: "Verde azulado",
+        color: "#008388",
+        code: "verde-azulado",
+        alias: ["verdeazulado", "verde-azulado"],
+    },
+    {
+        description: "",
+        name: "Escarapela",
+        color: "#2cb9ee",
+        code: "escarapela",
+        alias: ["escarapela"],
+    },
+    {
+        description: "",
+        name: "Lavanda",
+        color: "#9284be",
+        code: "lavanda",
+        alias: ["lavanda"],
+    },
+    {
+        description: "",
+        name: "Mandarina",
+        color: "#f79525",
+        code: "mandarina",
+        alias: ["mandarina"],
+    },
+    {
+        description: "",
+        name: "Palta",
+        color: "#50b7b2",
+        code: "palta",
+        alias: ["palta"],
+    },
+    {
+        description: "",
+        name: "Cereza",
+        color: "#ed3d8f",
+        code: "cereza",
+        alias: ["cereza"],
+    },
+    {
+        description: "",
+        name: "Limón",
+        color: "#d7df23",
+        code: "limon",
+        alias: ["limon"],
+    },
+    {
+        description: "",
+        name: "Verde Jade",
+        color: "#066",
+        code:  "verde-jade",
+        alias: ["verdejade", "verde-jade"],
+    },
+    {
+        description: "",
+        name: "Verde Aloe",
+        color: "#4fbb73",
+        code: "verde-aloe",
+        alias: ["verdealoe", "verde-aloe"],
+    },
+    {
+        description: "",
+        name: "Verde Cemento",
+        color: "#b4beba",
+        code: "verde-cemento",
+        alias: ["verdecemento", "verde-cemento"],
+    },
+];
+
+
+/**
+ * Definición por color
+ * 
+ * @see ponchoColorDefinitionsList
+ * @param {string} color Nombre del cólor a buscar. 
+ * @returns {string|boolean}
+ */
+const ponchoColorDefinitions = color => {
+    const result = ponchoColorDefinitionsList.find(
+        f => f.alias.some(s => typeof color != undefined && s == color)
+    );
+    return result || false;
+};
+
+
+/**
  * Colores poncho a hexa
  * 
  * @see https://argob.github.io/poncho/identidad/colores/
@@ -8,171 +227,10 @@
  * getColor("celeste")
  * @returns {string} Color en formato hexadecimal.
  */
-const ponchoColor = (color) => {
-    let codigoColor;
-    switch (color.toLocaleLowerCase()) {
-        case "celeste":
-        case "info":
-            codigoColor = "#2897d4";
-            break;
-        case "verde":
-        case "success":
-            codigoColor = "#2e7d33";
-            break;
-        case "rojo":
-        case "danger":
-            codigoColor = "#c62828";
-            break;
-        case "amarillo":
-        case "warning":
-            codigoColor = "#f9a822";
-            break;
-        case "azul":
-        case "primary":
-            codigoColor = "#0072bb";
-            break;
-        case "negro":
-        case "black":
-            codigoColor = "#333";
-            break;
-        case "uva":
-            codigoColor = "#6a1b99";
-            break;
-        case "gris":
-        case "muted":
-            codigoColor = "#525252";
-            break;
-        case "grisintermedio":
-        case "gris-area":
-        case "gray":
-            codigoColor = "#f2f2f2";
-            break;
-        case "celesteargentina":
-        case "celeste-argentina":
-            codigoColor = "#37bbed";
-            break;
-        case "fucsia":
-            codigoColor = "#ec407a";
-            break;
-        case "arandano":
-            codigoColor = "#c2185b";
-            break;
-        case "cielo":
-            codigoColor = "#039be5";
-            break;
-        case "verdin":
-            codigoColor = "#6ea100";
-            break;
-        case "lima":
-            codigoColor = "#cddc39";
-            break;
-        case "maiz":
-        case "maíz":
-            codigoColor = "#ffce00";
-            break;
-        case "tomate":
-            codigoColor = "#ef5350";
-            break;
-        case "naranjaoscuro":
-        case "naranja":
-            codigoColor = "#EF6C00";
-            break;
-        case "verdeazulado":
-        case "verde-azulado":
-            codigoColor = "#008388";
-            break;
-        case "escarapela":
-            codigoColor = "#2cb9ee";
-            break;
-        case "lavanda":
-            codigoColor = "#9284be";
-            break;
-        case "mandarina":
-            codigoColor = "#f79525";
-            break;
-        case "palta":
-            codigoColor = "#50b7b2";
-            break;
-        case "cereza":
-            codigoColor = "#ed3d8f";
-            break;
-        case "limon":
-            codigoColor = "#d7df23";
-            break;
-        case "verdejade":
-        case "verde-jade":
-            codigoColor = "#066";
-            break;
-        case "verdealoe":
-        case "verde-aloe":
-            codigoColor = "#4fbb73";
-            break;
-        case "verdecemento":
-        case "verde-cemento":
-            codigoColor = "#b4beba";
-            break;
-        default:
-            codigoColor = color;
-            // console.warn(
-            //     `No se encuentra el color con nombre «${color}». `
-            //     + `Revise cual aplica en: `
-            //     + `https://argob.github.io/poncho/identidad/colores/`
-            // );
-    }
-    return codigoColor;
-};
+const ponchoColor = color => ponchoColorDefinitions(color)?.color || color;
 
-/**
- * Remueve acentos y caracteres especiales.
- * 
- * @param {string} data Cadena de texto a limpiar. 
- * @example
- * // returns Accion murcielago arbol nino
- * removeAccents("Acción Murciélago árbol niño")
- * @returns {string} Cadena de texto sin acentos.
- */
-const replaceSpecialChars = (data) => {
-  if(!data){
-      return "";
-  }
-  const search = "àáâäæãåāăąçćčđďèéêëēėęěğǵḧîïíīįìıİłḿñńǹňôöòóœøōõőṕ"
-  + "ŕřßśšşșťțûüùúūǘůűųẃẍÿýžźż";
-  const replace = "aaaaaaaaaacccddeeeeeeeegghiiiiiiiilmnnnnooooooooop"
-  + "rrsssssttuuuuuuuuuwxyyzzz";
-  const a = search + search.toUpperCase();
-  const b = replace + replace.toUpperCase();
-  const p = new RegExp(a.split("").join("|"), "g");  
-  return data.toString().replace(p, c => b.charAt(a.indexOf(c)))
-};
 
-/**
- * Slugify
- * 
- * @param {string} string Cadena de texto a convertir.
- * @example
- * // returns el-murcielago-remolon-parece-un-nino
- * slugify("El murciélago remolón parece un niño")
- * @returns {string} Cadena de texto en formato slug.
- */
-const slugify = (string) =>{
-  if(!string){
-      return string;
-  }
-  const a = "àáâäæãåāăąçćčđďèéêëēėęěğǵḧîïíīįìıİłḿñńǹňôöòóœøōõőṕ"
-            + "ŕřßśšşșťțûüùúūǘůűųẃẍÿýžźż·/_,:;";
-  const b = "aaaaaaaaaacccddeeeeeeeegghiiiiiiiilmnnnnooooooooop"
-            + "rrsssssttuuuuuuuuuwxyyzzz------";
-  const p = new RegExp(a.split("").join("|"), "g");
-
-  return string.toString().toLowerCase()
-      .replace(/\s+/g, "-")
-      .replace(p, c => b.charAt(a.indexOf(c)))
-      .replace(/&/g, "-and-")
-      .replace(/[^\w\-]+/g, "")
-      .replace(/\-\-+/g, "-")
-      .replace(/^-+/, "")
-      .replace(/-+$/, "");
-};
+/* module.exports REMOVED */
 
 /**
  * Fetch data
@@ -186,19 +244,74 @@ const slugify = (string) =>{
  */
 async function fetch_json(url, method="GET"){
     const response = await fetch(
-      url,{
-          method: method, 
-          headers: {
-              "Accept": "application/json",
-              "Content-Type": "application/json"
-          }
-      }
+        url,
+        {
+            method: method, 
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            }
+        }
     );
     if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
     }
     return await response.json();
 };
+
+/**
+ * Remueve acentos y caracteres especiales.
+ * 
+ * @param {string} data Cadena de texto a limpiar. 
+ * @example
+ * // returns Accion murcielago arbol nino
+ * removeAccents("Acción Murciélago árbol niño")
+ * @returns {string} Cadena de texto sin acentos.
+ */
+const replaceSpecialChars = (data) => {
+    if(!data){
+        return "";
+    }
+    const search = "àáâäæãåāăąçćčđďèéêëēėęěğǵḧîïíīįìıİłḿñńǹňôöòóœøōõőṕ"
+    + "ŕřßśšşșťțûüùúūǘůűųẃẍÿýžźż";
+    const replace = "aaaaaaaaaacccddeeeeeeeegghiiiiiiiilmnnnnooooooooop"
+    + "rrsssssttuuuuuuuuuwxyyzzz";
+    const a = search + search.toUpperCase();
+    const b = replace + replace.toUpperCase();
+    const p = new RegExp(a.split("").join("|"), "g");  
+    return data.toString().replace(p, c => b.charAt(a.indexOf(c)))
+};
+
+
+/**
+ * Slugify
+ * 
+ * @param {string} string Cadena de texto a convertir.
+ * @example
+ * // returns el-murcielago-remolon-parece-un-nino
+ * slugify("El murciélago remolón parece un niño")
+ * @returns {string} Cadena de texto en formato slug.
+ */
+const slugify = (string) =>{
+    if(!string){
+        return string;
+    }
+    const a = "àáâäæãåāăąçćčđďèéêëēėęěğǵḧîïíīįìıİłḿñńǹňôöòóœøōõőṕ"
+                + "ŕřßśšşșťțûüùúūǘůűųẃẍÿýžźż·/_,:;";
+    const b = "aaaaaaaaaacccddeeeeeeeegghiiiiiiiilmnnnnooooooooop"
+                + "rrsssssttuuuuuuuuuwxyyzzz------";
+    const p = new RegExp(a.split("").join("|"), "g");
+
+    return string.toString().toLowerCase()
+        .replace(/\s+/g, "-")
+        .replace(p, c => b.charAt(a.indexOf(c)))
+        .replace(/&/g, "-and-")
+        .replace(/[^\w\-]+/g, "")
+        .replace(/\-\-+/g, "-")
+        .replace(/^-+/, "")
+        .replace(/-+$/, "");
+};
+
 
 /**
  * Impide que se impriman etiquetas HTML.
@@ -239,23 +352,6 @@ const secureHTML = (str, exclude=[]) => {
     }
     return replaceString;
 };
-
-
-const getScroll = () => {
-  if (window.pageYOffset != undefined) {
-      return [pageXOffset, pageYOffset];
-  } else {
-      var sx, sy, d = document,
-          r = d.documentElement,
-          b = d.body;
-      sx = r.scrollLeft || b.scrollLeft || 0;
-      sy = r.scrollTop || b.scrollTop || 0;
-      return [sx, sy];
-  }
-};
-
-
-/* module.exports REMOVED */
 
 /**
  * 
@@ -1133,178 +1229,258 @@ const ponchoTableDependant = opt => {
 };
 
 
-//#####################################################################
-//####################### POPOVER #####################################
-//#####################################################################
-
+/**
+ * POPOVER
+ */
 var content_popover = document.getElementById("content-popover");
+
 function popshow(){
     content_popover.classList.toggle("hidden");
 }
+
 function pophidde(){
     content_popover.classList.add("hidden");
 }
 
-
-//#####################################################################
-//####################### PONCHO UBICACION ############################
-//#####################################################################
-
+/**
+ * PONCHO UBICACIÓN
+ * 
+ * @param {object} options 
+ * 
+ * 
+ * MIT License
+ *
+ * Copyright (c) 2023 Argentina.gob.ar
+ *
+ * Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation
+ * files (the "Software"), to deal in the Software without restriction,
+ * including without limitation the rightsto use, copy, modify, merge,
+ * publish, distribute, sublicense, and/or sell copies of the Software,
+ * and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+ * BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+ * ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+ * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
 var ponchoUbicacion = function(options) {
-  var urlProvincias = '/profiles/argentinagobar/themes/contrib/poncho/resources/jsons/geoprovincias.json';
-  var urlLocalidades = '/profiles/argentinagobar/themes/contrib/poncho/resources/jsons/geolocalidades.json';
-  var provincias;
-  var localidades;
-  var iProvincia = jQuery('input[name="submitted[' + options.provincia + ']"]');
-  var iLocalidad = jQuery('input[name="submitted[' + options.localidad + ']"]');
-  var sProvincia;
-  var sLocalidades;
+    var urlProvincias = '/profiles/argentinagobar/themes/contrib/poncho/resources/jsons/geoprovincias.json';
+    var urlLocalidades = '/profiles/argentinagobar/themes/contrib/poncho/resources/jsons/geolocalidades.json';
+    var provincias;
+    var localidades;
+    var iProvincia = jQuery('input[name="submitted[' + options.provincia + ']"]');
+    var iLocalidad = jQuery('input[name="submitted[' + options.localidad + ']"]');
+    var sProvincia;
+    var sLocalidades;
 
-  function init() {
-    urlProvincias = options.urlProvincias ? options.urlProvincias : urlProvincias;
-    urlLocalidades = options.urlLocalidades ? options.urlLocalidades : urlLocalidades;
+    function init() {
+        urlProvincias = (options.urlProvincias ? options.urlProvincias : urlProvincias);
+        urlLocalidades = (options.urlLocalidades ? options.urlLocalidades : urlLocalidades);
 
-    jQuery.getJSON(urlProvincias, function(data) {
-      provincias = parseJsonProvincias(data);
-      sProvincia = getSelectProvincias(provincias);
-      addProvEvent();
-      iProvincia.after(sProvincia);
-      jQuery(sProvincia).select2();
-    });
-
-    jQuery.getJSON(urlLocalidades, function(data) {
-      localidades = parseJsonLocalidades(data);
-      sLocalidades = getSelectLocalidades(localidades, sProvincia.val());
-      addLocEvent();
-      iLocalidad.after(sLocalidades);
-      jQuery(sLocalidades).select2();
-    });
-    iProvincia.hide();
-    iLocalidad.hide();
-  }
-
-  function parseJsonProvincias(data) {
-    provincias = [];
-
-    data.results.forEach(function(provincia, index) {
-      provincias.push(provincia);
-    });
-
-    return provincias;
-  }
-
-  function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
-
-  function parseJsonLocalidades(data) {
-    localidades = [];
-
-    data.results.forEach(function(localidad, index) {
-      localidades.push(localidad);
-    });
-    return localidades;
-  }
-
-  function addProvEvent() {
-    sProvincia.on('change', function(e) {
-      iProvincia.val('');
-      iLocalidad.val('');
-      sLocalidades.children('option:not(:first)').remove();
-      if (sProvincia.val() != '') {
-        iProvincia.val(sProvincia.find(":selected").text());
-        var sAux = getSelectLocalidades(localidades, sProvincia.val());
-        var sOpt = sAux.find('option');
-        sLocalidades.append(sOpt);
-        sLocalidades.val('');
-      }
-    });
-  }
-
-  function addLocEvent() {
-    sLocalidades.on('change', function(e) {
-      iLocalidad.val('');
-      if (sLocalidades.val() != '') {
-        iLocalidad.val(sLocalidades.find(":selected").text());
-      }
-    });
-  }
-
-  function getDropDownList(name, id, optionList, required = false,
-    emptyOption = false, selected_item = false) {
-
-    var combo = jQuery("<select></select>")
-      .attr("id", id).attr("name", name)
-      .addClass("form-control form-select")
-      .prop('required', required);
-    if (emptyOption) {
-      combo.append("<option value=''>Seleccione una opción</option>");
-    }
-
-    jQuery.each(optionList, function(i, el) {
-      let selected = '';
-      if (selected_item == el.nombre) {
-        selected = 'selected="selected"';
-      }
-      combo.append(
-        "<option value='" + el.id + "' " + selected + ">" +
-        el.nombre +
-        "</option>"
-      );
-    });
-
-    return combo;
-  }
-
-  function getSelectProvincias(provincias) {
-    var provinciasOptions = [];
-
-    provinciasOptions = provincias.sort(function(a, b) {
-      var nameA = a.nombre.toUpperCase(); // ignore upper and lowercase
-      var nameB = b.nombre.toUpperCase(); // ignore upper and lowercase
-      return nameA.localeCompare(nameB);
-    });
-    var required = iProvincia.prop('required');
-    var select = getDropDownList('sProvincias', 'sProvincias', provinciasOptions,
-      required, true, iProvincia.val());
-    return select;
-  }
-
-  function getSelectLocalidades(localidades, provincia) {
-    var locaSelect = {};
-    var required = iLocalidad.prop('required');
-    var select = null;
-
-    if (iProvincia.val()) {
-      locaSelect = localidades
-        .filter(function(localidad) {
-          return String(localidad.provincia.id) == String(provincia);
-        })
-        .map(function(a) {
-          if (a.departamento.nombre) {
-            a.nombre = capitalizeFirstLetter(a.departamento.nombre.toLowerCase()) + ' - ' +
-              capitalizeFirstLetter(a.nombre.toLowerCase());
-          }
-          return a;
-        })
-        .sort(function(a, b) {
-          var nameA = a.nombre.toUpperCase(); // ignore upper and lowercase
-          var nameB = b.nombre.toUpperCase(); // ignore upper and lowercase
-          return nameA.localeCompare(nameB);
+        jQuery.getJSON(urlProvincias, function(data) {
+            provincias = parseJsonProvincias(data);
+            sProvincia = getSelectProvincias(provincias);
+            addProvEvent();
+            iProvincia.after(sProvincia);
+            jQuery(sProvincia).select2();
         });
-      emptyOption = iLocalidad.val() ? true : false;
 
-      select = getDropDownList('sLocalidades', 'sLocalidades',
-        locaSelect, required, emptyOption, iLocalidad.val());
-    } else {
-      select = getDropDownList('sLocalidades', 'sLocalidades',
-      [], required, true, false);
+        jQuery.getJSON(urlLocalidades, function(data) {
+            localidades = parseJsonLocalidades(data);
+            sLocalidades = getSelectLocalidades(localidades, sProvincia.val());
+            addLocEvent();
+            iLocalidad.after(sLocalidades);
+            jQuery(sLocalidades).select2();
+        });
+        iProvincia.hide();
+        iLocalidad.hide();
     }
 
-    return select;
-  }
 
-  init();
+    /**
+     * 
+     * @param {*} data 
+     * @returns 
+     */
+    function parseJsonProvincias(data) {
+        provincias = [];
+        data.results.forEach(function(provincia, index) {
+            provincias.push(provincia);
+        });
+        return provincias;
+    }
+
+
+    /**
+     * 
+     * @param {*} string 
+     * @returns 
+     */
+    function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
+
+    /**
+     * 
+     * @param {*} data 
+     * @returns 
+     */
+    function parseJsonLocalidades(data) {
+        localidades = [];
+        data.results.forEach(function(localidad, index) {
+            localidades.push(localidad);
+        });
+        return localidades;
+    }
+
+
+    /**
+     * 
+     */
+    function addProvEvent() {
+        sProvincia.on('change', function(e) {
+            iProvincia.val('');
+            iLocalidad.val('');
+            sLocalidades.children('option:not(:first)').remove();
+            if (sProvincia.val() != '') {
+                iProvincia.val(sProvincia.find(":selected").text());
+                var sAux = getSelectLocalidades(localidades, sProvincia.val());
+                var sOpt = sAux.find('option');
+                sLocalidades.append(sOpt);
+                sLocalidades.val('');
+            }
+        });
+    }
+
+
+    /**
+     * 
+     */
+    function addLocEvent() {
+        sLocalidades.on('change', function(e) {
+            iLocalidad.val('');
+            if (sLocalidades.val() != '') {
+                iLocalidad.val(sLocalidades.find(":selected").text());
+            }
+        });
+    }
+
+
+    /**
+     * 
+     * @param {*} name 
+     * @param {*} id 
+     * @param {*} optionList 
+     * @param {*} required 
+     * @param {*} emptyOption 
+     * @param {*} selected_item 
+     * @returns 
+     */
+    function getDropDownList(name, id, optionList, required = false,
+        emptyOption = false, selected_item = false) {
+
+        var combo = jQuery("<select></select>")
+            .attr("id", id).attr("name", name)
+            .addClass("form-control form-select")
+            .prop('required', required);
+        
+        if (emptyOption) {
+            combo.append("<option value=''>Seleccione una opción</option>");
+        }
+
+        jQuery.each(optionList, function(i, el) {
+            let selected = '';
+            if (selected_item == el.nombre) {
+                selected = 'selected="selected"';
+            }
+            combo.append(
+                "<option value='" + el.id + "' " + selected + ">" +
+                el.nombre +
+                "</option>"
+            );
+        });
+        return combo;
+    }
+
+
+    /**
+     * 
+     * @param {*} provincias 
+     * @returns 
+     */
+    function getSelectProvincias(provincias) {
+        var provinciasOptions = [];
+
+        provinciasOptions = provincias.sort(function(a, b) {
+            var nameA = a.nombre.toUpperCase();
+            var nameB = b.nombre.toUpperCase();
+            return nameA.localeCompare(nameB);
+        });
+        var required = iProvincia.prop('required');
+        var select = getDropDownList(
+            'sProvincias', 'sProvincias', provinciasOptions,
+            required, true, iProvincia.val()
+        );
+        return select;
+    }
+
+
+    /**
+     * 
+     * @param {*} localidades 
+     * @param {*} provincia 
+     * @returns 
+     */
+    function getSelectLocalidades(localidades, provincia) {
+        var locaSelect = {};
+        var required = iLocalidad.prop('required');
+        var select = null;
+
+        if (iProvincia.val()) {
+            locaSelect = localidades
+                .filter(function(localidad) {
+                    return String(localidad.provincia.id) == String(provincia);
+                })
+                .map(function(a) {
+                    if (a.departamento.nombre) {
+                        a.nombre = capitalizeFirstLetter(
+                            a.departamento.nombre.toLowerCase()) + ' - ' + 
+                            capitalizeFirstLetter(a.nombre.toLowerCase());
+                    }
+                    return a;
+                })
+                .sort(function(a, b) {
+                    var nameA = a.nombre.toUpperCase();
+                    var nameB = b.nombre.toUpperCase();
+                    return nameA.localeCompare(nameB);
+                });
+            
+            emptyOption = (iLocalidad.val() ? true : false);
+            select = getDropDownList(
+                'sLocalidades', 'sLocalidades',
+                locaSelect, required, emptyOption, iLocalidad.val()
+            );
+        } else {
+            select = getDropDownList(
+                'sLocalidades', 'sLocalidades',
+                [], required, true, false
+            );
+        }
+
+        return select;
+    }
+
+    init();
 };
 
 
@@ -5322,3 +5498,120 @@ class GapiSheetData {
 
 
 /* module.exports REMOVED */
+
+/**
+ * TRANSLATE
+ * 
+ * @summary Traductor de cadenas de texto
+ * 
+ * @author Agustín Bouillet <bouilleta@jefatura.gob.ar>
+ * 
+ * 
+ * MIT License
+ * 
+ * Copyright (c) 2023 Argentina.gob.ar
+ * 
+ * Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation
+ * files (the "Software"), to deal in the Software without restriction,
+ * including without limitation the rightsto use, copy, modify, merge,
+ * publish, distribute, sublicense, and/or sell copies of the Software,
+ * and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+ * BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+ * ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+ * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+class TranslateHTML {
+    ATTRIBUTES = [
+        "title", "placeholder", "alt", "value", "href", "src", "lang"
+    ];
+
+
+    /**
+     * @param {object} dictionary Objeto con diccionario de terminos 
+     * a traducir.
+     * @param {object} attributes Objeto con diccionario de terminos 
+     * a traducir.
+     */
+    constructor(dictionary = [], attributes = []) {
+        this.dictionary = dictionary;
+        this.attributes = (attributes.length ? attributes : this.ATTRIBUTES);
+    }
+
+
+    /**
+     * Traduce atributos html
+     * 
+     * @param {object} dictionary Objeto con texto a buscar y reemplazo.
+     * @summary Traduce el listado parado en el constructor o admite 
+     * un listado por parámetros. 
+     * @example 
+     * const list = [
+     *     ["traducir", "translate"]
+     * ] 
+     * (new TranslateHTML).translateAttributes(list)
+     */
+    translateAttributes = (dictionary=false) => {
+        const dict = (dictionary ? dictionary : this.dictionary);
+        this.attributes.forEach((item) =>
+            dict.forEach((translate) =>
+                document
+                    .querySelectorAll(`[${item}='${translate[0]}']`)
+                    .forEach((t) => (t[item] = translate[1]))
+            )
+        );
+    };
+
+
+    /**
+     * Traduce una cadena de texto dentro de cualquier etiqueta HTML.
+     * 
+     * @param {string} search Cadena de texto a buscar
+     * @param {string} replacement Cadena de texto con la traducción
+     * @example
+     * (new TranslateHTML).translateHTML("traducir", "translate")
+     */
+    translateHTML = (search, replacement) => {
+        var xpathResult = document.evaluate(
+            "//*/text()",
+            document,
+            null,
+            XPathResult.ORDERED_NODE_ITERATOR_TYPE,
+            null
+        );
+        var results = [];
+        var res;
+        while ((res = xpathResult.iterateNext())) {
+            results.push(res);
+        }
+        results.forEach((res) => {
+            var newTextContent = res.textContent.replace(search, replacement);
+            if (newTextContent !== res.textContent) {
+                var newNode = document.createTextNode(newTextContent);
+                res.parentNode.replaceChild(newNode, res);
+            }
+        });
+    };
+
+
+    /**
+     * Traduce el diccionario de términos
+     */
+    translate = () => {
+        this.dictionary.forEach((t) => {
+            const re = new RegExp(t[0], "g");
+            this.translateHTML(re, t[1]);
+        });
+    };
+}
+

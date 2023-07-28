@@ -50,3 +50,9 @@ const slugify = (string) =>{
         .replace(/^-+/, "")
         .replace(/-+$/, "");
 };
+
+
+// $START_TEST$
+// ¡Atención! Patch para testear non-module
+module.exports = {slugify, replaceSpecialChars};
+// $END_TEST$
