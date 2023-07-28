@@ -15,27 +15,27 @@ test('Colores Poncho por nombre', () => {
 
 
 test('Secure HTML', () => {
-  expect(secureHTML('<h1>Hello world!</h1> <a href="#">Link</a>', ["a"]))
-      .toBe('&lt;h1&gt;Hello world!&lt;/h1&gt; <a href="#">Link</a>');
+    expect(secureHTML('<h1>Hello world!</h1> <a href="#">Link</a>', ["a"]))
+        .toBe('&lt;h1&gt;Hello world!&lt;/h1&gt; <a href="#">Link</a>');
 
-  expect(secureHTML('<h1>Hello world!</h1> <a href="#">Link</a>', []))
-      .toBe('&lt;h1&gt;Hello world!&lt;/h1&gt; &lt;a href="#"&gt;Link&lt;/a&gt;');
-  
-      expect(secureHTML('<h1>Hello world!</h1> <a href="#">Link</a>', ["*"]))
-      .toBe('<h1>Hello world!</h1> <a href="#">Link</a>');
+    expect(secureHTML('<h1>Hello world!</h1> <a href="#">Link</a>', []))
+        .toBe('&lt;h1&gt;Hello world!&lt;/h1&gt; &lt;a href="#"&gt;Link&lt;/a&gt;');
+    
+        expect(secureHTML('<h1>Hello world!</h1> <a href="#">Link</a>', ["*"]))
+        .toBe('<h1>Hello world!</h1> <a href="#">Link</a>');
 
-  expect(secureHTML('<< Texto en <strong>negrita</strong> >>', ["strong"]))
-      .toBe('<< Texto en <strong>negrita</strong> >>');
+    expect(secureHTML('<< Texto en <strong>negrita</strong> >>', ["strong"]))
+        .toBe('<< Texto en <strong>negrita</strong> >>');
 
-  expect(secureHTML('<<strong>negrita</strong>>', ["strong"]))
-      .toBe('<<strong>negrita</strong>>');
+    expect(secureHTML('<<strong>negrita</strong>>', ["strong"]))
+        .toBe('<<strong>negrita</strong>>');
 });
 
 
 test('Removedor de acentos y caracteres especiales', () => {
-  expect(replaceSpecialChars('AGUSTÍN Bouillet juega como un niño'))
-      .toBe('AGUSTIN Bouillet juega como un nino');
-  expect(replaceSpecialChars(
-      'El hijo de Rolón, «el niño Joaquín», jugaba con un paragüas'))
-      .toBe('El hijo de Rolon, «el nino Joaquin», jugaba con un paraguas');
+    expect(replaceSpecialChars('AGUSTÍN Bouillet juega como un niño'))
+        .toBe('AGUSTIN Bouillet juega como un nino');
+    expect(replaceSpecialChars(
+        'El hijo de Rolón, «el niño Joaquín», jugaba con un paragüas'))
+        .toBe('El hijo de Rolon, «el nino Joaquin», jugaba con un paraguas');
 });
