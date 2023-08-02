@@ -190,7 +190,10 @@ function ponchoChart(opt) {
                 ]
             },
             options: {
-                legend: { display: mostrarLeyendas, position: posicionLeyendas },
+                legend: {
+                    display: mostrarLeyendas, 
+                    position: posicionLeyendas
+                },
                 tooltips: toltips,
                 responsive: true,
                 scales: {
@@ -240,7 +243,10 @@ function ponchoChart(opt) {
                 ]
             },
             options: {
-                legend: { display: mostrarLeyendas, position: posicionLeyendas },
+                legend: {
+                    display: mostrarLeyendas, 
+                    position: posicionLeyendas
+                },
                 tooltips: toltips,
                 responsive: true,
                 scales: {
@@ -325,7 +331,9 @@ function ponchoChart(opt) {
                 legend: {
                     display: mostrarLeyendas, 
                     position: posicionLeyendas, 
-                    labels: { textAlign: "center" }
+                    labels: {
+                        textAlign: "center"
+                    }
                 },
                 tooltips: toltips,
                 responsive: true,
@@ -412,7 +420,9 @@ function ponchoChart(opt) {
                 legend: {
                     display: mostrarLeyendas,
                     position: posicionLeyendas,
-                    labels: {textAlign: "center"}
+                    labels: {
+                        textAlign: "center"
+                    }
                 },
                 tooltips: {
                 enabled: true,
@@ -420,53 +430,61 @@ function ponchoChart(opt) {
                 callbacks: {
                     label: function(tooltipItems, data) {
                         var text = "";
-                        if (indice == 2) text = "%";
-                        else if (tooltipItems.datasetIndex == indice) text = "%"; 
+                        if (indice == 2){
+                            text = "%";
+                        } else if (tooltipItems.datasetIndex == indice){
+                            text = "%";
+                        }
                         var value = numeroFormateado(tooltipItems.yLabel);
-
-                        return data.datasets[tooltipItems.datasetIndex].label + ": " + value + " " + text;
+                        return data.datasets[tooltipItems.datasetIndex].label 
+                            + ": " + value + " " + text;
                     }
                 }
                 },
                 responsive: true,
                 scales: {
-                yAxes: [
-                    {
-                    id: "left-y-axis",
-                    type: "linear",
-                    position: "left",
-                    ticks: {
-                        beginAtZero: empiezaYenCero,
-                        callback: function(value) {
-                            var text = "";
-                            if (indice == 1 || indice == 2) text = "%"; 
-                            return value + text;
+                    yAxes: [
+                        {
+                            id: "left-y-axis",
+                            type: "linear",
+                            position: "left",
+                            ticks: {
+                                beginAtZero: empiezaYenCero,
+                                callback: function(value) {
+                                    var text = "";
+                                    if (indice == 1 || indice == 2){
+                                        text = "%";
+                                    }
+                                    return value + text;
+                                }
+                            },
+                            scaleLabel: {
+                                display: true,
+                                labelString: label2,
+                                fontColor: "black"
+                            }
+                        }, 
+                        {
+                            id: "right-y-axis",
+                            type: "linear",
+                            position: "right",
+                            ticks: {
+                                beginAtZero: empiezaYenCero,
+                                callback: function(value) {
+                                    var text = "";
+                                    if (indice == 0 || indice == 2){
+                                        text = "%";
+                                    }
+                                    return value + text;
+                                }
+                            },
+                            scaleLabel: {
+                                display: true,
+                                labelString: label1,
+                                fontColor: "black"
+                            }
                         }
-                    },
-                    scaleLabel: {
-                        display: true,
-                        labelString: label2,
-                        fontColor: "black"
-                        }
-                    }, {
-                    id: "right-y-axis",
-                    type: "linear",
-                    position: "right",
-                    ticks: {
-                        beginAtZero: empiezaYenCero,
-                        callback: function(value) {
-                            var text = "";
-                            if (indice == 0 || indice == 2) text = "%";
-                            return value + text;
-                        }
-                    },
-                        scaleLabel: {
-                        display: true,
-                        labelString: label1,
-                        fontColor: "black"
-                        }
-                    }
-                ],
+                    ],
                 },
             }
         });
@@ -519,12 +537,12 @@ function ponchoChart(opt) {
             },
             plotOptions: {
                 heatmap: {
-                shadeIntensity: 0.5,
-                radius: 0,
-                useFillColorAsStroke: false,
-                colorScale: {
-                    ranges: rango
-                }
+                    shadeIntensity: 0.5,
+                    radius: 0,
+                    useFillColorAsStroke: false,
+                    colorScale: {
+                        ranges: rango
+                    }
                 }
             },
             yaxis: {
@@ -595,13 +613,12 @@ function ponchoChart(opt) {
     function numeroFormateado(numero) {
         var value = numero.toString().replace(".",",");
         var array = value.split(",");
-        //var result1 = new Intl.NumberFormat("es").format(array[0]);
         var result1 = new Intl.NumberFormat("es-AR", {maximumFractionDigits:2 }).format(array[0]);
-        if (array.length > 1) 
+        if (array.length > 1){
             value = result1.concat(",",array[1].substr(0,2));
-        else 
+        } else {
             value = result1;
-
+        }
         return value;
     }
 
@@ -646,7 +663,6 @@ function ponchoChart(opt) {
         }
 
         var tipoGrafico = getTipoGrafico(opt.tipoGrafico);
-
         var listado = data["values"];
 
         //TITULOS
@@ -690,11 +706,11 @@ function ponchoChart(opt) {
                             }
                         } else { //seteo graficos por defecto
                             if (index == 0) {
-                                //por defecto seteo barra
+                                // por defecto seteo barra
                                 tipoGraficosMixed.push("barra");
                             }
                             if (index == 1) {
-                                //por defecto seteo linea
+                                // por defecto seteo linea
                                 tipoGraficosMixed.push("linea");
                             }
                         }
