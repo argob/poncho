@@ -9,7 +9,7 @@
   }
 
   100% {
-    right: var(--slider-right);
+    right: var(--slider-distance);
     opacity: 1;
   }
 }
@@ -76,12 +76,9 @@
   --slider-background: rgba(255, 255, 255, 1);
   --slider-border: none;
   --slider-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  --slider-top: 10px;
-  --slider-right: 10px;
-  --slider-left: 10px;
-  --slider-bottom: 10px;
+  --slider-distance: 10px;
   --slider-radius: 16px;
-  --slider-media-mobile-height: 45%;
+  --slider-media-mobile-height: 100%;
   --tooltip: #333;
   --tooltip-color: white;
   --active-marker-color: 255, 206, 0;
@@ -159,7 +156,7 @@
      */
   .slider {
     &.slider--in {
-      right: var(--slider-right);
+      right: var(--slider-distance);
       animation-duration: 0.3s;
       animation-name: slidein;
       box-shadow: var(--slider-shadow);
@@ -169,13 +166,13 @@
       max-width: 100%;
     }
 
-    z-index: 990;
+    z-index: 1000;
     position: absolute;
-    top: var(--slider-top);
+    top: var(--slider-distance);
     border: var(--slider-border);
     right: calc(-1 * var(--slider-width));
     background: var(--slider-background);
-    height: calc(100% - var(--slider-bottom) - var(--slider-top));
+    height: calc(100% - var(--slider-distance) - var(--slider-distance));
     width: var(--slider-width);
     border-radius: var(--slider-radius);
 
@@ -552,15 +549,15 @@
 \*------------------------------------*/
 @keyframes slideinmobile {
   0% {
-    right: var(--slider-right);
+    right: var(--slider-distance);
     bottom: calc(-1 * var(--slider-media-mobile-height));
     opacity: 0;
   }
 
   100% {
-    bottom: var(--slider-bottom);
+    bottom: var(--slider-distance);
     opacity: 1;
-    right: var(--slider-right);
+    right: var(--slider-distance);
   }
 }
 
@@ -568,23 +565,54 @@
 
   /* smartphones, iPhone, portrait 480x320 phones */
   .poncho-map {
+
+    &:has( .slider:is(.slider--in)){
+        position: relative;
+        border-radius: 24px;
+        transition: .4s;
+        
+        .leaflet-control-attribution {
+            opacity: .5;
+            display: none;
+        }
+        
+        &::before {
+            content: "";
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            position: absolute;
+            z-index: 1000;
+            background: var(--black);
+            opacity: .75;
+            transition: .5s;
+            
+        }
+        
+        
+ 
+    }
+
+
     .slider {
-      height: var(--slider-media-mobile-height);
+      
+      height: calc(var(--slider-media-mobile-height) - var(--slider-distance) - var(--slider-distance));
       top: auto;
       bottom: calc(-1 * var(--slider-media-mobile-height));
-      right: var(--slider-right);
+      right: var(--slider-distance);
       max-width: 100%;
-      width: calc(100% - var(--slider-bottom) - var(--slider-top));
+      width: calc(100% - var(--slider-distance) - var(--slider-distance));
 
       &.slider--in {
         animation-name: slideinmobile;
-        bottom: var(--slider-bottom);
+        bottom: var(--slider-distance);
       }
     }
 
     .poncho-map-filters {
       max-width: 50%;
-      width: calc(100% - var(--slider-bottom) - var(--slider-top));
+      width: calc(100% - var(--slider-distance) - var(--slider-distance));
     }
   }
 }
