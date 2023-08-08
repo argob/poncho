@@ -828,6 +828,7 @@ class PonchoMapFilter extends PonchoMap {
         });
     };
 
+    
     /**
      * imprime el mapa
      */ 
