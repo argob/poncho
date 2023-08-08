@@ -215,20 +215,20 @@ class PonchoMapFilter extends PonchoMap {
      */
     _filterContainerHeight = () => {    
         const filter_container = document
-              .querySelector(`.js-filter-container${this.scope_sufix}`);
+            .querySelector(`.js-filter-container${this.scope_sufix}`);
         const filter_button = document
-              .querySelector(`.js-close-filter${this.scope_sufix}`);
+            .querySelector(`.js-close-filter${this.scope_sufix}`);
 
         const poncho_map_height = filter_container.offsetParent.offsetHeight;
         // Valor tomado de la hoja de estilos
-        const container_position_distance = 20;
+        const container_position_distance = this._cssVarComputedDistance() * 2;
         const filters_height = poncho_map_height
-              - filter_container.offsetTop
-              - filter_button.offsetHeight
-              - container_position_distance;
+            - filter_container.offsetTop
+            - filter_button.offsetHeight
+            - container_position_distance;
 
         const pos = document
-              .querySelector(`.js-poncho-map-filters${this.scope_sufix}`);
+            .querySelector(`.js-poncho-map-filters${this.scope_sufix}`);
         pos.style.maxHeight = `${filters_height}px`;
 
         // Valor tomado de la hoja de estilos
@@ -237,8 +237,9 @@ class PonchoMapFilter extends PonchoMap {
         const filters = document.querySelector(`.js-filters${this.scope_sufix}`);
         filters.style.height = `${height}px`;
         filters.style.overflow = "auto";
-    }
-      
+    };
+
+
     /**
      * Ejecuta toggle en el onclick
      * @return {undefined}
@@ -246,9 +247,9 @@ class PonchoMapFilter extends PonchoMap {
     _clickToggleFilter = () => document
         .querySelectorAll(`.js-close-filter${this.scope_sufix}`)
         .forEach(element => element.onclick = (event) => {
-              event.preventDefault();
-              this.toggleFilter();
-              this._filterContainerHeight();
+            event.preventDefault();
+            this.toggleFilter();
+            this._filterContainerHeight();
     });
 
     /**
@@ -417,22 +418,51 @@ class PonchoMapFilter extends PonchoMap {
         button_container.classList.add(
             `js-filter-container${this.scope_sufix}`, "filter-container"
         );
-        if(this.reset_zoom){
-            button_container.classList.add("filter-container--zoom-expand");
-        }
         button_container.appendChild(button);
 
         const container = document
-              .querySelector(`.poncho-map${this.scope_selector}`);
+            .querySelector(`.poncho-map${this.scope_selector}`);
         container.appendChild(button_container);
     }
+
+
+    /**
+     * Medida definida en la variable CSS --slider-distance
+     * 
+     * @summary Esta medida puede ser variable según el estilo que se
+     * quiera dar al mapa el diseñador. 
+     * @returns {integer}
+     */
+    _cssVarComputedDistance = () => {
+        const container = document.querySelector(".poncho-map");
+        const computedDistance = getComputedStyle(container)
+                .getPropertyValue('--slider-distance');
+        const distance = parseInt(
+            computedDistance.toString().replace(/[^0-9]*/gm, ""));
+        return distance || 0;
+    };
+
+
+    /**
+     * Retorna las medidas y la distancia de margen del control de zoom leaflet. 
+     * @returns {object}
+     */
+    _controlZoomSize = () =>{
+        const leafletControlZoom = document
+                .querySelector(`${this.scope_selector} .leaflet-control-zoom`);
+        return {
+            controlHeight: leafletControlZoom.offsetHeight,
+            controlTop: leafletControlZoom.offsetTop
+        };
+    };
+
 
     /**
      * Crea el contenedor para los filtros.
      */
     _filterContainer = () => {
         const fields_container = document.createElement("div");
-        fields_container.className = `js-filters${this.scope_sufix}`;  
+        fields_container.className = `js-filters${this.scope_sufix}`;
 
         const close_button = document.createElement("button");
         close_button.classList.add(
@@ -445,6 +475,7 @@ class PonchoMapFilter extends PonchoMap {
         close_button.setAttribute("role", "button");
         close_button.setAttribute("aria-label", "Cerrar panel de filtros");
         close_button.innerHTML = "<span class=\"sr-only\">Cerrar </span>✕";
+
 
         const form = document.createElement("form");
         form.classList.add(`js-formulario${this.scope_sufix}`);
@@ -464,9 +495,19 @@ class PonchoMapFilter extends PonchoMap {
             container.classList.add("filter--in");
         }
 
+        const cssVarComputedDistance = this._cssVarComputedDistance();
+        const controlZoomSize = this._controlZoomSize();
+        const styleTop = controlZoomSize.controlHeight 
+                + controlZoomSize.controlTop 
+                + cssVarComputedDistance 
+                + "px";
+
         container.appendChild(form); 
         document.querySelectorAll(`.js-filter-container${this.scope_sufix}`)
-            .forEach(element => element.appendChild(container));
+            .forEach(element => {
+                element.style.top = styleTop;
+                element.appendChild(container);
+            });
     };
 
     /**
