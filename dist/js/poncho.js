@@ -5,200 +5,271 @@ const ponchoColorDefinitionsList = [
     {
         description: "",
         name: "Azul",
-        color: "#0072bb",
+        color: "#0072BB",
         code: "primary",
-        alias: ["azul", "primary"],
+        alias: [
+            "azul",
+            "primary"
+        ]
     },
     {
         description: "Acción principal o exitosa",
         name: "Verde",
-        color: "#2e7d33",
+        color: "#2E7D33",
         code: "success",
-        alias: ["verde", "success"],
+        alias: [
+            "verde",
+            "success"
+        ]
     },
     {
         description: "Atención o peligro",
         name: "Rojo",
-        color: "#c62828",
+        color: "#C62828",
         code: "danger",
-        alias: ["rojo", "danger"],
+        alias: [
+            "rojo",
+            "danger"
+        ]
     },
     {
         description: "Foco o alerta",
         name: "Amarillo",
-        color: "#f9a822",
+        color: "#F9A822",
         code: "warning",
-        alias: ["amarillo", "warning"],
+        alias: [
+            "amarillo",
+            "warning"
+        ]
     },
     {
         description: "",
         name: "Celeste",
-        color: "#2897d4",
+        color: "#2897D4",
         code: "info",
-        alias: ["celeste", "info"],
+        alias: [
+            "celeste",
+            "info"
+        ]
     },
     {
         description: "Elementos básicos",
         name: "Negro",
-        color: "#333",
+        color: "#333333",
         code: "black",
-        alias: ["negro", "black"],
+        alias: [
+            "negro",
+            "black"
+        ]
     },
     {
         description: "Enlace visitado",
         name: "Uva",
-        color: "#6a1b99",
+        color: "#6A1B99",
         code: "uva",
-        alias: ["uva"],
+        alias: [
+            "uva"
+        ]
     },
     {
         description: "Texto secundario (subtitulos)",
         name: "Gris",
         color: "#525252",
         code: "muted",
-        alias: ["gris", "muted"],
+        alias: [
+            "gris",
+            "muted"
+        ]
     },
     {
         description: "Gris área",
         name: "Gris intermedio",
-        color: "#f2f2f2",
+        color: "#F2F2F2",
         code: "gray",
-        alias: ["grisintermedio", "gris-area", "gray"],
+        alias: [
+            "grisintermedio",
+            "gris-area",
+            "gray"
+        ]
     },
     {
         description: "Fondo footer/header",
         name: "Celeste Argentina",
-        color: "#37bbed",
+        color: "#37BBED",
         code: "celeste-argentina",
-        alias: ["celesteargentina", "celeste-argentina"],
+        alias: [
+            "celesteargentina",
+            "celeste-argentina"
+        ]
     },
     {
         description: "",
         name: "Fucsia",
-        color: "#ec407a",
+        color: "#EC407A",
         code: "fucsia",
-        code: "fucsia",
-        alias: ["fucsia"],
+        alias: [
+            "fucsia"
+        ]
     },
     {
         description: "",
         name: "Arándano",
-        color: "#c2185b",
+        color: "#C2185B",
         code: "arandano",
-        alias: ["arandano"],
+        alias: [
+            "arandano"
+        ]
     },
     {
         description: "",
         name: "Cielo",
-        color: "#039be5",
+        color: "#039BE5",
         code: "cielo",
-        alias: ["cielo"],
+        alias: [
+            "cielo"
+        ]
     },
     {
         description: "",
         name: "Verdin",
-        color: "#6ea100",
+        color: "#6EA100",
         code: "verdin",
-        alias: ["verdin"],
+        alias: [
+            "verdin"
+        ]
     },
     {
         description: "",
         name: "Lima",
-        color: "#cddc39",
+        color: "#CDDC39",
         code: "lima",
-        alias: ["lima"],
+        alias: [
+            "lima"
+        ]
     },
     {
         description: "",
         name: "Maiz",
-        color: "#ffce00",
+        color: "#FFCE00",
         code: "maiz",
-        alias: ["maiz", "maíz"],
+        alias: [
+            "maiz",
+            "maíz"
+        ]
     },
     {
         description: "",
         name: "Tomate",
-        color: "#ef5350",
+        color: "#EF5350",
         code: "tomate",
-        alias: ["tomate"],
+        alias: [
+            "tomate"
+        ]
     },
     {
         description: "",
         name: "Naranja oscuro",
         color: "#EF6C00",
         code: "naranja",
-        alias: ["naranjaoscuro", "naranja"],
+        alias: [
+            "naranjaoscuro",
+            "naranja"
+        ]
     },
     {
         description: "",
         name: "Verde azulado",
         color: "#008388",
         code: "verde-azulado",
-        alias: ["verdeazulado", "verde-azulado"],
+        alias: [
+            "verdeazulado",
+            "verde-azulado"
+        ]
     },
     {
         description: "",
         name: "Escarapela",
-        color: "#2cb9ee",
+        color: "#2CB9EE",
         code: "escarapela",
-        alias: ["escarapela"],
+        alias: [
+            "escarapela"
+        ]
     },
     {
         description: "",
         name: "Lavanda",
-        color: "#9284be",
+        color: "#9284BE",
         code: "lavanda",
-        alias: ["lavanda"],
+        alias: [
+            "lavanda"
+        ]
     },
     {
         description: "",
         name: "Mandarina",
-        color: "#f79525",
+        color: "#F79525",
         code: "mandarina",
-        alias: ["mandarina"],
+        alias: [
+            "mandarina"
+        ]
     },
     {
         description: "",
         name: "Palta",
-        color: "#50b7b2",
+        color: "#50B7B2",
         code: "palta",
-        alias: ["palta"],
+        alias: [
+            "palta"
+        ]
     },
     {
         description: "",
         name: "Cereza",
-        color: "#ed3d8f",
+        color: "#ED3D8F",
         code: "cereza",
-        alias: ["cereza"],
+        alias: [
+            "cereza"
+        ]
     },
     {
         description: "",
         name: "Limón",
-        color: "#d7df23",
+        color: "#D7DF23",
         code: "limon",
-        alias: ["limon"],
+        alias: [
+            "limon"
+        ]
     },
     {
         description: "",
         name: "Verde Jade",
-        color: "#066",
-        code:  "verde-jade",
-        alias: ["verdejade", "verde-jade"],
+        color: "#006666",
+        code: "verde-jade",
+        alias: [
+            "verdejade",
+            "verde-jade"
+        ]
     },
     {
         description: "",
         name: "Verde Aloe",
-        color: "#4fbb73",
+        color: "#4FBB73",
         code: "verde-aloe",
-        alias: ["verdealoe", "verde-aloe"],
+        alias: [
+            "verdealoe",
+            "verde-aloe"
+        ]
     },
     {
         description: "",
         name: "Verde Cemento",
-        color: "#b4beba",
+        color: "#B4BEBA",
         code: "verde-cemento",
-        alias: ["verdecemento", "verde-cemento"],
-    },
+        alias: [
+            "verdecemento",
+            "verde-cemento"
+        ]
+    }
 ];
 
 
@@ -4347,146 +4418,162 @@ class PonchoMap {
   };
 
 
-  /**
-   * Agrega anclas y enlaces para un menú accesible.
-   * 
-   * @accesibility
-   * @summary El mapa es muy complicado de leer con un lector de 
-   * pantalla. El contexto es dificil de entender. Estos enlaces 
-   * ayudan a navegar dos o tres de los sectores que contienen y 
-   * manejan información: los filtros, los markers y el control 
-   * de zoom.
-   * @todo Revisar el modo de activar el enlace para visualizar el 
-   * slider cuando éste está visible. Como sugerencia se puede 
-   * utilizar Aria para setear el estado, pero esto hay que 
-   * chequearlo con expertos.
-   * @see https://www.w3.org/WAI/standards-guidelines/aria/
-   * @see https://developer.mozilla.org/en-US/docs/Learn/Accessibility/WAI-ARIA_basics
-   */
-  _accesibleMenu = () => {
-      // Remuevo instancias anteriores si existieran.
-      document.querySelectorAll(`${this.scope_selector} .accesible-nav`)
-          .forEach(e => e.remove());
+    /**
+     * Agrega anclas y enlaces para un menú accesible.
+     * 
+     * @accesibility
+     * @summary El mapa es muy complicado de leer con un lector de 
+     * pantalla. El contexto es dificil de entender. Estos enlaces 
+     * ayudan a navegar dos o tres de los sectores que contienen y 
+     * manejan información: los filtros, los markers y el control 
+     * de zoom.
+     * @todo Revisar el modo de activar el enlace para visualizar el 
+     * slider cuando éste está visible. Como sugerencia se puede 
+     * utilizar Aria para setear el estado, pero esto hay que 
+     * chequearlo con expertos.
+     * @see https://www.w3.org/WAI/standards-guidelines/aria/
+     * @see https://developer.mozilla.org/en-US/docs/Learn/Accessibility/WAI-ARIA_basics
+     */
+    _accesibleMenu = () => {
+        // Remuevo instancias anteriores si existieran.
+        document.querySelectorAll(`${this.scope_selector} .accesible-nav`)
+            .forEach(e => e.remove());
 
-      // Anclas que se deben crear.
-      const anchors = this._accesibleAnchors();
+        // Anclas que se deben crear.
+        const anchors = this._accesibleAnchors();
 
-      // Enlace
-      let values = [
-          {
-              "text": "Ir a los marcadores del mapa",
-              "anchor": `#${anchors[0][1]}`
-          },
-          {
-              "text": "Ajustar marcadores al mapa",
-              "anchor": "#",
-              "class": "js-fit-bounds"
-          },
-          {
-              "text": "Ir al panel de zoom",
-              "anchor": `#${anchors[1][1]}` 
-          }
-      ]
-      values = [
-          ...values,
-          ...this.accesible_menu_filter,
-          ...this.accesible_menu_search,
-          ...this.accesible_menu_extras
-      ];
+        // Enlace
+        let values = [
+            {
+                "text": "Ir a los marcadores del mapa",
+                "anchor": `#${anchors[0][1]}`
+            },
+            {
+                "text": "Ajustar marcadores al mapa",
+                "anchor": "#",
+                "class": "js-fit-bounds"
+            },
+            {
+                "text": "Ir al panel de zoom",
+                "anchor": `#${anchors[1][1]}` 
+            }
+        ]
+        values = [
+            ...values,
+            ...this.accesible_menu_filter,
+            ...this.accesible_menu_search,
+            ...this.accesible_menu_extras
+        ];
 
-      // Imprimo los enlaces
-      const icon = document.createElement("i");
-      icon.classList.add(
-          "icono-arg-sitios-accesibles", 
-          "accesible-nav__icon"
-      );
-      icon.setAttribute("aria-hidden", "true");
+        // Imprimo los enlaces
+        const icon = document.createElement("i");
+        icon.classList.add(
+            "icono-arg-sitios-accesibles", 
+            "accesible-nav__icon"
+        );
+        icon.setAttribute("aria-hidden", "true");
 
-      const nav = document.createElement("div");
-      nav.classList.add("accesible-nav", "top");
-      nav.id = `accesible-nav${this.scope_sufix}`;
-      nav.setAttribute("aria-label", "Menú para el mapa");
-      nav.setAttribute("role", "navigation");
-      nav.tabIndex=0;
+        const nav = document.createElement("div");
+        nav.classList.add("accesible-nav", "top");
+        nav.id = `accesible-nav${this.scope_sufix}`;
+        nav.setAttribute("aria-label", "Menú para el mapa");
+        nav.setAttribute("role", "navigation");
+        nav.tabIndex=0;
 
-      const ul = document.createElement("ul");
-      values.forEach((link, index) => {
-          const a = document.createElement("a");
-          a.textContent = link.text;
-          a.tabIndex = 0;
-          a.href = link.anchor;
-          if(link.hasOwnProperty("class") && link.class != ""){
-              a.classList.add(...link.class.split(" "))
-          }
+        const ul = document.createElement("ul");
+        values.forEach((link, index) => {
+            const a = document.createElement("a");
+            a.textContent = link.text;
+            a.tabIndex = 0;
+            a.href = link.anchor;
+            if(link.hasOwnProperty("class") && link.class != ""){
+                a.classList.add(...link.class.split(" "))
+            }
 
-          const li = document.createElement("li");
-          li.appendChild(a);
-          ul.appendChild(li);
-      });
-      
-      nav.appendChild(icon);
-      nav.appendChild(ul);
+            const li = document.createElement("li");
+            li.appendChild(a);
+            ul.appendChild(li);
+        });
+        
+        nav.appendChild(icon);
+        nav.appendChild(ul);
 
-      // enlace de retorno
-      const back_to_nav = document.createElement("a");
-      back_to_nav.textContent = "Ir a la navegación del mapa";
-      back_to_nav.href = `#accesible-nav${this.scope_sufix}`;
-      back_to_nav.id = `accesible-return-nav${this.scope_sufix}`;
+        // enlace de retorno
+        const back_to_nav = document.createElement("a");
+        back_to_nav.textContent = "Ir a la navegación del mapa";
+        back_to_nav.href = `#accesible-nav${this.scope_sufix}`;
+        back_to_nav.id = `accesible-return-nav${this.scope_sufix}`;
 
-      const return_nav = document.createElement("div");
-      return_nav.classList.add("accesible-nav", "bottom");
-      return_nav.appendChild(icon.cloneNode(true));
-      return_nav.appendChild(back_to_nav);
+        const return_nav = document.createElement("div");
+        return_nav.classList.add("accesible-nav", "bottom");
+        return_nav.appendChild(icon.cloneNode(true));
+        return_nav.appendChild(back_to_nav);
 
-      const navigation = document.querySelectorAll(`${this.scope_selector}`);
-      navigation.forEach(element => {
-          element.insertBefore(nav, element.children[0]);
-          element.appendChild(return_nav);
-      });
-      this.fit();
-  };
+        const navigation = document.querySelectorAll(`${this.scope_selector}`);
+        navigation.forEach(element => {
+            element.insertBefore(nav, element.children[0]);
+            element.appendChild(return_nav);
+        });
+        this.fit();
+    };
 
-  /**
-   * Ajusta marcadores a los bordes del mapa en un onclick
-   * @returns {undefined}
-   */
-  fit = () => document
-      .querySelectorAll(`${this.scope_selector} .js-fit-bounds`)
-      .forEach(e => {
-          e.onclick = (event => {
-            event.preventDefault();
-            this.fitBounds();
-      });
-  });
 
-  /**
-   * Hace el render del mapa.
-   */
-  render = () => {
-      this._hiddenSearchInput();
-      this._resetViewButton();
-      this.markersMap(this.entries);
-      this._selectedMarker();
+    /**
+     * Ajusta marcadores a los bordes del mapa en un onclick
+     * @returns {undefined}
+     */
+    fit = () => document
+        .querySelectorAll(`${this.scope_selector} .js-fit-bounds`)
+        .forEach(e => {
+            e.onclick = (event => {
+                event.preventDefault();
+                this.fitBounds();
+        });
+    });
 
-      if(this.slider){
-          this._renderSlider();
-          this._clickeableFeatures();
-          this._clickeableMarkers();
-          this._clickToggleSlider();
-      }
 
-      if(this.hash){
-          this._urlHash();
-      }
+    /**
+     * Remueve elementos agregados al mapa
+     */
+    clearAll = () => {
+        const elements = [
+            `.js-filter-container${this.scope_sufix}`,
+            `.js-slider${this.scope_sufix}`,
+        ];
+        elements.forEach(e => document
+                .querySelectorAll(e)
+                .forEach(i => i.remove()));
+    };
 
-      if(this.scroll && this.hasHash()){
-          this.scrollCenter();
-      }
 
-      setTimeout(this.gotoHashedEntry, this.anchor_delay);
-      this._setFetureAttributes();
-      this._accesibleMenu();
-  };
+    /**
+     * Hace el render del mapa.
+     */
+    render = () => {
+        this._hiddenSearchInput();
+        this._resetViewButton();
+        this.markersMap(this.entries);
+        this._selectedMarker();
+
+        if(this.slider){
+            this._renderSlider();
+            this._clickeableFeatures();
+            this._clickeableMarkers();
+            this._clickToggleSlider();
+        }
+
+        if(this.hash){
+            this._urlHash();
+        }
+
+        if(this.scroll && this.hasHash()){
+            this.scrollCenter();
+        }
+
+        setTimeout(this.gotoHashedEntry, this.anchor_delay);
+        this._setFetureAttributes();
+        this._accesibleMenu();
+    };
 };
 // end class
 
@@ -5320,6 +5407,7 @@ class PonchoMapFilter extends PonchoMap {
         });
     };
 
+    
     /**
      * imprime el mapa
      */ 
