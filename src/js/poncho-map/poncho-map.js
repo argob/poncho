@@ -1517,145 +1517,161 @@ class PonchoMap {
   };
 
 
-  /**
-   * Agrega anclas y enlaces para un menú accesible.
-   * 
-   * @accesibility
-   * @summary El mapa es muy complicado de leer con un lector de 
-   * pantalla. El contexto es dificil de entender. Estos enlaces 
-   * ayudan a navegar dos o tres de los sectores que contienen y 
-   * manejan información: los filtros, los markers y el control 
-   * de zoom.
-   * @todo Revisar el modo de activar el enlace para visualizar el 
-   * slider cuando éste está visible. Como sugerencia se puede 
-   * utilizar Aria para setear el estado, pero esto hay que 
-   * chequearlo con expertos.
-   * @see https://www.w3.org/WAI/standards-guidelines/aria/
-   * @see https://developer.mozilla.org/en-US/docs/Learn/Accessibility/WAI-ARIA_basics
-   */
-  _accesibleMenu = () => {
-      // Remuevo instancias anteriores si existieran.
-      document.querySelectorAll(`${this.scope_selector} .accesible-nav`)
-          .forEach(e => e.remove());
+    /**
+     * Agrega anclas y enlaces para un menú accesible.
+     * 
+     * @accesibility
+     * @summary El mapa es muy complicado de leer con un lector de 
+     * pantalla. El contexto es dificil de entender. Estos enlaces 
+     * ayudan a navegar dos o tres de los sectores que contienen y 
+     * manejan información: los filtros, los markers y el control 
+     * de zoom.
+     * @todo Revisar el modo de activar el enlace para visualizar el 
+     * slider cuando éste está visible. Como sugerencia se puede 
+     * utilizar Aria para setear el estado, pero esto hay que 
+     * chequearlo con expertos.
+     * @see https://www.w3.org/WAI/standards-guidelines/aria/
+     * @see https://developer.mozilla.org/en-US/docs/Learn/Accessibility/WAI-ARIA_basics
+     */
+    _accesibleMenu = () => {
+        // Remuevo instancias anteriores si existieran.
+        document.querySelectorAll(`${this.scope_selector} .accesible-nav`)
+            .forEach(e => e.remove());
 
-      // Anclas que se deben crear.
-      const anchors = this._accesibleAnchors();
+        // Anclas que se deben crear.
+        const anchors = this._accesibleAnchors();
 
-      // Enlace
-      let values = [
-          {
-              "text": "Ir a los marcadores del mapa",
-              "anchor": `#${anchors[0][1]}`
-          },
-          {
-              "text": "Ajustar marcadores al mapa",
-              "anchor": "#",
-              "class": "js-fit-bounds"
-          },
-          {
-              "text": "Ir al panel de zoom",
-              "anchor": `#${anchors[1][1]}` 
-          }
-      ]
-      values = [
-          ...values,
-          ...this.accesible_menu_filter,
-          ...this.accesible_menu_search,
-          ...this.accesible_menu_extras
-      ];
+        // Enlace
+        let values = [
+            {
+                "text": "Ir a los marcadores del mapa",
+                "anchor": `#${anchors[0][1]}`
+            },
+            {
+                "text": "Ajustar marcadores al mapa",
+                "anchor": "#",
+                "class": "js-fit-bounds"
+            },
+            {
+                "text": "Ir al panel de zoom",
+                "anchor": `#${anchors[1][1]}` 
+            }
+        ]
+        values = [
+            ...values,
+            ...this.accesible_menu_filter,
+            ...this.accesible_menu_search,
+            ...this.accesible_menu_extras
+        ];
 
-      // Imprimo los enlaces
-      const icon = document.createElement("i");
-      icon.classList.add(
-          "icono-arg-sitios-accesibles", 
-          "accesible-nav__icon"
-      );
-      icon.setAttribute("aria-hidden", "true");
+        // Imprimo los enlaces
+        const icon = document.createElement("i");
+        icon.classList.add(
+            "icono-arg-sitios-accesibles", 
+            "accesible-nav__icon"
+        );
+        icon.setAttribute("aria-hidden", "true");
 
-      const nav = document.createElement("div");
-      nav.classList.add("accesible-nav", "top");
-      nav.id = `accesible-nav${this.scope_sufix}`;
-      nav.setAttribute("aria-label", "Menú para el mapa");
-      nav.setAttribute("role", "navigation");
-      nav.tabIndex=0;
+        const nav = document.createElement("div");
+        nav.classList.add("accesible-nav", "top");
+        nav.id = `accesible-nav${this.scope_sufix}`;
+        nav.setAttribute("aria-label", "Menú para el mapa");
+        nav.setAttribute("role", "navigation");
+        nav.tabIndex=0;
 
-      const ul = document.createElement("ul");
-      values.forEach((link, index) => {
-          const a = document.createElement("a");
-          a.textContent = link.text;
-          a.tabIndex = 0;
-          a.href = link.anchor;
-          if(link.hasOwnProperty("class") && link.class != ""){
-              a.classList.add(...link.class.split(" "))
-          }
+        const ul = document.createElement("ul");
+        values.forEach((link, index) => {
+            const a = document.createElement("a");
+            a.textContent = link.text;
+            a.tabIndex = 0;
+            a.href = link.anchor;
+            if(link.hasOwnProperty("class") && link.class != ""){
+                a.classList.add(...link.class.split(" "))
+            }
 
-          const li = document.createElement("li");
-          li.appendChild(a);
-          ul.appendChild(li);
-      });
-      
-      nav.appendChild(icon);
-      nav.appendChild(ul);
+            const li = document.createElement("li");
+            li.appendChild(a);
+            ul.appendChild(li);
+        });
+        
+        nav.appendChild(icon);
+        nav.appendChild(ul);
 
-      // enlace de retorno
-      const back_to_nav = document.createElement("a");
-      back_to_nav.textContent = "Ir a la navegación del mapa";
-      back_to_nav.href = `#accesible-nav${this.scope_sufix}`;
-      back_to_nav.id = `accesible-return-nav${this.scope_sufix}`;
+        // enlace de retorno
+        const back_to_nav = document.createElement("a");
+        back_to_nav.textContent = "Ir a la navegación del mapa";
+        back_to_nav.href = `#accesible-nav${this.scope_sufix}`;
+        back_to_nav.id = `accesible-return-nav${this.scope_sufix}`;
 
-      const return_nav = document.createElement("div");
-      return_nav.classList.add("accesible-nav", "bottom");
-      return_nav.appendChild(icon.cloneNode(true));
-      return_nav.appendChild(back_to_nav);
+        const return_nav = document.createElement("div");
+        return_nav.classList.add("accesible-nav", "bottom");
+        return_nav.appendChild(icon.cloneNode(true));
+        return_nav.appendChild(back_to_nav);
 
-      const navigation = document.querySelectorAll(`${this.scope_selector}`);
-      navigation.forEach(element => {
-          element.insertBefore(nav, element.children[0]);
-          element.appendChild(return_nav);
-      });
-      this.fit();
-  };
+        const navigation = document.querySelectorAll(`${this.scope_selector}`);
+        navigation.forEach(element => {
+            element.insertBefore(nav, element.children[0]);
+            element.appendChild(return_nav);
+        });
+        this.fit();
+    };
 
-  /**
-   * Ajusta marcadores a los bordes del mapa en un onclick
-   * @returns {undefined}
-   */
-  fit = () => document
-      .querySelectorAll(`${this.scope_selector} .js-fit-bounds`)
-      .forEach(e => {
-          e.onclick = (event => {
-            event.preventDefault();
-            this.fitBounds();
-      });
-  });
 
-  /**
-   * Hace el render del mapa.
-   */
-  render = () => {
-      this._hiddenSearchInput();
-      this._resetViewButton();
-      this.markersMap(this.entries);
-      this._selectedMarker();
+    /**
+     * Ajusta marcadores a los bordes del mapa en un onclick
+     * @returns {undefined}
+     */
+    fit = () => document
+        .querySelectorAll(`${this.scope_selector} .js-fit-bounds`)
+        .forEach(e => {
+            e.onclick = (event => {
+                event.preventDefault();
+                this.fitBounds();
+        });
+    });
 
-      if(this.slider){
-          this._renderSlider();
-          this._clickeableFeatures();
-          this._clickeableMarkers();
-          this._clickToggleSlider();
-      }
 
-      if(this.hash){
-          this._urlHash();
-      }
+    /**
+     * Remueve elementos agregados al mapa
+     */
+    clearAll = () => {
+        const elements = [
+            `.js-filter-container${this.scope_sufix}`,
+            `.js-slider${this.scope_sufix}`,
+        ];
+        elements.forEach(e => document
+                .querySelectorAll(e)
+                .forEach(i => i.remove()));
+    };
 
-      if(this.scroll && this.hasHash()){
-          this.scrollCenter();
-      }
 
-      setTimeout(this.gotoHashedEntry, this.anchor_delay);
-      this._setFetureAttributes();
-      this._accesibleMenu();
-  };
+    /**
+     * Hace el render del mapa.
+     */
+    render = () => {
+        this._hiddenSearchInput();
+        this._resetViewButton();
+        this.markersMap(this.entries);
+        this._selectedMarker();
+
+        if(this.slider){
+            this._renderSlider();
+            this._clickeableFeatures();
+            this._clickeableMarkers();
+            this._clickToggleSlider();
+        }
+
+        if(this.hash){
+            this._urlHash();
+        }
+
+        if(this.scroll && this.hasHash()){
+            this.scrollCenter();
+        }
+
+        setTimeout(this.gotoHashedEntry, this.anchor_delay);
+        this._setFetureAttributes();
+        this._accesibleMenu();
+    };
 };
 // end class
