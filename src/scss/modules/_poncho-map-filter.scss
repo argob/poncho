@@ -323,14 +323,10 @@
     // Filtros
     .filter-container {
         position: absolute;
-        top: 98px;
-        left: 10px;
+        top: var(--slider-distance);
+        left: var(--slider-distance);
         z-index: 999;
         max-height: calc(100% - 80px);
-
-        &.filter-container--zoom-expand {
-            top: 135px;
-        }
 
         // Botón para hacer un toggle con los filtros
         .btn-filter {
@@ -421,6 +417,15 @@
     }
 
     /* Tooltip Leaflet personalizado */
+    .leaflet-left .leaflet-control {
+        margin-left: var(--slider-distance);
+    }
+    .leaflet-top .leaflet-control {
+        margin-top: var(--slider-distance);
+    }
+
+
+
     .leaflet-tooltip-left:before {
         right: 0;
         margin-right: -12px;

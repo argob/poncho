@@ -4909,22 +4909,37 @@ class PonchoMapFilter extends PonchoMap {
         button_container.classList.add(
             `js-filter-container${this.scope_sufix}`, "filter-container"
         );
-        if(this.reset_zoom){
-            button_container.classList.add("filter-container--zoom-expand");
-        }
         button_container.appendChild(button);
 
         const container = document
-              .querySelector(`.poncho-map${this.scope_selector}`);
+            .querySelector(`.poncho-map${this.scope_selector}`);
         container.appendChild(button_container);
     }
+
+
+    _cssVarComputedDistance = () => {
+        const container = document.querySelector(".poncho-map");
+        const computedDistance = getComputedStyle(container).getPropertyValue('--slider-distance');
+        const distance = parseInt(computedDistance.toString().replace(/[^0-9]*/gm, ""));
+        return distance || 0;
+    };
+
+
+    _controlZoomSize = () =>{
+        const leafletControlZoom = document.querySelector(".leaflet-control-zoom");
+        return {
+            controlHeight: leafletControlZoom.offsetHeight,
+            controlTop: leafletControlZoom.offsetTop
+        };
+    };
+
 
     /**
      * Crea el contenedor para los filtros.
      */
     _filterContainer = () => {
         const fields_container = document.createElement("div");
-        fields_container.className = `js-filters${this.scope_sufix}`;  
+        fields_container.className = `js-filters${this.scope_sufix}`;
 
         const close_button = document.createElement("button");
         close_button.classList.add(
@@ -4937,6 +4952,7 @@ class PonchoMapFilter extends PonchoMap {
         close_button.setAttribute("role", "button");
         close_button.setAttribute("aria-label", "Cerrar panel de filtros");
         close_button.innerHTML = "<span class=\"sr-only\">Cerrar </span>✕";
+
 
         const form = document.createElement("form");
         form.classList.add(`js-formulario${this.scope_sufix}`);
@@ -4956,9 +4972,19 @@ class PonchoMapFilter extends PonchoMap {
             container.classList.add("filter--in");
         }
 
+        const cssVarComputedDistance = this._cssVarComputedDistance();
+        const controlZoomSize = this._controlZoomSize();
+        const styleTop = controlZoomSize.controlHeight 
+                + controlZoomSize.controlTop 
+                + cssVarComputedDistance 
+                + "px";
+
         container.appendChild(form); 
         document.querySelectorAll(`.js-filter-container${this.scope_sufix}`)
-            .forEach(element => element.appendChild(container));
+            .forEach(element => {
+                element.style.top = styleTop;
+                element.appendChild(container);
+            });
     };
 
     /**
