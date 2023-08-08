@@ -4794,20 +4794,20 @@ class PonchoMapFilter extends PonchoMap {
      */
     _filterContainerHeight = () => {    
         const filter_container = document
-              .querySelector(`.js-filter-container${this.scope_sufix}`);
+            .querySelector(`.js-filter-container${this.scope_sufix}`);
         const filter_button = document
-              .querySelector(`.js-close-filter${this.scope_sufix}`);
+            .querySelector(`.js-close-filter${this.scope_sufix}`);
 
         const poncho_map_height = filter_container.offsetParent.offsetHeight;
         // Valor tomado de la hoja de estilos
-        const container_position_distance = 20;
+        const container_position_distance = this._cssVarComputedDistance() * 2;
         const filters_height = poncho_map_height
-              - filter_container.offsetTop
-              - filter_button.offsetHeight
-              - container_position_distance;
+            - filter_container.offsetTop
+            - filter_button.offsetHeight
+            - container_position_distance;
 
         const pos = document
-              .querySelector(`.js-poncho-map-filters${this.scope_sufix}`);
+            .querySelector(`.js-poncho-map-filters${this.scope_sufix}`);
         pos.style.maxHeight = `${filters_height}px`;
 
         // Valor tomado de la hoja de estilos
@@ -4816,8 +4816,9 @@ class PonchoMapFilter extends PonchoMap {
         const filters = document.querySelector(`.js-filters${this.scope_sufix}`);
         filters.style.height = `${height}px`;
         filters.style.overflow = "auto";
-    }
-      
+    };
+
+
     /**
      * Ejecuta toggle en el onclick
      * @return {undefined}
@@ -4825,9 +4826,9 @@ class PonchoMapFilter extends PonchoMap {
     _clickToggleFilter = () => document
         .querySelectorAll(`.js-close-filter${this.scope_sufix}`)
         .forEach(element => element.onclick = (event) => {
-              event.preventDefault();
-              this.toggleFilter();
-              this._filterContainerHeight();
+            event.preventDefault();
+            this.toggleFilter();
+            this._filterContainerHeight();
     });
 
     /**
@@ -5004,16 +5005,30 @@ class PonchoMapFilter extends PonchoMap {
     }
 
 
+    /**
+     * Medida definida en la variable CSS --slider-distance
+     * 
+     * @summary Esta medida puede ser variable según el estilo que se
+     * quiera dar al mapa el diseñador. 
+     * @returns {integer}
+     */
     _cssVarComputedDistance = () => {
         const container = document.querySelector(".poncho-map");
-        const computedDistance = getComputedStyle(container).getPropertyValue('--slider-distance');
-        const distance = parseInt(computedDistance.toString().replace(/[^0-9]*/gm, ""));
+        const computedDistance = getComputedStyle(container)
+                .getPropertyValue('--slider-distance');
+        const distance = parseInt(
+            computedDistance.toString().replace(/[^0-9]*/gm, ""));
         return distance || 0;
     };
 
 
+    /**
+     * Retorna las medidas y la distancia de margen del control de zoom leaflet. 
+     * @returns {object}
+     */
     _controlZoomSize = () =>{
-        const leafletControlZoom = document.querySelector(".leaflet-control-zoom");
+        const leafletControlZoom = document
+                .querySelector(`${this.scope_selector} .leaflet-control-zoom`);
         return {
             controlHeight: leafletControlZoom.offsetHeight,
             controlTop: leafletControlZoom.offsetTop
