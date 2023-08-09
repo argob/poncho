@@ -42,10 +42,9 @@
 <div class="poncho-map" data-scope="poncho-map">
     <div
         class="leaflet-container leaflet-touch leaflet-fade-anim 
-              leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
+            leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
         id="map"
-        style="height: 400px; width: 100%;"
-        tabindex="0">
+        style="height: 400px">
     </div>
 </div>
 <!-- / PONCHO MAP -->
@@ -58,10 +57,10 @@
     const latitude = -34.60759;
     const longitude = -58.37393;
     const mapOptions = {
-      "scope": "poncho-map",
-      "no_info": true,
-      "map_zoom": 17, 
-      "map_view": [latitude, longitude]
+        "scope": "poncho-map",
+        "no_info": true,
+        "map_zoom": 17, 
+        "map_view": [latitude, longitude]
     };
     const filter = new PonchoMap([{"latitud": latitude, "longitud": longitude}], mapOptions);
     filter.render();
@@ -85,10 +84,10 @@
     const latitude = -34.60759;
     const longitude = -58.37393;
     const mapOptions = {
-      "scope": "poncho-map",
-      "no_info": true,
-      "map_zoom": 17, 
-      "map_view": [latitude, longitude]
+        "scope": "poncho-map",
+        "no_info": true,
+        "map_zoom": 17, 
+        "map_view": [latitude, longitude]
     };
     const filter = new PonchoMap([{"latitud": latitude, "longitud": longitude}], mapOptions);
     filter.render();
