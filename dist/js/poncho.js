@@ -4737,20 +4737,20 @@ class PonchoMapFilter extends PonchoMap {
         super(data, options);
         
         const defaults = {
-            "filters": [],
-            "filters_visible": false,
-            "filters_info": false,
-            "search_fields": [],
-            "messages": {
-                "reset": " <a href=\"#\" class=\"{{reset_search}}\" "
+            filters: [],
+            filters_visible: false,
+            filters_info: false,
+            search_fields: [],
+            messages: {
+                reset: " <a href=\"#\" class=\"{{reset_search}}\" "
                         + "title=\"Restablece el mapa a su estado inicial\">"
                         + "Restablecer mapa</a>",
-                "initial": "Hay {{total_results}} puntos en el mapa.",
-                "no_results_by_term": "No encontramos resultados para tu búsqueda.",
-                "no_results": "No s + this.messages.resete encontraron entradas.",
-                "results": "{{total_results}} resultados coinciden con tu búsqueda.",
-                "one_result": "{{total_results}} resultado coincide con tu búsqueda.",
-                "has_filters": "<i title=\"¡Advertencia!\" aria-hidden=\"true\" "
+                initial: "Hay {{total_results}} puntos en el mapa.",
+                no_results_by_term: "No encontramos resultados para tu búsqueda.",
+                no_results: "No s + this.messages.resete encontraron entradas.",
+                results: "{{total_results}} resultados coinciden con tu búsqueda.",
+                one_result: "{{total_results}} resultado coincide con tu búsqueda.",
+                has_filters: "<i title=\"¡Advertencia!\" aria-hidden=\"true\" "
                         + "class=\"fa fa-warning text-danger\"></i> "
                         + "Se están usando filtros."
             }
@@ -4764,8 +4764,8 @@ class PonchoMapFilter extends PonchoMap {
         this.messages = opts.messages;
         this.accesible_menu_filter = [
             {
-                "text": "Ir al panel de filtros",
-                "anchor": `#filtrar-busqueda${this.scope_sufix}`
+                text: "Ir al panel de filtros",
+                anchor: `#filtrar-busqueda${this.scope_sufix}`
             },
         ];
     }
@@ -4789,6 +4789,7 @@ class PonchoMapFilter extends PonchoMap {
         }, value);
     };
 
+
     /**
      * Mensajes de ayuda
      * 
@@ -4801,13 +4802,13 @@ class PonchoMapFilter extends PonchoMap {
             .querySelectorAll(`${this.scope_selector} .js-poncho-map__help`);
 
         const values = {
-            "total_results": results.length,
-            "total_entries": this.entries.length,
-            "total_filtered_entries": this.filtered_entries.length,
-            "filter_class": `js-close-filter${this.scope_sufix}`,
-            "anchor": "#",
-            "term": this.inputSearchValue,
-            "reset_search": `js-poncho-map-reset${this.scope_sufix}`
+            total_results: results.length,
+            total_entries: this.entries.length,
+            total_filtered_entries: this.filtered_entries.length,
+            filter_class: `js-close-filter${this.scope_sufix}`,
+            anchor: "#",
+            term: this.inputSearchValue,
+            reset_search: `js-poncho-map-reset${this.scope_sufix}`
         };
 
         help_container.forEach(element => {
@@ -4833,28 +4834,28 @@ class PonchoMapFilter extends PonchoMap {
             else if(values.total_results < 1){
                 ul.appendChild(
                     li(this.tplParser(this.messages.no_results_by_term 
-                                      + this.messages.reset, values))
+                                    + this.messages.reset, values))
                 );
             }
             // 0 entradas, sin creterio de búsqueda.
             else if(this.inputSearchValue === "" && values.total_results < 1){
                 ul.appendChild(
                     li(this.tplParser(this.messages.no_results 
-                                      + this.messages.reset, values))
+                                    + this.messages.reset, values))
                 );
             }
             // Si solo hay un resultado
             else if(values.total_results == 1){
                 ul.appendChild(
                     li(this.tplParser(this.messages.one_result 
-                                      + this.messages.reset, values))
+                                    + this.messages.reset, values))
                 );
             }
             // Si hay más de un resultado
             else if(values.total_results > 1){
                 ul.appendChild(
                     li(this.tplParser(this.messages.results 
-                                      + this.messages.reset, values))
+                                    + this.messages.reset, values))
                 );
             }
             // Si los resultados están siendo filtrados.
@@ -4866,6 +4867,7 @@ class PonchoMapFilter extends PonchoMap {
             element.appendChild(ul);
         });
     };
+
 
     /**
      * Obtiene el índice y el grupo del filtro
@@ -4881,6 +4883,7 @@ class PonchoMapFilter extends PonchoMap {
         return (rgx ? [rgx[1], rgx[2]] : null);
     };
 
+
     /**
      * Estado del slider.
      *
@@ -4890,6 +4893,7 @@ class PonchoMapFilter extends PonchoMap {
         .querySelector(`.js-poncho-map-filters${this.scope_sufix}`)
         .classList.contains("filter--in");
 
+
     /**
      * Abre o cierra el panel de filtros.
      */
@@ -4898,6 +4902,7 @@ class PonchoMapFilter extends PonchoMap {
             .querySelector(`.js-poncho-map-filters${this.scope_sufix}`)
             .classList.toggle("filter--in");
     };
+
 
     /**
      * Altura para el contenedor de filtros.
@@ -4950,6 +4955,7 @@ class PonchoMapFilter extends PonchoMap {
             this._filterContainerHeight();
     });
 
+
     /**
      * Prepara el objeto para los filtros.
      * 
@@ -4988,6 +4994,7 @@ class PonchoMapFilter extends PonchoMap {
 
         return obj;
     };
+
 
     /**
      * Retorna el tipo de filtro seleccionado por el usuario.
@@ -5033,6 +5040,7 @@ class PonchoMapFilter extends PonchoMap {
             this._setFilter(opt_field));
         return fields_to_use
     };
+
 
     /**
      * Arma un grupo de inputs
@@ -5083,6 +5091,7 @@ class PonchoMapFilter extends PonchoMap {
         fieldset.appendChild(fields_container);
         return fieldset;
     };
+
 
     /**
      * Crea el botón para los filtros
@@ -5270,7 +5279,7 @@ class PonchoMapFilter extends PonchoMap {
             return [];
         }
         const form_filters = document
-              .querySelector(`.js-formulario${this.scope_sufix}`);
+            .querySelector(`.js-formulario${this.scope_sufix}`);
         const form_data = new FormData(form_filters);
 
         return Array.from(form_data).map(ele => {
@@ -5293,7 +5302,7 @@ class PonchoMapFilter extends PonchoMap {
                 return [
                     gk, fk, f[0], 
                     (typeof f[3] !== "undefinded" && f[3] == "checked" ?
-                          true : false)
+                        true : false)
                 ];
             });
             return conf_fields;
@@ -5309,8 +5318,8 @@ class PonchoMapFilter extends PonchoMap {
         const result = this.defaultFiltersConfiguration().every(
             (e) => {
                 return document
-                      .querySelector(`#id__${e[2]}__${e[0]}__${e[1]}`)
-                      .checked;
+                    .querySelector(`#id__${e[2]}__${e[0]}__${e[1]}`)
+                    .checked;
         });
         return result;
     };
@@ -5320,10 +5329,10 @@ class PonchoMapFilter extends PonchoMap {
      * @return {undefined}
      */
     _resetFormFilters = () => {
-      this.defaultFiltersConfiguration().forEach(e => {
-          const field = document.querySelector(`#id__${e[2]}__${e[0]}__${e[1]}`);
-          field.checked = e[3];
-      });
+        this.defaultFiltersConfiguration().forEach(e => {
+            const field = document.querySelector(`#id__${e[2]}__${e[0]}__${e[1]}`);
+            field.checked = e[3];
+        });
     };
 
     /**
@@ -5332,13 +5341,14 @@ class PonchoMapFilter extends PonchoMap {
      */
     get inputSearchValue(){
         const search_value = document
-              .querySelector(`#js-search-input${this.scope_sufix}`);
+            .querySelector(`#js-search-input${this.scope_sufix}`);
         const result = search_value.value.trim();
         if(result !== ""){
             return result;
         }
         return false;
     }
+
 
     /**
      * Total de ocurrencias por clave y valor sobre entradas dadas.
@@ -5354,6 +5364,7 @@ class PonchoMapFilter extends PonchoMap {
         return ocurrences;
     };
 
+
     /**
      * Total de resultados por filtro marcado.
      * @returns {Array} Retorna un array estructurado del siguiente modo:
@@ -5367,16 +5378,17 @@ class PonchoMapFilter extends PonchoMap {
      * ```
      */
     totals = () => {
-      const results = this.formFilters().map(e => {
-          const item = this._fieldsToUse( this.filters[e[0]] )[e[1]];
-          return [
-              item[1],
-              this._countOccurrences(this.filtered_entries, item[2], item[0]),
-              ...e
-          ];
-      });
-      return results;
+        const results = this.formFilters().map(e => {
+            const item = this._fieldsToUse( this.filters[e[0]] )[e[1]];
+            return [
+                item[1],
+                this._countOccurrences(this.filtered_entries, item[2], item[0]),
+                ...e
+            ];
+        });
+        return results;
     };
+
 
     /**
      * **¡EXPERIMENTAL!** Agrega un title con el total de elementos en 
@@ -5413,6 +5425,7 @@ class PonchoMapFilter extends PonchoMap {
         });
     };
 
+
     /**
      * Valida una entrada
      * @summary
@@ -5433,6 +5446,7 @@ class PonchoMapFilter extends PonchoMap {
         return validations.every(e => e);
     };
 
+
     /**
      * Valida el campo de un grupo.
      * 
@@ -5452,6 +5466,7 @@ class PonchoMapFilter extends PonchoMap {
         return found;
     };
 
+
     /**
      * Valida los fields del grupo.
      * 
@@ -5463,6 +5478,7 @@ class PonchoMapFilter extends PonchoMap {
         const result = fields_group.map(e => this._search(entry, e[0], e[1]));
         return result.some(e => e);
     };
+
 
     /**
      * Filtra los markers.
@@ -5478,6 +5494,7 @@ class PonchoMapFilter extends PonchoMap {
         this.filtered_entries = feed;
         return feed;
     };
+
 
     /**
      * Render de funciones 
@@ -5505,6 +5522,7 @@ class PonchoMapFilter extends PonchoMap {
         this._accesibleMenu();
     };
 
+
     /**
      * Borra los valores del search _input hidden_ en el 
      * campo de filtros.
@@ -5513,6 +5531,7 @@ class PonchoMapFilter extends PonchoMap {
     _clearSearchInput = () => document
         .querySelectorAll(`#js-search-input${this.scope_sufix}`)
         .forEach(element => element.value = "");
+
 
     /**
      * Restablece el mapa a su instancia inicial.
@@ -5534,6 +5553,7 @@ class PonchoMapFilter extends PonchoMap {
         });
     };
 
+
     /**
      * Cambia la lista de markers en función de la selección de 
      * los filtros en PonchoMapFilter.
@@ -5545,6 +5565,7 @@ class PonchoMapFilter extends PonchoMap {
         .forEach(element => {
             element.onchange = (callback);
     });
+
 
     /**
      * Marca o desmarca todos los filtros
@@ -5567,7 +5588,7 @@ class PonchoMapFilter extends PonchoMap {
         });
     };
 
-    
+
     /**
      * imprime el mapa
      */ 
