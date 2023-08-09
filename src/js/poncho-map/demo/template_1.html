@@ -71,10 +71,13 @@
                 </form>
                 <!-- / PONCHO MAP SEARCH -->
                 <!-- poncho map -->
-                <div class="poncho-map" data-scope="uno" style="background-color: red !important;"">
-    <div
-        class=" leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
-                    id="map" style="height: 600px;width: 100%; background: blueviolet;" tabindex="0">
+                <div class="poncho-map" data-scope="uno">
+                <div
+                    class="leaflet-container leaflet-touch leaflet-fade-anim 
+                            leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
+                    id="map" 
+                    style="height: 600px" 
+                    tabindex="0">
                 </div>
             </div>
             <!-- / poncho map -->
@@ -103,7 +106,10 @@
             <!-- PONCHO MAP -->
             <div class="poncho-map" data-scope="dos">
                 <div class="leaflet-container leaflet-touch leaflet-fade-anim 
-    leaflet-grab leaflet-touch-drag leaflet-touch-zoom" id="map2" style="height: 600px; width: 100%;" tabindex="0">
+                            leaflet-grab leaflet-touch-drag leaflet-touch-zoom" 
+                    id="map2" 
+                    style="height: 600px;" 
+                    tabindex="0">
                 </div>
             </div>
             <!-- / PONCHO MAP -->
@@ -113,63 +119,66 @@
 
     <!-- SCRIPTS -->
     <script>
-        var filter;
-        var filter2;
+        // PRIMER MAPA
         (async () => {
-            // GApi helpers
+            const loaderMap1 = new PonchoMapLoader({scope: "uno"});
+            loaderMap1.load();
+
             const gapi = new GapiSheetData();
-            const geoJSON = await fetch_json("./data/test-data.geojson");
             const googlesheet_data = await fetch_json("./data/response-efectores.json");
             const gapi_data = gapi.json_data(googlesheet_data);
-            const { entries, headers } = gapi_data;
+            const {entries, headers} = gapi_data;
 
-            const options = {
+            const mapOptions1 = {
+                "scope": "uno",
                 "title": "name",
                 "error_reporting": true,
                 "headers": headers,
                 "template_structure": {
-                    "values": ["address", "locality", "province", "phone", "email", "reference"],
+                    "values": [
+                        "address",
+                        "locality",
+                        "province", 
+                        "phone", 
+                        "email",
+                        "reference"
+                    ]
                 },
-                "scope": "uno",
                 "hash": true,
                 "scroll": true,
                 "slider": true
             };
-            filter = new PonchoMapFilter(entries, options);
-            filter.render();
+            const filter1 = new PonchoMapFilter(entries, mapOptions1);
+            filter1.render();
 
-            const search_options = {
+            const searchOptions1 = {
                 "scope": "poncho-map-search",
                 "placeholder": "Buscar en el geoJSON",
                 "datalist": true,
                 "search_fields": ["title"],
                 "datalist": true
             };
-            const search = new PonchoMapSearch(filter, search_options);
-            search.render();
+            const search1 = new PonchoMapSearch(filter1, searchOptions1);
+            search1.render();
+
+            loaderMap1.close();
+        })();
 
 
-            // SEgundo mapa
-            const options_dos = {
+        // SEGUNDO MAPA
+        (async () => {
+            const loaderMap2 = new PonchoMapLoader({scope: "dos"});
+            loaderMap2.load();
+
+            const geoJSON = await fetch_json("./data/test-data.geojson");
+            const mapOptions2 = {
+                "scope": "dos",
                 "title": "nombre",
-                "headers": headers,
                 "template_markdown": true,
                 "allowed_tags": ["h1", "strong", "a"],
-                "_template_structure": {
-                    "values": ["ubicacion", "phone", "email", "reference"],
-                    "mixing": [
-                        {
-                            "key": "ubicacion",
-                            "header": "Ubicación",
-                            "values": ["address", "locality", "province"],
-                            "separator": ", "
-                        }
-                    ]
-                },
                 "map_selector": "map2",
                 "scroll": true,
                 "hash": true,
-                "scope": "dos",
                 "slider": true,
                 "filters": [
                     {
@@ -184,18 +193,18 @@
                 ],
             };
 
-            filter2 = new PonchoMapFilter(geoJSON, options_dos);
+            const filter2 = new PonchoMapFilter(geoJSON, mapOptions2);
             filter2.render();
-
-            const search_options2 = {
-                "scope": "poncho-map-search-2",
-                "placeholder": "Buscar en el geoJSON",
-                "datalist": true,
-                "search_fields": ["title"],
-                "datalist": true
+            const searchOptions2 = {
+                    "scope": "poncho-map-search-2",
+                    "placeholder": "Buscar en el geoJSON",
+                    "datalist": true,
+                    "search_fields": ["provincia", "ID", "id", "title"] 
             };
-            const search2 = new PonchoMapSearch(filter2, search_options2);
+            const search2 = new PonchoMapSearch(filter2, searchOptions2);
             search2.render();
+
+            loaderMap2.close();
         })();
     </script>
     <!-- / SCRIPTS -->

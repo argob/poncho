@@ -39,25 +39,25 @@ COPIAR DESDE ACÁ…
 <div class="col-md-12">
 <!-- PONCHO MAP SEARCH -->
 <form>
-  <div data-scope="poncho-map-search">
-      <div class="input-group">
-          <input 
-              type="search" 
-              name="search" 
-              autocomplete="off"
-              class="js-poncho-map-search__input form-control" 
-              list="list">
-              <datalist id="list" class="js-porcho-map-search__list"></datalist>
-          <span class="input-group-btn">
-            <button class="js-poncho-map-search__submit btn btn-primary">
-              <i class="fa fa-search text-white"> </i>
-            </button>
-          </span>
-      </div>
-      <div data-scope="poncho-map" class="m-b-1">
-          <div class="js-poncho-map__help small text-default"></div>
-      </div>
-  </div>
+    <div data-scope="poncho-map-search">
+        <div class="input-group">
+            <input 
+                type="search" 
+                name="search" 
+                autocomplete="off"
+                class="js-poncho-map-search__input form-control" 
+                list="list">
+                <datalist id="list" class="js-porcho-map-search__list"></datalist>
+            <span class="input-group-btn">
+                <button class="js-poncho-map-search__submit btn btn-primary">
+                <i class="fa fa-search text-white"> </i>
+                </button>
+            </span>
+        </div>
+        <div data-scope="poncho-map" class="m-b-1">
+            <div class="js-poncho-map__help small text-default"></div>
+        </div>
+    </div>
 </form>
 <!-- / PONCHO MAP SEARCH -->
 </div>
@@ -87,151 +87,160 @@ COPIAR DESDE ACÁ…
 <!-- / INCLUDE SCRIPTS -->
 
 
-
 <!-- SCRIPTS -->
 <script>
-  // init
-  var map;
-  var search;
-  (async() => {
-    const gapi = new GapiSheetData();
-    const googlesheet_data = await fetch_json("./data/data.json"); 
-    const gapi_data = gapi.json_data(googlesheet_data);
-    let {headers={}, entries={}} = gapi_data;
+    // init
+    var map;
 
-    // map options
-    const options = {
-      "template": (a, b) => "<h2>" + b.nombre + "</h2><ul><li>" +  Object.values(b).filter(e => e).join("</li><li>") + "</li></ul>",
-      "error_reporting": 1,
-      "template": (self, entry) => {
-          entry.foto_html = (entry.foto ? `<img class="img-in" alt="${entry.name}" src="${entry.foto}" style="border-radius:6px; border:1px solid #eee" />` : ""); 
-          entry.boton_html = (entry.boton ? 
-              `<a href="${entry.boton}">Conocer más sobre ${entry.nombre}</a>` : "");
-          return self.defaultTemplate(self, entry);
-      },
-      "scope": "poncho-map",
-      // "id": "ID",
-      // "latitud": "Latitud", 
-      // "longitud": "Longitud",
-      "filters_info": false,
-      "title": "nombre",
-      "template_innerhtml": true,
-      "template_markdown": true,
-      "allowed_tags": ["a", "sup", "img"],
-      "marker_cluster_options": {
-                "spiderfyOnMaxZoom": true,
-                "showCoverageOnHover": false,
-                "zoomToBoundsOnClick": true,
-                "maxClusterRadius": 30,
-                "spiderfyDistanceMultiplier": .5,
-                "spiderLegPolylineOptions": {
-                    "weight": 1,
-                    "color": "#666",
-                    "opacity": 0.5,
-                    "fill-opacity": 0.5
+    (async() => {
+        const loader = new PonchoMapLoader({scope: "poncho-map"});
+        loader.load();
+
+        const gapi = new GapiSheetData();
+        const googlesheet_data = await fetch_json("./data/data.json"); 
+        const gapi_data = gapi.json_data(googlesheet_data);
+        let {headers={}, entries={}} = gapi_data;
+
+        const mapOptions = {
+            "template": (a, b) => "<h2>" + b.nombre + "</h2><ul><li>" 
+                + Object.values(b).filter(e => e).join("</li><li>") 
+                + "</li></ul>",
+            "error_reporting": 1,
+            "template": (self, entry) => {
+                entry.foto_html = (entry.foto ? `<img class="img-in" alt="${entry.name}" src="${entry.foto}" style="border-radius:6px; border:1px solid #eee" />` : ""); 
+                entry.boton_html = (entry.boton ? 
+                    `<a href="${entry.boton}">Conocer más sobre ${entry.nombre}</a>` : "");
+                return self.defaultTemplate(self, entry);
+            },
+            "scope": "poncho-map",
+            "filters_info": false,
+            "title": "nombre",
+            "template_innerhtml": true,
+            "template_markdown": true,
+            "allowed_tags": ["a", "sup", "img"],
+            "marker_cluster_options": {
+                        "spiderfyOnMaxZoom": true,
+                        "showCoverageOnHover": false,
+                        "zoomToBoundsOnClick": true,
+                        "maxClusterRadius": 30,
+                        "spiderfyDistanceMultiplier": .5,
+                        "spiderLegPolylineOptions": {
+                            "weight": 1,
+                            "color": "#666",
+                            "opacity": 0.5,
+                            "fill-opacity": 0.5
+                        }
+                    },
+            "template_structure" : {
+                "title_classlist":["h4", "text-cielo", "m-t-1"],
+                "lead": {
+                    "key": "tipo", 
+                    "style": "text-transform:uppercase; border-bottom: 1px solid #ddd; padding-bottom:.25em; color:#999; font-size:75%;"
+                },  
+                "values": [
+                    "estado",
+                    "foto_html",
+                    "descripcion",
+                    "ubicacion", 
+                    "boton_html"
+                ],
+                "mixing":
+                    [
+                        {
+                            "key": "ubicacion",
+                            "header": "Ubicación",
+                            "values": ["localidad", "provincia"],
+                            "separator": ", "
+                        }
+                    ],
+            },
+            "header_icons": [
+                {
+                    "key":"estado",
+                    "css": (self, e) => `fa fa-cog fa-1x text-cielo`
+                },
+                {
+                    "key":"boton_html",
+                    "css": (self, e) => `fa fa-info-circle fa-1x text-cielo`
+                },
+                {
+                    "key":"ubicacion",
+                    "css": (self, e) => `fa fa-map-marker fa-1x text-cielo`, 
+                },
+                {
+                    "key":"direccion",
+                    "html": (self, entry, value) => {
+                        if(entry.id == "4-olivia-bouillet"){
+                            return `<div>
+                                <hr>
+                                <i
+                                    aria-hidden="true"
+                                    class="icono-arg-cannabis-medicinal-1 text-verdin 
+                                            fa-3x text-center m-b-1"
+                                    style="display:block">
+                                </i>
+                            </div>`;
+                        } else {
+                            return `<i
+                                aria-hidden="true"
+                                class="icono-arg-cannabis-medicinal-1 text-verdin">
+                            </i>`;
+                        }
+                    }
+                },
+                {
+                    "key": "id",
+                    "css": "icono-arg-sitios-accesibles text-arandano",
+                    "style": "margin-bottom:3em"
+                }
+            ],
+            "headers": {
+                ...headers, 
+                ...{
+                    "foto_html": "", 
+                    "boton_html": "Más información", 
+                    "descripcion": ""
                 }
             },
-      "template_structure" : {
-          "title_classlist":["h4", "text-cielo", "m-t-1"],
-          "lead": {
-              "key": "tipo", 
-              // class: (self, entry) => `small`,
-              "style": "text-transform:uppercase;border-bottom: 1px solid #ddd; padding-bottom:.25em; color:#999; font-size:75%;"
-          },  
-          "values": [
-              "estado",
-              "foto_html",
-              "descripcion",
-              "ubicacion", 
-              "boton_html"
-          ],
-          "mixing":
-              [
-                  {
-                      "key": "ubicacion",
-                      "header": "Ubicación",
-                      "values": ["localidad", "provincia"],
-                      "separator": ", "
-                  }
-              ],
-      },
-      "header_icons": [
-          {
-              "key":"estado",
-              "css": (self, e) => `fa fa-cog fa-1x text-cielo`
-          },
-          {
-              "key":"boton_html",
-              "css": (self, e) => `fa fa-info-circle fa-1x text-cielo`
-          },
-          {
-            "key":"ubicacion",
-            "css": (self, e) => `fa fa-map-marker fa-1x text-cielo`, 
-          },
-          {
-              "key":"direccion",
-              "html": (self, entry, value) => {
-                  if(entry.id == "4-olivia-bouillet"){
-                      return `<div>
-                          <hr>
-                          <i
-                              aria-hidden="true"
-                              class="icono-arg-cannabis-medicinal-1 text-verdin 
-                                      fa-3x text-center m-b-1"
-                              style="display:block">
-                          </i>
-                      </div>`;
-                  } else {
-                      return `<i
-                            aria-hidden="true"
-                            class="icono-arg-cannabis-medicinal-1 text-verdin">
-                        </i>`;
-                  }
-              }
-          },
-          {
-              "key": "id",
-              "css": "icono-arg-sitios-accesibles text-arandano",
-              "style": "margin-bottom:3em"
-          }
-      ],
-      "headers": {...headers, ...{"foto_html":"", "boton_html":"Más información", "descripcion":""}},
-      "marker": (self, ele) => {
-          const icon_color = (ele.hasOwnProperty("color")) ? ele.color : "azul";
-          return icon_color;
-      },
-      "_tooltip": true,
-      "no_info": false,
-      "slider": true,
-      "hash": true,
-      "scroll": true,
-      reset_zoom: true,
-      "filters": [
-          {
-            "legend" : "Filtrar por tipo",
-            "field": ["tipo"],
-            "fields": false
-          },
-          {
-            "legend" : "Filtrar por estado",
-            "field": ["estado", "checked"],
-            "fields": false
-          },
-      ],
-    };
-    map = new PonchoMapFilter(entries, options);
-    map.render();
+            "marker": (self, ele) => {
+                const icon_color = (ele.hasOwnProperty("color") ? 
+                    ele.color : "azul");
+                return icon_color;
+            },
+            "_tooltip": true,
+            "no_info": false,
+            "slider": true,
+            "hash": true,
+            "scroll": true,
+            reset_zoom: true,
+            "filters": [
+                {
+                    "legend" : "Filtrar por tipo",
+                    "field": ["tipo"],
+                    "fields": false
+                },
+                {
+                    "legend" : "Filtrar por estado",
+                    "field": ["estado", "checked"],
+                    "fields": false
+                },
+            ],
+        };
 
-    const search_options = {
-        "scope": "poncho-map-search", 
-        "placeholder": "Buscar en el geoJSON",
-        "datalist": true,
-        "search_fields": ["provincia", "title", "localidad", "descripcion"] 
-    };
-  search = new PonchoMapSearch(map, search_options);
-  search.render();
-  })();
+        const searchOptions = {
+            "scope": "poncho-map-search", 
+            "placeholder": "Buscar en el geoJSON",
+            "datalist": true,
+            "search_fields": ["provincia", "title", "localidad", "descripcion"] 
+        };
 
+        map = new PonchoMapFilter(entries, mapOptions);
+        map.render();
+        const search = new PonchoMapSearch(map, searchOptions);
+        search.render();
+            
+        loader.close();
+    })();
 </script>
 <!-- / SCRIPTS -->
 </body>

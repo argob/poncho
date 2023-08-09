@@ -71,32 +71,80 @@
 .poncho-map {
     --slider-width: 326px;
     --color-primary: var(--primary, $brand-primary);
-    --map-background: transparent;
+    --map-background: #eee;
     --color-base: inherit;
+
     --slider-background: rgba(255, 255, 255, 1);
     --slider-border: none;
     --slider-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     --slider-distance: 10px;
     --slider-radius: 16px;
     --slider-media-mobile-height: 100%;
+    
     --tooltip: #333;
     --tooltip-color: white;
+    
     --active-marker-color: 255, 206, 0;
     --slider-modal-color: var(--black);
     // define el color del halo para el marker activo
     --active-marker-alpha: 0.5;
     // define la opacidad para el color del halo.
-    --background-color: var(--map-background);
+    // --background-color: var(--map-background);
     --accesible-background: #f2f2f2;
+
+    --loader-background: var(--map-background);
+    --loader-spinner-color: var(--primary, $brand-primary);
+    --loader-spinner-background: #ccc;
+    --loader-spinner-size: 80px;
+    --loader-spinner-weight: 4px;
+
+    background-color: var(--map-background);
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+
+    @keyframes poncho-map-loader-rotation {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    /* loader */
+    &__loader {
+        width: 100%;
+        height: 100%;
+        background: var(--loader-background);
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 9999;
+        padding: 1em;
+
+        .loader {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -40px;
+            width: var(--loader-spinner-size);
+            height: var(--loader-spinner-size);
+            border: var(--loader-spinner-weight) solid var(--loader-spinner-background);
+            border-bottom-color: var(--loader-spinner-color);
+            border-radius: 50%;
+            display: inline-block;
+            box-sizing: border-box;
+            animation: poncho-map-loader-rotation 1s linear infinite;
+        }
+    }
 
     .sr-only {
         position: absolute;
         left: -9999em;
         top: -9999em;
     }
-
-    overflow: hidden;
-    position: relative;
 
     *.text-primary {
         color: var(--primary, $brand-primary) !important;
@@ -420,11 +468,10 @@
     .leaflet-left .leaflet-control {
         margin-left: var(--slider-distance);
     }
+
     .leaflet-top .leaflet-control {
         margin-top: var(--slider-distance);
     }
-
-
 
     .leaflet-tooltip-left:before {
         right: 0;
