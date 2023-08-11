@@ -99,22 +99,22 @@ class PonchoMap {
             marker: "azul",
             tooltip: false,
             tooltip_options:{
-                // permanent: false,
+                permanent: false,
                 className: "leaflet-tooltip-own",
                 direction: "auto",
-                // offset: [15,0], 
-                // sticky: true,sdf
-                // opacity: 1,
+                offset: [13,-18], 
+                sticky: false,
+                opacity: 0.8,
             },
             marker_cluster_options: {
-                spiderfyOnMaxZoom: false,
+                spiderfyOnMaxZoom: true,
                 showCoverageOnHover: false,
                 zoomToBoundsOnClick: true,
-                maxClusterRadius: 45,
-                spiderfyDistanceMultiplier: 3,
+                maxClusterRadius: 30,
+                spiderfyDistanceMultiplier: 0.5,
                 spiderLegPolylineOptions: {
                     weight: 1,
-                    color: "#666",
+                    color: "#666666",
                     opacity: 0.5,
                     "fill-opacity": 0.5
                 }
