@@ -473,6 +473,7 @@
         margin-top: var(--slider-distance);
     }
 
+    /* Tooltip */
     .leaflet-tooltip-left:before {
         right: 0;
         margin-right: -12px;
@@ -502,6 +503,8 @@
         font-size: 0.75rem;
         font-weight: normal;
     }
+
+    
 
     /* leaflet popup */
     // previene el margen en p
@@ -548,6 +551,8 @@
         border: none;
     }
 
+
+
     .leaflet-control-zoom.leaflet-bar {
         border-radius: 20px;
         overflow: hidden;
@@ -571,6 +576,8 @@
     .leaflet-control-zoom-out {
         font-size: 22px;
     }
+
+
 
     .leaflet-touch {
         .leaflet-control-zoom-in {
