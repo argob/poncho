@@ -47,6 +47,7 @@ jobs:
           echo "Copying $FILE"
           rm -f ./poncho/dist/fonts/icono-arg_*
           cp -R ./iconos/dist/css/icono-arg.css ./poncho/dist/css/
+          ls ./iconos/dist/fonts/
           cp ./iconos/dist/fonts/icono-arg_* ./poncho/dist/fonts/
       - name: 🧪 Deploy build
         working-directory: ./poncho
