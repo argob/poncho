@@ -147,7 +147,7 @@
     }
 
     *.text-primary {
-        color: var(--primary, $brand-primary) !important;
+        color: var(--color-primary) !important;
     }
 
     .btn-close {
@@ -268,7 +268,6 @@
     }
 
     path.marker--active {
-        // filter: drop-shadow(2px 2px 2px rgb(249, 168, 34, 1));
         fill-opacity: 0.75 !important;
     }
 
@@ -437,9 +436,9 @@
             }
 
             legend {
-                color: var(--color-base);
+                color: var(--color-primary);
                 margin-bottom: 0.75em;
-                opacity: 0.8;
+                opacity: 1;
             }
 
             fieldset {
@@ -672,6 +671,7 @@
         }
     }
 }
+
 
 input[type="search"].js-poncho-map-search__input::-webkit-search-cancel-button {
     -webkit-appearance: none;
