@@ -87,43 +87,38 @@ COPIAR DESDE ACÁ…
 <!-- / TABLE -->
 <script src="./data/wizard.js"></script>
 <script>
-    (async() => {
-
-        const keys = json.values[0];
-        const entries = json.values.reduce((acc, value, key) => {
-            const obj = keys.reduce((accumulator, k, index) => {
-                return { ...accumulator, [k]: json.values[key][index] };
-            }, {});
-            return [...acc, obj];
-        }, []);
-
-
-        // Opciones ponchoTable
-        let options = {
-            "jsonData": entries.slice(2),
-            "emptyLabel": "Seleccione una opción",
-            wizard: true,
-            "_headers": {
-                "filtro-dni": "DNI",
-                "filtro-provincia": "Provincia",
-                "filtro-motivo1": "Motivo 1",
-                "motivo2":"Motivo 2",
-                "btn-continuar": "Continuar",
-                "orden":"orden"
-            },
-            "tituloTabla": "titulo", 
-            "ordenColumna": 1, 
-            "ordenTipo": "asc", 
-            "ocultarColumnas":[],
-            "cantidadItems": 15, 
-            "filterContClassList": ["col-md-12"],
-            "searchContClassList": ["col-md-4"],
-            "filterClassList": ["col-md-12"],
-            "allowedTags" : ["*"],
-            "orderFilter": false
+     (function($) {
+        var ponchoTableOpciones = {
+            "wizard": true,
+            "idSpread": "1cS-VX_qdUkm-ven5Q_SdBp-VNMA7B0Rlk9g8-UbVWkU", // Informá entre comillas el ID de la planilla, siempre publicá el spreadsheet y que el enlace sea público
+            "hojaNombre": "Publicado", // Escribí entre comillas el nombre de la pestaña de la planilla
+            "tituloTabla": "titulo_de_la_tabla", // Siempre informá entre comillas un título corto para accesibilidad
+            "ordenColumna": 1, // Informá por cuál columna se ordena la tabla, la primera columna es 1 (uno)
+            "ordenTipo": "asc", // Informá entre comillas el criterio de orden: "asc" es de A a Z y de menor a mayor, "desc" es de Z a Z y de mayor a menor
+            "ocultarColumnas": [], // Si querés que una o más columnas no sean visibles, informalas entre corchetes separadas por coma; la primera columna es 0 (cero)
+            "cantidadItems": 10, // Informá la cantidad de filas visibles por pantalla, por defecto son 10 (diez)
+            //   "filterClassList": ["col-sm-12", "col-md-6"], // PERMITE CONFIGURAR LA CANTIDAD DE COLUMNAS Y ESTILOS PARA LOS FILTROS. SI NO SE DECLARA ESTE ATRIBUTO, EL PROGRAMA LO HACE AUTOMÁTICAMENTE.
+            //     "filterContClassList": ["col-md-4"], // PERMITE CONFIGURAR EL TAMAÑO DE LA COLUMNA DEL CONTENEDOR DE LOS FILTROS
+            //    "searchContClassList": ["col-md-8"], // PERMITE CONFIGURAR EL TAMAÑO DE LA COLUMNA DEL CONTENEDOR DEL BUSCADOR.
+            "hash": true, // SI ES TRUE, PERMITE HACER UNA BÚSQUEDA POR URL, EJ. www.argentina.gob.ar#mi_busqueda
+            "markdownOptions": {
+                //   "tables": true,
+                "simpleLineBreaks": true,
+                "extensions": [
+                    //     'details', 
+                    //     'images', 
+                    //     'alerts', 
+                    //    'numbers', 
+                    //     'ejes', 
+                    'button',
+                    'target',
+                    //     'bootstrap-tables', 
+                    //    'video'
+                ]
+            }
         };
-        ponchoTable(options);
-    })();
+        ponchoTable(ponchoTableOpciones);
+    })(jQuery);
 </script>
 <!-- / PONCHOTABLE -->
 </body>

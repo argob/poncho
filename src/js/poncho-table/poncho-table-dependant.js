@@ -251,16 +251,16 @@ const ponchoTableDependant = opt => {
                 const classList = (typeof opt.filterClassList === "string" ? 
                         opt.filterClassList.split(" ") : opt.filterClassList);
                 tplCol.classList.add(...classList);     
-                tplCol.dataset.index = key;
-                tplCol.dataset.filterName = f;
-
-                // If wizzard
-                if(wizard && key > 0){
-                    tplCol.style.display = "none";   
-                }
             } else {
                 const cols = Math.floor(12 / Object.keys(filtro).length);
                 tplCol.classList.add("col-sm-12", `col-md-${cols}`); 
+            }
+            tplCol.dataset.index = key;
+            tplCol.dataset.filterName = f;
+
+            // If wizzard
+            if(wizard && key > 0){
+                tplCol.style.display = "none";   
             }
 
             const tplForm = document.createElement("div");
@@ -749,8 +749,8 @@ const ponchoTableDependant = opt => {
                     return;
                 }
                 const displayStatus = (key <= column + 1 && valFilter ? "block" : "none");
-                const datasetFilter = document.querySelector(`[data-filter-name="${filter}"]`);
-                datasetFilter.style.display = displayStatus;
+                const datasetFilter = document.querySelectorAll(`[data-filter-name="${filter}"]`);
+                datasetFilter.forEach(element => element.style.display = displayStatus);
             });
         };
 
