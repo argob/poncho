@@ -35,6 +35,8 @@ Para que los filtros funcionen en las tablas de Google, se debe usar el prefijo 
 | jsonData | `json object` | Permite utilizar un documento JSON local o de una ubicación no asociada a Google API. |
 | headers | `object` | Permite definir o redefinir los headers por cada clave. Ejemplo `{"key": "value"}`|
 | orderFilter | `boolean` | Permite ordenar Alfanuméricamente el listado de items en en cada filtro. `false` por defecto. |
+| emptyLabel | `string` | Permite cambiar el _label_ en la opción vacía del desplegable. `Todos` por defecto. |
+| wizard | `boolean` | Muestra los _select_ y sus opciones una vez seleccionado el filtro padre. `false` por defecto. |
 
 
 
