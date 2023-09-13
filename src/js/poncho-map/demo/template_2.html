@@ -30,6 +30,20 @@
     <script src="../../gapi-sheet-data/gapi-sheet-data.js"></script>
     <!-- / Script para debug -->
     <title>Poncho Map — Template</title>
+    <style>
+        .poncho-map.dark {
+            --pm-color-primary: var(--maiz);
+            --pm-map-background: #eee;
+            --pm-color-base: #eee;
+
+            --pm-slider-background: #333;
+            --pm-slider-border: none;
+            --pm-slider-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            --pm-slider-distance: 10px;
+            --pm-slider-radius: 16px;
+            --pm-slider-media-mobile-height: 100%;
+        }
+    </style>
 </head>
 <body class="select-component">
 <!-- 
@@ -67,6 +81,7 @@ COPIAR DESDE ACÁ…
 
 <!-- SCRIPTS -->
 <script>
+    var map;
     // init
     (async() => {
         // GApi helpers
@@ -76,6 +91,7 @@ COPIAR DESDE ACÁ…
         const gapi_data = gapi.json_data(googlesheet_data);
         // map options
         const options = {
+        theme: "dark",
         // El programa asume que los valores de latitud y longitud se 
         // obtienen de columnas con esos mismos nombres. Si no fuera ese
         // el caso, se debe especificar el nombre. 
@@ -144,8 +160,8 @@ COPIAR DESDE ACÁ…
         ],
         };
         // render map
-        const poncho_filter = new PonchoMapFilter(gapi_data.entries, options);
-        poncho_filter.render();
+        map = new PonchoMapFilter(gapi_data.entries, options);
+        map.render();
     })();
 </script>
 <!-- / SCRIPTS -->

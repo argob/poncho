@@ -58,11 +58,13 @@ class PonchoMap {
                 definition_tag: "dd",
                 term_classlist: ["h6", "m-b-0"],
                 term_tag: "dt",
-                title_classlist: ["h4","text-primary","m-t-0"]
+                title_classlist: ["h4","color-primary","m-t-0"]
             },
             allowed_tags: [],
             template_innerhtml: false,
             template_markdown: false,
+            theme: "default",
+            themes: ["dark", "grayscale", "contrast", "sepia", "default", "blue", "middle"],
             markdown_options: {
                 extensions :[
                     "details",
@@ -155,6 +157,8 @@ class PonchoMap {
         this.marker_color = opts.marker;
         this.id = opts.id;
         this.title = opts.title;
+        this.theme = opts.theme,
+        this.themes = opts.themes,
         this.latitude = opts.latitud;
         this.longitude = opts.longitud;
         this.slider = opts.slider;
@@ -200,6 +204,18 @@ class PonchoMap {
         this.markers = new L.markerClusterGroup(this.marker_cluster_options);
         this.ponchoLoaderTimeout;
     }
+
+
+    useTheme = (theme = false) => {
+        const useTheme = (theme ? theme : this.theme);
+        const element = document.querySelectorAll(this.scope_selector);
+        element.forEach(t => {
+            this.themes.forEach(th => t.classList.remove(th));
+            t.classList.add(useTheme); 
+        });
+        
+    }
+
 
     /**
      * Es un geoJSON
@@ -1722,6 +1738,8 @@ class PonchoMap {
         setTimeout(this.gotoHashedEntry, this.anchor_delay);
         this._setFetureAttributes();
         this._accesibleMenu();
+
+        this.useTheme();
     };
 };
 // end class

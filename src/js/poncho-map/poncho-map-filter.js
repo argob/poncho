@@ -409,7 +409,7 @@ class PonchoMapFilter extends PonchoMap {
 
         const button = document.createElement("button");
         button.classList.add(
-            "btn","btn-secondary","btn-filter",
+            "btn-filter",
             `js-close-filter${this.scope_sufix}`
         );
         button.id = `filtrar-busqueda${this.scope_sufix}`
@@ -561,7 +561,7 @@ class PonchoMapFilter extends PonchoMap {
         data.forEach((item, group) => {
             let legend = document.createElement("legend");
             legend.textContent = item.legend;
-            legend.classList.add("m-b-1", "text-primary", "h6")
+            legend.classList.add("m-b-1", "color-primary", "h6")
 
             let fieldset = document.createElement("fieldset");
             fieldset.appendChild(legend);
@@ -921,6 +921,7 @@ class PonchoMapFilter extends PonchoMap {
         if(this.filters_visible){
             this._filterContainerHeight();
         }
+        this.useTheme();
     };
 };
 // end of class
