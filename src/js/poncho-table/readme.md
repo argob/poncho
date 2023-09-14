@@ -39,6 +39,33 @@ Para que los filtros funcionen en las tablas de Google, se debe usar el prefijo 
 | wizard | `boolean` | Muestra los _select_ y sus opciones una vez seleccionado el filtro padre. `false` por defecto. |
 
 
+### Opción para modo Wizard
+
+Para poder mostrar u ocultar elementos html en función de la visibilidad de la tabla, se puede utilizar el siguiente _dataset_ con su valor en `boolean`: `data-visible-as-table`.
+
+#### Uso
+
+```html
+<div class="alert alert-info" data-visible-as-table="false">
+  <p>No hay datos para esta selección.</p>
+</div>
+```
+
+El valor en `false`, hará que cuando la tabla **no esté visible** el elemento con el dataset, se visualice.
+
+
+```html
+<div class="alert alert-info" data-visible-as-table="true">
+  <p>Busque un resultado en la tabla.</p>
+</div>
+```
+
+El valor en `true`, hará que cuando la tabla **esté visible** el elemento con el dataset, se visualize.
+
+
+
+
+
 
 ## Scripts
 
