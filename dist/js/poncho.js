@@ -1155,6 +1155,26 @@ const ponchoTableDependant = opt => {
 
 
     /**
+     * Visualización de la tabla
+     * 
+     * @param {boolean} visibility Oculta y muestra la tabla.
+     * @returns {undefined}
+     */
+    _hideTable = (visibility=true) => {
+        const display = (visibility ? "none" : "block");
+        const reverseDisplay = (visibility ? "block" : "none");
+        document
+            .querySelectorAll(
+                `[data-visible-as-table="true"],#ponchoTable_wrapper`)
+            .forEach(element => element.style.display = display);
+
+        document
+            .querySelectorAll(`[data-visible-as-table="false"]`)
+            .forEach(element => element.style.display = reverseDisplay);
+    };
+
+
+    /**
      * Inicializa DataTable() y modifica elementos para adaptarlos a 
      * GoogleSheets y requerimientos de ArGob.
      */
@@ -1180,6 +1200,11 @@ const ponchoTableDependant = opt => {
          * Instacia DataTable()
          */ 
         let tabla = jQuery("#ponchoTable").DataTable({
+            "initComplete" : function(settings, json) {
+                if(wizard){
+                    _hideTable();
+                }
+            },
             "lengthChange": false,
             "autoWidth": false,
             "pageLength": opt.cantidadItems,
@@ -1265,25 +1290,6 @@ const ponchoTableDependant = opt => {
             return result;
         }
 
-
-        /**
-         * Visualización de la tabla
-         * 
-         * @param {boolean} visibility Oculta y muestra la tabla.
-         * @returns {undefined}
-         */
-        _hideTable = (visibility=true) => {
-            const display = (visibility ? "none" : "block");
-            const reverseDisplay = (visibility ? "block" : "none");
-            document
-                .querySelectorAll(
-                    `[data-visible-as-table="true"],#ponchoTable_wrapper`)
-                .forEach(element => element.style.display = display);
-
-            document
-                .querySelectorAll(`[data-visible-as-table="false"]`)
-                .forEach(element => element.style.display = reverseDisplay);
-        };
 
 
         /**
@@ -1442,10 +1448,8 @@ const ponchoTableDependant = opt => {
             .style.display = "block";
         document.querySelector("#ponchoTable")
             .classList.remove("state-loading");
+
         initDataTable();
-        if(wizard){
-            _hideTable();
-        }
     };
 
 
