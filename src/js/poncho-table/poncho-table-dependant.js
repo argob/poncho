@@ -882,13 +882,14 @@ const ponchoTableDependant = opt => {
         // Si está habilitada la búsqueda por hash.
         if(opt.hasOwnProperty("hash") && opt.hash){
             const term = hasHash();
-            const searchTerm = (term ? decodeURIComponent(term) : "");          
-            const element = document.querySelector("#ponchoTableSearch");
-            element.value = searchTerm;
-            tabla
-                .search(jQuery.fn.DataTable.ext.type.search.string(searchTerm))
-                .draw();
-
+            const searchTerm = (term ? decodeURIComponent(term) : "");     
+            const element = document.querySelectorAll("#ponchoTableSearch");
+            element.forEach(ele => {
+                ele.value = searchTerm;
+                tabla
+                    .search(jQuery.fn.DataTable.ext.type.search.string(searchTerm))
+                    .draw();
+            });
         }
     } // end initDataTable
     
