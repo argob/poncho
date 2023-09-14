@@ -47,7 +47,7 @@ Para poder mostrar u ocultar elementos html en función de la visibilidad de la 
 
 ```html
 <div class="alert alert-info" data-visible-as-table="false">
-  <p>No hay datos para esta selección.</p>
+  <p>Para acceder al formulario, elegí tipo de documento, provincia y motivo.</p>
 </div>
 ```
 
