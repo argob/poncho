@@ -29,7 +29,7 @@
   </style>
 </head>
 <body class="p-t-3">
-    <h1>Wizard</h1>
+    <h1 class="text-arandano">Wizard</h1>
    
 <hr>
 
@@ -61,7 +61,7 @@ COPIAR DESDE ACÁ…
   <div class="col-sm-12 col-md-12" id="ponchoTableFiltroCont" style="display:none">
     <div class="row" id="ponchoTableFiltro"></div>
   </div>
-  <div class="col-sm-12 col-md-12" id="ponchoTableSearchCont" style="display: none">
+  <div class="col-sm-12 col-md-12" id="ponchoTableSearchCont" data-visible-as-table="true" style="display: none">
     <div class="form-group">
       <label for="ponchoTableSearch">Buscá por nombre del trámite</label>
       <input class="form-control" id="ponchoTableSearch" type="search">
@@ -69,6 +69,9 @@ COPIAR DESDE ACÁ…
   </div>
 </div>
 <!-- / FILTERS -->
+<div class="alert alert-info" data-visible-as-table="false">
+  Seleccione un informe
+</div>
 <!-- TABLE -->
 <div class="row">
   <div class="col-md-12 m-b-4">
@@ -85,6 +88,13 @@ COPIAR DESDE ACÁ…
   </div>
 </div>
 <!-- / TABLE -->
+<div class="alert alert-info" data-visible-as-table="false">
+  <p>No hay datos para esta selección.</p>
+</div>
+
+<div class="alert alert-warning" data-visible-as-table="true">
+  <p>Busque un resultado en la tabla.</p>
+</div>
 <script src="./data/wizard.js"></script>
 <script>
     (async() => {
@@ -103,7 +113,7 @@ COPIAR DESDE ACÁ…
             "jsonData": entries.slice(2),
             "emptyLabel": "Seleccione una opción",
             wizard: true,
-            "_headers": {
+            "headers": {
                 "filtro-dni": "DNI",
                 "filtro-provincia": "Provincia",
                 "filtro-motivo1": "Motivo 1",
@@ -117,7 +127,7 @@ COPIAR DESDE ACÁ…
             "ocultarColumnas":[],
             "cantidadItems": 15, 
             "filterContClassList": ["col-md-12"],
-            "searchContClassList": ["col-md-4"],
+            "searchContClassList": ["col-md-12"],
             "filterClassList": ["col-md-12"],
             "allowedTags" : ["*"],
             "orderFilter": false

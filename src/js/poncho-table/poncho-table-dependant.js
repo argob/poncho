@@ -733,6 +733,56 @@ const ponchoTableDependant = opt => {
 
 
         /**
+         * Valida si un componente select tiene options con value. 
+         * 
+         * @summary El objeto de éste método es evitar traer selects que tengan
+         * options vacíos. 
+         * @param {string} selector Selector del elemento select 
+         * @returns {boolean}
+         */
+        const selectHasValues = selector => {
+            const options = document.querySelectorAll(`${selector} option`);
+            const result = Object.values(options).map(m => m.value).some(s => s);
+            return result;
+        }
+
+
+        /**
+         * Visualización de la tabla
+         * 
+         * @param {boolean} visibility Oculta y muestra la tabla.
+         * @returns {undefined}
+         */
+        _hideTable = (visibility=true) => {
+            const display = (visibility ? "none" : "block");
+            const reverseDisplay = (visibility ? "block" : "none");
+            document
+                .querySelectorAll(
+                    `[data-visible-as-table="true"],#ponchoTable_wrapper`)
+                .forEach(element => element.style.display = display);
+
+            document
+                .querySelectorAll(`[data-visible-as-table="false"]`)
+                .forEach(element => element.style.display = reverseDisplay);
+        };
+
+
+        /**
+         * Remueve opciones seleccionadas en los select
+         * 
+         * @param {objectc} filters Listado de filtros.
+         * @returns {undefined}
+         */
+        _resetForm = filters => {
+            filters.forEach(filter => {
+                document
+                    .querySelectorAll(`#${filter}`)
+                    .forEach(instance => instance.value = "")
+            });
+        };
+
+
+        /**
          * Modo wizard para los filtros.
          * 
          * @param {object} filters Listado de filtros.
@@ -741,16 +791,33 @@ const ponchoTableDependant = opt => {
          * @returns {undefined}
          */
         const _wizardFilters = (filters, column=0, valFilter="") => {
-            if(!wizard){
-                return;
+            const isLastFilter = (column === filters.length - 1 ? true : false);
+            _hideTable();
+            
+            if(!valFilter){
+                _resetForm(filters);
             }
+            
             filters.forEach((filter, key) => {
                 if(key === 0){
                     return;
                 }
-                const displayStatus = (key <= column + 1 && valFilter ? "block" : "none");
-                const datasetFilter = document.querySelectorAll(`[data-filter-name="${filter}"]`);
-                datasetFilter.forEach(element => element.style.display = displayStatus);
+                const isValidElement = selectHasValues(`#${filter}`);
+                // El select desplegado tiene elementos.
+                if(!isValidElement){
+                    _hideTable(false);
+                } 
+                // El el últmo de los filtros y el value no es vacío.
+                else if(isLastFilter && valFilter){
+                    _hideTable(false);
+                }
+
+                const displayStatus = (isValidElement && valFilter && 
+                    key <= column + 1 ? "block" : "none");
+                
+                document
+                    .querySelectorAll(`[data-filter-name="${filter}"]`)
+                    .forEach(element => element.style.display = displayStatus);
             });
         };
 
@@ -777,7 +844,7 @@ const ponchoTableDependant = opt => {
             const filters = Object.keys(filtro);
             const filterValues = _filterValues();
             const filterIndex = filter => {
-                return Object
+                return Object 
                         .keys(gapi_data.headers)
                         .indexOf(`filtro-${filter}`);
             };
@@ -800,7 +867,9 @@ const ponchoTableDependant = opt => {
                 }
             });
             tabla.draw();
-            _wizardFilters(filters, column, valFilter);
+            if(wizard){     
+                _wizardFilters(filters, column, valFilter);
+            }
         });
 
         
@@ -855,6 +924,9 @@ const ponchoTableDependant = opt => {
         document.querySelector("#ponchoTable")
             .classList.remove("state-loading");
         initDataTable();
+        if(wizard){
+            _hideTable();
+        }
     };
 
 
