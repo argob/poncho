@@ -1301,27 +1301,25 @@ const ponchoTableDependant = opt => {
          */
         const _wizardFilters = (filters, column=0, valFilter="") => {
             const isLastFilter = (column === filters.length - 1 ? true : false);
-            _hideTable();
+            let tableStatus = false;
 
             filters.forEach((filter, key) => {
                 const selectHasValues = _selectHasValues(`#${filter}`);
-                // El select desplegado tiene elementos.
-                if(!selectHasValues){
-                    _hideTable(false);
-                } 
-                // El el últmo de los filtros y el value no es vacío.
-                else if(isLastFilter && valFilter){
-                    _hideTable(false);
-                }
-
                 let displayStatus = "none";
+
+                if(!selectHasValues){
+                    tableStatus = false;
+                } 
+
                 if(selectHasValues && valFilter && key <= column + 1){
                     displayStatus = "block";
+
                 } else if(selectHasValues && !valFilter &&  key <= column + 1) {
                     const nextFilter = document
                         .querySelectorAll(`#${filters[column + 1]}`)
                     nextFilter.forEach(element => element.innerHTML = "");
                     displayStatus = "block";
+                    tableStatus = false;
                 }
 
                 const currentFilter = document
@@ -1329,6 +1327,16 @@ const ponchoTableDependant = opt => {
                 currentFilter
                     .forEach(element => element.style.display = displayStatus);
             });
+
+            if(_selectHasValues(`#${filters[column]}`) && valFilter){
+                tableStatus = true;
+            }
+
+            if(tableStatus){
+                _hideTable(false);
+            } else {
+                _hideTable();
+            }
         };
 
 
