@@ -681,7 +681,7 @@ const ponchoTableDependant = opt => {
          * Instacia DataTable()
          */ 
         let tabla = jQuery("#ponchoTable").DataTable({
-            "initComplete" : function(settings, json) {
+            "initComplete" : (settings, json) => {
                 if(wizard){
                     _hideTable();
                 }
@@ -765,27 +765,11 @@ const ponchoTableDependant = opt => {
          * @param {string} selector Selector del elemento select 
          * @returns {boolean}
          */
-        const selectHasValues = selector => {
+        const _selectHasValues = selector => {
             const options = document.querySelectorAll(`${selector} option`);
             const result = Object.values(options).map(m => m.value).some(s => s);
             return result;
         }
-
-
-
-        /**
-         * Remueve opciones seleccionadas en los select
-         * 
-         * @param {objectc} filters Listado de filtros.
-         * @returns {undefined}
-         */
-        _resetForm = filters => {
-            filters.forEach(filter => {
-                document
-                    .querySelectorAll(`#${filter}`)
-                    .forEach(instance => instance.value = "")
-            });
-        };
 
 
         /**
@@ -799,18 +783,11 @@ const ponchoTableDependant = opt => {
         const _wizardFilters = (filters, column=0, valFilter="") => {
             const isLastFilter = (column === filters.length - 1 ? true : false);
             _hideTable();
-            
-            if(!valFilter){
-                _resetForm(filters);
-            }
-            
+
             filters.forEach((filter, key) => {
-                if(key === 0){
-                    return;
-                }
-                const isValidElement = selectHasValues(`#${filter}`);
+                const selectHasValues = _selectHasValues(`#${filter}`);
                 // El select desplegado tiene elementos.
-                if(!isValidElement){
+                if(!selectHasValues){
                     _hideTable(false);
                 } 
                 // El el últmo de los filtros y el value no es vacío.
@@ -818,11 +795,19 @@ const ponchoTableDependant = opt => {
                     _hideTable(false);
                 }
 
-                const displayStatus = (isValidElement && valFilter && 
-                    key <= column + 1 ? "block" : "none");
-                
-                document
+                let displayStatus = "none";
+                if(selectHasValues && valFilter && key <= column + 1){
+                    displayStatus = "block";
+                } else if(selectHasValues && !valFilter &&  key <= column + 1) {
+                    const nextFilter = document
+                        .querySelectorAll(`#${filters[column + 1]}`)
+                    nextFilter.forEach(element => element.innerHTML = "");
+                    displayStatus = "block";
+                }
+
+                const currentFilter = document
                     .querySelectorAll(`[data-filter-name="${filter}"]`)
+                currentFilter
                     .forEach(element => element.style.display = displayStatus);
             });
         };

@@ -88,13 +88,9 @@ COPIAR DESDE ACÁ…
   </div>
 </div>
 <!-- / TABLE -->
-<div class="alert alert-info" data-visible-as-table="false">
-  <p>No hay datos para esta selección.</p>
-</div>
 
-<div class="alert alert-warning" data-visible-as-table="true">
-  <p>Busque un resultado en la tabla.</p>
-</div>
+
+
 <script src="./data/wizard.js"></script>
 <script>
     (async() => {
@@ -108,17 +104,19 @@ COPIAR DESDE ACÁ…
         }, []);
 
 
+        
+
         // Opciones ponchoTable
         let options = {
             "jsonData": entries.slice(2),
             "emptyLabel": "Seleccione una opción",
             wizard: true,
             "headers": {
-                "filtro-dni": "DNI",
-                "filtro-provincia": "Provincia",
-                "filtro-motivo1": "Motivo 1",
-                "motivo2":"Motivo 2",
-                "btn-continuar": "Continuar",
+                "filtro-dni":"¿Tenés DNI?",
+                "filtro-provincia": "¿A cuál provincia tenés que ir?",
+                "filtro-motivo1": "¿Por qué motivo pedís el certificado?",
+                "motivo2":"Tipo de excepción",
+                "btn-continuar":"Completá el formulario",
                 "orden":"orden"
             },
             "tituloTabla": "titulo", 
@@ -129,7 +127,7 @@ COPIAR DESDE ACÁ…
             "cantidadItems": 15, 
             "filterContClassList": ["col-md-12"],
             "searchContClassList": ["col-md-12"],
-            "filterClassList": ["col-md-12"],
+            "filterClassList": ["col-md-4"],
             "allowedTags" : ["*"],
             "orderFilter": false
         };
