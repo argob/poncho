@@ -5,7 +5,7 @@ const json = {
     [
       "filtro-dni",
       "filtro-provincia",
-      "filtro-motivo1",
+      "motivo1",
       "motivo2",
       "btn-continuá",
       "orden"

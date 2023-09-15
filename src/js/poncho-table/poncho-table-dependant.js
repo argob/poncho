@@ -781,16 +781,11 @@ const ponchoTableDependant = opt => {
          * @returns {undefined}
          */
         const _wizardFilters = (filters, column=0, valFilter="") => {
-            const isLastFilter = (column === filters.length - 1 ? true : false);
             let tableStatus = false;
 
             filters.forEach((filter, key) => {
                 const selectHasValues = _selectHasValues(`#${filter}`);
                 let displayStatus = "none";
-
-                if(!selectHasValues){
-                    tableStatus = false;
-                } 
 
                 if(selectHasValues && valFilter && key <= column + 1){
                     displayStatus = "block";
@@ -801,7 +796,7 @@ const ponchoTableDependant = opt => {
                     nextFilter.forEach(element => element.innerHTML = "");
                     displayStatus = "block";
                     tableStatus = false;
-                }
+                } 
 
                 const currentFilter = document
                     .querySelectorAll(`[data-filter-name="${filter}"]`)
@@ -809,9 +804,14 @@ const ponchoTableDependant = opt => {
                     .forEach(element => element.style.display = displayStatus);
             });
 
-            if(_selectHasValues(`#${filters[column]}`) && valFilter){
+            if( 
+                _selectHasValues(`#${filters[column]}`) && 
+                valFilter && 
+                !_selectHasValues(`#${filters[column + 1]}`)
+            ){
                 tableStatus = true;
-            }
+            } 
+
 
             if(tableStatus){
                 _hideTable(false);
