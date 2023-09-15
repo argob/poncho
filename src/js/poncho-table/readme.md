@@ -7,7 +7,7 @@ Para esta versión se **programó** que los filtros sean dependientes uno del ot
 Para que los filtros funcionen en las tablas de Google, se debe usar el prefijo **filtro-**[nombre]. Entonces, una columna para un filtro de provincias quedaría: **filtro-provincia**.
 
 <figure>
-<img src="./img/screenshoot-google-sheet.jpg" alt="Captura de pantalla Google Sheet">
+<img src="./demo/img/screenshoot-google-sheet.jpg" alt="Captura de pantalla Google Sheet">
 <figcaption style="font-size:small; color:gray">Captura de pantalla Google Sheet con filtros para PonchoTable</figcaption>
 </figure>
 
