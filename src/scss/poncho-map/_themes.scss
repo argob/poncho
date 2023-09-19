@@ -64,6 +64,11 @@
         --pm-slider-border-width: 2.5px;
 
         --pm-active-color: var(--pm-slider-background);
+
+        --pm-hover-background: var(--pm-color-base);
+        --pm-hover-color: var(--pm-slider-background);
+        --pm-active-color:  #343232;
+        --pm-active-background: var(--pm-color-primary);
     }
     &.ui-relax {
         --pm-color-primary: color-mix(in srgb, var(--primary) 80%, black);

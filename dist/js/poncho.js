@@ -2966,6 +2966,7 @@ class PonchoMap {
             template_markdown: false,
             ui_theme: false,
             map_theme: false,
+            theme_tool: true,
             theme: "default",
             default_themes: [
                 ["default", "Original"], 
@@ -3069,6 +3070,7 @@ class PonchoMap {
         this.id = opts.id;
         this.title = opts.title;
         this.theme = opts.theme,
+        this.theme_tool = opts.theme_tool,
         this.default_themes = opts.default_themes,
         this.ui_theme = opts.ui_theme;
         this.map_theme = opts.map_theme;
@@ -3120,9 +3122,13 @@ class PonchoMap {
     }
 
 
-
-
+    /**
+     * Crea el menú para cambiar de temas
+     */
     _menuTheme = () => {
+        if(!this.theme_tool){
+            return;
+        }
         const element = document.querySelectorAll(this.scope_selector);
 
         const navContainer = document.createElement("ul");
@@ -3144,7 +3150,9 @@ class PonchoMap {
         button.setAttribute("aria-label", "Abre el panel de temas");
 
         const list = document.createElement("ul");
-        list.classList.add("pm-container", "pm-unstyled", "tt", "pm-p-1", "caret-s", "pm-toggle");
+        list.classList.add(
+            "pm-container", "pm-unstyled", 
+            "pm-p-1", "caret-s", "pm-toggle");
 
         this.default_themes.map(m => m[0]).map((value, key)  => {
             const buttonTheme = document.createElement("button");
@@ -4722,6 +4730,8 @@ class PonchoMap {
         this._hiddenSearchInput();
         this._resetViewButton();
 
+        this._setThemes();
+        
         this.titleLayer.addTo(this.map);
         this.markersMap(this.entries);
         this._selectedMarker();
@@ -4744,8 +4754,6 @@ class PonchoMap {
         setTimeout(this.gotoHashedEntry, this.anchor_delay);
         this._setFetureAttributes();
         this._accesibleMenu();
-
-        this._setThemes();
     };
 };
 // end class
@@ -5722,6 +5730,8 @@ class PonchoMapFilter extends PonchoMap {
         this._hiddenSearchInput();
         this._resetViewButton(); 
 
+        this._menuTheme();
+
         if(this.filters.length > 0){
             this._filterButton();
             this._filterContainer();
@@ -5746,7 +5756,7 @@ class PonchoMapFilter extends PonchoMap {
             this._filterContainerHeight();
         }
         this._setThemes();
-        this._menuTheme()
+        
     };
 };
 // end of class
