@@ -7,7 +7,7 @@ Para esta versión se **programó** que los filtros sean dependientes uno del ot
 Para que los filtros funcionen en las tablas de Google, se debe usar el prefijo **filtro-**[nombre]. Entonces, una columna para un filtro de provincias quedaría: **filtro-provincia**.
 
 <figure>
-<img src="./img/screenshoot-google-sheet.jpg" alt="Captura de pantalla Google Sheet">
+<img src="./demo/img/screenshoot-google-sheet.jpg" alt="Captura de pantalla Google Sheet">
 <figcaption style="font-size:small; color:gray">Captura de pantalla Google Sheet con filtros para PonchoTable</figcaption>
 </figure>
 
@@ -35,6 +35,35 @@ Para que los filtros funcionen en las tablas de Google, se debe usar el prefijo 
 | jsonData | `json object` | Permite utilizar un documento JSON local o de una ubicación no asociada a Google API. |
 | headers | `object` | Permite definir o redefinir los headers por cada clave. Ejemplo `{"key": "value"}`|
 | orderFilter | `boolean` | Permite ordenar Alfanuméricamente el listado de items en en cada filtro. `false` por defecto. |
+| emptyLabel | `string` | Permite cambiar el _label_ en la opción vacía del desplegable. `Todos` por defecto. |
+| wizard | `boolean` | Muestra los _select_ y sus opciones una vez seleccionado el filtro padre. `false` por defecto. |
+
+
+### Opción para modo Wizard
+
+Para poder mostrar u ocultar elementos html en función de la visibilidad de la tabla, se puede utilizar el siguiente _dataset_ con su valor en `boolean`: `data-visible-as-table`.
+
+#### Uso
+
+```html
+<div class="alert alert-info" data-visible-as-table="false">
+  <p>Para acceder al formulario, elegí tipo de documento, provincia y motivo.</p>
+</div>
+```
+
+El valor en `false`, hará que cuando la tabla **no esté visible** el elemento con el dataset, se visualice.
+
+
+```html
+<div class="alert alert-info" data-visible-as-table="true">
+  <p>Busque un resultado en la tabla.</p>
+</div>
+```
+
+El valor en `true`, hará que cuando la tabla **esté visible** el elemento con el dataset, se visualize.
+
+
+
 
 
 
