@@ -902,6 +902,7 @@ class PonchoMapFilter extends PonchoMap {
         this._resetViewButton(); 
 
         this._menuTheme();
+        this._setThemes();
 
         if(this.filters.length > 0){
             this._filterButton();
@@ -926,7 +927,7 @@ class PonchoMapFilter extends PonchoMap {
         if(this.filters_visible){
             this._filterContainerHeight();
         }
-        this._setThemes();
+
         
     };
 };

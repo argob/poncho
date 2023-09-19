@@ -79,45 +79,18 @@ COPIAR DESDE ACÁ…
     var map;
     // init
     (async() => {
-        // GApi helpers
         const gapi = new GapiSheetData();
-        // fetch data
         const googlesheet_data = await fetch_json( gapi.url("dataset", "13fMXLCN-aqeAVo6YH9eNP1ojljFWB0ocRR3sWNMYaIg") ); 
         const gapi_data = gapi.json_data(googlesheet_data);
-        // map options
         const options = {
-        // theme: "dark",
         map_theme: "dark",
-        ui_theme: "dark",
-        // El programa asume que los valores de latitud y longitud se 
-        // obtienen de columnas con esos mismos nombres. Si no fuera ese
-        // el caso, se debe especificar el nombre. 
-        //     "latidud": "lat",
-        //     "longitud": "lon",
-        // Ámbito/alcance del componente. Cambiar acá y en el html solo 
-        // si hay más de un mapa.
+        ui_theme: "relax",
+        theme_tool: true,
         "scope": "poncho-map",
-        // El id se utiliza para identificar un marcador con una entrada.
-        // El programa usa el nombre «id» por defecto, si la columna tuviera
-        // otro nombre se debe reemplazar. 
-        //     Si el documento no necesita o no tiene un ID el programa 
-        // lo genera automáticamente para identificar el marker.
-        //     "id" : "id_con_otro_nombre",
-        // Nombre que se utiliza como título por defecto para los markers.
-        // También es importante para mejorar aspectos de accesibilidad.
         "title": "nombre",
-        // Si se neceista usar markdown en los valores se activa con (true).
-        // Por defecto viene en (false). Incluye algunas extensiones Poncho.
         "template_markdown": true,
-        // Define la estructura básica para el popUp o slider.
         "template_structure" : {
-            // Defino los valores que deseo mostrar o excluyo los que 
-            // están de más. El uso depende de la practicidad.
             "values": ["tipo", "descripcion", "direccion", "telefono", "email"],
-            //     "exclude": ["id", "inhibicion_puberal", "hormonizacion_adolescentes"]
-            // Con mixing puedo armar grupo de columnas separadas con 
-            // un caracter. El key, sea uno inventado o uno que forma 
-            // parte del JSON, debo agregarlo en «values».
             "mixing": [
                 {
                     "key": "direccion",
@@ -126,8 +99,6 @@ COPIAR DESDE ACÁ…
                 }
             ],
         },
-        // Define los headers. En este caso usa los definidos el la 
-        // fila 2 del GoogleSheet.
         "headers": gapi_data.headers,
         "marker" : (self, ele) => (typeof ele.color !== "undefined" && ele.color != "" ? ele.color : "azul"),
         "marker": "cielo",
