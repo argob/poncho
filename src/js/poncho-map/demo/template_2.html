@@ -129,30 +129,19 @@ COPIAR DESDE ACÁ…
         // Define los headers. En este caso usa los definidos el la 
         // fila 2 del GoogleSheet.
         "headers": gapi_data.headers,
-        // Define el color del marker. En este caso, si existe la columna 
-        // «color» y ésta tiene definido un nombre de color Poncho*, 
-        // reemplaza el color del marker. También se puede usar "marker":"azul".
         "marker" : (self, ele) => (typeof ele.color !== "undefined" && ele.color != "" ? ele.color : "azul"),
         "marker": "cielo",
-        // Slider con información. Sin ésta opción o con su valor en (false)
-        // reemplaza el PopUp por un slider.
-        "slider": false, // Activo/Inactivo
-        // Imprime el identificador de la entrada la barra de url.
+        "slider": true, // Activo/Inactivo
         "hash": true, // Activo/Inactivo
-        // Cuando se accede por primera vez a la página y en la dirección
-        // hay un hash con id, la página hace scroll hasta llegar a la
-        // ubicación del mapa.
-        //    "scroll": true, // Activo/Inactivo
-        // Grupos de filtros.
         "filters" :[
             {
-            // Lenged para el fileset
             "legend" : "Filtrar por tipo",
-            "fields" : [
-                // [nombre de columna, titulo para el checkbox, valores a buscar en la columna ej: ["A", "B"], "checked" o false]
-                ["tipo", "Archivo provincial", ["Archivo provincial"], "checked"],
-                ["tipo", "Archivo nacional", ["Archivo nacional"], "checked"],
-            ]
+            // "fields" : [
+            //     ["tipo", "Archivo provincial", ["Archivo provincial"], "checked"],
+            //     ["tipo", "Archivo nacional", ["Archivo nacional"], "checked"],
+            // ],
+            "field": ["tipo"],
+            "check_uncheck_all": true
             },
         ],
         };
