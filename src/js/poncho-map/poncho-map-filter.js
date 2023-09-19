@@ -409,7 +409,7 @@ class PonchoMapFilter extends PonchoMap {
 
         const button = document.createElement("button");
         button.classList.add(
-            "btn-filter",
+            "pm-btn", "pm-my-1",
             `js-close-filter${this.scope_sufix}`
         );
         button.id = `filtrar-busqueda${this.scope_sufix}`
@@ -493,7 +493,10 @@ class PonchoMapFilter extends PonchoMap {
 
         const container = document.createElement("div");
         container.classList.add(
-            `js-poncho-map-filters${this.scope_sufix}`,"poncho-map-filters"
+            `js-poncho-map-filters${this.scope_sufix}`,
+            "pm-container",
+            "poncho-map-filters",
+            "caret-n"
         );
         container.setAttribute("role", "region");
         container.setAttribute("aria-live", "polite");
@@ -898,6 +901,8 @@ class PonchoMapFilter extends PonchoMap {
         this._hiddenSearchInput();
         this._resetViewButton(); 
 
+        this._menuTheme();
+
         if(this.filters.length > 0){
             this._filterButton();
             this._filterContainer();
@@ -921,7 +926,8 @@ class PonchoMapFilter extends PonchoMap {
         if(this.filters_visible){
             this._filterContainerHeight();
         }
-        this.useTheme();
+        this._setThemes();
+        
     };
 };
 // end of class

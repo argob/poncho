@@ -69,16 +69,18 @@
 
 
 
-
-
 .poncho-map {
     --pm-slider-width: 326px;
     --pm-color-primary: var(--primary, #0072bb);
     --pm-map-background: #eee;
     --pm-color-base: inherit;
+    --pm-content-padding: 15px;
 
     --pm-slider-background: rgba(255, 255, 255, 1);
     --pm-slider-border: none;
+    --pm-slider-border-color: #ddd;
+    --pm-slider-border-width: 1px;
+
     --pm-slider-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     --pm-slider-distance: 10px;
     --pm-slider-radius: 16px;
@@ -87,11 +89,11 @@
     --pm-tooltip: #333;
     --pm-tooltip-color: white;
     
-    --pm-active-marker-color: 255, 206, 0;
     --pm-slider-modal-color: var(--black);
-    // define el color del halo para el marker activo
+    
+    --pm-active-marker-color: 255, 206, 0;
     --pm-active-marker-alpha: 0.5;
-    // define la opacidad para el color del halo.
+
     --pm-accesible-background: #f2f2f2;
 
     --pm-loader-background: var(--pm-map-background);
@@ -99,6 +101,9 @@
     --pm-loader-spinner-background: #ccc;
     --pm-loader-spinner-size: 80px;
     --pm-loader-spinner-weight: 4px;
+
+    --pm-scrollbar-handle: #444;
+    --pm-scrollbar-background: #ddd;
 
     background-color: var(--pm-map-background);
     overflow: hidden;
@@ -115,47 +120,11 @@
         }
     }
 
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--pm-scrollbar-handle) var(--pm-scrollbar-background);
 
-    &.black .leaflet-tile-pane {
-        filter: sepia(0.19) brightness(0.75) contrast(1.2) hue-rotate(160deg) invert(1) grayscale(1) saturate(1.4) opacity(0.88);
-        transition: filter .1s;
-    }
-    &.dark .leaflet-tile-pane {
-        filter: opacity(0.81) sepia(0.19) brightness(0.8) contrast(1.6) hue-rotate(170deg) invert(1) grayscale(0.8) saturate(1.4);
-        filter: sepia(0.19) brightness(0.75) contrast(1.2) invert(1) grayscale(1) saturate(1.4) opacity(0.88);
-        transition: filter .1s;
-    }
-    
-    &.grayscale .leaflet-tile-pane {
-        filter: grayscale(1) brightness(1) saturate(.9) contrast(1.05);
-        transition: filter .1s;
-    }
-
-    &.relax .leaflet-tile-pane {
-        filter: grayscale(.75);
-        transition: filter .1s;
-    }
-    
-    &.default {
-        filter: grayscale(.25);
-        transition: filter .1s;
-    }
-    
-    &.contrast .leaflet-tile-pane {
-        filter: grayscale(1) invert(1) brightness(2);
-        transition: filter .1s;
-    }
-    
-    
-    &.sepia .leaflet-tile-pane {
-        filter: sepia(1) saturate(0.2) contrast(0.9);
-        transition: filter .1s;
-    }
-    
-    &.blue .leaflet-tile-pane {
-        filter: sepia(1) hue-rotate(326deg) invert(1) brightness(8) saturate(0.45) grayscale(0.5) opacity(0.75);
-        transition: filter .1s;
-    }
+}
 
 
     /* loader */
@@ -249,6 +218,148 @@
         transition: 0.2s;
     }
 
+
+    .pm-unstyled {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+
+
+
+    .pm-mb-1 {
+        margin-bottom: var(--pm-slider-distance);
+    }
+    .pm-mb-2 {
+        margin-bottom: calc(var(--pm-slider-distance) * 2);
+    }
+    .pm-mb-3 {
+        margin-bottom: calc(var(--pm-slider-distance) * 3);
+    }
+    .pm-mt-1 {
+        margin-top: var(--pm-slider-distance);
+    }
+    .pm-mt-2 {
+        margin-top: calc(var(--pm-slider-distance) * 2);
+    }
+    .pm-mt-3 {
+        margin-top: calc(var(--pm-slider-distance) * 3);
+    }
+    .pm-my-1 {
+        margin-bottom: var(--pm-slider-distance);
+        margin-top: var(--pm-slider-distance);
+    }
+    .pm-my-2 {
+        margin-bottom: calc(var(--pm-slider-distance) * 2);
+        margin-top: calc(var(--pm-slider-distance) * 2);
+    }
+    .pm-my-3 {
+        margin-bottom: calc(var(--pm-slider-distance) * 3);
+        margin-top: calc(var(--pm-slider-distance) * 3);
+    }
+    .pm-p-1 {
+        padding: var(--pm-slider-distance);
+    }
+    .pm-p-2 {
+        padding: calc(var(--pm-slider-distance) * 2);
+    }
+    .pm-p-3 {
+        padding: calc(var(--pm-slider-distance) * 3);
+    }
+
+
+    // Botón para hacer un toggle con los filtros
+    .pm-btn {
+        text-align: center;
+        background: var(--pm-slider-background, white);
+        box-shadow: var(--pm-slider-shadow);
+        line-height: 1em;
+        color: var(--pm-color-base);
+        width: 39px;
+        height: 39px;
+        border-radius: 50%;
+        border: var(--pm-slider-border-width) solid var(--pm-slider-border-color);
+        &:focus {
+            border-radius: 50%;
+        }
+    }
+
+    .pm-container {
+        box-shadow: var(--pm-slider-shadow);
+        background-color: var(--pm-slider-background);
+        color: var(--pm-color-base);
+        border-radius: var(--pm-slider-radius);
+        transform-style: preserve-3d;
+        border: var(--pm-slider-border-width) solid var(--pm-slider-border-color)
+    }
+
+    .pm-tools {
+
+    }
+
+
+
+    // Flecha contenedor filtros
+    .caret-n::after {
+        content: " ";
+        width: 0;
+        height: 0;
+        border-left: 8px solid rgba(0,0,0,0);
+        border-right: 8px solid rgba(0,0,0,0);
+        border-bottom: 9px solid var(--pm-slider-background);
+        position: absolute;
+        top: -7px;
+        left: 11px;
+        z-index: 990;
+    }
+
+    // Flecha contenedor filtros
+    .caret-n::before {
+        content: " ";
+        width: 0;
+        height: 0;
+        border-left: 10px solid rgba(0,0,0,0);
+        border-right: 10px solid rgba(0,0,0,0);
+        border-bottom: 11px solid  var(--pm-slider-border-color);;
+        position: absolute;
+        top: calc(-7.75px - var(--pm-slider-border-width));
+        left: 9px;
+        z-index: 0;
+        transform: translateZ(-1px);
+    }
+
+    .caret-s::after {
+        content: " ";
+        width: 0;
+        height: 0;
+        border-left: 8px solid rgba(0,0,0,0);
+        border-right: 8px solid rgba(0,0,0,0);
+        border-bottom: 9px solid var(--pm-slider-background);
+        position: absolute;
+        bottom: -7px;
+        left: 11px;
+        z-index: 990;
+        transform: rotate(180deg);
+    }
+
+    // Flecha contenedor filtros
+    .caret-s::before {
+        content: " ";
+        width: 0;
+        height: 0;
+        border-left: 10px solid rgba(0,0,0,0);
+        border-right: 10px solid rgba(0,0,0,0);
+        border-bottom: 11px solid  var(--pm-slider-border-color);;
+        position: absolute;
+        bottom: calc(-7.75px - var(--pm-slider-border-width));
+        left: 9px;
+        z-index: 0;
+        transform: translateZ(-1px) rotate(180deg);
+    }
+
+
+
     /**
      * Define el estlo para el slider
      */
@@ -257,7 +368,6 @@
             right: var(--pm-slider-distance);
             animation-duration: 0.3s;
             animation-name: pm-slidein;
-            box-shadow: var(--pm-slider-shadow);
         }
 
         img {
@@ -267,47 +377,49 @@
         z-index: 1000;
         position: absolute;
         top: var(--pm-slider-distance);
-        border: var(--pm-slider-border);
         right: calc(-1 * var(--pm-slider-width));
-        background: var(--pm-slider-background);
-        height: calc(100% - var(--pm-slider-distance) - var(--pm-slider-distance));
         width: var(--pm-slider-width);
-        border-radius: var(--pm-slider-radius);
+        height: calc(100% - var(--pm-slider-distance) - var(--pm-slider-distance));
+        
+
 
         .content-container {
-            padding: 2.75rem 0.25rem 0.5rem 0.25rem;
             height: calc(100%);
+            padding-right: var(--pm-content-padding);
+            padding-left: var(--pm-content-padding);
+            padding-top:calc(var(--pm-content-padding) * 3);
+            padding-bottom:calc(var(--pm-content-padding) * 2);
         }
 
         .content {
             inline-size: min-content;
             color: var(--pm-color-base);
+            background-color: transparent;
             height: 100%;
             width: 100%;
             overflow-y: auto;
             overflow-x: hidden;
             box-shadow: 0 -10px 20px var(--pm-slider-background) inset;
-            padding: 0 0.75rem 1.5rem 0.75rem;
             word-break: break-word;
 
             &:after {
                 content: "";
                 background: var(--pm-slider-background);
                 background: -moz-linear-gradient(0deg,
-                        var(--pm-slider-background) 60%,
+                        var(--pm-slider-background) 30%,
                         rgba(255, 255, 255, 0) 100%);
                 background: -webkit-linear-gradient(0deg,
-                        var(--pm-slider-background) 60%,
+                        var(--pm-slider-background) 30%,
                         rgba(255, 255, 255, 0) 100%);
                 background: linear-gradient(0deg,
-                        var(--pm-slider-background) 60%,
+                        var(--pm-slider-background) 30%,
                         rgba(255, 255, 255, 0) 100%);
                 position: absolute;
-                left: 0.25rem;
-                width: calc(100% - 1.5rem);
-                height: 40px;
-                bottom: 0.25rem;
-                border-bottom-left-radius: 12px;
+                left: var(--pm-content-padding);
+                width: calc(100% - (var(--pm-content-padding) * 2));
+                height: calc(var(--pm-content-padding) * 2);
+                bottom: var(--pm-content-padding);
+                // border-bottom-left-radius: 12px;
             }
         }
     }
@@ -412,6 +524,9 @@
         }
     }
 
+
+
+
     // Filtros
     .filter-container {
         position: absolute;
@@ -420,19 +535,6 @@
         z-index: 999;
         max-height: calc(100% - 80px);
 
-        // Botón para hacer un toggle con los filtros
-        .btn-filter {
-            text-align: center;
-            background: var(--pm-slider-background, white);
-            box-shadow: var(--pm-slider-shadow);
-            line-height: 39px;
-            color: var(--pm-color-base);
-            width: 39px;
-            height: 39px;
-            margin: var(--pm-slider-distance) 0;
-            border-radius: 50%;
-            border: none
-        }
 
         .js-filters {
             overflow: auto;
@@ -448,29 +550,15 @@
             width: 250px;
             max-width: 300px;
             padding: 30px 15px 15px;
-            border-radius: var(--pm-slider-radius);
             box-shadow: var(--pm-slider-shadow);
             color: var(--pm-color-base);
-            background-color: var(--pm-slider-background);
-
+            
             // Define el estado abierto del panel de filtro.
             &.filter--in {
                 display: block;
             }
 
-            // Flecha contenedor filtros
-            &::after {
-                content: " ";
-                width: 0;
-                height: 0;
-                border-left: 10px solid transparent;
-                border-right: 10px solid transparent;
-                border-bottom: 10px solid var(--pm-slider-background);
-                position: absolute;
-                top: -6px;
-                left: 10px;
-                z-index: 990;
-            }
+            
 
             // Contenedor de fieldsets
             .field-list {
@@ -599,7 +687,7 @@
         border-radius: 20px;
         overflow: hidden;
         box-shadow: var(--pm-slider-shadow);
-        border: 1px solid #ddd;
+        border: var(--pm-slider-border-width) solid var(--pm-slider-border-color);
     }
 
     .leaflet-control-zoom.leaflet-control a {
@@ -637,7 +725,8 @@
         a.leaflet-control-zoom-out {
             background-color: var(--pm-slider-background);
             color: var(--pm-color-base);
-            border-color: #ddd;
+            border-width: var(--pm-slider-border-width);
+            border-color: var(--pm-slider-border-color);
         }
     }
 
@@ -724,4 +813,90 @@ input[type="search"].js-poncho-map-search__input::-webkit-search-cancel-button {
 
 .leaflet-control-attribution .leaflet-attribution-flag {
     display: none !important;
+}
+
+
+
+
+/**
+    THEMES
+*/
+.poncho-map {
+
+
+    &.map-black .leaflet-tile-pane {
+        filter: sepia(0.5) saturate(0.3) brightness(.95);
+        transition: filter .1s;
+    }
+    &.map-dark .leaflet-tile-pane {
+        filter: sepia(0.19) brightness(0.75) contrast(1.2) invert(1) grayscale(1) saturate(1.4) opacity(1);
+        transition: filter .1s;
+    }
+    &.map-grayscale .leaflet-tile-pane {
+        filter: grayscale(1) brightness(1) saturate(.9) contrast(1.05);
+        transition: filter .1s;
+    }
+    &.map-relax .leaflet-tile-pane {
+        filter: grayscale(.75);
+        transition: filter .1s;
+    }
+    &.map-default {
+        filter: grayscale(.25);
+        transition: filter .1s;
+    }
+    &.map-contrast .leaflet-tile-pane {
+        filter: grayscale(1) invert(1) brightness(2);
+        transition: filter .1s;
+    }
+    &.map-sepia .leaflet-tile-pane {
+        filter:sepia(.5) saturate(.35) contrast(1);
+        transition: filter .1s;
+    }
+    
+    &.map-blue .leaflet-tile-pane {
+        filter: sepia(1) hue-rotate(326deg) invert(1) brightness(8) saturate(0.45) grayscale(0.5) opacity(0.75);
+        transition: filter .1s;
+    }
+
+    &.ui-dark, 
+    &.ui-blue  {
+        --pm-color-primary: var(--celeste-argentina, skyblue);
+        --pm-color-base: #eaeaea;
+        --pm-slider-background: var(--dark, #252424);
+        --pm-slider-border-color: #626161;
+        --pm-slider-border-color: color-mix(in srgb, #626161 80%, white);
+        --pm-slider-border-width: 1px;
+
+        --pm-scrollbar-handle: #eaeaea;
+        --pm-scrollbar-background: rgb(0,0,0,.15);
+    }
+    &.ui-contrast {
+        --pm-color-primary: #68CEF3;
+        --pm-color-base: #eaeaea;
+        --pm-slider-background: #222;
+        --pm-slider-border-color: white;
+        --pm-slider-border-width: 2.5px;
+    }
+    &.ui-relax {
+        --pm-color-primary: color-mix(in srgb, var(--primary) 80%, black);
+        --pm-color-base: #5a5a5a;
+        --pm-slider-background: color-mix(in srgb, var(--verde-cemento) 15%, white);
+        --pm-slider-border: 1px solid #ddd;
+        --pm-slider-border-color: color-mix(in srgb, var(--verde-cemento) 80%, white);
+    }
+    // &.ui-grayscale, &.ui-default {
+    // }
+
+
+
+    &.map-default.ui-default [data-theme="default"],
+    &.map-sepia.ui-sepia [data-theme="sepia"],
+    &.map-relax.ui-relax [data-theme="relax"],
+    &.map-grayscale.ui-grayscale [data-theme="grayscale"],
+    &.map-blue.ui-blue [data-theme="blue"],
+    &.ui-contrast.map-contrast [data-theme="contrast"],
+    &.map-dark.ui-dark [data-theme="dark"] {
+        color: white;
+        background: #5a5a5a;
+    }
 }
