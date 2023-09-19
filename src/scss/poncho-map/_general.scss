@@ -508,19 +508,21 @@
 
         &__button {
             font-size: 0.75rem;
-            border: none !important;
             border-radius: 9px;
             padding: 1px 0.75em;
             margin: 0 2px;
-            color: var(--pm-color-primary, #ddd);
-            transition: 0.2s;
+            background-color: var(--pm-active-background);
+            color: var(--pm-active-color);
+            transition: 0.15s;
+            border: var(--pm-slider-border-width) solid var(--pm-slider-border-color);
         }
 
         &__button:hover {
-            background-color: var(--primary, #5a5a5a);
-            color: white;
-            transition: 0.2s;
+            background-color: var(--pm-hover-background);
+            color: var(--pm-hover-color);
+            transition: 0.15s;
             box-shadow: 0 0 3px rgb(0 0 0 / 0.15);
+            
         }
 
         &__button:first-of-type {
