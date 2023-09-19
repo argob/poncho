@@ -3262,10 +3262,16 @@ class PonchoMap {
         if(!this.theme_tool){
             return;
         }
-        const element = document.querySelectorAll(this.scope_selector);
-
+        document
+        .querySelectorAll(`#themes-tool${this.scope_sufix}`)
+        .forEach(ele => ele.remove());
+        
         const navContainer = document.createElement("ul");
-        navContainer.classList.add("pm-unstyled", "pm-tools");
+        navContainer.classList.add(
+            "pm-unstyled", 
+            "pm-tools",
+            `js-themes-tool${this.scope_sufix}`
+        );
 
     
         const item = document.createElement("li");
@@ -3303,11 +3309,8 @@ class PonchoMap {
         item.appendChild(list);
         navContainer.appendChild(item)
 
-
-        element.forEach(e => {
-            e.appendChild(navContainer);
-        })
-
+        const element = document.querySelectorAll(this.scope_selector);
+        element.forEach(e => e.appendChild(navContainer));
 
         document
             .querySelectorAll(".js-set-theme")
@@ -4711,6 +4714,14 @@ class PonchoMap {
                     ["role", "region"],
                 ]   
             ],
+            [
+                `.js-themes-tool${this.scope_sufix}`,
+                `themes-tool${this.scope_sufix}`,
+                [
+                    ["aria-label", "Herramienta para cambiar de tema visual"],
+                    ["role", "region"],
+                ]   
+            ],
         ];
         anchors.forEach(anchor => {
             const element = document.querySelector(anchor[0]);
@@ -4759,6 +4770,10 @@ class PonchoMap {
             {
                 text: "Ir al panel de zoom",
                 anchor: `#${anchors[1][1]}` 
+            },
+            {
+                text: "Cambiar de tema",
+                anchor: `#${anchors[2][1]}` 
             }
         ]
         values = [
@@ -5864,6 +5879,7 @@ class PonchoMapFilter extends PonchoMap {
         this._resetViewButton(); 
 
         this._menuTheme();
+        this._setThemes();
 
         if(this.filters.length > 0){
             this._filterButton();
@@ -5888,7 +5904,7 @@ class PonchoMapFilter extends PonchoMap {
         if(this.filters_visible){
             this._filterContainerHeight();
         }
-        this._setThemes();
+
         
     };
 };
