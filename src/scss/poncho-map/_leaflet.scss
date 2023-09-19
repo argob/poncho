@@ -1,0 +1,155 @@
+.poncho-map {
+
+    /* Tooltip Leaflet personalizado */
+    .leaflet-left .leaflet-control {
+        margin-left: var(--pm-slider-distance);
+    }
+
+    .leaflet-top .leaflet-control {
+        margin-top: var(--pm-slider-distance);
+    }
+
+    /* Tooltip */
+    .leaflet-tooltip-left:before {
+        right: 0;
+        margin-right: -12px;
+        border-left-color: var(--pm-tooltip, white);
+    }
+
+    .leaflet-tooltip-right:before {
+        left: 0;
+        margin-left: -12px;
+        border-right-color: var(--pm-tooltip, white);
+    }
+
+    .leaflet-tooltip-own {
+        padding: 3px 9px;
+        background-color: var(--pm-tooltip, white);
+        border: 0px solid #000;
+        color: var(--pm-tooltip-color, black);
+        white-space: nowrap;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        border-radius: 6px;
+        pointer-events: none;
+        box-shadow: 0 1px 6px rgb(0 0 0 / 40%);
+        transition: opacity 0.2s;
+        font-size: 0.75rem;
+        font-weight: normal;
+    }
+
+    
+
+    /* leaflet popup */
+    // previene el margen en p
+    .leaflet-popup {
+        p:first-child {
+            margin-block-start: 0;
+            margin-block-end: 1em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+        }
+
+        .leaflet-popup-content-wrapper {
+            border-radius: var(--pm-slider-radius);
+        }
+        
+        .leaflet-popup-tip-container{
+            margin-top: calc(var(--pm-slider-border-width) * -1) !important;
+        } 
+        .leaflet-popup-content-wrapper,
+        .leaflet-popup-tip {
+            background: var(--pm-slider-background);
+            color: var(--pm-color-base);
+            
+            border: var(--pm-slider-border-width) solid var(--pm-slider-border-color);
+
+            .leaflet-popup-content {
+                width: calc(100% - 26px);
+                inline-size: min-content;
+
+                & .btn.btn-info,
+                & .btn.btn-success,
+                & .btn.btn-warning,
+                & .btn.btn-primary {
+                    color: white;
+                }
+
+                .info-container {
+                    max-height: 800px;
+                    overflow-y: auto;
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    /* leaflet controls*/
+    .leaflet-marker-icon.leaflet-div-icon {
+        background-color: transparent;
+        border: none;
+    }
+
+    .leaflet-control-zoom.leaflet-bar {
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: var(--pm-slider-shadow);
+        border: var(--pm-slider-border-width) solid var(--pm-slider-border-color);
+    }
+
+    .leaflet-control-zoom.leaflet-control a {
+        width: 38px;
+        height: 38px;
+        line-height: 38px;
+        color: var(--pm-color-base);
+        transition: background .15s;
+
+        &:hover {
+            color: var(--pm-hover-color);
+            background: var(--pm-hover-background);
+            transition: background .15s;
+        }
+
+    }
+
+    .leaflet-control-zoom-in,
+    .leaflet-control-zoom-out {
+        font: 400 18px "Lucida Console", Monaco, monospace;
+        text-indent: 1px;
+    }
+
+    .leaflet-control-zoom-out {
+        font-size: 22px;
+    }
+
+    .leaflet-touch {
+        .leaflet-control-zoom-in {
+            font-size: 22px;
+        }
+
+        .leaflet-control-zoom-out {
+            font-size: 24px;
+        }
+
+        a.leaflet-control-zoom-out {
+            line-height: 32px;
+        }
+
+        a.leaflet-control-zoom-in,
+        a.leaflet-control-zoom-reset,
+        a.leaflet-control-zoom-out {
+            background-color: var(--pm-slider-background);
+            color: var(--pm-color-base);
+            border-width: var(--pm-slider-border-width);
+            border-color: var(--pm-slider-border-color);
+        }
+    }
+
+    .leaflet-container a.leaflet-popup-close-button.leaflet-popup-close-button {
+        top: 5px;
+        right: 5px;
+        color: var(--pm-color-base)
+    }
+}
