@@ -3092,11 +3092,23 @@ class PonchoMap {
                 definition_tag: "dd",
                 term_classlist: ["h6", "m-b-0"],
                 term_tag: "dt",
-                title_classlist: ["h4","text-primary","m-t-0"]
+                title_classlist: ["h4","color-primary","m-t-0"]
             },
             allowed_tags: [],
             template_innerhtml: false,
             template_markdown: false,
+            ui_theme: false,
+            map_theme: false,
+            theme: "default",
+            default_themes: [
+                ["default", "Original"], 
+                ["contrast", "Alto contraste"],
+                ["dark", "Oscuro"],
+                ["grayscale", "Gris"],
+                ["sepia", "Sepia"],
+                ["blue", "Azul"],
+                ["relax", "Relax"]
+            ],
             markdown_options: {
                 extensions :[
                     "details",
@@ -3189,6 +3201,10 @@ class PonchoMap {
         this.marker_color = opts.marker;
         this.id = opts.id;
         this.title = opts.title;
+        this.theme = opts.theme,
+        this.default_themes = opts.default_themes,
+        this.ui_theme = opts.ui_theme;
+        this.map_theme = opts.map_theme;
         this.latitude = opts.latitud;
         this.longitude = opts.longitud;
         this.slider = opts.slider;
@@ -3222,7 +3238,8 @@ class PonchoMap {
         // OSM
         this.map = new L.map(this.map_selector, {renderer:L.svg()}
         ).setView(this.map_view, this.map_zoom);
-        this.titleLayer = new L.tileLayer("https://mapa-ign.argentina.gob.ar/osm/{z}/{x}/{-y}.png",{ 
+        this.titleLayer = new L.tileLayer("https://mapa-ign.argentina.gob.ar/osm/{z}/{x}/{-y}.png",
+        { 
             attribution: ("Contribuidores: "
                 + "<a href=\"https://www.ign.gob.ar/AreaServicios/Argenmap/Introduccion\" " 
                 + "target=\"_blank\">"
@@ -3234,6 +3251,110 @@ class PonchoMap {
         this.markers = new L.markerClusterGroup(this.marker_cluster_options);
         this.ponchoLoaderTimeout;
     }
+
+
+
+
+    _menuTheme = () => {
+        const element = document.querySelectorAll(this.scope_selector);
+
+        const navContainer = document.createElement("ul");
+        navContainer.classList.add("pm-unstyled", "pm-tools");
+
+    
+        const item = document.createElement("li");
+        item.dataset.toggle="true";
+
+        const icon = document.createElement("i");
+        icon.setAttribute("aria-hidden", "true");
+        icon.classList.add("fa", "fa-adjust");
+
+        const button = document.createElement("button");
+        button.title = "Cambiar tema";
+        button.classList.add("pm-btn");
+        button.appendChild(icon);
+        button.setAttribute("role", "button");
+        button.setAttribute("aria-label", "Abre el panel de temas");
+
+        const list = document.createElement("ul");
+        list.classList.add("pm-container", "pm-unstyled", "tt", "pm-p-1", "caret-s", "pm-toggle");
+
+        this.default_themes.map(m => m[0]).map((value, key)  => {
+            const buttonTheme = document.createElement("button");
+            buttonTheme.dataset.theme = value;
+            buttonTheme.textContent = this.default_themes[key][1];
+            buttonTheme.classList.add("js-set-theme", "pm-item-link");
+            
+            const li = document.createElement("li");
+            li.appendChild(buttonTheme);
+
+            list.appendChild(li);
+        });
+
+        item.appendChild(button);
+        item.appendChild(list);
+        navContainer.appendChild(item)
+
+
+        element.forEach(e => {
+            e.appendChild(navContainer);
+        })
+
+
+        document
+            .querySelectorAll(".js-set-theme")
+            .forEach(ele => ele.addEventListener(
+                "click", () => {
+                    const th = ele.dataset.theme;
+                    this.useTheme(th);
+                })
+            );
+    };
+
+
+    _setTheme = (theme=false, prefix=[])  => {
+        const styles = useTheme => prefix.map(m => {
+            if(["ui", "map"].includes(m)){
+                return `${m}-${useTheme}`;
+            }
+            return false;
+        });
+
+        const element = document.querySelectorAll(this.scope_selector);
+        element.forEach(ele => {
+            this.default_themes.map(m => m[0]).forEach(th => {
+                ele.classList.remove( ...styles(th) )
+            });
+            ele.classList.add( ...styles(theme) ); 
+        });
+    }
+
+    useTheme = (theme = false) => {
+        const useTheme = (theme ? theme : this.theme);
+        this._setTheme(useTheme, ["ui", "map"]);
+    }
+
+
+    useMapTheme = theme => this._setTheme(theme, ["map"]);
+
+
+    useUiTheme = theme => this._setTheme(theme, ["ui"]);
+
+
+    _setThemes = () => {
+        if(!this.ui_theme && !this.map_theme){
+            this.useTheme();
+            return;
+        }
+
+        if(this.ui_theme){
+            this._setTheme(this.ui_theme, ["ui"]);
+        }
+        if(this.map_theme){
+            this._setTheme(this.map_theme, ["map"]);
+        }
+    }
+
 
     /**
      * Es un geoJSON
@@ -3765,7 +3886,7 @@ class PonchoMap {
         container.setAttribute("role", "region");
         container.setAttribute("aria-live", "polite");
         container.setAttribute("aria-label", "Panel de información");
-        container.classList.add("slider",`js-slider${this.scope_sufix}`);
+        container.classList.add("pm-container", "slider",`js-slider${this.scope_sufix}`);
         container.id = `slider${this.scope_sufix}`;
         container.appendChild(close_button);
         container.appendChild(anchor);
@@ -4756,6 +4877,8 @@ class PonchoMap {
         setTimeout(this.gotoHashedEntry, this.anchor_delay);
         this._setFetureAttributes();
         this._accesibleMenu();
+
+        this._setThemes();
     };
 };
 // end class
@@ -5240,7 +5363,7 @@ class PonchoMapFilter extends PonchoMap {
 
         const button = document.createElement("button");
         button.classList.add(
-            "btn","btn-secondary","btn-filter",
+            "pm-btn", "pm-my-1",
             `js-close-filter${this.scope_sufix}`
         );
         button.id = `filtrar-busqueda${this.scope_sufix}`
@@ -5324,7 +5447,10 @@ class PonchoMapFilter extends PonchoMap {
 
         const container = document.createElement("div");
         container.classList.add(
-            `js-poncho-map-filters${this.scope_sufix}`,"poncho-map-filters"
+            `js-poncho-map-filters${this.scope_sufix}`,
+            "pm-container",
+            "poncho-map-filters",
+            "caret-n"
         );
         container.setAttribute("role", "region");
         container.setAttribute("aria-live", "polite");
@@ -5392,7 +5518,7 @@ class PonchoMapFilter extends PonchoMap {
         data.forEach((item, group) => {
             let legend = document.createElement("legend");
             legend.textContent = item.legend;
-            legend.classList.add("m-b-1", "text-primary", "h6")
+            legend.classList.add("m-b-1", "color-primary", "h6")
 
             let fieldset = document.createElement("fieldset");
             fieldset.appendChild(legend);
@@ -5752,6 +5878,8 @@ class PonchoMapFilter extends PonchoMap {
         if(this.filters_visible){
             this._filterContainerHeight();
         }
+        this._setThemes();
+        this._menuTheme()
     };
 };
 // end of class

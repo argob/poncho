@@ -152,6 +152,44 @@ COPIAR DESDE ACÁ…
         search.render();
 
         loader.close();
+
+
+        let el = document.querySelector('.js-slider--poncho-map');
+        var ts;
+
+        function handleEnd(e){
+            const el = document.querySelector('.js-slider--poncho-map');
+            el.style.background = "white";
+        }
+
+        function handleStart(e){
+            ts = e.touches[0].clientY;
+        }
+
+        function handleCancel(e){
+            const el = document.querySelector('.js-slider--poncho-map');
+            el.style.border = "2px solid blue";
+        }
+
+        function handleMove(e){  
+            e.preventDefault(); 
+            var te = e.changedTouches[0].clientY;
+            if(ts > te + 5){
+                var el = document.querySelector('.js-slider--poncho-map');
+                el.style.border = "2px solid green";
+                el.classList.toggle("slider--in");
+                e.stopPropation();
+            }
+        }
+
+        el.addEventListener("touchstart", handleStart, false);
+        el.addEventListener("touchend", handleEnd, false);
+        el.addEventListener("touchcancel", handleCancel, false);
+        el.addEventListener("touchleave", handleEnd, false);
+        el.addEventListener("touchmove", handleMove, false);
+
+
+
     })();
 </script>
 <!-- / SCRIPTS -->
