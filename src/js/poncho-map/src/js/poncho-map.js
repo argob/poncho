@@ -241,6 +241,7 @@ class PonchoMap {
 
     
         const item = document.createElement("li");
+        item.setAttribute("tabindex", "-1");
         item.dataset.toggle="true";
 
         const icon = document.createElement("i");
