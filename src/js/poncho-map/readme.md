@@ -51,6 +51,10 @@
 | map_view | `Array Object` | `[-40.44, -63.59]` | Geoposicionamiento inicial del mapa. | 
 | error_reporting | `boolean` | true | Activa la visualización de errores o warnings en el mapa. | 
 | marker_cluster_options | `Object` | `"marker_cluster_options": {}` | Ver opciones para [marker_cluster_options](#opciones-marker-cluster-options) |
+| theme | `string` | `default` | Permite cambiar el tema de la interfase y el mapa. Las opciones disponibles son:<br>  <ul><li>_default_, Original</li><li>_contrast_, Alto contraste</li><li>_dark_, Oscuro</li><li>_grayscale_, Gris</li><li>_sepia_, Sepia</li><li>_blue_, Azul</li><li>_relax_, Relax</li></ul> |
+| theme_ui | `string` | `default` | Permite definir un tema de color para la interfase del mapa. |
+| theme_map | `string` | `default` | Permite definir un tema de color para el mapa. |
+| theme_tool | `boolean` | `true` | Permite remover la herramienta de temas para el usuario. |
 
 
 ### <a id="opciones-template-structure"></a>Opciones para `template_structure` [⏎](#opciones "Ir al listado de opciones generales")
