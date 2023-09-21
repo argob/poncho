@@ -32,10 +32,6 @@
         &:focus {
             border-radius: 50%;
         }
-
-        &:hover>.pmi {
-            background-color: var(--pm-hover-color);
-        }
     }
 
     .pm-btn:hover {

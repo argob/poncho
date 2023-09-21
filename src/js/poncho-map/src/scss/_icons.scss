@@ -1,7 +1,11 @@
 #{$scope} {
-    *>.pmi {
+    * > .pmi {
         margin: 0;
         transform: translate(auto 50%) !important
+    }
+
+    *:hover > .pmi {
+        background-color: var(--pm-hover-color);
     }
 
     .pmi {

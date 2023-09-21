@@ -4805,6 +4805,7 @@ class PonchoMap {
         ul.classList.add("pm-list-unstyled");
         values.forEach((link, index) => {
             const a = document.createElement("a");
+            a.classList.add("pm-item-link", "pm-accesible")
             a.textContent = link.text;
             a.tabIndex = 0;
             a.href = link.anchor;
@@ -4823,6 +4824,7 @@ class PonchoMap {
         // enlace de retorno
         const back_to_nav = document.createElement("a");
         back_to_nav.textContent = "Ir a la navegación del mapa";
+        back_to_nav.classList.add("pm-item-link", "pm-accesible");
         back_to_nav.href = `#pm-accesible-nav${this.scope_sufix}`;
         back_to_nav.id = `accesible-return-nav${this.scope_sufix}`;
 
