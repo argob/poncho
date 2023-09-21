@@ -3268,7 +3268,9 @@ class PonchoMap {
         
         const navContainer = document.createElement("ul");
         navContainer.classList.add(
+
             "pm-list-unstyled", 
+
             "pm-tools",
             `js-themes-tool${this.scope_sufix}`
         );
