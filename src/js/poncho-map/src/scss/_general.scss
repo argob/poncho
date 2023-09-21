@@ -53,22 +53,41 @@
 
 
     .pm-item-link {
-        width: 100%;
+        text-decoration: none;
         text-align: left;
-        border: 0;
+        cursor: pointer;
+        display: block;
         background: transparent;
+        border:none;
+        width: 100%;
+        color: var(--pm-color-base);
         margin-bottom: 2px;
         padding: calc(var(--pm-slider-distance) / 3 * 2) var(--pm-slider-distance);
         border-radius: calc(var(--pm-slider-radius) - var(--pm-slider-distance));
         transition: background .15s;
 
-        &:hover {
+        &:hover,
+        &:focus {
             background-color: var(--pm-hover-background);
             color: var(--pm-hover-color);
             transition: background .15s;
+        }            text-decoration: none;
+
+        &.pm-accesible {
+            color: #eaeaea !important;
+
+            &:focus, 
+            &:hover {
+                color: #111 !important;
+                box-shadow: none !important;
+                background: var(--pm-accesible-background);
+            }
         }
     }
 
+    
 
 
 }
+
+

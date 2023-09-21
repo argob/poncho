@@ -3097,8 +3097,8 @@ class PonchoMap {
             allowed_tags: [],
             template_innerhtml: false,
             template_markdown: false,
-            ui_theme: false,
-            map_theme: false,
+            theme_ui: false,
+            theme_map: false,
             theme_tool: true,
             theme: "default",
             default_themes: [
@@ -3205,8 +3205,8 @@ class PonchoMap {
         this.theme = opts.theme,
         this.theme_tool = opts.theme_tool,
         this.default_themes = opts.default_themes,
-        this.ui_theme = opts.ui_theme;
-        this.map_theme = opts.map_theme;
+        this.theme_ui = opts.theme_ui;
+        this.theme_map = opts.theme_map;
         this.latitude = opts.latitud;
         this.longitude = opts.longitud;
         this.slider = opts.slider;
@@ -3268,15 +3268,14 @@ class PonchoMap {
         
         const navContainer = document.createElement("ul");
         navContainer.classList.add(
-
             "pm-list-unstyled", 
-
             "pm-tools",
             `js-themes-tool${this.scope_sufix}`
         );
 
     
         const item = document.createElement("li");
+        item.setAttribute("tabindex", "-1");
         item.dataset.toggle="true";
 
         const icon = document.createElement("i");
@@ -3356,16 +3355,16 @@ class PonchoMap {
 
 
     _setThemes = () => {
-        if(!this.ui_theme && !this.map_theme){
+        if(!this.theme_ui && !this.theme_map){
             this.useTheme();
             return;
         }
 
-        if(this.ui_theme){
-            this._setTheme(this.ui_theme, ["ui"]);
+        if(this.theme_ui){
+            this._setTheme(this.theme_ui, ["ui"]);
         }
-        if(this.map_theme){
-            this._setTheme(this.map_theme, ["map"]);
+        if(this.theme_map){
+            this._setTheme(this.theme_map, ["map"]);
         }
     }
 
@@ -4806,6 +4805,7 @@ class PonchoMap {
         ul.classList.add("pm-list-unstyled");
         values.forEach((link, index) => {
             const a = document.createElement("a");
+            a.classList.add("pm-item-link", "pm-accesible")
             a.textContent = link.text;
             a.tabIndex = 0;
             a.href = link.anchor;
@@ -4824,6 +4824,7 @@ class PonchoMap {
         // enlace de retorno
         const back_to_nav = document.createElement("a");
         back_to_nav.textContent = "Ir a la navegación del mapa";
+        back_to_nav.classList.add("pm-item-link", "pm-accesible");
         back_to_nav.href = `#pm-accesible-nav${this.scope_sufix}`;
         back_to_nav.id = `accesible-return-nav${this.scope_sufix}`;
 
