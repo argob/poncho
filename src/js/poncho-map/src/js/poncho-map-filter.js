@@ -401,15 +401,15 @@ class PonchoMapFilter extends PonchoMap {
     _filterButton = () => {
         const filter_icon = document.createElement("i");
         filter_icon.setAttribute("aria-hidden", "true");
-        filter_icon.classList.add("fa", "fa-filter");
+        filter_icon.classList.add("pmi", "pmi-filter");
 
         const button_text = document.createElement("span");
         button_text.textContent = "Abre o cierra el filtro de búsqueda";
-        button_text.classList.add("sr-only");
+        button_text.classList.add("pm-visually-hidden");
 
         const button = document.createElement("button");
         button.classList.add(
-            "pm-btn", "pm-my-1",
+            "pm-btn", "pm-btn-rounded-circle", "pm-my-1",
             `js-close-filter${this.scope_sufix}`
         );
         button.id = `filtrar-busqueda${this.scope_sufix}`
@@ -483,7 +483,7 @@ class PonchoMapFilter extends PonchoMap {
         close_button.title = "Cerrar panel";
         close_button.setAttribute("role", "button");
         close_button.setAttribute("aria-label", "Cerrar panel de filtros");
-        close_button.innerHTML = "<span class=\"sr-only\">Cerrar </span>✕";
+        close_button.innerHTML = "<span class=\"pm-visually-hidden\">Cerrar </span>✕";
 
 
         const form = document.createElement("form");
@@ -496,7 +496,7 @@ class PonchoMapFilter extends PonchoMap {
             `js-poncho-map-filters${this.scope_sufix}`,
             "pm-container",
             "poncho-map-filters",
-            "caret-n"
+            "pm-caret", "pm-caret-t",
         );
         container.setAttribute("role", "region");
         container.setAttribute("aria-live", "polite");
@@ -719,7 +719,7 @@ class PonchoMapFilter extends PonchoMap {
             i.setAttribute("aria-hidden", "true");
 
             const span = document.createElement("span");
-            span.className = "sr-only";
+            span.className = "pm-visually-hidden";
             span.style.fontWeight = "400";
             span.textContent = `${field[1]} elemento${plurals}.`;
 
