@@ -1,0 +1,57 @@
+
+.pm-list-unstyled {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.pm-mb-1 {
+    margin-bottom: var(--pm-slider-distance);
+}
+
+.pm-mb-2 {
+    margin-bottom: calc(var(--pm-slider-distance) * 2);
+}
+
+.pm-mb-3 {
+    margin-bottom: calc(var(--pm-slider-distance) * 3);
+}
+
+.pm-mt-1 {
+    margin-top: var(--pm-slider-distance);
+}
+
+.pm-mt-2 {
+    margin-top: calc(var(--pm-slider-distance) * 2);
+}
+
+.pm-mt-3 {
+    margin-top: calc(var(--pm-slider-distance) * 3);
+}
+
+.pm-my-1 {
+    margin-bottom: var(--pm-slider-distance);
+    margin-top: var(--pm-slider-distance);
+}
+
+.pm-my-2 {
+    margin-bottom: calc(var(--pm-slider-distance) * 2);
+    margin-top: calc(var(--pm-slider-distance) * 2);
+}
+
+.pm-my-3 {
+    margin-bottom: calc(var(--pm-slider-distance) * 3);
+    margin-top: calc(var(--pm-slider-distance) * 3);
+}
+
+.pm-p-1 {
+    padding: var(--pm-slider-distance);
+}
+
+.pm-p-2 {
+    padding: calc(var(--pm-slider-distance) * 2);
+}
+
+.pm-p-3 {
+    padding: calc(var(--pm-slider-distance) * 3);
+}

@@ -3092,7 +3092,7 @@ class PonchoMap {
                 definition_tag: "dd",
                 term_classlist: ["h6", "m-b-0"],
                 term_tag: "dt",
-                title_classlist: ["h4","color-primary","m-t-0"]
+                title_classlist: ["h4","pm-color-primary","m-t-0"]
             },
             allowed_tags: [],
             template_innerhtml: false,
@@ -3262,10 +3262,16 @@ class PonchoMap {
         if(!this.theme_tool){
             return;
         }
-        const element = document.querySelectorAll(this.scope_selector);
-
+        document
+        .querySelectorAll(`#themes-tool${this.scope_sufix}`)
+        .forEach(ele => ele.remove());
+        
         const navContainer = document.createElement("ul");
-        navContainer.classList.add("pm-unstyled", "pm-tools");
+        navContainer.classList.add(
+            "pm-list-unstyled", 
+            "pm-tools",
+            `js-themes-tool${this.scope_sufix}`
+        );
 
     
         const item = document.createElement("li");
@@ -3273,19 +3279,20 @@ class PonchoMap {
 
         const icon = document.createElement("i");
         icon.setAttribute("aria-hidden", "true");
-        icon.classList.add("fa", "fa-adjust");
+        icon.classList.add("pmi", "pmi-adjust");
 
         const button = document.createElement("button");
         button.title = "Cambiar tema";
-        button.classList.add("pm-btn");
+        button.tabIndex = "0";
+        button.classList.add("pm-btn", "pm-btn-rounded-circle");
         button.appendChild(icon);
         button.setAttribute("role", "button");
         button.setAttribute("aria-label", "Abre el panel de temas");
 
         const list = document.createElement("ul");
         list.classList.add(
-            "pm-container", "pm-unstyled", 
-            "pm-p-1", "caret-s", "pm-toggle");
+            "pm-container", "pm-list-unstyled", 
+            "pm-p-1", "pm-caret", "pm-caret-b", "pm-toggle");
 
         this.default_themes.map(m => m[0]).map((value, key)  => {
             const buttonTheme = document.createElement("button");
@@ -3303,11 +3310,8 @@ class PonchoMap {
         item.appendChild(list);
         navContainer.appendChild(item)
 
-
-        element.forEach(e => {
-            e.appendChild(navContainer);
-        })
-
+        const element = document.querySelectorAll(this.scope_selector);
+        element.forEach(e => e.appendChild(navContainer));
 
         document
             .querySelectorAll(".js-set-theme")
@@ -3447,7 +3451,7 @@ class PonchoMap {
         );
 
         const title = document.createElement("h2");
-        title.classList.add("h6", "title", "sr-only");
+        title.classList.add("h6", "title", "pm-visually-hidden");
         title.textContent = "¡Se produjo un error!";
 
         container.appendChild(mapIcon);
@@ -3874,7 +3878,7 @@ class PonchoMap {
         close_button.title = "Cerrar panel";
         close_button.setAttribute("role", "button");
         close_button.setAttribute("aria-label", "Cerrar panel de información");
-        close_button.innerHTML = "<span class=\"sr-only\">Cerrar</span>✕";
+        close_button.innerHTML = "<span class=\"pm-visually-hidden\">Cerrar</span>✕";
 
         const anchor = document.createElement("a");
 
@@ -4468,7 +4472,7 @@ class PonchoMap {
             .forEach(ele => {
 
             const icon = document.createElement("i");
-            icon.classList.add("fa", "fa-expand");
+            icon.classList.add("pmi", "pmi-expand");
             icon.setAttribute("aria-hidden","true");
 
             const button = document.createElement("a");
@@ -4711,6 +4715,14 @@ class PonchoMap {
                     ["role", "region"],
                 ]   
             ],
+            [
+                `.js-themes-tool${this.scope_sufix}`,
+                `themes-tool${this.scope_sufix}`,
+                [
+                    ["aria-label", "Herramienta para cambiar de tema visual"],
+                    ["role", "region"],
+                ]   
+            ],
         ];
         anchors.forEach(anchor => {
             const element = document.querySelector(anchor[0]);
@@ -4739,7 +4751,7 @@ class PonchoMap {
      */
     _accesibleMenu = () => {
         // Remuevo instancias anteriores si existieran.
-        document.querySelectorAll(`${this.scope_selector} .accesible-nav`)
+        document.querySelectorAll(`${this.scope_selector} .pm-accesible-nav`)
             .forEach(e => e.remove());
 
         // Anclas que se deben crear.
@@ -4759,6 +4771,10 @@ class PonchoMap {
             {
                 text: "Ir al panel de zoom",
                 anchor: `#${anchors[1][1]}` 
+            },
+            {
+                text: "Cambiar de tema",
+                anchor: `#${anchors[2][1]}` 
             }
         ]
         values = [
@@ -4771,19 +4787,21 @@ class PonchoMap {
         // Imprimo los enlaces
         const icon = document.createElement("i");
         icon.classList.add(
-            "icono-arg-sitios-accesibles", 
+            "pmi", 
+            "pmi-universal-access", 
             "accesible-nav__icon"
         );
         icon.setAttribute("aria-hidden", "true");
 
         const nav = document.createElement("div");
-        nav.classList.add("accesible-nav", "top");
-        nav.id = `accesible-nav${this.scope_sufix}`;
+        nav.classList.add("pm-accesible-nav", "top");
+        nav.id = `pm-accesible-nav${this.scope_sufix}`;
         nav.setAttribute("aria-label", "Menú para el mapa");
         nav.setAttribute("role", "navigation");
         nav.tabIndex=0;
 
         const ul = document.createElement("ul");
+        ul.classList.add("pm-list-unstyled");
         values.forEach((link, index) => {
             const a = document.createElement("a");
             a.textContent = link.text;
@@ -4804,11 +4822,11 @@ class PonchoMap {
         // enlace de retorno
         const back_to_nav = document.createElement("a");
         back_to_nav.textContent = "Ir a la navegación del mapa";
-        back_to_nav.href = `#accesible-nav${this.scope_sufix}`;
+        back_to_nav.href = `#pm-accesible-nav${this.scope_sufix}`;
         back_to_nav.id = `accesible-return-nav${this.scope_sufix}`;
 
         const return_nav = document.createElement("div");
-        return_nav.classList.add("accesible-nav", "bottom");
+        return_nav.classList.add("pm-accesible-nav", "bottom");
         return_nav.appendChild(icon.cloneNode(true));
         return_nav.appendChild(back_to_nav);
 
@@ -5363,15 +5381,15 @@ class PonchoMapFilter extends PonchoMap {
     _filterButton = () => {
         const filter_icon = document.createElement("i");
         filter_icon.setAttribute("aria-hidden", "true");
-        filter_icon.classList.add("fa", "fa-filter");
+        filter_icon.classList.add("pmi", "pmi-filter");
 
         const button_text = document.createElement("span");
         button_text.textContent = "Abre o cierra el filtro de búsqueda";
-        button_text.classList.add("sr-only");
+        button_text.classList.add("pm-visually-hidden");
 
         const button = document.createElement("button");
         button.classList.add(
-            "pm-btn", "pm-my-1",
+            "pm-btn", "pm-btn-rounded-circle", "pm-my-1",
             `js-close-filter${this.scope_sufix}`
         );
         button.id = `filtrar-busqueda${this.scope_sufix}`
@@ -5445,7 +5463,7 @@ class PonchoMapFilter extends PonchoMap {
         close_button.title = "Cerrar panel";
         close_button.setAttribute("role", "button");
         close_button.setAttribute("aria-label", "Cerrar panel de filtros");
-        close_button.innerHTML = "<span class=\"sr-only\">Cerrar </span>✕";
+        close_button.innerHTML = "<span class=\"pm-visually-hidden\">Cerrar </span>✕";
 
 
         const form = document.createElement("form");
@@ -5458,7 +5476,7 @@ class PonchoMapFilter extends PonchoMap {
             `js-poncho-map-filters${this.scope_sufix}`,
             "pm-container",
             "poncho-map-filters",
-            "caret-n"
+            "pm-caret", "pm-caret-t",
         );
         container.setAttribute("role", "region");
         container.setAttribute("aria-live", "polite");
@@ -5681,7 +5699,7 @@ class PonchoMapFilter extends PonchoMap {
             i.setAttribute("aria-hidden", "true");
 
             const span = document.createElement("span");
-            span.className = "sr-only";
+            span.className = "pm-visually-hidden";
             span.style.fontWeight = "400";
             span.textContent = `${field[1]} elemento${plurals}.`;
 
@@ -5864,6 +5882,7 @@ class PonchoMapFilter extends PonchoMap {
         this._resetViewButton(); 
 
         this._menuTheme();
+        this._setThemes();
 
         if(this.filters.length > 0){
             this._filterButton();
@@ -5888,7 +5907,7 @@ class PonchoMapFilter extends PonchoMap {
         if(this.filters_visible){
             this._filterContainerHeight();
         }
-        this._setThemes();
+
         
     };
 };

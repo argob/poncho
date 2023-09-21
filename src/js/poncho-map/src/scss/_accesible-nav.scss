@@ -1,0 +1,47 @@
+#{$scope} {
+    .pm-accesible-nav {
+        position: absolute;
+        left: -999em;
+        line-height: 1.5em;
+        z-index: 2000;
+        min-height: 2em;
+        border: 2.5px solid #eaeaea;
+        background: #111;
+        padding: var(--pm-slider-distance);
+        border-radius: var(--pm-slider-radius);
+        box-shadow: var(--pm-slider-shadow);
+
+        &.top:focus-within {
+            top: var(--pm-slider-distance);
+            left: var(--pm-slider-distance);
+        }
+
+        &.bottom:focus-within {
+            bottom: var(--pm-slider-distance);
+            left: var(--pm-slider-distance);
+        }
+
+        .accesible-nav__icon {
+            font-size: 1.25em;
+            background-color: #37bbed;
+            margin-bottom: 4px;
+        }
+
+        a {
+            text-decoration: none;
+            border-radius: calc(var(--pm-slider-radius) - var(--pm-slider-distance));
+            list-style: none;
+            color: #eaeaea;
+            margin: 0;
+            min-height: 2em;
+            padding: 5px 10px;
+            display: block;
+
+            &:focus {
+                color: black;
+                box-shadow: none !important;
+                background: var(--pm-accesible-background);
+            }
+        }
+    }
+}

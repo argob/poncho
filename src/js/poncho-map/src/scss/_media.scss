@@ -1,21 +1,8 @@
-@keyframes pm-slidein-mobile {
-    0% {
-        right: var(--pm-slider-distance);
-        bottom: calc(-1 * var(--pm-slider-media-mobile-height));
-        opacity: 0;
-    }
-
-    100% {
-        bottom: var(--pm-slider-distance);
-        opacity: 1;
-        right: var(--pm-slider-distance);
-    }
-}
-
-
-/* smartphones, iPhone, portrait 480x320 phones */
+/** 
+ * smartphones, iPhone, portrait 480x320 phones
+ */
 @media (max-width: 575.98px) {
-    .poncho-map {
+    #{$scope} {
         &:has(.slider:is(.slider--in)) {
             position: relative;
             border-radius: calc(var(--pm-slider-radius) + var(--pm-slider-distance));
@@ -60,4 +47,3 @@
         }
     }
 }
-

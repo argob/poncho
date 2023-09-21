@@ -1,10 +1,10 @@
-.poncho-map {
+#{$scope}  {
     --pm-slider-width: 326px;
     --pm-tools-width: 250px;
     --pm-color-primary: var(--primary, #0072bb);
     --pm-map-background: #eee;
     
-    --pm-color-base: inherit;
+    --pm-color-base: var(--black, #333);
     --pm-content-padding: 15px;
     
     --pm-hover-background: #ddd;
@@ -30,10 +30,10 @@
     --pm-active-marker-color: 255, 206, 0;
     --pm-active-marker-alpha: 0.5;
 
-    --pm-accesible-background: #f2f2f2;
+    --pm-accesible-background: #eaeaea;
 
     --pm-loader-background: var(--pm-map-background);
-    --pm-loader-spinner-color: var(--primary, #0072bb);
+    --pm-loader-spinner-color: var(--pm-color-primary);
     --pm-loader-spinner-background: #ccc;
     --pm-loader-spinner-size: 80px;
     --pm-loader-spinner-weight: 4px;

@@ -27,9 +27,9 @@ const ponchoMinList = [
     './src/js/poncho-ubicacion/poncho-ubicacion.js',
     './src/js/poncho-charts/poncho-charts.js',
     './src/js/utils/gapi-legacy.js',
-    './src/js/poncho-map/poncho-map.js',
-    './src/js/poncho-map/poncho-map-filter.js',
-    './src/js/poncho-map/poncho-map-search.js',
+    './src/js/poncho-map/src/js/poncho-map.js',
+    './src/js/poncho-map/src/js/poncho-map-filter.js',
+    './src/js/poncho-map/src/js/poncho-map-search.js',
     './src/js/gapi-sheet-data/gapi-sheet-data.js',
     './src/js/translate-html/translate-html.js'
 ];

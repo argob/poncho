@@ -5,9 +5,10 @@ input[type="search"].js-poncho-map-search__input::-webkit-search-cancel-button {
     cursor: pointer;
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><circle cx='10' cy='10' r='10' fill='whitesmoke'/><polygon points='15.35 6.03 13.97 4.65 10 8.63 6.03 4.65 4.65 6.03 8.63 10 4.65 13.97 6.03 15.35 10 11.38 13.97 15.35 15.35 13.97 11.38 10 15.35 6.03' fill='black'/></svg>");
 }
-.leaflet-control-attribution
-{
-    opacity: .5;
+
+.leaflet-control-attribution {
+    opacity: 0.5;
+
     .leaflet-attribution-flag {
         display: none !important;
     }
