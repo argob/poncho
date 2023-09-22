@@ -1,4 +1,7 @@
 #{$scope} {
+    .leaflet-container {
+        background-color: var(--pm-map-background);
+    }
 
     /* Tooltip Leaflet personalizado */
     .leaflet-left .leaflet-control {

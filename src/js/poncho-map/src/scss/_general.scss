@@ -1,5 +1,5 @@
 #{$scope} {
-    background-color: var(--pm-map-background);
+    background-color: var(--pm-map-background) !important;
     overflow: hidden;
     position: relative;
     width: 100%;

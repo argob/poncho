@@ -21,10 +21,9 @@
         transition: filter .1s;
     }
 
-    &.map-default {
-        filter: grayscale(.25);
-        transition: filter .1s;
-    }
+    // &.map-default {
+
+    // }
 
     &.map-contrast .leaflet-tile-pane {
         filter: grayscale(1) invert(1) brightness(2);
@@ -39,6 +38,10 @@
     &.map-blue .leaflet-tile-pane {
         filter: sepia(1) hue-rotate(326deg) invert(1) brightness(8) saturate(0.45) grayscale(0.5) opacity(0.75);
         transition: filter .1s;
+    }
+
+    &.map-transparent .leaflet-tile-pane {
+        opacity: 0 !important;
     }
 
     /* UI THEMES */
@@ -82,6 +85,7 @@
         --pm-slider-border: 1px solid #ddd;
         --pm-slider-border-color: color-mix(in srgb, var(--verde-cemento) 80%, white);
     }
+    
 
     // &.ui-grayscale, &.ui-default {
     // }
