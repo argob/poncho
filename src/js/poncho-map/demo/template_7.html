@@ -35,9 +35,9 @@
   <style>
     html, body { height: 100%;}
 
-    .poncho-map {
-        --pm-map-background: transparent;
-    }
+    /* .poncho-map {
+        --pm-map-background: #eee;
+    } */
   </style>
 </head>
 <body class="p-t-3">
@@ -74,14 +74,14 @@ COPIAR DESDE ACÁ…
 </form>
 <!-- / PONCHO MAP SEARCH -->
 </div>
-<div class="col-md-4">
+<div class="col-md-6">
 <!-- PONCHO MAP -->
-<div class="poncho-map" data-scope="poncho-map">
+<div class="poncho-map" data-scope="poncho-map" style="border:1px solid #eee">
     <div
         class="leaflet-container leaflet-touch leaflet-fade-anim 
               leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
         id="map"
-        style="height: 600px; width: 100%;"
+        style="height: 700px;"
         tabindex="0">
     </div>
 </div>
@@ -90,7 +90,7 @@ COPIAR DESDE ACÁ…
 
 
 
-<div class="js-foo col-md-8">
+<div class="js-foo col-md-6">
     <div class="alert alert-info">Seleccione una provincia</div>
 </div>
 
@@ -148,21 +148,31 @@ var search;
 
     // map options
     const options = {
+        theme_tool: false,
+        "map_init_options": {
+                zoomDelta: 1,
+                zoomSnap: .2
+            },
         "render_slider": false,
+        "map_zoom": 4.4,
         "content_selector": ".js-foo",
         "scope": "poncho-map",
         "title": "nam",
         "template_structure": {
-            "title_classlist": ["h2","text-cielo","m-t-0"],
+            "title_classlist": ["h2","text-primary","m-t-0"],
             "definition_list_tag": "div",
             "term_tag": "h3",
             "definition_tag": "p",
-            "term_classlist": ["h5", "m-b-0", "text-cielo",  "text-uppercase"],
+            "term_classlist": ["h5", "m-b-0", "text-arandano",  "text-uppercase"],
             "definition_classlist": ["text-muted"],
         },
-        "tooltip_options": {
-            "direction": 'center',
-            className: 'leaflet-tooltip-own'
+        tooltip_options:{
+            permanent: false,
+            className: "leaflet-tooltip-own",
+            direction: "auto",
+            offset: [0,-3], 
+            sticky: true,
+            opacity: 1,
         },
         "tooltip": true,
         "marker": "cielo",
@@ -171,10 +181,11 @@ var search;
         "theme_map": "transparent",
         "scroll": false,
         "filters_info": false,
-        "filters": [
+        "_filters": [
             {
                 "legend":"Región",
-                "field": ["region"]
+                "field": ["region"],
+                "check_uncheck_all": true
             }
         ],
     };
@@ -188,19 +199,28 @@ var search;
         entries.features[k].properties.id_provincia = _id;
         entries.features[k].properties.provincia = _extras[3];
         entries.features[k].properties.region = _extras[1];
+
+        entries.features[k].properties["stroke-opacity"] = .8;
+        entries.features[k].properties["fill-opacity"] = .9;
+        entries.features[k].properties["stroke-width"] = 2;
+        entries.features[k].properties["stroke-color"] = "#eaeaea";
+        entries.features[k].properties["stroke"] = ponchoColor("cielo");
         entries.features[k].properties.stroke =  _extras[2] ?? "dodgerblue";
-        // entries.features[k].properties.stroke =  ponchoColor("mandarina");
-        entries.features[k].properties["stroke-width"] = 3;
+        entries.features[k].properties.stroke =  ponchoColor("azul") ?? "dodgerblue";
+
+
     });
 
     map = new PonchoMapFilter(entries, options);
+
+
     map.render();
 
     const search_options = {
         "scope": "poncho-map-search", 
         "placeholder": "Buscar en el geoJSON",
         "datalist": true,
-        "search_fields": ["fna"] 
+        "search_fields": ["fna", "provincia"] 
     };
     search = new PonchoMapSearch(map, search_options);
     search.render();
