@@ -30,8 +30,14 @@
     <script src="../../gapi-sheet-data/gapi-sheet-data.js"></script>
     <!-- / Script para debug -->
     <title>Poncho Map — Template 7</title>
+
+
   <style>
     html, body { height: 100%;}
+
+    .poncho-map {
+        --pm-map-background: transparent;
+    }
   </style>
 </head>
 <body class="p-t-3">
@@ -68,7 +74,7 @@ COPIAR DESDE ACÁ…
 </form>
 <!-- / PONCHO MAP SEARCH -->
 </div>
-<div class="col-md-8">
+<div class="col-md-4">
 <!-- PONCHO MAP -->
 <div class="poncho-map" data-scope="poncho-map">
     <div
@@ -84,7 +90,10 @@ COPIAR DESDE ACÁ…
 
 
 
-<div class="js-foo col-md-4">HELLO</div>
+<div class="js-foo col-md-8">
+    <div class="alert alert-info">Seleccione una provincia</div>
+</div>
+
     </div>
 </div>
 
@@ -159,7 +168,7 @@ var search;
         "marker": "cielo",
         "slider": true,
         "hash": false,
-        "theme_map": "grayscale",
+        "theme_map": "transparent",
         "scroll": false,
         "filters_info": false,
         "filters": [
@@ -174,14 +183,13 @@ var search;
     const find = (id) => extras.find(e => e[0] == id);
 
     entries.features.forEach((e, k) => {
-        console.log("___entra___")
         const _id = e.properties.in1.substring(0,2);
         const _extras = find(_id);
         entries.features[k].properties.id_provincia = _id;
         entries.features[k].properties.provincia = _extras[3];
         entries.features[k].properties.region = _extras[1];
-        entries.features[k].properties.stroke =  _extras[2] ? _extras[2] :  "dodgerblue";
-        entries.features[k].properties.stroke =  ponchoColor("mandarina");
+        entries.features[k].properties.stroke =  _extras[2] ?? "dodgerblue";
+        // entries.features[k].properties.stroke =  ponchoColor("mandarina");
         entries.features[k].properties["stroke-width"] = 3;
     });
 

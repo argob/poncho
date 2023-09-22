@@ -3110,7 +3110,8 @@ class PonchoMap {
                 ["grayscale", "Gris"],
                 ["sepia", "Sepia"],
                 ["blue", "Azul"],
-                ["relax", "Relax"]
+                ["relax", "Relax"],
+                // ["transparent", "Transparente"],
             ],
             markdown_options: {
                 extensions :[
@@ -3337,8 +3338,10 @@ class PonchoMap {
 
         const element = document.querySelectorAll(this.scope_selector);
         element.forEach(ele => {
-            this.default_themes.map(m => m[0]).forEach(th => {
-                ele.classList.remove( ...styles(th) )
+            // Transparent es un elemento especial
+            [...this.default_themes, ...[["transparent", ""]]]
+                .map(m => m[0]).forEach(th => {
+                    ele.classList.remove(...styles(th))
             });
             ele.classList.add( ...styles(theme) ); 
         });
