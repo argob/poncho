@@ -18,7 +18,10 @@
             position: relative;
             z-index: 998;
             width: var(--pm-tools-width);
-            padding: 30px 15px 15px;
+            padding-right: var(--pm-content-padding);
+            padding-left: var(--pm-content-padding);
+            padding-top: calc(var(--pm-content-padding) * 2);
+            padding-bottom: var(--pm-content-padding);
             box-shadow: var(--pm-slider-shadow);
             color: var(--pm-color-base);
 

@@ -75,7 +75,7 @@ COPIAR DESDE ACÁ…
         class="leaflet-container leaflet-touch leaflet-fade-anim 
               leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
         id="map"
-        style="height: 700px; width: 100%;"
+        style="height: 600px; width: 100%;"
         tabindex="0">
     </div>
 </div>
@@ -103,45 +103,7 @@ COPIAR DESDE ACÁ…
 <!-- SCRIPTS -->
 <script>
 // init
-var map;
-var search;
-(async() => {
-    // Levanto datos desde un geoJSON
-    entries = await fetch_json("./data/provincias.json");
-
-    // map options
-    const options = {
-        "render_slider": false,
-        "content_selector": ".js-foo",
-        "scope": "poncho-map",
-        "title": "nam",
-        "template_structure": {
-            "title_classlist": ["h2","text-cielo","m-t-0"],
-            "definition_list_tag": "div",
-            "term_tag": "h3",
-            "definition_tag": "p",
-            "term_classlist": ["h5", "m-b-0", "text-cielo",  "text-uppercase"],
-            "definition_classlist": ["text-muted"],
-        },
-        "tooltip_options": {
-            "direction": 'center',
-            className: 'leaflet-tooltip-own'
-        },
-        "tooltip": true,
-        "marker": "cielo",
-        "slider": true,
-        "hash": true,
-        "scroll": false,
-        "filters_info": false,
-        "filters": [
-            {
-                "legend":"Región",
-                "field": ["region"]
-            }
-        ],
-    };
-
-    const color = ['#2897D4',  '#6EA100', '#F9A822', '#EF5350', '#EC407A', '#9284BE', '#50B7B2', '#CDDC39', '#FFCE00', '#0072BB', '#EF6C00', '#2E7D33',  '#C62828', '#C2185B', '#6A1B99', '#37BBED', '#50B7B2', '#F9A822', '#EF5350', '#EC407A', '#6EA100', '#9284BE', '#C2185B'];
+    const color = colorVariations.medium.map(c => ponchoColor(c));
     const extras = [
         ['06', 'Región Centro y Buenos Aires', color[2], 'Buenos Aires'],
         ['10', 'Región Noroeste', color[0], 'Catamarca'],
@@ -169,15 +131,58 @@ var search;
         ['90', 'Región Noroeste', color[0], 'Tucumán']
     ];
 
+var map;
+var search;
+(async() => {
+    // Levanto datos desde un geoJSON
+    entries = await fetch_json("./data/provincias.json");
+
+    // map options
+    const options = {
+        "render_slider": false,
+        "content_selector": ".js-foo",
+        "scope": "poncho-map",
+        "title": "nam",
+        "template_structure": {
+            "title_classlist": ["h2","text-cielo","m-t-0"],
+            "definition_list_tag": "div",
+            "term_tag": "h3",
+            "definition_tag": "p",
+            "term_classlist": ["h5", "m-b-0", "text-cielo",  "text-uppercase"],
+            "definition_classlist": ["text-muted"],
+        },
+        "tooltip_options": {
+            "direction": 'center',
+            className: 'leaflet-tooltip-own'
+        },
+        "tooltip": true,
+        "marker": "cielo",
+        "slider": true,
+        "hash": false,
+        "theme_map": "grayscale",
+        "scroll": false,
+        "filters_info": false,
+        "filters": [
+            {
+                "legend":"Región",
+                "field": ["region"]
+            }
+        ],
+    };
+
+
     const find = (id) => extras.find(e => e[0] == id);
+
     entries.features.forEach((e, k) => {
+        console.log("___entra___")
         const _id = e.properties.in1.substring(0,2);
         const _extras = find(_id);
-        console.log(k)
         entries.features[k].properties.id_provincia = _id;
         entries.features[k].properties.provincia = _extras[3];
         entries.features[k].properties.region = _extras[1];
-        entries.features[k].properties.stroke =  color[k];
+        entries.features[k].properties.stroke =  _extras[2] ? _extras[2] :  "dodgerblue";
+        entries.features[k].properties.stroke =  ponchoColor("mandarina");
+        entries.features[k].properties["stroke-width"] = 3;
     });
 
     map = new PonchoMapFilter(entries, options);

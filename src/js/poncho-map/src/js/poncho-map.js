@@ -117,7 +117,7 @@ class PonchoMap {
                 direction: "auto",
                 offset: [13,-18], 
                 sticky: false,
-                opacity: 0.8,
+                opacity: 1,
             },
             marker_cluster_options: {
                 spiderfyOnMaxZoom: true,
