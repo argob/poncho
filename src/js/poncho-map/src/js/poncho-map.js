@@ -107,6 +107,10 @@ class PonchoMap {
             map_anchor_zoom: 16,
             map_zoom: 4,
             min_zoom: 2,
+            map_init_options: {
+                // zoomDelta: 1,
+                // zoomSnap: .5
+            },
             reset_zoom: true,
             latitud: "latitud",
             longitud: "longitud",
@@ -159,6 +163,7 @@ class PonchoMap {
         this.hash = opts.hash;
         this.scroll = opts.scroll;
         this.map_view = opts.map_view;
+        this.map_init_options = opts.map_init_options;
         this.anchor_delay = opts.anchor_delay;
         this.map_zoom = opts.map_zoom;
         this.min_zoom = opts.min_zoom;
@@ -206,7 +211,10 @@ class PonchoMap {
         this.geojson;
 
         // OSM
-        this.map = new L.map(this.map_selector, {renderer:L.svg()}
+        this.map = new L.map(this.map_selector, {
+            renderer: L.svg(),
+            ...this.map_init_options
+        }
         ).setView(this.map_view, this.map_zoom);
         this.titleLayer = new L.tileLayer("https://mapa-ign.argentina.gob.ar/osm/{z}/{x}/{-y}.png",
         { 
@@ -303,7 +311,6 @@ class PonchoMap {
 
         const element = document.querySelectorAll(this.scope_selector);
         element.forEach(ele => {
-            // Transparent es un elemento especial
             [...this.default_themes, ...this.temes_not_visibles]
                 .map(m => m[0]).forEach(th => {
                     ele.classList.remove(...styles(th))
@@ -1696,9 +1703,12 @@ class PonchoMap {
             ],
         ];
         anchors.forEach(anchor => {
-            const element = document.querySelector(anchor[0]);
-            element.id = anchor[1];
-            anchor[2].forEach(e => element.setAttribute(e[0], e[1]));
+            const element = document.querySelectorAll(anchor[0]);
+            element.forEach( ele => {
+                ele.id = anchor[1]
+                anchor[2].forEach(e => ele.setAttribute(e[0], e[1]));
+            } );
+            
         });
         return anchors;
     };
