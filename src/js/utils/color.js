@@ -318,7 +318,7 @@ const ponchoColor = color => ponchoColorDefinitions(color)?.color || color;
 
 
 /**
- * Conversor de hex a binary
+ * Hace un refactor del número hexa
  * 
  * @param {string} value Valor hexadecimal 
  * @returns {string}
@@ -330,10 +330,12 @@ const cleanUpHex = value => {
             .trim()
             .toUpperCase();
 
-    if(hex.length == 3){
+    if (hex.length < 3 || hex.length > 6){
+        return false;
+    } else if(hex.length == 3){
         hex = Array.from(hex).map(a => a.repeat(2)).join("");
     }
-    return hex;
+    return `#${hex}`;
 };
 
 
@@ -354,7 +356,7 @@ const cleanUpHex = value => {
  * findByHex("#f79525");
  * @returns {object} Objecto con la defición del color
  */
-const findPonchoColorByHex = value => ponchoColorDefinitionsList.find(f => {
+const ponchoColorByHex = value => ponchoColorDefinitionsList.find(f => {
     const colorToFind = cleanUpHex(value);
     const colorToCompare = cleanUpHex(f.color);
     if(colorToFind == colorToCompare){
@@ -366,5 +368,5 @@ const findPonchoColorByHex = value => ponchoColorDefinitionsList.find(f => {
 
 // $START_TEST$
 // ¡Atención! Patch para testear non-module
-module.exports = {ponchoColorDefinitionsList, ponchoColorDefinitions, ponchoColor, findPonchoColorByHex};
+module.exports = {ponchoColorDefinitionsList, ponchoColorDefinitions, ponchoColor, ponchoColorByHex, cleanUpHex};
 // $END_TEST$

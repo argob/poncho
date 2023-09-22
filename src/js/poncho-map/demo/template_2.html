@@ -84,6 +84,7 @@ COPIAR DESDE ACÁ…
         const googlesheet_data = await fetch_json( gapi.url("dataset", "13fMXLCN-aqeAVo6YH9eNP1ojljFWB0ocRR3sWNMYaIg") ); 
         const gapi_data = gapi.json_data(googlesheet_data);
         const options = {
+            tooltip:true,
         "theme_map": "dark",
         "theme_ui": "relax",
         "theme_tool": true,
