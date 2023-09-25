@@ -1756,7 +1756,7 @@ class PonchoMap {
             {
                 text: "Cambiar de tema",
                 anchor: `#${anchors[2][1]}` 
-            }
+            },
         ]
         values = [
             ...values,
@@ -1800,6 +1800,7 @@ class PonchoMap {
         
         nav.appendChild(icon);
         nav.appendChild(ul);
+
 
         // enlace de retorno
         const back_to_nav = document.createElement("a");

@@ -3144,8 +3144,8 @@ class PonchoMap {
             map_zoom: 4,
             min_zoom: 2,
             map_init_options: {
-                zoomDelta: 1,
-                zoomSnap: 0
+                // zoomDelta: 1,
+                // zoomSnap: .5
             },
             reset_zoom: true,
             latitud: "latitud",
@@ -4739,9 +4739,12 @@ class PonchoMap {
             ],
         ];
         anchors.forEach(anchor => {
-            const element = document.querySelector(anchor[0]);
-            element.id = anchor[1];
-            anchor[2].forEach(e => element.setAttribute(e[0], e[1]));
+            const element = document.querySelectorAll(anchor[0]);
+            element.forEach( ele => {
+                ele.id = anchor[1]
+                anchor[2].forEach(e => ele.setAttribute(e[0], e[1]));
+            } );
+            
         });
         return anchors;
     };
@@ -4789,7 +4792,7 @@ class PonchoMap {
             {
                 text: "Cambiar de tema",
                 anchor: `#${anchors[2][1]}` 
-            }
+            },
         ]
         values = [
             ...values,
@@ -4833,6 +4836,7 @@ class PonchoMap {
         
         nav.appendChild(icon);
         nav.appendChild(ul);
+
 
         // enlace de retorno
         const back_to_nav = document.createElement("a");

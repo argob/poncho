@@ -31,7 +31,7 @@
     }
 
     &.map-sepia .leaflet-tile-pane {
-        filter: sepia(.5) saturate(.35) contrast(1);
+        filter: sepia(.5) saturate(.24) contrast(1);
         transition: filter .1s;
     }
 
@@ -40,11 +40,15 @@
         transition: filter .1s;
     }
 
+    &.map-transparent {
+        --pm-map-background: transparent;
+    }
     &.map-transparent .leaflet-tile-pane {
         opacity: 0 !important;
     }
 
     /* UI THEMES */
+    
     &.ui-dark,
     &.ui-blue {
         --pm-color-primary: var(--celeste-argentina, skyblue);
