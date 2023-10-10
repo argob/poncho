@@ -378,17 +378,19 @@ const ponchoColorByHex = value => ponchoColorDefinitionsList.find(f => {
  * });
  * ```
  */
-async function fetch_json(url, method="GET"){
-    const response = await fetch(
-        url,
-        {
-            method: method, 
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json"
-            }
-        }
-    );
+async function fetch_json(uri, options={}) {
+
+    let defaultOptions = {
+        method: "GET",
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        },
+        redirect: "follow"
+    };
+    let opts = Object.assign({}, defaultOptions, options);
+    const response = await fetch(uri, opts);
+
     if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -3079,6 +3081,7 @@ class PonchoMap {
             no_info: false,
             title: false,
             id: "id",
+            id_mixing: [],
             template: false,
             template_structure: {
                 // lead: [],
@@ -3096,6 +3099,7 @@ class PonchoMap {
                 term_tag: "dt",
                 title_classlist: ["h4","pm-color-primary","m-t-0"]
             },
+            fit_bounds_onevent: true,
             allowed_tags: [],
             template_innerhtml: false,
             template_markdown: false,
@@ -3144,8 +3148,14 @@ class PonchoMap {
             map_zoom: 4,
             min_zoom: 2,
             map_init_options: {
-                // zoomDelta: 1,
-                // zoomSnap: .5
+                // zoomSnap: .2,
+                // zoomControl: false,
+                // scrollWheelZoom: false,
+                // touchZoom: false,
+                // doubleClickZoom: false,
+                // scrollWheelZoom: false,
+                // boxZoom: false,
+                // dragging:false
             },
             reset_zoom: true,
             latitud: "latitud",
@@ -3198,6 +3208,7 @@ class PonchoMap {
         this.header_icons = opts.header_icons;
         this.hash = opts.hash;
         this.scroll = opts.scroll;
+        this.fit_bounds_onevent = opts.fit_bounds_onevent;
         this.map_view = opts.map_view;
         this.map_init_options = opts.map_init_options;
         this.anchor_delay = opts.anchor_delay;
@@ -3209,6 +3220,7 @@ class PonchoMap {
         this.marker_cluster_options = opts.marker_cluster_options;
         this.marker_color = opts.marker;
         this.id = opts.id;
+        this.id_mixing = opts.id_mixing;
         this.title = opts.title;
         this.theme = opts.theme;
         this.theme_tool = opts.theme_tool;
@@ -3307,7 +3319,16 @@ class PonchoMap {
             "pm-container", "pm-list-unstyled", 
             "pm-p-1", "pm-caret", "pm-caret-b", "pm-toggle");
 
-        this.default_themes.map(m => m[0]).map((value, key)  => {
+        // Botón para restablecer el mapa
+        const restart = document.createElement("button");
+        restart.textContent = "Restablecer";
+        restart.classList.add("pm-item-link", "js-reset-theme");
+        const li = document.createElement("li");
+        li.classList.add("pm-item-separator");
+        li.appendChild(restart);
+        list.appendChild(li);
+
+        this.default_themes.map(m => m[0]).forEach((value, key)  => {
             const buttonTheme = document.createElement("button");
             buttonTheme.dataset.theme = value;
             buttonTheme.textContent = this.default_themes[key][1];
@@ -3327,6 +3348,15 @@ class PonchoMap {
         element.forEach(e => e.appendChild(navContainer));
 
         document
+            .querySelectorAll(".js-reset-theme")
+            .forEach(ele => ele.addEventListener(
+                "click", () => {
+                    this._removeThemes();
+                    this._setThemes();
+                })
+            );
+
+        document
             .querySelectorAll(".js-set-theme")
             .forEach(ele => ele.addEventListener(
                 "click", () => {
@@ -3337,36 +3367,85 @@ class PonchoMap {
     };
 
 
-    _setTheme = (theme=false, prefix=[])  => {
-        const styles = useTheme => prefix.map(m => {
+    /**
+     * Compone los estilos según la elección del usuario.
+     * @param {string} theme Nombre del tema 
+     * @param {object} prefix Lista de prefijos. ui o map 
+     * @returns {object} Array con los estilos definidos.
+     */
+    _setThemeStyles = (theme=false, prefix=["ui", "map"])  => {
+        const styles = prefix.map(m => {
             if(["ui", "map"].includes(m)){
-                return `${m}-${useTheme}`;
+                return `${m}-${theme}`;
             }
             return false;
         });
+        return styles;
+    }
 
+
+    /**
+     * Remueve los estilos de tema
+     * @param {object} prefix Lista de prefijos. ui o map 
+     * @returns {undefined}
+     */
+    _removeThemes = (prefix) => {
         const element = document.querySelectorAll(this.scope_selector);
         element.forEach(ele => {
             [...this.default_themes, ...this.temes_not_visibles]
                 .map(m => m[0]).forEach(th => {
-                    ele.classList.remove(...styles(th))
+                    ele.classList.remove(...this._setThemeStyles(th, prefix))
             });
-            ele.classList.add( ...styles(theme) ); 
+        });
+    };
+
+
+    /**
+     * Agrega un tema en el mapa e interfase.
+     * @param {string} theme Nombre del tema
+     * @param {object} prefix Lista de prefijos. ui o map 
+     * @returns {undefined}
+     */
+    _setTheme = (theme=false, prefix=[])  => {
+        const element = document.querySelectorAll(this.scope_selector);
+        element.forEach(ele => {
+            this._removeThemes(prefix);
+            ele.classList.add( ...this._setThemeStyles(theme, prefix) ); 
         });
     }
 
+
+    /**
+     * Permite setear un tema completo
+     * @param {string} theme Nombre del tema
+     * @returns {undefined}
+     */
     useTheme = (theme = false) => {
         const useTheme = (theme ? theme : this.theme);
         this._setTheme(useTheme, ["ui", "map"]);
     }
 
 
+    /**
+     * Setea un tema para el mapa
+     * @param {string} theme Nombre del tema
+     * @returns {undefined}
+     */
     useMapTheme = theme => this._setTheme(theme, ["map"]);
 
 
+    /**
+     * Setea un tema para el mapa
+     * @param {string} theme Nombre del tema
+     * @returns {undefined}
+     */
     useUiTheme = theme => this._setTheme(theme, ["ui"]);
 
 
+    /**
+     * Setea el tema elegido por el usuario o el que lleva por defecto.
+     * @returns {undefined}
+     */
     _setThemes = () => {
         if(!this.theme_ui && !this.theme_map){
             this.useTheme();
@@ -3573,21 +3652,35 @@ class PonchoMap {
      * @return {object}
      */
     _setIdIfNotExists = (entries) => {
-        const has_id = entries.features
+        console.log(this.id)
+        const hasId = entries.features
                 .filter((_,k) => k===0)
                 .every(e => e.properties.hasOwnProperty("id"));
 
-        if(!has_id){
-            const new_entries = entries.features.map(
+        if(!hasId){
+            const newEntries = entries.features.map(
                 (v,k) => {
-                    const auto_id = k + 1;
-                    const use_title = (this.title && v.properties[this.title] ? 
-                            `-${slugify(v.properties[this.title])}` : "");
-                    v.properties.id = auto_id + use_title;
+
+                    if(this.id_mixing.length > 0){
+                        const values = this.id_mixing.map(val => {
+                            if(v.properties[val]){
+                                return slugify(v.properties[val]);
+                            } 
+                            return slugify(val);
+                        });
+                        v.properties.id = values.join("-");
+                    } else {
+                        const autoId = k + 1;
+                        const useTitle = (this.title && v.properties[this.title] ? 
+                                slugify(v.properties[this.title]) : "");
+                        v.properties.id = `${autoId}-${useTitle}`;
+                    }
+                    
                     return v;
-                });
-            entries.features = new_entries;
+                }); 
+            entries.features = newEntries;
         }
+
         return entries;
     };
 
@@ -3616,6 +3709,7 @@ class PonchoMap {
         return this.entries.find(e => e.properties[this.id] == id);
     }
 
+
     /**
      * Busca un término en un listado de entradas.
      * 
@@ -3635,6 +3729,7 @@ class PonchoMap {
         return entries;
     };
 
+    
     /**
      * Busca un término en cada uno de los indices de una entrada.
      */
@@ -3877,7 +3972,9 @@ class PonchoMap {
      * Crea el bloque html para el slider.
      */
     _renderSlider = () => {
-        if(!this.render_slider){
+        if(!this.render_slider || 
+            this.content_selector !== `.js-content${this.scope_sufix}`)
+        {
             return;
         } else if(this.no_info){
             return;
@@ -3923,13 +4020,24 @@ class PonchoMap {
     };
 
 
+    _removeTooltips = () => {
+        let _this = this;
+        this.map.eachLayer(function(layer) {
+            if(layer.options.pane === "tooltipPane") {
+                layer.removeFrom(_this.map);
+            }
+        });
+    }
+
+
     /**
      * Proyecta el slider y hace zoom en el marker.
      */
-    _showSlider = (layer, feature) => {
+    _showSlider = layer => {
+        this._removeTooltips();
         if(layer.hasOwnProperty("_latlng")){
             this.map.setView(layer._latlng, this.map_anchor_zoom);
-        } else {
+        } else if(this.fit_bounds_onevent) {
             this.map.fitBounds(layer.getBounds());
         }
         layer.fireEvent("click");
@@ -3985,18 +4093,22 @@ class PonchoMap {
      * Muestra un marker
      * @param {string|integer} id Valor identificador del marker. 
      */
-    gotoEntry = (id) => {
+    gotoEntry = id => {
         const entry = this.entry(id);
         const setAction = (layer, id, entry) => {
             if(!layer.options.hasOwnProperty("id")){
                 return;
             }
+            
             if(layer.options.id == id){
                 this._setSelectedMarker(id, layer);
+                
                 if(this.hash){
                     this.addHash(id);
                 }
-                if(this.slider && this.hash){
+                // if(this.slider && this.hash){
+
+                if(this.slider){
                     this._showSlider(layer, entry);
                 } else {
                     this._showPopup(layer);
@@ -4019,7 +4131,7 @@ class PonchoMap {
      * que evaluar el tipo de objeto geoJSON.
      * @param {object} layer 
      */
-    _setClickeable = (layer) => {
+    _setClickeable = layer => {
         layer.on("keypress click", (e) => {
             document
                 .querySelectorAll(".marker--active")
@@ -4044,7 +4156,7 @@ class PonchoMap {
      * @param {object} layer Objeto Feature GeoJSON. 
      * @returns {boolean}
      */
-    isFeature = (layer) => {
+    isFeature = layer => {
         if(!layer.hasOwnProperty("feature")){
             return false;
         }
@@ -4478,6 +4590,9 @@ class PonchoMap {
             return;
         }
         // función a evaluar. Busca y remueve un botón de reset si existiera.
+        // if( document.querySelector(`.leaflet-control-zoom-reset`) ){
+        //     return;
+        // }
         document.querySelectorAll(
             `.js-reset-view${this.scope_sufix}`).forEach(e => e.remove());
         
@@ -4792,7 +4907,7 @@ class PonchoMap {
             {
                 text: "Cambiar de tema",
                 anchor: `#${anchors[2][1]}` 
-            }
+            },
         ]
         values = [
             ...values,
@@ -4836,6 +4951,7 @@ class PonchoMap {
         
         nav.appendChild(icon);
         nav.appendChild(ul);
+
 
         // enlace de retorno
         const back_to_nav = document.createElement("a");
@@ -5225,11 +5341,12 @@ class PonchoMapFilter extends PonchoMap {
 
         const poncho_map_height = filter_container.offsetParent.offsetHeight;
         // Valor tomado de la hoja de estilos
-        const container_position_distance = this._cssVarComputedDistance() * 2;
+        const container_position_distance = this._cssVarComputedDistance() * 3;
         const filters_height = poncho_map_height
             - filter_container.offsetTop
             - filter_button.offsetHeight
             - container_position_distance;
+
 
         const pos = document
             .querySelector(`.js-poncho-map-filters${this.scope_sufix}`);
@@ -5435,7 +5552,7 @@ class PonchoMapFilter extends PonchoMap {
 
 
     /**
-     * Medida definida en la variable CSS --slider-distance
+     * Medida definida en la variable CSS --pm-slider-distance
      * 
      * @summary Esta medida puede ser variable según el estilo que se
      * quiera dar al mapa el diseñador. 
@@ -5444,9 +5561,10 @@ class PonchoMapFilter extends PonchoMap {
     _cssVarComputedDistance = () => {
         const container = document.querySelector(".poncho-map");
         const computedDistance = getComputedStyle(container)
-                .getPropertyValue('--slider-distance');
+                .getPropertyValue('--pm-slider-distance');
         const distance = parseInt(
             computedDistance.toString().replace(/[^0-9]*/gm, ""));
+            console.log(distance)
         return distance || 0;
     };
 
@@ -5510,7 +5628,6 @@ class PonchoMapFilter extends PonchoMap {
         const controlZoomSize = this._controlZoomSize();
         const styleTop = controlZoomSize.controlHeight 
                 + controlZoomSize.controlTop 
-                + cssVarComputedDistance 
                 + "px";
 
         container.appendChild(form); 
@@ -5822,6 +5939,7 @@ class PonchoMapFilter extends PonchoMap {
         if(this.hash){
             this._urlHash();
         }
+        
         this._setFetureAttributes();
         this._accesibleMenu();
     };
