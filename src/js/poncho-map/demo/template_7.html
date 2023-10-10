@@ -33,17 +33,15 @@
 
 
   <style>
-    html, body { height: 100%;}
-
-    /* .poncho-map {
-        --pm-map-background: #eee;
-    } */
+    html, body { height: 100%; background: #eee;}
   </style>
 </head>
 <body class="p-t-3">
   <h1>Template 7</h1>
+  <a href="#" class="js-reset-view--poncho-map">ejecutar</a>
 <div class="container-fluid">
 <div class="row">
+
 <!-- 
 MAPA CON BUSCADOR FILTRO  
 
@@ -76,7 +74,7 @@ COPIAR DESDE ACÁ…
 </div>
 <div class="col-md-6">
 <!-- PONCHO MAP -->
-<div class="poncho-map" data-scope="poncho-map" style="border:1px solid #eee">
+<div class="poncho-map hide-attribution" data-scope="poncho-map" style="border:1px solid #eee">
     <div
         class="leaflet-container leaflet-touch leaflet-fade-anim 
               leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
@@ -100,11 +98,13 @@ COPIAR DESDE ACÁ…
 <!-- INCLUDE SCRIPTS -->
 <script src="https://www.argentina.gob.ar/sites/default/files/ponchotable/showdown.js"></script>
 <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/extensiones/showdown-extensions.js"></script>
+
 <script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.js"></script>
 <script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script>
 <link href="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.css" rel="stylesheet"/> 
 <link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.css" rel="stylesheet"/> 
 <link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.Default.css" rel="stylesheet"/> 
+
 <script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
 <!-- / INCLUDE SCRIPTS -->
 
@@ -148,11 +148,19 @@ var search;
 
     // map options
     const options = {
-        theme_tool: false,
+        theme_tool: true,
         "map_init_options": {
-                zoomDelta: 1,
-                zoomSnap: .2
-            },
+                // zoomDelta: 0,
+                zoomSnap: .2,
+                zoomControl: true,
+                scrollWheelZoom: false,
+                touchZoom: false,
+                doubleClickZoom: false,
+                scrollWheelZoom: false,
+                boxZoom: false,
+                dragging:false
+                // keyboard: false,
+        },
         "render_slider": false,
         "map_zoom": 4.4,
         "content_selector": ".js-foo",
@@ -181,7 +189,7 @@ var search;
         "theme_map": "transparent",
         "scroll": false,
         "filters_info": false,
-        "_filters": [
+        "filters": [
             {
                 "legend":"Región",
                 "field": ["region"],
@@ -200,10 +208,10 @@ var search;
         entries.features[k].properties.provincia = _extras[3];
         entries.features[k].properties.region = _extras[1];
 
-        entries.features[k].properties["stroke-opacity"] = .8;
-        entries.features[k].properties["fill-opacity"] = .9;
-        entries.features[k].properties["stroke-width"] = 2;
-        entries.features[k].properties["stroke-color"] = "#eaeaea";
+        entries.features[k].properties["stroke-opacity"] = 1;
+        entries.features[k].properties["fill-opacity"] = 1;
+        entries.features[k].properties["stroke-width"] = 1.5;
+        entries.features[k].properties["stroke-color"] = "#ccc";
         entries.features[k].properties["stroke"] = ponchoColor("cielo");
         entries.features[k].properties.stroke =  _extras[2] ?? "dodgerblue";
         entries.features[k].properties.stroke =  ponchoColor("azul") ?? "dodgerblue";

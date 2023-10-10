@@ -8,17 +8,19 @@
  * });
  * ```
  */
-async function fetch_json(url, method="GET"){
-    const response = await fetch(
-        url,
-        {
-            method: method, 
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json"
-            }
-        }
-    );
+async function fetch_json(uri, options={}) {
+
+    let defaultOptions = {
+        method: "GET",
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        },
+        redirect: "follow"
+    };
+    let opts = Object.assign({}, defaultOptions, options);
+    const response = await fetch(uri, opts);
+
     if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
     }
