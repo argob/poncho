@@ -226,11 +226,12 @@ class PonchoMapFilter extends PonchoMap {
 
         const poncho_map_height = filter_container.offsetParent.offsetHeight;
         // Valor tomado de la hoja de estilos
-        const container_position_distance = this._cssVarComputedDistance() * 2;
+        const container_position_distance = this._cssVarComputedDistance() * 3;
         const filters_height = poncho_map_height
             - filter_container.offsetTop
             - filter_button.offsetHeight
             - container_position_distance;
+
 
         const pos = document
             .querySelector(`.js-poncho-map-filters${this.scope_sufix}`);
@@ -436,7 +437,7 @@ class PonchoMapFilter extends PonchoMap {
 
 
     /**
-     * Medida definida en la variable CSS --slider-distance
+     * Medida definida en la variable CSS --pm-slider-distance
      * 
      * @summary Esta medida puede ser variable según el estilo que se
      * quiera dar al mapa el diseñador. 
@@ -445,9 +446,10 @@ class PonchoMapFilter extends PonchoMap {
     _cssVarComputedDistance = () => {
         const container = document.querySelector(".poncho-map");
         const computedDistance = getComputedStyle(container)
-                .getPropertyValue('--slider-distance');
+                .getPropertyValue('--pm-slider-distance');
         const distance = parseInt(
             computedDistance.toString().replace(/[^0-9]*/gm, ""));
+            console.log(distance)
         return distance || 0;
     };
 
@@ -511,7 +513,6 @@ class PonchoMapFilter extends PonchoMap {
         const controlZoomSize = this._controlZoomSize();
         const styleTop = controlZoomSize.controlHeight 
                 + controlZoomSize.controlTop 
-                + cssVarComputedDistance 
                 + "px";
 
         container.appendChild(form); 
@@ -823,6 +824,7 @@ class PonchoMapFilter extends PonchoMap {
         if(this.hash){
             this._urlHash();
         }
+        
         this._setFetureAttributes();
         this._accesibleMenu();
     };
