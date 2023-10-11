@@ -49,6 +49,17 @@ html, body { height: 100%; background: #fff;}
 <!-- 
 COPIAR DESDE ACÁ…
 -->
+    <div class="col-md-12">
+        <!-- SELECT PROVINCIAS -->
+        <div class="form-group mapa-provincias">
+            <label for="id_provincia">Provincias</label>
+            <div>
+                <select class="form-control" name="provincia" id="id_provincia"></select>
+            </div>
+        </div>
+        <!-- / SELECT PROVINCIAS -->
+    </div>
+
     <div class="col-md-6">
         <!-- PONCHO MAP -->
         <div class="poncho-map hide-attribution mapa-svg" data-scope="poncho-map">
@@ -64,14 +75,6 @@ COPIAR DESDE ACÁ…
     </div>
 
     <div class="col-md-6">
-        <!-- SELECT PROVINCIAS -->
-        <div class="form-group mapa-provincias">
-            <label for="id_provincia">Provincias</label>
-            <div>
-                <select class="form-control" name="provincia" id="id_provincia"></select>
-            </div>
-        </div>
-        <!-- / SELECT PROVINCIAS -->
         <div>
             <p>Acá puede ir cualquier dato que deba estar siempre presente</p>
         </div>
@@ -95,87 +98,28 @@ COPIAR DESDE ACÁ…
 <link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.Default.css" rel="stylesheet"/> 
 
 <script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
+<script src="./js/template-7.js"></script>
 <!-- / INCLUDE SCRIPTS -->
 
 
 <!-- SCRIPTS -->
 <script>
-const styles = `.mapa-provincias{display:none}`
-    + `@media screen and (max-width:992px){`
-    + `.mapa-svg{display:none}.mapa-provincias{`
-    + `display:inherit}}`;
-const styleSheet = document.createElement("style");
-styleSheet.textContent = styles;
-const head = document.querySelector("head");
-// head.appendChild(styleSheet)
-
-
-sortObject = (obj, key) => obj.sort((a, b) => {
-    const valA = a[key].toUpperCase();
-    const valB = b[key].toUpperCase();
-    if (valA > valB) {
-        return 1;
-    }
-    if (valA < valB) {
-        return -1;
-    }
-    return 0;
-});
-
-
-const setSelectProvinces = (map, selector="id_provincia") => {
-    let hash = window.location.hash.replace("#", "");
-    let selected = hash ?? "";
-    // Combo provincias
-    const provinces = map.geoJSON.features.map(p => {
-        const {id=false, name=false} = p.properties;
-        return name ? [p.properties[map.id], name] : false;
-    }).filter(f=>f);
-    // Creo los options
-    const selectProvinces = document.getElementById(selector);
-    sortObject(provinces, 1).forEach(province => {
-
-        const option = document.createElement("option");
-        if(province[0] === selected){
-            option.setAttribute("selected", "selected");
-        }
-        option.value = province[0];
-        option.textContent = province[1];
-        selectProvinces.appendChild(option);
-    });
-    return selectProvinces;         
-};
-
-
+// Loading
 const loader = new PonchoMapLoader({scope: "poncho-map"});
 loader.load();
+// Inicio del mapa
 var map;
-fetch_json(
-    "https://gist.githack.com/"
-    + "agustinbouillet/a5cdf04c6b19ed248aa85b27deaee6a2/raw/"
-    + "8fc252113f420fa7a3700c9495a0d3be7d1ebe88/provincias-argentinas.json",
-    {headers:{}}).then(geoProvinces => {
+fetch_json(GEOJSON_URI, { headers: {} }).then(geoProvinces => {
     const gapi = new GapiSheetData();
 
     fetch_json(
         gapi.url(
-            "Mapa%20Fondo%20de%20Integraci%C3%B3n%20Socio%20Urbana", 
-            "1h-CeGspre3BGRIn8i1h5-YwP4Z9gAufmSuB7D9ThLS4"
+            "Mapa%20Fondo%20de%20Integraci%C3%B3n%20Socio%20Urbana", // Nombre de la solapa en Google Sheets
+            "1h-CeGspre3BGRIn8i1h5-YwP4Z9gAufmSuB7D9ThLS4" // ID del documento Google Sheets
         )        
     ).then(googlesheet_data => {
         const gapi_data = gapi.json_data(googlesheet_data);
         const {entries} = gapi_data;
-
-        // Agrego los datos del json en el geoJSON
-        geoProvinces.features.forEach((feature, key) => {
-            const googleSheetEntry = entries.find(entry => 
-                (entry["filttro-provincia"] == feature.properties.fna ||
-                entry["filttro-provincia"] == feature.properties.nam)
-            );
-            Object.assign(
-                geoProvinces.features[key].properties, googleSheetEntry);
-        });
-
         // map options
         const options = {
             id_mixing: ["in1", "nam"],
@@ -221,7 +165,7 @@ fetch_json(
             theme_map: "transparent"
         };
 
-        map = new PonchoMapFilter(geoProvinces, options);
+        map = new PonchoMapFilter( merge(geoProvinces, entries) , options);
         map.render();
         //
         const selectProvinces = setSelectProvinces(map);
@@ -231,7 +175,6 @@ fetch_json(
         loader.close();
     });
 });
-
 </script>
 <!-- / SCRIPTS -->
 </body>

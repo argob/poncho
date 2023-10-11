@@ -313,6 +313,7 @@ class PonchoMap {
             .querySelectorAll(".js-reset-theme")
             .forEach(ele => ele.addEventListener(
                 "click", () => {
+                    localStorage.removeItem("mapTheme");
                     this._removeThemes();
                     this._setThemes();
                 })
@@ -324,6 +325,7 @@ class PonchoMap {
                 "click", () => {
                     const th = ele.dataset.theme;
                     this.useTheme(th);
+                    localStorage.setItem("mapTheme", th);
                 })
             );
     };
@@ -351,12 +353,14 @@ class PonchoMap {
      * @param {object} prefix Lista de prefijos. ui o map 
      * @returns {undefined}
      */
-    _removeThemes = (prefix) => {
+    _removeThemes = (prefix=["ui", "map"]) => {
         const element = document.querySelectorAll(this.scope_selector);
         element.forEach(ele => {
-            [...this.default_themes, ...this.temes_not_visibles]
-                .map(m => m[0]).forEach(th => {
-                    ele.classList.remove(...this._setThemeStyles(th, prefix))
+            [
+                ...this.default_themes,
+                ...this.temes_not_visibles
+            ].map(m => m[0]).forEach(th => {
+                ele.classList.remove(...this._setThemeStyles(th, prefix));
             });
         });
     };
@@ -368,10 +372,10 @@ class PonchoMap {
      * @param {object} prefix Lista de prefijos. ui o map 
      * @returns {undefined}
      */
-    _setTheme = (theme=false, prefix=[])  => {
+    _setTheme = (theme, prefix)  => {
         const element = document.querySelectorAll(this.scope_selector);
+        this._removeThemes(prefix);
         element.forEach(ele => {
-            this._removeThemes(prefix);
             ele.classList.add( ...this._setThemeStyles(theme, prefix) ); 
         });
     }
@@ -409,6 +413,11 @@ class PonchoMap {
      * @returns {undefined}
      */
     _setThemes = () => {
+        if(localStorage.hasOwnProperty("mapTheme")){
+            this._setTheme(localStorage.getItem("mapTheme"), ["ui", "map"]);
+            return;
+        }
+
         if(!this.theme_ui && !this.theme_map){
             this.useTheme();
             return;
@@ -417,6 +426,7 @@ class PonchoMap {
         if(this.theme_ui){
             this._setTheme(this.theme_ui, ["ui"]);
         }
+
         if(this.theme_map){
             this._setTheme(this.theme_map, ["map"]);
         }
