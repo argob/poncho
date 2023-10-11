@@ -278,7 +278,7 @@ class PonchoMap {
 
         const list = document.createElement("ul");
         list.classList.add(
-            "pm-container", "pm-list-unstyled", 
+            "pm-container", "pm-list", "pm-list-unstyled", 
             "pm-p-1", "pm-caret", "pm-caret-b", "pm-toggle");
 
         // Botón para restablecer el mapa
