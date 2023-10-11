@@ -1888,7 +1888,7 @@ class PonchoMap {
         icon.setAttribute("aria-hidden", "true");
 
         const nav = document.createElement("div");
-        nav.classList.add("pm-accesible-nav", "top");
+        nav.classList.add("pm-accesible-nav", "top", "pm-list");
         nav.id = `pm-accesible-nav${this.scope_sufix}`;
         nav.setAttribute("aria-label", "Menú para el mapa");
         nav.setAttribute("role", "navigation");
