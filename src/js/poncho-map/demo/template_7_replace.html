@@ -38,7 +38,6 @@ html, body { height: 100%; background: #fff;}
 </head>
 <body class="p-t-3">
     
-    
 <div class="container-fluid">
 <div class="row">
     <div class="col-md-12">
@@ -54,7 +53,8 @@ COPIAR DESDE ACÁ…
         <div class="form-group mapa-provincias">
             <label for="id_provincia">Provincias</label>
             <div>
-                <select class="form-control" name="provincia" id="id_provincia"></select>
+                <select class="form-control" name="provincia" id="id_provincia">
+                </select>
             </div>
         </div>
         <!-- / SELECT PROVINCIAS -->
@@ -76,14 +76,13 @@ COPIAR DESDE ACÁ…
 
     <div class="col-md-6">
         <div>
-            <p>Acá puede ir cualquier dato que deba estar siempre presente</p>
+            <!-- Contenido -->
         </div>
         <div class="js-pm-text-content">
             <div class="alert alert-info">Seleccione una provincia</div>
         </div>
         <!-- / -->
     </div>
-
 </div>
 </div>
 
@@ -94,8 +93,6 @@ COPIAR DESDE ACÁ…
 <script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.js"></script>
 <script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script>
 <link href="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.css" rel="stylesheet"/> 
-<link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.css" rel="stylesheet"/> 
-<link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.Default.css" rel="stylesheet"/> 
 
 <script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
 <script src="./js/template-7.js"></script>
@@ -104,23 +101,22 @@ COPIAR DESDE ACÁ…
 
 <!-- SCRIPTS -->
 <script>
+// Imprime los estilos para ocultar o mostrar el select.
+provincesCssStyles();
 // Loading
 const loader = new PonchoMapLoader({scope: "poncho-map"});
 loader.load();
 // Inicio del mapa
-var map;
 fetch_json(GEOJSON_URI, { headers: {} }).then(geoProvinces => {
     const gapi = new GapiSheetData();
-
     fetch_json(
         gapi.url(
-            "Mapa%20Fondo%20de%20Integraci%C3%B3n%20Socio%20Urbana", // Nombre de la solapa en Google Sheets
-            "1h-CeGspre3BGRIn8i1h5-YwP4Z9gAufmSuB7D9ThLS4" // ID del documento Google Sheets
+            "dataset", //<<< Nombre de la solapa en Google Sheets; preferentemente, sin espacios).
+            "1qEJoLbtJwq_6i3e8R_Q85xK_ZZ5-Iu5Tu8BAnp2V1N4" //<<< ID del documento en Google Sheets
         )        
     ).then(googlesheet_data => {
         const gapi_data = gapi.json_data(googlesheet_data);
-        const {entries} = gapi_data;
-        // map options
+        const {entries, headers} = gapi_data;
         const options = {
             id_mixing: ["in1", "nam"],
             template_markdown: true,
@@ -128,25 +124,29 @@ fetch_json(GEOJSON_URI, { headers: {} }).then(geoProvinces => {
             map_init_options: {
                     zoomSnap: .2,
                     zoomControl: true,
-                    scrollWheelZoom: false,
-                    touchZoom: false,
                     doubleClickZoom: false,
                     scrollWheelZoom: false,
-                    boxZoom: false,
-                    dragging: true
+                    boxZoom: false
             },
             map_zoom: 4.4,
             content_selector: ".js-pm-text-content",
             scope: "poncho-map",
             title: "nam",
             headers:{
-                "subtitulos--ignore": ""
+                ...headers, 
+                ...{"subtitulos--ignore": "", "content": "", "region": "Región"}
+            },
+            template:(self, entry) => {
+                entry["content"] = `<hr><div class="row">${entry["subtitulos--ignore"]}</div>`;
+                return self.defaultTemplate(self, entry); 
             },
             template_structure: {
-                values: ["subtitulos--ignore"],
-                title_classlist: ["h2","text-black","m-0"],
-                definition_tag: "div",
-                definition_classlist: ["row"],
+                values: ["description", "capital", "region", "population", "surface", "web" /* "content" */],
+                title_classlist: ["h2","text-primary","m-0"],
+                term_classlist: ["h5", "text-cielo"],
+                definition_classlist: ["_row"],
+                term_tag: "dt",
+                definition_tag: "dd",
             },
             tooltip_options:{
                 permanent: false,
@@ -162,16 +162,24 @@ fetch_json(GEOJSON_URI, { headers: {} }).then(geoProvinces => {
             scroll: false,
             fit_bounds_onevent: false,
             theme_tool: true,
-            theme_map: "transparent"
+            theme_ui: "default",
+            theme_map: "transparent",
+            map_opacity: 1,
+            map_background:"white",
+            default_themes: [
+                ["default", "Original"], 
+                ["contrast", "Alto contraste"],
+                ["dark", "Oscuro"],
+                ["relax", "Relax"]
+            ]
         };
 
-        map = new PonchoMapFilter( merge(geoProvinces, entries) , options);
+        const map = new PonchoMapFilter( merge(geoProvinces, entries) , options);
         map.render();
-        //
-        const selectProvinces = setSelectProvinces(map);
-        selectProvinces
-            .addEventListener("change", e => map.gotoEntry(e.target.value));
-        //
+        map.fitBounds(); // Ajusta el mapa a sus border. *Opcional.
+        // Interacción select / mapa
+        selectProvinces(map);
+        // Cierra el loader cuando el mapa está cargado
         loader.close();
     });
 });
