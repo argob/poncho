@@ -8,8 +8,19 @@
         "stroke-width": 2,
         "stroke-opacity": 0.8,
         "fill-opacity": 0.8,
-        "code": "line-2",
-        "stroke-color": "#ccc"
+        "pm-interactive": "n",
+        "pm-type": "graphics",
+        "stroke-color": "#BBB",
+        "gid": 1,
+        "fna": "Ciudad Autónoma de Buenos Aires",
+        "gna": "Ciudad Autónoma",
+        "nam": "Ciudad Autónoma de Buenos Aires",
+        "in1": "02",
+        "fdc": "Geografía",
+        "sag": "IGN",
+        "region": "Centro y Buenos Aires",
+        "name": "Ciudad Autónoma de Buenos Aires",
+        "region_id": 7
       },
       "geometry": {
         "coordinates": [
@@ -282,13 +293,23 @@
     {
       "type": "Feature",
       "properties": {
-        "code": "line-2",
+        "pm-interactive": "n",
+        "pm-type": "graphics",
         "title": "line-2",
         "stroke": "white",
         "stroke-width": 2,
         "stroke-opacity": 0.8,
         "fill-opacity": 0.8,
-        "stroke-color": "#ccc"
+        "stroke-color": "#BBB",
+        "gid": 23,
+        "region": "Patagónica",
+        "region_id": 5,
+        "fna": "Provincia de Tierra del Fuego, Antártida e Islas del Atlántico Sur",
+        "gna": "Provincia",
+        "nam": "Tierra del Fuego, Antártida e Islas del Atlántico Sur",
+        "in1": "94",
+        "fdc": "Geografía",
+        "sag": "IGN"
       },
       "geometry": {
         "coordinates": [
@@ -333,7 +354,7 @@
         "stroke-opacity": 1,
         "fill-opacity": 1,
         "stroke-width": 1.5,
-        "stroke-color": "#ccc",
+        "stroke-color": "#ddd",
         "stroke": "#0072BB"
       },
       "geometry": {
@@ -1179,7 +1200,7 @@
         "stroke-opacity": 1,
         "fill-opacity": 1,
         "stroke-width": 1.5,
-        "stroke-color": "#ccc",
+        "stroke-color": "#ddd",
         "stroke": "#0072BB",
         "name": "Chubut"
       },
@@ -1942,7 +1963,7 @@
         "stroke-opacity": 1,
         "fill-opacity": 1,
         "stroke-width": 1.5,
-        "stroke-color": "#ccc",
+        "stroke-color": "#ddd",
         "stroke": "#0072BB",
         "name": "Buenos Aires"
       },
@@ -2763,13 +2784,13 @@
         "fdc": "Geografía",
         "sag": "IGN",
         "region": "Centro y Buenos Aires",
+        "name": "Ciudad Autónoma de Buenos Aires",
         "region_id": 7,
         "stroke-opacity": 1,
         "fill-opacity": 1,
         "stroke-width": 1.5,
-        "stroke-color": "#ccc",
-        "stroke": "#0072BB",
-        "name": "Ciudad Autónoma de Buenos Aires"
+        "stroke-color": "#ddd",
+        "stroke": "#0072BB"
       },
       "geometry": {
         "coordinates": [
@@ -3130,7 +3151,7 @@
         "stroke-opacity": 1,
         "fill-opacity": 1,
         "stroke-width": 1.5,
-        "stroke-color": "#ccc",
+        "stroke-color": "#ddd",
         "stroke": "#0072BB",
         "name": "Córdoba"
       },
@@ -3461,7 +3482,7 @@
         "stroke-opacity": 1,
         "fill-opacity": 1,
         "stroke-width": 1.5,
-        "stroke-color": "#ccc",
+        "stroke-color": "#ddd",
         "stroke": "#0072BB",
         "name": "Jujuy"
       },
@@ -3932,7 +3953,7 @@
         "stroke-opacity": 1,
         "fill-opacity": 1,
         "stroke-width": 1.5,
-        "stroke-color": "#ccc",
+        "stroke-color": "#ddd",
         "stroke": "#0072BB",
         "name": "Santiago del Estero"
       },
@@ -4263,7 +4284,7 @@
         "stroke-opacity": 1,
         "fill-opacity": 1,
         "stroke-width": 1.5,
-        "stroke-color": "#ccc",
+        "stroke-color": "#ddd",
         "stroke": "#0072BB",
         "name": "Río Negro"
       },
@@ -4886,7 +4907,7 @@
         "stroke-opacity": 1,
         "fill-opacity": 1,
         "stroke-width": 1.5,
-        "stroke-color": "#ccc",
+        "stroke-color": "#ddd",
         "stroke": "#0072BB",
         "name": "Salta"
       },
@@ -5673,8 +5694,18 @@
         "stroke-width": 1.5,
         "stroke-opacity": 1,
         "fill-opacity": 1,
-        "stroke-color": "#ccc",
-        "code": "line"
+        "stroke-color": "#BBB",
+        "pm-interactive": "n",
+        "pm-type": "graphics",
+        "gid": 23,
+        "region": "Patagónica",
+        "region_id": 5,
+        "fna": "Provincia de Tierra del Fuego, Antártida e Islas del Atlántico Sur",
+        "gna": "Provincia",
+        "nam": "Tierra del Fuego, Antártida e Islas del Atlántico Sur",
+        "in1": "94",
+        "fdc": "Geografía",
+        "sag": "IGN"
       },
       "geometry": {
         "coordinates": [
@@ -6009,7 +6040,7 @@
         "stroke-opacity": 1,
         "fill-opacity": 1,
         "stroke-width": 1.5,
-        "stroke-color": "#ccc",
+        "stroke-color": "#ddd",
         "stroke": "#0072BB",
         "name": "Tierra del Fuego, Antártida e Islas del Atlántico Sur"
       },
@@ -18653,9 +18684,20 @@
         "stroke": "#0072BB",
         "stroke-width": 1.5,
         "stroke-opacity": 1,
-        "code": "line",
+        "pm-interactive": "n",
+        "pm-type": "graphics",
         "fill-opacity": 1,
-        "stroke-color": "#ccc"
+        "stroke-color": "#BBB",
+        "gid": 1,
+        "fna": "Ciudad Autónoma de Buenos Aires",
+        "gna": "Ciudad Autónoma",
+        "nam": "Ciudad Autónoma de Buenos Aires",
+        "in1": "02",
+        "fdc": "Geografía",
+        "sag": "IGN",
+        "region": "Centro y Buenos Aires",
+        "name": "Ciudad Autónoma de Buenos Aires",
+        "region_id": 7
       },
       "geometry": {
         "coordinates": [
@@ -18690,7 +18732,7 @@
         "stroke-opacity": 1,
         "fill-opacity": 1,
         "stroke-width": 1.5,
-        "stroke-color": "#ccc",
+        "stroke-color": "#ddd",
         "stroke": "#0072BB",
         "name": "Chaco"
       },
@@ -19049,7 +19091,7 @@
         "stroke-opacity": 1,
         "fill-opacity": 1,
         "stroke-width": 1.5,
-        "stroke-color": "#ccc",
+        "stroke-color": "#ddd",
         "stroke": "#0072BB",
         "name": "Formosa"
       },
@@ -19664,7 +19706,7 @@
         "stroke-opacity": 1,
         "fill-opacity": 1,
         "stroke-width": 1.5,
-        "stroke-color": "#ccc",
+        "stroke-color": "#ddd",
         "stroke": "#0072BB",
         "name": "Entre Ríos"
       },
@@ -20343,7 +20385,7 @@
         "stroke-opacity": 1,
         "fill-opacity": 1,
         "stroke-width": 1.5,
-        "stroke-color": "#ccc",
+        "stroke-color": "#ddd",
         "stroke": "#0072BB",
         "name": "Neuquén"
       },
@@ -21018,7 +21060,7 @@
         "stroke-opacity": 1,
         "fill-opacity": 1,
         "stroke-width": 1.5,
-        "stroke-color": "#ccc",
+        "stroke-color": "#ddd",
         "stroke": "#0072BB",
         "name": "San Luis"
       },
@@ -21385,7 +21427,7 @@
         "stroke-opacity": 1,
         "fill-opacity": 1,
         "stroke-width": 1.5,
-        "stroke-color": "#ccc",
+        "stroke-color": "#ddd",
         "stroke": "#0072BB",
         "name": "Santa Fe"
       },
@@ -21892,7 +21934,7 @@
         "stroke-opacity": 1,
         "fill-opacity": 1,
         "stroke-width": 1.5,
-        "stroke-color": "#ccc",
+        "stroke-color": "#ddd",
         "stroke": "#0072BB",
         "name": "La Rioja"
       },
@@ -22323,7 +22365,7 @@
         "stroke-opacity": 1,
         "fill-opacity": 1,
         "stroke-width": 1.5,
-        "stroke-color": "#ccc",
+        "stroke-color": "#ddd",
         "stroke": "#0072BB",
         "name": "Catamarca"
       },
@@ -22882,7 +22924,7 @@
         "stroke-opacity": 1,
         "fill-opacity": 1,
         "stroke-width": 1.5,
-        "stroke-color": "#ccc",
+        "stroke-color": "#ddd",
         "stroke": "#0072BB",
         "name": "Tucumán"
       },
@@ -23169,7 +23211,7 @@
         "stroke-opacity": 1,
         "fill-opacity": 1,
         "stroke-width": 1.5,
-        "stroke-color": "#ccc",
+        "stroke-color": "#ddd",
         "stroke": "#0072BB",
         "name": "Mendoza"
       },
@@ -23848,7 +23890,7 @@
         "stroke-opacity": 1,
         "fill-opacity": 1,
         "stroke-width": 1.5,
-        "stroke-color": "#ccc",
+        "stroke-color": "#ddd",
         "stroke": "#0072BB",
         "name": "San Juan"
       },
@@ -24483,7 +24525,7 @@
         "stroke-opacity": 1,
         "fill-opacity": 1,
         "stroke-width": 1.5,
-        "stroke-color": "#ccc",
+        "stroke-color": "#ddd",
         "stroke": "#0072BB",
         "name": "Corrientes"
       },
@@ -25148,7 +25190,7 @@
         "stroke-opacity": 1,
         "fill-opacity": 1,
         "stroke-width": 1.5,
-        "stroke-color": "#ccc",
+        "stroke-color": "#ddd",
         "stroke": "#0072BB",
         "name": "Misiones"
       },
@@ -25615,7 +25657,7 @@
         "stroke-opacity": 1,
         "fill-opacity": 1,
         "stroke-width": 1.5,
-        "stroke-color": "#ccc",
+        "stroke-color": "#ddd",
         "stroke": "#0072BB",
         "name": "La Pampa"
       },
@@ -25910,12 +25952,22 @@
     {
       "type": "Feature",
       "properties": {
-        "code": "line",
+        "pm-interactive": "n",
+        "pm-type": "graphics",
         "stroke": "#0072BB",
         "stroke-width": 1.5,
         "stroke-opacity": 1,
         "fill-opacity": 1,
-        "stroke-color": "#ccc"
+        "stroke-color": "#BBB",
+        "gid": 23,
+        "region": "Patagónica",
+        "region_id": 5,
+        "fna": "Provincia de Tierra del Fuego, Antártida e Islas del Atlántico Sur",
+        "gna": "Provincia",
+        "nam": "Tierra del Fuego, Antártida e Islas del Atlántico Sur",
+        "in1": "94",
+        "fdc": "Geografía",
+        "sag": "IGN"
       },
       "geometry": {
         "coordinates": [

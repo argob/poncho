@@ -11,16 +11,28 @@
                 rgba(var(--pm-active-marker-color), var(--pm-active-marker-alpha)) 80%);
     }
 
-    path.marker--active {
-        -webkit-filter: brightness(.7) saturate(1.15) !important;
-        filter: brightness(.7) saturate(1.15) !important;
+    path{
+        &.marker--active {
+            -webkit-filter: brightness(.7) saturate(1.15) !important;
+            filter: brightness(.7) saturate(1.15) !important;
 
-        transition: filter .15s
-    }
+            transition: filter .15s
+        }
 
-    path:hover, path:focus {
-        filter: brightness(.8) saturate(1.15) !important;
-        transition: filter .15s
+        &:hover, 
+        &:focus {
+            filter: brightness(.8) saturate(1.15) !important;
+            transition: filter .15s
+        }
+
+        &[data-interactive="n"],
+        &[data-interactive="n"]:hover,
+        &[data-interactive="n"]:focus {
+            background: inherit;
+            filter: brightness(1) saturate(1) !important;
+            outline: none !important;
+            cursor: auto;
+        }
     }
 
     /**

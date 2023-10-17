@@ -929,8 +929,8 @@ class PonchoMapFilter extends PonchoMap {
         if(this.filters_visible){
             this._filterContainerHeight();
         }
-
-        
+        this.mapOpacity();
+        this.mapBackgroundColor();
     };
 };
 // end of class

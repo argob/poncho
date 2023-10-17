@@ -3106,6 +3106,8 @@ class PonchoMap {
             theme_ui: false,
             theme_map: false,
             theme_tool: true,
+            map_opacity: 1,
+            map_background: "red",
             theme: "default",
             default_themes: [
                 ["default", "Original"], 
@@ -3114,8 +3116,7 @@ class PonchoMap {
                 ["grayscale", "Gris"],
                 ["sepia", "Sepia"],
                 ["blue", "Azul"],
-                ["relax", "Relax"],
-                // ["transparent", "Transparente"],
+                ["relax", "Relax"]
             ],
             markdown_options: {
                 extensions :[
@@ -3222,12 +3223,14 @@ class PonchoMap {
         this.id = opts.id;
         this.id_mixing = opts.id_mixing;
         this.title = opts.title;
+        this.map_background = opts.map_background;
         this.theme = opts.theme;
         this.theme_tool = opts.theme_tool;
         this.default_themes = opts.default_themes;
         this.temes_not_visibles = [["transparent", "Transparent"]];
         this.theme_ui = opts.theme_ui;
         this.theme_map = opts.theme_map;
+        this.map_opacity = opts.map_opacity;
         this.latitude = opts.latitud;
         this.longitude = opts.longitud;
         this.slider = opts.slider;
@@ -3279,8 +3282,48 @@ class PonchoMap {
     }
 
 
+    //
+    // TEMA PARA EL MAPA
+    //
+
+    /**
+     * Modifica la opacidad del mapa
+     * @param {double|string} value Número _(double)_, o porcentaje de valor
+     * @example
+     * mapOpacity(0.5)
+     * mapOpacity("50%")
+     * @returns {undefined}  
+     */
+    mapOpacity = (value=false) => {
+        const opacity = (value ? value : this.map_opacity);
+        document
+            .querySelectorAll(
+                `${this.scope_selector} .leaflet-pane .leaflet-tile-pane`)
+            .forEach(e => e.style.opacity=opacity);
+    }
+
+
+    /**
+     * Define el color de fondo para el mapa. 
+     * @param {string} value Color en hexadecimal o cualquier sistema de color
+     * aceptado por html.
+     * @example
+     * // #ffcc00
+     * // Se representará como: style="background-color:#ffcc00;"
+     * mapBackgroundColor("#ffcc00")
+     * @returns {undefined} 
+     */
+    mapBackgroundColor = (value=false) => {
+        const color = (value ? value : this.map_background);
+        document
+            .querySelectorAll(`${this.scope_selector} .leaflet-container`)
+            .forEach(e => e.style.backgroundColor = color);
+    };
+
+
     /**
      * Crea el menú para cambiar de temas
+     * @returns {undefined} 
      */
     _menuTheme = () => {
         if(!this.theme_tool){
@@ -3347,10 +3390,12 @@ class PonchoMap {
         const element = document.querySelectorAll(this.scope_selector);
         element.forEach(e => e.appendChild(navContainer));
 
+        // listeners
         document
             .querySelectorAll(".js-reset-theme")
             .forEach(ele => ele.addEventListener(
                 "click", () => {
+                    localStorage.removeItem("mapTheme");
                     this._removeThemes();
                     this._setThemes();
                 })
@@ -3362,6 +3407,7 @@ class PonchoMap {
                 "click", () => {
                     const th = ele.dataset.theme;
                     this.useTheme(th);
+                    localStorage.setItem("mapTheme", th);
                 })
             );
     };
@@ -3373,15 +3419,9 @@ class PonchoMap {
      * @param {object} prefix Lista de prefijos. ui o map 
      * @returns {object} Array con los estilos definidos.
      */
-    _setThemeStyles = (theme=false, prefix=["ui", "map"])  => {
-        const styles = prefix.map(m => {
-            if(["ui", "map"].includes(m)){
-                return `${m}-${theme}`;
-            }
-            return false;
-        });
-        return styles;
-    }
+    _setThemeStyles = (theme=false, prefix=["ui", "map"]) => prefix.map(m => {
+        return (["ui", "map"].includes(m) ? `${m}-${theme}` : false);
+    });
 
 
     /**
@@ -3389,12 +3429,14 @@ class PonchoMap {
      * @param {object} prefix Lista de prefijos. ui o map 
      * @returns {undefined}
      */
-    _removeThemes = (prefix) => {
+    _removeThemes = (prefix=["ui", "map"]) => {
         const element = document.querySelectorAll(this.scope_selector);
         element.forEach(ele => {
-            [...this.default_themes, ...this.temes_not_visibles]
-                .map(m => m[0]).forEach(th => {
-                    ele.classList.remove(...this._setThemeStyles(th, prefix))
+            [
+                ...this.default_themes,
+                ...this.temes_not_visibles
+            ].map(m => m[0]).forEach(th => {
+                ele.classList.remove(...this._setThemeStyles(th, prefix));
             });
         });
     };
@@ -3406,10 +3448,10 @@ class PonchoMap {
      * @param {object} prefix Lista de prefijos. ui o map 
      * @returns {undefined}
      */
-    _setTheme = (theme=false, prefix=[])  => {
+    _setTheme = (theme, prefix)  => {
         const element = document.querySelectorAll(this.scope_selector);
+        this._removeThemes(prefix);
         element.forEach(ele => {
-            this._removeThemes(prefix);
             ele.classList.add( ...this._setThemeStyles(theme, prefix) ); 
         });
     }
@@ -3447,6 +3489,11 @@ class PonchoMap {
      * @returns {undefined}
      */
     _setThemes = () => {
+        if(localStorage.hasOwnProperty("mapTheme")){
+            this._setTheme(localStorage.getItem("mapTheme"), ["ui", "map"]);
+            return;
+        }
+
         if(!this.theme_ui && !this.theme_map){
             this.useTheme();
             return;
@@ -3455,6 +3502,7 @@ class PonchoMap {
         if(this.theme_ui){
             this._setTheme(this.theme_ui, ["ui"]);
         }
+
         if(this.theme_map){
             this._setTheme(this.theme_map, ["map"]);
         }
@@ -3476,6 +3524,7 @@ class PonchoMap {
         return false;
     };
 
+
     /**
      * JSON input
      * 
@@ -3484,6 +3533,7 @@ class PonchoMap {
     get entries(){
         return this.data.features;
     }
+
 
     /**
      * Retrona las entradas en formato geoJSON
@@ -3652,7 +3702,6 @@ class PonchoMap {
      * @return {object}
      */
     _setIdIfNotExists = (entries) => {
-        console.log(this.id)
         const hasId = entries.features
                 .filter((_,k) => k===0)
                 .every(e => e.properties.hasOwnProperty("id"));
@@ -3706,7 +3755,12 @@ class PonchoMap {
      * @return {object}
      */
     entry = (id) => {
-        return this.entries.find(e => e.properties[this.id] == id);
+        return this.entries.find(e => {
+            if(e?.properties && e.properties[this.id] === id){
+                return true;
+            }
+            return false;
+        });
     }
 
 
@@ -4137,14 +4191,16 @@ class PonchoMap {
                 .querySelectorAll(".marker--active")
                 .forEach(e => e.classList.remove("marker--active"));
                 
-            ["_icon", "_path"].forEach(ele => {
+            
+                ["_icon", "_path"].forEach(ele => {
                 if(!e.sourceTarget.hasOwnProperty(ele)){
                     return;
                 }
                 e.sourceTarget[ele].classList.add("marker--active");
             });
+
             const content = this.entries.find(e => {
-                return e.properties[this.id]==layer.options.id;
+                return (e?.properties && e.properties[this.id]===layer.options.id);
             });
             this.setContent(content.properties);
         });
@@ -4175,6 +4231,8 @@ class PonchoMap {
             if(!this.isFeature(layer) || 
                 layer.feature.geometry.type == "Point" ||
                 layer.feature.geometry.type == "MultiPoint"){
+                return;
+            } else if(layer?.feature?.properties["pm-interactive"] == "n"){
                 return;
             }
             this._setClickeable(layer);
@@ -4811,14 +4869,22 @@ class PonchoMap {
             ele[key].setAttribute(
                 "aria-label", ele?.feature?.properties?.[this.title]
             );
-            ele[key].setAttribute("role", "button");
+            
             ele[key].setAttribute("tabindex", 0);
             ele[key].dataset.entryId = ele?.feature?.properties?.[this.id];
+            
+            if(ele?.feature?.properties?.["pm-interactive"] === "n"){
+                ele[key].dataset.interactive = "n";
+                ele[key].setAttribute("role", "butgraphics-symbolton");
+            } else {
+                ele[key].setAttribute("role", "button");
+            }
             ele[key].dataset.leafletId = ele._leaflet_id;
         };
 
         this.map.eachLayer(e => setAttributes(e, "_path"));
     };
+
 
     /**
      * Anclas de salto
@@ -4952,7 +5018,6 @@ class PonchoMap {
         nav.appendChild(icon);
         nav.appendChild(ul);
 
-
         // enlace de retorno
         const back_to_nav = document.createElement("a");
         back_to_nav.textContent = "Ir a la navegación del mapa";
@@ -5015,7 +5080,6 @@ class PonchoMap {
     render = () => {
         this._hiddenSearchInput();
         this._resetViewButton();
-
         this._setThemes();
         
         this.titleLayer.addTo(this.map);
@@ -5040,6 +5104,8 @@ class PonchoMap {
         setTimeout(this.gotoHashedEntry, this.anchor_delay);
         this._setFetureAttributes();
         this._accesibleMenu();
+        this.mapOpacity();
+        this.mapBackgroundColor();
     };
 };
 // end class
@@ -6044,8 +6110,8 @@ class PonchoMapFilter extends PonchoMap {
         if(this.filters_visible){
             this._filterContainerHeight();
         }
-
-        
+        this.mapOpacity();
+        this.mapBackgroundColor();
     };
 };
 // end of class
