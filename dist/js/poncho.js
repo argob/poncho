@@ -3332,7 +3332,7 @@ class PonchoMap {
         document
         .querySelectorAll(`#themes-tool${this.scope_sufix}`)
         .forEach(ele => ele.remove());
-        
+
         const navContainer = document.createElement("ul");
         navContainer.classList.add(
             "pm-list-unstyled", "pm-list",
@@ -3340,7 +3340,7 @@ class PonchoMap {
             `js-themes-tool${this.scope_sufix}`
         );
 
-    
+
         const item = document.createElement("li");
         item.setAttribute("tabindex", "-1");
         item.dataset.toggle="true";
@@ -3756,7 +3756,8 @@ class PonchoMap {
      */
     entry = (id) => {
         return this.entries.find(e => {
-            if(e?.properties && e.properties[this.id] === id){
+            if(e?.properties && e.properties[this.id] === id && 
+               e.properties?.["pm-interactive"] !== "n"){
                 return true;
             }
             return false;
@@ -4145,22 +4146,24 @@ class PonchoMap {
 
     /**
      * Muestra un marker
+     * 
      * @param {string|integer} id Valor identificador del marker. 
+     * @returns {undefined}
      */
     gotoEntry = id => {
         const entry = this.entry(id);
         const setAction = (layer, id, entry) => {
+
             if(!layer.options.hasOwnProperty("id")){
                 return;
             }
             
             if(layer.options.id == id){
                 this._setSelectedMarker(id, layer);
-                
+
                 if(this.hash){
                     this.addHash(id);
                 }
-                // if(this.slider && this.hash){
 
                 if(this.slider){
                     this._showSlider(layer, entry);
@@ -4169,6 +4172,7 @@ class PonchoMap {
                 }
             }
         };
+
         this.markers.eachLayer(layer => setAction(layer, id, entry));
         this.map.eachLayer(layer => {
             if(layer.hasOwnProperty("feature") && 
@@ -4873,9 +4877,9 @@ class PonchoMap {
             ele[key].setAttribute("tabindex", 0);
             ele[key].dataset.entryId = ele?.feature?.properties?.[this.id];
             
-            if(ele?.feature?.properties?.["pm-interactive"] === "n"){
+            if(ele?.feature?.properties?.["pm-interactive"] == "n"){
                 ele[key].dataset.interactive = "n";
-                ele[key].setAttribute("role", "butgraphics-symbolton");
+                ele[key].setAttribute("role", "graphics-symbol");
             } else {
                 ele[key].setAttribute("role", "button");
             }
