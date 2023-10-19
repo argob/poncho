@@ -5634,7 +5634,6 @@ class PonchoMapFilter extends PonchoMap {
                 .getPropertyValue('--pm-slider-distance');
         const distance = parseInt(
             computedDistance.toString().replace(/[^0-9]*/gm, ""));
-            console.log(distance)
         return distance || 0;
     };
 
