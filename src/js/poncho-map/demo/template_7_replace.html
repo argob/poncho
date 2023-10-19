@@ -121,8 +121,8 @@ COPIAR DESDE ACÁ…
 
 <!-- SCRIPTS -->
 <script>
-// Imprime los estilos para ocultar o mostrar el select.
-// provincesCssStyles();
+const provinces = (new PonchoMapProvinces);
+provinces.cssStyles();
 // Loading
 const loader = new PonchoMapLoader({scope: "poncho-map"});
 loader.load();
@@ -194,10 +194,7 @@ fetch_json(GEOJSON_URI, { headers: {} }).then(geoProvinces => {
                 opacity: 1,
             },
             tooltip: true, // Tooltip en marker o región
-         
             slider: true,
-            // no_info: true,
-            
             hash: true,
             scroll: false,
             fit_bounds_onevent: false,
@@ -214,11 +211,12 @@ fetch_json(GEOJSON_URI, { headers: {} }).then(geoProvinces => {
             ]
         };
 
-        const map = new PonchoMapFilter( merge(geoProvinces, entries) , options);
+        const map = new PonchoMapFilter(
+            provinces.mergeData(geoProvinces, entries) , options);
         map.render();
         map.fitBounds(); // Ajusta el mapa a sus border. *Opcional.
         // Interacción select / mapa
-        selectProvinces(map);
+        provinces.selectProvinces(map);
         // Cierra el loader cuando el mapa está cargado
         loader.close();
     });
