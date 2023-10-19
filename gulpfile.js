@@ -30,6 +30,7 @@ const ponchoMinList = [
     './src/js/poncho-map/src/js/poncho-map.js',
     './src/js/poncho-map/src/js/poncho-map-filter.js',
     './src/js/poncho-map/src/js/poncho-map-search.js',
+    './src/js/poncho-map-provinces/src/js/poncho-map-provinces.js',
     './src/js/gapi-sheet-data/gapi-sheet-data.js',
     './src/js/translate-html/translate-html.js'
 ];

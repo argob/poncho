@@ -27,7 +27,7 @@
     <script src="../../poncho-map/src/js/poncho-map.js"></script>
     <script src="../../poncho-map/src/js/poncho-map-filter.js"></script>
     <script src="../../gapi-sheet-data/gapi-sheet-data.js"></script>
-    <script src="../poncho-map-provinces.js"></script>
+    <script src="../src/js/poncho-map-provinces.js"></script>
     <!-- / Script para debug -->
     <title>Poncho Map — Mapa por provincia</title>
     <style>
@@ -124,7 +124,7 @@ const geoJSON = "https://gist.githack.com/agustinbouillet/"
     + "provincias-argentinas.json";
 
 const provinces = new PonchoMapProvinces({geoJSON: geoJSON});
-// provinces.cssStyles();
+provinces.cssStyles();
 // Loading
 const loader = new PonchoMapLoader({scope: "poncho-map"});
 loader.load();
