@@ -814,6 +814,7 @@ class PonchoMapFilter extends PonchoMap {
         this._helpText(feed);
         this._resetSearch();
         this._clickToggleFilter();
+        
         if(this.slider){
             this._renderSlider();
             this._clickeableMarkers();

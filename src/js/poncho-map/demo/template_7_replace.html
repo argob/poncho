@@ -30,24 +30,43 @@
     <script src="../../gapi-sheet-data/gapi-sheet-data.js"></script>
     <!-- / Script para debug -->
     <title>Poncho Map — Mapa por provincia</title>
-
-
-<style>
-html, body { height: 100%; background: #fff;}
-</style>
 </head>
 <body class="p-t-3">
     
-<div class="container-fluid">
+<div class="container">
 <div class="row">
-    <div class="col-md-12">
-
-        <h1>Mapa con provincia</h1>
-    </div>
+<div class="col-md-12">
+    <h1>Mapa con provincia</h1>
+</div>
 
 <!-- 
 COPIAR DESDE ACÁ…
 -->
+
+<style>
+    html, body { height: 100%; background: #fff;}
+    .img { 
+        border-radius: 6px; 
+        width: 100%;
+        aspect-ratio: 1.85 / 1;
+        box-shadow:  0 0 4px rgb(0 0 0 /.15);
+        overflow: hidden;
+        background-color: #eaeaea;
+    }
+    .img > img {
+        max-width: 100%;
+        min-height: 100%;
+        object-fit: cover;
+        object-position: 50% 50%; 
+    }
+    .poncho-map .leaflet-popup-content {
+        max-height: 300px;
+        max-width: 250px;
+        overflow-y: scroll;
+    }
+    </style>
+
+
     <div class="col-md-12">
         <!-- SELECT PROVINCIAS -->
         <div class="form-group mapa-provincias">
@@ -96,6 +115,7 @@ COPIAR DESDE ACÁ…
 
 <script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
 <script src="./js/template-7.js"></script>
+<script src="https://raw.githack.com/argob/poncho/master/src/js/poncho-map/demo/js/template-7.js"></script>
 <!-- / INCLUDE SCRIPTS -->
 
 
@@ -111,7 +131,7 @@ fetch_json(GEOJSON_URI, { headers: {} }).then(geoProvinces => {
     const gapi = new GapiSheetData();
     fetch_json(
         gapi.url(
-            "dataset", //<<< Nombre de la solapa en Google Sheets; preferentemente, sin espacios).
+            "dataset", //<<< Nombre de la solapa en Google Sheets; preferentemente, sin espacios.
             "1qEJoLbtJwq_6i3e8R_Q85xK_ZZ5-Iu5Tu8BAnp2V1N4" //<<< ID del documento en Google Sheets
         )        
     ).then(googlesheet_data => {
@@ -119,8 +139,11 @@ fetch_json(GEOJSON_URI, { headers: {} }).then(geoProvinces => {
         const {entries, headers} = gapi_data;
         const options = {
             id_mixing: ["in1", "nam"],
-            template_markdown: true,
-            allowed_tags: ["*"],
+            //content_selector: ".js-pm-text-content", // Nombre de la clase o id dónde se imprime el contenido
+            scope: "poncho-map",
+            title: "nam",
+            template_markdown: true, // Habilita el uso del markdown
+            allowed_tags: ["*"], // Habilita etiquetas HTML
             map_init_options: {
                     zoomSnap: .2,
                     zoomControl: true,
@@ -129,25 +152,39 @@ fetch_json(GEOJSON_URI, { headers: {} }).then(geoProvinces => {
                     boxZoom: false
             },
             map_zoom: 4.4,
-            content_selector: ".js-pm-text-content",
-            scope: "poncho-map",
-            title: "nam",
             headers:{
                 ...headers, 
-                ...{"subtitulos--ignore": "", "content": "", "region": "Región"}
+                ...{"subtitulos--ignore": "", description: "", img: "", content: "", region: "Región"}
             },
             template:(self, entry) => {
+                // Entradas ad hoc.
+                entry["img"] = entry.image ? `<div class="img"><img src="${entry.image}"></img>` : false;
                 entry["content"] = `<hr><div class="row">${entry["subtitulos--ignore"]}</div>`;
                 return self.defaultTemplate(self, entry); 
             },
             template_structure: {
-                values: ["description", "capital", "region", "population", "surface", "web" /* "content" */],
-                title_classlist: ["h2","text-primary","m-0"],
+                values: ["img", "description", "capital", "population", "surface", "web" /* "content" */],
+                title_classlist: ["h2","text-primary","m-t-0"],
                 term_classlist: ["h5", "text-cielo"],
                 definition_classlist: ["_row"],
                 term_tag: "dt",
                 definition_tag: "dd",
+                lead: {
+                    key: "region", 
+                    style: "text-transform:uppercase;" 
+                        + "border-bottom: 1px solid var(--gray-border, #ccc);" 
+                        + "padding-bottom:.25em; color:var(--default) " 
+                        + "font-size:small;"
+                },  
             },
+            filters: [
+                {
+                    legend: "Filtrar por título",
+                    field: ["region", "checked"],
+                    fields: false,
+                    check_uncheck_all: true
+                }
+            ],
             tooltip_options:{
                 permanent: false,
                 className: "leaflet-tooltip-own",
@@ -156,7 +193,7 @@ fetch_json(GEOJSON_URI, { headers: {} }).then(geoProvinces => {
                 sticky: true,
                 opacity: 1,
             },
-            tooltip: true,
+            tooltip: true, // Tooltip en marker o región
             slider: true,
             hash: true,
             scroll: false,
