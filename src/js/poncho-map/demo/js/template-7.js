@@ -1,10 +1,11 @@
 class PonchoMapProvinces {
-    GEOJSON_URI = "https://gist.githack.com/agustinbouillet/a5cdf04c6b19ed248aa85b27deaee6a2/raw/3880083e157a587629e8a6ea21126c79f78e776b/provincias-argentinas.json";
-    CSS_DEFINITIONS = `.mapa-provincias{display:none}`
+    constructor(){
+        this.geoJSON = "https://gist.githack.com/agustinbouillet/a5cdf04c6b19ed248aa85b27deaee6a2/raw/3880083e157a587629e8a6ea21126c79f78e776b/provincias-argentinas.json";
+        this.cssDefinitions = `.mapa-provincias{display:none}`
         + `@media screen and (max-width:992px){`
         + `.mapa-svg{display:none}.mapa-provincias{`
         + `display:inherit}}`;
-
+    }
 
     /**
      * Aplica los estilos en el <head>
@@ -12,7 +13,7 @@ class PonchoMapProvinces {
      */
     cssStyles = () => {
         const styleSheet = document.createElement("style");
-        styleSheet.textContent = this.CSS_DEFINITIONS;
+        styleSheet.textContent = this.cssDefinitions;
         const head = document.querySelector("head");
         head.appendChild(styleSheet)
     };
