@@ -69,7 +69,7 @@ class PonchoMap {
             theme_map: false,
             theme_tool: true,
             map_opacity: 1,
-            map_background: "red",
+            map_background: "#DDD",
             theme: "default",
             default_themes: [
                 ["default", "Original"], 
@@ -204,6 +204,7 @@ class PonchoMap {
         this.scope_sufix = `--${this.scope}`;
         this.content_selector = (opts.content_selector ? 
             opts.content_selector : `.js-content${this.scope_sufix}`);
+        this.content_outside = (this.content_selector !== `.js-content${this.scope_sufix}` ? true : false);
         this.data = this.formatInput(data);
         this.geometryTypes = [
             "Point",
@@ -989,9 +990,7 @@ class PonchoMap {
      * Crea el bloque html para el slider.
      */
     _renderSlider = () => {
-        if(!this.render_slider || 
-            this.content_selector !== `.js-content${this.scope_sufix}`)
-        {
+        if(!this.render_slider || this.content_outside){
             return;
         } else if(this.no_info){
             return;
@@ -1052,6 +1051,7 @@ class PonchoMap {
      */
     _showSlider = layer => {
         this._removeTooltips();
+
         if(layer.hasOwnProperty("_latlng")){
             this.map.setView(layer._latlng, this.map_anchor_zoom);
         } else if(this.fit_bounds_onevent) {
