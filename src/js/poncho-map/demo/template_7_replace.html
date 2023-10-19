@@ -122,7 +122,7 @@ COPIAR DESDE ACÁ…
 <!-- SCRIPTS -->
 <script>
 // Imprime los estilos para ocultar o mostrar el select.
-provincesCssStyles();
+// provincesCssStyles();
 // Loading
 const loader = new PonchoMapLoader({scope: "poncho-map"});
 loader.load();
@@ -139,7 +139,7 @@ fetch_json(GEOJSON_URI, { headers: {} }).then(geoProvinces => {
         const {entries, headers} = gapi_data;
         const options = {
             id_mixing: ["in1", "nam"],
-            //content_selector: ".js-pm-text-content", // Nombre de la clase o id dónde se imprime el contenido
+            // content_selector: ".js-pm-text-content", // Nombre de la clase o id dónde se imprime el contenido
             scope: "poncho-map",
             title: "nam",
             template_markdown: true, // Habilita el uso del markdown
@@ -194,7 +194,10 @@ fetch_json(GEOJSON_URI, { headers: {} }).then(geoProvinces => {
                 opacity: 1,
             },
             tooltip: true, // Tooltip en marker o región
+         
             slider: true,
+            // no_info: true,
+            
             hash: true,
             scroll: false,
             fit_bounds_onevent: false,
