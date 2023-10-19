@@ -37,7 +37,7 @@ class PonchoMapProvinces {
             geoJSON: "https://www.argentina.gob.ar/"
                 + "profiles/argentinagobar/"
                 + "themes/contrib/poncho/resources/jsons/" 
-                + "provincias-argentinas.json",
+                + "geo-provincias-argentinas.json",
             cssDefinitions: `.mapa-provincias{display:none}`
                 + `@media screen and (max-width:992px){`
                 + `.mapa-svg{display:none}.mapa-provincias{`
