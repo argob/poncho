@@ -13,7 +13,6 @@
     --pm-active-background: var(--pm-color-primary);
 
     --pm-slider-background: rgba(255, 255, 255, 1);
-    --pm-slider-border: none;
     --pm-slider-border-color: #ddd;
     --pm-slider-border-width: 1px;
 
@@ -22,9 +21,12 @@
     --pm-slider-radius: 16px;
     --pm-slider-media-mobile-height: 100%;
     
+    // Colores para el tooltip
     --pm-tooltip: #333;
     --pm-tooltip-color: white;
     
+    // Modal para mobiles.
+    // Debajo del slider se crea un div con opacidad.
     --pm-slider-modal-color: var(--black);
     
     --pm-active-marker-color: 255, 206, 0;
