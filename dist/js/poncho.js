@@ -870,12 +870,11 @@ const ponchoTableDependant = opt => {
 
             // Recorro cada uno de los títulos
             Object.keys(gapi_data.headers).forEach(header => {
-                filas = entry[header];
-
+                let filas = entry[header];
+                
                 if (header.startsWith("btn-") && filas != "") {
-                    filas = button(
-                        header.replace("btn-", "").replace("-", " "), filas
-                    );
+                    const label = header.replace("btn-", "").replace("-", " ");
+                    filas = button(label, filas);
                 } else if (header.startsWith("fecha-") && filas != "") {
                     filas = tdDate(filas);
                 }
@@ -891,9 +890,11 @@ const ponchoTableDependant = opt => {
                 let allowed_tags = (opt.hasOwnProperty("allowedTags") ? 
                         opt.allowedTags : allowedTags);
                 
-                // Anchor como filtro está permitido por defecto.
-                allowed_tags = (  header.startsWith("btn-") && filas != "" ? 
-                        [...allowed_tags, "a"] : allowed_tags);
+                // Las etiquetas `<a>` y `<span>`, están permitidas si existen
+                // los prefijos _btn-_ y _fecha-_ respectivamente.
+                if((header.search(/^(fecha-|btn-)/) === 0) && filas != ""){
+                    allowed_tags = [...allowed_tags, "a", "span"];
+                }
                 
                 const cleannedText = secureHTML(filas, allowed_tags);
                 if(_isMarkdownEnable()){
