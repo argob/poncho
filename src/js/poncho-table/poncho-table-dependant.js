@@ -220,10 +220,17 @@ const ponchoTableDependant = opt => {
             dateSplit[2], dateSplit[1] - 1, dateSplit[0]
         );
 
+        const datetime = finalDateIso.toISOString().split('T')[0];
+
         const hiddenSpan = document.createElement("span");
         hiddenSpan.style.display = "none";
-        hiddenSpan.textContent = finalDateIso.toISOString().split('T')[0];
-        return hiddenSpan.outerHTML + value;
+        hiddenSpan.textContent = datetime;
+        
+        const time = document.createElement("time");
+        time.setAttribute("datetime", datetime);
+        time.textContent = value;
+
+        return hiddenSpan.outerHTML + time.outerHTML;
     };
 
 
@@ -367,10 +374,13 @@ const ponchoTableDependant = opt => {
                 let allowed_tags = (opt.hasOwnProperty("allowedTags") ? 
                         opt.allowedTags : allowedTags);
                 
-                // Las etiquetas `<a>` y `<span>`, están permitidas si existen
-                // los prefijos _btn-_ y _fecha-_ respectivamente.
-                if((header.search(/^(fecha-|btn-)/) === 0) && filas != ""){
-                    allowed_tags = [...allowed_tags, "a", "span"];
+                // Las etiquetas `<a>` y `<time>` junto con `<span>`, están 
+                // permitidas si existen los prefijos _btn-_ y _fecha-_ 
+                // respectivamente.
+                if(header.startsWith("btn-") && filas != ""){
+                    allowed_tags = [...allowed_tags, "a"];
+                } else if(header.startsWith("fecha-") && filas != ""){
+                    allowed_tags = [...allowed_tags, "span", "time"];
                 }
                 
                 const cleannedText = secureHTML(filas, allowed_tags);
