@@ -117,6 +117,7 @@ COPIAR DESDE ACÁ…
 
 <!-- SCRIPTS -->
 <script>
+var map;
 // URL temporal
 const geoJSON = "https://gist.githack.com/agustinbouillet/" 
     + "a5cdf04c6b19ed248aa85b27deaee6a2/raw/"
@@ -203,8 +204,8 @@ fetch_json( provinces.geoJSON, { headers: {} }).then(geoProvinces => {
             theme_tool: true,
             theme_ui: "default",
             theme_map: "transparent",
-            map_opacity: 1,
-            map_background:"white",
+            map_opacity: 0,
+            map_background:"var(--gray-border)",
             default_themes: [
                 ["default", "Original"], 
                 ["contrast", "Alto contraste"],
@@ -213,8 +214,19 @@ fetch_json( provinces.geoJSON, { headers: {} }).then(geoProvinces => {
             ]
         };
 
-        const map = new PonchoMapFilter(
+        map = new PonchoMapFilter(
             provinces.mergeData(geoProvinces, entries) , options);
+
+            const imageUrl ='../src/img/map-shadow.png';
+            const imageBounds = [
+                [-20.56830872133435, -44.91768177759874],
+                [-55.861359445914566, -75.2246121480093]
+            ];
+            L.imageOverlay(imageUrl, imageBounds, {opacity: 0.8}).addTo(map.map);
+            
+            // _northEast: v {lat: -20.56830872133435, lng: -44.91768177759874}_southWest: v {lat: -55.861359445914566, lng: -75.2246121480093}[[Prototype]]: Object
+
+
         map.render();
         map.fitBounds(); // Ajusta el mapa a sus border. *Opcional.
         // Interacción select / mapa
