@@ -42,10 +42,23 @@ class PonchoMapProvinces {
                 + `@media screen and (max-width:992px){`
                 + `.mapa-svg{display:none}.mapa-provincias{`
                 + `display:inherit}}`,
+            initialEntry: false, 
+            randomEntry: false,
+            imageUrl:'https://www.argentina.gob.ar/sites/default/files/map-shadow.png',
+            imageBounds: [
+                [-20.56830872133435, -44.91768177759874],
+                [-55.861359445914566, -75.2246121480093]
+            ],
+            mapView:[-40.47815508388363,-60.0045383246273],
         };
         let opts = Object.assign({}, defaultOptions, options);
         this.geoJSON = opts.geoJSON;
         this.cssDefinitions = opts.cssDefinitions;
+        this.initialEntry = opts.initialEntry; 
+        this.randomEntry = opts.randomEntry;
+        this.imageUrl = opts.imageUrl;
+        this.imageBounds = opts.imageBounds;
+        this.mapView = opts.mapView;
     }
 
 
@@ -80,13 +93,18 @@ class PonchoMapProvinces {
     });
 
 
+    _randomEntry = list => {
+        return list[Math.floor(Math.random()*list.length)][0];
+    };
+
+
     /**
      * Retorna un array con clave y valor de provincias argentinas
      * @param {object} geoJSON Objeto geoJSON con los features por provincia
      * @param {string} idKey Key del propertie que se usa como id.
      * @returns {object}
      */
-    provincesFromGeoJSON = (geoJSON, idKey) => {
+    _provincesFromGeoJSON = (geoJSON, idKey) => {
         let prov = {};
         geoJSON.features.map(p => {
             const {
@@ -104,17 +122,30 @@ class PonchoMapProvinces {
     };
 
 
+    _selectedEntry = prov => {
+        const hash = window.location.hash.replace("#", "");
+        let selected = "";
+        if(hash){
+            selected = hash;
+        } else if(this.initialEntry){
+            selected = this.initialEntry;
+        } else if(this.randomEntry){
+            selected = this._randomEntry(prov);
+        }
+        return selected;
+    }
+
+
 
     /**
      * Crea los options para el select de provincias
      * @param {object} map 
      * @returns {object}
      */
-    setSelectProvinces = map => {
-        let hash = window.location.hash.replace("#", "");
-        let selected = hash ?? "";
-
-        let prov = this.provincesFromGeoJSON(map.geoJSON, map.id);
+    _setSelectProvinces = map => {
+        const hash = window.location.hash.replace("#", "");
+        const prov = this._provincesFromGeoJSON(map.geoJSON, map.id);
+        const selected = this._selectedEntry(prov);
 
         // Creo los options
         const selectProvinces = document.getElementById("id_provincia");
@@ -129,7 +160,7 @@ class PonchoMapProvinces {
             option.textContent = province[1];
             selectProvinces.appendChild(option);
         });
-        return selectProvinces;         
+        return {object: selectProvinces, selected: selected};         
     };
 
 
@@ -179,9 +210,14 @@ class PonchoMapProvinces {
      */
     selectProvinces = map => {
         // Arma el select con las provincias
-        const selectProvinces = this.setSelectProvinces(map);
+        const selectProvinces = this._setSelectProvinces(map);
+
+        if(selectProvinces.selected){
+            map.gotoEntry(selectProvinces.selected)
+        }
+        
         // cambia los datos de la provincia 
-        selectProvinces.addEventListener("change", e => {
+        selectProvinces.object.addEventListener("change", e => {
             map.gotoEntry(e.target.value);
         });
     };

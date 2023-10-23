@@ -1055,7 +1055,7 @@ class PonchoMap {
         if(layer.hasOwnProperty("_latlng")){
             this.map.setView(layer._latlng, this.map_anchor_zoom);
         } else if(this.fit_bounds_onevent) {
-            this.map.fitBounds(layer.getBounds());
+            this.map.fitBounds(layer.getBounds().pad(0.005));
         }
         layer.fireEvent("click");
     };
@@ -1070,7 +1070,7 @@ class PonchoMap {
                 layer.openPopup();
             });
         } else {
-            this.map.fitBounds(layer.getBounds());
+            this.map.fitBounds(layer.getBounds().pad(0.005));
             layer.openPopup();
         }
     };
@@ -1598,7 +1598,7 @@ class PonchoMap {
      */
     fitBounds = () => {
         try {
-            this.map.fitBounds(this.geojson.getBounds());
+            this.map.fitBounds(this.geojson.getBounds().pad(0.005));
         } catch (error) {
             console.error(error);
         }
