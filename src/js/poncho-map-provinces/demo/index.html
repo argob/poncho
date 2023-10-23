@@ -81,7 +81,7 @@ COPIAR DESDE ACÁ…
 <div class="col-md-6">
 
     <!-- PONCHO MAP -->
-    <div class="poncho-map hide-attribution mapa-svg" data-scope="poncho-map">
+    <div class="poncho-map hide-attribution mapa-svg" data-scope="poncho-map" style="border-radius: 6px;">
         <div
             class="leaflet-container leaflet-touch leaflet-fade-anim 
                 leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
@@ -92,6 +92,7 @@ COPIAR DESDE ACÁ…
     </div>
     <!-- / PONCHO MAP -->
 
+    <div><p><small>hola</small></p></div>
 </div>
 <div class="col-md-6">
 
@@ -124,7 +125,12 @@ const geoJSON = "https://gist.githack.com/agustinbouillet/"
     + "3880083e157a587629e8a6ea21126c79f78e776b/" 
     + "provincias-argentinas.json";
 
-const provinces = new PonchoMapProvinces({geoJSON: geoJSON});
+// Instancia para controlar ponchoMap con filtro por provincias.
+const provinces = new PonchoMapProvinces({
+    geoJSON: geoJSON, // En caso de que se quiera utilizar un GeoJSON particular.
+    initialEntry: "42-la-pampa", // Si se agrega el id (que aprece en URL), inicia con esa entrada.
+    // randomEntry: true // Permite que la pagina cargue con una entrada aleatoria.
+});
 provinces.cssStyles();
 // Loading
 const loader = new PonchoMapLoader({scope: "poncho-map"});
@@ -134,7 +140,7 @@ fetch_json( provinces.geoJSON, { headers: {} }).then(geoProvinces => {
     const gapi = new GapiSheetData();
     fetch_json(
         gapi.url(
-            "dataset", //<<< Nombre de la solapa en Google Sheets; preferentemente, sin espacios.
+            "dataset2", //<<< Nombre de la solapa en Google Sheets; preferentemente, sin espacios.
             "1qEJoLbtJwq_6i3e8R_Q85xK_ZZ5-Iu5Tu8BAnp2V1N4" //<<< ID del documento en Google Sheets
         )        
     ).then(googlesheet_data => {
@@ -166,12 +172,12 @@ fetch_json( provinces.geoJSON, { headers: {} }).then(geoProvinces => {
                 return self.defaultTemplate(self, entry); 
             },
             template_structure: {
-                values: ["img", "description", "capital", "population", "surface", "web" /* "content" */],
-                title_classlist: ["h2","text-primary","m-t-0"],
+                values: ["img", "description", "capital", "population", "surface", "web", /*"content"*/ ],
+                title_classlist: ["h2","text-cielo"],
                 term_classlist: ["h5", "text-cielo"],
-                definition_classlist: ["_row"],
-                term_tag: "dt",
-                definition_tag: "dd",
+                // definition_classlist: ["_row"],
+                // term_tag: "dt",
+                // definition_tag: "dd",
                 lead: {
                     key: "region", 
                     style: "text-transform:uppercase;" 
@@ -180,7 +186,7 @@ fetch_json( provinces.geoJSON, { headers: {} }).then(geoProvinces => {
                         + "font-size:small;"
                 },  
             },
-            filters: [
+            _filters: [
                 {
                     legend: "Filtrar por título",
                     field: ["region", "checked"],
@@ -204,8 +210,9 @@ fetch_json( provinces.geoJSON, { headers: {} }).then(geoProvinces => {
             theme_tool: true,
             theme_ui: "default",
             theme_map: "transparent",
-            map_opacity: 0,
-            map_background:"var(--gray-border)",
+            map_opacity: 1,
+            map_view: provinces.mapView,
+            map_background:"color-mix(in srgb, #B1B0AA 40%, white)",
             default_themes: [
                 ["default", "Original"], 
                 ["contrast", "Alto contraste"],
@@ -214,24 +221,18 @@ fetch_json( provinces.geoJSON, { headers: {} }).then(geoProvinces => {
             ]
         };
 
+        // Imagen de fondo para el mapa.
         map = new PonchoMapFilter(
             provinces.mergeData(geoProvinces, entries) , options);
-
-            const imageUrl ='../src/img/map-shadow.png';
-            const imageBounds = [
-                [-20.56830872133435, -44.91768177759874],
-                [-55.861359445914566, -75.2246121480093]
-            ];
-            L.imageOverlay(imageUrl, imageBounds, {opacity: 0.8}).addTo(map.map);
-            
-            // _northEast: v {lat: -20.56830872133435, lng: -44.91768177759874}_southWest: v {lat: -55.861359445914566, lng: -75.2246121480093}[[Prototype]]: Object
-
+        
+        L.imageOverlay(
+            provinces.imageUrl, provinces.imageBounds, {opacity: 0.8}
+        ).addTo(map.map);
 
         map.render();
         map.fitBounds(); // Ajusta el mapa a sus border. *Opcional.
-        // Interacción select / mapa
+
         provinces.selectProvinces(map);
-        // Cierra el loader cuando el mapa está cargado
         loader.close();
     });
 });
