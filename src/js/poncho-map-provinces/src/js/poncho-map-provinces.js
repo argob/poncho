@@ -205,10 +205,28 @@ class PonchoMapProvinces {
 
 
     /**
+     * Selected option cuando selecciono un polígono
+     * @param {object} map Objeto return ponchoMap 
+     */
+    _selectedPolygon = map => {
+        map.map.eachLayer(layer => {
+            layer.on("keypress click", (e) => {
+                if( e?.target?.feature?.properties ){
+                    const {id} = e.target.feature.properties;
+                    document.getElementById("id_provincia").value = id;
+                }
+            });
+        })
+    }
+
+
+    /**
      * Crea el listener para la interacción del select con el mapa.
      * @param {object} map 
      */
     selectProvinces = map => {
+        this._selectedPolygon(map);
+
         // Arma el select con las provincias
         const selectProvinces = this._setSelectProvinces(map);
 
@@ -219,7 +237,9 @@ class PonchoMapProvinces {
         // cambia los datos de la provincia 
         selectProvinces.object.addEventListener("change", e => {
             map.gotoEntry(e.target.value);
+            e.value = selectProvinces.selected
         });
+
     };
 }
 

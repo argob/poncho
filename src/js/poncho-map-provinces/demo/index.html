@@ -129,9 +129,9 @@ const geoJSON = "https://gist.githack.com/agustinbouillet/"
 const provinces = new PonchoMapProvinces({
     geoJSON: geoJSON, // En caso de que se quiera utilizar un GeoJSON particular.
     initialEntry: "42-la-pampa", // Si se agrega el id (que aprece en URL), inicia con esa entrada.
-    // randomEntry: true // Permite que la pagina cargue con una entrada aleatoria.
+    randomEntry: false // Permite que la pagina cargue con una entrada aleatoria.
 });
-provinces.cssStyles();
+// provinces.cssStyles();
 // Loading
 const loader = new PonchoMapLoader({scope: "poncho-map"});
 loader.load();
@@ -212,7 +212,7 @@ fetch_json( provinces.geoJSON, { headers: {} }).then(geoProvinces => {
             theme_map: "transparent",
             map_opacity: 1,
             map_view: provinces.mapView,
-            map_background:"color-mix(in srgb, #B1B0AA 40%, white)",
+            map_background:"color-mix(in srgb, var(--verde-cemento) 50%, white)",
             default_themes: [
                 ["default", "Original"], 
                 ["contrast", "Alto contraste"],
