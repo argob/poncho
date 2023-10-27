@@ -33,6 +33,7 @@
  */
 class PonchoMapProvinces {
     constructor(options){
+        
         const defaultOptions = {
             geoJSON: "https://www.argentina.gob.ar/"
                 + "profiles/argentinagobar/"
