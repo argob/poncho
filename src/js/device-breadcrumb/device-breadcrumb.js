@@ -69,7 +69,7 @@ class DeviceBreadcrumb {
         btn.textContent = "Cerrar";
         btn.classList.add("js-close", "device-breadcrumb__compress-button");
         btn.dataset.title = "Contraer menú";
-        btn.setAttribute("aria-hidden", true);
+        // btn.setAttribute("aria-hidden", true);
         btn.setAttribute("aria-label", "Cierra el menú de miga de pan");
         return btn;
     };
@@ -89,7 +89,7 @@ class DeviceBreadcrumb {
         .querySelectorAll(this.selector)
         .forEach(element => {
             element.classList.add("device-breadcrumb");
-            element.setAttribute("role", "navigation");
+            element.setAttribute("role", "list");
             element.setAttribute("aria-label", "Migas de pan");
         });
 
@@ -235,11 +235,14 @@ class DeviceBreadcrumb {
             // Si es página de inicio le agrega una clase para distinguirlo.
             if(this.isHomeLink(element)){
                 element.classList.add("device-breadcrumb__hidden-item");
+                // element.children[0].setAttribute("aria-hidden", "true");
             }
             // Si es el último (o único), item y no tiene anchor.
             else if (this.isTextItem(element) && key == totalItems - 1){
                 element.classList.add("device-breadcrumb__hidden-item");
+                // element.setAttribute("aria-hidden", "true");
                 element.setAttribute("aria-current", "page");
+
             }
             // Agrego una clase al último elemento visible
             // Hack por si no está el dash final.
@@ -249,6 +252,7 @@ class DeviceBreadcrumb {
             // Toggle items
             else if(key < counter){
                 element.classList.add("device-breadcrumb__toggle-item");
+                element.children[0].setAttribute("aria-hidden", "true");
             }
         });
 
