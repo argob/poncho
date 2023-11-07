@@ -51,16 +51,17 @@
 }
 
 /* Breadcrumb */
-button.device-breadcrumb__compress-button {
-	padding: 0.25em 0;
-	background: transparent;
-	border: none;
-	font-size: 11px;
-}
+/* Se pasó  device*/
+// button.device-breadcrumb__compress-button {
+// 	padding: 0.25em 0;
+// 	background: transparent;
+// 	border: none;
+// 	font-size: 11px;
+// }
 
-.device-breadcrumb__expand-button::after {
-	font-size: 14px;
-}
+// .device-breadcrumb__expand-button::after {
+// 	font-size: 14px;
+// }
 
 ol.breadcrumb {
 	li {

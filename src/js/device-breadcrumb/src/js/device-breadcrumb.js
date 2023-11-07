@@ -41,10 +41,26 @@
  */
 class DeviceBreadcrumb {
     constructor(options){
-        this.breakPoint = 991;
-        this.selector = ".breadcrumb";
+        let opts = Object.assign({}, this.defaults(), options);
+        this.breakPoint = opts.breakPoint;
+        this.selector = opts.selector;
+        this.domain = opts.domain;
         this.addGlobalAttributes();
     }
+
+
+    /**
+     * Configuraciones por defecto.
+     * @returns {object}
+     */
+    defaults = () => {
+        return {
+            breakPoint: 991,
+            selector: ".breadcrumb",
+            domain: ["^/$", "argentina.gob.ar$", "argentina.gob.ar/$"]
+        };
+    };
+
 
     /**
      * Crea el botón expandir
@@ -53,12 +69,19 @@ class DeviceBreadcrumb {
     expandButton = () => {
         const btn = document.createElement("button");
         btn.textContent = "…";
-        btn.classList.add("js-ellip", "device-breadcrumb__expand-button");
+        btn.classList.add(
+            "js-device-breadcrumb--ignore",
+            "device-breadcrumb__expand-button"
+        );
         btn.dataset.title = "Expandir menú";
-        btn.setAttribute("aria-hidden", true);
         btn.setAttribute("aria-label", "Expande el menú de miga de pan");
-        return btn;
+
+        const li = document.createElement("li");
+        li.classList.add("device-breadcrumb__unstyled", "js-ellip",);
+        li.appendChild(btn);
+        return li;
     };
+
 
     /**
     * Crea el botón de cerrar
@@ -67,19 +90,29 @@ class DeviceBreadcrumb {
     closeButton = () => {
         const btn = document.createElement("button");
         btn.textContent = "Cerrar";
-        btn.classList.add("js-close", "device-breadcrumb__compress-button");
+        btn.classList.add(
+            "device-breadcrumb__compress-button",
+            "js-device-breadcrumb--ignore");
         btn.dataset.title = "Contraer menú";
-        // btn.setAttribute("aria-hidden", true);
         btn.setAttribute("aria-label", "Cierra el menú de miga de pan");
-        return btn;
+
+        const li = document.createElement("li");
+        li.classList.add(
+            "js-close",
+            "device-breadcrumb__unstyled", 
+            "device-breadcrumb__compress-button");
+        li.appendChild(btn);
+        return li;
     };
+
 
     /**
     * Agrega el estilo de menú expandido.
     * @returns {undefined}
     */ 
-    _removeDeviceHidden = (menus) => menus
+    _removeDeviceHidden = menus => menus
         .forEach(e => e.classList.add("device-breadcrumb--expanded"));
+
 
     /**
     * Agrega la clase global device-breadcrumbs
@@ -93,6 +126,7 @@ class DeviceBreadcrumb {
             element.setAttribute("aria-label", "Migas de pan");
         });
 
+
     /**
     * Remueve la clase expanded
     * @returns {undefined}
@@ -100,28 +134,30 @@ class DeviceBreadcrumb {
     _removeExpanded = (menus) => menus
         .forEach(e => e.classList.remove("device-breadcrumb--expanded"));
 
+
     /**
      * Chequea si es un enlace de inicio
      * @param {object} element Elemento li 
      * @returns {boolean}
      */
-    isHomeLink = (element) => {
+    isHomeLink = element => {
         let rgxResult;
         if(typeof element.firstChild === "object" && 
             element.firstChild !== null && "getAttribute" in element.firstChild){
                 const href = element.firstChild.getAttribute("href");
-                const rgx = new RegExp("(^/$|argentina.gob.ar$|argentina.gob.ar/$)");
+                const rgx = new RegExp(`(${this.domain.join("|")})`);
                 rgxResult = rgx.exec(href);
         }
         return rgxResult || false;
     };
+
 
     /**
      * Tiene o no tiene, página de inicio.
      * @param {object} menuItems Retorno del selector
      * @returns {boolean}
      */
-    _isFirstElementHome = (menuItems) => {
+    _isFirstElementHome = menuItems => {
         let result = false;
         menuItems.forEach((e, k) => {
             if(k == 0){
@@ -131,13 +167,15 @@ class DeviceBreadcrumb {
         return result;
     };
 
+
     /**
      * Verifica si el elemento es texto y no un enlace.
      * @param {object} element Elemento li 
      * @returns {boolean}
      */
-    isTextItem = (element) => (element.firstChild.tagName != "A" && 
-        element.firstChild.textContent != "");
+    isTextItem = (element) => (element.firstChild?.tagName != "A" && 
+        element.firstChild?.textContent != "");
+
 
     /**
      * Verifica si el último <li/> tiene un enlace dentro.
@@ -150,12 +188,14 @@ class DeviceBreadcrumb {
         return result;
     }
 
+
     /**
      * Borra los botones de expandir y contraer
      * @returns {undefined}
      */
     removeButtons = () => document
         .querySelectorAll(".js-ellip, .js-close").forEach(ele => ele.remove());
+
 
     /**
      * Contrae el menú
@@ -167,6 +207,7 @@ class DeviceBreadcrumb {
         .forEach(e => e.addEventListener(
             "click", () => this._removeDeviceHidden(breadcrumb) 
         ));
+
 
     /**
      * Expande el menu
@@ -192,6 +233,7 @@ class DeviceBreadcrumb {
         return false;
     };
 
+
     /**
      * Oculta la barra del jumbotron
      * @param {object} breadcrumb Resultado del selector .breadcrumb 
@@ -208,6 +250,7 @@ class DeviceBreadcrumb {
             }
         });
     };
+
 
     /**
     * Procesa la lógica de las migas de pan.
@@ -235,12 +278,10 @@ class DeviceBreadcrumb {
             // Si es página de inicio le agrega una clase para distinguirlo.
             if(this.isHomeLink(element)){
                 element.classList.add("device-breadcrumb__hidden-item");
-                // element.children[0].setAttribute("aria-hidden", "true");
             }
             // Si es el último (o único), item y no tiene anchor.
             else if (this.isTextItem(element) && key == totalItems - 1){
                 element.classList.add("device-breadcrumb__hidden-item");
-                // element.setAttribute("aria-hidden", "true");
                 element.setAttribute("aria-current", "page");
 
             }
@@ -252,7 +293,6 @@ class DeviceBreadcrumb {
             // Toggle items
             else if(key < counter){
                 element.classList.add("device-breadcrumb__toggle-item");
-                element.children[0].setAttribute("aria-hidden", "true");
             }
         });
 
@@ -272,15 +312,33 @@ class DeviceBreadcrumb {
         this._onClickExpandButton(breadcrumb);
         this._onClickCloseButton(breadcrumb);
     };
+
+
+    listener = () => {
+        document.addEventListener(
+            "DOMContentLoaded", () => this.render(window.innerWidth));
+        window.addEventListener(
+            "resize", () => this.render(window.innerWidth), true);
+    }
 };
 // end class
 
 
 // CALL
+(new DeviceBreadcrumb).listener();
+
+
+/**
+ example
+ 
+const options = {
+    domain: ["^/$", "argentina.gob.ar$", "argentina.gob.ar/$"]
+}
 document.addEventListener("DOMContentLoaded", () => {
-    const deviceBreadcrumb = new DeviceBreadcrumb();
+    const deviceBreadcrumb = new DeviceBreadcrumb(options);
     deviceBreadcrumb.render(window.innerWidth);
 });
 window.addEventListener("resize", () =>  {
-    const deviceBreadcrumb = new DeviceBreadcrumb();
+    const deviceBreadcrumb = new DeviceBreadcrumb(options);
     deviceBreadcrumb.render(window.innerWidth)}, true);
+*/
