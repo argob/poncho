@@ -13,7 +13,23 @@
  * ese modelo de navegación.
  *
  * @author Agustín Bouillet <bouilleta@jefatura.gob.ar>
- *
+ * @example
+ * (new DeviceBreadcrumb).listener();
+ * 
+ * o
+ *  
+ * const options = {
+ *     domain: ["^/$", "argentina.gob.ar$", "argentina.gob.ar/$"]
+ * }
+ * document.addEventListener("DOMContentLoaded", () => {
+ *    const deviceBreadcrumb = new DeviceBreadcrumb(options);
+ *    deviceBreadcrumb.render(window.innerWidth);
+ * });
+ * window.addEventListener("resize", () =>  {
+ *     const deviceBreadcrumb = new DeviceBreadcrumb(options);
+ *     deviceBreadcrumb.render(window.innerWidth)}, true);
+ * 
+ * 
  * 
  * MIT License
  *
@@ -322,23 +338,3 @@ class DeviceBreadcrumb {
     }
 };
 // end class
-
-
-// CALL
-(new DeviceBreadcrumb).listener();
-
-
-/**
- example
- 
-const options = {
-    domain: ["^/$", "argentina.gob.ar$", "argentina.gob.ar/$"]
-}
-document.addEventListener("DOMContentLoaded", () => {
-    const deviceBreadcrumb = new DeviceBreadcrumb(options);
-    deviceBreadcrumb.render(window.innerWidth);
-});
-window.addEventListener("resize", () =>  {
-    const deviceBreadcrumb = new DeviceBreadcrumb(options);
-    deviceBreadcrumb.render(window.innerWidth)}, true);
-*/
