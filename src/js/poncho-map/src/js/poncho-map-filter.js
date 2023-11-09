@@ -557,7 +557,6 @@ class PonchoMapFilter extends PonchoMap {
      * Crea los checkbox para los filtros.
      */
     _createFilters = (data) => {
-      // debugger
         const form_filters = document
             .querySelector(`.js-filters${this.scope_sufix}`);
 

@@ -36,7 +36,7 @@
 @import "modules/switch";
 @import "modules/media";
 @import "modules/print";
-@import "../js/poncho-map/src/scss/poncho-map";;
+@import "../js/poncho-map/src/scss/poncho-map";
 // Charts and big numbers
 @import "modules/dashboard";
 // Cool stuff from Bootstrap 4
@@ -45,4 +45,5 @@
 @import "modules/menu-lateral-responsive";
 @import "device-breadcrumb/device-breadcrumb";
 @import "calendar/national-holidays";
+@import "../js/poncho-map-provinces/src/scss/poncho-map-provinces";
 
