@@ -129,9 +129,9 @@ const geoJSON = "https://gist.githack.com/agustinbouillet/"
 const provinces = new PonchoMapProvinces({
     geoJSON: geoJSON, // En caso de que se quiera utilizar un GeoJSON particular.
     initialEntry: "42-la-pampa", // Si se agrega el id (que aprece en URL), inicia con esa entrada.
-    // randomEntry: true // Permite que la pagina cargue con una entrada aleatoria.
+    randomEntry: false // Permite que la pagina cargue con una entrada aleatoria.
 });
-provinces.cssStyles();
+// provinces.cssStyles();
 // Loading
 const loader = new PonchoMapLoader({scope: "poncho-map"});
 loader.load();
@@ -166,7 +166,6 @@ fetch_json( provinces.geoJSON, { headers: {} }).then(geoProvinces => {
                 ...{"subtitulos--ignore": "", description: "", img: "", content: "", region: "Región"}
             },
             template:(self, entry) => {
-                // Entradas ad hoc.
                 entry["img"] = entry.image ? `<div class="img"><img src="${entry.image}"></img>` : false;
                 entry["content"] = `<hr><div class="row">${entry["subtitulos--ignore"]}</div>`;
                 return self.defaultTemplate(self, entry); 
@@ -175,9 +174,6 @@ fetch_json( provinces.geoJSON, { headers: {} }).then(geoProvinces => {
                 values: ["img", "description", "capital", "population", "surface", "web", /*"content"*/ ],
                 title_classlist: ["h2","text-cielo"],
                 term_classlist: ["h5", "text-cielo"],
-                // definition_classlist: ["_row"],
-                // term_tag: "dt",
-                // definition_tag: "dd",
                 lead: {
                     key: "region", 
                     style: "text-transform:uppercase;" 
@@ -212,19 +208,24 @@ fetch_json( provinces.geoJSON, { headers: {} }).then(geoProvinces => {
             theme_map: "transparent",
             map_opacity: 1,
             map_view: provinces.mapView,
-            map_background:"color-mix(in srgb, #B1B0AA 40%, white)",
+            map_background:"color-mix(in srgb, var(--verde-cemento) 50%, white)",
             default_themes: [
                 ["default", "Original"], 
                 ["contrast", "Alto contraste"],
                 ["dark", "Oscuro"],
                 ["relax", "Relax"]
-            ]
+            ],
+            // Provinces
+            geoJSON: geoJSON, // En caso de que se quiera utilizar un GeoJSON particular.
+            initialEntry: "42-la-pampa", // Si se agrega el id (que aprece en URL), inicia con esa entrada.
+            randomEntry: false // Permite que la pagina cargue con una entrada aleatoria.
         };
 
         // Imagen de fondo para el mapa.
         map = new PonchoMapFilter(
             provinces.mergeData(geoProvinces, entries) , options);
         
+        // Agrega una imagen de fondo
         L.imageOverlay(
             provinces.imageUrl, provinces.imageBounds, {opacity: 0.8}
         ).addTo(map.map);
@@ -233,6 +234,7 @@ fetch_json( provinces.geoJSON, { headers: {} }).then(geoProvinces => {
         map.fitBounds(); // Ajusta el mapa a sus border. *Opcional.
 
         provinces.selectProvinces(map);
+
         loader.close();
     });
 });
