@@ -1,15 +1,35 @@
 .device-breadcrumb {
   &__hidden {
-      display: none;
+    display: none;
   }
+
   &--expanded &__expand-button {
     display: none;
+  }
+
+  & &__unstyled,
+  & &__unstyled:before,
+  & &__unstyled:after {
+    padding: 0;
+    margin: 0;
+  }
+
+  & &__unstyled:before,
+  & &__unstyled:after {
+    content: "";
   }
 
   &__compress-button {
     display: none;
     padding: 0 0.75em;
     margin-top: 0.25em;
+
+    button {
+      padding: 0.25em 0;
+      background: transparent;
+      border: none !important;
+      font-size: 11px;
+    }
   }
 
   &__expand-button {
@@ -24,6 +44,7 @@
     padding: 0 5px;
     color: inherit;
     content: "/";
+    font-size: 14px;
   }
 
   &__expand-button:hover {
@@ -37,7 +58,7 @@
     top: -9999em;
   }
 
-  & &__last-visible-item + li:not(a) {
+  & &__last-visible-item+li:not(a) {
     position: absolute;
     left: -9999em;
     top: -9999em;

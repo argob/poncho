@@ -220,10 +220,17 @@ const ponchoTableDependant = opt => {
             dateSplit[2], dateSplit[1] - 1, dateSplit[0]
         );
 
+        const datetime = finalDateIso.toISOString().split('T')[0];
+
         const hiddenSpan = document.createElement("span");
         hiddenSpan.style.display = "none";
-        hiddenSpan.textContent = finalDateIso.toISOString().split('T')[0];
-        return hiddenSpan.outerHTML + value;
+        hiddenSpan.textContent = datetime;
+        
+        const time = document.createElement("time");
+        time.setAttribute("datetime", datetime);
+        time.textContent = value;
+
+        return hiddenSpan.outerHTML + time.outerHTML;
     };
 
 
@@ -347,12 +354,11 @@ const ponchoTableDependant = opt => {
 
             // Recorro cada uno de los títulos
             Object.keys(gapi_data.headers).forEach(header => {
-                filas = entry[header];
-
+                let filas = entry[header];
+                
                 if (header.startsWith("btn-") && filas != "") {
-                    filas = button(
-                        header.replace("btn-", "").replace("-", " "), filas
-                    );
+                    const label = header.replace("btn-", "").replace("-", " ");
+                    filas = button(label, filas);
                 } else if (header.startsWith("fecha-") && filas != "") {
                     filas = tdDate(filas);
                 }
@@ -368,9 +374,14 @@ const ponchoTableDependant = opt => {
                 let allowed_tags = (opt.hasOwnProperty("allowedTags") ? 
                         opt.allowedTags : allowedTags);
                 
-                // Anchor como filtro está permitido por defecto.
-                allowed_tags = (  header.startsWith("btn-") && filas != "" ? 
-                        [...allowed_tags, "a"] : allowed_tags);
+                // Las etiquetas `<a>` y `<time>` junto con `<span>`, están 
+                // permitidas si existen los prefijos _btn-_ y _fecha-_ 
+                // respectivamente.
+                if(header.startsWith("btn-") && filas != ""){
+                    allowed_tags = [...allowed_tags, "a"];
+                } else if(header.startsWith("fecha-") && filas != ""){
+                    allowed_tags = [...allowed_tags, "span", "time"];
+                }
                 
                 const cleannedText = secureHTML(filas, allowed_tags);
                 if(_isMarkdownEnable()){

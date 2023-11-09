@@ -80,7 +80,7 @@ gulp.task('compress', function () {
     return gulp.src([
             './src/js/showdown-extensions/showdown-extensions.js',
             './src/js/mapa-argentina/mapa-argentina.js',
-            './src/js/device-breadcrumb/device-breadcrumb.js',
+            './src/js/device-breadcrumb/src/js/device-breadcrumb.js',
             './src/js/national-holidays/national-holidays.js',
             './src/js/device-panel-menu/device-panel-menu.js'
         ])
@@ -111,7 +111,7 @@ gulp.task('sass', function(){
 gulp.task('sass_poncho', function(){
   return gulp.src([
         './src/scss/poncho.scss',
-        './src/scss/device-breadcrumb/device-breadcrumb.scss',
+        './src/js/device-breadcrumb/src/scss/device-breadcrumb.scss',
     ])
     .pipe(sass.sync({outputStyle: 'compressed'}).on('error', sass.logError))
     // .pipe(sass())
