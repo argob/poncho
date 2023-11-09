@@ -11,3 +11,19 @@
         display: inherit;
     }
 }
+
+
+
+.poncho-map-province__toggle-element {
+    display: none;
+}
+
+@media screen and (max-width:992px) {
+    .poncho-map-province__toggle-map {
+        display: none;
+    }
+
+    .poncho-map-province__toggle-element {
+        display: inherit;
+    }
+}
