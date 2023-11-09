@@ -139,11 +139,13 @@ class PonchoMapProvinces extends PonchoMapFilter {
         if(this.hideSelect){
             return;
         }
-        const s = document.querySelectorAll("#id_provincia");
+        const s = document.querySelectorAll(
+            ".poncho-map-province__toggle-map,.poncho-map-province__toggle-element");
         s.forEach(element => {
-            element
-                .closest(".mapa-provincias")
-                .classList.remove("mapa-provincias"); 
+            element.classList.remove(
+                "poncho-map-province__toggle-map",
+                "poncho-map-province__toggle-element"
+            ); 
         });
     };
 
