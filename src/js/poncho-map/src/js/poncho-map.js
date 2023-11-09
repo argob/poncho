@@ -76,8 +76,8 @@ class PonchoMap {
                 ["contrast", "Alto contraste"],
                 ["dark", "Oscuro"],
                 ["grayscale", "Gris"],
-                ["sepia", "Sepia"],
-                ["blue", "Azul"],
+                // ["sepia", "Sepia"],
+                // ["blue", "Azul"],
                 ["relax", "Relax"]
             ],
             markdown_options: {
