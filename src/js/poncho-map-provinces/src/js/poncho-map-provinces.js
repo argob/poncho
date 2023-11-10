@@ -83,6 +83,30 @@ const ponchoMapProvinceMergeData = (geoProvinces={}, entries={},
 };
 
 
+/**
+ * Remueve estilos toggle del select y el contenedor del mapa
+ * 
+ * @summary Este objeto no puede estar dentro de la clase porque no se puede
+ * utiliar `this` antes de `super()` en ES6.
+ * @returns {undefined}
+ */
+const ponchoMapProvinceCssStyles = (flag) => {
+    if(flag){
+        return;
+    }
+    const s = document.querySelectorAll(
+        ".poncho-map-province__toggle-map,"
+        + ".poncho-map-province__toggle-element"
+    );
+    s.forEach(element => {
+        element.classList.remove(
+            "poncho-map-province__toggle-map",
+            "poncho-map-province__toggle-element"
+        ); 
+    });
+};
+
+
 class PonchoMapProvinces extends PonchoMapFilter {
     constructor(geoProvinces, entries, options){
 
@@ -123,9 +147,13 @@ class PonchoMapProvinces extends PonchoMapFilter {
         // Merge options
         let opts = Object.assign({}, defaultOptions, options);
 
+        ponchoMapProvinceCssStyles(opts.hide_select);
+
         // PonchoMapFilter instance
         const mergedJSONs = ponchoMapProvinceMergeData(
             geoProvinces, entries, opts.province_index);
+        
+        
         super(mergedJSONs, opts);
 
         this.initialEntry = opts.initial_entry;
@@ -137,27 +165,6 @@ class PonchoMapProvinces extends PonchoMapFilter {
         this.mapView = opts.map_view;
         this.hideSelect = opts.hide_select;
     }
-
-
-    /**
-     * Aplica los estilos en el <head>
-     * @returns {undefined}
-     */
-    _cssStyles = () => {
-        if(this.hideSelect){
-            return;
-        }
-        const s = document.querySelectorAll(
-            ".poncho-map-province__toggle-map,"
-            + ".poncho-map-province__toggle-element"
-        );
-        s.forEach(element => {
-            element.classList.remove(
-                "poncho-map-province__toggle-map",
-                "poncho-map-province__toggle-element"
-            ); 
-        });
-    };
 
 
     /**
@@ -308,7 +315,7 @@ class PonchoMapProvinces extends PonchoMapFilter {
         L.imageOverlay(
             this.overlayImageUrl, this.overlayImageBounds, 
             {opacity: this.overlayImageOpacity}
-        ).addTo(this.map);  
+        ).addTo(this.map);
     }
 
 
@@ -316,7 +323,6 @@ class PonchoMapProvinces extends PonchoMapFilter {
      * imprime el mapa
      */ 
     renderProvinceMap = () =>{
-        this._cssStyles();
         this._overlayImage();
         this.render(); // Imprime PonchoMapsFilter
         this.fitBounds(); // Ajusta el mapa a sus border. *Opcional.
