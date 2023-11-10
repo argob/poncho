@@ -58,6 +58,8 @@
 <div class="container">
 <div class="row">
 <div class="col-md-12">
+    <p class="m-t-1 p-a-0"><a href="./">Inicio</a></p>
+    <hr class="p-a-0 m-a-0">
     <h1>Mapa con provincia</h1>
 </div>
 
@@ -171,16 +173,18 @@ fetch_json(geoJSON, { headers: {} }).then(geoProvinces => {
             },
             tooltip: true, // Tooltip en marker o región
             hash: true, // Permite abrir un item via URL.
-            provinceIndex: "provincia", // Nombre de la columna con el nombre de la provincia
+            province_index: "provincia", // Nombre de la columna con el nombre de la provincia
             fit_bounds_onevent: false, // true hace zoom en la provincia cuando se utilia el select o por url
             theme_ui: "default", // tema del slider y control de zoom
             theme_map: "transparent", // Tema del mapa
             map_opacity: 1, // Opacidad del mapa OSM
             // map_view: (new PonchoMapProvinces).mapView, // Define la vista principal del mapa
             map_background: "white",  // define el color de fondo del mapa 
-            // initialEntry: "42-la-pampa", // Si se agrega el id (que aprece en URL), inicia con esa entrada.
-            // randomEntry: true, // Permite que la página se cargue con una entrada aleatoria.
-            hideSelect: true // Si es true el select solo se muestra en mobile
+            // initial_entry: "42-la-pampa", // Si se agrega el id (que aprece en URL), inicia con esa entrada.
+            // random_entry: true, // Permite que la página se cargue con una entrada aleatoria.
+            hide_select: true, // Si es true el select solo se muestra en mobile
+            overlay_image: true,
+            overlay_image_opacity: 0.75,
         };
 
         // Instancia para controlar ponchoMap con filtro por provincias.
