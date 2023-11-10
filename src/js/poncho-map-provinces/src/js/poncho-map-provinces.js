@@ -123,6 +123,7 @@ class PonchoMapProvinces extends PonchoMapFilter {
                 + "sites/default/files/map-shadow.png",
             hide_select: true,
             province_index: "provincia",
+            fit_bounds: true,
             // Sobreescribo opciones de PonchoMap
             map_view:[-40.47815508388363,-60.0045383246273],
             map_init_options: {
@@ -164,6 +165,7 @@ class PonchoMapProvinces extends PonchoMapFilter {
         this.overlayImageOpacity = opts.overlay_image_opacity;
         this.mapView = opts.map_view;
         this.hideSelect = opts.hide_select;
+        this.fitToBounds = opts.fit_bounds
     }
 
 
@@ -325,7 +327,9 @@ class PonchoMapProvinces extends PonchoMapFilter {
     renderProvinceMap = () =>{
         this._overlayImage();
         this.render(); // Imprime PonchoMapsFilter
-        this.fitBounds(); // Ajusta el mapa a sus border. *Opcional.
+        if(this.fitToBounds){
+            this.fitBounds(); // Ajusta el mapa a sus border. *Opcional.
+        }
         this.selectProvinces(this); // Controla el select de las provincias.
     };
 }
