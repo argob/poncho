@@ -6398,14 +6398,14 @@ class PonchoMapSearch {
 };
 
 /**
- * PONCHO MAP
+ * PONCHO MAP FILTRO POR PROVINCIAS
  *
  * @summary Assets para configrar poncho map con un geoJSON de provincias.
  *
  * @author Agustín Bouillet <bouilleta@jefatura.gob.ar>
  *
- * 
- * 
+ *
+ *
  * MIT License
  *
  * Copyright (c) 2023 Argentina.gob.ar
@@ -6417,10 +6417,10 @@ class PonchoMapSearch {
  * publish, distribute, sublicense, and/or sell copies of the Software,
  * and to permit persons to whom the Software is furnished to do so,
  * subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be
  * included in all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
  * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -6430,8 +6430,6 @@ class PonchoMapSearch {
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
-
 const PONCHOMAP_GEOJSON_PROVINCES = "https://www.argentina.gob.ar/"
         + "profiles/argentinagobar/"
         + "themes/contrib/poncho/resources/jsons/" 
@@ -6440,16 +6438,19 @@ const PONCHOMAP_GEOJSON_PROVINCES = "https://www.argentina.gob.ar/"
 
 /**
  * Junta el geoJSON con el JSON de Google Sheet
- * 
+ *
+ * @summary Este objeto no puede estar dentro de la clase porque no se puede
+ * utiliar `this` antes de `super()` en ES6.
+ *
  * @param {object} geoProvinces GeoJSON
  * @param {object} entries JSON con entradas por provincia.
  * @returns {object}
  */
-const ponchoMapProvinceMergeData = (geoProvinces={}, entries={}, 
+const ponchoMapProvinceMergeData = (geoProvinces={}, entries={},
                                     provinceIndex="provincia") => {
-    
+
     geoProvinces.features.forEach((feature, key) => {
-        const jsonEntry = entries.find(entry => 
+        const jsonEntry = entries.find(entry =>
             (entry[provinceIndex] == feature.properties.fna ||
             entry[provinceIndex] == feature.properties.nam)
         );
@@ -6476,38 +6477,42 @@ const ponchoMapProvinceMergeData = (geoProvinces={}, entries={},
 
         Object.assign(geoProvinces.features[key].properties, jsonEntry);
     });
+    console.log(geoProvinces)
     return geoProvinces;
 };
 
 
 class PonchoMapProvinces extends PonchoMapFilter {
     constructor(geoProvinces, entries, options){
-        
+
         const defaultOptions = {
-            initialEntry: false, 
-            randomEntry: false,
-            imageUrl:'https://www.argentina.gob.ar/sites/default/files/map-shadow.png',
-            imageBounds: [
+            initial_entry: false,
+            random_entry: false,
+            overlay_image: true,
+            overlay_image_bounds: [
                 [-20.56830872133435, -44.91768177759874],
                 [-55.861359445914566, -75.2246121480093]
             ],
-            mapView:[-40.47815508388363,-60.0045383246273],
-            hideSelect: true,
-            provinceIndex: "provincia",
-            // Sobre escribo opciones de PonchoMap
+            overlay_image_opacity: 0.8,
+            overlay_image_url: "https://www.argentina.gob.ar/"
+                + "sites/default/files/map-shadow.png",
+            hide_select: true,
+            province_index: "provincia",
+            // Sobreescribo opciones de PonchoMap
+            map_view:[-40.47815508388363,-60.0045383246273],
             map_init_options: {
-                zoomSnap: .2,
+                zoomSnap: 0.2,
                 zoomControl: true,
                 doubleClickZoom: false,
                 scrollWheelZoom: false,
                 boxZoom: false
             },
             map_zoom: 4.4,
-            tooltip_options:{
+            tooltip_options: {
                 permanent: false,
                 className: "leaflet-tooltip-own",
                 direction: "auto",
-                offset: [0, -3], 
+                offset: [0, -3],
                 sticky: true,
                 opacity: 1,
             },
@@ -6516,17 +6521,20 @@ class PonchoMapProvinces extends PonchoMapFilter {
         };
         // Merge options
         let opts = Object.assign({}, defaultOptions, options);
-        
+
         // PonchoMapFilter instance
         const mergedJSONs = ponchoMapProvinceMergeData(
-            geoProvinces, entries, opts.provinceIndex);
-        super(mergedJSONs, opts); 
-        this.initialEntry = opts.initialEntry; 
-        this.randomEntry = opts.randomEntry;
-        this.imageUrl = opts.imageUrl;
-        this.imageBounds = opts.imageBounds;
-        this.mapView = opts.mapView;
-        this.hideSelect = opts.hideSelect;
+            geoProvinces, entries, opts.province_index);
+        super(mergedJSONs, opts);
+
+        this.initialEntry = opts.initial_entry;
+        this.randomEntry = opts.random_entry;
+        this.overlayImage = opts.overlay_image;
+        this.overlayImageUrl = opts.overlay_image_url;
+        this.overlayImageBounds = opts.overlay_image_bounds;
+        this.overlayImageOpacity = opts.overlay_image_opacity;
+        this.mapView = opts.map_view;
+        this.hideSelect = opts.hide_select;
     }
 
 
@@ -6539,7 +6547,9 @@ class PonchoMapProvinces extends PonchoMapFilter {
             return;
         }
         const s = document.querySelectorAll(
-            ".poncho-map-province__toggle-map,.poncho-map-province__toggle-element");
+            ".poncho-map-province__toggle-map,"
+            + ".poncho-map-province__toggle-element"
+        );
         s.forEach(element => {
             element.classList.remove(
                 "poncho-map-province__toggle-map",
@@ -6596,7 +6606,7 @@ class PonchoMapProvinces extends PonchoMapFilter {
             }
             prov[p.properties[idKey]] = name;
         }).filter(f => f);
-        
+
         let provincesToList = this.sortObject( Object.entries(prov), 1);
         return provincesToList;
     };
@@ -6677,7 +6687,7 @@ class PonchoMapProvinces extends PonchoMapFilter {
         if(selectProvinces.selected){
             map.gotoEntry(selectProvinces.selected)
         }
-        
+
         // cambia los datos de la provincia 
         selectProvinces.object.addEventListener("change", e => {
             map.gotoEntry(e.target.value);
@@ -6687,21 +6697,32 @@ class PonchoMapProvinces extends PonchoMapFilter {
 
 
     /**
+     * Implementa una imagen sobre el mapa
+     * @returns {undefined}
+     */
+    _overlayImage = () => {
+        if(!this.overlayImage){
+            return;
+        }
+        L.imageOverlay(
+            this.overlayImageUrl, this.overlayImageBounds, 
+            {opacity: this.overlayImageOpacity}
+        ).addTo(this.map);  
+    }
+
+
+    /**
      * imprime el mapa
      */ 
     renderProvinceMap = () =>{
         this._cssStyles();
-        // Agrega una imagen de fondo
-        L.imageOverlay(
-            this.imageUrl, this.imageBounds, {opacity: 0.8}
-        ).addTo(this.map);  
+        this._overlayImage();
         this.render(); // Imprime PonchoMapsFilter
         this.fitBounds(); // Ajusta el mapa a sus border. *Opcional.
         this.selectProvinces(this); // Controla el select de las provincias.
     };
 }
 // end class
-
 
 /**
  * Helpers para manejar los json provenientes de Google Sheets.
