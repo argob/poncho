@@ -31,9 +31,8 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-const PONCHOMAP_GEOJSON_PROVINCES = "https://www.argentina.gob.ar/"
-        + "profiles/argentinagobar/"
-        + "themes/contrib/poncho/resources/jsons/" 
+const PONCHOMAP_GEOJSON_PROVINCES = "/profiles/argentinagobar/"
+        + "themes/contrib/poncho/resources/jsons/"
         + "geo-provincias-argentinas.json";
 
 
@@ -50,25 +49,26 @@ const PONCHOMAP_GEOJSON_PROVINCES = "https://www.argentina.gob.ar/"
 const ponchoMapProvinceMergeData = (geoProvinces={}, entries={},
                                     provinceIndex="provincia") => {
 
+    if(!geoProvinces.hasOwnProperty("features")){
+        throw new Error("Invalid data format");
+    }
+
     geoProvinces.features.forEach((feature, key) => {
         const jsonEntry = entries.find(entry =>
             (entry[provinceIndex] == feature.properties.fna ||
             entry[provinceIndex] == feature.properties.nam)
         );
-
         // Si no existe la provincia en el JSON, borra el feature.
         if(!jsonEntry && feature.properties.fna){
             delete geoProvinces.features[key];
             return;
         }
-
         // Si hay definido un key _color_, usa el color en el fill.
         if(jsonEntry?.color && !feature.properties["pm-type"]){
             geoProvinces
                 .features[key]
                 .properties.stroke = ponchoColor(jsonEntry.color);
         }
-
         // Remuevo la propiedad interactive del json para que no se interponga
         // con el valor del geoJSON.
         if(feature.properties["pm-interactive"] === "n" && 
@@ -78,7 +78,6 @@ const ponchoMapProvinceMergeData = (geoProvinces={}, entries={},
 
         Object.assign(geoProvinces.features[key].properties, jsonEntry);
     });
-    console.log(geoProvinces)
     return geoProvinces;
 };
 
@@ -90,7 +89,7 @@ const ponchoMapProvinceMergeData = (geoProvinces={}, entries={},
  * utiliar `this` antes de `super()` en ES6.
  * @returns {undefined}
  */
-const ponchoMapProvinceCssStyles = (flag) => {
+const ponchoMapProvinceCssStyles = flag => {
     if(flag){
         return;
     }
@@ -152,9 +151,9 @@ class PonchoMapProvinces extends PonchoMapFilter {
 
         // PonchoMapFilter instance
         const mergedJSONs = ponchoMapProvinceMergeData(
-            geoProvinces, entries, opts.province_index);
-        
-        
+            geoProvinces, entries, opts.province_index
+        );
+
         super(mergedJSONs, opts);
 
         this.initialEntry = opts.initial_entry;
@@ -288,7 +287,7 @@ class PonchoMapProvinces extends PonchoMapFilter {
      * Crea el listener para la interacción del select con el mapa.
      * @param {object} map 
      */
-    selectProvinces = map => {
+    _selectProvinces = map => {
         this._selectedPolygon(map);
 
         // Arma el select con las provincias
@@ -328,9 +327,9 @@ class PonchoMapProvinces extends PonchoMapFilter {
         this._overlayImage();
         this.render(); // Imprime PonchoMapsFilter
         if(this.fitToBounds){
-            this.fitBounds(); // Ajusta el mapa a sus border. *Opcional.
+            this.fitBounds();
         }
-        this.selectProvinces(this); // Controla el select de las provincias.
+        this._selectProvinces(this);
     };
 }
 // end class
