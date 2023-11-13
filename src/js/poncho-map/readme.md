@@ -608,6 +608,5 @@ Por último agregamos la llamada al mapa.
 
 
 ## Referencias
-1. jQuery <[https://jquery.com/](https://jquery.com/)>
-2. Leaftlet <[https://leafletjs.com/](https://leafletjs.com/)>
+1. Leaftlet <[https://leafletjs.com/](https://leafletjs.com/)>
 ****
