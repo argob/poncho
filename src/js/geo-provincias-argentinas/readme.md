@@ -2,9 +2,9 @@
 
 El mapa está adaptado del provisto por [IGN](http://www.ign.gob.ar/) en; [CapasSig](https://www.ign.gob.ar/NuestrasActividades/InformacionGeoespacial/CapasSIG), [Polígonos provincias argentinas](https://dnsg.ign.gob.ar/apps/api/v1/capas-sig/Geodesia+y+demarcaci%C3%B3n/L%C3%ADmites/provincia/json). 
 
-En este caso se agregó Ciudad Autónoma de Buenos Aires a un costado y con un tamaño más grande, favoreciendo la posibilidad de interactuar con el polígono desde una pantalla de escritorio o mobile. 
+En este caso se agregó _Ciudad Autónoma de Buenos Aires_ a un costado y con un tamaño más grande, favoreciendo la posibilidad de interactuar con el polígono desde una pantalla de escritorio o móvil.
 
-También se hizo un recuadro en la esquina inferior derecha con Antártida minificada con los polígonos referenciados a Tierra del Fuego, Antártida e Islas del Atlántico Sur.
+También se hizo un recuadro en la esquina inferior derecha con Antártida reducida con los polígonos referenciados a Tierra del Fuego, Antártida e Islas del Atlántico Sur.
 
 ## Parámetros adicionados
 
