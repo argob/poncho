@@ -4,7 +4,7 @@
 
 # PonchoMap
 
-![Poncho Map](./img/map.png)
+![Poncho Map](./demo/img/map.png)
 
 ## Conteidos
 
@@ -27,6 +27,7 @@
 | scope | `string` | _`empty string`_ | Es el ambiente de trabajo sobre un mapa en particular. Cuando se utiliza más de un mapa en la página esto sirve para diferenciarlos. | 
 | map_selector | `string` | map | Nombre del id que utiliza Leaflet para hacer el _render_ del mapa. | 
 | id | `string` | id | Nombre de la columna donde se encuentra el id. Si la fuente de datos usa otro nombre se define con esta opción. Ej. `"id":"id_punto_digital"`.| 
+| id_mixing | `object` | `[]` | Permite definir cómo se llamará el identificador de un macador, polígono o línea del mapa, concatenando índices o cadenas de texto en un _array_. Por ejemplo: `["id", "cadena-de-texto", "name"]`. <br><br>El orden de los elementos depende del criterio de quien lo arma y, las cadenas de texto pasan por un filtro que los convierte en [_slug_](https://es.wikipedia.org/wiki/Slug).  |
 | latitud | `string` | latitud | Nombre de la columna con el valor de latitud. Si la fuente de datos usa otro nombre se define con esta opción. Ej. `"latitud":"lat"`.| 
 | longitud | `string` | longitud | Nombre de la columna con el valor de longitud. Si la fuente de datos usa otro nombre se define con esta opción. Ej. `"longitud":"lng"`.| 
 | content_selector | `boolean` | `false` | Permite esetablecer un selector alternativo donde se quiera imprimir el contenido. |
@@ -55,6 +56,10 @@
 | theme_ui | `string` | `default` | Permite definir un tema de color para la interfase del mapa. |
 | theme_map | `string` | `default` | Permite definir un tema de color para el mapa. |
 | theme_tool | `boolean` | `true` | Permite remover la herramienta de temas para el usuario. |
+| fit_bounds_onevent | `boolean` | `true` | Realiza un zoom en el polígono, línea o marcador, cuando se utilia el select o por URL. |
+| map_opacity | `float` | 1 | Permite transparentar los mozaicos (_tiles_, del inglés), que componen el mapa. El rango es de 0 a 1. Por ejémplo: `map_opacity: 0.5` |
+| map_background | `string` | `#DDD` | Permite definir un color de fondo para el mapa.<br><br>Junto a `map_opacity`, puede resulter de un uso interesante. |
+
 
 
 ### <a id="opciones-template-structure"></a>Opciones para `template_structure` [⏎](#opciones "Ir al listado de opciones generales")
@@ -115,7 +120,7 @@ const options = {
 | style | `string, function` | "" | **String**<br>Definición para _style_, ej:<br>`"color: orange; font-size:2em; margin: 2em auto;"`.<br><br>**Función** <br>`css: (self, entry) => string;`<br>Dónde `self` el la instancia del objeto *PonchoMap* o *PonchoMapFilter* y `entry` corresponde a una entrada o feature del JSON. |
 #### <a id="opciones-para-mixing"></a>Opciones para `mixing` [⏎](#opciones-template-structure)
 
-![Mixing](./img/mixing.png)
+![Mixing](./demo/img/mixing.png)
 
 ```js
 "template_structure": {
@@ -141,7 +146,7 @@ const options = {
 
 ### <a id="opciones-header-icons"></a> Opciones para `header_icons` [⏎](#opciones)
 
-![Header icons](./img/header-icons.png)
+![Header icons](./demo/img/header-icons.png)
 
 ```js
 const options = {
