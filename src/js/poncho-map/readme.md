@@ -604,9 +604,6 @@ Por último agregamos la llamada al mapa.
 </script>
 ```
 
-
-
-
 ## Referencias
 1. Leaftlet <[https://leafletjs.com/](https://leafletjs.com/)>
 ****
