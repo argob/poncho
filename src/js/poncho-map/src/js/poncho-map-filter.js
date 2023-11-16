@@ -329,19 +329,33 @@ class PonchoMapFilter extends PonchoMap {
      * o, si se desean todos los checkbox desmarcados.
      *   ["tipo", false]
      */
-    _fieldsToUse = (fields_items) => {
+    _fieldsToUse = (fieldsItems) => {
         const {
-            fields: opt_fields = false, 
-            field: opt_field = false} = fields_items;
-        if(!opt_fields && !opt_field){
+            type = "checkbox",
+            fields: optFields = false, 
+            field: optField = false} = fieldsItems;
+
+        if(!optFields && !optField){
             this.errorMessage(
                 "Filters requiere el uso del atributo `field` o `fields`.",
                 "warning"
             );
         }
-        const fields_to_use = (opt_fields ? opt_fields : 
-            this._setFilter(opt_field));
-        return fields_to_use
+        // Evito que a los radio se les asigne un valor checked.
+        if (optField && type === "radio"){
+            optField[1] = false;
+        }
+
+        let fieldsToUse = (optFields ? optFields : this._setFilter(optField));
+        // Hasta que se defina su uso, todos los radio tienen un item `Todos`.
+        if(type === "radio" && optFields === false){
+            const f = fieldsToUse.map(m => m[1]);
+            fieldsToUse = [
+                [fieldsToUse[0][0], "Todos", f, "checked"], ...fieldsToUse
+            ];
+        }
+        
+        return fieldsToUse;
     };
 
 
@@ -360,8 +374,9 @@ class PonchoMapFilter extends PonchoMap {
             const field = fields_to_use[key];
             const input = document.createElement("input");
             input.type = (this.valid_fields.includes(fields_items.type) ?
-            fields_items.type : "checkbox");
+                fields_items.type : "checkbox");
             input.id = `id__${field[0]}__${group}__${key}`;
+            
             if(fields_items.type == "radio"){
                 input.name = `${field[0]}__${group}`;
             } else {
@@ -567,7 +582,8 @@ class PonchoMapFilter extends PonchoMap {
 
             let fieldset = document.createElement("fieldset");
             fieldset.appendChild(legend);
-            if(item.hasOwnProperty("check_uncheck_all") && item.check_uncheck_all){
+            if(item.hasOwnProperty("check_uncheck_all") && 
+                    item.check_uncheck_all && item?.type != "radio"){
                 fieldset.appendChild(this._checkUncheckButtons(item));
             }
             fieldset.appendChild(this._fields(item, group));
