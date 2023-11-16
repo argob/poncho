@@ -69,7 +69,7 @@ COPIAR DESDE ACÁ…
 <link href="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.css" rel="stylesheet" />
 <link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.css" rel="stylesheet" />
 <link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.Default.css" rel="stylesheet" />
-<link href="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js" rel="stylesheet" />
+<script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
 <!-- / INCLUDES -->
 
 
@@ -108,13 +108,15 @@ COPIAR DESDE ACÁ…
         "hash": true,
         "filters" :[
             {
-            "legend" : "Filtrar por tipo",
-            // "fields" : [
-            //     ["tipo", "Archivo provincial", ["Archivo provincial"], "checked"],
-            //     ["tipo", "Archivo nacional", ["Archivo nacional"], "checked"],
-            // ],
-            "field": ["tipo"],
-            "check_uncheck_all": true
+                type: "radio",
+                legend : "Filtrar por tipo",
+                fields : [
+                    ["tipo", "Todos", ["Archivo provincial", "Archivo nacional"], "checked"],
+                    ["tipo", "Archivo provincial", ["Archivo provincial"], false],
+                    ["tipo", "Archivo nacional", ["Archivo nacional"], false ],
+                ],
+                field: ["tipo"],
+                check_uncheck_all: true
             },
         ],
         };
