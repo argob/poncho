@@ -6893,7 +6893,7 @@ class GapiSheetData {
  */
 class TranslateHTML {
     ATTRIBUTES = [
-        "title", "placeholder", "alt", "value", "href", "src", "lang"
+        "title", "placeholder", "alt", "value", "href", "src", "html.lang"
     ];
 
     /**
@@ -6908,23 +6908,15 @@ class TranslateHTML {
     }
 
 
+    /**
+     * Ordena los términos
+     * 
+     * @summary Ordena el diccionario de mayor a menor según el total de 
+     * caracteres de cada término.
+     * @param {object} obj Listado a ordenar
+     * @returns {object} Listado ordenado
+     */
     sortByLength = obj => {
-
-        obj.sort((a, b) => {
-            const valA = a[0].length;
-            const valB = b[0].length;
-            if (valA > valB) {
-                return -1;
-            }
-            if (valA < valB) {
-                return 1;
-            }
-            return 0;
-        });
-        console.log(obj)
-        return obj;
-
-/*
         obj.sort((a, b) => {
             if (a[0].length > b[0].length) {
                 return -1;
@@ -6935,8 +6927,7 @@ class TranslateHTML {
             }
         });
         return obj;
-        */
-    }
+    };
 
 
     /**
@@ -6953,13 +6944,21 @@ class TranslateHTML {
      */
     translateAttributes = (dictionary=false) => {
         const dict = (dictionary ? dictionary : this.dictionary);
-        this.attributes.forEach((item) =>
-            dict.forEach((translate) =>
+        this.attributes.forEach((item) => {
+
+            const attrDef = item.split(".").slice(-2);
+            const tag = (attrDef.length === 2 ? attrDef[0] : "");
+            const attr = (attrDef.length === 2 ? attrDef[1] : attrDef[0]);
+
+            dict.forEach(translate => {
+                
+                console.log(`${tag}[${attr}='${translate[0]}']`, translate[1])
+                
                 document
-                    .querySelectorAll(`[${item}='${translate[0]}']`)
-                    .forEach((t) => (t[item] = translate[1]))
-            )
-        );
+                    .querySelectorAll(`${tag}[${attr}='${translate[0]}']`)
+                    .forEach(t => (t[attr] = translate[1]));
+            });
+        });
     };
 
 
