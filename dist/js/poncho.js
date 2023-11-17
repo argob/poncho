@@ -6896,7 +6896,6 @@ class TranslateHTML {
         "title", "placeholder", "alt", "value", "href", "src", "lang"
     ];
 
-
     /**
      * @param {object} dictionary Objeto con diccionario de terminos 
      * a traducir.
@@ -6904,8 +6903,39 @@ class TranslateHTML {
      * a traducir.
      */
     constructor(dictionary = [], attributes = []) {
-        this.dictionary = dictionary;
+        this.dictionary = this.sortByLength(dictionary);
         this.attributes = (attributes.length ? attributes : this.ATTRIBUTES);
+    }
+
+
+    sortByLength = obj => {
+
+        obj.sort((a, b) => {
+            const valA = a[0].length;
+            const valB = b[0].length;
+            if (valA > valB) {
+                return -1;
+            }
+            if (valA < valB) {
+                return 1;
+            }
+            return 0;
+        });
+        console.log(obj)
+        return obj;
+
+/*
+        obj.sort((a, b) => {
+            if (a[0].length > b[0].length) {
+                return -1;
+            } else if (a[0].length < b[0].length) {
+                return 1;
+            } else {
+                return a[0] - b[0];
+            }
+        });
+        return obj;
+        */
     }
 
 

@@ -37,6 +37,8 @@
         <li>Redes sociales del área</li>
         <li>Editar</li>
     </ul>
+    <h2>Enlaces</h2>
+    <p><a href="#" lang="es" title="Editar" langref="es">Editar</a></p>
     <h2>Formularios</h2>
     <h3>Select</h3>
     <p>Traduce el label y el atributo <em>value</em>.</p>
@@ -55,14 +57,15 @@
     </div>
 
     <!--  -->
-    <script src="../../../../dist/js/poncho.min.js"></script>
+    <script src="../../utils/connect.js"></script>
+    <script src="../translate-html.js"></script>
 
 
     <!-- START -->
     <script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
     <script>
         fetch_json("./data/ln-es.json").then(terms => {
-            const tr = new TranslateHTML(terms);
+            const tr = new TranslateHTML(terms, ["html.lang", "a.lang", "value", "title", "placeholder"]);
             tr.translate();
             tr.translateAttributes([...terms, ...[["es", "en"]]]);
         });
