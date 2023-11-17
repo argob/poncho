@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Translate</title>
+</head>
+<body>
+    <h1>Traductor</h1>
+    <h2>Texto</h2>
+    <ul>
+        <li>Acerca de la República Argentina</li>
+        <li>Compartir en redes sociales</li>
+        <li>Compartir en</li>
+        <li>redes sociales</li>
+        <li>En esta sección</li>
+        <li>Buscar trámites, servicios o áreas</li>
+        <li>Trámites</li>
+        <li>Turnos</li>
+        <li>Trámites a distancia</li>
+        <li>Atención a la ciudadanía</li>
+        <li>Acerca de la República Argentina</li>
+        <li>Nuestro país</li>
+        <li>Leyes argentinas</li>
+        <li>Organismos</li>
+        <li>Mapa del Estado</li>
+        <li>Acerca de Argentina.gob.ar</li>
+        <li>Acerca de este sitio</li>
+        <li>Términos y condiciones</li>
+        <li>Sugerencias</li>
+        <li>Institucional</li>
+        <li>Contacto</li>
+        <li>Dirección</li>
+        <li>Código postal</li>
+        <li>Teléfono</li>
+        <li>Correo electrónico</li>
+        <li>Redes sociales del área</li>
+        <li>Editar</li>
+    </ul>
+    <h2>Formularios</h2>
+    <h3>Select</h3>
+    <p>Traduce el label y el atributo <em>value</em>.</p>
+    <div>
+        <select name="" id="">
+            <option value="Teléfono">Teléfono</option>
+            <option value="electrónico">Correo electrónico</option>
+            <option value="Redes sociales del área">Redes sociales del área</option>
+            <option value="Editar">Editar</option>
+        </select>
+    </div>
+    <h3>Inputs</h3>
+    <p>Traduce los atributos <em>title</em> y <em>placeholder</em>.</p>
+    <div>
+        <input type="text" placeholder="Código postal" title="Código postal">
+    </div>
+
+    <!--  -->
+    <script src="../../../../dist/js/poncho.min.js"></script>
+
+
+    <!-- START -->
+    <script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
+    <script>
+        fetch_json("./data/ln-es.json").then(terms => {
+            const tr = new TranslateHTML(terms);
+            tr.translate();
+            tr.translateAttributes([...terms, ...[["es", "en"]]]);
+        });
+    </script>
+    <!-- END -->
+</body>
+</html>
