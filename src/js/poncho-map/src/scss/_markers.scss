@@ -1,0 +1,68 @@
+#{$scope} {
+    /*
+    Marker activo/seleccionado
+    */
+    .marker--active {
+        --color: 247, 149, 37;
+        position: relative;
+        box-shadow: 0 0 20px rgba(var(--pm-active-marker-color), 1);
+        background: radial-gradient(circle,
+                rgba(var(--pm-active-marker-color), var(--pm-active-marker-alpha)) 10%,
+                rgba(var(--pm-active-marker-color), var(--pm-active-marker-alpha)) 80%);
+    }
+
+    path{
+        &.marker--active {
+            -webkit-filter: brightness(.7) saturate(1.15) !important;
+            filter: brightness(.7) saturate(1.15) !important;
+
+            transition: filter .15s
+        }
+
+        &:hover, 
+        &:focus {
+            filter: brightness(.8) saturate(1.15) !important;
+            transition: filter .15s
+        }
+
+        &[data-interactive="n"],
+        &[data-interactive="n"]:hover,
+        &[data-interactive="n"]:focus {
+            background: inherit;
+            filter: brightness(1) saturate(1) !important;
+            outline: none !important;
+            cursor: auto;
+        }
+    }
+
+    /**
+     * Estilos para los markers basados en <div>
+     */
+    &__div-icon {
+        background-color: transparent;
+        height: 38px;
+        width: 38px;
+        position: relative;
+        display: block;
+        margin: auto;
+        text-align: center;
+        border-radius: 50%;
+    }
+
+    &__div-icon>i {
+        font-size: 1.7em;
+        position: absolute;
+        margin: auto;
+        top: 50%;
+        right: 50%;
+        transform: translate(50%, -50%);
+        opacity: 0.9;
+        transition: 0.2s;
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+    }
+
+    &__div-icon:hover>i {
+        opacity: 1;
+        transition: 0.2s;
+    }
+}

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head>
+    <link rel="profile" href="http://www.w3.org/1999/xhtml/vocab" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
+        </script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+        integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
+    <!-- <link rel="stylesheet"
+        href="https://capacita-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css?rfqjsh"> -->
+    <link rel="stylesheet" href="../../../../dist/css/poncho.min.css" />
+    <!-- 
+        Script para debug 
+        Se reemplazan en producción por poncho.min.js
+    -->
+    <script src="../../utils/color.js"></script>
+    <script src="../../utils/connect.js"></script>
+    <script src="../../utils/string.js"></script>
+    <script src="../../utils/html.js"></script>
+    <script src="../src/js/poncho-map.js"></script>
+    <script src="../src/js/poncho-map-filter.js"></script>
+    <script src="../src/js/poncho-map-search.js"></script>
+    <script src="../../gapi-sheet-data/gapi-sheet-data.js"></script>
+    <!-- / Script para debug -->
+    <title>Poncho Map — Template</title>
+    <style>
+        .poncho-map.ui-dark {
+            --pm-scrollbar-handle: #eaeaea;
+            --pm-scrollbar-background: rgb(0,0,0,.15);
+        }
+    </style>
+</head>
+<body class="select-component">
+<!-- 
+COPIAR DESDE ACÁ…
+-->
+<div class="col-md-12">
+<div data-scope="poncho-map" class="m-b-1">
+    <div class="js-poncho-map__help small text-default"></div>
+</div>
+<!-- PONCHO MAP -->
+<div class="poncho-map" data-scope="poncho-map">
+    <div
+        class="leaflet-container leaflet-touch leaflet-fade-anim 
+                leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
+        id="map"
+        style="height: 600px; width: 100%;"
+        tabindex="0">
+    </div>
+</div>
+<!-- / PONCHO MAP -->
+</div>
+
+
+<!-- INCLUDES -->
+<script src="https://www.argentina.gob.ar/sites/default/files/ponchotable/showdown.js"></script>
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/extensiones/showdown-extensions.js"></script>
+<script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.js"></script>
+<script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script>
+<link href="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.css" rel="stylesheet" />
+<link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.css" rel="stylesheet" />
+<link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.Default.css" rel="stylesheet" />
+<script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
+<!-- / INCLUDES -->
+
+
+</style>
+<!-- SCRIPTS -->
+<script>
+    var map;
+    // init
+
+    const _fields = [
+        // ["tipo", "Todos", ["Archivo provincial", "Archivo nacional"], "checked"],
+        ["tipo", "Archivo provincial", ["Archivo provincial"], "checked"],
+        ["tipo", "Archivo nacional", ["Archivo nacional"], "checked" ],
+    ];
+
+    function myUri(){
+        const hash = window.location.hash;
+        let _filters = _fields;
+
+        if(hash.startsWith("#filter-")){
+            const category = decodeURI(hash).replace("#filter-", "");
+            _filters = _fields.map(m => {
+                if( slugify(m[1]) != slugify(category) ){
+                    m[3] = false;
+                }
+                return m;
+            });
+        }
+        return _filters;
+    }
+
+
+    (async() => {
+        const gapi = new GapiSheetData();
+        const googlesheet_data = await fetch_json( gapi.url("dataset", "13fMXLCN-aqeAVo6YH9eNP1ojljFWB0ocRR3sWNMYaIg") ); 
+        const gapi_data = gapi.json_data(googlesheet_data);
+        const options = {
+            tooltip:true,
+        "theme_map": "dark",
+        "theme_ui": "relax",
+        "theme_tool": true,
+        "scope": "poncho-map",
+        "title": "nombre",
+        "template_markdown": true,
+        "template_structure" : {
+            "values": ["tipo", "descripcion", "direccion", "telefono", "email"],
+            "mixing": [
+                {
+                    "key": "direccion",
+                    "values": ["direccion", "localidad", "provincia"],
+                    "separator": ", "
+                }
+            ],
+        },
+        "headers": gapi_data.headers,
+        "marker" : (self, ele) => (typeof ele.color !== "undefined" && ele.color != "" ? ele.color : "azul"),
+        "marker": "cielo",
+        "slider": true,
+        "hash": true,
+        "filters" :[
+            {
+                type: "checkbox",
+                legend : "Filtrar por tipo",
+                fields: myUri(),
+                // fields : [
+                //     // ["tipo", "Todos", ["Archivo provincial", "Archivo nacional"], "checked"],
+                //     ["tipo", "Archivo provincial", ["Archivo provincial"], false],
+                //     ["tipo", "Archivo nacional", ["Archivo nacional"], false ],
+                // ],
+                field: ["tipo"],
+                check_uncheck_all: true
+            },
+        ],
+        };
+        // render map
+        const loader = new PonchoMapLoader({scope: options.scope});
+        loader.load()
+        map = new PonchoMapFilter(gapi_data.entries, options);
+        map.render();
+        loader.close();
+    })();
+</script>
+<!-- / SCRIPTS -->
+</body>
+</html>

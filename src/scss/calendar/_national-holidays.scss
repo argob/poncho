@@ -1,0 +1,157 @@
+/**
+ * Estilos para el calendario de feriados nacionales.
+ *
+ * @summary Refactor de los estilos para el calendario. Con este nuevo
+ * abordaje se soluciona la altura de la caja de cada mes, optimizando 
+ * cada línea.
+ *
+ * @author Agustín Bouillet <bouilleta@jefatura.gob.ar>
+ */
+.national-holidays {
+  .calendar,
+  .calendar * {
+    box-sizing: border-box;
+  }
+
+  .calendar {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: min-content;
+    grid-column-gap: 2.5em;
+    grid-row-gap: 1em;
+    clear: both;
+  }
+  .day {
+    font-weight: 500;
+  }
+  .month {
+    min-height: 10px;
+  }
+  .holidays {
+    height: 100%;
+  }
+  .date {
+    font-weight: 600;
+  }
+
+  /* Colors */
+  .bg-success {
+    color: white;
+  }
+
+  .bg-nl {
+    background-color: #c1c1c1;
+  }
+
+  .bg-turistico {
+    background-color: var(--uva, #6a1b99);
+    color: white;
+  }
+
+  .bg-success,
+  .bg-primary,
+  .bg-nl {
+    font-weight: 500;
+  }
+
+  .text-nl {
+    color: #c1c1c1;
+  }
+
+  .text-turistico {
+    color: var(--uva, #6a1b99);
+  }
+}
+
+/* References */
+@media (min-width: 768px) {
+  .national-holidays {
+    .references {
+      padding-left: 0;
+      padding-right: 0;
+
+      .media {
+        display: inline-block;
+        margin-right: 10px;
+      }
+
+      .media-body {
+        width: initial;
+        vertical-align: middle;
+      }
+
+      .media-body p {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+@media (max-width: 991px) and (min-width: 768px) {
+  .national-holidays {
+    .calendar {
+      grid-template-columns: repeat(2, 1fr);
+      grid-column-gap: 2.5em;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .national-holidays {
+    .calendar {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+}
+
+/* 
+#infoFeriado {
+  font-size: 20px;
+}
+
+#detalle {
+  margin-top: 20px;
+}
+
+.icono-arg-mi-argentina.fa-fw.fa-3x:before {
+  line-height: 58px;
+}
+
+.jumbotron {
+  background-size: inherit;
+  background-color: var(--cielo);
+}
+
+#block-system-main
+  > div
+  > div.panel-pane.pane-jumbotron
+  > div
+  > section
+  > div.jumbotron_bar
+  > div
+  > div
+  > div
+  > ul {
+  display: none !important;
+}
+
+#jumbo-menu {
+  display: none;
+}
+
+@media (max-width: 991px) {
+  .col-md-3 {
+    text-align: center;
+  }
+}
+
+@media (min-width: 992px) {
+  .col-md-3:nth-of-type(1) {
+    text-align: right;
+  }
+
+  .col-md-3:nth-of-type(2) {
+    text-align: left;
+  }
+}
+ */

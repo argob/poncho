@@ -1,0 +1,101 @@
+#{$scope} {
+    background-color: var(--pm-map-background) !important;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+
+    /* SCROLLBARS */
+    * {
+        scrollbar-color: var(--pm-scrollbar-handle) var(--pm-scrollbar-background);
+        scrollbar-width: thin;
+    }
+
+    /* FUCUSABLE */
+    *:focus {
+        border-radius: 3px;
+        box-sizing: border-box;
+        box-shadow: 0 0 8px var(--cielo, #039be5) !important;
+        outline: 3px solid var(--cielo, #039be5) !important;
+    }
+
+    .pm-color-primary {
+        color: var(--pm-color-primary);
+    }
+
+    .pm-container {
+        box-shadow: var(--pm-slider-shadow);
+        background-color: var(--pm-slider-background);
+        color: var(--pm-color-base);
+        border-radius: var(--pm-slider-radius);
+        transform-style: preserve-3d;
+        border: var(--pm-slider-border-width) solid var(--pm-slider-border-color)
+    }
+
+    .pm-tools {
+        position: absolute;
+        bottom: var(--pm-slider-distance);
+        left: var(--pm-slider-distance);
+        z-index: 900
+    }
+
+    .pm-toggle {
+        display: none;
+
+        position: absolute;
+        width: var(--pm-tools-width);
+        bottom: 49px;
+    }
+
+    [data-toggle="true"]:focus>.pm-toggle,
+    [data-toggle="true"]:focus-within>.pm-toggle {
+        display: block
+    }
+
+    .pm-list li {
+        margin: 0 0 1px 0;
+        padding: 0;
+    }
+    .pm-item-separator:after {
+        content: "";
+        width: 100%;
+        display: block;
+        height: 0;
+        border-bottom: var(--pm-slider-border-width, 1px) solid var(--pm-slider-border-color);
+        margin: calc(var(--pm-slider-distance) / 2) 0
+    }
+
+    .pm-item-link {
+        text-decoration: none;
+        text-align: left;
+        cursor: pointer;
+        display: block;
+        background: transparent;
+        border: none;
+        width: 100%;
+        color: var(--pm-color-base);
+        margin-bottom: 2px;
+        padding: calc(var(--pm-slider-distance) / 3 * 2) var(--pm-slider-distance);
+        border-radius: calc(var(--pm-slider-radius) - var(--pm-slider-distance));
+        transition: background .15s;
+
+        &:hover,
+        &:focus {
+            background-color: var(--pm-hover-background);
+            color: var(--pm-hover-color);
+            transition: background .15s;
+        }
+
+        text-decoration: none;
+
+        &.pm-accesible {
+            color: #eaeaea !important;
+
+            &:focus,
+            &:hover {
+                color: #111 !important;
+                box-shadow: none !important;
+                background: var(--pm-accesible-background);
+            }
+        }
+    }
+}

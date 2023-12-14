@@ -1,0 +1,62 @@
+#{$scope} {
+    .slider {
+        &.slider--in {
+            right: var(--pm-slider-distance);
+            animation-duration: 0.3s;
+            animation-name: pm-slidein;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        z-index: 1000;
+        position: absolute;
+        top: var(--pm-slider-distance);
+        right: calc(-1 * var(--pm-slider-width));
+        width: var(--pm-slider-width);
+        height: calc(100% - var(--pm-slider-distance) - var(--pm-slider-distance));
+
+
+
+        .content-container {
+            height: calc(100%);
+            padding-right: var(--pm-content-padding);
+            padding-left: var(--pm-content-padding);
+            padding-top: calc(var(--pm-content-padding) * 3);
+            padding-bottom: calc(var(--pm-content-padding) * 2);
+        }
+
+        .content {
+            inline-size: min-content;
+            color: var(--pm-color-base);
+            background-color: transparent;
+            height: 100%;
+            width: 100%;
+            overflow-y: auto;
+            overflow-x: hidden;
+            box-shadow: 0 -10px 20px var(--pm-slider-background) inset;
+            word-break: break-word;
+
+            &:after {
+                content: "";
+                background: var(--pm-slider-background);
+                background: -moz-linear-gradient(0deg,
+                        var(--pm-slider-background) 30%,
+                        rgba(255, 255, 255, 0) 100%);
+                background: -webkit-linear-gradient(0deg,
+                        var(--pm-slider-background) 30%,
+                        rgba(255, 255, 255, 0) 100%);
+                background: linear-gradient(0deg,
+                        var(--pm-slider-background) 30%,
+                        rgba(255, 255, 255, 0) 100%);
+                position: absolute;
+                left: var(--pm-content-padding);
+                width: calc(100% - (var(--pm-content-padding) * 2));
+                height: calc(var(--pm-content-padding) * 2);
+                bottom: var(--pm-content-padding);
+                // border-bottom-left-radius: 12px;
+            }
+        }
+    }
+}

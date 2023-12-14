@@ -1,3 +1,11 @@
+// Root color definitions
+:root, html {
+  @each $name, $color in $colores {
+    --#{$name}: #{$color};
+  }
+}
+
+
 html,
 body {
   font-size: 16px;
@@ -117,7 +125,7 @@ aside {
 }
 
 // Paleta principal
-
+.bg-azul,
 .bg-primary {
   background-color: $brand-primary !important;
 }
@@ -216,6 +224,7 @@ aside {
 
 
 
+.bg-azul, 
 .bg-primary, 
 .bg-success, 
 .bg-info,
@@ -333,7 +342,7 @@ a.bg-danger {
     font-size: 16px;
   }
 }
-
+.text-azul,
 .text-primary {
   color: $brand-primary !important;
 }
@@ -365,6 +374,7 @@ a.bg-danger {
 
 
 //
+
 .text-fucsia {
   color: $brand-fucsia !important;
 }

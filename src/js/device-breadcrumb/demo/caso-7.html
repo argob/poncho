@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <link rel="profile" href="http://www.w3.org/1999/xhtml/vocab" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/poncho.min.css" />
+  <link rel="stylesheet" href="../../../dist/css/device-breadcrumb.css" />
+  <title>Device breadcrumb JS | Caso 7</title>
+  <link rel="stylesheet" href="./css/main.css">
+</head>
+<body>
+  <!-- Example -->
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+
+          <nav class="navbar">
+            <ul class="list-unstyled">
+              <li><a href="./index.html">Inicio</a></li>
+            </ul>
+          </nav>
+        <div class="case-container">
+          <h3 class="h5">Caso 7</h3>
+          <p>Migas de pan sin enlace de inicio y sin título de página.</p>
+          <h4 class="h6 m-t-2">Resultado esperado</h4>
+          <ul>
+            <li>En display mobile se debe ver el item <em>Mi Pieza</em> con el botón de expandir.</li>
+            <li>En modo completo deben visualizarse los items: Ministerio de Desarrollo Social, Secretaría de Integración Socio Urbana, Fondo para la Integración Socio Urbana, Mi Pieza.</li>
+            <li>Los botones de control se deben ver cuando el tamaño de la página se achica.</li>
+          </ul>
+          <h4 class="h6 m-t-2">Ejemplo</h4>
+          <div class="case">
+            <ol class="breadcrumb">
+              <li><a href="https://argentina.gob.ar">Inicio</a></li>
+              <li><a href="https://argentina.gob.ar/desarrollosocial">Ministerio de Desarrollo Social</a></li>
+              <li><a href="https://argentina.gob.ar/desarrollosocial/integracionsociourbana">Secretaría de Integración Socio Urbana </a></li>
+              <li><a href="https://argentina.gob.ar/desarrollosocial/integracionsociourbana/fisu">Fondo para la Integración Socio Urbana</a></li>
+              <li><a href="https://www.argentina.gob.ar/desarrollosocial/mipieza">Mi Pieza</a></li>
+              <li class="active"><span>Inscripción</span></li>
+            
+              <!--<li class="active"><span>Mi Pieza</span></li>-->
+            </ol>
+          </div>
+          <h4 class="h6 m-t-2">HTML</h4>
+          <div class="case">
+            <ol class="">
+              <li><a href="https://argentina.gob.ar">Inicio</a></li>
+              <li><a href="https://argentina.gob.ar/desarrollosocial">Ministerio de Desarrollo Social</a></li>
+              <li><a href="https://argentina.gob.ar/desarrollosocial/integracionsociourbana">Secretaría de Integración Socio Urbana </a></li>
+              <li><a href="https://argentina.gob.ar/desarrollosocial/integracionsociourbana/fisu">Fondo para la Integración Socio Urbana</a></li>
+              <li><a href="https://www.argentina.gob.ar/desarrollosocial/mipieza">Mi Pieza</a></li>
+              <li class="active"><span>Inscripción</span></li>
+            
+              <!--<li class="active"><span>Mi Pieza</span></li>-->
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- / Example -->
+  <script src="../src/js/device-breadcrumb.js"></script>
+  <script>
+    (new DeviceBreadcrumb).listener();
+  </script>
+</body>
+
+</html>

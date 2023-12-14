@@ -62,6 +62,7 @@ $colores : ('white', $white),
     ('gray-light', $gray-light),
     ('gray-lighter', $gray-lighter),
     ('default', $brand-default),
+    ('azul', $brand-primary),
     ('primary', $brand-primary),
     ('primary-alt', $brand-primary-alt),
     ('primary-light', $brand-primary-light),
@@ -132,9 +133,3 @@ $font-family-serif: 'Droid Serif', serif;
 $font-family-sans-serif: 'Encode Sans', Arial, sans-serif;
 
 
-// Root color definitions
-:root {
-    @each $name, $color in $colores {
-      --#{$name}: #{$color};
-    }
-}

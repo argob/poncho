@@ -1,0 +1,26 @@
+@keyframes pm-slidein-mobile {
+    0% {
+        right: var(--pm-slider-distance);
+        bottom: calc(-1 * var(--pm-slider-media-mobile-height));
+        opacity: 0;
+    }
+
+    100% {
+        bottom: var(--pm-slider-distance);
+        opacity: 1;
+        right: var(--pm-slider-distance);
+    }
+}
+
+@keyframes pm-slidein {
+    0% {
+        right: calc(-1 * var(--pm-slider-width));
+        opacity: 0;
+        box-shadow: none;
+    }
+
+    100% {
+        right: var(--pm-slider-distance);
+        opacity: 1;
+    }
+}

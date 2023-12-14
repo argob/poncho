@@ -1,0 +1,72 @@
+#{$scope} {
+    .btn-close {
+        border-radius: 50%;
+        aspect-ratio: 1 / 1;
+        position: absolute;
+        background-image: none;
+        width: auto;
+        height: auto;
+        top: 0.75rem;
+        right: 0.75rem;
+        background-color: transparent;
+        color: var(--pm-color-base);
+    }
+
+
+    // Botón para hacer un toggle con los filtros
+    .pm-btn-rounded-circle {
+        aspect-ratio: 1 / 1;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+    }
+
+    .pm-btn {
+        background: var(--pm-slider-background, white);
+        box-shadow: var(--pm-slider-shadow);
+        line-height: 35px;
+        color: var(--pm-color-base);
+        text-align: center;
+        border: var(--pm-slider-border-width) solid var(--pm-slider-border-color);
+
+        &:focus {
+            border-radius: 50%;
+        }
+    }
+
+    .pm-btn:hover {
+        background-color: var(--pm-hover-background);
+        color: var(--pm-hover-color);
+    }
+
+
+    /*
+    Botones menú filter
+    */
+    .select-items {
+        padding: 0 0 0.75em;
+
+        &__button {
+            font-size: 0.75rem;
+            border-radius: 9px;
+            padding: 1px 0.75em;
+            margin: 0 2px;
+            background-color: var(--pm-active-background);
+            color: var(--pm-active-color);
+            transition: 0.15s;
+            border: var(--pm-slider-border-width) solid var(--pm-slider-border-color);
+        }
+
+        &__button:hover {
+            background-color: var(--pm-hover-background);
+            color: var(--pm-hover-color);
+            transition: 0.15s;
+            box-shadow: 0 0 3px rgb(0 0 0 / 0.15);
+
+        }
+
+        &__button:first-of-type {
+            margin-left: 0;
+        }
+    }
+}

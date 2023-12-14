@@ -1,50 +1,78 @@
 .breadcrumb {
-  background: transparent;
-  border: 0;
-  margin: 16px 0 0;
-  padding: 0;
-  text-transform: none;
+	background: transparent;
+	border: 0;
+	margin: 16px 0 0;
+	padding: 0;
+	text-transform: none;
 
-  li {
-    font-size: 14px;
-    line-height: 22px;
-  }
+	li {
+		font-size: 14px;
+		line-height: 22px;
+	}
 
-  a {
-    color: $brand-primary;
-    text-decoration: none;
+	a {
+		color: $brand-primary;
+		text-decoration: none;
 
-    &:hover {
-      color: $white;
-    }
-  }
+		&:hover {
+			color: $white;
+		}
+	}
 
-  &>li+li:before,
-  &>.active {
-    color: $gray;
-  }
+	&>li+li:before,
+	&>.active {
+		color: $gray;
+	}
 }
 
-.jumbotron .breadcrumb a { 
-	color:$white; 
+.jumbotron .breadcrumb a {
+	color: $white;
 	text-decoration: none;
 }
 
-.jumbotron .breadcrumb > .active, .jumbotron .breadcrumb > li + li:before { 
-	 color: #fff
-}	
+.jumbotron .breadcrumb>.active,
+.jumbotron .breadcrumb>li+li:before {
+	color: #fff
+}
 
 .section-actions {
-  margin: 16px 0 24px;
+	margin: 16px 0 24px;
 }
 
 .jumbotron_bar {
 
-  .breadcrumb {
+	.breadcrumb {
 
-    &>li+li:before,
-    &>.active {
-      color: $gray-border;
-    }
-  }
+		&>li+li:before,
+		&>.active {
+			color: $gray-border;
+		}
+	}
+}
+
+/* Breadcrumb */
+/* Se pasó  device*/
+// button.device-breadcrumb__compress-button {
+// 	padding: 0.25em 0;
+// 	background: transparent;
+// 	border: none;
+// 	font-size: 11px;
+// }
+
+// .device-breadcrumb__expand-button::after {
+// 	font-size: 14px;
+// }
+
+ol.breadcrumb {
+	li {
+		&:before {
+			content: none !important;
+		}
+
+		&:after {
+			content: "/";
+			color: inherit;
+			padding: 0 5px 0 5px;
+		}
+	}
 }

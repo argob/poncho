@@ -1,0 +1,108 @@
+
+#{$scope} {
+    /* MAP THEMES */
+    &.map-black .leaflet-tile-pane {
+        filter: sepia(0.5) saturate(0.3) brightness(.95);
+        transition: filter .1s;
+    }
+
+    &.map-dark .leaflet-tile-pane {
+        filter: sepia(0.19) brightness(0.75) contrast(1.2) invert(1) grayscale(1) saturate(1.4) opacity(1);
+        transition: filter .1s;
+    }
+
+    &.map-grayscale .leaflet-tile-pane {
+        filter: grayscale(1) brightness(1) saturate(.9) contrast(1.05);
+        transition: filter .1s;
+    }
+
+    &.map-relax .leaflet-tile-pane {
+        filter: grayscale(.75);
+        transition: filter .1s;
+    }
+
+    // &.map-default {
+
+    // }
+
+    &.map-contrast .leaflet-tile-pane {
+        filter: grayscale(1) invert(1) brightness(2);
+        transition: filter .1s;
+    }
+
+    &.map-sepia .leaflet-tile-pane {
+        filter: sepia(.5) saturate(.24) contrast(1);
+        transition: filter .1s;
+    }
+
+    &.map-blue .leaflet-tile-pane {
+        filter: sepia(1) hue-rotate(326deg) invert(1) brightness(8) saturate(0.45) grayscale(0.5) opacity(0.75);
+        transition: filter .1s;
+    }
+
+    &.map-transparent {
+        --pm-map-background: transparent;
+    }
+    &.map-transparent .leaflet-tile-pane {
+        opacity: 0 !important;
+    }
+
+    /* UI THEMES */
+    
+    &.ui-dark,
+    &.ui-blue {
+        --pm-color-primary: var(--celeste-argentina, skyblue);
+        --pm-color-base: #eaeaea;
+        --pm-slider-background: #343232;
+        --pm-slider-border-color: #626161;
+        --pm-slider-border-color: color-mix(in srgb, #626161 80%, white);
+        --pm-slider-border-width: 1px;
+
+        --pm-scrollbar-handle: #eaeaea;
+        --pm-scrollbar-background: rgb(0, 0, 0, .15);
+
+        --pm-hover-background: #252424;
+        --pm-hover-color: white;
+        --pm-active-color: #343232;
+        --pm-active-background: var(--pm-color-primary);
+    }
+
+    &.ui-contrast {
+        --pm-color-primary: #68CEF3;
+        --pm-color-base: #eaeaea;
+        --pm-slider-background: #222;
+        --pm-slider-border-color: white;
+        --pm-slider-border-width: 2.5px;
+
+        --pm-active-color: var(--pm-slider-background);
+
+        --pm-hover-background: var(--pm-color-base);
+        --pm-hover-color: var(--pm-slider-background);
+        --pm-active-color: #343232;
+        --pm-active-background: var(--pm-color-primary);
+    }
+
+    &.ui-relax {
+        --pm-color-primary: color-mix(in srgb, var(--primary) 80%, black);
+        --pm-color-base: #5a5a5a;
+        --pm-slider-background: color-mix(in srgb, var(--verde-cemento) 15%, white);
+        --pm-slider-border: 1px solid #ddd;
+        --pm-slider-border-color: color-mix(in srgb, var(--verde-cemento) 80%, white);
+    }
+    
+
+    // &.ui-grayscale, &.ui-default {
+    // }
+
+    /* THEME NAV ACTIVE STATE */
+    &.map-default.ui-default [data-theme="default"],
+    &.map-sepia.ui-sepia [data-theme="sepia"],
+    &.map-relax.ui-relax [data-theme="relax"],
+    &.map-grayscale.ui-grayscale [data-theme="grayscale"],
+    &.map-blue.ui-blue [data-theme="blue"],
+    &.ui-contrast.map-contrast [data-theme="contrast"],
+    &.map-dark.ui-dark [data-theme="dark"] {
+        background: var(--pm-active-background);
+        color: var(--pm-active-color);
+    }
+}

@@ -1,0 +1,52 @@
+/* Mensajes de error y warning */
+#{$scope} {
+    &--message {
+        padding: 0.25em 0.75em;
+        border-radius: 8px;
+        margin: 1em 0;
+        box-shadow: 0 2px 6px rgb(0, 0, 0, 0.1);
+        color: black;
+
+        &__icon {
+            color: var(--gray-lighter);
+            line-height: 1;
+            font-size: 4rem;
+            display: block;
+            text-align: center;
+            padding: 1rem;
+            opacity: 0.5;
+        }
+
+        &.danger {
+            padding: 1rem;
+            background: var(--default, gray);
+            color: var(--white, white);
+
+            .title {
+                color: white !important;
+            }
+
+            pre {
+                color: rgb(255, 255, 255, 0.9);
+            }
+        }
+
+        &.warning {
+            background: var(--maiz, gold);
+            color: rgb(0, 0, 0, 0.8);
+
+            .title {
+                color: rgb(0, 0, 0, 0.8) !important;
+            }
+
+            pre {
+                color: black;
+            }
+        }
+
+        pre {
+            background: rgb(0, 0, 0, 0.1);
+            border: none;
+        }
+    }
+}

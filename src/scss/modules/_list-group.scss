@@ -119,9 +119,15 @@ a {
 }
 
 .steps {
+  & h5, & .h5 {
+      margin-top: .25em
+  } 
+
   .step {
     position: relative;
     min-height: 32px;
+
+
     > div:first-child {
         position: static; height: 0;
     }
@@ -151,7 +157,10 @@ a {
     }
     .description {
       padding-bottom: 40px;
+      
+      h5 { margin-top: .25em;}
     }
+
 
     &:last-of-type .description {
       padding: 0;
