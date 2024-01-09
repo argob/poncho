@@ -28,6 +28,7 @@
     <script src="../src/js/poncho-map-filter.js"></script>
     <script src="../src/js/poncho-map-search.js"></script>
     <script src="../../gapi-sheet-data/gapi-sheet-data.js"></script>
+    <link rel="stylesheet" href="./css/demo.css">
     <!-- / Script para debug -->
     <title>Poncho Map — Template 6</title>
   <style>
@@ -62,52 +63,15 @@
       opacity: 1;
       transition: .2s;
     } 
-
-
-    .lds-ring {
-      display: inline-block;
-      position: absolute;
-      transform: translate(-50%, -50%);
-      left: 50%;
-      top: 50%;
-      z-index: 1;
-      width: 80px;
-      height: 80px;
-      opacity: .25;
-    }
-    .lds-ring div {
-      box-sizing: border-box;
-      display: block;
-      position: absolute;
-      width: 64px;
-      height: 64px;
-      margin: 8px;
-      border: 8px solid #525252;
-      border-radius: 50%;
-      animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-      border-color: #525252 transparent transparent transparent;
-    }
-    .lds-ring div:nth-child(1) {
-      animation-delay: -0.45s;
-    }
-    .lds-ring div:nth-child(2) {
-      animation-delay: -0.3s;
-    }
-    .lds-ring div:nth-child(3) {
-      animation-delay: -0.15s;
-    }
-    @keyframes lds-ring {
-      0% {
-        transform: rotate(0deg);
-      }
-      100% {
-        transform: rotate(360deg);
-      }
-    }
-
   </style>
 </head>
-<body class="p-t-3">
+<body>
+
+  <div class="demo-nav container">
+    <ul class="demo-menu">
+      <li><a href="./">Inicio</a></li>
+    </ul>
+</div>
 <!-- 
 MAPA CON BUSCADOR FILTRO  
 
@@ -150,7 +114,6 @@ COPIAR DESDE ACÁ…
         id="map"
         style="height: 600px; width: 100%;"
         tabindex="0">
-            <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
     </div>
 </div>
 <!-- / PONCHO MAP -->
@@ -169,7 +132,8 @@ COPIAR DESDE ACÁ…
 
 <!-- SCRIPTS -->
 <script>
-
+const loader = new PonchoMapLoader({scope: "poncho-map"});
+loader.load();
  // init
  (async() => {
     // GApi helpers
@@ -266,6 +230,8 @@ COPIAR DESDE ACÁ…
     };
     const search = new PonchoMapSearch(poncho_filter, search_options);
     search.render();
+    
+    loader.close();
   })();
 </script>
 <!-- / SCRIPTS -->
