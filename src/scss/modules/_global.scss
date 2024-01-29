@@ -218,6 +218,12 @@ aside {
 .bg-verde-cemento {
   background-color: $brand-verde-cemento !important;
 }
+.bg-azul-marino {
+  background-color: $brand-azul-marino !important;
+}
+.bg-amarillo-intenso {
+  background-color: $brand-amarillo-intenso !important;
+}
 
 
 
@@ -248,7 +254,9 @@ aside {
 .bg-limon,
 .bg-verde-jade,
 .bg-verde-aloe,
-.bg-verde-cemento
+.bg-verde-cemento,
+.bg-azul-marino,
+.bg-amarillo-intenso
 {
   h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     color: #FFF !important;
@@ -441,6 +449,12 @@ a.bg-danger {
 }
 .text-verde-cemento {
   color: $brand-verde-cemento !important;
+}
+.text-azul-marino {
+  color: $brand-azul-marino !important;
+}
+.text-amarillo-intenso {
+  color: $brand-amarillo-intenso !important;
 }
 
 .nav > li > a {
@@ -825,13 +839,21 @@ dd {
 
 
 
-@keyframes loader {
+@-webkit-keyframes loader {
   from {
-    -webkit-transform: rotate(0);
     transform: rotate(0)
   }
   to {
-    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg)}
+  }
+
+
+
+@keyframes loader {
+  from {
+    transform: rotate(0)
+  }
+  to {
     transform: rotate(360deg)}
   }
 
@@ -1109,6 +1131,16 @@ summary::-webkit-details-marker {
   min-height: 1em;
 }
 
+@-webkit-keyframes open {
+  0% {
+    opacity: 0;
+    overflow: hidden;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 @keyframes open {
   0% {
     opacity: 0;
@@ -1120,7 +1152,8 @@ summary::-webkit-details-marker {
 }
 
 details[open] summary ~ * {
-  animation: open 0.2s ease-in-out;
+  -webkit-animation: open 0.2s ease-in-out;
+          animation: open 0.2s ease-in-out;
 	padding-left: 26px
 }
 
