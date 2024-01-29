@@ -522,7 +522,7 @@ header nav input#buscar:focus {
 color: #333;
 } */
 .sub-footer {
-  background-color: #37BBED;
+  background-color: #242C4F;
   padding: 20px 0 40px 0;
 }
 
@@ -549,7 +549,7 @@ color: #333;
 .input-group-btn:not(:first-child):not(:last-child) {
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
-  border: none !important;
+  border: 1px solid  #333 !important;
 }
 
 footer section section {
@@ -800,7 +800,6 @@ small {
 
 .input-search:hover,
 .input-search:focus {
-  -webkit-box-shadow: none !important;
   box-shadow: none !important
 }
 
@@ -944,8 +943,8 @@ width: auto!important;    height: 35px!important;
 }
 
 .btn-search-reset {
-  padding: 8px 11px !important;
-  border: 3px solid #fff !important;
+  padding: 10px 11px !important;
+  border: 1px solid #333 !important;
   line-height: 1.38 !important;
 }
 
@@ -1018,8 +1017,6 @@ width: auto!important;    height: 35px!important;
   #pastilla-campana-4 .panel-body {
     width: 50%;
     float: left;
-    -webkit-border-top-right-radius: 0 !important;
-    -moz-border-radius-topright: 0px !important;
     border-top-right-radius: 0px !important
   }
 
@@ -1028,4 +1025,9 @@ width: auto!important;    height: 35px!important;
 /* alineación central para las alertas solo de la home */
 .align-middle .media-body {
   vertical-align: middle !important;
+}
+
+/* Border */
+.border-bottom-amarillo{
+  border-bottom: 2px solid #E7BA61;
 }

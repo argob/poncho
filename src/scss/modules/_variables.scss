@@ -26,7 +26,8 @@ $brand-info:            #2897D4 !default;
 $brand-warning:         #f9a822 !default;
 $brand-danger:          #c62828 !default;
 $brand-celeste-argentina:          #37BBED !default;
-
+$brand-azul-marino:          #242C4F !default;
+$brand-amarillo-intenso:          #E7BA61 !default;
 
 
 $brand-fucsia:          #EC407A !default;
@@ -91,7 +92,9 @@ $colores : ('white', $white),
     ('limon', $brand-limon),
     ('verde-jade', $brand-verde-jade),
     ('verde-aloe', $brand-verde-aloe),
-    ('verde-cemento', $brand-verde-cemento)
+    ('verde-cemento', $brand-verde-cemento),
+    ('azul-marino', $brand-azul-marino),
+    ('amarillo-intenso', $brand-amarillo-intenso)
 ;
 
 
