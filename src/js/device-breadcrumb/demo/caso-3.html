@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="/dist/css/device-breadcrumb.css" />
   <title>Device breadcrumb JS | Caso 3</title>
   <link rel="stylesheet" href="./css/main.css">
+  <link href="https://{{cdn}}/prismjs@v1.x/themes/prism.css" rel="stylesheet" />
 </head>
 <body>
   <!-- Example -->
@@ -28,8 +29,6 @@
           <p>Migas de pan con enlace de inicio, enlaces intermedios y título de página.</p>
           <h4 class="h6 m-t-2">Resultado esperado</h4>
           <ul>
-
-
             <li>El enlace de inicio debe permanecer oculto siempre</li>
             <li>El item con el título de la página debe permanecer oculto siempre.</li>
             <li>En modo completo deben visualizarse los items: Tomates, Verdes y Fritos.</li>
@@ -38,7 +37,7 @@
           <h4 class="h6 m-t-2">Ejemplo</h4>
           <div class="case">
             <ol class="breadcrumb">
-              <li><a href="https://www.argentina.gob.ar">Inicio</a></li>
+              <li><a href="https://www.agus.gob.ar:4002/foo?case=admin">Inicio</a></li>
               <li><a href="#">Tomates</a></li>
               <li><a href="#">Verdes</a></li>
               <li><a href="#">Fritos</a></li>
@@ -48,14 +47,36 @@
           <h4 class="h6 m-t-2">HTML</h4>
           <div class="case">
             <ol>
-              <li><a href="https://www.argentina.gob.ar">Inicio</a></li>
+              <li><a href="https://www.agus.gob.ar:4002/foo?case=admin">Inicio</a></li>
               <li><a href="#">Tomates</a></li>
               <li><a href="#">Verdes</a></li>
               <li><a href="#">Fritos</a></li>
               <li class="active">Device breadcrumb JS</li>
             </ol>
           </div>
-        </div>
+          
+          <h4>Código</h4>
+          <textarea name="" id="" cols="80" rows="20" style="width: 100%; height: auto; font-family: 'Courier New', Courier, monospace; font-size: .8em; border: 1px solid #ddd; border-radius: 9px; padding: 1em;">
+<ol class="breadcrumb">
+  <li><a href="https://www.agus.gob.ar:4002/foo?case=admin">Inicio</a></li>
+  <li><a href="#">Tomates</a></li>
+  <li><a href="#">Verdes</a></li>
+  <li><a href="#">Fritos</a></li>
+  <li class="active">Device breadcrumb JS</li>
+</ol>
+<script>
+  const options = {
+      domain: [
+          "^/$",
+          "www.agus.gob.ar:4002\/foo\\?case=admin$",
+          "www.agus.gob.ar:4002\/foo\\?case=admin\/$"
+      ]
+  }
+  const db = new DeviceBreadcrumb(options);
+  console.log(db.domain)
+  db.listener();
+</script>
+</textarea>
 
 
 
@@ -65,12 +86,21 @@
     </div>
   </div>
   <!-- / Example -->
-
-
+  <script src="https://{{cdn}}/prismjs@v1.x/components/prism-core.min.js"></script>
+	<script src="https://{{cdn}}/prismjs@v1.x/plugins/autoloader/prism-autoloader.min.js"></script>
   <script src="../src/js/device-breadcrumb.js"></script>
-  <script>
-    (new DeviceBreadcrumb).listener();
-  </script>
+<script>
+    const options = {
+        domain: [
+            "^/$",
+            "www.agus.gob.ar:4002\/foo\\?case=admin$",
+            "www.agus.gob.ar:4002\/foo\\?case=admin\/$"
+        ]
+    }
+    const db = new DeviceBreadcrumb(options);
+    console.log(db.domain)
+    // db.listener();
+</script>
 </body>
 
 </html>
