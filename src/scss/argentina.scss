@@ -303,7 +303,7 @@ padding: 60px 0;
 /* hover mas contraste   */
 .nav.nav-icons li a:hover i,
 .nav.nav-icons li a:focus i {
-  color: $brand-primary;
+  color: #0072bb !important;
   background: #fff !important;  /* box-shadow: 0px 0px 3px 2px #707070; */
   box-shadow: none;
   border: solid 1px #ddd;
@@ -311,7 +311,7 @@ padding: 60px 0;
 
 /* afecta tambien nav.scss line 369*/
 .nav.nav-icons.nav-icons-selected li:not(.active) a:hover i {
-  color: $brand-primary;
+  color: #0072bb !important;
   background: #fff !important;  /* box-shadow: 0px 0px 3px 2px #707070; */
   box-shadow: none;
   border: solid 1px #ddd;
@@ -441,7 +441,7 @@ border-bottom: solid 1px #ddd;
 }
 
 /* header nav {
- background-color: $brand-primary;
+ background-color: #0072bb !important;
  border: none !important;
 } */
 #destacados .panel-default {
@@ -485,7 +485,7 @@ border-bottom: solid 1px #ddd;
 header nav .btn-link {
 
   /* background: transparent !important; */
-  color: $brand-primary;  /* border-color: transparent !important; */
+  color: #0072bb !important;  /* border-color: transparent !important; */
   margin-left: 20px !important;
 }
 
@@ -673,10 +673,6 @@ footer .nav>li>a:hover {
 
 .node-unpublished {
   background-color: #fff !important;
-}
-
-.panel-icon.panel-primary .panel-heading {
-  background-color: $brand-primary;
 }
 
 .panel-icon.panel-success .panel-heading {
@@ -1025,12 +1021,4 @@ width: auto!important;    height: 35px!important;
 /* alineación central para las alertas solo de la home */
 .align-middle .media-body {
   vertical-align: middle !important;
-}
-
-/* Border */
-.border-bottom-amarillo{
-  border-bottom: 3px solid $brand-amarillo-intenso;
-}
-.border-top-amarillo{
-  border-top: 3px solid $brand-amarillo-intenso;
 }
