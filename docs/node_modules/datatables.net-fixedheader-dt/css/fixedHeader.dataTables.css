@@ -16,3 +16,9 @@ table.fixedHeader-locked {
     display: none;
   }
 }
+html.dark table.fixedHeader-floating {
+  background-color: var(--dt-html-background);
+}
+html.dark table.fixedHeader-locked {
+  background-color: var(--dt-html-background);
+}
