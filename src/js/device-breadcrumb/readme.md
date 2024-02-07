@@ -9,6 +9,13 @@
 | domain | `object` | `["^/$", "argentina.gob.ar$", "argentina.gob.ar/$"]` | _Array object_ con las opciones para definir la página de inicio del sitio dónde se implementa el objeto. |
 
 
+# Métodos
+
+
+| Nombre | Descripción |
+|:---|:---|
+| render | Genera el _breadcrum_ y en función del tamaño de pantalla, lo minifica o lo deja expandido removiendo la página de inicio y la página actual. |
+| listener | Éste método ejecuta la función `render()`, en el onLoad de la página y en el resize. |
 
 
 # Uso
@@ -22,11 +29,11 @@ const options = {
 }
 document.addEventListener("DOMContentLoaded", () => {
     const deviceBreadcrumb = new DeviceBreadcrumb(options);
-    deviceBreadcrumb.render(window.innerWidth);
+    deviceBreadcrumb.render();
 });
 window.addEventListener("resize", () =>  {
     const deviceBreadcrumb = new DeviceBreadcrumb(options);
-    deviceBreadcrumb.render(window.innerWidth)}, true);
+    deviceBreadcrumb.render()}, true);
 ```
 
 O, se puede utilizar un método del objeto _deviceBreadcrumb_ que los implementa.

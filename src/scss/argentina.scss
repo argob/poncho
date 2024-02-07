@@ -8,7 +8,7 @@
  * Licenciado bajo MIT (https://github.com/argob/poncho/LICENSE)
  */
 
-/* Resources  */
+/* Resources */
 body {
   margin: 0;
   font-size: 16px;
@@ -515,14 +515,14 @@ header nav input#buscar:focus {
 .main-footer {
   padding: 50px 0 0 0;
   margin-top: 10px;
-  background: #F3FAFF !important;/* background: #fff !important; */
+  background: #f2f2f2 !important;/* background: #fff !important; */
 }
 
 /* .main-footer h3, .main-footer a {
 color: #333;
 } */
 .sub-footer {
-  background-color: #37BBED;
+  background-color: #242C4F;
   padding: 20px 0 40px 0;
 }
 
@@ -549,7 +549,7 @@ color: #333;
 .input-group-btn:not(:first-child):not(:last-child) {
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
-  border: none !important;
+  border: 1px solid  #333 !important;
 }
 
 footer section section {
@@ -675,10 +675,6 @@ footer .nav>li>a:hover {
   background-color: #fff !important;
 }
 
-.panel-icon.panel-primary .panel-heading {
-  background-color: #0072bb !important;
-}
-
 .panel-icon.panel-success .panel-heading {
   background-color: #2e7d33 !important;
 }
@@ -800,7 +796,6 @@ small {
 
 .input-search:hover,
 .input-search:focus {
-  -webkit-box-shadow: none !important;
   box-shadow: none !important
 }
 
@@ -944,8 +939,8 @@ width: auto!important;    height: 35px!important;
 }
 
 .btn-search-reset {
-  padding: 8px 11px !important;
-  border: 3px solid #fff !important;
+  padding: 10px 11px !important;
+  border: 1px solid #333 !important;
   line-height: 1.38 !important;
 }
 
@@ -1018,8 +1013,6 @@ width: auto!important;    height: 35px!important;
   #pastilla-campana-4 .panel-body {
     width: 50%;
     float: left;
-    -webkit-border-top-right-radius: 0 !important;
-    -moz-border-radius-topright: 0px !important;
     border-top-right-radius: 0px !important
   }
 

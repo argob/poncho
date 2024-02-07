@@ -276,7 +276,7 @@ class DeviceBreadcrumb {
     * Procesa la lógica de las migas de pan.
     * @param {integer} innerWidth Tamaño en pixeles de la pantalla.
     */
-    render = (innerWidth) => {
+    render = (innerWidth=window.innerWidth) => {
         this.removeButtons();
         const menuItems = document.querySelectorAll(`${this.selector} li`);
         const breadcrumb = document.querySelectorAll(this.selector);
@@ -336,9 +336,9 @@ class DeviceBreadcrumb {
 
     listener = () => {
         document.addEventListener(
-            "DOMContentLoaded", () => this.render(window.innerWidth));
+            "DOMContentLoaded", () => this.render());
         window.addEventListener(
-            "resize", () => this.render(window.innerWidth), true);
+            "resize", () => this.render(), true);
     }
 };
 // end class
