@@ -1,0 +1,30 @@
+.demo-nav {
+  padding: 0.25em;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 1.5em;
+}
+
+.demo-menu,
+.demo-menu li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.demo-menu {
+  display: flex;
+}
+.demo-menu > li {
+  padding: 0rem;
+}
+.demo-menu > li a {
+  text-decoration: none;
+  display: block;
+  color:#525252;
+  padding: 0.5rem 1.25rem;
+}
+.demo-menu > li a:hover {
+  background-color: steelblue;
+  color: white;
+  border-radius: 6px;
+  transition: background 0.3s;
+}
