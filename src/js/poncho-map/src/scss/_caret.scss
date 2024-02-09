@@ -3,8 +3,8 @@ $caret-back-size: 10px;
 
 #{$scope} {
     .pm-caret {
-        &::after,
-        &::before {
+        &:after,
+        &:before {
             content: " ";
             width: 0;
             height: 0;
@@ -12,40 +12,44 @@ $caret-back-size: 10px;
             position: absolute;
         }
 
-        &::after {
+        &:after {
             border-left: $caret-front-size solid rgba(0, 0, 0, 0);
             border-right: $caret-front-size solid rgba(0, 0, 0, 0);
             border-bottom: $caret-front-size + 1 solid var(--pm-slider-background);
         }
 
-        &::before {
+        &:before {
             border-left: $caret-back-size solid rgba(0, 0, 0, 0);
             border-right: $caret-back-size solid rgba(0, 0, 0, 0);
             border-bottom: $caret-back-size + 1 solid var(--pm-slider-border-color);
             transform: translateZ(-1px);
+            -moz-transform: translateZ(-1px);
         }
 
-        &-t::after {
+        &-t:after {
             top: -7px;
             left: 11px;
         }
 
-        &-t::before {
+        &-t:before {
             top: calc(-7.75px - var(--pm-slider-border-width));
             left: 9px;
             transform: translateZ(-1px);
+            -moz-transform: translateZ(-1px);
         }
 
-        &-b::after {
+        &-b:after {
             bottom: -7px;
             left: 11px;
             transform: rotate(180deg);
+            -moz-transform: rotate(180.01deg);
         }
 
-        &-b::before {
+        &-b:before {
             bottom: calc(-7.75px - var(--pm-slider-border-width));
             left: 9px;
             transform: translateZ(-1px) rotate(180deg);
+            -moz-transform: translateZ(-1px) rotate(180.01deg); /*Fix en el rotate*/
         }
     }
 }
