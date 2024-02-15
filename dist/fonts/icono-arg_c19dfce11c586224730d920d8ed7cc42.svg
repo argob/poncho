@@ -1,11 +1,11 @@
 <?xml version="1.0" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
 <!--
-2024-1-31: Created with FontForge (http://fontforge.org)
+2024-2-15: Created with FontForge (http://fontforge.org)
 -->
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
 <metadata>
-Created by FontForge 20230101 at Wed Jan 31 17:50:14 2024
+Created by FontForge 20230101 at Thu Feb 15 18:55:21 2024
  By 
 
 </metadata>
@@ -22,7 +22,7 @@ Created by FontForge 20230101 at Wed Jan 31 17:50:14 2024
     bbox="-0.656854 -64 512 448"
     underline-thickness="38.4"
     underline-position="-76.8"
-    unicode-range="U+0020-F71A"
+    unicode-range="U+0020-F71B"
   />
     <missing-glyph />
     <glyph glyph-name="space" unicode=" " horiz-adv-x="200" 
@@ -41,6 +41,8 @@ l22 -14zM80 203v-21h74v23h-34l23 18s11 8 11 24c0 18 -15 31 -36 31c-24 0 -38 -21 
 c-2 -2 -5 -2 -9 -2c-9 0 -16 7 -16 16v0c0 9 7 16 15 16c6 0 10 -2 14 -5l9 11c-6 5 -13 8 -23 8c-18 0 -31 -13 -31 -30v0c0 -17 13 -30 31 -30c10 0 19 4 25 9zM286 108h17l-24 57h-16l-24 -57h17l4 10h22zM362 136v0v1c0 17 -12 28 -33 28h-22v-57h22c21 0 33 11 33 28z
 M428 136v0c0 17 -12 30 -30 30s-32 -13 -32 -30v0c0 -17 13 -30 31 -30s31 13 31 30zM381 180c26 0 49 23 49 49s-23 49 -49 49s-48 -23 -48 -49s22 -49 48 -49zM397 152c9 0 15 -8 15 -16v0c0 -8 -5 -15 -14 -15s-15 7 -15 15v0c0 8 5 16 14 16zM381 252
 c13 0 24 -10 24 -23s-11 -24 -24 -24s-23 11 -23 24s10 23 23 23zM208 205c-13 0 -24 11 -24 24s11 23 24 23s24 -10 24 -23s-11 -24 -24 -24z" />
+    <glyph glyph-name="SINTyS" unicode="&#xf71b;" horiz-adv-x="340" 
+d="M126 149v87h87v-87h-87zM258 281v82h82v-82h-82zM0 21v82h82v-82h-82zM126 21v82h132v133h82v-215h-214zM213 363v-82h-131v-132h-82v214h213z" />
     <glyph glyph-name="aaip-logo" unicode="&#xf702;" horiz-adv-x="241" 
 d="M136 0h1c27 0 39 20 39 41v97v136v58c0 5 2 12 -6 13h-2c-27 0 -39 -21 -39 -42v-29v-136v-125c0 -5 -1 -12 7 -13zM105 384h-1c-27 0 -39 -20 -39 -41v-20v-43v50v-27v-33v-14v-178c0 -21 12 -41 39 -41h1c8 1 7 8 7 13v181v72v36v-88v72v48c0 5 1 12 -7 13zM201 38h1
 c27 0 39 21 39 42v19v93v36c0 5 2 12 -6 13h-2c-27 0 -39 -21 -39 -42v-7v-93v-48c0 -5 -1 -12 7 -13zM194 323v48c0 5 -1 12 7 13h1c27 0 39 -20 39 -41v-20v24v-17v-27v33v-27v-13c0 -21 -12 -41 -39 -41h-1c-8 1 -7 8 -7 13v44v58v-31zM40 318h-1c-27 0 -39 -20 -39 -41
