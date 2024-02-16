@@ -32,10 +32,10 @@
 }
 .alert-info {
   background: lighten($brand-info, 51%);
-  border-color: $brand-primary;
+  border-color: $brand-info;
 
   i {
-    color: $brand-primary;
+    color: $brand-info;
   }
 }
 .alert-danger {
