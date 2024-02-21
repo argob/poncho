@@ -1,11 +1,11 @@
 <?xml version="1.0" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
 <!--
-2024-2-15: Created with FontForge (http://fontforge.org)
+2024-2-21: Created with FontForge (http://fontforge.org)
 -->
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
 <metadata>
-Created by FontForge 20230101 at Thu Feb 15 18:55:21 2024
+Created by FontForge 20230101 at Wed Feb 21 15:04:39 2024
  By 
 
 </metadata>
@@ -22,7 +22,7 @@ Created by FontForge 20230101 at Thu Feb 15 18:55:21 2024
     bbox="-0.656854 -64 512 448"
     underline-thickness="38.4"
     underline-position="-76.8"
-    unicode-range="U+0020-F71B"
+    unicode-range="U+0020-F71C"
   />
     <missing-glyph />
     <glyph glyph-name="space" unicode=" " horiz-adv-x="200" 
@@ -41,8 +41,6 @@ l22 -14zM80 203v-21h74v23h-34l23 18s11 8 11 24c0 18 -15 31 -36 31c-24 0 -38 -21 
 c-2 -2 -5 -2 -9 -2c-9 0 -16 7 -16 16v0c0 9 7 16 15 16c6 0 10 -2 14 -5l9 11c-6 5 -13 8 -23 8c-18 0 -31 -13 -31 -30v0c0 -17 13 -30 31 -30c10 0 19 4 25 9zM286 108h17l-24 57h-16l-24 -57h17l4 10h22zM362 136v0v1c0 17 -12 28 -33 28h-22v-57h22c21 0 33 11 33 28z
 M428 136v0c0 17 -12 30 -30 30s-32 -13 -32 -30v0c0 -17 13 -30 31 -30s31 13 31 30zM381 180c26 0 49 23 49 49s-23 49 -49 49s-48 -23 -48 -49s22 -49 48 -49zM397 152c9 0 15 -8 15 -16v0c0 -8 -5 -15 -14 -15s-15 7 -15 15v0c0 8 5 16 14 16zM381 252
 c13 0 24 -10 24 -23s-11 -24 -24 -24s-23 11 -23 24s10 23 23 23zM208 205c-13 0 -24 11 -24 24s11 23 24 23s24 -10 24 -23s-11 -24 -24 -24z" />
-    <glyph glyph-name="SINTyS" unicode="&#xf71b;" horiz-adv-x="340" 
-d="M126 149v87h87v-87h-87zM258 281v82h82v-82h-82zM0 21v82h82v-82h-82zM126 21v82h132v133h82v-215h-214zM213 363v-82h-131v-132h-82v214h213z" />
     <glyph glyph-name="aaip-logo" unicode="&#xf702;" horiz-adv-x="241" 
 d="M136 0h1c27 0 39 20 39 41v97v136v58c0 5 2 12 -6 13h-2c-27 0 -39 -21 -39 -42v-29v-136v-125c0 -5 -1 -12 7 -13zM105 384h-1c-27 0 -39 -20 -39 -41v-20v-43v50v-27v-33v-14v-178c0 -21 12 -41 39 -41h1c8 1 7 8 7 13v181v72v36v-88v72v48c0 5 1 12 -7 13zM201 38h1
 c27 0 39 21 39 42v19v93v36c0 5 2 12 -6 13h-2c-27 0 -39 -21 -39 -42v-7v-93v-48c0 -5 -1 -12 7 -13zM194 323v48c0 5 -1 12 7 13h1c27 0 39 -20 39 -41v-20v24v-17v-27v33v-27v-13c0 -21 -12 -41 -39 -41h-1c-8 1 -7 8 -7 13v44v58v-31zM40 318h-1c-27 0 -39 -20 -39 -41
@@ -4918,6 +4916,8 @@ v0h-3c-2 1 -2 3 -2 5v3c10 19 19 38 27 58c13 31 22 54 37 56h2c7 0 13 -2 18 -6c-9 
 c15 3 31 -20 41 -37c1 1 3 1 4 2c22 53 22 53 26 52c2 -1 4 -2 4 -5zM199 228v14c-2 -4 -4 -9 -6 -14h6zM220 234c-1 -2 -2 -5 -3 -8l4 -1c0 3 -1 6 -1 9z" />
     <glyph glyph-name="sintra" unicode="&#xf68f;" horiz-adv-x="503" 
 d="M503 192l-187 -187l-55 56l130 131l-75 75l-130 -131l-56 56l186 186zM317 248l56 -56l-187 -186l-186 186l186 187l56 -56l-126 -126l-5 -5l71 -70l4 -4l5 4z" />
+    <glyph glyph-name="sintys" unicode="&#xf71c;" horiz-adv-x="340" 
+d="M126 149v87h87v-87h-87zM258 281v82h82v-82h-82zM0 21v82h82v-82h-82zM126 21v82h132v133h82v-215h-214zM213 363v-82h-131v-132h-82v214h213z" />
     <glyph glyph-name="sistema-de-consulta-aprender" unicode="&#xf64d;" horiz-adv-x="440" 
 d="M23 61c9 25 28 63 57 89c-30 -26 -48 -64 -57 -89zM197 150c6 2 12 3 17 6c-6 -2 -11 -4 -17 -6zM249 142c14 -14 25 -30 33 -45c-9 15 -20 31 -33 45zM290 81c6 -12 10 -23 12 -31c-3 8 -6 19 -12 31zM225 221c10 10 17 23 22 36c-4 -14 -12 -26 -22 -36zM204 204
 c-6 -3 -12 -5 -18 -7c6 2 12 4 18 7zM186 197c-9 -3 -19 -4 -28 -4c10 0 19 1 28 4zM90 347c-12 -13 -20 -30 -23 -48c3 18 11 35 23 48zM438 312c1 -2 2 -4 2 -6l-1 -142c0 -1 -1 -2 -1 -3v-1v-1l-49 -74c-2 -3 -5 -4 -8 -4h-59c-2 5 -4 10 -7 16h62l39 58h-140
