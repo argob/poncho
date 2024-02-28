@@ -1,11 +1,11 @@
 <?xml version="1.0" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
 <!--
-2024-2-21: Created with FontForge (http://fontforge.org)
+2024-2-28: Created with FontForge (http://fontforge.org)
 -->
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
 <metadata>
-Created by FontForge 20230101 at Wed Feb 21 15:04:39 2024
+Created by FontForge 20230101 at Wed Feb 28 14:07:55 2024
  By 
 
 </metadata>
@@ -22,7 +22,7 @@ Created by FontForge 20230101 at Wed Feb 21 15:04:39 2024
     bbox="-0.656854 -64 512 448"
     underline-thickness="38.4"
     underline-position="-76.8"
-    unicode-range="U+0020-F71C"
+    unicode-range="U+0020-F71D"
   />
     <missing-glyph />
     <glyph glyph-name="space" unicode=" " horiz-adv-x="200" 
@@ -1589,6 +1589,9 @@ d="M163 293l23 -23h72c3 0 5 -2 5 -5v-159c0 -3 -2 -6 -5 -6h-193c-3 0 -5 3 -5 6v15
 c-4 5 -10 9 -17 9h-1h-1c-8 0 -15 -5 -18 -12zM238 125v36c-6 3 -10 8 -13 14c-5 8 -11 16 -21 17s-18 -11 -24 -21c-2 -4 -4 -7 -7 -10c-15 -14 -34 -25 -55 -29h-1v0c-1 0 -3 1 -3 2v1c0 1 1 3 2 3h1c19 4 37 13 51 26l1 1c-10 2 -19 4 -28 8c-3 1 -7 3 -13 5
 c-19 7 -40 -16 -43 -20v-33h153zM304 32v264l17 12v-276c0 -23 -19 -42 -42 -42h-237c-23 0 -42 19 -42 42v301c0 23 19 41 42 41h163l-3 -2c-4 -4 -7 -7 -10 -12l-2 -3h-148c-14 0 -25 -10 -25 -24v-301v0c0 -14 11 -25 25 -25h237c14 0 25 11 25 25v0zM357 376l3 -3h-4
 c-38 5 -57 -13 -75 -30c-1 -1 -2 -2 -2 -3v0c0 -1 1 -3 2 -4l14 -14l-73 -10v1l13 71l14 -15c1 -1 3 -1 4 -1s2 0 3 1c35 30 68 33 101 7z" />
+    <glyph glyph-name="cuota-simple" unicode="&#xf71d;" horiz-adv-x="398" 
+d="M219 39l-14 -14c-5 -5 -14 -5 -19 0l-182 183c-5 5 -5 13 0 18l14 14zM108 245c-5 -5 -7 -11 -7 -18v-4l-51 51l79 78c5 5 13 5 18 0l33 -34zM325 146l-73 -73l-125 125c13 -7 28 -11 43 -11c24 0 48 10 66 28l10 10zM368 187l-29 -28l-93 93l-24 -24
+c-14 -14 -33 -21 -52 -21c-17 0 -35 6 -48 18c-2 2 -2 5 0 7l73 72l30 29c20 20 46 31 72 31c27 0 54 -11 74 -32c39 -42 36 -105 -3 -145z" />
     <glyph glyph-name="curita" unicode="&#xf41e;" horiz-adv-x="300" 
 d="M289 154v0c7 -7 11 -16 11 -26s-4 -19 -11 -26l-49 -49c-7 -7 -16 -11 -26 -11s-19 4 -26 11l-43 43l-38 -38c-5 -5 -13 -9 -21 -9s-16 4 -21 9l-49 49c-5 5 -9 13 -9 21s4 16 9 21l37 38l-42 43c-7 7 -11 16 -11 26s4 19 11 26l49 49c7 7 16 11 26 11s19 -4 26 -11
 l43 -43l38 38c5 5 13 9 21 9s16 -4 21 -9l49 -49c5 -5 9 -13 9 -21s-4 -16 -9 -21l-38 -39zM206 313l-38 -37l65 -66l38 38c2 2 4 5 4 8s-2 6 -4 8l-49 49c-2 2 -5 4 -8 4s-6 -2 -8 -4zM94 71l38 37l-66 66l-38 -38c-2 -2 -3 -5 -3 -8s1 -6 3 -8l49 -49c2 -2 6 -4 9 -4
