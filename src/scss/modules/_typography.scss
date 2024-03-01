@@ -121,13 +121,13 @@ b, strong {
 }
 
 .lead {
-  font-size: 18px;
+  font-size: $font-base-weight + 2;
   font-weight: 500;
   line-height: 1.2;
 }
 
 .help-block{
-  font-size: 14px;
+  font-size: $font-base-weight -2;
 	color: $gray
 }
 
@@ -215,14 +215,14 @@ article {
   .credits {
     p {
       color: $gray;
-      font-size: 13px;
-      line-height: 15px;
+      font-size: $font-base-weight - 3;
+      line-height: $font-base-weight - 1;
       margin-top: 40px; 
     }
 
     cite {
     border-top: 1px solid #b4beba;
-    padding-top: 16px;
+    padding-top: $font-base-weight;
     display: block;
     font-style: normal;
     font-size: 85%;
@@ -235,7 +235,7 @@ article {
 
 @media (min-width: 768px) {
   p {
-    font-size: 16px;
+    font-size: $font-base-weight;
   }
 	
 /*h3 {
@@ -246,14 +246,14 @@ article {
 @media (min-width: 992px) {
   .jumbotron {
     li {
-      font-size: 14px;
+      font-size: $font-base-weight - 2;
 
       a {
-        font-weight: 500;
+        font-weight: 400;
       }
     }
   }
   .lead {
-    font-size: 18px;
+    font-size: $font-base-weight + 2;
   }
 }

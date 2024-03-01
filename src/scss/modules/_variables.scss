@@ -140,5 +140,6 @@ $shadow: 0 2px 2px rgba(0, 0, 0, .2);
 //$font-family-sans-serif: 'Encode Sans', Arial, sans-serif;
 
 
-$font-family-sans-serif: 'Montserrat',sans-serif;
-$font-family-serif: 'Lora',serif
+$font-family-sans-serif: 'Montserrat',sans-serif !default;
+$font-family-serif: 'Lora',serif !default;
+$font-base-weight: 18px !default;
