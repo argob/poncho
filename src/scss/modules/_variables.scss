@@ -2,6 +2,10 @@
 //
 //## Gray and brand colors for use across Bootstrap.
 
+@import url(https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap);
+
+
+
 $white:                  #fff !default;
 $black:                  #333333 !default;
 $gray-base:              #333333 !default;
@@ -132,7 +136,8 @@ $dark-opacity-IE: progid:DXImageTransform.Microsoft.gradient(startColorstr=#9900
 
 $shadow: 0 2px 2px rgba(0, 0, 0, .2);
 
-$font-family-serif: 'Droid Serif', serif;
-$font-family-sans-serif: 'Encode Sans', Arial, sans-serif;
+//$font-family-serif: 'Droid Serif', serif;
+//$font-family-sans-serif: 'Encode Sans', Arial, sans-serif;
 
-
+$font-family-serif:'Montserrat',sans-serif;
+$font-family-sans-serif: 'Lora',serif

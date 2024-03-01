@@ -5,14 +5,24 @@
   }
 }
 
+// Mofifica valores generales para los headers.
+.header-global-attributes {
+    letter-spacing:-.2pt;
+}
 
+
+/*
+Se agrega: letter-spacing
+Se cambia el width de la funete
+*/
 html,
 body {
+  letter-spacing:-.15pt;
   font-size: 16px;
   height: 100%;
   max-width: 100%;
-	font-weight: 500;
-	 background: #fff;
+	font-weight: 400;
+	background: #fff;
   // overflow-x: hidden; // Se comenta porque rompe el screenshot en pantalla completa completa
 }
 
@@ -1169,4 +1179,10 @@ details[open] > summary::-webkit-details-marker {
     top: 42%;
     transform: rotate(225deg);
   }
+}
+
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  @extend .header-global-attributes;
+  font-family: $font-family-serif;
 }
