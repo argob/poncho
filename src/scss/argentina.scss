@@ -419,8 +419,12 @@ color: #707070 !important;
 border-bottom: solid 1px #ddd;
 } */
 #campaign .bg-primary {
-  background-color: #37BBED !important;
+  background-color: #242c4f !important;
 }
+
+#campaign .bg-link {
+    border-bottom: 1px solid #242c4f !important;
+  }
 
 @media screen and (max-width:767px) {
   .c_bajada {
