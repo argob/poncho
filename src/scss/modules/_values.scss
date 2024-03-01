@@ -1,16 +1,3 @@
-// AGREGO FUENTES
-@import url('https://fonts.googleapis.com/css2?family=Lora:wght@500&family=Montserrat&display=swap');
-
-.main-footer :not(.h1, .h2, .h3, .h4, .h5, .h6) {
-    font-family: 'Montserrat', sans-serif;
-}
-/*
-.foo [class*="h3"]
-*/
-.main-footer :has(.h1, .h2, .h3, .h4, .h5, .h6) {
-    font-family: 'Lora', serif !important;
-}
-
 /* Border */
 .border-bottom-amarillo{
   border-bottom: 3px solid $brand-amarillo-intenso;
