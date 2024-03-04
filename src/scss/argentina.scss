@@ -393,40 +393,40 @@ color: #707070 !important;
   will-change: auto !important;
 }
 
-#campaign h2 {
-  font-size: 14px !important;  /*color: #111 !important;*/
-  font-weight: 500 !important;
-  padding: 2px 0 !important;
-}
+// #campaign h2 {
+//   font-size: 14px !important;  /*color: #111 !important;*/
+//   font-weight: 500 !important;
+//   padding: 2px 0 !important;
+// }
 
-#campaign a {
+// #campaign a {
 
-  /*text-decoration: underline !important;*/
-}
+//   /*text-decoration: underline !important;*/
+// }
 
-#campaign a:hover {
-  text-decoration: none !important;
-}
+// #campaign a:hover {
+//   text-decoration: none !important;
+// }
 
-#campaign a:visited {
+// #campaign a:visited {
 
-  /*color: #111 !important;*/
-}
+//   /*color: #111 !important;*/
+// }
 
-/* #campaign .container-fluid {
-border-bottom: solid 1px #ddd;
-} */
-#campaign .bg-primary {
-  background-color: #37bbed  !important;
-}
+// /* #campaign .container-fluid {
+// border-bottom: solid 1px #ddd;
+// } */
+// #campaign .bg-primary {
+//   background-color: #37bbed  !important;
+// }
 
-#campaign .bg-info h2.tituloContainerCam {
-  color: white !important;
-}
+// #campaign .bg-info h2.tituloContainerCam {
+//   color: white !important;
+// }
 
-#campaign .bg-link {
-    border-bottom: 1px solid #242c4f !important;
-  }
+// #campaign .bg-link {
+//     border-bottom: 1px solid #242c4f !important;
+//   }
 
 @media screen and (max-width:767px) {
   .c_bajada {
@@ -537,12 +537,12 @@ color: #333;
     padding: 10px 15px 10px 0;
   }
 
-  #campaign h2 {
+  // #campaign h2 {
 
-    /*margin: 8px -15px;*/
-    margin-right: auto;
-    margin-left: auto;
-  }
+  //   /*margin: 8px -15px;*/
+  //   margin-right: auto;
+  //   margin-left: auto;
+  // }
 
   .navbar.navbar-top.state-search .navbar-nav.navbar-right > .btn {
     margin-left: 0 !important;
@@ -761,9 +761,9 @@ small {
 }
 
 /*  ESTILOS ETAPA 2 ARGENTINA.GOB.AR */
-#campaign a {
-  text-decoration: none !important
-}
+// #campaign a {
+//   text-decoration: none !important
+// }
 
 .etapa2 .h3 {
   color: #333 !important;
@@ -821,10 +821,19 @@ small {
   margin-left: auto;
 }
 
+
+
+
+
+
+
+
+
+
 @media (max-width:768px) {
-  #campaign02 {
-    line-height: 1.4
-  }
+  // #campaign02 {
+  //   line-height: 1.4
+  // }
 
   .panel-camp-principal {
     margin-top: 160px

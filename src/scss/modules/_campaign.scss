@@ -1,0 +1,46 @@
+/**
+ * Define estilos para el banner de campaña.
+ * @todo Verificar si es necesario tener tantos !important, o si es 
+ * suficiente con el orden de precedencia. Considerando que el selector está
+ * sobre un id.
+ */
+#campaign {
+    h2 {
+        font-size: 14px !important;
+        font-weight: 500 !important;
+        padding: 2px 0 !important;
+    }
+  
+    a {
+        text-decoration: none !important;
+        &:hover {
+            text-decoration: none !important;
+        }
+    }
+
+    .bg-primary {
+        background-color: $brand-celeste-argentina !important;
+    }
+    
+    .bg-info h2.tituloContainerCam {
+        color: $white !important;
+    }
+    
+   .bg-link {
+        border-bottom: 1px solid $brand-primary !important;
+    }
+}
+
+/* media */
+@media (max-width:767px) {
+    #campaign h2 {
+        margin-right: auto;
+        margin-left: auto;
+    }
+}
+
+@media (max-width:768px) {
+    #campaign02 {
+        line-height: 1.4
+    }
+}
