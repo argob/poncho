@@ -9,10 +9,8 @@
  */
 
 /* Resources  */
-body {
-  margin: 0;
-  font-size: 16px;
-}
+
+
 
 main a[href^="http://"][target^="_blank"]:after,
 main a[href^="https://"][target^="_blank"]:after,
@@ -419,7 +417,11 @@ color: #707070 !important;
 border-bottom: solid 1px #ddd;
 } */
 #campaign .bg-primary {
-  background-color: #242c4f !important;
+  background-color: #37bbed  !important;
+}
+
+#campaign .bg-info h2.tituloContainerCam {
+  color: white !important;
 }
 
 #campaign .bg-link {
@@ -819,33 +821,7 @@ small {
   margin-left: auto;
 }
 
-/*@media (max-width: 350px){
-.navbar .container .navbar-header .navbar-brand {
-width: 178px;
-}
-
-.navbar .container .navbar-header .navbar-brand img {
-width: auto!important;    height: 35px!important;
-}
-
-}
-
-@media (min-width: 351px) and (max-width: 420px){
-.navbar .container .navbar-header .navbar-brand {
-    width: 210px;
-}
-  .navbar .container .navbar-header .navbar-brand img{
-    width: auto!important;
-    height: 40px;
-}
-
-}*/
 @media (max-width:768px) {
-
-  /*header .btn {
-      padding-left: 7px!important;
-      padding-right: 7px!important; 
-  }*/
   #campaign02 {
     line-height: 1.4
   }
@@ -890,10 +866,6 @@ width: auto!important;    height: 35px!important;
   .box-campania {
     padding: 0px;
   }
-
-  /*.panels-row{
-       display: flex!important;
-  }*/
 }
 
 @media (min-width:768px) {
@@ -948,64 +920,6 @@ width: auto!important;    height: 35px!important;
   line-height: 1.38 !important;
 }
 
-/*.panel-border-mandarina {border-color: #ddd;border-bottom: 12px solid #F79525;}
-
-.panel-border-cereza {border-color: #ddd;border-bottom: 12px solid #ED3D8F;}
-
-.panel-border-lavanda {border-color: #ddd;border-bottom: 12px solid #9284BE;}
-
-.panel-border-escarapela {border-color: #ddd;border-bottom: 12px solid #2CB9EE;}
-
-
-
-/*  trámites y servicios */
-
-/*
-.bg-celeste-argentina { 
-  background-color: #2CB9EE
-}
-
-.bg-escarapela {
-    background-color: #2CB9EE!important;
-}
-.text-escarapela {
-    color: #2CB9EE!important;
-}
-
-.bg-lavanda {
-    background-color: #9284BE!important;
-}
-.text-lavanda {
-    color: #9284BE!important;
-}
-
-.bg-palta{
-    background-color: #50B7B2!important;
-}
-.text-palta {
-    color: #50B7B2!important;
-}
-
-.bg-cereza{
-    background-color: #ED3D8F!important;
-}
-.text-cereza {
-    color: #ED3D8F!important;
-}
-.bg-mandarina{
-    background-color: #F79525!important;
-}
-.text-mandarina {
-    color: #F79525!important;
-}
-
-.bg-limon{
-    background-color: #D7DF23!important;
-}
-.text-limon{
-    color: #D7DF23!important;
-}
-*/
 
 /*Medium devices (tablets, 768px and up)*/
 @media (min-width:768px) and (max-width:991.98px) {
