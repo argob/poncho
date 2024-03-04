@@ -5,3 +5,12 @@
 .border-top-amarillo{
   border-top: 3px solid $brand-amarillo-intenso;
 }
+
+/*AJUSTE CAMPAÑAS */
+#campaign .bg-info h2.tituloContainerCam {
+  color: white !important;
+}
+
+#campaign .bg-link {
+    border-bottom: 1px solid #242c4f !important;
+}
