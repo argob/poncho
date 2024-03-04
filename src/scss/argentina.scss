@@ -188,7 +188,6 @@ fieldset.panel.collapsible .panel-body .form-group > label.control-label {
 }
 
 @media print {
-	.main-footer,
 	.pane-argentinagobar-bloques-reportes-formulario-reportes,
 	.book-navigation {
 		display: none;
@@ -441,17 +440,6 @@ header nav input#buscar:focus {
 .tramites-iconos .panel h3,
 .tramites-iconos .panel .h3 {
 	color: #333;
-}
-
-.main-footer {
-	padding: 50px 0 0 0;
-	margin-top: 10px;
-	background: #f2f2f2 !important;
-}
-
-.sub-footer {
-	background-color: #242C4F;
-	padding: 20px 0 40px 0;
 }
 
 @media (max-width:767px) {
@@ -829,4 +817,23 @@ small {
 /* alineación central para las alertas solo de la home */
 .align-middle .media-body {
 	vertical-align: middle !important;
+}
+
+/* Footer
+   ======================================================================== */
+.main-footer {
+	padding: 50px 0 0 0;
+	margin-top: 10px;
+	background: #f2f2f2 !important;
+}
+
+.sub-footer {
+	background-color: #242C4F;
+	padding: 20px 0 40px 0;
+}
+
+@media print {
+	.main-footer {
+		display: none;
+	}
 }
