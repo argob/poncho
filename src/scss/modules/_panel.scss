@@ -315,6 +315,7 @@ a {
   &.panel-gray {
     .panel-heading {
       background-color: $gray-lighter;
+      background-color: #e5e5e5; 
     }
   }
 
@@ -437,9 +438,28 @@ a {
     }
   }
 
+  /* Agregados desde Argentina.scss */
+  &.panel-info {
+    .panel-heading {
+      background-color: $brand-info;
+    }
+  }
 
+  &.panel-white {
+    .panel-heading {
+      background-color: $white;
+      border: solid 1px $gray-light;
+      border-radius: 10px;
+    }
+  }
+  
+
+
+/**/
 
 }
+
+
 
 .panel-primary .panel-heading {
   background-color: $brand-primary;
@@ -460,6 +480,8 @@ a {
   background-color: $brand-info;
 }
 
+
+
 .panel-border-primary {
   border-top: 8px solid rgba( $brand-primary, 1);
 }
@@ -478,7 +500,6 @@ a {
 .panel-border-gray {
   border-top: 8px solid $gray-border;
 }
-
 .panel-border-mandarina {
 	border-color: #ddd; border-bottom: 12px solid $brand-mandarina;
 }
@@ -488,19 +509,15 @@ a {
 .panel-border-lavanda {
 	border-color: #ddd;border-bottom: 12px solid $brand-lavanda;
 }
-
 .panel-border-escarapela {
 	border-color: #ddd;border-bottom: 12px solid $brand-escarapela;
 }
-
 .panel-border-palta {
 	border-color: #ddd;border-bottom: 12px solid $brand-palta;
 }
-
 .panel-border-limon {
 	border-color: #ddd;border-bottom: 12px solid $brand-limon;
 }
-
 .panel-border-verde-jade {
 	border-color: #ddd;border-bottom: 12px solid $brand-verde-jade;
 }
@@ -510,7 +527,6 @@ a {
 .panel-border-verde-cemento {
 	border-color: #ddd;border-bottom: 12px solid $brand-verde-cemento;
 }
-
 
 
 

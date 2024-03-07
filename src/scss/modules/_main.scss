@@ -1,0 +1,55 @@
+/* Main
+   ======================================================================== */
+   main {
+	a[href^="http://"][target^="_blank"]:after,
+	a[href^="https://"][target^="_blank"]:after,
+	footer[href^="http://"][target^="_blank"]:after,
+	footer[href^="https://"][target^="_blank"]:after {
+		content: " \f08e";
+		display: inline-block;
+		margin-left: 5px;
+		vertical-align: -1px;
+		font: normal normal normal 14px/1 FontAwesome;
+		text-rendering: auto;
+		-webkit-font-smoothing: antialiased;
+	}
+
+	a.btn:after,
+	a[href^="http://www.argentina.gob.ar"]:after,
+	a[href^="https://www.argentina.gob.ar"]:after,
+	a.panel:after,
+	a.not-external:after,
+	footer.btn:after,
+	footer[href^="http://www.argentina.gob.ar"]:after,
+	footer[href^="https://www.argentina.gob.ar"]:after,
+	footer.panel:after,
+	footer.btn:after,
+	footer.not-external:after {
+		content: none !important;
+	}
+
+	.social-share a:after,
+	.panel a:after,
+	.alert a:after,
+	a.alert:after,
+	.nav a:after,
+	.gm-style a:after {
+		content: none !important;
+	}
+
+	.container img {
+		max-width: 100%;
+		border-radius: 4px;
+		height: auto;
+	}
+
+	.container .media img {
+		max-width: none;
+	}
+
+	> div > div > div > section {
+		padding-top: 20px;
+	}
+}
+
+

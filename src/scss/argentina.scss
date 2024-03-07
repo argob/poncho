@@ -6,57 +6,8 @@
  * Licenciado bajo MIT (https://github.com/argob/poncho/LICENSE)
  */
 
-/* Main
-   ======================================================================== */
-main a[href^="http://"][target^="_blank"]:after,
-main a[href^="https://"][target^="_blank"]:after,
-main footer[href^="http://"][target^="_blank"]:after,
-main footer[href^="https://"][target^="_blank"]:after {
-	content: " \f08e";
-	display: inline-block;
-	margin-left: 5px;
-	vertical-align: -1px;
-	font: normal normal normal 14px/1 FontAwesome;
-	text-rendering: auto;
-	-webkit-font-smoothing: antialiased;
-}
+@import "modules/main";
 
-main a.btn:after,
-main a[href^="http://www.argentina.gob.ar"]:after,
-main a[href^="https://www.argentina.gob.ar"]:after,
-main a.panel:after,
-main a.not-external:after,
-main footer.btn:after,
-main footer[href^="http://www.argentina.gob.ar"]:after,
-main footer[href^="https://www.argentina.gob.ar"]:after,
-main footer.panel:after,
-main footer.btn:after,
-main footer.not-external:after {
-	content: none !important;
-}
-
-main .social-share a:after,
-main .panel a:after,
-main .alert a:after,
-main a.alert:after,
-main .nav a:after,
-main .gm-style a:after {
-	content: none !important;
-}
-
-main .container img {
-	max-width: 100%;
-	border-radius: 4px;
-	height: auto;
-}
-
-main .container .media img {
-	max-width: none;
-}
-
-main > div > div > div > section {
-	padding-top: 20px;
-}
 
 /* Form-type
    ======================================================================== */
@@ -91,6 +42,7 @@ main > div > div > div > section {
 	width: 100%;
 	box-sizing: border-box;
 }
+
 
 .form-item input {
 	font-size: 16px;
@@ -163,6 +115,10 @@ fieldset.panel.collapsible .panel-body .form-group > label.control-label {
 	font-weight: 400;
 }
 
+
+
+
+
 /* cd-login
    @TODO verificar si se sigue utilizando
    ======================================================================== */
@@ -175,8 +131,11 @@ fieldset.panel.collapsible .panel-body .form-group > label.control-label {
 		width: 100%;
 		margin: 0 0 20px;
 	}
-
 }
+
+
+
+
 
 /* x
    ======================================================================== */
@@ -184,7 +143,6 @@ fieldset.panel.collapsible .panel-body .form-group > label.control-label {
 	.navbar .navbar-brand img {
 		width: 236px;
 	}
-
 }
 
 @media print {
@@ -192,7 +150,6 @@ fieldset.panel.collapsible .panel-body .form-group > label.control-label {
 	.book-navigation {
 		display: none;
 	}
-
 }
 
 /* Fix labels en input radios de formularios */
@@ -239,7 +196,7 @@ fieldset.panel.collapsible .panel-body .form-group > label.control-label {
 .jumbotron_bar .col-md-12 > .list-inline.pull-right {
 	float: none !important;
 	order: 2;
-	margin-top: 1px;     /* margin-bottom:10px; */
+	margin-top: 1px;
 }
 
 @media (max-width:768px) {
@@ -271,7 +228,7 @@ footer ul.nav li a {
 
 /* Generar mas contraste con este color al texto*/
 .h3.section-title {
-	color: #333;     /* archivo tipography.scss line 43 le agrega por defecto color: #707070 */
+	color: $black;     /* archivo tipography.scss line 43 le agrega por defecto color: #707070 */
 }
 
 .m-l-m15 {
@@ -288,7 +245,7 @@ footer ul.nav li a {
 .nav.nav-icons li a:hover i,
 .nav.nav-icons li a:focus i {
 	color: #0072bb !important;
-	background: #fff !important;     /* box-shadow: 0px 0px 3px 2px #707070; */
+	background: #fff !important;
 	box-shadow: none;
 	border: solid 1px #ddd;
 }
@@ -296,13 +253,13 @@ footer ul.nav li a {
 /* afecta tambien nav.scss line 369*/
 .nav.nav-icons.nav-icons-selected li:not(.active) a:hover i {
 	color: #0072bb !important;
-	background: #fff !important;     /* box-shadow: 0px 0px 3px 2px #707070; */
+	background: #fff !important;
 	box-shadow: none;
 	border: solid 1px #ddd;
 }
 
 .nav.nav-icons li a span {
-	color: #333;
+	color: $black;
 }
 
 /* Mejorar contraste a etiqueta time en paneles noticias destacadas */
@@ -313,12 +270,10 @@ footer ul.nav li a {
 /* modificar paneles sacar headings por parrafos o span */
 .panel .h3_title,
 .h3_title {
-
-	/* panel.scss line 34, 16, 142(transicion)*/
 	font-size: 1.3em !important;
 	font-weight: 500 !important;
 	line-height: 1.3 !important;
-	margin: .25em 0 !important;     /*color: red; cambiar color para visualizar mejor que se esta cambiando*/
+	margin: .25em 0 !important;  /*color: red; cambiar color para visualizar mejor que se esta cambiando*/
 }
 
 /* modificar paneles sacar headings por parrafos o span */
@@ -329,39 +284,46 @@ footer ul.nav li a {
 	font-weight: 600;     /*color: red; cambiar color para visualizar mejor que se esta cambiando*/
 }
 
-.markerCSS .leaflet-popup-content-wrapper {
-	background: #2ce897;
-	color: #eee;
-	font-size: 12px;
-	line-height: 24px;
-	border-radius: 0px;
-}
 
-.markerCSS .leaflet-popup-content-wrapper a {
-	color: rgba(200, 200, 200, 0.1);
-}
+/* Modificador para leaflet
+   ======================================================================== */
+// .markerCSS .leaflet-popup-content-wrapper {
+// 	background: #2ce897;
+// 	color: #eee;
+// 	font-size: 12px;
+// 	line-height: 24px;
+// 	border-radius: 0px;
+// }
 
-.markerCSS .leaflet-popup-content {
-	width: 400px;
-}
+// .markerCSS .leaflet-popup-content-wrapper a {
+// 	color: rgba(200, 200, 200, 0.1);
+// }
 
-.markerCSS .leaflet-popup-tip-container {
-	margin-left: -5px;
-}
+// .markerCSS .leaflet-popup-content {
+// 	width: 400px;
+// }
 
-.markerCSScluster {
-	text-align: center;
-}
+// .markerCSS .leaflet-popup-tip-container {
+// 	margin-left: -5px;
+// }
 
-.textCluster {
-	color: white;
-	margin-top: 13px;
-}
+// .markerCSScluster {
+// 	text-align: center;
+// }
 
-.leaflet-fade-anim .leaflet-tile,
-.leaflet-zoom-anim .leaflet-zoom-animated {
-	will-change: auto !important;
-}
+// .textCluster {
+// 	color: white;
+// 	margin-top: 13px;
+// }
+
+// .leaflet-fade-anim .leaflet-tile,
+// .leaflet-zoom-anim .leaflet-zoom-animated {
+// 	will-change: auto !important;
+// }
+
+
+
+
 
 @media screen and (max-width:767px) {
 	.c_bajada {
@@ -381,6 +343,10 @@ footer ul.nav li a {
 	margin-top: 10px !important;
 }
 
+
+
+/* Destacados
+   ======================================================================== */
 #destacados .panel-default {
 	border: none !important;
 }
@@ -390,6 +356,10 @@ footer ul.nav li a {
 	color: #fff !important;
 }
 
+
+
+/* Trámites (iconos)
+   ======================================================================== */
 .tramites-iconos .panel-default {
 	border: none !important;
 	margin-bottom: 5px !important;
@@ -419,6 +389,15 @@ footer ul.nav li a {
 	padding: 30px 20px 20px 20px;
 }
 
+.tramites-iconos .panel h3,
+.tramites-iconos .panel .h3 {
+	color: $black;
+}
+
+
+
+/* Header
+   ======================================================================== */
 header nav .btn-link {
 	color: #0072bb !important;
 	margin-left: 20px !important;
@@ -432,15 +411,17 @@ header nav input#buscar:focus {
 	opacity: 1;
 }
 
+
+
+
+/* Panel
+   ======================================================================== */
 .panel h3,
 .panel .h3 {
-	color: #333;
+	color:$black;
 }
 
-.tramites-iconos .panel h3,
-.tramites-iconos .panel .h3 {
-	color: #333;
-}
+
 
 @media (max-width:767px) {
 	.navbar .navbar-brand {
@@ -458,7 +439,7 @@ header nav input#buscar:focus {
 .input-group-btn:not(:first-child):not(:last-child) {
 	border-top-left-radius: 10px;
 	border-bottom-left-radius: 10px;
-	border: 1px solid #333 !important;
+	border: 1px solid $black !important;
 }
 
 footer section section {
@@ -514,7 +495,7 @@ footer section section {
 }
 
 .breadcrumb a:hover {
-	color: #333;
+	color: $black;
 }
 
 ul.dropdown-menu li a {
@@ -558,7 +539,7 @@ footer .nav > li > a:hover {
 .panel-disabled .h3,
 .panel-disabled h3,
 .panel-disabled p {
-	color: #333 !important;
+	color: $black !important;
 }
 
 .pane-area-estructura h2 {
@@ -579,75 +560,81 @@ footer .nav > li > a:hover {
 
 /* Panel icon
    ======================================================================== */
-.panel-icon.panel-success .panel-heading {
-	background-color: #2e7d33 !important;
-}
+// .panel-icon.panel-success .panel-heading {
+// 	background-color: #2e7d33 !important;
+// }
 
-.panel-icon.panel-info .panel-heading {
-	background-color: #3e5a7e !important;
-}
+// .panel-icon.panel-info .panel-heading {
+// 	background-color: #3e5a7e !important;
+// }
 
-.panel-icon.panel-danger .panel-heading {
-	background-color: #c62828 !important;
-}
+// .panel-icon.panel-danger .panel-heading {
+// 	background-color: #c62828 !important;
+// }
 
-.panel-icon.panel-warning .panel-heading {
-	background-color: #f9a822 !important;
-}
+// Hay diferencias con el color amarillo en variables
+// .panel-icon.panel-warning .panel-heading {
+// 	background-color: #f9a822 !important;
+// }
 
-.panel-icon.panel-gray .panel-heading {
-	background-color: #e5e5e5 !important;
-}
+// .panel-icon.panel-gray .panel-heading {
+// 	background-color: #e5e5e5 !important;
+// }
 
-.panel-icon.panel-white .panel-heading {
-	background-color: #fff !important;
-	border: solid 1px #ddd;
-	border-radius: 10px;
-}
+// .panel-icon.panel-white .panel-heading {
+// 	background-color: $white !important;
+// 	border: solid 1px $gray-light;
+// 	border-radius: 10px;
+// }
 
-.panel-icon.panel-muted .panel-heading {
-	background-color: #555 !important;
-}
+// .panel-icon.panel-muted .panel-heading {
+// 	background-color: #555 !important;
+// }
 
-.panel-icon.panel-fucsia .panel-heading {
-	background-color: #EC407A !important;
-}
+// .panel-icon.panel-fucsia .panel-heading {
+// 	background-color: #EC407A !important;
+// }
 
-.panel-icon.panel-arandano .panel-heading {
-	background-color: #C2185B !important;
-}
+// .panel-icon.panel-arandano .panel-heading {
+// 	background-color: #C2185B !important;
+// }
 
-.panel-icon.panel-uva .panel-heading {
-	background-color: #6A1B99 !important;
-}
+// .panel-icon.panel-uva .panel-heading {
+// 	background-color: #6A1B99 !important;
+// }
 
-.panel-icon.panel-cielo .panel-heading {
-	background-color: #039BE5 !important;
-}
+// .panel-icon.panel-cielo .panel-heading {
+// 	background-color: #039BE5 !important;
+// }
 
-.panel-icon.panel-verdin .panel-heading {
-	background-color: #6EA100 !important;
-}
+// .panel-icon.panel-verdin .panel-heading {
+// 	background-color: #6EA100 !important;
+// }
 
-.panel-icon.panel-lima .panel-heading {
-	background-color: #CDDC39 !important;
-}
+// .panel-icon.panel-lima .panel-heading {
+// 	background-color: #CDDC39 !important;
+// }
 
-.panel-icon.panel-maiz .panel-heading {
-	background-color: #FFCE00 !important;
-}
+// .panel-icon.panel-maiz .panel-heading {
+// 	background-color: #FFCE00 !important;
+// }
 
-.panel-icon.panel-tomate .panel-heading {
-	background-color: #EF5350 !important;
-}
+// .panel-icon.panel-tomate .panel-heading {
+// 	background-color: #EF5350 !important;
+// }
 
-.panel-icon.panel-naranja .panel-heading {
-	background-color: #EF6C00 !important;
-}
+// .panel-icon.panel-naranja .panel-heading {
+// 	background-color: #EF6C00 !important;
+// }
 
-.panel-icon.panel-verde-azulado .panel-heading {
-	background-color: #008388 !important;
-}
+// .panel-icon.panel-verde-azulado .panel-heading {
+// 	background-color: #008388 !important;
+// }
+
+
+
+
+
 
 small {
 	font-weight: 500 !important;
@@ -660,7 +647,7 @@ small {
 
 /*  ESTILOS ETAPA 2 ARGENTINA.GOB.AR */
 .etapa2 .h3 {
-	color: #333 !important;
+	color: $black !important;
 	font-size: 20px !important;
 	text-shadow: none !important;
 }
@@ -796,7 +783,7 @@ small {
 
 .btn-search-reset {
 	padding: 10px 11px !important;
-	border: 1px solid #333 !important;
+	border: 1px solid $black !important;
 	line-height: 1.38 !important;
 }
 
@@ -824,11 +811,11 @@ small {
 .main-footer {
 	padding: 50px 0 0 0;
 	margin-top: 10px;
-	background: #f2f2f2 !important;
+	background: $gray-lighter !important;
 }
 
 .sub-footer {
-	background-color: #242C4F;
+	background-color: $brand-primary;
 	padding: 20px 0 40px 0;
 }
 
