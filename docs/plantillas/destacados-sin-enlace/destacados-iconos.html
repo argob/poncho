@@ -50,22 +50,47 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
     <body>
-<header>
-        <nav class="navbar navbar-top navbar-default bg-celeste-argentina" role="navigation">
+    <header>
+        <nav class="navbar navbar-top navbar-default border-bottom-amarillo">
             <div class="container">
                 <div>
-                    <div class="navbar-header"> <a class="navbar-brand" href="/proyectos/argentina/" aria-label="Argentina.gob.ar Presidencia de la Nación"> <img alt="Argentina.gob.ar" src="../paginas-de-argentina/img/argentinagob-2.svg" height="50"> </a> <a class="btn btn-mi-argentina btn-login visible-xs"
-                            href="/proyectos/mi-argentina/v3/"><i class="icono-arg-mi-argentina fa-fw"></i></a> <a class="btn bg-white btn-login visible-xs" href="#" onclick="$('.navbar.navbar-top').addClass('state-search');"><span class="fa fa-search fa-fw"></span></a>                        </div>
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="/" id="navbar-brand" aria-label="Argentina.gob.ar Presidencia de la Nación">
+                          <img src="../paginas-de-argentina/img/logo_argentina-azul.svg" alt="Argentina.gob.ar" height="50" width="254">
+                                              </a>
+                        <a class="btn btn-mi-argentina btn-login visible-xs" href="https://mi.argentina.gob.ar" aria-label="Ingresar a Mi Argentina"><i class="icono-arg-mi-argentina fa-fw"></i></a>
+                        <a onclick="jQuery('.navbar.navbar-top').addClass('state-search');" class="btn btn-mi-argentina btn-login visible-xs" href="#" aria-labelledby="edit-keys"><span class="fa fa-search fa-fw"></span></a>
+                    </div>
                     <div class="nav navbar-nav navbar-right hidden-xs">
-                        <a href="#" onclick="$('.navbar.navbar-top').removeClass('state-search');" class="btn btn-mi-argentina visible-xs"> <i class="fa fa-times"></i> </a>
-                        <div style="float: left">
-                            <div class="input-group">
-                                <input id="buscar" type="text" class="form-control input-search" aria-label="Buscar trámites, servicios o áreas" placeholder="Buscar trámites, servicios o áreas ...">
-                                <span class="input-group-btn">
-              <button class="btn bg-white"  type="button" aria-label="Buscar"><i class="fa fa-search text-primary"></i></button>
-              </span> </div>
+                        <a onclick="jQuery('.navbar.navbar-top').removeClass('state-search');" href="#" class="btn btn-link btn-search-reset visible-xs">
+                            <div class="fa fa-times"></div>
+                        </a>
+                        <div id="cd-login">
+
+                            <a href="https://mi.argentina.gob.ar/" id="btn-mi-argentina" class="btn btn-primary hidden-xs" aria-label="Ingresar a Mi Argentina">Mi Argentina</a>
                         </div>
-                        <a href="#" class="dropdown-toggle btn btn-mi-argentina hidden-xs bg-white" aria-label="Ingresar a Mi Argentina" data-toggle="dropdown"> miArgentina</a>
+                        <!-- <section id="block-argentinagobar-search-apache-solr-search-navbar" class="block block-argentinagobar-search clearfix"> -->
+                        <div class="pull-left">
+                            <form class="main-form" role="search" action="/buscar" method="post" id="apachesolr-search-custom-page-search-form" accept-charset="UTF-8">
+                                <div><input type="hidden" name="form_build_id" value="form-M00AHql0uSao3QDS-gviIifM5poyXVz8W8_Vf4xgDbU">
+                                    <input type="hidden" name="form_id" value="apachesolr_search_custom_page_search_form">
+                                    <div style="display:none;">
+                                        <div class="form-item form-item-tarro-de-miel form-type-textfield form-group"> <label class="control-label" for="edit-tarro-de-miel">Dejar en blanco</label>
+                                            <input class="form-control form-text" type="text" id="edit-tarro-de-miel" name="tarro_de_miel" value="" size="60" maxlength="128"></div>
+                                    </div>
+                                    <div class="input-group">
+                                        <label class="sr-only" for="edit-keys">Buscar en el sitio</label><input placeholder="Buscar trámites, servicios o áreas" id="edit-keys" class="input-search form-control form-text" aria-label="Buscar trámites, servicios o áreas"
+                                            type="text" name="keys" value="" size="20" maxlength="255"><span class="input-group-btn"><button aria-labelledby="edit-keys" aria-label="Buscar" type="submit" id="edit-submit" name="op" value="<i class=&quot;fa fa-search text-primary&quot;></i>" class="bg-white btn-search-reset btn form-submit"><i class="fa fa-search text-primary"></i></button>
+                                            </span>
+                                        </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- </section> -->
+                        <!-- Pablo -->
+                        <!-- <a href="https://mi.argentina.gob.ar" class="btn btn-link hidden-xs" aria-label="Ingresar a Mi Argentina">
+                        <i class="icono-arg-mi-argentina"></i>Mi Argentina</a> -->
                     </div>
                 </div>
             </div>
@@ -544,10 +569,10 @@
 
 <footer>
   <div class="container-fluid">
-    <div class="row sub-footer">
+    <div class="row sub-footer bg-primary border-top-amarillo">
       <div class="container">
         <div class="col-sm-6 m-y-1 p-x-0">
-          <img class="image-responsive" height="80" src="../paginas-de-argentina/img/primerolagente.svg" alt="Primero la gente"/>
+    
                         <!-- <p class="text-muted small m-b-2">
               <a href="https://creativecommons.org/licenses/by/4.0/deed.es" target="_blank" rel="noreferrer">Los contenidos de Argentina.gob.ar están licenciados bajo Creative Commons Atribución 4.0 Internacional</a>            </p> -->
           
