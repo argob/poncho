@@ -25,10 +25,12 @@ table.dataTable tr.dt-hasChild td.dt-control:before {
   content: "▼";
 }
 
-html.dark table.dataTable td.dt-control:before {
+html.dark table.dataTable td.dt-control:before,
+:root[data-bs-theme=dark] table.dataTable td.dt-control:before {
   color: rgba(255, 255, 255, 0.5);
 }
-html.dark table.dataTable tr.dt-hasChild td.dt-control:before {
+html.dark table.dataTable tr.dt-hasChild td.dt-control:before,
+:root[data-bs-theme=dark] table.dataTable tr.dt-hasChild td.dt-control:before {
   color: rgba(255, 255, 255, 0.5);
 }
 
@@ -124,7 +126,7 @@ div.dataTables_processing > div:last-child > div {
   width: 13px;
   height: 13px;
   border-radius: 50%;
-  background: #0d6efd;
+  background: rgb(13, 110, 253);
   background: rgb(var(--dt-row-selected));
   animation-timing-function: cubic-bezier(0, 1, 1, 0);
 }
@@ -290,11 +292,11 @@ table.dataTable tbody tr {
 table.dataTable tbody tr.selected > * {
   box-shadow: inset 0 0 0 9999px rgba(13, 110, 253, 0.9);
   box-shadow: inset 0 0 0 9999px rgba(var(--dt-row-selected), 0.9);
-  color: white;
+  color: rgb(255, 255, 255);
   color: rgb(var(--dt-row-selected-text));
 }
 table.dataTable tbody tr.selected a {
-  color: #090a0b;
+  color: rgb(9, 10, 11);
   color: rgb(var(--dt-row-selected-link));
 }
 table.dataTable tbody th,
@@ -312,7 +314,8 @@ table.dataTable.display > tbody > tr:first-child > td {
   border-top: none;
 }
 table.dataTable.row-border > tbody > tr.selected + tr.selected > td, table.dataTable.display > tbody > tr.selected + tr.selected > td {
-  border-top-color: #0262ef;
+  border-top-color: rgba(13, 110, 253, 0.65);
+  border-top-color: rgba(var(--dt-row-selected), 0.65);
 }
 table.dataTable.cell-border > tbody > tr > th,
 table.dataTable.cell-border > tbody > tr > td {
@@ -385,15 +388,15 @@ table.dataTable.display > tbody > tr.odd.selected > .sorting_3, table.dataTable.
 }
 table.dataTable.display > tbody > tr.even > .sorting_1, table.dataTable.order-column.stripe > tbody > tr.even > .sorting_1 {
   box-shadow: inset 0 0 0 9999px rgba(0, 0, 0, 0.019);
-  box-shadow: inset 0 0 0 9999px rgba(var(--dt-row-selected), 0.019);
+  box-shadow: inset 0 0 0 9999px rgba(var(--dt-column-ordering), 0.019);
 }
 table.dataTable.display > tbody > tr.even > .sorting_2, table.dataTable.order-column.stripe > tbody > tr.even > .sorting_2 {
   box-shadow: inset 0 0 0 9999px rgba(0, 0, 0, 0.011);
-  box-shadow: inset 0 0 0 9999px rgba(var(--dt-row-selected), 0.011);
+  box-shadow: inset 0 0 0 9999px rgba(var(--dt-column-ordering), 0.011);
 }
 table.dataTable.display > tbody > tr.even > .sorting_3, table.dataTable.order-column.stripe > tbody > tr.even > .sorting_3 {
   box-shadow: inset 0 0 0 9999px rgba(0, 0, 0, 0.003);
-  box-shadow: inset 0 0 0 9999px rgba(var(--dt-row-selected), 0.003);
+  box-shadow: inset 0 0 0 9999px rgba(var(--dt-column-ordering), 0.003);
 }
 table.dataTable.display > tbody > tr.even.selected > .sorting_1, table.dataTable.order-column.stripe > tbody > tr.even.selected > .sorting_1 {
   box-shadow: inset 0 0 0 9999px rgba(13, 110, 253, 0.919);
@@ -506,18 +509,12 @@ table.dataTable td {
   color: inherit !important;
   border: 1px solid rgba(0, 0, 0, 0.3);
   background-color: rgba(0, 0, 0, 0.05);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(230, 230, 230, 0.05)), color-stop(100%, rgba(0, 0, 0, 0.05)));
-  /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top, rgba(230, 230, 230, 0.05) 0%, rgba(0, 0, 0, 0.05) 100%);
-  /* Chrome10+,Safari5.1+ */
-  background: -moz-linear-gradient(top, rgba(230, 230, 230, 0.05) 0%, rgba(0, 0, 0, 0.05) 100%);
-  /* FF3.6+ */
-  background: -ms-linear-gradient(top, rgba(230, 230, 230, 0.05) 0%, rgba(0, 0, 0, 0.05) 100%);
-  /* IE10+ */
-  background: -o-linear-gradient(top, rgba(230, 230, 230, 0.05) 0%, rgba(0, 0, 0, 0.05) 100%);
-  /* Opera 11.10+ */
-  background: linear-gradient(to bottom, rgba(230, 230, 230, 0.05) 0%, rgba(0, 0, 0, 0.05) 100%);
-  /* W3C */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(230, 230, 230, 0.05)), color-stop(100%, rgba(0, 0, 0, 0.05))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, rgba(230, 230, 230, 0.05) 0%, rgba(0, 0, 0, 0.05) 100%); /* Chrome10+,Safari5.1+ */
+  background: -moz-linear-gradient(top, rgba(230, 230, 230, 0.05) 0%, rgba(0, 0, 0, 0.05) 100%); /* FF3.6+ */
+  background: -ms-linear-gradient(top, rgba(230, 230, 230, 0.05) 0%, rgba(0, 0, 0, 0.05) 100%); /* IE10+ */
+  background: -o-linear-gradient(top, rgba(230, 230, 230, 0.05) 0%, rgba(0, 0, 0, 0.05) 100%); /* Opera 11.10+ */
+  background: linear-gradient(to bottom, rgba(230, 230, 230, 0.05) 0%, rgba(0, 0, 0, 0.05) 100%); /* W3C */
 }
 .dataTables_wrapper .dataTables_paginate .paginate_button.disabled, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active {
   cursor: default;
@@ -530,34 +527,22 @@ table.dataTable td {
   color: white !important;
   border: 1px solid #111;
   background-color: #111;
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #585858), color-stop(100%, #111));
-  /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top, #585858 0%, #111 100%);
-  /* Chrome10+,Safari5.1+ */
-  background: -moz-linear-gradient(top, #585858 0%, #111 100%);
-  /* FF3.6+ */
-  background: -ms-linear-gradient(top, #585858 0%, #111 100%);
-  /* IE10+ */
-  background: -o-linear-gradient(top, #585858 0%, #111 100%);
-  /* Opera 11.10+ */
-  background: linear-gradient(to bottom, #585858 0%, #111 100%);
-  /* W3C */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #585858), color-stop(100%, #111)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #585858 0%, #111 100%); /* Chrome10+,Safari5.1+ */
+  background: -moz-linear-gradient(top, #585858 0%, #111 100%); /* FF3.6+ */
+  background: -ms-linear-gradient(top, #585858 0%, #111 100%); /* IE10+ */
+  background: -o-linear-gradient(top, #585858 0%, #111 100%); /* Opera 11.10+ */
+  background: linear-gradient(to bottom, #585858 0%, #111 100%); /* W3C */
 }
 .dataTables_wrapper .dataTables_paginate .paginate_button:active {
   outline: none;
   background-color: #0c0c0c;
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #2b2b2b), color-stop(100%, #0c0c0c));
-  /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top, #2b2b2b 0%, #0c0c0c 100%);
-  /* Chrome10+,Safari5.1+ */
-  background: -moz-linear-gradient(top, #2b2b2b 0%, #0c0c0c 100%);
-  /* FF3.6+ */
-  background: -ms-linear-gradient(top, #2b2b2b 0%, #0c0c0c 100%);
-  /* IE10+ */
-  background: -o-linear-gradient(top, #2b2b2b 0%, #0c0c0c 100%);
-  /* Opera 11.10+ */
-  background: linear-gradient(to bottom, #2b2b2b 0%, #0c0c0c 100%);
-  /* W3C */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #2b2b2b), color-stop(100%, #0c0c0c)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #2b2b2b 0%, #0c0c0c 100%); /* Chrome10+,Safari5.1+ */
+  background: -moz-linear-gradient(top, #2b2b2b 0%, #0c0c0c 100%); /* FF3.6+ */
+  background: -ms-linear-gradient(top, #2b2b2b 0%, #0c0c0c 100%); /* IE10+ */
+  background: -o-linear-gradient(top, #2b2b2b 0%, #0c0c0c 100%); /* Opera 11.10+ */
+  background: linear-gradient(to bottom, #2b2b2b 0%, #0c0c0c 100%); /* W3C */
   box-shadow: inset 0 0 3px #111;
 }
 .dataTables_wrapper .dataTables_paginate .ellipsis {
@@ -604,7 +589,7 @@ table.dataTable td {
 
 @media screen and (max-width: 767px) {
   .dataTables_wrapper .dataTables_info,
-.dataTables_wrapper .dataTables_paginate {
+  .dataTables_wrapper .dataTables_paginate {
     float: none;
     text-align: center;
   }
@@ -614,7 +599,7 @@ table.dataTable td {
 }
 @media screen and (max-width: 640px) {
   .dataTables_wrapper .dataTables_length,
-.dataTables_wrapper .dataTables_filter {
+  .dataTables_wrapper .dataTables_filter {
     float: none;
     text-align: center;
   }
@@ -629,7 +614,7 @@ html.dark {
 }
 html.dark table.dataTable > thead > tr > th,
 html.dark table.dataTable > thead > tr > td {
-  border-bottom: 1px solid #595b5e;
+  border-bottom: 1px solid rgb(89, 91, 94);
 }
 html.dark table.dataTable > thead > tr > th:active,
 html.dark table.dataTable > thead > tr > td:active {
@@ -637,24 +622,25 @@ html.dark table.dataTable > thead > tr > td:active {
 }
 html.dark table.dataTable > tfoot > tr > th,
 html.dark table.dataTable > tfoot > tr > td {
-  border-top: 1px solid #595b5e;
+  border-top: 1px solid rgb(89, 91, 94);
 }
 html.dark table.dataTable.row-border > tbody > tr > th,
 html.dark table.dataTable.row-border > tbody > tr > td, html.dark table.dataTable.display > tbody > tr > th,
 html.dark table.dataTable.display > tbody > tr > td {
-  border-top: 1px solid #404346;
+  border-top: 1px solid rgb(64, 67, 70);
 }
 html.dark table.dataTable.row-border > tbody > tr.selected + tr.selected > td, html.dark table.dataTable.display > tbody > tr.selected + tr.selected > td {
-  border-top-color: #0257d5;
+  border-top-color: rgba(13, 110, 253, 0.65);
+  border-top-color: rgba(var(--dt-row-selected), 0.65);
 }
 html.dark table.dataTable.cell-border > tbody > tr > th,
 html.dark table.dataTable.cell-border > tbody > tr > td {
-  border-top: 1px solid #404346;
-  border-right: 1px solid #404346;
+  border-top: 1px solid rgb(64, 67, 70);
+  border-right: 1px solid rgb(64, 67, 70);
 }
 html.dark table.dataTable.cell-border > tbody > tr > th:first-child,
 html.dark table.dataTable.cell-border > tbody > tr > td:first-child {
-  border-left: 1px solid #404346;
+  border-left: 1px solid rgb(64, 67, 70);
 }
 html.dark .dataTables_wrapper .dataTables_filter input,
 html.dark .dataTables_wrapper .dataTables_length select {
@@ -662,15 +648,15 @@ html.dark .dataTables_wrapper .dataTables_length select {
   background-color: var(--dt-html-background);
 }
 html.dark .dataTables_wrapper .dataTables_paginate .paginate_button.current, html.dark .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
-  border: 1px solid #595b5e;
+  border: 1px solid rgb(89, 91, 94);
   background: rgba(255, 255, 255, 0.15);
 }
 html.dark .dataTables_wrapper .dataTables_paginate .paginate_button.disabled, html.dark .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover, html.dark .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active {
   color: #666 !important;
 }
 html.dark .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
-  border: 1px solid #353535;
-  background: #353535;
+  border: 1px solid rgb(53, 53, 53);
+  background: rgb(53, 53, 53);
 }
 html.dark .dataTables_wrapper .dataTables_paginate .paginate_button:active {
   background: #3a3a3a;
