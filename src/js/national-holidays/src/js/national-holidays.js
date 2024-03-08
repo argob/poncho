@@ -28,7 +28,6 @@ const calendar = {
       this.container = jQuery(this.options.containerId);
       this.template = jQuery(this.options.templateId);
 
-
       this.iteration_date = new Date(
           Date.UTC(this.TODAY.getFullYear(), this.TODAY.getMonth(), 1, 3, 0, 0)
       );
