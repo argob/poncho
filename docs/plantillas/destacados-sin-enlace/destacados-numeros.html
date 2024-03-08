@@ -39,15 +39,14 @@
   <meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
   <meta name="twitter:image" content="http://argob.github.io/poncho/img/poncho_social.jpg" />
 
-  <link href="../../node_modules/ar-poncho/dist/css/roboto-fontface.css" rel="stylesheet">
   <link href="../../node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
   <link href="../../node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <link href="" rel="stylesheet">
   <link href="../../node_modules/ar-poncho/dist/css/poncho.min.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/dt-1.10.18/r-2.2.2/datatables.min.css"/>
-
   <link href="../../node_modules/ar-poncho/dist/css/documentacion.css" rel="stylesheet">
   <link href="../../css/prism.css" rel="stylesheet">
+
+  <link href="https://cdn.jsdelivr.net/gh/argob/poncho@master/dist/css/icono-arg.css" rel="stylesheet">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -73,9 +72,9 @@
                     <div class="navbar-header">
                         <a class="navbar-brand" href="/" id="navbar-brand" aria-label="Argentina.gob.ar Presidencia de la Nación">
                           <img src="../paginas-de-argentina/img/logo_argentina-azul.svg" alt="Argentina.gob.ar" height="50" width="254">
-                                              </a>
-                        <a class="btn btn-mi-argentina btn-login visible-xs" href="https://mi.argentina.gob.ar" aria-label="Ingresar a Mi Argentina"><i class="icono-arg-mi-argentina fa-fw"></i></a>
-                        <a onclick="jQuery('.navbar.navbar-top').addClass('state-search');" class="btn btn-mi-argentina btn-login visible-xs" href="#" aria-labelledby="edit-keys"><span class="fa fa-search fa-fw"></span></a>
+                           </a>
+                        <a class="btn btn-mi-argentina btn-login visible-xs" href="https://mi.argentina.gob.ar" aria-label="Ingresar a Mi Argentina"><i class="icono-arg-mi-argentina fa-fw"></i><span class="sr-only">Ir a Mi Argentina</span>
+                        </a>  
                     </div>
                     <div class="nav navbar-nav navbar-right hidden-xs">
                         <a onclick="jQuery('.navbar.navbar-top').removeClass('state-search');" href="#" class="btn btn-link btn-search-reset visible-xs">
