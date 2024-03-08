@@ -131,6 +131,8 @@
                       <!-- / References -->
                   </div>
                   <div id="calendar-container" class="calendar"></div>
+
+
                   <!-- Template -->
                   <div id="month-tpl">
                       <div class="month">
@@ -152,6 +154,34 @@
                       <div class="holidays js-holidays list-unstyled"></div>
                   </div>
                   <!-- / Template -->
+
+
+
+
+
+                  <!-- Template -->
+                  <template id="template-month">
+                    <div class="month">
+                        <h2 class="h5 text-center">Mes</h2>
+                        <table class="table table-striped text-center small" role="presentation">
+                            <tbody>
+                                <tr>
+                                    <td aria-hidden="true" class="text-center day">Dom</td>
+                                    <td aria-hidden="true" class="text-center day">Lun</td>
+                                    <td aria-hidden="true" class="text-center day">Mar</td>
+                                    <td aria-hidden="true" class="text-center day">Mié</td>
+                                    <td aria-hidden="true" class="text-center day">Jue</td>
+                                    <td aria-hidden="true" class="text-center day">Vie</td>
+                                    <td aria-hidden="true" class="text-center day">Sáb</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="holidays js-holidays list-unstyled"></div>
+                </template>
+                <!-- / Template -->
+
+
               </div>
           </div>
       </div>
@@ -159,171 +189,216 @@
 </section>
 <!-- / Calendar -->
 
-    <!-- <script src="../../../src/js/national-holidays.js"></script> -->
-    <link rel="stylesheet" href="http://127.0.0.1:5501/src/demo/national-holidays/css/main.css">
-    <script src="http://127.0.0.1:5501/src/js/national-holidays.js"></script>
+    <link rel="stylesheet" href="../dist/css/national-holidays.css">
+    <script src="../src/js/national-holidays.js"></script>
   
     <script>
-    const holidays2023 = [
-        { "date": "01/01/2023", "label": "Año Nuevo", "type": "inamovible" },
-        { "date": "20/02/2023", "label": "Carnaval", "type": "inamovible" },
-        { "date": "21/02/2023", "label": "Carnaval", "type": "inamovible" },
-        { "date": "24/03/2023", "label": "Día Nacional de la Memoria por la Verdad y la Justicia", "type": "inamovible" },
-        { "date": "02/04/2023", "label": "Día del Veterano y de los Caídos en la Guerra de Malvinas", "type": "inamovible" },
-        { "date": "06/04/2023", "label": "Jueves Santo Festividad Cristiana", "type": "no_laborable" },
-        { "date": "07/04/2023", "label": "Viernes Santo Festividad Cristiana", "type": "inamovible" },
-        { "date": "06/04/2023", "label": "Primeros dos días de la Pascua Judía (b)", "type": "no_laborable" },
-        { "date": "07/04/2023", "label": "Primeros dos días de la Pascua Judía (b)", "type": "no_laborable" },
-        { "date": "12/04/2023", "label": "Últimos dos días de la Pascua Judía (b)", "type": "no_laborable" },
-        { "date": "13/04/2023", "label": "Últimos dos días de la Pascua Judía (b)", "type": "no_laborable" },
-        { "date": "21/04/2023", "label": "Fiesta de la Ruptura del Ayuno del Sagrado Mes de Ramadán (Id al-Fitr) (c)", "type": "no_laborable" },
-        { "date": "24/04/2023", "label": "Día de acción por la tolerancia y el respeto entre los pueblos (a)", "type": "no_laborable" },
-        { "date": "01/05/2023", "label": "Día del Trabajador", "type": "inamovible" },
-        { "date": "25/05/2023", "label": "Día de la Revolución de Mayo", "type": "inamovible" },
-        { "date": "26/05/2023", "label": "Feriado con fines turísticos", "type": "turistico" },
-        { "date": "17/06/2023", "label": "Paso a la Inmortalidad del Gral. Don Martín Miguel de Güemes", "type": "trasladable" },
-        { "date": "20/06/2023", "label": "Paso a la Inmortalidad del Gral. Manuel Belgrano", "type": "inamovible" },
-        { "date": "19/06/2023", "label": "Feriado con fines turísticos", "type": "turistico" },
-        { "date": "28/06/2023", "label": "Fiesta del Sacrificio (c)", "type": "no_laborable" },
-        { "date": "09/07/2023", "label": "Día de la Independencia ", "type": "inamovible" },
-        { "date": "19/07/2023", "label": "Año Nuevo Islámico (c)", "type": "no_laborable" },
-        { "date": "21/08/2023", "label": "Paso a la Inmortalidad del Gral. José de San Martín (17/8)", "type": "trasladable" },
-        { "date": "16/09/2023", "label": "Año Nuevo Judío (b)", "type": "no_laborable" },
-        { "date": "17/09/2023", "label": "Año Nuevo Judío (b)", "type": "no_laborable" },
-        { "date": "25/09/2023", "label": "Día del Perdón (b)", "type": "no_laborable" },
-        { "date": "13/10/2023", "label": "Feriado con fines turísticos", "type": "turistico" },
-        { "date": "16/10/2023", "label": "Día del Respeto a la Diversidad Cultural (12/10)", "type": "trasladable" },
-        { "date": "20/11/2023", "label": "Día de la Soberanía Nacional", "type": "trasladable" },
-        { "date": "08/12/2023", "label": "Inmaculada Concepción de María", "type": "inamovible" },
-        { "date": "25/12/2023", "label": "Navidad", "type": "inamovible" },
-        { "date": "01/01/2024", "label": "Año nuevo", "type": "inamovible" },
-    ];
-    const holidays2022 = [
-        { "date": "01/01/2022", "label": "Año Nuevo", "type": "inamovible" },
-        { "date": "28/02/2022", "label": "Carnaval", "type": "inamovible" },
-        { "date": "01/03/2022", "label": "Carnaval", "type": "inamovible" },
-        { "date": "24/03/2022", "label": "Día Nacional de la Memoria por la Verdad y la Justicia", "type": "inamovible" },
-        { "date": "02/04/2022", "label": "Día del Veterano y de los Caídos en la Guerra de Malvinas", "type": "inamovible" },
-        { "date": "14/04/2022", "label": "Jueves Santo", "type": "no_laborable" },
-        { "date": "15/04/2022", "label": "Viernes Santo", "type": "inamovible" },
-        { "date": "16/04/2022", "label": "Primeros dos días de la Pascua Judía (b)", "type": "no_laborable" },
-        { "date": "17/04/2022", "label": "Primeros dos días de la Pascua Judía (b)", "type": "no_laborable" },
-        { "date": "22/04/2022", "label": "Últimos dos días de la Pascua Judía (b)", "type": "no_laborable" },
-        { "date": "23/04/2022", "label": "Últimos dos días de la Pascua Judía (b)", "type": "no_laborable" },
-        { "date": "24/04/2022", "label": "Día de acción por la tolerancia y el respeto entre los pueblos (a)", "type": "no_laborable" },
-        { "date": "01/05/2022", "label": "Día del Trabajador", "type": "inamovible" },
-        { "date": "02/05/2022", "label": "Fiesta de la Ruptura del Ayuno del Sagrado Mes de Ramadán (Id al-Fitr) (c)", "type": "no_laborable" },
-        { "date": "18/05/2022", "label": "Censo nacional 2022", "type": "inamovible" },
-        { "date": "25/05/2022", "label": "Día de la Revolución de Mayo", "type": "inamovible" },
-        { "date": "17/06/2022", "label": "Paso a la Inmortalidad del Gral. Don Martín Miguel de Güemes", "type": "trasladable" },
-        { "date": "20/06/2022", "label": "Paso a la Inmortalidad del Gral. Manuel Belgrano", "type": "inamovible" },
-        { "date": "09/07/2022", "label": "Día de la Independencia ", "type": "inamovible" },
-        { "date": "09/07/2022", "label": "Fiesta del Sacrificio (c)", "type": "no_laborable" },
-        { "date": "30/07/2022", "label": "Año Nuevo Islámico (c)", "type": "no_laborable" },
-        { "date": "15/08/2022", "label": "Paso a la Inmortalidad del Gral. José de San Martín (17/8)", "type": "trasladable" },
-        { "date": "26/09/2022", "label": "Año Nuevo Judío (b)", "type": "no_laborable" },
-        { "date": "27/09/2022", "label": "Año Nuevo Judío (b)", "type": "no_laborable" },
-        { "date": "05/10/2022", "label": "Día del Perdón (b)", "type": "no_laborable" },
-        { "date": "07/10/2022", "label": "Feriado con fines turísticos", "type": "turistico" },
-        { "date": "10/10/2022", "label": "Día del Respeto a la Diversidad Cultural (12/10)", "type": "trasladable" },
-        { "date": "20/11/2022", "label": "Día de la Soberanía Nacional", "type": "trasladable" },
-        { "date": "21/11/2022", "label": "Feriado con fines turísticos", "type": "turistico" },
-        { "date": "08/12/2022", "label": "Inmaculada Concepción de María", "type": "inamovible" },
-        { "date": "09/12/2022", "label": "Feriado con fines turísticos", "type": "turistico" },
-        { "date": "25/12/2022", "label": "Navidad", "type": "inamovible" },
-        { "date": "01/01/2023", "label": "Año nuevo", "type": "inamovible" },
-    ];
-    const holidays2021 = [
-        { "date": "07/12/2020", "label": "Feriado con fines turísticos", "type": "inamovible" },
-        { "date": "08/12/2020", "label": "Inmaculada Concepción de María", "type": "inamovible" },
-        { "date": "25/12/2020", "label": "Navidad", "type": "" },
-        { "date": "01/01/2021", "label": "Año nuevo", "type": "inamovible" },
-        { "date": "15/02/2021", "label": "Carnaval", "type": "inamovible" },
-        { "date": "16/02/2021", "label": "Carnaval", "type": "inamovible" },
-        { "date": "24/03/2021", "label": "Día Nacional de la Memoria por la Verdad y la Justicia", "type": "inamovible" },
-        { "date": "28/03/2021", "label": "Pascua Judías (b)", "type": "no_laborable" },
-        { "date": "29/03/2021", "label": "Pascua Judías (b)", "type": "no_laborable" },
-        { "date": "02/04/2021", "label": "Día del Veterano y de los Caídos en la Guerra de Malvinas / Viernes Santo", "type": "inamovible" },
-        { "date": "01/04/2021", "label": "Jueves Santo Festividad Cristiana.Día no laborable", "type": "no_laborable" },
-        { "date": "02/04/2021", "label": "Día del Veterano y de los Caídos en la Guerra de Malvinas / Viernes Santo", "type": "inamovible" },
-        { "date": "03/04/2021", "label": "Pascuas Judías (b)*", "type": "no_laborable" },
-        { "date": "04/04/2021", "label": "Pascuas Judías (b)*", "type": "no_laborable" },
-        { "date": "24/04/2021", "label": "Día de acción por la tolerancia y el respeto entre los pueblos (a)", "type": "no_laborable" },
-        { "date": "01/05/2021", "label": "Día del trabajador", "type": "inamovible" },
-        { "date": "13/05/2021", "label": "Fiesta de la Ruptura del Ayuno del Sagrado Mes de Ramadán (Id al-Fitr) (c).", "type": "no_laborable" },
-        { "date": "24/05/2021", "label": "Feriado con fines turísticos", "type": "trasladable" },
-        { "date": "25/05/2021", "label": "Día de la Revolución de Mayo", "type": "inamovible" },
-        { "date": "20/06/2021", "label": "Día Paso a la Inmortalidad del Gral. Manuel Belgrano", "type": "inamovible" },
-        { "date": "21/06/2021", "label": "Día Paso a la Inmortalidad del Gral Don Martín Miguel de Güemes", "type": "trasladable" },
-        { "date": "09/07/2021", "label": "Día de la Independencia", "type": "inamovible" },
-        { "date": "20/07/2021", "label": "Fiesta del Sacrificio (c).", "type": "no_laborable" },
-        { "date": "08/08/2021", "label": "Año Nuevo Islámico (c)", "type": "no_laborable" },
-        { "date": "16/08/2021", "label": "Paso a la Inmortalidad del Gral. José de San Martín", "type": "trasladable" },
-        { "date": "07/09/2021", "label": "Año Nuevo Judío (b).", "type": "no_laborable" },
-        { "date": "08/09/2021", "label": "Año Nuevo Judío (b).", "type": "no_laborable" },
-        { "date": "16/09/2021", "label": "Día del Perdón (b).", "type": "no_laborable" },
-        { "date": "08/10/2021", "label": "Feriado con fines turísticos", "type": "inamovible" },
-        { "date": "11/10/2021", "label": "Día del Respeto a la Diversidad Cultural", "type": "trasladable" },
-        { "date": "20/11/2021", "label": "Día de la Soberanía Nacional", "type": "trasladable" },
-        { "date": "22/11/2021", "label": "Feriado con fines turísticos", "type": "inamovible" },
-        { "date": "08/12/2021", "label": "Inmaculada Concepción de María", "type": "inamovible" },
-        { "date": "25/12/2021", "label": "Navidad", "type": "inamovible" },
-        { "date": "01/01/2022", "label": "Año Nuevo", "type": "inamovible" },
-    ];
-    const holidays2020 = [
-        { "date": "07/12/2019", "label": "Feriado con fines turísticos", "type": "inamovible" },
-        { "date": "08/12/2019", "label": "Inmaculada Concepción de María", "type": "inamovible" },
-        { "date": "25/12/2019", "label": "Navidad", "type": "" },
-        { "date": "01/01/2020", "label": "Año nuevo", "type": "inamovible" },
-        { "date": "24/02/2020", "label": "Carnaval", "type": "inamovible" },
-        { "date": "25/02/2020", "label": "Carnaval", "type": "inamovible" },
-        { "date": "23/03/2020", "label": "Feriados con Fines turísticos.", "type": "turistico" },
-        { "date": "24/03/2020", "label": "Día Nacional de la Memoria por la Verdad y la Justicia", "type": "inamovible" },
-        { "date": "31/03/2020", "label": "Día del Veterano y de los Caídos en la Guerra de Malvinas.<br /><br /><em class=\"small\">El feriado del 2 de abril fue trasladado al día martes 31 de marzo de 2020, por única vez, motivo del aislamiento obligatorio y preventivo en todo el país. <a href=\"https://www.boletinoficial.gob.ar/detalleAviso/primera/227042/20200320\">Decreto 297/2020</a></em>.", "type": "inamovible" },
-        { "date": "09/04/2020", "label": "Jueves Santo", "type": "no_laborable" },
-        { "date": "10/04/2020", "label": "Viernes Santo", "type": "inamovible" },
-        { "date": "09/04/2020", "label": "Pascuas Judías", "type": "no_laborable" },
-        { "date": "10/04/2020", "label": "Pascuas Judías", "type": "no_laborable" },
-        { "date": "15/04/2020", "label": "Pascuas Judías", "type": "no_laborable" },
-        { "date": "16/04/2020", "label": "Pascuas Judías", "type": "no_laborable" },
-        { "date": "24/04/2020", "label": "Día de acción por la tolerancia y el respeto entre los pueblos (a).", "type": "no_laborable" },
-        { "date": "01/05/2020", "label": "Día del trabajador", "type": "inamovible" },
-        { "date": "24/05/2020", "label": "Fiesta de la Ruptura del Ayuno del Sagrado Mes de Ramadán (Id al-Fitr) (c).", "type": "no_laborable" },
-        { "date": "25/05/2020", "label": "Día de la Revolución de Mayo", "type": "inamovible" },
-        { "date": "20/06/2020", "label": "Día Paso a la Inmortalidad del Gral. Manuel Belgrano", "type": "inamovible" },
-        { "date": "15/06/2020", "label": "Día Paso a la Inmortalidad del General Martín Miguel de Güemes (17/06).", "type": "trasladable" },
-        { "date": "09/07/2020", "label": "Día de la Independencia", "type": "inamovible" },
-        { "date": "10/07/2020", "label": "Feriado con Fines Turísticos.", "type": "turistico" },
-        { "date": "31/07/2020", "label": "Fiesta del Sacrificio (c).", "type": "no_laborable" },
-        { "date": "20/08/2020", "label": "Año Nuevo Islámico (c)", "type": "no_laborable" },
-        { "date": "17/08/2020", "label": "Paso a la Inmortalidad del Gral. José de San Martín", "type": "trasladable" },
-        { "date": "19/09/2020", "label": "Año Nuevo Judío (b)**.", "type": "no_laborable" },
-        { "date": "20/09/2020", "label": "Año Nuevo Judío (b)**.", "type": "no_laborable" },
-        { "date": "28/09/2020", "label": "Día del Perdón (b)***.", "type": "no_laborable" },
-        { "date": "12/10/2020", "label": "Día del Respeto a la Diversidad Cultural", "type": "trasladable" },
-        { "date": "23/11/2020", "label": "Día de la Soberanía Nacional", "type": "trasladable" },
-        { "date": "07/12/2020", "label": "Feriado con Fines Turísticos.", "type": "turistico" },
-        { "date": "08/12/2020", "label": "Inmaculada Concepción de María", "type": "inamovible" },
-        { "date": "25/12/2020", "label": "Navidad", "type": "inamovible" },
-        { "date": "01/01/2021", "label": "Año Nuevo", "type": "inamovible" },
-    ];
-
-document.addEventListener("DOMContentLoaded", function() {
-    const calendarOptions = {
-        "calendarYear": 2023,
-        "allowHTML": true,
-        "containerId": "#calendar-container",
-        "templateId": "#month-tpl",
-        "markers": [holidays2023],
-        "holidays_type": {
-            "inamovible": "primary",
-            "trasladable": "success",
-            "no_laborable": "nl",
-            "turistico": "turistico"
-        }
+    const holidays = {
+        holidays2024: [
+            { "date": "01/01/2024", "label": "Año Nuevo", "type": "inamovible" },
+            { "date": "12/02/2024", "label": "Carnaval", "type": "inamovible" },
+            { "date": "13/02/2024", "label": "Carnaval", "type": "inamovible" },
+            { "date": "24/03/2024", "label": "Día Nacional de la Memoria por la Verdad y la Justicia", "type": "inamovible" },
+            { "date": "28/03/2024", "label": "Jueves Santo Festividad Cristiana", "type": "no_laborable" },
+            { "date": "29/03/2024", "label": "Viernes Santo Festividad Cristiana", "type": "inamovible" },
+            { "date": "01/04/2024", "label": "Feriado con fines turísticos", "type": "turistico" },
+            { "date": "02/04/2024", "label": "Día del Veterano y de los Caídos en la Guerra de Malvinas", "type": "inamovible" },
+            { "date": "10/04/2024", "label": "Fiesta de la Ruptura del Ayuno del Sagrado Mes de Ramadán (Id al-Fitr) (c)", "type": "no_laborable" },
+            { "date": "23/04/2024", "label": "Primeros dos días de la Pascua Judía (b)", "type": "no_laborable" },
+            { "date": "24/04/2024", "label": "Primeros dos días de la Pascua Judía (b)", "type": "no_laborable" },
+            { "date": "29/04/2024", "label": "Últimos dos días de la Pascua Judía (b)", "type": "no_laborable" },
+            { "date": "30/04/2024", "label": "Últimos dos días de la Pascua Judía (b)", "type": "no_laborable" },
+            { "date": "24/04/2024", "label": "Día de acción por la tolerancia y el respeto entre los pueblos (a)", "type": "no_laborable" },
+            { "date": "01/05/2024", "label": "Día del Trabajador", "type": "inamovible" },
+            { "date": "25/05/2024", "label": "Día de la Revolución de Mayo", "type": "inamovible" },
+            { "date": "16/06/2024", "label": "Fiesta del Sacrificio (c)", "type": "no_laborable" },
+            { "date": "17/06/2024", "label": "Paso a la Inmortalidad del Gral. Don Martín Miguel de Güemes", "type": "trasladable" },
+            { "date": "20/06/2024", "label": "Paso a la Inmortalidad del Gral. Manuel Belgrano", "type": "inamovible" },
+            { "date": "21/06/2024", "label": "Feriado con fines turísticos", "type": "turistico" },
+            { "date": "07/07/2024", "label": "Año Nuevo Islámico (c)", "type": "no_laborable" },
+            { "date": "09/07/2024", "label": "Día de la Independencia ", "type": "inamovible" },
+            { "date": "17/08/2024", "label": "Paso a la Inmortalidad del Gral. José de San Martín", "type": "trasladable" },
+            { "date": "03/10/2024", "label": "Año Nuevo Judío (b)", "type": "no_laborable" },
+            { "date": "04/10/2024", "label": "Año Nuevo Judío (b)", "type": "no_laborable" },
+            { "date": "11/10/2024", "label": "Feriado con fines turísticos", "type": "turistico" },
+            { "date": "12/10/2024", "label": "Día del Perdón (b)", "type": "no_laborable" },
+            { "date": "12/10/2024", "label": "Día del Respeto a la Diversidad Cultural", "type": "trasladable" },
+            { "date": "18/11/2024", "label": "Día de la Soberanía Nacional (20/11)", "type": "trasladable" },
+            { "date": "08/12/2024", "label": "Inmaculada Concepción de María", "type": "inamovible" },
+            { "date": "25/12/2024", "label": "Navidad", "type": "inamovible" },
+            { "date": "01/01/2025", "label": "Año nuevo", "type": "inamovible" }
+        ],
+        holidays2023: [
+            { "date": "01/01/2023", "label": "Año Nuevo", "type": "inamovible" },
+            { "date": "20/02/2023", "label": "Carnaval", "type": "inamovible" },
+            { "date": "21/02/2023", "label": "Carnaval", "type": "inamovible" },
+            { "date": "24/03/2023", "label": "Día Nacional de la Memoria por la Verdad y la Justicia", "type": "inamovible" },
+            { "date": "02/04/2023", "label": "Día del Veterano y de los Caídos en la Guerra de Malvinas", "type": "inamovible" },
+            { "date": "06/04/2023", "label": "Jueves Santo Festividad Cristiana", "type": "no_laborable" },
+            { "date": "07/04/2023", "label": "Viernes Santo Festividad Cristiana", "type": "inamovible" },
+            { "date": "06/04/2023", "label": "Primeros dos días de la Pascua Judía (b)", "type": "no_laborable" },
+            { "date": "07/04/2023", "label": "Primeros dos días de la Pascua Judía (b)", "type": "no_laborable" },
+            { "date": "12/04/2023", "label": "Últimos dos días de la Pascua Judía (b)", "type": "no_laborable" },
+            { "date": "13/04/2023", "label": "Últimos dos días de la Pascua Judía (b)", "type": "no_laborable" },
+            { "date": "21/04/2023", "label": "Fiesta de la Ruptura del Ayuno del Sagrado Mes de Ramadán (Id al-Fitr) (c)", "type": "no_laborable" },
+            { "date": "24/04/2023", "label": "Día de acción por la tolerancia y el respeto entre los pueblos (a)", "type": "no_laborable" },
+            { "date": "01/05/2023", "label": "Día del Trabajador", "type": "inamovible" },
+            { "date": "25/05/2023", "label": "Día de la Revolución de Mayo", "type": "inamovible" },
+            { "date": "26/05/2023", "label": "Feriado con fines turísticos", "type": "turistico" },
+            { "date": "17/06/2023", "label": "Paso a la Inmortalidad del Gral. Don Martín Miguel de Güemes", "type": "trasladable" },
+            { "date": "20/06/2023", "label": "Paso a la Inmortalidad del Gral. Manuel Belgrano", "type": "inamovible" },
+            { "date": "19/06/2023", "label": "Feriado con fines turísticos", "type": "turistico" },
+            { "date": "28/06/2023", "label": "Fiesta del Sacrificio (c)", "type": "no_laborable" },
+            { "date": "09/07/2023", "label": "Día de la Independencia ", "type": "inamovible" },
+            { "date": "19/07/2023", "label": "Año Nuevo Islámico (c)", "type": "no_laborable" },
+            { "date": "21/08/2023", "label": "Paso a la Inmortalidad del Gral. José de San Martín (17/8)", "type": "trasladable" },
+            { "date": "16/09/2023", "label": "Año Nuevo Judío (b)", "type": "no_laborable" },
+            { "date": "17/09/2023", "label": "Año Nuevo Judío (b)", "type": "no_laborable" },
+            { "date": "25/09/2023", "label": "Día del Perdón (b)", "type": "no_laborable" },
+            { "date": "13/10/2023", "label": "Feriado con fines turísticos", "type": "turistico" },
+            { "date": "16/10/2023", "label": "Día del Respeto a la Diversidad Cultural (12/10)", "type": "trasladable" },
+            { "date": "20/11/2023", "label": "Día de la Soberanía Nacional", "type": "trasladable" },
+            { "date": "08/12/2023", "label": "Inmaculada Concepción de María", "type": "inamovible" },
+            { "date": "25/12/2023", "label": "Navidad", "type": "inamovible" },
+            { "date": "01/01/2024", "label": "Año nuevo", "type": "inamovible" }
+        ],
+        holidays2022 : [
+            { "date": "01/01/2022", "label": "Año Nuevo", "type": "inamovible" },
+            { "date": "28/02/2022", "label": "Carnaval", "type": "inamovible" },
+            { "date": "01/03/2022", "label": "Carnaval", "type": "inamovible" },
+            { "date": "24/03/2022", "label": "Día Nacional de la Memoria por la Verdad y la Justicia", "type": "inamovible" },
+            { "date": "02/04/2022", "label": "Día del Veterano y de los Caídos en la Guerra de Malvinas", "type": "inamovible" },
+            { "date": "14/04/2022", "label": "Jueves Santo", "type": "no_laborable" },
+            { "date": "15/04/2022", "label": "Viernes Santo", "type": "inamovible" },
+            { "date": "16/04/2022", "label": "Primeros dos días de la Pascua Judía (b)", "type": "no_laborable" },
+            { "date": "17/04/2022", "label": "Primeros dos días de la Pascua Judía (b)", "type": "no_laborable" },
+            { "date": "22/04/2022", "label": "Últimos dos días de la Pascua Judía (b)", "type": "no_laborable" },
+            { "date": "23/04/2022", "label": "Últimos dos días de la Pascua Judía (b)", "type": "no_laborable" },
+            { "date": "24/04/2022", "label": "Día de acción por la tolerancia y el respeto entre los pueblos (a)", "type": "no_laborable" },
+            { "date": "01/05/2022", "label": "Día del Trabajador", "type": "inamovible" },
+            { "date": "02/05/2022", "label": "Fiesta de la Ruptura del Ayuno del Sagrado Mes de Ramadán (Id al-Fitr) (c)", "type": "no_laborable" },
+            { "date": "18/05/2022", "label": "Censo nacional 2022", "type": "inamovible" },
+            { "date": "25/05/2022", "label": "Día de la Revolución de Mayo", "type": "inamovible" },
+            { "date": "17/06/2022", "label": "Paso a la Inmortalidad del Gral. Don Martín Miguel de Güemes", "type": "trasladable" },
+            { "date": "20/06/2022", "label": "Paso a la Inmortalidad del Gral. Manuel Belgrano", "type": "inamovible" },
+            { "date": "09/07/2022", "label": "Día de la Independencia ", "type": "inamovible" },
+            { "date": "09/07/2022", "label": "Fiesta del Sacrificio (c)", "type": "no_laborable" },
+            { "date": "30/07/2022", "label": "Año Nuevo Islámico (c)", "type": "no_laborable" },
+            { "date": "15/08/2022", "label": "Paso a la Inmortalidad del Gral. José de San Martín (17/8)", "type": "trasladable" },
+            { "date": "26/09/2022", "label": "Año Nuevo Judío (b)", "type": "no_laborable" },
+            { "date": "27/09/2022", "label": "Año Nuevo Judío (b)", "type": "no_laborable" },
+            { "date": "05/10/2022", "label": "Día del Perdón (b)", "type": "no_laborable" },
+            { "date": "07/10/2022", "label": "Feriado con fines turísticos", "type": "turistico" },
+            { "date": "10/10/2022", "label": "Día del Respeto a la Diversidad Cultural (12/10)", "type": "trasladable" },
+            { "date": "20/11/2022", "label": "Día de la Soberanía Nacional", "type": "trasladable" },
+            { "date": "21/11/2022", "label": "Feriado con fines turísticos", "type": "turistico" },
+            { "date": "08/12/2022", "label": "Inmaculada Concepción de María", "type": "inamovible" },
+            { "date": "09/12/2022", "label": "Feriado con fines turísticos", "type": "turistico" },
+            { "date": "25/12/2022", "label": "Navidad", "type": "inamovible" },
+            { "date": "01/01/2023", "label": "Año nuevo", "type": "inamovible" }
+        ],
+        holidays2021 :[
+            { "date": "07/12/2020", "label": "Feriado con fines turísticos", "type": "inamovible" },
+            { "date": "08/12/2020", "label": "Inmaculada Concepción de María", "type": "inamovible" },
+            { "date": "25/12/2020", "label": "Navidad", "type": "" },
+            { "date": "01/01/2021", "label": "Año nuevo", "type": "inamovible" },
+            { "date": "15/02/2021", "label": "Carnaval", "type": "inamovible" },
+            { "date": "16/02/2021", "label": "Carnaval", "type": "inamovible" },
+            { "date": "24/03/2021", "label": "Día Nacional de la Memoria por la Verdad y la Justicia", "type": "inamovible" },
+            { "date": "28/03/2021", "label": "Pascua Judías (b)", "type": "no_laborable" },
+            { "date": "29/03/2021", "label": "Pascua Judías (b)", "type": "no_laborable" },
+            { "date": "02/04/2021", "label": "Día del Veterano y de los Caídos en la Guerra de Malvinas / Viernes Santo", "type": "inamovible" },
+            { "date": "01/04/2021", "label": "Jueves Santo Festividad Cristiana.Día no laborable", "type": "no_laborable" },
+            { "date": "02/04/2021", "label": "Día del Veterano y de los Caídos en la Guerra de Malvinas / Viernes Santo", "type": "inamovible" },
+            { "date": "03/04/2021", "label": "Pascuas Judías (b)*", "type": "no_laborable" },
+            { "date": "04/04/2021", "label": "Pascuas Judías (b)*", "type": "no_laborable" },
+            { "date": "24/04/2021", "label": "Día de acción por la tolerancia y el respeto entre los pueblos (a)", "type": "no_laborable" },
+            { "date": "01/05/2021", "label": "Día del trabajador", "type": "inamovible" },
+            { "date": "13/05/2021", "label": "Fiesta de la Ruptura del Ayuno del Sagrado Mes de Ramadán (Id al-Fitr) (c).", "type": "no_laborable" },
+            { "date": "24/05/2021", "label": "Feriado con fines turísticos", "type": "trasladable" },
+            { "date": "25/05/2021", "label": "Día de la Revolución de Mayo", "type": "inamovible" },
+            { "date": "20/06/2021", "label": "Día Paso a la Inmortalidad del Gral. Manuel Belgrano", "type": "inamovible" },
+            { "date": "21/06/2021", "label": "Día Paso a la Inmortalidad del Gral Don Martín Miguel de Güemes", "type": "trasladable" },
+            { "date": "09/07/2021", "label": "Día de la Independencia", "type": "inamovible" },
+            { "date": "20/07/2021", "label": "Fiesta del Sacrificio (c).", "type": "no_laborable" },
+            { "date": "08/08/2021", "label": "Año Nuevo Islámico (c)", "type": "no_laborable" },
+            { "date": "16/08/2021", "label": "Paso a la Inmortalidad del Gral. José de San Martín", "type": "trasladable" },
+            { "date": "07/09/2021", "label": "Año Nuevo Judío (b).", "type": "no_laborable" },
+            { "date": "08/09/2021", "label": "Año Nuevo Judío (b).", "type": "no_laborable" },
+            { "date": "16/09/2021", "label": "Día del Perdón (b).", "type": "no_laborable" },
+            { "date": "08/10/2021", "label": "Feriado con fines turísticos", "type": "inamovible" },
+            { "date": "11/10/2021", "label": "Día del Respeto a la Diversidad Cultural", "type": "trasladable" },
+            { "date": "20/11/2021", "label": "Día de la Soberanía Nacional", "type": "trasladable" },
+            { "date": "22/11/2021", "label": "Feriado con fines turísticos", "type": "inamovible" },
+            { "date": "08/12/2021", "label": "Inmaculada Concepción de María", "type": "inamovible" },
+            { "date": "25/12/2021", "label": "Navidad", "type": "inamovible" },
+            { "date": "01/01/2022", "label": "Año Nuevo", "type": "inamovible" }
+        ],
+        holidays2020 : [
+            { "date": "07/12/2019", "label": "Feriado con fines turísticos", "type": "inamovible" },
+            { "date": "08/12/2019", "label": "Inmaculada Concepción de María", "type": "inamovible" },
+            { "date": "25/12/2019", "label": "Navidad", "type": "" },
+            { "date": "01/01/2020", "label": "Año nuevo", "type": "inamovible" },
+            { "date": "24/02/2020", "label": "Carnaval", "type": "inamovible" },
+            { "date": "25/02/2020", "label": "Carnaval", "type": "inamovible" },
+            { "date": "23/03/2020", "label": "Feriados con Fines turísticos.", "type": "turistico" },
+            { "date": "24/03/2020", "label": "Día Nacional de la Memoria por la Verdad y la Justicia", "type": "inamovible" },
+            { "date": "31/03/2020", "label": "Día del Veterano y de los Caídos en la Guerra de Malvinas.<br /><br /><em class=\"small\">El feriado del 2 de abril fue trasladado al día martes 31 de marzo de 2020, por única vez, motivo del aislamiento obligatorio y preventivo en todo el país. <a href=\"https://www.boletinoficial.gob.ar/detalleAviso/primera/227042/20200320\">Decreto 297/2020</a></em>.", "type": "inamovible" },
+            { "date": "09/04/2020", "label": "Jueves Santo", "type": "no_laborable" },
+            { "date": "10/04/2020", "label": "Viernes Santo", "type": "inamovible" },
+            { "date": "09/04/2020", "label": "Pascuas Judías", "type": "no_laborable" },
+            { "date": "10/04/2020", "label": "Pascuas Judías", "type": "no_laborable" },
+            { "date": "15/04/2020", "label": "Pascuas Judías", "type": "no_laborable" },
+            { "date": "16/04/2020", "label": "Pascuas Judías", "type": "no_laborable" },
+            { "date": "24/04/2020", "label": "Día de acción por la tolerancia y el respeto entre los pueblos (a).", "type": "no_laborable" },
+            { "date": "01/05/2020", "label": "Día del trabajador", "type": "inamovible" },
+            { "date": "24/05/2020", "label": "Fiesta de la Ruptura del Ayuno del Sagrado Mes de Ramadán (Id al-Fitr) (c).", "type": "no_laborable" },
+            { "date": "25/05/2020", "label": "Día de la Revolución de Mayo", "type": "inamovible" },
+            { "date": "20/06/2020", "label": "Día Paso a la Inmortalidad del Gral. Manuel Belgrano", "type": "inamovible" },
+            { "date": "15/06/2020", "label": "Día Paso a la Inmortalidad del General Martín Miguel de Güemes (17/06).", "type": "trasladable" },
+            { "date": "09/07/2020", "label": "Día de la Independencia", "type": "inamovible" },
+            { "date": "10/07/2020", "label": "Feriado con Fines Turísticos.", "type": "turistico" },
+            { "date": "31/07/2020", "label": "Fiesta del Sacrificio (c).", "type": "no_laborable" },
+            { "date": "20/08/2020", "label": "Año Nuevo Islámico (c)", "type": "no_laborable" },
+            { "date": "17/08/2020", "label": "Paso a la Inmortalidad del Gral. José de San Martín", "type": "trasladable" },
+            { "date": "19/09/2020", "label": "Año Nuevo Judío (b)**.", "type": "no_laborable" },
+            { "date": "20/09/2020", "label": "Año Nuevo Judío (b)**.", "type": "no_laborable" },
+            { "date": "28/09/2020", "label": "Día del Perdón (b)***.", "type": "no_laborable" },
+            { "date": "12/10/2020", "label": "Día del Respeto a la Diversidad Cultural", "type": "trasladable" },
+            { "date": "23/11/2020", "label": "Día de la Soberanía Nacional", "type": "trasladable" },
+            { "date": "07/12/2020", "label": "Feriado con Fines Turísticos.", "type": "turistico" },
+            { "date": "08/12/2020", "label": "Inmaculada Concepción de María", "type": "inamovible" },
+            { "date": "25/12/2020", "label": "Navidad", "type": "inamovible" },
+            { "date": "01/01/2021", "label": "Año Nuevo", "type": "inamovible" }
+        ]
     }
-    calendar.render(calendarOptions);
-});
+
+    document.addEventListener("DOMContentLoaded", function() {
+
+        const currentYear = (new Date).getFullYear();
+        const url = new URL(location.href);
+
+        const paramYear = url.searchParams.get("year");
+        
+        const year = (paramYear === null || paramYear > paramYear ? currentYear : paramYear );
+        const calendarToUse = holidays[`holidays${year}`];
+
+        const calendarOptions = {
+            "calendarYear": year,
+            "allowHTML": true,
+            "containerId": "#calendar-container",
+            "templateId": "#month-tpl",
+            "markers": [ calendarToUse ],
+            "holidays_type": {
+                "inamovible": "warning",
+                "trasladable": "success",
+                "no_laborable": "nl",
+                "turistico": "turistico"
+            }
+        }
+        console.log(calendarOptions)
+        calendar.render(calendarOptions);
+    });
 
     </script>
   </body>
