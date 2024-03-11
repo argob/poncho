@@ -67,7 +67,7 @@
         fetch_json("./data/ln-es.json").then(terms => {
             const tr = new TranslateHTML(terms, ["html.lang", "a.lang", "value", "title", "placeholder"]);
             tr.translate();
-            tr.translateAttributes([...terms, ...[["es", "en"]]]);
+           //r.translateAttributes([...terms, ...[["es", "en"]]]);
         });
     </script>
     <!-- END -->
