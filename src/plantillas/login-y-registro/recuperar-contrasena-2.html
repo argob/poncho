@@ -108,21 +108,28 @@ Poncho te saluda, amigo del código!
 
     
 <header>
-        <nav class="navbar navbar-top navbar-default bg-celeste-argentina" role="navigation">
+        <nav class="navbar navbar-top navbar-default border-bottom-amarillo">
             <div class="container">
                 <div>
-                    <div class="navbar-header"> <a class="navbar-brand" href="/proyectos/argentina/" aria-label="Argentina.gob.ar Presidencia de la Nación"> <img alt="Argentina.gob.ar" src="../paginas-de-argentina/img/argentinagob-2.svg" height="50"> </a> <a class="btn btn-mi-argentina btn-login visible-xs"
-                            href="/proyectos/mi-argentina/v3/"><i class="icono-arg-mi-argentina fa-fw"></i></a> <a class="btn bg-white btn-login visible-xs" href="#" onclick="$('.navbar.navbar-top').addClass('state-search');"><span class="fa fa-search fa-fw"></span></a>                        </div>
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="/" id="navbar-brand" aria-label="Argentina.gob.ar - Presidencia de la Nación">
+                          <img src="../paginas-de-argentina/img/logo_argentina-azul.svg" alt="Argentina.gob.ar" height="50" width="254">
+                                              </a>
+                        <a class="btn btn-mi-argentina btn-login visible-xs" href="https://mi.argentina.gob.ar" aria-label="Ingresar a Mi Argentina"><i class="icono-arg-mi-argentina fa-fw"></i><span class="sr-only">Ir a Mi Argentina</span></a>
+            
+                    </div>
                     <div class="nav navbar-nav navbar-right hidden-xs">
-                        <a href="#" onclick="$('.navbar.navbar-top').removeClass('state-search');" class="btn btn-mi-argentina visible-xs"> <i class="fa fa-times"></i> </a>
-                        <div style="float: left">
-                            <div class="input-group">
-                                <input id="buscar" type="text" class="form-control input-search" aria-label="Buscar trámites, servicios o áreas" placeholder="Buscar trámites, servicios o áreas ...">
-                                <span class="input-group-btn">
-              <button class="btn bg-white"  type="button" aria-label="Buscar"><i class="fa fa-search text-primary"></i></button>
-              </span> </div>
+                        <a onclick="jQuery('.navbar.navbar-top').removeClass('state-search');" href="#" class="btn btn-link btn-search-reset visible-xs">
+                            <div class="fa fa-times"></div>
+                        </a>
+                        <div id="cd-login">
+
+                            <a href="https://mi.argentina.gob.ar/" id="btn-mi-argentina" class="btn btn-primary hidden-xs" aria-label="Ingresar a Mi Argentina">Mi Argentina</a>
                         </div>
-                        <a href="#" class="dropdown-toggle btn btn-mi-argentina hidden-xs bg-white" aria-label="Ingresar a Mi Argentina" data-toggle="dropdown"> miArgentina</a>
+                       
+                        <div class="pull-left">
+                        </div>
+                    
                     </div>
                 </div>
             </div>
@@ -167,10 +174,10 @@ Poncho te saluda, amigo del código!
 
 <footer>
   <div class="container-fluid">
-    <div class="row sub-footer">
+    <div class="row sub-footer bg-primary border-top-amarillo">
       <div class="container">
         <div class="col-sm-6 m-y-1 p-x-0">
-          <img class="image-responsive" height="80" src="../paginas-de-argentina/img/primerolagente.svg" alt="Primero la gente"/>
+  
                         <!-- <p class="text-muted small m-b-2">
               <a href="https://creativecommons.org/licenses/by/4.0/deed.es" target="_blank" rel="noreferrer">Los contenidos de Argentina.gob.ar están licenciados bajo Creative Commons Atribución 4.0 Internacional</a>            </p> -->
           
