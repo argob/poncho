@@ -1,12 +1,10 @@
 // Mofifica valores generales para los headers.
 body {
-  font-family: $font-family-sans-serif;
+  @include family-sans-serif-attributes;
 }
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-  font-family: $font-family-serif;
   @include family-serif-attributes;
-  font-weight: 700;
   margin: .5em 0 .7em 0;
 
   small,

@@ -144,10 +144,14 @@ $font-family-sans-serif: 'Montserrat',sans-serif !default;
 $font-family-serif: 'Lora',serif !default;
 $font-base-weight: 18px !default;
 @mixin family-sans-serif-attributes {
-letter-spacing:-.15pt;
+    letter-spacing:-.15pt;
+    font-size: $font-base-weight;
+    font-family: $font-family-sans-serif;
 }
 
 @mixin family-serif-attributes {
-letter-spacing:-.2pt;
+    letter-spacing:-.2pt;
+    font-family: $font-family-serif;
+    font-weight: 700;
 }
   
