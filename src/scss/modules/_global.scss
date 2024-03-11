@@ -13,8 +13,8 @@ Se cambia el width de la funete
 */
 html,
 body {
-  letter-spacing:-.15pt;
-  font-size: 18px;
+  @include family-sans-serif-attributes;
+  font-size: $font-base-weight;
   height: 100%;
   max-width: 100%;
 	font-weight: 400;
