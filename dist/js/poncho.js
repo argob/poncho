@@ -314,7 +314,21 @@ const ponchoColorDefinitions = color => {
  * getColor("celeste")
  * @returns {string} Color en formato hexadecimal.
  */
-const ponchoColor = color => ponchoColorDefinitions(color)?.color || color;
+const ponchoColor = color => {
+    const defaultColor = "#99999";
+
+    if (typeof color !== "string") {
+        console.warn(`Invalid color provided. Using default: ${defaultColor}`);
+        return defaultColor;
+    }
+
+    const definition = ponchoColorDefinitions(color);
+    if (definition) {
+      return definition.color || defaultColor;
+    }
+
+    return defaultColor;
+};
 
 
 /**
@@ -3025,6 +3039,14 @@ function ponchoChart(opt) {
  * @return {object} JSON con la estructura V3 de la api de google sheet
  */
 const gapi_legacy = (response) => {
+
+  if (!response || !response.values || response.values.length === 0) {
+    throw new TypeError("Invalid response format");
+  }
+
+  if (!Array.isArray(response.values) || !Array.isArray(response.values[0])) {
+    throw new TypeError("Invalid response format: values should be arrays");
+  }
 
   const keys = response.values[0];
   const regex = / |\/|_/ig;
