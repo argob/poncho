@@ -3,7 +3,7 @@ name: build-poncho
 on:
   push:
     branches:
-      - master
+      - release-1.x
 
 jobs:
   build:
@@ -16,22 +16,7 @@ jobs:
         with:
           fetch-depth: 1
           path: ./poncho
-#      - name: 🎩 Instalamos dependencias
-#        working-directory: /tmp
-#        run: |
-#          sudo apt install zlib1g-dev fontforge
-#          git clone https://github.com/bramstein/sfnt2woff-zopfli.git sfnt2woff-zopfli && cd sfnt2woff-zopfli && make && mv sfnt2woff-zopfli /usr/local/bin/sfnt2woff
-#          git clone --recursive https://github.com/google/woff2.git && cd woff2 && make clean all && sudo mv woff2_compress /usr/local/bin/ && sudo mv woff2_decompress /usr/local/bin/
-#      - name: 🎩 Instalamos Fontcustom 
-#        working-directory: ./iconos
-#        run: |
-#          sudo gem install bundler fontcustom
-#          sudo bundle install
-#      - name: 🧹 Clean site
-#        run: |
-#          if [ -d "docs" ]; then
-#            rm -rf docs/*
-#          fi
+          ref: release-1.x
       - name: 🎩 Compilamos todo
         working-directory: ./poncho
         run: |
@@ -60,12 +45,3 @@ jobs:
           git add --force -- dist/*
           git commit -am "🧪 Deploy with ${GITHUB_WORKFLOW}"
           git push --all -f https://${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git
-
-#      - name: Push Project B
-#        run: |
-#          cd ./poncho
-#          git add .
-#          git config user.name "${GITHUB_ACTOR}"
-#          git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-#          git commit -am "File Replicated from Iconos"
-#          git push
