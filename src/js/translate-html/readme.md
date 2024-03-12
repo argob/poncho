@@ -1,5 +1,6 @@
-# Traductor de cadenas de texto
+# 📎 Traductor de cadenas de texto
 
+Traductor de cadena de textos y atributos para código HTML. 
 
 ## Parámetros iniciales
 
@@ -14,9 +15,9 @@ const tr = new TranslateHTML(param_0, param_1);
 | 0 | object | `[]` | Diccionario de términos a traducir. Este párametro es obligatorio |
 | 1 | object | `[]` | Listado de selectores y atributos especiales que deben utilizarse. |
 
-### Métodos
+## 🗂 Métodos
 
-#### translate()
+### translate()
 
 Ejecuta la función para traducir el documento.
 
@@ -24,7 +25,7 @@ Ejecuta la función para traducir el documento.
 tr.translate();
 ```
 
-#### translateAttributes();
+### translateAttributes();
 
 Traduce los atributos de una etiqueta, ej: `title` en `<a href="#" title="prueba">`.
 
@@ -59,7 +60,7 @@ El componenete necesita un diccionario de términos a traducir. Los términos pu
     ]
 ]
 ```
-s
+
 ## 🚀 Uso
 
 Importar `poncho.min.js`.
@@ -70,13 +71,10 @@ Importar `poncho.min.js`.
 <small>* Controle que la url sea la correcta.</small>
 
 
-```javascript
+```js
 <script>
-    fetch_json("ln-es.json").then(terms => {
-        const tr = new TranslateHTML(
-            terms,
-            ["html.lang", "a.lang", "value", "title", "placeholder"]
-        );
+    fetch_json("[url-diccionario-json]").then(terms => {
+        const tr = new TranslateHTML(terms);
         tr.translate();
     });
 </script>
@@ -84,12 +82,17 @@ Importar `poncho.min.js`.
 
 ### Traducir atributos HTML
 
-```javascript
+Para traducir atributos, se deben especificar en un listado cuales son los atributos globales, ej: `value` o particulares, especificando la etiqueta, ej: `a.lang`.
+
+```js
 <script>
-    fetch_json("ln-es.json").then(terms => {
-        const tr = new TranslateHTML(terms, ["html.lang", "a.lang", "value", "title", "placeholder"]);
+    fetch_json("[url-diccionario-json]").then(terms => {
+        const tr = new TranslateHTML(
+            terms, 
+            ["html.lang", "a.lang", "value", "title", "placeholder"]
+        );
         tr.translate();
-        tr.translateAttributes([...terms, ...[["es", "en"]]]);
+        tr.translateAttributes();
     });
 </script>
 <!-- END -->
