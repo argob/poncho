@@ -1,14 +1,41 @@
 # Traductor de cadenas de texto
 
 
-## sdfsd
+## Parámetros iniciales
 
 
-| Argumento | 2 | s |
-|:---|:---|:---| 
-| sd | 2 | s |
-| sd | 2 | s |
+```javascript
+const tr = new TranslateHTML(param_0, param_1);
+```
 
+
+| Parámetro | Tipo | Default | Descripción |
+|:---|:---|:---|:---| 
+| 0 | object | `[]` | Diccionario de términos a traducir. Este párametro es obligatorio |
+| 1 | object | `[]` | Listado de selectores y atributos especiales que deben utilizarse. |
+
+### Métodos
+
+#### translate()
+
+Ejecuta la función para traducir el documento.
+
+```javascript
+tr.translate();
+```
+
+#### translateAttributes();
+
+Traduce los atributos de una etiqueta, ej: `title` en `<a href="#" title="prueba">`.
+
+```javascript
+tr.translateAttributes();
+```
+##### Ejemplo de traducción de atributos
+
+![./img/example-1.png](./img/example-1.png)
+
+<small>En la imagen la primer línea muestra el texto original y en la segunda la traducción del texto y el atributo.</small>
 
 ## 📙 Diccionario de términos a traducir
 
@@ -45,7 +72,7 @@ Importar `poncho.min.js`.
 
 ```javascript
 <script>
-    fetch_json("./data/ln-es.json").then(terms => {
+    fetch_json("ln-es.json").then(terms => {
         const tr = new TranslateHTML(
             terms,
             ["html.lang", "a.lang", "value", "title", "placeholder"]
@@ -58,10 +85,8 @@ Importar `poncho.min.js`.
 ### Traducir atributos HTML
 
 ```javascript
-<!-- START -->
-<script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
 <script>
-    fetch_json("./data/ln-es.json").then(terms => {
+    fetch_json("ln-es.json").then(terms => {
         const tr = new TranslateHTML(terms, ["html.lang", "a.lang", "value", "title", "placeholder"]);
         tr.translate();
         tr.translateAttributes([...terms, ...[["es", "en"]]]);
