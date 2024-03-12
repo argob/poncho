@@ -95,5 +95,4 @@ Para traducir atributos, se deben especificar en un listado cuales son los atrib
         tr.translateAttributes();
     });
 </script>
-<!-- END -->
 ```
