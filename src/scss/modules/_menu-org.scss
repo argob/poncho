@@ -1,0 +1,138 @@
+.menu_org {
+  .h-atajo {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 100%;
+  }
+
+  .list-inline li {
+    margin-bottom: 10px !important;
+    background: $white;
+    float: left !important;
+    flex-wrap: inherit !important;
+    flex-direction: column !important;
+    font-size: 1.25em;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: solid 1px #ddd;
+    width: 48%;
+    margin: 1%;
+  }
+
+  .mx-22 {
+    margin: 0 -22px;
+  }
+
+  .w-100 {
+    width: 100%;
+  }
+
+  width: 100%;
+
+  .close > .dropdown-menu {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .list-inline ul li {
+    display: inline-block;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+  }
+
+  ul.dropdown-menu li a {
+    width: auto;
+    white-space: initial;
+    border: none;
+    left: 0px;
+    border-bottom: none;
+    margin: 0px;
+    font-weight: 500;
+    line-height: 1.42857143;
+  }
+
+  .dropdown-menu > li > a {
+    display: block;
+    padding: 10px 20px;
+    clear: both;
+    color: $link-color;
+  }
+
+  ul.dropdown-menu li {
+    color: $link-color;
+    font-weight: 500;
+    border-bottom: none;
+    white-space: initial;
+    border: none !important;
+
+    a {
+      &:visited {
+        color: $link-visited;
+      }
+
+      &:hover {
+        background: $gray-lighter;
+        border-radius: 0px;
+      }
+
+      &:active {
+        background: $link-color;
+        color: $white !important;
+        border-radius: 0px;
+      }
+    }
+  }
+
+  li a {
+    color: $link-color;
+    font-weight: 700;
+    text-decoration: none !important;
+    display: block;
+  }
+
+  width: 100%;
+
+  .open {
+    > .dropdown-menu {
+      display: block;
+      left: 0;
+      z-index: 1100;
+    }
+
+    display: grid;
+  }
+}
+
+@media (max-width: 767px) {
+  .menu_org {
+    .list-inline li {
+      width: 100% !important;
+      margin: 10px 0px 0px 10px;
+    }
+
+    ul.dropdown-menu {
+      li a {
+        margin: 0px -20px;
+        padding-left: 20px;
+      }
+
+      .first {
+        margin-top: 10px;
+      }
+    }
+
+    .open > .dropdown-menu {
+      display: contents;
+    }
+  }
+
+  .dropdown-backdrop {
+    position: relative !important;
+  }
+
+  .menu_org .expanded {
+    width: 100% !important;
+  }
+}
