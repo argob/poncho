@@ -111,7 +111,10 @@ class DeviceBreadcrumb {
         btn.textContent = "Cerrar";
         btn.classList.add(
             "device-breadcrumb__compress-button",
-            "js-device-breadcrumb--ignore");
+            "js-device-breadcrumb--ignore",
+            "btn",
+            "btn-sm",
+            "btn-link");
         btn.dataset.title = "Contraer menú";
         btn.setAttribute("aria-label", "Cierra el menú de miga de pan");
 
