@@ -61,9 +61,6 @@ class DeviceBreadcrumb {
         this.breakPoint = opts.breakPoint;
         this.selector = opts.selector;
         this.domain = opts.domain;
-
-
-
         this.addGlobalAttributes();
     }
 
