@@ -1,6 +1,6 @@
 # Device breadcrumb
 
-# Opciones
+# 🗃 Opciones
 
 | Parámetro | Tipo | Default | Descripción |
 |:---|:---|:---|:---|
@@ -9,7 +9,7 @@
 | domain | `object` | `["^/$", "argentina.gob.ar$", "argentina.gob.ar/$"]` | _Array object_ con las opciones para definir la página de inicio del sitio dónde se implementa el objeto. |
 
 
-# Métodos
+# 📦 Métodos
 
 
 | Nombre | Descripción |
@@ -18,10 +18,8 @@
 
 
 
-# Uso
+# 🚀 Uso
 
-Se puede utiliar programando los listeners a medida de la aplicación que se
-está desarrollando
 
 ```js
 const options = {
@@ -36,17 +34,3 @@ window.addEventListener("resize", () =>  {
     deviceBreadcrumb.render()}, true);
 ```
 
-O, se puede utilizar un método del objeto _deviceBreadcrumb_ que los implementa.
-
-```js
-(new DeviceBreadcrumb).listener();
-```
-
-Incorporando opciones al constructor.
-
-```js
-const options = {
-    domain: ["^/$", "example.com$", "example.com/$"]
-}
-const db = new DeviceBreadcrumb(options).listener();
-```
