@@ -5,7 +5,7 @@ label {
   font-weight: 600;
   color: #707070 !important;
   margin-bottom: 10px !important;
-  font-size: 14px !important;
+  font-size: 0.88em !important;
   &.control-label {
     font-weight: 500;
   }
@@ -16,16 +16,16 @@ label {
 
 legend {
   border-bottom: none;
-  font-size: 16px;
+  font-size: 0.88em;
   font-weight: 500;
   margin: 0;
 }
 
 .error {
-  font-size: 14px;
+  font-size: 0.77em;
 }
 .help-block {
-  font-size: 14px;
+  font-size: 0.77em;
   color: #707070;
   margin: 0.5rem 0;
 }
@@ -41,7 +41,7 @@ footer {
 
 legend,
 legend p {
-  font-size: 14px;
+  font-size: 0.77em;
 }
 
 form > fieldset > legend {
@@ -54,7 +54,7 @@ form > fieldset > legend {
 
 .form-control {
   color: $text-color;
-  font-size: 16px;
+  font-size: 0.88em;
   height: 44px;
   padding: 6px 16px;
   border: solid 1px $gray;
@@ -85,7 +85,7 @@ fieldset {
 
 .input-lg,
 select.input-lg {
-  font-size: 20px;
+  font-size: 1.11em;
   font-weight: 500;
   height: 65px;
   padding: 10px 20px;
@@ -104,7 +104,7 @@ select.input-sm {
 .input-group-lg > .input-group-addon,
 .input-group-lg > .input-group-btn > .btn {
   border-radius: 10px;
-  font-size: 20px;
+  font-size: 1.11em;
   height: 65px;
   line-height: 1.3333333;
   padding: 10px 20px;
@@ -258,7 +258,7 @@ input {
 
 .chosen-container {
   background-color: $white;
-  font-size: 18px;
+  font-size: 1em;
 }
 
 .chosen-container.chosen-container-single .chosen-single {
@@ -326,7 +326,7 @@ input {
 
 .select2-container {
   color: #333;
-  font-size: 16px;
+  font-size: 0.88em;
   height: 44px;
   padding: 6px 16px;
   border-radius: 10px;
@@ -395,7 +395,7 @@ input {
 .select-component {
 
   color: #333;
-  font-size: 16px;
+  font-size: 0.88em;
   height: 44px;
   padding: 6px 16px;
   border-radius: 10px;
