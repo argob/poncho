@@ -33,10 +33,10 @@
           <h4 class="h6 m-t-2">Ejemplo</h4>
           <div class="case">
             <ol class="breadcrumb">
-              <li><a href="https://argentina.gob.ar">Inicio</a></li>
-              <li><a href="https://argentina.gob.ar/desarrollosocial">Ministerio de Desarrollo Social</a></li>
-              <li><a href="https://argentina.gob.ar/desarrollosocial/integracionsociourbana">Secretaría de Integración Socio Urbana </a></li>
-              <li><a href="https://argentina.gob.ar/desarrollosocial/integracionsociourbana/fisu">Fondo para la Integración Socio Urbana</a></li>
+              <li><a href="http://127.0.0.1:5501">Inicio</a></li>
+              <li><a href="http://127.0.0.1:5501/desarrollosocial">Ministerio de Desarrollo Social</a></li>
+              <li><a href="http://127.0.0.1:5501/desarrollosocial/integracionsociourbana">Secretaría de Integración Socio Urbana </a></li>
+              <li><a href="http://127.0.0.1:5501/desarrollosocial/integracionsociourbana/fisu">Fondo para la Integración Socio Urbana</a></li>
               <li><a href="https://www.argentina.gob.ar/desarrollosocial/mipieza">Mi Pieza</a></li>
               <li class="active"><span>Inscripción</span></li>
             
@@ -46,7 +46,7 @@
           <h4 class="h6 m-t-2">HTML</h4>
           <div class="case">
             <ol class="">
-              <li><a href="https://argentina.gob.ar">Inicio</a></li>
+              <li><a href="http://127.0.0.1:5501">Inicio</a></li>
               <li><a href="https://argentina.gob.ar/desarrollosocial">Ministerio de Desarrollo Social</a></li>
               <li><a href="https://argentina.gob.ar/desarrollosocial/integracionsociourbana">Secretaría de Integración Socio Urbana </a></li>
               <li><a href="https://argentina.gob.ar/desarrollosocial/integracionsociourbana/fisu">Fondo para la Integración Socio Urbana</a></li>
@@ -63,7 +63,16 @@
   <!-- / Example -->
   <script src="../src/js/device-breadcrumb.js"></script>
   <script>
-    (new DeviceBreadcrumb).listener();
+    const options = {
+        domain: ["^/$", `${location.host}$`, `${location.host}\\/$`]
+    }
+    document.addEventListener("DOMContentLoaded", () => {
+        const deviceBreadcrumb = new DeviceBreadcrumb(options);
+        deviceBreadcrumb.render();
+    });
+    window.addEventListener("resize", () =>  {
+        const deviceBreadcrumb = new DeviceBreadcrumb(options);
+        deviceBreadcrumb.render()});
   </script>
 </body>
 

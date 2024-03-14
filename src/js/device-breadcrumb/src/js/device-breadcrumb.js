@@ -332,13 +332,5 @@ class DeviceBreadcrumb {
         this._onClickExpandButton(breadcrumb);
         this._onClickCloseButton(breadcrumb);
     };
-
-
-    listener = () => {
-        document.addEventListener(
-            "DOMContentLoaded", () => this.render());
-        window.addEventListener(
-            "resize", () => this.render(), true);
-    }
 };
 // end class

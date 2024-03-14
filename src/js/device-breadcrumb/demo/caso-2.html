@@ -57,7 +57,16 @@
 
   <script src="../src/js/device-breadcrumb.js"></script>
   <script>
-    (new DeviceBreadcrumb).listener();
+    const options = {
+        domain: ["^/$", `${location.host}$`, `${location.host}\\/$`]
+    }
+    document.addEventListener("DOMContentLoaded", () => {
+        const deviceBreadcrumb = new DeviceBreadcrumb(options);
+        deviceBreadcrumb.render();
+    });
+    window.addEventListener("resize", () =>  {
+        const deviceBreadcrumb = new DeviceBreadcrumb(options);
+        deviceBreadcrumb.render()});
   </script>
 </body>
 
