@@ -4,7 +4,7 @@ const {ponchoColor, ponchoColorByHex, cleanUpHex} = require('../src/js/utils/col
 test('Colores Poncho por nombre', () => {
     expect(ponchoColor('amarillo')).toBe('#F9A822');
     expect(ponchoColor('warning')).toBe('#F9A822');
-    expect(ponchoColor('Esto no es un color')).toBe('Esto no es un color');
+    expect(ponchoColor('Esto no es un color')).toBe('#99999');
 });
 
 

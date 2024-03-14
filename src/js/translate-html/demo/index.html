@@ -61,13 +61,17 @@
     <script src="../translate-html.js"></script>
 
 
+    <a href="#" title="prueba">Ir</a>
+
+    <a href="#" title="test">Go</a>
+
     <!-- START -->
     <script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
     <script>
         fetch_json("./data/ln-es.json").then(terms => {
             const tr = new TranslateHTML(terms, ["html.lang", "a.lang", "value", "title", "placeholder"]);
             tr.translate();
-            tr.translateAttributes([...terms, ...[["es", "en"]]]);
+           //r.translateAttributes([...terms, ...[["es", "en"]]]);
         });
     </script>
     <!-- END -->

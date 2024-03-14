@@ -19,6 +19,14 @@
  */
 const gapi_legacy = (response) => {
 
+  if (!response || !response.values || response.values.length === 0) {
+    throw new TypeError("Invalid response format");
+  }
+
+  if (!Array.isArray(response.values) || !Array.isArray(response.values[0])) {
+    throw new TypeError("Invalid response format: values should be arrays");
+  }
+
   const keys = response.values[0];
   const regex = / |\/|_/ig;
   let entry = [];
