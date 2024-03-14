@@ -1,6 +1,7 @@
 #{$scope} {
     .leaflet-container {
         background-color: var(--pm-map-background);
+        font-family: inherit;
     }
 
     /* Tooltip Leaflet personalizado */
