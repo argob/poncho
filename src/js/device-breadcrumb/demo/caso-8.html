@@ -68,15 +68,12 @@
   <!-- / Example -->
   <script src="../src/js/device-breadcrumb.js"></script>
   <script>
-    const options = {
-        domain: ["^/$", `${location.host}$`, `${location.host}\\/$`]
-    }
     document.addEventListener("DOMContentLoaded", () => {
-        const deviceBreadcrumb = new DeviceBreadcrumb(options);
+        const deviceBreadcrumb = new DeviceBreadcrumb();
         deviceBreadcrumb.render();
     });
     window.addEventListener("resize", () =>  {
-        const deviceBreadcrumb = new DeviceBreadcrumb(options);
+        const deviceBreadcrumb = new DeviceBreadcrumb();
         deviceBreadcrumb.render()});
   </script>
 </body>

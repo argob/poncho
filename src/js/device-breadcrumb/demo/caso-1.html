@@ -40,6 +40,8 @@
               <li class="active">Device breadcrumb JS</li>
             </ol>
           </div>
+
+
           <h2 class="h6 m-t-2">HTML</h2>
           <div class="case">
             <ol>
@@ -62,7 +64,7 @@
   <script src="../src/js/device-breadcrumb.js"></script>
   <script>
     const options = {
-        domain: ["^/$", `${location.host}$`, `${location.host}\\/$`]
+        domain: ["^/$", `argentina.gob.ar/?$`]
     }
     document.addEventListener("DOMContentLoaded", () => {
         const deviceBreadcrumb = new DeviceBreadcrumb(options);

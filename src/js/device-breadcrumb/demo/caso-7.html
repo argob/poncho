@@ -64,7 +64,7 @@
   <script src="../src/js/device-breadcrumb.js"></script>
   <script>
     const options = {
-        domain: ["^/$", `${location.host}$`, `${location.host}\\/$`]
+        domain: ["^/$", `127.0.0.1:5501/?$`]
     }
     document.addEventListener("DOMContentLoaded", () => {
         const deviceBreadcrumb = new DeviceBreadcrumb(options);

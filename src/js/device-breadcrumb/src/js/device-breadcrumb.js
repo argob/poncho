@@ -165,7 +165,6 @@ class DeviceBreadcrumb {
             element.firstChild !== null && "getAttribute" in element.firstChild){
                 const href = element.firstChild.getAttribute("href");
                 const rgx = new RegExp(`(${this.domain.join("|")})`);
-                console.log(rgx)
                 rgxResult = rgx.exec(href);
         }
         return rgxResult || false;
