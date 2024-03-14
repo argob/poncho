@@ -73,7 +73,7 @@ class DeviceBreadcrumb {
         return {
             breakPoint: 991,
             selector: ".breadcrumb",
-            domain: ["^/$", "argentina.gob.ar$", "argentina.gob.ar/$"]
+            domain: ["^/$",  `${location.host}/?$`]
         };
     };
 
