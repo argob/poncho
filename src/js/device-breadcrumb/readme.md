@@ -15,7 +15,7 @@
 | Nombre | Descripción |
 |:---|:---|
 | render | Genera el _breadcrum_ y en función del tamaño de pantalla, lo minifica o lo deja expandido removiendo la página de inicio y la página actual. |
-| listener | Éste método ejecuta la función `render()`, en el onLoad de la página y en el resize. |
+
 
 
 # Uso
@@ -25,7 +25,7 @@ está desarrollando
 
 ```js
 const options = {
-    // domain: ["^/$", "example.com$", "example.com/$"]
+    domain: ["^/$",`${location.host}/?$`]
 }
 document.addEventListener("DOMContentLoaded", () => {
     const deviceBreadcrumb = new DeviceBreadcrumb(options);
