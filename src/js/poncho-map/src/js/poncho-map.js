@@ -315,7 +315,7 @@ class PonchoMap {
         const button = document.createElement("button");
         button.title = "Cambiar tema";
         button.tabIndex = "0";
-        button.classList.add("pm-btn", "pm-btn-rounded-circle");
+        button.classList.add("pm-btn", "pm-btn-rounded-circle", "js-theme-focus");
         button.appendChild(icon);
         button.setAttribute("role", "button");
         button.setAttribute("aria-label", "Abre el panel de temas");
@@ -1877,7 +1877,7 @@ class PonchoMap {
                 ]   
             ],
             [
-                `.js-themes-tool${this.scope_sufix}`,
+                `.js-themes-tool${this.scope_sufix} .js-theme-focus`,
                 `themes-tool${this.scope_sufix}`,
                 [
                     ["aria-label", "Herramienta para cambiar de tema visual"],
