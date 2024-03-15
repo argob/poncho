@@ -73,7 +73,7 @@ class DeviceBreadcrumb {
         return {
             breakPoint: 991,
             selector: ".breadcrumb",
-            domain: ["^/$", "argentina.gob.ar$", "argentina.gob.ar/$"]
+            domain: ["^/$",  `${location.host}/?$`]
         };
     };
 
@@ -165,7 +165,6 @@ class DeviceBreadcrumb {
             element.firstChild !== null && "getAttribute" in element.firstChild){
                 const href = element.firstChild.getAttribute("href");
                 const rgx = new RegExp(`(${this.domain.join("|")})`);
-                console.log(rgx)
                 rgxResult = rgx.exec(href);
         }
         return rgxResult || false;
@@ -332,13 +331,5 @@ class DeviceBreadcrumb {
         this._onClickExpandButton(breadcrumb);
         this._onClickCloseButton(breadcrumb);
     };
-
-
-    listener = () => {
-        document.addEventListener(
-            "DOMContentLoaded", () => this.render());
-        window.addEventListener(
-            "resize", () => this.render(), true);
-    }
 };
 // end class
