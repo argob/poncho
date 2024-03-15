@@ -49,7 +49,7 @@ class PonchoMapFilter extends PonchoMap {
                         + "Restablecer mapa</a>",
                 initial: "Hay {{total_results}} puntos en el mapa.",
                 no_results_by_term: "No encontramos resultados para tu búsqueda.",
-                no_results: "No s + this.messages.resete encontraron entradas.",
+                no_results: "No se encontraron entradas.",
                 results: "{{total_results}} resultados coinciden con tu búsqueda.",
                 one_result: "{{total_results}} resultado coincide con tu búsqueda.",
                 has_filters: "<i title=\"¡Advertencia!\" aria-hidden=\"true\" "
@@ -57,19 +57,22 @@ class PonchoMapFilter extends PonchoMap {
                         + "Se están usando filtros."
             }
         };
+        // this.messages = opts.messages;
+
         let opts = Object.assign({}, defaults, options);
+        this.messages = Object.assign({}, defaults.messages, options.messages);
         this.filters = opts.filters;
         this.filters_info = opts.filters_info;
         this.filters_visible = opts.filters_visible;
         this.valid_fields = ["checkbox", "radio"];
         this.search_fields = opts.search_fields;
-        this.messages = opts.messages;
         this.accesible_menu_filter = [
             {
                 text: "Ir al panel de filtros",
                 anchor: `#filtrar-busqueda${this.scope_sufix}`
             },
         ];
+        console.log(this.messages)
     }
 
     /**
