@@ -11,8 +11,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 🛎 Check out master
-        uses: actions/checkout@master
+      - name: 🛎 Check out release-1.x
+        uses: actions/checkout@v4
         with:
           fetch-depth: 1
           path: ./poncho
@@ -23,7 +23,7 @@ jobs:
           npm install
           npm run gulp
       - name: Checkout Iconos Arg
-        uses: actions/checkout@master
+        uses: actions/checkout@v4
         with: 
           repository: argob/iconos
           path: ./iconos
