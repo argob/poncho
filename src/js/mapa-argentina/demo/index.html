@@ -26,10 +26,13 @@
 
 
     .mapa {
-        height: 700px;
-        width: 500px;
+        height: auto;
+        overflow: auto;
+        width: 300px;
         padding: 1em;
         border-radius: 15px;
+        background-color: beige;
+        background-color: color-mix(in srgb, var(--verde-cemento) 70%, white);
         background-color: white;
     }
   </style>
@@ -37,16 +40,19 @@
 
 <body>
   <h1 class="h2 text-primary">Mapa Argentina SVG</h1>
-<div>  <div id="js-mapa-svg" class="mapa"></div></div>
+<!-- <div>  <div id="js-mapa-svg" class="mapa"></div></div> -->
+<div class="mapa js-map" id="js-mapa-svg"></div>
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
   <script src="../mapa-argentina.js"></script>
   <script>
-window.addEventListener('DOMContentLoaded', () => {
-    argentinaMapStyle({
-        provinces: ["*"],
-        color: "LightSlateGray",
-        strokeColor: "#ddd"
+    document.addEventListener('DOMContentLoaded', () => {
+        argentinaMapStyle({
+          provinces: ["AR-C", "AR-B"],
+        color: "var(--secondary, dodgerblue)",
+        strokeColor: "#999",
+        strokeWidth: .5
+        });
     });
-});
   </script>
 </body>
 </html> 

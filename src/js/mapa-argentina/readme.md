@@ -22,9 +22,13 @@ Permite asignar estilos de color de fondo, color de línea y ancho de línea al 
 
 Ejemplo pintando las provincias: CABA y Buenos Aires de color naranja; asignando un ancho de línea de 0.5 pixels y color de línea gris —#999999—;
 
+<div style="margin:1em auto 1.5em">
+<img src="./img/example-map-3.png" alt="Mapa de la República Argentina, ejemplo 3" style="display:block;margin:auto">
+</div>
+
 
 ```js
-window.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
     argentinaMapStyle({
         provinces: ["AR-C", "AR-B"],
         color: "var(--warning, orange)",
@@ -36,14 +40,47 @@ window.addEventListener('DOMContentLoaded', () => {
 
 ### Ejemplo 2
 
-Pinta todas las provincias de color verde con las líneas de color blanco.
+Pinta todas las provincias de color azul con las líneas de color gris.
+
+<div style="margin:1em auto 1.5em">
+<img src="./img/example-map-2.png" alt="Mapa de la República Argentina, ejemplo 3" style="display:block;margin:auto">
+</div>
+
 
 ```js
-window.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
     argentinaMapStyle({
         provinces: ["*"],
-        color: "green",
-        strokeColor: "white"
+        color: "var(--secondary)",
+        strokeColor: "#DDDDDD"
     });
+});
+```
+
+### Ejemplo 3
+
+<div style="margin:1em auto 1.5em">
+<img src="./img/example-map-1.png" alt="Mapa de la República Argentina, ejemplo 3" style="display:block;margin:auto">
+</div>
+
+```html
+<div class="mapa js-map"></div>
+```
+
+```js
+document.addEventListener('DOMContentLoaded', () => {
+    renderMap(".js-map");
+    argentinaMapStyle({
+        selectiveColor: [
+            ["AR-B", "#525252"],
+            ["AR-C", "var(--danger, red)"],
+            ["AR-E", "#525252"],
+            ["AR-S", "#525252"],
+            ["AR-X", "#525252"],
+        ],
+        defaultColor: "#f9f9f9",
+        strokeColor: "#eee",
+        strokeWidth: 1
+    }, ".js-map");
 });
 ```
