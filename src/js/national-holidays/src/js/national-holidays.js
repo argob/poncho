@@ -24,10 +24,8 @@ const calendar = {
       this.options = options;
       this.daysOfMonth = (options.daysOfMonth ? 
           options.daysOfMonth : this.daysOfMonth);
-
       this.container = jQuery(this.options.containerId);
       this.template = jQuery(this.options.templateId);
-
       this.iteration_date = new Date(
           Date.UTC(this.TODAY.getFullYear(), this.TODAY.getMonth(), 1, 3, 0, 0)
       );
@@ -50,30 +48,29 @@ const calendar = {
       );
       this.template.hide();
       this.months.forEach(function(month, monthNumber) {
-          const monthId = `m${month}`;
-          const iMonth = _this.getTplClone(_this.template, monthId);
+          monthId = 'm' + month;
+          iMonth = _this.getTplClone(_this.template, monthId);
           _this.container.append(iMonth);
-
           iteration_date.setUTCMonth(monthNumber);
           _this.drawCalendarMonth(iteration_date, iMonth.attr('id'));
       });
   },
-  drawCalendarMonth: function(iterationDate, monthId) {
-      const month = iterationDate.getUTCMonth();
-      const day = iterationDate.getUTCDay();
-      const year = iterationDate.getUTCFullYear();
-      const date = iterationDate.getUTCDate();
-      let totalDaysOfMonth = this.daysOfMonth[month];
+  drawCalendarMonth: function(iteration_date, monthId) {
+      var month = iteration_date.getUTCMonth();
+      var day = iteration_date.getUTCDay();
+      var year = iteration_date.getUTCFullYear();
+      var date = iteration_date.getUTCDate();
+      var totalDaysOfMonth = this.daysOfMonth[month];
 
-      // Asigno el nombre del mes 
-      const monthHeaders = document.querySelectorAll(`#${monthId} h2`);
-      monthHeaders.forEach(e => e.textContent = this.months[month]);
+      var $h2 = jQuery('#' + monthId).find('h2').first();
+
+      $h2.text(this.months[month]);
 
       var dateToHighlight = 0;
 
       // Determine if Month && Year are current for Date Highlight
-      if (iterationDate.getUTCMonth() === month && 
-            iterationDate.getUTCFullYear() === year) {
+      if (iteration_date.getUTCMonth() === month && 
+            iteration_date.getUTCFullYear() === year) {
           dateToHighlight = date;
       }
 
@@ -90,49 +87,48 @@ const calendar = {
           this.getCalendarStart(day, date), totalDaysOfMonth, dateToHighlight
       );
   },
-    renderMonth: function(monthId, startDay, totalDays, currentDate) {
-        const monthTpl = `#${monthId}`;
-        let currentRow = 1;
-        let currentDay = startDay;
-        let week = this.drawCalendarRow(monthTpl);
-    
-        var day;
-        var i = 1;
+  renderMonth: function(monthId, startDay, totalDays, currentDate) {
+      var currentRow = 1;
+      var currentDay = startDay;
+      var $monthTpl = jQuery('#' + monthId);
+      var $week = this.drawCalendarRow($monthTpl);
+      var $day;
+      var i = 1;
 
-        for (; i <= totalDays; i++) {
-            day = week.querySelectorAll("td")[currentDay];
-            day.textContent = i;
+      for (; i <= totalDays; i++) {
+          $day = $week.find('td').eq(currentDay);
+          $day.text(i);
 
-            if (i === currentDate) {
-                day.className = "today";
-            }
+          if (i === currentDate) {
+              $day.addClass('today');
+          }
 
-            // +1 next day until Saturday (6), then reset to Sunday (0)
-            currentDay = ++currentDay % 7;
+          // +1 next day until Saturday (6), then reset to Sunday (0)
+          currentDay = ++currentDay % 7;
 
-            // Generate new row when day is Saturday, but only if there are
-            // additional days to render
-            if (currentDay === 0 && (i + 1 <= totalDays)) {
-                week = this.drawCalendarRow(monthTpl);
-                currentRow++;
-            }
-        }
+          // Generate new row when day is Saturday, but only if there are
+          // additional days to render
+          if (currentDay === 0 && (i + 1 <= totalDays)) {
+              $week = this.drawCalendarRow($monthTpl);
+              currentRow++;
+          }
+      }
 
-        while (currentRow < 6) {
-            week = this.drawCalendarRow(monthTpl);
-            currentRow++;
-        }
-    },
-    drawCalendarRow: function($monthTpl) {
+      while (currentRow < 6) {
+          $week = this.drawCalendarRow($monthTpl);
+          currentRow++;
+      }
+  },
+  drawCalendarRow: function($monthTpl) {
+      var $table = $monthTpl.find('table').first();
+      var $tr = jQuery('<tr/>');
+      for (var i = 0, len = 7; i < len; i++) {
+          $tr.append(jQuery('<td/>').html('&nbsp;'));
+      }
+      $table.append($tr);
 
-        const tables = document.querySelector(`${$monthTpl} table`);
-        const row = tables.insertRow();
-        for (var i = 0, len = 7; i < len; i++) {
-            row.insertCell().innerHTML = "&nbsp;";
-        }
-
-        return row;
-    },
+      return $tr;
+  },
   // Returns the day of week which month starts (eg 0 
   // for Sunday, 1 for Monday, etc.)
   getCalendarStart: function(dayOfWeek, currentDate) {
@@ -144,16 +140,16 @@ const calendar = {
       return Math.abs(startOffset);
   },
   getTplClone: function(tpl, id) {
-      return tpl.clone().attr("id", id).show();
+      return tpl.clone().attr('id', id).show();
   },
   markDates: function(markers) {
       _this = this;
-      var previousLabel = "";
+      var previousLabel = '';
       var previousDate = null;
 
       for (var indice in markers) {
 
-          const splittedDate = markers[indice].date.split("/");
+          const splittedDate = markers[indice].date.split('/');
           const markerDate = new Date(
               Date.UTC(splittedDate[2],
                 splittedDate[1] - 1,
@@ -161,7 +157,7 @@ const calendar = {
           );
 
           const mes = _this.months[markerDate.getMonth()];
-          const mesTable = jQuery("#m" + mes);
+          const mesTable = jQuery('#m' + mes);
           const date = markerDate.getDate();
           const year = markerDate.getYear();
           const UTCDay = markerDate.getUTCDay();
@@ -170,8 +166,8 @@ const calendar = {
           const label = markers[indice].label;
 
           if (year === _this.TODAY.getYear()) {
-              mesTable.find("td").eq(date + (startDate) + 6).addClass(
-                  "bg-" + _this.options.holidays_type[classes]
+              mesTable.find('td').eq(date + (startDate) + 6).addClass(
+                  'bg-' + _this.options.holidays_type[classes]
               );
 
               _this.addLabel(mesTable, date, label, previousLabel, previousDate);
@@ -181,22 +177,22 @@ const calendar = {
       }
   },
   addLabel: function(target, day, label, previousLabel, previousDate) {
-      let text = "";
+      let text = '';
       let textArea = null;
       const previousDay = (previousDate ? previousDate.getDate() : day);
 
       if (label == previousLabel && day === (previousDay + 1)) {
-          textArea = target.find(".js-holidays").find("p").last();
-          text = textArea.text().replace(/(\d+),*\./, "$1, " + day + ".");
+          textArea = target.find('.js-holidays').find('p').last();
+          text = textArea.text().replace(/(\d+),*\./, "$1, " + day + '.');
           if(this.options.allowHTML){
               textArea.html(text);
           } else {
               textArea.text(text);
           }
       } else {
-          text = (this.options.allowHTML ? jQuery("<p/>").html(day + ". " + label) : 
-                jQuery("<p/>").text(day + ". " + label));
-          textArea = target.find(".js-holidays");
+          text = (this.options.allowHTML ? jQuery('<p/>').html(day + '. ' + label) : 
+                jQuery('<p/>').text(day + '. ' + label));
+          textArea = target.find('.js-holidays');
           textArea.append(text);
       }
   }, 
@@ -212,7 +208,7 @@ const calendar = {
     if (this.options.calendarYear === new Date(Date.now()).getFullYear() || (
       this.options.calendarYear - 1) === new Date(Date.now()).getFullYear()) {
 
-        const n_days = document.querySelector("#js-ndays");
+        const n_days = document.querySelector('#js-ndays');
         const faltanHTML = document.querySelector("#js-faltan");
         const proximoHTML = document.querySelector("#js-proximo");
         const detalleHTML = document.querySelector("#js-detalle");
@@ -221,10 +217,10 @@ const calendar = {
       
         for (var i in this.options.markers[0]) {
             const holiday = this.options.markers[0][i];
-            const splittedDate = holiday.date.split("/");
+            const splittedDate = holiday.date.split('/');
             const date = new Date(splittedDate[2], splittedDate[1] - 1, splittedDate[0]);
   
-            if (today < date && holiday.type !== "no_laborable") {
+            if (today < date && holiday.type !== 'no_laborable') {
                 n_days.classList.add(`text-${this.options.holidays_type[holiday.type]}`);
                 detalleHTML.classList.add(`text-${this.options.holidays_type[holiday.type]}`);
                 var time_diff = Math.abs(date.getTime() - today.getTime());
@@ -245,17 +241,17 @@ const calendar = {
   
         for (var i in this.options.markers[0]) {
             var holiday = this.options.markers[0][i];
-            var splittedDate = holiday.date.split("/");
+            var splittedDate = holiday.date.split('/');
             var date = new Date(splittedDate[2], splittedDate[1] - 1, splittedDate[0]);
   
             if (today.getDate() == date.getDate() &&
                 today.getMonth() == date.getMonth() &&
-                holiday.type !== "no_laborable") {
+                holiday.type !== 'no_laborable') {
   
-                hoyes.classList.remove("hidden");
+                hoyes.classList.remove('hidden');
                 hoyes.classList.add(`text-${this.options.holidays_type[holiday.type]}`);
   
-                hoynoes.classList.add("hidden");
+                hoynoes.classList.add('hidden');
   
                 detallehoy.innerHTML = holiday.label;
                 detallehoy.className = `text-${this.options.holidays_type[holiday.type]}`;
@@ -266,7 +262,7 @@ const calendar = {
         };
     } else {
         // Año distinto al actual
-        hoynoes.classList.add("hidden");
+        hoynoes.classList.add('hidden');
         hoyes.classList.add('hidden');
     }
   }
