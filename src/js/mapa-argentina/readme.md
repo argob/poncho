@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
     argentinaMapStyle({
         selectiveColor: [
             ["AR-B", "#525252"],
-            ["AR-C", "var(--danger, red)"],
+            ["AR-C", "var(--tomate, tomato)"],
             ["AR-E", "#525252"],
             ["AR-S", "#525252"],
             ["AR-X", "#525252"],

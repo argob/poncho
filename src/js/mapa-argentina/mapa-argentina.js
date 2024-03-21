@@ -59,6 +59,13 @@ const argentinaMapStyle = (options={}, selector="#js-mapa-svg") => {
         return;
     }
 
+    function _backgroundColor(selector, backgroundColor){
+        document.querySelectorAll(selector).forEach(ele => {
+            ele.style.backgroundColor = backgroundColor;
+        });
+    }
+
+
     /**
      * Aplica los valores a los path, rect, polyline y crcle.
      */
@@ -105,7 +112,8 @@ const argentinaMapStyle = (options={}, selector="#js-mapa-svg") => {
         strokeColor: "#CCCACA",
         strokeWidth: 1,
         color: defaultFillColor,
-        selectiveColor: []
+        selectiveColor: [],
+        backgroundColor: "white"
     };
 
     const {
@@ -114,6 +122,7 @@ const argentinaMapStyle = (options={}, selector="#js-mapa-svg") => {
         strokeWidth, 
         color,
         selectiveColor, 
+        backgroundColor,
         defaultColor=defaultFillColor} = {...defaults, ...options};
 
     // Agrega CABA en su versión aumentada (zoom).
@@ -147,7 +156,7 @@ const argentinaMapStyle = (options={}, selector="#js-mapa-svg") => {
 
     // Estilos para las líneas y bordes.
     _stroke(selector, strokeColor, strokeWidth);
-
+    _backgroundColor(selector, backgroundColor);
 };
 
 
