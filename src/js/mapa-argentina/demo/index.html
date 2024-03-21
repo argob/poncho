@@ -45,14 +45,13 @@
 <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
   <script src="../mapa-argentina.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        argentinaMapStyle({
-          provinces: ["AR-C", "AR-B"],
-        color: "var(--secondary, dodgerblue)",
-        strokeColor: "#999",
-        strokeWidth: .5
-        });
-    });
+      document.addEventListener('DOMContentLoaded', () => {
+          argentinaMapStyle({
+              provinces: ["*"],
+              color: "var(--secondary)",
+              strokeColor: "#DDDDDD"
+          });
+      });
   </script>
 </body>
 </html> 

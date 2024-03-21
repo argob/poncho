@@ -47,67 +47,22 @@ const renderMap = selector => {
 
 
 /**
+ * Cambia el estilo del mapa de Argentina SVG
  * 
- * @param {object} options  
+ * @param {object} options Permite cambiar distintos aspectos del mapa.  
  * @param {string} selector Selector html, ej. #js-mapa-svg. 
+ * @returns {undefined}
  */
 const argentinaMapStyle = (options={}, selector="#js-mapa-svg") => {
-        if (typeof selector !== 'string' || !selector.trim()) {
-            console.warn('Debe especificar un selector válido:', selector);
-            return;
-        }
+    if (typeof selector !== 'string' || !selector.trim()) {
+        console.warn('Debe especificar un selector válido:', selector);
+        return;
+    }
 
-        const defaultFillColor = "#DDDDDD";
-        const defaults = {
-            provinces: ["*"],
-            strokeColor: "#CCCACA",
-            strokeWidth: 1,
-            color: defaultFillColor,
-            selectiveColor: []
-        };
-
-        const {
-            provinces, 
-            strokeColor, 
-            strokeWidth, 
-            color,
-            selectiveColor, 
-            defaultColor=defaultFillColor} = {...defaults, ...options};
-
-        // Agrega CABA en su versión aumentada.
-        let augmentedProv = provinces;
-        if(selectiveColor.length){
-            let caba = selectiveColor.find(f => f[0] === "AR-C");
-            augmentedProv = (selectiveColor.some(f => f[0] === "AR-C") ? 
-                    [ ...selectiveColor, ["AR-C_1_", caba[1]] ] : selectiveColor);
-        } else {
-            augmentedProv = (provinces.includes("AR-C") ? 
-                    [...provinces, "AR-C_1_"] : provinces);
-        }
-
-        const mapPath = document.querySelectorAll(`${selector} path[id^="AR-"]`);
-        mapPath.forEach(ele => {
-console.log("loop")
-            if(selectiveColor.length){
-                console.log("entra")
-                let useColor = defaultColor;
-                const selection = augmentedProv.find(f => f[0] === ele.id);
-                if(selection){
-                    useColor = selection[1];
-                }
-                ele.setAttribute("fill", useColor);
-
-            } else if(augmentedProv.includes("*") || 
-                    augmentedProv.includes(ele.id)){
-                        console.log("___enter")
-                    ele.setAttribute("fill", color);
-            } else {
-                ele.setAttribute("fill", defaultColor);
-            }
-
-        });
-
-        // Aplica los valores a los path, rect, polyline y crcle sin id
+    /**
+     * Aplica los valores a los path, rect, polyline y crcle.
+     */
+    function _stroke(selector, strokeColor, strokeWidth){
         const selectors = [
             `${selector} path`,
             `${selector} rect`,
@@ -119,6 +74,80 @@ console.log("loop")
             ele.setAttribute("stroke", strokeColor);
             ele.setAttribute("stroke-width", strokeWidth);
         });
+    }
+
+    /**
+     * Agrega CABA en su versión aumentada (zoom).
+     * 
+     * @param {object} provinces Objeto con un listado de ISO provincias.
+     * @param {object} selectiveColor Objeto con sub arrays con 
+     * ISO provincia y color.
+     * @returns 
+     */
+    function _fixCABA(provinces, selectiveColor){
+        let prov = provinces;
+        if(selectiveColor.length){
+            let caba = selectiveColor.find(f => f[0] === "AR-C");
+            prov = (selectiveColor.some(f => f[0] === "AR-C") ? 
+                [ ...selectiveColor, ["AR-C_1_", caba[1]] ] : selectiveColor);
+        } else {
+            prov = (provinces.includes("AR-C") ? 
+                [...provinces, "AR-C_1_"] : provinces);
+        }
+        return prov;
+    }
+
+
+    // Options
+    const defaultFillColor = "#DDDDDD";
+    const defaults = {
+        provinces: ["*"],
+        strokeColor: "#CCCACA",
+        strokeWidth: 1,
+        color: defaultFillColor,
+        selectiveColor: []
+    };
+
+    const {
+        provinces, 
+        strokeColor, 
+        strokeWidth, 
+        color,
+        selectiveColor, 
+        defaultColor=defaultFillColor} = {...defaults, ...options};
+
+    // Agrega CABA en su versión aumentada (zoom).
+    let augmentedProv = _fixCABA(provinces, selectiveColor);
+
+    const mapPath = document.querySelectorAll(`${selector} path[id^="AR-"]`);
+    mapPath.forEach(ele => {
+
+        if(selectiveColor.length){
+            // Si está seteado _selectiveColor_ tiene precendencia, pinta 
+            // cada una de las ISO provincias con su respectivo color.
+            let useColor = defaultColor;
+            const selection = augmentedProv.find(f => f[0] === ele.id);
+            if(selection){
+                useColor = selection[1];
+            }
+            ele.setAttribute("fill", useColor);
+
+        } else if(augmentedProv.includes("*") || augmentedProv.includes(ele.id)){
+            // Si _provinces_ tiene asignados ISO provincias o un 
+            // asterisco (*), pinta el color con el asignado en el 
+            // indice color.
+            ele.setAttribute("fill", color);
+
+        } else {
+            // Pinta el `path`, con el color por defecto.
+            ele.setAttribute("fill", defaultColor);
+        }
+
+    });
+
+    // Estilos para las líneas y bordes.
+    _stroke(selector, strokeColor, strokeWidth);
+
 };
 
 
