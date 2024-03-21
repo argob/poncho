@@ -58,15 +58,16 @@
 </div>
 </div>    </div>
 <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
-  <script src="../mapa-argentina.js"></script>
-  <script>
-      document.addEventListener('DOMContentLoaded', () => {
-          argentinaMapStyle({
-              provinces: ["*"],
-              color: "var(--secondary)",
-              strokeColor: "#DDDDDD"
-          });
-      });
-  </script>
+<script src="../mapa-argentina.js"></script>
+<script src="./js/demo.js"></script>
+<script id="js-script-sample">
+document.addEventListener('DOMContentLoaded', () => {
+    argentinaMapStyle({
+        provinces: ["*"],
+        color: "var(--secondary)",
+        strokeColor: "#DDDDDD"
+    });
+});
+</script>
 </body>
 </html> 
