@@ -328,17 +328,18 @@
     }
   }
 }
-
+/*cambios visualización de noticia */
 .jumboarticle {
-  @media screen and (min-width: 768px) {
-
-    min-height: 450px;
+@media screen and (min-width: 768px) {
+background-size: 1140px auto;
+background-repeat: no-repeat;
+min-height: 550px;
   }
   @media screen and (max-width: 767px) {
     min-height: 250px;
   }
 }
-
+article .overlap{margin-top: 0px;}
 
 
 
