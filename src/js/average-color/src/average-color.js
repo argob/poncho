@@ -52,8 +52,10 @@ class AverageColor {
     
         if (!context) return defaultRGB;
     
-        const height = canvas.height = imgEl.naturalHeight || imgEl.offsetHeight || imgEl.height;
-        const width = canvas.width = imgEl.naturalWidth || imgEl.offsetWidth || imgEl.width;
+        const height = canvas.height = imgEl.naturalHeight || 
+                imgEl.offsetHeight || imgEl.height;
+        const width = canvas.width = imgEl.naturalWidth || 
+                imgEl.offsetWidth || imgEl.width;
     
         context.drawImage(imgEl, 0, 0);
     
@@ -90,8 +92,13 @@ class AverageColor {
      * @returns {undefined}
      */
     tempImage = imageSrc => {
-        const image = document.querySelector("#id-average-color");
-        if (image) {
+        if(typeof imageSrc !== 'string'){
+            console.error("No se especificó el src de la imagen");
+            return;
+        }
+
+        const image = document.querySelectorAll("#id-average-color");
+        if (image.hasOwnProperty("id")) {
             return image.src;
         }
         const img = document.createElement("img");
@@ -112,7 +119,10 @@ class AverageColor {
      */
     applyColor = color => {
         const element = document.querySelectorAll(this.selector);
-        element.forEach(e => e.style.backgroundColor = color);
+        element.forEach(e => {
+            e.style.backgroundColor = color;
+            e.style.transition = ".1s";
+        });
     }
     
     /**
@@ -151,7 +161,11 @@ class AverageColor {
     
         let m = regex.exec(element.style.backgroundImage);
         const [, , url] = m;
-        return url;
+        console.log(location.origin + url)
+
+        const u = new URL(url, location.origin);
+
+        return u.href;
     };
     
     /**
@@ -160,7 +174,6 @@ class AverageColor {
      */
     render = () => {
         const _this = this;
-        
         try {
             this.tempImage(this.imageSrc());
             let counter = 0;
@@ -178,14 +191,12 @@ class AverageColor {
                 }, 1000);
                 _this.applyColor(_this.obtainColor());
     
-            }, 300);
-    
+            }, 200);
         } catch (error) {
-            console.error("No se puede pintar el fondo")
+            console.error("No se puede pintar el fondo");
         }
     };
-
-
 }
 
-document.addEventListener("DOMContentLoaded", (new AverageColor).render());
+
+window.addEventListener('load', (new AverageColor).render(), false);
