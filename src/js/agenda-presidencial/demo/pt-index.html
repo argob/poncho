@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head>
+  <link rel="profile" href="http://www.w3.org/1999/xhtml/vocab" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <script 
+      src="https://www.argentina.gob.ar/profiles/argentinagobar/libraries/jquery.jquery-363/jquery-3.6.3.min.js?v=3.6.3" >
+    </script>
+  <link 
+      rel="stylesheet" 
+      href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+  <link 
+      rel="stylesheet" 
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" 
+      integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+      crossorigin="anonymous" 
+      referrerpolicy="no-referrer" />  
+  <link 
+      rel="stylesheet" 
+      href="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css">
+  <!-- /Base -->
+  <link rel="stylesheet" href="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/poncho.min.css"" />
+  <title>Tabla vialidad</title>
+  <style>
+    body {
+        padding: 2em;
+    }
+  </style>
+</head>
+<body class="p-t-3">
+    <h1>Manejo de fechas</h1>
+<hr>
+
+<!-- 
+COPIAR DESDE ACÁ…
+-->
+<!-- SHOWDOWN -->
+<script src="https://www.argentina.gob.ar/sites/default/files/ponchotable/showdown.js"></script>
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/extensiones/showdown-extensions.js"></script>
+<!-- / SHOWDOWN -->
+
+<!-- INCLUDE SCRIPTS -->
+<link href="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/ponchoTable-1.1.css" rel="stylesheet">
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/datatables.min.js"></script>
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/intl.min.js"></script>
+<!-- <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script> -->
+
+<script src="../../utils/color.js"></script>
+<script src="../../utils/connect.js"></script>
+<script src="../../utils/string.js"></script>
+<script src="../../utils/html.js"></script>
+<script src="../../poncho-table/poncho-table.js"></script>
+<script src="../../poncho-table/poncho-table-dependant.js"></script>
+<script src="../../gapi-sheet-data/gapi-sheet-data.js"></script>
+<script src="../src/js/agenda-presidencial.js"></script>
+<!-- / INCLUDE SCRIPTS -->
+
+<!-- FILTERS -->
+<div class="row">
+  <div class="col-sm-12 col-md-12" id="ponchoTableFiltroCont" style="display:none">
+    <div class="row" id="ponchoTableFiltro"></div>
+  </div>
+  <div class="col-sm-12 col-md-12" id="ponchoTableSearchCont" style="display: none">
+    <div class="form-group">
+      <label for="ponchoTableSearch">Buscá por nombre del trámite</label>
+      <input class="form-control" id="ponchoTableSearch" type="search">
+    </div>
+  </div>
+</div>
+<!-- / FILTERS -->
+<!-- TABLE -->
+<div class="row">
+  <div class="col-md-12 m-b-4">
+    <table class="table table-condensed _table-striped" id="ponchoTable">
+      <colgroup>
+        <col>
+        <col>
+        <col style="min-width:110px">
+      </colgroup>
+      <caption></caption>
+      <thead></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</div>
+<!-- / TABLE -->
+<script>
+  (async() => {
+      const gapi = new GapiSheetData();
+      const googlesheet_data = await fetch_json( 
+          gapi.url("dataset", "1dKctGTF3-3Qh3McFjSumDW7AWmOBl5ag6wWEWSTC7Gw") 
+      ); 
+      const gapi_data = gapi.json_data(googlesheet_data);
+
+      const ponchoTableOpciones = {
+            jsonData: gapi_data.entries,
+            headers: gapi_data.headers,
+            statusIndex: {
+                // label: "Filtrar por estado",
+                pastDates: "Fechas anteriores",
+                nextDates: "Próximas fechas"
+            },
+            groupCategory: "filtro-ministerio",
+            "tituloTabla": "Agenda presidencial", // Siempre informá entre comillas un título corto para accesibilidad
+            "ordenColumna": 1, // Informá por cuál columna se ordena la tabla, la primera columna es 1 (uno)
+            "ordenTipo": "asc", // Informá entre comillas el criterio de orden: "asc" es de A a Z y de menor a mayor, "desc" es de Z a Z y de mayor a menor
+            "ocultarColumnas": [1,2,4], // Si querés que una o más columnas no sean visibles, informalas entre corchetes separadas por coma; la primera columna es 0 (cero)
+            "cantidadItems": 6, // Informá la cantidad de filas visibles por pantalla, por defecto son 10 (diez)
+            "filterClassList": ["col-sm-12", "col-md-6"], // PERMITE CONFIGURAR LA CANTIDAD DE COLUMNAS Y ESTILOS PARA LOS FILTROS. SI NO SE DECLARA ESTE ATRIBUTO, EL PROGRAMA LO HACE AUTOMÁTICAMENTE.
+            "filterContClassList": ["col-md-6"], // PERMITE CONFIGURAR EL TAMAÑO DE LA COLUMNA DEL CONTENEDOR DE LOS FILTROS
+            "searchContClassList": ["col-md-6"], // PERMITE CONFIGURAR EL TAMAÑO DE LA COLUMNA DEL CONTENEDOR DEL BUSCADOR.
+            "hash": true, // SI ES TRUE, PERMITE HACER UNA BÚSQUEDA POR URL, EJ. www.argentina.gob.ar#mi_busqueda
+            "markdownOptions": {
+                //   "tables": true,
+                "simpleLineBreaks": true,
+                "extensions": [
+                    //     'details', 
+                    //     'images', 
+                    //     'alerts', 
+                    //    'numbers', 
+                    //     'ejes', 
+                    'button',
+                    'target',
+                    //     'bootstrap-tables', 
+                    //    'video'
+                ]
+            }
+        };
+
+        const pa = new PonchoAgenda(ponchoTableOpciones);
+        pa.render();
+    })();
+</script>
+<!-- / PONCHOTABLE -->
+</body>
+</html>
+
+
