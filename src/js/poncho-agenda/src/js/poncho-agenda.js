@@ -1,5 +1,12 @@
 /**
- * Agenda presidencial
+ * Agenda
+ * 
+ * @summary Agenda de eventos basada en PonchoTable donde se agrupan las
+ * entradas por fecha de inicio, fecha de fin, y categoría.
+ * @author Agustín Bouillet <bouilleta@jefatura.gob.ar>
+ * @requires jQuery, dataTables
+ * @see https://github.com/argob/poncho/tree/master/src/js/poncho-table
+ * 
  * 
  * MIT License
  * 
@@ -210,9 +217,6 @@ class PonchoAgenda {
             console.error("No se puede recorrer el script")
         }
 
-
-   
-
         let entries = [];
         jsonData.forEach(element => {
             let {desde, hasta} = element;
@@ -272,9 +276,10 @@ class PonchoAgenda {
 
 
     /**
+     * Reagrupa las entradas dejando, por fecha, las entradas de la categoría.
      * 
      * @param {object} entries 
-     * @returns 
+     * @returns {object}
      */
     groupedEntries = entries => {
         let collect = [];   
@@ -362,26 +367,7 @@ class PonchoAgenda {
             ponchoTable( this.opts );
         }
     };
-
-}
-
-
-// class Performance {
-//     constructor(name="Ejecución"){
-//         this.name = name;
-//     }
-//     start = () => {
-//         this._start = performance.now();
-//     }
-//     end = () => {
-//         const _end = performance.now();
-//         console.info(
-//             `%c[${this.name}] %c${_end - this._start}ms.`, 
-//             'background: #222; color: #2897D4 ; font-weight:600', 
-//             'background: #222; color: #37BBED'
-//         );
-//     }
-// };
+};
 
 
 if (typeof exports !== "undefined") {

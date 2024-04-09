@@ -1,4 +1,7 @@
-# 📦 Agenda presidencial
+# 📦 Agenda
+
+Agrupa entradas JSON por fecha de inicio, fecha de fin y una categoría definida
+por el usuario.
 
 ## 🧰 Opciones y métodos
 
@@ -9,13 +12,6 @@
 |  |  |  |  | 
 
 
-
-### Métodos
-
-
-| Nombre | Descripción |
-|:---|:---|
-|  |  |
 
 
 # 🚀 Uso
