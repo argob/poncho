@@ -26,7 +26,7 @@
  * SOFTWARE. 
  */
 class PonchoAgenda {
-     
+
     DATE_REGEX = /^([1-9]|0[1-9]|[1-2][0-9]|3[0-1])\/([1-9]|0[1-9]|1[0-2])\/([1-9][0-9]{3})$/;
 
     constructor(options={}) {
@@ -71,7 +71,7 @@ class PonchoAgenda {
      * @returns {boolean}
      */
     _isPastDate = fecha => {
-        if(!this.isValidDateFormat(fecha)){
+        if(!this._isValidDateFormat(fecha)){
             console.error(`La fecha no tiene un formato válido: ${fecha}`);
             return false;
         }
@@ -96,14 +96,23 @@ class PonchoAgenda {
         const month = today.getMonth() + 1;
         const day = today.getDate();
         const format = [
-            day.toString().padStart(2, "0"),
-            month.toString().padStart(2, "0"),
+            this._pad(day),
+            this._pad(month),
             year].join(separator);
     
         return {...this._dateParser(format), ...{format}};
     }
     
-    
+    /**
+     * Rellena con ceros a la izquierda
+     * 
+     * @param {string|int} num Numero a rellenar con ceros. 
+     * @param {int} counter Cantidad total de caracteres. 
+     * @returns {string}
+     */
+    _pad = (num, counter=2) => num.toString().padStart(counter, "0");
+
+
     /**
      * Parsea una fecha.
      * 
@@ -122,7 +131,7 @@ class PonchoAgenda {
      * @returns {object|boolean} 
      */
     _dateParser = (date, time="00:00:00") => {
-        if(!this.isValidDateFormat(date)){
+        if(!this._isValidDateFormat(date)){
             console.error(`Formato de fecha incorrecto: ${date}`);
             return;
         }
@@ -132,11 +141,11 @@ class PonchoAgenda {
         const objectDate = new Date(`${year}-${month}-${day} ${time}`);
 
         return {
-            day, 
-            month, 
+            day: this._pad(day), 
+            month: this._pad(month), 
             year,
-            hours: objectDate.getHours().toString().padStart(2, "0"), 
-            minutes: objectDate.getMinutes().toString().padStart(2, "0"),
+            hours: this._pad(objectDate.getHours()), 
+            minutes: this._pad(objectDate.getMinutes()),
             "date": objectDate
         }
     }
@@ -148,14 +157,14 @@ class PonchoAgenda {
      * Al momento de escribir este documento, no hay otro habilitado.
      * @example
      * // true
-     * this.isValidDateFormat("09/05/2012")
+     * this._isValidDateFormat("09/05/2012")
      * 
      * // false
-     * this.isValidDateFormat("09/10/15")
+     * this._isValidDateFormat("09/10/15")
      * @param {string} str Fecha en formato dd/mm/yyyy.
      * @returns {boolean}
      */
-    isValidDateFormat = str => {
+    _isValidDateFormat = str => {
         const regex = this.DATE_REGEX;
         const result = regex.exec(str);
     
@@ -171,22 +180,22 @@ class PonchoAgenda {
      */
     agruparPorFingerprintYMinisterio = (datos) => {
         const agrupados = {};
-      
+
         for (const dato of datos) {
             const categoria = dato[this.groupCategory];
             const {fingerprint} = dato;
-    
+
             if (!agrupados[fingerprint]) {
                 agrupados[fingerprint] = {};
             }
-    
+
             if (!agrupados[fingerprint][categoria]) {
                 agrupados[fingerprint][categoria] = [];
             }
-    
+
             agrupados[fingerprint][categoria].push(dato);
         }
-      
+
         return agrupados;
     }
     
@@ -201,6 +210,9 @@ class PonchoAgenda {
             console.error("No se puede recorrer el script")
         }
 
+
+   
+
         let entries = [];
         jsonData.forEach(element => {
             let {desde, hasta} = element;
@@ -211,14 +223,14 @@ class PonchoAgenda {
             const {date:endDate} = this._dateParser(hasta);
             const fingerprint = [
                 startDate.getTime(), endDate.getTime()].join("_");
-    
+
             const entry = {
                 ...element,
                 ...{"filtro-status": estado, hasta, fingerprint}
             };
             entries.push(entry);
         });
-    
+
         return entries;
     };
     
@@ -305,10 +317,10 @@ class PonchoAgenda {
 
                 delete entry.horario;
                 delete entry.fingerprint;
-       
+
                 let customData={};   
                 customData["descripcion"] = block;
-    
+
                 collect.push( {...entry, ...customData} );
             });
         });

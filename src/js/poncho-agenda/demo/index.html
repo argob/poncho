@@ -86,13 +86,14 @@ COPIAR DESDE ACÁ…
 </div>
 <!-- / TABLE -->
 <script>
+    var json;
 (async() => {
     const gapi = new GapiSheetData();
     const googlesheet_data = await fetch_json( 
         gapi.url("dataset", "1dKctGTF3-3Qh3McFjSumDW7AWmOBl5ag6wWEWSTC7Gw") 
     ); 
     const gapi_data = gapi.json_data(googlesheet_data);
-
+    json = gapi_data;
     const agendaOptions = {
             jsonData: gapi_data.entries, // JSON directo
             headers: gapi_data.headers, // Headers
