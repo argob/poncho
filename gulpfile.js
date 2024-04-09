@@ -22,6 +22,7 @@ const ponchoMinList = [
     './src/js/utils/string.js',
     './src/js/utils/html.js',
     './src/js/poncho-table/poncho-table.js',
+    './src/js/poncho-agenda/poncho-agenda.js',
     './src/js/poncho-table/poncho-table-dependant.js',
     './src/js/utils/popover.js',
     './src/js/poncho-ubicacion/poncho-ubicacion.js',
