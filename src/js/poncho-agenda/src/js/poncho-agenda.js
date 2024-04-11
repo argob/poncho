@@ -55,7 +55,7 @@ class PonchoAgenda {
 
 
     defaults = {
-        allowedTags: ["strong", "p", "div", "h3", "ul", "li", "time"],
+        allowedTags: ["strong", "img", "em","button", "button", "p", "div", "h3", "ul", "li", "time", "a", "h1"],
         groupCategory: "filtro-ministerio",
         dateSeparator: "/",
         startDateIndex: "desde",
@@ -120,6 +120,36 @@ class PonchoAgenda {
 
         return headers;
     }
+
+
+    /**
+     * Showdown habilitado.
+     * 
+     * Verifica si la librería _showdown_ está disponible.
+     * @returns {boolean}
+     */
+    _isMarkdownEnable = () => {
+        if(typeof showdown !== "undefined" && 
+            showdown.hasOwnProperty("Converter")){
+                return true;
+        }
+        return false;
+    }; 
+
+
+    /**
+     * Opciones para markdown
+     * @returns {object}
+     */
+    _markdownOptions = () => {
+        if(this._isMarkdownEnable()){
+            if(this.opts.hasOwnProperty("markdownOptions") && 
+                typeof this.opts.markdownOptions === "object"){
+                return this.opts.markdownOptions;
+            }
+        }
+        return {};
+    };
 
 
     /**
@@ -336,6 +366,15 @@ class PonchoAgenda {
         const datetime = this._dateParser(date, time);
         const descriptionContainer = document.createElement("p");
         descriptionContainer.textContent = description;
+
+        if(this._isMarkdownEnable()){
+            const converter = new showdown.Converter(this._markdownOptions());
+            descriptionContainer.innerHTML = converter.makeHtml(description);
+        } else {
+            descriptionContainer.textContent = description;
+        }
+
+
 
         const timeContainer = document.createElement("p");
         timeContainer.innerHTML = 

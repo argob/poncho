@@ -93,7 +93,7 @@ COPIAR DESDE ACÁ…
         gapi.url("dataset", "1dKctGTF3-3Qh3McFjSumDW7AWmOBl5ag6wWEWSTC7Gw") 
     ); 
     const gapi_data = gapi.json_data(googlesheet_data);
-    json = gapi_data;
+
     const agendaOptions = {
             rangeLabel: "Fechasxxx",
             jsonData: gapi_data.entries, // JSON directo
@@ -123,19 +123,13 @@ COPIAR DESDE ACÁ…
             filterContClassList: ["col-md-6"], // PERMITE CONFIGURAR EL TAMAÑO DE LA COLUMNA DEL CONTENEDOR DE LOS FILTROS
             searchContClassList: ["col-md-6"], // PERMITE CONFIGURAR EL TAMAÑO DE LA COLUMNA DEL CONTENEDOR DEL BUSCADOR.
             hash: true, // SI ES TRUE, PERMITE HACER UNA BÚSQUEDA POR URL, EJ. www.argentina.gob.ar#mi_busqueda
-            _markdownOptions: {
-                tables: true,
+            markdownOptions: {
+                tables: false,
                 simpleLineBreaks: true,
                 extensions: [
-                    'details', 
                     'images', 
-                    'alerts', 
-                    'numbers', 
-                    'ejes', 
                     'button',
-                    'target',
-                    'bootstrap-tables', 
-                    'video'
+                    'target'
                 ]
             },
             categoryTitleClassList: ["h5", "text-secondary", "mt-half"], // Asigna clases css al título de la categoria (ministerio)
