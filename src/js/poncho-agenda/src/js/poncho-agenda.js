@@ -37,37 +37,88 @@ class PonchoAgenda {
     DATE_REGEX = /^([1-9]|0[1-9]|[1-2][0-9]|3[0-1])\/([1-9]|0[1-9]|1[0-2])\/([1-9][0-9]{3})$/;
 
     constructor(options={}) {
-
-        let defaults = {
-            allowedTags: ["strong", "p", "div", "h3", "ul", "li", "time"],
-            groupCategory: "filtro-ministerio",
-            statusIndex: {
-                label: "Estado",
-                pastDates: "Anteriores",
-                nextDates: "Próximas"
-            },
-            categoryTitleClassList: ["h6", "text-secondary"],
-            itemContClassList: ["list-unstyled"],
-            itemClassList: ["m-b-2"]
-        };
-
-        // headers
-        let labelStatus = defaults.statusIndex.label;
-        if(options?.statusIndex?.label){
-            labelStatus = options.statusIndex.label;
-        }
-        options.headers = {
-            ...options.headers, ...{"filtro-status": labelStatus}
-        };
+        options.headers = this._refactorHeaders(options);
+        options.headersOrder = this._refactorHeadersOrder(options);
 
         // Global Options
-        this.opts = Object.assign({}, defaults, options);
-        delete this.opts.headers["horario"];
+        this.opts = Object.assign({}, this.defaults, options);
 
         this.categoryTitleClassList = this.opts.categoryTitleClassList;
         this.itemContClassList = this.opts.itemContClassList;
         this.itemClassList = this.opts.itemClassList;
         this.groupCategory = this.opts.groupCategory;
+        this.dateSeparator = this.opts.dateSeparator;
+        this.startDateIndex = this.opts.startDateIndex;
+        this.endDateIndex = this.opts.endDateIndex;
+        this.timeIndex = this.opts.timeIndex;
+    }
+
+
+    defaults = {
+        allowedTags: ["strong", "p", "div", "h3", "ul", "li", "time"],
+        groupCategory: "filtro-ministerio",
+        dateSeparator: "/",
+        startDateIndex: "desde",
+        endDateIndex: "hasta",
+        timeIndex: "horario",
+        rangeLabel: "Fechas",
+        filterStatus: {
+            header: "Estado",
+            pastDates: "Anteriores",
+            nextDates: "Próximas"
+        },
+        categoryTitleClassList: ["h6", "text-secondary"],
+        itemContClassList: ["list-unstyled"],
+        itemClassList: ["m-b-2"]
+    };
+
+
+    /**
+     * Agrega los indices range y filtro-status al al array si no existieran.
+     * 
+     * @param {object} options Opciones para ponchoTabla y Agenda
+     * @returns {object}
+     */
+    _refactorHeadersOrder = options => {
+        if(options.hasOwnProperty("headersOrder") && options.headersOrder.length > 0){
+            let order = options.headersOrder;
+            for(const i of ["range", "filtro-status"]){
+                if(!options.headersOrder.includes(i)){
+                    options.headersOrder.push(i);
+                }
+            }
+            return order;
+        }
+        return [];
+    }
+
+
+    /**
+     * Refactor de headers
+     * 
+     * @summary Agrega los headers de range y filterheader a los 
+     * asignados en el JSON.
+     * @param {object} options Opciones para ponchoTabla y Agenda
+     * @returns {object}
+     */
+    _refactorHeaders = options => {
+        let labelStatus = this.defaults.filterStatus.header;
+        if(options?.filterStatus?.header){
+            labelStatus = options.filterStatus.header;
+        }
+
+        let rangeLabel = this.defaults.rangeLabel;
+        if(options?.rangeLabel){
+            rangeLabel = options.rangeLabel;
+        }
+
+        const headers = {
+            ...{ "range": rangeLabel},
+            ...options.headers,
+            ...{"filtro-status": labelStatus}
+        };
+
+        return headers;
     }
 
 
@@ -91,13 +142,29 @@ class PonchoAgenda {
     
     
     /**
+     * 
+     * @param {*} date 
+     * @param {*} time 
+     * @returns 
+     */
+    _dateTimeFormat = (date, time=false) => {
+        const {day, month, year} = date;
+        const dateFormat = [day, month, year].join(this.dateSeparator);
+        let timeFormat = "";
+        if(time){
+            timeFormat = [hours, minutes].join(":");
+        }
+        return dateFormat + timeFormat;
+    };
+
+
+    /**
      * Fecha al momento de ejecutarse el script.
      * 
-     * @param {string} separator Separador usado en la fecha. Por defecto "/". 
      * @returns {object} Retorna un objeto con: el día, mes, año y el 
      * objeto Date en fecha. 
      */
-    _currentDate = (separator="/") => {
+    _currentDate = () => {
         const today = new Date();
         const year = today.getFullYear();
         const month = today.getMonth() + 1;
@@ -105,7 +172,7 @@ class PonchoAgenda {
         const format = [
             this._pad(day),
             this._pad(month),
-            year].join(separator);
+            year].join(this.dateSeparator);
     
         return {...this._dateParser(format), ...{format}};
     }
@@ -219,18 +286,36 @@ class PonchoAgenda {
 
         let entries = [];
         jsonData.forEach(element => {
-            let {desde, hasta} = element;
-            hasta = (hasta === "" ? desde : hasta);
-            const {pastDates, nextDates} = this.opts.statusIndex;
-            const estado = (this._isPastDate(hasta) ? pastDates : nextDates);
-            const {date:startDate} = this._dateParser(desde);
-            const {date:endDate} = this._dateParser(hasta);
-            const fingerprint = [
-                startDate.getTime(), endDate.getTime()].join("_");
+            let desde = element[this.startDateIndex];
+            let hasta = element[this.endDateIndex];
 
+            hasta = (hasta.trim() === "" ? desde : hasta);
+
+            const {pastDates, nextDates} = this.opts.filterStatus;
+            const estado = (this._isPastDate(hasta) ? pastDates : nextDates);
+            // dates
+            const startDate = this._dateParser(desde);
+            const endDate = this._dateParser(hasta);
+            const startDateTime = startDate.date.getTime();
+            const endDateTime = endDate.date.getTime();
+            const fingerprint = [startDateTime, endDateTime].join("_");
+
+            let range = this._dateTimeFormat(startDate);
+            if(startDateTime != endDateTime){
+                range = `Del ${this._dateTimeFormat(startDate)} al ` 
+                    + `${this._dateTimeFormat(endDate)}`;
+            }
+
+            // refactor entry
             const entry = {
                 ...element,
-                ...{"filtro-status": estado, hasta, fingerprint}
+                ...{
+                    "range": range,
+                    "filtro-status": estado, 
+                    fingerprint, 
+                    desde, 
+                    hasta,
+                }
             };
             entries.push(entry);
         });
@@ -253,7 +338,8 @@ class PonchoAgenda {
         descriptionContainer.textContent = description;
 
         const timeContainer = document.createElement("p");
-        timeContainer.innerHTML = "<strong>Horario</strong>: ";
+        timeContainer.innerHTML = 
+                `<strong>${this.opts.headers[this.timeIndex]}</strong>: `;
         const timeElement = document.createElement("time");
     
         if(time){
@@ -320,7 +406,6 @@ class PonchoAgenda {
     
                 block += itemsContainer.outerHTML;
 
-                delete entry.horario;
                 delete entry.fingerprint;
 
                 let customData={};   

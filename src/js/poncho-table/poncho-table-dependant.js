@@ -899,6 +899,18 @@ const ponchoTableDependant = opt => {
     
 
 
+    const _headersOrder = (headers, order) => {
+        let refactorHeaders = {};
+        for(i of order){ 
+            if( headers.hasOwnProperty(i) ){
+                refactorHeaders[i] = headers[i];
+            }
+        }
+        headers=refactorHeaders;
+        return headers;
+    }
+
+
 
     /**
      * Imprime DataTable
@@ -917,6 +929,14 @@ const ponchoTableDependant = opt => {
         // Defino los headers que se van a utilizar
         gapi_data.headers = (opt.hasOwnProperty("headers") && opt.headers ?
                 opt.headers : gapi_data.headers);
+
+        // Definimos los headers y su orden
+        if(opt.hasOwnProperty("headers") && opt.headers){
+            if(opt.hasOwnProperty("headersOrder") && opt.headersOrder.length > 0){
+                gapi_data.headers = _headersOrder(gapi_data.headers, opt.headersOrder);
+            }
+        }
+        
         // Listado de filtros
         filtersList = Object
                 .keys(gapi_data.headers)
@@ -977,8 +997,9 @@ const ponchoTableDependant = opt => {
     if (opt.jsonData){
         const headers = Object.fromEntries(
             Object.keys(opt.jsonData[0]).map(e => [e,e])
-        );
-        const data = {entries: opt.jsonData, headers: headers};
+            );
+
+        const data = {entries: opt.jsonData, headers};
         render(data);
     } else if (opt.jsonUrl) {
         getSheetValues(opt.jsonUrl);
