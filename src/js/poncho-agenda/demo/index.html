@@ -20,7 +20,8 @@
       rel="stylesheet" 
       href="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css">
   <!-- /Base -->
-  <link rel="stylesheet" href="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/poncho.min.css"" />
+  <link rel="stylesheet" href="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/poncho.min.css"/>
+  <link rel="stylesheet" href="../dist/css/poncho-agenda.css"/>
   <title>Agendas</title>
   <style>
     body {
@@ -41,8 +42,11 @@ COPIAR DESDE ACÁ…
 <!-- / SHOWDOWN -->
 
 <!-- INCLUDE SCRIPTS -->
+
+<!-- <link rel="stylesheet" href="//cdn.datatables.net/2.0.3/css/dataTables.dataTables.min.css"> -->
 <link href="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/ponchoTable-1.1.css" rel="stylesheet">
 <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/datatables.min.js"></script>
+<!-- <script src="//cdn.datatables.net/2.0.3/js/dataTables.min.js"></script> -->
 <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/intl.min.js"></script>
 <!-- <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script> -->
 
@@ -98,21 +102,13 @@ COPIAR DESDE ACÁ…
             rangeLabel: "Fecha",
             jsonData: gapi_data.entries, // JSON directo
             headers: gapi_data.headers, // Headers
-            startDateIndex: "fecha-desde", // Fecha en formato dd/mm/YYYY
-            endDateIndex: "hasta", // Fecha en formato dd/mm/YYYY
+            startDateId: "fecha-desde", // Fecha en formato dd/mm/YYYY
+            endDateId: "hasta", // Fecha en formato dd/mm/YYYY
             filterStatus: { // Modifica los labels del select de filtro de estado
                 label: "Filtrar por estado", // Permite asignar un título al select
                 pastDates: "Fechas anteriores",
                 nextDates: "Próximas fechas"
             },
-            _headersOrder: [
-                "range",
-                "fecha-desde",
-                // "hasta",
-                // "horario",
-                "descripcion",
-                "filtro-ministerio",
-            ],
             groupCategory: "filtro-ministerio",
             tituloTabla: "Agenda presidencial", // Siempre informá entre comillas un título corto para accesibilidad
             ordenColumna: 2, // Informá por cuál columna se ordena la tabla, la primera columna es 1 (uno)
@@ -134,12 +130,12 @@ COPIAR DESDE ACÁ…
             },
             categoryTitleClassList: ["h5", "text-secondary", "mt-half"], // Asigna clases css al título de la categoria (ministerio)
             itemContClassList: ["list-unstyled"],
-            itemClassList: ["m-b-2"]
+            itemClassList: ["m-b-1"]
         };
 
         agenda = new PonchoAgenda(agendaOptions);
         agenda.render();
-    })();
+})();
 </script>
 <!-- / PONCHOTABLE -->
 </body>
