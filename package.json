@@ -20,7 +20,7 @@
     "css",
     "scss"
   ],
-  "author": "Dirección Nacional de Servicios Digitales de la Subsecretaría de Servicios y País Digital.",
+  "author": "Dirección Nacional de Servicios Digitales de la Subsecretaría de Tecnologías de la Información.",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/argob/poncho/issues"
@@ -33,7 +33,7 @@
     "babel-cli": "^6.26.0",
     "gulp": "^5.0.0",
     "gulp-babel": "^8.0.0",
-    "gulp-cli": "^2.3.0",
+    "gulp-cli": "^3.0.0",
     "gulp-concat": "^2.6.1",
     "gulp-if": "^3.0.0",
     "gulp-jshint": "^2.1.0",
@@ -45,12 +45,16 @@
     "gulp-uglifyes": "^0.2.1",
     "install": "^0.13.0",
     "jshint": "^2.13.6",
-    "npm": "^9",
-    "sass": "^1.54",
+    "npm": "^10",
+    "sass": "^1.75",
     "uglify-js": "^3.17.0",
-    "with": "^7.0.2"
+    "with": "^7.0.2",
+    "jest": "^29.7.0"
   },
   "dependencies": {
     "babel-types": "^6.26.0"
+  },
+  "engines": {
+    "node": "18.19.0"
   }
 }
