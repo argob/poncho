@@ -7,7 +7,7 @@ var concat = require('gulp-concat');
 var SRC = './src/js/*.js';
 var rename = require('gulp-rename');
 const gulpIF = require('gulp-if');
-var replace = require('gulp-replace');
+// var replace = require('gulp-replace');
 
 
 var generalCompressOptions = {
@@ -39,7 +39,6 @@ const ponchoMinList = [
 
 gulp.task('poncho', function(){
     return gulp.src(ponchoMinList)
-        // .pipe(replace(/\/\/\s?\$START_TEST\$([\s\S]*?)\/\/\s?\$END_TEST\$/gm, '/* module.exports REMOVED */'))
         .pipe(concat('poncho.js', {'newLine':'\n\n'}))
         // .pipe(babel())
         .pipe(gulp.dest('dist/js/'));
@@ -51,12 +50,6 @@ gulp.task('poncho', function(){
  */
 gulp.task('ponchomin', function(){
     return gulp.src(ponchoMinList)
-        // .pipe(
-        //     replace(
-        //         /\/\/\s?\$START_TEST\$([\s\S]*?)\/\/\s?\$END_TEST\$/gm, 
-        //         '/* module.exports REMOVED */'
-        //     )
-        // )
         .pipe(concat('poncho.min.js'))
         .pipe(uglify(generalCompressOptions))
         .pipe(gulp.dest('dist/js/'));
