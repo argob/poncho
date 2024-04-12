@@ -46,7 +46,6 @@ const gapi_legacy = (response) => {
 };
 
 
-// $START_TEST$
-// ¡Atención! Patch para testear non-module
-module.exports = gapi_legacy;
-// $END_TEST$
+if (typeof exports !== "undefined") {
+  module.exports = gapi_legacy;
+}

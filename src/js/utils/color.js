@@ -379,8 +379,8 @@ const ponchoColorByHex = value => ponchoColorDefinitionsList.find(f => {
     return false;
 });
 
-
-// $START_TEST$
-// ¡Atención! Patch para testear non-module
-module.exports = {ponchoColorDefinitionsList, ponchoColorDefinitions, ponchoColor, ponchoColorByHex, cleanUpHex};
-// $END_TEST$
+if (typeof exports !== "undefined") {
+    module.exports = {
+        ponchoColorDefinitionsList,
+        ponchoColorDefinitions, ponchoColor, ponchoColorByHex, cleanUpHex};
+}

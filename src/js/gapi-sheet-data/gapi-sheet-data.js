@@ -106,7 +106,6 @@ class GapiSheetData {
 
 
 
-// $START_TEST$
-// ¡Atención! Patch para testear non-module
-module.exports = GapiSheetData;
-// $END_TEST$
+if (typeof exports !== "undefined") {
+    module.exports = GapiSheetData;
+}
