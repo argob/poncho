@@ -95,7 +95,7 @@ COPIAR DESDE ACÁ…
     const gapi_data = gapi.json_data(googlesheet_data);
 
     const agendaOptions = {
-            rangeLabel: "Fechasxxx",
+            rangeLabel: "Fecha",
             jsonData: gapi_data.entries, // JSON directo
             headers: gapi_data.headers, // Headers
             startDateIndex: "fecha-desde", // Fecha en formato dd/mm/YYYY
@@ -115,9 +115,9 @@ COPIAR DESDE ACÁ…
             ],
             groupCategory: "filtro-ministerio",
             tituloTabla: "Agenda presidencial", // Siempre informá entre comillas un título corto para accesibilidad
-            ordenColumna: 3, // Informá por cuál columna se ordena la tabla, la primera columna es 1 (uno)
-            ordenTipo: "asc", // Informá entre comillas el criterio de orden: "asc" es de A a Z y de menor a mayor, "desc" es de Z a Z y de mayor a menor
-            ocultarColumnas: [1,2,3,4,6], // Si querés que una o más columnas no sean visibles, informalas entre corchetes separadas por coma; la primera columna es 0 (cero)
+            ordenColumna: 2, // Informá por cuál columna se ordena la tabla, la primera columna es 1 (uno)
+            ordenTipo: "desc", // Informá entre comillas el criterio de orden: "asc" es de A a Z y de menor a mayor, "desc" es de Z a Z y de mayor a menor
+            ocultarColumnas: [1,2,3,4,6, 7,8,9], // Si querés que una o más columnas no sean visibles, informalas entre corchetes separadas por coma; la primera columna es 0 (cero)
             cantidadItems: 6, // Informá la cantidad de filas visibles por pantalla, por defecto son 10 (diez)
             filterClassList: ["col-sm-12", "col-md-6"], // PERMITE CONFIGURAR LA CANTIDAD DE COLUMNAS Y ESTILOS PARA LOS FILTROS. SI NO SE DECLARA ESTE ATRIBUTO, EL PROGRAMA LO HACE AUTOMÁTICAMENTE.
             filterContClassList: ["col-md-6"], // PERMITE CONFIGURAR EL TAMAÑO DE LA COLUMNA DEL CONTENEDOR DE LOS FILTROS
