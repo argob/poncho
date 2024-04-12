@@ -48,14 +48,14 @@ class PonchoAgenda {
         this.itemClassList = this.opts.itemClassList;
         this.groupCategory = this.opts.groupCategory;
         this.dateSeparator = this.opts.dateSeparator;
-        this.startDateIndex = this.opts.startDateIndex;
-        this.endDateIndex = this.opts.endDateIndex;
-        this.timeIndex = this.opts.timeIndex;
+        this.startDateId = this.opts.startDateId;
+        this.endDateId = this.opts.endDateId;
+        this.timeId = this.opts.timeId;
 
-        this.descriptionIndex = this.opts.descriptionIndex;
-        this.criteriaOneIndex = this.opts.criteriaOneIndex;
-        this.criteriaTwoIndex = this.opts.criteriaTwoIndex;
-        this.criteriaThreeIndex = this.opts.criteriaThreeIndex;
+        this.descriptionId = this.opts.descriptionId;
+        this.criteriaOneId = this.opts.criteriaOneId;
+        this.criteriaTwoId = this.opts.criteriaTwoId;
+        this.criteriaThreeId = this.opts.criteriaThreeId;
     }
 
 
@@ -64,10 +64,10 @@ class PonchoAgenda {
             "strong","span", "dl", "dt", "dd", "img", "em","button", "button",
             "p", "div", "h3", "ul", "li", "time", "a", "h1"],
 
-        criteriaOneIndex: "destinatarios",
-        criteriaThreeIndex: "destacado",
-        criteriaTwoIndex: "url",
-        descriptionIndex: "descripcion",
+        criteriaOneId: "destinatarios",
+        criteriaThreeId: "destacado",
+        criteriaTwoId: "url",
+        descriptionId: "descripcion",
         categoryTitleClassList: ["h6", "text-secondary"],
         itemContClassList: ["list-unstyled"],
         itemClassList: ["m-b-2"],
@@ -77,11 +77,11 @@ class PonchoAgenda {
             nextDates: "Próximas",
             pastDates: "Anteriores",
         },
-        endDateIndex: "hasta",
+        endDateId: "hasta",
         groupCategory: "filtro-ministerio",
         rangeLabel: "Fechas",
-        startDateIndex: "desde",
-        timeIndex: "horario",
+        startDateId: "desde",
+        timeId: "horario",
     };
 
 
@@ -353,8 +353,8 @@ class PonchoAgenda {
 
         let entries = [];
         jsonData.forEach(element => {
-            let desde = element[this.startDateIndex];
-            let hasta = element[this.endDateIndex];
+            let desde = element[this.startDateId];
+            let hasta = element[this.endDateId];
 
             hasta = (hasta.trim() === "" ? desde : hasta);
 
@@ -400,12 +400,11 @@ class PonchoAgenda {
      * @returns {object}
      */
     itemTemplate = (description, destinatarios, url,
-                destacados, date, time) => {
+            destacados, date, time) => {
         const datetime = this._dateParser(date, time);
         const itemContainer = document.createElement("dl");
 
         // time
-
         const timeElement = document.createElement("time");
         if(time){
             timeElement.setAttribute("datetime", datetime.date.toISOString());
@@ -414,48 +413,46 @@ class PonchoAgenda {
         } else {
             timeElement.textContent = "--:--";
         }
-        // const timeContainer = document.createElement("span");
-        // timeContainer.innerHTML =
-        //         `<strong>${this.opts.headers[this.timeIndex]}</strong>: `;
-        // timeContainer.appendChild(timeElement);
 
         const data = [
-            // Térm, definition, screenreader, dtoff
+            // Térm, definition, screenreader, dtoff, className
             [
                 "Descripción",
                 this._markdownConverter(description),
-                true, true],
+                true, true, "description"],
             [
-                this._header(this.criteriaOneIndex),
+                this._header(this.criteriaOneId),
                 this._markdownConverter(destinatarios),
-                false, true],
+                false, true, "criteria-one"],
             [
-                this._header(this.criteriaThreeIndex),
+                this._header(this.criteriaThreeId),
                 this._markdownConverter(destacados),
-                false, true],
+                false, true, "criteria-three"],
             [
-                this._header(this.criteriaTwoIndex),
+                this._header(this.criteriaTwoId),
                 this._markdownConverter(url),
-                false, true],
+                false, true, "criteria-two"],
             [
-                this._header(this.timeIndex),
+                this._header(this.timeId),
                 timeElement.outerHTML,
-                false, true],
+                false, true, "time"],
         ];
 
         data.forEach( elem => {
-            const [term, definition, srOnly, dtOff] = elem;
+            const [term, definition, srOnly, dtOff, className] = elem;
             if(!definition){
                 return;
             }
 
             const dt = document.createElement("dt");
             dt.textContent = term;
+            dt.classList.add("agenda-item__dt", `agenda-item__dt-${className}`)
             if(srOnly){
                 dt.classList.add("sr-only");
             }
             const dd = document.createElement("dd");
             dd.textContent = definition;
+            dd.classList.add("agenda-item__dd", `agenda-item__dd-${className}`)
 
             if(dtOff){
                 itemContainer.appendChild(dt);
@@ -463,9 +460,8 @@ class PonchoAgenda {
             itemContainer.appendChild(dd);
         });
 
-
         if(this.itemClassList.some(f=>f)){
-            itemContainer.classList.add(...this.itemClassList);
+            itemContainer.classList.add("agenda-item", ...this.itemClassList);
         }
 
         return itemContainer;
@@ -520,7 +516,7 @@ class PonchoAgenda {
                 delete entry.fingerprint;
                 let customData={};
 
-                customData[this.descriptionIndex] = block;
+                customData[this.descriptionId] = block;
                 collect.push( {...entry, ...customData} );
             });
         });

@@ -1,0 +1,1 @@
+sass --update --trace ./src/scss/poncho-agenda.scss:./dist/css/poncho-agenda.css;
