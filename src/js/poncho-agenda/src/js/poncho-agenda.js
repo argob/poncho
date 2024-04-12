@@ -1,17 +1,17 @@
 /**
  * Agenda
- * 
+ *
  * @summary Agenda de eventos basada en PonchoTable donde se agrupan las
  * entradas por fecha de inicio, fecha de fin, y categoría.
  * @author Agustín Bouillet <bouilleta@jefatura.gob.ar>
  * @requires jQuery, dataTables
  * @see https://github.com/argob/poncho/tree/master/src/js/poncho-table
- * 
- * 
+ *
+ *
  * MIT License
- * 
+ *
  * Copyright (c) 2024 Argentina.gob.ar
- * 
+ *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
  * files (the "Software"), to deal in the Software without restriction,
@@ -19,10 +19,10 @@
  * publish, distribute, sublicense, and/or sell copies of the Software,
  * and to permit persons to whom the Software is furnished to do so,
  * subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be
  * included in all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
  * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -30,13 +30,13 @@
  * BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
  * ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE. 
+ * SOFTWARE.
  */
 class PonchoAgenda {
 
     DATE_REGEX = /^([1-9]|0[1-9]|[1-2][0-9]|3[0-1])\/([1-9]|0[1-9]|1[0-2])\/([1-9][0-9]{3})$/;
 
-    constructor(options={}) {
+    constructor(options={}){
         options.headers = this._refactorHeaders(options);
         options.headersOrder = this._refactorHeadersOrder(options);
 
@@ -51,36 +51,49 @@ class PonchoAgenda {
         this.startDateIndex = this.opts.startDateIndex;
         this.endDateIndex = this.opts.endDateIndex;
         this.timeIndex = this.opts.timeIndex;
+
+        this.descriptionIndex = this.opts.descriptionIndex;
+        this.criteriaOneIndex = this.opts.criteriaOneIndex;
+        this.criteriaTwoIndex = this.opts.criteriaTwoIndex;
+        this.criteriaThreeIndex = this.opts.criteriaThreeIndex;
     }
 
 
     defaults = {
-        allowedTags: ["strong", "img", "em","button", "button", "p", "div", "h3", "ul", "li", "time", "a", "h1"],
-        groupCategory: "filtro-ministerio",
-        dateSeparator: "/",
-        startDateIndex: "desde",
-        endDateIndex: "hasta",
-        timeIndex: "horario",
-        rangeLabel: "Fechas",
-        filterStatus: {
-            header: "Estado",
-            pastDates: "Anteriores",
-            nextDates: "Próximas"
-        },
+        allowedTags: [
+            "strong","span", "dl", "dt", "dd", "img", "em","button", "button",
+            "p", "div", "h3", "ul", "li", "time", "a", "h1"],
+
+        criteriaOneIndex: "destinatarios",
+        criteriaThreeIndex: "destacado",
+        criteriaTwoIndex: "url",
+        descriptionIndex: "descripcion",
         categoryTitleClassList: ["h6", "text-secondary"],
         itemContClassList: ["list-unstyled"],
-        itemClassList: ["m-b-2"]
+        itemClassList: ["m-b-2"],
+        dateSeparator: "/",
+        filterStatus: {
+            header: "Estado",
+            nextDates: "Próximas",
+            pastDates: "Anteriores",
+        },
+        endDateIndex: "hasta",
+        groupCategory: "filtro-ministerio",
+        rangeLabel: "Fechas",
+        startDateIndex: "desde",
+        timeIndex: "horario",
     };
 
 
     /**
      * Agrega los indices range y filtro-status al al array si no existieran.
-     * 
+     *
      * @param {object} options Opciones para ponchoTabla y Agenda
      * @returns {object}
      */
     _refactorHeadersOrder = options => {
-        if(options.hasOwnProperty("headersOrder") && options.headersOrder.length > 0){
+        if(options.hasOwnProperty("headersOrder") &&
+                options.headersOrder.length > 0){
             let order = options.headersOrder;
             for(const i of ["range", "filtro-status"]){
                 if(!options.headersOrder.includes(i)){
@@ -90,13 +103,23 @@ class PonchoAgenda {
             return order;
         }
         return [];
-    }
+    };
 
 
     /**
+     * Mapea los headers.
+     *
+     * @return {string} key Key del item.
+     */
+    _header = (key) => {
+        return (this.opts.headers.hasOwnProperty(key) ?
+                this.opts.headers[key] : key);
+    };
+
+    /**
      * Refactor de headers
-     * 
-     * @summary Agrega los headers de range y filterheader a los 
+     *
+     * @summary Agrega los headers de range y filterheader a los
      * asignados en el JSON.
      * @param {object} options Opciones para ponchoTabla y Agenda
      * @returns {object}
@@ -124,17 +147,17 @@ class PonchoAgenda {
 
     /**
      * Showdown habilitado.
-     * 
+     *
      * Verifica si la librería _showdown_ está disponible.
      * @returns {boolean}
      */
     _isMarkdownEnable = () => {
-        if(typeof showdown !== "undefined" && 
+        if(typeof showdown !== "undefined" &&
             showdown.hasOwnProperty("Converter")){
                 return true;
         }
         return false;
-    }; 
+    };
 
 
     /**
@@ -143,7 +166,7 @@ class PonchoAgenda {
      */
     _markdownOptions = () => {
         if(this._isMarkdownEnable()){
-            if(this.opts.hasOwnProperty("markdownOptions") && 
+            if(this.opts.hasOwnProperty("markdownOptions") &&
                 typeof this.opts.markdownOptions === "object"){
                 return this.opts.markdownOptions;
             }
@@ -153,8 +176,23 @@ class PonchoAgenda {
 
 
     /**
+     * Convierte un string a markdown
+     *
+     * @param {string} str Cadena de texto a convertir
+     * @returns {string}
+     */
+    _markdownConverter = str => {
+        if(this._isMarkdownEnable()){
+            const converter = new showdown.Converter(this._markdownOptions());
+            return converter.makeHtml(str);
+        }
+        return str;
+    };
+
+
+    /**
      * Fecha pasada
-     * 
+     *
      * @param {string} fecha Fecha a evaluar
      * @returns {boolean}
      */
@@ -163,19 +201,20 @@ class PonchoAgenda {
             console.error(`La fecha no tiene un formato válido: ${fecha}`);
             return false;
         }
-    
+
         const dateToEvaluate = this._dateParser(fecha).date.getTime();
         const current = this._currentDate().date.getTime();
-    
+
         return current > dateToEvaluate;
     }
-    
-    
+
+
     /**
-     * 
-     * @param {*} date 
-     * @param {*} time 
-     * @returns 
+     * Formato para fecha y hora
+     *
+     * @param {objecct} date Fecha como objeto {day, month, year}
+     * @param {object} time Tiempo como objeto {hours, minutes, seconds}
+     * @returns {string}
      */
     _dateTimeFormat = (date, time=false) => {
         const {day, month, year} = date;
@@ -190,9 +229,9 @@ class PonchoAgenda {
 
     /**
      * Fecha al momento de ejecutarse el script.
-     * 
-     * @returns {object} Retorna un objeto con: el día, mes, año y el 
-     * objeto Date en fecha. 
+     *
+     * @returns {object} Retorna un objeto con: el día, mes, año y el
+     * objeto Date en fecha.
      */
     _currentDate = () => {
         const today = new Date();
@@ -203,15 +242,15 @@ class PonchoAgenda {
             this._pad(day),
             this._pad(month),
             year].join(this.dateSeparator);
-    
+
         return {...this._dateParser(format), ...{format}};
     }
-    
+
     /**
      * Rellena con ceros a la izquierda
-     * 
-     * @param {string|int} num Numero a rellenar con ceros. 
-     * @param {int} counter Cantidad total de caracteres. 
+     *
+     * @param {string|int} num Numero a rellenar con ceros.
+     * @param {int} counter Cantidad total de caracteres.
      * @returns {string}
      */
     _pad = (num, counter=2) => num.toString().padStart(counter, "0");
@@ -219,20 +258,20 @@ class PonchoAgenda {
 
     /**
      * Parsea una fecha.
-     * 
+     *
      * @param {string} date Fecha en formato dd/mm/yyyy.
      * @param {string} time Tiempo en formato hh:mm:ss
      * @example
      * // {
-     * //     day: '09', 
-     * //     month: '05', 
-     * //     year: '2012', 
-     * //     hours: '00', 
-     * //     minutes: '00', 
+     * //     day: '09',
+     * //     month: '05',
+     * //     year: '2012',
+     * //     hours: '00',
+     * //     minutes: '00',
      * //     date: Wed May 09 2012 00:00:00 GMT-0300...
      * // }
      * this._dateParser("09/05/2012")
-     * @returns {object|boolean} 
+     * @returns {object|boolean}
      */
     _dateParser = (date, time="00:00:00") => {
         if(!this._isValidDateFormat(date)){
@@ -245,24 +284,24 @@ class PonchoAgenda {
         const objectDate = new Date(`${year}-${month}-${day} ${time}`);
 
         return {
-            day: this._pad(day), 
-            month: this._pad(month), 
+            day: this._pad(day),
+            month: this._pad(month),
             year,
-            hours: this._pad(objectDate.getHours()), 
+            hours: this._pad(objectDate.getHours()),
             minutes: this._pad(objectDate.getMinutes()),
             "date": objectDate
         }
     }
-    
-    
+
+
     /**
      * Valida el formato de la fecha.
-     * @summary El formato de fecha aceptado es: dd/mm/yyyy. 
+     * @summary El formato de fecha aceptado es: dd/mm/yyyy.
      * Al momento de escribir este documento, no hay otro habilitado.
      * @example
      * // true
      * this._isValidDateFormat("09/05/2012")
-     * 
+     *
      * // false
      * this._isValidDateFormat("09/10/15")
      * @param {string} str Fecha en formato dd/mm/yyyy.
@@ -271,45 +310,43 @@ class PonchoAgenda {
     _isValidDateFormat = str => {
         const regex = this.DATE_REGEX;
         const result = regex.exec(str);
-    
+
         return (result !== null ? true : false);
     }
-    
-    
+
+
     /**
      * Agrupa contenidos por fecha y la categoría asignada.
-     * 
+     *
      * @param {object} datos JSON a procesar
      * @returns {object}
      */
-    agruparPorFingerprintYMinisterio = (datos) => {
+    _groupByFingerprintAndCategory = (datos) => {
         const agrupados = {};
 
         for (const dato of datos) {
             const categoria = dato[this.groupCategory];
             const {fingerprint} = dato;
-
             if (!agrupados[fingerprint]) {
                 agrupados[fingerprint] = {};
             }
-
             if (!agrupados[fingerprint][categoria]) {
                 agrupados[fingerprint][categoria] = [];
             }
-
             agrupados[fingerprint][categoria].push(dato);
         }
 
         return agrupados;
     }
-    
-    
+
+
     /**
-     * Rearmo el JSON para agregar filtros. 
-     * @param {object} jsonData 
-     * @returns 
+     * Rearmo el JSON para agregar filtros.
+     *
+     * @param {object} jsonData
+     * @returns {object}
      */
-    refactorEntries = jsonData => {
+    _refactorEntries = jsonData => {
         if(!jsonData){
             console.error("No se puede recorrer el script")
         }
@@ -332,7 +369,7 @@ class PonchoAgenda {
 
             let range = this._dateTimeFormat(startDate);
             if(startDateTime != endDateTime){
-                range = `Del ${this._dateTimeFormat(startDate)} al ` 
+                range = `Del ${this._dateTimeFormat(startDate)} al `
                     + `${this._dateTimeFormat(endDate)}`;
             }
 
@@ -341,9 +378,9 @@ class PonchoAgenda {
                 ...element,
                 ...{
                     "range": range,
-                    "filtro-status": estado, 
-                    fingerprint, 
-                    desde, 
+                    "filtro-status": estado,
+                    fingerprint,
+                    desde,
                     hasta,
                 }
             };
@@ -352,49 +389,84 @@ class PonchoAgenda {
 
         return entries;
     };
-    
-    
+
+
     /**
      * Compone el template para el item de la agenda
-     * 
+     *
      * @param {string} description Descriptión del item de la agenda.
      * @param {string} date Fecha formato dd/mm/yyyy
      * @param {string} time Horario en formato hh:mm:ss
      * @returns {object}
      */
-    itemTemplate = (description, date, time) => {
+    itemTemplate = (description, destinatarios, url,
+                destacados, date, time) => {
         const datetime = this._dateParser(date, time);
-        const descriptionContainer = document.createElement("p");
-        descriptionContainer.textContent = description;
+        const itemContainer = document.createElement("dl");
 
-        if(this._isMarkdownEnable()){
-            const converter = new showdown.Converter(this._markdownOptions());
-            descriptionContainer.innerHTML = converter.makeHtml(description);
-        } else {
-            descriptionContainer.textContent = description;
-        }
+        // time
 
-
-
-        const timeContainer = document.createElement("p");
-        timeContainer.innerHTML = 
-                `<strong>${this.opts.headers[this.timeIndex]}</strong>: `;
         const timeElement = document.createElement("time");
-    
         if(time){
             timeElement.setAttribute("datetime", datetime.date.toISOString());
-            timeElement.textContent = `${datetime.hours}:${datetime.minutes}hs.`;
+            timeElement.textContent = `${datetime.hours}:`
+                + `${datetime.minutes}hs.`;
         } else {
             timeElement.textContent = "--:--";
         }
+        // const timeContainer = document.createElement("span");
+        // timeContainer.innerHTML =
+        //         `<strong>${this.opts.headers[this.timeIndex]}</strong>: `;
+        // timeContainer.appendChild(timeElement);
 
-        timeContainer.appendChild(timeElement);
-        const itemContainer = document.createElement("li");
+        const data = [
+            // Térm, definition, screenreader, dtoff
+            [
+                "Descripción",
+                this._markdownConverter(description),
+                true, true],
+            [
+                this._header(this.criteriaOneIndex),
+                this._markdownConverter(destinatarios),
+                false, true],
+            [
+                this._header(this.criteriaThreeIndex),
+                this._markdownConverter(destacados),
+                false, true],
+            [
+                this._header(this.criteriaTwoIndex),
+                this._markdownConverter(url),
+                false, true],
+            [
+                this._header(this.timeIndex),
+                timeElement.outerHTML,
+                false, true],
+        ];
+
+        data.forEach( elem => {
+            const [term, definition, srOnly, dtOff] = elem;
+            if(!definition){
+                return;
+            }
+
+            const dt = document.createElement("dt");
+            dt.textContent = term;
+            if(srOnly){
+                dt.classList.add("sr-only");
+            }
+            const dd = document.createElement("dd");
+            dd.textContent = definition;
+
+            if(dtOff){
+                itemContainer.appendChild(dt);
+            }
+            itemContainer.appendChild(dd);
+        });
+
+
         if(this.itemClassList.some(f=>f)){
             itemContainer.classList.add(...this.itemClassList);
         }
-        itemContainer.appendChild(descriptionContainer);
-        itemContainer.appendChild(timeContainer);
 
         return itemContainer;
     };
@@ -402,30 +474,30 @@ class PonchoAgenda {
 
     /**
      * Reagrupa las entradas dejando, por fecha, las entradas de la categoría.
-     * 
-     * @param {object} entries 
+     *
+     * @param {object} entries
      * @returns {object}
      */
-    groupedEntries = entries => {
-        let collect = [];   
+    _groupedEntries = entries => {
+        let collect = [];
             // Nivel mismas fechas
             Object.values(entries).forEach(ele => {
             var entry;
-    
+
             // Nivel ministerio
             // Cada iteración es un ministerio.
             Object.values(ele).forEach((element) => {
                 var block = "";
                 var title = "";
 
-                const itemsContainer = document.createElement("ul");
+                const itemsContainer = document.createElement("div");
                 if(this.itemContClassList.some(f=>f)){
                     itemsContainer.classList.add(...this.itemContClassList);
                 }
 
                 // Nivel items por ministerio
                 element.forEach(a => {
-                    entry = a; 
+                    entry = a;
                     if(title != entry[this.groupCategory]){
                         title = entry[this.groupCategory];
 
@@ -434,28 +506,27 @@ class PonchoAgenda {
                             titleElement.classList.add(
                                 ...this.categoryTitleClassList);
                             titleElement.textContent = title;
+                            itemsContainer.appendChild(titleElement);
                         }
-                        itemsContainer.appendChild(titleElement);
                     }
 
                     const item = this.itemTemplate(
-                        a.descripcion, a.desde, a.horario);
+                        a.descripcion, a.destinatarios, a.url,
+                        a.destacados, a.desde, a.horario);
                     itemsContainer.appendChild(item);
                 });
-    
+
                 block += itemsContainer.outerHTML;
-
                 delete entry.fingerprint;
+                let customData={};
 
-                let customData={};   
-                customData["descripcion"] = block;
-
+                customData[this.descriptionIndex] = block;
                 collect.push( {...entry, ...customData} );
             });
         });
-    
+
         return collect;
-    }
+    };
 
 
     /**
@@ -467,12 +538,12 @@ class PonchoAgenda {
             return true;
         }
         return false;
-    }
+    };
 
 
     /**
      * Imprime la tabla ponchoTable
-     * 
+     *
      * @returns {undefined}
      */
     render = () => {
@@ -483,9 +554,10 @@ class PonchoAgenda {
             return;
         }
 
-        const refactorEntries = this.refactorEntries(this.opts.jsonData);
-        const groupedByDateAndCategory = this.agruparPorFingerprintYMinisterio(refactorEntries);
-        this.opts.jsonData = this.groupedEntries(groupedByDateAndCategory); 
+        const refactorEntries = this._refactorEntries(this.opts.jsonData);
+        const groupedByDateAndCategory = 
+                this._groupByFingerprintAndCategory(refactorEntries);
+        this.opts.jsonData = this._groupedEntries(groupedByDateAndCategory);
 
         if(this._ponchoTableExists()){
             ponchoTable( this.opts );

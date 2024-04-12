@@ -76,10 +76,10 @@ test("PonchoAgenda: _dateParser()", () => {
 test("PonchoAgenda: Entries", () => {
     const instance = (new PonchoAgenda({}));
 
-    const refactorEntries = instance.refactorEntries( jsonDataEntries );
+    const refactorEntries = instance._refactorEntries( jsonDataEntries );
     expect( refactorEntries.length ).toBe(146);
 
-    const grouped = instance.agruparPorFingerprintYMinisterio(refactorEntries);
+    const grouped = instance._groupByFingerprintAndCategory(refactorEntries);
     const groupedList = Object.values(grouped);
     const groupedEntry = Object.values(groupedList[0]);
 
