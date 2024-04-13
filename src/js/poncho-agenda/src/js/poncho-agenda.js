@@ -59,6 +59,9 @@ class PonchoAgenda {
     }
 
 
+    /**
+     * Opciones por defecto
+     */
     defaults = {
         allowedTags: [
             "strong","span", "dl", "dt", "dd", "img", "em","button", "button",
@@ -104,7 +107,6 @@ class PonchoAgenda {
         }
         return [];
     };
-
 
     /**
      * Mapea los headers.
@@ -204,7 +206,6 @@ class PonchoAgenda {
 
         const dateToEvaluate = this._dateParser(fecha).date.getTime();
         const current = this._currentDate().date.getTime();
-
         return current > dateToEvaluate;
     }
 
@@ -355,7 +356,7 @@ class PonchoAgenda {
         jsonData.forEach(element => {
             let desde = element[this.startDateId];
             let hasta = element[this.endDateId];
-
+            // Si la columna `hasta` viene vacía le copio los datos de `desde`.
             hasta = (hasta.trim() === "" ? desde : hasta);
 
             const {pastDates, nextDates} = this.opts.filterStatus;
@@ -401,16 +402,18 @@ class PonchoAgenda {
      */
     itemTemplate = (description, destinatarios, url,
             destacados, date, time) => {
-        const datetime = this._dateParser(date, time);
         const itemContainer = document.createElement("dl");
-
+                
         // time
-        const timeElement = document.createElement("time");
+        let timeElement;
         if(time){
+            const datetime = this._dateParser(date, time);
+            timeElement = document.createElement("time");
             timeElement.setAttribute("datetime", datetime.date.toISOString());
             timeElement.textContent = `${datetime.hours}:`
                 + `${datetime.minutes}hs.`;
         } else {
+            timeElement = document.createElement("span");
             timeElement.textContent = "--:--";
         }
 
@@ -446,13 +449,14 @@ class PonchoAgenda {
 
             const dt = document.createElement("dt");
             dt.textContent = term;
-            dt.classList.add("agenda-item__dt", `agenda-item__dt-${className}`)
+            dt.classList.add("agenda-item__dt", `agenda-item__dt-${className}`);
             if(srOnly){
                 dt.classList.add("sr-only");
             }
+            
             const dd = document.createElement("dd");
             dd.textContent = definition;
-            dd.classList.add("agenda-item__dd", `agenda-item__dd-${className}`)
+            dd.classList.add("agenda-item__dd", `agenda-item__dd-${className}`);
 
             if(dtOff){
                 itemContainer.appendChild(dt);
