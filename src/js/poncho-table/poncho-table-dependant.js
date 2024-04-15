@@ -171,6 +171,7 @@ const ponchoTableDependant = opt => {
         return false;
     }; 
 
+
     /**
      * Verifica si las extensiones showdown están definidas.
      * 
@@ -186,6 +187,41 @@ const ponchoTableDependant = opt => {
                 return false;
             }
     });
+
+
+    /**
+     * Opciones para el componente showdonwjs
+     * 
+     * @summary Si el usuario asigno opciones y extensiones, las usa; de otro
+     * modo, usa las que están por defecto.
+     * @returns {object}
+     */
+    const _markdownOptions = () => {
+        if(opt.hasOwnProperty("markdownOptions") && 
+                opt.markdownOptions === "object"){
+            return opt.markdownOptions;
+        }
+        return markdownOptions;
+    };
+
+
+    /**
+     * Convierte un string con sintaxis markdown
+     * @param {stirng} str Cadena de texto a convertir
+     * @returns {string}
+     */
+    const _markdownConvert = str => {
+        if(typeof str !== "string"){
+            return;
+        }
+        const markdownOptions = _markdownOptions();
+        if(_isShowdownExtensionEnable(markdownOptions.extensions)){
+            const converter = new showdown.Converter(markdownOptions);
+            return converter.makeHtml(str);
+        }
+        return str;
+    }
+
 
     /**
      * Botón poncho
@@ -343,15 +379,6 @@ const ponchoTableDependant = opt => {
             const tbodyRow = tableTbody.insertRow();
             tbodyRow.id = "id_" + key;
 
-            // Verifico sin las extensiones showdown existen
-            let showdownOptions;
-            if(_isMarkdownEnable()){
-                const registeredOptions = (opt.hasOwnProperty("markdownOptions") ? 
-                        opt.markdownOptions : markdownOptions);
-                showdownOptions = (_isShowdownExtensionEnable(
-                        registeredOptions.extensions) ? registeredOptions : {});
-            }
-
             // Recorro cada uno de los títulos
             Object.keys(gapi_data.headers).forEach(header => {
                 let filas = entry[header];
@@ -385,8 +412,7 @@ const ponchoTableDependant = opt => {
                 
                 const cleannedText = secureHTML(filas, allowed_tags);
                 if(_isMarkdownEnable()){
-                    const converter = new showdown.Converter(showdownOptions);
-                    cell.innerHTML = converter.makeHtml(cleannedText);
+                    cell.innerHTML = _markdownConvert(cleannedText);
                 } else {
                     cell.innerHTML = cleannedText;
                 }
@@ -758,6 +784,7 @@ const ponchoTableDependant = opt => {
                 .draw();
         });
 
+
         // REMUEVE LOS FILTROS
         jQuery("#ponchoTable_filter").parent().parent().remove();
 
@@ -864,6 +891,7 @@ const ponchoTableDependant = opt => {
                 const term = _searchTerm(filterValues[k]);
                 const cleanTerm = _searchTerm(
                     replaceSpecialChars(filterValues[k]));
+
                 if(_isCustomFilter(k, filtro)){
                     tabla.columns(columnIndex)
                         .search(_toCompareString(filterValues[k]));
@@ -898,6 +926,24 @@ const ponchoTableDependant = opt => {
     } // end initDataTable
     
 
+    /**
+     * Permite definir el orden de los headers.
+     * @param {*} headers {object}
+     * @param {*} order 
+     * @returns 
+     */
+    const _headersOrder = (headers) => {
+        if(opt.hasOwnProperty("headersOrder") && opt.headersOrder.length > 0){
+            let refactorHeaders = {};
+            for(i of opt.headersOrder){ 
+                if( headers.hasOwnProperty(i) ){
+                    refactorHeaders[i] = headers[i];
+                }
+            }
+            return refactorHeaders;
+        }
+        return headers;
+    };
 
 
     /**
@@ -917,6 +963,10 @@ const ponchoTableDependant = opt => {
         // Defino los headers que se van a utilizar
         gapi_data.headers = (opt.hasOwnProperty("headers") && opt.headers ?
                 opt.headers : gapi_data.headers);
+
+        gapi_data.headers = gapi_data.headers = _headersOrder(gapi_data.headers, opt.headersOrder);
+
+        
         // Listado de filtros
         filtersList = Object
                 .keys(gapi_data.headers)
@@ -977,8 +1027,9 @@ const ponchoTableDependant = opt => {
     if (opt.jsonData){
         const headers = Object.fromEntries(
             Object.keys(opt.jsonData[0]).map(e => [e,e])
-        );
-        const data = {entries: opt.jsonData, headers: headers};
+            );
+
+        const data = {entries: opt.jsonData, headers};
         render(data);
     } else if (opt.jsonUrl) {
         getSheetValues(opt.jsonUrl);
