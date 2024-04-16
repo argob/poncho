@@ -90,6 +90,7 @@ COPIAR DESDE ACÁ…
 </div>
 <!-- / TABLE -->
 <script>
+    var agendaOptions;
     var agenda;
 (async() => {
     const gapi = new GapiSheetData();
@@ -98,7 +99,7 @@ COPIAR DESDE ACÁ…
     ); 
     const gapi_data = gapi.json_data(googlesheet_data);
 
-    const agendaOptions = {
+     agendaOptions = {
             rangeLabel: "Fecha",
             jsonData: gapi_data.entries, // JSON directo
             headers: gapi_data.headers, // Headers
