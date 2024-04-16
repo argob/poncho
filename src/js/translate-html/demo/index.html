@@ -68,12 +68,122 @@
     <!-- START -->
     <script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
     <script>
-        fetch_json("./data/ln-es.json").then(terms => {
-            const tr = new TranslateHTML(terms, ["html.lang", "a.lang", "value", "title", "placeholder"]);
-            tr.translate();
-           //r.translateAttributes([...terms, ...[["es", "en"]]]);
-        });
+    const dict = [
+    [
+        "Acerca de la República Argentina",
+        "About the Argentine Republic"
+    ],
+    [
+        "Compartir en redes sociales",
+        "Share on Social Media"
+    ],
+    [
+        "Compartir en",
+        "Share on"
+    ],
+    [
+        "redes sociales",
+        "Social Media"
+    ],
+    [
+        "En esta sección",
+        "In this section"
+    ],
+    [
+        "Buscar trámites, servicios o áreas",
+        "Search"
+    ],
+    [
+        "Trámites",
+        "Government Services"
+    ],
+    [
+        "Turnos",
+        "Book an Appointment"
+    ],
+    [
+        "Trámites a distancia",
+        "Government Services Online Platform"
+    ],
+    [
+        "Atención a la ciudadanía",
+        "Help Desk"
+    ],
+    [
+        "Nuestro país",
+        "Our country"
+    ],
+    [
+        "Leyes argentinas",
+        "Argentinian Legislation and Regulations"
+    ],
+    [
+        "Organismos",
+        "Public bodies"
+    ],
+    [
+        "Mapa del Estado",
+        "Government Organization & Structure"
+    ],
+    [
+        "Acerca de Argentina.gob.ar",
+        "About Argentina.gob.ar"
+    ],
+    [
+        "Acerca de este sitio",
+        "About this site"
+    ],
+    [
+        "Términos y condiciones",
+        "Terms and Conditions"
+    ],
+    [
+        "Sugerencias",
+        "Help us improve this site"
+    ],
+    [
+        "Institucional",
+        "About us"
+    ],
+    [
+        "Contacto",
+        "Contact us"
+    ],
+    [
+        "Dirección",
+        "Adress"
+    ],
+    [
+        "Código postal",
+        "Post code"
+    ],
+    [
+        "Teléfono",
+        "Telephone"
+    ],
+    [
+        "Correo electrónico",
+        "Email"
+    ],
+    [
+        "Redes sociales del área",
+        "Our social media"
+    ],
+    [
+        "Editar",
+        "Edit"
+    ]
+];
+
+document.addEventListener("DOMContentLoaded", function() {
+    const tr = new TranslateHTML(dict, ["html.lang", "a.lang", "value", "title", "placeholder"]);
+    tr.translate();
+    tr.translateAttributes([...dict, ...[["es", "en"]]]);
+});
     </script>
     <!-- END -->
 </body>
 </html>
+
+    // code...
+ 

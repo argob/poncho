@@ -78,7 +78,6 @@ gulp.task('compress', function () {
             './src/js/national-holidays/src/js/national-holidays.js',
             './src/js/device-panel-menu/device-panel-menu.js'
         ])
-        // .pipe(babel())
         .pipe(uglify(generalCompressOptions))
         .pipe(gulp.dest('./dist/js/'));
 });
