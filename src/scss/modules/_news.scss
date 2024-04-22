@@ -40,10 +40,12 @@
 }
 
 @media (max-width:767px) {
-    .news__social-share {
-        ul  {
-            float: left;
-        }
+    .social-share {
+        &.news__social-share {
+            ul  {
+                float: left;
+            }
+        }  
     }  
 }
 
