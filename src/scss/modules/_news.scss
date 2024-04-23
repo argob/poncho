@@ -9,12 +9,12 @@
 /**
  * Contenedor para la imagen principal de una noticia.
  */
-.news__imagen-destacada-container {
+.news__main-image-container {
     aspect-ratio: 16 / 9;
-    background-size: contain !important;
+    background-color: $gray-light;
     background-repeat: no-repeat;
+    background-size: contain;
     border-radius: 4px;
-    background: #eee;
 }
 
 
@@ -49,6 +49,7 @@
         }  
     }  
 }
+
 
 .news__lead > p { 
     @extend .lead;
