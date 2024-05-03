@@ -84,6 +84,21 @@ main a:not(.btn) {
   word-break: break-word;
 }
 
+/* ///  INICIO CORTE DE PALABRA TITULOS PANELES  /// */
+.pane-atajos .panels-row a:not(.btn) h3 {
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+    /*Y seguidamente word-wrap como graceful degradation para los navegadores que no lo soporten*/
+    word-wrap: break-word;
+}
+
+/* ///  Saco corte de palabra en la home  /// */
+.front .pane-atajos .panels-row a:not(.btn) h3 {
+    hyphens: inherit;
+}
+/* ///  FIN CORTE DE PALABRA TITULOS PANELES  /// */
 
 p, li, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, table tbody {
 
