@@ -977,6 +977,11 @@
       },
     
       {
+        "nombre": "clima-nevadas-fuertes",
+        "clase": "icono-arg-clima-nevadas-fuertes"
+      },
+    
+      {
         "nombre": "clima-nublado",
         "clase": "icono-arg-clima-nublado"
       },
@@ -999,6 +1004,21 @@
       {
         "nombre": "clima-tormentas-aisladas",
         "clase": "icono-arg-clima-tormentas-aisladas"
+      },
+    
+      {
+        "nombre": "clima-tormentas-fuertes",
+        "clase": "icono-arg-clima-tormentas-fuertes"
+      },
+    
+      {
+        "nombre": "clima-ventisca",
+        "clase": "icono-arg-clima-ventisca"
+      },
+    
+      {
+        "nombre": "clima-ventoso",
+        "clase": "icono-arg-clima-ventoso"
       },
     
       {
