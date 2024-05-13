@@ -35,6 +35,9 @@ jobs:
           echo "Listamos fuentes de Iconos"
           ls ./iconos/dist/fonts/
           cp ./iconos/dist/fonts/icono-arg_* ./poncho/dist/fonts/
+          echo "Copiamos el JSON de los íconos"
+          mkdir -p ./poncho/dist/jsons
+          cp ./iconos/docs/icono-arg.json ./poncho/dist/jsons/
           echo "Listamos fuentes de Poncho"
           ls ./poncho/dist/fonts/
       - name: 🧪 Deploy build
