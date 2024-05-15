@@ -430,6 +430,12 @@ pre {
   margin-bottom: 0.26em
 }
 
+// Misma altura del contenedor de atajos
+.atajos-agrupados {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 //BORDER
 .bdr-pry-1{
   border: 1px solid #0072bb !important;
