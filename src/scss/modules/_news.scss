@@ -35,6 +35,10 @@
         
         li {
             padding: 0
+            
+            &:last-of-type {
+            margin-right: -15px;
+            }
         }
     }
 }
@@ -46,6 +50,9 @@
             ul  {
                 float: left;
             }
+          li:first-of-type {
+            margin-left: -15px;
+        }
         }  
     }  
 }
@@ -54,4 +61,8 @@
 .news__lead > p { 
     @extend .lead;
     font-weight: 400;
+}
+
+.news__time  { 
+ padding-top: 10px;
 }
