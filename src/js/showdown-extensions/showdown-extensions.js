@@ -381,7 +381,7 @@ if(showdown){ // IF showdown
    * Ejes
    *
    * @see https://www.argentina.gob.ar/contenidosdigitales/markdown/ejes
-   * @regexp https://regex101.com/r/e0SSyh/2/
+   * @regexp https://regex101.com/r/e0SSyh/5
    */
   showdown.extension("ejes", function() {
     "use strict";
@@ -389,7 +389,7 @@ if(showdown){ // IF showdown
       {
         type: "lang",
         filter: function(text, converter, options){
-          const regex = /(col([1-4])<<)[\s\S]*?\[\[ejes-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}\]\][\s\S]*?(>>)/
+          const regex = /((?:\[\[)?col(1[0-2]|[1-9])(?:-\{|<<))[\s\S]*?\[\[ejes-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}\]\][\s\S]*?(>>|\}-\]\])/;
           var main_regex = new RegExp(regex, "gmi");
 
           text = text.replace(main_regex, function(e){
@@ -424,7 +424,7 @@ if(showdown){ // IF showdown
    * Números
    *
    * @see https://www.argentina.gob.ar/contenidosdigitales/markdown/numeros
-   * @regexp https://regex101.com/r/HSPGZn/4/
+   * @regexp https://regex101.com/r/HSPGZn/6
    */
   showdown.extension("numbers", function() {
     "use strict";
@@ -432,7 +432,7 @@ if(showdown){ // IF showdown
       {
         type: "lang",
         filter: function(text, converter, options) {
-          const regex = /(col([1-4])<<)[\s\S]*?\[\[numeros-\{([^\{\}-]*?)-([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}\]\][\s\S]*?(>>)/;
+          const regex = /((?:\[\[)?col([2-4])(?:-\{|<<))[\s\S]*?\[\[numeros-\{([^\{\}-]*?)-([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}\]\][\s\S]*?(>>|\}-\]\])/;
           const main_regex = new RegExp(regex, "gmi");
 
           text = text.replace(main_regex, function(e){
@@ -462,7 +462,7 @@ if(showdown){ // IF showdown
   });
 
 
- 
+
   /**
    * Crea la etiqueta details con un summary.
    *
