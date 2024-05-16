@@ -1450,10 +1450,6 @@ class PonchoMap {
             key = false, css = "small", style = false 
         } = this.template_structure.lead;
 
-        if(!entry[key].trim()){
-            return;
-        }
-
         const p = document.createElement("p");
         p.textContent = entry[key];
         // Style definitions
