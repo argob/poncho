@@ -19,6 +19,14 @@
  */
 const gapi_legacy = (response) => {
 
+  if (!response || !response.values || response.values.length === 0) {
+    throw new TypeError("Invalid response format");
+  }
+
+  if (!Array.isArray(response.values) || !Array.isArray(response.values[0])) {
+    throw new TypeError("Invalid response format: values should be arrays");
+  }
+
   const keys = response.values[0];
   const regex = / |\/|_/ig;
   let entry = [];
@@ -38,7 +46,6 @@ const gapi_legacy = (response) => {
 };
 
 
-// $START_TEST$
-// ¡Atención! Patch para testear non-module
-module.exports = gapi_legacy;
-// $END_TEST$
+if (typeof exports !== "undefined") {
+  module.exports = gapi_legacy;
+}

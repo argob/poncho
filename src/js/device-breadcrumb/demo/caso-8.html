@@ -68,7 +68,13 @@
   <!-- / Example -->
   <script src="../src/js/device-breadcrumb.js"></script>
   <script>
-    (new DeviceBreadcrumb).listener();
+    document.addEventListener("DOMContentLoaded", () => {
+        const deviceBreadcrumb = new DeviceBreadcrumb();
+        deviceBreadcrumb.render();
+    });
+    window.addEventListener("resize", () =>  {
+        const deviceBreadcrumb = new DeviceBreadcrumb();
+        deviceBreadcrumb.render()});
   </script>
 </body>
 

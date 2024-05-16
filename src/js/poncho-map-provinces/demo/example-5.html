@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head>
+    <link rel="profile" href="http://www.w3.org/1999/xhtml/vocab" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
+        </script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+        integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet"
+        href="https://capacita-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css?rfqjsh">
+    <link rel="stylesheet" href="../../../../dist/css/poncho.min.css" />
+    <!-- <link href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet" /> -->
+    <!-- 
+        Script para debug 
+        Se reemplazan en producción por poncho.min.js
+    -->
+
+    <script src="../../utils/color.js"></script>
+    <script src="../../utils/connect.js"></script>
+    <script src="../../utils/string.js"></script>
+    <script src="../../utils/html.js"></script>
+    <script src="../../poncho-map/src/js/poncho-map.js"></script>
+    <script src="../../poncho-map/src/js/poncho-map-filter.js"></script>
+    <script src="../../gapi-sheet-data/gapi-sheet-data.js"></script>
+    <script src="../src/js/poncho-map-provinces.js"></script>
+    <script src="../src/js/poncho-map-provincias-comunicacion-1.js"></script>
+    <!-- / Script para debug -->
+
+    <title>Poncho Map — Mapa por provincia</title>
+    <style>
+        /* Estilos para el ejemplo */
+        html, body { height: 100%; background: #fff;}
+        .img { 
+            border-radius: 6px; 
+            width: 100%;
+            aspect-ratio: 1.85 / 1;
+            box-shadow:  0 0 4px rgb(0 0 0 /.15);
+            overflow: hidden;
+            background-color: #eaeaea;
+        }
+        .img > img {
+            max-width: 100%;
+            min-height: 100%;
+            object-fit: cover;
+            object-position: 50% 50%; 
+        }
+        .poncho-map .leaflet-popup-content {
+            max-height: 300px;
+            max-width: 250px;
+            overflow-y: scroll;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+<div class="row">
+<div class="col-md-12">
+    <p class="m-t-1 p-a-0"><a href="./">Inicio</a></p>
+    <hr class="p-a-0 m-a-0">
+    <h1>Mapa con provincia</h1>
+</div>
+
+<!--
+COPIAR DESDE ACÁ…
+-->
+<div class="col-md-12">
+
+    <!-- SELECT PROVINCIAS -->
+    <div class="form-group poncho-map-province__toggle-element">
+        <label for="id_provincia">Provincias</label>
+        <div>
+            <select class="form-control" name="provincia" id="id_provincia">
+            </select>
+        </div>
+    </div>
+    <!-- / SELECT PROVINCIAS -->
+
+</div>
+
+<div class="col-md-6">
+
+    <!-- MAPA COLUMNA IZQUIERDA: PONCHO MAP-->
+    <div 
+        class="poncho-map poncho-map-province__toggle-map hide-attribution" 
+        data-scope="poncho-map" 
+        style="border-radius: 6px;">
+        <div
+            class="leaflet-container leaflet-touch leaflet-fade-anim 
+                leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
+            id="map"
+            style="height: 700px;"
+            tabindex="0">
+        </div>
+    </div>
+    <!-- / PONCHO MAP -->
+</div>
+
+<div class="col-md-6">
+    <!-- BLOQUE DE TEXTO COLUMNA DERECHA: CONTENIDO-->
+    <div class="js-pm-text-content">
+        <div class="alert alert-info">Seleccione una provincia</div>
+    </div>
+    <!-- / CONTENIDO -->
+</div>
+</div> 
+</div>
+
+<!-- INCLUDE SCRIPTS -->
+<script src="https://www.argentina.gob.ar/sites/default/files/ponchotable/showdown.js"></script>
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/extensiones/showdown-extensions.js"></script>
+<script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.js"></script>
+<script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script>
+<link href="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.css" rel="stylesheet"/> 
+<!-- <script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script> -->
+<!-- / INCLUDE SCRIPTS -->
+
+<!-- SCRIPTS -->
+<script>
+// URL temporal
+const _PONCHOMAP_GEOJSON_PROVINCES = "https://gist.githack.com/agustinbouillet/" 
+    + "a5cdf04c6b19ed248aa85b27deaee6a2/raw/"
+    + "3880083e157a587629e8a6ea21126c79f78e776b/" 
+    + "provincias-argentinas.json";
+
+// Loading
+const loader = new PonchoMapLoader({scope: "poncho-map"});
+loader.load();
+
+fetch_json(_PONCHOMAP_GEOJSON_PROVINCES, {headers: {}}).then(geoProvinces => {
+    const gapi = new GapiSheetData();
+    fetch_json(
+        gapi.url(
+            // Nombre de la solapa en Google Sheets. Preferentemente, sin espacios y acentos.
+            "Hoja_8",
+            // ID del documento en Google Sheets.
+            "13-6m1gvulVkMFNfQ40TFlwdCsP9s9W28zVqCvN9tw4g" 
+        )        
+    ).then(googlesheet_data => {
+        const gapi_data = gapi.json_data(googlesheet_data);
+        const {entries, headers} = gapi_data;
+        const options = {
+            content_selector: ".js-pm-text-content",  // NOMBRE DE LA COLUMNA DE TEXTO DE  LA DERECHA. SI EL MAPA VA A 12, COMENTAR EL INICIO DE ESTA  LÍNEA (DOBRE BARRA AL INICIO). ASÍ LA INFO SE SOBREIMPRIME AL MAPA.
+            scope: "poncho-map", 
+            title: "filttro-provincia", // ID DE LA COLUMNA CON EL NOMBRE DE LAS PROVINCIAS
+            template_markdown: false,
+            markdown_options: {
+                "tables": true,
+                "simpleLineBreaks": true,
+                "extensions": [
+                    'details', 
+                    'images', 
+                    'alerts', 
+                    'numbers', 
+                    'ejes', 
+                    'button',
+                    'target',
+                    'bootstrap-tables', 
+                    'video'
+                ]
+            },
+            allowed_tags: [], // Habilita etiquetas HTML. Para habilitar todas las etiquetas se utiliza ["*"]. Si se quiere especificar cuales deben usarse, ej.: ["a", "strong"]. Evitar html []. 
+            headers: headers,
+            tooltip: true, // Tooltip en marker o región
+            hash: true, // Permite abrir un item via URL.
+            province_index: "filttro-provincia", // Nombre de la columna con el nombre de la provincia
+            fit_bounds_onevent: false, // true hace zoom en la provincia cuando se utilia el select o por url
+            map_background: "color-mix(in srgb, var(--verde-cemento) 20%, #eee)",  // define el color de fondo del mapa 
+            fit_bounds: false // Hace que los polígonos o markers se ajusten a los límites del mapa
+        };
+        // Instancia para controlar ponchoMap con filtro por provincias.
+        const map = new ponchoMapProvincesCustom(geoProvinces, entries, options);
+        map.renderProvinceMap();
+        loader.close();
+    });
+});
+</script>
+<!-- / SCRIPTS -->
+</body>
+</html>

@@ -52,7 +52,6 @@ const slugify = (string) =>{
 };
 
 
-// $START_TEST$
-// ¡Atención! Patch para testear non-module
-module.exports = {slugify, replaceSpecialChars};
-// $END_TEST$
+if (typeof exports !== "undefined") {
+    module.exports = {slugify, replaceSpecialChars};
+}

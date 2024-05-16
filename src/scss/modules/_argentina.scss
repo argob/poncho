@@ -1,14 +1,12 @@
-/*!
+/**
  * Poncho v0.2 (https://github.com/argob/poncho)
  * Copyright 2016
- * Subsecretaría de Gobierno Digital
+ * Subsecretaría de Tecnologías de la Información
  * Presidencia de la Nación Argentina
  * Licenciado bajo MIT (https://github.com/argob/poncho/LICENSE)
- */
+  */
 
-@import "modules/main";
-
-
+@import "main";
 /* Form-type
    ======================================================================== */
 .form-type-date .form-inline {
@@ -19,6 +17,7 @@
 	padding: 0;
 	width: initial;
 }
+
 
 .form-type-date .form-inline:after {
 	content: '';
@@ -331,13 +330,13 @@ footer ul.nav li a {
 	}
 
 }
-
+/* ajuste para respetar jerarquías en el listado de noticias
 #divnoticias .panel h3,
 #divnoticias .panel .h3 {
 	font-weight: 600 !important;
 	font-size: 18px;
 	line-height: 1.3;
-}
+}*/
 
 .pane-area-estructura .img-rounded {
 	margin-top: 10px !important;

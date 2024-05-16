@@ -146,7 +146,7 @@ class PonchoMapProvinces extends PonchoMapFilter {
         };
         // Merge options
         let opts = Object.assign({}, defaultOptions, options);
-
+        console.log(opts)
         ponchoMapProvinceCssStyles(opts.hide_select);
 
         // PonchoMapFilter instance
@@ -252,7 +252,7 @@ class PonchoMapProvinces extends PonchoMapFilter {
 
         // Creo los options
         const selectProvinces = document.getElementById("id_provincia");
-        const optionsSelect = [["", "Seleccione una provincia"], ...prov];
+        const optionsSelect = [["", "Elegí una provincia"], ...prov];
         optionsSelect.forEach(province => {
             const option = document.createElement("option");
 

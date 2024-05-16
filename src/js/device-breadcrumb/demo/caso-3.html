@@ -89,19 +89,24 @@
   <script src="https://{{cdn}}/prismjs@v1.x/components/prism-core.min.js"></script>
 	<script src="https://{{cdn}}/prismjs@v1.x/plugins/autoloader/prism-autoloader.min.js"></script>
   <script src="../src/js/device-breadcrumb.js"></script>
-<script>
-    const options = {
-        domain: [
-            "^/$",
-            "www.agus.gob.ar:4002\/foo\\?case=admin$",
-            "www.agus.gob.ar:4002\/foo\\?case=admin\/$"
-        ]
-    }
-    const db = new DeviceBreadcrumb(options);
-    console.log(db.domain)
-    db.listener();
 
-</script>
+  <script>
+      const options = {
+          domain: [
+              "^/$",
+              "www.agus.gob.ar:4002\/foo\\?case=admin$",
+              "www.agus.gob.ar:4002\/foo\\?case=admin\/$"
+          ]
+      }
+      document.addEventListener("DOMContentLoaded", () => {
+          const deviceBreadcrumb = new DeviceBreadcrumb(options);
+          deviceBreadcrumb.render();
+      });
+      window.addEventListener("resize", () =>  {
+          const deviceBreadcrumb = new DeviceBreadcrumb(options);
+          deviceBreadcrumb.render()});
+  </script>
+
 </body>
 
 </html>

@@ -61,9 +61,6 @@ class DeviceBreadcrumb {
         this.breakPoint = opts.breakPoint;
         this.selector = opts.selector;
         this.domain = opts.domain;
-
-
-
         this.addGlobalAttributes();
     }
 
@@ -76,7 +73,7 @@ class DeviceBreadcrumb {
         return {
             breakPoint: 991,
             selector: ".breadcrumb",
-            domain: ["^/$", "argentina.gob.ar$", "argentina.gob.ar/$"]
+            domain: ["^/$",  `${location.host}/?$`]
         };
     };
 
@@ -111,7 +108,10 @@ class DeviceBreadcrumb {
         btn.textContent = "Cerrar";
         btn.classList.add(
             "device-breadcrumb__compress-button",
-            "js-device-breadcrumb--ignore");
+            "js-device-breadcrumb--ignore",
+            "btn",
+            "btn-sm",
+            "btn-link");
         btn.dataset.title = "Contraer menú";
         btn.setAttribute("aria-label", "Cierra el menú de miga de pan");
 
@@ -165,7 +165,6 @@ class DeviceBreadcrumb {
             element.firstChild !== null && "getAttribute" in element.firstChild){
                 const href = element.firstChild.getAttribute("href");
                 const rgx = new RegExp(`(${this.domain.join("|")})`);
-                console.log(rgx)
                 rgxResult = rgx.exec(href);
         }
         return rgxResult || false;
@@ -332,13 +331,5 @@ class DeviceBreadcrumb {
         this._onClickExpandButton(breadcrumb);
         this._onClickCloseButton(breadcrumb);
     };
-
-
-    listener = () => {
-        document.addEventListener(
-            "DOMContentLoaded", () => this.render());
-        window.addEventListener(
-            "resize", () => this.render(), true);
-    }
 };
 // end class

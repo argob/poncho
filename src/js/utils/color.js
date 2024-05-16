@@ -314,7 +314,21 @@ const ponchoColorDefinitions = color => {
  * getColor("celeste")
  * @returns {string} Color en formato hexadecimal.
  */
-const ponchoColor = color => ponchoColorDefinitions(color)?.color || color;
+const ponchoColor = color => {
+    const defaultColor = "#99999";
+
+    if (typeof color !== "string") {
+        console.warn(`Invalid color provided. Using default: ${defaultColor}`);
+        return defaultColor;
+    }
+
+    const definition = ponchoColorDefinitions(color);
+    if (definition) {
+      return definition.color || defaultColor;
+    }
+
+    return defaultColor;
+};
 
 
 /**
@@ -365,8 +379,8 @@ const ponchoColorByHex = value => ponchoColorDefinitionsList.find(f => {
     return false;
 });
 
-
-// $START_TEST$
-// ¡Atención! Patch para testear non-module
-module.exports = {ponchoColorDefinitionsList, ponchoColorDefinitions, ponchoColor, ponchoColorByHex, cleanUpHex};
-// $END_TEST$
+if (typeof exports !== "undefined") {
+    module.exports = {
+        ponchoColorDefinitionsList,
+        ponchoColorDefinitions, ponchoColor, ponchoColorByHex, cleanUpHex};
+}

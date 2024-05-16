@@ -1,0 +1,15 @@
+/* Poncho agenda */
+.agenda-item {
+    border-bottom: 1px dashed #ddd;
+
+    &:last-child {
+        border-bottom: none;
+    }
+    &__dt-time {
+        float: left;
+        margin-right:.33em;
+        &:after {
+            content: ":";
+        }
+    }
+}
