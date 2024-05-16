@@ -7,7 +7,6 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
         </script>
-
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
         integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
@@ -20,7 +19,6 @@
         Script para debug 
         Se reemplazan en producción por poncho.min.js
     -->
-
     <script src="../../utils/color.js"></script>
     <script src="../../utils/connect.js"></script>
     <script src="../../utils/string.js"></script>
@@ -29,42 +27,23 @@
     <script src="../../poncho-map/src/js/poncho-map-filter.js"></script>
     <script src="../../gapi-sheet-data/gapi-sheet-data.js"></script>
     <script src="../src/js/poncho-map-provinces.js"></script>
-    <script src="../src/js/poncho-map-provincias-comunicacion-1.js"></script>
+    <!-- <script src="../src/js/poncho-map-provincias-comunicacion-1.js"></script> -->
     <!-- / Script para debug -->
-
     <title>Poncho Map — Mapa por provincia</title>
-    <style>
-        /* Estilos para el ejemplo */
-        html, body { height: 100%; background: #fff;}
-        .img { 
-            border-radius: 6px; 
-            width: 100%;
-            aspect-ratio: 1.85 / 1;
-            box-shadow:  0 0 4px rgb(0 0 0 /.15);
-            overflow: hidden;
-            background-color: #eaeaea;
-        }
-        .img > img {
-            max-width: 100%;
-            min-height: 100%;
-            object-fit: cover;
-            object-position: 50% 50%; 
-        }
-        .poncho-map .leaflet-popup-content {
-            max-height: 300px;
-            max-width: 250px;
-            overflow-y: scroll;
-        }
-    </style>
 </head>
 <body>
 <div class="container">
 <div class="row">
+
 <div class="col-md-12">
     <p class="m-t-1 p-a-0"><a href="./">Inicio</a></p>
     <hr class="p-a-0 m-a-0">
     <h1>Mapa con provincia</h1>
 </div>
+
+
+
+
 
 <!--
 COPIAR DESDE ACÁ…
@@ -99,6 +78,7 @@ COPIAR DESDE ACÁ…
         </div>
     </div>
     <!-- / PONCHO MAP -->
+
 </div>
 
 <div class="col-md-6">
@@ -118,6 +98,7 @@ COPIAR DESDE ACÁ…
 <script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script>
 <link href="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.css" rel="stylesheet"/> 
 <!-- <script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script> -->
+<script src="https://gist.githack.com/agustinbouillet/72ba33e78652d68782ffcec860ef5459/raw/96f4536808f90088654b80df7a87db97397f3ee7/poncho-map-provincias-contenidos.js"></script>
 <!-- / INCLUDE SCRIPTS -->
 
 <!-- SCRIPTS -->
@@ -132,7 +113,7 @@ const _PONCHOMAP_GEOJSON_PROVINCES = "https://gist.githack.com/agustinbouillet/"
 const loader = new PonchoMapLoader({scope: "poncho-map"});
 loader.load();
 
-fetch_json(_PONCHOMAP_GEOJSON_PROVINCES, {headers: {}}).then(geoProvinces => {
+fetch_json(_PONCHOMAP_GEOJSON_PROVINCES,{headers: {}}).then(geoProvinces => {
     const gapi = new GapiSheetData();
     fetch_json(
         gapi.url(
@@ -148,7 +129,7 @@ fetch_json(_PONCHOMAP_GEOJSON_PROVINCES, {headers: {}}).then(geoProvinces => {
             content_selector: ".js-pm-text-content",  // NOMBRE DE LA COLUMNA DE TEXTO DE  LA DERECHA. SI EL MAPA VA A 12, COMENTAR EL INICIO DE ESTA  LÍNEA (DOBRE BARRA AL INICIO). ASÍ LA INFO SE SOBREIMPRIME AL MAPA.
             scope: "poncho-map", 
             title: "filttro-provincia", // ID DE LA COLUMNA CON EL NOMBRE DE LAS PROVINCIAS
-            template_markdown: false,
+            template_markdown: true,
             markdown_options: {
                 "tables": true,
                 "simpleLineBreaks": true,
@@ -170,7 +151,7 @@ fetch_json(_PONCHOMAP_GEOJSON_PROVINCES, {headers: {}}).then(geoProvinces => {
             hash: true, // Permite abrir un item via URL.
             province_index: "filttro-provincia", // Nombre de la columna con el nombre de la provincia
             fit_bounds_onevent: false, // true hace zoom en la provincia cuando se utilia el select o por url
-            map_background: "color-mix(in srgb, var(--verde-cemento) 20%, #eee)",  // define el color de fondo del mapa 
+            map_background: "white",  // define el color de fondo del mapa 
             fit_bounds: false // Hace que los polígonos o markers se ajusten a los límites del mapa
         };
         // Instancia para controlar ponchoMap con filtro por provincias.
