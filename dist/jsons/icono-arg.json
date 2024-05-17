@@ -3922,6 +3922,11 @@
       },
     
       {
+        "nombre": "talleres-ti",
+        "clase": "icono-arg-talleres-ti"
+      },
+    
+      {
         "nombre": "tambo",
         "clase": "icono-arg-tambo"
       },
