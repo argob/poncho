@@ -181,7 +181,7 @@ const ponchoTableDependant = opt => {
      */
     const _isShowdownExtensionEnable = () => {
         const markdownOptions = _markdownOptions();
-        markdownOptions.extensions.every(e => {
+        const r = markdownOptions.extensions.every(e => {
             try {
                 showdown.extension(e);
                 return true;
@@ -189,6 +189,7 @@ const ponchoTableDependant = opt => {
                 return false;
             }
         });
+        return r;
     };
 
 
@@ -221,12 +222,13 @@ const ponchoTableDependant = opt => {
             return str;
         }
         
-        const converter = new showdown.Converter();
-
+        let converter;
         if(_isShowdownExtensionEnable()){
-            return converter.setOptions( _markdownOptions ).makeHtml(str);
+            converter = new showdown.Converter( _markdownOptions() );
+            return converter.makeHtml(str);
         }
 
+        converter = new showdown.Converter();
         return converter.makeHtml(str);
     };
 
