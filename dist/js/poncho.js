@@ -4193,6 +4193,15 @@ class PonchoMap {
 
 
     /**
+     * Alias de sluglify
+     * 
+     * @param {string} val Texto a formatear 
+     * @returns {string}
+     */
+    _slugify = val => slugify(val);
+
+
+    /**
      * Es un geoJSON
      * 
      * @summary Valida si un documento JSON psado por parámetro cumple
@@ -4375,6 +4384,42 @@ class PonchoMap {
 
 
     /**
+     * El indice id_mixing ¿Está siendo usado?
+     * @returns {boolean}
+     */
+    _isIdMixing = () => (Array.isArray(this.id_mixing) && 
+            this.id_mixing > 0 || typeof this.id_mixing === 'function');
+
+
+    /**
+     * Array con valores a concatenar en el id.
+     * 
+     * @summary Dependiendo de la opción que haya elegido el usario, retorna
+     * una array de valors pasado por funcion o _array object_.
+     * @param {object} entry Objeto con una entrada del geoJson
+     * @returns {object} Array con los valores a concatenar.
+     */
+    _idMixing = entry => {
+        if(!this._isIdMixing()){
+            return;
+        }
+
+        if(typeof this.id_mixing === "function"){
+            return this.id_mixing(this, entry).join('');
+        } 
+        
+        const values = this.id_mixing.map(val => {
+            if(entry.properties[val]){
+                return entry.properties[val].toString();
+            } 
+            return val;
+        });
+
+        return this._slugify(values.join("-"));
+    }
+
+
+    /**
      * Crea una entrada ID autonumerada si no posee una.
      * 
      * @summary Verifica si en las claves existe una posición asignada
@@ -4386,33 +4431,29 @@ class PonchoMap {
      */
     _setIdIfNotExists = (entries) => {
         const hasId = entries.features
-                .filter((_,k) => k===0)
-                .every(e => e.properties.hasOwnProperty("id"));
+            .filter((_, k) => k === 0)
+            .every(e => e.properties.hasOwnProperty("id"));
 
-        if(!hasId){
-            const newEntries = entries.features.map(
-                (v,k) => {
-
-                    if(this.id_mixing.length > 0){
-                        const values = this.id_mixing.map(val => {
-                            if(v.properties[val]){
-                                return slugify(v.properties[val]);
-                            } 
-                            return slugify(val);
-                        });
-                        v.properties.id = values.join("-");
-                    } else {
-                        const autoId = k + 1;
-                        const useTitle = (this.title && v.properties[this.title] ? 
-                                slugify(v.properties[this.title]) : "");
-                        v.properties.id = `${autoId}-${useTitle}`;
-                    }
-                    
-                    return v;
-                }); 
-            entries.features = newEntries;
+        // Si no se configuró id_mixing y el json tiene id.
+        if(!this._isIdMixing() && hasId){
+            return entries;
         }
-
+ 
+        const newEntries = entries.features.map((entry, k) => {
+            if(this._isIdMixing()){
+                // Procesa la opción de id_mixing
+                entry.properties.id = this._idMixing(entry);
+            } else {
+                // Genera un ID automático
+                const autoId = k + 1;
+                const useTitle = (this.title && entry.properties[this.title] ? 
+                        this._slugify(entry.properties[this.title]) : "");
+                entry.properties.id = [autoId, useTitle].filter(f=>f).join('-');
+            }
+            
+            return entry;
+        }); 
+        entries.features = newEntries;
         return entries;
     };
 
@@ -4424,9 +4465,16 @@ class PonchoMap {
      * @return {undefined}
      */
     addHash = (value) => {
-        if(!this.hash || this.no_info){
-            return null;
+
+        if (typeof value !== "string" && !value) {
+            console.error('Invalid value provided to update hash');
+            return;
         }
+
+        if (!this.hash || this.no_info) {
+            return;
+        }
+        
         window.location.hash = `#${value}`;
     };
 
