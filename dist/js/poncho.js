@@ -540,6 +540,11 @@ function flattenObject(obj, prefix) {
     return flattened;
 }
 
+
+if (typeof exports !== "undefined") {
+    module.exports = {flattenObject, flattenNestedObjects};
+}
+
 /**
  * 
  */
