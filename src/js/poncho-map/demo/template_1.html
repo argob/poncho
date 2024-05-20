@@ -48,12 +48,12 @@
     <!-- INCLUDES -->
     <script src="https://www.argentina.gob.ar/sites/default/files/ponchotable/showdown.js"></script>
     <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/extensiones/showdown-extensions.js"></script>
-    <script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.js"></script>
-    <script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script>
-    <link href="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.css" rel="stylesheet" />
+    <script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.js?v13"></script>
+    <script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.markercluster.js?v3"></script>
+    <link href="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.css?v1" rel="stylesheet" />
     <link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.css" rel="stylesheet" />
-    <link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.Default.css" rel="stylesheet" />
-    <link href="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js" rel="stylesheet" />
+    <link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.Default.css?v1" rel="stylesheet" />
+    <!-- <link href="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js" rel="stylesheet" /> -->
     <!-- / INCLUDES -->
 
     <div class="container-fluid">
@@ -133,11 +133,12 @@
             loaderMap1.load();
 
             const gapi = new GapiSheetData();
-            const googlesheet_data = await fetch_json("./data/response-efectores.json");
+            const googlesheet_data = await fetch_json("./data/response-efectores.json?v2");
             const gapi_data = gapi.json_data(googlesheet_data);
             const {entries, headers} = gapi_data;
 
             const mapOptions1 = {
+                // id_mixing: ['id', 'foo', 'nombre'],
                 "wizard": true,
                 "scope": "uno",
                 "title": "name",
@@ -181,6 +182,15 @@
 
             const geoJSON = await fetch_json("./data/test-data.geojson");
             const mapOptions2 = {
+                id_mixing: function(self, entry){
+                    return [
+                        entry.properties.ID, 
+                        `__${entry.properties.id_pd}__`
+                        +`${self._slugify(entry.properties.nombre)}`
+                    ];
+                },
+                __id_mixing:['ID', "calle"],
+                // id: "id_pd",
                 "scope": "dos",
                 "title": "nombre",
                 "template_markdown": true,

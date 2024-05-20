@@ -109,6 +109,7 @@ COPIAR DESDE ACÁ…
         let {headers={}, entries={}} = gapi_data;
 
         const mapOptions = {
+            // id_mixing: ['id','descripcion'],
             "template": (a, b) => "<h2>" + b.nombre + "</h2><ul><li>" 
                 + Object.values(b).filter(e => e).join("</li><li>") 
                 + "</li></ul>",
