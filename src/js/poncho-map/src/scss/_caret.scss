@@ -42,14 +42,14 @@ $caret-back-size: 10px;
             bottom: -7px;
             left: 11px;
             transform: rotate(180deg);
-            -moz-transform: rotate(180.01deg);
+            -moz-transform: rotate(180.1deg);
         }
 
         &-b:before {
             bottom: calc(-7.75px - var(--pm-slider-border-width));
             left: 9px;
             transform: translateZ(-1px) rotate(180deg);
-            -moz-transform: translateZ(-1px) rotate(180.01deg); /*Fix en el rotate*/
+            -moz-transform: translateZ(-1px) rotate(180.1deg); /*Fix en el rotate*/
         }
     }
 }
