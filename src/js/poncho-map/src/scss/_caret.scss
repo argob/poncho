@@ -41,14 +41,14 @@ $caret-back-size: 10px;
         &-b:after {
             bottom: -7px;
             left: 11px;
-            transform: rotate(180deg);
+            transform: rotate(180.1deg);
             -moz-transform: rotate(180.1deg);
         }
 
         &-b:before {
             bottom: calc(-7.75px - var(--pm-slider-border-width));
             left: 9px;
-            transform: translateZ(-1px) rotate(180deg);
+            transform: translateZ(-1px) rotate(180.1deg);
             -moz-transform: translateZ(-1px) rotate(180.1deg); /*Fix en el rotate*/
         }
     }
