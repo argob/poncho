@@ -519,32 +519,6 @@ if (typeof exports !== "undefined") {
 }
 
 
-function flattenNestedObjects(entries) {
-    return entries.map(entry => {
-        return flattenObject(entry, "");
-    });
-}
-
-function flattenObject(obj, prefix) {
-    const flattened = {};
-    for (const key in obj) {
-        const value = obj[key];
-        const newKey = (prefix ? `${prefix}__${key}` : key);
-
-        if (typeof value === "object" && value !== null) {
-            Object.assign(flattened, flattenObject(value, newKey));
-        } else {
-            flattened[newKey] = value;
-        }
-    }
-    return flattened;
-}
-
-
-if (typeof exports !== "undefined") {
-    module.exports = {flattenObject, flattenNestedObjects};
-}
-
 /**
  * 
  */
@@ -7320,7 +7294,6 @@ class PonchoMapProvinces extends PonchoMapFilter {
         };
         // Merge options
         let opts = Object.assign({}, defaultOptions, options);
-
         ponchoMapProvinceCssStyles(opts.hide_select);
 
         // PonchoMapFilter instance
@@ -7426,7 +7399,7 @@ class PonchoMapProvinces extends PonchoMapFilter {
 
         // Creo los options
         const selectProvinces = document.getElementById("id_provincia");
-        const optionsSelect = [["", "Seleccione una provincia"], ...prov];
+        const optionsSelect = [["", "Elegí una provincia"], ...prov];
         optionsSelect.forEach(province => {
             const option = document.createElement("option");
 
