@@ -133,7 +133,6 @@ const loader = new PonchoMapLoader({scope: "poncho-map"});
 loader.load();
 
 fetch_json(geoJSON, { headers: {} }).then(geoProvinces => {
-// fetch_json( PONCHOMAP_GEOJSON_PROVINCES, { headers: {} }).then(geoProvinces => {
     const gapi = new GapiSheetData();
     fetch_json(
         gapi.url(
@@ -146,22 +145,22 @@ fetch_json(geoJSON, { headers: {} }).then(geoProvinces => {
         const options = {
             id_mixing: ["in1", "nam"], // Permite configurar cómo debe ser el ID en la URL.
             content_selector: ".js-pm-text-content", // Nombre de la clase o id dónde se imprime el contenido.
-            scope: "poncho-map",
-            title: "nam",
+            scope: "poncho-map", 
+            title: "nam", // Define qué ID se utiliza como título
             template_markdown: true, // Habilita el uso del markdown.
             allowed_tags: ["*"], // Habilita etiquetas HTML.
             headers:{
                 ...headers, 
-                ...{"subtitulos--ignore": "", description: "", img: "", content: "", region: "Región"}
+                ...{description: "" /* Si el ID no tiene descripción, no se muestra */, img: "", content: "", region: "Región"}
             },
-
             template:(self, entry) => {
-                entry["img"] = entry.image ? `<div class="img"><img src="${entry.image}"></img>` : false;
-                entry["content"] = `<hr><div class="row">${entry["subtitulos--ignore"]}</div>`;
+                // Defino un nuevo ID y defino el html para visualizar la imagen
+                const imgCode = `<div class="img"><img src="${entry.image}"></img>`;
+                entry["img"] = entry.image ? imgCode : false;
                 return self.defaultTemplate(self, entry); 
             },
-            template_structure: {
-                values: ["img", "description", "capital", "population", "surface", "web", /*"content"*/ ],
+            template_structure: { // Asigno estilos contentido
+                values: ["img" /* agrego el id creado en `template` */, "description", "capital", "population", "surface", "web"],
                 title_classlist: ["h2","text-cielo"],
                 term_classlist: ["h5", "text-cielo"],
                 lead: {
@@ -176,16 +175,23 @@ fetch_json(geoJSON, { headers: {} }).then(geoProvinces => {
             hash: true, // Permite abrir un item via URL.
             province_index: "provincia", // Nombre de la columna con el nombre de la provincia
             fit_bounds_onevent: false, // true hace zoom en la provincia cuando se utilia el select o por url
+            // El mapa permite que se le defina un tema de color
+            // Los temas en el mapa y la interfase son: default, contrast, 
+            // dark, grayscale, sepia, blue y relax.
+            // Los temas se pueden utilizar independientemente para la 
+            // interfase —fondo del slider, popup, filtros, botones, etc.—, 
+            // o para modificar los mozaicos del mapa.
+            // theme: "relax" // modifica todo el mapa e interfase con ese tema.
             theme_ui: "default", // tema del slider y control de zoom
-            theme_map: "transparent", // Tema del mapa
-            map_opacity: 1, // Opacidad del mapa OSM
+            theme_map: "transparent", // Transparent se puede utilizar solo para los mozaicos del mapa 
+            // map_opacity: 1, // Opacidad del mapa OSM. Los valores van de 0 a 1 o de 0 a 100%
             map_background: "color-mix(in srgb, var(--verde-cemento) 50%, white)",  // define el color de fondo del mapa 
             // initial_entry: "42-la-pampa", // Si se agrega el id (que aprece en URL), inicia con esa entrada.
             random_entry: true, // Permite que la página se cargue con una entrada aleatoria.
             hide_select: false, // Si es true el select solo se muestra en mobile
-            overlay_image: true,
-            overlay_image_opacity: 0.75,
-            fit_bounds: true
+            overlay_image: true, // Permite mostrar o quitar una imagen superpuesta en el mapa
+            overlay_image_opacity: 0.75, // Permite darle opacidad al a la imagen superpuesta en el mapa
+            fit_bounds: true // Hace que los polígonos o markers se ajusten a los límites del mapa
         };
 
         // Instancia para controlar ponchoMap con filtro por provincias.
