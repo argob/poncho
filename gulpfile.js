@@ -21,7 +21,6 @@ const ponchoMinList = [
     './src/js/utils/connect.js',
     './src/js/utils/string.js',
     './src/js/utils/html.js',
-    './src/js/utils/collections.js',
     './src/js/poncho-table/poncho-table.js',
     './src/js/poncho-agenda/src/js/poncho-agenda.js',
     './src/js/poncho-table/poncho-table-dependant.js',
@@ -33,6 +32,7 @@ const ponchoMinList = [
     './src/js/poncho-map/src/js/poncho-map-filter.js',
     './src/js/poncho-map/src/js/poncho-map-search.js',
     './src/js/poncho-map-provinces/src/js/poncho-map-provinces.js',
+    // './src/js/poncho-map-provinces/src/js/poncho-map-provinces-contenidos.js',
     './src/js/gapi-sheet-data/gapi-sheet-data.js',
     './src/js/translate-html/translate-html.js'
 ];
@@ -43,6 +43,17 @@ gulp.task('poncho', function(){
         .pipe(concat('poncho.js', {'newLine':'\n\n'}))
         // .pipe(babel())
         .pipe(gulp.dest('dist/js/'));
+});
+
+
+/**
+ * Compila y minifica los archivs JS en poncho.min.js
+ */
+gulp.task('ponchoMapProvincesContenidos', function(){
+    return gulp.src(['./src/js/poncho-map-provinces/src/js/poncho-map-provinces-contenidos.js'])
+        // .pipe(concat('./src/js/poncho-map-provinces/src/js/poncho-map-provinces-contenidos.js'))
+        .pipe(uglify(generalCompressOptions))
+        .pipe(gulp.dest('./src/js/poncho-map-provinces/dist/js/'));
 });
 
 
@@ -127,4 +138,12 @@ gulp.task('sass_poncho-map', function(){
 
 
 
-gulp.task('default', gulp.series( 'sass', 'sass_poncho', 'compress', 'poncho', 'ponchomin', "sass_poncho-map"))
+gulp.task('default', gulp.series(
+    'ponchoMapProvincesContenidos',
+    'sass',
+    'sass_poncho',
+    'compress',
+    'poncho',
+    'ponchomin',
+    "sass_poncho-map"
+))

@@ -519,27 +519,6 @@ if (typeof exports !== "undefined") {
 }
 
 
-function flattenNestedObjects(entries) {
-    return entries.map(entry => {
-        return flattenObject(entry, "");
-    });
-}
-
-function flattenObject(obj, prefix) {
-    const flattened = {};
-    for (const key in obj) {
-        const value = obj[key];
-        const newKey = (prefix ? `${prefix}__${key}` : key);
-
-        if (typeof value === "object" && value !== null) {
-            Object.assign(flattened, flattenObject(value, newKey));
-        } else {
-            flattened[newKey] = value;
-        }
-    }
-    return flattened;
-}
-
 /**
  * 
  */
@@ -5879,11 +5858,16 @@ class PonchoMapLoader {
 
     constructor(options){
         const defaults = {
+            selector: "",
             scope: "",
-            timeout: 50000
+            timeout: 50000,
+            cover_opacity: 1,
+            cover_style: {},
         };
         let opts = Object.assign({}, defaults, options);
         this.scope = opts.scope;
+        this.cover_opacity = opts.cover_opacity;
+        this.cover_style = opts.cover_style;
         this.timeout = opts.timeout;
         this.scope_sufix = `--${this.scope}`;
         this.scope_selector = `[data-scope="${this.scope}"]`;
@@ -5918,6 +5902,11 @@ class PonchoMapLoader {
         cover.classList.add(
             "poncho-map__loader", `js-poncho-map__loader${this.scope_sufix}`
         );
+        // Background opacity
+        Object.assign(cover.style, this.cover_style);
+        if(this.cover_opacity){
+            cover.style.backgroundColor = `color-mix(in srgb, transparent, var(--pm-loader-background) ${this.cover_opacity.toString() * 100}%)`;
+        }
         cover.appendChild(loader);
         element.appendChild(cover);  
         this.ponchoLoaderTimeout = setTimeout(this.remove, this.timeout);
@@ -7305,7 +7294,6 @@ class PonchoMapProvinces extends PonchoMapFilter {
         };
         // Merge options
         let opts = Object.assign({}, defaultOptions, options);
-
         ponchoMapProvinceCssStyles(opts.hide_select);
 
         // PonchoMapFilter instance
@@ -7411,7 +7399,7 @@ class PonchoMapProvinces extends PonchoMapFilter {
 
         // Creo los options
         const selectProvinces = document.getElementById("id_provincia");
-        const optionsSelect = [["", "Seleccione una provincia"], ...prov];
+        const optionsSelect = [["", "Elegí una provincia"], ...prov];
         optionsSelect.forEach(province => {
             const option = document.createElement("option");
 
