@@ -90,7 +90,7 @@ COPIAR DESDE ACÁ…
 
 <!-- INCLUDE SCRIPTS -->
 <script src="https://www.argentina.gob.ar/sites/default/files/ponchotable/showdown.js"></script>
-<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/extensiones/showdown-extensions.js"></script>
+<script src="https://qa2-back.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/extensiones/showdown-extensions.js"></script>
 <script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.js"></script>
 <script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script>
 <link href="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.css" rel="stylesheet"/> 
@@ -110,7 +110,7 @@ const _PONCHOMAP_GEOJSON_PROVINCES = "https://gist.githack.com/agustinbouillet/"
 const loader = new PonchoMapLoader({scope: "poncho-map"});
 loader.load();
 
-fetch_json(_PONCHOMAP_GEOJSON_PROVINCES,{headers: {}}).then(geoProvinces => {
+fetch_json(_PONCHOMAP_GEOJSON_PROVINCES, {headers: {}}).then(geoProvinces => {
     const gapi = new GapiSheetData();
     fetch_json(
         gapi.url(
@@ -123,7 +123,7 @@ fetch_json(_PONCHOMAP_GEOJSON_PROVINCES,{headers: {}}).then(geoProvinces => {
         const gapi_data = gapi.json_data(googlesheet_data);
         const {entries, headers} = gapi_data;
         const options = {
-            content_selector: ".js-pm-text-content",  // NOMBRE DE LA COLUMNA DE TEXTO DE  LA DERECHA. SI EL MAPA VA A 12, COMENTAR EL INICIO DE ESTA  LÍNEA (DOBRE BARRA AL INICIO). ASÍ LA INFO SE SOBREIMPRIME AL MAPA.
+            content_selector: ".js-pm-text-content", // NOMBRE DE LA COLUMNA DE TEXTO DE  LA DERECHA. SI EL MAPA VA A 12, COMENTAR EL INICIO DE ESTA  LÍNEA (DOBRE BARRA AL INICIO). ASÍ LA INFO SE SOBREIMPRIME AL MAPA.
             scope: "poncho-map", 
             title: "filttro-provincia", // ID DE LA COLUMNA CON EL NOMBRE DE LAS PROVINCIAS
             template_markdown: true,
