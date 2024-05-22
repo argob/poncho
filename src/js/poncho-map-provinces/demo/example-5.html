@@ -95,11 +95,12 @@ COPIAR DESDE ACÁ…
 <script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script>
 <link href="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.css" rel="stylesheet"/> 
 <!-- <script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script> -->
-<!-- <script src="https://gist.githack.com/agustinbouillet/72ba33e78652d68782ffcec860ef5459/raw/96f4536808f90088654b80df7a87db97397f3ee7/poncho-map-provincias-contenidos.js"></script> -->
+<script src="https://raw.githack.com/argob/poncho/release-1.x/src/js/poncho-map-provinces/src/js/poncho-map-provinces-contenidos.js"></script>
 <!-- / INCLUDE SCRIPTS -->
 
 <!-- SCRIPTS -->
 <script>
+    var map;
 // URL temporal
 const _PONCHOMAP_GEOJSON_PROVINCES = "https://gist.githack.com/agustinbouillet/" 
     + "a5cdf04c6b19ed248aa85b27deaee6a2/raw/"
@@ -152,7 +153,7 @@ fetch_json(_PONCHOMAP_GEOJSON_PROVINCES, {headers: {}}).then(geoProvinces => {
             fit_bounds: false // Hace que los polígonos o markers se ajusten a los límites del mapa
         };
         // Instancia para controlar ponchoMap con filtro por provincias.
-        const map = new ponchoMapProvincesCustom(geoProvinces, entries, options);
+         map = new ponchoMapProvincesCustom(geoProvinces, entries, options);
         map.renderProvinceMap();
         loader.close();
     });
