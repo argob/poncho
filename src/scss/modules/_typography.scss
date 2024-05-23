@@ -85,18 +85,12 @@ main a:not(.btn) {
 }
 
 /* ///  INICIO CORTE DE PALABRA TITULOS PANELES  /// */
-.pane-atajos .panels-row a:not(.btn) h3 {
-    -webkit-hyphens: auto;
-    -moz-hyphens: auto;
-    -ms-hyphens: auto;
-    hyphens: auto;
-    /*Y seguidamente word-wrap como graceful degradation para los navegadores que no lo soporten*/
-    word-wrap: break-word;
+.pane-atajos h3, .pane-atajos .h3 {
+		font-size: 1.18rem
 }
-
 /* ///  Saco corte de palabra en la home  /// */
-.front .pane-atajos .panels-row a:not(.btn) h3 {
-    hyphens: inherit;
+.front .pane-atajos h3, .front .pane-atajos .h3 {
+		font-size: 1.28rem
 }
 /* ///  FIN CORTE DE PALABRA TITULOS PANELES  /// */
 
