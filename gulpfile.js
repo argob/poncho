@@ -21,6 +21,7 @@ const ponchoMinList = [
     './src/js/utils/connect.js',
     './src/js/utils/string.js',
     './src/js/utils/html.js',
+    './src/js/utils/collections.js',
     './src/js/poncho-table/poncho-table.js',
     './src/js/poncho-agenda/src/js/poncho-agenda.js',
     './src/js/poncho-table/poncho-table-dependant.js',
@@ -51,7 +52,6 @@ gulp.task('poncho', function(){
  */
 gulp.task('ponchoMapProvincesContenidos', function(){
     return gulp.src(['./src/js/poncho-map-provinces/src/js/poncho-map-provinces-contenidos.js'])
-        // .pipe(concat('./src/js/poncho-map-provinces/src/js/poncho-map-provinces-contenidos.js'))
         .pipe(uglify(generalCompressOptions))
         .pipe(gulp.dest('./src/js/poncho-map-provinces/dist/js/'));
 });
