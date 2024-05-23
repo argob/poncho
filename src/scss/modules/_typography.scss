@@ -85,19 +85,10 @@ main a:not(.btn) {
 }
 
 /* ///  INICIO CORTE DE PALABRA TITULOS PANELES  /// */
-.pane-atajos .panels-row a:not(.btn) h3 {
-    -webkit-hyphens: auto;
-    -moz-hyphens: auto;
-    -ms-hyphens: auto;
-    hyphens: auto;
-    /*Y seguidamente word-wrap como graceful degradation para los navegadores que no lo soporten*/
-    word-wrap: break-word;
-}
+.pane-atajos .panels-row a:not(.btn) h3 {}
 
 /* ///  Saco corte de palabra en la home  /// */
-.front .pane-atajos .panels-row a:not(.btn) h3 {
-    hyphens: inherit;
-}
+.front .pane-atajos .panels-row a:not(.btn) h3 {}
 /* ///  FIN CORTE DE PALABRA TITULOS PANELES  /// */
 
 p, li, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, table tbody {
