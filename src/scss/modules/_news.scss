@@ -51,8 +51,12 @@
 }
 
 @media (max-width:767px) {
+.title-description > h1 {
+          font-size: 1.8rem;
+}
+
 .news__lead > p {
-          font-size: 1.222rem;
+          font-size: 1.1rem;
           margin-bottom: 1.5rem;
 }
     .social-share {
