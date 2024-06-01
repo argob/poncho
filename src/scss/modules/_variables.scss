@@ -1,108 +1,3 @@
-//== Colors
-//
-//## Gray and brand colors for use across Bootstrap.
-
-@import url(https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap);
-
-
-
-$white:                  #fff !default;
-$black:                  #333333 !default;
-$gray-base:              #333333 !default;
-
-$gray:                   #555;
-$gray-dark:              #444444;
-$gray-border:            #DEE2E6;
-$gray-hover:             #e9e9e9;
-$gray-hover-light:       #f0f0f0;
-$gray-background:        #FFF;
-$gray-light:             #DDD;
-$gray-lighter:           #f2f2f2;
-
-$brand-default:         #838383 !default;
-$brand-primary:         #242C4F !default;
-$brand-primary-alt:     #242C4F !default;
-$brand-primary-light:   #f3faff !default;
-$brand-secondary:       #45658D !default;
-$brand-complementary:   #EF5350 !default;
-$brand-success:         #2e7d33 !default;
-$brand-info:            #3e5a7e !default;
-$brand-warning:         #E7BA61 !default;
-$brand-danger:          #c62828 !default;
-$brand-celeste-argentina:          #37BBED !default;
-$brand-azul-marino:          #242C4F !default;
-$brand-amarillo-intenso:          #E7BA61 !default;
-
-
-$brand-fucsia:          #EC407A !default;
-$brand-arandano:        #C2185B !default;
-$brand-uva:             #6A1B99 !default;
-$brand-cielo:           #039BE5 !default;
-$brand-verdin:          #6EA100 !default;
-$brand-lima:            #CDDC39 !default;
-$brand-maiz:            #FFCE00 !default;
-$brand-tomate:          #EF5350 !default;
-$brand-naranja:         #EF6C00 !default;
-$brand-verde-azulado:   #008388 !default;
-$brand-mandarina:       #F79525 !default;
-$brand-cereza:          #ED3D8F !default;
-$brand-lavanda:         #9284BE !default;
-$brand-escarapela:      #2CB9EE !default;
-$brand-palta:           #50B7B2 !default;
-$brand-limon:           #D7DF23 !default;
-$brand-verde-jade:      #006666 !default;
-$brand-verde-aloe:      #4FBB73 !default;
-$brand-verde-cemento:   #B4BEBA !default;
-
-// as list
-$colores : ('white', $white),
-    ('black', $black),
-    ('gray-base', $gray-base),
-    ('gray', $gray),
-    ('gray-dark', $gray-dark),
-    ('gray-border', $gray-border),
-    ('gray-hover', $gray-hover),
-    ('gray-hover-light', $gray-hover-light),
-    ('gray-background', $gray-background),
-    ('gray-light', $gray-light),
-    ('gray-lighter', $gray-lighter),
-    ('default', $brand-default),
-    ('azul', $brand-primary),
-    ('primary', $brand-primary),
-    ('primary-alt', $brand-primary-alt),
-    ('primary-light', $brand-primary-light),
-    ('secondary', $brand-secondary),
-    ('complementary', $brand-complementary),
-    ('success', $brand-success),
-    ('info', $brand-info),
-    ('warning', $brand-warning),
-    ('danger', $brand-danger),
-    ('celeste-argentina', $brand-celeste-argentina),
-    ('fucsia', $brand-fucsia),
-    ('arandano', $brand-arandano),
-    ('uva', $brand-uva),
-    ('cielo', $brand-cielo),
-    ('verdin', $brand-verdin),
-    ('lima', $brand-lima),
-    ('maiz', $brand-maiz),
-    ('tomate', $brand-tomate),
-    ('naranja', $brand-naranja),
-    ('verde-azulado', $brand-verde-azulado),
-    ('mandarina', $brand-mandarina),
-    ('cereza', $brand-cereza),
-    ('lavanda', $brand-lavanda),
-    ('escarapela', $brand-escarapela),
-    ('palta', $brand-palta),
-    ('limon', $brand-limon),
-    ('verde-jade', $brand-verde-jade),
-    ('verde-aloe', $brand-verde-aloe),
-    ('verde-cemento', $brand-verde-cemento),
-    ('azul-marino', $brand-azul-marino),
-    ('amarillo-intenso', $brand-amarillo-intenso)
-;
-
-
-
 // Variables agregados para etiqueta details/summary
 $arrow_open_base: 8px;
 $arrow_open_height: 6px;
@@ -120,16 +15,16 @@ $arrow_up_color: $brand-primary;
 //## Settings for some of the most global styles.
 
 //** Background color for `<body>`.
-$body-bg:               #fff !default;
+$body-bg: #fff !default;
 //** Global text color on `<body>`.
-$text-color:            $gray-base !default;
+$text-color: $gray-base !default;
 
 //** Global textual link color.
-$link-color:            $brand-primary !default;
+$link-color: $brand-primary !default;
 //** Link hover color set via `darken()` function.
-$link-hover-color:      $brand-uva;
+$link-hover-color: $brand-uva;
 //** Link hover decoration.
-$link-visited: #6A1B99 !default;
+$link-visited: $brand-uva !default;
 
 $dark-opacity: rgba(0, 0, 0, .5);
 $dark-opacity-IE: progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000,endColorstr=#99000000);
@@ -155,4 +50,3 @@ $font-base-weight: 18px !default;
     font-family: $font-family-serif;
     font-weight: 700;
 }
-  
