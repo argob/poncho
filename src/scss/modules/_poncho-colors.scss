@@ -1,3 +1,8 @@
+//== Colors
+//## Colores poncho
+$white: #FFFFFF !default; 
+$black: #333333 !default; 
+$gray-base: #333333 !default; 
 $brand-azul: #242C4F !default; 
 $brand-primary: #242C4F !default; 
 $brand-success: #2E7D33 !default; // Acción principal o exitosa
@@ -42,7 +47,10 @@ $brand-complementary: #EF5350 !default;
 $brand-azul-marino: #242C4F !default; 
 $brand-amarillo-intenso: #E7BA61 !default; 
 
-$colores: ("azul", $brand-azul),
+$colores: ("white", $white),
+("black", $black),
+("gray-base", $gray-base),
+("azul", $brand-azul),
 ("primary", $brand-primary),
 ("success", $brand-success),
 ("danger", $brand-danger),

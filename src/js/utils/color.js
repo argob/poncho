@@ -4,6 +4,36 @@
 const ponchoColorDefinitionsList = [
     {
         description: "",
+        scope: "",
+        name: "Blanco",
+        color: "#FFFFFF",
+        code: "white",
+        alias: [
+            "white"
+        ]
+    },
+    {
+        description: "",
+        scope: "",
+        name: "Negro",
+        color: "#333333",
+        code: "black",
+        alias: [
+            "black"
+        ]
+    },
+    {
+        description: "",
+        scope: "",
+        name: "Gris base",
+        color: "#333333",
+        code: "gray-base",
+        alias: [
+            "gray-base"
+        ]
+    },
+    {
+        description: "",
         scope: "brand",
         name: "Azul",
         color: "#242C4F",

@@ -3,9 +3,10 @@ const {ponchoColorDefinitionsList} = require('./js/utils/color');
 
 const SCSS_FILENAME = "_poncho-colors.scss";
 
-
+const header = `//== Colors
+//## Colores poncho\n`;
 // variable de color sass
-const filePath = `./scss/${SCSS_FILENAME}`;
+const filePath = `./scss/modules/${SCSS_FILENAME}`;
 const content = ponchoColorDefinitionsList.map(m => {
     const description = (m.description ? `// ${m.description}` : "")
     const scope = (m.scope ? `${m.scope}-` : "");
@@ -22,7 +23,7 @@ const list = ponchoColorDefinitionsList.map((m, k) => {
 contentList = `\n$colores: ${list}`;
 
 
-fs.writeFile(filePath, content + contentList, (err) => {
+fs.writeFile(filePath, header + content + contentList, (err) => {
     if (err) {
         console.error(`Error creating file "${SCSS_FILENAME}":`, err);
     } else {
