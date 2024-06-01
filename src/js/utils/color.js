@@ -15,16 +15,6 @@ const ponchoColorDefinitionsList = [
     {
         description: "",
         scope: "",
-        name: "Negro",
-        color: "#333333",
-        code: "black",
-        alias: [
-            "black"
-        ]
-    },
-    {
-        description: "",
-        scope: "",
         name: "Gris base",
         color: "#333333",
         code: "gray-base",
@@ -416,7 +406,7 @@ const ponchoColorDefinitionsList = [
         "color": "#838383",
         "code": "default",
         "alias": [
-            "brand-default"
+            "default"
         ]
     },
     {
@@ -426,7 +416,7 @@ const ponchoColorDefinitionsList = [
         "color": "#242C4F",
         "code": "primary-alt",
         "alias": [
-            "brand-primary-alt"
+            "primary-alt"
         ]
     },
     {
@@ -436,7 +426,7 @@ const ponchoColorDefinitionsList = [
         "color": "#F3FAFF",
         "code": "primary-light",
         "alias": [
-            "brand-primary-light"
+            "primary-light"
         ]
     },
     {
@@ -446,7 +436,7 @@ const ponchoColorDefinitionsList = [
         "color": "#45658D",
         "code": "secondary",
         "alias": [
-            "brand-secondary"
+            "secondary"
         ]
     },
     {
@@ -456,7 +446,7 @@ const ponchoColorDefinitionsList = [
         "color": "#EF5350",
         "code": "complementary",
         "alias": [
-            "brand-complementary"
+            "complementary"
         ]
     },
     {
@@ -466,7 +456,7 @@ const ponchoColorDefinitionsList = [
         "color": "#242C4F",
         "code": "azul-marino",
         "alias": [
-            "brand-azul-marino"
+            "azul-marino"
         ]
     },
     {
@@ -476,7 +466,7 @@ const ponchoColorDefinitionsList = [
         "color": "#E7BA61",
         "code": "amarillo-intenso",
         "alias": [
-            "brand-amarillo-intenso"
+            "amarillo-intenso"
         ]
     }
 ];
