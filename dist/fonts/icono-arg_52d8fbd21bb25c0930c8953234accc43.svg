@@ -1,11 +1,11 @@
 <?xml version="1.0" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
 <!--
-2024-5-27: Created with FontForge (http://fontforge.org)
+2024-6-6: Created with FontForge (http://fontforge.org)
 -->
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
 <metadata>
-Created by FontForge 20230101 at Mon May 27 17:14:19 2024
+Created by FontForge 20230101 at Thu Jun  6 13:05:14 2024
  By 
 
 </metadata>
@@ -22,7 +22,7 @@ Created by FontForge 20230101 at Mon May 27 17:14:19 2024
     bbox="-0.656854 -64 512 448"
     underline-thickness="38.4"
     underline-position="-76.8"
-    unicode-range="U+0020-F745"
+    unicode-range="U+0020-F746"
   />
     <missing-glyph />
     <glyph glyph-name="space" unicode=" " horiz-adv-x="200" 
@@ -5670,6 +5670,10 @@ h-12h-3c-1 0 -1 1 -2 1l-2 1c-1 1 -2 1 -2 2v1v2v0c0 2 1 4 2 5zM297 241v-28h28v28h
 c3 2 4 6 4 10v1c0 7 -6 13 -13 13s-14 -7 -14 -14s7 -13 14 -13c4 0 7 1 9 3zM119 216v-3h41v28h-17c-1 0 -1 -1 -2 -2l-21 -20c-1 -1 -1 -2 -1 -3v0zM476 130l5 -5l-4 -5l-14 -15l-6 -7l-3 -4c1 -4 1 -6 1 -10c0 -29 -24 -53 -53 -53s-52 24 -52 53s23 52 52 52h1
 c13 0 24 -4 33 -12l4 3l5 4l2 2c-5 4 -9 8 -15 11v178c0 7 -6 13 -13 13h-387c-7 0 -14 -6 -14 -13v-255c0 -7 7 -13 14 -13h310c3 -7 8 -13 13 -18h-323c-17 0 -32 14 -32 31v255c0 17 15 31 32 31h387c17 0 31 -14 31 -31v-186l6 5l5 4l4 -5zM458 110l14 15l-12 10
 l-10 -10l-6 -4l-42 -38l-25 25l-14 -12l39 -49v0l50 55z" />
+    <glyph glyph-name="trekking" unicode="&#xf746;" horiz-adv-x="245" 
+d="M115 345c0 21 18 39 39 39s39 -18 39 -39s-18 -39 -39 -39s-39 18 -39 39zM234 221c9 -4 13 -15 9 -24c-3 -6 -9 -10 -15 -10l-9 -174c0 -6 -4 -10 -10 -10h-1c-6 0 -10 5 -10 11l9 180l-39 18c-3 1 -5 3 -7 6l-8 13l-9 -63v0l29 -65c1 -2 2 -3 2 -5l10 -79
+c1 -10 -5 -18 -15 -19c-1 0 -1 -1 -2 -1c-9 0 -17 7 -18 16l-10 75l-32 72l-20 -73c-1 -2 -1 -4 -3 -6l-53 -67c-3 -4 -9 -7 -14 -7c-4 0 -8 1 -11 4c-8 6 -9 17 -3 25l50 62l1 4l20 72h-5l-26 2c-11 1 -19 10 -18 21v2c-9 6 -15 17 -14 29l3 24c1 12 9 22 19 27l2 30
+c2 18 17 32 35 30s32 -18 30 -36l-1 -9c8 6 17 8 27 5l26 -9v0c2 -1 5 -3 7 -6l28 -44z" />
     <glyph glyph-name="tren" unicode="&#xf657;" horiz-adv-x="290" 
 d="M290 142c0 -19 -15 -36 -33 -36h-37l66 -118c3 -6 1 -15 -5 -18c-2 -2 -4 -2 -6 -2c-5 0 -9 3 -11 7l-12 21h-216l-12 -21c-3 -4 -7 -7 -11 -7c-2 0 -5 1 -7 2c-6 4 -8 12 -5 18l66 118h-32c-19 0 -35 16 -35 35v196c0 40 31 71 71 71h148c40 0 71 -31 71 -71v-195z
 M25 142c0 -6 5 -10 10 -11h221c6 0 10 5 10 10v196c0 26 -22 47 -47 47h-148c-26 0 -46 -22 -46 -47v-195zM44 14h198l-24 42h-151zM210 72l-19 34h-95l-20 -34h134zM83 218c18 0 33 -16 33 -34s-15 -33 -33 -33s-34 15 -34 33s16 34 34 34zM83 166c9 0 17 8 17 17
