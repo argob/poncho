@@ -4182,6 +4182,11 @@
       },
     
       {
+        "nombre": "trekking",
+        "clase": "icono-arg-trekking"
+      },
+    
+      {
         "nombre": "tren",
         "clase": "icono-arg-tren"
       },
