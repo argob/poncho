@@ -65,7 +65,34 @@ Permite asignar estilos de color de fondo, color de línea y ancho de línea al 
 </tbody>
 </table>
 
+## Códigos ISO 3166-2:AR
 
+| Código | Nombre                                                |
+|:--|:--|
+| AR-A   | Salta                                                 |
+| AR-B   | Buenos Aires                                          |
+| AR-C   | Ciudad Autónoma de Buenos Aires                       |
+| AR-D   | San Luis                                              |
+| AR-E   | Entre Ríos                                            |
+| AR-F   | La Rioja                                              |
+| AR-G   | Santiago del Estero                                   |
+| AR-H   | Chaco                                                 |
+| AR-J   | San Juan                                              |
+| AR-K   | Catamarca                                             |
+| AR-L   | La Pampa                                              |
+| AR-M   | Mendoza                                               |
+| AR-N   | Misiones                                              |
+| AR-P   | Formosa                                               |
+| AR-Q   | Neuquén                                               |
+| AR-R   | Río Negro                                             |
+| AR-S   | Santa Fe                                              |
+| AR-T   | Tucumán                                               |
+| AR-U   | Chubut                                                |
+| AR-V   | Tierra del Fuego, Antártida e Islas del Atlántico Sur |
+| AR-W   | Corrientes                                            |
+| AR-X   | Córdoba                                               |
+| AR-Y   | Jujuy                                                 |
+| AR-Z   | Santa Cruz                                            |
 
 
 ## 🚀 Uso
@@ -110,7 +137,8 @@ document.addEventListener('DOMContentLoaded', () => {
     argentinaMapStyle({
         provinces: ["*"],
         color: "var(--secondary)",
-        strokeColor: "#DDDDDD"
+        strokeColor: "#DDDDDD",
+        backgroundColor: "red"
     });
 });
 ```
@@ -133,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
     argentinaMapStyle({
         selectiveColor: [
             ["AR-B", "#525252"],
-            ["AR-C", "var(--danger, red)"],
+            ["AR-C", "var(--tomate, tomato)"],
             ["AR-E", "#525252"],
             ["AR-S", "#525252"],
             ["AR-X", "#525252"],

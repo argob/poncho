@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <link rel="profile" href="http://www.w3.org/1999/xhtml/vocab" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+  <link rel="stylesheet"
+    href="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/poncho.min.css" />
+  <link rel="stylesheet" href="../../../dist/css/device-breadcrumb.css" />
+  <title>Device breadcrumb JS | Caso 1</title>
+  <link rel="stylesheet" href="./css/main.css">
+  <title>Mapa de argentina</title>
+  <style>
+    html,
+    body {
+      padding: 1em;
+      margin: 0;
+      background-color: #f4f4f4;
+      height: 100%;
+    }
+
+
+    .mapa {
+      height: auto;
+      overflow: auto;
+      width: 300px;
+      padding: 1em;
+      border-radius: 15px;
+      background-color: beige;
+      background-color: color-mix(in srgb, var(--verde-cemento) 70%, white);
+      background-color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <nav class="navbar">
+          <ul class="list-unstyled">
+            <li><a href="./index.html">Inicio</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="col-md-12">
+        <h1 class="h2 text-primary">Ejemplo 1</h1>
+        <div class="mapa" id="js-mapa-svg"></div>
+      </div>
+      <div class="col-md-12">
+        <hr>
+        <h3>🚀 Uso</h3>
+        <div><pre>&lt;script src="js-mapa-svg"&gt;&lt;/script&gt;</pre></div>
+        <div><pre>&lt;div id="js-mapa-svg"&gt;&lt;/div&gt;</pre></div>
+        <div><pre class="js-code"></pre></div>
+      </div>
+    </div>
+
+  </div>
+
+    <div class="container m-t-4">
+      <div class="row">
+        <div class="col-md-12 ">
+        <footer class="p-y-1">
+        
+    <img src="https://github.githubassets.com/assets/github-mark-9be88460eaa6.svg" alt="Github" />
+    <a href="https://github.com/argob/poncho">argob/poncho</a>
+    </div>
+  
+  </footer>
+  </div>
+</div>
+ 
+  <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
+  <script src="../mapa-argentina.js"></script>
+
+<script src="./js/demo.js"></script>
+<script id="js-script-sample">
+// start JavaScript code
+document.addEventListener('DOMContentLoaded', () => {
+    argentinaMapStyle({
+        provinces: ["AR-C", "AR-B"],
+        color: "var(--tomate, dodgerBlue)",
+        strokeColor: "#999999",
+        strokeWidth: .5,
+        backgroundColor: "white",
+        defaultColor:"#ddd"
+    });
+});
+// end
+</script>
+
+</body>
+</html>
