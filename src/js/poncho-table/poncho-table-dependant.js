@@ -730,6 +730,7 @@ const ponchoTableDependant = opt => {
          * Instacia DataTable()
          */
         let tabla = jQuery("#ponchoTable").DataTable({
+            responsive: true,
             "initComplete" : (settings, json) => {
                 if(wizard){
                     _hideTable();
@@ -739,8 +740,14 @@ const ponchoTableDependant = opt => {
             "autoWidth": false,
             "pageLength": opt.cantidadItems,
             "columnDefs": [
-                { "type": "html-num", "targets": opt.tipoNumero },
-                { "targets": opt.ocultarColumnas, "visible": false }
+                { 
+                    "type": "html-num",
+                    "targets": opt.tipoNumero
+                },
+                { 
+                    "targets": opt.ocultarColumnas, 
+                    "visible": false 
+                }
             ],
             "ordering": opt.orden,
             "order": [
@@ -1002,6 +1009,14 @@ const ponchoTableDependant = opt => {
             .classList.remove("state-loading");
 
         initDataTable();
+
+        setTimeout(() => {
+            const ele = document.querySelectorAll(`[id^="dt-search-"], #ponchoTable_filter`);
+            ele.forEach(elem => {
+                elem.closest(".row").remove();
+                elem.border = "1px solid red"
+            });
+        }, 300)
     };
 
 
