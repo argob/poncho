@@ -4,10 +4,21 @@
  * @summary Permite agregar definiciones css dentro del head.
  * 
  * @author Agustín Bouillet <bouilleta@jefatura.gob.ar>
- * @param {string} scope Nombre único para identificar las asignaciones css
+ * @param {string} id Nombre único para identificar las asignaciones css
  * @param {string} styleDefinitions Definiciones CSS
+ * @param {string} mediaType Definición para media query
  * @example
+ * //<style id="custom-id">div {border: 2px solid red}</div>
  * headStyle("custom-id", `div { border: 2px solid red}`);
+ * 
+ * //<style id="custom-id" media="all and (max-width: 500px)">
+ * //    div {border: 2px solid red}
+ * //</div>
+ * headStyle(
+ *     "custom-id", 
+ *     `div { border: 2px solid red}`,
+ *     "all and (max-width: 500px)"
+ * );
  * @returns {undefined}
  * 
  * MIT License
@@ -34,11 +45,11 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-const headStyle = (scope, styleDefinitions) => {
-    if (typeof scope !== "string" || scope.trim() === "") {
-        console.warn("No se ha provisto un _scope_ válido. Se usará: "
+const headStyle = (id, styleDefinitions, mediaType) => {
+    if (typeof id !== "string" || id.trim() === "") {
+        console.warn("No se ha provisto un _id_ válido. Se usará: "
             + "'argob-custom-css'.");
-        scope = "argob-custom-css";
+        id = "argob-custom-css";
     }
 
     if (typeof styleDefinitions !== "string" || styleDefinitions.trim() == ""){
@@ -47,7 +58,7 @@ const headStyle = (scope, styleDefinitions) => {
         return;
     }
 
-    const styleExists = document.getElementById(scope);
+    const styleExists = document.getElementById(id);
     if (styleExists !== null) {
         if (styleExists.textContent.trim() === styleDefinitions.trim()) {
             console.warn("[addHeadStyle] Una definición de estilos "
@@ -56,7 +67,7 @@ const headStyle = (scope, styleDefinitions) => {
             
         } else {
             styleExists.remove();
-            console.warn("[addHeadStyle] Un estilo con el mismo _scope_ "
+            console.warn("[addHeadStyle] Un estilo con el mismo _id_ "
                 + "existe, pero tiene definiciones distintas. Se pisa.");
         }
     }
@@ -64,7 +75,11 @@ const headStyle = (scope, styleDefinitions) => {
     document.querySelectorAll("head").forEach(h => {
         const tag = document.createElement("style");
         tag.setAttribute("rel", "stylesheet");
-        tag.id = scope;
+        tag.id = id;
+        if(typeof mediaType === "string" && mediaType.trim() !== ""){
+            tag.setAttribute("media", mediaType);
+        }
+
         tag.textContent = styleDefinitions;
 
         h.appendChild(tag);
