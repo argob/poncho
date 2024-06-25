@@ -1,0 +1,28 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  background-color:#f4f4f4;
+  height: 100%;
+}
+.mapa {
+    height: auto;
+    overflow: auto;
+    width: 300px;
+    padding: 1em;
+    border-radius: 15px;
+    background-color: beige;
+    background-color: color-mix(in srgb, var(--verde-cemento) 70%, white);
+    background-color: white;
+}
+
+
+.doc-nav {
+  display: block;
+  background-color: color-mix(in srgb, var(--verde-cemento, gray) 60%, white);
+  border-radius: 15px;
+  padding:.75em 1em;
+  color: white;
+  margin: .5em .5em 1.5em ;
+}
+.doc-nav > .list-unstyled { margin: 0;}
