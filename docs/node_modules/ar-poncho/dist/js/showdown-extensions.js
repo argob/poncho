@@ -39,14 +39,14 @@ function cleanner(e,n){"object"!=typeof n&&(n=[]);var r=["html","body","div","sp
                         <p></p>
                       </div>
                     </div>
-                  </div>`:t})}}]}),showdown.extension("ejes",function(){"use strict";return[{type:"lang",filter:function(e,t,n){const r=/(col([1-4])<<)[\s\S]*?\[\[ejes-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}\]\][\s\S]*?(>>)/;var a=new RegExp(r,"gmi");return e=e.replace(a,function(e){var e=new RegExp(r,"gmi").exec(e),t={2:"6",3:"4",4:"3",1:"12"};return`<div class="col-xs-12 col-sm-${t[e[2]]} col-md-${t[e[2]]}">
+                  </div>`:t})}}]}),showdown.extension("ejes",function(){"use strict";return[{type:"lang",filter:function(e,t,n){const r=/((?:\[\[)?col(1[0-2]|[1-9])(?:-\{|<<))[\s\S]*?\[\[ejes-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}\]\][\s\S]*?(>>|\}-\]\])/;var a=new RegExp(r,"gmi");return e=e.replace(a,function(e){var e=new RegExp(r,"gmi").exec(e),t={2:"6",3:"4",4:"3",1:"12"};return`<div class="col-xs-12 col-sm-${t[e[2]]} col-md-${t[e[2]]}">
               <div class="icon-item">
                 <i class="${e[5]} ${e[6]}"></i>
                 <p></p>
                 <h3>${e[3]}</h3>
                 <p>${e[4]}</p>
               </div>
-              </div>`})}}]}),showdown.extension("numbers",function(){"use strict";return[{type:"lang",filter:function(e,t,n){const r=/(col([1-4])<<)[\s\S]*?\[\[numeros-\{([^\{\}-]*?)-([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}\]\][\s\S]*?(>>)/;var a=new RegExp(r,"gmi");return e=e.replace(a,function(e){var e=new RegExp(r,"gmi").exec(e),t={2:"6",3:"4",4:"3",1:"12"};return`<div class="col-xs-12 col-sm-${t[e[2]]} col-md-${t[e[2]]}">
+              </div>`})}}]}),showdown.extension("numbers",function(){"use strict";return[{type:"lang",filter:function(e,t,n){const r=/((?:\[\[)?col([2-4])(?:-\{|<<))[\s\S]*?\[\[numeros-\{([^\{\}-]*?)-([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}\]\][\s\S]*?(>>|\}-\]\])/;var a=new RegExp(r,"gmi");return e=e.replace(a,function(e){var e=new RegExp(r,"gmi").exec(e),t={2:"6",3:"4",4:"3",1:"12"};return`<div class="col-xs-12 col-sm-${t[e[2]]} col-md-${t[e[2]]}">
                 <div class="h2 ${e[7]}">
                   ${e[3]}<small>${e[4]}</small>
                 </div>
