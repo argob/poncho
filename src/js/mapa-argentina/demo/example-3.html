@@ -11,9 +11,8 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
   <link rel="stylesheet"
     href="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/poncho.min.css" />
-  <link rel="stylesheet" href="../../../dist/css/device-breadcrumb.css" />
   <link rel="stylesheet" href="./css/main.css">
-  <title>Mapa de argentina | Ejemplo 3</title>
+  <title>Mapa de Argentina SVG | Ejemplo 3</title>
 </head>
 
 <body>
@@ -39,7 +38,8 @@
         <h3>🚀 Uso</h3>
         <div><pre>&lt;script src="js-mapa-svg"&gt;&lt;/script&gt;</pre></div>
         <div><pre>&lt;div id="js-mapa-svg"&gt;&lt;/div&gt;</pre></div>
-        <div><pre class="js-code"></pre></div>
+        <div data-code-from="js-map"  data-styles="text-arandano,h5,m-t-2" data-htmltag="h3" data-title="Script para el mapa SVG"></div>
+        <div data-code-from="js-headstyle" data-styles="text-arandano,h5,m-t-2" data-htmltag="h3" data-title="Agrega estilos en el head"></div>
       </div>
     </div>
   </div>
@@ -61,22 +61,40 @@
 <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
 <script src="../mapa-argentina.js"></script>
 <script src="./js/demo.js"></script>
-<script id="js-script-sample">
-    document.addEventListener('DOMContentLoaded', () => {
-        argentinaMapStyle({
-            selectiveColor: [
-                ["AR-B", "#525252"],
-                ["AR-C", "var(--tomate, tomato)"],
-                ["AR-E", "#525252"],
-                ["AR-S", "#525252"],
-                ["AR-X", "#525252"],
-            ],
-            defaultColor: "#f9f9f9",
-            strokeColor: "#eee",
-            strokeWidth: 1,
-            backgroundColor: "color-mix(in srgb, var(--verde-cemento) 70%, white)"
-        });
-    });
+<script src="../../utils/document.js"></script>
+<script id="js-headstyle">
+  headStyle(
+    "mapa-svg", 
+    `.mapa {
+        height: auto;
+        overflow: auto;
+        width: 300px;
+        padding: 1em;
+        border-radius: 15px;
+        background-color: white;}`);
+</script>
+<script id="js-map">
+document.addEventListener('DOMContentLoaded', () => {
+    let color = "#555";
+    const options = {
+        selectiveColor: [
+            ["AR-B", color],
+            ["AR-C", "var(--tomate, tomato)"],
+            ["AR-E", color],
+            ["AR-S", color],
+            ["AR-X", color]
+        ],
+        defaultColor: "#f9f9f9",
+        strokeColor: "#ddd",
+        strokeWidth: 1,
+        backgroundColor: "color-mix(in srgb, var(--verde-cemento) 50%, white)",
+        reprStrokeColor: "color-mix(in srgb, var(--verde-cemento) 70%, black)",
+        reprStrokeWidth: ".5",
+    };
+
+    const arg = new ArgentinaMap(options);
+    arg.render();
+});
 </script>
 </body>
 </html> 

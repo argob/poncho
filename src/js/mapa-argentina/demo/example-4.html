@@ -10,7 +10,7 @@
   <link rel="stylesheet"
     href="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/poncho.min.css" />
   <link rel="stylesheet" href="./css/main.css">
-  <title>Mapa de Argentina SVG | Ejemplo 2</title>
+  <title>Mapa de Argentina SVG | Ejemplo 4</title>
 </head>
 
 <body>
@@ -22,17 +22,14 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <h1 class="h2 text-primary">Ejemplo 2</h1>
-        <div class="mapa" id="js-mapa-svg"></div>
+        <h1 class="h2 text-primary">Mapa por defecto</h1>
+        <div style="width:300px; height: auto;" id="js-mapa-svg"></div>
       </div>
       <div class="col-md-12">
         <hr>
         <h3>🚀 Uso</h3>
         <div><pre>&lt;script src="js-mapa-svg"&gt;&lt;/script&gt;</pre></div>
-        <div><pre>&lt;div id="js-mapa-svg"&gt;&lt;/div&gt;</pre></div>
-        <div data-code-from="js-map"  data-styles="text-arandano,h5,m-t-2" data-htmltag="h3" data-title="Script para el mapa SVG"></div>
-        <div data-code-from="js-headstyle" data-styles="text-arandano,h5,m-t-2" data-htmltag="h3" data-title="Agrega estilos en el head"></div>
-
+        <div><pre>&lt;div style="width:300px; height: auto;" id="js-mapa-svg"&gt;&lt;/div&gt;</pre></div>
       </div>
     </div>
   </div>
@@ -54,27 +51,6 @@
 <script src="../mapa-argentina.js"></script>
 <script src="./js/demo.js"></script>
 <script src="../../utils/document.js"></script>
-<script id="js-headstyle">
-  headStyle(
-    "mapa-svg", 
-    `.mapa {
-        height: auto;
-        overflow: auto;
-        width: 300px;
-        padding: 1em;
-        border-radius: 15px;
-        background-color: white;}`);
-</script>
-<script id="js-map">
-document.addEventListener('DOMContentLoaded', () => {
-    const options = {
-        color: "var(--secondary)",
-        strokeColor: "#EEE"
-    };
 
-    const arg = new ArgentinaMap(options);
-    arg.render();
-});
-</script>
 </body>
 </html> 
