@@ -270,7 +270,7 @@
               <i></i>
 
               <div class="etiquetas"></div>
-              <pre class="m-b-2"><div id="copy"></div></pre>
+              <pre class="m-b-2"><span id="copy"></span></pre>
 
 
               <div class="alert alert-success" id="mensajeCopiado" style="display:none">Se ha copiado el nombre en el portapapeles</div>
@@ -437,6 +437,7 @@ $(function(){
             //$('#iconoModal .modal-body i').attr("class",icon).addClass("fa-5x");
             var img = $('<img >'); //Equivalent: $(document.createElement('img'))
             img.attr('src', ilus);
+            img.attr('alt', alt);
             img.appendTo('#iconoModal .modal-title');
 
             $(".etiquetas").html("");
