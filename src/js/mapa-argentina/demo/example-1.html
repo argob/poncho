@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="profile" href="http://www.w3.org/1999/xhtml/vocab" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+  <link rel="stylesheet"
+    href="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/poncho.min.css" />
+  <link rel="stylesheet" href="./css/main.css">
+  <title>Mapa de Argentina SVG | Ejemplo 1</title>
+</head>
+<body>
+  <nav class="doc-nav">
+    <ul class="list-unstyled">
+      <li><a href="./index.html">Inicio</a></li>
+    </ul>
+  </nav>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1 class="h2 text-primary">Ejemplo 1</h1>
+        <div class="mapa" id="js-mapa-svg"></div>
+      </div>
+      <div class="col-md-12">
+        <hr>
+        <h3>🚀 Uso</h3>
+        <div><pre>&lt;script src="js-mapa-svg"&gt;&lt;/script&gt;</pre></div>
+        <div><pre>&lt;div id="js-mapa-svg"&gt;&lt;/div&gt;</pre></div>
+        <div data-code-from="js-map"  data-styles="text-arandano,h5,m-t-2" data-htmltag="h3" data-title="Script para el mapa SVG"></div>
+        <div data-code-from="js-headstyle" data-styles="text-arandano,h5,m-t-2" data-htmltag="h3" data-title="Agrega estilos en el head"></div>
+      </div>
+    </div>
+  </div>
+    <div class="container m-t-4">
+      <div class="row">
+        <div class="col-md-12 ">
+        <footer class="p-y-1">
+    <img src="https://github.githubassets.com/assets/github-mark-9be88460eaa6.svg" alt="Github" />
+    <a href="https://github.com/argob/poncho">argob/poncho</a>
+    </div>
+  </footer>
+  </div>
+</div>
+  <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
+  <script src="../mapa-argentina.js"></script>
+  <script src="../../utils/document.js"></script>
+  <script id="js-headstyle">
+    headStyle(
+        "mapa-svg", 
+        `.mapa {
+            height: auto;
+            overflow: auto;
+            width: 400px;
+            padding: 1em;
+            border-radius: 15px;
+            background-color: white;
+        }`
+    );
+  </script>
+<script src="./js/demo.js"></script>
+<script id="js-map">
+document.addEventListener('DOMContentLoaded', () => {
+    const options = {
+        provinces: ["AR-C", "AR-B", "AR-E", "AR-V"],
+        color: "var(--secondary, orange)",
+        strokeColor: "#ccc",
+        strokeWidth: .75,
+        defaultColor: '#F4F4F4',
+    };
+    const arg = new ArgentinaMap(options);
+    arg.render();
+});
+</script>
+</body>
+</html>
