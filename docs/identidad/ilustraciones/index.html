@@ -207,8 +207,8 @@
          <p>Poncho tiene su propia librería de ilustraciones.</p>
          <hr>
               <div class="form-group">
-              <label for="buscadorIconos">Buscá por nombre o descripción: </label>
-                <input class="form-control" id="buscadorIconos">
+              <label for="buscadorIlustraciones">Buscá por nombre o descripción: </label>
+                <input class="form-control" id="buscadorIlustraciones">
               </div>
               
               <div class="contenedor">
@@ -362,8 +362,8 @@ $(function(){
           //TITULOS
           $.each(ilustraciones, function(index, val) {
 
-              $("#listaPoncho .row").append('<div class="icono col-xs-6 col-sm-4 col-md-3 text-center margin-40"><i class="'+ val["gsx$codigo"]["$t"] +'"></i><div class="name">'+ val["gsx$nombre"]["$t"] +'</div><div class="tags hidden">'+ val["gsx$etiquetas"]["$t"] +'</div></div>');
-
+              $("#listaPoncho .row").append('<div class="col-xs-12 col-sm-4 text-center"><a href="#" class="panel panel-default"><figure><img src="https://raw.githubusercontent.com/argob/iconos/master/src/_ilus/'+ val["gsx$codigo"]["$t"] + '.svg" alt="" class="img-responsive"><div class="name">'+ val["gsx$nombre"]["$t"] +'</div></figure></a></div>');
+                //<div class="tags hidden">'+ val["gsx$etiquetas"]["$t"] +'</div></div>');
 
           })
 
@@ -377,7 +377,7 @@ $(function(){
           var options = { valueNames: [ 'name','tags' ] };
           var listaPoncho = new List('listaPoncho', options);
 
-          $("#buscadorIconos").on("keyup", function(e) {
+          $("#buscadorIlustraciones").on("keyup", function(e) {
               busqueda = $(this).val();
               buscarIcono(busqueda)
           })
@@ -406,7 +406,7 @@ $(function(){
                 };
                 
 
-                xhttp.open("GET", "https://raw.githubusercontent.com/argob/iconos/master/src/_icons/"+ nombre + ".svg", true);
+                xhttp.open("GET", "https://raw.githubusercontent.com/argob/iconos/master/src/_ilus/"+ codigo + ".svg", true);
                 xhttp.send();
             }
 
@@ -455,7 +455,7 @@ $(function(){
             var etiqueta = $(this).html();
             console.log(etiqueta);
             $('#iconoModal').modal('hide');
-            $("#buscadorIconos").val(etiqueta);
+            $("#buscadorIlustraciones").val(etiqueta);
             buscarIcono(etiqueta)
           })
 
