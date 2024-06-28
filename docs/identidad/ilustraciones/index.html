@@ -86,10 +86,6 @@
 
 
     
-    <!--solo para Listado de iconos-->
-    <script src="/poncho/node_modules/list.js/dist/list.min.js"></script>
-    <script src="/poncho/node_modules/clipboard/dist/clipboard.min.js"></script>
-    
 
 
 
@@ -109,18 +105,18 @@
 
     <link href="https://id.argentina.gob.ar/static/css/chosen/chosen.css" rel="stylesheet">
     <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Iconos | Sitio Demo Poncho</title>
+<title>Ilustraciones | Sitio Demo Poncho</title>
 <meta name="generator" content="Jekyll v3.10.0" />
-<meta property="og:title" content="Iconos" />
+<meta property="og:title" content="Ilustraciones" />
 <meta property="og:locale" content="es" />
 <meta name="description" content="La librería de estilos y componentes oficiales para diseñar y desarrollar sitios web y aplicaciones móviles del Gobierno de la República Argentina." />
 <meta property="og:description" content="La librería de estilos y componentes oficiales para diseñar y desarrollar sitios web y aplicaciones móviles del Gobierno de la República Argentina." />
 <meta property="og:site_name" content="Sitio Demo Poncho" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Iconos" />
+<meta property="twitter:title" content="Ilustraciones" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","description":"La librería de estilos y componentes oficiales para diseñar y desarrollar sitios web y aplicaciones móviles del Gobierno de la República Argentina.","headline":"Iconos","url":"/poncho/identidad/ilustraciones/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","description":"La librería de estilos y componentes oficiales para diseñar y desarrollar sitios web y aplicaciones móviles del Gobierno de la República Argentina.","headline":"Ilustraciones","url":"/poncho/identidad/ilustraciones/"}</script>
 <!-- End Jekyll SEO tag -->
   
 </head>
@@ -171,7 +167,7 @@
       
     
       
-        <li>Iconos</li>
+        <li>Ilustraciones</li>
       
     
 </ol>
@@ -207,8 +203,8 @@
       <section>
          <div class="col-sm-12">
 
-         <h1>Íconos</h1>
-         <p>Poncho tiene su propia librería de íconos. En el caso de no encontrar uno puntual se pueden usar los íconos de <a href="https://fontawesome.com/">Font Awesome.</a></p>
+         <h1>Ilustraciones</h1>
+         <p>Poncho tiene su propia librería de ilustraciones.</p>
          <hr>
               <div class="form-group">
               <label for="buscadorIconos">Buscá por nombre o descripción: </label>
@@ -224,18 +220,6 @@
                   <div class="error alert alert-danger" style="display:none">No se han encontrado íconos de <strong>Poncho</strong> con tu búsqueda, probá de otra forma.</div>
                 </div>
               </div>
-              
-              <div class="contenedor">
-                <h2>Font Awesome</h2>
-                <hr>
-                <div class="preloader">Cargando...</div>
-                <div id="listaFontawesome">
-                  <div class="row row-flex list"></div>
-                  <div class="error alert alert-danger" style="display:none">No se han encontrado íconos de <a href="https://fontawesome.com/" target="_blank"><strong>Font Awesome</strong></a> con tu búsqueda, probá de otra forma.</div>
-                </div>
-              </div>
-
-
         </div> 
       </section>
       </div>
@@ -253,7 +237,7 @@
                 <li><a href="/servicios">Trámites y servicios</a></li>
                 <li><a href="/organismos">Organismos del Estado</a></li>
                 <li><a href="/pais">Nuestro país</a></li>
-                <li><a href="http://mapadelestado.modernizacion.gob.ar/">Mapa del Estado</a></li>
+                <li><a href="https://mapadelestado.jefatura.gob.ar/">Mapa del Estado</a></li>
               </ul>
             </div>
             <div class="col-md-3 col-sm-6">
@@ -365,7 +349,7 @@ $(function(){
   })
   
   var idSpread = '13CLjNqMQlUXj849XYL_nGDaAkE90OOFT3mXL-Iag9xM';
-  var hojaNombre = 'Iconos';
+  var hojaNombre = 'Ilustraciones';
   var sheetURL = 'https://sheets.googleapis.com/v4/spreadsheets/' + idSpread + '/values/' + hojaNombre + '?alt=json&key=AIzaSyCq2wEEKL9-6RmX-TkW23qJsrmnFHFf5tY'
 
   jQuery.getJSON(sheetURL,
@@ -373,20 +357,13 @@ $(function(){
     function(data) {
           data = gapi_legacy(data);
           $(".preloader").remove();
-          iconos = data['feed']['entry'];
+          ilustraciones = data['feed']['entry'];
 
           //TITULOS
-          $.each(iconos, function(index, val) {
+          $.each(ilustraciones, function(index, val) {
 
-            if(val.gsx$grupo.$t == "Poncho"){
-              //console.log(val.gsx$grupo.$t);
               $("#listaPoncho .row").append('<div class="icono col-xs-6 col-sm-4 col-md-3 text-center margin-40"><i class="'+ val["gsx$codigo"]["$t"] +'"></i><div class="name">'+ val["gsx$nombre"]["$t"] +'</div><div class="tags hidden">'+ val["gsx$etiquetas"]["$t"] +'</div></div>');
-            }
 
-            if(val.gsx$grupo.$t == "Font Awesome"){
-              $("#listaFontawesome .row").append('<div class="icono col-xs-6 col-sm-4 col-md-3 text-center margin-40"><i class="'+ val["gsx$codigo"]["$t"] +'" title="prueba"></i><div class="name">'+ val["gsx$nombre"]["$t"] +'</div><div class="tags hidden">'+ val["gsx$etiquetas"]["$t"] +'</div></div>');
-              
-            }
 
           })
 
@@ -399,7 +376,6 @@ $(function(){
           //BUSCADOR
           var options = { valueNames: [ 'name','tags' ] };
           var listaPoncho = new List('listaPoncho', options);
-          var listaFontawesome = new List('listaFontawesome', options);
 
           $("#buscadorIconos").on("keyup", function(e) {
               busqueda = $(this).val();
@@ -439,10 +415,8 @@ $(function(){
           //Recorre todas las listas para filtrar el contenido
           function buscarIcono(busqueda){
             listaPoncho.search(busqueda); 
-            listaFontawesome.search(busqueda); 
 
             if(listaPoncho.visibleItems.length == 0){$("#listaPoncho .error").show()}else{$("#listaPoncho .error").hide()}
-            if(listaFontawesome.visibleItems.length == 0){$("#listaFontawesome .error").show()}else{$("#listaFontawesome .error").hide()}
           }
 
           // crea svg a partir del código
@@ -499,10 +473,6 @@ $(function(){
 })
 
     </script>
-
-
-
-
 
       </main>
       <script type="module">
