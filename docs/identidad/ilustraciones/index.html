@@ -433,23 +433,27 @@ $(function(){
             tags = $(this).find(".tags").html().split(",");
             
             $('#iconoModal .modal-title').html(name + " <small>(<span id='codigoCopiar'>" + ilus + "</span>)</small>");
-            $('#iconoModal .modal-body i').attr("class",icon).addClass("fa-5x");
+            //$('#iconoModal .modal-body i').attr("class",icon).addClass("fa-5x");
+            var img = $('<img >'); //Equivalent: $(document.createElement('img'))
+            img.attr('src', ilus);
+            img.appendTo('#iconoModal .modal-title');
+
             $(".etiquetas").html("");
 
             $.each(tags, function(index, val) {
                $(".etiquetas").append('<a href="#" class="label label-default etiqueta">'+val+'</a>');
             });
             
-            $("#copy").html('&lt;i class="'+ icon +'">&lt;/i>');
+            $("#copy").html('&lt;img src="'+ ilus +'"&gt;&lt;/img&gt;');
             //$("#copyImgId").attr("href", "https://raw.githubusercontent.com/argob/iconos/master/src/_icons/"+name+".svg");
-
+/*
             var nono = icon.startsWith("fa");
             if(nono){
               document.querySelector('#copyImgId').classList.add('hidden');
             } else {
               document.querySelector('#copyImgId').classList.remove('hidden');
               }
-
+*/
             $('#iconoModal').modal('show');
           })
           
