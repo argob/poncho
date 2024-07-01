@@ -36,7 +36,7 @@ jobs:
           ls ./iconos/dist/fonts/
           cp ./iconos/dist/fonts/icono-arg_* ./poncho/dist/fonts/
           echo "Copiamos las ilustraciones"
-          cp ./iconos/dist/ilustraciones ./poncho/dist/ilustraciones
+          cp -R ./iconos/dist/ilustraciones ./poncho/dist/
           echo "Copiamos el JSON de los íconos e ilustraciones"
           mkdir -p ./poncho/dist/jsons
           cp ./iconos/docs/icono-arg.json ./poncho/dist/jsons/
