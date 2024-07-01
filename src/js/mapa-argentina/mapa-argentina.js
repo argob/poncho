@@ -871,7 +871,7 @@ class ArgentinaMap {
 	 * @returns {undefined}
 	 */
 	elementTitleAndDesc = (selector, title, description) => {
-		if(typeof title !== "string" && title.trim() === ""){
+		if(typeof title !== "string" || title.trim() === ""){
 			return;
 		}
 
@@ -979,10 +979,7 @@ class ArgentinaMap {
         const mapRect = document.querySelectorAll(selectors);
         mapRect.forEach(ele => {
             ele.setAttribute("stroke", strokeColor);
-            console.log(selector)
-
-                ele.setAttribute("stroke-width", strokeWidth);
-            
+            ele.setAttribute("stroke-width", strokeWidth);
         });
     }
 
