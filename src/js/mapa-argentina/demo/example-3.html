@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <link rel="profile" href="http://www.w3.org/1999/xhtml/vocab" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+  <link rel="stylesheet"
+    href="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/poncho.min.css" />
+  <link rel="stylesheet" href="./css/main.css">
+  <title>Mapa de Argentina SVG | Ejemplo 3</title>
+</head>
+
+<body>
+ 
+    <nav class="doc-nav">
+      <ul class="list-unstyled">
+        <li><a href="./index.html">Inicio</a></li>
+      </ul>
+    </nav>
+
+
+  <div class="container">
+    <div class="row">
+
+
+
+      <div class="col-md-12" style="position: relative;">
+        <h1 class="h2 text-primary">Ejemplo 3</h1>
+        <div id="tooltip" style="position: absolute; display: none;"></div>
+        <div class="mapa" id="js-mapa-svg"></div>
+      </div>
+      <div class="col-md-12">
+        <hr>
+        <h3>🚀 Uso</h3>
+        <div><pre>&lt;script src="js-mapa-svg"&gt;&lt;/script&gt;</pre></div>
+        <div><pre>&lt;div id="js-mapa-svg"&gt;&lt;/div&gt;</pre></div>
+        <div data-code-from="js-map"  data-styles="text-arandano,h5,m-t-2" data-htmltag="h3" data-title="Script para el mapa SVG"></div>
+        <div data-code-from="js-headstyle" data-styles="text-arandano,h5,m-t-2" data-htmltag="h3" data-title="Agrega estilos en el head"></div>
+      </div>
+    </div>
+  </div>
+    <div class="container m-t-4">
+      <div class="row">
+        <div class="col-md-12 ">
+        <footer class="p-y-1">
+        
+    <img src="https://github.githubassets.com/assets/github-mark-9be88460eaa6.svg" alt="Github" />
+      <a href="https://github.com/argob/poncho">argob/poncho</a>
+    </div>
+  </footer>
+  </div>
+</div>
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
+<script src="../mapa-argentina.js"></script>
+<script src="./js/demo.js"></script>
+
+
+
+<script src="../../utils/document.js"></script>
+<script id="js-headstyle">
+  headStyle(
+    "mapa-svg", 
+    `.mapa {
+        height: auto;
+        overflow: auto;
+        width: 400px;
+        padding: 1em;
+        border-radius: 15px;
+        background-color: white;}`);
+</script>
+<script id="js-map">
+document.addEventListener('DOMContentLoaded', () => {
+    let color = "#555";
+
+    let frenteDeTodos = "var(--celeste-argentina, dodgerblue)";
+    let juntosPorElCambio = "var(--maiz, gold)";
+    let peronismoNoK = "var(--verde-aloe, green)";
+    let otros = "color-mix(in srgb, var(--verde-cemento) 80%, black)";
+    const options = {
+        selectiveColor: [
+            ["AR-B", color],
+            ["AR-C", "var(--tomate, tomato)"],
+            ["AR-E", color],
+            ["AR-S", color],
+            ["AR-X", color]
+        ],
+        selectiveColor: [
+            ["AR-B", frenteDeTodos],
+            ["la pampa", frenteDeTodos],
+            ["la rioja", frenteDeTodos],
+            ["AR-K", frenteDeTodos],
+            ["AR-T", frenteDeTodos],
+            ["AR-A", frenteDeTodos],
+            ["Formosa", frenteDeTodos],
+            ["misiones", frenteDeTodos],
+            ["santiago del estero", frenteDeTodos],
+            ["AR-C", juntosPorElCambio],
+            ["AR-S", juntosPorElCambio],
+            ["AR-E", juntosPorElCambio],
+            ["corrientes", juntosPorElCambio],
+            ["Chaco", juntosPorElCambio],
+            ["AR-Y", juntosPorElCambio],
+            ["mendoza", juntosPorElCambio],
+            ["san juan", juntosPorElCambio],
+            ["san luis", juntosPorElCambio],
+            ["chubut", juntosPorElCambio],
+            ["chubut", juntosPorElCambio],
+            ["AR-X", peronismoNoK],
+            ["santa cruz", otros],
+            ["AR-V", otros],
+            ["neuquen", otros],
+            ["rio negro", otros],
+        ],
+        provincesTitleAndDesc: [        
+            ["AR-A", "Salta"],
+            ["AR-B", "Buenos Aires"],
+            ["AR-C", "Ciudad Autónoma de Buenos Aires"],
+            ["AR-D", "San Luis"],
+            ["AR-E", "Entre Ríos"],
+            ["AR-F", "La Rioja"],
+            ["AR-G", "Santiago del Estero"],
+            ["AR-H", "Chaco"],
+            ["AR-J", "San Juan"],
+            ["AR-K", "Catamarca"],
+            ["AR-L", "La Pampa"],
+            ["AR-M", "Mendoza"],
+            ["AR-N", "Misiones"],
+            ["AR-P", "Formosa"],
+            ["AR-Q", "Neuquén"],
+            ["AR-R", "Río Negro"],
+            ["AR-S", "Santa Fe"],
+            ["AR-T", "Tucumán"],
+            ["AR-U", "Chubut"],
+            ["AR-V", "Tierra del Fuego, Antártida e Islas del Atlántico Sur"],
+            ["AR-W", "Corrientes"],
+            ["AR-X", "Córdoba"],
+            ["AR-Y", "Jujuy"],
+            ["AR-Z", "Santa Cruz"]
+        ],
+        defaultColor: "#f9f9f9",
+        defaultColor: "color-mix(in srgb, var(--verde-cemento) 10%, white)",
+        strokeColor: "#FFF",
+        strokeWidth: 1,
+        backgroundColor: "color-mix(in srgb, var(--verde-cemento) 5%, white)",
+        reprStrokeColor: "color-mix(in srgb, var(--verde-cemento) 95%, black)",
+        reprStrokeWidth: 0.5,
+        svgTitle: "QUIÉN GOBIERNA CADA PROVINCIA"
+    };
+
+    const arg = new ArgentinaMap(options);
+    arg.render();
+});
+</script>
+<script>
+    function showTooltip(evt, text) {
+        let tooltip = document.getElementById("tooltip");
+        tooltip.innerHTML = text;
+        tooltip.style.display = "block";
+        tooltip.style.left = evt.x + 10 + 'px';
+        tooltip.style.top = evt.y - 100 + 'px';
+    }
+    
+    function hideTooltip() {
+        var tooltip = document.getElementById("tooltip");
+        tooltip.style.display = "none";
+    }
+
+    function ttip(){
+        const titles = document.querySelectorAll("g");
+        titles.forEach(ele => {
+            ele.addEventListener('mousemove', (f) => {
+                const text = ele.children[0].textContent;
+                showTooltip(f, text);
+            });
+            
+            ele.addEventListener('mouseout', hideTooltip);
+        });
+    }
+
+    headStyle("id_tooltip", `
+        #tooltip {
+          background: rgb(0 0 0/.8);
+          color:white;
+          border: 1px solid  rgb(0 0 0/.75);
+          border-radius: 6px;
+          padding: 3px 5px;
+          top: 0px;
+          left:0;
+          font-size:small
+        }
+    `);
+  </script>
+</body>
+</html> 
