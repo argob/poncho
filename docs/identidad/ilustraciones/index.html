@@ -364,7 +364,7 @@ $(function(){
           //TITULOS
           $.each(ilustraciones, function(index, val) {
 
-              $("#listaPoncho .row").append('<div class="ilustracion col-xs-12 col-sm-4 text-center"><a href="#" class="panel panel-default"><figure><img src="https://raw.githubusercontent.com/argob/iconos/master/src/_ilus/'+ val["gsx$codigo"]["$t"] + '.svg" alt="'+ val["gsx$descripción(textoalternativo)"]["$t"] + '" class="img-responsive"><div class="name">'+ val["gsx$nombre"]["$t"] +'</div></figure><div class="tags hidden">'+ val["gsx$etiquetas"]["$t"] +'</div></a></div>');
+              $("#listaPoncho .row").append('<div class="ilustracion col-xs-12 col-sm-4 text-center"><a href="#" class="panel panel-default"><figure><img src="https://raw.githubusercontent.com/argob/iconos/master/dist/ilustraciones/'+ val["gsx$codigo"]["$t"] + '.svg" alt="'+ val["gsx$descripción(textoalternativo)"]["$t"] + '" class="img-responsive"><div class="name">'+ val["gsx$nombre"]["$t"] +'</div></figure><div class="tags hidden">'+ val["gsx$etiquetas"]["$t"] +'</div></a></div>');
                 
 
           })
