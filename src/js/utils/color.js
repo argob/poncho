@@ -129,6 +129,16 @@ const ponchoColorDefinitionsList = [
         ]
     },
     {
+        description: "Elementos básicos",
+        scope: "",
+        name: "Negro",
+        color: "#333333",
+        code: "black",
+        alias: [
+            "black"
+        ]
+    },
+    {
         description: "Enlace visitado",
         scope: "brand",
         name: "Uva",
