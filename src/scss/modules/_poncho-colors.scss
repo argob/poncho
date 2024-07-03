@@ -1,7 +1,9 @@
 //== Colors
 //## Colores poncho
+$miarg-azul: #362FC1 !default; 
+$arena: #EAE1B7 !default; 
+$rosado: #F48EAB !default; 
 $white: #FFFFFF !default; 
-$black: #333333 !default; 
 $gray-base: #333333 !default; 
 $brand-azul: #242C4F !default; 
 $brand-primary: #242C4F !default; 
@@ -47,8 +49,10 @@ $brand-complementary: #EF5350 !default;
 $brand-azul-marino: #242C4F !default; 
 $brand-amarillo-intenso: #E7BA61 !default; 
 
-$colores: ("white", $white),
-("black", $black),
+$colores: ("miarg-azul", $miarg-azul),
+("arena", $arena),
+("rosado", $rosado),
+("white", $white),
 ("gray-base", $gray-base),
 ("azul", $brand-azul),
 ("primary", $brand-primary),
