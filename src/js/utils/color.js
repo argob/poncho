@@ -5,6 +5,36 @@ const ponchoColorDefinitionsList = [
     {
         description: "",
         scope: "",
+        name: "Azul MiArgentina",
+        color: "#362FC1",
+        code: "miarg-azul",
+        alias: [
+            "miarg-azul"
+        ]
+    },
+    {
+        description: "",
+        scope: "",
+        name: "Arena",
+        color: "#EAE1B7",
+        code: "arena",
+        alias: [
+            "arena"
+        ]
+    },
+    {
+        description: "",
+        scope: "",
+        name: "Rosado",
+        color: "#F48EAB",
+        code: "rosado",
+        alias: [
+            "rosado"
+        ]
+    },
+    {
+        description: "",
+        scope: "",
         name: "Blanco",
         color: "#FFFFFF",
         code: "white",
