@@ -229,7 +229,15 @@ aside {
 .bg-amarillo-intenso {
   background-color: $brand-amarillo-intenso !important;
 }
-
+.bg-arena {
+  background-color: $brand-arena !important;
+}
+.bg-rosado {
+  background-color: $brand-rosado !important;
+}
+.bg-miarg-azul {
+  background-color: $brand-miarg-azul !important;
+}
 
 
 
@@ -461,6 +469,16 @@ a.bg-danger {
 .text-amarillo-intenso {
   color: $brand-amarillo-intenso !important;
 }
+.text-arena {
+  color: $brand-arena !important;
+}
+.text-rosado {
+  color: $brand-rosado !important;
+}
+.text-miarg-azul {
+  color: $brand-miarg-azul !important;
+}
+
 
 .nav > li > a {
   text-decoration: none;
