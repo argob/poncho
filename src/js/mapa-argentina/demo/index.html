@@ -1,57 +1,33 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
   <link rel="profile" href="http://www.w3.org/1999/xhtml/vocab" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
   <link rel="stylesheet"
     href="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/poncho.min.css" />
-  <link rel="stylesheet" href="../../../dist/css/device-breadcrumb.css" />
-  <title>Device breadcrumb JS | Caso 1</title>
+  <title>Mapa de Argentina SVG | Inicio</title>
   <link rel="stylesheet" href="./css/main.css">
-  <title>Mapa de argentina</title>
-  <style>
-    html,
-    body {
-      padding: 1em;
-      margin: 0;
-      background-color:#f4f4f4;
-      height: 100%;
-    }
-
-
-    .mapa {
-        height: auto;
-        overflow: auto;
-        width: 300px;
-        padding: 1em;
-        border-radius: 15px;
-        background-color: beige;
-        background-color: color-mix(in srgb, var(--verde-cemento) 70%, white);
-        background-color: white;
-    }
-  </style>
 </head>
-
 <body>
-  <h1 class="h2 text-primary">Mapa Argentina SVG</h1>
-<!-- <div>  <div id="js-mapa-svg" class="mapa"></div></div> -->
-<div class="mapa js-map" id="js-mapa-svg"></div>
-<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
-  <script src="../mapa-argentina.js"></script>
-  <script>
-      document.addEventListener('DOMContentLoaded', () => {
-          argentinaMapStyle({
-              provinces: ["*"],
-              color: "var(--secondary)",
-              strokeColor: "#DDDDDD"
-          });
-      });
-  </script>
+  <!-- Example -->
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1 class="h3">Mapa de Argentina SVG</h1>
+        <h2 class="h4 text-tomate">Casos de uso</h2>
+        <ol>
+          <li><a href="./example-4.html">Mapa por defecto</a></li>
+          <li><a href="./example-1.html">Dos provincias con color</a></li>
+          <li><a href="./example-2.html">Mapa de un solo color</a></li>
+          <li><a href="./example-3.html">Provincias con color selectivo</a></li>
+          <li><a href="./example-5.html">Provincias asignadas por su nombre</a></li>
+    
+        </ol>
+      </div>
+    </div>
+  </div>
+  <!-- / Example -->
 </body>
-</html> 
+</html>

@@ -1,7 +1,9 @@
 //== Colors
 //## Colores poncho
+$miarg-azul: #362FC1 !default; 
+$arena: #EAE1B7 !default; 
+$rosado: #F48EAB !default; 
 $white: #FFFFFF !default; 
-$black: #333333 !default; 
 $gray-base: #333333 !default; 
 $brand-azul: #242C4F !default; 
 $brand-primary: #242C4F !default; 
@@ -10,6 +12,7 @@ $brand-danger: #C62828 !default; // Atención o peligro
 $brand-warning: #E7BA61 !default; // Foco o alerta
 $brand-info: #3e5a7e !default; 
 $brand-black: #333333 !default; // Elementos básicos
+$black: #333333 !default; // Elementos básicos
 $brand-uva: #6A1B99 !default; // Enlace visitado
 $brand-muted: #525252 !default; // Texto secundario (subtitulos)
 $gray: #555555 !default; // Gris área
@@ -46,9 +49,14 @@ $brand-secondary: #45658D !default;
 $brand-complementary: #EF5350 !default; 
 $brand-azul-marino: #242C4F !default; 
 $brand-amarillo-intenso: #E7BA61 !default; 
+$brand-arena: #EAE1B7 !default; 
+$brand-miarg-azul: #362FC1 !default; 
+$brand-rosado: #F48EAB !default;
 
-$colores: ("white", $white),
-("black", $black),
+$colores: ("miarg-azul", $miarg-azul),
+("arena", $arena),
+("rosado", $rosado),
+("white", $white),
 ("gray-base", $gray-base),
 ("azul", $brand-azul),
 ("primary", $brand-primary),

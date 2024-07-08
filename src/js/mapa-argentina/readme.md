@@ -1,11 +1,11 @@
 # 📦 Mapa de Argentina SVG
 
+Este mapa de la República Argentina en SVG permite al usuario personalizar su visualización a través de diversas opciones. Define el color de una, varias o todas las provincias; modifica el color de fondo del mapa y ajusta el grosor de las líneas para crear una representación única del país.
 
-## 🧰 Opciones y métodos
 
-### argentinaMapStyle()
+## ArgentinaMap()
 
-Permite asignar estilos de color de fondo, color de línea y ancho de línea al mapa. 
+### 🧰 Opciones y métodos
 
 <table>
 <thead>
@@ -62,11 +62,24 @@ Permite asignar estilos de color de fondo, color de línea y ancho de línea al 
 * Hay que tener en cuenta que éste método tiene precedencia sobre <em><code>provinces</code></em>.
 </p></td>
 </tr>
+
+<tr>
+<td align="left"><em>reprStrokeColor</em></td>
+<td align="left"><code>string</code></td>
+<td align="left"><code>false</code></td>
+<td align="left">Color de linea para los elementos cambiados de escala como: Antártida y CABA.</td>
+</tr>
+<tr>
+<td align="left"><em>reprStrokeWidth</em></td>
+<td align="left"><code>`string|float`</code></td>
+<td align="left"><code>false</code></td>
+<td align="left">Grueso de la linea para los elementos cambiados de escala.</td>
+</tr>
 </tbody>
 </table>
 
 
-
+****
 
 ## 🚀 Uso
 
@@ -133,7 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
     argentinaMapStyle({
         selectiveColor: [
             ["AR-B", "#525252"],
-            ["AR-C", "var(--danger, red)"],
+            ["AR-C", "var(--tomate, tomato)"],
             ["AR-E", "#525252"],
             ["AR-S", "#525252"],
             ["AR-X", "#525252"],
@@ -144,3 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, ".js-map");
 });
 ```
+
+## referencias
+
+X11 color names, Wikipedia 2024, https://en.wikipedia.org/wiki/X11_color_names
