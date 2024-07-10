@@ -69,8 +69,46 @@ layout: default
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span><span class="sr-only">Cerrar</span></button>
               <h4 class="modal-title" id="iconoModalLabel"></h4>
+                <!-- //// 
+                  INICIO Cambiar color 
+                  //// -->
+                <div id="collapse1" class="panel-collapse collapse in" aria-expanded="true">
+                  <div class="panel-body bloque-colores p-t-3">
+                      <ul class="btn-color list-unstyled">
+                          <li class="btn-color-circles bg-primary" id="primary">
+                              <span class="sr-only">Azul</span>
+                          </li>
+                          <li class="btn-color-circles bg-uva" id="uva">
+                              <span class="sr-only">Uva</span>
+                          </li>
+                          <li class="btn-color-circles bg-danger" id="danger">
+                              <span class="sr-only">Rojo</span>
+                          </li>
+                          <li class="btn-color-circles bg-palta" id="palta">
+                              <span class="sr-only">Palta</span>
+                          </li>
+                      </ul>
+                      <ul class="btn-color list-unstyled">
+                          <li class="btn-color-circles bg-warning" id="warning">
+                              <span class="sr-only">Amarillo</span>
+                          </li>
+                          <li class="btn-color-circles bg-cereza" id="cereza">
+                              <span class="sr-only">Cereza</span>
+                          </li>
+                          <li class="btn-color-circles bg-success" id="success">
+                              <span class="sr-only">Verde</span>
+                          </li>
+                          <li class="btn-color-circles bg-maiz" id="maiz">
+                              <span class="sr-only">Maíz</span>
+                          </li>
+                      </ul>
+                  </div>
+                </div>
+                <!-- //// 
+                  FIN Cambiar color
+                   //// -->
             </div>
             <div class="modal-body text-center">
               <i></i>
@@ -232,7 +270,7 @@ $(function(){
           // crea svg a partir del código
           
 
-          //Mostrar Detalle de un ícono
+          //Mostrar Detalle de una ilustración
           $(document).on("click",".ilustracion",function(){
             ilus = $(this).find("img").attr("src");
             alt = $(this).find("img").attr("alt");
@@ -241,7 +279,7 @@ $(function(){
             
             $('#iconoModal .modal-title').html(name + " <small>(<span id='codigoCopiar'>" + alt + "</span>)</small>");
             //$('#iconoModal .modal-body i').attr("class",icon).addClass("fa-5x");
-            var img = $('<img >'); //Equivalent: $(document.createElement('img'))
+            var img = $('<img class="img-responsive">'); //Equivalent: $(document.createElement('img'))
             img.attr('src', ilus);
             img.attr('alt', alt);
             img.appendTo('#iconoModal .modal-title');
