@@ -3,6 +3,13 @@
     width: 100%;
   }
 
+  .btn-color{
+  display: flex;
+  justify-content: center;
+  margin: 0px; 
+	padding: 0px;
+}
+
   .btn-ilus {
     margin: 30px 0px 12px;
   }
@@ -44,7 +51,7 @@ ul.colores li {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    margin: 0px;
+    margin: 7px;
     border: 3px solid #333;
   }
 
