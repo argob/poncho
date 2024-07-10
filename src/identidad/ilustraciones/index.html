@@ -18,12 +18,40 @@ layout: default
          <h1>Ilustraciones</h1>
          <p>Poncho tiene su propia librería de ilustraciones.</p>
          <hr>
-              <div class="form-group">
+            <div class="ilustraciones-poncho row" >
+              <div class="form-group col-md-8 col-sm-12 ">
               <label for="buscadorIlustraciones">Buscá por nombre o descripción: </label>
-                <input placeholder="personas"  class="form-control" id="buscadorIlustraciones">
+                <input placeholder="Ej: personas"  class="form-control" id="buscadorIlustraciones">
               </div>
+
+              <div class="dropdown col-md-4 col-sm-12 col-xs-12 m-b-4">
+<button class="btn  dropdown-toggle w-100 btn-ilus" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Cambiar color <span class="caret"></span></button>
+<div class="dropdown-menu dropdown-colors" aria-labelledby="dropdownMenuButton" x-placement="bottom-start" style="">
+
+
+
+<ul class="dropdown-menu    colores">
+<li class="btn-color-circles bg-primary"><span class="sr-only">Color azul información</span></li>
+<li class="btn-color-circles bg-miarg-azul"><span class="sr-only">Color azul mi Argentina</span></li>
+<li class="btn-color-circles bg-palta"><span class="sr-only">Color palta</span></li>
+<li class="btn-color-circles bg-success"><span class="sr-only">Color verde principal</span></li>
+
+<li class="btn-color-circles bg-arandano"><span class="sr-only">Color arándano</span></li>
+<li class="btn-color-circles bg-rosado"><span class="sr-only">Color rosado</span></li>
+<li class="btn-color-circles bg-arena"><span class="sr-only">Color rosado</span></li>
+
+<li class="btn-color-circles bg-warning"><span class="sr-only">Color amarillo</span></li>
+
+ </ul>
+
+
+</div>
+</div>
+
+
+</div>
               
-              <div class="contenedor">
+               <div class="contenedor col-md-12">
                 <div class="preloader">Cargando...</div>
                 <div id="listaPoncho">
                   <div class="row row-flex list"></div>
