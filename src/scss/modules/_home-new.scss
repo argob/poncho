@@ -82,13 +82,17 @@
 
 
 @media (max-width: 992px) {
-  .home-new .link1, .link2 {
-    width: 47%;
+  .home-new {
+    .link1, .link2 {
+      width: 47%;
+    }
   }
 }
 
 @media (max-width: 768px) {
-  .home-new .link1, .link2 {
-    width: 96%;
+  .home-new {
+    .link1, .link2 {
+      width: 96%;
+    }
   }
 }
