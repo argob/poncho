@@ -482,6 +482,11 @@
       },
     
       {
+        "nombre": "bio-tecno",
+        "clase": "icono-arg-bio-tecno"
+      },
+    
+      {
         "nombre": "bolsa-compras",
         "clase": "icono-arg-bolsa-compras"
       },
@@ -857,6 +862,11 @@
       },
     
       {
+        "nombre": "chip-ia",
+        "clase": "icono-arg-chip-ia"
+      },
+    
+      {
         "nombre": "chupete",
         "clase": "icono-arg-chupete"
       },
@@ -932,6 +942,11 @@
       },
     
       {
+        "nombre": "clima-humo",
+        "clase": "icono-arg-clima-humo"
+      },
+    
+      {
         "nombre": "clima-ligeramante-nublado-dia",
         "clase": "icono-arg-clima-ligeramante-nublado-dia"
       },
@@ -944,6 +959,11 @@
       {
         "nombre": "clima-lloviznas",
         "clase": "icono-arg-clima-lloviznas"
+      },
+    
+      {
+        "nombre": "clima-lluvia",
+        "clase": "icono-arg-clima-lluvia"
       },
     
       {
@@ -977,6 +997,11 @@
       },
     
       {
+        "nombre": "clima-neblina-baja",
+        "clase": "icono-arg-clima-neblina-baja"
+      },
+    
+      {
         "nombre": "clima-nevadas",
         "clase": "icono-arg-clima-nevadas"
       },
@@ -1002,6 +1027,11 @@
       },
     
       {
+        "nombre": "clima-polvo",
+        "clase": "icono-arg-clima-polvo"
+      },
+    
+      {
         "nombre": "clima-tormentas",
         "clase": "icono-arg-clima-tormentas"
       },
@@ -1019,6 +1049,16 @@
       {
         "nombre": "clima-ventisca",
         "clase": "icono-arg-clima-ventisca"
+      },
+    
+      {
+        "nombre": "clima-ventisca-alta",
+        "clase": "icono-arg-clima-ventisca-alta"
+      },
+    
+      {
+        "nombre": "clima-ventisca-baja",
+        "clase": "icono-arg-clima-ventisca-baja"
       },
     
       {
@@ -2259,6 +2299,11 @@
       {
         "nombre": "importaciones",
         "clase": "icono-arg-importaciones"
+      },
+    
+      {
+        "nombre": "inap-futuro",
+        "clase": "icono-arg-inap-futuro"
       },
     
       {
@@ -4044,6 +4089,11 @@
       {
         "nombre": "terremoto",
         "clase": "icono-arg-terremoto"
+      },
+    
+      {
+        "nombre": "tiempo",
+        "clase": "icono-arg-tiempo"
       },
     
       {
