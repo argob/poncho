@@ -53,7 +53,7 @@
   }
 
 
-  
+  /* se modifica la clase img x el uso de object - luego eliminar */
 
   img {
     text-align: center;
@@ -105,5 +105,14 @@
 		padding: 10px 12px !important;
 		margin: 1px 0;
 	}
+}
+
+
+.ilus-home {
+    text-align: center;
+    height: auto;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    margin: 0px;
 }
 
