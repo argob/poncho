@@ -6,7 +6,7 @@ const SCSS_FILENAME = "_poncho-colors.scss.back";
 const header = `//== Colors
 //## Colores poncho\n`;
 // variable de color sass
-const filePath = `./scss/modules/${SCSS_FILENAME}`;
+const filePath = `./src/scss/modules/${SCSS_FILENAME}`;
 const content = ponchoColorDefinitionsList.map(m => {
     const description = (m.description ? `// ${m.description}` : "")
     const scope = (m.scope ? `${m.scope}-` : "");
@@ -35,7 +35,7 @@ fs.writeFile(filePath, header + content + contentList, (err) => {
 /**
  * Códigos de color válidos para utilizar en ilustraciones. 
  */
-const illustrationColorsFilePath = `../dist/jsons/illustrations-colors.json`;
+const illustrationColorsFilePath = `./dist/jsons/illustrations-colors.json`;
 const illustrationColorsContent = ponchoColorDefinitionsList
     .filter(f => illustrationColors.includes(f.code));
 
