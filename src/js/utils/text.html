@@ -1,161 +1,189 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Colores Argentina.gob.ar</title>
     <script src="color-conf.js"></script>
     <script src="./color.js"></script>
     <script src="./string.js"></script>
     <script src="html.js"></script>
     <script src="document.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
     <style>
         body {
             font-family: Arial, Helvetica, sans-serif;
         }
+
         .scope {
             display: flex;
-            gap:8px;
+            gap: 8px;
             margin-bottom: 1em;
             width: 100%;
         }
-   
-        .sample .text { margin: 0; padding: 0; line-height: 1.5em; color:#222}
+
+        .sample .text {
+            margin: 0;
+            padding: 0;
+            line-height: 1.5em;
+            color: #222
+        }
+
         .sample {
 
             width: 50px;
             border-radius: 5px;
             background-color: #f4f4f4;
             font-size: 10px;
-            border: 1px solid #eee; padding: 4px;
+            border: 1px solid #eee;
+            padding: 4px;
         }
-        .sample .color { border-radius: 3px;}
+
+        .sample .color {
+            border-radius: 3px;
+        }
+
         .roboto-thin {
-  font-family: "Roboto", sans-serif;
-  font-weight: 100;
-  font-style: normal;
-}
+            font-family: "Roboto", sans-serif;
+            font-weight: 100;
+            font-style: normal;
+        }
 
-.roboto-light {
-  font-family: "Roboto", sans-serif;
-  font-weight: 300;
-  font-style: normal;
-}
+        .roboto-light {
+            font-family: "Roboto", sans-serif;
+            font-weight: 300;
+            font-style: normal;
+        }
 
-.roboto-regular {
-  font-family: "Roboto", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
+        .roboto-regular {
+            font-family: "Roboto", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
 
-.roboto-medium {
-  font-family: "Roboto", sans-serif;
-  font-weight: 500;
-  font-style: normal;
-}
+        .roboto-medium {
+            font-family: "Roboto", sans-serif;
+            font-weight: 500;
+            font-style: normal;
+        }
 
-.roboto-bold {
-  font-family: "Roboto", sans-serif;
-  font-weight: 700;
-  font-style: normal;
-}
+        .roboto-bold {
+            font-family: "Roboto", sans-serif;
+            font-weight: 700;
+            font-style: normal;
+        }
 
-.roboto-black {
-  font-family: "Roboto", sans-serif;
-  font-weight: 900;
-  font-style: normal;
-}
+        .roboto-black {
+            font-family: "Roboto", sans-serif;
+            font-weight: 900;
+            font-style: normal;
+        }
 
-.roboto-thin-italic {
-  font-family: "Roboto", sans-serif;
-  font-weight: 100;
-  font-style: italic;
-}
+        .roboto-thin-italic {
+            font-family: "Roboto", sans-serif;
+            font-weight: 100;
+            font-style: italic;
+        }
 
-.roboto-light-italic {
-  font-family: "Roboto", sans-serif;
-  font-weight: 300;
-  font-style: italic;
-}
+        .roboto-light-italic {
+            font-family: "Roboto", sans-serif;
+            font-weight: 300;
+            font-style: italic;
+        }
 
-.roboto-regular-italic {
-  font-family: "Roboto", sans-serif;
-  font-weight: 400;
-  font-style: italic;
-}
+        .roboto-regular-italic {
+            font-family: "Roboto", sans-serif;
+            font-weight: 400;
+            font-style: italic;
+        }
 
-.roboto-medium-italic {
-  font-family: "Roboto", sans-serif;
-  font-weight: 500;
-  font-style: italic;
-}
+        .roboto-medium-italic {
+            font-family: "Roboto", sans-serif;
+            font-weight: 500;
+            font-style: italic;
+        }
 
-.roboto-bold-italic {
-  font-family: "Roboto", sans-serif;
-  font-weight: 700;
-  font-style: italic;
-}
+        .roboto-bold-italic {
+            font-family: "Roboto", sans-serif;
+            font-weight: 700;
+            font-style: italic;
+        }
 
-.roboto-black-italic {
-  font-family: "Roboto", sans-serif;
-  font-weight: 900;
-  font-style: italic;
-}
-
+        .roboto-black-italic {
+            font-family: "Roboto", sans-serif;
+            font-weight: 900;
+            font-style: italic;
+        }
     </style>
 </head>
+
 <body>
-    <h1 style="color:var(--ar-azul-500)" class="roboto-light">Colores poncho v2</h1>
-<template id="productrow">
-    <div class="sample">
-        <div class="color"></div>
-        <p class="text roboto-regular">mi color</p>
-    </div>
-</template>
-<main class="container">
-    <div class="cont"></div>
-</main>
-<script>
-    const template = document.querySelector("#productrow");
+    <h1 style="color:var(--gobar-azul-500)" class="roboto-light">Colores poncho v2</h1>
+    <p>
+        <a href="./color-conf.js">Configuración JavaScript</a>
+    </p>
+    <template id="productrow">
+        <div class="sample">
+            <div class="color"></div>
+            <p class="text roboto-regular">mi color</p>
+        </div>
+    </template>
+    <main class="container">
+        <div class="cont"></div>
+    </main>
+    <script>
+        const template = document.querySelector("#productrow");
 
-    const scopes = Object.keys(theme);
-    let myRoot = [];
-    let main = document.querySelector(".cont");
+        let myRoot = [];
+        let main = document.querySelector(".cont");
 
-    for(const scope of scopes){
+        for (let th of theme) {
+            const {space, data, name=false} = th;
 
-        let colors = theme[scope].color;
-        let keys = Object.keys(colors);
+            const groupHeading = document.createElement("h2");
+            groupHeading.textContent = name;
+            groupHeading.classList.add('h5', "roboto-black");
+            groupHeading.style.color = "var(--gobar-azul-500)";
+            main.appendChild(groupHeading);
 
-        const row = document.createElement("div");
-        row.className = "scope";
+            for(let colorGroup of data){
+                const {color, name, alias, instance, group} = colorGroup;
 
-        const root = keys.forEach(function(key){
+                let colorKeys = Object.keys(color);
 
-            const clone = template.content.cloneNode(true);
-            const sample = clone.querySelector(".color");
-            sample.title = `--ar-${scope}-${key}`
-            sample.style.background = `var(--ar-${scope}-${key})`;
-            sample.style.width = "100%";
-            sample.style.height = "50px";
-            
-            const text = clone.querySelector(".text");
-            text.textContent = cleanUpHex(colors[key]);
+                const row = document.createElement("div");
+                row.className = "scope";
 
-            text.style.background = `var(--ar-${scope}-${key}, blue);`;
-            row.appendChild(clone);
+                const root = colorKeys.forEach(function(key){
+                    const clone = template.content.cloneNode(true);
+                    const sample = clone.querySelector(".color");
+                    sample.title = `--${space}-${group}-${key}`
+                    sample.style.background = `var(--${space}-${group}-${key})`;
+                    sample.style.width = "100%";
+                    sample.style.height = "50px";
 
-            myRoot.push( `--ar-${scope}-${key}:${colors[key]};` );
-        });
-        main.appendChild(row);
-    }
+                    const text = clone.querySelector(".text");
+                    text.textContent = cleanUpHex(color[key]);
 
-    let vars = myRoot.join("");
-    let rootVars = `:root{${vars}}`;
-    headStyle('fo', rootVars);
-</script>
+                    text.style.background = `var(--${space}-${group}-${key});`;
+                    row.appendChild(clone);
+
+                    myRoot.push(`--${space}-${group}-${key}:${color[key]};`);
+                });
+
+                main.appendChild(row);
+            }
+        }
+
+        let vars = myRoot.join("");
+        let rootVars = `:root{${vars}}`;
+        headStyle('fo', rootVars);
+    </script>
 </body>
+
 </html>
