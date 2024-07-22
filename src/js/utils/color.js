@@ -520,6 +520,21 @@ const _theme = {
 
 
 /**
+ * Códigos de color válidos para utilizar en ilustraciones. 
+ */
+const illustrationColors = [
+    "primary",
+    "miarg-azul",
+    "palta",
+    "success",
+    "arandano",
+    "rosado",
+    "arena",
+    "warning"
+];
+
+
+/**
  * Definición de colores Poncho
  */
 const ponchoColorDefinitionsList = [
@@ -1056,7 +1071,7 @@ const colorVariations = {
  * @param {string} color Nombre del cólor a buscar. 
  * @returns {string|boolean}
  */
-const ponchoColorDefinitions = (ponchoColor, includeGroup=true) => {
+const ponchoColorDefinitions = ponchoColor => {
     if(typeof ponchoColor == undefined || !ponchoColor?.trim()){
         return;
     }
@@ -1071,7 +1086,7 @@ const ponchoColorDefinitions = (ponchoColor, includeGroup=true) => {
         if (result) break;
     }
 
-    if(result && includeGroup){
+    if(result){
         const group = ponchoColorGroup(result.parent_group);
         const {color=false, name=false, alias=false} = group;
         if(color){
@@ -1177,6 +1192,6 @@ const ponchoColorByHex = value => ponchoColorDefinitionsList.find(f => {
 
 if (typeof exports !== "undefined") {
     module.exports = {
-        ponchoColorDefinitionsList,
+        ponchoColorDefinitionsList,illustrationColors,
         ponchoColorDefinitions, ponchoColor, ponchoColorByHex, cleanUpHex};
 }

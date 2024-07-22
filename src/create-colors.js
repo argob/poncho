@@ -1,12 +1,12 @@
 const fs = require('fs');
-const {ponchoColorDefinitionsList} = require('./js/utils/color');
+const {ponchoColorDefinitionsList, illustrationColors} = require('./js/utils/color');
 
-const SCSS_FILENAME = "_poncho-colors.scss";
+const SCSS_FILENAME = "_poncho-colors.scss.back";
 
 const header = `//== Colors
 //## Colores poncho\n`;
 // variable de color sass
-const filePath = `./scss/modules/${SCSS_FILENAME}`;
+const filePath = `./src/scss/modules/${SCSS_FILENAME}`;
 const content = ponchoColorDefinitionsList.map(m => {
     const description = (m.description ? `// ${m.description}` : "")
     const scope = (m.scope ? `${m.scope}-` : "");
@@ -29,4 +29,22 @@ fs.writeFile(filePath, header + content + contentList, (err) => {
     } else {
         console.log('File created successfully!');
     }
+});
+
+
+/**
+ * Códigos de color válidos para utilizar en ilustraciones. 
+ */
+const illustrationColorsFilePath = `./dist/jsons/illustrations-colors.json`;
+const illustrationColorsContent = ponchoColorDefinitionsList
+    .filter(f => illustrationColors.includes(f.code));
+
+fs.writeFile(
+    illustrationColorsFilePath,
+    JSON.stringify(illustrationColorsContent), (err) => {
+        if (err) {
+            console.error(`Error creating file "colores.json":`, err);
+        } else {
+            console.log('File created successfully!');
+        }
 });
