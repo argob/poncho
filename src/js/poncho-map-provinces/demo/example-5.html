@@ -124,7 +124,7 @@ fetch_json(_PONCHOMAP_GEOJSON_PROVINCES, {headers: {}}).then(geoProvinces => {
         const gapi_data = gapi.json_data(googlesheet_data);
         const {entries, headers} = gapi_data;
         const options = {
-            content_selector: ".js-pm-text-content", // NOMBRE DE LA COLUMNA DE TEXTO DE  LA DERECHA. SI EL MAPA VA A 12, COMENTAR EL INICIO DE ESTA  LÍNEA (DOBRE BARRA AL INICIO). ASÍ LA INFO SE SOBREIMPRIME AL MAPA.
+            content_selector: ".js-pm-text-content", // NOMBRE DE LA COLUMNA DE TEXTO DE LA DERECHA. SI EL MAPA VA A 12, COMENTAR EL INICIO DE ESTA  LÍNEA (DOBRE BARRA AL INICIO). ASÍ LA INFO SE SOBREIMPRIME AL MAPA.
             scope: "poncho-map", 
             title: "filttro-provincia", // ID DE LA COLUMNA CON EL NOMBRE DE LAS PROVINCIAS
             template_markdown: true,

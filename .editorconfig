@@ -14,7 +14,7 @@ insert_final_newline = true
 # Use 2 spaces for indentation for code files
 
 [*.*]
-indent_size = 2
+indent_size = 4
 
 # Use 4 spaces for indentation in Markdown files
 
