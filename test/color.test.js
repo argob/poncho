@@ -11,7 +11,7 @@ test("Buscar colores por su valor hexadecimal", () => {
     expect(ponchoColorByHex("333").code).toBe("black");
     expect(ponchoColorByHex("333333").code).toBe("black");
     expect(ponchoColorByHex("#333").code).toBe("black");
-    expect(ponchoColorByHex(333).code).toBe("black");
+    expect(ponchoColorByHex(333)).toBeUndefined();
 });
 
 
