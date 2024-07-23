@@ -513,3 +513,8 @@ const ponchoColorDefinitionsListLegacy = [
 ];
 
 
+if (typeof exports !== "undefined") {
+    module.exports = {
+        ponchoColorDefinitionsListLegacy
+    };
+}
