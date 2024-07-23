@@ -1,10 +1,9 @@
 const fs = require('fs');
 const {
     ponchoColorDefinitionsList,
-    ponchoColorDefinitionsListLegacy, 
     ponchoColorDefinitions,
     illustrationColors} = require('./js/utils/color');
-
+const {ponchoColorDefinitionsListLegacy} = require('./js/utils/color-legacy');
 const SCSS_FILENAME = "_poncho-colors.scss.back";
 
 const header = `//== Colors
