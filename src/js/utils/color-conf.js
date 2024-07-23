@@ -60,7 +60,8 @@ const ponchoColorDefinitionsList = [
                         ],
                         "variant": {
                             "light": "#6EA015",
-                            "dark": "#1F5421"
+                            "dark": "#1F5421",
+                            "half": "#96BE99"
                         },
                         "code": "verde"
                     },
@@ -129,7 +130,8 @@ const ponchoColorDefinitionsList = [
                         ],
                         "variant": {
                             "light": "#FFE997",
-                            "dark": "#B18F15"
+                            "dark": "#B18F15",
+                            "half": "#F3DDB0"
                         },
                         "code": "maiz"
                     }
@@ -243,8 +245,9 @@ const ponchoColorDefinitionsList = [
                         "parent_group": "naranja",
                         "color": "#EAE1B7",
                         "variant": {
-                            "light": "#FAF7ED",
-                            "dark": "#E9CE8C"
+                            "light": "#EAE1B7",
+                            "dark": "#E9CE8C",
+                            "half": "#F5F0DB"
                         },
                         "alias": [
                             "arena"
@@ -335,7 +338,8 @@ const ponchoColorDefinitionsList = [
                         ],
                         "variant": {
                             "light": "#EC407A",
-                            "dark": "#721038"
+                            "dark": "#721038",
+                            "half": "#E18CAD"
                         },
                         "code": "arandano"
                     },
@@ -383,7 +387,8 @@ const ponchoColorDefinitionsList = [
                         ],
                         "variant": {
                             "light": "#FCDDE6",
-                            "dark": "#ED3F85"
+                            "dark": "#ED3F85",
+                            "half": "#FAC7D5"
                         },
                         "code": "rosado"
                     }
@@ -472,6 +477,9 @@ const ponchoColorDefinitionsList = [
                             "primary",
                             "azul"
                         ],
+                        "variant": {
+                            "half": "#9296A7"
+                        },
                         "code": "primary"
                     },
                     {
@@ -539,6 +547,9 @@ const ponchoColorDefinitionsList = [
                         "alias": [
                             "palta"
                         ],
+                        "variant": {
+                            "half": "#A8DBD9"
+                        },
                         "code": "palta"
                     },
                     {
@@ -770,6 +781,9 @@ const ponchoColorDefinitionsList = [
                         "related_color": "500",
                         "parent_group": "azul",
                         "color": "#362FC1",
+                        "variant": {
+                            "half": "#6B66CC"
+                        },
                         "alias": [
                             "miarg-azul"
                         ],
@@ -949,7 +963,6 @@ const illustrationColors = [
     "arena",
     "warning"
 ];
-
 
 
 if (typeof exports !== "undefined") {
