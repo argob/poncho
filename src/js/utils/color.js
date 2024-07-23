@@ -1174,6 +1174,7 @@ const hexToRgb = hexColor => {
 
 if (typeof exports !== "undefined") {
     module.exports = {
-        ponchoColorDefinitions, ponchoColor, ponchoColorByHex, cleanUpHex
+        ponchoColorDefinitions, ponchoColor, ponchoColorByHex, cleanUpHex,
+        ponchoColorDefinitionsList, illustrationColors
     };
 }

@@ -39,8 +39,8 @@ fs.writeFile(filePath, header + content + contentList, (err) => {
  * Códigos de color válidos para utilizar en ilustraciones. 
  */
 const illustrationColorsFilePath = `./dist/jsons/illustrations-colors.json`;
-const illustrationColorsContent = illustrationColors
-    .map(color => ponchoColorDefinitions( color ));
+const illustrationColorsContent = illustrationColors.map(
+    color => ponchoColorDefinitions( color ));
 
 fs.writeFile(
     illustrationColorsFilePath,
