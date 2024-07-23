@@ -46,7 +46,23 @@ fs.writeFile(
     illustrationColorsFilePath,
     JSON.stringify(illustrationColorsContent), (err) => {
         if (err) {
-            console.error(`Error creating file "colores.json":`, err);
+            console.error(`Error creating file "illustrations-colors.json":`, err);
+        } else {
+            console.log('File created successfully!');
+        }
+});
+
+
+/**
+ * Documento JSON con todo el espectro de colores poncho 
+ */
+const ponchoColorsFilePath = `./dist/jsons/poncho-colors.json`;
+
+fs.writeFile(
+    ponchoColorsFilePath,
+    JSON.stringify(ponchoColorDefinitionsList), (err) => {
+        if (err) {
+            console.error(`Error creating file "poncho-colores.json":`, err);
         } else {
             console.log('File created successfully!');
         }
