@@ -2,7 +2,7 @@
 /**
  * Definición de colores Poncho
  */
-const __ponchoColorDefinitionsList = [
+const ponchoColorDefinitionsListLegacy = [
     {
         description: "",
         scope: "",

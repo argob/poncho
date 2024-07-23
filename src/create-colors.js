@@ -1,5 +1,9 @@
 const fs = require('fs');
-const {ponchoColorDefinitionsList, illustrationColors} = require('./js/utils/color');
+const {
+    ponchoColorDefinitionsList,
+    ponchoColorDefinitionsListLegacy, 
+    ponchoColorDefinitions,
+    illustrationColors} = require('./js/utils/color');
 
 const SCSS_FILENAME = "_poncho-colors.scss.back";
 
@@ -7,15 +11,15 @@ const header = `//== Colors
 //## Colores poncho\n`;
 // variable de color sass
 const filePath = `./src/scss/modules/${SCSS_FILENAME}`;
-const content = ponchoColorDefinitionsList.map(m => {
+const content = ponchoColorDefinitionsListLegacy.map(m => {
     const description = (m.description ? `// ${m.description}` : "")
     const scope = (m.scope ? `${m.scope}-` : "");
     return `$${scope}${m.code}: ${m.color} !default; ${description}\n`;
 }).join("");
 
 // Listado de colores para :root
-const totalColors = ponchoColorDefinitionsList.length;
-const list = ponchoColorDefinitionsList.map((m, k) => {
+const totalColors = ponchoColorDefinitionsListLegacy.length;
+const list = ponchoColorDefinitionsListLegacy.map((m, k) => {
     const separator = (k == totalColors - 1 ? ";" : ",\n")
     const scope = (m.scope ? `${m.scope}-` : "");
     return `("${m.code}", $${scope}${m.code})${separator}`;
