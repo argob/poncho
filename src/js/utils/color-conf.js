@@ -25,7 +25,7 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-const theme = [
+const ponchoColorDefinitionsList = [
     {
         "name": "www.argentina.gob.ar",
         "space": "gobar",
@@ -934,3 +934,26 @@ const theme = [
         ]
     }
 ];
+
+
+/**
+ * Códigos de color válidos para utilizar en ilustraciones. 
+ */
+const illustrationColors = [
+    "primary",
+    "miarg-azul",
+    "palta",
+    "success",
+    "arandano",
+    "rosado",
+    "arena",
+    "warning"
+];
+
+
+
+if (typeof exports !== "undefined") {
+    module.exports = {
+        ponchoColorDefinitionsList, illustrationColors
+    };
+}
