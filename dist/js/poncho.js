@@ -1124,7 +1124,8 @@ const cleanUpHex = value => {
  * @returns {object} Objecto con la defición del color
  */
 function ponchoColorByHex(hexColor){
-    if(typeof hexColor == undefined || !hexColor?.trim()){
+    if(typeof hexColor != "string" || !hexColor?.trim()){
+        console.error("El color hexadecimal no es válido.");
         return;
     }
 
