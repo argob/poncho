@@ -1,0 +1,81 @@
+.sample {
+    position: relative;
+}
+
+.sample-info {
+    >.sample-info__toggle {
+        border-radius: 50%;
+        aspect-ratio: 1 / 1 !important;
+        width: 18px;
+        padding: 0;
+        margin: 0;
+        color: var(--gobar-azul-600);
+        background-color: white;
+        cursor: pointer;
+        text-align: center;
+        border: 0 solid gray;
+        position: absolute;
+        left: 5px;
+        top: 5px;
+        line-height: 1rem;
+
+        &:focus-within+dl {
+            display: block;
+        }
+    }
+
+
+    >.sample-info__definition:after {
+        content: " ";
+        width: 0px;
+        height: 0px;
+        border-style: solid;
+        border-width: 0 8px 10px 8px;
+        border-color: transparent transparent #f4f4f4 transparent;
+        transform: rotate(0deg);
+        position: absolute;
+        top: -5px;
+        left: 2px;
+    }
+
+    >.sample-info__definition {
+        display: none;
+        padding: 10px;
+        margin: 0;
+        position: absolute;
+        background-color: #f4f4f4;
+        top: 30px;
+        left: 5px;
+        width: 200px;
+        z-index: 100;
+        border-radius: 9px;
+        box-shadow: 1px 1px 10px rgb(0 0 0 / .3)
+    }
+
+    >.sample-info__definition dt,
+    >.sample-info__definition dd {
+        text-align: left;
+        padding: 0;
+        margin: 0;
+    }
+
+    >.sample-info__definition dd {
+        margin-bottom: .25rem;
+    }
+
+    >.sample-info__definition dt {
+        font-weight: 600
+    }
+
+    .sample-info__variants,
+    .sample-info__variants li {
+        list-style: none !important;
+        padding: 0;
+    }
+
+    .sample-info__mini-sample {
+        font-style: normal;
+        -webkit-text-stroke: 1px #CCC;
+    }
+
+}

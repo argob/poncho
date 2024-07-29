@@ -25,930 +25,7 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-const ponchoColorDefinitionsList = [
-    {
-        "name": "www.argentina.gob.ar",
-        "space": "gobar",
-        "data": [
-            {
-                "group": "verde",
-                "scope": "gobar",
-                "name": "Verde",
-                "color": {
-                    "50": "#F1F5D7",
-                    "100": "#DEE8A3",
-                    "200": "#CCDB6E",
-                    "300": "#B9CE39",
-                    "400": "#93B727",
-                    "500": "#6EA015",
-                    "600": "#4E8F24",
-                    "700": "#2E7D33",
-                    "800": "#27692A",
-                    "900": "#1F5421"
-                },
-                "instance": [
-                    {
-                        "name": "Verde",
-                        "description": "",
-                        "scope": "gobar",
-                        "related_color": "700",
-                        "parent_group": "verde",
-                        "color": "#2E7D33",
-                        "alias": [
-                            "verde",
-                            "success"
-                        ],
-                        "variant": {
-                            "light": "#6EA015",
-                            "dark": "#1F5421",
-                            "half": "#96BE99"
-                        },
-                        "code": "verde"
-                    },
-                    {
-                        "name": "Verdín",
-                        "description": "",
-                        "scope": "gobar",
-                        "related_color": "500",
-                        "parent_group": "verde",
-                        "color": "#6EA015",
-                        "alias": [
-                            "verdin"
-                        ],
-                        "variant": {
-                            "light": "#B9CE39",
-                            "dark": "#2E7D33"
-                        },
-                        "code": "verdin"
-                    },
-                    {
-                        "name": "Lima",
-                        "description": "",
-                        "scope": "gobar",
-                        "related_color": "300",
-                        "parent_group": "verde",
-                        "color": "#B9CE39",
-                        "alias": [
-                            "lima",
-                            "limon"
-                        ],
-                        "variant": {
-                            "light": "#DEE8A3",
-                            "dark": "#6EA015"
-                        },
-                        "code": "lima"
-                    }
-                ]
-            },
-            {
-                "group": "amarillo",
-                "name": "Amarillo",
-                "scope": "gobar",
-                "color": {
-                    "50": "#FFFAE8",
-                    "100": "#FFF1C0",
-                    "200": "#FFE997",
-                    "300": "#FFE06E",
-                    "400": "#FFD745",
-                    "500": "#FFCE1C",
-                    "600": "#D8AE18",
-                    "700": "#B18F15",
-                    "800": "#8A6F12",
-                    "900": "#634F0E"
-                },
-                "instance": [
-                    {
-                        "name": "Maiz",
-                        "description": "",
-                        "scope": "gobar",
-                        "related_color": "500",
-                        "parent_group": "amarillo",
-                        "color": "#FFCE1C",
-                        "alias": [
-                            "maiz",
-                            "maíz"
-                        ],
-                        "variant": {
-                            "light": "#FFE997",
-                            "dark": "#B18F15",
-
-                        },
-                        "code": "maiz"
-                    }
-                ]
-            },
-            {
-                "group": "naranja",
-                "name": "Naranja",
-                "scope": "gobar",
-                "color": {
-                    "50": "#FAF7ED",
-                    "100": "#EAE1B7",
-                    "200": "#E9CE8C",
-                    "300": "#E7BA61",
-                    "400": "#EFA843",
-                    "500": "#F79525",
-                    "600": "#EF6C00",
-                    "700": "#CA620A",
-                    "800": "#A45713",
-                    "900": "#511901"
-                },
-                "instance": [
-                    {
-                        "name": "Marrón oscuro",
-                        "description": "",
-                        "scope": "gobar",
-                        "related_color": "900",
-                        "parent_group": "naranja",
-                        "color": "#511901",
-                        "alias": [
-                            "marron-oscuro"
-                        ],
-                        "variant": {
-                            "light": "#CA620A",
-                            "dark": "#111111"
-                        },
-                        "code": "marron-oscuro"
-                    },
-                    {
-                        "name": "Marrón claro",
-                        "description": "",
-                        "scope": "gobar",
-                        "related_color": "800",
-                        "parent_group": "naranja",
-                        "color": "#A45713",
-                        "alias": [
-                            "marron-claro"
-                        ],
-                        "variant": {
-                            "light": "#EF6C00",
-                            "dark": "#511901"
-                        },
-                        "code": "marron-claro"
-                    },
-                    {
-                        "name": "Naranja oscuro",
-                        "description": "",
-                        "scope": "gobar",
-                        "related_color": "800",
-                        "parent_group": "naranja",
-                        "color": "#EF6C00",
-                        "alias": [
-                            "naranja-oscuro",
-                            "naranja"
-                        ],
-                        "variant": {
-                            "light": "#EFA843",
-                            "dark": "#A45713"
-                        },
-                        "code": "naranja-oscuro"
-                    },
-                    {
-                        "name": "Mandarina",
-                        "description": "",
-                        "scope": "gobar",
-                        "related_color": "500",
-                        "parent_group": "naranja",
-                        "color": "#F79525",
-                        "alias": [
-                            "mandarina"
-                        ],
-                        "variant": {
-                            "light": "#E7BA61",
-                            "dark": "#CA620A"
-                        },
-                        "code": "mandarina"
-                    },
-                    {
-                        "name": "Amarillo",
-                        "description": "",
-                        "scope": "gobar",
-                        "related_color": "300",
-                        "parent_group": "naranja",
-                        "color": "#E7BA61",
-                        "variant": {
-                            "light": "#E9CE8C",
-                            "dark": "#EFA843",
-                            "half": "#F3DDB0"
-                        },
-                        "alias": [
-                            "amarillo",
-                            "amarillo-intenso",
-                            "warning"
-                        ],
-                        "code": "amarillo"
-                    },
-                    {
-                        "name": "Arena",
-                        "description": "",
-                        "scope": "gobar",
-                        "related_color": "100",
-                        "parent_group": "naranja",
-                        "color": "#EAE1B7",
-                        "variant": {
-                            "light": "#EAE1B7",
-                            "dark": "#E9CE8C",
-                            "half": "#F5F0DB"
-                        },
-                        "alias": [
-                            "arena"
-                        ],
-                        "code": "arena"
-                    }
-                ]
-            },
-            {
-                "group": "rojo",
-                "name": "rojo",
-                "scope": "gobar",
-                "color": {
-                    "50": "#FCDDDC",
-                    "100": "#F9BBB9",
-                    "200": "#F69896",
-                    "300": "#F27673",
-                    "400": "#EF5350",
-                    "500": "#E14543",
-                    "600": "#D43635",
-                    "700": "#C62828",
-                    "800": "#A12222",
-                    "900": "#7C1C1C"
-                },
-                "instance": [
-                    {
-                        "name": "Rojo",
-                        "description": "Atención o peligro",
-                        "scope": "gobar",
-                        "related_color": "700",
-                        "parent_group": "rojo",
-                        "color": "#C62828",
-                        "alias": [
-                            "rojo",
-                            "danger"
-                        ],
-                        "variant": {
-                            "light": "#E14543",
-                            "dark": "#7C1C1C"
-                        },
-                        "code": "rojo"
-                    },
-                    {
-                        "name": "Tomate",
-                        "description": "",
-                        "scope": "gobar",
-                        "related_color": "400",
-                        "parent_group": "rojo",
-                        "color": "#EF5350",
-                        "alias": [
-                            "tomate",
-                            "complementary"
-                        ],
-                        "variant": {
-                            "light": "#F69896",
-                            "dark": "#C62828"
-                        },
-                        "code": "tomate"
-                    }
-                ]
-            },
-            {
-                "group": "fucsia",
-                "name": "fucsia",
-                "scope": "gobar",
-                "color": {
-                    "50": "#FCDDE6",
-                    "100": "#F48EAB",
-                    "200": "#F1669D",
-                    "300": "#ED3D8F",
-                    "400": "#ED3F85",
-                    "500": "#EC407A",
-                    "600": "#D72C6B",
-                    "700": "#C2185B",
-                    "800": "#9A144A",
-                    "900": "#721038"
-                },
-                "instance": [
-                    {
-                        "name": "Arándano",
-                        "description": "Atención o peligro",
-                        "scope": "gobar",
-                        "related_color": "700",
-                        "parent_group": "fucsia",
-                        "color": "#C2185B",
-                        "alias": [
-                            "arandano"
-                        ],
-                        "variant": {
-                            "light": "#EC407A",
-                            "dark": "#721038",
-                            "half": "#E18CAD"
-                        },
-                        "code": "arandano"
-                    },
-                    {
-                        "name": "Fucsia",
-                        "description": "",
-                        "scope": "gobar",
-                        "related_color": "500",
-                        "parent_group": "fucsia",
-                        "color": "#EC407A",
-                        "alias": [
-                            "fucsia"
-                        ],
-                        "variant": {
-                            "light": "#F1669D",
-                            "dark": "#9A144A"
-                        },
-                        "code": "fucsia"
-                    },
-                    {
-                        "name": "Cereza",
-                        "description": "",
-                        "scope": "gobar",
-                        "related_color": "300",
-                        "parent_group": "fucsia",
-                        "color": "#ED3D8F",
-                        "alias": [
-                            "cereza"
-                        ],
-                        "variant": {
-                            "light": "#F1669D",
-                            "dark": "#9A144A"
-                        },
-                        "code": "cereza"
-                    },
-                    {
-                        "name": "Rosado",
-                        "description": "",
-                        "scope": "gobar",
-                        "related_color": "100",
-                        "parent_group": "fucsia",
-                        "color": "#F48EAB",
-                        "alias": [
-                            "rosado"
-                        ],
-                        "variant": {
-                            "light": "#FCDDE6",
-                            "dark": "#ED3F85",
-                            "half": "#FAC7D5"
-                        },
-                        "code": "rosado"
-                    }
-                ]
-            },
-            {
-                "group": "violeta",
-                "scope": "gobar",
-                "name": "violeta",
-                "color": {
-                    "50": "#EBEAF9",
-                    "100": "#BEB7DC",
-                    "200": "#9284BE",
-                    "300": "#7E4FAC",
-                    "400": "#6A1B99",
-                    "500": "#522998",
-                    "600": "#3A3796",
-                    "700": "#2C2A84",
-                    "800": "#1E1C71",
-                    "900": "#171756"
-                },
-                "instance": [
-                    {
-                        "name": "Azul morado",
-                        "description": "",
-                        "scope": "gobar",
-                        "related_color": "600",
-                        "parent_group": "violeta",
-                        "color": "#3A3796",
-                        "alias": [
-                            "azul-morado"
-                        ],
-                        "code": "azul-morado"
-                    },
-                    {
-                        "name": "Uva",
-                        "description": "",
-                        "scope": "gobar",
-                        "related_color": "400",
-                        "parent_group": "violeta",
-                        "color": "#6A1B99",
-                        "alias": [
-                            "uva"
-                        ],
-                        "code": "uva"
-                    },
-                    {
-                        "name": "Lavanda",
-                        "description": "",
-                        "scope": "gobar",
-                        "related_color": "200",
-                        "parent_group": "violeta",
-                        "color": "#9284BE",
-                        "alias": [
-                            "lavanda"
-                        ],
-                        "code": "lavanda"
-                    }
-                ]
-            },
-            {
-                "group": "azul",
-                "scope": "gobar",
-                "name": "azul",
-                "color": {
-                    "50": "#D8F0FA",
-                    "100": "#BEE6F6",
-                    "200": "#75D0F2",
-                    "300": "#2CB9EE",
-                    "400": "#18AAEA",
-                    "500": "#039BE5",
-                    "600": "#0B7FC0",
-                    "700": "#14639A",
-                    "800": "#1C4875",
-                    "900": "#242C4F"
-                },
-                "instance": [
-                    {
-                        "name": "Azul morado",
-                        "description": "",
-                        "scope": "gobar",
-                        "related_color": "900",
-                        "parent_group": "azul",
-                        "color": "#242C4F",
-                        "alias": [
-                            "primary",
-                            "azul"
-                        ],
-                        "variant": {
-                            "half": "#9296A7"
-                        },
-                        "code": "primary"
-                    },
-                    {
-                        "name": "escarapela",
-                        "description": "",
-                        "scope": "gobar",
-                        "related_color": "300",
-                        "parent_group": "azul",
-                        "color": "#2CB9EE",
-                        "alias": [
-                            "escarapela"
-                        ],
-                        "code": "escarapela"
-                    },
-                    {
-                        "name": "Celeste Argentina",
-                        "description": "",
-                        "scope": "gobar",
-                        "related_color": "400",
-                        "parent_group": "azul",
-                        "color": "#37BBED",
-                        "alias": [
-                            "celeste-argentina"
-                        ],
-                        "code": "celeste-argentina"
-                    },
-                    {
-                        "name": "cielo",
-                        "description": "",
-                        "scope": "gobar",
-                        "related_color": "500",
-                        "parent_group": "azul",
-                        "color": "#039BE5",
-                        "alias": [
-                            "cielo"
-                        ],
-                        "code": "cielo"
-                    }
-                ]
-            },
-            {
-                "scope": "gobar",
-                "group": "turquesa",
-                "name": "turquesa",
-                "color": {
-                    "50": "#DCF1F0",
-                    "100": "#C0E5E3",
-                    "200": "#A4D9D7",
-                    "300": "#88CECB",
-                    "400": "#6CC3BE",
-                    "500": "#50B7B2",
-                    "600": "#459E99",
-                    "700": "#3B8681",
-                    "800": "#306D69",
-                    "900": "#255450"
-                },
-                "instance": [
-                    {
-                        "name": "Palta",
-                        "description": "",
-                        "scope": "gobar",
-                        "related_color": "500",
-                        "parent_group": "turquesa",
-                        "color": "#50B7B2",
-                        "alias": [
-                            "palta"
-                        ],
-                        "variant": {
-                            "half": "#A8DBD9"
-                        },
-                        "code": "palta"
-                    },
-                    {
-                        "name": "Verde azulado",
-                        "description": "",
-                        "scope": "gobar",
-                        "related_color": "800",
-                        "parent_group": "turquesa",
-                        "color": "#306D69",
-                        "alias": [
-                            "verde-azulado"
-                        ],
-                        "code": "verde-azulado"
-                    }
-                ]
-            },
-            {
-                "scope": "gobar",
-                "group": "negro",
-                "name": "negro",
-                "color": {
-                    "50": "#F2F2F2",
-                    "100": "#D3D8D6",
-                    "200": "#B6BDBD",
-                    "300": "#99A1A4",
-                    "400": "#7E848E",
-                    "500": "#686B70",
-                    "600": "#525252",
-                    "700": "#434343",
-                    "800": "#333333",
-                    "900": "#000000"
-                },
-                "instance": [
-                    {
-                        "name": "black",
-                        "description": "Elementos básicos",
-                        "scope": "gobar",
-                        "related_color": "800",
-                        "parent_group": "negro",
-                        "color": "#333333",
-                        "alias": [
-                            "black"
-                        ],
-                        "code": "black"
-                    },
-                    {
-                        "name": "muted",
-                        "description": "Texto secundario (subtitulos)",
-                        "scope": "gobar",
-                        "related_color": "800",
-                        "parent_group": "negro",
-                        "color": "#333333",
-                        "alias": [
-                            "muted",
-                            "gris"
-                        ],
-                        "code": "muted"
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        "name": "Bandera Argentina",
-        "space": "bandera",
-        "data": [
-            {
-                "group": "amarillo",
-                "scope": "bandera",
-                "name": "Amarillo",
-                "color": {
-                    "500": "#FCBF49"
-                },
-                "instance": [
-                    {
-                        "name": "Amarillo bandera",
-                        "description": "Color oficial para la bandera Argentina",
-                        "scope": "bandera",
-                        "related_color": "500",
-                        "parent_group": "amarillo",
-                        "color": "#FCBF49",
-                        "alias": [
-                            "bandera-amarillo"
-                        ],
-                        "code": "bandera-amarillo"
-                    }
-                ]
-            },
-            {
-                "group": "celeste",
-                "scope": "bandera",
-                "name": "Celeste",
-                "color": {
-                    "500": "#75AADB"
-                },
-                "instance": [
-                    {
-                        "name": "Celeste bandera",
-                        "description": "Color oficial para la bandera Argentina",
-                        "scope": "bandera",
-                        "related_color": "500",
-                        "parent_group": "celeste",
-                        "color": "#75AADB",
-                        "alias": [
-                            "bandera-celeste"
-                        ],
-                        "code": "bandera-celeste"
-                    }
-                ]
-            },
-            {
-                "group": "marron",
-                "name": "Marrón",
-                "scope": "bandera",
-                "color": {
-                    "500": "#843511"
-                },
-                "instance": [
-                    {
-                        "name": "Marrón bandera",
-                        "description": "Color oficial para la bandera Argentina",
-                        "scope": "bandera",
-                        "related_color": "500",
-                        "parent_group": "marron",
-                        "color": "#843511",
-                        "alias": [
-                            "bandera-marron"
-                        ],
-                        "code": "bandera-marron",
-                        "group": {
-                            "color": {
-                                "500": "#843511"
-                            },
-                            "name": "Marrón"
-                        }
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        "space": "gna",
-        "name": "Gendarmería Nacional",
-        "data": [
-            {
-                "group": "verde-jade",
-                "name": "verde-jade",
-                "scope": "gna",
-                "color": {
-                    "500": "#006666"
-                },
-                "instance": [
-                    {
-                        "name": "Verde jade",
-                        "description": "",
-                        "scope": "gna",
-                        "related_color": "500",
-                        "parent_group": "verde-jade",
-                        "color": "#006666",
-                        "alias": [
-                            "verde-jade"
-                        ],
-                        "code": "verde-jade"
-                    }
-                ]
-            },
-            {
-                "group": "verde-aloe",
-                "name": "verde-aloe",
-                "scope": "gna",
-                "color": {
-                    "500": "#4FBB73"
-                },
-                "instance": [
-                    {
-                        "name": "Verde aloe",
-                        "description": "",
-                        "scope": "gna",
-                        "related_color": "500",
-                        "parent_group": "verde-aloe",
-                        "color": "#4FBB73",
-                        "alias": [
-                            "verde-aloe"
-                        ],
-                        "code": "verde-aloe"
-                    }
-                ]
-            },
-            {
-                "group": "verde-cemento",
-                "name": "verde-cemento",
-                "scope": "gna",
-                "color": {
-                    "500": "#B4BEBA"
-                },
-                "instance": [
-                    {
-                        "name": "Verde aloe",
-                        "description": "",
-                        "scope": "gna",
-                        "related_color": "500",
-                        "parent_group": "verde-cemento",
-                        "color": "#B4BEBA",
-                        "alias": [
-                            "verde-cemento"
-                        ],
-                        "code": "verde-cemento"
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        "space": "miarg",
-        "name": "MiArgentina",
-        "data": [
-            {
-                "group": "azul",
-                "scope": "miarg",
-                "name": "Azul MiArgentina",
-                "color": {
-                    "500": "#362FC1"
-                },
-                "instance": [
-                    {
-                        "name": "Verde aloe",
-                        "description": "",
-                        "scope": "miarg",
-                        "related_color": "500",
-                        "parent_group": "azul",
-                        "color": "#362FC1",
-                        "variant": {
-                            "half": "#6B66CC"
-                        },
-                        "alias": [
-                            "miarg-azul"
-                        ],
-                        "code": "miarg-azul"
-                    }
-                ]
-            },
-            {
-                "group": "celeste",
-                "scope": "miarg",
-                "name": "Azul MiArgentina",
-                "color": {
-                    "500": "#2CB9EE"
-                },
-                "instance": [
-                    {
-                        "name": "Verde aloe",
-                        "description": "",
-                        "scope": "miarg",
-                        "related_color": "500",
-                        "parent_group": "celeste",
-                        "color": "#2CB9EE",
-                        "alias": [
-                            "miarg-celeste"
-                        ],
-                        "code": "miarg-celeste"
-                    }
-                ]
-            },
-            {
-                "group": "celeste-claro",
-                "scope": "miarg",
-                "name": "Celeste claro",
-                "color": {
-                    "500": "#BCE5F6"
-                },
-                "instance": [
-                    {
-                        "name": "Celeste claro",
-                        "description": "",
-                        "scope": "miarg",
-                        "related_color": "500",
-                        "parent_group": "celeste-claro",
-                        "color": "#BCE5F6",
-                        "alias": [
-                            "miarg-celeste-claro"
-                        ],
-                        "code": "miarg-celeste-claro"
-                    }
-                ]
-            },
-            {
-                "group": "amarillo-claro",
-                "scope": "miarg",
-                "name": "Amarillo claro",
-                "color": {
-                    "500": "#ffe9b8"
-                },
-                "instance": [
-                    {
-                        "name": "Celeste claro",
-                        "description": "",
-                        "scope": "miarg",
-                        "related_color": "500",
-                        "parent_group": "amarillo-claro",
-                        "color": "#ffe9b8",
-                        "alias": [
-                            "miarg-amarillo-claro"
-                        ],
-                        "code": "miarg-amarillo-claro"
-                    }
-                ]
-            },
-            {
-                "group": "rosa-claro",
-                "scope": "miarg",
-                "name": "Rosa claro",
-                "color": {
-                    "500": "#EFCCCE"
-                },
-                "instance": [
-                    {
-                        "name": "Celeste claro",
-                        "description": "",
-                        "scope": "miarg",
-                        "related_color": "500",
-                        "parent_group": "rosa-claro",
-                        "color": "#EFCCCE",
-                        "alias": [
-                            "miarg-rosa-claro"
-                        ],
-                        "code": "miarg-rosa-claro"
-                    }
-                ]
-            },
-            {
-                "group": "verde-claro",
-                "scope": "miarg",
-                "name": "Verde claro",
-                "color": {
-                    "500": "#CFEEDC"
-                },
-                "instance": [
-                    {
-                        "name": "Verde claro",
-                        "description": "",
-                        "scope": "miarg",
-                        "related_color": "500",
-                        "parent_group": "verde-claro",
-                        "color": "#CFEEDC",
-                        "alias": [
-                            "miarg-verde-claro"
-                        ],
-                        "code": "miarg-verde-claro"
-                    }
-                ]
-            },
-            {
-                "group": "azul-oscuro",
-                "scope": "miarg",
-                "name": "Azul oscuro",
-                "color": {
-                    "500": "#222C50"
-                },
-                "instance": [
-                    {
-                        "name": "Azul oscuro",
-                        "description": "",
-                        "scope": "miarg",
-                        "related_color": "500",
-                        "parent_group": "azul-oscuro",
-                        "color": "#222C50",
-                        "alias": [
-                            "miarg-azul-oscuro"
-                        ],
-                        "code": "miarg-azul-oscuro"
-                    }
-                ]
-            },
-            {
-                "group": "gris",
-                "scope": "miarg",
-                "name": "Gris",
-                "color": {
-                    "500": "#7E848E"
-                },
-                "instance": [
-                    {
-                        "name": "Gris",
-                        "description": "",
-                        "scope": "miarg",
-                        "related_color": "500",
-                        "parent_group": "gris",
-                        "color": "#7E848E",
-                        "alias": [
-                            "miarg-gris"
-                        ],
-                        "code": "miarg-gris"
-                    }
-                ]
-            }
-        ]
-    }
-];
+const ponchoColorDefinitionsList = [{"name":"Colores gestión","space":"gob","data":[{"scope":"gob","name":"Azul","group":"azul","color":{"900":"#232D4F","800":"#2C3C5F","700":"#354B6E","600":"#3E5A7E","500":"#5A7290","400":"#7589A3","300":"#91A1B5","200":"#ACB8C8","100":"#C8D0DA","50":"#E3E7ED"},"instance":[{"name":"Azul","color_code":"gob-azul","description":"Color principal","scope":"gob","related_color":"900","parent_group":"azul","color":"#232D4F","variant":{"half":"#9296A7"},"alias":["azul","primary","gob-azul"]},{"name":"Secondary","color_code":"gob-secundario","description":"","scope":"gob","related_color":"600","parent_group":"azul","color":"#3E5A7E","variant":{},"alias":["gob-secundario","secundario","secondary","info"]}]},{"scope":"gob","name":"Ocre","group":"ocre","color":{"50":"#FAF8ED","100":"#F4F0DB","200":"#EAE1B7","300":"#E9CE8C","400":"#E7BA61","500":"#C98941","600":"#AA5821","700":"#8C2701","800":"#6F2001","900":"#511901"},"instance":[{"name":"Arena","color_code":"gob-arena","description":"","scope":"gob","related_color":"200","parent_group":"ocre","color":"#EAE1B7","variant":{"light":"#FAF8ED","dark":"#E7BA61","half":"#F5F0DB"},"alias":["gob-arena"]},{"name":"Amarillo","color_code":"gob-amarillo","description":"Foco o alerta","scope":"gob","related_color":"400","parent_group":"ocre","color":"#E7BA61","variant":{"light":"#EAE1B7","dark":"#AA5821","half":"#F3DDB0"},"alias":["warning","amarillo-intenso","gob-amarillo","amarillo"]},{"name":"Marrón oscuro","color_code":"gob-marron-oscuro","description":"","scope":"gob","related_color":"900","parent_group":"ocre","color":"#511901","variant":{},"alias":["gob-marron-oscuro"]}]},{"scope":"gob","name":"Morado","group":"morado","color":{"default":"#3A3796"},"instance":[{"name":"Azul morado","color_code":"gob-azul-morado","description":"","scope":"gob","related_color":"default","parent_group":"morado","color":"#3A3796","variant":{},"alias":["gob-azul-morado"]}]}]},{"name":"www.argentina.gob.ar","space":"arg","data":[{"scope":"arg","name":"Verde","group":"verde","color":{"50":"#F1F5D7","100":"#DEE8A3","200":"#CCDB6E","300":"#B9CE39","400":"#93B727","500":"#6EA015","600":"#4E8F24","700":"#2E7D33","800":"#27692A","900":"#1F5421"},"instance":[{"name":"Verde","color_code":"arg-verde","description":"","scope":"arg","related_color":"700","parent_group":"verde","color":"#2E7D33","variant":{"light":"#6EA015","half":"#96BE99","dark":"#1F5421"},"alias":["verde","arg-verde","success"]},{"name":"Verdín","color_code":"arg-verdin","description":"","scope":"arg","related_color":"500","parent_group":"verde","color":"#6EA015","variant":{"light":"#B9CE39","dark":"#2E7D33"},"alias":["arg-verdin","verdin"]},{"name":"Lima","color_code":"arg-lima","description":"","scope":"arg","related_color":"300","parent_group":"verde","color":"#B9CE39","variant":{"light":"#DEE8A3","dark":"#6EA015"},"alias":["arg-lima","limon","lima"]}]},{"scope":"arg","name":"Amarillo","group":"amarillo","color":{"50":"#FFFAE8","100":"#FFF1C0","200":"#FFE997","300":"#FFE06E","400":"#FFD745","500":"#FFCE1C","600":"#D8AE18","700":"#B18F15","800":"#8A6F12","900":"#634F0E"},"instance":[{"name":"Maíz","color_code":"arg-maiz","description":"","scope":"arg","related_color":"500","parent_group":"amarillo","color":"#FFCE1C","variant":{"light":"#FFE997","dark":"#B18F15"},"alias":["arg-maiz","maiz"]}]},{"scope":"arg","name":"Fucsia","group":"fucsia","color":{"50":"#FCDDE6","100":"#F8B6C9","200":"#F48EAB","300":"#F16798","400":"#ED3F85","500":"#EC407A","600":"#D72C6B","700":"#C2185B","800":"#9A144A","900":"#721038"},"instance":[{"name":"Arándano","color_code":"arg-arandano","description":"","scope":"arg","related_color":"700","parent_group":"fucsia","color":"#C2185B","variant":{"light":"#EC407A","dark":"#721038","half":"#E18CAD"},"alias":["arg-arandano","arandano"]},{"name":"Fucsia","color_code":"arg-fucsia","description":"","scope":"arg","related_color":"500","parent_group":"fucsia","color":"#EC407A","variant":{"light":"#F16798","dark":"#9A144A"},"alias":["fucsia","arg-fucsia","cereza"]},{"name":"Rosado","color_code":"arg-rosado","description":"","scope":"arg","related_color":"200","parent_group":"fucsia","color":"#F48EAB","variant":{"light":"#FCDDE6","dark":"#ED3F85","half":"#FAC7D5"},"alias":["arg-rosado"]}]},{"scope":"arg","name":"Violeta","group":"violeta","color":{"50":"#E9E6F2","100":"#D3CEE5","200":"#BEB5D8","300":"#A89DCB","400":"#9284BE","500":"#8561B2","700":"#6A1B99","800":"#4B0F7A","900":"#2C035C","600":"#773EA5"},"instance":[{"name":"Lavanda","color_code":"arg-lavanda","description":"","scope":"arg","related_color":"400","parent_group":"violeta","color":"#9284BE","variant":{},"alias":["lavanda","arg-lavanda"]},{"name":"Uva","color_code":"arg-uva","description":"","scope":"arg","related_color":"700","parent_group":"violeta","color":"#6A1B99","variant":{},"alias":["uva","arg-uva"]}]},{"scope":"arg","name":"Negro","group":"negro","color":{"50":"#EDEDEF","100":"#DADCDF","200":"#C8CACF","300":"#B5B9BE","400":"#A3A7AE","500":"#90969E","600":"#7E848E","700":"#5B5F65","800":"#37393D","900":"#141414"},"instance":[{"name":"Negro","color_code":"arg-black","description":"Elementos básicos","scope":"arg","related_color":"800","parent_group":"negro","color":"#37393D","variant":{},"alias":["negro","arg-black","black"]},{"name":"Muted","color_code":"arg-muted","description":"Texto secundario (subtítulos)","scope":"arg","related_color":"600","parent_group":"negro","color":"#7E848E","variant":{},"alias":["arg-muted","muted","gris"]}]},{"scope":"arg","name":"Turquesa","group":"turquesa","color":{"50":"#DCF1F0","100":"#C0E5E3","200":"#A4D9D7","300":"#88CECB","400":"#6CC3BE","500":"#50B7B2","600":"#459E99","700":"#3B8681","800":"#306D69","900":"#255450"},"instance":[{"name":"Palta","color_code":"arg-palta","description":"","scope":"arg","related_color":"500","parent_group":"turquesa","color":"#50B7B2","variant":{"half":"#A8DBD9"},"alias":["arg-palta","palta"]},{"name":"Verde azulado","color_code":"arg-verde-azulado","description":"","scope":"arg","related_color":"700","parent_group":"turquesa","color":"#3B8681","variant":{},"alias":["arg-verde-azulado","verdeazulado","verde-azulado"]}]},{"scope":"arg","name":"Azul","group":"azul","color":{"50":"#D8F0FA","100":"#BEE6F6","200":"#75D0F2","300":"#2CB9EE","400":"#18AAEA","500":"#039BE5","600":"#0B7FC0","700":"#14639A","800":"#1C4875","900":"#242C4F"},"instance":[{"name":"Cielo","color_code":"arg-cielo","description":"","scope":"arg","related_color":"500","parent_group":"azul","color":"#039BE5","variant":{},"alias":["cielo","escarapela","arg-cielo","celeste-argentina","celesteargentina"]}]},{"scope":"arg","name":"Rojo","group":"rojo","color":{"50":"#FCDDDC","100":"#F9BBB9","200":"#F69896","300":"#F27673","400":"#EF5350","500":"#E14543","600":"#D43635","700":"#C62828","800":"#A12222","900":"#7C1C1C"},"instance":[{"name":"Rojo","color_code":"arg-rojo","description":"Atención o peligro","scope":"arg","related_color":"700","parent_group":"rojo","color":"#C62828","variant":{"light":"#E14543","dark":"#7C1C1C"},"alias":["danger","arg-rojo","rojo"]},{"name":"Tomate","color_code":"arg-tomate","description":"","scope":"arg","related_color":"400","parent_group":"rojo","color":"#EF5350","variant":{"light":"#F69896","dark":"#C62828"},"alias":["arg-tomate","complementary","tomate"]}]},{"scope":"arg","name":"Naranja","group":"naranja","color":{"50":"#FDE7BF","100":"#FBCE80","200":"#F9B640","300":"#F79D00","400":"#F38500","500":"#EF6C00","600":"#CE5701","700":"#AE4203","800":"#8D2D04","900":"#6C1805"},"instance":[{"name":"Naranja","color_code":"arg-naranja","description":"","scope":"arg","related_color":"500","parent_group":"naranja","color":"#EF6C00","variant":{"light":"#EF6C00","dark":"#6C1805"},"alias":["arg-naranja","naranjaoscuro","naranja"]},{"name":"Mandarina","color_code":"arg-mandarina","description":"","scope":"arg","related_color":"400","parent_group":"naranja","color":"#F38500","variant":{"light":"#F9B640","dark":"#CE5701"},"alias":["arg-mandarina","mandarina"]}]},{"scope":"arg","name":"Blanco","group":"blanco","color":{"default":"#FFFFFF"},"instance":[{"name":"Blanco","color_code":"arg-blanco","description":"","scope":"arg","related_color":"default","parent_group":"blanco","color":"#FFFFFF","variant":{},"alias":["arg-blanco","blanco","white"]}]}]},{"name":"MiArgentina","space":"miarg","data":[{"scope":"miarg","name":"Azul MiArgentina","group":"azul","color":{"default":"#3526C3"},"instance":[{"name":"Azul MiArgentina","color_code":"miarg-azul","description":"Azul principal para aplicaciones MiArgentina","scope":"miarg","related_color":"default","parent_group":"azul","color":"#3526C3","variant":{"half":"#6B66CC"},"alias":["miarg-azul"]}]},{"scope":"miarg","name":"Celeste MiArgentina","group":"celeste","color":{"default":"#2CB9EE"},"instance":[{"name":"Celeste MiArgentina","color_code":"miarg-celeste","description":"","scope":"miarg","related_color":"default","parent_group":"celeste","color":"#2CB9EE","variant":{},"alias":["miarg-celeste"]}]},{"scope":"miarg","name":"Amarillo claro MiArgentina","group":"amarillo-claro","color":{"default":"#ffe9b8"},"instance":[{"name":"Amarillo claro MiArgentina","color_code":"miarg-amarillo-claro","description":"","scope":"miarg","related_color":"default","parent_group":"amarillo-claro","color":"#ffe9b8","variant":{},"alias":["miarg-amarillo-claro"]}]},{"scope":"miarg","name":"Rosa claro MiArgentina","group":"rosa-claro","color":{"default":"#EECCCF"},"instance":[{"name":"Rosa claro MiArgentina","color_code":"miarg-rosa-claro","description":"","scope":"miarg","related_color":"default","parent_group":"rosa-claro","color":"#EECCCF","variant":{},"alias":["miarg-rosa-claro"]}]},{"scope":"miarg","name":"Verde claro MiArgentina","group":"verde-claro","color":{"default":"#CFEEDC"},"instance":[{"name":"Verde claro MiArgentina","color_code":"miarg-verde-claro","description":"","scope":"miarg","related_color":"default","parent_group":"verde-claro","color":"#CFEEDC","variant":{},"alias":["miarg-verde-claro"]}]},{"scope":"miarg","name":"Azul oscuro MiArgentina","group":"azul-oscuro","color":{"default":"#222C50"},"instance":[{"name":"Azul oscuro MiArgentina","color_code":"miarg-oscuro","description":"","scope":"miarg","related_color":"default","parent_group":"azul-oscuro","color":"#222C50","variant":{},"alias":["miarg-oscuro"]}]},{"scope":"miarg","name":"Gris MiArgentina","group":"gris","color":{"default":"#7E848E"},"instance":[{"name":"Gris MiArgentina","color_code":"miarg-gris","description":"","scope":"miarg","related_color":"default","parent_group":"gris","color":"#7E848E","variant":{},"alias":["miarg-gris"]}]},{"scope":"miarg","name":"Celeste claro MiArgentina","group":"celeste-claro","color":{"default":"#BEE6F6"},"instance":[{"name":"Celeste claro MiArgentina","color_code":"miarg-celeste-claro","description":"","scope":"miarg","related_color":"default","parent_group":"celeste-claro","color":"#BEE6F6","variant":{},"alias":["miarg-celeste-claro"]}]}]},{"name":"Colores de la bandera de la República Argentina","space":"bandera","data":[{"scope":"bandera","name":"Amarillo","group":"amarillo","color":{"default":"#FCBF49"},"instance":[{"name":"Amarillo Bandera","color_code":"bandera-amarillo","description":"Color amarillo oficial para la bandera Argentina","scope":"bandera","related_color":"default","parent_group":"amarillo","color":"#FCBF49","variant":{},"alias":["bandera-amarillo"]}]},{"scope":"bandera","name":"Celeste","group":"celeste","color":{"default":"#75AADB"},"instance":[{"name":"Celeste Bandera","color_code":"bandera-celeste","description":"Color celeste oficial para la bandera Argentina","scope":"bandera","related_color":"default","parent_group":"celeste","color":"#75AADB","variant":{},"alias":["bandera-celeste"]}]},{"scope":"bandera","name":"Marrón","group":"marron","color":{"default":"#843511"},"instance":[{"name":"Marrón Bandera","color_code":"bandera-marron","description":"Color marrón oficial para la bandera Argentina","scope":"bandera","related_color":"default","parent_group":"marron","color":"#843511","variant":{},"alias":["bandera-marron"]}]}]},{"name":"Gendarmería Nacional","space":"gna","data":[{"scope":"gna","name":"Verde jade","group":"verde-jade","color":{"default":"#006666"},"instance":[{"name":"Verde jade","color_code":"gna-verde-jade","description":"","scope":"gna","related_color":"default","parent_group":"verde-jade","color":"#006666","variant":{},"alias":["gna-verde-jade","verde-jade","verdejade"]}]},{"scope":"gna","name":"Verde aloe","group":"verde-aloe","color":{"default":"#4FBB73"},"instance":[{"name":"Verde aloe","color_code":"gna-verde-aloe","description":"","scope":"gna","related_color":"default","parent_group":"verde-aloe","color":"#4FBB73","variant":{},"alias":["gna-verde-aloe","verde-aloe"]}]},{"scope":"gna","name":"Verde cemento","group":"verde-cemento","color":{"default":"#B4BEBA"},"instance":[{"name":"Verde cemento","color_code":"gna-verde-cemento","description":"","scope":"gna","related_color":"default","parent_group":"verde-cemento","color":"#B4BEBA","variant":{},"alias":["verde-cemento","verdecemento","gna-verde-cemento"]}]}]}];
 
 
 /**
@@ -964,6 +41,32 @@ const illustrationColors = [
     "arena",
     "warning"
 ];
+
+
+const ponchoColorList = (colorDefinitionsList) => {
+    result = colorDefinitionsList
+        .flatMap( m => m.data.flatMap(i => i.instance.map(x => x)) );
+    return result || [];
+};
+
+
+const ponchoColorVariables = (colorDefinitions) => { 
+    const colors = ponchoColorList(colorDefinitions);
+
+    let collect = [];
+    
+    colors.flatMap(m => {
+        const {alias, color, variant={}} = m;
+
+        alias.forEach(function(a){
+            collect.push( [a, color] );
+            Object.entries(variant).forEach(function(value){
+                collect.push( [`${a}-${value[0]}`, value[1]] );
+            });
+        })
+    });
+    return collect;
+};
 
 
 /**
@@ -1124,12 +227,13 @@ const cleanUpHex = value => {
  * @returns {object} Objecto con la defición del color
  */
 function ponchoColorByHex(hexColor){
-    if(typeof hexColor == undefined || !hexColor?.trim()){
+    if(!isValidHex(hexColor)){
         return;
     }
 
-    let result;
+    var result = [];
     const targetColor = cleanUpHex(hexColor);
+
     for(let i = 0; i <= ponchoColorDefinitionsList.length -1; i += 1){
         let {data} = ponchoColorDefinitionsList[i];
 
@@ -1137,14 +241,11 @@ function ponchoColorByHex(hexColor){
             const {instance} = entry;
             for(let item of instance){
                 const {color} = item;
-                if( cleanUpHex(color) === targetColor ){
-                    result = item;
-                    break;
+                if( cleanUpHex(color) == targetColor ){
+                    result.push(item);
                 }
             }
-
         }
-
     }
     return result;
 }
@@ -1156,8 +257,7 @@ function ponchoColorByHex(hexColor){
  * @returns {object}
  */
 const hexToRgb = hexColor => {
-    if (!hexColor || !hexColor.match(/^#?([A-Fa-f0-9]{3}|[A-Fa-f0-9]{6})$/gm)) {
-        console.warn("Invalid hex color format:", hexColor);
+    if (!isValidHex(hexColor)) {
         return null;
     }
 
@@ -1170,6 +270,39 @@ const hexToRgb = hexColor => {
 
     return [red, green, blue];
 }
+
+
+function isValidPonchoColorDefList(colorDefinitins){
+    return (
+        Array.isArray(colorDefinitins) &&
+        colorDefinitins.length > 0 &&
+        colorDefinitins[0].hasOwnProperty('space')
+    );
+}
+
+
+/**
+ * Valida un color hexadecimal
+ * @param {string} hexColor Color hexadecimal 
+ * @returns {boolean}
+ */
+function isValidHex(hexColor){
+    if (hexColor === null || hexColor === undefined) {
+        return false;
+    }
+
+    if (typeof hexColor !== 'string') {
+        return false;
+    }
+
+    const regx = new RegExp(/^#?([A-Fa-f0-9]{3}|[A-Fa-f0-9]{6})$/);
+    if (!regx.test(hexColor)) {
+        console.warn("Invalid hex color format:", hexColor);
+        return false;
+    }
+    return true;    
+}
+
 
 
 
