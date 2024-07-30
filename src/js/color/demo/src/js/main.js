@@ -58,7 +58,7 @@ function render(ponchoColorDefinitionsList){
                             <dd>${searchInstance.color_code}</dd>  
                             ${variants}
                             <dt>Alias</dt>
-                            <dd>${searchInstance.alias.join(', ')}</dd>
+                            <dd>${searchInstance.alias.map(m => m.code).join(', ')}</dd>
                             <dt> Color</dt>
                             <dd>
                                 <i class="sample-info__mini-sample" 

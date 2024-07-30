@@ -1,10 +1,10 @@
 // Root color definitions
-:root, html {
+:root,
+html {
   @each $name, $color in $colores {
     --#{$name}: #{$color};
   }
 }
-
 
 
 /*
@@ -16,8 +16,8 @@ body {
   @include family-sans-serif-attributes;
   height: 100%;
   max-width: 100%;
-	font-weight: 400;
-	background: #fff;
+  font-weight: 400;
+  background: #fff;
   // overflow-x: hidden; // Se comenta porque rompe el screenshot en pantalla completa completa
 }
 
@@ -34,6 +34,7 @@ hr {
   &.hr-lg {
     margin: 60px 0;
   }
+
   &.hr-sm {
     margin: 15px 0;
   }
@@ -74,9 +75,11 @@ section {
   &.section-no-spaced {
     padding: 0;
   }
+
   &.section-sm {
     padding: 20px 0;
   }
+
   &.section-lg {
     padding: 40px 0;
   }
@@ -95,7 +98,12 @@ section {
 
   }
 
-  h1, h2, h3, h4, h5, h5 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h5 {
     margin-top: 0 !important;
     margin-bottom: 0.2em;
   }
@@ -106,12 +114,12 @@ section {
 }
 
 
-.icon-item i[class*=icono-arg]:before{
-    line-height: 72px;
-    font-size: 1.30em;
+.icon-item i[class*=icono-arg]:before {
+  line-height: 72px;
+  font-size: 1.30em;
 }
 
-.panel-heading i[class*=icono-arg]:before{
+.panel-heading i[class*=icono-arg]:before {
   line-height: 70px;
 }
 
@@ -129,18 +137,32 @@ aside {
   }
 }
 
+
+
+
+
 // Paleta principal
+@each $name, $color in $colores {
+  .bg-#{$name} {
+      background-color: #{$color} !important;
+  }
+}
+
+
+/*
 .bg-azul,
 .bg-primary {
   background-color: $brand-primary !important;
 }
+
 .bg-success {
   background-color: $brand-success !important;
- }
+}
 
 .bg-info {
   background-color: $brand-info !important;
 }
+
 .bg-danger {
   background-color: $brand-danger !important;
 }
@@ -148,40 +170,51 @@ aside {
 .bg-warning {
   background-color: $brand-warning !important;
 }
+
 .bg-gray {
   background-color: $gray-lighter !important;
 }
+
 .bg-white {
   background-color: $white !important;
-	border: solid 1px #ddd;
-	border-radius: 10px;
+  border: solid 1px #ddd;
+  border-radius: 10px;
 }
+
 .bg-muted {
   background-color: $gray !important;
 }
+
 // Paleta extendida
 
 .bg-fucsia {
   background-color: $brand-fucsia !important;
 }
+
 .bg-arandano {
   background-color: $brand-arandano !important;
 }
+
 .bg-uva {
   background-color: $brand-uva !important;
 }
+
 .bg-cielo {
   background-color: $brand-cielo !important;
 }
+
 .bg-verdin {
   background-color: $brand-verdin !important;
 }
+
 .bg-lima {
   background-color: $brand-lima !important;
 }
+
 .bg-maiz {
   background-color: $brand-maiz !important;
 }
+
 .bg-tomate {
   background-color: $brand-tomate !important;
 }
@@ -193,59 +226,74 @@ aside {
 .bg-verde-azulado {
   background-color: $brand-verde-azulado !important;
 }
+
 .bg-mandarina {
   background-color: $brand-mandarina !important;
 }
+
 .bg-cereza {
   background-color: $brand-cereza !important;
 }
+
 .bg-lavanda {
   background-color: $brand-lavanda !important;
 }
+
 .bg-escarapela {
   background-color: $brand-escarapela !important;
 }
+
 .bg-celeste-argentina {
   background-color: $brand-celeste-argentina !important;
 }
+
 .bg-palta {
   background-color: $brand-palta !important;
 }
+
 .bg-limon {
   background-color: $brand-limon !important;
 }
+
 .bg-verde-jade {
   background-color: $brand-verde-jade !important;
 }
+
 .bg-verde-aloe {
   background-color: $brand-verde-aloe !important;
 }
+
 .bg-verde-cemento {
   background-color: $brand-verde-cemento !important;
 }
+
 .bg-azul-marino {
   background-color: $brand-azul-marino !important;
 }
+
 .bg-amarillo-intenso {
   background-color: $brand-amarillo-intenso !important;
 }
+
 .bg-arena {
   background-color: $brand-arena !important;
 }
+
 .bg-rosado {
   background-color: $brand-rosado !important;
 }
+
 .bg-miarg-azul {
   background-color: $brand-miarg-azul !important;
 }
+*/
 
 
 
 
-
-.bg-azul, 
-.bg-primary, 
-.bg-success, 
+.bg-azul,
+.bg-primary,
+.bg-success,
 .bg-info,
 .bg-danger,
 .bg-warning,
@@ -256,8 +304,8 @@ aside {
 .bg-verdin,
 .bg-lima,
 .bg-maiz,
-.bg-tomate, 
-.bg-naranja, 
+.bg-tomate,
+.bg-naranja,
 .bg-verde-azulado,
 .bg-mandarina,
 .bg-cereza,
@@ -269,77 +317,121 @@ aside {
 .bg-verde-aloe,
 .bg-verde-cemento,
 .bg-azul-marino,
-.bg-amarillo-intenso
-{
-  h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+.bg-amarillo-intenso {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  .h1,
+  .h2,
+  .h3,
+  .h4,
+  .h5,
+  .h6 {
     color: #FFF !important;
+
     small,
     .small {
       color: #FFF;
     }
-  }  
+  }
 
   .panel-default:not(:hover),
-  .panel-disabled  {
-    h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  .panel-disabled {
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    .h1,
+    .h2,
+    .h3,
+    .h4,
+    .h5,
+    .h6 {
       color: $text-color !important;
+
       small,
       .small {
         color: $text-color;
       }
     }
+
     p {
       color: $text-color !important;
-    } 
+    }
+
     time {
       color: $text-color !important;
-    }              
+    }
   }
 
   .alert {
-    h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    .h1,
+    .h2,
+    .h3,
+    .h4,
+    .h5,
+    .h6 {
       color: $gray-dark !important;
+
       small,
       .small {
         color: $gray-dark;
       }
     }
+
     p {
       color: $gray-dark !important;
-    }  
+    }
+
     a {
       color: $brand-primary !important;
+
       &:hover,
       &:focus,
       &:active {
-        color: $link-hover-color!important;
+        color: $link-hover-color !important;
       }
-    }          
-  }  
+    }
+  }
 
   .dropdown-menu {
-    > li > a {
+    >li>a {
       color: $gray-dark !important;
+
       &:hover,
       &:focus {
         color: #FFF !important;
       }
-    }          
+    }
   }
 
-   p,
-   a,
-   ul,
-   ol, 
-   dl, 
-   blockquote, 
-   blockquote small,
-   blockquote footer, 
-   blockquote p span, 
-   table, 
-   label {
+  p,
+  a,
+  ul,
+  ol,
+  dl,
+  blockquote,
+  blockquote small,
+  blockquote footer,
+  blockquote p span,
+  table,
+  label {
     color: #FFF !important;
-   }  
+  }
 
 }
 
@@ -351,9 +443,11 @@ a.bg-warning,
 a.bg-danger {
   color: #FFF;
   display: block;
+
   &[href^="/"] {
     padding: 6px 0;
   }
+
   &:hover {
     opacity: 0.9;
     text-decoration: underline;
@@ -363,34 +457,51 @@ a.bg-danger {
     font-size: 16px;
   }
 }
+
+
+
+@each $name, $color in $colores {
+  .text-#{$name} {
+      color: #{$color} !important;
+  }
+}
+/*
 .text-azul,
 .text-primary {
   color: $brand-primary !important;
 }
+
 .text-secondary {
   color: $brand-secondary !important;
 }
+
 .text-success {
   color: $brand-success !important;
 }
+
 .text-info {
   color: $brand-info !important;
 }
+
 .text-warning {
   color: darken($brand-warning, 22%);
 }
+
 .text-danger {
   color: $brand-danger !important;
 }
+
 .text-black {
   color: $black !important;
 }
+
 .text-white {
   color: $white !important;
 }
+
 .text-muted {
   color: $gray !important;
-	opacity: 1 !important
+  opacity: 1 !important
 }
 
 
@@ -399,24 +510,31 @@ a.bg-danger {
 .text-fucsia {
   color: $brand-fucsia !important;
 }
+
 .text-arandano {
   color: $brand-arandano !important;
 }
+
 .text-uva {
   color: $brand-uva !important;
 }
+
 .text-cielo {
   color: $brand-cielo !important;
 }
+
 .text-verdin {
   color: $brand-verdin !important;
 }
+
 .text-lima {
   color: $brand-lima !important;
 }
+
 .text-maiz {
   color: $brand-maiz !important;
 }
+
 .text-tomate {
   color: $brand-tomate !important;
 }
@@ -448,39 +566,49 @@ a.bg-danger {
 .text-celeste-argentina {
   color: $brand-celeste-argentina !important;
 }
+
 .text-palta {
   color: $brand-palta !important;
 }
+
 .text-limon {
   color: $brand-limon !important;
 }
+
 .text-verde-jade {
   color: $brand-verde-jade !important;
 }
+
 .text-verde-aloe {
   color: $brand-verde-aloe !important;
 }
+
 .text-verde-cemento {
   color: $brand-verde-cemento !important;
 }
+
 .text-azul-marino {
   color: $brand-azul-marino !important;
 }
+
 .text-amarillo-intenso {
   color: $brand-amarillo-intenso !important;
 }
+
 .text-arena {
   color: $brand-arena !important;
 }
+
 .text-rosado {
   color: $brand-rosado !important;
 }
+
 .text-miarg-azul {
   color: $brand-miarg-azul !important;
 }
+*/
 
-
-.nav > li > a {
+.nav>li>a {
   text-decoration: none;
 }
 
@@ -497,9 +625,10 @@ a.bg-danger {
     display: block;
     padding: 5px 0;
     text-decoration: none;
-      &:hover {
-        text-decoration: none;
-      }
+
+    &:hover {
+      text-decoration: none;
+    }
   }
 
   .nav {
@@ -529,20 +658,20 @@ a.bg-danger {
   .nav-pills li {
 
     a {
-      color: #0072bb;
+      color: $brand-primary;
     }
 
-    &.active > a,
-    > a:hover {
+    &.active>a,
+    >a:hover {
       background-color: $gray-lighter;
       border-color: $gray-lighter;
     }
 
-    &.btn-title > a {
+    &.btn-title>a {
       padding: 10px 20px;
     }
 
-    &.disabled > a {
+    &.disabled>a {
       color: $white;
 
       &:hover {
@@ -550,7 +679,7 @@ a.bg-danger {
       }
     }
 
-    > a {
+    >a {
       padding: 13px 20px;
       border-radius: 30px;
 
@@ -563,9 +692,9 @@ a.bg-danger {
       }
     }
 
-    &.active > a,
-    &.active > a:hover,
-    &.active > a:focus {
+    &.active>a,
+    &.active>a:hover,
+    &.active>a:focus {
       background-color: $brand-primary;
       border: 0;
       color: $body-bg;
@@ -579,26 +708,28 @@ a.bg-danger {
       li {
 
         a {
-        font-size: 16px;
-        &:before {
-          content: '-';
-          display: inline-block;
-          margin-right: 15px;
-          color: $gray-light;
+          font-size: 16px;
+
+          &:before {
+            content: '-';
+            display: inline-block;
+            margin-right: 15px;
+            color: $gray-light;
+          }
         }
-      }
 
         ul li a {
           &:before {
             margin-left: 10px;
           }
-        }      
+        }
 
       }
 
 
       li a {
         font-size: 16px;
+
         &:before {
           content: '-';
           display: inline-block;
@@ -611,8 +742,8 @@ a.bg-danger {
 
 
 
-  .nav > li > a:hover,
-  .nav > li > a:focus {
+  .nav>li>a:hover,
+  .nav>li>a:focus {
     background-color: $gray-lighter;
     text-decoration: none;
   }
@@ -739,7 +870,9 @@ dd {
   margin-top: 5px;
   padding-right: 0;
 
-  .glyphicon-search {color: $brand-primary;}
+  .glyphicon-search {
+    color: $brand-primary;
+  }
 
   span {
     &.bg-primary {
@@ -751,7 +884,9 @@ dd {
     }
   }
 
-  input {font-size: 1.1em;}
+  input {
+    font-size: 1.1em;
+  }
 
   .input-group-addon,
   .form-control {
@@ -817,7 +952,8 @@ dd {
 }
 
 
-.state-loading, .icon-load.progress-disabled {
+.state-loading,
+.icon-load.progress-disabled {
   position: relative;
 
   &:before {
@@ -841,7 +977,7 @@ dd {
   }
 
   &:after {
-    background-color: rgba(204,204,204,.7);
+    background-color: rgba(204, 204, 204, .7);
     border-radius: 30px;
     content: '';
     height: 100%;
@@ -856,12 +992,14 @@ dd {
 
 
 
-.borde-img{box-shadow: 0 2px 4px rgba(0,0,0,0.1)}
+.borde-img {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1)
+}
 
 
 
-.has-error .chosen-container a{
-         border-color:#BB4945!important;
+.has-error .chosen-container a {
+  border-color: #BB4945 !important;
 }
 
 
@@ -870,9 +1008,11 @@ dd {
   from {
     transform: rotate(0)
   }
+
   to {
-    transform: rotate(360deg)}
+    transform: rotate(360deg)
   }
+}
 
 
 
@@ -880,9 +1020,11 @@ dd {
   from {
     transform: rotate(0)
   }
+
   to {
-    transform: rotate(360deg)}
+    transform: rotate(360deg)
   }
+}
 
 .fa-500px:before,
 .fa-adn:before,
@@ -1029,94 +1171,135 @@ dd {
 .fa-yc-square:before,
 .fa-yelp:before,
 .fa-yoast:before {
-    content: "";
+  content: "";
 }
 
-.fa.text-primary{color:$brand-primary!important}
-.fa.text-info{color:$brand-info!important}
-.fa.text-success{color:$brand-success!important}
-.fa.text-warning{color:$brand-warning!important}
-.fa.text-danger{color:$brand-danger!important}
+.fa.text-primary {
+  color: $brand-primary !important
+}
+
+.fa.text-info {
+  color: $brand-info !important
+}
+
+.fa.text-success {
+  color: $brand-success !important
+}
+
+.fa.text-warning {
+  color: $brand-warning !important
+}
+
+.fa.text-danger {
+  color: $brand-danger !important
+}
 
 .nav-icons i[class^="icono-arg-"]:before,
-.nav-icons i.fa:before
-{
-  line-height:80px
+.nav-icons i.fa:before {
+  line-height: 80px
 }
 
 .nav-icons i[class^="icono-arg-"],
-.nav-icons i.fa
-{
-  line-height:0
+.nav-icons i.fa {
+  line-height: 0
 }
 
 
-#clase11{
-  color:#000
-}
-
-/* botón mi argentina en header */
-header .btn i[class*="icono-arg"]{font-size: 1em;height: 22px;float: left;}
-header .btn i[class*="icono-arg"].fa-fw{width: 1.6em;margin-right:0;}
-header .btn i[class*="icono-arg"]:before{line-height: 22px;font-size:1.6em;}
-@media all and (min-width: 768px){
-  .btn i[class*="icono-arg"]{margin-right:8px;}
+#clase11 {
+  color: #000
 }
 
 
-/*flechas mobile */
+/**
+ * Botón mi argentina en header
+ */
+header .btn i[class*="icono-arg"] {
+  font-size: 1em;
+  height: 22px;
+  float: left;
+}
 
+header .btn i[class*="icono-arg"].fa-fw {
+  width: 1.6em;
+  margin-right: 0;
+}
+
+header .btn i[class*="icono-arg"]:before {
+  line-height: 22px;
+  font-size: 1.6em;
+}
+
+@media all and (min-width: 768px) {
+  .btn i[class*="icono-arg"] {
+    margin-right: 8px;
+  }
+}
+
+
+
+/**
+ * Flechas mobile
+ */
 #scrolltotop_parent {
-        cursor: pointer;
-        position: fixed;
-        bottom: 20px;
-        z-index: 1002 !important;
-	line-height: .82em;
-	width: .83em;
-	height: .83em;
-	margin: 0 .4em .4em
+  cursor: pointer;
+  position: fixed;
+  bottom: 20px;
+  z-index: 1002 !important;
+  line-height: .82em;
+  width: .83em;
+  height: .83em;
+  margin: 0 .4em .4em
 }
-#scrolltotop_parent i{
-        font-size: 40px;
-        color: #0072bb;
-        background-color: white;
-        border-radius: 15px;
-        opacity: .7
+
+#scrolltotop_parent i {
+  font-size: 40px;
+  color: $brand-primary;
+  background-color: $white;
+  border-radius: 15px;
+  opacity: .7
 }
+
 #scrolltotop .fa-arrow-circle-up {
-        margin-left: 150px;
-        margin-bottom: 100px
+  margin-left: 150px;
+  margin-bottom: 100px
 }
 
 @media (min-width: 768px) {
-        #scrolltotop_parent {
-            display: none !important;
-        }
+  #scrolltotop_parent {
+    display: none !important;
+  }
 }
 
-.search-results { list-style: none; padding-left: 0;}
+.search-results {
+  list-style: none;
+  padding-left: 0;
+}
 
 
 
-/* Etiquetas details y summary */
-
+/**
+ * Etiquetas details y summary 
+ */
 details {
   transition: all ease-out 0.2s;
   margin-bottom: 0;
-	padding-left: 0px
+  padding-left: 0px
 }
+
 details:last-child {
   border-top: none;
 }
+
 summary {
   line-height: 1.5em;
   display: block;
   padding: 0.5em 1.5em;
   cursor: pointer;
-	font-size: 1.1em;
+  font-size: 1.1em;
   font-weight: bold;
   position: relative;
   color: $brand-primary;
+
   &:before {
     content: " ";
     top: 36%;
@@ -1126,15 +1309,17 @@ summary {
     width: 8px;
     height: 8px;
     transition: 0.25s;
+
     border: {
       right: {
         style: solid;
         color: var(--gray-base, $gray-base);
         width: 3px;
       }
+
       bottom: {
         style: solid;
-        color: var(--gray-base,$gray-base);
+        color: var(--gray-base, $gray-base);
         width: 3px;
       }
     }
@@ -1145,16 +1330,17 @@ summary {
 }
 
 summary::-webkit-details-marker {
-  color:inherit;
+  color: inherit;
   font-size: 1em;
   position: relative;
   top: -1px;
   background: transparent;
 }
+
 .expand {
   margin-top: 0px;
   padding: 0.5em;
-  background: white;
+  background: $white;
   min-height: 1em;
 }
 
@@ -1163,6 +1349,7 @@ summary::-webkit-details-marker {
     opacity: 0;
     overflow: hidden;
   }
+
   100% {
     opacity: 1;
   }
@@ -1173,29 +1360,28 @@ summary::-webkit-details-marker {
     opacity: 0;
     overflow: hidden;
   }
+
   100% {
     opacity: 1;
   }
 }
 
-details[open] summary ~ * {
+details[open] summary~* {
   -webkit-animation: open 0.2s ease-in-out;
-          animation: open 0.2s ease-in-out;
-	padding-left: 26px
+  animation: open 0.2s ease-in-out;
+  padding-left: 26px
 }
 
-details[open] > summary {
+details[open]>summary {
   &:before {
     top: 42%;
     transform: rotate(225deg);
   }
 }
 
-details[open] > summary::-webkit-details-marker {
+details[open]>summary::-webkit-details-marker {
   &:before {
     top: 42%;
     transform: rotate(225deg);
   }
 }
-
-

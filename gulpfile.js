@@ -7,7 +7,6 @@ var concat = require('gulp-concat');
 var SRC = './src/js/*.js';
 var rename = require('gulp-rename');
 const gulpIF = require('gulp-if');
-// var replace = require('gulp-replace');
 
 
 var generalCompressOptions = {
@@ -17,7 +16,8 @@ var generalCompressOptions = {
 };
 
 const ponchoMinList = [
-    './src/js/utils/color.js',
+    './src/js/color/src/js/color-definitions.js',
+    './src/js/color/src/js/color.js',
     './src/js/utils/connect.js',
     './src/js/utils/string.js',
     './src/js/utils/html.js',

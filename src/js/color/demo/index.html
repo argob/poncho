@@ -11,6 +11,7 @@
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" 
         crossorigin="anonymous">
     <link rel="stylesheet" href="./dist/css/main.css">
+    <link rel="stylesheet" href="../../../../dist/css/poncho.min.css">
     <title>Colores Argentina.gob.ar</title>
 </head>
 
@@ -27,24 +28,24 @@
     <header style="border-bottom: 4px solid var(--gob-ocre-400, goldenrod);">
         <div class="container">
             <h1 
-                class="roboto-bold text-uppercase mt-3 mb-0 h6" 
+                class="h6 roboto-bold text-uppercase mt-3 mb-0 " 
                 style="color:var(--arg-azul-700)">
                 Colores poncho
             </h1>
             <p 
-                class="small roboto-regular" 
-                style="font-size: 80%;color:var(--arg-negro-400)">
+                class="small roboto-regular text-gob-azul-half" 
+                style="font-size: 80%;">
                 Versión 2.0, 2004
             </p>
         </div>
     </header>
 
     <div style="background-color: #ddd;" class="py-4">
-        <main class="container mb-4">
+        <main class="container mb-4 roboto-regular">
             <div class="row">
             <div class="cont col"></div>
             <div class="col-3">
-                info
+                &nbsp;
             </div>
             </div>
             
@@ -68,7 +69,8 @@
     </footer>
 
     <!-- start scripts -->
-    <script src="../../utils/color.js"></script>
+    <script src="../src/js/color-definitions.js"></script>
+    <script src="../src/js/color.js"></script>
     <script src="../../utils/string.js"></script>
     <script src="../../utils/html.js"></script>
     <script src="../../utils/document.js"></script>

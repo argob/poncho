@@ -418,8 +418,8 @@ input {
     margin-bottom: 5px;
   }
   .select2-search--dropdown .select2-search__field:focus-visible {
-    outline-color: var(--primary, dodgerblue);
-    box-shadow: 0 0 5px var(--primary, dodgerblue);
+    outline-color: var(--primary);
+    box-shadow: 0 0 5px var(--primary);
   }
 
   .select2-results__option {
