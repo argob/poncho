@@ -57,6 +57,12 @@ const colorVariations = {
 };
 
 
+if (typeof Color !== 'undefined') {
+    const color = new Color(ponchoColorDefinitionsList);
+    var ponchoColor = color.ponchoColor;
+}
+
+
 if (typeof exports !== "undefined") {
     module.exports = {
         colorVariations, illustrationColors
