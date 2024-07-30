@@ -1,7 +1,7 @@
-// const { ponchoColorDefinitionsList } = require("../../../../utils/color");
-
 function render(ponchoColorDefinitionsList){
-    const instances = ponchoColorList(ponchoColorDefinitionsList);
+    const _color = new Color(ponchoColorDefinitionsList);
+
+    const instances = _color.ponchoColorList(ponchoColorDefinitionsList);
     const template = document.querySelector("#productrow");
 
     let myRoot = [];
@@ -55,7 +55,7 @@ function render(ponchoColorDefinitionsList){
                             <dt>Nombre</dt>
                             <dd>${searchInstance.name}</dd>  
                             <dt>Código</dt>
-                            <dd>${searchInstance.color_code}</dd>  
+                            <dd>${searchInstance.code}</dd>  
                             ${variants}
                             <dt>Alias</dt>
                             <dd>${searchInstance.alias.map(m => m.code).join(', ')}</dd>
@@ -73,7 +73,7 @@ function render(ponchoColorDefinitionsList){
                 }
 
                 const text = clone.querySelector(".text");
-                text.textContent = cleanUpHex(color[key]);
+                text.textContent = _color.cleanUpHex(color[key]);
 
                 text.style.background = `var(--${space}-${group}-${key});`;
                 row.appendChild(clone);
@@ -89,7 +89,7 @@ function render(ponchoColorDefinitionsList){
     let rootVars = `:root{${vars1}}`;
     headStyle('root-vars', rootVars);
     
-    const vars = ponchoColorVariables(ponchoColorDefinitionsList);
+    const vars = _color.ponchoColorVariables(ponchoColorDefinitionsList);
     const cssToHead = vars.flatMap(value => {
         const [name, color] = value;
         return [
@@ -110,8 +110,6 @@ function axiosConnect(url, timeout){
     };
     return axios.get(url, axiosOptions);
 }
-
-// render(ponchoColorDefinitionsList)
 
 axiosConnect("http://0.0.0.0:9000/api/v1/poncho-color", 5000)
     .then(

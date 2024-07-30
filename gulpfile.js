@@ -16,8 +16,9 @@ var generalCompressOptions = {
 };
 
 const ponchoMinList = [
-    // './src/js/color/src/js/color-definitions.js',
+    './src/js/color/src/js/color-definitions.js',
     './src/js/color/src/js/color.js',
+    './src/js/color/src/js/color-variations.js',
     './src/js/utils/connect.js',
     './src/js/utils/string.js',
     './src/js/utils/html.js',
