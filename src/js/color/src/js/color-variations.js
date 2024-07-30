@@ -57,6 +57,7 @@ const colorVariations = {
 };
 
 
+// @LEGACY Creo ponchoColor como una variable global.
 if (typeof Color !== 'undefined') {
     const color = new Color(ponchoColorDefinitionsList);
     var ponchoColor = color.ponchoColor;

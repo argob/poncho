@@ -101,16 +101,17 @@ class Color {
         const defaultColor = "#99999";
 
         if (typeof color !== "string") {
-            console.warn(`Invalid color provided. Using default: ${defaultColor}`);
+            console.warn(
+                `Invalid color provided. Using default: ${defaultColor}`
+            );
             return defaultColor;
         }
 
-        const definition = this.ponchoColorDefinitions( color.toLocaleLowerCase() );
-        if (definition) {
-            return definition.color || defaultColor;
-        }
+        const definition = this.ponchoColorVariables().find(function(f){ 
+            return (f[0] == color.toLocaleLowerCase());
+        });
 
-        return defaultColor;
+        return (definition ? definition[1] : defaultColor);
     };
 
 
@@ -141,7 +142,7 @@ class Color {
 
                 // Itero sobre las instancias de color
                 for(let x = 0; x <= instance.length - 1; x += 1) {
-                const {alias} = instance[x];
+                    const {alias} = instance[x];
                     if (alias.some(s => s.code == lowerCasePonchoColor)) {
                         result = instance[x];
                         break;
@@ -294,7 +295,6 @@ class Color {
 
         return [red, green, blue];
     }
-
 }
 
 
