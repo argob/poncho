@@ -1,0 +1,21 @@
+.flag {
+    display: inline-block;
+    aspect-ratio: auto 16 / 10;
+    width: 40px;
+    padding: 1px;
+
+    .band {
+        height: calc(100% / 3);
+        position: relative;
+    }
+
+    .sun {
+        position: absolute;
+        top: 50%;
+        right: 50%;
+        transform: translate(50%, -50%);
+        height: 75%;
+        aspect-ratio: 1/1;
+        border-radius: 50%
+    }
+}

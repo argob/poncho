@@ -1,69 +1,115 @@
 const fs = require('fs');
+const {Color} = require('./js/color/src/js/color');
+const {illustrationColors} = require('./js/color/src/js/color-variations');
 const {
-    ponchoColorDefinitionsList,
-    ponchoColorDefinitions,
-    illustrationColors} = require('./js/utils/color');
-const {ponchoColorDefinitionsListLegacy} = require('./js/utils/color-legacy');
-const SCSS_FILENAME = "_poncho-colors.scss.back";
+    ponchoColorDefinitionsList
+} = require('./js/color/src/js/color-definitions');
 
-const header = `//== Colors
-//## Colores poncho\n`;
-// variable de color sass
-const filePath = `./src/scss/modules/${SCSS_FILENAME}`;
-const content = ponchoColorDefinitionsListLegacy.map(m => {
-    const description = (m.description ? `// ${m.description}` : "")
-    const scope = (m.scope ? `${m.scope}-` : "");
-    return `$${scope}${m.code}: ${m.color} !default; ${description}\n`;
-}).join("");
-
-// Listado de colores para :root
-const totalColors = ponchoColorDefinitionsListLegacy.length;
-const list = ponchoColorDefinitionsListLegacy.map((m, k) => {
-    const separator = (k == totalColors - 1 ? ";" : ",\n")
-    const scope = (m.scope ? `${m.scope}-` : "");
-    return `("${m.code}", $${scope}${m.code})${separator}`;
-}).join("");
-contentList = `\n$colores: ${list}`;
+const _color = new Color(ponchoColorDefinitionsList);
+const dataList = _color.ponchoColorVariables(ponchoColorDefinitionsList);
 
 
-fs.writeFile(filePath, header + content + contentList, (err) => {
+/**
+ * SCSS, VARIABLES
+ */
+const SCSS_PATH = `./src/scss/modules/`;
+const SCSS_FILENAME = "_poncho-colors.scss";
+
+const content = dataList.map(function(entry){
+    const [code, color, description=false] = entry;
+    // Hay colores que llevan el prefijo $brand- o ninguno. La regla
+    // responde a esta necesidad.
+    const regex = /(?:(black|white)$|(^gray-?))/gm;
+    // TPL
+    const prefix = (!regex.test(code.trim()) ? "brand-" : "");
+    const hasDescr = (description ? ` /* ${description} */ ` : "");
+    const str = `$${prefix}${code}: ${color} !default;${hasDescr}`;
+
+    return str;
+});
+
+
+/**
+ * SCSS, ARRAY DE COLORES
+ */
+const contentList = dataList.map(function(entry, key){
+    const [code] = entry;
+    // TPL
+    const regex = /(?:(black|white)$|(^gray-?))/gm;
+    const prefix = (!regex.test(code) ? "brand-" : "");
+    const str = `("${code}", $${prefix}${code})`;
+
+    return str;
+});
+
+
+const templateColors = `/**
+ * COLORES PONCHO
+ * Versión 2
+ *
+ * @summary Listado de colores disponibles para representar texto y elementos
+ * visuales dentro del sitio web www.argentina.gob.ar.
+ * 
+ * Copyright (c) 2024 Argentina.gob.ar
+ */
+${content.join("\n")}
+
+$colores: ${contentList.join(",\n")};`;
+
+// Write file
+fs.writeFile(
+    SCSS_PATH + SCSS_FILENAME,
+    templateColors, function(err){
     if (err) {
-        console.error(`Error creating file "${SCSS_FILENAME}":`, err);
+        console.error(`Error creando el archivo: "${SCSS_FILENAME}":`, err);
     } else {
-        console.log('File created successfully!');
+        console.log(`¡El archivo: "${SCSS_FILENAME}", se creó con éxito!`);
     }
 });
 
 
 /**
- * Códigos de color válidos para utilizar en ilustraciones. 
+ * JSON COLORES PARA ILUSTRACIONES
+ * Códigos de color válidos para utilizar en ilustraciones.
  */
-const illustrationColorsFilePath = `./dist/jsons/illustrations-colors.json`;
-const illustrationColorsContent = illustrationColors.map(
-    color => ponchoColorDefinitions( color ));
+const ILLUS_COLORS_JSON_PATH = `./dist/jsons/`;
+const ILLUS_COLORS_JSON_FILENAME = "illustrations-colors.json";
+
+const illustrationColorsContent = illustrationColors.map(function(color){
+    return _color.ponchoColorDefinitions(color);
+});
 
 fs.writeFile(
-    illustrationColorsFilePath,
-    JSON.stringify(illustrationColorsContent), (err) => {
+    ILLUS_COLORS_JSON_PATH + ILLUS_COLORS_JSON_FILENAME,
+    JSON.stringify(illustrationColorsContent), function(err){
         if (err) {
-            console.error(`Error creating file "illustrations-colors.json":`, err);
+            console.error(
+                `Error creando el archivo: "${ILLUS_COLORS_JSON_FILENAME}":`, 
+                err);
         } else {
-            console.log('File created successfully!');
+            console.log(
+                `¡El archivo: "${ILLUS_COLORS_JSON_FILENAME}", `
+                + `se creó con éxito!`);
         }
-});
+    }
+);
 
 
 /**
- * Documento JSON con todo el espectro de colores poncho 
+ * JSON COLORES
  */
-const ponchoColorsFilePath = `./dist/jsons/poncho-colors.json`;
+const COLORS_JSON_PATH = `./dist/jsons/`;
+const COLORS_JSON_FILENAME = "poncho-colors.json";
 
 fs.writeFile(
-    ponchoColorsFilePath,
-    JSON.stringify(ponchoColorDefinitionsList), (err) => {
+    COLORS_JSON_PATH + COLORS_JSON_FILENAME,
+    JSON.stringify(ponchoColorDefinitionsList), function(err){
         if (err) {
-            console.error(`Error creating file "poncho-colores.json":`, err);
+            console.error(
+                `Error creando el archivo: "${COLORS_JSON_FILENAME}":`, err);
         } else {
-            console.log('File created successfully!');
+            console.log(
+                `¡El archivo: "${COLORS_JSON_FILENAME}", se creó con éxito!`);
         }
-});
+    }
+);
