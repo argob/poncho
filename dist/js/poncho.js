@@ -371,14 +371,14 @@ if (typeof exports !== "undefined") {
  * Códigos de color válidos para utilizar en ilustraciones. 
  */
 const illustrationColors = [
-    "primary",
+    "gob-azul",
+    "gob-arena",
+    "gob-amarillo",
+    "arg-palta",
+    "arg-verde",
+    "arg-arandano",
+    "arg-rosado",
     "miarg-azul",
-    "palta",
-    "success",
-    "arandano",
-    "rosado",
-    "arena",
-    "warning"
 ];
 
 
