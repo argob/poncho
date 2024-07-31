@@ -3,7 +3,7 @@
  * 
  * MIT License
  * 
- * Copyright (c) 2023 Argentina.gob.ar
+ * Copyright (c) 2024 Argentina.gob.ar
  * 
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -57,6 +57,7 @@ class Color {
     ponchoColorList = (colorDefinitionsList) => {
         let result = colorDefinitionsList
             .flatMap( m => m.data.flatMap(i => i.instance.map(x => x)) );
+
         return result || [];
     };
 
@@ -83,7 +84,7 @@ class Color {
                 });
             })
         });
-        return collect;
+        return collect.sort();
     };
 
 

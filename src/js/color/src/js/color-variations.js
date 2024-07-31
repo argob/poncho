@@ -3,7 +3,7 @@
  * 
  * MIT License
  * 
- * Copyright (c) 2023 Argentina.gob.ar
+ * Copyright (c) 2024 Argentina.gob.ar
  * 
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -58,9 +58,10 @@ const colorVariations = {
 
 
 // @LEGACY Creo ponchoColor como una variable global.
+var ponchoColor;
 if (typeof Color !== 'undefined') {
-    const color = new Color(ponchoColorDefinitionsList);
-    var ponchoColor = color.ponchoColor;
+    color = new Color(ponchoColorDefinitionsList);
+    ponchoColor = color.ponchoColor;
 }
 
 

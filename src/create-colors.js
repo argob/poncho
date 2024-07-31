@@ -10,37 +10,56 @@ const dataList = _color.ponchoColorVariables(ponchoColorDefinitionsList);
 
 
 /**
- * VARIABLES SASS
+ * SCSS, VARIABLES
  */
+const SCSS_PATH = `./src/scss/modules/`;
 const SCSS_FILENAME = "_poncho-colors.scss";
-const header = `//== Colors
-//## Colores poncho\n`;
 
-// variable de color sass
-const filePath = `./src/scss/modules/${SCSS_FILENAME}`;
-const content = dataList.map(function(m){
+const content = dataList.map(function(entry){
+    const [code, color, description=false] = entry;
+    // Hay colores que llevan el prefijo $brand- o ninguno. La regla
+    // responde a esta necesidad.
     const regex = /(?:(black|white)$|(^gray-?))/gm;
-    let prefix = (!regex.test(m[0].trim()) ? "brand-" : "");
+    // TPL
+    const prefix = (!regex.test(code.trim()) ? "brand-" : "");
+    const hasDescr = (description ? ` /* ${description} */ ` : "");
+    const str = `$${prefix}${code}: ${color} !default;${hasDescr}`;
 
-    return `$${prefix}${m[0]}: ${m[1]} !default;\n`;
-}).join("");
+    return str;
+});
 
 
 /**
- * ARRAY DE COLORES
+ * SCSS, ARRAY DE COLORES
  */
-const totalColors = dataList.length;
-const list = dataList.map(function(m, k){
+const contentList = dataList.map(function(entry, key){
+    const [code] = entry;
+    // TPL
     const regex = /(?:(black|white)$|(^gray-?))/gm;
-    const separator = (k == totalColors - 1 ? ";" : ",\n");
-    let prefix = (!regex.test(m[0]) ? "brand-" : "");
+    const prefix = (!regex.test(code) ? "brand-" : "");
+    const str = `("${code}", $${prefix}${code})`;
 
-    return `("${m[0]}", $${prefix}${m[0]})${separator}`;
-}).join("");
+    return str;
+});
 
-contentList = `\n$colores: ${list}`;
 
-fs.writeFile(filePath, header + content + contentList, function(err){
+const templateColors = `/**
+ * COLORES PONCHO
+ * Versión 2
+ *
+ * @summary Listado de colores disponibles para representar texto y elementos
+ * visuales dentro del sitio web www.argentina.gob.ar.
+ * 
+ * Copyright (c) 2024 Argentina.gob.ar
+ */
+${content.join("\n")}
+
+$colores: ${contentList.join(",\n")};`;
+
+// Write file
+fs.writeFile(
+    SCSS_PATH + SCSS_FILENAME,
+    templateColors, function(err){
     if (err) {
         console.error(`Error creando el archivo: "${SCSS_FILENAME}":`, err);
     } else {
@@ -50,20 +69,47 @@ fs.writeFile(filePath, header + content + contentList, function(err){
 
 
 /**
- * Códigos de color válidos para utilizar en ilustraciones. 
+ * JSON COLORES PARA ILUSTRACIONES
+ * Códigos de color válidos para utilizar en ilustraciones.
  */
-const illustrationColorsFilePath = `./dist/jsons/illustrations-colors.json`;
+const ILLUS_COLORS_JSON_PATH = `./dist/jsons/`;
+const ILLUS_COLORS_JSON_FILENAME = "illustrations-colors.json";
+
 const illustrationColorsContent = illustrationColors.map(function(color){
     return _color.ponchoColorDefinitions(color);
 });
 
 fs.writeFile(
-    illustrationColorsFilePath,
+    ILLUS_COLORS_JSON_PATH + ILLUS_COLORS_JSON_FILENAME,
     JSON.stringify(illustrationColorsContent), function(err){
         if (err) {
-            console.error(`Error creando el archivo: "illustrations-colors.json":`, err);
+            console.error(
+                `Error creando el archivo: "${ILLUS_COLORS_JSON_FILENAME}":`, 
+                err);
         } else {
-            console.log('¡El archivo: "illustrations-colors.json", se creó con éxito!');
+            console.log(
+                `¡El archivo: "${ILLUS_COLORS_JSON_FILENAME}", `
+                + `se creó con éxito!`);
+        }
+    }
+);
+
+
+/**
+ * JSON COLORES
+ */
+const COLORS_JSON_PATH = `./dist/jsons/`;
+const COLORS_JSON_FILENAME = "poncho-colors.json";
+
+fs.writeFile(
+    COLORS_JSON_PATH + COLORS_JSON_FILENAME,
+    JSON.stringify(ponchoColorDefinitionsList), function(err){
+        if (err) {
+            console.error(
+                `Error creando el archivo: "${COLORS_JSON_FILENAME}":`, err);
+        } else {
+            console.log(
+                `¡El archivo: "${COLORS_JSON_FILENAME}", se creó con éxito!`);
         }
     }
 );
