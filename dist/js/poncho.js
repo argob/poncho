@@ -131,7 +131,7 @@ const ponchoColorDefinitionsList = [
                         "variant": {
                             "light": "#FFE997",
                             "dark": "#B18F15",
-                            "half": "#F3DDB0"
+
                         },
                         "code": "maiz"
                     }
@@ -228,7 +228,8 @@ const ponchoColorDefinitionsList = [
                         "color": "#E7BA61",
                         "variant": {
                             "light": "#E9CE8C",
-                            "dark": "#EFA843"
+                            "dark": "#EFA843",
+                            "half": "#F3DDB0"
                         },
                         "alias": [
                             "amarillo",
@@ -1123,7 +1124,8 @@ const cleanUpHex = value => {
  * @returns {object} Objecto con la defición del color
  */
 function ponchoColorByHex(hexColor){
-    if(typeof hexColor == undefined || !hexColor?.trim()){
+    if(typeof hexColor != "string" || !hexColor?.trim()){
+        console.error("El color hexadecimal no es válido.");
         return;
     }
 

@@ -21,6 +21,7 @@ jobs:
         working-directory: ./poncho
         run: |
           npm install
+          npm test
           node src/create-colors.js
           npm run gulp
       - name: Checkout Iconos Arg
