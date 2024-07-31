@@ -100,24 +100,29 @@ function render(ponchoColorDefinitionsList){
 
 };
 
+render(ponchoColorDefinitionsList);
 
-function axiosConnect(url, timeout){
-    const axiosOptions = {
-        responseType: 'application/json',
-        // headers: {"Access-Control-Allow-Origin": "*"},
-        timeout: timeout,
-        signal: AbortSignal.timeout(timeout)
-    };
-    return axios.get(url, axiosOptions);
-}
 
-axiosConnect("http://0.0.0.0:9000/api/v1/poncho-color", 5000)
-    .then(
-        function(result){
-            const results = JSON.parse(result.data);
-            const data = results.response;
-            render(data)
-        }
-    ).catch(function(error){
-        console.error(error);
-    });
+// function axiosConnect(url, timeout){
+//     const axiosOptions = {
+//         responseType: 'application/json',
+//         // headers: {"Access-Control-Allow-Origin": "*"},
+//         timeout: timeout,
+//         signal: AbortSignal.timeout(timeout)
+//     };
+//     return axios.get(url, axiosOptions);
+// }
+
+
+
+
+// axiosConnect("http://0.0.0.0:9000/api/v1/poncho-color", 5000)
+//     .then(
+//         function(result){
+//             const results = JSON.parse(result.data);
+//             const data = results.response;
+//             render(data)
+//         }
+//     ).catch(function(error){
+//         console.error(error);
+//     });
