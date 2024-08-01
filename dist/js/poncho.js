@@ -398,10 +398,10 @@ const colorVariations = {
 };
 
 
-// @LEGACY Creo ponchoColor como una variable global.
+// @legacy Creo ponchoColor como una variable global.
 var ponchoColor;
 if (typeof Color !== 'undefined') {
-    color = new Color(ponchoColorDefinitionsList);
+    const color = new Color(ponchoColorDefinitionsList);
     ponchoColor = color.ponchoColor;
 }
 
