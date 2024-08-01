@@ -1,18 +1,3 @@
-/**
- * Definiciones de color ROOT.
- *
- * @summary Crea las variables de estilo `--color: [hex]`, 
- * para html,root: {...}
- * 
- * @SEE modules/_poncho-colors.scss 
- */
-:root,
-html {
-    @each $name, $color in $colores {
-        --#{$name}: #{$color};
-    }
-}
-
 /*
 Se agrega: letter-spacing
 Se cambia el width de la funete

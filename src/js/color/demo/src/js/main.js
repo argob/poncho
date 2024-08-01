@@ -90,6 +90,7 @@ function render(ponchoColorDefinitionsList){
     headStyle('root-vars', rootVars);
     
     const vars = _color.ponchoColorVariables(ponchoColorDefinitionsList);
+    
     const cssToHead = vars.flatMap(value => {
         const [name, color] = value;
         return [
