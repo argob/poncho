@@ -4112,6 +4112,11 @@
       },
     
       {
+        "nombre": "titulo-universitario",
+        "clase": "icono-arg-titulo-universitario"
+      },
+    
+      {
         "nombre": "tomate",
         "clase": "icono-arg-tomate"
       },
