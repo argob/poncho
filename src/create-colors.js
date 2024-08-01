@@ -44,6 +44,20 @@ const contentList = dataList.map(function(entry, key){
 
 
 /**
+ * SCSS, ARRAY DE COLORES PRA :ROOT
+ * entry --['amarillo', '#E7BA61', 'Foco o alerta']
+ */
+const contentListRoot = dataList.map(function(entry, key){
+    const [code, value] = entry;
+    // TPL
+    const regex = /(?:(black|white)$|(^gray-?))/gm;
+    const prefix = (!regex.test(code) ? "brand-" : "");
+    const str = `--${code}:${value};`
+    return str;
+});
+
+
+/**
  * Lista de variables tonales
  * @param {*} ponchoColorDefinitionsList 
  * @returns 
@@ -92,7 +106,12 @@ $colores: ${contentList.join(",\n")};
  */
 :root,
 html {
-    ${rootColorDefinitios(ponchoColorDefinitionsList).join("\n\t")}
+    ${
+        [
+            ...rootColorDefinitios(ponchoColorDefinitionsList),
+            ...contentListRoot
+        ].join("\n\t")
+    }
 }`;
 // end template 
 
