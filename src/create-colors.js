@@ -43,18 +43,59 @@ const contentList = dataList.map(function(entry, key){
 });
 
 
+/**
+ * Lista de variables tonales
+ * @param {*} ponchoColorDefinitionsList 
+ * @returns 
+ */
+function rootColorDefinitios(ponchoColorDefinitionsList=[]){
+    let myRoot = [];
+    for (let th of ponchoColorDefinitionsList) {
+        const {space, data, name=false} = th;
+        for(let colorGroup of data){
+            const {color, name, alias, instance, group} = colorGroup;
+            const colorKeys = Object.keys(color);
+            const root = colorKeys.forEach(function(key){
+                myRoot.push(`--${space}-${group}-${key}:${color[key]};`);
+            });
+        }
+    }
+    
+    return myRoot;
+}
+
+
+// start template
 const templateColors = `/**
  * COLORES PONCHO
  * Versión 2
  *
  * @summary Listado de colores disponibles para representar texto y elementos
  * visuales dentro del sitio web www.argentina.gob.ar.
- * 
+ *
  * Copyright (c) 2024 Argentina.gob.ar
  */
 ${content.join("\n")}
 
-$colores: ${contentList.join(",\n")};`;
+
+/**
+ * Listado de variables de color
+ */
+$colores: ${contentList.join(",\n")};
+
+
+/**
+ * Variables tonales :root, html.
+ *
+ * @summary Crea las variables de estilo --color: [hex], 
+ * para html,root: {...}
+ */
+:root,
+html {
+    ${rootColorDefinitios(ponchoColorDefinitionsList).join("\n\t")}
+}`;
+// end template 
+
 
 // Write file
 fs.writeFile(

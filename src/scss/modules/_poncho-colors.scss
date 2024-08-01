@@ -4,16 +4,27 @@
  *
  * @summary Listado de colores disponibles para representar texto y elementos
  * visuales dentro del sitio web www.argentina.gob.ar.
- * 
+ *
  * Copyright (c) 2024 Argentina.gob.ar
  */
 $brand-amarillo: #E7BA61 !default; /* Foco o alerta */ 
 $brand-amarillo-intenso: #E7BA61 !default; /* Foco o alerta */ 
 $brand-arandano: #C2185B !default;
+$brand-arg-amarillo: #E7BA61 !default; /* Foco o alerta */ 
+$brand-arg-amarillo-dark: #AA5821 !default;
+$brand-arg-amarillo-half: #F3DDB0 !default;
+$brand-arg-amarillo-light: #EAE1B7 !default;
 $brand-arg-arandano: #C2185B !default;
 $brand-arg-arandano-dark: #721038 !default;
 $brand-arg-arandano-half: #E18CAD !default;
 $brand-arg-arandano-light: #EC407A !default;
+$brand-arg-arena: #EAE1B7 !default;
+$brand-arg-arena-dark: #E7BA61 !default;
+$brand-arg-arena-half: #F5F0DB !default;
+$brand-arg-arena-light: #FAF8ED !default;
+$brand-arg-azul: #232D4F !default; /* Color principal */ 
+$brand-arg-azul-half: #9296A7 !default;
+$brand-arg-azul-morado: #3A3796 !default;
 $arg-black: #141414 !default; /* Elementos básicos */ 
 $brand-arg-cielo: #039BE5 !default;
 $brand-arg-default: #838383 !default;
@@ -33,15 +44,20 @@ $brand-arg-lima-light: #DEE8A3 !default;
 $brand-arg-maiz: #FFCE1C !default;
 $brand-arg-maiz-dark: #B18F15 !default;
 $brand-arg-maiz-light: #FFE997 !default;
-$brand-arg-mandarina: #F38500 !default;
+$brand-arg-mandarina: #F79D00 !default;
 $brand-arg-mandarina-dark: #CE5701 !default;
-$brand-arg-mandarina-light: #F9B640 !default;
+$brand-arg-mandarina-light: #FBCE80 !default;
+$brand-arg-marron-claro: #8D2D04 !default;
+$brand-arg-marron-claro-dark: #6C1805 !default;
+$brand-arg-marron-claro-light: #CE5701 !default;
+$brand-arg-marron-oscuro: #511901 !default;
 $brand-arg-muted: #7E848E !default; /* Texto secundario (subtítulos) */ 
 $brand-arg-naranja: #EF6C00 !default;
 $brand-arg-naranja-dark: #6C1805 !default;
 $brand-arg-naranja-light: #EF6C00 !default;
 $brand-arg-palta: #50B7B2 !default;
 $brand-arg-palta-half: #A8DBD9 !default;
+$brand-arg-primary-light: #E3E7ED !default;
 $brand-arg-rojo: #C62828 !default; /* Atención o peligro */ 
 $brand-arg-rojo-dark: #7C1C1C !default;
 $brand-arg-rojo-light: #E14543 !default;
@@ -49,6 +65,7 @@ $brand-arg-rosado: #F48EAB !default;
 $brand-arg-rosado-dark: #ED3F85 !default;
 $brand-arg-rosado-half: #FAC7D5 !default;
 $brand-arg-rosado-light: #FCDDE6 !default;
+$brand-arg-secundario: #3E5A7E !default;
 $brand-arg-tomate: #EF5350 !default;
 $brand-arg-tomate-dark: #C62828 !default;
 $brand-arg-tomate-light: #F69896 !default;
@@ -80,20 +97,6 @@ $brand-fucsia: #EC407A !default;
 $brand-gna-verde-aloe: #4FBB73 !default;
 $brand-gna-verde-cemento: #B4BEBA !default;
 $brand-gna-verde-jade: #006666 !default;
-$brand-gob-amarillo: #E7BA61 !default; /* Foco o alerta */ 
-$brand-gob-amarillo-dark: #AA5821 !default;
-$brand-gob-amarillo-half: #F3DDB0 !default;
-$brand-gob-amarillo-light: #EAE1B7 !default;
-$brand-gob-arena: #EAE1B7 !default;
-$brand-gob-arena-dark: #E7BA61 !default;
-$brand-gob-arena-half: #F5F0DB !default;
-$brand-gob-arena-light: #FAF8ED !default;
-$brand-gob-azul: #232D4F !default; /* Color principal */ 
-$brand-gob-azul-half: #9296A7 !default;
-$brand-gob-azul-morado: #3A3796 !default;
-$brand-gob-marron-oscuro: #511901 !default;
-$brand-gob-primary-light: #E3E7ED !default;
-$brand-gob-secundario: #3E5A7E !default;
 $gray: #5B5F65 !default;
 $gray-background: #FFFFFF !default;
 $gray-base: #141414 !default; /* Elementos básicos */ 
@@ -111,7 +114,8 @@ $brand-lavanda: #9284BE !default;
 $brand-lima: #B9CE39 !default;
 $brand-limon: #B9CE39 !default;
 $brand-maiz: #FFCE1C !default;
-$brand-mandarina: #F38500 !default;
+$brand-mandarina: #F79D00 !default;
+$brand-marron-claro: #8D2D04 !default;
 $brand-miarg-amarillo-claro: #ffe9b8 !default;
 $brand-miarg-azul: #3526C3 !default; /* Azul principal para aplicaciones MiArgentina */ 
 $brand-miarg-azul-half: #6B66CC !default;
@@ -147,13 +151,28 @@ $brand-verdin: #6EA015 !default;
 $brand-warning: #E7BA61 !default; /* Foco o alerta */ 
 $white: #FFFFFF !default;
 
+
+/**
+ * Listado de variables de color
+ */
 $colores: ("amarillo", $brand-amarillo),
 ("amarillo-intenso", $brand-amarillo-intenso),
 ("arandano", $brand-arandano),
+("arg-amarillo", $brand-arg-amarillo),
+("arg-amarillo-dark", $brand-arg-amarillo-dark),
+("arg-amarillo-half", $brand-arg-amarillo-half),
+("arg-amarillo-light", $brand-arg-amarillo-light),
 ("arg-arandano", $brand-arg-arandano),
 ("arg-arandano-dark", $brand-arg-arandano-dark),
 ("arg-arandano-half", $brand-arg-arandano-half),
 ("arg-arandano-light", $brand-arg-arandano-light),
+("arg-arena", $brand-arg-arena),
+("arg-arena-dark", $brand-arg-arena-dark),
+("arg-arena-half", $brand-arg-arena-half),
+("arg-arena-light", $brand-arg-arena-light),
+("arg-azul", $brand-arg-azul),
+("arg-azul-half", $brand-arg-azul-half),
+("arg-azul-morado", $brand-arg-azul-morado),
 ("arg-black", $arg-black),
 ("arg-cielo", $brand-arg-cielo),
 ("arg-default", $brand-arg-default),
@@ -176,12 +195,17 @@ $colores: ("amarillo", $brand-amarillo),
 ("arg-mandarina", $brand-arg-mandarina),
 ("arg-mandarina-dark", $brand-arg-mandarina-dark),
 ("arg-mandarina-light", $brand-arg-mandarina-light),
+("arg-marron-claro", $brand-arg-marron-claro),
+("arg-marron-claro-dark", $brand-arg-marron-claro-dark),
+("arg-marron-claro-light", $brand-arg-marron-claro-light),
+("arg-marron-oscuro", $brand-arg-marron-oscuro),
 ("arg-muted", $brand-arg-muted),
 ("arg-naranja", $brand-arg-naranja),
 ("arg-naranja-dark", $brand-arg-naranja-dark),
 ("arg-naranja-light", $brand-arg-naranja-light),
 ("arg-palta", $brand-arg-palta),
 ("arg-palta-half", $brand-arg-palta-half),
+("arg-primary-light", $brand-arg-primary-light),
 ("arg-rojo", $brand-arg-rojo),
 ("arg-rojo-dark", $brand-arg-rojo-dark),
 ("arg-rojo-light", $brand-arg-rojo-light),
@@ -189,6 +213,7 @@ $colores: ("amarillo", $brand-amarillo),
 ("arg-rosado-dark", $brand-arg-rosado-dark),
 ("arg-rosado-half", $brand-arg-rosado-half),
 ("arg-rosado-light", $brand-arg-rosado-light),
+("arg-secundario", $brand-arg-secundario),
 ("arg-tomate", $brand-arg-tomate),
 ("arg-tomate-dark", $brand-arg-tomate-dark),
 ("arg-tomate-light", $brand-arg-tomate-light),
@@ -220,20 +245,6 @@ $colores: ("amarillo", $brand-amarillo),
 ("gna-verde-aloe", $brand-gna-verde-aloe),
 ("gna-verde-cemento", $brand-gna-verde-cemento),
 ("gna-verde-jade", $brand-gna-verde-jade),
-("gob-amarillo", $brand-gob-amarillo),
-("gob-amarillo-dark", $brand-gob-amarillo-dark),
-("gob-amarillo-half", $brand-gob-amarillo-half),
-("gob-amarillo-light", $brand-gob-amarillo-light),
-("gob-arena", $brand-gob-arena),
-("gob-arena-dark", $brand-gob-arena-dark),
-("gob-arena-half", $brand-gob-arena-half),
-("gob-arena-light", $brand-gob-arena-light),
-("gob-azul", $brand-gob-azul),
-("gob-azul-half", $brand-gob-azul-half),
-("gob-azul-morado", $brand-gob-azul-morado),
-("gob-marron-oscuro", $brand-gob-marron-oscuro),
-("gob-primary-light", $brand-gob-primary-light),
-("gob-secundario", $brand-gob-secundario),
 ("gray", $gray),
 ("gray-background", $gray-background),
 ("gray-base", $gray-base),
@@ -252,6 +263,7 @@ $colores: ("amarillo", $brand-amarillo),
 ("limon", $brand-limon),
 ("maiz", $brand-maiz),
 ("mandarina", $brand-mandarina),
+("marron-claro", $brand-marron-claro),
 ("miarg-amarillo-claro", $brand-miarg-amarillo-claro),
 ("miarg-azul", $brand-miarg-azul),
 ("miarg-azul-half", $brand-miarg-azul-half),
@@ -286,3 +298,140 @@ $colores: ("amarillo", $brand-amarillo),
 ("verdin", $brand-verdin),
 ("warning", $brand-warning),
 ("white", $white);
+
+
+/**
+ * Variables tonales :root, html.
+ *
+ * @summary Crea las variables de estilo --color: [hex], 
+ * para html,root: {...}
+ */
+:root,
+html {
+    --arg-primary-50:#E3E7ED;
+	--arg-primary-100:#C8D0DA;
+	--arg-primary-200:#ACB8C8;
+	--arg-primary-300:#91A1B5;
+	--arg-primary-400:#7589A3;
+	--arg-primary-500:#5A7290;
+	--arg-primary-600:#3E5A7E;
+	--arg-primary-700:#354B6E;
+	--arg-primary-800:#2C3C5F;
+	--arg-primary-900:#232D4F;
+	--arg-verde-50:#F1F5D7;
+	--arg-verde-100:#DEE8A3;
+	--arg-verde-200:#CCDB6E;
+	--arg-verde-300:#B9CE39;
+	--arg-verde-400:#93B727;
+	--arg-verde-500:#6EA015;
+	--arg-verde-600:#4E8F24;
+	--arg-verde-700:#2E7D33;
+	--arg-verde-800:#27692A;
+	--arg-verde-900:#1F5421;
+	--arg-amarillo-50:#FFFAE8;
+	--arg-amarillo-100:#FFF1C0;
+	--arg-amarillo-200:#FFE997;
+	--arg-amarillo-300:#FFE06E;
+	--arg-amarillo-400:#FFD745;
+	--arg-amarillo-500:#FFCE1C;
+	--arg-amarillo-600:#D8AE18;
+	--arg-amarillo-700:#B18F15;
+	--arg-amarillo-800:#8A6F12;
+	--arg-amarillo-900:#634F0E;
+	--arg-fucsia-50:#FCDDE6;
+	--arg-fucsia-100:#F8B6C9;
+	--arg-fucsia-200:#F48EAB;
+	--arg-fucsia-300:#F16798;
+	--arg-fucsia-400:#ED3F85;
+	--arg-fucsia-500:#EC407A;
+	--arg-fucsia-600:#D72C6B;
+	--arg-fucsia-700:#C2185B;
+	--arg-fucsia-800:#9A144A;
+	--arg-fucsia-900:#721038;
+	--arg-violeta-50:#E9E6F2;
+	--arg-violeta-100:#D3CEE5;
+	--arg-violeta-200:#BEB5D8;
+	--arg-violeta-300:#A89DCB;
+	--arg-violeta-400:#9284BE;
+	--arg-violeta-500:#8561B2;
+	--arg-violeta-600:#773EA5;
+	--arg-violeta-700:#6A1B99;
+	--arg-violeta-800:#4B0F7A;
+	--arg-violeta-900:#2C035C;
+	--arg-negro-50:#F0F0F0;
+	--arg-negro-100:#E9E9E9;
+	--arg-negro-200:#DDDDDD;
+	--arg-negro-300:#838383;
+	--arg-negro-400:#DEE2E6;
+	--arg-negro-500:#90969E;
+	--arg-negro-600:#7E848E;
+	--arg-negro-700:#5B5F65;
+	--arg-negro-800:#37393D;
+	--arg-negro-900:#141414;
+	--arg-turquesa-50:#DCF1F0;
+	--arg-turquesa-100:#C0E5E3;
+	--arg-turquesa-200:#A4D9D7;
+	--arg-turquesa-300:#88CECB;
+	--arg-turquesa-400:#6CC3BE;
+	--arg-turquesa-500:#50B7B2;
+	--arg-turquesa-600:#459E99;
+	--arg-turquesa-700:#3B8681;
+	--arg-turquesa-800:#306D69;
+	--arg-turquesa-900:#255450;
+	--arg-azul-50:#CDEBFA;
+	--arg-azul-100:#9AD7F5;
+	--arg-azul-200:#68C3EF;
+	--arg-azul-300:#35AFEA;
+	--arg-azul-400:#039BE5;
+	--arg-azul-500:#0581C6;
+	--arg-azul-600:#0767A7;
+	--arg-azul-700:#084E87;
+	--arg-azul-800:#0A3468;
+	--arg-azul-900:#0C1A49;
+	--arg-rojo-50:#FCDDDC;
+	--arg-rojo-100:#F9BBB9;
+	--arg-rojo-200:#F69896;
+	--arg-rojo-300:#F27673;
+	--arg-rojo-400:#EF5350;
+	--arg-rojo-500:#E14543;
+	--arg-rojo-600:#D43635;
+	--arg-rojo-700:#C62828;
+	--arg-rojo-800:#A12222;
+	--arg-rojo-900:#7C1C1C;
+	--arg-naranja-50:#FDE7BF;
+	--arg-naranja-100:#FBCE80;
+	--arg-naranja-200:#F9B640;
+	--arg-naranja-300:#F79D00;
+	--arg-naranja-400:#F38500;
+	--arg-naranja-500:#EF6C00;
+	--arg-naranja-600:#CE5701;
+	--arg-naranja-700:#AE4203;
+	--arg-naranja-800:#8D2D04;
+	--arg-naranja-900:#6C1805;
+	--arg-blanco-default:#FFFFFF;
+	--arg-ocre-50:#FAF8ED;
+	--arg-ocre-100:#F4F0DB;
+	--arg-ocre-200:#EAE1B7;
+	--arg-ocre-300:#E9CE8C;
+	--arg-ocre-400:#E7BA61;
+	--arg-ocre-500:#C98941;
+	--arg-ocre-600:#AA5821;
+	--arg-ocre-700:#8C2701;
+	--arg-ocre-800:#6F2001;
+	--arg-ocre-900:#511901;
+	--arg-morado-default:#3A3796;
+	--miarg-azul-default:#3526C3;
+	--miarg-celeste-default:#2CB9EE;
+	--miarg-amarillo-claro-default:#ffe9b8;
+	--miarg-rosa-claro-default:#EECCCF;
+	--miarg-verde-claro-default:#CFEEDC;
+	--miarg-azul-oscuro-default:#222C50;
+	--miarg-gris-default:#7E848E;
+	--miarg-celeste-claro-default:#BEE6F6;
+	--bandera-amarillo-default:#FCBF49;
+	--bandera-celeste-default:#75AADB;
+	--bandera-marron-default:#843511;
+	--gna-verde-jade-default:#006666;
+	--gna-verde-aloe-default:#4FBB73;
+	--gna-verde-cemento-default:#B4BEBA;
+}
