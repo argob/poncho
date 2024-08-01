@@ -1,11 +1,17 @@
-// Root color definitions
+/**
+ * Definiciones de color ROOT.
+ *
+ * @summary Crea las variables de estilo `--color: [hex]`, 
+ * para html,root: {...}
+ * 
+ * @SEE modules/_poncho-colors.scss 
+ */
 :root,
 html {
-  @each $name, $color in $colores {
-    --#{$name}: #{$color};
-  }
+    @each $name, $color in $colores {
+        --#{$name}: #{$color};
+    }
 }
-
 
 /*
 Se agrega: letter-spacing
@@ -13,283 +19,159 @@ Se cambia el width de la funete
 */
 html,
 body {
-  @include family-sans-serif-attributes;
-  height: 100%;
-  max-width: 100%;
-  font-weight: 400;
-  background: #fff;
-  // overflow-x: hidden; // Se comenta porque rompe el screenshot en pantalla completa completa
+    @include family-sans-serif-attributes;
+    height: 100%;
+    max-width: 100%;
+    font-weight: 400;
+    background: $white;
 }
 
 body {
-  background: $body-bg;
-  color: $text-color;
-  width: 100%;
+    background: $body-bg;
+    color: $text-color;
+    width: 100%;
 }
 
 hr {
-  border-top: 1px solid $gray-light;
-  margin: 30px 0;
+    border-top: 1px solid $gray-light;
+    margin: 30px 0;
 
-  &.hr-lg {
-    margin: 60px 0;
-  }
+    &.hr-lg {
+        margin: 60px 0;
+    }
 
-  &.hr-sm {
-    margin: 15px 0;
-  }
+    &.hr-sm {
+        margin: 15px 0;
+    }
 }
 
 .social-share {
-  a {
-    font-size: 30px;
-  }
+    a {
+        font-size: 30px;
+    }
 }
 
 .inline {
-  display: inline-block;
+    display: inline-block;
 }
 
-/*.img-rounded {
-  border-radius: 4px;
-}*/
-
 .element-invisible {
-  position: absolute !important;
-  clip: rect(1px, 1px, 1px, 1px);
-  overflow: hidden;
-  height: 1px;
+    position: absolute !important;
+    clip: rect(1px, 1px, 1px, 1px);
+    overflow: hidden;
+    height: 1px;
 }
 
 .element-invisible.element-focusable:active,
 .element-invisible.element-focusable:focus {
-  position: static !important;
-  clip: auto;
-  overflow: visible;
-  height: auto;
+    position: static !important;
+    clip: auto;
+    overflow: visible;
+    height: auto;
 }
 
 section {
-  padding: 30px 0;
+    padding: 30px 0;
 
-  &.section-no-spaced {
-    padding: 0;
-  }
+    &.section-no-spaced {
+        padding: 0;
+    }
 
-  &.section-sm {
-    padding: 20px 0;
-  }
+    &.section-sm {
+        padding: 20px 0;
+    }
 
-  &.section-lg {
-    padding: 40px 0;
-  }
+    &.section-lg {
+        padding: 40px 0;
+    }
 }
 
 .icon-item {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 
-  i {
-    margin-bottom: 0.3em;
-    font-size: 4.5em;
-    color: $brand-secondary;
-    height: 110px;
-    display: flex;
-    align-items: center;
+    i {
+        margin-bottom: 0.3em;
+        font-size: 4.5em;
+        color: $brand-secondary;
+        height: 110px;
+        display: flex;
+        align-items: center;
+    }
 
-  }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h5 {
+        margin-top: 0 !important;
+        margin-bottom: 0.2em;
+    }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h5 {
-    margin-top: 0 !important;
-    margin-bottom: 0.2em;
-  }
-
-  h3 {
-    font-size: 1.6em;
-  }
+    h3 {
+        font-size: 1.6em;
+    }
 }
 
-
-.icon-item i[class*=icono-arg]:before {
-  line-height: 72px;
-  font-size: 1.30em;
+.icon-item i[class*="icono-arg"]:before {
+    line-height: 72px;
+    font-size: 1.3em;
 }
 
-.panel-heading i[class*=icono-arg]:before {
-  line-height: 70px;
+.panel-heading i[class*="icono-arg"]:before {
+    line-height: 70px;
 }
 
-
-// Fix para Argentina.gob.ar, idealmente desaparece cuando actualice drupal
+/*
+ * Fix para Argentina.gob.ar, idealmente desaparece cuando actualice drupal
+ */
 h1.icon-item i {
-  font-size: 2em;
+    font-size: 2em;
 }
 
 aside {
-  section {
-    float: left;
-    margin-bottom: 24px;
-    width: 100%;
-  }
+    section {
+        float: left;
+        margin-bottom: 24px;
+        width: 100%;
+    }
 }
 
-
-
-
-
-// Paleta principal
+/**
+ * Colores de fondo
+ *
+ * @summary Crea un estilo `.bg-[color]` por cada uno de los colores en el 
+ * listado de variables de color. 
+ * 
+ * @see modules/_poncho-colors.scss 
+ */
 @each $name, $color in $colores {
-  .bg-#{$name} {
-      background-color: #{$color} !important;
-  }
+    .bg-#{$name} {
+        background-color: #{$color} !important;
+    }
 }
 
-
-/*
-.bg-azul,
-.bg-primary {
-  background-color: $brand-primary !important;
-}
-
-.bg-success {
-  background-color: $brand-success !important;
-}
-
-.bg-info {
-  background-color: $brand-info !important;
-}
-
-.bg-danger {
-  background-color: $brand-danger !important;
-}
-
-.bg-warning {
-  background-color: $brand-warning !important;
-}
-
+/**
+ * @TODO Revisar la asignación del color gray-ligther cuando debería ser $gray
+ */
 .bg-gray {
-  background-color: $gray-lighter !important;
+    background-color: $gray-lighter !important;
 }
 
 .bg-white {
-  background-color: $white !important;
-  border: solid 1px #ddd;
-  border-radius: 10px;
+    background-color: $white !important;
+    /*
+    border: solid 1px #ddd;
+    border-radius: 10px;
+    */
 }
 
+/**
+ * @TODO Revisar la asignación del color gray cuando debería ser $muted.
+ */
 .bg-muted {
-  background-color: $gray !important;
+    background-color: $gray !important;
 }
-
-// Paleta extendida
-
-.bg-fucsia {
-  background-color: $brand-fucsia !important;
-}
-
-.bg-arandano {
-  background-color: $brand-arandano !important;
-}
-
-.bg-uva {
-  background-color: $brand-uva !important;
-}
-
-.bg-cielo {
-  background-color: $brand-cielo !important;
-}
-
-.bg-verdin {
-  background-color: $brand-verdin !important;
-}
-
-.bg-lima {
-  background-color: $brand-lima !important;
-}
-
-.bg-maiz {
-  background-color: $brand-maiz !important;
-}
-
-.bg-tomate {
-  background-color: $brand-tomate !important;
-}
-
-.bg-naranja {
-  background-color: $brand-naranja !important;
-}
-
-.bg-verde-azulado {
-  background-color: $brand-verde-azulado !important;
-}
-
-.bg-mandarina {
-  background-color: $brand-mandarina !important;
-}
-
-.bg-cereza {
-  background-color: $brand-cereza !important;
-}
-
-.bg-lavanda {
-  background-color: $brand-lavanda !important;
-}
-
-.bg-escarapela {
-  background-color: $brand-escarapela !important;
-}
-
-.bg-celeste-argentina {
-  background-color: $brand-celeste-argentina !important;
-}
-
-.bg-palta {
-  background-color: $brand-palta !important;
-}
-
-.bg-limon {
-  background-color: $brand-limon !important;
-}
-
-.bg-verde-jade {
-  background-color: $brand-verde-jade !important;
-}
-
-.bg-verde-aloe {
-  background-color: $brand-verde-aloe !important;
-}
-
-.bg-verde-cemento {
-  background-color: $brand-verde-cemento !important;
-}
-
-.bg-azul-marino {
-  background-color: $brand-azul-marino !important;
-}
-
-.bg-amarillo-intenso {
-  background-color: $brand-amarillo-intenso !important;
-}
-
-.bg-arena {
-  background-color: $brand-arena !important;
-}
-
-.bg-rosado {
-  background-color: $brand-rosado !important;
-}
-
-.bg-miarg-azul {
-  background-color: $brand-miarg-azul !important;
-}
-*/
-
-
-
 
 .bg-azul,
 .bg-primary,
@@ -318,30 +200,6 @@ aside {
 .bg-verde-cemento,
 .bg-azul-marino,
 .bg-amarillo-intenso {
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  .h1,
-  .h2,
-  .h3,
-  .h4,
-  .h5,
-  .h6 {
-    color: #FFF !important;
-
-    small,
-    .small {
-      color: #FFF;
-    }
-  }
-
-  .panel-default:not(:hover),
-  .panel-disabled {
-
     h1,
     h2,
     h3,
@@ -354,676 +212,540 @@ aside {
     .h4,
     .h5,
     .h6 {
-      color: $text-color !important;
+        color: #fff !important;
 
-      small,
-      .small {
-        color: $text-color;
-      }
+        small,
+        .small {
+            color: #fff;
+        }
     }
 
-    p {
-      color: $text-color !important;
+    .panel-default:not(:hover),
+    .panel-disabled {
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        .h1,
+        .h2,
+        .h3,
+        .h4,
+        .h5,
+        .h6 {
+            color: $text-color !important;
+
+            small,
+            .small {
+                color: $text-color;
+            }
+        }
+
+        p {
+            color: $text-color !important;
+        }
+
+        time {
+            color: $text-color !important;
+        }
     }
 
-    time {
-      color: $text-color !important;
+    .alert {
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        .h1,
+        .h2,
+        .h3,
+        .h4,
+        .h5,
+        .h6 {
+            color: $gray-dark !important;
+
+            small,
+            .small {
+                color: $gray-dark;
+            }
+        }
+
+        p {
+            color: $gray-dark !important;
+        }
+
+        a {
+            color: $brand-primary !important;
+
+            &:hover,
+            &:focus,
+            &:active {
+                color: $link-hover-color !important;
+            }
+        }
     }
-  }
 
-  .alert {
+    .dropdown-menu {
+        > li > a {
+            color: $gray-dark !important;
 
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6,
-    .h1,
-    .h2,
-    .h3,
-    .h4,
-    .h5,
-    .h6 {
-      color: $gray-dark !important;
-
-      small,
-      .small {
-        color: $gray-dark;
-      }
+            &:hover,
+            &:focus {
+                color: #fff !important;
+            }
+        }
     }
 
-    p {
-      color: $gray-dark !important;
+    p,
+    a,
+    ul,
+    ol,
+    dl,
+    blockquote,
+    blockquote small,
+    blockquote footer,
+    blockquote p span,
+    table,
+    label {
+        color: #fff !important;
     }
-
-    a {
-      color: $brand-primary !important;
-
-      &:hover,
-      &:focus,
-      &:active {
-        color: $link-hover-color !important;
-      }
-    }
-  }
-
-  .dropdown-menu {
-    >li>a {
-      color: $gray-dark !important;
-
-      &:hover,
-      &:focus {
-        color: #FFF !important;
-      }
-    }
-  }
-
-  p,
-  a,
-  ul,
-  ol,
-  dl,
-  blockquote,
-  blockquote small,
-  blockquote footer,
-  blockquote p span,
-  table,
-  label {
-    color: #FFF !important;
-  }
-
 }
-
 
 a.bg-primary,
 a.bg-success,
 a.bg-info,
 a.bg-warning,
 a.bg-danger {
-  color: #FFF;
-  display: block;
+    color: #fff;
+    display: block;
 
-  &[href^="/"] {
-    padding: 6px 0;
-  }
+    &[href^="/"] {
+        padding: 6px 0;
+    }
 
-  &:hover {
-    opacity: 0.9;
-    text-decoration: underline;
-  }
+    &:hover {
+        opacity: 0.9;
+        text-decoration: underline;
+    }
 
-  p {
-    font-size: 16px;
-  }
+    p {
+        font-size: 16px;
+    }
 }
 
-
-
+/**
+ * Crea un estilo `.text-[color]` por cada uno de los colores en el listado
+ * de variables de color. 
+ * 
+ * @SEE modules/_poncho-colors.scss 
+ */
 @each $name, $color in $colores {
-  .text-#{$name} {
-      color: #{$color} !important;
-  }
-}
-/*
-.text-azul,
-.text-primary {
-  color: $brand-primary !important;
+    .text-#{$name} {
+        color: #{$color} !important;
+    }
 }
 
-.text-secondary {
-  color: $brand-secondary !important;
-}
-
-.text-success {
-  color: $brand-success !important;
-}
-
-.text-info {
-  color: $brand-info !important;
-}
-
-.text-warning {
-  color: darken($brand-warning, 22%);
-}
-
-.text-danger {
-  color: $brand-danger !important;
-}
-
-.text-black {
-  color: $black !important;
-}
-
-.text-white {
-  color: $white !important;
-}
-
+/**
+ * @TODO Revisar si no es mejor utilizar $brand-amarillo-dark en vez de:
+ * darken($brand-warning, 22%); 
+ */
 .text-muted {
-  color: $gray !important;
-  opacity: 1 !important
+    opacity: 1 !important;
 }
 
-
-//
-
-.text-fucsia {
-  color: $brand-fucsia !important;
+/**
+ * @TODO Revisar si no es mejor utilizar $brand-amarillo-dark en vez de:
+ * darken($brand-warning, 22%); 
+ */
+.text-warning {
+    color: darken($brand-warning, 22%);
 }
 
-.text-arandano {
-  color: $brand-arandano !important;
-}
-
-.text-uva {
-  color: $brand-uva !important;
-}
-
-.text-cielo {
-  color: $brand-cielo !important;
-}
-
-.text-verdin {
-  color: $brand-verdin !important;
-}
-
-.text-lima {
-  color: $brand-lima !important;
-}
-
-.text-maiz {
-  color: $brand-maiz !important;
-}
-
-.text-tomate {
-  color: $brand-tomate !important;
-}
-
-.text-naranja {
-  color: $brand-naranja !important;
-}
-
-.text-verde-azulado {
-  color: $brand-verde-azulado !important;
-}
-
-.text-mandarina {
-  color: $brand-mandarina !important;
-}
-
-.text-cereza {
-  color: $brand-cereza !important;
-}
-
-.text-lavanda {
-  color: $brand-lavanda !important;
-}
-
-.text-escarapela {
-  color: $brand-escarapela !important;
-}
-
-.text-celeste-argentina {
-  color: $brand-celeste-argentina !important;
-}
-
-.text-palta {
-  color: $brand-palta !important;
-}
-
-.text-limon {
-  color: $brand-limon !important;
-}
-
-.text-verde-jade {
-  color: $brand-verde-jade !important;
-}
-
-.text-verde-aloe {
-  color: $brand-verde-aloe !important;
-}
-
-.text-verde-cemento {
-  color: $brand-verde-cemento !important;
-}
-
-.text-azul-marino {
-  color: $brand-azul-marino !important;
-}
-
-.text-amarillo-intenso {
-  color: $brand-amarillo-intenso !important;
-}
-
-.text-arena {
-  color: $brand-arena !important;
-}
-
-.text-rosado {
-  color: $brand-rosado !important;
-}
-
-.text-miarg-azul {
-  color: $brand-miarg-azul !important;
-}
-*/
-
-.nav>li>a {
-  text-decoration: none;
+.nav > li > a {
+    text-decoration: none;
 }
 
 .page-sidebar {
+    margin-bottom: 48px;
+    padding: 0;
 
-  margin-bottom: 48px;
-  padding: 0;
-
-  li {
-    font-size: 16px;
-  }
-
-  a {
-    display: block;
-    padding: 5px 0;
-    text-decoration: none;
-
-    &:hover {
-      text-decoration: none;
+    li {
+        font-size: 16px;
     }
-  }
-
-  .nav {
-    font-weight: 500;
-    text-transform: none;
-  }
-
-  .btn-title {
-    border: medium none;
-    border-radius: 30px;
-    color: #666;
-    // cursor: pointer;
-    display: inline-block;
-    font-size: 22px;
-    font-weight: 600;
-    line-height: 26px;
-    margin-bottom: 8px;
-    margin-top: 6px;
-    text-align: left;
-    text-shadow: none;
-    vertical-align: middle;
-    white-space: normal;
-    width: 100%;
-  }
-
-
-  .nav-pills li {
 
     a {
-      color: $brand-primary;
+        display: block;
+        padding: 5px 0;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: none;
+        }
     }
 
-    &.active>a,
-    >a:hover {
-      background-color: $gray-lighter;
-      border-color: $gray-lighter;
+    .nav {
+        font-weight: 500;
+        text-transform: none;
     }
 
-    &.btn-title>a {
-      padding: 10px 20px;
+    .btn-title {
+        border: medium none;
+        border-radius: 30px;
+        color: #666;
+        // cursor: pointer;
+        display: inline-block;
+        font-size: 22px;
+        font-weight: 600;
+        line-height: 26px;
+        margin-bottom: 8px;
+        margin-top: 6px;
+        text-align: left;
+        text-shadow: none;
+        vertical-align: middle;
+        white-space: normal;
+        width: 100%;
     }
 
-    &.disabled>a {
-      color: $white;
-
-      &:hover {
-        border-color: $gray-lighter;
-      }
-    }
-
-    >a {
-      padding: 13px 20px;
-      border-radius: 30px;
-
-      &:hover {
-        border-color: $gray-lighter;
-      }
-
-      &:visited {
-        color: $link-visited;
-      }
-    }
-
-    &.active>a,
-    &.active>a:hover,
-    &.active>a:focus {
-      background-color: $brand-primary;
-      border: 0;
-      color: $body-bg;
-
-    }
-
-    ul {
-      padding-left: 0px;
-      list-style: none;
-
-      li {
-
+    .nav-pills li {
         a {
-          font-size: 16px;
-
-          &:before {
-            content: '-';
-            display: inline-block;
-            margin-right: 15px;
-            color: $gray-light;
-          }
+            color: $brand-primary;
         }
 
-        ul li a {
-          &:before {
-            margin-left: 10px;
-          }
+        &.active > a,
+        > a:hover {
+            background-color: $gray-lighter;
+            border-color: $gray-lighter;
         }
 
-      }
-
-
-      li a {
-        font-size: 16px;
-
-        &:before {
-          content: '-';
-          display: inline-block;
-          margin-right: 15px;
-          color: $gray-light;
+        &.btn-title > a {
+            padding: 10px 20px;
         }
-      }
+
+        &.disabled > a {
+            color: $white;
+
+            &:hover {
+                border-color: $gray-lighter;
+            }
+        }
+
+        > a {
+            padding: 13px 20px;
+            border-radius: 30px;
+
+            &:hover {
+                border-color: $gray-lighter;
+            }
+
+            &:visited {
+                color: $link-visited;
+            }
+        }
+
+        &.active > a,
+        &.active > a:hover,
+        &.active > a:focus {
+            background-color: $brand-primary;
+            border: 0;
+            color: $body-bg;
+        }
+
+        ul {
+            padding-left: 0px;
+            list-style: none;
+
+            li {
+                a {
+                    font-size: 16px;
+
+                    &:before {
+                        content: "-";
+                        display: inline-block;
+                        margin-right: 15px;
+                        color: $gray-light;
+                    }
+                }
+
+                ul li a {
+                    &:before {
+                        margin-left: 10px;
+                    }
+                }
+            }
+
+            li a {
+                font-size: 16px;
+
+                &:before {
+                    content: "-";
+                    display: inline-block;
+                    margin-right: 15px;
+                    color: $gray-light;
+                }
+            }
+        }
     }
-  }
 
+    .nav > li > a:hover,
+    .nav > li > a:focus {
+        background-color: $gray-lighter;
+        text-decoration: none;
+    }
 
-
-  .nav>li>a:hover,
-  .nav>li>a:focus {
-    background-color: $gray-lighter;
-    text-decoration: none;
-  }
-
-
-  .badge {
-    background-color: transparent;
-    color: #606060;
-    font-size: 16px;
-    font-weight: 500;
-  }
-
+    .badge {
+        background-color: transparent;
+        color: #606060;
+        font-size: 16px;
+        font-weight: 500;
+    }
 }
 
 dd {
-  margin-bottom: 15px;
+    margin-bottom: 15px;
 }
 
 .ribbon {
-  display: inline-block;
-  font-weight: 500;
-  margin: 0 40px 10px 0;
-  padding: 11px 0px;
-  text-transform: uppercase;
+    display: inline-block;
+    font-weight: 500;
+    margin: 0 40px 10px 0;
+    padding: 11px 0px;
+    text-transform: uppercase;
 
-  i {
-    font-size: 1.5em;
-    margin-right: 5px;
-    position: relative;
-    top: 2px;
-  }
+    i {
+        font-size: 1.5em;
+        margin-right: 5px;
+        position: relative;
+        top: 2px;
+    }
 }
 
 .well {
-  border-color: $gray-light;
-  box-shadow: none;
-  margin: 30px 0;
+    border-color: $gray-light;
+    box-shadow: none;
+    margin: 30px 0;
 }
 
 .credits {
-  p {
-    color: $gray;
-    font-family: $font-family-sans-serif;
-    font-size: 13px;
-    line-height: 15px;
-    margin-top: 40px;
-  }
+    p {
+        color: $gray;
+        font-family: $font-family-sans-serif;
+        font-size: 13px;
+        line-height: 15px;
+        margin-top: 40px;
+    }
 }
 
 .circle {
-  height: 16px;
-  width: 16px;
-  border-radius: 50%;
-  margin-right: 5px;
-  display: inline-block;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    margin-right: 5px;
+    display: inline-block;
 }
 
 @media screen and (max-width: 767px) {
-
-  h2 {
-    font-size: 2em;
-  }
-
-  h3 {
-    font-size: 32px;
-  }
-
-
-
-  article {
-    h1 {
-      &.icon {
-        font-size: 8em;
-        line-height: 1.5;
-        text-align: center;
-      }
+    h2 {
+        font-size: 2em;
     }
-  }
 
+    h3 {
+        font-size: 32px;
+    }
+
+    article {
+        h1 {
+            &.icon {
+                font-size: 8em;
+                line-height: 1.5;
+                text-align: center;
+            }
+        }
+    }
 }
 
 @media screen and (min-width: 768px) {
+    .open {
+        .submenu {
+            display: table;
 
-  .open {
+            > div {
+                display: table-cell;
+            }
+        }
+    }
+
     .submenu {
-      display: table;
-
-      >div {
-        display: table-cell;
-      }
+        li {
+            a {
+                padding-right: 60px !important;
+            }
+        }
     }
-  }
-
-  .submenu {
-    li {
-      a {
-        padding-right: 60px !important;
-      }
-    }
-  }
-
 }
 
-
 @media screen and (max-width: 767px) {
+    blockquote {
+        text-align: center;
 
-  blockquote {
-    text-align: center;
-
-    img {
-      margin: 0 auto;
-      padding: 0 45px 16px;
+        img {
+            margin: 0 auto;
+            padding: 0 45px 16px;
+        }
     }
-  }
 
-  .additional_data {
-    font-size: 0.88em;
-  }
-
+    .additional_data {
+        font-size: 0.88em;
+    }
 }
 
 #search_wrapper {
-  display: none;
-  margin-top: 5px;
-  padding-right: 0;
+    display: none;
+    margin-top: 5px;
+    padding-right: 0;
 
-  .glyphicon-search {
-    color: $brand-primary;
-  }
-
-  span {
-    &.bg-primary {
-      border-radius: 30px;
-      float: left;
-      margin-right: 20px;
-      margin-top: 15px;
-      padding: 3px 7px;
-    }
-  }
-
-  input {
-    font-size: 1.1em;
-  }
-
-  .input-group-addon,
-  .form-control {
-    border-left: 0;
-    border-radius: 0;
-    border-right: 0;
-    border-top: 0;
-  }
-
-  .stylish-input-group {
-
-    .input-group-addon {
-      background: $white !important;
-      padding: 10px 16px;
+    .glyphicon-search {
+        color: $brand-primary;
     }
 
+    span {
+        &.bg-primary {
+            border-radius: 30px;
+            float: left;
+            margin-right: 20px;
+            margin-top: 15px;
+            padding: 3px 7px;
+        }
+    }
+
+    input {
+        font-size: 1.1em;
+    }
+
+    .input-group-addon,
     .form-control {
-      border-color: $gray-border;
-      box-shadow: 0 0 0;
+        border-left: 0;
+        border-radius: 0;
+        border-right: 0;
+        border-top: 0;
     }
 
-    button {
-      background: 0 0;
-      border: 0;
+    .stylish-input-group {
+        .input-group-addon {
+            background: $white !important;
+            padding: 10px 16px;
+        }
+
+        .form-control {
+            border-color: $gray-border;
+            box-shadow: 0 0 0;
+        }
+
+        button {
+            background: 0 0;
+            border: 0;
+        }
     }
-  }
 }
 
 .additional_data {
-  padding-top: 0;
-  text-align: right;
+    padding-top: 0;
+    text-align: right;
 }
 
 .title-description {
-  .additional_data {
-    padding-top: 15px;
-  }
-
+    .additional_data {
+        padding-top: 15px;
+    }
 }
 
 .list-idioma {
-  background: 0 0;
-  border: 0;
-  font-weight: 500;
-  margin: 16px 0 0;
-  padding: 0;
-  text-transform: none;
+    background: 0 0;
+    border: 0;
+    font-weight: 500;
+    margin: 16px 0 0;
+    padding: 0;
+    text-transform: none;
 
-  li {
-    font-size: 14px;
-    line-height: 22px;
-  }
-
-  a {
-    color: $brand-primary;
-    text-decoration: none;
-
-    &:hover {
-      color: $link-hover-color;
+    li {
+        font-size: 14px;
+        line-height: 22px;
     }
-  }
 
+    a {
+        color: $brand-primary;
+        text-decoration: none;
+
+        &:hover {
+            color: $link-hover-color;
+        }
+    }
 }
-
 
 .state-loading,
 .icon-load.progress-disabled {
-  position: relative;
+    position: relative;
 
-  &:before {
-    -webkit-animation: loader .6s linear;
-    -webkit-animation-iteration-count: infinite;
-    animation: loader .6s linear;
-    animation-iteration-count: infinite;
-    border-color: $gray $gray-background $gray-background;
-    border-radius: 600rem;
-    border-style: solid;
-    border-width: .2em;
-    box-shadow: 0 0 0 1px transparent;
-    content: '';
-    height: 1.7em;
-    left: 50%;
-    margin: -0.9em 0 0 -1.12925em;
-    position: absolute;
-    top: 50%;
-    width: 1.7em;
-    z-index: 5;
-  }
+    &:before {
+        -webkit-animation: loader 0.6s linear;
+        -webkit-animation-iteration-count: infinite;
+        animation: loader 0.6s linear;
+        animation-iteration-count: infinite;
+        border-color: $gray $gray-background $gray-background;
+        border-radius: 600rem;
+        border-style: solid;
+        border-width: 0.2em;
+        box-shadow: 0 0 0 1px transparent;
+        content: "";
+        height: 1.7em;
+        left: 50%;
+        margin: -0.9em 0 0 -1.12925em;
+        position: absolute;
+        top: 50%;
+        width: 1.7em;
+        z-index: 5;
+    }
 
-  &:after {
-    background-color: rgba(204, 204, 204, .7);
-    border-radius: 30px;
-    content: '';
-    height: 100%;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 100%;
-    z-index: 4;
-  }
-
+    &:after {
+        background-color: rgba(204, 204, 204, 0.7);
+        border-radius: 30px;
+        content: "";
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 4;
+    }
 }
-
-
 
 .borde-img {
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1)
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-
-
 
 .has-error .chosen-container a {
-  border-color: #BB4945 !important;
+    border-color: #bb4945 !important;
 }
-
-
 
 @-webkit-keyframes loader {
-  from {
-    transform: rotate(0)
-  }
+    from {
+        transform: rotate(0);
+    }
 
-  to {
-    transform: rotate(360deg)
-  }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
-
-
 @keyframes loader {
-  from {
-    transform: rotate(0)
-  }
+    from {
+        transform: rotate(0);
+    }
 
-  to {
-    transform: rotate(360deg)
-  }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 .fa-500px:before,
@@ -1171,217 +893,211 @@ dd {
 .fa-yc-square:before,
 .fa-yelp:before,
 .fa-yoast:before {
-  content: "";
+    content: "";
 }
 
 .fa.text-primary {
-  color: $brand-primary !important
+    color: $brand-primary !important;
 }
 
 .fa.text-info {
-  color: $brand-info !important
+    color: $brand-info !important;
 }
 
 .fa.text-success {
-  color: $brand-success !important
+    color: $brand-success !important;
 }
 
 .fa.text-warning {
-  color: $brand-warning !important
+    color: $brand-warning !important;
 }
 
 .fa.text-danger {
-  color: $brand-danger !important
+    color: $brand-danger !important;
 }
 
 .nav-icons i[class^="icono-arg-"]:before,
 .nav-icons i.fa:before {
-  line-height: 80px
+    line-height: 80px;
 }
 
 .nav-icons i[class^="icono-arg-"],
 .nav-icons i.fa {
-  line-height: 0
+    line-height: 0;
 }
-
 
 #clase11 {
-  color: #000
+    color: #000;
 }
-
 
 /**
  * Botón mi argentina en header
  */
 header .btn i[class*="icono-arg"] {
-  font-size: 1em;
-  height: 22px;
-  float: left;
+    font-size: 1em;
+    height: 22px;
+    float: left;
 }
 
 header .btn i[class*="icono-arg"].fa-fw {
-  width: 1.6em;
-  margin-right: 0;
+    width: 1.6em;
+    margin-right: 0;
 }
 
 header .btn i[class*="icono-arg"]:before {
-  line-height: 22px;
-  font-size: 1.6em;
+    line-height: 22px;
+    font-size: 1.6em;
 }
 
 @media all and (min-width: 768px) {
-  .btn i[class*="icono-arg"] {
-    margin-right: 8px;
-  }
+    .btn i[class*="icono-arg"] {
+        margin-right: 8px;
+    }
 }
-
-
 
 /**
  * Flechas mobile
  */
 #scrolltotop_parent {
-  cursor: pointer;
-  position: fixed;
-  bottom: 20px;
-  z-index: 1002 !important;
-  line-height: .82em;
-  width: .83em;
-  height: .83em;
-  margin: 0 .4em .4em
+    cursor: pointer;
+    position: fixed;
+    bottom: 20px;
+    z-index: 1002 !important;
+    line-height: 0.82em;
+    width: 0.83em;
+    height: 0.83em;
+    margin: 0 0.4em 0.4em;
 }
 
 #scrolltotop_parent i {
-  font-size: 40px;
-  color: $brand-primary;
-  background-color: $white;
-  border-radius: 15px;
-  opacity: .7
+    font-size: 40px;
+    color: $brand-primary;
+    background-color: $white;
+    border-radius: 15px;
+    opacity: 0.7;
 }
 
 #scrolltotop .fa-arrow-circle-up {
-  margin-left: 150px;
-  margin-bottom: 100px
+    margin-left: 150px;
+    margin-bottom: 100px;
 }
 
 @media (min-width: 768px) {
-  #scrolltotop_parent {
-    display: none !important;
-  }
+    #scrolltotop_parent {
+        display: none !important;
+    }
 }
 
 .search-results {
-  list-style: none;
-  padding-left: 0;
+    list-style: none;
+    padding-left: 0;
 }
-
-
 
 /**
  * Etiquetas details y summary 
  */
 details {
-  transition: all ease-out 0.2s;
-  margin-bottom: 0;
-  padding-left: 0px
+    transition: all ease-out 0.2s;
+    margin-bottom: 0;
+    padding-left: 0px;
 }
 
 details:last-child {
-  border-top: none;
+    border-top: none;
 }
 
 summary {
-  line-height: 1.5em;
-  display: block;
-  padding: 0.5em 1.5em;
-  cursor: pointer;
-  font-size: 1.1em;
-  font-weight: bold;
-  position: relative;
-  color: $brand-primary;
+    line-height: 1.5em;
+    display: block;
+    padding: 0.5em 1.5em;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    position: relative;
+    color: $brand-primary;
 
-  &:before {
-    content: " ";
-    top: 36%;
-    left: 0.5em;
-    position: absolute;
-    z-index: 20;
-    width: 8px;
-    height: 8px;
-    transition: 0.25s;
+    &:before {
+        content: " ";
+        top: 36%;
+        left: 0.5em;
+        position: absolute;
+        z-index: 20;
+        width: 8px;
+        height: 8px;
+        transition: 0.25s;
 
-    border: {
-      right: {
-        style: solid;
-        color: var(--gray-base, $gray-base);
-        width: 3px;
-      }
+        border: {
+            right: {
+                style: solid;
+                color: var(--gray-base, $gray-base);
+                width: 3px;
+            }
 
-      bottom: {
-        style: solid;
-        color: var(--gray-base, $gray-base);
-        width: 3px;
-      }
+            bottom: {
+                style: solid;
+                color: var(--gray-base, $gray-base);
+                width: 3px;
+            }
+        }
+
+        transform: rotate(45deg);
+        background: transparent;
     }
-
-    transform: rotate(45deg);
-    background: transparent;
-  }
 }
 
 summary::-webkit-details-marker {
-  color: inherit;
-  font-size: 1em;
-  position: relative;
-  top: -1px;
-  background: transparent;
+    color: inherit;
+    font-size: 1em;
+    position: relative;
+    top: -1px;
+    background: transparent;
 }
 
 .expand {
-  margin-top: 0px;
-  padding: 0.5em;
-  background: $white;
-  min-height: 1em;
+    margin-top: 0px;
+    padding: 0.5em;
+    background: $white;
+    min-height: 1em;
 }
 
 @-webkit-keyframes open {
-  0% {
-    opacity: 0;
-    overflow: hidden;
-  }
+    0% {
+        opacity: 0;
+        overflow: hidden;
+    }
 
-  100% {
-    opacity: 1;
-  }
+    100% {
+        opacity: 1;
+    }
 }
 
 @keyframes open {
-  0% {
-    opacity: 0;
-    overflow: hidden;
-  }
+    0% {
+        opacity: 0;
+        overflow: hidden;
+    }
 
-  100% {
-    opacity: 1;
-  }
+    100% {
+        opacity: 1;
+    }
 }
 
-details[open] summary~* {
-  -webkit-animation: open 0.2s ease-in-out;
-  animation: open 0.2s ease-in-out;
-  padding-left: 26px
+details[open] summary ~ * {
+    -webkit-animation: open 0.2s ease-in-out;
+    animation: open 0.2s ease-in-out;
+    padding-left: 26px;
 }
 
-details[open]>summary {
-  &:before {
-    top: 42%;
-    transform: rotate(225deg);
-  }
+details[open] > summary {
+    &:before {
+        top: 42%;
+        transform: rotate(225deg);
+    }
 }
 
-details[open]>summary::-webkit-details-marker {
-  &:before {
-    top: 42%;
-    transform: rotate(225deg);
-  }
+details[open] > summary::-webkit-details-marker {
+    &:before {
+        top: 42%;
+        transform: rotate(225deg);
+    }
 }
