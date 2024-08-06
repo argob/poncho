@@ -1,8 +1,8 @@
-
 .listas-destacadas {
   > ol, > ul {
     list-style: none;
     padding: 0;
+    margin: 0 0 0 2.389rem;
   }
 
   > ol li *,
@@ -28,7 +28,7 @@
     font-size: 2rem;
     font-family: FontAwesome;
     line-height: 24px;
-    margin-right: .5rem;
+    margin: 0 .5rem 0 -2.222rem;
     font-weight: normal;
     font-style: normal;
     font-variant: normal;
