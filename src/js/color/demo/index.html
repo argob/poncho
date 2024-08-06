@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta 
+        name="viewport" 
+        content="width=device-width, initial-scale=1.0">
+    <link 
+        rel="stylesheet" 
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" 
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" 
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="./dist/css/main.css">
+    <link rel="stylesheet" href="../../../../dist/css/poncho.min.css">
+    <title>Colores Argentina.gob.ar</title>
+</head>
+
+<body>
+    
+    
+    <template id="productrow" class="mb-3">
+        <div class="sample">
+            <div class="color"></div>
+            <p class="text text-muted roboto-regular">mi color</p>
+        </div>
+    </template>
+
+    <header style="border-bottom: 4px solid var(--gob-ocre-400, goldenrod);">
+        <div class="container">
+            <h1 
+                class="h6 roboto-bold text-uppercase mt-3 mb-0 " 
+                style="color:var(--arg-azul-700)">
+                Colores poncho
+            </h1>
+            <p 
+                class="small roboto-regular text-gob-azul-half" 
+                style="font-size: 80%;">
+                Versión 2.0, 2004
+            </p>
+        </div>
+    </header>
+
+    <div style="background-color: #ddd;" class="py-4">
+        <main class="container mb-4 roboto-regular">
+            <div class="row">
+            <div class="cont col"></div>
+            <div class="col-3">
+                &nbsp;
+            </div>
+            </div>
+            
+        </main>
+    </div>
+
+    <footer class="bg-blanco">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 py-3">
+                    <div class="flag bg-blanco">
+                        <div class="band bg-bandera-celeste"></div>
+                        <div class="band">
+                            <div class="sun bg-bandera-amarillo"></div>
+                        </div>
+                        <div class="band bg-bandera-celeste"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- start scripts -->
+    <script src="../src/js/color-definitions.js"></script>
+    <script src="../src/js/color.js"></script>
+    <script src="../src/js/color-variations.js"></script>
+    <script src="../../utils/string.js"></script>
+    <script src="../../utils/html.js"></script>
+    <script src="../../utils/document.js"></script>
+    <script src="../../utils/connect.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/axios@1.7.2/dist/axios.min.js"></script> -->
+    <script src="./src/js/main.js"></script>
+    <!-- end scripts -->
+</body>
+</html>
