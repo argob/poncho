@@ -31,7 +31,7 @@ $brand-arg-default: #838383 !default;
 $brand-arg-fucsia: #EC407A !default;
 $brand-arg-fucsia-dark: #9A144A !default;
 $brand-arg-fucsia-light: #F16798 !default;
-$brand-arg-gray: #5B5F65 !default;
+$brand-arg-gray: #494C50 !default;
 $brand-arg-gray-border: #DEE2E6 !default;
 $brand-arg-gray-dark: #37393D !default;
 $brand-arg-gray-hover: #E9E9E9 !default;
@@ -51,7 +51,6 @@ $brand-arg-marron-claro: #8D2D04 !default;
 $brand-arg-marron-claro-dark: #6C1805 !default;
 $brand-arg-marron-claro-light: #CE5701 !default;
 $brand-arg-marron-oscuro: #511901 !default;
-$brand-arg-muted: #7E848E !default; /* Texto secundario (subtítulos) */ 
 $brand-arg-naranja: #EF6C00 !default;
 $brand-arg-naranja-dark: #6C1805 !default;
 $brand-arg-naranja-light: #EF6C00 !default;
@@ -97,7 +96,7 @@ $brand-fucsia: #EC407A !default;
 $brand-gna-verde-aloe: #4FBB73 !default;
 $brand-gna-verde-cemento: #B4BEBA !default;
 $brand-gna-verde-jade: #006666 !default;
-$gray: #5B5F65 !default;
+$gray: #494C50 !default;
 $gray-background: #FFFFFF !default;
 $gray-base: #141414 !default; /* Elementos básicos */ 
 $gray-border: #DEE2E6 !default;
@@ -106,9 +105,9 @@ $gray-hover: #E9E9E9 !default;
 $gray-hover-light: #F0F0F0 !default;
 $gray-light: #DDDDDD !default;
 $gray-lighter: #DDDDDD !default;
-$brand-gris: #7E848E !default; /* Texto secundario (subtítulos) */ 
-$brand-gris-area: #5B5F65 !default;
-$brand-grisintermedio: #5B5F65 !default;
+$brand-gris: #494C50 !default;
+$brand-gris-area: #494C50 !default;
+$brand-grisintermedio: #494C50 !default;
 $brand-info: #3E5A7E !default;
 $brand-lavanda: #9284BE !default;
 $brand-lima: #B9CE39 !default;
@@ -125,7 +124,7 @@ $brand-miarg-gris: #7E848E !default;
 $brand-miarg-oscuro: #222C50 !default;
 $brand-miarg-rosa-claro: #EECCCF !default;
 $brand-miarg-verde-claro: #CFEEDC !default;
-$brand-muted: #7E848E !default; /* Texto secundario (subtítulos) */ 
+$brand-muted: #494C50 !default;
 $brand-naranja: #EF6C00 !default;
 $brand-naranjaoscuro: #EF6C00 !default;
 $brand-negro: #141414 !default; /* Elementos básicos */ 
@@ -199,7 +198,6 @@ $colores: ("amarillo", $brand-amarillo),
 ("arg-marron-claro-dark", $brand-arg-marron-claro-dark),
 ("arg-marron-claro-light", $brand-arg-marron-claro-light),
 ("arg-marron-oscuro", $brand-arg-marron-oscuro),
-("arg-muted", $brand-arg-muted),
 ("arg-naranja", $brand-arg-naranja),
 ("arg-naranja-dark", $brand-arg-naranja-dark),
 ("arg-naranja-light", $brand-arg-naranja-light),
@@ -365,7 +363,7 @@ html {
 	--arg-negro-400:#DEE2E6;
 	--arg-negro-500:#90969E;
 	--arg-negro-600:#7E848E;
-	--arg-negro-700:#5B5F65;
+	--arg-negro-700:#494C50;
 	--arg-negro-800:#37393D;
 	--arg-negro-900:#141414;
 	--arg-turquesa-50:#DCF1F0;
@@ -458,7 +456,7 @@ html {
 	--arg-fucsia:#EC407A;
 	--arg-fucsia-dark:#9A144A;
 	--arg-fucsia-light:#F16798;
-	--arg-gray:#5B5F65;
+	--arg-gray:#494C50;
 	--arg-gray-border:#DEE2E6;
 	--arg-gray-dark:#37393D;
 	--arg-gray-hover:#E9E9E9;
@@ -478,7 +476,6 @@ html {
 	--arg-marron-claro-dark:#6C1805;
 	--arg-marron-claro-light:#CE5701;
 	--arg-marron-oscuro:#511901;
-	--arg-muted:#7E848E;
 	--arg-naranja:#EF6C00;
 	--arg-naranja-dark:#6C1805;
 	--arg-naranja-light:#EF6C00;
@@ -524,7 +521,7 @@ html {
 	--gna-verde-aloe:#4FBB73;
 	--gna-verde-cemento:#B4BEBA;
 	--gna-verde-jade:#006666;
-	--gray:#5B5F65;
+	--gray:#494C50;
 	--gray-background:#FFFFFF;
 	--gray-base:#141414;
 	--gray-border:#DEE2E6;
@@ -533,9 +530,9 @@ html {
 	--gray-hover-light:#F0F0F0;
 	--gray-light:#DDDDDD;
 	--gray-lighter:#DDDDDD;
-	--gris:#7E848E;
-	--gris-area:#5B5F65;
-	--grisintermedio:#5B5F65;
+	--gris:#494C50;
+	--gris-area:#494C50;
+	--grisintermedio:#494C50;
 	--info:#3E5A7E;
 	--lavanda:#9284BE;
 	--lima:#B9CE39;
@@ -552,7 +549,7 @@ html {
 	--miarg-oscuro:#222C50;
 	--miarg-rosa-claro:#EECCCF;
 	--miarg-verde-claro:#CFEEDC;
-	--muted:#7E848E;
+	--muted:#494C50;
 	--naranja:#EF6C00;
 	--naranjaoscuro:#EF6C00;
 	--negro:#141414;
