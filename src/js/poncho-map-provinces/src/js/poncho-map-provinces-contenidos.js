@@ -132,6 +132,8 @@ class ponchoMapProvincesCustom extends PonchoMapProvinces {
             fit_bounds: true
         };
 
+
+
         let opts = Object.assign({}, defaultOptions, options);
         super(geoProvinces, entries, opts);
     }
