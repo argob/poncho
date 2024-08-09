@@ -90,6 +90,7 @@ const ponchoMapProvinceMergeData = (geoProvinces={}, entries={},
  * @returns {undefined}
  */
 const ponchoMapProvinceCssStyles = flag => {
+    console.log('---> hide select', flag)
     if(flag){
         return;
     }
@@ -146,6 +147,7 @@ class PonchoMapProvinces extends PonchoMapFilter {
         };
         // Merge options
         let opts = Object.assign({}, defaultOptions, options);
+        console.log(opts)
         ponchoMapProvinceCssStyles(opts.hide_select);
 
         // PonchoMapFilter instance
