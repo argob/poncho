@@ -158,5 +158,165 @@
     "Ilustrador/a": "Ss de Vocería y Comunicación de Gobierno",
     "Fecha de alta": "1/7/2024",
     "Grupo": "Poncho"
+  },
+  {
+    "Nombre": "salud-malestar1",
+    "Codigo": "ilus-arg-salud-malestar1-16x9",
+    "Etiquetas ": "malestar, resfrío, enfermedad, gripe,pañuelo, tos",
+    "Descripción (texto alternativo)": "Una mujer tosiendo con un pañuelo en la mano",
+    "Formato": "16x9",
+    "Ilustrador/a": "Ss de Vocería y Comunicación de Gobierno",
+    "Fecha de alta": "12/8/2024",
+    "Grupo": "Poncho"
+  },
+  {
+    "Nombre": "salud-malestar2",
+    "Codigo": "ilus-arg-salud-malestar2-16x9",
+    "Etiquetas ": "malestar, resfrío, enfermedad, gripe, temperatura, termómetro, temperatura",
+    "Descripción (texto alternativo)": "Una mujer se toma la temperatura",
+    "Formato": "16x9",
+    "Ilustrador/a": "Ss de Vocería y Comunicación de Gobierno",
+    "Fecha de alta": "12/8/2024",
+    "Grupo": "Poncho"
+  },
+  {
+    "Nombre": "salud-malestar3",
+    "Codigo": "ilus-arg-salud-malestar3-16x9",
+    "Etiquetas ": "malestar, resfrío, enfermedad, gripe,pañuelo",
+    "Descripción (texto alternativo)": "Una mujer se suena la nariz",
+    "Formato": "16x9",
+    "Ilustrador/a": "Ss de Vocería y Comunicación de Gobierno",
+    "Fecha de alta": "12/8/2024",
+    "Grupo": "Poncho"
+  },
+  {
+    "Nombre": "salud-malestar4",
+    "Codigo": "ilus-arg-salud-malestar4-16x9",
+    "Etiquetas ": "malestar, resfrío, enfermedad, gripe,pañuelo, tos",
+    "Descripción (texto alternativo)": "Una mujer con lentes tosiendo con un pañuelo en la mano",
+    "Formato": "16x9",
+    "Ilustrador/a": "Ss de Vocería y Comunicación de Gobierno",
+    "Fecha de alta": "12/8/2024",
+    "Grupo": "Poncho"
+  },
+  {
+    "Nombre": "salud-malestar5",
+    "Codigo": "ilus-arg-salud-malestar5-16x9",
+    "Etiquetas ": "malestar, resfrío, enfermedad, gripe,pañuelo, tos,bufanda",
+    "Descripción (texto alternativo)": "Un hombre con bufanda tosiendo",
+    "Formato": "16x9",
+    "Ilustrador/a": "Ss de Vocería y Comunicación de Gobierno",
+    "Fecha de alta": "12/8/2024",
+    "Grupo": "Poncho"
+  },
+  {
+    "Nombre": "salud-malestar6",
+    "Codigo": "ilus-arg-salud-malestar6-16x9",
+    "Etiquetas ": "malestar, resfrío, enfermedad, gripe,pañuelo, termómetro, temperatura",
+    "Descripción (texto alternativo)": "Un hombre tocandose la frente y tomandose la temperatura",
+    "Formato": "16x9",
+    "Ilustrador/a": "Ss de Vocería y Comunicación de Gobierno",
+    "Fecha de alta": "12/8/2024",
+    "Grupo": "Poncho"
+  },
+  {
+    "Nombre": "salud-malestar7",
+    "Codigo": "ilus-arg-salud-malestar7-16x9",
+    "Etiquetas ": "malestar, resfrío, enfermedad, gripe, estornudo",
+    "Descripción (texto alternativo)": "Un hombre estornudando",
+    "Formato": "16x9",
+    "Ilustrador/a": "Ss de Vocería y Comunicación de Gobierno",
+    "Fecha de alta": "12/8/2024",
+    "Grupo": "Poncho"
+  },
+  {
+    "Nombre": "salud-malestar8",
+    "Codigo": "ilus-arg-salud-malestar8-16x9",
+    "Etiquetas ": "malestar, resfrío, enfermedad, gripe",
+    "Descripción (texto alternativo)": "Un hombre con malestar tocandose la frente",
+    "Formato": "16x9",
+    "Ilustrador/a": "Ss de Vocería y Comunicación de Gobierno",
+    "Fecha de alta": "12/8/2024",
+    "Grupo": "Poncho"
+  },
+  {
+    "Nombre": "salud-malestar9",
+    "Codigo": "ilus-arg-salud-malestar9-16x9",
+    "Etiquetas ": "malestar, resfrío, enfermedad, gripe, tos",
+    "Descripción (texto alternativo)": "Un hombre tosiendo",
+    "Formato": "16x9",
+    "Ilustrador/a": "Ss de Vocería y Comunicación de Gobierno",
+    "Fecha de alta": null,
+    "Grupo": null
+  },
+  {
+    "Nombre": "salud-malestar10",
+    "Codigo": "ilus-arg-salud-malestar10-16x9",
+    "Etiquetas ": "malestar, resfrío, enfermedad, gripe,niño",
+    "Descripción (texto alternativo)": "Un niño con malestar tocandose la frente",
+    "Formato": "16x9",
+    "Ilustrador/a": "Ss de Vocería y Comunicación de Gobierno",
+    "Fecha de alta": null,
+    "Grupo": null
+  },
+  {
+    "Nombre": "salud-malestar11",
+    "Codigo": "ilus-arg-salud-malestar11-16x9",
+    "Etiquetas ": "malestar, resfrío, enfermedad, gripe, niño, pañuelo,tos",
+    "Descripción (texto alternativo)": "Una niña abrigada tosiendo con un pañuelo en la mano",
+    "Formato": "16x9",
+    "Ilustrador/a": "Ss de Vocería y Comunicación de Gobierno",
+    "Fecha de alta": null,
+    "Grupo": null
+  },
+  {
+    "Nombre": "pav-celular",
+    "Codigo": "ilus-arg-pav-celular-16x9",
+    "Etiquetas ": "celular, móvil, aprender, apredizaje",
+    "Descripción (texto alternativo)": "Una mujer utilizando su celular",
+    "Formato": "16x9",
+    "Ilustrador/a": "Ss de Vocería y Comunicación de Gobierno",
+    "Fecha de alta": null,
+    "Grupo": null
+  },
+  {
+    "Nombre": "pav-computadora1",
+    "Codigo": "ilus-arg-pav-computadora1-16x9",
+    "Etiquetas ": "computadora, notebook, videollamada, aprender, aprendizaje",
+    "Descripción (texto alternativo)": "Una mujer utilizando su computadora",
+    "Formato": "16x9",
+    "Ilustrador/a": "Ss de Vocería y Comunicación de Gobierno",
+    "Fecha de alta": null,
+    "Grupo": null
+  },
+  {
+    "Nombre": "pav-computadora2",
+    "Codigo": "ilus-arg-pav-computadora2-16x9",
+    "Etiquetas ": "computadora, notebook, videollamada, aprender, aprendizaje, idea",
+    "Descripción (texto alternativo)": "Un hombre usando su computadora",
+    "Formato": "16x9",
+    "Ilustrador/a": "Ss de Vocería y Comunicación de Gobierno",
+    "Fecha de alta": null,
+    "Grupo": null
+  },
+  {
+    "Nombre": "pav-computadora3",
+    "Codigo": "ilus-arg-pav-computadora3-16x9",
+    "Etiquetas ": "computadora, notebook, videollamada, aprender, aprendizaje",
+    "Descripción (texto alternativo)": "Un hombre usando su computadora",
+    "Formato": "16x9",
+    "Ilustrador/a": "Ss de Vocería y Comunicación de Gobierno",
+    "Fecha de alta": null,
+    "Grupo": null
+  },
+  {
+    "Nombre": "pav-persona",
+    "Codigo": "ilus-arg-pav-persona-16x9",
+    "Etiquetas ": "persona, señalar, señalando",
+    "Descripción (texto alternativo)": "Una mujer señalando",
+    "Formato": "16x9",
+    "Ilustrador/a": null,
+    "Fecha de alta": null,
+    "Grupo": null
   }
 ]
