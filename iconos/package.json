@@ -1,0 +1,23 @@
+{
+  "name": "ar-iconos",
+  "version": "1.0.0",
+  "description": "Sistema de iconos de Poncho",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https:///github.com/argob/iconos.git"
+  },
+  "keywords": [
+    "poncho",
+    "iconos"
+  ],
+  "author": "Dirección Nacional de Servicios Digitales de la Subsecretaría de Gobierno Abierto y País Digital.",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/argob/iconos/issues"
+  },
+  "homepage": "https://argob.github.io/poncho/identidad/iconos/"
+}
