@@ -28,6 +28,14 @@ jobs:
       - name: Instalamos dependencias
         working-directory: ./src
         run: npm update
+      - name: Descargo repo Iconos 
+        uses: actions/checkout@v4
+        with: 
+          repository: argob/iconos
+          path: ./iconos
+      - name: copio dependencias
+        run:  |
+          cp -R ./iconos/dist/ilustraciones ./docs/
       - name: 🔨 Build site
         working-directory: ./
         run: bundle exec jekyll build -d docs
