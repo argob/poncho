@@ -34,8 +34,10 @@ jobs:
           repository: argob/iconos
           path: ./iconos
       - name: copio dependencias
+        working-directory: ./
         run:  |
           cp -R ./iconos/dist/ilustraciones ./docs/
+          rm -R ./iconos
       - name: 🔨 Build site
         working-directory: ./
         run: bundle exec jekyll build -d docs
