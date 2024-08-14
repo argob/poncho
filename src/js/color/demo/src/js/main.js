@@ -30,7 +30,7 @@ function render(ponchoColorDefinitionsList){
                 sample.title = `--${space}-${group}-${key}`;
                 sample.style.background = `var(--${space}-${group}-${key})`;
                 
-                searchInstance = instances.find(f => f.color == color[key] && f.scope == space);
+                searchInstance = instances.find(f => f.color == color[key] && f.parent_group == group);
                 let variants = "";
                 if(searchInstance){
                     if( Object.keys(searchInstance.variant).length !== 0 ){
@@ -50,7 +50,7 @@ function render(ponchoColorDefinitionsList){
                     }
 
                     const sampleHTML = `<div class="sample-info">
-                        <button class="sample-info__toggle" data-space="">★    </button>
+                        <button class="sample-info__toggle" data-space="">★</button>
                         <dl class="sample-info__definition">
                             <dt>Nombre</dt>
                             <dd>${searchInstance.name}</dd>  

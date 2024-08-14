@@ -8,8 +8,17 @@
  * Copyright (c) 2024 Argentina.gob.ar
  */
 $brand-amarillo: #E7BA61 !default; /* Foco o alerta */ 
+$brand-amarillo-dark: #AA5821 !default;
+$brand-amarillo-half: #F3DDB0 !default;
 $brand-amarillo-intenso: #E7BA61 !default; /* Foco o alerta */ 
+$brand-amarillo-intenso-dark: #AA5821 !default;
+$brand-amarillo-intenso-half: #F3DDB0 !default;
+$brand-amarillo-intenso-light: #EAE1B7 !default;
+$brand-amarillo-light: #EAE1B7 !default;
 $brand-arandano: #C2185B !default;
+$brand-arandano-dark: #721038 !default;
+$brand-arandano-half: #E18CAD !default;
+$brand-arandano-light: #EC407A !default;
 $brand-arg-amarillo: #E7BA61 !default; /* Foco o alerta */ 
 $brand-arg-amarillo-dark: #AA5821 !default;
 $brand-arg-amarillo-half: #F3DDB0 !default;
@@ -31,12 +40,14 @@ $brand-arg-default: #838383 !default;
 $brand-arg-fucsia: #EC407A !default;
 $brand-arg-fucsia-dark: #9A144A !default;
 $brand-arg-fucsia-light: #F16798 !default;
-$brand-arg-gray: #5B5F65 !default;
+$brand-arg-gray: #555555 !default;
+$brand-arg-gray-background: #FFFFFF !default;
 $brand-arg-gray-border: #DEE2E6 !default;
-$brand-arg-gray-dark: #37393D !default;
+$brand-arg-gray-dark: #444444 !default;
 $brand-arg-gray-hover: #E9E9E9 !default;
 $brand-arg-gray-hover-light: #F0F0F0 !default;
 $brand-arg-gray-light: #DDDDDD !default;
+$brand-arg-gray-lighter: #F2F2F2 !default;
 $brand-arg-lavanda: #9284BE !default;
 $brand-arg-lima: #B9CE39 !default;
 $brand-arg-lima-dark: #6EA015 !default;
@@ -51,7 +62,6 @@ $brand-arg-marron-claro: #8D2D04 !default;
 $brand-arg-marron-claro-dark: #6C1805 !default;
 $brand-arg-marron-claro-light: #CE5701 !default;
 $brand-arg-marron-oscuro: #511901 !default;
-$brand-arg-muted: #7E848E !default; /* Texto secundario (subtítulos) */ 
 $brand-arg-naranja: #EF6C00 !default;
 $brand-arg-naranja-dark: #6C1805 !default;
 $brand-arg-naranja-light: #EF6C00 !default;
@@ -80,7 +90,9 @@ $brand-arg-verdin-dark: #2E7D33 !default;
 $brand-arg-verdin-light: #B9CE39 !default;
 $arg-white: #FFFFFF !default;
 $brand-azul: #232D4F !default; /* Color principal */ 
+$brand-azul-half: #9296A7 !default;
 $brand-azul-marino: #232D4F !default; /* Color principal */ 
+$brand-azul-marino-half: #9296A7 !default;
 $brand-bandera-amarillo: #FCBF49 !default; /* Color amarillo oficial para la bandera Argentina */ 
 $brand-bandera-celeste: #75AADB !default; /* Color celeste oficial para la bandera Argentina */ 
 $brand-bandera-marron: #843511 !default; /* Color marrón oficial para la bandera Argentina */ 
@@ -88,34 +100,52 @@ $black: #141414 !default; /* Elementos básicos */
 $brand-celeste-argentina: #039BE5 !default;
 $brand-celesteargentina: #039BE5 !default;
 $brand-cereza: #EC407A !default;
+$brand-cereza-dark: #9A144A !default;
+$brand-cereza-light: #F16798 !default;
 $brand-cielo: #039BE5 !default;
 $brand-complementary: #EF5350 !default;
+$brand-complementary-dark: #C62828 !default;
+$brand-complementary-light: #F69896 !default;
 $brand-danger: #C62828 !default; /* Atención o peligro */ 
+$brand-danger-dark: #7C1C1C !default;
+$brand-danger-light: #E14543 !default;
 $brand-default: #838383 !default;
 $brand-escarapela: #039BE5 !default;
 $brand-fucsia: #EC407A !default;
+$brand-fucsia-dark: #9A144A !default;
+$brand-fucsia-light: #F16798 !default;
 $brand-gna-verde-aloe: #4FBB73 !default;
 $brand-gna-verde-cemento: #B4BEBA !default;
 $brand-gna-verde-jade: #006666 !default;
-$gray: #5B5F65 !default;
+$gray: #555555 !default;
 $gray-background: #FFFFFF !default;
 $gray-base: #141414 !default; /* Elementos básicos */ 
 $gray-border: #DEE2E6 !default;
-$gray-dark: #37393D !default;
+$gray-dark: #444444 !default;
 $gray-hover: #E9E9E9 !default;
 $gray-hover-light: #F0F0F0 !default;
 $gray-light: #DDDDDD !default;
-$gray-lighter: #DDDDDD !default;
-$brand-gris: #7E848E !default; /* Texto secundario (subtítulos) */ 
-$brand-gris-area: #5B5F65 !default;
-$brand-grisintermedio: #5B5F65 !default;
+$gray-lighter: #F2F2F2 !default;
+$brand-gris: #555555 !default;
+$brand-gris-area: #555555 !default;
+$brand-grisintermedio: #555555 !default;
 $brand-info: #3E5A7E !default;
 $brand-lavanda: #9284BE !default;
 $brand-lima: #B9CE39 !default;
+$brand-lima-dark: #6EA015 !default;
+$brand-lima-light: #DEE8A3 !default;
 $brand-limon: #B9CE39 !default;
+$brand-limon-dark: #6EA015 !default;
+$brand-limon-light: #DEE8A3 !default;
 $brand-maiz: #FFCE1C !default;
+$brand-maiz-dark: #B18F15 !default;
+$brand-maiz-light: #FFE997 !default;
 $brand-mandarina: #F79D00 !default;
+$brand-mandarina-dark: #CE5701 !default;
+$brand-mandarina-light: #FBCE80 !default;
 $brand-marron-claro: #8D2D04 !default;
+$brand-marron-claro-dark: #6C1805 !default;
+$brand-marron-claro-light: #CE5701 !default;
 $brand-miarg-amarillo-claro: #ffe9b8 !default;
 $brand-miarg-azul: #3526C3 !default; /* Azul principal para aplicaciones MiArgentina */ 
 $brand-miarg-azul-half: #6B66CC !default;
@@ -125,30 +155,51 @@ $brand-miarg-gris: #7E848E !default;
 $brand-miarg-oscuro: #222C50 !default;
 $brand-miarg-rosa-claro: #EECCCF !default;
 $brand-miarg-verde-claro: #CFEEDC !default;
-$brand-muted: #7E848E !default; /* Texto secundario (subtítulos) */ 
 $brand-naranja: #EF6C00 !default;
+$brand-naranja-dark: #6C1805 !default;
+$brand-naranja-light: #EF6C00 !default;
 $brand-naranjaoscuro: #EF6C00 !default;
+$brand-naranjaoscuro-dark: #6C1805 !default;
+$brand-naranjaoscuro-light: #EF6C00 !default;
 $brand-negro: #141414 !default; /* Elementos básicos */ 
 $brand-palta: #50B7B2 !default;
+$brand-palta-half: #A8DBD9 !default;
 $brand-primary: #232D4F !default; /* Color principal */ 
 $brand-primary-alt: #232D4F !default; /* Color principal */ 
+$brand-primary-alt-half: #9296A7 !default;
+$brand-primary-half: #9296A7 !default;
 $brand-primary-light: #E3E7ED !default;
 $brand-rojo: #C62828 !default; /* Atención o peligro */ 
+$brand-rojo-dark: #7C1C1C !default;
+$brand-rojo-light: #E14543 !default;
 $brand-secondary: #3E5A7E !default;
 $brand-secundario: #3E5A7E !default;
 $brand-success: #2E7D33 !default;
+$brand-success-dark: #1F5421 !default;
+$brand-success-half: #96BE99 !default;
+$brand-success-light: #6EA015 !default;
 $brand-tomate: #EF5350 !default;
+$brand-tomate-dark: #C62828 !default;
+$brand-tomate-light: #F69896 !default;
 $brand-uva: #6A1B99 !default;
 $brand-verde: #2E7D33 !default;
 $brand-verde-aloe: #4FBB73 !default;
 $brand-verde-azulado: #3B8681 !default;
 $brand-verde-cemento: #B4BEBA !default;
+$brand-verde-dark: #1F5421 !default;
+$brand-verde-half: #96BE99 !default;
 $brand-verde-jade: #006666 !default;
+$brand-verde-light: #6EA015 !default;
 $brand-verdeazulado: #3B8681 !default;
 $brand-verdecemento: #B4BEBA !default;
 $brand-verdejade: #006666 !default;
 $brand-verdin: #6EA015 !default;
+$brand-verdin-dark: #2E7D33 !default;
+$brand-verdin-light: #B9CE39 !default;
 $brand-warning: #E7BA61 !default; /* Foco o alerta */ 
+$brand-warning-dark: #AA5821 !default;
+$brand-warning-half: #F3DDB0 !default;
+$brand-warning-light: #EAE1B7 !default;
 $white: #FFFFFF !default;
 
 
@@ -156,8 +207,17 @@ $white: #FFFFFF !default;
  * Listado de variables de color
  */
 $colores: ("amarillo", $brand-amarillo),
+("amarillo-dark", $brand-amarillo-dark),
+("amarillo-half", $brand-amarillo-half),
 ("amarillo-intenso", $brand-amarillo-intenso),
+("amarillo-intenso-dark", $brand-amarillo-intenso-dark),
+("amarillo-intenso-half", $brand-amarillo-intenso-half),
+("amarillo-intenso-light", $brand-amarillo-intenso-light),
+("amarillo-light", $brand-amarillo-light),
 ("arandano", $brand-arandano),
+("arandano-dark", $brand-arandano-dark),
+("arandano-half", $brand-arandano-half),
+("arandano-light", $brand-arandano-light),
 ("arg-amarillo", $brand-arg-amarillo),
 ("arg-amarillo-dark", $brand-arg-amarillo-dark),
 ("arg-amarillo-half", $brand-arg-amarillo-half),
@@ -180,11 +240,13 @@ $colores: ("amarillo", $brand-amarillo),
 ("arg-fucsia-dark", $brand-arg-fucsia-dark),
 ("arg-fucsia-light", $brand-arg-fucsia-light),
 ("arg-gray", $brand-arg-gray),
+("arg-gray-background", $brand-arg-gray-background),
 ("arg-gray-border", $brand-arg-gray-border),
 ("arg-gray-dark", $brand-arg-gray-dark),
 ("arg-gray-hover", $brand-arg-gray-hover),
 ("arg-gray-hover-light", $brand-arg-gray-hover-light),
 ("arg-gray-light", $brand-arg-gray-light),
+("arg-gray-lighter", $brand-arg-gray-lighter),
 ("arg-lavanda", $brand-arg-lavanda),
 ("arg-lima", $brand-arg-lima),
 ("arg-lima-dark", $brand-arg-lima-dark),
@@ -199,7 +261,6 @@ $colores: ("amarillo", $brand-amarillo),
 ("arg-marron-claro-dark", $brand-arg-marron-claro-dark),
 ("arg-marron-claro-light", $brand-arg-marron-claro-light),
 ("arg-marron-oscuro", $brand-arg-marron-oscuro),
-("arg-muted", $brand-arg-muted),
 ("arg-naranja", $brand-arg-naranja),
 ("arg-naranja-dark", $brand-arg-naranja-dark),
 ("arg-naranja-light", $brand-arg-naranja-light),
@@ -228,7 +289,9 @@ $colores: ("amarillo", $brand-amarillo),
 ("arg-verdin-light", $brand-arg-verdin-light),
 ("arg-white", $arg-white),
 ("azul", $brand-azul),
+("azul-half", $brand-azul-half),
 ("azul-marino", $brand-azul-marino),
+("azul-marino-half", $brand-azul-marino-half),
 ("bandera-amarillo", $brand-bandera-amarillo),
 ("bandera-celeste", $brand-bandera-celeste),
 ("bandera-marron", $brand-bandera-marron),
@@ -236,12 +299,20 @@ $colores: ("amarillo", $brand-amarillo),
 ("celeste-argentina", $brand-celeste-argentina),
 ("celesteargentina", $brand-celesteargentina),
 ("cereza", $brand-cereza),
+("cereza-dark", $brand-cereza-dark),
+("cereza-light", $brand-cereza-light),
 ("cielo", $brand-cielo),
 ("complementary", $brand-complementary),
+("complementary-dark", $brand-complementary-dark),
+("complementary-light", $brand-complementary-light),
 ("danger", $brand-danger),
+("danger-dark", $brand-danger-dark),
+("danger-light", $brand-danger-light),
 ("default", $brand-default),
 ("escarapela", $brand-escarapela),
 ("fucsia", $brand-fucsia),
+("fucsia-dark", $brand-fucsia-dark),
+("fucsia-light", $brand-fucsia-light),
 ("gna-verde-aloe", $brand-gna-verde-aloe),
 ("gna-verde-cemento", $brand-gna-verde-cemento),
 ("gna-verde-jade", $brand-gna-verde-jade),
@@ -260,10 +331,20 @@ $colores: ("amarillo", $brand-amarillo),
 ("info", $brand-info),
 ("lavanda", $brand-lavanda),
 ("lima", $brand-lima),
+("lima-dark", $brand-lima-dark),
+("lima-light", $brand-lima-light),
 ("limon", $brand-limon),
+("limon-dark", $brand-limon-dark),
+("limon-light", $brand-limon-light),
 ("maiz", $brand-maiz),
+("maiz-dark", $brand-maiz-dark),
+("maiz-light", $brand-maiz-light),
 ("mandarina", $brand-mandarina),
+("mandarina-dark", $brand-mandarina-dark),
+("mandarina-light", $brand-mandarina-light),
 ("marron-claro", $brand-marron-claro),
+("marron-claro-dark", $brand-marron-claro-dark),
+("marron-claro-light", $brand-marron-claro-light),
 ("miarg-amarillo-claro", $brand-miarg-amarillo-claro),
 ("miarg-azul", $brand-miarg-azul),
 ("miarg-azul-half", $brand-miarg-azul-half),
@@ -273,30 +354,51 @@ $colores: ("amarillo", $brand-amarillo),
 ("miarg-oscuro", $brand-miarg-oscuro),
 ("miarg-rosa-claro", $brand-miarg-rosa-claro),
 ("miarg-verde-claro", $brand-miarg-verde-claro),
-("muted", $brand-muted),
 ("naranja", $brand-naranja),
+("naranja-dark", $brand-naranja-dark),
+("naranja-light", $brand-naranja-light),
 ("naranjaoscuro", $brand-naranjaoscuro),
+("naranjaoscuro-dark", $brand-naranjaoscuro-dark),
+("naranjaoscuro-light", $brand-naranjaoscuro-light),
 ("negro", $brand-negro),
 ("palta", $brand-palta),
+("palta-half", $brand-palta-half),
 ("primary", $brand-primary),
 ("primary-alt", $brand-primary-alt),
+("primary-alt-half", $brand-primary-alt-half),
+("primary-half", $brand-primary-half),
 ("primary-light", $brand-primary-light),
 ("rojo", $brand-rojo),
+("rojo-dark", $brand-rojo-dark),
+("rojo-light", $brand-rojo-light),
 ("secondary", $brand-secondary),
 ("secundario", $brand-secundario),
 ("success", $brand-success),
+("success-dark", $brand-success-dark),
+("success-half", $brand-success-half),
+("success-light", $brand-success-light),
 ("tomate", $brand-tomate),
+("tomate-dark", $brand-tomate-dark),
+("tomate-light", $brand-tomate-light),
 ("uva", $brand-uva),
 ("verde", $brand-verde),
 ("verde-aloe", $brand-verde-aloe),
 ("verde-azulado", $brand-verde-azulado),
 ("verde-cemento", $brand-verde-cemento),
+("verde-dark", $brand-verde-dark),
+("verde-half", $brand-verde-half),
 ("verde-jade", $brand-verde-jade),
+("verde-light", $brand-verde-light),
 ("verdeazulado", $brand-verdeazulado),
 ("verdecemento", $brand-verdecemento),
 ("verdejade", $brand-verdejade),
 ("verdin", $brand-verdin),
+("verdin-dark", $brand-verdin-dark),
+("verdin-light", $brand-verdin-light),
 ("warning", $brand-warning),
+("warning-dark", $brand-warning-dark),
+("warning-half", $brand-warning-half),
+("warning-light", $brand-warning-light),
 ("white", $white);
 
 
@@ -358,15 +460,16 @@ html {
 	--arg-violeta-700:#6A1B99;
 	--arg-violeta-800:#4B0F7A;
 	--arg-violeta-900:#2C035C;
+	--arg-negro-25:#FFFFFF;
 	--arg-negro-50:#F0F0F0;
+	--arg-negro-75:#F2F2F2;
 	--arg-negro-100:#E9E9E9;
+	--arg-negro-150:#DEE2E6;
 	--arg-negro-200:#DDDDDD;
+	--arg-negro-250:#7E848E;
 	--arg-negro-300:#838383;
-	--arg-negro-400:#DEE2E6;
-	--arg-negro-500:#90969E;
-	--arg-negro-600:#7E848E;
-	--arg-negro-700:#5B5F65;
-	--arg-negro-800:#37393D;
+	--arg-negro-500:#555555;
+	--arg-negro-600:#444444;
 	--arg-negro-900:#141414;
 	--arg-turquesa-50:#DCF1F0;
 	--arg-turquesa-100:#C0E5E3;
@@ -408,7 +511,7 @@ html {
 	--arg-naranja-700:#AE4203;
 	--arg-naranja-800:#8D2D04;
 	--arg-naranja-900:#6C1805;
-	--arg-blanco-default:#FFFFFF;
+	--arg-blanco-150:#FFFFFF;
 	--arg-ocre-50:#FAF8ED;
 	--arg-ocre-100:#F4F0DB;
 	--arg-ocre-200:#EAE1B7;
@@ -419,24 +522,33 @@ html {
 	--arg-ocre-700:#8C2701;
 	--arg-ocre-800:#6F2001;
 	--arg-ocre-900:#511901;
-	--arg-morado-default:#3A3796;
-	--miarg-azul-default:#3526C3;
-	--miarg-celeste-default:#2CB9EE;
-	--miarg-amarillo-claro-default:#ffe9b8;
-	--miarg-rosa-claro-default:#EECCCF;
-	--miarg-verde-claro-default:#CFEEDC;
-	--miarg-azul-oscuro-default:#222C50;
-	--miarg-gris-default:#7E848E;
-	--miarg-celeste-claro-default:#BEE6F6;
-	--bandera-amarillo-default:#FCBF49;
-	--bandera-celeste-default:#75AADB;
-	--bandera-marron-default:#843511;
-	--gna-verde-jade-default:#006666;
-	--gna-verde-aloe-default:#4FBB73;
-	--gna-verde-cemento-default:#B4BEBA;
+	--arg-morado-150:#3A3796;
+	--miarg-azul-150:#3526C3;
+	--miarg-celeste-150:#2CB9EE;
+	--miarg-amarillo-claro-150:#ffe9b8;
+	--miarg-rosa-claro-150:#EECCCF;
+	--miarg-verde-claro-150:#CFEEDC;
+	--miarg-azul-oscuro-150:#222C50;
+	--miarg-gris-150:#7E848E;
+	--miarg-celeste-claro-150:#BEE6F6;
+	--bandera-amarillo-150:#FCBF49;
+	--bandera-celeste-150:#75AADB;
+	--bandera-marron-150:#843511;
+	--gna-verde-jade-150:#006666;
+	--gna-verde-aloe-150:#4FBB73;
+	--gna-verde-cemento-150:#B4BEBA;
 	--amarillo:#E7BA61;
+	--amarillo-dark:#AA5821;
+	--amarillo-half:#F3DDB0;
 	--amarillo-intenso:#E7BA61;
+	--amarillo-intenso-dark:#AA5821;
+	--amarillo-intenso-half:#F3DDB0;
+	--amarillo-intenso-light:#EAE1B7;
+	--amarillo-light:#EAE1B7;
 	--arandano:#C2185B;
+	--arandano-dark:#721038;
+	--arandano-half:#E18CAD;
+	--arandano-light:#EC407A;
 	--arg-amarillo:#E7BA61;
 	--arg-amarillo-dark:#AA5821;
 	--arg-amarillo-half:#F3DDB0;
@@ -458,12 +570,14 @@ html {
 	--arg-fucsia:#EC407A;
 	--arg-fucsia-dark:#9A144A;
 	--arg-fucsia-light:#F16798;
-	--arg-gray:#5B5F65;
+	--arg-gray:#555555;
+	--arg-gray-background:#FFFFFF;
 	--arg-gray-border:#DEE2E6;
-	--arg-gray-dark:#37393D;
+	--arg-gray-dark:#444444;
 	--arg-gray-hover:#E9E9E9;
 	--arg-gray-hover-light:#F0F0F0;
 	--arg-gray-light:#DDDDDD;
+	--arg-gray-lighter:#F2F2F2;
 	--arg-lavanda:#9284BE;
 	--arg-lima:#B9CE39;
 	--arg-lima-dark:#6EA015;
@@ -478,7 +592,6 @@ html {
 	--arg-marron-claro-dark:#6C1805;
 	--arg-marron-claro-light:#CE5701;
 	--arg-marron-oscuro:#511901;
-	--arg-muted:#7E848E;
 	--arg-naranja:#EF6C00;
 	--arg-naranja-dark:#6C1805;
 	--arg-naranja-light:#EF6C00;
@@ -507,7 +620,9 @@ html {
 	--arg-verdin-light:#B9CE39;
 	--arg-white:#FFFFFF;
 	--azul:#232D4F;
+	--azul-half:#9296A7;
 	--azul-marino:#232D4F;
+	--azul-marino-half:#9296A7;
 	--bandera-amarillo:#FCBF49;
 	--bandera-celeste:#75AADB;
 	--bandera-marron:#843511;
@@ -515,34 +630,52 @@ html {
 	--celeste-argentina:#039BE5;
 	--celesteargentina:#039BE5;
 	--cereza:#EC407A;
+	--cereza-dark:#9A144A;
+	--cereza-light:#F16798;
 	--cielo:#039BE5;
 	--complementary:#EF5350;
+	--complementary-dark:#C62828;
+	--complementary-light:#F69896;
 	--danger:#C62828;
+	--danger-dark:#7C1C1C;
+	--danger-light:#E14543;
 	--default:#838383;
 	--escarapela:#039BE5;
 	--fucsia:#EC407A;
+	--fucsia-dark:#9A144A;
+	--fucsia-light:#F16798;
 	--gna-verde-aloe:#4FBB73;
 	--gna-verde-cemento:#B4BEBA;
 	--gna-verde-jade:#006666;
-	--gray:#5B5F65;
+	--gray:#555555;
 	--gray-background:#FFFFFF;
 	--gray-base:#141414;
 	--gray-border:#DEE2E6;
-	--gray-dark:#37393D;
+	--gray-dark:#444444;
 	--gray-hover:#E9E9E9;
 	--gray-hover-light:#F0F0F0;
 	--gray-light:#DDDDDD;
-	--gray-lighter:#DDDDDD;
-	--gris:#7E848E;
-	--gris-area:#5B5F65;
-	--grisintermedio:#5B5F65;
+	--gray-lighter:#F2F2F2;
+	--gris:#555555;
+	--gris-area:#555555;
+	--grisintermedio:#555555;
 	--info:#3E5A7E;
 	--lavanda:#9284BE;
 	--lima:#B9CE39;
+	--lima-dark:#6EA015;
+	--lima-light:#DEE8A3;
 	--limon:#B9CE39;
+	--limon-dark:#6EA015;
+	--limon-light:#DEE8A3;
 	--maiz:#FFCE1C;
+	--maiz-dark:#B18F15;
+	--maiz-light:#FFE997;
 	--mandarina:#F79D00;
+	--mandarina-dark:#CE5701;
+	--mandarina-light:#FBCE80;
 	--marron-claro:#8D2D04;
+	--marron-claro-dark:#6C1805;
+	--marron-claro-light:#CE5701;
 	--miarg-amarillo-claro:#ffe9b8;
 	--miarg-azul:#3526C3;
 	--miarg-azul-half:#6B66CC;
@@ -552,29 +685,50 @@ html {
 	--miarg-oscuro:#222C50;
 	--miarg-rosa-claro:#EECCCF;
 	--miarg-verde-claro:#CFEEDC;
-	--muted:#7E848E;
 	--naranja:#EF6C00;
+	--naranja-dark:#6C1805;
+	--naranja-light:#EF6C00;
 	--naranjaoscuro:#EF6C00;
+	--naranjaoscuro-dark:#6C1805;
+	--naranjaoscuro-light:#EF6C00;
 	--negro:#141414;
 	--palta:#50B7B2;
+	--palta-half:#A8DBD9;
 	--primary:#232D4F;
 	--primary-alt:#232D4F;
+	--primary-alt-half:#9296A7;
+	--primary-half:#9296A7;
 	--primary-light:#E3E7ED;
 	--rojo:#C62828;
+	--rojo-dark:#7C1C1C;
+	--rojo-light:#E14543;
 	--secondary:#3E5A7E;
 	--secundario:#3E5A7E;
 	--success:#2E7D33;
+	--success-dark:#1F5421;
+	--success-half:#96BE99;
+	--success-light:#6EA015;
 	--tomate:#EF5350;
+	--tomate-dark:#C62828;
+	--tomate-light:#F69896;
 	--uva:#6A1B99;
 	--verde:#2E7D33;
 	--verde-aloe:#4FBB73;
 	--verde-azulado:#3B8681;
 	--verde-cemento:#B4BEBA;
+	--verde-dark:#1F5421;
+	--verde-half:#96BE99;
 	--verde-jade:#006666;
+	--verde-light:#6EA015;
 	--verdeazulado:#3B8681;
 	--verdecemento:#B4BEBA;
 	--verdejade:#006666;
 	--verdin:#6EA015;
+	--verdin-dark:#2E7D33;
+	--verdin-light:#B9CE39;
 	--warning:#E7BA61;
+	--warning-dark:#AA5821;
+	--warning-half:#F3DDB0;
+	--warning-light:#EAE1B7;
 	--white:#FFFFFF;
 }
