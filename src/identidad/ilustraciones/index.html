@@ -299,17 +299,18 @@ $(function(){
 
           //Mostrar Detalle de una ilustración
           $(document).on("click",".ilustracion",function(){
-            ilus = $(this).find("img").attr("src");
-            alt = $(this).find("img").attr("alt");
-            name = $(this).find(".name").html();
+            ilus = $(this).find("object").attr("data");
+            alt = $(this).find("object").attr("arial-label");
+            name = $(this).find("object").attr("data-image");
             tags = $(this).find(".tags").html().split(",").map(function(item){return item.trim();});
             
             $('#iconoModal .modal-title').html(name + " <small>(<span id='codigoCopiar'>" + alt + "</span>)</small>");
             //$('#iconoModal .modal-body i').attr("class",icon).addClass("fa-5x");
-            var img = $('<img class="img-responsive">'); //Equivalent: $(document.createElement('img'))
-            img.attr('src', ilus);
-            img.attr('alt', alt);
-            img.appendTo('#iconoModal .modal-title');
+            var object = $('<object class="img-responsive">'); //Equivalent: $(document.createElement('img'))
+            object.attr('data', ilus);
+            object.attr('arial-label', alt);
+            object.attr('data-image', name);
+            object.appendTo('#iconoModal .modal-title');
 
             $(".etiquetas").html("");
 
