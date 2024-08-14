@@ -434,7 +434,7 @@ $(function(){
           //TITULOS
           $.each(ilustraciones, function(index, val) {
 
-              $("#listaPoncho .row").append('<div class="ilustracion col-xs-12 col-sm-6 col-md-4 text-center"><a href="#" class="panel panel-default"><object style="pointer-events: none;" class="img-responsive ilus-home" type="image/svg+xml" data-image="'+ val["gsx$codigo"]["$t"] +'" aria-label="'+ val["gsx$descripción(textoalternativo)"]["$t"] + '" data="../../ilustraciones/'+ val["gsx$codigo"]["$t"] + '.svg?c1=gray&c2=gold"><p>'+ val["gsx$descripción(textoalternativo)"]["$t"] + '</p></object><div class="tags hidden">'+ val["gsx$etiquetas"]["$t"] +'</div></a></div>');
+              $("#listaPoncho .row").append('<div class="ilustracion col-xs-12 col-sm-6 col-md-4 text-center"><a href="#" class="panel panel-default"><object style="pointer-events: none;" class="img-responsive ilus-home" type="image/svg+xml" data-image="'+ val["gsx$codigo"]["$t"] +'" aria-label="'+ val["gsx$descripción(textoalternativo)"]["$t"] + '" data="../../ilustraciones/'+ val["gsx$codigo"]["$t"] + '.svg"><p>'+ val["gsx$descripción(textoalternativo)"]["$t"] + '</p></object><div class="tags hidden">'+ val["gsx$etiquetas"]["$t"] +'</div></a></div>');
                 
 
           })
