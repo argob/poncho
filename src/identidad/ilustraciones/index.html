@@ -300,7 +300,7 @@ $(function(){
           //Mostrar Detalle de una ilustración
           $(document).on("click",".ilustracion",function(){
             ilus = $(this).find("object").attr("data");
-            alt = $(this).find("object").attr("arial-label");
+            alt = $(this).find("object").attr("aria-label");
             name = $(this).find("object").attr("data-image");
             tags = $(this).find(".tags").html().split(",").map(function(item){return item.trim();});
             
