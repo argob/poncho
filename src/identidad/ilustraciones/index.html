@@ -293,7 +293,7 @@
                     class="btn btn-primary copyButton" 
                     id="copyButtonId" 
                     data-clipboard-action="copy" 
-                    data-clipboard-target="span#codigoCopiar">
+                    data-clipboard-target="span#copy">
                     Copiar nombre
                 </button>
                 <button class="btn btn-link copyImg" id="copyImgId" >
@@ -518,7 +518,7 @@
                 params = `?c1=${color}&c2=${variant}`;
             }
             let code = `&lt;object` 
-                + `\n    type="image/svg+xml" id='codigoCopiar'` 
+                + `\n    type="image/svg+xml"` 
                 + `\n    aria-label="${alt}" `
                 + `\n    data="https://www.argentina.gob.ar/${name}.svg${params}"&gt;`
                 + `\n    &lt;p&gt;${alt}&lt;/p&gt;`
