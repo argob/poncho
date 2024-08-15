@@ -470,7 +470,7 @@
                 let variant = $(this).find("object").attr("data-variant");
                 let tags = $(this).find(".tags").html().split(",").map(function(item){return item.trim();});
                 
-                $('#iconoModal .modal-title').html(name + " <small>(<span id='codigoCopiar'>" + alt + "</span>)</small>");
+                $('#iconoModal .modal-title').html(name + " <small>(<span>" + alt + "</span>)</small>");
                 
                 
                 var object = $('<object class="img-responsive js-illustration">'); 
@@ -518,7 +518,7 @@
                 params = `?c1=${color}&c2=${variant}`;
             }
             let code = `&lt;object` 
-                + `\n    type="image/svg+xml" ` 
+                + `\n    type="image/svg+xml" id='codigoCopiar'` 
                 + `\n    aria-label="${alt}" `
                 + `\n    data="https://www.argentina.gob.ar/${name}.svg${params}"&gt;`
                 + `\n    &lt;p&gt;${alt}&lt;/p&gt;`
