@@ -46,7 +46,10 @@ function render(ponchoColorDefinitionsList){
                                     </span></dd>`);
                             }
                         ).filter(f => f).join('');
-                        variants = `<dt>Variantes</dt><dd><dl class="sample-info__variants">${items}</dl></dd>`;
+                        variants = `<dt>Variantes</dt>
+                            <dd>
+                            <dl class="sample-info__variants">${items}</dl>
+                            </dd>`;
                     }
 
                     const sampleHTML = `<div class="sample-info">
