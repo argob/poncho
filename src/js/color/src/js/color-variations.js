@@ -30,9 +30,9 @@
  * Códigos de color válidos para utilizar en ilustraciones. 
  */
 const illustrationColors = [
-    "gob-azul",
-    "gob-arena",
-    "gob-amarillo",
+    "arg-azul",
+    "arg-arena",
+    "arg-amarillo",
     "arg-palta",
     "arg-verde",
     "arg-arandano",
