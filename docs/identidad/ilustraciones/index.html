@@ -278,31 +278,6 @@
                         <span class="sr-only">Cerrar</span>
                     </button>
                     <h4 class="modal-title" id="iconoModalLabel"></h4>
-
-
-            <!-- start Cambiar color  -->
-            <!-- <div class="row ilustraciones-poncho">
-                <div class="dropdown col-md-offset-3 col-md-6 col-xs-12 col-sm-6 col-sm-offset-3 open">
-                    <button 
-                        class="btn  dropdown-toggle w-100 btn-ilus" 
-                        type="button" 
-                        id="dropdownMenuButton" 
-                        data-toggle="dropdown" 
-                        aria-haspopup="true" 
-                        aria-expanded="true">
-                        Cambiar color <span class="caret"></span>
-                    </button>
-                    <div 
-                        class="dropdown-menu dropdown-colors" 
-                        aria-labelledby="dropdownMenuButton" 
-                        x-placement="bottom-start">
-                        <ul class="dropdown-menu colores js-dropdown__colors">
-                             Load color samples
-                        </ul>
-                    </div>
-                </div>           
-            </div>            -->
-        <!-- end Cambiar color -->
         </div>
             <div class="modal-body text-center m-b-3">
                 <i></i>
@@ -417,7 +392,7 @@
                         ILLUS_PATH, 
                         val["gsx$codigo"]["$t"], 
                         val["gsx$descripción(textoalternativo)"]["$t"], 
-                        val["gsx$etiquetas"]["$t"]);
+                        val["gsx$etiquetas"]["$t"], false, false);
 
 
                     $("#listaPoncho .row").append(
@@ -538,16 +513,24 @@
 
         <script>
         function codeTemplate(name, color, variant, alt){
+            let params = ""
+            if([color, variant].every(e => typeof e !== "undefined" && e)){
+                params = `?c1=${color}&c2=${variant}`;
+            }
             let code = `&lt;object` 
                 + `\n    type="image/svg+xml" ` 
                 + `\n    aria-label="${alt}" `
-                + `\n    data="https://www.argentina.gob.ar/${name}.svg?c1=${color}&amp;c2=${variant}"&gt;`
+                + `\n    data="https://www.argentina.gob.ar/${name}.svg${params}"&gt;`
                 + `\n    &lt;p&gt;${alt}&lt;/p&gt;`
                 + `\n&lt;/object&gt;`;
             return code;
         }
 
-        function imageObject(imagePath, filename, label, tags, color="gold", variant="blue"){
+        function imageObject(imagePath, filename, label, tags, color=false, variant=false){
+            let params = ""
+            if([color, variant].every(e => typeof e !== "undefined" && e)){
+                params = `?c1=${color}&c2=${variant}`;
+            }
             return `<object 
                 style="pointer-events: none;"
                 class="img-responsive ilus-home js-illustration" 
@@ -557,7 +540,7 @@
                 data-tags="${tags}"
                 data-image="${filename}" 
                 aria-label="${label}" 
-                data="${imagePath}${filename}.svg?c1=${color}&c2=${variant}">
+                data="${imagePath}${filename}.svg${params}">
                 <p>
                     ${label}
                 </p>
@@ -609,22 +592,12 @@
 
                         });
 
-            // Listener para el desplegable de color
-            // document.addEventListener("DOMContentLoaded", function(event) {
-                const sample = document.querySelectorAll('.js-color__sample');
-                sample.forEach(e => e.addEventListener("click", function(ele){
-
-                    changeColor(ele.target.dataset.color, ele.target.dataset.variant);
-                }))
-            // });
-
-
-                        
+                        const sample = document.querySelectorAll('.js-color__sample');
+                        sample.forEach(e => e.addEventListener("click", function(ele){
+                            changeColor(ele.target.dataset.color, ele.target.dataset.variant);
+                        }))
                 }
             );
-
-
-
         </script>
 
         <script type="module">
