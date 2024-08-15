@@ -27,7 +27,7 @@
     vertical-align: text-top;
   }
 
-  .link1 {
+  .link1, .link2 {
     &::before {
       color: $brand-warning;
       content: "|";
@@ -42,6 +42,7 @@
 
   .link2 a {
     text-decoration: none;
+    font-weight: 700;
   }
 
   .link1 > a:hover, .link2 > a:hover {
