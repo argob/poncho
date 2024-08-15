@@ -371,9 +371,9 @@ if (typeof exports !== "undefined") {
  * Códigos de color válidos para utilizar en ilustraciones. 
  */
 const illustrationColors = [
-    "gob-azul",
-    "gob-arena",
-    "gob-amarillo",
+    "arg-azul",
+    "arg-arena",
+    "arg-amarillo",
     "arg-palta",
     "arg-verde",
     "arg-arandano",
@@ -411,6 +411,7 @@ if (typeof exports !== "undefined") {
         colorVariations, illustrationColors
     };
 }
+
 
 /**
  * Fetch data
