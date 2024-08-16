@@ -287,14 +287,14 @@
                     class="alert alert-success"
                     id="mensajeCopiado" 
                     style="display:none">
-                    Se copió el nombre en el portapapeles
+                    El código se copió en el portapapeles
                 </div>
                 <button 
                     class="btn btn-primary copyButton" 
                     id="copyButtonId" 
                     data-clipboard-action="copy" 
                     data-clipboard-target="span#copy">
-                    Copiar nombre
+                    Copiar código
                 </button>
                 <button class="btn btn-link copyImg" id="copyImgId" >
                     Descargar SVG
@@ -305,6 +305,8 @@
         </div>
     </div>
     <!-- end modal -->
+
+
     <script>
         const ILLUS_PATH = "../../ilustraciones/";
 
@@ -349,6 +351,9 @@
         return {"feed": {"entry": entry}};
         }
         //-->
+
+
+
         $(function(){
             $("#menuLateral").load("../../includes/identidad_menu.html", function(){
                 var seccion = $("#menuLateral").data("seccion");
@@ -363,7 +368,6 @@
             $("#mensajeCopiado").fadeIn(300);
             document.getSelection().removeAllRanges();
         });
-
 
         $('#iconoModal').on('hidden.bs.modal', function () {
             $("#mensajeCopiado").fadeOut(300);
@@ -587,9 +591,7 @@
                                 li.appendChild(span);
 
                                 element.appendChild(li);
-
                             });
-
                         });
 
                         const sample = document.querySelectorAll('.js-color__sample');
