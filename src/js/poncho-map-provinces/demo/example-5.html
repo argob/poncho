@@ -14,7 +14,7 @@
     <link rel="stylesheet"
         href="https://capacita-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css?rfqjsh">
     <link rel="stylesheet" href="../../../../dist/css/poncho.min.css" />
-    <!-- <link href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet" /> -->
+
     <!-- 
         Script para debug 
         Se reemplazan en producción por poncho.min.js
@@ -30,6 +30,7 @@
     <script src="../../gapi-sheet-data/gapi-sheet-data.js"></script>
     <script src="../src/js/poncho-map-provinces.js"></script>
     <script src="../src/js/poncho-map-provinces-contenidos.js"></script>
+    <script src="../../utils/document.js"></script>
     <!-- / Script para debug -->
     <title>Poncho Map — Mapa por provincia</title>
 </head>
@@ -50,7 +51,9 @@ COPIAR DESDE ACÁ…
 <div class="col-md-12">
 
     <!-- SELECT PROVINCIAS -->
-    <div class="form-group poncho-map-province__toggle-element">
+    <div 
+        data-scope-related="poncho-map"
+        class="form-group poncho-map-province__toggle-element">
         <label for="id_provincia">Provincias</label>
         <div>
             <select class="form-control" name="provincia" id="id_provincia">
@@ -83,7 +86,9 @@ COPIAR DESDE ACÁ…
 <div class="col-md-6">
     <!-- BLOQUE DE TEXTO COLUMNA DERECHA: CONTENIDO-->
     <div class="js-pm-text-content">
-        <div class="alert alert-info">Seleccione una provincia</div>
+        <div class="alert alert-info">
+            <p>Seleccione una provincia</p>
+        </div>
     </div>
     <!-- / CONTENIDO -->
 </div>
@@ -96,7 +101,7 @@ COPIAR DESDE ACÁ…
 <script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.js"></script>
 <script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script>
 <link href="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.css" rel="stylesheet"/> 
-<!-- <script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script> -->
+<!-- <script src="https://qa2-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script> -->
 <!-- <script src="https://raw.githack.com/argob/poncho/release-1.x/src/js/poncho-map-provinces/src/js/poncho-map-provinces-contenidos.js"></script> -->
 <!-- / INCLUDE SCRIPTS -->
 
@@ -153,7 +158,8 @@ fetch_json(_PONCHOMAP_GEOJSON_PROVINCES, {headers: {}}).then(geoProvinces => {
             fit_bounds_onevent: false, // true hace zoom en la provincia cuando se utilia el select o por url
             map_background: "white",  // define el color de fondo del mapa 
             fit_bounds: false, // Hace que los polígonos o markers se ajusten a los límites del mapa
-            hide_select: true
+            toggle_select: true,
+            hide_select: false
         };
         // Instancia para controlar ponchoMap con filtro por provincias.
         map = new ponchoMapProvincesCustom(geoProvinces, entries, options);
