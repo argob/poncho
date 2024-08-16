@@ -1842,6 +1842,11 @@
       },
     
       {
+        "nombre": "estudiante",
+        "clase": "icono-arg-estudiante"
+      },
+    
+      {
         "nombre": "etiqueta-eficiencia",
         "clase": "icono-arg-etiqueta-eficiencia"
       },
@@ -3134,6 +3139,11 @@
       {
         "nombre": "operativo-sanitario-2",
         "clase": "icono-arg-operativo-sanitario-2"
+      },
+    
+      {
+        "nombre": "orquesta",
+        "clase": "icono-arg-orquesta"
       },
     
       {
