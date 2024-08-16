@@ -547,9 +547,9 @@
             return code;
         }
 
-        function imageObject(imagePath, filename, label, tags, color=false, variant=false){
+        function imageObject(imagePath, filename, label, tags, color="", variant=""){
             let params = ""
-            if([color, variant].every(e => typeof e !== "undefined" && e)){
+            if([color, variant].every(e => typeof e !== "undefined" && e.trim())){
                 params = `?c1=${color}&c2=${variant}`;
             }
             return `<object 
