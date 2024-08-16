@@ -89,7 +89,14 @@
     <meta name="twitter:card" content="summary" />
     <meta property="twitter:title" content="Ilustraciones" />
     <script type="application/ld+json">
-    {"@context":"https://schema.org","@type":"WebPage","description":"La librería de estilos y componentes oficiales para diseñar y desarrollar sitios web y aplicaciones móviles del Gobierno de la República Argentina.","headline":"Ilustraciones","url":"/poncho/identidad/ilustraciones/"}</script>
+    {
+        "@context":"https://schema.org",
+        "@type": "WebPage",
+        "description": "La librería de estilos y componentes oficiales para diseñar y desarrollar sitios web y aplicaciones móviles del Gobierno de la República Argentina.",
+        "headline":"Ilustraciones",
+        "url":"/poncho/identidad/ilustraciones/"
+    }
+    </script>
     <!-- End Jekyll SEO tag -->
 </head>
 
@@ -102,7 +109,6 @@
         </iframe>
     </noscript>
     <!-- End Google Tag Manager (noscript) -->
-
     <header>
         <nav class="navbar navbar-top navbar-default">
         <div class="container">
@@ -132,7 +138,6 @@
         </nav>
     </header>  
     <section class="jumbotron bg-primary">
-
         <div class="jumbotron_bar">
             <div class="container">
                 <div class="row">
@@ -146,7 +151,6 @@
                 </div>
             </div>
         </div>
-
         <div class="jumbotron_body">
             <div class="container">
                 <div class="row">
@@ -161,105 +165,122 @@
     <main>
         <div class="container">
             <div class="row">
+                <div class="col-sm-3" id="menuLateral" data-seccion="5"></div>
+                <div class="col-sm-9">
 
-            <div class="col-sm-3" id="menuLateral" data-seccion="5"></div>
-            <div class="col-sm-9">
+                    <section>
+                        <div class="col-sm-12">
+                            <h1>Ilustraciones</h1>
+                            <p>
+                                Te presentamos la librería de ilustraciones 
+                                de Poncho disponible en 8 
+                                <a 
+                                    href="/poncho/identidad/colores/" 
+                                    title="Ver colores de Poncho">
+                                    colores
+                                </a>.
+                            </p>
+                            <hr>
+                            <div class="ilustraciones-poncho row">
+                                <div class="form-group col-md-8 col-sm-12">
+                                    <label for="buscadorIlustraciones">
+                                        Buscá por nombre o descripción: 
+                                    </label>
+                                    <input 
+                                        placeholder="Ej: personas"
+                                        class="form-control" 
+                                        id="buscadorIlustraciones">
+                                </div>
 
-                <section>
-                    <div class="col-sm-12">
+                                <div class="dropdown col-md-4 
+                                            col-sm-12 col-xs-12 m-b-4">
+                                    <button 
+                                        class="btn dropdown-toggle 
+                                                w-100 btn-ilus" 
+                                        type="button" 
+                                        id="dropdownMenuButton" 
+                                        data-toggle="dropdown" 
+                                        aria-haspopup="true" 
+                                        aria-expanded="false">
+                                        Cambiar color 
+                                        <span class="caret"></span>
+                                    </button>
+                                    <div 
+                                        class="dropdown-menu dropdown-colors" 
+                                        aria-labelledby="dropdownMenuButton" 
+                                        x-placement="bottom-start">
+                                        <ul class="dropdown-menu colores 
+                                                    js-dropdown__colors">
+                                            <!-- Load color samples -->
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
 
-                    <h1>Ilustraciones</h1>
-                    <p>Te presentamos la librería de ilustraciones de Poncho disponible en 8 <a href="/poncho/identidad/colores/" title="Ver colores de Poncho">colores</a>.</p>
-                    <hr>
-                    <div class="ilustraciones-poncho row" >
-                        <div class="form-group col-md-8 col-sm-12 ">
-                        <label for="buscadorIlustraciones">Buscá por nombre o descripción: </label>
-                        <input placeholder="Ej: personas"  class="form-control" id="buscadorIlustraciones">
-                        </div>
+                            <div class="contenedor col-md-12">
+                                <div class="preloader">Cargando...</div>
+                                <div id="listaPoncho">
+                                    <div class="row row-flex list panels-row">
+                                        <!-- entries -->
+                                    </div>
+                                    <div 
+                                        class="error alert alert-danger" 
+                                        style="display:none">
+                                        No se encontraron ilustraciones de 
+                                        <strong>Poncho</strong> en tu búsqueda, 
+                                        probá con otras palabras.
+                                    </div>
+                                </div>
+                            </div>
 
-            <div class="dropdown col-md-4 col-sm-12 col-xs-12 m-b-4">
-                <button 
-                    class="btn dropdown-toggle w-100 btn-ilus" 
-                    type="button" 
-                    id="dropdownMenuButton" 
-                    data-toggle="dropdown" 
-                    aria-haspopup="true" 
-                    aria-expanded="false">
-                    Cambiar color <span class="caret"></span>
-                </button>
-                <div 
-                    class="dropdown-menu dropdown-colors" 
-                    aria-labelledby="dropdownMenuButton" 
-                    x-placement="bottom-start">
-                    <ul class="dropdown-menu colores js-dropdown__colors">
-                        <!-- Load color samples -->
-                    </ul>
+                        </div> 
+                    </section>
                 </div>
-            </div>
-            </div>
-            <div class="contenedor col-md-12">
-                <div class="preloader">Cargando...</div>
-                <div id="listaPoncho">
-                    <div class="row row-flex list panels-row"></div>
-                    <div 
-                        class="error alert alert-danger" 
-                        style="display:none">
-                        No se encontraron ilustraciones de 
-                        <strong>Poncho</strong> en tu búsqueda, 
-                        probá con otras palabras.
-                    </div>
-                </div>
-            </div>
-
-            </div> 
-            </section>
-            </div>
             </div>      
         </div>
 
+        <footer class="main-footer hidden">
+            <div class="container">
+                <div class="row">
+                <div class="col-sm-6">
+                    <p class="text-muted small">
+                        Los contenidos de Argentina.gob.ar están licenciados bajo 
+                        <a href="https://creativecommons.org/licenses/by/2.5/ar/">
+                            Creative Commons Reconocimiento 2.5 Argentina License
+                        </a>
+                    </p>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <ul>
+                    <li><a href="/servicios">Trámites y servicios</a></li>
+                    <li><a href="/organismos">Organismos del Estado</a></li>
+                    <li><a href="/pais">Nuestro país</a></li>
+                    <li>
+                        <a href="https://mapadelestado.jefatura.gob.ar/">
+                            Mapa del Estado
+                        </a>
+                    </li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <ul>
+                    <li><a href="/ayuda">Ayuda</a></li>
+                    <li><a href="/sugerencias">Hacer una sugerencia</a></li>
+                    <li><a href="/acerca">Acerca de este sitio</a></li>
+                    <li>
+                        <a href="/terminos-y-condiciones">
+                            Términos y condiciones
+                        </a>
+                    </li>
+                    <li><a href="/creditos">Créditos</a></li>
+                    </ul>
+                </div>
+                </div>
+            </div>
+        </footer>
 
-    <footer class="main-footer hidden">
-        <div class="container">
-            <div class="row">
-            <div class="col-sm-6">
-                <p class="text-muted small">
-                    Los contenidos de Argentina.gob.ar están licenciados bajo 
-                    <a href="https://creativecommons.org/licenses/by/2.5/ar/">
-                        Creative Commons Reconocimiento 2.5 Argentina License
-                    </a>
-                </p>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <ul>
-                <li><a href="/servicios">Trámites y servicios</a></li>
-                <li><a href="/organismos">Organismos del Estado</a></li>
-                <li><a href="/pais">Nuestro país</a></li>
-                <li>
-                    <a href="https://mapadelestado.jefatura.gob.ar/">
-                        Mapa del Estado
-                    </a>
-                </li>
-                </ul>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <ul>
-                <li><a href="/ayuda">Ayuda</a></li>
-                <li><a href="/sugerencias">Hacer una sugerencia</a></li>
-                <li><a href="/acerca">Acerca de este sitio</a></li>
-                <li>
-                    <a href="/terminos-y-condiciones">
-                        Términos y condiciones
-                    </a>
-                </li>
-                <li><a href="/creditos">Créditos</a></li>
-                </ul>
-            </div>
-            </div>
-        </div>
-    </footer>
 
-
-    <!-- Modal -->
+    <!-- START MODAL -->
     <div 
         class="modal fade" 
         id="iconoModal" 
@@ -296,21 +317,19 @@
                     data-clipboard-target="span#copy">
                     Copiar código
                 </button>
-                <button class="btn btn-link copyImg" id="copyImgId" >
+                <!-- <button class="btn btn-link copyImg" id="copyImgId" >
                     Descargar SVG
-                </button>
+                </button> -->
             </div>
 
             </div>
         </div>
     </div>
-    <!-- end modal -->
+    <!-- END MODAL -->
 
-
+    <!-- SCRIPTS -->
     <script>
         const ILLUS_PATH = "../../ilustraciones/";
-
-
         //#####################################################################
         //####################### GAPI LEGACY #################################
         //#####################################################################
@@ -351,8 +370,6 @@
         return {"feed": {"entry": entry}};
         }
         //-->
-
-
 
         $(function(){
             $("#menuLateral").load("../../includes/identidad_menu.html", function(){
