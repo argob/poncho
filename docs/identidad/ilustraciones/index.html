@@ -413,7 +413,7 @@
                         ILLUS_PATH, 
                         val["gsx$codigo"]["$t"], 
                         val["gsx$descripción(textoalternativo)"]["$t"], 
-                        val["gsx$etiquetas"]["$t"], false, false);
+                        val["gsx$etiquetas"]["$t"]);
 
 
                     $("#listaPoncho .row").append(
@@ -549,7 +549,7 @@
 
         function imageObject(imagePath, filename, label, tags, color="", variant=""){
             let params = ""
-            if([color, variant].every(e => typeof e !== "undefined" && e.trim())){
+            if([color, variant].every(e => typeof e !== "undefined" && e )){
                 params = `?c1=${color}&c2=${variant}`;
             }
             return `<object 
