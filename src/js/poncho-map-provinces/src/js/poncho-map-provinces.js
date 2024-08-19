@@ -201,6 +201,7 @@ class PonchoMapProvinces extends PonchoMapFilter {
         return 0;
     });
 
+
     /**
      * Oculta el select
      * @param {*} status 
@@ -214,7 +215,7 @@ class PonchoMapProvinces extends PonchoMapFilter {
         const selector = `[data-scope-related="${this.scope}"]`;
         const obj = document.querySelectorAll(selector);
         obj.forEach(element => {
-            element.style.display = (this.hideSelect && !this.toggleSelect ? "none" : "");
+            element.style.display = (this.hideSelect ? "none" : "");
         });
     }
 
@@ -345,6 +346,17 @@ class PonchoMapProvinces extends PonchoMapFilter {
         if(!this.overlayImage){
             return;
         }
+
+        if(typeof this.overlay_image_url !== "string"){
+            console.error("Hubo un problema con la ruta o nombre de la imagen");
+            return;
+        }
+
+        if(typeof this.overlayImageOpacity !== "number"){
+            console.error("El valor de la opacidad debe ser un número.");
+            return;
+        }
+
         L.imageOverlay(
             this.overlayImageUrl, this.overlayImageBounds, 
             {opacity: this.overlayImageOpacity}

@@ -150,7 +150,8 @@ fetch_json(_PONCHOMAP_GEOJSON_PROVINCES, {headers: {}}).then(geoProvinces => {
                     'video'
                 ]
             },
-            allowed_tags: [], // Habilita etiquetas HTML. Para habilitar todas las etiquetas se utiliza ["*"]. Si se quiere especificar cuales deben usarse, ej.: ["a", "strong"]. Evitar html []. 
+            allowed_tags: [], // Habilita etiquetas HTML. Para habilitar todas 
+            // las etiquetas se utiliza ["*"]. Si se quiere especificar cuales deben usarse, ej.: ["a", "strong"]. Evitar html []. 
             headers: headers,
             tooltip: true, // Tooltip en marker o región
             hash: true, // Permite abrir un item via URL.
@@ -158,8 +159,11 @@ fetch_json(_PONCHOMAP_GEOJSON_PROVINCES, {headers: {}}).then(geoProvinces => {
             fit_bounds_onevent: false, // true hace zoom en la provincia cuando se utilia el select o por url
             map_background: "white",  // define el color de fondo del mapa 
             fit_bounds: false, // Hace que los polígonos o markers se ajusten a los límites del mapa
-            toggle_select: true,
-            hide_select: false
+            toggle_select: true, // true Cuando la opción sea verdadera y el viewport o tamaño del display sea 
+            // inferior a los 992 píxeles de ancho, el componente html, select, con el listado de provincias se 
+            // mostrará, mientras que el mapa permanecerá oculto.false Cuando la opción sea falsa, tanto el 
+            // componente html, select, como el mapa estarán visibles en todo momento.
+            hide_select: true // Si la opción es true, el componente html, select, no se mostrará en ningún caso.
         };
         // Instancia para controlar ponchoMap con filtro por provincias.
         map = new ponchoMapProvincesCustom(geoProvinces, entries, options);
