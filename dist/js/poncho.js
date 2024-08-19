@@ -1964,6 +1964,87 @@ const ponchoTableDependant = opt => {
 
 
     /**
+     * Tipo de tabla responsive.
+     * 
+     * @param {string} type Uno de los tres tipo de columna.
+     * @returns {string|undefined}
+     */
+    _responsiveType = function(type){
+        if(typeof type !== "string"){
+            console.error("El tipo de columna responsive debe ser un string.");
+            return;
+        }
+        const typeToLower = type.toLowerCase();
+        const types = ["none", "column", "inline"];
+        if(!types.includes(typeToLower)){
+            console.error("El tipo de columna responsive es inválido.");
+            return;
+        }
+
+        return typeToLower;
+    }
+
+
+    /**
+     * Valida las columnas para la tabla responsive
+     * 
+     * @param {object} cols Array con los números de columna válidos.
+     * @returns {object|undefined}
+     */
+    _responsiveColumns = function(cols){
+        if(!Array.isArray(cols)){
+            console.error("Las columnas ocultas deben ");
+            return;
+        }
+
+        if(!cols.every(e => typeof e === "number")){
+            console.error("Solo son válidos los númerso enteros para columnas");
+            return;
+        }
+
+        let sanitizedArray = [... new Set(cols)];
+        const hasZeroAsigned = sanitizedArray.indexOf(0);
+        const removedElement = (hasZeroAsigned !== -1 ? sanitizedArray.splice( 
+                hasZeroAsigned, 1) : sanitizedArray);
+
+        if(removedElement){
+            console.warn(
+                "la columna 0 no se puede asignar. Se borra la asignación.");
+        }
+        if(sanitizedArray.length < 1){
+            console.error(
+                `No hay columnas asignadas en el array: ${sanitizedArray}`);
+            return;
+        }
+
+        return sanitizedArray;
+    }
+
+
+    /**
+     * Compone el objeto para colsDefs.
+     * 
+     * @param {object} columns Array con los números de columna válidos.
+     * @param {string} type Tipo de columna válido
+     * @param {boolean} orderable Especifica si se puede ordenar por la columna.
+     * @returns {object}
+     */
+    _responsiveCols = function(columns, type="none", orderable=false){
+        columns = _responsiveColumns(columns);
+
+        if(!columns){
+            return {};
+        }
+
+        return { 
+            className: _responsiveType(type),
+            orderable: orderable,
+            targets: columns                  
+        };
+    }
+
+
+    /**
      * Inicializa DataTable() y modifica elementos para adaptarlos a
      * GoogleSheets y requerimientos de ArGob.
      */
@@ -1988,64 +2069,100 @@ const ponchoTableDependant = opt => {
         /**
          * Instacia DataTable()
          */
-        let tabla = jQuery("#ponchoTable").DataTable({
-            "initComplete" : (settings, json) => {
+        let dataTableOptions = {
+            initComplete: (settings, json) => {
                 if(wizard){
                     _hideTable();
                 }
             },
-            "lengthChange": false,
-            "autoWidth": false,
-            "pageLength": opt.cantidadItems,
-            "columnDefs": [
-                { "type": "html-num", "targets": opt.tipoNumero },
-                { "targets": opt.ocultarColumnas, "visible": false }
+            lengthChange: false,
+            autoWidth: false,
+            pageLength: opt.cantidadItems,
+            columnDefs: [
+                { 
+                    type: "html-num",
+                    targets: opt.tipoNumero
+                },
+                { 
+                    targets: opt.ocultarColumnas, 
+                    visible: false 
+                }
             ],
-            "ordering": opt.orden,
-            "order": [
+            ordering: opt.orden,
+            order: [
                 [opt.ordenColumna - 1, opt.ordenTipo]
             ],
-            "dom": "<\"row\"<\"col-sm-6\"l><\"col-sm-6\"f>>" +
+            dom: "<\"row\"<\"col-sm-6\"l><\"col-sm-6\"f>>" +
                 "<\"row\"<\"col-sm-12\"i>>" +
                 "<\"row\"<\"col-sm-12\"tr>>" +
                 "<\"row\"<\"col-md-offset-3 col-md-6 "
                 + "col-sm-offset-2 col-sm-8\"p>>",
-            "language": {
-                "sProcessing": "Procesando...",
-                "sLengthMenu": "Mostrar _MENU_ registros",
-                "sZeroRecords": "No se encontraron resultados",
-                "sEmptyTable": "Ningún dato disponible en esta tabla",
-                "sInfo": "_TOTAL_ resultados",
-                "sInfoEmpty": "No hay resultados",
+            language: {
+                sProcessing: "Procesando...",
+                sLengthMenu: "Mostrar _MENU_ registros",
+                sZeroRecords: "No se encontraron resultados",
+                sEmptyTable: "Ningún dato disponible en esta tabla",
+                sInfo: "_TOTAL_ resultados",
+                sInfoEmpty: "No hay resultados",
                 //"sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-                "sInfoFiltered": "",
-                "sInfoPostFix": "",
-                "sSearch": "Buscar:",
-                "sUrl": "",
-                "sInfoThousands": ".",
-                "sLoadingRecords": "Cargando...",
-                "oPaginate": {
-                    "sFirst": "<<",
-                    "sLast": ">>",
-                    "sNext": ">",
-                    "sPrevious": "<"
+                sInfoFiltered: "",
+                sInfoPostFix: "",
+                sSearch: "Buscar:",
+                sUrl: "",
+                sInfoThousands: ".",
+                sLoadingRecords: "Cargando...",
+                oPaginate: {
+                    sFirst: "<<",
+                    sLast: ">>",
+                    sNext: ">",
+                    sPrevious: "<"
                 },
-                "oAria": {
-                    "sSortAscending":
+                oAria: {
+                    sSortAscending:
                         ": Activar para ordenar la columna "
                         + "de manera ascendente",
-                    "sSortDescending":
+                    sSortDescending:
                         ": Activar para ordenar la columna de "
                         + "manera descendente",
-                    "paginate": {
-                        "first": "Ir a la primera página",
-                        "previous": "Ir a la página anterior",
-                        "next": "Ir a la página siguiente",
-                        "last": "Ir a la última página"
+                    paginate: {
+                        first: "Ir a la primera página",
+                        previous: "Ir a la página anterior",
+                        next: "Ir a la página siguiente",
+                        last: "Ir a la última página"
                     }
                 }
             }
-        });
+        };
+
+
+        /**
+         * Valido las posiciónes de las columns
+         * 
+         * @Todo Asignar prioridades de ocultamiento para mobile.
+         * https://datatables.net/extensions/responsive/priority#Configuration-option
+         * {responsivePriority: [orden de prioridad], targets: [posicion 
+         * de la columna, comenzando en 0, negativo o positivo]},
+         * @example
+         *   // _responsivePriorities: [
+         *   //     {responsivePriority: 1, targets: 2},
+         *   //     {responsivePriority: 2, targets: -1},
+         *   //     {responsivePriority: 3, targets: -2},
+         *   // ],
+         */
+        if(typeof opt.responsiveDetailsColumns !== "undefined" && 
+                opt.responsiveDetailsColumns.length > 0){
+            // Validación para los datos de las columnas responsive
+            const responsiveDetails = _responsiveCols(
+                opt.responsiveDetailsColumns, opt.responsiveDetailsType
+            );
+            dataTableOptions.columnDefs = dataTableOptions.columnDefs.concat(
+                    responsiveDetails
+                    // , opt.responsivePriorities
+            );
+            dataTableOptions.responsive = true;
+        }
+
+        let tabla = jQuery("#ponchoTable").DataTable(dataTableOptions);
 
         /**
          * Buscador por palabra
@@ -2261,6 +2378,14 @@ const ponchoTableDependant = opt => {
             .classList.remove("state-loading");
 
         initDataTable();
+
+        setTimeout(() => {
+            const ele = document.querySelectorAll(`[id^="dt-search-"], #ponchoTable_filter`);
+            ele.forEach(elem => {
+                elem.closest(".row").remove();
+                elem.border = "1px solid red"
+            });
+        }, 300)
     };
 
 
