@@ -7325,7 +7325,6 @@ const PONCHOMAP_GEOJSON_PROVINCES = "/profiles/argentinagobar/"
         + "themes/contrib/poncho/resources/jsons/"
         + "geo-provincias-argentinas.json";
 
-
 /**
  * Junta el geoJSON con el JSON de Google Sheet
  *
@@ -7375,15 +7374,28 @@ const ponchoMapProvinceMergeData = (geoProvinces={}, entries={},
 /**
  * Remueve estilos toggle del select y el contenedor del mapa
  * 
- * @summary Este objeto no puede estar dentro de la clase porque no se puede
+ * @summary 
+ * Cuando la opción sea verdadera (true en inglés), y  el viewport o 
+ * tamaño del display, sea inferior a los 992 píxeles de ancho; 
+ * el componente html, select, con el listado de provincias se mostrará, 
+ * mientras que el mapa permanecerá oculto. 
+ * 
+ * Cuando la opción sea falsa (false en inglés), tanto el componente 
+ * html, select, como el mapa estarán visibles en todo momento.
+ * 
+ * @todo Este objeto no puede estar dentro de la clase porque no se puede
  * utiliar `this` antes de `super()` en ES6.
  * @returns {undefined}
  */
 const ponchoMapProvinceCssStyles = flag => {
-    console.log('---> hide select', flag)
+    if(typeof flag !== "boolean"){
+        return
+    }
+
     if(flag){
         return;
     }
+    
     const s = document.querySelectorAll(
         ".poncho-map-province__toggle-map,"
         + ".poncho-map-province__toggle-element"
@@ -7411,7 +7423,8 @@ class PonchoMapProvinces extends PonchoMapFilter {
             overlay_image_opacity: 0.8,
             overlay_image_url: "https://www.argentina.gob.ar/"
                 + "sites/default/files/map-shadow.png",
-            hide_select: true,
+            hide_select: false,
+            toggle_select: true,
             province_index: "provincia",
             fit_bounds: true,
             // Sobreescribo opciones de PonchoMap
@@ -7438,7 +7451,7 @@ class PonchoMapProvinces extends PonchoMapFilter {
         // Merge options
         let opts = Object.assign({}, defaultOptions, options);
         console.log(opts)
-        ponchoMapProvinceCssStyles(opts.hide_select);
+        ponchoMapProvinceCssStyles(opts.toggle_select);
 
         // PonchoMapFilter instance
         const mergedJSONs = ponchoMapProvinceMergeData(
@@ -7454,6 +7467,7 @@ class PonchoMapProvinces extends PonchoMapFilter {
         this.overlayImageBounds = opts.overlay_image_bounds;
         this.overlayImageOpacity = opts.overlay_image_opacity;
         this.mapView = opts.map_view;
+        this.toggleSelect = opts.toggle_select;
         this.hideSelect = opts.hide_select;
         this.fitToBounds = opts.fit_bounds
     }
@@ -7476,6 +7490,24 @@ class PonchoMapProvinces extends PonchoMapFilter {
         }
         return 0;
     });
+
+
+    /**
+     * Oculta el select
+     * @param {*} status 
+     * @returns 
+     */
+    hideSelectProvinces = status => {
+        if(typeof status != "boolean"){
+            return;
+        }
+
+        const selector = `[data-scope-related="${this.scope}"]`;
+        const obj = document.querySelectorAll(selector);
+        obj.forEach(element => {
+            element.style.display = (this.hideSelect ? "none" : "");
+        });
+    }
 
 
     /**
@@ -7604,6 +7636,17 @@ class PonchoMapProvinces extends PonchoMapFilter {
         if(!this.overlayImage){
             return;
         }
+
+        if(typeof this.overlay_image_url !== "string"){
+            console.error("Hubo un problema con la ruta o nombre de la imagen");
+            return;
+        }
+
+        if(typeof this.overlayImageOpacity !== "number"){
+            console.error("El valor de la opacidad debe ser un número.");
+            return;
+        }
+
         L.imageOverlay(
             this.overlayImageUrl, this.overlayImageBounds, 
             {opacity: this.overlayImageOpacity}
@@ -7615,7 +7658,9 @@ class PonchoMapProvinces extends PonchoMapFilter {
      * imprime el mapa
      */ 
     renderProvinceMap = () =>{
+        this.hideSelectProvinces(this.hideSelect);
         this._overlayImage();
+
         this.render(); // Imprime PonchoMapsFilter
         if(this.fitToBounds){
             this.fitBounds();
