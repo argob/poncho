@@ -2072,7 +2072,38 @@ const ponchoTableDependant = opt => {
             return {responsivePriority, targets};
         });
         
-        return results;
+        return results.filter(f => f);
+    }
+
+
+    /**
+     * Modifica el tamaño de las columnas
+     * @param {object} def Array con definiciones de ancho y target
+     * @returns {object}
+     */
+    function _columnsWidth(def){
+        if(!Array.isArray(def)){
+            console.error("`columnsWidth`, debe ser un array.");
+            return [];
+        }
+        const regex = /(?<value>[0-9]+)(?<measure>\%|px|em|rem|pt)/;
+        const results = def.map(m => {
+            const [width=false, targets=false] = m;
+            if(!regex.test(width)){
+                console.error(
+                    "El valor asignado al ancho de columna no es válido.");
+                return;
+            }
+            if(typeof targets !== "number"){
+                console.warn(
+                    `La asignación de columna debe ser un número. Se 
+                    elimina el valor: "${targets}".`)
+                return {width};
+            }
+            return {width, targets};
+        });
+
+        return results.filter(f => f);
     }
 
 
@@ -2166,11 +2197,12 @@ const ponchoTableDependant = opt => {
             }
         };
 
-
-
+        // Ancho de columnas
+        dataTableOptions.columnDefs = dataTableOptions.columnDefs.concat(
+            _columnsWidth(opt.columnsWidth));
 
         /**
-         * Valido las posiciónes de las columns
+         * Opciones responsive
          */
         if(typeof opt.responsiveDetailsColumns !== "undefined" && 
                 opt.responsiveDetailsColumns.length > 0){
