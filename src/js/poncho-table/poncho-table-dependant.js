@@ -770,7 +770,7 @@ const ponchoTableDependant = opt => {
      * @param {boolean} orderable Especifica si se puede ordenar por la columna.
      * @returns {object}
      */
-    _responsiveCols = function(columns, type="none", orderable=false){
+    _responsiveCols = function(columns, orderable, type="none"){
         columns = _responsiveColumns(columns);
 
         if(!columns){
@@ -779,7 +779,7 @@ const ponchoTableDependant = opt => {
 
         return { 
             className: _responsiveType(type),
-            orderable: orderable,
+            orderable: (typeof orderable === "boolean" ? orderable : false),
             targets: columns                  
         };
     }
@@ -917,7 +917,9 @@ const ponchoTableDependant = opt => {
                 opt.responsiveDetailsColumns.length > 0){
 
             const responsiveDetails = _responsiveCols(
-                opt.responsiveDetailsColumns, opt.responsiveDetailsType);
+                opt.responsiveDetailsColumns, 
+                opt.responsiveDetailsOrderable, 
+                opt.responsiveDetailsType);
 
             const priorities = _responsivePriorities(opt.responsivePriorities);
 
