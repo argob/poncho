@@ -28,14 +28,22 @@
         padding: 2em;
     }
   </style>
+
+<script src="../../utils/color.js"></script>
+<script src="../../utils/connect.js"></script>
+<script src="../../utils/string.js"></script>
+<script src="../../utils/html.js"></script>
+<script src="../poncho-table.js"></script>
+<script src="../poncho-table-dependant.js"></script>
+<script src="../../gapi-sheet-data/gapi-sheet-data.js"></script>
 </head>
 <body class="p-t-3">
   <h1>PonchoTable legacy un solo filtro</h1>
+
+
 <!-- 
 COPIAR DESDE ACÁ…
 -->
-
-
 <!-- INCLUDE SCRIPTS -->
 <!-- <link href="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/ponchoTable-1.1.css" rel="stylesheet"> -->
 <link href="../dist/css/ponchoRable-1.1.css" rel="stylesheet">
@@ -48,18 +56,6 @@ COPIAR DESDE ACÁ…
 <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/intl.min.js"></script>
 <!-- <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script> -->
 <!-- / INCLUDE SCRIPTS -->
-
-<script src="../../utils/color.js"></script>
-<script src="../../utils/connect.js"></script>
-<script src="../../utils/string.js"></script>
-<script src="../../utils/html.js"></script>
-<script src="../poncho-table.js"></script>
-<script src="../poncho-table-dependant.js"></script>
-<script src="../../gapi-sheet-data/gapi-sheet-data.js"></script>
-
-</script>
-
-
 
 
 <div class="row">
@@ -88,7 +84,7 @@ COPIAR DESDE ACÁ…
 
 
 <script>
-     (function($) {
+    (function($) {
         var ponchoTableOpciones = {
             "idSpread": "1yrQCHds78-Y76qwseOx7OhBFsTuzPdgGKzd3nd8TJa8", // Informá entre comillas el ID de la planilla, siempre publicá el spreadsheet y que el enlace sea público
             "hojaNombre": "Hoja 1", // Escribí entre comillas el nombre de la pestaña de la planilla
@@ -120,7 +116,8 @@ COPIAR DESDE ACÁ…
             responsivePriorities: [
                 [1, 2],[2, 1]
             ],
-            responsiveDetailsType: "inline", // Opciones [none {default}, inline, column]. A) Columnas ocultas con toggle. B) Agrupa las columnas en una. C) Agrupa columnas.
+            columnsWidth: [["25%", 0], ["25%", 1]],
+            responsiveDetailsType: "none", // Opciones [none {default}, inline, column]. A) Columnas ocultas con toggle. B) Agrupa las columnas en una. C) Agrupa columnas.
             responsiveDetailsOrderable: false, // Ordenar por agrupamiento. Default false.
             responsiveDetailsColumns: [0,4,5,6] // comenzando en 0, 1, 2… La primer columna, la 0, no se puede utilizar.
         };
@@ -128,6 +125,6 @@ COPIAR DESDE ACÁ…
     })(jQuery);
 
 </script>
-<!-- / PONCHOTABLE -->
+<!-- / COPIAR HASTA ACA -->
 </body>
 </html>
