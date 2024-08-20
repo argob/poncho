@@ -140,6 +140,19 @@ gulp.task('sass_poncho-map', function(){
 
 
 
+/**
+ * Poncho table
+ */
+gulp.task('sass_poncho-table', function(){
+    return gulp.src([
+            './src/js/poncho-table/src/scss/poncho-table-1.1.scss'
+        ])
+        .pipe(sass.sync({outputStyle: 'compressed'}).on('error', sass.logError))
+        .pipe(gulp.dest('./dist/css'))
+});
+
+
+
 gulp.task('default', gulp.series(
     'ponchoMapProvincesContenidos',
     'sass',
@@ -147,5 +160,6 @@ gulp.task('default', gulp.series(
     'compress',
     'poncho',
     'ponchomin',
-    "sass_poncho-map"
+    "sass_poncho-map",
+    "sass_poncho-table"
 ))
