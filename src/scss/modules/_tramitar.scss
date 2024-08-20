@@ -13,6 +13,15 @@
 		}
 		border-bottom: 2px solid #242c4f;
 	}
+	.list-inline {
+		>li {
+			display: flex;
+			width: 100%;
+			a {
+				width: 100%;
+			}
+		}
+	}
 }
 .items-desplegable-tramitar {
 	border-radius: 15px;
@@ -21,6 +30,7 @@
 	display: table;
 	font-weight: 500;
 	.icon-select-margin {
+		margin-left: 0px;
 		&::before {
 			content: "\f096";
 		}
@@ -32,10 +42,6 @@
 	padding: 5px;
 	margin: 8px;
 	height: auto;
-}
-.icon-select-margin {
-	margin-right: 5px;
-	margin-left: 0px;
 }
 a.items-desplegable-tramitar {
 	&:hover {
@@ -50,20 +56,11 @@ a.items-desplegable-tramitar {
 	}
 }
 .listas-destacadas {
-	>ul {
-		>li {
+	ul.search-results {
+		li {
 			&::before {
 				display: none;
 			}
-		}
-	}
-}
-.list-inline {
-	>li {
-		display: flex;
-		width: 100%;
-		a {
-			width: 100%;
 		}
 	}
 }
@@ -80,9 +77,6 @@ a.items-desplegable-tramitar {
 .f-rigth {
 	float: right;
 }
-.f-left {
-	float: left;
-}
 .bdr-l {
 	margin: 20px 0px;
 	float: right;
@@ -94,7 +88,7 @@ a.items-desplegable-tramitar {
 }
 @media (max-width: 991px) {
 	.jumbotron_body {
-		img {
+		img[alt="tramitar"] {
 			width: 60%;
 		}
 	}
