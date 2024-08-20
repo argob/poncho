@@ -1,0 +1,21 @@
+$closeColor: var(--arg-secundario);
+$openColor: var(--arg-amarillo);
+$closeColorDark: var(--arg-secundario-900);
+$closeColorLight: var(--arg-secundario-200);
+$openColorDark: var(--arg-ocre-900);
+$openColorLight: var(--arg-ocre-100);
+$buttonWidth: 18px;
+$buttonHeight: 18px;
+$buttonLineHeight: 18px;
+
+$buttonDistanceTop: 9px;
+$buttonDistanceLeft: 6px;
+$buttonPadding: 36px;
+
+$closeColor: $closeColor;
+$openColor: $openColor;
+
+$containerBorderWidth: 2px;
+$containerBorderColor: $openColor;
+$containerMargin: 12px;
+$containerPadding: 12px;
