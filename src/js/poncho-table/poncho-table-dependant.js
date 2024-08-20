@@ -786,6 +786,38 @@ const ponchoTableDependant = opt => {
 
 
     /**
+     * Asignación de prioridades en la versión responsive.
+     * 
+     * @example 
+     * _responsivePriorities([1,2]);
+     * // [{responsivePriority: 1, targets: 2}]
+     * @param {*} priorities 
+     */
+    function _responsivePriorities(priorities){
+        if(!Array.isArray(priorities)){
+            console.error("`responsivePriorities`, debe ser un array.");
+            return [];
+        }
+        const results = priorities.map(m => {
+            const [responsivePriority=false, targets=false] = m;
+            if(typeof responsivePriority !== "number"){
+                console.error("El orden de prioridad debe ser un número.");
+                return;
+            }
+            if(typeof targets !== "number"){
+                console.warn(
+                    `La asignación de columna debe ser un número. Se 
+                    elimina el valor: "${targets}".`)
+                return {responsivePriority};
+            }
+            return {responsivePriority, targets};
+        });
+        
+        return results;
+    }
+
+
+    /**
      * Inicializa DataTable() y modifica elementos para adaptarlos a
      * GoogleSheets y requerimientos de ArGob.
      */
@@ -876,30 +908,22 @@ const ponchoTableDependant = opt => {
         };
 
 
+
+
         /**
          * Valido las posiciónes de las columns
-         * 
-         * @Todo Asignar prioridades de ocultamiento para mobile.
-         * https://datatables.net/extensions/responsive/priority#Configuration-option
-         * {responsivePriority: [orden de prioridad], targets: [posicion 
-         * de la columna, comenzando en 0, negativo o positivo]},
-         * @example
-         *   // _responsivePriorities: [
-         *   //     {responsivePriority: 1, targets: 2},
-         *   //     {responsivePriority: 2, targets: -1},
-         *   //     {responsivePriority: 3, targets: -2},
-         *   // ],
          */
         if(typeof opt.responsiveDetailsColumns !== "undefined" && 
                 opt.responsiveDetailsColumns.length > 0){
-            // Validación para los datos de las columnas responsive
+
             const responsiveDetails = _responsiveCols(
-                opt.responsiveDetailsColumns, opt.responsiveDetailsType
-            );
+                opt.responsiveDetailsColumns, opt.responsiveDetailsType);
+
+            const priorities = _responsivePriorities(opt.responsivePriorities);
+
             dataTableOptions.columnDefs = dataTableOptions.columnDefs.concat(
-                    responsiveDetails
-                    // , opt.responsivePriorities
-            );
+                responsiveDetails, priorities);
+
             dataTableOptions.responsive = true;
         }
 
