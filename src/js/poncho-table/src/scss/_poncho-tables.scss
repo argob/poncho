@@ -1,0 +1,74 @@
+
+/* PONCHO TABLES */
+#ponchoTable caption {
+    display: none;
+}
+
+#ponchoTableFiltroCont label:first-letter,
+#ponchoTable th:first-letter {
+    text-transform: uppercase;
+}
+
+#ponchoTable caption {
+    display: none;
+}
+
+@media only screen and (max-width: 768px) {
+    table.dataTable.dtr-inline.collapsed
+        > tbody
+        > tr[role="row"]
+        > td:first-child:before,
+    table.dataTable.dtr-inline.collapsed
+        > tbody
+        > tr[role="row"]
+        > th:first-child:before {
+        padding: 0;
+    }
+
+    table,
+    thead,
+    tbody,
+    th,
+    td,
+    tr {
+        display: block;
+    }
+
+    thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    tr {
+        border: 1px solid #ccc;
+    }
+
+    td {
+        border: none;
+        border-bottom: 1px solid #eee;
+        display: block;
+        white-space: normal;
+        text-align: left;
+        word-break: break-all !important;
+    }
+
+    td:before {
+        content: attr(data-title);
+        display: block;
+        /* Now like a table header */
+        display: block;
+        /* Top/left values mimic padding */
+        top: 6px;
+        left: 6px;
+        width: 100% !important;
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: bold;
+    }
+
+    .margin-btn {
+        margin-top: 10px;
+    }
+}

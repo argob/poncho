@@ -9,7 +9,7 @@
  * Included libraries:
  *   DataTables 1.10.18, FixedHeader 3.1.4, Responsive 2.2.2
  */
- table.dataTable {
+table.dataTable {
     clear: both;
     margin-top: 6px !important;
     margin-bottom: 6px !important;
@@ -216,11 +216,17 @@ div.table-responsive > div.dataTables_wrapper > div.row {
     margin: 0;
 }
 
-div.table-responsive > div.dataTables_wrapper > div.row > div[class^="col-"]:first-child {
+div.table-responsive
+    > div.dataTables_wrapper
+    > div.row
+    > div[class^="col-"]:first-child {
     padding-left: 0;
 }
 
-div.table-responsive > div.dataTables_wrapper > div.row > div[class^="col-"]:last-child {
+div.table-responsive
+    > div.dataTables_wrapper
+    > div.row
+    > div[class^="col-"]:last-child {
     padding-right: 0;
 }
 
@@ -260,37 +266,51 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > td.dataTables_empty:before {
 table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > td:first-child,
 table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > th:first-child {
     position: relative;
-    padding-left: 35px;
+    padding-left: $buttonPadding;
     cursor: pointer;
 }
 
-table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > td:first-child:before,
-table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > th:first-child:before {
-    top: 9px;
-    left: 6px;
-    height: 18px !important;
-    width: 18px !important;
+table.dataTable.dtr-inline.collapsed
+    > tbody
+    > tr[role="row"]
+    > td:first-child:before,
+table.dataTable.dtr-inline.collapsed
+    > tbody
+    > tr[role="row"]
+    > th:first-child:before {
+    top: $buttonDistanceTop;
+    left: $buttonDistanceLeft;
+    height: $buttonHeight !important;
+    width: $buttonWidth !important;
     line-height: 1.1em !important;
     display: block;
     position: absolute;
     border: 2px solid white;
-    border-radius: 14px;
+
+    border-radius: $buttonLineHeight;
+
     box-shadow: 0 0 3px #444;
     box-sizing: content-box;
     text-align: center;
     text-indent: 0 !important;
     font-family: "Courier New", Courier, monospace;
     content: "+";
-    background-color: var(--arg-secundario, black);
-    color: var(--arg-amarillo-100, white);
+    background-color: $closeColor;
+    color: $openColorLight;
     font-weight: normal;
 }
 
-table.dataTable.dtr-inline.collapsed > tbody > tr.parent > td:first-child:before,
-table.dataTable.dtr-inline.collapsed > tbody > tr.parent > th:first-child:before {
+table.dataTable.dtr-inline.collapsed
+    > tbody
+    > tr.parent
+    > td:first-child:before,
+table.dataTable.dtr-inline.collapsed
+    > tbody
+    > tr.parent
+    > th:first-child:before {
     content: "-";
-    background-color: var(--arg-amarillo, gold);
-    color: var(--arg-azul, black);
+    background-color: $openColor;
+    color: $closeColorDark;
 }
 
 table.dataTable.dtr-inline.collapsed.compact > tbody > tr > td:first-child,
@@ -298,14 +318,20 @@ table.dataTable.dtr-inline.collapsed.compact > tbody > tr > th:first-child {
     padding-left: 27px;
 }
 
-table.dataTable.dtr-inline.collapsed.compact > tbody > tr > td:first-child:before,
-table.dataTable.dtr-inline.collapsed.compact > tbody > tr > th:first-child:before {
+table.dataTable.dtr-inline.collapsed.compact
+    > tbody
+    > tr
+    > td:first-child:before,
+table.dataTable.dtr-inline.collapsed.compact
+    > tbody
+    > tr
+    > th:first-child:before {
     top: 5px;
     left: 4px;
-    height: 14px;
-    width: 14px;
-    border-radius: 14px;
-    line-height: 14px;
+    height: $buttonHeight;
+    width: $buttonWidth;
+    border-radius: $buttonLineHeight;
+    line-height: $buttonLineHeight;
     text-indent: 3px;
 }
 
@@ -448,75 +474,4 @@ div.dtr-modal div.dtr-modal-background {
 
 div.dtr-bs-modal table.table tr:first-child td {
     border-top: none;
-}
-
-/* PONCHO TABLES */
-#ponchoTable caption {
-    display: none;
-}
-
-#ponchoTableFiltroCont label:first-letter,
-#ponchoTable th:first-letter {
-    text-transform: uppercase;
-}
-
-#ponchoTable caption {
-    display: none;
-}
-
-@media only screen and (max-width: 768px) {
-    table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > td:first-child:before,
-    table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > th:first-child:before {
-        padding: 0;
-    }
-
-    table.dataTable.dtr-inline.collapsed > tbody > tr.parent > td:first-child:before,
-    table.dataTable.dtr-inline.collapsed > tbody > tr.parent > th:first-child:before {}
-
-    table,
-    thead,
-    tbody,
-    th,
-    td,
-    tr {
-        display: block;
-    }
-
-    thead tr {
-        position: absolute;
-        top: -9999px;
-        left: -9999px;
-    }
-
-    tr {
-        border: 1px solid #ccc;
-    }
-
-    td {
-        border: none;
-        border-bottom: 1px solid #eee;
-        display: block;
-        white-space: normal;
-        text-align: left;
-        word-break: break-all !important;
-    }
-
-    td:before {
-        content: attr(data-title);
-        display: block;
-        /* Now like a table header */
-        display: block;
-        /* Top/left values mimic padding */
-        top: 6px;
-        left: 6px;
-        width: 100% !important;
-        padding-right: 10px;
-        white-space: nowrap;
-        text-align: left;
-        font-weight: bold;
-    }
-
-    .margin-btn {
-        margin-top: 10px;
-    }
 }
