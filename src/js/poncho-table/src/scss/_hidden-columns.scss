@@ -1,0 +1,62 @@
+@media screen and (min-width: 767px) {
+    table {
+        &.dataTable {
+            > tbody {
+                > tr {
+                    &.child ul.dtr-details {
+                        display: block;
+                        list-style-type: none;
+                        margin: 0;
+                        padding: $containerPadding;
+                        border: $containerBorderWidth solid
+                            $containerBorderColor;
+                        margin-bottom: $containerMargin;
+                        margin-top: $containerMargin;
+                        border-radius: 4px;
+                        box-shadow: 0 2px 3px rgb(0, 0, 0, 0.1);
+                        background-color: white;
+
+                        &:before {
+                            position: absolute;
+                            content: "";
+                            background: white;
+                            top: 7px;
+                            left: $buttonWidth;
+                            z-index: 100;
+                            width: 10px;
+                            height: 10px;
+                            transform: rotate(45deg);
+                            border-top: $containerBorderWidth solid
+                                $containerBorderColor;
+                            border-left: $containerBorderWidth solid
+                                $containerBorderColor;
+                            border-top-left-radius: 3px;
+                        }
+                    }
+
+                    &.parent + tr.child td {
+                        position: relative;
+                        padding: 0 8px;
+                        background: white;
+                        z-index: 10;
+                        border-top: 1px dashed #ddd;
+
+                        &:after {
+                            position: absolute;
+                            content: "";
+                            width: 100%;
+                            height: 1px;
+                            left: 0px;
+                            background: #ddd;
+                            filter: blur(2px);
+                            bottom: 0;
+                            z-index: 0;
+                            border-bottom-left-radius: 50%;
+                            border-bottom-right-radius: 50%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
