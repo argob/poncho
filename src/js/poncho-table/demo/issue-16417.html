@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head>
+    <link rel="profile" href="http://www.w3.org/1999/xhtml/vocab" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script 
+        src="https://www.argentina.gob.ar/profiles/argentinagobar/libraries/jquery.jquery-371/jquery-3.7.1.min.js?v=3.7.1" >
+        </script>
+    <link 
+        rel="stylesheet" 
+        href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+    <link 
+        rel="stylesheet" 
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" 
+        integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+        crossorigin="anonymous" 
+        referrerpolicy="no-referrer" />  
+    <link 
+        rel="stylesheet" 
+        href="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css">
+    <!-- /Base -->
+    <link rel="stylesheet" href="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/poncho.min.css" />
+    <link rel="stylesheet" href="../src/" />
+    <title>Tabla vialidad</title>
+    <style>
+        body {
+            padding: 2em;
+        }
+    </style>
+    <script src="../../utils/color.js"></script>
+    <script src="../../utils/connect.js"></script>
+    <script src="../../utils/string.js"></script>
+    <script src="../../utils/html.js"></script>
+    <script src="../poncho-table.js"></script>
+    <script src="../poncho-table-dependant.js"></script>
+    <script src="../../gapi-sheet-data/gapi-sheet-data.js"></script>
+</head>
+<body class="p-t-3">
+    <h1>Fiestas Argentinas</h1>
+
+<!-- 
+COPIAR DESDE ACÁ…
+-->
+<!-- INCLUDE SCRIPTS -->
+<link href="/profiles/argentinagobar/themes/contrib/poncho/css/ponchoTable-1.1.css" rel="stylesheet">
+<script src="https://www.argentina.gob.ar/sites/default/files/ponchotable/showdown.js"></script>
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/extensiones/showdown-extensions.js"></script>
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/datatables.min.js"></script> 
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/intl.min.js"></script>
+<script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
+<!-- / INCLUDE SCRIPTS -->
+
+<div class="row">
+  <div class="col-sm-4" id="ponchoTableFiltroCont" style="display:none">
+    <div class="form-group">
+      <label for="ponchoTableFiltro" id="tituloFiltro">Filtro</label>
+      <select class="form-control" id="ponchoTableFiltro" name="ponchoTableFiltro">
+        <option value="">Todos</option>
+      </select>
+    </div>
+  </div>
+  <div class="col-sm-8" id="ponchoTableSearchCont" style="display:none">
+    <div class="form-group">
+      <label for="ponchoTableSearch">Buscá por palabra clave</label>
+      <input class="form-control" id="ponchoTableSearch" type="search" />
+    </div>
+  </div>
+  <div class="col-md-12 m-b-4">
+    <table class="table tabla-condensed _table-striped" id="ponchoTable">
+      <caption></caption>
+      <thead><tr></tr></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</div>
+
+
+<script>
+    function templateDescription(row){
+        const {titulo, "filtro-ubicacion":ubicacion, descripcion, lugar, url, imagen} = row;
+
+        let tplImage = (imagen.trim() != "" ? 
+            `<img class="img-fluid" alt="" width="100%" height="auto" src="${imagen}">` : 
+            "");
+
+        let info = (url.trim() != "" ? 
+            `<dt class="sr-only">Enlaces de información</dt>
+            <dd>    
+                <a href="${url}" class="btn btn-sm btn-primary">
+                    Más información
+                    <span class="sr-only"> sobre ${titulo}</span>
+                </a>
+            </dd>`: "");
+
+        let description = (descripcion.trim()!= "" ? 
+            `<dt class="sr-only">Descripción</dt><dd>${descripcion}</dd>`: "");
+
+        let template = `<div class="row">
+            <div class="col-md-8">
+            <dl>
+                <dt class="sr-only">Nombre</dt><dd class="h4">${titulo}</dd>
+                <dt class="sr-only">Ubicación</dt><dd class="h5">${ubicacion}</dd>
+                <dt>Lugar</dt><dd>${lugar}</dd>
+                ${description}
+                ${info}
+            </dl>
+        </div>
+        <div class="col-md-4">${tplImage}</div>
+        </div>`;
+
+        return template;
+    }
+
+    function templateFecha(row){
+        const {"fecha-desde":desde="","fecha-hasta":hasta=""} = row;
+        if(![desde, hasta].every(e => e != "")){
+            return "";
+        }
+        const [day, month, year] = desde.split("/");
+        const time = new Date(`${year}-${month}-${day}`).getTime();
+        let template = `<i class="fa fa-2x text-muted fa-calendar-o m-t-1"></i>
+            <div class="m-t-1">
+                <span class="hidden fecha-evento">${time}</span>
+                <small>Del ${desde} al ${hasta}</small>
+            </div>`;
+        return template;
+    }
+
+
+    // loading
+    document.querySelector("#ponchoTable").classList.add("state-loading");
+    // REnder table
+    (async () => {
+        // GApi helpers
+        const gapi = new GapiSheetData();
+        // fetch data
+        const googlesheet_data = await fetch_json(
+            gapi.url("dataset", "112JJ2hVe_lQ8xse7J8XB7TYuucBY7Rf6gQLxXYxoBL8")
+        ); 
+        const gapi_data = gapi.json_data(googlesheet_data);
+        const {entries, headers} = gapi_data;
+        const removeList = [
+            "horario", "lugar","direccion", "url", "imagen",
+            "direccion", "fecha-desde", "fecha-hasta"];
+        removeList.forEach(del => delete(headers[del]));
+
+        let filteredEntries = entries.map(function(entry){
+            entry.descripcion = templateDescription(entry);
+            entry.fecha = templateFecha(entry);
+            removeList.forEach(e => delete(entry[e]))
+            return entry;
+        });
+
+        var ponchoTableOpciones = {
+            jsonData: filteredEntries.slice(2),
+            headers: {...{fecha: "Fecha"}, ...headers},
+            tituloTabla: "Festividades argentinas",
+            ordenColumna: 1, 
+            ordenTipo: "asc",
+            ocultarColumnas: [1,2,3,5],
+            cantidadItems: 15,
+            filterClassList: ["col-sm-12", "col-md-4"],
+            filterContClassList: ["col-md-8"],
+            searchContClassList: ["col-md-4"],
+            hash: true,
+            allowedTags: ["*"],
+            columnsWidth: [["20%", 0]],
+        };
+        ponchoTable(ponchoTableOpciones);
+    })();
+</script>
+<!-- / COPIAR HASTA ACA -->
+</body>
+</html>
