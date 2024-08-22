@@ -37,6 +37,7 @@ $brand-arg-azul-morado: #3A3796 !default;
 $arg-black: #141414 !default; /* Elementos básicos */ 
 $brand-arg-cielo: #039BE5 !default;
 $brand-arg-default: #838383 !default;
+$brand-arg-escarapela: #68C3EF !default;
 $brand-arg-fucsia: #EC407A !default;
 $brand-arg-fucsia-dark: #9A144A !default;
 $brand-arg-fucsia-light: #F16798 !default;
@@ -97,8 +98,9 @@ $brand-bandera-amarillo: #FCBF49 !default; /* Color amarillo oficial para la ban
 $brand-bandera-celeste: #75AADB !default; /* Color celeste oficial para la bandera Argentina */ 
 $brand-bandera-marron: #843511 !default; /* Color marrón oficial para la bandera Argentina */ 
 $black: #141414 !default; /* Elementos básicos */ 
-$brand-celeste-argentina: #039BE5 !default;
-$brand-celesteargentina: #039BE5 !default;
+$brand-celeste: #039BE5 !default;
+$brand-celeste-argentina: #68C3EF !default;
+$brand-celesteargentina: #68C3EF !default;
 $brand-cereza: #EC407A !default;
 $brand-cereza-dark: #9A144A !default;
 $brand-cereza-light: #F16798 !default;
@@ -110,7 +112,7 @@ $brand-danger: #C62828 !default; /* Atención o peligro */
 $brand-danger-dark: #7C1C1C !default;
 $brand-danger-light: #E14543 !default;
 $brand-default: #838383 !default;
-$brand-escarapela: #039BE5 !default;
+$brand-escarapela: #68C3EF !default;
 $brand-fucsia: #EC407A !default;
 $brand-fucsia-dark: #9A144A !default;
 $brand-fucsia-light: #F16798 !default;
@@ -236,6 +238,7 @@ $colores: ("amarillo", $brand-amarillo),
 ("arg-black", $arg-black),
 ("arg-cielo", $brand-arg-cielo),
 ("arg-default", $brand-arg-default),
+("arg-escarapela", $brand-arg-escarapela),
 ("arg-fucsia", $brand-arg-fucsia),
 ("arg-fucsia-dark", $brand-arg-fucsia-dark),
 ("arg-fucsia-light", $brand-arg-fucsia-light),
@@ -296,6 +299,7 @@ $colores: ("amarillo", $brand-amarillo),
 ("bandera-celeste", $brand-bandera-celeste),
 ("bandera-marron", $brand-bandera-marron),
 ("black", $black),
+("celeste", $brand-celeste),
 ("celeste-argentina", $brand-celeste-argentina),
 ("celesteargentina", $brand-celesteargentina),
 ("cereza", $brand-cereza),
@@ -567,6 +571,7 @@ html {
 	--arg-black:#141414;
 	--arg-cielo:#039BE5;
 	--arg-default:#838383;
+	--arg-escarapela:#68C3EF;
 	--arg-fucsia:#EC407A;
 	--arg-fucsia-dark:#9A144A;
 	--arg-fucsia-light:#F16798;
@@ -627,8 +632,9 @@ html {
 	--bandera-celeste:#75AADB;
 	--bandera-marron:#843511;
 	--black:#141414;
-	--celeste-argentina:#039BE5;
-	--celesteargentina:#039BE5;
+	--celeste:#039BE5;
+	--celeste-argentina:#68C3EF;
+	--celesteargentina:#68C3EF;
 	--cereza:#EC407A;
 	--cereza-dark:#9A144A;
 	--cereza-light:#F16798;
@@ -640,7 +646,7 @@ html {
 	--danger-dark:#7C1C1C;
 	--danger-light:#E14543;
 	--default:#838383;
-	--escarapela:#039BE5;
+	--escarapela:#68C3EF;
 	--fucsia:#EC407A;
 	--fucsia-dark:#9A144A;
 	--fucsia-light:#F16798;
