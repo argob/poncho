@@ -44,8 +44,6 @@ COPIAR DESDE ACÁ…
 -->
 <!-- INCLUDE SCRIPTS -->
 <link href="/profiles/argentinagobar/themes/contrib/poncho/css/ponchoTable-1.1.css" rel="stylesheet">
-<script src="https://www.argentina.gob.ar/sites/default/files/ponchotable/showdown.js"></script>
-<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/extensiones/showdown-extensions.js"></script>
 <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/datatables.min.js"></script> 
 <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/intl.min.js"></script>
 <script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
@@ -77,27 +75,33 @@ COPIAR DESDE ACÁ…
 
 
 <script>
-    function templateDescription(row){
-        const {titulo, "filtro-ubicacion":ubicacion, descripcion, lugar, url, imagen} = row;
+    function templateDescription(row) {
+        const { titulo, "filtro-ubicacion": ubicacion, 
+                descripcion, lugar, url, imagen } = row;
 
-        let tplImage = (imagen.trim() != "" ? 
-            `<img class="img-fluid" alt="" width="100%" height="auto" src="${imagen}">` : 
-            "");
+        let tplImage = "";
+        if (imagen.trim() !== "") {
+            tplImage = `<div class="col-md-4">
+                <img class="img-responsive" alt="" src="${imagen}">
+            </div>`;
+        }
 
-        let info = (url.trim() != "" ? 
-            `<dt class="sr-only">Enlaces de información</dt>
-            <dd>    
+        let info = "";
+        if (url.trim() !== "") {
+            info = `<dd>
                 <a href="${url}" class="btn btn-sm btn-primary">
                     Más información
                     <span class="sr-only"> sobre ${titulo}</span>
                 </a>
-            </dd>`: "");
+            </dd>`;
+        }
 
-        let description = (descripcion.trim()!= "" ? 
-            `<dt class="sr-only">Descripción</dt><dd>${descripcion}</dd>`: "");
+        let description = "";
+        if (descripcion.trim() !== "") {
+            description = `<dt class="sr-only">Descripción</dt><dd>${descripcion}</dd>`;
+        }
 
-        let template = `<div class="row">
-            <div class="col-md-8">
+        return `<div class="row"><div class="col-md-8">
             <dl>
                 <dt class="sr-only">Nombre</dt><dd class="h4">${titulo}</dd>
                 <dt class="sr-only">Ubicación</dt><dd class="h5">${ubicacion}</dd>
@@ -105,27 +109,46 @@ COPIAR DESDE ACÁ…
                 ${description}
                 ${info}
             </dl>
-        </div>
-        <div class="col-md-4">${tplImage}</div>
-        </div>`;
-
-        return template;
+        </div>${tplImage}</div>`;
     }
 
-    function templateFecha(row){
-        const {"fecha-desde":desde="","fecha-hasta":hasta=""} = row;
-        if(![desde, hasta].every(e => e != "")){
+
+    function templateFecha(row) {
+        const { "fecha-desde": desde = "", "fecha-hasta": hasta = "" } = row;
+
+        if (!desde || !hasta) {
             return "";
         }
+
         const [day, month, year] = desde.split("/");
         const time = new Date(`${year}-${month}-${day}`).getTime();
-        let template = `<i class="fa fa-2x text-muted fa-calendar-o m-t-1"></i>
-            <div class="m-t-1">
-                <span class="hidden fecha-evento">${time}</span>
-                <small>Del ${desde} al ${hasta}</small>
+
+        return `<i class="fa fa-2x text-arg-cielo fa-calendar-o m-t-1"></i>
+            <div class="m-t-1 small">
+                <span class="hidden">${time}</span>
+                Del ${desde} al ${hasta}
             </div>`;
-        return template;
     }
+
+
+
+    function templateFecha(row) {
+        const { "fecha-desde": desde = "", "fecha-hasta": hasta = "" } = row;
+
+        if (!desde || !hasta) {
+            return "";
+        }
+
+        const [day, month, year] = desde.split("/");
+        const time = new Date(`${year}-${month}-${day}`).getTime();
+
+        return `<i class="fa fa-2x text-arg-cielo fa-calendar-o m-t-1"></i>
+            <div class="m-t-1 small">
+                <span class="hidden">${time}</span>
+                Del ${desde} al ${hasta}
+            </div>`;
+    }
+
 
 
     // loading
@@ -145,31 +168,67 @@ COPIAR DESDE ACÁ…
             "direccion", "fecha-desde", "fecha-hasta"];
         removeList.forEach(del => delete(headers[del]));
 
+        const startTime1 = performance.now();
         let filteredEntries = entries.map(function(entry){
             entry.descripcion = templateDescription(entry);
             entry.fecha = templateFecha(entry);
             removeList.forEach(e => delete(entry[e]))
             return entry;
         });
+        const endTime1 = performance.now();
+        console.info('refactor', (endTime1 - startTime1) / 1000);
 
+
+        const startTime2 = performance.now();
         var ponchoTableOpciones = {
             jsonData: filteredEntries.slice(2),
-            headers: {...{fecha: "Fecha"}, ...headers},
+            headers: {...{fecha: "Fecha"}, ...headers, ...{"filtro-ubicacion": "Provincia"}},
             tituloTabla: "Festividades argentinas",
             ordenColumna: 1, 
             ordenTipo: "asc",
             ocultarColumnas: [1,2,3,5],
-            cantidadItems: 15,
+            cantidadItems: 10,
             filterClassList: ["col-sm-12", "col-md-4"],
-            filterContClassList: ["col-md-8"],
-            searchContClassList: ["col-md-4"],
+            filterContClassList: ["col-md-9"],
+            searchContClassList: ["col-md-3"],
             hash: true,
             allowedTags: ["*"],
             columnsWidth: [["20%", 0]],
         };
         ponchoTable(ponchoTableOpciones);
+        const endTime2 = performance.now();
+        console.info('render', (endTime2 - startTime2) / 1000);
+
+
+        const u = new URLSearchParams(window.location.search);
+        for (const key of u.keys()){
+            if(key == "search"){
+                eventDispatcher(`ponchoTableSearch`, u.get(key), "keyup");
+            } else {
+                eventDispatcher(key, u.get(key), "change");
+            }
+        };
     })();
 </script>
 <!-- / COPIAR HASTA ACA -->
+<script>
+    function eventDispatcher(selector, value, eventType){
+        const element = document.getElementById(selector);
+        element.value = value;
+        const event = new Event(eventType);
+        element.dispatchEvent(event);
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const u = new URLSearchParams(window.location.search);
+        for (const key of u.keys()){
+            if(key == "search"){
+                eventDispatcher(`ponchoTableSearch`, u.get(key), "keyup");
+            } else {
+                eventDispatcher(key, u.get(key), "change");
+            }
+        };
+    });
+</script>
 </body>
 </html>
