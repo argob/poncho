@@ -218,17 +218,6 @@ COPIAR DESDE ACÁ…
         const event = new Event(eventType);
         element.dispatchEvent(event);
     }
-
-    document.addEventListener("DOMContentLoaded", () => {
-        const u = new URLSearchParams(window.location.search);
-        for (const key of u.keys()){
-            if(key == "search"){
-                eventDispatcher(`ponchoTableSearch`, u.get(key), "keyup");
-            } else {
-                eventDispatcher(key, u.get(key), "change");
-            }
-        };
-    });
 </script>
 </body>
 </html>
