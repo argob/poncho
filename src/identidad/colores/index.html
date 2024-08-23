@@ -3,10 +3,9 @@ nombre_grupo: Identidad
 title: Colores
 layout: default
 ---
-
-   
-  
-    <div class="container">
+<link rel="stylesheet" href="https://argob.github.io/poncho/node_modules/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/poncho.min.css">
+<div class="container">
     <div class="row">
         <div class="col-sm-3" id="menuLateral" data-seccion="2">
             <h4 class="text-muted m-t-4">Identidad</h4>
@@ -26,399 +25,136 @@ layout: default
                 <article class="row">
                     <div class="col-sm-12">
                         <h1>Colores</h1>
-
-                        <p>Los colores de Poncho están basados en el Manual de identidad de Presidencia de la Nación pero tienen ajustes de brillo y contraste para que sean accesibles.</p>
-
+                        <p>
+                            Los colores de Poncho están basados en el Manual 
+                            de identidad de Presidencia de la Nación, pero 
+                            tienen ajustes de brillo y contraste para 
+                            que sean accesibles.
+                        </p>
                         <hr />
 
-                        <fieldset>
-                            <h2>Acciones y estados</h2>
+                        <!-- start block -->
+                        <div id="js-color-definitions">
+                            
+                        </div>
+                        <!-- end block -->
 
-                            <p>Colores usados para botones, alertas, mensajes de error, etc.</p>
-
-                            <div class="">
-                                <div class="row row-flex list panels-row">
-                                    <div class="col-sm-3">
-                                        <div class="panel panel-default panel-icon panel-primary">
-                                            <div class="panel-heading"></div>
-                                            <div class="panel-body">
-                                                <strong>Enlace o información</strong>
-                                                <p>
-                                                    Azul #242c4f<br />
-                                                    bg-primary<br />
-                                                    text-primary
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-sm-3">
-                                        <div class="panel panel-default panel-icon panel-info">
-                                            <div class="panel-heading"></div>
-                                            <div class="panel-body">
-                                                <strong>Información</strong>
-                                                <p>
-                                                    Celeste #3e5a7e<br />
-                                                    bg-info<br />
-                                                    text-info
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row row-flex list panels-row">
-                                    <div class="col-sm-3">
-                                        <div class="panel panel-default panel-icon panel-success">
-                                            <div class="panel-heading"></div>
-                                            <div class="panel-body">
-                                                <strong>Principal o exitosa</strong>
-                                                <p>
-                                                    Verde #2e7d33<br />
-                                                    bg-success<br />
-                                                    text-success
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-sm-3">
-                                        <div class="panel panel-default panel-icon panel-danger">
-                                            <div class="panel-heading"></div>
-                                            <div class="panel-body">
-                                                <strong>Atención o peligro</strong>
-                                                <p>
-                                                    Rojo #c62828<br />
-                                                    bg-danger<br />
-                                                    text-danger
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <div class="panel panel-default panel-icon panel-warning">
-                                            <div class="panel-heading"></div>
-                                            <div class="panel-body">
-                                                <strong>Foco o alerta</strong>
-                                                <p>
-                                                    Amarillo #e7ba61<br />
-                                                    bg-warning<br />
-                                                    text-warning
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <h2>Elementos básicos</h2>
-                            <p>Colores usados para textos, enlaces, bordes y fondos.</p>
-                            <div class="row row-flex list panels-row">
-                                <div class="col-sm-3">
-                                    <div class="panel panel-default panel-icon">
-                                        <div class="panel-heading" style="background-color: #333;"></div>
-                                        <div class="panel-body">
-                                            <strong>Texto</strong>
-                                            <p>
-                                                Negro #333<br />
-                                                bg-black<br />
-                                                text-black
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-3">
-                                    <div class="panel panel-default panel-icon">
-                                        <div class="panel-heading" style="background-color: #525252;"></div>
-                                        <div class="panel-body">
-                                            <strong>Texto secundario (subtitulos)</strong>
-                                            <p>
-                                                Gris #525252<br />
-                                                bg-muted<br />
-                                                text-muted
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-3">
-                                    <div class="panel panel-default panel-icon">
-                                        <div class="panel-heading bg-gray"></div>
-                                        <div class="panel-body">
-                                            <strong>Gris área</strong>
-                                            <p>
-                                                Gris intermedio #f2f2f2<br />
-                                                bg-gray<!--<br>text-gray-->
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-3">
-                                    <div class="panel panel-default panel-icon">
-                                        <div class="panel-heading" style="background-color: #6a1b99;"></div>
-                                        <div class="panel-body">
-                                            <strong>Enlace visitado</strong>
-                                            <p>
-                                                Uva #6a1b99<br />
-                                                bg-uva<br />
-                                                text-uva
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <h2>Colores secundarios</h2>
-                            <p><strong>Sólo deben ser usados para elementos decorativos (fondos o figuras que no tengan texto encima).</strong></p>
-
-                            <div class="row row-flex list panels-row">
-                                <div class="col-sm-3">
-                                    <div class="panel panel-default panel-icon">
-                                        <div class="panel-heading bg-arandano"></div>
-                                        <div class="panel-body">
-                                            <strong>Arándano</strong>
-                                            <p>
-                                                #c2185b<br />
-                                                bg-arandano<br />
-                                                text-arandano
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-3">
-                                    <div class="panel panel-default panel-icon">
-                                        <div class="panel-heading bg-tomate"></div>
-                                        <div class="panel-body">
-                                            <strong>Tomate</strong>
-                                            <p>
-                                                #ef5350<br />
-                                                bg-tomate<br />
-                                                text-tomate
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-3">
-                                    <div class="panel panel-default panel-icon">
-                                        <div class="panel-heading bg-arg-rosado"></div>
-                                        <div class="panel-body">
-                                            <strong>Rosado</strong>
-                                            <p>
-                                                #f48eab<br />
-                                                bg-arg-rosado<br />
-                                                text-arg-rosado
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-3">
-                                    <div class="panel panel-default panel-icon">
-                                        <div class="panel-heading bg-naranja"></div>
-                                        <div class="panel-body">
-                                            <strong>Naranja oscuro</strong>
-                                            <p>
-                                                #EF6C00<br />
-                                                bg-naranja<br />
-                                                text-naranja
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-3">
-                                    <div class="panel panel-default panel-icon">
-                                        <div class="panel-heading bg-mandarina"></div>
-                                        <div class="panel-body">
-                                            <strong>Mandarina</strong>
-                                            <p>
-                                                #f79525<br />
-                                                bg-mandarina<br />
-                                                text-mandarina
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-3">
-                                    <div class="panel panel-default panel-icon">
-                                        <div class="panel-heading bg-maiz"></div>
-                                        <div class="panel-body">
-                                            <strong>Maiz</strong>
-                                            <p>
-                                                #ffce00<br />
-                                                bg-maiz<br />
-                                                text-maiz
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-3">
-                                    <div class="panel panel-default panel-icon">
-                                        <div class="panel-heading bg-arg-arena"></div>
-                                        <div class="panel-body">
-                                            <strong>Arena</strong>
-                                            <p>
-                                                #eae1b7<br />
-                                                bg-arg-arena<br />
-                                                text-arg-arena
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-3">
-                                    <div class="panel panel-default panel-icon">
-                                        <div class="panel-heading bg-limon"></div>
-                                        <div class="panel-body">
-                                            <strong>Limón</strong>
-                                            <p>
-                                                #d7df23<br />
-                                                bg-limon<br />
-                                                text-limon
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-3">
-                                    <div class="panel panel-default panel-icon">
-                                        <div class="panel-heading bg-lima"></div>
-                                        <div class="panel-body">
-                                            <strong>Lima</strong>
-                                            <p>
-                                                #cddc39<br />
-                                                bg-lima<br />
-                                                text-lima
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-3">
-                                    <div class="panel panel-default panel-icon">
-                                        <div class="panel-heading bg-verde-aloe"></div>
-                                        <div class="panel-body">
-                                            <strong>Verde Aloe</strong>
-                                            <p>
-                                                #4fbb73<br />
-                                                bg-verde-aloe<br />
-                                                text-verde-aloe
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-3">
-                                    <div class="panel panel-default panel-icon">
-                                        <div class="panel-heading bg-verdin"></div>
-                                        <div class="panel-body">
-                                            <strong>Verdin</strong>
-                                            <p>
-                                                #6ea100<br />
-                                                bg-verdin<br />
-                                                text-verdin
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-3">
-                                    <div class="panel panel-default panel-icon">
-                                        <div class="panel-heading bg-palta"></div>
-                                        <div class="panel-body">
-                                            <strong>Palta</strong>
-                                            <p>
-                                                #50b7b2<br />
-                                                bg-palta<br />
-                                                text-palta
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-3">
-                                    <div class="panel panel-default panel-icon">
-                                        <div class="panel-heading bg-verde-azulado"></div>
-                                        <div class="panel-body">
-                                            <strong>Verde azulado</strong>
-                                            <p>
-                                                #008388<br />
-                                                bg-verde-azulado<br />
-                                                text-verde-azulado
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-3">
-                                    <div class="panel panel-default panel-icon">
-                                        <div class="panel-heading bg-verde-jade"></div>
-                                        <div class="panel-body">
-                                            <strong>Verde Jade</strong>
-                                            <p>
-                                                #066<br />
-                                                bg-verde-jade<br />
-                                                text-verde-jade
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-3">
-                                    <div class="panel panel-default panel-icon">
-                                        <div class="panel-heading bg-verde-cemento"></div>
-                                        <div class="panel-body">
-                                            <strong>Verde Cemento</strong>
-                                            <p>
-                                                #b4beba<br />
-                                                bg-verde-cemento<br />
-                                                text-verde-cemento
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-3">
-                                    <div class="panel panel-default panel-icon">
-                                        <div class="panel-heading bg-uva"></div>
-                                        <div class="panel-body">
-                                            <strong>Uva</strong>
-                                            <p>
-                                                #6a1b99<br />
-                                                bg-uva<br />
-                                                text-uva
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-3">
-                                    <div class="panel panel-default panel-icon">
-                                        <div class="panel-heading bg-lavanda"></div>
-                                        <div class="panel-body">
-                                            <strong>Lavanda</strong>
-                                            <p>
-                                                #9284be<br />
-                                                bg-lavanda<br />
-                                                text-lavanda
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </fieldset>
                     </div>
                 </article>
             </section>
         </div>
     </div>
 </div>
+<script>
+    const js = [
+        {
+            title: "Acciones y estados",
+            description: "Colores usados para botones, alertas, mensajes de error, etc.",
+            data: [
+                ["primary", "info",],
+                ["amarillo", "verde", "rojo"],
+                ["arg-arena"]
+            ]
+        },
+        {
+            title: "Elementos básicos",
+            description: "Colores usados para textos, enlaces, bordes y fondos.",
+            data: [
+                ["negro", "uva"]
+            ]
+        },
+        {
+            title: "Colores secundarios",
+            description: "Sólo deben ser usados para elementos decorativos (fondos o figuras que no tengan texto encima).",
+            data: [
+                ["arandano", "arg-rosado"],
+                ["tomate", "naranja", "mandarina", "maiz"],
+                ["arg-verdin", "arg-lima"],
+                ["arg-verde-azulado", "arg-palta"],
+                ["lavanda"],
+            ]
+        },
+        {
+            title: "Colores Gendarmería Nacional",
+            description: "",
+            data: [
+                ["verde-jade", "gna-verde-aloe", "verde-cemento"],
+            ]
+        },
+        {
+            title: "Colores Bandera Nacional",
+            description: "",
+            data: [
+                ["bandera-amarillo", "bandera-celeste", "bandera-marron"],
+            ]
+        },
+    ];
+</script>
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
+<script>
+    const tplSample = (instance, colorName) => {
+        const c = instance.ponchoColorDefinitions(colorName);
+        if(typeof c == "undefined" || c == null){
+            return;
+        }
 
+        const {description="", name, color, code} = c;
 
-        
+        let fragment = `<!-- start color sample -->
+        <div class="col-sm-3">
+            <div class="panel panel-default panel-icon panel-primary">
+                <div class="panel-heading bg-${code}"></div>
+                <div class="panel-body">
+                    <!-- <p><strong>${description}</strong></p> -->
+                    <dl class="small definition-list">
+                        <dt class="sr-only">Nombre</dt>
+                        <dd class="h3">${name}</dd>
+                        <dt>Código</dt>
+                        <dd>${code}</dd>
+                        <dt>Usos</dt>
+                        <dd>
+                            bg-${code}
+                        </dd>
+                        <dd>
+                            text-${code}
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+        <!-- end color sample -->`;
+        return fragment;
+    };
 
-
-    <script>
-      $(function(){
-        $("#menuLateral").load("../../includes/identidad_menu.html",function(){
-          var seccion = $("#menuLateral").data("seccion");
-          $("#menuLateral ul li a[data-seccion="+seccion+"]").parent().addClass("active");
+    const color = new Color(ponchoColorDefinitionsList);
+    let html = js.map(function(block){
+        let b = block.data.map(defGroup => {
+            let sampls = defGroup.map(sample => tplSample(color, sample));
+            
+            return `<div class="row row-flex list panels-row">
+                ${sampls.join('')}</div>`;
         });
-      })
-    </script>
+
+        const {title, description} = block;
+        return `<div id="js-color-definitions">`
+            + `<h2>${title}</h2>`
+            + `<p>${description}</p>`
+            + b.join('')
+            + `</div>`;
+        
+    });
+    console.log(html.join(''));
+    document.getElementById("js-color-definitions").innerHTML = html.join('');
+</script>
+
+<!--  -->
+<script>
+    // $(function () {
+    //     $("#menuLateral").load("../../includes/identidad_menu.html", function () {
+    //         var seccion = $("#menuLateral").data("seccion");
+    //         $("#menuLateral ul li a[data-seccion=" + seccion + "]")
+    //             .parent()
+    //             .addClass("active");
+    //     });
+    // })
+</script>
