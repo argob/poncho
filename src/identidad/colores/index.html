@@ -149,12 +149,12 @@ layout: default
 
 <!--  -->
 <script>
-    // $(function () {
-    //     $("#menuLateral").load("../../includes/identidad_menu.html", function () {
-    //         var seccion = $("#menuLateral").data("seccion");
-    //         $("#menuLateral ul li a[data-seccion=" + seccion + "]")
-    //             .parent()
-    //             .addClass("active");
-    //     });
-    // })
+    $(function () {
+        $("#menuLateral").load("../../includes/identidad_menu.html", function () {
+            var seccion = $("#menuLateral").data("seccion");
+            $("#menuLateral ul li a[data-seccion=" + seccion + "]")
+                .parent()
+                .addClass("active");
+        });
+    })
 </script>
