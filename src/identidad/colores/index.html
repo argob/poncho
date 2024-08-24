@@ -8,7 +8,7 @@ layout: default
 <div class="container">
     <div class="row">
         <div class="col-sm-3" id="menuLateral" data-seccion="2">
-            <h4 class="text-muted m-t-4">Identidad</h4>
+            <p class="text-muted m-t-4 h4">Identidad</p>
             <div class="page-sidebar">
                 <ul class="nav nav-pills nav-stacked">
                     <li><a data-seccion="1" href="/poncho/identidad/iconos/">Íconos</a></li>
@@ -22,7 +22,7 @@ layout: default
 
         <div class="col-sm-9">
             <section>
-                <article class="row">
+                <div class="row">
                     <div class="col-sm-12">
                         <h1>Colores</h1>
                         <p>
@@ -40,19 +40,19 @@ layout: default
                         <!-- end block -->
 
                     </div>
-                </article>
+                </div>
             </section>
         </div>
     </div>
 </div>
 <script>
-    const js = [
+    const definitions = [
         {
             title: "Acciones y estados",
             description: "Colores usados para botones, alertas, mensajes de error, etc.",
             data: [
-                ["primary", "info",],
-                ["amarillo", "verde", "rojo"],
+                ["arg-azul", "arg-secundario"],
+                ["arg-amarillo", "arg-verde", "arg-rojo"],
                 ["arg-arena"]
             ]
         },
@@ -60,7 +60,7 @@ layout: default
             title: "Elementos básicos",
             description: "Colores usados para textos, enlaces, bordes y fondos.",
             data: [
-                ["negro", "uva"]
+                ["arg-black", "arg-uva"]
             ]
         },
         {
@@ -68,7 +68,8 @@ layout: default
             description: "Sólo deben ser usados para elementos decorativos (fondos o figuras que no tengan texto encima).",
             data: [
                 ["arandano", "arg-rosado"],
-                ["tomate", "naranja", "mandarina", "maiz"],
+                ["tomate"],
+                [ "arg-marron-oscuro",  "naranja", "mandarina", "maiz"],
                 ["arg-verdin", "arg-lima"],
                 ["arg-verde-azulado", "arg-palta"],
                 ["lavanda"],
@@ -98,53 +99,84 @@ layout: default
             return;
         }
 
+        const colorRgb = instance.hexToRgb(c.color);
         const {description="", name, color, code} = c;
 
+        let dtClassList = "h4";
+        let dtStyleDef = "color:var(--arg-azul-600);"
+
         let fragment = `<!-- start color sample -->
-        <div class="col-sm-3">
+        <article class="col-sm-3">
             <div class="panel panel-default panel-icon panel-primary">
                 <div class="panel-heading bg-${code}"></div>
                 <div class="panel-body">
-                    <!-- <p><strong>${description}</strong></p> -->
-                    <dl class="small definition-list">
-                        <dt class="sr-only">Nombre</dt>
-                        <dd class="h3">${name}</dd>
-                        <dt>Código</dt>
-                        <dd>${code}</dd>
-                        <dt>Usos</dt>
+                    <h3>${name}</h3>
+                    ${(description ? `<p><strong>${description}</strong></p>`:'')}
+                    
+                    <dl class="small">
+                        <dt class="${dtClassList}" style="${dtStyleDef}">Color</dt>
                         <dd>
-                            bg-${code}
+                            <dl class="_small">
+                                <dt><abbr title="Hexadecimal">Hex</abbr></dt>
+                                <dd>${color}</dd>
+                                <dt><abbr title="Red, Green, Blue" lang="en">RGB</dt>
+                                <dd>rgb(${colorRgb.join(", ")})</dd>
+                            </dl>
                         </dd>
+                        <dt class="${dtClassList}" style="${dtStyleDef}">Código</dt>
+                        <dd>${code}</dd>
+                        <dt class="${dtClassList}" style="${dtStyleDef}">Usos</dt>
                         <dd>
-                            text-${code}
+                            <dl>
+                                <dt>Color de fondo</dt>
+                                <dd>
+                                    bg-${code}
+                                </dd>
+                                <dt>Color de texto</dt>
+                                <dd>
+                                    text-${code}
+                                </dd>    
+                            </dl>    
                         </dd>
                     </dl>
                 </div>
             </div>
-        </div>
+        </article>
         <!-- end color sample -->`;
         return fragment;
     };
 
-    const color = new Color(ponchoColorDefinitionsList);
-    let html = js.map(function(block){
-        let b = block.data.map(defGroup => {
-            let sampls = defGroup.map(sample => tplSample(color, sample));
-            
-            return `<div class="row row-flex list panels-row">
-                ${sampls.join('')}</div>`;
-        });
+    function tplBlock(kwargs, contents){
+        const {title, description} = kwargs;
+        return `<h2>${title}</h2>
+            <p>${description}</p>
+            ${contents}`;
+    };
 
-        const {title, description} = block;
-        return `<div id="js-color-definitions">`
-            + `<h2>${title}</h2>`
-            + `<p>${description}</p>`
-            + b.join('')
-            + `</div>`;
+    function tplSampleGroup(contents){
+        return `<div class="row row-flex list panels-row">
+                ${contents}</div>`;
+    }
+
+
+    // Recorro las definiciones e imprimo los colores
+    const color = new Color(ponchoColorDefinitionsList);
+    let html = definitions.map(function(block){
+        
+        let data = block.data.map(function(sampleGroup){
+            let sampleSubGroup = sampleGroup.map(function(sample){
+                return tplSample(color, sample);
+            });
+            
+            return tplSampleGroup(sampleSubGroup.join(''));
+        });
+        return tplBlock(block, data.join(""));
         
     });
-    console.log(html.join(''));
-    document.getElementById("js-color-definitions").innerHTML = html.join('');
+
+    document
+        .getElementById("js-color-definitions")
+        .innerHTML = html.join('');
 </script>
 
 <!--  -->
@@ -156,5 +188,5 @@ layout: default
                 .parent()
                 .addClass("active");
         });
-    })
+    });
 </script>
