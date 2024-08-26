@@ -199,7 +199,9 @@
     </div>
 </section>
       <main>
-        <div class="container">
+        <link rel="stylesheet" href="https://argob.github.io/poncho/node_modules/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/poncho.min.css">
+<div class="container">
     <div class="row">
         <div class="col-sm-3" id="menuLateral" data-seccion="2">
             <p class="text-muted m-t-4 h4">Identidad</p>
@@ -246,7 +248,7 @@
             description: "Colores usados para botones, alertas, mensajes de error, etc.",
             data: [
                 ["arg-azul", "arg-secundario"],
-                ["arg-amarillo", "arg-verde", "arg-rojo"],
+                ["arg-amarillo", "arg-verde", "arg-rojo", "arg-info"],
                 ["arg-arena"]
             ]
         },
@@ -265,6 +267,7 @@
                 ["tomate"],
                 [ "arg-marron-oscuro",  "naranja", "mandarina", "maiz"],
                 ["arg-verdin", "arg-lima"],
+                ["cielo", "celeste"],
                 ["arg-verde-azulado", "arg-palta"],
                 ["lavanda"],
             ]
@@ -285,7 +288,7 @@
         },
     ];
 </script>
-<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
+<script src="https://qa2-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
 <script>
     const tplSample = (instance, colorName) => {
         const c = instance.ponchoColorDefinitions(colorName);
@@ -296,8 +299,9 @@
         const colorRgb = instance.hexToRgb(c.color);
         const {description="", name, color, code} = c;
 
-        let dtClassList = "h4";
+        let dtClassList = "h4 text-arg-cielo-dark";
         let dtStyleDef = "color:var(--arg-azul-600);"
+        // let dtStyleDef = ""
 
         let fragment = `<!-- start color sample -->
         <article class="col-sm-3">
