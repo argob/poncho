@@ -40,14 +40,14 @@ $brand-arg-escarapela: #68C3EF !default;
 $brand-arg-fucsia: #EC407A !default;
 $brand-arg-fucsia-dark: #9A144A !default;
 $brand-arg-fucsia-light: #F16798 !default;
-$brand-arg-gray: #555555 !default;
 $brand-arg-gray-background: #FFFFFF !default;
 $brand-arg-gray-border: #DEE2E6 !default;
 $brand-arg-gray-dark: #444444 !default;
 $brand-arg-gray-hover: #E9E9E9 !default;
 $brand-arg-gray-hover-light: #F0F0F0 !default;
 $brand-arg-gray-light: #DDDDDD !default;
-$brand-arg-gray-lighter: #F2F2F2 !default;
+$brand-arg-gris-intermedio: #555555 !default;
+$brand-arg-gris-niebla: #F2F2F2 !default;
 $brand-arg-info: #5A7290 !default;
 $brand-arg-lavanda: #9284BE !default;
 $brand-arg-lima: #B9CE39 !default;
@@ -242,14 +242,14 @@ $colores: ("amarillo", $brand-amarillo),
 ("arg-fucsia", $brand-arg-fucsia),
 ("arg-fucsia-dark", $brand-arg-fucsia-dark),
 ("arg-fucsia-light", $brand-arg-fucsia-light),
-("arg-gray", $brand-arg-gray),
 ("arg-gray-background", $brand-arg-gray-background),
 ("arg-gray-border", $brand-arg-gray-border),
 ("arg-gray-dark", $brand-arg-gray-dark),
 ("arg-gray-hover", $brand-arg-gray-hover),
 ("arg-gray-hover-light", $brand-arg-gray-hover-light),
 ("arg-gray-light", $brand-arg-gray-light),
-("arg-gray-lighter", $brand-arg-gray-lighter),
+("arg-gris-intermedio", $brand-arg-gris-intermedio),
+("arg-gris-niebla", $brand-arg-gris-niebla),
 ("arg-info", $brand-arg-info),
 ("arg-lavanda", $brand-arg-lavanda),
 ("arg-lima", $brand-arg-lima),
@@ -472,7 +472,6 @@ html {
 	--arg-negro-100:#E9E9E9;
 	--arg-negro-150:#DEE2E6;
 	--arg-negro-200:#DDDDDD;
-	--arg-negro-250:#7E848E;
 	--arg-negro-300:#838383;
 	--arg-negro-500:#555555;
 	--arg-negro-600:#444444;
@@ -576,14 +575,14 @@ html {
 	--arg-fucsia:#EC407A;
 	--arg-fucsia-dark:#9A144A;
 	--arg-fucsia-light:#F16798;
-	--arg-gray:#555555;
 	--arg-gray-background:#FFFFFF;
 	--arg-gray-border:#DEE2E6;
 	--arg-gray-dark:#444444;
 	--arg-gray-hover:#E9E9E9;
 	--arg-gray-hover-light:#F0F0F0;
 	--arg-gray-light:#DDDDDD;
-	--arg-gray-lighter:#F2F2F2;
+	--arg-gris-intermedio:#555555;
+	--arg-gris-niebla:#F2F2F2;
 	--arg-info:#5A7290;
 	--arg-lavanda:#9284BE;
 	--arg-lima:#B9CE39;
