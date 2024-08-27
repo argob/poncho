@@ -164,8 +164,7 @@ COPIAR DESDE ACÁ…
         const gapi_data = gapi.json_data(googlesheet_data);
         const {entries, headers} = gapi_data;
         const removeList = [
-            "horario", "lugar","direccion", "url", "imagen",
-            "direccion", "fecha-desde", "fecha-hasta"];
+            "lugar","url", "imagen", "fecha-desde", "fecha-hasta"];
         removeList.forEach(del => delete(headers[del]));
 
         const startTime1 = performance.now();
@@ -186,7 +185,7 @@ COPIAR DESDE ACÁ…
             tituloTabla: "Festividades argentinas",
             ordenColumna: 1, 
             ordenTipo: "asc",
-            ocultarColumnas: [1,2,3,5],
+            ocultarColumnas: [1,2,3,4],
             cantidadItems: 10,
             filterClassList: ["col-sm-12", "col-md-4"],
             filterContClassList: ["col-md-9"],
