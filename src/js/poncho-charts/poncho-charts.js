@@ -684,9 +684,17 @@ function ponchoChart(opt) {
             if (row == 0) { //construyo arrays para los dataset, recupero colores y labels
                 jQuery.each(filteredTitlePos, function(index, title) {
                     var split = listado[row][filteredTitlePos[index]].split("-");
+                    
                     var pos = split[0] + split[1];
                     valores[pos] = []; //construyo los array para los dataset
-                    colores.push(split[2]); //recupero colores
+
+                    // Fix para tomar colores que lleven guión medio en su
+                    // nombre. 
+                    // @todo. Corregir el problema con el split. 
+                    // Debería utilizase un método más seguro. También cambiar
+                    // el nombre de la variable
+                    const [a, b, ...color] = split;
+                    colores.push(color.join('-')); //recupero colores
 
                     if (tipoGrafico == "mixed") {
                         if (split.length > 3){ //ingresaron un tipo de grafico
@@ -974,9 +982,10 @@ function ponchoChart(opt) {
         if (tipoGrafico == "pie") {
 
             colores.forEach(function(valor, indice, array) {
+                console.log(valor)
                 codigosColores.push(ponchoColor(valor));
             });
-
+            
             graficoTorta(
                 etiquetas, datos, tipoGrafico, codigosColores, 
                 opt.idComponenteGrafico, posicionLeyendas, toltips, 

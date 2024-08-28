@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="tonoalto"></canvas>
+    <script src="https://www.argentina.gob.ar/profiles/argentinagobar/libraries/jquery.jquery-371/jquery-3.7.1.min.js?v=3.7.1"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script src="https://qa2-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
+    <script src="./poncho-charts.js"></script>
+    <script>
+
+
+
+ (function(jQuery) {
+   var ponchoGraficoOpciones = {  
+     "tipoGrafico": "Pie", 
+     "idComponenteGrafico": "tonoalto", 
+     "jsonInput": '{"values":[["eje-x","eje-y1-arg-azul","eje-y2-gna-verde-jade","eje-y3-arg-verde","eje-y4-arg-naranja","eje-y5-arg-rojo","eje-y6-arg-arandano","eje-y7-arg-uva","eje-y8-arg-cielo","eje-y9-arg-palta","eje-y10-arg-verdin","eje-y11-arg-amarillo","eje-y12-arg-tomate","eje-y13-arg-fucsia","eje-y14-arg-lavanda"],["","arg-azul","gna-verde-jade","arg-verde","arg-naranja","arg-rojo","arg-arandano","arg-uva","arg-escarapela","arg-palta","arg-verdin","arg-amarillo","arg-tomate","arg-fucsia","arg-lavanda"],["","7.14","7.14","7.14","7.14","7.14","7.14","7.14","7.14","7.14","7.14","7.14","7.14","7.14","7.14"]]}',  
+          
+     "porcentajes": false,
+               "mostrarLeyendas": true, 
+               }; 
+   ponchoChart(ponchoGraficoOpciones); 
+ })(jQuery);
+</script>
+    </script>
+</body>
+</html>
