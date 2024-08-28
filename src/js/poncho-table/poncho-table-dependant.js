@@ -849,6 +849,54 @@ const ponchoTableDependant = opt => {
 
 
     /**
+     * Ejecuta un evento
+     * 
+     * @param {string} selector Selector html
+     * @param {string} value Valor para definir en el input
+     * @param {string} eventType Tipo de evento, ej: click, change, keypress
+     */
+    function _eventDispatcher(selector, value, eventType){
+        const element = document.querySelectorAll(`#${selector}`);
+        element.forEach(ele => {
+            ele.value = value;
+            const event = new Event(eventType);
+            ele.dispatchEvent(event);
+        });
+    }
+
+    function _shareLink(){
+        filters = filtersList.map(m => m.replace('filtro-', ''));
+        inputs = [ ...filters, 'ponchoTableSearch'];
+        inputsValues = inputs.map(function(input){
+            return [input, document.getElementById(input).value];
+        });
+        url = new URL(window.location.pathname, window.location.origin);
+        inputsValues.forEach(input => {
+            let [key, value] = input;
+            key = (key == "ponchoTableSearch" ? "search" : key);
+            if(value.trim() == ""){
+                return;
+            }
+            url.searchParams.append(key, value);
+        });
+        document.querySelectorAll(".js-sharelink-tag").forEach(function(e){
+            e.innerHTML = "";
+            const label = e.dataset.label;
+            const link = document.createElement("a");
+            link.href = url.href;
+            
+            let refactorLabel = (label ? label : url.href);
+            link.textContent = refactorLabel;
+            e.appendChild(link);
+        })
+        document.querySelectorAll(".js-sharelink-text").forEach(function(e){
+            e.innerHTML = url.href;
+        })
+        return url.href;
+    }
+
+
+    /**
      * Inicializa DataTable() y modifica elementos para adaptarlos a
      * GoogleSheets y requerimientos de ArGob.
      */
@@ -939,8 +987,10 @@ const ponchoTableDependant = opt => {
         };
 
         // Ancho de columnas
-        dataTableOptions.columnDefs = dataTableOptions.columnDefs.concat(
-            _columnsWidth(opt.columnsWidth));
+        if(typeof opt.columnsWidth !== "undefined" && opt.columnsWidth){
+            dataTableOptions.columnDefs = dataTableOptions.columnDefs.concat(
+                _columnsWidth(opt.columnsWidth));
+        }
 
         /**
          * Opciones responsive
@@ -971,6 +1021,7 @@ const ponchoTableDependant = opt => {
             tabla
                 .search(jQuery.fn.DataTable.ext.type.search.string(this.value))
                 .draw();
+            _shareLink();
         });
 
 
@@ -1100,7 +1151,46 @@ const ponchoTableDependant = opt => {
             if(wizard){
                 _wizardFilters(filters, column, valFilter);
             }
+
+
+
+            _shareLink();
         });
+
+
+        function filterParams(filterList, str){
+            const regex = new RegExp('filter(?<index>(?:[1-9][0-9]|[1-9]))', '');
+            const regexResult = regex.exec(str);
+
+            if(regexResult === null){
+                return str;
+            }
+
+            const filters = filterList.map(m => m.replace("filtro-", ""));
+            const filter = filters[ regexResult.groups.index - 1 ];
+            return (typeof filter !== "undefined" ? filter : str);
+        }
+
+
+        // Si está seteado urlParams habilita los filtros y búsquedas por
+        // Url.
+        if(opt.hasOwnProperty("urlParams") && opt.urlParams){
+            const u = new URLSearchParams(window.location.search);
+            for (const key of u.keys()){
+                let value =  u.get(key);
+                let refactorKey = filterParams(filtersList, key);
+
+                if(value.trim() == ""){
+                    return;
+                }
+                if(key == "search"){
+                    _eventDispatcher(`ponchoTableSearch`, value, "keyup");
+                } else {
+                    _eventDispatcher(refactorKey, value, "change");
+                }
+            };
+
+        }
 
 
         // Si está habilitada la búsqueda por hash.
