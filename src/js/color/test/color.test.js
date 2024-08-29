@@ -11,9 +11,9 @@ test('Colores Poncho por nombre', () => {
 
 
 test("Buscar colores por su valor hexadecimal", () => {
-    expect( _color.ponchoColorByHex("141414")[0].code ).toBe("arg-black");
-    expect( _color.ponchoColorByHex("141414")[0].code ).toBe("arg-black");
-    expect( _color.ponchoColorByHex("#141414")[0].code ).toBe("arg-black");
+    expect( _color.ponchoColorByHex("141414")[0].code ).toBe("arg-negro");
+    expect( _color.ponchoColorByHex("141414")[0].code ).toBe("arg-negro");
+    expect( _color.ponchoColorByHex("#141414")[0].code ).toBe("arg-negro");
     expect( _color.ponchoColorByHex(141414) ).toBeUndefined();
 });
 
