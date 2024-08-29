@@ -1197,26 +1197,6 @@ const ponchoTableDependant = opt => {
         }
 
 
-        // Si está seteado urlParams habilita los filtros y búsquedas por
-        // Url.
-        if(urlParams){
-            const u = new URLSearchParams(window.location.search);
-            for (const key of u.keys()){
-                let value =  u.get(key);
-                let refactorKey = filterParams(filtersList, key);
-
-                if(value.trim() == ""){
-                    return;
-                }
-                if(key == "search"){
-                    _eventDispatcher(`ponchoTableSearch`, value, "keyup");
-                } else {
-                    _eventDispatcher(refactorKey, value, "change");
-                }
-            };
-        }
-
-
         // Si está habilitada la búsqueda por hash.
         if(opt.hasOwnProperty("hash") && opt.hash){
             const term = hasHash();
@@ -1228,6 +1208,27 @@ const ponchoTableDependant = opt => {
                     .search(jQuery.fn.DataTable.ext.type.search.string(searchTerm))
                     .draw();
             });
+        }
+
+
+        // Si está seteado urlParams habilita los filtros y búsquedas por
+        // Url.
+        if(urlParams){
+            const u = new URLSearchParams(window.location.search);
+            for (const key of u.keys()){
+                let value =  u.get(key);
+                let refactorKey = filterParams(filtersList, key);
+
+                if(value.trim() == ""){
+                    return;
+                }
+
+                if(key == "search"){
+                    _eventDispatcher(`ponchoTableSearch`, value, "keyup");
+                } else {
+                    _eventDispatcher(refactorKey, value, "change");
+                }
+            };
         }
     } // end initDataTable
 
