@@ -45,6 +45,8 @@ const ponchoTableDependant = opt => {
             true : false);
     var asFilter = {};
     var allowedTags = ["*"];
+    var urlParams = (opt.hasOwnProperty("urlParams") && opt.urlParams == false ? 
+            false : true);
     let markdownOptions = {
         "tables": true,
         "simpleLineBreaks": true,
@@ -864,13 +866,24 @@ const ponchoTableDependant = opt => {
         });
     }
 
+
+    /**
+     * Imprime la url
+     * @summary Imprime la url con varios métodos
+     */
     function _shareLink(){
-        filters = filtersList.map(m => m.replace('filtro-', ''));
-        inputs = [ ...filters, 'ponchoTableSearch'];
-        inputsValues = inputs.map(function(input){
+        if(!urlParams){
+            return;
+        }
+
+        const url = new URL(window.location.pathname, window.location.origin);
+        const filters = filtersList.map(m => m.replace("filtro-", ""));
+        const inputs = [ ...filters, "ponchoTableSearch" ];
+        const inputsValues = inputs.map(function(input){
             return [input, document.getElementById(input).value];
         });
-        url = new URL(window.location.pathname, window.location.origin);
+
+        // Agrego parámetros
         inputsValues.forEach(input => {
             let [key, value] = input;
             key = (key == "ponchoTableSearch" ? "search" : key);
@@ -879,20 +892,32 @@ const ponchoTableDependant = opt => {
             }
             url.searchParams.append(key, value);
         });
+
+        // Crea un tag <a/>
         document.querySelectorAll(".js-sharelink-tag").forEach(function(e){
             e.innerHTML = "";
             const label = e.dataset.label;
             const link = document.createElement("a");
             link.href = url.href;
-            
+
             let refactorLabel = (label ? label : url.href);
             link.textContent = refactorLabel;
+
             e.appendChild(link);
-        })
+        });
+
+        // Imprime la url como texto en un attributo o en el cuerpo de la 
+        // etiqueta.
         document.querySelectorAll(".js-sharelink-text").forEach(function(e){
-            e.innerHTML = url.href;
-        })
-        return url.href;
+            // Si el usuario agregó el dataset attr, imprimo la url 
+            // en el attributo pasado como valor.
+            const attr = e.dataset.attr;
+            if(attr){
+                e.setAttribute(attr, url.href);
+            } else {
+                e.innerHTML = url.href;
+            }
+        });
     }
 
 
@@ -1147,12 +1172,12 @@ const ponchoTableDependant = opt => {
                         );
                 }
             });
+
             tabla.draw();
+
             if(wizard){
                 _wizardFilters(filters, column, valFilter);
             }
-
-
 
             _shareLink();
         });
@@ -1174,7 +1199,7 @@ const ponchoTableDependant = opt => {
 
         // Si está seteado urlParams habilita los filtros y búsquedas por
         // Url.
-        if(opt.hasOwnProperty("urlParams") && opt.urlParams){
+        if(urlParams){
             const u = new URLSearchParams(window.location.search);
             for (const key of u.keys()){
                 let value =  u.get(key);
@@ -1189,7 +1214,6 @@ const ponchoTableDependant = opt => {
                     _eventDispatcher(refactorKey, value, "change");
                 }
             };
-
         }
 
 
@@ -1267,14 +1291,14 @@ const ponchoTableDependant = opt => {
             .classList.remove("state-loading");
 
         initDataTable();
+        _shareLink();
 
         setTimeout(() => {
             const ele = document.querySelectorAll(`[id^="dt-search-"], #ponchoTable_filter`);
             ele.forEach(elem => {
                 elem.closest(".row").remove();
-                elem.border = "1px solid red"
             });
-        }, 300)
+        }, 300);
     };
 
 
