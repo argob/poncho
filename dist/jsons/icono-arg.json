@@ -3452,6 +3452,11 @@
       },
     
       {
+        "nombre": "proteccion-a-la-poblacion",
+        "clase": "icono-arg-proteccion-a-la-poblacion"
+      },
+    
+      {
         "nombre": "provincia-buenosaires",
         "clase": "icono-arg-provincia-buenosaires"
       },

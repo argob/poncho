@@ -45,6 +45,8 @@ const ponchoTableDependant = opt => {
             true : false);
     var asFilter = {};
     var allowedTags = ["*"];
+    var urlParams = (opt.hasOwnProperty("urlParams") && opt.urlParams == false ? 
+            false : true);
     let markdownOptions = {
         "tables": true,
         "simpleLineBreaks": true,
@@ -849,6 +851,77 @@ const ponchoTableDependant = opt => {
 
 
     /**
+     * Ejecuta un evento
+     * 
+     * @param {string} selector Selector html
+     * @param {string} value Valor para definir en el input
+     * @param {string} eventType Tipo de evento, ej: click, change, keypress
+     */
+    function _eventDispatcher(selector, value, eventType){
+        const element = document.querySelectorAll(`#${selector}`);
+        element.forEach(ele => {
+            ele.value = value;
+            const event = new Event(eventType);
+            ele.dispatchEvent(event);
+        });
+    }
+
+
+    /**
+     * Imprime la url
+     * @summary Imprime la url con varios métodos
+     */
+    function _shareLink(){
+        if(!urlParams){
+            return;
+        }
+
+        const url = new URL(window.location.pathname, window.location.origin);
+        const filters = filtersList.map(m => m.replace("filtro-", ""));
+        const inputs = [ ...filters, "ponchoTableSearch" ];
+        const inputsValues = inputs.map(function(input){
+            return [input, document.getElementById(input).value];
+        });
+
+        // Agrego parámetros
+        inputsValues.forEach(input => {
+            let [key, value] = input;
+            key = (key == "ponchoTableSearch" ? "search" : key);
+            if(value.trim() == ""){
+                return;
+            }
+            url.searchParams.append(key, value);
+        });
+
+        // Crea un tag <a/>
+        document.querySelectorAll(".js-sharelink-tag").forEach(function(e){
+            e.innerHTML = "";
+            const label = e.dataset.label;
+            const link = document.createElement("a");
+            link.href = url.href;
+
+            let refactorLabel = (label ? label : url.href);
+            link.textContent = refactorLabel;
+
+            e.appendChild(link);
+        });
+
+        // Imprime la url como texto en un attributo o en el cuerpo de la 
+        // etiqueta.
+        document.querySelectorAll(".js-sharelink-text").forEach(function(e){
+            // Si el usuario agregó el dataset attr, imprimo la url 
+            // en el attributo pasado como valor.
+            const attr = e.dataset.attr;
+            if(attr){
+                e.setAttribute(attr, url.href);
+            } else {
+                e.innerHTML = url.href;
+            }
+        });
+    }
+
+
+    /**
      * Inicializa DataTable() y modifica elementos para adaptarlos a
      * GoogleSheets y requerimientos de ArGob.
      */
@@ -939,8 +1012,10 @@ const ponchoTableDependant = opt => {
         };
 
         // Ancho de columnas
-        dataTableOptions.columnDefs = dataTableOptions.columnDefs.concat(
-            _columnsWidth(opt.columnsWidth));
+        if(typeof opt.columnsWidth !== "undefined" && opt.columnsWidth){
+            dataTableOptions.columnDefs = dataTableOptions.columnDefs.concat(
+                _columnsWidth(opt.columnsWidth));
+        }
 
         /**
          * Opciones responsive
@@ -971,6 +1046,7 @@ const ponchoTableDependant = opt => {
             tabla
                 .search(jQuery.fn.DataTable.ext.type.search.string(this.value))
                 .draw();
+            _shareLink();
         });
 
 
@@ -1096,11 +1172,49 @@ const ponchoTableDependant = opt => {
                         );
                 }
             });
+
             tabla.draw();
+
             if(wizard){
                 _wizardFilters(filters, column, valFilter);
             }
+
+            _shareLink();
         });
+
+
+        function filterParams(filterList, str){
+            const regex = new RegExp('filter(?<index>(?:[1-9][0-9]|[1-9]))', '');
+            const regexResult = regex.exec(str);
+
+            if(regexResult === null){
+                return str;
+            }
+
+            const filters = filterList.map(m => m.replace("filtro-", ""));
+            const filter = filters[ regexResult.groups.index - 1 ];
+            return (typeof filter !== "undefined" ? filter : str);
+        }
+
+
+        // Si está seteado urlParams habilita los filtros y búsquedas por
+        // Url.
+        if(urlParams){
+            const u = new URLSearchParams(window.location.search);
+            for (const key of u.keys()){
+                let value =  u.get(key);
+                let refactorKey = filterParams(filtersList, key);
+
+                if(value.trim() == ""){
+                    return;
+                }
+                if(key == "search"){
+                    _eventDispatcher(`ponchoTableSearch`, value, "keyup");
+                } else {
+                    _eventDispatcher(refactorKey, value, "change");
+                }
+            };
+        }
 
 
         // Si está habilitada la búsqueda por hash.
@@ -1177,14 +1291,14 @@ const ponchoTableDependant = opt => {
             .classList.remove("state-loading");
 
         initDataTable();
+        _shareLink();
 
         setTimeout(() => {
             const ele = document.querySelectorAll(`[id^="dt-search-"], #ponchoTable_filter`);
             ele.forEach(elem => {
                 elem.closest(".row").remove();
-                elem.border = "1px solid red"
             });
-        }, 300)
+        }, 300);
     };
 
 

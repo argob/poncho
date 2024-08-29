@@ -22,7 +22,7 @@
   <!-- /Base -->
   <link rel="stylesheet" href="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/poncho.min.css" />
   <link rel="stylesheet" href="../src/" />
-  <title>Tabla vialidad</title>
+  <title>PonchoTable | Búscar y compartir</title>
   <style>
     body {
         padding: 2em;
@@ -36,11 +36,44 @@
 <script src="../poncho-table.js"></script>
 <script src="../poncho-table-dependant.js"></script>
 <script src="../../gapi-sheet-data/gapi-sheet-data.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
 <body class="p-t-3">
-  <h1>PonchoTable legacy un solo filtro</h1>
+<h1>Compartir enlace </h1>
 
+<div class="m-b-2 clearfix form-group">
+    <p>Asignando el enlace a un atributo html.</p>
+    <input type="text" data-attr="value" class="form-control js-sharelink-text col-md-12" vlaue="foo">
+</div>
 
+<div class="m-b-2 clearfix form-group">
+<p><strong>Asignando el valor a un textarea form</strong></p>
+<textarea name="" id="" data-sattr="value" class="form-control js-sharelink-text col-md-12" ></textarea>
+</div>
+
+<div class="m-b-2 clearfix">
+<p><strong>Creando un enlace html con un texto custom</strong></p>
+<p class="js-sharelink-tag" data-label="Compartir enlace"></p>
+</div>
+
+<div class="m-b-2 clearfix">
+<p><strong>Asignando el enlace dentro de una etiqueta</strong></p>
+<p class="js-sharelink-text"></p>
+</div>
+
+<div class="m-b-2 clearfix">
+    <div class="dropdown">
+        <button class="btn btn-sm btn-default dropdown-toggle" type="button" id="about-us" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Compartir enlace
+        <span class="caret"></span>
+        </button>
+        <div class="dropdown-menu p-y-1 p-x-1" aria-labelledby="about-us">
+            <p class="js-sharelink-tag m-b-0 small" id="foo"></p>
+            <a href="#" data-toclipboard="foo" class="small btn btn-sm btn-default m-b-0 m-t-1">Copiar al portapapeles</a>
+        </div>
+    </div>
+</div>
+<hr>
 <!-- 
 COPIAR DESDE ACÁ…
 -->
@@ -96,7 +129,7 @@ COPIAR DESDE ACÁ…
             //   "filterClassList": ["col-sm-12", "col-md-6"], // PERMITE CONFIGURAR LA CANTIDAD DE COLUMNAS Y ESTILOS PARA LOS FILTROS. SI NO SE DECLARA ESTE ATRIBUTO, EL PROGRAMA LO HACE AUTOMÁTICAMENTE.
             //     "filterContClassList": ["col-md-4"], // PERMITE CONFIGURAR EL TAMAÑO DE LA COLUMNA DEL CONTENEDOR DE LOS FILTROS
             //    "searchContClassList": ["col-md-8"], // PERMITE CONFIGURAR EL TAMAÑO DE LA COLUMNA DEL CONTENEDOR DEL BUSCADOR.
-            "hash": true, // SI ES TRUE, PERMITE HACER UNA BÚSQUEDA POR URL, EJ. www.argentina.gob.ar#mi_busqueda
+            "hash": false, // SI ES TRUE, PERMITE HACER UNA BÚSQUEDA POR URL, EJ. www.argentina.gob.ar#mi_busqueda
             "markdownOptions": {
                 //   "tables": true,
                 "simpleLineBreaks": true,
@@ -112,6 +145,7 @@ COPIAR DESDE ACÁ…
                     //    'video'
                 ]
             },
+            // urlParams: false
             // [ [{num prioridad}, {indice columna}] ]
             // responsivePriorities: [
             //     [1, 2],[2, 1]
@@ -126,5 +160,15 @@ COPIAR DESDE ACÁ…
 
 </script>
 <!-- / COPIAR HASTA ACA -->
+<script src="../../utils/document.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", (event) => {
+        const toclipboard = document.querySelectorAll("[data-toclipboard]");
+        toclipboard.forEach(elem => {
+            const id = elem.dataset.toclipboard;
+            elem.addEventListener("click", () => copyToClipboard(`#${id}`));
+        })
+    });
+</script>
 </body>
 </html>
