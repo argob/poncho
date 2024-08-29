@@ -38,7 +38,7 @@ Para que los filtros funcionen en las tablas de Google, se debe usar el prefijo 
 | emptyLabel | `string` | Permite cambiar el _label_ en la opción vacía del desplegable. `Todos` por defecto. |
 | wizard | `boolean` | Muestra los _select_ y sus opciones una vez seleccionado el filtro padre. `false` por defecto. |
 | urlParams | `true` | Habilita hacer consultas desde la url, pasando parámetros para filtros e input de búsqueda. |
-
+| pushState | `false` | Si es verdadero (true), cada vez que el usuario modifica filtros o hace búsquedas en la tabla, la dirección (url) del navegador, cambiará. |
 
 ### Opción para modo Wizard
 
