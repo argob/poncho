@@ -52,6 +52,28 @@ const slugify = (string) =>{
 };
 
 
+/**
+ * Palabras en title-case.
+ * @param {string} str Cadena a transformar
+ * @param {boolean} allWords True title-case a todas las palabras
+ * @returns {string}
+ */
+const toTitleCase = (str, allWords=true) => {
+    if (typeof str !== "string" || !str || !str.trim()) {
+        console.warn("Debe ingresar una cadena de texto.");
+        return str;
+    }
+    const titleCase = w => w[0].toUpperCase() + w.substring(1).toLowerCase();
+    str = str.replace(/(^\s+|\s+$)/g, "");
+    
+    if(!allWords){
+        return titleCase(str);
+    }
+    const words = str.split(/\s+/);
+    return words.map(w => titleCase(w)).join(" ");
+}
+
+
 if (typeof exports !== "undefined") {
-    module.exports = {slugify, replaceSpecialChars};
+    module.exports = {slugify, replaceSpecialChars, toTitleCase};
 }
