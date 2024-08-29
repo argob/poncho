@@ -37,6 +37,7 @@
 <script src="../poncho-table-dependant.js"></script>
 <script src="../../gapi-sheet-data/gapi-sheet-data.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="../../utils/document.js"></script>
 </head>
 <body class="p-t-3">
 <h1>Compartir enlace </h1>
@@ -52,8 +53,8 @@
 </div>
 
 <div class="m-b-2 clearfix">
-<p><strong>Creando un enlace html con un texto custom</strong></p>
-<p class="js-sharelink-tag" data-label="Compartir enlace"></p>
+  <p><strong>Creando un enlace html con un texto custom</strong></p>
+  <p class="js-sharelink-tag" data-label="Compartir enlace"></p>
 </div>
 
 <div class="m-b-2 clearfix">
@@ -85,9 +86,8 @@ COPIAR DESDE ACÁ…
 
 
 <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/datatables.min.js"></script> 
-<!-- <script src="https://cdn.datatables.net/responsive/3.0.0/js/dataTables.responsive.min.js"></script>  -->
 <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/intl.min.js"></script>
-<!-- <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script> -->
+<script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
 <!-- / INCLUDE SCRIPTS -->
 
 
@@ -119,7 +119,7 @@ COPIAR DESDE ACÁ…
 <script>
     (function($) {
         var ponchoTableOpciones = {
-            "idSpread": "1yrQCHds78-Y76qwseOx7OhBFsTuzPdgGKzd3nd8TJa8", // Informá entre comillas el ID de la planilla, siempre publicá el spreadsheet y que el enlace sea público
+            "idSpread": "1CTq7lCm9Dwz4NdINAgtIE818L2_Smnv-_zvFcapjT6Q", // Informá entre comillas el ID de la planilla, siempre publicá el spreadsheet y que el enlace sea público
             "hojaNombre": "Hoja 1", // Escribí entre comillas el nombre de la pestaña de la planilla
             "tituloTabla": "banco de evaluaciones", // Siempre informá entre comillas un título corto para accesibilidad
             "ordenColumna": 1, // Informá por cuál columna se ordena la tabla, la primera columna es 1 (uno)
@@ -145,6 +145,7 @@ COPIAR DESDE ACÁ…
                     //    'video'
                 ]
             },
+            // pushState: false,
             // urlParams: false
             // [ [{num prioridad}, {indice columna}] ]
             // responsivePriorities: [
@@ -160,13 +161,15 @@ COPIAR DESDE ACÁ…
 
 </script>
 <!-- / COPIAR HASTA ACA -->
-<script src="../../utils/document.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", (event) => {
         const toclipboard = document.querySelectorAll("[data-toclipboard]");
         toclipboard.forEach(elem => {
             const id = elem.dataset.toclipboard;
-            elem.addEventListener("click", () => copyToClipboard(`#${id}`));
+            elem.addEventListener("click", (e) => {
+              e.preventDefault();
+              copyToClipboard(`#${id}`);
+            });
         })
     });
 </script>
