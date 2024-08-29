@@ -85,3 +85,32 @@ const headStyle = (id, styleDefinitions, mediaType) => {
         h.appendChild(tag);
     });
 };
+
+
+/**
+ * Copia texto en el portapapeles (clipboard)
+ * 
+ * @param {string} selector Selector html, ej: .class o #id
+ * @param {function} callback Función de retorno.
+ * @returns {void}
+ */
+function copyToClipboard(selector, callback) {
+    if(typeof selector !== "string" || selector == ""){
+        return;
+    }
+
+    const copyText = document.querySelector(selector);
+    if(!copyText){
+        console.error("[copyToClipboard] No se puede encontrar el elemento.");
+        return;
+    }
+    const str = copyText.textContent;
+    navigator.clipboard.writeText(str)
+        .then(function(){
+            if(typeof callback === "function"){
+                callback(copyText);
+            }
+        }, function(){
+            console.error("[copyToClipboard] No se puede copiar el texto.");
+        });
+}
