@@ -14,7 +14,9 @@ test('ponchoColorDefinitions()', () => {
     expect( _color.ponchoColorDefinitions("arandano").code ).toBe('arg-arandano');
     expect( _color.ponchoColorDefinitions("arándano").code ).toBe('arg-arandano');
     expect( _color.ponchoColorDefinitions("arg-arándano").code ).toBe('arg-arandano');
-    
+    expect( _color.ponchoColorDefinitions("arg-maíz").code ).toBe('arg-maiz');
+    expect( _color.ponchoColorDefinitions("maíz").code ).toBe('arg-maiz');
+    expect( _color.ponchoColorDefinitions("maiz").code ).toBe('arg-maiz');
 });
 
 
