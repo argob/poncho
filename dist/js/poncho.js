@@ -72,6 +72,33 @@ class Color {
 
 
     /**
+     * Remueve acentos y caracteres especiales.
+     * 
+     * @param {string} data Cadena de texto a limpiar. 
+     * @example
+     * // returns Accion Murcielago arbol nino
+     * removeAccents("Acción Murciélago árbol niño")
+     * @returns {string} Cadena de texto sin acentos.
+     */
+    replaceSpecialChars = (data) => {
+        if(typeof data !== "string" || data.trim().length === 0){
+            console.warn("replaceSpecialChars: Debe pasar una cadena de texto.");
+            return "";
+        }
+
+        const search = "àáâäæãåāăąçćčđďèéêëēėęěğǵḧîïíīįìıİłḿñńǹňôöòóœøōõőṕ"
+                + "ŕřßśšşșťțûüùúūǘůűųẃẍÿýžźż";
+        const replace = "aaaaaaaaaacccddeeeeeeeegghiiiiiiiilmnnnnooooooooop"
+                + "rrsssssttuuuuuuuuuwxyyzzz";
+
+        const a = search + search.toUpperCase();
+        const b = replace + replace.toUpperCase();
+        const p = new RegExp(a.split("").join("|"), "g");  
+        return data.toString().replace(p, c => b.charAt(a.indexOf(c)));
+    };
+
+
+    /**
      * 
      * @param {*} colorDefinitins 
      * @returns 
@@ -136,6 +163,7 @@ class Color {
      */
     ponchoColor = color => {
         const defaultColor = "#99999";
+        const self = this;
 
         if (typeof color !== "string") {
             console.warn(
@@ -145,7 +173,7 @@ class Color {
         }
 
         const definition = this.ponchoColorVariables().find(function(f){ 
-            return (f[0] == color.toLocaleLowerCase());
+            return (f[0] == self.replaceSpecialChars(color).toLowerCase());
         });
 
         return (definition ? definition[1] : defaultColor);
@@ -164,8 +192,8 @@ class Color {
             return;
         }
 
-        const lowerCasePonchoColor = ponchoColor.toLowerCase();
-        let result = null;
+        const lowerCasePonchoColor = this.replaceSpecialChars(ponchoColor).toLowerCase();
+        let result;
         let gSpace = "";
         
         // Iteración por espacios (space)
