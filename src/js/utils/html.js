@@ -12,6 +12,17 @@
  * @returns {string} Texto remplazado.
  */
 const secureHTML = (str, exclude=[]) => {
+    if(typeof str !== "string" || str.trim().length === 0){
+        console.error("secureHTML:", "Solo admite cadenas de texto.");
+        return;
+    }
+
+    if(!Array.isArray(exclude)){
+        console.error(
+            "secureHTML:", "El segundo argumento debe ser un Array.");
+        return;
+    }
+
     if(exclude.some(e => e === "*")){
         return str;
     }
@@ -19,11 +30,6 @@ const secureHTML = (str, exclude=[]) => {
     let replaceString = str.toString()
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;");
-
-    // let replaceString = str.toString()
-    //     .replace(/<(?=[a-zA-Z])([^<>]*)>/gm, "&lt;$1&gt;")
-    //     .replace(/<\/(?=[a-zA-Z])([^<>]*)>/gm, "&lt;/$1&gt;");
-
 
     if(exclude.length > 0){
         const regexStart = new RegExp(
