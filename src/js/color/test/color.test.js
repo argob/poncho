@@ -7,6 +7,14 @@ test('Colores Poncho por nombre', () => {
     expect( _color.ponchoColor('amarillo') ).toBe('#E7BA61');
     expect( _color.ponchoColor('warning') ).toBe('#E7BA61');
     expect( _color.ponchoColor('Esto no es un color') ).toBe('#99999');
+
+});
+
+test('ponchoColorDefinitions()', () => {
+    expect( _color.ponchoColorDefinitions("arandano").code ).toBe('arg-arandano');
+    expect( _color.ponchoColorDefinitions("arándano").code ).toBe('arg-arandano');
+    expect( _color.ponchoColorDefinitions("arg-arándano").code ).toBe('arg-arandano');
+    
 });
 
 
