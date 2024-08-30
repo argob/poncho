@@ -15,4 +15,10 @@ test('Secure HTML', () => {
 
     expect(secureHTML('<<strong>negrita</strong>>', ["strong"]))
         .toBe('&lt;<strong>negrita</strong>&gt;');
+
+    expect(secureHTML('<<strong>negrita</strong>>', "texto")).toBeUndefined();
+    expect(secureHTML(true, [])).toBeUndefined();
+    expect(secureHTML(true, true)).toBeUndefined();
+    expect(secureHTML()).toBeUndefined();
+
 });
