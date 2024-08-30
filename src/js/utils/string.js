@@ -3,22 +3,25 @@
  * 
  * @param {string} data Cadena de texto a limpiar. 
  * @example
- * // returns Accion murcielago arbol nino
+ * // returns Accion Murcielago arbol nino
  * removeAccents("Acción Murciélago árbol niño")
  * @returns {string} Cadena de texto sin acentos.
  */
 const replaceSpecialChars = (data) => {
-    if(!data){
+    if(typeof data !== "string" || data.trim().length === 0){
+        console.warn("replaceSpecialChars: Debe pasar una cadena de texto.");
         return "";
     }
+
     const search = "àáâäæãåāăąçćčđďèéêëēėęěğǵḧîïíīįìıİłḿñńǹňôöòóœøōõőṕ"
-    + "ŕřßśšşșťțûüùúūǘůűųẃẍÿýžźż";
+            + "ŕřßśšşșťțûüùúūǘůűųẃẍÿýžźż";
     const replace = "aaaaaaaaaacccddeeeeeeeegghiiiiiiiilmnnnnooooooooop"
-    + "rrsssssttuuuuuuuuuwxyyzzz";
+            + "rrsssssttuuuuuuuuuwxyyzzz";
+
     const a = search + search.toUpperCase();
     const b = replace + replace.toUpperCase();
     const p = new RegExp(a.split("").join("|"), "g");  
-    return data.toString().replace(p, c => b.charAt(a.indexOf(c)))
+    return data.toString().replace(p, c => b.charAt(a.indexOf(c)));
 };
 
 
@@ -31,9 +34,10 @@ const replaceSpecialChars = (data) => {
  * slugify("El murciélago remolón parece un niño")
  * @returns {string} Cadena de texto en formato slug.
  */
-const slugify = (string) =>{
-    if(!string){
-        return string;
+const slugify = (str) =>{
+    if(typeof str !== "string" || str.trim().length === 0){
+        console.warn("slugify: Debe pasar una cadena de texto.");
+        return str;
     }
     const a = "àáâäæãåāăąçćčđďèéêëēėęěğǵḧîïíīįìıİłḿñńǹňôöòóœøōõőṕ"
                 + "ŕřßśšşșťțûüùúūǘůűųẃẍÿýžźż·/_,:;";
@@ -41,7 +45,7 @@ const slugify = (string) =>{
                 + "rrsssssttuuuuuuuuuwxyyzzz------";
     const p = new RegExp(a.split("").join("|"), "g");
 
-    return string.toString().toLowerCase()
+    return str.toString().toLowerCase()
         .replace(/\s+/g, "-")
         .replace(p, c => b.charAt(a.indexOf(c)))
         .replace(/&/g, "-and-")
@@ -59,8 +63,8 @@ const slugify = (string) =>{
  * @returns {string}
  */
 const toTitleCase = (str, allWords=true) => {
-    if (typeof str !== "string" || !str || !str.trim()) {
-        console.warn("Debe ingresar una cadena de texto.");
+    if(typeof str !== "string" || str.trim().length === 0){
+        console.warn("[toTitleCase] Debe ingresar una cadena de texto.");
         return str;
     }
     const titleCase = w => w[0].toUpperCase() + w.substring(1).toLowerCase();
