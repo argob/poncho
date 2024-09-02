@@ -10,28 +10,28 @@ test('Colores Poncho por nombre', () => {
 
 });
 
-test('ponchoColorDefinitions()', () => {
-    expect( _color.ponchoColorDefinitions("arandano").code ).toBe('arg-arandano');
-    expect( _color.ponchoColorDefinitions("arándano").code ).toBe('arg-arandano');
-    expect( _color.ponchoColorDefinitions("arg-arándano").code ).toBe('arg-arandano');
-    expect( _color.ponchoColorDefinitions("arg-maíz").code ).toBe('arg-maiz');
-    expect( _color.ponchoColorDefinitions("maíz").code ).toBe('arg-maiz');
-    expect( _color.ponchoColorDefinitions("maiz").code ).toBe('arg-maiz');
+test('colorDefinitions()', () => {
+    expect( _color.colorDefinitions("arandano").code ).toBe('arg-arandano');
+    expect( _color.colorDefinitions("arándano").code ).toBe('arg-arandano');
+    expect( _color.colorDefinitions("arg-arándano").code ).toBe('arg-arandano');
+    expect( _color.colorDefinitions("arg-maíz").code ).toBe('arg-maiz');
+    expect( _color.colorDefinitions("maíz").code ).toBe('arg-maiz');
+    expect( _color.colorDefinitions("maiz").code ).toBe('arg-maiz');
 });
 
 
 test("Buscar colores por su valor hexadecimal", () => {
-    expect( _color.ponchoColorByHex("141414")[0].code ).toBe("arg-negro");
-    expect( _color.ponchoColorByHex("141414")[0].code ).toBe("arg-negro");
-    expect( _color.ponchoColorByHex("#141414")[0].code ).toBe("arg-negro");
-    expect( _color.ponchoColorByHex(141414) ).toBeUndefined();
+    expect( _color.colorByHex("141414")[0].code ).toBe("arg-negro");
+    expect( _color.colorByHex("141414")[0].code ).toBe("arg-negro");
+    expect( _color.colorByHex("#141414")[0].code ).toBe("arg-negro");
+    expect( _color.colorByHex(141414) ).toBeUndefined();
 });
 
 
 test("Refactor Hex", () => {
-    expect( _color.cleanUpHex(123) ).toBe('#112233');
-    expect( _color.cleanUpHex("#123") ).toBe("#112233");
-    expect( _color.cleanUpHex("#1234567") ).toBeFalsy();
+    expect( _color.cleanHex(123) ).toBe('#112233');
+    expect( _color.cleanHex("#123") ).toBe("#112233");
+    expect( _color.cleanHex("#1234567") ).toBeFalsy();
 });
 
 
