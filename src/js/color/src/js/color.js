@@ -27,7 +27,7 @@
  */
 class Color {
     constructor(colorDefinitions){
-        if(!this.isValidPonchoColorDefList(colorDefinitions)){
+        if(!this.isValidColorDefinitionList(colorDefinitions)){
             console.error("No se pasado por argumento el listado de color");
             return;
         }
@@ -64,29 +64,28 @@ class Color {
 
     /**
      * 
-     * @param {*} colorDefinitins 
-     * @returns 
+     * @param {array} definitions 
+     * @returns {boolean}
      */
-    isValidPonchoColorDefList(colorDefinitins){
+    isValidColorDefinitionList(definitions){
         return (
-            Array.isArray(colorDefinitins) &&
-            colorDefinitins.length > 0 &&
-            colorDefinitins[0].hasOwnProperty('space')
+            Array.isArray(definitions) &&
+            definitions.length > 0 &&
+            definitions[0].hasOwnProperty('space')
         );
     }
 
 
     /**
      * Listado de colores
-     * @param {object} colorDefinitionsList 
-     * @returns 
+     * @returns {object}
      */
-    ponchoColorList = (colorDefinitionsList) => {
-        let result = colorDefinitionsList
-            .flatMap( m => m.data.flatMap(i => i.instance.map(x => x)) );
+    get list(){
+        let result = this.definitions
+        .flatMap( m => m.data.flatMap(i => i.instance.map(x => x)) );
 
         return result || [];
-    };
+    }
 
 
     /**
@@ -94,11 +93,10 @@ class Color {
      * @param {*} colorDefinitions 
      * @returns 
      */
-    ponchoColorVariables = () => { 
-        const colors = this.ponchoColorList(this.definitions);
+    get variables(){ 
         let collect = [];
         
-        colors.flatMap(m => {
+        this.list.flatMap(m => {
             const {alias, color, description, variant={}} = m;
     
             alias.forEach(function(a){
@@ -136,7 +134,7 @@ class Color {
             return defaultColor;
         }
 
-        const definition = this.ponchoColorVariables().find(function(f){ 
+        const definition = this.variables.find(function(f){ 
             return (f[0] == self.replaceSpecialChars(color).toLowerCase());
         });
 
@@ -147,11 +145,11 @@ class Color {
     /**
      * Definición por color
      *
-     * @see ponchoColorDefinitionsList
+     * @see colorDefinitionsList
      * @param {string} color Nombre del cólor a buscar.
      * @returns {string|boolean}
      */
-    ponchoColorDefinitions = (ponchoColor) => {
+    colorDefinitions = (ponchoColor) => {
         if(typeof ponchoColor == undefined || !ponchoColor.trim()){
             return;
         }
@@ -190,7 +188,7 @@ class Color {
      * @param {string} name Nombre del grupo
      * @returns
      */
-    ponchoColorGroup = (themeSpace, spaceGroup) => {
+    colorGroup = (themeSpace, spaceGroup) => {
         if(typeof spaceGroup == undefined || !spaceGroup?.trim()){
             return;
         }
@@ -210,7 +208,7 @@ class Color {
      * @param {string} name Nombre del espacio
      * @returns
      */
-    ponchoColorSpace = (space) => {
+    colorSpace = (space) => {
         if(typeof space == undefined || !space?.trim()){
             return;
         }
@@ -222,7 +220,7 @@ class Color {
     /**
      * Retorna el código de color poncho por hexadecimal.
      * @param {string} value Valor hexadecimal a buscar
-     * @see ponchoColorDefinitionsList
+     * @see colorDefinitionsList
      * @example
      * // {
      * //    "description": "",
@@ -236,13 +234,13 @@ class Color {
      * findByHex("#f79525");
      * @returns {object} Objecto con la defición del color
      */
-    ponchoColorByHex = (hexColor) => {
+    colorByHex = (hexColor) => {
         if(!this.isValidHex(hexColor)){
             return;
         }
 
         var result = [];
-        const targetColor = this.cleanUpHex(hexColor);
+        const targetColor = this.cleanHex(hexColor);
 
         for(let i = 0; i <= this.definitions.length -1; i += 1){
             let {data} = this.definitions[i];
@@ -251,7 +249,7 @@ class Color {
                 const {instance} = entry;
                 for(let item of instance){
                     const {color} = item;
-                    if( this.cleanUpHex(color) == targetColor ){
+                    if( this.cleanHex(color) == targetColor ){
                         result.push(item);
                     }
                 }
@@ -267,7 +265,7 @@ class Color {
      * @param {string} value Valor hexadecimal
      * @returns {string}
      */
-    cleanUpHex = value => {
+    cleanHex = value => {
         let hex = value
             .toString()
             .replace("#", "")
@@ -315,7 +313,7 @@ class Color {
             return;
         }
 
-        const hex = this.cleanUpHex(hexColor);
+        const hex = this.cleanHex(hexColor);
         const cleanedHex = (hex.startsWith("#") ? hex.slice(1) : hex);
 
         const red = parseInt(cleanedHex.slice(0, 2), 16);
