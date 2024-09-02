@@ -94,7 +94,7 @@ layout: default
 <script src="https://qa2-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
 <script>
     const tplSample = (instance, colorName) => {
-        const c = instance.ponchoColorDefinitions(colorName);
+        const c = instance.colorDefinitions(colorName);
         if(typeof c == "undefined" || c == null){
             return;
         }
