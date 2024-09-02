@@ -47,7 +47,7 @@ const illustrationColors = [
 const colorVariations = {
     high: [
         'arg-azul', 'gna-verde-jade', 'arg-verde', 'arg-naranja', 'arg-rojo', 
-        'arg-arandano', 'uva', 'arg-cielo', 'arg-palta', 'arg-verdin', 
+        'arg-arandano', 'arg-uva', 'arg-cielo', 'arg-palta', 'arg-verdin', 
         'arg-amarillo', 'arg-tomate', 'arg-fucsia', 'arg-lavanda', 'arg-negro'
     ],
     medium: [
