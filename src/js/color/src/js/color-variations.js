@@ -26,6 +26,7 @@
  * SOFTWARE.
  */
 
+
 /**
  * Códigos de color válidos para utilizar en ilustraciones. 
  */
