@@ -1192,7 +1192,9 @@ const ponchoTableDependant = opt => {
             });
 
             tabla.draw();
+            window.addEventListener("popstate", (event) => {
 
+            });
             if(wizard){
                 _wizardFilters(filters, column, valFilter);
             }
