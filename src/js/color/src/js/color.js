@@ -130,7 +130,7 @@ class Color { //jslint-ignore-line
                 collect.push( [a.code, color, description] );
 
                 Object.entries(variant).forEach(function(value){
-                    if(!a.exclude_variant){
+                    if(!a.exclude){
                         collect.push( [`${a.code}-${value[0]}`, value[1]] );
                     }
                 });
