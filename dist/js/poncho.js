@@ -1548,11 +1548,11 @@ if (typeof exports !== "undefined") {
 
 /**
  * Configuración de colores www.argentina.gob.ar
- * 
+ *
  * MIT License
- * 
+ *
  * Copyright (c) 2024 Argentina.gob.ar
- * 
+ *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
  * files (the "Software"), to deal in the Software without restriction,
@@ -1560,10 +1560,10 @@ if (typeof exports !== "undefined") {
  * publish, distribute, sublicense, and/or sell copies of the Software,
  * and to permit persons to whom the Software is furnished to do so,
  * subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be
  * included in all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
  * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -1573,7 +1573,7 @@ if (typeof exports !== "undefined") {
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-class Color {
+class Color { //jslint-ignore-line
     constructor(colorDefinitions){
         if(!this.isValidColorDefinitionList(colorDefinitions)){
             console.error("No se pasado por argumento el listado de color");
@@ -1585,8 +1585,8 @@ class Color {
 
     /**
      * Remueve acentos y caracteres especiales.
-     * 
-     * @param {string} data Cadena de texto a limpiar. 
+     *
+     * @param {string} data Cadena de texto a limpiar.
      * @example
      * // returns Accion Murcielago arbol nino
      * removeAccents("Acción Murciélago árbol niño")
@@ -1605,14 +1605,14 @@ class Color {
 
         const a = search + search.toUpperCase();
         const b = replace + replace.toUpperCase();
-        const p = new RegExp(a.split("").join("|"), "g");  
+        const p = new RegExp(a.split("").join("|"), "g");
         return data.toString().replace(p, c => b.charAt(a.indexOf(c)));
     };
 
 
     /**
-     * 
-     * @param {array} definitions 
+     *
+     * @param {array} definitions
      * @returns {boolean}
      */
     isValidColorDefinitionList(definitions){
@@ -1637,19 +1637,46 @@ class Color {
 
 
     /**
-     * 
-     * @param {*} colorDefinitions 
-     * @returns 
+     * Buscador de colores.
+     *
+     * @param {string} value Color a buscar.
+     * @returns {object}
      */
-    get variables(){ 
+    findColor = value => {
+        if(typeof value !== "string" || value.trim().length === 0){
+            console.error(
+                "findColor:",
+                "El valor a buscar debe ser una cadena de texto.");
+            return [];
+        }
+
+        const searchResults = this.variables.filter( function(f){
+            if( f[0].includes( value ) ){
+                return f
+            }
+        }).map(m => {
+                const [code, color] = m;
+                return [code, color];
+        });
+
+        return searchResults;
+    }
+
+
+    /**
+     *
+     * @param {*} colorDefinitions
+     * @returns
+     */
+    get variables(){
         let collect = [];
-        
+
         this.list.flatMap(m => {
             const {alias, color, description, variant={}} = m;
-    
+
             alias.forEach(function(a){
                 collect.push( [a.code, color, description] );
-    
+
                 Object.entries(variant).forEach(function(value){
                     if(!a.exclude_variant){
                         collect.push( [`${a.code}-${value[0]}`, value[1]] );
@@ -1682,7 +1709,7 @@ class Color {
             return defaultColor;
         }
 
-        const definition = this.variables.find(function(f){ 
+        const definition = this.variables.find(function(f){
             return (f[0] == self.replaceSpecialChars(color).toLowerCase());
         });
 
@@ -1705,12 +1732,12 @@ class Color {
         const lowerCasePonchoColor = this.replaceSpecialChars(ponchoColor).toLowerCase();
         let result;
         let gSpace = "";
-        
+
         // Iteración por espacios (space)
         for(let i = 0; i <= this.definitions.length - 1; i += 1){
             const {data, space} = this.definitions[i];
             gSpace = space;
-            
+
             // Itero por cada grupo de color dentro de data
             for(let y = 0; y <= data.length - 1; y += 1) {
                 const {instance} = data[y];
@@ -1831,7 +1858,7 @@ class Color {
 
     /**
      * Valida un color hexadecimal
-     * @param {string} hexColor Color hexadecimal 
+     * @param {string} hexColor Color hexadecimal
      * @returns {boolean}
      */
     isValidHex = (hexColor) => {
@@ -1848,7 +1875,7 @@ class Color {
             console.warn("Invalid hex color format:", hexColor);
             return false;
         }
-        return true;    
+        return true;
     };
 
     /**
@@ -1876,7 +1903,6 @@ class Color {
 if (typeof exports !== "undefined") {
     module.exports = {Color};
 }
-
 
 /**
  * Configuración de colores www.argentina.gob.ar
