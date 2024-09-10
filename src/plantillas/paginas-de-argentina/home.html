@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]> <html lang="es"class="iem7"> <![endif]-->
+<!--[if lt IE 7 ]> <html lang="es" class="ie6 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="es" class="ie7 lt-ie8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="es" class="ie8"> <![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!-->
+<html lang="es">
+<!--<![endif]-->
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Banco de Pruebas</title>
+<meta name="description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
+<meta name="author" content="Presidencia de la Nación">
+<link rel="shortcut icon" href="img/favicon.ico">
+
+<!-- Nav and address bar color -->
+  <meta name="theme-color" content="#242C4F" />
+    <meta name="msapplication-navbutton-color" content="#242C4F" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="#242C4F" />
+<meta property="og:url" content="http://localhost:4000/proyectos/argentina/" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Banco de Pruebas" />
+<meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+<meta property="og:image" content="/ejemplos/img/jumbotron.jpg" />
+<meta property="og:locale" content="es_AR" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Banco de Pruebas" />
+<meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+<meta name="twitter:image" content="/ejemplos/img/jumbotron.jpg" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- <link rel="stylesheet" href="../../node_modules/ar-poncho/dist/css/poncho.min.css">
+<link rel="stylesheet" href="../../node_modules/ar-poncho/dist/css/icono-arg.css">-->
+<link rel="stylesheet" href="../../node_modules/ar-poncho/dist/css/argentina.css"> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> 
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script> 
+
+  
+    <!-- PONCHO CSS:
+    Recomendamos que descargues o instales 'ar-poncho' en tu proyecto.
+    <link href="{{ '/node_modules/ar-poncho/dist/css/roboto-fontface.css' | prepend: site.baseurl }}" rel="stylesheet">
+    <link href="{{ '/node_modules/ar-poncho/dist/css/poncho.min.css' | prepend: site.baseurl }}" rel="stylesheet">
+    <link href="{{ '/node_modules/ar-poncho/dist/css/documentacion.css' | prepend: site.baseurl }}" rel="stylesheet">
+    <link href="{{ '/node_modules/ar-poncho/dist/icono-arg.css' | prepend: site.baseurl }}" rel="stylesheet">
+    Al solo efecto de esta documentación, usaremos los estilos en línea en el proyecto GitHub Poncho
+  -->
+    <link href="https://cdn.jsdelivr.net/gh/argob/poncho@master/dist/css/encode-fontface.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/gh/argob/poncho@master/dist/css/poncho.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/gh/argob/poncho@master/dist/css/documentacion.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/gh/argob/poncho@master/dist/css/icono-arg.css" rel="stylesheet">
+ <!-- FIN PONCHO -->
+  
+  
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries --> 
+<!--[if lt IE 9]>
+      <script src="http://argob.github.io/poncho/js/html5shiv.js"></script>
+      <script src="http://argob.github.io/poncho/js/respond.min.js"></script>
+  <![endif]-->
+
+</head>
+
+<body role="document" class="html front not-logged-in no-sidebars page-node i18n-es jquery-once-1-processed">
+<h1 class="sr-only"><small>Presidencia de la Nación</small></h1>
+<div id="skip-link"> <a href="https://www.argentina.gob.ar/#main-content" class="element-invisible element-focusable">Pasar al contenido principal</a></div>
+<!--<div class="region region-page-top">
+  <section id="campaign" role="dialog" aria-labelledby="campaign01" aria-describedby="campaign02" style="padding:0px"> <a href="/salud/coronavirus-COVID-19?utm_source=alerta_20200424&amp;utm_medium=web&amp;utm_campaign=campana_coronavirus" title="Enlace a Campaña Nacional" id="js-titulo">
+    <div class="container-fluid text-primary">
+      <header class="sr-only">
+        <h1 id="campaign01">Campañas Nacionales</h1>
+      </header>
+      <div class="container">
+        <h2 id="campaign02" class="tituloContainerCam"> <strong>Coronavirus COVID-19</strong> <span class="c_bajada">conocé información y recomendaciones del Ministerio de Salud.</span></h2>
+      </div>
+    </div>
+    </a> </section>
+</div>
+-->
+
+
+<header>
+    <nav class="navbar navbar-top navbar-default border-bottom-amarillo">
+      <div class="container">
+        <div>
+          <div class="navbar-header">
+            <a class="navbar-brand" href="/" id="navbar-brand" aria-label="Argentina.gob.ar Presidencia de la Nación">
+                              <img src="https://argob.github.io/poncho/plantillas/paginas-de-argentina/img/logo_argentina-azul.svg" alt="Argentina.gob.ar" height="50" width="254">
+                                                      </a>
+              <a class="btn btn-mi-argentina btn-login visible-xs" href="https://mi.argentina.gob.ar" title="Ingresar a Mi Argentina">
+                  <i class="icono-arg-mi-argentina fa-fw"></i><span class="sr-only">Ir a Mi Argentina</span></a>
+                            </div>
+
+                      <a href="https://mi.argentina.gob.ar/" id="btn-mi-argentina" class="btn btn-primary hidden-xs btn-login" aria-label="Ingresar a Mi Argentina">Mi Argentina</a>
+          
+        </div>
+      </div>
+    </nav>
+  </header>
+
+
+
+<main>
+
+    
+            <span id="main-content"></span>
+      <div class="container">
+                                            </div>
+        <div class="region region-content">
+     <div id="block-system-main" class="block block-system clearfix">
+
+      
+    <div class="panel-pane pane-texto">
+  
+  
+  <div class="pane-content">
+    <div class=""><div class="container-fluid bg-primary text-white p-b-2">
+    <div class="container-fluid bg-primary text-white p-b-2">
+    <div class="container">
+    <!-- buscador -->
+    <header class="home-new row">
+    <h1 class="text-center m-t-4 h1 tit-buscador">Portal oficial del Estado argentino</h1>
+    <search class="col-xs-12 col-md-8 m-t-2 col-md-offset-2 m-b-2">
+    <form class="main-form" role="search" action="/tramitar/tramites_y_servicios" method="post" id="apachesolr-search-custom-page-search-form-new-home" accept-charset="UTF-8">
+    <fieldset>
+    <legend class="sr-only">Buscador de trámites</legend>
+    <div>
+    <input type="hidden" name="form_build_id" value="form-q5fsqCJAtfTnD5TTjhQCEdI1GxortsZzd8ZYJYDJAx4">
+    <input type="hidden" name="form_token" value="bzeC-x5plqFd0ZzLfI05jQ1hDxC8kQFYi9hkTDzSFtY">
+    <input type="hidden" name="form_id" value="apachesolr_search_custom_page_search_form">
+    <div style="display:none;">
+    <div class="form-item form-item-tarro-de-miel form-type-textfield form-group">
+    <label class="control-label" for="edit-tarro-de-miel">Dejar en blanco</label>
+    <input class="form-control form-text" type="text" id="edit-tarro-de-miel" name="tarro_de_miel" value="" size="60" maxlength="128">
+    </div>
+    </div>
+    <div class="input-group">
+    <label class="sr-only" for="edit-keys-new-home">Buscar en el sitio</label>
+    <input placeholder="¿Necesitás hacer un trámite? Buscalo en TRAMITAR por tema o palabra clave" id="edit-keys-new-home" class="input-search form-control form-text" aria-label="Buscar trámites, servicios o áreas" type="text" name="keys" value="" size="20" maxlength="255" style="border-right: 1px solid rgba(128, 128, 128, 0.23);">
+    <span class="input-group-btn">
+    <button class="bg-white btn-search-reset btn btn-home btn-primary form-submit" aria-labelledby="edit-keys-new-home" aria-label="Buscar" type="submit" id="edit-submit-new-home" name="op">
+    <i class="fa fa-search text-primary"></i>
+    <span class="sr-only">Buscar en el sitio</span>
+    </button>
+    </span>
+    </div>
+    </div>
+    </fieldset>
+    </form>
+    </search>
+    </header>
+    </div>
+    </div></div>
+  </div>
+
+  
+  </div>
+<div class="panel-separator"></div><div class="panel-pane pane-atajos">
+  
+  
+  <div class="pane-content">
+      <div class="bg-primary">
+    <div class="container home-new w-100">
+
+              <h2 class="h4 m-t-5 m-b-2">Te puede interesar</h2>
+      
+        <ul class="list-inline pull-left w-100 p-b-3">
+                            <li class="link1">
+                    <a href="/servicio/consultar-cuando-y-donde-cobro-en-anses" class="">    Consultá cuándo cobrás en ANSES
+</a>                </li>
+                            <li class="link1">
+                    <a href="/servicio/solicitar-constancia-de-cuil" class="">    Descargá tu constancia de CUIL
+</a>                </li>
+                            <li class="link1">
+                    <a href="/servicio/solicitar-la-tarifa-social-en-la-tarjeta-sube" class="">    Pedí la tarifa social en la SUBE
+</a>                </li>
+                            <li class="link1">
+                    <a href="/servicio/obtener-la-clave-de-la-seguridad-social" class="">    Obtené tu clave de seguridad social para usar miANSES
+</a>                </li>
+                            <li class="link1">
+                    <a href="/consultar-si-tenes-infracciones-de-transito" class="">    Consultá si tenés infracciones de tránsito
+</a>                </li>
+                            <li class="link1">
+                    <a href="/justicia/reincidencia/antecedentespenales" class="">    Gestioná tu Certificado de Antecedentes Penales
+</a>                </li>
+                            <li class="link1">
+                    <a href="/interior/dni" class="">    Sacá o renová el DNI
+</a>                </li>
+                            <li class="link1">
+                    <a href="/seguridadvial/licencianacional" class="">    Sacá la licencia de conducir
+</a>                </li>
+                            <li class="link1">
+                    <a href="/interior/pasaporte" class="">    Sacá o renová tu pasaporte
+</a>                </li>
+                    </ul>
+    </div>
+</div>
+
+  </div>
+
+  
+  </div>
+<section>
+  <div class="container">
+   <div>
+      <div class="panel-pane pane-titulo col-md-12 m-l-m15">
+  
+  
+  <div class="pane-content">
+    <h2 class="activities-sidbar">Temas y servicios</h2>
+  </div>
+
+  
+  </div>
+<div class="panel-separator"></div><div class="panel-pane pane-texto">
+  
+  
+  <div class="pane-content">
+    <div class=""><p>Momentos y situaciones cotidianas.</p>
+</div>
+  </div>
+
+  
+  </div>
+<div class="panel-separator"></div><div class="panel-pane pane-atajos">
+  
+  
+  <div class="pane-content">
+    <div class="row panels-row m-t-2 ">
+              <div class="col-xs-12 col-sm-6 col-md-4"><a href="/tema/documentacion" class="panel panel-default">    <div class="panel-heading">      
+                        
+            <object class="img-responsive ilus-home" type="image/svg+xml" data-image="ilus-arg-documentacion-16x9" aria-label="Una mujer con una billetera en la mano" data="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/resources/ilustraciones/ilus-arg-documentacion-16x9.svg?c1=%23C2185B&amp;c2=%23E18CAD" style="pointer-events: none;">
+                <p>Una mujer con una billetera en la mano</p>
+            </object>
+              
+    </div>
+
+    <div class="panel-body home-new m-b-1">
+        <p class="h3">Documentación</p>
+        <p>Del DNI a la cédula verde o el Certificado Único de Discapacidad, te explicamos cómo y dónde tramitar los documentos de uso habitual.</p>
+        <div class="icon-arrow-right text-primary">
+            <i class="fa fa-arrow-right"></i>
+            <span class="sr-only">ícono flecha ir al contenido</span>
+        </div>
+    </div></a></div>
+              <div class="col-xs-12 col-sm-6 col-md-4"><a href="/tema/estudiar" class="panel panel-default">    <div class="panel-heading">      
+                        
+            <object class="img-responsive ilus-home" type="image/svg+xml" data-image="ilus-arg-educacion-16x9" aria-label="Dos estudiantes, un chico y una chica con sus mochilas" data="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/resources/ilustraciones/ilus-arg-educacion-16x9.svg?c1=%2350B7B2&amp;c2=%23A8DBD9" style="pointer-events: none;">
+                <p>Dos estudiantes, un chico y una chica con sus mochilas</p>
+            </object>
+              
+    </div>
+
+    <div class="panel-body home-new m-b-1">
+        <p class="h3">Educación</p>
+        <p>Para nivel inicial, primario, secundario o superior; para argentinos o extranjeros, te presentamos los servicios y beneficios que podés gestionar.</p>
+        <div class="icon-arrow-right text-primary">
+            <i class="fa fa-arrow-right"></i>
+            <span class="sr-only">ícono flecha ir al contenido</span>
+        </div>
+    </div></a></div>
+              <div class="col-xs-12 col-sm-6 col-md-4"><a href="/tema/trabajar" class="panel panel-default">    <div class="panel-heading">      
+                        
+            <object class="img-responsive ilus-home" type="image/svg+xml" data-image="ilus-arg-trabajo-16x9" aria-label="Un hombre opera una máquina en una fábrica." data="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/resources/ilustraciones/ilus-arg-trabajo-16x9.svg?c1=%233526C3&amp;c2=%236B66CC" style="pointer-events: none;">
+                <p>Un hombre opera una máquina en una fábrica.</p>
+            </object>
+              
+    </div>
+
+    <div class="panel-body home-new m-b-1">
+        <p class="h3">Trabajo y empleo</p>
+        <p>Si estás en relación de dependencia o sos monotributista, si buscás trabajo o querés capacitarte, estos trámites y servicios te pueden ser de utilidad.</p>
+        <div class="icon-arrow-right text-primary">
+            <i class="fa fa-arrow-right"></i>
+            <span class="sr-only">ícono flecha ir al contenido</span>
+        </div>
+    </div></a></div>
+      </div>
+  </div>
+
+  
+  </div>
+<div class="panel-separator"></div><div class="panel-pane pane-atajos">
+  
+  
+  <div class="pane-content">
+      <div class="container home-new w-100 p-x-0">
+
+          <h3 class="h5 m-t-5 m-b-2">Más temas</h3>
+    
+      <ul class="list-inline pull-left w-100 p-b-3">
+                        <li class="link2">
+                  <a href="/andis" class="">    Discapacidad
+</a>              </li>
+                        <li class="link2">
+                  <a href="/tema/violenciayabuso" class="">    Violencia y abuso
+</a>              </li>
+                        <li class="link2">
+                  <a href="/tema/emergencias" class="">    Emergencias
+</a>              </li>
+                        <li class="link2">
+                  <a href="/tema/vacaciones" class="">    Vacaciones
+</a>              </li>
+                        <li class="link2">
+                  <a href="/tema/vivienda" class="">    Vivienda
+</a>              </li>
+                        <li class="link2">
+                  <a href="/tema/emprender" class="">    Emprendimientos y negocios
+</a>              </li>
+                        <li class="link2">
+                  <a href="/tema/automotor" class="">    Tránsito y transporte
+</a>              </li>
+                        <li class="link2">
+                  <a href="/tema/extranjeros" class="">    Extranjeros
+</a>              </li>
+                        <li class="link2">
+                  <a href="/tema/adultosmayores" class="">    Adultos mayores
+</a>              </li>
+                </ul>
+  </div>
+  </div>
+
+  
+  </div>
+  </div>
+  </div>
+</section>
+
+</div>
+  </div>
+
+    
+</div></main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<footer class="main-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-sm-6">
+        <div class="region region-footer1">
+          <section id="block-menu-menu-footer-1" class="block block-menu clearfix">
+            <h2 class="block-title h3 section-title h3 section-title">Trámites</h2>
+            <ul class="menu nav">
+              <li class="first leaf"><a href="/turnos">Turnos</a></li>
+              <li class="leaf"><a href="#">Trámites a distancia</a></li>
+              <li class="last leaf"><a href="#">Atención al ciudadano</a></li>
+            </ul>
+          </section>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6">
+        <div class="region region-footer2">
+          <section id="block-menu-menu-footer-2" class="block block-menu clearfix">
+            <h2 class="block-title h3 section-title h3 section-title">Acerca de la República Argentina</h2>
+            <ul class="menu nav">
+              <li class="first leaf"><a href="#">Leyes argentinas</a></li>
+              <li class="leaf"><a href="#">Organismos</a></li>
+              <li class="last leaf"><a href="#">Mapa del Estado</a></li>
+            </ul>
+          </section>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6">
+        <div class="region region-footer3">
+          <section id="block-menu-menu-footer-3" class="block block-menu clearfix">
+            <h2 class="block-title h3 section-title h3 section-title">Acerca de Argentina.gob.ar</h2>
+            <ul class="menu nav">
+              <li class="first leaf"><a href="#">Acerca de este sitio</a></li>
+              <li class="leaf"><a href="#">Términos y condiciones</a></li>
+              <li class="last leaf"><a href="#">Contacto</a></li>
+            </ul>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="container-fluid">
+    <div class="row sub-footer">
+      <div class="container">
+        <div class="col-sm-6 m-y-1 p-x-0"></div>
+      </div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
