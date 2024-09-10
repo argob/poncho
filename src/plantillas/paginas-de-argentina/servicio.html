@@ -14,9 +14,9 @@
   <link rel="shortcut icon" href="img/favicon.ico">
 
   <!-- Nav and address bar color -->
-  <meta name="theme-color" content="#0072b8">
-  <meta name="msapplication-navbutton-color" content="#0072b8">
-  <meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
+  <meta name="theme-color" content="#242C4F" />
+    <meta name="msapplication-navbutton-color" content="#242C4F" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="#242C4F" />
 
   <meta property="og:url" content="http://localhost:4000/proyectos/argentina/servicio.html" />
   <meta property="og:type" content="article" />
@@ -105,27 +105,24 @@
 
     
     
-<header>
-        <nav class="navbar navbar-top navbar-default bg-celeste-argentina" role="navigation">
-            <div class="container">
-                <div>
-                    <div class="navbar-header"> <a class="navbar-brand" href="/proyectos/argentina/" aria-label="Argentina.gob.ar Presidencia de la Nación"> <img alt="Argentina.gob.ar" src="img/argentinagob-2.svg" height="50"> </a> <a class="btn btn-mi-argentina btn-login visible-xs"
-                            href="/proyectos/mi-argentina/v3/"><i class="icono-arg-mi-argentina fa-fw"></i></a> <a class="btn bg-white btn-login visible-xs" href="#" onclick="$('.navbar.navbar-top').addClass('state-search');"><span class="fa fa-search fa-fw"></span></a>                        </div>
-                    <div class="nav navbar-nav navbar-right hidden-xs">
-                        <a href="#" onclick="$('.navbar.navbar-top').removeClass('state-search');" class="btn btn-mi-argentina visible-xs"> <i class="fa fa-times"></i> </a>
-                        <div style="float: left">
-                            <div class="input-group">
-                                <input id="buscar" type="text" class="form-control input-search" aria-label="Buscar trámites, servicios o áreas" placeholder="Buscar trámites, servicios o áreas ...">
-                                <span class="input-group-btn">
-              <button class="btn bg-white"  type="button" aria-label="Buscar"><i class="fa fa-search text-primary"></i></button>
-              </span> </div>
-                        </div>
-                        <a href="#" class="dropdown-toggle btn btn-mi-argentina hidden-xs bg-white" aria-label="Ingresar a Mi Argentina" data-toggle="dropdown"> miArgentina</a>
-                    </div>
-                </div>
-            </div>
-        </nav>
-    </header>
+    <header>
+    <nav class="navbar navbar-top navbar-default border-bottom-amarillo">
+      <div class="container">
+        <div>
+          <div class="navbar-header">
+            <a class="navbar-brand" href="/" id="navbar-brand" aria-label="Argentina.gob.ar Presidencia de la Nación">
+                              <img src="https://argob.github.io/poncho/plantillas/paginas-de-argentina/img/logo_argentina-azul.svg" alt="Argentina.gob.ar" height="50" width="254">
+                                                      </a>
+              <a class="btn btn-mi-argentina btn-login visible-xs" href="https://mi.argentina.gob.ar" title="Ingresar a Mi Argentina">
+                  <i class="icono-arg-mi-argentina fa-fw"></i><span class="sr-only">Ir a Mi Argentina</span></a>
+                            </div>
+
+                      <a href="https://mi.argentina.gob.ar/" id="btn-mi-argentina" class="btn btn-primary hidden-xs btn-login" aria-label="Ingresar a Mi Argentina">Mi Argentina</a>
+          
+        </div>
+      </div>
+    </nav>
+  </header>
 
 
 <script type="text/javascript">
@@ -404,53 +401,60 @@
     </main>
    <footer class="main-footer">
   <div class="container">
-    <div class="row">
-      <div class="col-md-4 col-sm-6">
-        <div class="region region-footer1">
-          <section id="block-menu-menu-footer-1" class="block block-menu clearfix">
-            <h2 class="block-title h3 section-title h3 section-title">Trámites</h2>
-            <ul class="menu nav">
-              <li class="first leaf"><a href="/turnos">Turnos</a></li>
-              <li class="leaf"><a href="#">Trámites a distancia</a></li>
-              <li class="last leaf"><a href="#">Atención al ciudadano</a></li>
-            </ul>
-          </section>
-        </div>
-      </div>
-      <div class="col-md-4 col-sm-6">
-        <div class="region region-footer2">
-          <section id="block-menu-menu-footer-2" class="block block-menu clearfix">
-            <h2 class="block-title h3 section-title h3 section-title">Acerca de la República Argentina</h2>
-            <ul class="menu nav">
-              <li class="first leaf"><a href="#">Leyes argentinas</a></li>
-              <li class="leaf"><a href="#">Organismos</a></li>
-              <li class="last leaf"><a href="#">Mapa del Estado</a></li>
-            </ul>
-          </section>
-        </div>
-      </div>
-      <div class="col-md-4 col-sm-6">
-        <div class="region region-footer3">
-          <section id="block-menu-menu-footer-3" class="block block-menu clearfix">
-            <h2 class="block-title h3 section-title h3 section-title">Acerca de Argentina.gob.ar</h2>
-            <ul class="menu nav">
-              <li class="first leaf"><a href="#">Acerca de este sitio</a></li>
-              <li class="leaf"><a href="#">Términos y condiciones</a></li>
-              <li class="last leaf"><a href="#">Contacto</a></li>
-            </ul>
-          </section>
-        </div>
-      </div>
-    </div>
+  <div class="row">
+      <div class="col-md-4 col-sm-12">
+                        <div class="region region-footer1">
+    <section id="block-menu-menu-footer-1" class="block block-menu clearfix">
+
+        <h2 class="block-title h3 section-title h3 section-title">Trámites</h2>
+    
+  <ul class="menu nav"><li class="first leaf"><a href="/turnos">Turnos</a></li>
+<li class="leaf"><a href="/jefatura/innovacion-ciencia-y-tecnologia/innovacion/tramites-distancia-tad">Trámites a distancia</a></li>
+<li class="last leaf"><a href="/miargentina/mesadeayuda">Atención a la ciudadanía</a></li>
+</ul>
+</section>
   </div>
-  <div class="container-fluid">
+                </div>
+      <div class="col-md-4 col-sm-12">
+                        <div class="region region-footer2">
+    <section id="block-menu-menu-footer-2" class="block block-menu clearfix">
+
+        <h2 class="block-title h3 section-title h3 section-title">Acerca de la República Argentina</h2>
+    
+  <ul class="menu nav"><li class="first leaf"><a href="/pais">Nuestro país</a></li>
+<li class="leaf"><a href="/normativa">Leyes argentinas</a></li>
+<li class="leaf"><a href="/organismos">Organismos</a></li>
+<li class="last leaf"><a href="/desregulacion/mapa-del-estado">Mapa del Estado</a></li>
+</ul>
+</section>
+  </div>
+                </div>
+      <div class="col-md-4 col-sm-12">
+                        <div class="region region-footer3">
+    <section id="block-menu-menu-footer-3" class="block block-menu clearfix">
+
+        <h2 class="block-title h3 section-title h3 section-title">Acerca de Argentina.gob.ar</h2>
+    
+  <ul class="menu nav"><li class="first leaf"><a href="/acerca">Acerca de este sitio</a></li>
+<li class="leaf"><a href="/terminos-y-condiciones">Términos y condiciones</a></li>
+<li class="last leaf"><a href="/sugerencias">Sugerencias</a></li>
+</ul>
+</section>
+  </div>
+                </div>
+  </div>
+  </div>
+  <div class="container-fluid border-top-amarillo">
     <div class="row sub-footer">
       <div class="container">
-        <div class="col-sm-6 m-y-1 p-x-0"> <img class="image-responsive" height="80" src="img/primerolagente.svg" alt="Primero la gente"/></div>
+        <div class="col-sm-6 m-y-1 p-x-0">
+  
+          
+        </div>
       </div>
     </div>
   </div>
-</footer>
+</footer> 
     
   </body>
 </html>
