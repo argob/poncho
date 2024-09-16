@@ -124,14 +124,14 @@ class Color { //jslint-ignore-line
         let collect = [];
 
         this.list.flatMap(m => {
-            const {alias, color, description, variant={}} = m;
+            const {alias, color, description, code, variant={}} = m;
 
             alias.forEach(function(a){
-                collect.push( [a.code, color, description] );
+                collect.push( [a.code, color, description, code] );
 
                 Object.entries(variant).forEach(function(value){
                     if(!a.exclude){
-                        collect.push( [`${a.code}-${value[0]}`, value[1]] );
+                        collect.push( [`${a.code}-${value[0]}`, value[1], '', code] );
                     }
                 });
             })
