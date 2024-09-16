@@ -1672,14 +1672,14 @@ class Color { //jslint-ignore-line
         let collect = [];
 
         this.list.flatMap(m => {
-            const {alias, color, description, variant={}} = m;
+            const {alias, color, description, code, variant={}} = m;
 
             alias.forEach(function(a){
-                collect.push( [a.code, color, description] );
+                collect.push( [a.code, color, description, code] );
 
                 Object.entries(variant).forEach(function(value){
                     if(!a.exclude){
-                        collect.push( [`${a.code}-${value[0]}`, value[1]] );
+                        collect.push( [`${a.code}-${value[0]}`, value[1], '', code] );
                     }
                 });
             })
@@ -6600,44 +6600,38 @@ class PonchoMap {
      */
     searchEntries = (term, dataset) => {
         dataset = (typeof dataset === "undefined" ? this.geoJSON: dataset);
-        if(!term){
+        if(typeof term !== "string" || term.trim().length === 0){
             return dataset;
         }
-        const entries = dataset.filter(e => {
-            if(this.searchEntry(term, e.properties)){
-                return e;
-            };
+        const entries = dataset.filter(entry => {
+            return (this.searchEntry(term, entry.properties));
         })
         return entries;
     };
 
-    
+
     /**
      * Busca un término en cada uno de los indices de una entrada.
      */
-    searchEntry = (search_term, data) => {
-        const search_for = [
+    searchEntry = (searchTerm, data) => {
+        const searchFor = [
             ...new Set([...[this.title], ...this.search_fields])
         ].filter(e => e);
 
-        for(const item of search_for){
-            if(!data.hasOwnProperty(item)){
-                continue;
-            }
-            const term = replaceSpecialChars(search_term)
-                    .toUpperCase();
-            const field = replaceSpecialChars(data[item])
+        const term = replaceSpecialChars(searchTerm).toUpperCase();
+        const result = searchFor.some(function(key){
+            const field = replaceSpecialChars(data[key])
                     .toString()
                     .toUpperCase();
+
             try {
-                if(field.includes(term)){
-                    return data;
-                }
+                return (field.includes(term));
             } catch (error) {
                 console.error(error);
             }
-        }
-        return null;
+        });
+
+        return (result ? data : null);
     };
 
 
@@ -7085,6 +7079,10 @@ class PonchoMap {
      * Setea los markers para ejecutarse en un evento onlick
      */   
     _urlHash = () => {
+        if(!this.hash){
+            return;
+        }
+
         const setHash = (layer) => {
             layer.on("click", () => {
                 this.addHash(layer.options.id);
@@ -7927,9 +7925,7 @@ class PonchoMap {
             this._clickToggleSlider();
         }
 
-        if(this.hash){
-            this._urlHash();
-        }
+        this._urlHash();
 
         if(this.scroll && this.hasHash()){
             this.scrollCenter();
@@ -8781,14 +8777,13 @@ class PonchoMapFilter extends PonchoMap {
      */
     _validateEntry = (entry, form_filters) => {
         const fields_group = (group) => form_filters.filter(e => e[0] == group);
-        // Reviso cuantos grupos tengo que validar.
         const total_groups = this.filters.length;
-        let validations = [];
-        for(let i = 0; i < total_groups; i++){
-            // por cada grupo de fields obtengo un resultado de grupo.
-            validations.push(this._validateGroup(entry, fields_group(i)));
-        }
-        return validations.every(e => e);
+
+        const validations = Array.from( {length: total_groups}, (_, i) => {
+            return this._validateGroup(entry, fields_group(i));
+        }).reduce((acc, val) => acc && val, true);
+
+        return validations;
     };
 
 
@@ -8861,10 +8856,7 @@ class PonchoMapFilter extends PonchoMap {
             this._clickToggleSlider();
         }
 
-        if(this.hash){
-            this._urlHash();
-        }
-        
+        this._urlHash();
         this._setFetureAttributes();
         this._accesibleMenu();
     };
