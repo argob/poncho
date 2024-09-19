@@ -1,0 +1,112 @@
+/* 
+///// Define estilos para modulo de subastas ////.
+*/
+
+.mapa-inmuebles {
+    float: right;
+}
+
+.descargas .fa-long-arrow-down {
+    border-bottom: 5px solid #3e5a7e;
+    padding-bottom: 4px;
+    margin-top: -8px;
+}
+
+.descargas,
+.node-type-subasta .pane-drupar-mapa-osm {
+    display: table-cell;
+}
+
+.tag-subasta {
+    padding: .2em .6em .3em;
+}
+
+.pane-tag-subasta {
+    display: table-cell;
+}
+
+.pane-informacion-subasta,
+.pane-informacion-propiedad,
+.descargas,
+.pane-drupar-mapa-osm,
+.node-type-subasta .js-details.ar-details,
+.seguir-subasta,
+.alerta-contenido {
+    padding-left: 1em !important;
+    padding-right: 1em !important;
+}
+
+.node-type-subasta .row.m-y-3 {
+    margin: 0px !important;
+}
+
+/* /// Corte de palabra en titulos /// */
+/* En paneles */
+.nombre-obra {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* En detalle */
+.pane-informacion-propiedad .row {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.f-left {
+    float: left;
+}
+
+.f-right {
+    float: right;
+}
+
+/* Medium devices (tablets, less than 992px) */
+@media (max-width: 991.98px) {
+    .alerta-contenido {
+        margin-top: 1.8em;
+    }
+
+    .node-type-subasta {
+        h3,
+        .h3,
+        h4,
+        .h4,
+        h5,
+        .h5 {
+            font-size: 1.06rem;
+            padding-top: .5rem;
+        }
+        .fa-2x {
+            font-size: 1.5rem;
+            line-height: 1.8rem;
+        }
+    }
+
+    .mapa-inmuebles.m-t-3 {
+        margin-top: 0px !important;
+    }
+
+    .node-type-subasta .section-actions.col-md-12.social-share {
+        display: none;
+    }
+
+    .node-type-subasta {
+        .m-t-3,
+        .m-b-3 {
+            margin: 0 !important;
+        }
+    }
+
+    .pane-tag-subasta {
+        .label,
+        .tag-subasta {
+            clear: both;
+            margin-left: 0px !important;
+            margin-top: 0px !important;
+        }
+    }
+}
