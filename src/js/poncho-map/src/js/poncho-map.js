@@ -784,44 +784,38 @@ class PonchoMap {
      */
     searchEntries = (term, dataset) => {
         dataset = (typeof dataset === "undefined" ? this.geoJSON: dataset);
-        if(!term){
+        if(typeof term !== "string" || term.trim().length === 0){
             return dataset;
         }
-        const entries = dataset.filter(e => {
-            if(this.searchEntry(term, e.properties)){
-                return e;
-            };
+        const entries = dataset.filter(entry => {
+            return (this.searchEntry(term, entry.properties));
         })
         return entries;
     };
 
-    
+
     /**
      * Busca un término en cada uno de los indices de una entrada.
      */
-    searchEntry = (search_term, data) => {
-        const search_for = [
+    searchEntry = (searchTerm, data) => {
+        const searchFor = [
             ...new Set([...[this.title], ...this.search_fields])
         ].filter(e => e);
 
-        for(const item of search_for){
-            if(!data.hasOwnProperty(item)){
-                continue;
-            }
-            const term = replaceSpecialChars(search_term)
-                    .toUpperCase();
-            const field = replaceSpecialChars(data[item])
+        const term = replaceSpecialChars(searchTerm).toUpperCase();
+        const result = searchFor.some(function(key){
+            const field = replaceSpecialChars(data[key])
                     .toString()
                     .toUpperCase();
+
             try {
-                if(field.includes(term)){
-                    return data;
-                }
+                return (field.includes(term));
             } catch (error) {
                 console.error(error);
             }
-        }
-        return null;
+        });
+
+        return (result ? data : null);
     };
 
 
@@ -1269,6 +1263,10 @@ class PonchoMap {
      * Setea los markers para ejecutarse en un evento onlick
      */   
     _urlHash = () => {
+        if(!this.hash){
+            return;
+        }
+
         const setHash = (layer) => {
             layer.on("click", () => {
                 this.addHash(layer.options.id);
@@ -2111,9 +2109,7 @@ class PonchoMap {
             this._clickToggleSlider();
         }
 
-        if(this.hash){
-            this._urlHash();
-        }
+        this._urlHash();
 
         if(this.scroll && this.hasHash()){
             this.scrollCenter();

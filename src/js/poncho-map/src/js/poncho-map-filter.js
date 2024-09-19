@@ -756,14 +756,13 @@ class PonchoMapFilter extends PonchoMap {
      */
     _validateEntry = (entry, form_filters) => {
         const fields_group = (group) => form_filters.filter(e => e[0] == group);
-        // Reviso cuantos grupos tengo que validar.
         const total_groups = this.filters.length;
-        let validations = [];
-        for(let i = 0; i < total_groups; i++){
-            // por cada grupo de fields obtengo un resultado de grupo.
-            validations.push(this._validateGroup(entry, fields_group(i)));
-        }
-        return validations.every(e => e);
+
+        const validations = Array.from( {length: total_groups}, (_, i) => {
+            return this._validateGroup(entry, fields_group(i));
+        }).reduce((acc, val) => acc && val, true);
+
+        return validations;
     };
 
 
@@ -836,10 +835,7 @@ class PonchoMapFilter extends PonchoMap {
             this._clickToggleSlider();
         }
 
-        if(this.hash){
-            this._urlHash();
-        }
-        
+        this._urlHash();
         this._setFetureAttributes();
         this._accesibleMenu();
     };

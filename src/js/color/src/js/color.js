@@ -1,10 +1,10 @@
 /**
  * Configuración de colores www.argentina.gob.ar
- * 
+ *
  * MIT License
- * 
+ *
  * Copyright (c) 2024 Argentina.gob.ar
- * 
+ *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
  * files (the "Software"), to deal in the Software without restriction,
@@ -12,10 +12,10 @@
  * publish, distribute, sublicense, and/or sell copies of the Software,
  * and to permit persons to whom the Software is furnished to do so,
  * subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be
  * included in all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
  * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -25,9 +25,9 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-class Color {
+class Color { //jslint-ignore-line
     constructor(colorDefinitions){
-        if(!this.isValidPonchoColorDefList(colorDefinitions)){
+        if(!this.isValidColorDefinitionList(colorDefinitions)){
             console.error("No se pasado por argumento el listado de color");
             return;
         }
@@ -36,50 +36,102 @@ class Color {
 
 
     /**
-     * 
-     * @param {*} colorDefinitins 
-     * @returns 
+     * Remueve acentos y caracteres especiales.
+     *
+     * @param {string} data Cadena de texto a limpiar.
+     * @example
+     * // returns Accion Murcielago arbol nino
+     * removeAccents("Acción Murciélago árbol niño")
+     * @returns {string} Cadena de texto sin acentos.
      */
-    isValidPonchoColorDefList(colorDefinitins){
+    replaceSpecialChars = (data) => {
+        if(typeof data !== "string" || data.trim().length === 0){
+            console.warn("replaceSpecialChars: Debe pasar una cadena de texto.");
+            return "";
+        }
+
+        const search = "àáâäæãåāăąçćčđďèéêëēėęěğǵḧîïíīįìıİłḿñńǹňôöòóœøōõőṕ"
+                + "ŕřßśšşșťțûüùúūǘůűųẃẍÿýžźż";
+        const replace = "aaaaaaaaaacccddeeeeeeeegghiiiiiiiilmnnnnooooooooop"
+                + "rrsssssttuuuuuuuuuwxyyzzz";
+
+        const a = search + search.toUpperCase();
+        const b = replace + replace.toUpperCase();
+        const p = new RegExp(a.split("").join("|"), "g");
+        return data.toString().replace(p, c => b.charAt(a.indexOf(c)));
+    };
+
+
+    /**
+     *
+     * @param {array} definitions
+     * @returns {boolean}
+     */
+    isValidColorDefinitionList(definitions){
         return (
-            Array.isArray(colorDefinitins) &&
-            colorDefinitins.length > 0 &&
-            colorDefinitins[0].hasOwnProperty('space')
+            Array.isArray(definitions) &&
+            definitions.length > 0 &&
+            definitions[0].hasOwnProperty('space')
         );
     }
 
 
     /**
      * Listado de colores
-     * @param {object} colorDefinitionsList 
-     * @returns 
+     * @returns {object}
      */
-    ponchoColorList = (colorDefinitionsList) => {
-        let result = colorDefinitionsList
-            .flatMap( m => m.data.flatMap(i => i.instance.map(x => x)) );
+    get list(){
+        let result = this.definitions
+        .flatMap( m => m.data.flatMap(i => i.instance.map(x => x)) );
 
         return result || [];
-    };
+    }
 
 
     /**
-     * 
-     * @param {*} colorDefinitions 
-     * @returns 
+     * Buscador de colores.
+     *
+     * @param {string} value Color a buscar.
+     * @returns {object}
      */
-    ponchoColorVariables = () => { 
-        const colors = this.ponchoColorList(this.definitions);
+    findColor = value => {
+        if(typeof value !== "string" || value.trim().length === 0){
+            console.error(
+                "findColor:",
+                "El valor a buscar debe ser una cadena de texto.");
+            return [];
+        }
+
+        const searchResults = this.variables.filter( function(f){
+            if( f[0].includes( value ) ){
+                return f
+            }
+        }).map(m => {
+                const [code, color] = m;
+                return [code, color];
+        });
+
+        return searchResults;
+    }
+
+
+    /**
+     *
+     * @param {*} colorDefinitions
+     * @returns
+     */
+    get variables(){
         let collect = [];
-        
-        colors.flatMap(m => {
-            const {alias, color, description, variant={}} = m;
-    
+
+        this.list.flatMap(m => {
+            const {alias, color, description, code, variant={}} = m;
+
             alias.forEach(function(a){
-                collect.push( [a.code, color, description] );
-    
+                collect.push( [a.code, color, description, code] );
+
                 Object.entries(variant).forEach(function(value){
-                    if(!a.exclude_variant){
-                        collect.push( [`${a.code}-${value[0]}`, value[1]] );
+                    if(!a.exclude){
+                        collect.push( [`${a.code}-${value[0]}`, value[1], '', code] );
                     }
                 });
             })
@@ -100,6 +152,7 @@ class Color {
      */
     ponchoColor = color => {
         const defaultColor = "#99999";
+        const self = this;
 
         if (typeof color !== "string") {
             console.warn(
@@ -108,8 +161,8 @@ class Color {
             return defaultColor;
         }
 
-        const definition = this.ponchoColorVariables().find(function(f){ 
-            return (f[0] == color.toLocaleLowerCase());
+        const definition = this.variables.find(function(f){
+            return (f[0] == self.replaceSpecialChars(color).toLowerCase());
         });
 
         return (definition ? definition[1] : defaultColor);
@@ -119,24 +172,24 @@ class Color {
     /**
      * Definición por color
      *
-     * @see ponchoColorDefinitionsList
+     * @see colorDefinitionsList
      * @param {string} color Nombre del cólor a buscar.
      * @returns {string|boolean}
      */
-    ponchoColorDefinitions = (ponchoColor) => {
+    colorDefinitions = (ponchoColor) => {
         if(typeof ponchoColor == undefined || !ponchoColor.trim()){
             return;
         }
 
-        const lowerCasePonchoColor = ponchoColor.toLowerCase();
-        let result = null;
+        const lowerCasePonchoColor = this.replaceSpecialChars(ponchoColor).toLowerCase();
+        let result;
         let gSpace = "";
-        
+
         // Iteración por espacios (space)
         for(let i = 0; i <= this.definitions.length - 1; i += 1){
             const {data, space} = this.definitions[i];
             gSpace = space;
-            
+
             // Itero por cada grupo de color dentro de data
             for(let y = 0; y <= data.length - 1; y += 1) {
                 const {instance} = data[y];
@@ -162,7 +215,7 @@ class Color {
      * @param {string} name Nombre del grupo
      * @returns
      */
-    ponchoColorGroup = (themeSpace, spaceGroup) => {
+    colorGroup = (themeSpace, spaceGroup) => {
         if(typeof spaceGroup == undefined || !spaceGroup?.trim()){
             return;
         }
@@ -182,7 +235,7 @@ class Color {
      * @param {string} name Nombre del espacio
      * @returns
      */
-    ponchoColorSpace = (space) => {
+    colorSpace = (space) => {
         if(typeof space == undefined || !space?.trim()){
             return;
         }
@@ -194,7 +247,7 @@ class Color {
     /**
      * Retorna el código de color poncho por hexadecimal.
      * @param {string} value Valor hexadecimal a buscar
-     * @see ponchoColorDefinitionsList
+     * @see colorDefinitionsList
      * @example
      * // {
      * //    "description": "",
@@ -208,13 +261,13 @@ class Color {
      * findByHex("#f79525");
      * @returns {object} Objecto con la defición del color
      */
-    ponchoColorByHex = (hexColor) => {
+    colorByHex = (hexColor) => {
         if(!this.isValidHex(hexColor)){
             return;
         }
 
         var result = [];
-        const targetColor = this.cleanUpHex(hexColor);
+        const targetColor = this.cleanHex(hexColor);
 
         for(let i = 0; i <= this.definitions.length -1; i += 1){
             let {data} = this.definitions[i];
@@ -223,7 +276,7 @@ class Color {
                 const {instance} = entry;
                 for(let item of instance){
                     const {color} = item;
-                    if( this.cleanUpHex(color) == targetColor ){
+                    if( this.cleanHex(color) == targetColor ){
                         result.push(item);
                     }
                 }
@@ -239,7 +292,7 @@ class Color {
      * @param {string} value Valor hexadecimal
      * @returns {string}
      */
-    cleanUpHex = value => {
+    cleanHex = value => {
         let hex = value
             .toString()
             .replace("#", "")
@@ -257,7 +310,7 @@ class Color {
 
     /**
      * Valida un color hexadecimal
-     * @param {string} hexColor Color hexadecimal 
+     * @param {string} hexColor Color hexadecimal
      * @returns {boolean}
      */
     isValidHex = (hexColor) => {
@@ -274,7 +327,7 @@ class Color {
             console.warn("Invalid hex color format:", hexColor);
             return false;
         }
-        return true;    
+        return true;
     };
 
     /**
@@ -287,7 +340,7 @@ class Color {
             return;
         }
 
-        const hex = this.cleanUpHex(hexColor);
+        const hex = this.cleanHex(hexColor);
         const cleanedHex = (hex.startsWith("#") ? hex.slice(1) : hex);
 
         const red = parseInt(cleanedHex.slice(0, 2), 16);

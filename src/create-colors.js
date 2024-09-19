@@ -6,7 +6,7 @@ const {
 } = require('./js/color/src/js/color-definitions');
 
 const _color = new Color(ponchoColorDefinitionsList);
-const dataList = _color.ponchoColorVariables(ponchoColorDefinitionsList);
+const dataList = _color.variables;
 
 
 /**
@@ -108,7 +108,7 @@ $colores: ${contentList.join(",\n")};
 html {
     ${
         [
-            ...rootColorDefinitios(ponchoColorDefinitionsList),
+            ...rootColorDefinitios(_color.definitions),
             ...contentListRoot
         ].join("\n\t")
     }
@@ -136,7 +136,7 @@ const ILLUS_COLORS_JSON_PATH = `./dist/jsons/`;
 const ILLUS_COLORS_JSON_FILENAME = "illustrations-colors.json";
 
 const illustrationColorsContent = illustrationColors.map(function(color){
-    return _color.ponchoColorDefinitions(color);
+    return _color.colorDefinitions(color);
 });
 
 fs.writeFile(

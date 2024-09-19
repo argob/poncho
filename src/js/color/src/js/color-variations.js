@@ -26,6 +26,7 @@
  * SOFTWARE.
  */
 
+
 /**
  * Códigos de color válidos para utilizar en ilustraciones. 
  */
@@ -46,13 +47,14 @@ const illustrationColors = [
  */
 const colorVariations = {
     high: [
-        "primary","verde-jade","success","naranja","danger","arandano",
-        "uva","celeste-argentina","palta","verdin","warning","tomate",
-        "fucsia","lavanda","black"
+        'arg-azul', 'gna-verde-jade', 'arg-verde', 'arg-naranja', 'arg-rojo', 
+        'arg-arandano', 'arg-uva', 'arg-cielo', 'arg-palta', 'arg-verdin', 
+        'arg-amarillo', 'arg-tomate', 'arg-fucsia', 'arg-lavanda', 'arg-negro'
     ],
     medium: [
-        "info","verde-azulado","verdin","warning","tomate","fucsia",
-        "lavanda","palta","lima","maiz","muted"
+        "arg-info","arg-verde-azulado","arg-verdin","arg-amarillo","arg-tomate",
+        "arg-fucsia","arg-lavanda","arg-palta","arg-lima","arg-maiz",
+        "arg-gris-intermedio"
     ]
 };
 

@@ -860,10 +860,26 @@ const ponchoTableDependant = opt => {
     function _eventDispatcher(selector, value, eventType){
         const element = document.querySelectorAll(`#${selector}`);
         element.forEach(ele => {
-            ele.value = value;
-            const event = new Event(eventType);
-            ele.dispatchEvent(event);
+            setTimeout(function(){
+                ele.value = value;
+                const event = new Event(eventType);
+                ele.dispatchEvent(event);
+            },50)
         });
+    }
+
+
+    /**
+     * window pushState
+     * 
+     * @param {string} url Url
+     * @returns {undefined}
+     */
+    function _pushState(url){
+        if (opt.hasOwnProperty("pushState") && 
+            typeof opt.pushState === "boolean" && opt.pushState) {
+            window.history.pushState({}, "", url);
+        }
     }
 
 
@@ -918,6 +934,8 @@ const ponchoTableDependant = opt => {
                 e.innerHTML = url.href;
             }
         });
+
+        _pushState(url.href);
     }
 
 
@@ -1174,7 +1192,9 @@ const ponchoTableDependant = opt => {
             });
 
             tabla.draw();
+            window.addEventListener("popstate", (event) => {
 
+            });
             if(wizard){
                 _wizardFilters(filters, column, valFilter);
             }
