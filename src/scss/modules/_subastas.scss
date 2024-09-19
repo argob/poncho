@@ -50,6 +50,13 @@
 }
 
 /* En detalle */
+.mapa-inmuebles .small.ubicacion {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
 .pane-informacion-propiedad .row {
     display: flex;
     flex-wrap: wrap;
