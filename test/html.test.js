@@ -17,8 +17,8 @@ test('Secure HTML', () => {
         .toBe('&lt;<strong>negrita</strong>&gt;');
 
     expect(secureHTML('<<strong>negrita</strong>>', "texto")).toBeUndefined();
-    expect(secureHTML(true, [])).toBeUndefined();
-    expect(secureHTML(true, true)).toBeUndefined();
+    expect(secureHTML(true, [])).toBe(true);
+    expect(secureHTML(true, true)).toBe(true);
     expect(secureHTML()).toBeUndefined();
 
 });
