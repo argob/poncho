@@ -14,7 +14,7 @@
 const secureHTML = (str, exclude=[]) => {
     if(typeof str !== "string" || str.trim().length === 0){
         console.error("secureHTML:", "Solo admite cadenas de texto.");
-        return;
+        return str;
     }
 
     if(!Array.isArray(exclude)){
