@@ -62,6 +62,11 @@
       },
     
       {
+        "nombre": "agenda-deportiva",
+        "clase": "icono-arg-agenda-deportiva"
+      },
+    
+      {
         "nombre": "agricultura",
         "clase": "icono-arg-agricultura"
       },
@@ -332,6 +337,11 @@
       },
     
       {
+        "nombre": "astroturismo",
+        "clase": "icono-arg-astroturismo"
+      },
+    
+      {
         "nombre": "audicion-accesible",
         "clase": "icono-arg-audicion-accesible"
       },
@@ -394,6 +404,11 @@
       {
         "nombre": "avion-negativo",
         "clase": "icono-arg-avion-negativo"
+      },
+    
+      {
+        "nombre": "avistamiento",
+        "clase": "icono-arg-avistamiento"
       },
     
       {
@@ -657,6 +672,11 @@
       },
     
       {
+        "nombre": "campamento",
+        "clase": "icono-arg-campamento"
+      },
+    
+      {
         "nombre": "candado-abierto",
         "clase": "icono-arg-candado-abierto"
       },
@@ -714,6 +734,11 @@
       {
         "nombre": "casa-negativo",
         "clase": "icono-arg-casa-negativo"
+      },
+    
+      {
+        "nombre": "casa-rodante",
+        "clase": "icono-arg-casa-rodante"
       },
     
       {
@@ -869,6 +894,11 @@
       {
         "nombre": "chupete",
         "clase": "icono-arg-chupete"
+      },
+    
+      {
+        "nombre": "ciclismo-rural",
+        "clase": "icono-arg-ciclismo-rural"
       },
     
       {
@@ -1149,6 +1179,11 @@
       {
         "nombre": "comercio",
         "clase": "icono-arg-comercio"
+      },
+    
+      {
+        "nombre": "comida",
+        "clase": "icono-arg-comida"
       },
     
       {
@@ -1857,6 +1892,16 @@
       },
     
       {
+        "nombre": "excursiones-adultos",
+        "clase": "icono-arg-excursiones-adultos"
+      },
+    
+      {
+        "nombre": "excursiones-infantiles",
+        "clase": "icono-arg-excursiones-infantiles"
+      },
+    
+      {
         "nombre": "exporta-facil",
         "clase": "icono-arg-exporta-facil"
       },
@@ -2129,6 +2174,11 @@
       {
         "nombre": "glaciar-2",
         "clase": "icono-arg-glaciar-2"
+      },
+    
+      {
+        "nombre": "glamping",
+        "clase": "icono-arg-glamping"
       },
     
       {
@@ -2459,6 +2509,11 @@
       {
         "nombre": "justicia-negativo",
         "clase": "icono-arg-justicia-negativo"
+      },
+    
+      {
+        "nombre": "kayak",
+        "clase": "icono-arg-kayak"
       },
     
       {
@@ -3292,6 +3347,11 @@
       },
     
       {
+        "nombre": "pesca",
+        "clase": "icono-arg-pesca"
+      },
+    
+      {
         "nombre": "pesca-con-red",
         "clase": "icono-arg-pesca-con-red"
       },
@@ -3374,6 +3434,11 @@
       {
         "nombre": "poligono-de-tiro",
         "clase": "icono-arg-poligono-de-tiro"
+      },
+    
+      {
+        "nombre": "poncho",
+        "clase": "icono-arg-poncho"
       },
     
       {
@@ -3662,6 +3727,11 @@
       },
     
       {
+        "nombre": "refugio",
+        "clase": "icono-arg-refugio"
+      },
+    
+      {
         "nombre": "registro-donantes-medula-osea",
         "clase": "icono-arg-registro-donantes-medula-osea"
       },
@@ -3854,6 +3924,21 @@
       {
         "nombre": "semaforo",
         "clase": "icono-arg-semaforo"
+      },
+    
+      {
+        "nombre": "senderismo",
+        "clase": "icono-arg-senderismo"
+      },
+    
+      {
+        "nombre": "senderismo-dificil",
+        "clase": "icono-arg-senderismo-dificil"
+      },
+    
+      {
+        "nombre": "senderismo-facil",
+        "clase": "icono-arg-senderismo-facil"
       },
     
       {
@@ -4469,6 +4554,11 @@
       {
         "nombre": "visa-negocios",
         "clase": "icono-arg-visa-negocios"
+      },
+    
+      {
+        "nombre": "vivero",
+        "clase": "icono-arg-vivero"
       },
     
       {
