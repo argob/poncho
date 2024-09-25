@@ -3322,6 +3322,11 @@
       },
     
       {
+        "nombre": "plan-nacional-de-alfabetizacion",
+        "clase": "icono-arg-plan-nacional-de-alfabetizacion"
+      },
+    
+      {
         "nombre": "plancha",
         "clase": "icono-arg-plancha"
       },
