@@ -1992,6 +1992,11 @@
       },
     
       {
+        "nombre": "fiestas-nacionales",
+        "clase": "icono-arg-fiestas-nacionales"
+      },
+    
+      {
         "nombre": "financiamiento",
         "clase": "icono-arg-financiamiento"
       },
