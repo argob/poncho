@@ -3225,8 +3225,9 @@ const ponchoTableDependant = opt => {
      */
     const _createFilters = gapi_data => {
         // Contenedor
-        const tableFiltroCont = document.querySelector("#ponchoTableFiltro");
-        tableFiltroCont.innerHTML = "";
+        document
+            .querySelectorAll("#ponchoTableFiltro")
+            .forEach(e => e.innerHTML = "");
 
         // Imprime cada uno de los filtros
         Object.keys(filtro).forEach((f, key) => {
@@ -3276,6 +3277,7 @@ const ponchoTableDependant = opt => {
             tplForm.appendChild(formLabel);
             tplForm.appendChild(select);
             tplCol.appendChild(tplForm);
+            const tableFiltroCont = document.querySelector("#ponchoTableFiltro");
             tableFiltroCont.appendChild(tplCol);
         // }
         });
@@ -3830,8 +3832,24 @@ const ponchoTableDependant = opt => {
         const filters = filtersList.map(m => m.replace("filtro-", ""));
         const inputs = [ ...filters, "ponchoTableSearch" ];
         const inputsValues = inputs.map(function(input){
-            return [input, document.getElementById(input).value];
+            const v = document.getElementById(input);
+            if(v){
+                return [input, v.value];
+            }
+            return [];
         });
+
+        if(!inputsValues.some(s => s.length > 0)){
+            return;
+        }
+
+        if(inputsValues.some(e => e[1].length > 0)){
+            _sharing();
+        } else {
+            document
+            .querySelectorAll("#ponchoTableShareButton")
+            .forEach(e => e.remove());
+        }
 
         // Agrego parámetros
         inputsValues.forEach(input => {
@@ -3870,6 +3888,7 @@ const ponchoTableDependant = opt => {
         });
 
         _pushState(url.href);
+
     }
 
 
@@ -3938,7 +3957,9 @@ const ponchoTableDependant = opt => {
         infoContainer.classList.add("share");
         infoContainer.appendChild(b);
 
-        headStyle("ponchoTable-share-button", '.share{display:flex;gap:1.5em}.share .dropdown-menu{min-width:250px}');
+        headStyle(
+            "ponchoTable-share-button", 
+            `.share{display:flex;gap:1.5em;align-items:baseline}.share .dropdown-menu{min-width:250px}`);
         _copyToClipboard();
     }
 
@@ -4315,7 +4336,7 @@ const ponchoTableDependant = opt => {
             .classList.remove("state-loading");
 
         initDataTable();
-        _sharing();
+
         _shareLink();
 
         setTimeout(() => {
