@@ -1006,7 +1006,7 @@ const ponchoTableDependant = opt => {
         infoContainer.classList.add("share");
         infoContainer.appendChild(b);
 
-        headStyle("ponchoTable-share-button", '.share{display:flex;gap:1.5em}');
+        headStyle("ponchoTable-share-button", '.share{display:flex;gap:1.5em}.share .dropdown-menu{min-width:250px}');
         _copyToClipboard();
     }
 
