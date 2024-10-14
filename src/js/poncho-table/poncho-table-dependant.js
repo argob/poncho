@@ -47,6 +47,8 @@ const ponchoTableDependant = opt => {
     var allowedTags = ["*"];
     var urlParams = (opt.hasOwnProperty("urlParams") && opt.urlParams == false ? 
             false : true);
+    var copyResults = (opt.hasOwnProperty("copyResults") && opt.copyResults == false ? 
+        false : true);
     let markdownOptions = {
         "tables": true,
         "simpleLineBreaks": true,
@@ -940,6 +942,76 @@ const ponchoTableDependant = opt => {
 
 
     /**
+     * Crea un listener para copiar a porta-papeles
+     * @returns {undefined}
+     */
+    function _copyToClipboard(){
+        if(typeof copyToClipboard != "function"){
+            return;
+        }
+        const toclipboard = document.querySelectorAll("[data-toclipboard]");
+        toclipboard.forEach(elem => {
+            const id = elem.dataset.toclipboard;
+            elem.addEventListener("click", (e) => {
+                e.preventDefault();
+                copyToClipboard(`#${id}`);
+            });
+        });
+    }
+
+
+    /**
+     * Crea un botón para compartir resultados
+     * @returns {undefined}
+     */
+    function _sharing(){
+        if(!copyResults){
+            return;
+        }
+
+        try {
+            document
+                .querySelectorAll("#ponchoTableShareButton")
+                .forEach(e => e.remove());
+        } catch (error) {
+            console.error("Error:", "No se encuentra el selector");
+        }
+
+        const b = document.createElement('div');
+        b.id = "ponchoTableShareButton";
+        b.innerHTML = `<div class="dropdown">
+            <button 
+                class="btn btn-sm btn-default dropdown-toggle" 
+                type="button" 
+                id="share-table-data" 
+                data-toggle="dropdown" 
+                aria-haspopup="true" 
+                aria-expanded="false">
+            Compartir resultados
+            <span class="caret"></span>
+            </button>
+            <div 
+                class="dropdown-menu p-y-1 p-x-1" 
+                aria-labelledby="share-table-data">
+                <p class="js-sharelink-tag m-b-0 small" id="foo"></p>
+                <a 
+                    href="#" data-toclipboard="foo" 
+                    class="small btn btn-sm btn-default m-b-0 m-t-1">
+                    Copiar al portapapeles</a>
+            </div>
+        </div>`;
+
+        const info = document.querySelector("#ponchoTable_info");
+        const infoContainer = info.parentElement;
+        infoContainer.classList.add("share");
+        infoContainer.appendChild(b);
+
+        headStyle("ponchoTable-share-button", '.share{display:flex;gap:1.5em}');
+        _copyToClipboard();
+    }
+
+
+    /**
      * Inicializa DataTable() y modifica elementos para adaptarlos a
      * GoogleSheets y requerimientos de ArGob.
      */
@@ -1198,7 +1270,6 @@ const ponchoTableDependant = opt => {
             if(wizard){
                 _wizardFilters(filters, column, valFilter);
             }
-
             _shareLink();
         });
 
@@ -1312,6 +1383,7 @@ const ponchoTableDependant = opt => {
             .classList.remove("state-loading");
 
         initDataTable();
+        _sharing();
         _shareLink();
 
         setTimeout(() => {
@@ -1334,6 +1406,7 @@ const ponchoTableDependant = opt => {
             gapi_data = gapi.json_data(data);
 
             render(gapi_data);
+
         }); // end async
     };
 
