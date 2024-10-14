@@ -87,6 +87,7 @@
 
 <!-- SCRIPTS -->
 <script>
+    var filter;
     const latitude = -34.60759;
     const longitude = -58.37393;
     const mapOptions = {
@@ -95,7 +96,7 @@
         "map_zoom": 17, 
         "map_view": [latitude, longitude]
     };
-    const filter = new PonchoMap([{"latitud": latitude, "longitud": longitude}], mapOptions);
+     filter = new PonchoMap([{"latitud": latitude, "longitud": longitude}], mapOptions);
     filter.render();
 </script>
 <!-- / SCRIPTS -->

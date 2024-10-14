@@ -230,17 +230,20 @@ class PonchoMap {
             ...this.map_init_options
         }
         ).setView(this.map_view, this.map_zoom);
-        this.titleLayer = new L.tileLayer("https://mapa-ign.argentina.gob.ar/osm/{z}/{x}/{-y}.png",
-        { 
-            attribution: ("Contribuidores: "
-                + "<a href=\"https://www.ign.gob.ar/AreaServicios/Argenmap/Introduccion\" " 
-                + "target=\"_blank\">"
-                + "Instituto Geográfico Nacional</a>, "
-                + "<a href=\"https://www.openstreetmap.org/copyright\" "
-                + "target=\"_blank\">"
-                + "OpenStreetMap</a>")
-        });
-        this.markers = new L.markerClusterGroup(this.marker_cluster_options);
+        this.titleLayer = new L.tileLayer(
+            "https://mapa-ign.argentina.gob.ar/osm/{z}/{x}/{-y}.png",
+            { 
+                attribution: ("Contribuidores: "
+                    + "<a href=\"https://www.ign.gob.ar/AreaServicios/Argenmap/Introduccion\" " 
+                    + "target=\"_blank\">"
+                    + "Instituto Geográfico Nacional</a>, "
+                    + "<a href=\"https://www.openstreetmap.org/copyright\" "
+                    + "target=\"_blank\">"
+                    + "OpenStreetMap</a>")
+            });
+        if(L.hasOwnProperty("markerClusterGroup")){
+            this.markers = new L.markerClusterGroup(this.marker_cluster_options);
+        } 
         this.ponchoLoaderTimeout;
     }
 
@@ -1764,6 +1767,7 @@ class PonchoMap {
                         properties[_this.title], _this.tooltip_options
                     );
                 }
+                
                 // Si el usuario desea utilizar popUp en vez de slider.
                 if(!_this.no_info && !_this.slider){
                     const html = (typeof _this.template == "function" ? 
