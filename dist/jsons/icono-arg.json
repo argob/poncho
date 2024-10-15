@@ -1507,6 +1507,11 @@
       },
     
       {
+        "nombre": "descarga",
+        "clase": "icono-arg-descarga"
+      },
+    
+      {
         "nombre": "desierto",
         "clase": "icono-arg-desierto"
       },
@@ -2424,6 +2429,11 @@
       {
         "nombre": "informes-y-estadisticas",
         "clase": "icono-arg-informes-y-estadisticas"
+      },
+    
+      {
+        "nombre": "ingenieria-sismica",
+        "clase": "icono-arg-ingenieria-sismica"
       },
     
       {
@@ -3472,6 +3482,11 @@
       },
     
       {
+        "nombre": "prevencion-sismica",
+        "clase": "icono-arg-prevencion-sismica"
+      },
+    
+      {
         "nombre": "prioridad-voto",
         "clase": "icono-arg-prioridad-voto"
       },
@@ -3984,6 +3999,11 @@
       {
         "nombre": "sintys",
         "clase": "icono-arg-sintys"
+      },
+    
+      {
+        "nombre": "sismologia",
+        "clase": "icono-arg-sismologia"
       },
     
       {
