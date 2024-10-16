@@ -36,7 +36,7 @@
 <script src="../poncho-table.js"></script>
 <script src="../poncho-table-dependant.js"></script>
 <script src="../../gapi-sheet-data/gapi-sheet-data.js"></script>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/vendor/bootstrap/js/bootstrap.min.js?sl43rm"></script>
 <script src="../../utils/document.js"></script>
 </head>
 <body class="p-t-3">
@@ -49,7 +49,7 @@
 
 <div class="m-b-2 clearfix form-group">
 <p><strong>Asignando el valor a un textarea form</strong></p>
-<textarea name="" id="" data-sattr="value" class="form-control js-sharelink-text col-md-12" ></textarea>
+<textarea name="" id="" class="form-control js-sharelink-text col-md-12" ></textarea>
 </div>
 
 <div class="m-b-2 clearfix">
@@ -69,8 +69,8 @@
         <span class="caret"></span>
         </button>
         <div class="dropdown-menu p-y-1 p-x-1" aria-labelledby="about-us">
-            <p class="js-sharelink-tag m-b-0 small" id="foo"></p>
-            <a href="#" data-toclipboard="foo" class="small btn btn-sm btn-default m-b-0 m-t-1">Copiar al portapapeles</a>
+            <p class="js-sharelink-tag m-b-0 small" id="foo1"></p>
+            <a href="#" data-toclipboard="foo1" class="small btn btn-sm btn-default m-b-0 m-t-1">Copiar al portapapeles</a>
         </div>
     </div>
 </div>
@@ -130,6 +130,7 @@ COPIAR DESDE ACÁ…
             //     "filterContClassList": ["col-md-4"], // PERMITE CONFIGURAR EL TAMAÑO DE LA COLUMNA DEL CONTENEDOR DE LOS FILTROS
             //    "searchContClassList": ["col-md-8"], // PERMITE CONFIGURAR EL TAMAÑO DE LA COLUMNA DEL CONTENEDOR DEL BUSCADOR.
             "hash": false, // SI ES TRUE, PERMITE HACER UNA BÚSQUEDA POR URL, EJ. www.argentina.gob.ar#mi_busqueda
+            // copyResults: false,
             "markdownOptions": {
                 //   "tables": true,
                 "simpleLineBreaks": true,
@@ -157,21 +158,13 @@ COPIAR DESDE ACÁ…
             // responsiveDetailsColumns: [0,4,5,6] // comenzando en 0, 1, 2… La primer columna, la 0, no se puede utilizar.
         };
         ponchoTable(ponchoTableOpciones);
+        // setTimeout(sharing, 500);
     })(jQuery);
 
 </script>
 <!-- / COPIAR HASTA ACA -->
 <script>
-    document.addEventListener("DOMContentLoaded", (event) => {
-        const toclipboard = document.querySelectorAll("[data-toclipboard]");
-        toclipboard.forEach(elem => {
-            const id = elem.dataset.toclipboard;
-            elem.addEventListener("click", (e) => {
-              e.preventDefault();
-              copyToClipboard(`#${id}`);
-            });
-        })
-    });
+
 </script>
 </body>
 </html>
