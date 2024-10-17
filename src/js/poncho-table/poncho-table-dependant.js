@@ -910,8 +910,9 @@ const ponchoTableDependant = opt => {
             return;
         }
 
-        const searchUrl = new URLSearchParams(window.location.search);
-        let searchValues = Object.entries(Object.fromEntries(searchUrl));
+        // @todo Permitir que se mantengan parámetros seteados previamente.
+        // const searchUrl = new URLSearchParams(window.location.search);
+        // let searchValues = Object.entries(Object.fromEntries(searchUrl));
         
         const url = new URL(window.location.pathname, window.location.origin);
 
