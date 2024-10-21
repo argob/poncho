@@ -683,7 +683,7 @@ function ponchoChart(opt) {
         jQuery.each(listado, function(row, value) {
             if (row == 0) { //construyo arrays para los dataset, recupero colores y labels
                 jQuery.each(filteredTitlePos, function(index, title) {
-                    const regex = /(?<axis>eje-(x|y[1-9]+))-(?<color>[\w-]*?)(?:-(?<type>linea|barra))?$/gm;
+                    const regex = /(?<axis>eje-(x|y(?:[1-9]|[1-9][0-9])))-(?<color>[\w-]*?)(?:-(?<type>linea|barra))?$/;
                     const result = regex.exec(listado[row][filteredTitlePos[index]]);
                     if(!result){
                         return;
