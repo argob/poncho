@@ -944,7 +944,7 @@ const ponchoTableDependant = opt => {
         // Agrego parámetros
         inputValuesConcat.forEach(input => {
             let [key, value] = input;
-            key = (key == "ponchoTableSearch" ? "search" : key);
+            key = (key == "ponchoTableSearch" ? "buscar" : key);
             if(value.trim() == ""){
                 return;
             }
@@ -1356,7 +1356,7 @@ const ponchoTableDependant = opt => {
                     return;
                 }
 
-                if(key == "search"){
+                if(key == "buscar"){
                     _eventDispatcher(`ponchoTableSearch`, value, "keyup");
                 } else {
                     _eventDispatcher(refactorKey, value, "change");
