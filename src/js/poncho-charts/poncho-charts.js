@@ -264,14 +264,15 @@ function ponchoChart(opt) {
     /**
      * Gráfico complejo
      * 
-     * @param {*} etiquetas 
-     * @param {*} tipoGrafico 
-     * @param {*} datos 
-     * @param {*} idGrafico 
-     * @param {*} empiezaYenCero 
-     * @param {*} posicionLeyendas 
-     * @param {*} toltips 
-     * @param {*} mostrarLeyendas 
+     * @param {object} etiquetas Etiquetas para el eje x.
+     * @param {string} tipoGrafico Tipo de gráfico, ej: bar. 
+     * @param {object} datos Define el array de datos
+     * @param {string} idGrafico Selector para imprimir el gráfico
+     * @param {boolean} empiezaYenCero Define si el gráfico inicia en 0
+     * @param {string} posicionLeyendas Posición de la leyenda, 
+     * ej: left, right, top y bottom.
+     * @param {boolean} toltips Habilita el uso de los tooltips
+     * @param {boolean} mostrarLeyendas Habilita las leyendas
      */
     function graficoComplejo(etiquetas, tipoGrafico, datos, idGrafico, 
                 empiezaYenCero, posicionLeyendas, toltips, mostrarLeyendas) {
@@ -308,14 +309,15 @@ function ponchoChart(opt) {
     /**
      * Gráfico complejo horizontal
      * 
-     * @param {*} etiquetas 
-     * @param {*} tipoGrafico 
-     * @param {*} datos 
-     * @param {*} idGrafico 
-     * @param {*} empiezaYenCero 
-     * @param {*} posicionLeyendas 
-     * @param {*} toltips 
-     * @param {*} mostrarLeyendas 
+     * @param {object} etiquetas Etiquetas para el eje x.
+     * @param {string} tipoGrafico Tipo de gráfico, ej: bar. 
+     * @param {object} datos Define el array de datos
+     * @param {string} idGrafico Selector para imprimir el gráfico
+     * @param {boolean} empiezaYenCero Define si el gráfico inicia en 0
+     * @param {string} posicionLeyendas Posición de la leyenda, 
+     * ej: left, right, top y bottom.
+     * @param {boolean} toltips Habilita el uso de los tooltips
+     * @param {boolean} mostrarLeyendas Habilita las leyendas
      */
     function graficoComplejoHorizontal(etiquetas, tipoGrafico, datos, 
                 idGrafico, empiezaYenCero, posicionLeyendas, 
@@ -353,14 +355,15 @@ function ponchoChart(opt) {
     /**
      * Gráfico complejo (stacked)
      * 
-     * @param {*} etiquetas 
-     * @param {*} tipoGrafico 
-     * @param {*} datos 
-     * @param {*} idGrafico 
-     * @param {*} empiezaYenCero 
-     * @param {*} posicionLeyendas 
-     * @param {*} toltips 
-     * @param {*} mostrarLeyendas 
+     * @param {object} etiquetas Etiquetas para el eje x.
+     * @param {string} tipoGrafico Tipo de gráfico, ej: bar. 
+     * @param {object} datos Define el array de datos
+     * @param {string} idGrafico Selector para imprimir el gráfico
+     * @param {boolean} empiezaYenCero Define si el gráfico inicia en 0
+     * @param {string} posicionLeyendas Posición de la leyenda, 
+     * ej: left, right, top y bottom.
+     * @param {boolean} toltips Habilita el uso de los tooltips
+     * @param {boolean} mostrarLeyendas Habilita las leyendas
      */
     function graficoComplejoStacked(etiquetas, tipoGrafico, datos, idGrafico,
                 empiezaYenCero, posicionLeyendas, toltips, mostrarLeyendas) {
@@ -394,23 +397,26 @@ function ponchoChart(opt) {
 
 
     /**
+     * Gráfico mixto entre líneas y barras
      * 
-     * @param {*} etiquetas 
-     * @param {*} tipoGrafico 
-     * @param {*} datos 
-     * @param {*} idGrafico 
-     * @param {*} empiezaYenCero 
-     * @param {*} posicionLeyendas 
-     * @param {*} indice 
-     * @param {*} label1 
-     * @param {*} label2 
-     * @param {*} mostrarLeyendas 
+     * @param {object} etiquetas Etiquetas para el eje x.
+     * @param {string} tipoGrafico Tipo de gráfico, ej: bar. 
+     * @param {object} datos Define el array de datos
+     * @param {string} idGrafico Selector para imprimir el gráfico
+     * @param {boolean} empiezaYenCero Define si el gráfico inicia en 0
+     * @param {string} posicionLeyendas Posición de la leyenda, 
+     * ej: left, right, top y bottom.
+     * @param {integer} indice 
+     * @param {string} label1 Título para el primer eje y
+     * @param {string} label2 Título para el segundo eje y
+     * @param {boolean} mostrarLeyendas Habilita las leyendas
      */
     function graficoComplejoMixed(etiquetas, tipoGrafico, datos, idGrafico, 
                 empiezaYenCero, posicionLeyendas, indice, label1, label2, 
                 mostrarLeyendas) {
+
         const $grafica = document.getElementById(idGrafico);
-        new Chart($grafica, {
+        const options = {
             type: tipoGrafico,
             data: {
                 labels: etiquetas,
@@ -487,7 +493,8 @@ function ponchoChart(opt) {
                     ],
                 },
             }
-        });
+        };
+        new Chart($grafica, options);
     }
 
 

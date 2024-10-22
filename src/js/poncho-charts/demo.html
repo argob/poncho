@@ -6,50 +6,33 @@
     <title>Document</title>
 </head>
 <body>
-    <canvas id="tonoalto"></canvas>
-    <script src="https://www.argentina.gob.ar/profiles/argentinagobar/libraries/jquery.jquery-371/jquery-3.7.1.min.js?v=3.7.1"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-    <script src="https://qa2-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
-    <script src="./poncho-charts.js"></script>
-    <script>
+<h1>Poncho Charts</h1>
+<h2>Gráfico mixto</h2>
+<div style="max-width: 800px;"><canvas id="prueba-graficomix"></canvas></div>
+<hr>
 
-
-
-
-
-//  (function(jQuery) {
-//    var ponchoGraficoOpciones = {  
-//      "tipoGrafico": "Pie", 
-//      "idComponenteGrafico": "tonoalto", 
-//      "jsonInput": '{"values":[["eje-x","eje-y1-arg-azul","eje-y2-gna-verde-jade","eje-y3-arg-verde","eje-y4-arg-naranja","eje-y5-arg-rojo","eje-y6-arg-arandano","eje-y7-arg-uva","eje-y8-arg-cielo","eje-y9-arg-palta","eje-y10-arg-verdin","eje-y11-arg-amarillo","eje-y12-arg-tomate","eje-y13-arg-fucsia","eje-y14-arg-lavanda"],["","arg-azul","gna-verde-jade","arg-verde","arg-naranja","arg-rojo","arg-arandano","arg-uva","arg-escarapela","arg-palta","arg-verdin","arg-amarillo","arg-tomate","arg-fucsia","arg-lavanda"],["","7.14","7.14","7.14","7.14","7.14","7.14","7.14","7.14","7.14","7.14","7.14","7.14","7.14","7.14"]]}',  
-          
-//      "porcentajes": false,
-//                "mostrarLeyendas": true, 
-//                }; 
-//    ponchoChart(ponchoGraficoOpciones); 
-//  })(jQuery);
-</script>
-
-
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/libraries/jquery.jquery-371/jquery-3.7.1.min.js?v=3.7.1"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<script src="https://qa2-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
+<script src="./poncho-charts.js"></script>
 <script>
-  (function(jQuery) {
-    var ponchoGraficoOpciones = {
-     //
-     // COMPLETAR ESTO
-     //
- "idSpread": "1llqtl-r7LIJ2aiSDf5vNrzk5oiloK0i5Y7-JtKHdyFM", // Informá entre comillas el id alfanumérico que aparece en la barra de direcciones de la planilla, tiene como 40 caracteres de largo.
- "hojaNombre": "test", // Informá entre comillas el nombre que tiene la pestaña en la planilla.
- //     "jsonUrl": 'json/googlesheet_example.json.txt', // Esta solo vas a completarla si en vez de una planilla usás un csv como fuente de datos, va la url completa del archivo entre comillas simples.
- "tipoGrafico": "Mixed", // Entre comillas, el tipo de gráfico. Opciones: Line, Bar, Area,  Pie, Horizontal Bar, Stacked Bar.
- "idComponenteGrafico": "prueba-graficomix", // Escribí entre comillas el nombre que le asignaste al gráfico en el módulo de texto anterior (“nombre-del-gráfico”).
- "posicionLeyendas":"top", // Configurás entre comillas dónde van a verse las leyendas. Los valores pueden ser “left” (a la izquierda), “right” (a la derecha), “top” (arriba) y “bottom” (debajo).
- "ejeYenCero": true, // Informa si el eje “y” comienza con cero o con el menor valor del gráfico. Los valores son “true” (sí) y “false” (no). No va entre comillas.
- //"porcentajes": false, // Informa si los valores están expresados en porcentaje, así muestra el símbolo “%”.Los valores son “true” (sí) y “false” (no). No va entre comillas.
- //"porcentajesMixed": "eje-y2", //indica a que columna aplicarle escala de porcentaje, puede ser: eje-y1, eje-y2 (descomentar si se ingresa valor)
-    };
-    ponchoChart(ponchoGraficoOpciones);
-  })(jQuery);
- </script>
- 
+    (function(jQuery) {
+      var ponchoGraficoOpciones = {
+          //
+          // COMPLETAR ESTO
+          //
+          "idSpread": "1llqtl-r7LIJ2aiSDf5vNrzk5oiloK0i5Y7-JtKHdyFM", // Informá entre comillas el id alfanumérico que aparece en la barra de direcciones de la planilla, tiene como 40 caracteres de largo.
+          "hojaNombre": "test", // Informá entre comillas el nombre que tiene la pestaña en la planilla.
+          // "jsonUrl": 'json/googlesheet_example.json.txt', // Esta solo vas a completarla si en vez de una planilla usás un csv como fuente de datos, va la url completa del archivo entre comillas simples.
+          "tipoGrafico": "Mixed", // Entre comillas, el tipo de gráfico. Opciones: Line, Bar, Area,  Pie, Horizontal Bar, Stacked Bar.
+          "idComponenteGrafico": "prueba-graficomix", // Escribí entre comillas el nombre que le asignaste al gráfico en el módulo de texto anterior (“nombre-del-gráfico”).
+          "posicionLeyendas": "top", // Configurás entre comillas dónde van a verse las leyendas. Los valores pueden ser “left” (a la izquierda), “right” (a la derecha), “top” (arriba) y “bottom” (debajo).
+          "ejeYenCero": true, // Informa si el eje “y” comienza con cero o con el menor valor del gráfico. Los valores son “true” (sí) y “false” (no). No va entre comillas.
+          //"porcentajes": false, // Informa si los valores están expresados en porcentaje, así muestra el símbolo “%”.Los valores son “true” (sí) y “false” (no). No va entre comillas.
+          //"porcentajesMixed": "eje-y2", //indica a que columna aplicarle escala de porcentaje, puede ser: eje-y1, eje-y2 (descomentar si se ingresa valor)
+      };
+      ponchoChart(ponchoGraficoOpciones);
+    })(jQuery);
+</script>
 </body>
 </html>
