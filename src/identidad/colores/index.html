@@ -161,12 +161,12 @@ layout: default
 
 
     // Recorro las definiciones e imprimo los colores
-    const color = new Color(ponchoColorDefinitionsList);
+    const _color = new Color(ponchoColorDefinitionsList);
     let html = definitions.map(function(block){
         
         let data = block.data.map(function(sampleGroup){
             let sampleSubGroup = sampleGroup.map(function(sample){
-                return tplSample(color, sample);
+                return tplSample(_color, sample);
             });
             
             return tplSampleGroup(sampleSubGroup.join(''));
