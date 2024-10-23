@@ -44,11 +44,23 @@ const ponchoTableDependant = opt => {
     var orderFilter = (opt.hasOwnProperty("orderFilter") && opt.orderFilter ?
             true : false);
     var asFilter = {};
+
     var allowedTags = ["*"];
-    var urlParams = (opt.hasOwnProperty("urlParams") && opt.urlParams == false ? 
-            false : true);
-    var copyResults = (opt.hasOwnProperty("copyResults") && opt.copyResults == false ? 
-        false : true);
+
+    var pushState = (opt.hasOwnProperty("pushState") && 
+        opt.pushState == true ? true : false);
+
+    var copyResults = (opt.hasOwnProperty("copyResults") && 
+        opt.copyResults == true ? true : false);
+
+    // urlParams dependiente de las opciones copyResults o pushState
+    var urlParams = false;
+    if(opt.hasOwnProperty("urlParams") && opt.urlParams == true){
+        urlParams = true;
+    } else if( copyResults == true || pushState == true){
+        urlParams = true;
+    }
+
     let markdownOptions = {
         "tables": true,
         "simpleLineBreaks": true,
@@ -880,10 +892,12 @@ const ponchoTableDependant = opt => {
      * @returns {undefined}
      */
     function _pushState(url){
-        if (opt.hasOwnProperty("pushState") && 
-            typeof opt.pushState === "boolean" && opt.pushState) {
-            window.history.pushState({}, "", url);
+        if (!pushState) {
+            console.log('sin pushstate')
+            return;
         }
+        console.log('no debe llegar')
+        window.history.pushState({}, "", url);
     }
 
 
@@ -896,10 +910,15 @@ const ponchoTableDependant = opt => {
             return;
         }
 
+        // @todo Permitir que se mantengan parámetros seteados previamente.
+        // const searchUrl = new URLSearchParams(window.location.search);
+        // let searchValues = Object.entries(Object.fromEntries(searchUrl));
+        
         const url = new URL(window.location.pathname, window.location.origin);
+
         const filters = filtersList.map(m => m.replace("filtro-", ""));
         const inputs = [ ...filters, "ponchoTableSearch" ];
-        const inputsValues = inputs.map(function(input){
+        const inputValuesConcat = inputs.map(function(input){
             const v = document.getElementById(input);
             if(v){
                 return [input, v.value];
@@ -907,22 +926,25 @@ const ponchoTableDependant = opt => {
             return [];
         });
 
-        if(!inputsValues.some(s => s.length > 0)){
+
+
+
+        if(!inputValuesConcat.some(s => s.length > 0)){
             return;
         }
 
-        if(inputsValues.some(e => e[1].length > 0)){
+        if(inputValuesConcat.some(e => e[1].length > 0)){
             _sharing();
         } else {
             document
-            .querySelectorAll("#ponchoTableShareButton")
-            .forEach(e => e.remove());
+                .querySelectorAll("#ponchoTableShareButton")
+                .forEach(e => e.remove());
         }
 
         // Agrego parámetros
-        inputsValues.forEach(input => {
+        inputValuesConcat.forEach(input => {
             let [key, value] = input;
-            key = (key == "ponchoTableSearch" ? "search" : key);
+            key = (key == "ponchoTableSearch" ? "buscar" : key);
             if(value.trim() == ""){
                 return;
             }
@@ -953,10 +975,9 @@ const ponchoTableDependant = opt => {
             } else {
                 e.innerHTML = url.href;
             }
-        });
+        }); 
 
         _pushState(url.href);
-
     }
 
 
@@ -1335,7 +1356,7 @@ const ponchoTableDependant = opt => {
                     return;
                 }
 
-                if(key == "search"){
+                if(key == "buscar"){
                     _eventDispatcher(`ponchoTableSearch`, value, "keyup");
                 } else {
                     _eventDispatcher(refactorKey, value, "change");

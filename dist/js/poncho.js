@@ -1699,7 +1699,7 @@ class Color { //jslint-ignore-line
      * @returns {string} Color en formato hexadecimal.
      */
     ponchoColor = color => {
-        const defaultColor = "#99999";
+        const defaultColor = "#999999";
         const self = this;
 
         if (typeof color !== "string") {
@@ -1965,10 +1965,11 @@ const colorVariations = {
 };
 
 
-// @legacy Creo ponchoColor como una variable global.
+// @legacy Creo ponchoColor y color como una variable global.
 var ponchoColor;
+var color;
 if (typeof Color !== 'undefined') {
-    const color = new Color(ponchoColorDefinitionsList);
+    color = new Color(ponchoColorDefinitionsList);
     ponchoColor = color.ponchoColor;
 }
 
@@ -2976,11 +2977,23 @@ const ponchoTableDependant = opt => {
     var orderFilter = (opt.hasOwnProperty("orderFilter") && opt.orderFilter ?
             true : false);
     var asFilter = {};
+
     var allowedTags = ["*"];
-    var urlParams = (opt.hasOwnProperty("urlParams") && opt.urlParams == false ? 
-            false : true);
-    var copyResults = (opt.hasOwnProperty("copyResults") && opt.copyResults == false ? 
-        false : true);
+
+    var pushState = (opt.hasOwnProperty("pushState") && 
+        opt.pushState == true ? true : false);
+
+    var copyResults = (opt.hasOwnProperty("copyResults") && 
+        opt.copyResults == true ? true : false);
+
+    // urlParams dependiente de las opciones copyResults o pushState
+    var urlParams = false;
+    if(opt.hasOwnProperty("urlParams") && opt.urlParams == true){
+        urlParams = true;
+    } else if( copyResults == true || pushState == true){
+        urlParams = true;
+    }
+
     let markdownOptions = {
         "tables": true,
         "simpleLineBreaks": true,
@@ -3812,10 +3825,12 @@ const ponchoTableDependant = opt => {
      * @returns {undefined}
      */
     function _pushState(url){
-        if (opt.hasOwnProperty("pushState") && 
-            typeof opt.pushState === "boolean" && opt.pushState) {
-            window.history.pushState({}, "", url);
+        if (!pushState) {
+            console.log('sin pushstate')
+            return;
         }
+        console.log('no debe llegar')
+        window.history.pushState({}, "", url);
     }
 
 
@@ -3828,10 +3843,15 @@ const ponchoTableDependant = opt => {
             return;
         }
 
+        // @todo Permitir que se mantengan parámetros seteados previamente.
+        // const searchUrl = new URLSearchParams(window.location.search);
+        // let searchValues = Object.entries(Object.fromEntries(searchUrl));
+        
         const url = new URL(window.location.pathname, window.location.origin);
+
         const filters = filtersList.map(m => m.replace("filtro-", ""));
         const inputs = [ ...filters, "ponchoTableSearch" ];
-        const inputsValues = inputs.map(function(input){
+        const inputValuesConcat = inputs.map(function(input){
             const v = document.getElementById(input);
             if(v){
                 return [input, v.value];
@@ -3839,22 +3859,25 @@ const ponchoTableDependant = opt => {
             return [];
         });
 
-        if(!inputsValues.some(s => s.length > 0)){
+
+
+
+        if(!inputValuesConcat.some(s => s.length > 0)){
             return;
         }
 
-        if(inputsValues.some(e => e[1].length > 0)){
+        if(inputValuesConcat.some(e => e[1].length > 0)){
             _sharing();
         } else {
             document
-            .querySelectorAll("#ponchoTableShareButton")
-            .forEach(e => e.remove());
+                .querySelectorAll("#ponchoTableShareButton")
+                .forEach(e => e.remove());
         }
 
         // Agrego parámetros
-        inputsValues.forEach(input => {
+        inputValuesConcat.forEach(input => {
             let [key, value] = input;
-            key = (key == "ponchoTableSearch" ? "search" : key);
+            key = (key == "ponchoTableSearch" ? "buscar" : key);
             if(value.trim() == ""){
                 return;
             }
@@ -3885,10 +3908,9 @@ const ponchoTableDependant = opt => {
             } else {
                 e.innerHTML = url.href;
             }
-        });
+        }); 
 
         _pushState(url.href);
-
     }
 
 
@@ -4267,7 +4289,7 @@ const ponchoTableDependant = opt => {
                     return;
                 }
 
-                if(key == "search"){
+                if(key == "buscar"){
                     _eventDispatcher(`ponchoTableSearch`, value, "keyup");
                 } else {
                     _eventDispatcher(refactorKey, value, "change");
@@ -5344,25 +5366,24 @@ function ponchoChart(opt) {
         jQuery.each(listado, function(row, value) {
             if (row == 0) { //construyo arrays para los dataset, recupero colores y labels
                 jQuery.each(filteredTitlePos, function(index, title) {
-                    var split = listado[row][filteredTitlePos[index]].split("-");
+                    const regex = /(?<axis>eje-(x|y(?:[1-9]|[1-9][0-9])))-(?<color>[\w-]*?)(?:-(?<type>linea|barra))?$/;
+                    const result = regex.exec(listado[row][filteredTitlePos[index]]);
+                    if(!result){
+                        return;
+                    }
                     
-                    var pos = split[0] + split[1];
-                    valores[pos] = []; //construyo los array para los dataset
+                    const graphType = result.groups.type;
+                    const pos = result.groups.axis.replace('-', '');
 
-                    // Fix para tomar colores que lleven guión medio en su
-                    // nombre. 
-                    // @todo. Corregir el problema con el split. 
-                    // Debería utilizase un método más seguro. También cambiar
-                    // el nombre de la variable
-                    const [a, b, ...color] = split;
-                    colores.push(color.join('-')); //recupero colores
+                    valores[pos] = []; //construyo los array para los dataset
+                    colores.push( result.groups.color ); //recupero colores
 
                     if (tipoGrafico == "mixed") {
-                        if (split.length > 3){ //ingresaron un tipo de grafico
+                        if (graphType){ //ingresaron un tipo de grafico
                             //verifico que sea un tipo de grafico valido
-                            if (split[3] == "barra" || split[3] == "linea") {
+                            if (graphType == "barra" || graphType == "linea") {
                                 //recupero tipo de grafico para cada dataset   
-                                tipoGraficosMixed.push(split[3]);
+                                tipoGraficosMixed.push(graphType);
                             } else { //seteo graficos por defecto
                                 if (index == 0) {
                                     //por defecto seteo barra
@@ -5384,9 +5405,9 @@ function ponchoChart(opt) {
                             }
                         }
                     }
-
                 });
             }
+
 
             if (row == 1) {
                 jQuery.each(filteredTitlePos, function(index, title) {

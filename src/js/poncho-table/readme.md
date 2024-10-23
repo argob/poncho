@@ -1,4 +1,4 @@
-# PonchoTable con filtros dependientes
+****# PonchoTable con filtros dependientes
 
 Se trata de una variación a PonchoTable incluida en la librería de *scripts* en `poncho.min.js`.
 
@@ -39,6 +39,7 @@ Para que los filtros funcionen en las tablas de Google, se debe usar el prefijo 
 | wizard | `boolean` | Muestra los _select_ y sus opciones una vez seleccionado el filtro padre. `false` por defecto. |
 | urlParams | `true` | Habilita hacer consultas desde la url, pasando parámetros para filtros e input de búsqueda. |
 | pushState | `false` | Si es verdadero (true), cada vez que el usuario modifica filtros o hace búsquedas en la tabla, la dirección (url) del navegador, cambiará. |
+| copyResults | `false` | Si es verdadero se activa el botón para copiar la url de resultados. |
 
 ### Opción para modo Wizard
 

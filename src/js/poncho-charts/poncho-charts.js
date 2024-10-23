@@ -683,25 +683,24 @@ function ponchoChart(opt) {
         jQuery.each(listado, function(row, value) {
             if (row == 0) { //construyo arrays para los dataset, recupero colores y labels
                 jQuery.each(filteredTitlePos, function(index, title) {
-                    var split = listado[row][filteredTitlePos[index]].split("-");
+                    const regex = /(?<axis>eje-(x|y(?:[1-9]|[1-9][0-9])))-(?<color>[\w-]*?)(?:-(?<type>linea|barra))?$/;
+                    const result = regex.exec(listado[row][filteredTitlePos[index]]);
+                    if(!result){
+                        return;
+                    }
                     
-                    var pos = split[0] + split[1];
-                    valores[pos] = []; //construyo los array para los dataset
+                    const graphType = result.groups.type;
+                    const pos = result.groups.axis.replace('-', '');
 
-                    // Fix para tomar colores que lleven guión medio en su
-                    // nombre. 
-                    // @todo. Corregir el problema con el split. 
-                    // Debería utilizase un método más seguro. También cambiar
-                    // el nombre de la variable
-                    const [a, b, ...color] = split;
-                    colores.push(color.join('-')); //recupero colores
+                    valores[pos] = []; //construyo los array para los dataset
+                    colores.push( result.groups.color ); //recupero colores
 
                     if (tipoGrafico == "mixed") {
-                        if (split.length > 3){ //ingresaron un tipo de grafico
+                        if (graphType){ //ingresaron un tipo de grafico
                             //verifico que sea un tipo de grafico valido
-                            if (split[3] == "barra" || split[3] == "linea") {
+                            if (graphType == "barra" || graphType == "linea") {
                                 //recupero tipo de grafico para cada dataset   
-                                tipoGraficosMixed.push(split[3]);
+                                tipoGraficosMixed.push(graphType);
                             } else { //seteo graficos por defecto
                                 if (index == 0) {
                                     //por defecto seteo barra
@@ -723,9 +722,9 @@ function ponchoChart(opt) {
                             }
                         }
                     }
-
                 });
             }
+
 
             if (row == 1) {
                 jQuery.each(filteredTitlePos, function(index, title) {

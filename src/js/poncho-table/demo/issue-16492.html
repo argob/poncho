@@ -41,7 +41,7 @@
 </head>
 <body class="p-t-3">
 <h1>Compartir enlace </h1>
-
+<!-- 
 <div class="m-b-2 clearfix form-group">
     <p>Asignando el enlace a un atributo html.</p>
     <input type="text" data-attr="value" class="form-control js-sharelink-text col-md-12" vlaue="foo">
@@ -75,15 +75,17 @@
     </div>
 </div>
 <hr>
+ -->
+
+
 <!-- 
 COPIAR DESDE ACÁ…
 -->
 <!-- INCLUDE SCRIPTS -->
-<!-- <link href="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/ponchoTable-1.1.css" rel="stylesheet"> -->
+<link href="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/ponchoTable-1.1.css" rel="stylesheet">
 <link href="../dist/css/ponchoRable-1.1.css" rel="stylesheet">
 <script src="https://www.argentina.gob.ar/sites/default/files/ponchotable/showdown.js"></script>
 <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/extensiones/showdown-extensions.js"></script>
-
 
 <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/datatables.min.js"></script> 
 <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/intl.min.js"></script>
@@ -119,46 +121,37 @@ COPIAR DESDE ACÁ…
 <script>
     (function($) {
         var ponchoTableOpciones = {
-            "idSpread": "1CTq7lCm9Dwz4NdINAgtIE818L2_Smnv-_zvFcapjT6Q", // Informá entre comillas el ID de la planilla, siempre publicá el spreadsheet y que el enlace sea público
-            "hojaNombre": "Hoja 1", // Escribí entre comillas el nombre de la pestaña de la planilla
-            "tituloTabla": "banco de evaluaciones", // Siempre informá entre comillas un título corto para accesibilidad
-            "ordenColumna": 1, // Informá por cuál columna se ordena la tabla, la primera columna es 1 (uno)
-            "ordenTipo": "asc", // Informá entre comillas el criterio de orden: "asc" es de A a Z y de menor a mayor, "desc" es de Z a Z y de mayor a menor
-            "ocultarColumnas": [], // Si querés que una o más columnas no sean visibles, informalas entre corchetes separadas por coma; la primera columna es 0 (cero)
-            "cantidadItems": 10, // Informá la cantidad de filas visibles por pantalla, por defecto son 10 (diez)
-            //   "filterClassList": ["col-sm-12", "col-md-6"], // PERMITE CONFIGURAR LA CANTIDAD DE COLUMNAS Y ESTILOS PARA LOS FILTROS. SI NO SE DECLARA ESTE ATRIBUTO, EL PROGRAMA LO HACE AUTOMÁTICAMENTE.
-            //     "filterContClassList": ["col-md-4"], // PERMITE CONFIGURAR EL TAMAÑO DE LA COLUMNA DEL CONTENEDOR DE LOS FILTROS
-            //    "searchContClassList": ["col-md-8"], // PERMITE CONFIGURAR EL TAMAÑO DE LA COLUMNA DEL CONTENEDOR DEL BUSCADOR.
-            "hash": false, // SI ES TRUE, PERMITE HACER UNA BÚSQUEDA POR URL, EJ. www.argentina.gob.ar#mi_busqueda
-            // copyResults: false,
-            "markdownOptions": {
-                //   "tables": true,
-                "simpleLineBreaks": true,
-                "extensions": [
-                    //     'details', 
-                    //     'images', 
-                    //     'alerts', 
-                    //    'numbers', 
-                    //     'ejes', 
+            idSpread: "1CTq7lCm9Dwz4NdINAgtIE818L2_Smnv-_zvFcapjT6Q", // Informá entre comillas el ID de la planilla, siempre publicá el spreadsheet y que el enlace sea público
+            hojaNombre: "Hoja 1", // Escribí entre comillas el nombre de la pestaña de la planilla
+            tituloTabla: "banco de evaluaciones", // Siempre informá entre comillas un título corto para accesibilidad
+            ordenColumna: 1, // Informá por cuál columna se ordena la tabla, la primera columna es 1 (uno)
+            ordenTipo: "asc", // Informá entre comillas el criterio de orden: "asc" es de A a Z y de menor a mayor, "desc" es de Z a Z y de mayor a menor
+            ocultarColumnas: [], // Si querés que una o más columnas no sean visibles, informalas entre corchetes separadas por coma; la primera columna es 0 (cero)
+            cantidadItems: 10, // Informá la cantidad de filas visibles por pantalla, por defecto son 10 (diez)
+            //   filterClassList: ["col-sm-12", "col-md-6"], // PERMITE CONFIGURAR LA CANTIDAD DE COLUMNAS Y ESTILOS PARA LOS FILTROS. SI NO SE DECLARA ESTE ATRIBUTO, EL PROGRAMA LO HACE AUTOMÁTICAMENTE.
+            //   filterContClassList: ["col-md-4"], // PERMITE CONFIGURAR EL TAMAÑO DE LA COLUMNA DEL CONTENEDOR DE LOS FILTROS
+            //   searchContClassList: ["col-md-8"], // PERMITE CONFIGURAR EL TAMAÑO DE LA COLUMNA DEL CONTENEDOR DEL BUSCADOR.
+            hash: false, // SI ES TRUE, PERMITE HACER UNA BÚSQUEDA POR URL, EJ. www.argentina.gob.ar#mi_busqueda
+            markdownOptions: {
+                // "tables": true,
+                simpleLineBreaks: true,
+                extensions: [
+                    // 'details', 
+                    // 'images', 
+                    // 'alerts', 
+                    // 'numbers', 
+                    // 'ejes', 
                     'button',
                     'target',
-                    //     'bootstrap-tables', 
-                    //    'video'
+                    // 'bootstrap-tables', 
+                    // 'video'
                 ]
             },
-            // pushState: false,
-            // urlParams: false
-            // [ [{num prioridad}, {indice columna}] ]
-            // responsivePriorities: [
-            //     [1, 2],[2, 1]
-            // ],
-            // columnsWidth: [["25%", 0], ["25%", 1]],
-            // responsiveDetailsType: "none", // Opciones [none {default}, inline, column]. A) Columnas ocultas con toggle. B) Agrupa las columnas en una. C) Agrupa columnas.
-            // responsiveDetailsOrderable: false, // Ordenar por agrupamiento. Default false.
-            // responsiveDetailsColumns: [0,4,5,6] // comenzando en 0, 1, 2… La primer columna, la 0, no se puede utilizar.
+            urlParams: true, // HABILITA QUE SE PUEDA INICIAR UNA PÁGINA CON TABLA BUSCADOR (CON O SIN FILTROS), CON VALORES PRE-SETEADOS 
+            pushState: true, // SI ES TRUE MODIFICA LA BARRA DE URL CON LOS PARÁMETROS QUE SE VAN SELECCIONANDO.
+            copyResults: true // ACTIVA EL BOTÓN (COPIAR RESULTADOS)
         };
         ponchoTable(ponchoTableOpciones);
-        // setTimeout(sharing, 500);
     })(jQuery);
 
 </script>

@@ -6,7 +6,7 @@ const _color = new Color(ponchoColorDefinitionsList);
 test('Colores Poncho por nombre', () => {
     expect( _color.ponchoColor('amarillo') ).toBe('#E7BA61');
     expect( _color.ponchoColor('warning') ).toBe('#E7BA61');
-    expect( _color.ponchoColor('Esto no es un color') ).toBe('#99999');
+    expect( _color.ponchoColor('Esto no es un color') ).toBe('#999999');
 
 });
 
