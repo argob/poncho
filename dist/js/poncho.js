@@ -1699,7 +1699,7 @@ class Color { //jslint-ignore-line
      * @returns {string} Color en formato hexadecimal.
      */
     ponchoColor = color => {
-        const defaultColor = "#99999";
+        const defaultColor = "#999999";
         const self = this;
 
         if (typeof color !== "string") {
