@@ -1992,6 +1992,11 @@
       },
     
       {
+        "nombre": "fibra-grano-canamo",
+        "clase": "icono-arg-fibra-grano-canamo"
+      },
+    
+      {
         "nombre": "fiestas-argentinas",
         "clase": "icono-arg-fiestas-argentinas"
       },
@@ -2034,6 +2039,11 @@
       {
         "nombre": "flickr",
         "clase": "icono-arg-flickr"
+      },
+    
+      {
+        "nombre": "flor-canamo-biomasa",
+        "clase": "icono-arg-flor-canamo-biomasa"
       },
     
       {
