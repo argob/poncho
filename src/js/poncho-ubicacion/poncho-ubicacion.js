@@ -75,17 +75,7 @@ var ponchoUbicacion = function(options) {
         return provincias;
     }
 
-
-    /**
-     * 
-     * @param {*} string 
-     * @returns 
-     */
-    function capitalizeFirstLetter(string) {
-        return string.charAt(0).toUpperCase() + string.slice(1);
-    }
-
-
+    
     /**
      * 
      * @param {*} data 
@@ -209,9 +199,8 @@ var ponchoUbicacion = function(options) {
                 })
                 .map(function(a) {
                     if (a.departamento.nombre) {
-                        a.nombre = capitalizeFirstLetter(
-                            a.departamento.nombre.toLowerCase()) + ' - ' + 
-                            capitalizeFirstLetter(a.nombre.toLowerCase());
+                        a.nombre = a.departamento.nombre 
+                            + ' - ' + a.nombre;    
                     }
                     return a;
                 })
