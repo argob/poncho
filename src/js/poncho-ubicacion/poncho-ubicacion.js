@@ -82,23 +82,15 @@ var ponchoUbicacion = function(options) {
      * @returns 
      */
     function parseJsonLocalidades(data) {
-
         const groupedData = data.results.reduce((acc, current) => {
-            const key = `${current.departamento.nombre}-${current.nombre}`;
+            const key = `${current.departamento.nombre} - ${current.nombre}`;
+            current.label = key;
             if (!acc[key]) {
                 acc[key] = current;
             }
             return acc;
         }, {});
         return Object.values(groupedData);
-
-
-
-        localidades = [];
-        data.results.forEach(function(localidad, index) {
-            localidades.push(localidad);
-        });
-        return localidades;
     }
 
 
@@ -159,12 +151,11 @@ var ponchoUbicacion = function(options) {
         jQuery.each(optionList, function(i, el) {
             let selected = '';
             if (selected_item == el.nombre) {
-                selected = 'selected="selected"';
+                selected = ' selected="selected"';
             }
+            const label = (el.label ? el.label : el.nombre);
             combo.append(
-                "<option value='" + el.id + "' " + selected + ">" +
-                el.nombre +
-                "</option>"
+                `<option value="${el.id}"${selected}>${label}</option>`
             );
         });
         return combo;
@@ -209,16 +200,9 @@ var ponchoUbicacion = function(options) {
                 .filter(function(localidad) {
                     return String(localidad.provincia.id) == String(provincia);
                 })
-                .map(function(a) {
-                    if (a.departamento.nombre) {
-                        a.nombre = a.departamento.nombre 
-                            + ' - ' + a.nombre;    
-                    }
-                    return a;
-                })
                 .sort(function(a, b) {
-                    var nameA = a.nombre.toUpperCase();
-                    var nameB = b.nombre.toUpperCase();
+                    var nameA = a.label.toUpperCase();
+                    var nameB = b.label.toUpperCase();
                     return nameA.localeCompare(nameB);
                 });
             
