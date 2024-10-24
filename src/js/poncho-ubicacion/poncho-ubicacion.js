@@ -82,6 +82,18 @@ var ponchoUbicacion = function(options) {
      * @returns 
      */
     function parseJsonLocalidades(data) {
+
+        const groupedData = data.results.reduce((acc, current) => {
+            const key = `${current.departamento.nombre}-${current.nombre}`;
+            if (!acc[key]) {
+                acc[key] = current;
+            }
+            return acc;
+        }, {});
+        return Object.values(groupedData);
+
+
+
         localidades = [];
         data.results.forEach(function(localidad, index) {
             localidades.push(localidad);
