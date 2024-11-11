@@ -197,7 +197,6 @@ function colorNames(){
 
         return [color, colorName];
     });
-    console.table(data);
     return data;
 }
 
