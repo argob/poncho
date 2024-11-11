@@ -179,7 +179,7 @@ fs.writeFile(
  * JSON COLORES HEADERS
  */
 const HEADER_COLORS_JSON_PATH = `./dist/jsons/`;
-const HEADER_COLORS_JSON_FILENAME = "poncho-colors.json";
+const HEADER_COLORS_JSON_FILENAME = "poncho-headers-colors.json";
 
 
 /**
