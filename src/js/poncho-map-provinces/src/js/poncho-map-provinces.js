@@ -180,6 +180,7 @@ class PonchoMapProvinces extends PonchoMapFilter {
         this.toggleSelect = opts.toggle_select;
         this.hideSelect = opts.hide_select;
         this.fitToBounds = opts.fit_bounds
+
     }
 
 
@@ -346,8 +347,8 @@ class PonchoMapProvinces extends PonchoMapFilter {
         if(!this.overlayImage){
             return;
         }
-
-        if(typeof this.overlay_image_url !== "string"){
+console.log(this.overlayImageUrl)
+        if(typeof this.overlayImageUrl !== "string"){
             console.error("Hubo un problema con la ruta o nombre de la imagen");
             return;
         }
