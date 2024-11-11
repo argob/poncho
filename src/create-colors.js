@@ -178,9 +178,6 @@ fs.writeFile(
 /**
  * JSON COLORES HEADERS
  */
-const HEADER_COLORS_JSON_PATH = `./dist/jsons/`;
-const HEADER_COLORS_JSON_FILENAME = "poncho-headers-colors.json";
-
 
 /**
  * Retorna los colores para los headers de www.argentina.gob.ar
@@ -204,6 +201,8 @@ function colorNames(){
     return data;
 }
 
+const HEADER_COLORS_JSON_PATH = `./dist/jsons/`;
+const HEADER_COLORS_JSON_FILENAME = "poncho-headers-colors.json";
 
 fs.writeFile(
     HEADER_COLORS_JSON_PATH + HEADER_COLORS_JSON_FILENAME,
