@@ -25,14 +25,6 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-// @legacy Creo ponchoColor y color como una variable global.
-var ponchoColor;
-var color;
-if (typeof Color !== 'undefined') {
-    color = new Color(ponchoColorDefinitionsList);
-    ponchoColor = color.ponchoColor;
-}
-
 
 /**
  * Códigos de color válidos para utilizar en ilustraciones. 
@@ -50,16 +42,16 @@ const illustrationColors = [
 
 
 const headersBackground = [
-    ["bg-arg-azul", color.colorName('arg-azul')],
-    ["bg-arg-info", color.colorName('arg-info')],
-    ["bg-arg-verde-jade", color.colorName('arg-verde-jade')],
-    ["bg-arg-palta", color.colorName('arg-palta')],
-    ["bg-arg-arandano", color.colorName('arg-arandano')],
-    ["bg-arg-negro-light", "Gris claro"],
-    ["bg-mix-azul-info", "Mix " + color.colorName('arg-azul', "arg-info")],
-    ["bg-mix-info-azul", "Mix " + color.colorName('arg-info', "arg-azul")],
-    ["bg-mix-palta-azul", "Mix " + color.colorName('arg-palta', "arg-azul")],
-    ["bg-mix-azul-palta", "Mix " + color.colorName('arg-azul', "arg-palta")]
+    "bg-arg-azul",
+    "bg-arg-info",
+    "bg-arg-verde-jade",
+    "bg-arg-palta",
+    "bg-arg-arandano",
+    "bg-arg-negro-light",
+    "bg-mix-azul-info",
+    "bg-mix-info-azul",
+    "bg-mix-palta-azul",
+    "bg-mix-azul-palta"
 ];
 
 
@@ -80,8 +72,17 @@ const colorVariations = {
 };
 
 
+// @legacy Creo ponchoColor y color como una variable global.
+var ponchoColor;
+var color;
+if (typeof Color !== 'undefined') {
+    color = new Color(ponchoColorDefinitionsList);
+    ponchoColor = color.ponchoColor;
+}
+
+
 if (typeof exports !== "undefined") {
     module.exports = {
-        colorVariations, illustrationColors
+        colorVariations, illustrationColors, headersBackground, color
     };
 }

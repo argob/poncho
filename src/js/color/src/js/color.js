@@ -370,7 +370,7 @@ class Color { //jslint-ignore-line
 
         const getColorName = (arg) => {
             if (this.colorDefinitions) {
-                const definition = color.colorDefinitions(arg);
+                const definition = this.colorDefinitions(arg);
                 return definition?.name || arg;
             } else {
                 return arg;
