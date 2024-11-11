@@ -18,12 +18,14 @@ $brand-arg-arandano: #C2185B !default;
 $brand-arg-arandano-dark: #721038 !default;
 $brand-arg-arandano-half: #E18CAD !default;
 $brand-arg-arandano-light: #EC407A !default;
+$brand-arg-arandano-lighter: #FCDDE6 !default;
 $brand-arg-arena: #EAE1B7 !default;
 $brand-arg-arena-dark: #E7BA61 !default;
 $brand-arg-arena-half: #F5F0DB !default;
 $brand-arg-arena-light: #FAF8ED !default;
 $brand-arg-azul: #232D4F !default; /* Color principal */ 
 $brand-arg-azul-half: #9296A7 !default;
+$brand-arg-azul-lighter: #C8D0DA !default;
 $brand-arg-azul-morado: #3A3796 !default;
 $brand-arg-cielo: #039BE5 !default;
 $brand-arg-default: #838383 !default;
@@ -40,6 +42,7 @@ $brand-arg-gray-light: #DDDDDD !default;
 $brand-arg-gris-intermedio: #555555 !default;
 $brand-arg-gris-niebla: #F2F2F2 !default;
 $brand-arg-info: #5A7290 !default;
+$brand-arg-info-lighter: #E3E7ED !default;
 $brand-arg-lavanda: #9284BE !default;
 $brand-arg-lima: #B9CE39 !default;
 $brand-arg-lima-dark: #6EA015 !default;
@@ -58,12 +61,16 @@ $brand-arg-naranja: #EF6C00 !default;
 $brand-arg-naranja-dark: #6C1805 !default;
 $brand-arg-naranja-light: #EF6C00 !default;
 $brand-arg-negro: #141414 !default; /* Elementos básicos */ 
+$brand-arg-negro-light: #DDDDDD !default;
+$brand-arg-negro-lighter: #F0F0F0 !default;
 $brand-arg-palta: #50B7B2 !default;
 $brand-arg-palta-half: #A8DBD9 !default;
+$brand-arg-palta-lighter: #C0E5E3 !default;
 $brand-arg-primary-light: #E3E7ED !default;
 $brand-arg-rojo: #C62828 !default; /* Atención o peligro */ 
 $brand-arg-rojo-dark: #7C1C1C !default;
 $brand-arg-rojo-light: #E14543 !default;
+$brand-arg-rojo-lighter: #FCDDDC !default;
 $brand-arg-rosado: #F48EAB !default;
 $brand-arg-rosado-dark: #ED3F85 !default;
 $brand-arg-rosado-half: #FAC7D5 !default;
@@ -77,6 +84,9 @@ $brand-arg-verde: #2E7D33 !default;
 $brand-arg-verde-azulado: #3B8681 !default;
 $brand-arg-verde-dark: #1F5421 !default;
 $brand-arg-verde-half: #96BE99 !default;
+$brand-arg-verde-jade: #306D69 !default;
+$brand-arg-verde-jade-dark: #255450 !default;
+$brand-arg-verde-jade-lighter: #A4D9D7 !default;
 $brand-arg-verde-light: #6EA015 !default;
 $brand-arg-verdin: #6EA015 !default;
 $brand-arg-verdin-dark: #2E7D33 !default;
@@ -169,12 +179,14 @@ $colores: ("amarillo", $brand-amarillo),
 ("arg-arandano-dark", $brand-arg-arandano-dark),
 ("arg-arandano-half", $brand-arg-arandano-half),
 ("arg-arandano-light", $brand-arg-arandano-light),
+("arg-arandano-lighter", $brand-arg-arandano-lighter),
 ("arg-arena", $brand-arg-arena),
 ("arg-arena-dark", $brand-arg-arena-dark),
 ("arg-arena-half", $brand-arg-arena-half),
 ("arg-arena-light", $brand-arg-arena-light),
 ("arg-azul", $brand-arg-azul),
 ("arg-azul-half", $brand-arg-azul-half),
+("arg-azul-lighter", $brand-arg-azul-lighter),
 ("arg-azul-morado", $brand-arg-azul-morado),
 ("arg-cielo", $brand-arg-cielo),
 ("arg-default", $brand-arg-default),
@@ -191,6 +203,7 @@ $colores: ("amarillo", $brand-amarillo),
 ("arg-gris-intermedio", $brand-arg-gris-intermedio),
 ("arg-gris-niebla", $brand-arg-gris-niebla),
 ("arg-info", $brand-arg-info),
+("arg-info-lighter", $brand-arg-info-lighter),
 ("arg-lavanda", $brand-arg-lavanda),
 ("arg-lima", $brand-arg-lima),
 ("arg-lima-dark", $brand-arg-lima-dark),
@@ -209,12 +222,16 @@ $colores: ("amarillo", $brand-amarillo),
 ("arg-naranja-dark", $brand-arg-naranja-dark),
 ("arg-naranja-light", $brand-arg-naranja-light),
 ("arg-negro", $brand-arg-negro),
+("arg-negro-light", $brand-arg-negro-light),
+("arg-negro-lighter", $brand-arg-negro-lighter),
 ("arg-palta", $brand-arg-palta),
 ("arg-palta-half", $brand-arg-palta-half),
+("arg-palta-lighter", $brand-arg-palta-lighter),
 ("arg-primary-light", $brand-arg-primary-light),
 ("arg-rojo", $brand-arg-rojo),
 ("arg-rojo-dark", $brand-arg-rojo-dark),
 ("arg-rojo-light", $brand-arg-rojo-light),
+("arg-rojo-lighter", $brand-arg-rojo-lighter),
 ("arg-rosado", $brand-arg-rosado),
 ("arg-rosado-dark", $brand-arg-rosado-dark),
 ("arg-rosado-half", $brand-arg-rosado-half),
@@ -228,6 +245,9 @@ $colores: ("amarillo", $brand-amarillo),
 ("arg-verde-azulado", $brand-arg-verde-azulado),
 ("arg-verde-dark", $brand-arg-verde-dark),
 ("arg-verde-half", $brand-arg-verde-half),
+("arg-verde-jade", $brand-arg-verde-jade),
+("arg-verde-jade-dark", $brand-arg-verde-jade-dark),
+("arg-verde-jade-lighter", $brand-arg-verde-jade-lighter),
 ("arg-verde-light", $brand-arg-verde-light),
 ("arg-verdin", $brand-arg-verdin),
 ("arg-verdin-dark", $brand-arg-verdin-dark),
@@ -451,12 +471,14 @@ html {
 	--arg-arandano-dark:#721038;
 	--arg-arandano-half:#E18CAD;
 	--arg-arandano-light:#EC407A;
+	--arg-arandano-lighter:#FCDDE6;
 	--arg-arena:#EAE1B7;
 	--arg-arena-dark:#E7BA61;
 	--arg-arena-half:#F5F0DB;
 	--arg-arena-light:#FAF8ED;
 	--arg-azul:#232D4F;
 	--arg-azul-half:#9296A7;
+	--arg-azul-lighter:#C8D0DA;
 	--arg-azul-morado:#3A3796;
 	--arg-cielo:#039BE5;
 	--arg-default:#838383;
@@ -473,6 +495,7 @@ html {
 	--arg-gris-intermedio:#555555;
 	--arg-gris-niebla:#F2F2F2;
 	--arg-info:#5A7290;
+	--arg-info-lighter:#E3E7ED;
 	--arg-lavanda:#9284BE;
 	--arg-lima:#B9CE39;
 	--arg-lima-dark:#6EA015;
@@ -491,12 +514,16 @@ html {
 	--arg-naranja-dark:#6C1805;
 	--arg-naranja-light:#EF6C00;
 	--arg-negro:#141414;
+	--arg-negro-light:#DDDDDD;
+	--arg-negro-lighter:#F0F0F0;
 	--arg-palta:#50B7B2;
 	--arg-palta-half:#A8DBD9;
+	--arg-palta-lighter:#C0E5E3;
 	--arg-primary-light:#E3E7ED;
 	--arg-rojo:#C62828;
 	--arg-rojo-dark:#7C1C1C;
 	--arg-rojo-light:#E14543;
+	--arg-rojo-lighter:#FCDDDC;
 	--arg-rosado:#F48EAB;
 	--arg-rosado-dark:#ED3F85;
 	--arg-rosado-half:#FAC7D5;
@@ -510,6 +537,9 @@ html {
 	--arg-verde-azulado:#3B8681;
 	--arg-verde-dark:#1F5421;
 	--arg-verde-half:#96BE99;
+	--arg-verde-jade:#306D69;
+	--arg-verde-jade-dark:#255450;
+	--arg-verde-jade-lighter:#A4D9D7;
 	--arg-verde-light:#6EA015;
 	--arg-verdin:#6EA015;
 	--arg-verdin-dark:#2E7D33;
