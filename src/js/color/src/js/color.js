@@ -330,6 +330,7 @@ class Color { //jslint-ignore-line
         return true;
     };
 
+
     /**
      * Converson de HEX a RGB.
      * @param {string} hexColor Color hexadecimal
@@ -349,6 +350,49 @@ class Color { //jslint-ignore-line
 
         return [red, green, blue];
     }
+
+
+    /**
+     * 
+     * @param  {...any} args Argumentos string
+     * @returns 
+     */
+    colorName = (...args) => {
+        if(args.length < 1){
+            console.error("Error.", "Debe pasar al menos un argumento.");
+            return;
+        }
+        
+        if(!args.every(e => typeof e === "string")){
+            console.error("Error.", "Solo se admiten cadenas de texto");
+            return;
+        }
+
+        const getColorName = (arg) => {
+            if (this.colorDefinitions) {
+                const definition = this.colorDefinitions(arg);
+                return definition?.name || arg;
+            } else {
+                return arg;
+            }
+        };
+    
+        if (args.length === 1) {
+            return getColorName(args.join(""));
+        }
+    
+        const totalArgs = args.length;
+    
+        const lastArg = args.pop(totalArgs - 1);
+        const firstCharName = Array.from( getColorName(lastArg) )[0].toLowerCase();
+        const connectorSwitch = {"i": "e", "o": "u"};
+        const connector = connectorSwitch[firstCharName] || "y";
+    
+        const result = `${args.map(m => getColorName(m)).join(", ")} ${connector}` 
+                + ` ${getColorName(lastArg)}`; 
+    
+        return result.toLowerCase();
+    };
 }
 
 

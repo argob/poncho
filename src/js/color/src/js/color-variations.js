@@ -26,7 +26,6 @@
  * SOFTWARE.
  */
 
-
 /**
  * Códigos de color válidos para utilizar en ilustraciones. 
  */
@@ -39,6 +38,20 @@ const illustrationColors = [
     "arg-arandano",
     "arg-rosado",
     "miarg-azul",
+];
+
+
+const headersBackground = [
+    "bg-arg-azul",
+    "bg-arg-info",
+    "bg-arg-verde-jade",
+    "bg-arg-palta",
+    "bg-arg-arandano",
+    "bg-arg-negro-light",
+    "bg-mix-azul-info",
+    "bg-mix-info-azul",
+    "bg-mix-palta-azul",
+    "bg-mix-azul-palta"
 ];
 
 
@@ -70,6 +83,6 @@ if (typeof Color !== 'undefined') {
 
 if (typeof exports !== "undefined") {
     module.exports = {
-        colorVariations, illustrationColors
+        colorVariations, illustrationColors, headersBackground, color
     };
 }

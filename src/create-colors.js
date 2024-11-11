@@ -1,6 +1,6 @@
 const fs = require('fs');
 const {Color} = require('./js/color/src/js/color');
-const {illustrationColors} = require('./js/color/src/js/color-variations');
+const {illustrationColors, headersBackground} = require('./js/color/src/js/color-variations');
 const {
     ponchoColorDefinitionsList
 } = require('./js/color/src/js/color-definitions');
@@ -170,6 +170,50 @@ fs.writeFile(
         } else {
             console.log(
                 `¡El archivo: "${COLORS_JSON_FILENAME}", se creó con éxito!`);
+        }
+    }
+);
+
+
+/**
+ * JSON COLORES HEADERS
+ */
+const HEADER_COLORS_JSON_PATH = `./dist/jsons/`;
+const HEADER_COLORS_JSON_FILENAME = "poncho-colors.json";
+
+
+/**
+ * Retorna los colores para los headers de www.argentina.gob.ar
+ * @returns {object}
+ */
+function colorNames(){
+    const data = headersBackground.map(function(color){
+        let colorName = "";
+        let colorRefactor = color.replace("bg-", "");
+
+        if( colorRefactor.startsWith("mix-") ){
+            const colors = colorRefactor.replace(/^mix-/, "").split("-");
+            colorName = "Mix " + _color.colorName(...colors);
+        } else {
+            colorName = _color.colorName(colorRefactor);
+        }
+
+        return [color, colorName];
+    });
+    console.table(data);
+    return data;
+}
+
+
+fs.writeFile(
+    HEADER_COLORS_JSON_PATH + HEADER_COLORS_JSON_FILENAME,
+    JSON.stringify(colorNames()), function(err){
+        if (err) {
+            console.error(
+                `Error creando el archivo: "${HEADER_COLORS_JSON_FILENAME}":`, err);
+        } else {
+            console.log(
+                `¡El archivo: "${HEADER_COLORS_JSON_FILENAME}", se creó con éxito!`);
         }
     }
 );
