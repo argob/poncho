@@ -7,9 +7,8 @@
     <script 
         src="https://www.argentina.gob.ar/profiles/argentinagobar/libraries/jquery.jquery-371/jquery-3.7.1.min.js?v=3.7.1" >
         </script>
-    <link 
-        rel="stylesheet" 
-        href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://qa2-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/vendor/bootstrap/css/bootstrap.min.css?slvi7r">
+
     <link 
         rel="stylesheet" 
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" 
@@ -21,6 +20,7 @@
         href="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css">
     <!-- /Base -->
     <link rel="stylesheet" href="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/poncho.min.css" />
+    <script src="https://qa2-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/vendor/bootstrap/js/bootstrap.min.js?slvi7r"></script>
     <link rel="stylesheet" href="../src/" />
     <title>Tabla vialidad</title>
     <style>
@@ -28,13 +28,15 @@
             padding: 2em;
         }
     </style>
-    <script src="../../utils/color.js"></script>
+    <script src="../../color/src/js/color.js"></script>
     <script src="../../utils/connect.js"></script>
     <script src="../../utils/string.js"></script>
     <script src="../../utils/html.js"></script>
+    <script src="../../utils/popover.js"></script>
     <script src="../poncho-table.js"></script>
     <script src="../poncho-table-dependant.js"></script>
     <script src="../../gapi-sheet-data/gapi-sheet-data.js"></script>
+    <script src="../../utils/document.js"></script>
 </head>
 <body class="p-t-3">
     <h1>Fiestas Argentinas</h1>
@@ -50,31 +52,43 @@ COPIAR DESDE ACÁ…
 <!-- / INCLUDE SCRIPTS -->
 
 <div class="row">
-  <div class="col-sm-4" id="ponchoTableFiltroCont" style="display:none">
-    <div class="form-group">
-      <label for="ponchoTableFiltro" id="tituloFiltro">Filtro</label>
-      <select class="form-control" id="ponchoTableFiltro" name="ponchoTableFiltro">
-        <option value="">Todos</option>
-      </select>
+    <div class="col-sm-4" id="ponchoTableFiltroCont" style="display:none">
+        <div class="form-group">
+        <label for="ponchoTableFiltro" id="tituloFiltro">Filtro</label>
+        <select 
+            class="form-control" 
+            id="ponchoTableFiltro" 
+            name="ponchoTableFiltro">
+            <option value="">Todos</option>
+        </select>
+        </div>
     </div>
-  </div>
-  <div class="col-sm-8" id="ponchoTableSearchCont" style="display:none">
-    <div class="form-group">
-      <label for="ponchoTableSearch">Buscá por palabra clave</label>
-      <input class="form-control" id="ponchoTableSearch" type="search" />
+    <div class="col-sm-8" id="ponchoTableSearchCont" style="display:none">
+        <div class="form-group">
+        <label for="ponchoTableSearch">Buscá por palabra clave</label>
+        <input class="form-control" id="ponchoTableSearch" type="search" />
+        </div>
     </div>
-  </div>
-  <div class="col-md-12 m-b-4">
-    <table class="table tabla-condensed _table-striped" id="ponchoTable">
-      <caption></caption>
-      <thead><tr></tr></thead>
-      <tbody></tbody>
-    </table>
-  </div>
+    <div class="col-md-12 m-b-4">
+        <table class="table tabla-condensed _table-striped" id="ponchoTable">
+            <caption></caption>
+            <thead><tr></tr></thead>
+            <tbody></tbody>
+        </table>
+    </div>
 </div>
-
-
 <script>
+    /**
+     * 
+     */ 
+    function eventDispatcher(selector, value, eventType){
+        const element = document.getElementById(selector);
+        element.value = value;
+        const event = new Event(eventType);
+        element.dispatchEvent(event);
+    }
+
+
     function templateDescription(row) {
         const { titulo, "filtro-ubicacion": ubicacion, 
                 descripcion, lugar, url, imagen } = row;
@@ -98,18 +112,24 @@ COPIAR DESDE ACÁ…
 
         let description = "";
         if (descripcion.trim() !== "") {
-            description = `<dt class="sr-only">Descripción</dt><dd>${descripcion}</dd>`;
+            description = `<dt class="sr-only">Descripción</dt>`
+                + `<dd>${descripcion}</dd>`;
         }
 
-        return `<div class="row"><div class="col-md-8">
-            <dl>
-                <dt class="sr-only">Nombre</dt><dd class="h4">${titulo}</dd>
-                <dt class="sr-only">Ubicación</dt><dd class="h5">${ubicacion}</dd>
-                <dt>Lugar</dt><dd>${lugar}</dd>
-                ${description}
-                ${info}
-            </dl>
-        </div>${tplImage}</div>`;
+        return `<div class="row">
+            <div class="col-md-8">
+                <dl>
+                    <dt class="sr-only">Nombre</dt>
+                    <dd class="h4">${titulo}</dd>
+                    <dt class="sr-only">Ubicación</dt>
+                    <dd class="h5">${ubicacion}</dd>
+                    <dt>Lugar</dt><dd>${lugar}</dd>
+                    ${description}
+                    ${info}
+                </dl>
+            </div>
+            ${tplImage}
+        </div>`;
     }
 
 
@@ -130,8 +150,6 @@ COPIAR DESDE ACÁ…
             </div>`;
     }
 
-
-
     function templateFecha(row) {
         const { "fecha-desde": desde = "", "fecha-hasta": hasta = "" } = row;
 
@@ -148,7 +166,6 @@ COPIAR DESDE ACÁ…
                 Del ${desde} al ${hasta}
             </div>`;
     }
-
 
 
     // loading
@@ -167,56 +184,58 @@ COPIAR DESDE ACÁ…
             "lugar","url", "imagen", "fecha-desde", "fecha-hasta"];
         removeList.forEach(del => delete(headers[del]));
 
-        const startTime1 = performance.now();
         let filteredEntries = entries.map(function(entry){
             entry.descripcion = templateDescription(entry);
             entry.fecha = templateFecha(entry);
             removeList.forEach(e => delete(entry[e]))
             return entry;
         });
-        const endTime1 = performance.now();
-        console.info('refactor', (endTime1 - startTime1) / 1000);
-
 
         const startTime2 = performance.now();
         var ponchoTableOpciones = {
-            jsonData: filteredEntries.slice(2),
-            headers: {...{fecha: "Fecha"}, ...headers, ...{"filtro-ubicacion": "Provincia"}},
+            jsonData: filteredEntries,
+            headers: {
+                ...{fecha: "Fecha"}, 
+                ...headers, ...{"filtro-ubicacion": "Provincia"}
+            },
             tituloTabla: "Festividades argentinas",
             ordenColumna: 1, 
             ordenTipo: "asc",
-            ocultarColumnas: [1,2,3,4],
+            ocultarColumnas: [1,2,3,4,7],
             cantidadItems: 10,
-            filterClassList: ["col-sm-12", "col-md-4"],
-            filterContClassList: ["col-md-9"],
-            searchContClassList: ["col-md-3"],
+            filterClassList: ["col-sm-12", "col-md-3"],
+            filterContClassList: ["col-md-12"],
+            searchContClassList: ["col-md-12"],
             hash: true,
             allowedTags: ["*"],
             columnsWidth: [["20%", 0]],
+            urlParams: true,
+            pushState: true,
+            copyResults: true,
+            orderFilter: [["filtro-ubicacion"],[ "filtro-estado", "ASC"], "filtro-categoria" ],
+            // orderFilter: true
         };
+
         ponchoTable(ponchoTableOpciones);
-        const endTime2 = performance.now();
-        console.info('render', (endTime2 - startTime2) / 1000);
 
-
-        const u = new URLSearchParams(window.location.search);
-        for (const key of u.keys()){
-            if(key == "search"){
-                eventDispatcher(`ponchoTableSearch`, u.get(key), "keyup");
-            } else {
-                eventDispatcher(key, u.get(key), "change");
-            }
-        };
+        // Acción para mostrar el mes vigente.
+        // const date = (new Date);
+        // const actualMonth = date.toLocaleDateString("es-AR", {month: "long"});
+        // const defaultOption = toTitleCase(actualMonth);
+        const selectorName = "estado";
+        const defaultOption = "Activa";
+        const options = document.querySelectorAll(`#${selectorName} option`);
+        const monthExists = Array.from(options).find(f => f.value==defaultOption);
+        const hasSelected = document.getElementById(selectorName)?.value != "" || false;
+        const hasUrlParams = window.location.search != "" || false;
+        if(monthExists != "undefined" && !hasSelected && !hasUrlParams){
+            setTimeout(function(){
+                eventDispatcher(selectorName, defaultOption, "change");
+            }, 0);
+        }
     })();
 </script>
 <!-- / COPIAR HASTA ACA -->
-<script>
-    function eventDispatcher(selector, value, eventType){
-        const element = document.getElementById(selector);
-        element.value = value;
-        const event = new Event(eventType);
-        element.dispatchEvent(event);
-    }
-</script>
+
 </body>
 </html>
