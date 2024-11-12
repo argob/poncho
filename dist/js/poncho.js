@@ -1521,7 +1521,7 @@ const ponchoTableDependant = opt => {
             opt.emptyLabel : "Todos");
     var filtro = {};
     var orderFilter = (opt.hasOwnProperty("orderFilter") && opt.orderFilter ?
-            true : false);
+            opt.orderFilter : false);
     var asFilter = {};
 
     var allowedTags = ["*"];
@@ -1564,6 +1564,29 @@ const ponchoTableDependant = opt => {
     }
 
 
+    // Define si el orden es ascendente o descendente.
+    const getOrderType = (data) => {
+        let results = {asc:[], desc:[]};
+
+        if(!Array.isArray(data)){
+            return results;
+        }
+        
+        data.forEach(function(m){
+            if(typeof m === "string"){
+                results.asc.push(m);
+            } else if( m.length === 1 ){
+                results.asc.push(m[0]);
+            } else if(m.length > 1 && m[1].toLowerCase() === "asc"){
+                results.asc.push(m[0]);
+            } else if( m.length > 1 && m[1].toLowerCase() ===  "desc" ){
+                results.desc.push(m[0]);
+            }
+        });
+        return results;
+    };
+
+
     /**
      * Ordena alfanuméricamente
      * @example
@@ -1580,13 +1603,48 @@ const ponchoTableDependant = opt => {
      * De acuerdo a las opciones del usuario, ordena el listado o lo deja
      * en la secuencia en la que llega.
      *
-     * @summary Alias de sortAlphaNumeric
+     * @summary Si `orderFilter` es _boolean_ y es true, entonces todos usan sort.
+     * Si `orderFilter` es array filtro según la disponibilidad del filtro.
+     * 
+     * @see sortAlphaNumeric()
      * @param {object} a
      * @param {object} b
      * @returns {object}
      */
-    const _sortAlphaNumeric = (a, b) => (orderFilter ?
-        sortAlphaNumeric(a, b) : null);
+
+    const _sortAlphaNumeric = (data, filter) => {
+        // filter debe ser string
+        if(typeof filter !== "string"){
+            console.error(
+                "Error:", 
+                `_filter_ debe ser string. Recibió: ${typeof filter}`);
+            return;
+        }
+        // data debe ser array
+        if(!Array.isArray(data)){
+            console.error(
+                "Error:", 
+                `_data_ debe ser object. Recibió: ${typeof data}`);
+            return;
+        }
+
+
+        // Validación
+        if(typeof orderFilter === "boolean" && orderFilter){
+            return data.sort(sortAlphaNumeric);
+        } 
+        
+        const orderType = getOrderType(orderFilter);
+        const {asc, desc} = orderType;
+
+        if(Array.isArray(orderFilter) && asc.includes(filter)){
+            return data.sort(sortAlphaNumeric);
+        } else if(desc.includes(filter)){
+            return data.sort(sortAlphaNumeric).reverse();
+        }
+
+        return data;
+    };
 
 
     /**
@@ -1791,9 +1849,8 @@ const ponchoTableDependant = opt => {
         // Imprime cada uno de los filtros
         Object.keys(filtro).forEach((f, key) => {
             const columna = filtro[f][0].columna ? filtro[f][0].columna : 0;
-            const list_filter = filtro[f]
-                .map(e => e.value)
-                .sort(_sortAlphaNumeric);
+            let toSort = filtro[f].map(e => e.value)
+            let list_filter = _sortAlphaNumeric(toSort, f);
 
             const tplCol = document.createElement("div");
 
@@ -1838,7 +1895,6 @@ const ponchoTableDependant = opt => {
             tplCol.appendChild(tplForm);
             const tableFiltroCont = document.querySelector("#ponchoTableFiltro");
             tableFiltroCont.appendChild(tplCol);
-        // }
         });
     };
 
@@ -1958,8 +2014,10 @@ const ponchoTableDependant = opt => {
                 entiresByFilter = gapi_data.entries.map(entry => entry[filter]);
             }
 
-            const uniqueEntries = distinct(entiresByFilter);
-            uniqueEntries.sort(_sortAlphaNumeric);
+            const uniqueEntries = _sortAlphaNumeric(
+                distinct(entiresByFilter), filter
+            );
+
             filter = filter.replace("filtro-", "");
             filters[filter] = [];
             uniqueEntries.forEach(entry => {
@@ -2026,8 +2084,9 @@ const ponchoTableDependant = opt => {
 
         }).filter(f => f);
 
-        const uniqueList = distinct(filterList);
-        uniqueList.sort(_sortAlphaNumeric);
+        const uniqueList =  _sortAlphaNumeric( 
+            distinct(filterList), filtersList[children] 
+        );
         return uniqueList;
     };
 
@@ -2074,8 +2133,9 @@ const ponchoTableDependant = opt => {
             return;
         }).filter(f => f);
 
-        const uniqueList = distinct(items);
-        uniqueList.sort(_sortAlphaNumeric);
+        const uniqueList = _sortAlphaNumeric( 
+            distinct(items), filtersList[children] 
+        );
         return uniqueList;
     };
 
@@ -2375,7 +2435,6 @@ const ponchoTableDependant = opt => {
             console.log('sin pushstate')
             return;
         }
-        console.log('no debe llegar')
         window.history.pushState({}, "", url);
     }
 
@@ -8112,6 +8171,7 @@ class PonchoMapProvinces extends PonchoMapFilter {
         this.toggleSelect = opts.toggle_select;
         this.hideSelect = opts.hide_select;
         this.fitToBounds = opts.fit_bounds
+
     }
 
 
@@ -8278,8 +8338,8 @@ class PonchoMapProvinces extends PonchoMapFilter {
         if(!this.overlayImage){
             return;
         }
-
-        if(typeof this.overlay_image_url !== "string"){
+console.log(this.overlayImageUrl)
+        if(typeof this.overlayImageUrl !== "string"){
             console.error("Hubo un problema con la ruta o nombre de la imagen");
             return;
         }
