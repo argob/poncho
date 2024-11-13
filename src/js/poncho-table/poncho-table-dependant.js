@@ -44,12 +44,9 @@ const ponchoTableDependant = opt => {
     var orderFilter = (opt.hasOwnProperty("orderFilter") && opt.orderFilter ?
             opt.orderFilter : false);
     var asFilter = {};
-
     var allowedTags = ["*"];
-
     var pushState = (opt.hasOwnProperty("pushState") && 
         opt.pushState == true ? true : false);
-
     var copyResults = (opt.hasOwnProperty("copyResults") && 
         opt.copyResults == true ? true : false);
 
@@ -85,29 +82,6 @@ const ponchoTableDependant = opt => {
     }
 
 
-    // Define si el orden es ascendente o descendente.
-    const getOrderType = (data) => {
-        let results = {asc:[], desc:[]};
-
-        if(!Array.isArray(data)){
-            return results;
-        }
-        
-        data.forEach(function(m){
-            if(typeof m === "string"){
-                results.asc.push(m);
-            } else if( m.length === 1 ){
-                results.asc.push(m[0]);
-            } else if(m.length > 1 && m[1].toLowerCase() === "asc"){
-                results.asc.push(m[0]);
-            } else if( m.length > 1 && m[1].toLowerCase() ===  "desc" ){
-                results.desc.push(m[0]);
-            }
-        });
-        return results;
-    };
-
-
     /**
      * Ordena alfanuméricamente
      * @example
@@ -121,6 +95,38 @@ const ponchoTableDependant = opt => {
 
 
     /**
+     * Objeto agrupando filtros descendentes y ascendentes.
+     * 
+     * @param {object} data Array con la configuración realizada por el 
+     * usuario en `orderFilter`.
+     * @example
+     * // {
+     * //     asc: ["filtro-estado", "filtro-categoria"], 
+     * //     desc: ["filtro-ubicacion"]
+     * // }
+     * [["filtro-ubicacion", "desc"],[ "filtro-estado"], "filtro-categoria"]
+     * @returns {object}
+     */
+    const _getOrderType = (data) => {
+        if (!Array.isArray(data)) {
+            return { asc: [], desc: [] };
+        }
+
+        return data.reduce((acc, item) => {
+            const [field, order="asc"] = (Array.isArray(item) ? 
+                    item : [item, 'asc']);
+
+                    const orderToLower = order.toLowerCase();
+            const validKey = (["asc", "desc"].includes(orderToLower) ? 
+                    orderToLower : "asc");
+
+            acc[validKey].push(field);
+            return acc;
+        }, {asc: [], desc: []});
+    };
+
+
+    /**
      * De acuerdo a las opciones del usuario, ordena el listado o lo deja
      * en la secuencia en la que llega.
      *
@@ -128,11 +134,10 @@ const ponchoTableDependant = opt => {
      * Si `orderFilter` es array filtro según la disponibilidad del filtro.
      * 
      * @see sortAlphaNumeric()
-     * @param {object} a
-     * @param {object} b
+     * @param {object} data Array con el contenido de cada filtro.
+     * @param {string} filter Nombre del filtro.  
      * @returns {object}
      */
-
     const _sortAlphaNumeric = (data, filter) => {
         // filter debe ser string
         if(typeof filter !== "string"){
@@ -149,13 +154,12 @@ const ponchoTableDependant = opt => {
             return;
         }
 
-
         // Validación
         if(typeof orderFilter === "boolean" && orderFilter){
             return data.sort(sortAlphaNumeric);
         } 
-        
-        const orderType = getOrderType(orderFilter);
+
+        const orderType = _getOrderType(orderFilter);
         const {asc, desc} = orderType;
 
         if(Array.isArray(orderFilter) && asc.includes(filter)){
@@ -312,18 +316,20 @@ const ponchoTableDependant = opt => {
      *
      * @summary Imprime un botón bootstrap.
      * @param {string} label Label para el botón.
-     * @param {string} value Href para el botón
+     * @param {string} value Href para el botón.
      * @return {undefined}
      */
     const button = (label, value) => {
         const btn = document.createElement("a");
-        btn.setAttribute("aria-label", label);
         btn.classList.add(
             "btn", "btn-primary", "btn-sm", "margin-btn");
-        btn.target = "_blank";
         btn.href = value;
+        btn.target = "_blank";
         btn.textContent = label;
+        btn.title = "Abre en una nueva ventana";
+        btn.setAttribute("aria-label", label);
         btn.setAttribute("rel", "noopener noreferrer");
+
         return btn.outerHTML;
     };
 
