@@ -42,14 +42,11 @@ const ponchoTableDependant = opt => {
             opt.emptyLabel : "Todos");
     var filtro = {};
     var orderFilter = (opt.hasOwnProperty("orderFilter") && opt.orderFilter ?
-            true : false);
+            opt.orderFilter : false);
     var asFilter = {};
-
     var allowedTags = ["*"];
-
     var pushState = (opt.hasOwnProperty("pushState") && 
         opt.pushState == true ? true : false);
-
     var copyResults = (opt.hasOwnProperty("copyResults") && 
         opt.copyResults == true ? true : false);
 
@@ -98,16 +95,81 @@ const ponchoTableDependant = opt => {
 
 
     /**
+     * Objeto agrupando filtros descendentes y ascendentes.
+     * 
+     * @param {object} data Array con la configuración realizada por el 
+     * usuario en `orderFilter`.
+     * @example
+     * // {
+     * //     asc: ["filtro-estado", "filtro-categoria"], 
+     * //     desc: ["filtro-ubicacion"]
+     * // }
+     * [["filtro-ubicacion", "desc"],[ "filtro-estado"], "filtro-categoria"]
+     * @returns {object}
+     */
+    const _getOrderType = (data) => {
+        if (!Array.isArray(data)) {
+            return { asc: [], desc: [] };
+        }
+
+        return data.reduce((acc, item) => {
+            const [field, order="asc"] = (Array.isArray(item) ? 
+                    item : [item, 'asc']);
+
+                    const orderToLower = order.toLowerCase();
+            const validKey = (["asc", "desc"].includes(orderToLower) ? 
+                    orderToLower : "asc");
+
+            acc[validKey].push(field);
+            return acc;
+        }, {asc: [], desc: []});
+    };
+
+
+    /**
      * De acuerdo a las opciones del usuario, ordena el listado o lo deja
      * en la secuencia en la que llega.
      *
-     * @summary Alias de sortAlphaNumeric
-     * @param {object} a
-     * @param {object} b
+     * @summary Si `orderFilter` es _boolean_ y es true, entonces todos usan sort.
+     * Si `orderFilter` es array filtro según la disponibilidad del filtro.
+     * 
+     * @see sortAlphaNumeric()
+     * @param {object} data Array con el contenido de cada filtro.
+     * @param {string} filter Nombre del filtro.  
      * @returns {object}
      */
-    const _sortAlphaNumeric = (a, b) => (orderFilter ?
-        sortAlphaNumeric(a, b) : null);
+    const _sortAlphaNumeric = (data, filter) => {
+        // filter debe ser string
+        if(typeof filter !== "string"){
+            console.error(
+                "Error:", 
+                `_filter_ debe ser string. Recibió: ${typeof filter}`);
+            return;
+        }
+        // data debe ser array
+        if(!Array.isArray(data)){
+            console.error(
+                "Error:", 
+                `_data_ debe ser object. Recibió: ${typeof data}`);
+            return;
+        }
+
+        // Validación
+        if(typeof orderFilter === "boolean" && orderFilter){
+            return data.sort(sortAlphaNumeric);
+        } 
+
+        const orderType = _getOrderType(orderFilter);
+        const {asc, desc} = orderType;
+
+        if(Array.isArray(orderFilter) && asc.includes(filter)){
+            return data.sort(sortAlphaNumeric);
+        } else if(desc.includes(filter)){
+            return data.sort(sortAlphaNumeric).reverse();
+        }
+
+        return data;
+    };
 
 
     /**
@@ -254,18 +316,20 @@ const ponchoTableDependant = opt => {
      *
      * @summary Imprime un botón bootstrap.
      * @param {string} label Label para el botón.
-     * @param {string} value Href para el botón
+     * @param {string} value Href para el botón.
      * @return {undefined}
      */
     const button = (label, value) => {
         const btn = document.createElement("a");
-        btn.setAttribute("aria-label", label);
         btn.classList.add(
             "btn", "btn-primary", "btn-sm", "margin-btn");
-        btn.target = "_blank";
         btn.href = value;
+        btn.target = "_blank";
         btn.textContent = label;
+        btn.title = "Abre en una nueva ventana";
+        btn.setAttribute("aria-label", label);
         btn.setAttribute("rel", "noopener noreferrer");
+
         return btn.outerHTML;
     };
 
@@ -312,9 +376,8 @@ const ponchoTableDependant = opt => {
         // Imprime cada uno de los filtros
         Object.keys(filtro).forEach((f, key) => {
             const columna = filtro[f][0].columna ? filtro[f][0].columna : 0;
-            const list_filter = filtro[f]
-                .map(e => e.value)
-                .sort(_sortAlphaNumeric);
+            let toSort = filtro[f].map(e => e.value)
+            let list_filter = _sortAlphaNumeric(toSort, f);
 
             const tplCol = document.createElement("div");
 
@@ -359,7 +422,6 @@ const ponchoTableDependant = opt => {
             tplCol.appendChild(tplForm);
             const tableFiltroCont = document.querySelector("#ponchoTableFiltro");
             tableFiltroCont.appendChild(tplCol);
-        // }
         });
     };
 
@@ -479,8 +541,10 @@ const ponchoTableDependant = opt => {
                 entiresByFilter = gapi_data.entries.map(entry => entry[filter]);
             }
 
-            const uniqueEntries = distinct(entiresByFilter);
-            uniqueEntries.sort(_sortAlphaNumeric);
+            const uniqueEntries = _sortAlphaNumeric(
+                distinct(entiresByFilter), filter
+            );
+
             filter = filter.replace("filtro-", "");
             filters[filter] = [];
             uniqueEntries.forEach(entry => {
@@ -547,8 +611,9 @@ const ponchoTableDependant = opt => {
 
         }).filter(f => f);
 
-        const uniqueList = distinct(filterList);
-        uniqueList.sort(_sortAlphaNumeric);
+        const uniqueList =  _sortAlphaNumeric( 
+            distinct(filterList), filtersList[children] 
+        );
         return uniqueList;
     };
 
@@ -595,8 +660,9 @@ const ponchoTableDependant = opt => {
             return;
         }).filter(f => f);
 
-        const uniqueList = distinct(items);
-        uniqueList.sort(_sortAlphaNumeric);
+        const uniqueList = _sortAlphaNumeric( 
+            distinct(items), filtersList[children] 
+        );
         return uniqueList;
     };
 
@@ -896,7 +962,6 @@ const ponchoTableDependant = opt => {
             console.log('sin pushstate')
             return;
         }
-        console.log('no debe llegar')
         window.history.pushState({}, "", url);
     }
 
