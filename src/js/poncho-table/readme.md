@@ -12,6 +12,7 @@ Para que los filtros funcionen en las tablas de Google, se debe usar el prefijo 
 </figure>
 
 ****
+
 ## Opciones
 
 | Parámetro | Tipo | Descripción |
@@ -43,7 +44,7 @@ Para que los filtros funcionen en las tablas de Google, se debe usar el prefijo 
 
 ### Query en dirección url
 
-#### urlParams
+#### urlParams
 
 ![Tabla con busqueda](./img/tabla-con-parametros.jpg)
 
@@ -64,7 +65,7 @@ const options = {
 }
 ```
 
-#### pushState
+#### pushState
 
 Usando esta opción la URL se actualiza incorporando parámetros asociados a las opciones que se vayan usando en los filtros desplegables o en el campo de búsqueda. 
 
@@ -78,7 +79,7 @@ const options = {
 ```
 
 
-#### copyResults
+#### copyResults
 
 ![Tabla con busqueda](./img/tabla-con-parametros-portapapeles.jpg)
 
@@ -116,7 +117,6 @@ El valor en `false`, hará que cuando la tabla **no esté visible** el elemento 
 ```
 
 El valor en `true`, hará que cuando la tabla **esté visible** el elemento con el dataset, se visualize.
-
 
 
 ## Scripts
