@@ -66,6 +66,8 @@ const options = {
 
 #### pushState
 
+![Tabla con busqueda](./img/tabla-con-parametros-pushstate.jpg)
+
 Usando esta opción la URL se actualiza incorporando parámetros asociados a las opciones que se vayan usando en los filtros desplegables o en el campo de búsqueda. 
 
 **Cómo habilitar esta opción.**
