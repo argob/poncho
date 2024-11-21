@@ -16,7 +16,7 @@ Para que los filtros funcionen en las tablas de Google, se debe usar el prefijo 
 
 | Parámetro | Tipo | Descripción |
 |:---|:---|:---|
-| hojaNombre | `string` | Nombre de la pestaña en Google Sheet | 
+| hojaNombre | `string` | Nombre de la pestaña en [Google Sheet](https://workspace.google.com/products/sheets/) | 
 | idSpread | `string` | ID del documento. Se puede copiar de la URL del documento abierto. | 
 | tituloTabla | `string` | Título para la etiqueta `caption` de la tabla | 
 | ordenColumna | `string` | Asigna la columna por la cual debe ordenarse la información de la tabla. |
@@ -24,22 +24,75 @@ Para que los filtros funcionen en las tablas de Google, se debe usar el prefijo 
 | ocultarColumnas | `Array` | Lista de columnas que se desea ocultar |
 | cantidadItems | `integer` | Cantidad de registros por página |
 | jsonUrl | `string` | URL del documento o servicio JSON |
-| hash | `boolean` | Permite hacer una búsqueda pasándo un _hash_ por URL. Ej: <br>`www.argentina.gob.ar#mi-busqueda` |
+| hash | `boolean` | <p style="color:red" color>⚠ Obsoleto en nuevas versiones</p><p>Permite hacer una búsqueda pasándo un _hash_ por URL. Ej: <br>`www.argentina.gob.ar#mi-busqueda`</p> |
 | filterClassList | `object` | Listado de selectores css para asignar en cada columna de filtros. Ej: <br>`filterClassList:["col-sm-6", "col-md-4"],` |
 | filterContClassList | `object` | Listado de selectores css para asignar al contenedor de filtros. Ej: <br>`filterContClassList:["col-sm-6", "col-md-4"],` |
 | searchContClassList | `object` | Listado de selectores css para asignar al contenedor del input de búsqueda. Ej: <br>`searchContClassList:["col-sm-6", "col-md-4"],` |
 | asFilter | `object` | Permite definir un listado de items asignados a un filtro. <br>`"asFilter":  (row) => row,` |
 | customEntry | `object` | Permite modificar la entrada que se mostrará en la tabla manteniendo la entrada original para el uso global de los datos.<br>`"customEntry": (row) => row,` |
 | refactorEntries | `object` | Permite modificar el documento JSON en su totalidad.<br>`"refactorEntries": (row) => row,` |
-| allowedTags | `object` | Permite configurar un listado de etiquetas HTML que se imprimirán como parte del DOM (del inglés, *Document Object Model*), y no como un texto. Para habilitar todas las etiquetas se utiliza `["*"]`. Si se quiere especificar cuales deben usarse, ej.: `["a", "strong"]`. Para evitar etiquetas HTML: `[]` |
+| allowedTags | `object` | <p>Permite configurar un listado de etiquetas HTML que se imprimirán como parte del DOM (del inglés, *Document Object Model*), y no como un texto. Para habilitar todas las etiquetas se utiliza `["*"]`. Si se quiere especificar cuales deben usarse, ej.: `["a", "strong"]`.</p><p>Para evitar etiquetas HTML: `[]`</p> |
 | jsonData | `json object` | Permite utilizar un documento JSON local o de una ubicación no asociada a Google API. |
 | headers | `object` | Permite definir o redefinir los headers por cada clave. Ejemplo `{"key": "value"}`|
-| orderFilter | `boolean\|object` | <p>Permite ordenar alfanuméricamente el listado de items en en cada filtro.</p><p>Utilizando la opción `true` ordena todos los filtros configurados para la tabla; mientras que usando un object (array), se puede especificar qué filtro debe ordenarse y si es en modo ascendente o descendente. Si no se utiliza la opción o se usa con el valor `false`, los elementos del filtro tendran el orden establecido en el documento JSON.</p><p>**Ejemplo de uso para la opción con _array object_**</p><div><p>Si no se especifica que el orden sea descendente (**DESC**), se lo considera ascendente (**ASC**).</p><p>`[["filtro-ubicacion", "asc"],[ "filtro-estado", "DESC"], ["filtro-categoria"]]`</p><p>Para declarar un filtro ascendente no hace falta agregar un array dentro de otro. Usando el nombre del filtro directamente lo establece con ese orden.</p><p>`["filtro-ubicacion",[ "filtro-estado", "DESC"], "filtro-categoria", "filtro-genero"]`</p></div> |
+| orderFilter | `boolean\|object` | <p>Permite ordenar alfanuméricamente el listado de items en en cada filtro.</p><p>Utilizando el valor `true`, ordena alfanuméricamente, en forma ascendente,  todos los filtros configurados para la tabla; mientras que usando un _array object_, se puede especificar qué filtro debe ordenarse y si es en modo ascendente o descendente. Si no se utiliza la opción o, se usa con el valor `false`, los elementos del filtro tendrán el orden establecido en el documento JSON.</p><p>**Ejemplo de uso para la opción con _array object_**</p><div><p>Si no se especifica que el orden sea descendente (**desc**), se lo considera ascendente (**asc**).</p><p>`[["filtro-ubicacion", "asc"], ["filtro-estado", "desc"], ["filtro-categoria"]]`</p><p>Para declarar un filtro ascendente no hace falta agregar un _array_ dentro de otro. Usando el nombre del filtro directamente lo establece con ese orden.</p><p>`["filtro-ubicacion", ["filtro-estado", "desc"], "filtro-categoria", "filtro-genero"]`</p></div> |
 | emptyLabel | `string` | Permite cambiar el _label_ en la opción vacía del desplegable. `Todos` por defecto. |
 | wizard | `boolean` | Muestra los _select_ y sus opciones una vez seleccionado el filtro padre. `false` por defecto. |
 | urlParams | `true` | Habilita hacer consultas desde la url, pasando parámetros para filtros e input de búsqueda. |
 | pushState | `false` | Si es verdadero (true), cada vez que el usuario modifica filtros o hace búsquedas en la tabla, la dirección (url) del navegador, cambiará. |
 | copyResults | `false` | Si es verdadero se activa el botón para copiar la url de resultados. |
+
+### Query en dirección url
+
+#### urlParams
+
+![Tabla con busqueda](./img/tabla-con-parametros.jpg)
+
+
+Al incorporar parámetros a la URL, es posible filtrar y buscar datos de manera precisa dentro de la tabla. Esto permite:
+
+* **Acceder directamente a registros individuales**: Busca un registro en particular especificando su valor en el filtro.
+* **Agrupar datos por categorías**: Visualiza solo los datos que pertenecen a una categoría específica, facilitando el análisis.
+* **Hacer una búsqueda global**: Permite buscar en todo el contenido de la tabla.
+
+
+**Cómo habilitar esta opción.**
+
+```js
+const options = {
+    ...
+    urlParams: true
+}
+```
+
+#### pushState
+
+Usando esta opción la URL se actualiza incorporando parámetros asociados a las opciones que se vayan usando en los filtros desplegables o en el campo de búsqueda. 
+
+**Cómo habilitar esta opción.**
+
+```js
+const options = {
+    ...
+    pushState: true
+}
+```
+
+
+#### copyResults
+
+![Tabla con busqueda](./img/tabla-con-parametros-portapapeles.jpg)
+
+Esta opción incorpora un botón desplegable que permite copiar la URL generada por las opciones de usuario en el portapapeles. 
+
+**Cómo habilitar esta opción.**
+
+```js
+const options = {
+    ...
+    copyResults: true
+}
+```
+
 
 ### Opción para modo Wizard
 
@@ -63,9 +116,6 @@ El valor en `false`, hará que cuando la tabla **no esté visible** el elemento 
 ```
 
 El valor en `true`, hará que cuando la tabla **esté visible** el elemento con el dataset, se visualize.
-
-
-
 
 
 
@@ -126,24 +176,20 @@ El valor en `true`, hará que cuando la tabla **esté visible** el elemento con 
 
 ```html
 <script>
-<script>
 (function($) {
     const gapi = new GapiSheetData();
-    const url = gapi.url("dataset", "1vVSk7givsit7u74FBr32voWxrwwW8KaeI5VfC2TKBwM");
+    const url = gapi.url("dataset", "1vVSk7...C2TKBw");
     var options = {
-        "jsonUrl": url,
-        "tituloTabla": "Listado de escuelas",
-        "ordenColumna": 1,
-        "ordenTipo": "asc",
-        // "tipoNumero": 0,
-        "ocultarColumnas": [],
-        "cantidadItems": 15, 
-        "hash": true,
-        "filterClassList": ["col-sm-12", "col-md-6"],
-        "allowedTags": ["*"],
-        "asFilter":  (row) => row,
-        "customEntry": (row) => row,
-        "orderFilter": true, 
+        jsonUrl: url,
+        tituloTabla: "Listado de escuelas",
+        ordenColumna: 1,
+        ordenTipo: "asc",
+        ocultarColumnas: [],
+        cantidadItems: 15, 
+        hash: true,
+        filterClassList: ["col-sm-12", "col-md-6"],
+        allowedTags: ["*"],
+        orderFilter: true, 
     };
     ponchoTableDependant(options);
 })(jQuery);
