@@ -202,25 +202,6 @@ function colorNames() {
 }
 
 
-
-Object.values(headersBackground)[1].map((color, key) => {
-    let colorName = "";
-    let colorRefactor = color.replace("bg-", "");
-
-    if( colorRefactor.startsWith("mix-") ){
-        const colors = colorRefactor.replace(/^mix-/, "").split("-");
-        //colorName = "Mix " + _color.colorName(...colors);
-        colorName = '--> mix' + colorRefactor;
-    } else {
-        // colorName = _color.colorName(colorRefactor);
-        colorName = '-->' + colorRefactor;
-    }
-
-    return [color, colorName];
-})
-
-
-
 const HEADER_COLORS_JSON_PATH = `./dist/jsons/`;
 const HEADER_COLORS_JSON_FILENAME = "poncho-headers-colors.json";
 
