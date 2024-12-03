@@ -950,6 +950,7 @@ class PonchoMap {
         if(!this.isSliderOpen()){
             this.toggleSlider();
         }
+
         const html = (typeof this.template == "function") ? 
             this.template(this, data) : this.defaultTemplate(this, data);
 
@@ -962,7 +963,12 @@ class PonchoMap {
             .querySelectorAll(`.js-close-slider${this.scope_sufix}`)
             .forEach(e => {
                 e.dataset.entryId = data[this.id];
-            });      
+            
+            });  
+        
+        const entry = this.entry(data[this.id]);
+        const [longitude, latitude] = entry.geometry.coordinates;
+        this._openMap(latitude, longitude);
     };
 
 
@@ -1031,6 +1037,30 @@ class PonchoMap {
     };
 
 
+    _openMap = (latitude, longitude) => {
+        const u = new URL('maps/search/', 'https://www.google.com');
+        u.searchParams.append('api', 1);
+        u.searchParams.append('query', [latitude,longitude].join(','));
+
+        const link = document.createElement("a");
+        link.textContent = "Abrir en Google Maps";
+        link.href = u.href;
+        
+        const container = document.createElement("div");
+        container.className = "open-map__item";
+        container.appendChild(link);
+
+        document
+            .querySelectorAll(`.js-slider${this.scope_sufix} .open-map`)
+            .forEach(elem => {
+                elem.innerHTML = "";
+                elem.appendChild(container);
+            });
+
+        return container;
+    };
+
+
     /**
      * Crea el bloque html para el slider.
      */
@@ -1065,6 +1095,11 @@ class PonchoMap {
         content.tabIndex = 0;
         content_container.appendChild(content);
 
+        // Contenedor para el botón: abrir en google maps
+        const openMapContainer = document.createElement("div");
+        openMapContainer.className = "open-map";
+        content_container.appendChild(openMapContainer);
+
         const container = document.createElement("div");
         container.style.display = "none";
         container.setAttribute("role", "region");
@@ -1075,6 +1110,7 @@ class PonchoMap {
         container.appendChild(close_button);
         container.appendChild(anchor);
         container.appendChild(content_container);
+
         document
             .querySelector(`${this.scope_selector}.poncho-map`)
             .appendChild(container);
