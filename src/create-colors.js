@@ -197,7 +197,6 @@ function colorNames() {
         });
 
         return acc;
-
     }, {});
 }
 

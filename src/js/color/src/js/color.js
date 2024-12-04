@@ -124,20 +124,38 @@ class Color { //jslint-ignore-line
         let collect = [];
 
         this.list.flatMap(m => {
-            const {alias, color, description, code, variant={}} = m;
+            const {alias, color, description, code, variant=[], name} = m;
 
             alias.forEach(function(a){
-                collect.push( [a.code, color, description, code] );
+                collect.push( [a.code, color, description, code, name] );
 
-                Object.entries(variant).forEach(function(value){
+                variant.forEach(function(value){
                     if(!a.exclude){
-                        collect.push( [`${a.code}-${value[0]}`, value[1], '', code] );
+                        collect.push( [`${a.code}-${value.variant}`, value.color, "", code, value.name] );
                     }
                 });
             })
         });
         return collect.sort();
     };
+
+
+    get spaces(){
+        return this.definitions.map(m => m.space).sort();
+    }
+
+
+    groupsBySpace = space => {
+        if (typeof space !== 'string') {
+            throw new TypeError('groupsBySpace: El argumetno debe ser un string');
+        }
+        const spaceToLower = space.toLocaleLowerCase();
+        const data = this.definitions
+            .find(f => f.space == spaceToLower)?.data?.map(m => m.group);
+
+        const result = data ? data.sort() : [];
+        return result;
+    }
 
 
     /**
@@ -196,8 +214,12 @@ class Color { //jslint-ignore-line
 
                 // Itero sobre las instancias de color
                 for(let x = 0; x <= instance.length - 1; x += 1) {
-                    const {alias} = instance[x];
-                    if (alias.some(s => s.code == lowerCasePonchoColor)) {
+                    const {alias, variant} = instance[x];
+                    if ( alias.some(s => s.code == lowerCasePonchoColor) ) {
+                        result = instance[x];
+                        break;
+                    }
+                    else if( variant.some(s => s.code == lowerCasePonchoColor) ){
                         result = instance[x];
                         break;
                     }
@@ -362,13 +384,16 @@ class Color { //jslint-ignore-line
             console.error("Error.", "Debe pasar al menos un argumento.");
             return;
         }
-        
+
         if(!args.every(e => typeof e === "string")){
             console.error("Error.", "Solo se admiten cadenas de texto");
             return;
         }
 
         const getColorName = (arg) => {
+            console.log(arg)
+            return this.variables.find(f => (f[0] == arg))[4] || arg;
+
             if (this.colorDefinitions) {
                 const definition = this.colorDefinitions(arg);
                 return definition?.name || arg;
@@ -376,13 +401,12 @@ class Color { //jslint-ignore-line
                 return arg;
             }
         };
-    
+
         if (args.length === 1) {
             return getColorName(args.join(""));
         }
-    
+
         const totalArgs = args.length;
-    
         const lastArg = args.pop(totalArgs - 1);
         const firstCharName = Array.from( getColorName(lastArg) )[0].toLowerCase();
         const connectorSwitch = {"i": "e", "o": "u"};
