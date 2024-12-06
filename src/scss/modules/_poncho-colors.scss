@@ -156,10 +156,12 @@ $brand-verde: #2E7D33 !default;
 $brand-verde-aloe: #4FBB73 !default;
 $brand-verde-azulado: #3B8681 !default;
 $brand-verde-cemento: #B4BEBA !default;
-$brand-verde-jade: #006666 !default;
+$brand-verde-jade: #306D69 !default;
+$brand-verde-jade-dark: #255450 !default;
+$brand-verde-jade-lighter: #A4D9D7 !default;
 $brand-verdeazulado: #3B8681 !default;
 $brand-verdecemento: #B4BEBA !default;
-$brand-verdejade: #006666 !default;
+$brand-verdejade: #306D69 !default;
 $brand-verdin: #6EA015 !default;
 $brand-warning: #E7BA61 !default; /* Foco o alerta */ 
 $white: #FFFFFF !default;
@@ -318,6 +320,8 @@ $colores: ("amarillo", $brand-amarillo),
 ("verde-azulado", $brand-verde-azulado),
 ("verde-cemento", $brand-verde-cemento),
 ("verde-jade", $brand-verde-jade),
+("verde-jade-dark", $brand-verde-jade-dark),
+("verde-jade-lighter", $brand-verde-jade-lighter),
 ("verdeazulado", $brand-verdeazulado),
 ("verdecemento", $brand-verdecemento),
 ("verdejade", $brand-verdejade),
@@ -609,10 +613,12 @@ html {
 	--verde-aloe:#4FBB73;
 	--verde-azulado:#3B8681;
 	--verde-cemento:#B4BEBA;
-	--verde-jade:#006666;
+	--verde-jade:#306D69;
+	--verde-jade-dark:#255450;
+	--verde-jade-lighter:#A4D9D7;
 	--verdeazulado:#3B8681;
 	--verdecemento:#B4BEBA;
-	--verdejade:#006666;
+	--verdejade:#306D69;
 	--verdin:#6EA015;
 	--warning:#E7BA61;
 	--white:#FFFFFF;

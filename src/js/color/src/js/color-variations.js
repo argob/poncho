@@ -41,19 +41,22 @@ const illustrationColors = [
 ];
 
 
-const headersBackground = [
-    "bg-arg-azul",
-    "bg-arg-info",
-    "bg-arg-verde-jade",
-    "bg-arg-palta",
-    "bg-arg-arandano",
-    "bg-arg-negro-light",
-    "bg-mix-azul-info",
-    "bg-mix-info-azul",
-    "bg-mix-palta-azul",
-    "bg-mix-azul-palta"
-];
-
+const headersBackground = {
+    solid: [
+        "bg-arg-azul",
+        "bg-arg-info",
+        "bg-arg-verde-jade",
+        "bg-arg-palta",
+        "bg-arg-arandano",
+        "bg-arg-negro-light"
+    ],
+    mixed: [
+        "bg-mix-azul-info",
+        "bg-mix-info-azul",
+        "bg-mix-palta-azul",
+        "bg-mix-azul-palta"
+    ]
+};
 
 /**
  * Variaciones de color
