@@ -101,16 +101,15 @@ class Color { //jslint-ignore-line
                 "El valor a buscar debe ser una cadena de texto.");
             return [];
         }
-        let searchTerm = value.toLowerCase();
-        let searchList = [
-            ...this.variables.map(([code, color]) => [code, color]),
-            ...this.colors];
 
-        let searchResults = searchList.filter( function(item){
-            if( item[0].includes( searchTerm ) ){
-                return item;
+        const searchResults = this.variables.filter( function(f){
+            if( f[0].includes( value ) ){
+                return f
             }
-        }).map(([code, color]) => [code, color]);
+        }).map(m => {
+                const [code, color] = m;
+                return [code, color];
+        });
 
         return searchResults;
     }
@@ -180,35 +179,12 @@ class Color { //jslint-ignore-line
             return defaultColor;
         }
 
-        const searchTerm = self.replaceSpecialChars(color).toLowerCase();
-
-        const definition = (this.variables.find(v => v[0] === searchTerm) ||
-            this.colors.find(c => c[0] === searchTerm));
+        const definition = this.variables.find(function(f){
+            return (f[0] == self.replaceSpecialChars(color).toLowerCase());
+        });
 
         return (definition ? definition[1] : defaultColor);
     };
-
-
-    /**
-     * Listado de colores 
-     * @returns 
-     */
-    get colors(){
-        const colorList = this.definitions
-            .map(space => space.data)
-            .flatMap(function(spaceGroups){
-
-                return spaceGroups.flatMap(function(groupColor){
-                    const {color, group, scope} = groupColor;
-                    return Object.entries(color).map(function(colorValues){
-                        const [label, value] = colorValues;
-                        return [`${scope}-${group}-${label}`, value]
-                    });
-                });
-        });
-
-        return colorList || [];
-    }
 
 
     /**
