@@ -7,7 +7,8 @@ test('Colores Poncho por nombre', () => {
     expect( _color.ponchoColor('amarillo') ).toBe('#E7BA61');
     expect( _color.ponchoColor('warning') ).toBe('#E7BA61');
     expect( _color.ponchoColor('Esto no es un color') ).toBe('#999999');
-
+    expect( _color.ponchoColor('arg-violeta-600') ).toBe('#773EA5');
+    expect( _color.ponchoColor('arg-fucsia-300') ).toBe('#F16798');
 });
 
 test('colorDefinitions()', () => {
@@ -55,4 +56,24 @@ test('hexToRgb', () => {
     expect( _color.hexToRgb('') ).toBeUndefined();
     expect( _color.hexToRgb() ).toBeUndefined();
     expect( _color.hexToRgb('FF000000') ).toBeUndefined();
+});
+
+
+test('hexToRgb', () => {
+    expect( _color.hexToRgb('#FF0000')[0] ).toBe(255);
+    expect( _color.hexToRgb('CCC')[0] ).toBe(204);
+    expect( _color.hexToRgb('CCC').length ).toBe(3);
+    expect( Array.isArray( _color.hexToRgb('FF0000') ) ).toBe(true);
+    expect( _color.hexToRgb('cc') ).toBeUndefined();
+    expect( _color.hexToRgb('') ).toBeUndefined();
+    expect( _color.hexToRgb() ).toBeUndefined();
+    expect( _color.hexToRgb('FF000000') ).toBeUndefined();
+    
+    expect( _color.findColor('fucsia') ).toHaveLength(14);
+});
+
+
+test('findColor', () => {
+    expect( _color.findColor('fucsia') ).toHaveLength(14);
+    expect( _color.findColor('fucsia')[0] ).toMatchObject(['arg-fucsia', '#EC407A']);
 });
