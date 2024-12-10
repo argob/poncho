@@ -90,7 +90,8 @@ gulp.task('compress', function () {
             './src/js/mapa-argentina/mapa-argentina.js',
             './src/js/device-breadcrumb/src/js/device-breadcrumb.js',
             './src/js/national-holidays/src/js/national-holidays.js',
-            './src/js/device-panel-menu/device-panel-menu.js'
+            './src/js/device-panel-menu/device-panel-menu.js',
+            './src/js/poncho-map-provinces/src/js/poncho-map-provinces-contenidos.js',
         ])
         .pipe(uglify(generalCompressOptions))
         .pipe(gulp.dest('./dist/js/'));
