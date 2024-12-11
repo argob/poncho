@@ -527,10 +527,10 @@ const illustrationColors = [
     "miarg-azul",
 ];
 
-
 const headersBackground = {
     solid: [
         "bg-arg-azul",
+        "bg-arg-rojo",
         "bg-arg-info",
         "bg-arg-verde-jade",
         "bg-arg-palta",
