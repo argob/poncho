@@ -375,14 +375,30 @@ class Color { //jslint-ignore-line
 
 
     /**
+     * Imprime el nombre de un color
      * 
-     * @param  {...any} args Argumentos string
-     * @returns 
+     * @param  {array} args Array list [arg, arg, arg]
+     * @param  {array} options object Objeto con opciones para los switch.
+     * @example
+     * // maíz - azul a verde
+     * colorName(
+     *     ["arg-maiz", "arg-azul", "arg-verde"], 
+     *     {
+     *         switchLastConnector: {'i': "a", "o": "a"}, 
+     *         defaultLastConnector: "a", 
+     *         listConnector: " - "
+     *     }
+     * )
+     * @returns {string}
      */
-    colorName = (...args) => {
+    colorName = (args, options={}) => {
         if(args.length < 1){
             console.error("Error.", "Debe pasar al menos un argumento.");
             return;
+        }
+
+        if(typeof args == "string"){
+            args = [args];
         }
 
         if(!args.every(e => typeof e === "string")){
@@ -390,16 +406,25 @@ class Color { //jslint-ignore-line
             return;
         }
 
-        const getColorName = (arg) => {
-            console.log(arg)
-            return this.variables.find(f => (f[0] == arg))[4] || arg;
+        // Options
+        const defaultConnectorSwitch = {"i": "e", "o": "u"};
+        const defaultConnector = "y";
+        const defaultListConnector = ", ";
 
-            if (this.colorDefinitions) {
-                const definition = this.colorDefinitions(arg);
-                return definition?.name || arg;
-            } else {
-                return arg;
-            }
+        const optionConnectorSwitch = (typeof options == "object" && 
+            options.hasOwnProperty('switchLastConnector') ? 
+            options.switchLastConnector : defaultConnectorSwitch);
+        const optionDefaultConnector = (typeof options == "object" && 
+            options.hasOwnProperty('defaultLastConnector') ? 
+            options.defaultLastConnector : defaultConnector);
+        const optionDefaultListConnector = (typeof options == "object" && 
+            options.hasOwnProperty('listConnector') ? 
+            options.listConnector : defaultListConnector);
+
+
+        const getColorName = (arg) => {
+            const result = this.variables.find(f => (f[0] == arg)); 
+            return typeof result != "undefined" ? result[4] : arg;
         };
 
         if (args.length === 1) {
@@ -409,10 +434,10 @@ class Color { //jslint-ignore-line
         const totalArgs = args.length;
         const lastArg = args.pop(totalArgs - 1);
         const firstCharName = Array.from( getColorName(lastArg) )[0].toLowerCase();
-        const connectorSwitch = {"i": "e", "o": "u"};
-        const connector = connectorSwitch[firstCharName] || "y";
+        const connector = (optionConnectorSwitch[firstCharName] || 
+                optionDefaultConnector);
     
-        const result = `${args.map(m => getColorName(m)).join(", ")} ${connector}` 
+        const result = `${args.map(m => getColorName(m)).join(optionDefaultListConnector)} ${connector}` 
                 + ` ${getColorName(lastArg)}`; 
     
         return result.toLowerCase();
