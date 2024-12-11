@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+        integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet"
+        href="https://capacita-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css?rfqjsh">
+    <link rel="stylesheet" href="https://qa2-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/poncho.min.css">
+</head>
+<body>
+
+<div id="js-color-definitions"></div>
+
+<script>
+const definitions = [
+    {
+        title: "",
+        description: "",
+        data: [
+            ["arg-azul", "arg-secundario", "arg-info"],
+            ["arg-verde-jade", "arg-verde-azulado", "arg-palta"],
+            ["arg-verde", "arg-verdin","arg-lima"],
+            ["arg-rojo", "arg-tomate"],
+            ["arg-amarillo", "arg-arena"],
+            ["arg-marron-oscuro",  "arg-naranja", "arg-mandarina", "arg-maiz"],
+            ["arg-uva", "arg-lavanda"],
+            ["arg-arandano", "arg-rosado"],
+            ["arg-negro", "arg-gris-intermedio", "arg-gris-niebla"],
+        ]
+    },
+    {
+        title: "Colores Gendarmería Nacional",
+        description: "",
+        data: [
+            ["gna-verde-jade", "gna-verde-aloe", "gna-verde-cemento"],
+        ]
+    },
+    {
+        title: "Colores Bandera Nacional",
+        description: `De acuerdo al 
+            <a href=\"https://www.argentina.gob.ar/normativa/nacional/decreto-1650-2010-175328\">
+            Decreto  1650/2010</a>, que establece las medidas, características de la tela, 
+            colores y accesorios de la Bandera Argentina.`,
+        data: [
+            ["bandera-celeste", "bandera-amarillo", "bandera-marron"],
+        ]
+    },
+];
+</script>
+
+<script src="https://qa2-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
+<script>headStyle('color-smple', `.font-weight-bold{font-weight: bold}`)</script>
+<script>
+    const tplSample = (instance, colorName) => {
+        const c = instance.variables.find(([name]) => name == colorName);
+        if(!c){
+            return;
+        }
+
+        let [codeVariant, color, description, code, name] = c;
+
+        return `<div class="col-xs-12 col-sm-6 col-md-3">
+            <i class="fa fa-square fa-4x text-${codeVariant} m-b-0"></i>
+            <dl class="m-t-2">
+                <dt class="sr-only">Nombre</dt>
+                <dd class="m-b-0 font-weight-bold">${name}</dd>
+                <dt class="sr-only">Color hexadecimal</dt>
+                <dd class="m-b-0 small text-arg-gris-intermedio">${color}</dd>
+                <dt class="sr-only">Usos</dt>
+                <dd class="m-b-0 small">text-${codeVariant}</dd>
+                <dd class="m-b-0 small">bg-${codeVariant}</dd>
+            </dl>
+        </div>`
+    };
+
+    function tplBlock(kwargs, contents){
+        const {title=false, description=false} = kwargs;
+
+        let html = "";
+        if(title){
+            html +=  `<h2 class="m-t-3">${title}</h2>`;
+        }
+        if(description){
+            html += `<p class="m-b-2">${description}</p>`;
+        }
+
+        html += contents;
+        return html;
+    };
+
+    function tplSampleGroup(contents){
+        return `<div class="row text-center m-b-2">${contents}</div><hr/>`;
+    }
+
+
+    // Recorro las definiciones e imprimo los colores
+    const _color = new Color(ponchoColorDefinitionsList);
+    let html = definitions.map(function(block){
+        
+        let data = block.data.map(function(sampleGroup){
+            let sampleSubGroup = sampleGroup.map(function(sample){
+                return tplSample(_color, sample);
+            });
+            
+            return tplSampleGroup(sampleSubGroup.join(''));
+        });
+        return tplBlock(block, data.join(""));
+
+    });
+
+    document
+        .getElementById("js-color-definitions")
+        .innerHTML = html.join('');
+</script>
+<!--  -->
+
+</body>
+</html>
