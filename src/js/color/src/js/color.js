@@ -174,7 +174,7 @@ class Color { //jslint-ignore-line
 
     /**
      * Listado de colores 
-     * @returns 
+     * @returns {object}
      */
     get colors(){
         const colorList = this.definitions
