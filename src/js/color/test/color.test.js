@@ -7,6 +7,8 @@ test('Colores Poncho por nombre', () => {
     expect( _color.ponchoColor('amarillo') ).toBe('#E7BA61');
     expect( _color.ponchoColor('warning') ).toBe('#E7BA61');
     expect( _color.ponchoColor('Esto no es un color') ).toBe('#999999');
+    expect( _color.ponchoColor('arg-violeta-600') ).toBe('#773EA5');
+    expect( _color.ponchoColor('arg-fucsia-300') ).toBe('#F16798');
 
 });
 
@@ -55,4 +57,27 @@ test('hexToRgb', () => {
     expect( _color.hexToRgb('') ).toBeUndefined();
     expect( _color.hexToRgb() ).toBeUndefined();
     expect( _color.hexToRgb('FF000000') ).toBeUndefined();
+});
+
+
+test('findColor', () => {
+    expect( _color.findColor('fucsia') ).toHaveLength(14);
+    expect( _color.findColor('fucsia')[0] ).toMatchObject(['arg-fucsia', '#EC407A']);
+    expect( _color.findColor('arg-azul-1')[1] ).toMatchObject(['miarg-azul-150', '#3526C3']);
+});
+
+
+
+test('colorName', () => {
+    expect( _color.colorName() ).toBeUndefined();
+    expect( _color.colorName('fucsia') ).toBe('Fucsia');
+    expect( _color.colorName(['fucsia']) ).toBe('Fucsia');
+    expect( _color.colorName(['fucsia', 'azul', 'arg-azul-100']) ).toBe('fucsia, azul y arg-azul-100');
+    expect( _color.colorName(['fucsia', 'azul', 'arg-azul-half']) ).toBe('fucsia, azul y azul medio tono');
+
+    const options1 = {switchLastConnector: {'i': "a", "o": "a"}, defaultLastConnector: "a"};
+    expect( _color.colorName(['fucsia', 'azul', 'arg-azul-half']) ).toBe('fucsia, azul y azul medio tono');
+
+    const options2 = {switchLastConnector: {'i': "a", "o": "a"}, defaultLastConnector: "a", listConnector: " a "};
+    expect( _color.colorName(['fucsia', 'azul', 'arg-azul-half'], options2) ).toBe('fucsia a azul a azul medio tono');
 });
