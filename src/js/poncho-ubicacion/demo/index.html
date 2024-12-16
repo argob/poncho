@@ -37,6 +37,27 @@
               maxlength="128">
         </div>
         <!-- / Provincia -->
+
+        <!-- Municipio -->
+        <div class="form-item webform-component webform-component-textfield 
+                    webform-component--municipio-entidad form-group form-item 
+                    form-item-submitted-municipio-entidad form-type-textfield 
+                    form-group">
+          <label class="control-label" for="edit-submitted-municipio-entidad">
+            Municipio
+          </label>
+          <input 
+              required="required"
+              class="form-control form-text required" 
+              type="text" 
+              id="edit-submitted-municipio-entidad" 
+              name="submitted[municipio_entidad]" 
+              value="" 
+              size="60" 
+              maxlength="128">
+        </div>
+        <!-- / Municipio -->
+
         <!-- Localidad -->
         <div class="form-item webform-component webform-component-textfield 
                     webform-component--localidad-entidad form-group form-item 
@@ -56,6 +77,7 @@
               maxlength="128">
         </div>
         <!-- / Localidad -->
+        
         <div class="form-item">
             <input type="submit" class="btn bt-primary" value="Enviar">
         </div>
@@ -73,8 +95,10 @@
   <script>
   var conf = {
     'provincia': 'provincia_entidad',
+    'municipio': 'municipio_entidad',
     'localidad': 'localidad_entidad',
     'urlProvincias': './data/geoprovincias.json',
+    'urlMunicipios': './data/geomunicipios.json',
     'urlLocalidades': './data/geolocalidades.json',
   };
   jQuery(function() {

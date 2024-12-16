@@ -1,203 +1,323 @@
 {
-    "metadata": {
-        "resultset": {
-            "count": 24,
-            "offset": 0,
-            "limit": 0
-        }
+    "cantidad": 24,
+    "total": 24,
+    "inicio": 0,
+    "parametros": {
+      
     },
-    "results": [
-        {
-            "centroide": {
-                "lat": -26.8753965086829,
-                "lon": -54.6516966230371
-            },
-            "id": "54",
-            "nombre": "Misiones"
+    "provincias": [
+      {
+        "id": "02",
+        "nombre": "Ciudad Autónoma de Buenos Aires",
+        "nombre_completo": "Ciudad Autónoma de Buenos Aires",
+        "fuente": "IGN",
+        "categoria": "Ciudad Autónoma",
+        "centroide": {
+          "lon": -58.4458763250916,
+          "lat": -34.6144420654301
         },
-        {
-            "centroide": {
-                "lat": -33.7577257449137,
-                "lon": -66.0281298195836
-            },
-            "id": "74",
-            "nombre": "San Luis"
+        "iso_id": "AR-C",
+        "iso_nombre": "Ciudad Autónoma de Buenos Aires"
+      },
+      {
+        "id": "58",
+        "nombre": "Neuquén",
+        "nombre_completo": "Provincia del Neuquén",
+        "fuente": "IGN",
+        "categoria": "Provincia",
+        "centroide": {
+          "lon": -70.1198972237318,
+          "lat": -38.6419828626673
         },
-        {
-            "centroide": {
-                "lat": -30.8653679979618,
-                "lon": -68.8894908486844
-            },
-            "id": "70",
-            "nombre": "San Juan"
+        "iso_id": "AR-Q",
+        "iso_nombre": "Neuquén"
+      },
+      {
+        "id": "74",
+        "nombre": "San Luis",
+        "nombre_completo": "Provincia de San Luis",
+        "fuente": "IGN",
+        "categoria": "Provincia",
+        "centroide": {
+          "lon": -66.0252312714021,
+          "lat": -33.7611035381154
         },
-        {
-            "centroide": {
-                "lat": -32.0588735436448,
-                "lon": -59.2014475514635
-            },
-            "id": "30",
-            "nombre": "Entre Ríos"
+        "iso_id": "AR-D",
+        "iso_nombre": "San Luis"
+      },
+      {
+        "id": "82",
+        "nombre": "Santa Fe",
+        "nombre_completo": "Provincia de Santa Fe",
+        "fuente": "IGN",
+        "categoria": "Provincia",
+        "centroide": {
+          "lon": -60.9506872769706,
+          "lat": -30.7088227091528
         },
-        {
-            "centroide": {
-                "lat": -48.8154851827063,
-                "lon": -69.9557621671973
-            },
-            "id": "78",
-            "nombre": "Santa Cruz"
+        "iso_id": "AR-S",
+        "iso_nombre": "Santa Fe"
+      },
+      {
+        "id": "46",
+        "nombre": "La Rioja",
+        "nombre_completo": "Provincia de La Rioja",
+        "fuente": "IGN",
+        "categoria": "Provincia",
+        "centroide": {
+          "lon": -67.1817575814487,
+          "lat": -29.6849372775783
         },
-        {
-            "centroide": {
-                "lat": -40.4057957178801,
-                "lon": -67.229329893694
-            },
-            "id": "62",
-            "nombre": "Río Negro"
+        "iso_id": "AR-F",
+        "iso_nombre": "La Rioja"
+      },
+      {
+        "id": "10",
+        "nombre": "Catamarca",
+        "nombre_completo": "Provincia de Catamarca",
+        "fuente": "IGN",
+        "categoria": "Provincia",
+        "centroide": {
+          "lon": -66.9478972451295,
+          "lat": -27.3359537960762
         },
-        {
-            "centroide": {
-                "lat": -43.7886233529878,
-                "lon": -68.5267593943345
-            },
-            "id": "26",
-            "nombre": "Chubut"
+        "iso_id": "AR-K",
+        "iso_nombre": "Catamarca"
+      },
+      {
+        "id": "90",
+        "nombre": "Tucumán",
+        "nombre_completo": "Provincia de Tucumán",
+        "fuente": "IGN",
+        "categoria": "Provincia",
+        "centroide": {
+          "lon": -65.3647655803683,
+          "lat": -26.948283501723
         },
-        {
-            "centroide": {
-                "lat": -32.142932663607,
-                "lon": -63.8017532741662
-            },
-            "id": "14",
-            "nombre": "Córdoba"
+        "iso_id": "AR-T",
+        "iso_nombre": "Tucumán"
+      },
+      {
+        "id": "22",
+        "nombre": "Chaco",
+        "nombre_completo": "Provincia del Chaco",
+        "fuente": "IGN",
+        "categoria": "Provincia",
+        "centroide": {
+          "lon": -60.765116260356,
+          "lat": -26.3869871835867
         },
-        {
-            "centroide": {
-                "lat": -34.6298873058957,
-                "lon": -68.5831228183798
-            },
-            "id": "50",
-            "nombre": "Mendoza"
+        "iso_id": "AR-H",
+        "iso_nombre": "Chaco"
+      },
+      {
+        "id": "34",
+        "nombre": "Formosa",
+        "nombre_completo": "Provincia de Formosa",
+        "fuente": "IGN",
+        "categoria": "Provincia",
+        "centroide": {
+          "lon": -59.9321901121647,
+          "lat": -24.8950871761481
         },
-        {
-            "centroide": {
-                "lat": -29.685776298315,
-                "lon": -67.1817359694432
-            },
-            "id": "46",
-            "nombre": "La Rioja"
+        "iso_id": "AR-P",
+        "iso_nombre": "Formosa"
+      },
+      {
+        "id": "78",
+        "nombre": "Santa Cruz",
+        "nombre_completo": "Provincia de Santa Cruz",
+        "fuente": "IGN",
+        "categoria": "Provincia",
+        "centroide": {
+          "lon": -69.9557619144913,
+          "lat": -48.8155471830527
         },
-        {
-            "centroide": {
-                "lat": -27.3358332810217,
-                "lon": -66.9476824299928
-            },
-            "id": "10",
-            "nombre": "Catamarca"
+        "iso_id": "AR-Z",
+        "iso_nombre": "Santa Cruz"
+      },
+      {
+        "id": "26",
+        "nombre": "Chubut",
+        "nombre_completo": "Provincia del Chubut",
+        "fuente": "IGN",
+        "categoria": "Provincia",
+        "centroide": {
+          "lon": -68.5267363339818,
+          "lat": -43.7886271389083
         },
-        {
-            "centroide": {
-                "lat": -37.1315537735949,
-                "lon": -65.4466546606951
-            },
-            "id": "42",
-            "nombre": "La Pampa"
+        "iso_id": "AR-U",
+        "iso_nombre": "Chubut"
+      },
+      {
+        "id": "50",
+        "nombre": "Mendoza",
+        "nombre_completo": "Provincia de Mendoza",
+        "fuente": "IGN",
+        "categoria": "Provincia",
+        "centroide": {
+          "lon": -68.5829456019867,
+          "lat": -34.6303887067166
         },
-        {
-            "centroide": {
-                "lat": -27.7824116550944,
-                "lon": -63.2523866568588
-            },
-            "id": "86",
-            "nombre": "Santiago del Estero"
+        "iso_id": "AR-M",
+        "iso_nombre": "Mendoza"
+      },
+      {
+        "id": "30",
+        "nombre": "Entre Ríos",
+        "nombre_completo": "Provincia de Entre Ríos",
+        "fuente": "IGN",
+        "categoria": "Provincia",
+        "centroide": {
+          "lon": -59.201262616496,
+          "lat": -32.0589278938558
         },
-        {
-            "centroide": {
-                "lat": -28.7743047046407,
-                "lon": -57.8012191977913
-            },
-            "id": "18",
-            "nombre": "Corrientes"
+        "iso_id": "AR-E",
+        "iso_nombre": "Entre Ríos"
+      },
+      {
+        "id": "70",
+        "nombre": "San Juan",
+        "nombre_completo": "Provincia de San Juan",
+        "fuente": "IGN",
+        "categoria": "Provincia",
+        "centroide": {
+          "lon": -68.8881597071776,
+          "lat": -30.8656607015096
         },
-        {
-            "centroide": {
-                "lat": -30.7069271588117,
-                "lon": -60.9498369430241
-            },
-            "id": "82",
-            "nombre": "Santa Fe"
+        "iso_id": "AR-J",
+        "iso_nombre": "San Juan"
+      },
+      {
+        "id": "38",
+        "nombre": "Jujuy",
+        "nombre_completo": "Provincia de Jujuy",
+        "fuente": "IGN",
+        "categoria": "Provincia",
+        "centroide": {
+          "lon": -65.764423919292,
+          "lat": -23.3199750616583
         },
-        {
-            "centroide": {
-                "lat": -26.9478001830786,
-                "lon": -65.3647579441481
-            },
-            "id": "90",
-            "nombre": "Tucumán"
+        "iso_id": "AR-Y",
+        "iso_nombre": "Jujuy"
+      },
+      {
+        "id": "86",
+        "nombre": "Santiago del Estero",
+        "nombre_completo": "Provincia de Santiago del Estero",
+        "fuente": "IGN",
+        "categoria": "Provincia",
+        "centroide": {
+          "lon": -63.2526268856462,
+          "lat": -27.7834318817521
         },
-        {
-            "centroide": {
-                "lat": -38.6417575824599,
-                "lon": -70.1185705180601
-            },
-            "id": "58",
-            "nombre": "Neuquén"
+        "iso_id": "AR-G",
+        "iso_nombre": "Santiago del Estero"
+      },
+      {
+        "id": "62",
+        "nombre": "Río Negro",
+        "nombre_completo": "Provincia de Río Negro",
+        "fuente": "IGN",
+        "categoria": "Provincia",
+        "centroide": {
+          "lon": -67.2296757996036,
+          "lat": -40.4050796306359
         },
-        {
-            "centroide": {
-                "lat": -24.2991344492002,
-                "lon": -64.8144629600627
-            },
-            "id": "66",
-            "nombre": "Salta"
+        "iso_id": "AR-R",
+        "iso_nombre": "Río Negro"
+      },
+      {
+        "id": "18",
+        "nombre": "Corrientes",
+        "nombre_completo": "Provincia de Corrientes",
+        "fuente": "IGN",
+        "categoria": "Provincia",
+        "centroide": {
+          "lon": -57.8010818603331,
+          "lat": -28.7742044813623
         },
-        {
-            "centroide": {
-                "lat": -26.3864309061226,
-                "lon": -60.7658307438603
-            },
-            "id": "22",
-            "nombre": "Chaco"
+        "iso_id": "AR-W",
+        "iso_nombre": "Corrientes"
+      },
+      {
+        "id": "54",
+        "nombre": "Misiones",
+        "nombre_completo": "Provincia de Misiones",
+        "fuente": "IGN",
+        "categoria": "Provincia",
+        "centroide": {
+          "lon": -54.6515705627219,
+          "lat": -26.8753025989034
         },
-        {
-            "centroide": {
-                "lat": -24.894972594871,
-                "lon": -59.9324405800872
-            },
-            "id": "34",
-            "nombre": "Formosa"
+        "iso_id": "AR-N",
+        "iso_nombre": "Misiones"
+      },
+      {
+        "id": "66",
+        "nombre": "Salta",
+        "nombre_completo": "Provincia de Salta",
+        "fuente": "IGN",
+        "categoria": "Provincia",
+        "centroide": {
+          "lon": -64.8141586574346,
+          "lat": -24.2992838957201
         },
-        {
-            "centroide": {
-                "lat": -23.3200784211351,
-                "lon": -65.7642522180337
-            },
-            "id": "38",
-            "nombre": "Jujuy"
+        "iso_id": "AR-A",
+        "iso_nombre": "Salta"
+      },
+      {
+        "id": "14",
+        "nombre": "Córdoba",
+        "nombre_completo": "Provincia de Córdoba",
+        "fuente": "IGN",
+        "categoria": "Provincia",
+        "centroide": {
+          "lon": -63.801973466573,
+          "lat": -32.1447993873859
         },
-        {
-            "centroide": {
-                "lat": -34.6144934119689,
-                "lon": -58.4458563545429
-            },
-            "id": "02",
-            "nombre": "Ciudad Autónoma de Buenos Aires"
+        "iso_id": "AR-X",
+        "iso_nombre": "Córdoba"
+      },
+      {
+        "id": "06",
+        "nombre": "Buenos Aires",
+        "nombre_completo": "Provincia de Buenos Aires",
+        "fuente": "IGN",
+        "categoria": "Provincia",
+        "centroide": {
+          "lon": -60.5584771084959,
+          "lat": -36.6773920760823
         },
-        {
-            "centroide": {
-                "lat": -36.6769415180527,
-                "lon": -60.5588319815719
-            },
-            "id": "06",
-            "nombre": "Buenos Aires"
+        "iso_id": "AR-B",
+        "iso_nombre": "Buenos Aires"
+      },
+      {
+        "id": "42",
+        "nombre": "La Pampa",
+        "nombre_completo": "Provincia de La Pampa",
+        "fuente": "IGN",
+        "categoria": "Provincia",
+        "centroide": {
+          "lon": -65.4476439990213,
+          "lat": -37.1350652212898
         },
-        {
-            "centroide": {
-                "lat": -82.52151781221,
-                "lon": -50.7427486049785
-            },
-            "id": "94",
-            "nombre": "Tierra del Fuego, Antártida e Islas del Atlántico Sur"
-        }
+        "iso_id": "AR-L",
+        "iso_nombre": "La Pampa"
+      },
+      {
+        "id": "94",
+        "nombre": "Tierra del Fuego, Antártida e Islas del Atlántico Sur",
+        "nombre_completo": "Provincia de Tierra del Fuego, Antártida e Islas del Atlántico Sur",
+        "fuente": "IGN",
+        "categoria": "Provincia",
+        "centroide": {
+          "lon": -50.7428606764691,
+          "lat": -82.5211345211545
+        },
+        "iso_id": "AR-V",
+        "iso_nombre": "Tierra del Fuego"
+      }
     ]
-}
+  }
+  
