@@ -1,0 +1,150 @@
+/* ENCABEZADOS
+
+Los encabezados pueden usarse en 7 colores plenos y 4 degradé 
+
+PLENOS: .bg-arg-azul .bg-arg-info .bg-gna-verde-jade .bg-arg-palta .bg-arg-arandano .bg-arg-rojo .bg-arg-gray-light 
+DEGRADÉ: .bg-mix-azul-info .bg-mix-info-azul .bg-mix-palta-azul .bg-mix-azul-palta
+*/
+@mixin colorMix($colorA, $colorB) {
+    background: $colorA;
+    /* background: linear-gradient(
+        90deg,
+        $colorA 75%,
+        color-mix(in srgb, $colorA 40%, $colorB 60%) 90%,
+        $colorB 100%
+    ); */
+    background: linear-gradient(to right, $colorA 75%, $colorB);
+}
+
+#encabezado {
+
+    .bg-arg-azul,
+    .bg-arg-verde-jade,
+    .bg-arg-info,
+    .bg-arg-arandano,
+    .bg-arg-rojo,
+    .bg-mix-info-azul,
+    .bg-mix-azul-info,
+    .bg-mix-azul-palta {
+        color: white;
+    }
+
+    /*  COLOR DEGRADÉ */
+    .bg-mix-info-azul {
+        @include colorMix($brand-info, $brand-primary);
+    }
+
+    .bg-mix-azul-info {
+        @include colorMix($brand-primary, $brand-info);
+    }
+
+    .bg-mix-palta-azul {
+        @include colorMix($brand-palta, $brand-primary);
+        color: $black;
+    }
+
+    .bg-mix-azul-palta {
+        @include colorMix($brand-primary, $brand-palta);
+    }
+
+    /* Generales */
+    a {
+        color: $black !important;
+    }
+
+    .enc-link {
+        padding: 0px;
+        width: 48%;
+        vertical-align: text-top;
+        margin: 1% 4px 3px 0px;
+    }
+
+    .w-100 {
+        width: 100%;
+    }
+
+    h1 {
+        margin: 0px 0px 12px;
+        margin-top: 20px !important;
+    }
+
+    /* iso + logo + imagen */
+    .enc-img {
+        padding: 0px;
+    }
+
+    .isoimagen {
+        max-height: 80px;
+        width: auto;
+        padding-bottom: 10px;
+    }
+
+    .logo {
+        max-height: 150px;
+        width: auto;
+        padding: 0 12px 20px 0;
+    }
+
+    .iso {
+        max-height: 150px;
+        width: auto;
+        padding: 0 12px 20px 0;
+    }
+
+    figure img {
+        border-radius: 0px;
+        margin: 0px;
+        max-width: 100%;
+    }
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+    #encabezado .enc-link {
+        width: 96%;
+    }
+}
+
+/* COLOR DEGRADÉ */
+@media (max-width: 992px) {
+    #encabezado {
+        .bg-mix-info-azul {
+            background: $brand-info;
+        }
+
+        .bg-mix-palta-azul {
+            background: $brand-palta;
+        }
+
+        .bg-mix-azul-palta {
+            background: $brand-primary;
+        }
+
+        .bg-mix-azul-info {
+            background: $brand-primary;
+        }
+
+        h1 {
+            margin-top: 20px !important;
+            font-size: calc(1.375rem + 1.5vw);
+        }
+
+        .logo {
+            margin-left: 0px;
+        }
+
+        .iso {
+            margin-left: 15px;
+        }
+
+        figure {
+            border-radius: 0px;
+            margin: 0px;
+            max-width: 100%;
+        }
+
+        .enc-img {
+            padding: 0px;
+        }
+    }
+}
