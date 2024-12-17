@@ -45,7 +45,7 @@ const headersBackground = {
         "bg-arg-azul",
         "bg-arg-rojo",
         "bg-arg-info",
-        "bg-arg-verde-jade",
+        "bg-arg-eucalipto",
         "bg-arg-palta",
         "bg-arg-arandano",
         "bg-arg-negro-light"
@@ -63,7 +63,7 @@ const headersBackground = {
  */
 const colorVariations = {
     high: [
-        'arg-azul', 'gna-verde-jade', 'arg-verde', 'arg-naranja', 'arg-rojo', 
+        'arg-azul', 'arg-eucalipto', 'arg-verde', 'arg-naranja', 'arg-rojo', 
         'arg-arandano', 'arg-uva', 'arg-cielo', 'arg-palta', 'arg-verdin', 
         'arg-amarillo', 'arg-tomate', 'arg-fucsia', 'arg-lavanda', 'arg-negro'
     ],
