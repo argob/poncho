@@ -413,7 +413,10 @@
                         ILLUS_PATH, 
                         val["gsx$codigo"]["$t"], 
                         val["gsx$descripción(textoalternativo)"]["$t"], 
-                        val["gsx$etiquetas"]["$t"]);
+                        val["gsx$etiquetas"]["$t"],
+                        "",
+                        "",
+                        val["gsx$nombre"]["$t"]);
 
 
                     $("#listaPoncho .row").append(
@@ -487,6 +490,7 @@
                 let ilus = $(this).find("object").attr("data");
                 let alt = $(this).find("object").attr("aria-label");
                 let name = $(this).find("object").attr("data-image");
+                let ilusname = $(this).find("object").attr("data-name");
                 let color = $(this).find("object").attr("data-color");
                 let variant = $(this).find("object").attr("data-variant");
                 let tags = $(this).find(".tags").html().split(",").map(function(item){return item.trim();});
@@ -498,6 +502,7 @@
                 object.attr('data', ilus);
                 object.attr('aria-label', alt);
                 object.attr('data-image', name);
+                object.attr('data-name', ilusname);
                 object.appendTo('#iconoModal .modal-title');
 
                 $(".etiquetas").html("");
@@ -547,7 +552,7 @@
             return code;
         }
 
-        function imageObject(imagePath, filename, label, tags, color="", variant=""){
+        function imageObject(imagePath, filename, label, tags, color="", variant="", ilusname=""){
             let params = ""
             if([color, variant].every(e => typeof e !== "undefined" && e )){
                 params = `?c1=${color}&c2=${variant}`;
@@ -561,6 +566,7 @@
                 data-tags="${tags}"
                 data-image="${filename}" 
                 aria-label="${label}" 
+                data-name="${ilusname}"
                 data="${imagePath}${filename}.svg${params}">
                 <p>
                     ${label}
