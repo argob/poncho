@@ -600,7 +600,7 @@
                                 if(entry == null){
                                     return;
                                 }
-                                const {color, variant.color, name} = entry;
+                                const {color, variant, name} = entry;
 
                                 const span = document.createElement("span");
                                 span.className = "sr-only";
@@ -610,7 +610,7 @@
                                 li.classList.add("btn-color-circles", "js-color__sample");
                                 li.style.backgroundColor = color;
                                 li.dataset.color = color;
-                                li.dataset.variant = variant.half;
+                                li.dataset.variant = variant.variant.half;
                                 li.appendChild(span);
 
                                 element.appendChild(li);
