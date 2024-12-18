@@ -619,7 +619,7 @@
 
                         const sample = document.querySelectorAll('.js-color__sample');
                         sample.forEach(e => e.addEventListener("click", function(ele){
-                            changeColor(ele.target.dataset.color, ele.target.dataset.variant);
+                            changeColor(ele.target.dataset.color, ele.target.dataset.variant.color);
                         }))
                 }
             );
