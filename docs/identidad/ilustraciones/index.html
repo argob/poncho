@@ -98,6 +98,25 @@
     }
     </script>
     <!-- End Jekyll SEO tag -->
+
+
+
+    <!-- DEV ONLY
+    <link href="https://argob.github.io/poncho/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://argob.github.io/poncho/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://argob.github.io/poncho/css/prism.css" rel="stylesheet">
+    <script src="https://argob.github.io/poncho/node_modules/list.js/dist/list.min.js"></script>
+    <script src="https://argob.github.io/poncho/node_modules/clipboard/dist/clipboard.min.js"></script>
+    <script src="https://argob.github.io/poncho/node_modules/datatables.net/js/jquery.dataTables.min.js"></script>
+    <link href="https://argob.github.io/poncho/node_modules/datatables.net-dt/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <script src="https://argob.github.io/poncho/node_modules/intl/dist/Intl.min.js"></script>
+    <link href="https://www.argentina.gob.ar/sites/default/files/ponchotable/ponchotable-1.1.css" rel="stylesheet" />
+    <script src="/poncho/node_modules/showdown/dist/showdown.min.js"></script>
+    <script src="https://argob.github.io/poncho/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="https://argob.github.io/poncho/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="https://argob.github.io/poncho/js/scripts.js"></script>
+    <script src="https://argob.github.io/poncho/js/prism.js"></script> -->
+</head>
 </head>
 
 <body data-spy="scroll" data-target="#navbar-docs">
@@ -327,303 +346,306 @@
     </div>
     <!-- END MODAL -->
 
-    <!-- SCRIPTS -->
-    <script>
-        const ILLUS_PATH = "../../ilustraciones/";
-        //#####################################################################
-        //####################### GAPI LEGACY #################################
-        //#####################################################################
-        //<!--
-        /**
-         * Retorna la estructura de la versión 3 de la API GoogleSheets.
-         *
-         * La estructura del objeto que retorna es de este modo:
-         *  .
-         *  \--feed
-         *      \-- entry
-         *          |-- gsx$[nombre columna]
-         *          |   \-- $t
-         *          |-- gsx$[nombre columna]
-         *          |   \-- $t
-         *
-         * @param  {object} response Response JSON.
-         * @return {void}
-         */
-        function gapi_legacy(response){
+   <!-- SCRIPTS -->
+   <script>
+    const ILLUS_PATH = "../../ilustraciones/";
+    //#####################################################################
+    //####################### GAPI LEGACY #################################
+    //#####################################################################
+    //<!--
+    /**
+     * Retorna la estructura de la versión 3 de la API GoogleSheets.
+     *
+     * La estructura del objeto que retorna es de este modo:
+     *  .
+     *  \--feed
+     *      \-- entry
+     *          |-- gsx$[nombre columna]
+     *          |   \-- $t
+     *          |-- gsx$[nombre columna]
+     *          |   \-- $t
+     *
+     * @param  {object} response Response JSON.
+     * @return {void}
+     */
+    function gapi_legacy(response){
 
-        const keys = response.values[0];
-        const regex = / |\/|_/ig;
-        let entry = [];
+    const keys = response.values[0];
+    const regex = / |\/|_/ig;
+    let entry = [];
 
-        response.values.forEach((v, k) => {
-            if(k > 0){
+    response.values.forEach((v, k) => {
+        if(k > 0){
 
-            let zip = {};
-            for(var i in keys){
-                var d = (v.hasOwnProperty(i))? v[i].trim() : "";
-                zip[`gsx$${ keys[i].toLowerCase().replace(regex, '') }`] = {"$t": d};
-            }
-            entry.push(zip);
-            }
+        let zip = {};
+        for(var i in keys){
+            var d = (v.hasOwnProperty(i))? v[i].trim() : "";
+            zip[`gsx$${ keys[i].toLowerCase().replace(regex, '') }`] = {"$t": d};
+        }
+        entry.push(zip);
+        }
+    });
+
+    return {"feed": {"entry": entry}};
+    }
+    //-->
+
+    $(function(){
+        $("#menuLateral").load("../../includes/identidad_menu.html", function(){
+            var seccion = $("#menuLateral").data("seccion");
+            $("#menuLateral ul li a[data-seccion="+seccion+"]")
+                .parent()
+                .addClass("active");
         });
 
-        return {"feed": {"entry": entry}};
-        }
-        //-->
+    var clipboard = new ClipboardJS('.copyButton');
 
-        $(function(){
-            $("#menuLateral").load("../../includes/identidad_menu.html", function(){
-                var seccion = $("#menuLateral").data("seccion");
-                $("#menuLateral ul li a[data-seccion="+seccion+"]")
-                    .parent()
-                    .addClass("active");
+    clipboard.on('success', function(e) {
+        $("#mensajeCopiado").fadeIn(300);
+        document.getSelection().removeAllRanges();
+    });
+
+    $('#iconoModal').on('hidden.bs.modal', function () {
+        $("#mensajeCopiado").fadeOut(300);
+    })
+    
+    // Obtengo la metadata de las ilustraciones via spreadsheet
+    var idSpread = '13CLjNqMQlUXj849XYL_nGDaAkE90OOFT3mXL-Iag9xM';
+    var hojaNombre = 'Ilustraciones';
+    var sheetURL = `https://sheets.googleapis.com/v4/spreadsheets/${idSpread}`
+        + `/values/${hojaNombre}?alt=json&key=AIzaSyCq2wEEKL9-6RmX-TkW23qJsrmnFHFf5tY`;
+
+    jQuery.getJSON(sheetURL,
+        function(data) {
+            data = gapi_legacy(data);
+            $(".preloader").remove();
+            ilustraciones = data['feed']['entry'];
+
+            //TITULOS
+            $.each(ilustraciones, function(index, val) {
+
+                if(index == 4){
+                    return;
+                }
+
+                const imgObj = imageObject(
+                    ILLUS_PATH, 
+                    val["gsx$codigo"]["$t"], 
+                    val["gsx$descripción(textoalternativo)"]["$t"], 
+                    val["gsx$etiquetas"]["$t"],
+                    "",
+                    "",
+                    val["gsx$nombre"]["$t"]);
+
+
+                $("#listaPoncho .row").append(
+                    `<div class="ilustracion col-xs-12 col-sm-6 col-md-4 text-center">
+                        <a href="#" class="panel panel-default">
+                        ${imgObj}
+                        </a>
+                    </div>`
+                );
             });
 
-        var clipboard = new ClipboardJS('.copyButton');
+            var indice = 0;
+            var busqueda;
+            var optionsList = {
+                valueNames: [ 'nombre' ]
+            };
 
-        clipboard.on('success', function(e) {
-            $("#mensajeCopiado").fadeIn(300);
-            document.getSelection().removeAllRanges();
-        });
+            //BUSCADOR
+            var options = { valueNames: [ 'name','tags' ] };
+            var listaPoncho = new List('listaPoncho', options);
 
-        $('#iconoModal').on('hidden.bs.modal', function () {
-            $("#mensajeCopiado").fadeOut(300);
-        })
-        
-        // Obtengo la metadata de las ilustraciones via spreadsheet
-        var idSpread = '13CLjNqMQlUXj849XYL_nGDaAkE90OOFT3mXL-Iag9xM';
-        var hojaNombre = 'Ilustraciones';
-        var sheetURL = `https://sheets.googleapis.com/v4/spreadsheets/${idSpread}`
-            + `/values/${hojaNombre}?alt=json&key=AIzaSyCq2wEEKL9-6RmX-TkW23qJsrmnFHFf5tY`;
+            $("#buscadorIlustraciones").on("keyup", function(e) {
+                busqueda = $(this).val();
+                buscarIcono(busqueda)
+            })
 
-        jQuery.getJSON(sheetURL,
-            function(data) {
-                data = gapi_legacy(data);
-                $(".preloader").remove();
-                ilustraciones = data['feed']['entry'];
-
-                //TITULOS
-                $.each(ilustraciones, function(index, val) {
-
-                    if(index == 4){
-                        return;
-                    }
-
-                    const imgObj = imageObject(
-                        ILLUS_PATH, 
-                        val["gsx$codigo"]["$t"], 
-                        val["gsx$descripción(textoalternativo)"]["$t"], 
-                        val["gsx$etiquetas"]["$t"],
-                        "",
-                        "",
-                        val["gsx$nombre"]["$t"]);
-
-
-                    $("#listaPoncho .row").append(
-                        `<div class="ilustracion col-xs-12 col-sm-6 col-md-4 text-center">
-                            <a href="#" class="panel panel-default">
-                            ${imgObj}
-                            </a>
-                        </div>`
-                    );
-                });
-
-                var indice = 0;
-                var busqueda;
-                var optionsList = {
-                    valueNames: [ 'nombre' ]
+            // crea una imagen temporal con un link de descarga 
+            function loadDoc(nombre){
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    var mostrarbt;
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.querySelector('#copyImgId').classList.remove('hidden');
+                        
+                        result = this.responseText;
+                            const a = document.createElement("a");
+                            a.style.display = "none";
+                            document.body.appendChild(a);
+                            a.href = window.URL.createObjectURL(
+                                new Blob([result], {type: 'image/svg+xml'})
+                            );
+                            a.setAttribute("download", nombre);
+                            a.click();
+                            window.URL.revokeObjectURL(a.href);
+                            document.body.removeChild(a);
+                    } 
                 };
 
-                //BUSCADOR
-                var options = { valueNames: [ 'name','tags' ] };
-                var listaPoncho = new List('listaPoncho', options);
-
-                $("#buscadorIlustraciones").on("keyup", function(e) {
-                    busqueda = $(this).val();
-                    buscarIcono(busqueda)
-                })
-
-                // crea una imagen temporal con un link de descarga 
-                function loadDoc(nombre){
-                    var xhttp = new XMLHttpRequest();
-                    xhttp.onreadystatechange = function() {
-                        var mostrarbt;
-                        if (this.readyState == 4 && this.status == 200) {
-                            document.querySelector('#copyImgId').classList.remove('hidden');
-                            
-                            result = this.responseText;
-                                const a = document.createElement("a");
-                                a.style.display = "none";
-                                document.body.appendChild(a);
-                                a.href = window.URL.createObjectURL(
-                                    new Blob([result], {type: 'image/svg+xml'})
-                                );
-                                a.setAttribute("download", nombre);
-                                a.click();
-                                window.URL.revokeObjectURL(a.href);
-                                document.body.removeChild(a);
-                        } 
-                    };
-
-                    xhttp.open(
-                        "GET", 
-                        `https://raw.githubusercontent.com/argob/iconos/`
-                            + `master/dist/ilustraciones/${codigo}.svg`,
-                        true);
-                    xhttp.send();
-                }
-
-                //Recorre todas las listas para filtrar el contenido
-                function buscarIcono(busqueda){
-                listaPoncho.search(busqueda); 
-
-                if(listaPoncho.visibleItems.length == 0){
-                    $("#listaPoncho .error").show();
-                }else{
-                    $("#listaPoncho .error").hide();
-                }
+                xhttp.open(
+                    "GET", 
+                    `https://raw.githubusercontent.com/argob/iconos/`
+                        + `master/dist/ilustraciones/${codigo}.svg`,
+                    true);
+                xhttp.send();
             }
 
-            // crea svg a partir del código
-            // Mostrar Detalle de una ilustración
-            $(document).on("click",".ilustracion",function(){
-                let ilus = $(this).find("object").attr("data");
-                let alt = $(this).find("object").attr("aria-label");
-                let name = $(this).find("object").attr("data-image");
-                let ilusname = $(this).find("object").attr("data-name");
-                let color = $(this).find("object").attr("data-color");
-                let variant = $(this).find("object").attr("data-variant");
-                let tags = $(this).find(".tags").html().split(",").map(function(item){return item.trim();});
-                
-                $('#iconoModal .modal-title').html(ilusname + " <small>(<span>" + alt + "</span>)</small>");
-                
-                
-                var object = $('<object class="img-responsive js-illustration">'); 
-                object.attr('data', ilus);
-                object.attr('aria-label', alt);
-                object.attr('data-image', name);
-                object.attr('data-name', ilusname);
-                object.appendTo('#iconoModal .modal-title');
+            //Recorre todas las listas para filtrar el contenido
+            function buscarIcono(busqueda){
+            listaPoncho.search(busqueda); 
 
-                $(".etiquetas").html("");
+            if(listaPoncho.visibleItems.length == 0){
+                $("#listaPoncho .error").show();
+            }else{
+                $("#listaPoncho .error").hide();
+            }
+        }
 
-                $.each(tags, function(index, val) {
-                    $(".etiquetas").append('<a href="#" class="label label-default etiqueta">'+val+'</a>');
-                });
-                
-                let code = codeTemplate(name, color, variant, alt);
+        // crea svg a partir del código
+        // Mostrar Detalle de una ilustración
+        $(document).on("click",".ilustracion",function(){
+            let ilus = $(this).find("object").attr("data");
+            let alt = $(this).find("object").attr("aria-label");
+            let name = $(this).find("object").attr("data-image");
+            let ilusname = $(this).find("object").attr("data-name");
+            let color = $(this).find("object").attr("data-color");
+            let variant = $(this).find("object").attr("data-variant");
+            let tags = $(this).find(".tags").html().split(",").map(function(item){return item.trim();});
+            
+            $('#iconoModal .modal-title').html(ilusname + " <small>(<span>" + alt + "</span>)</small>");
+            
+            
+            var object = $('<object class="img-responsive js-illustration">'); 
+            object.attr('data', ilus);
+            object.attr('aria-label', alt);
+            object.attr('data-image', name);
+            object.attr('data-name', ilusname);
+            object.appendTo('#iconoModal .modal-title');
 
-                $("#copy").html(code);
-                $("#copyImgId").attr("href", ilus);
-                $('#iconoModal').modal('show');
+            $(".etiquetas").html("");
+
+            $.each(tags, function(index, val) {
+                $(".etiquetas").append('<a href="#" class="label label-default etiqueta">'+val+'</a>');
             });
+            
+            let code = codeTemplate(name, color, variant, alt);
 
-                //Buscar haciendo click en una etiqueta
-            $(document).on("click", ".etiqueta", function(){
-                var etiqueta = $(this).html();
-                console.log(etiqueta);
-                $('#iconoModal').modal('hide');
-                $("#buscadorIlustraciones").val(etiqueta);
-                buscarIcono(etiqueta)
-            });
-
-            // descarga svg con el clik en el boton 
-            $(document).on("click","#copyImgId",function(){
-                loadDoc(name);
-            });
-            });
+            $("#copy").html(code);
+            $("#copyImgId").attr("href", ilus);
+            $('#iconoModal').modal('show');
         });
-        </script>
 
-        </main>
+            //Buscar haciendo click en una etiqueta
+        $(document).on("click", ".etiqueta", function(){
+            var etiqueta = $(this).html();
+            console.log(etiqueta);
+            $('#iconoModal').modal('hide');
+            $("#buscadorIlustraciones").val(etiqueta);
+            buscarIcono(etiqueta)
+        });
 
-        <script>
-        function codeTemplate(name, color, variant, alt){
-            let params = ""
-            if([color, variant].every(e => typeof e !== "undefined" && e)){
-                params = `?c1=${color}&c2=${variant}`;
-            }
-            let code = `&lt;object` 
-                + `\n    type="image/svg+xml"` 
-                + `\n    aria-label="${alt}" `
-                + `\n    data="https://www.argentina.gob.ar/${name}.svg${params}"&gt;`
-                + `\n    &lt;p&gt;${alt}&lt;/p&gt;`
-                + `\n&lt;/object&gt;`;
-            return code;
+        // descarga svg con el clik en el boton 
+        $(document).on("click","#copyImgId",function(){
+            loadDoc(name);
+        });
+        });
+    });
+    </script>
+
+    </main>
+
+    <script>
+    function codeTemplate(name, color, variant, alt){
+        let params = ""
+        if([color, variant].every(e => typeof e !== "undefined" && e)){
+            params = `?c1=${color}&c2=${variant}`;
+        }
+        let code = `&lt;object` 
+            + `\n    type="image/svg+xml"` 
+            + `\n    aria-label="${alt}" `
+            + `\n    data="https://www.argentina.gob.ar/${name}.svg${params}"&gt;`
+            + `\n    &lt;p&gt;${alt}&lt;/p&gt;`
+            + `\n&lt;/object&gt;`;
+        return code;
+    }
+
+    function imageObject(imagePath, filename, label, tags, color="", variant="", ilusname="Ilustración"){
+        let params = ""
+        if([color, variant].every(e => typeof e !== "undefined" && e )){
+            params = `?c1=${color}&c2=${variant}`;
+        }
+        return `<object 
+            style="pointer-events: none;"
+            class="img-responsive ilus-home js-illustration" 
+            type="image/svg+xml"
+            data-color="${color}"
+            data-variant="${variant}"
+            data-tags="${tags}"
+            data-image="${filename}" 
+            aria-label="${label}" 
+            data-label="${label}" 
+            data-name="${ilusname}"
+            data="${imagePath}${filename}.svg${params}">
+            <p>
+                ${label}
+            </p>
+        </object>
+        <div class="tags hidden">${tags}</div>`;
+    }
+
+
+        // Definición de colores
+        function changeColor(color, variant){
+            document.querySelectorAll('.js-illustration').forEach(function(element){
+                const {image, label, tags, name} = element.dataset;
+                const imgObj = imageObject(ILLUS_PATH, image, label, tags, color, variant, name);
+                const elementParent = element.parentNode;
+                elementParent.innerHTML = imgObj
+            });
         }
 
-        function imageObject(imagePath, filename, label, tags, color="", variant="", ilusname="Ilustración"){
-            let params = ""
-            if([color, variant].every(e => typeof e !== "undefined" && e )){
-                params = `?c1=${color}&c2=${variant}`;
-            }
-            return `<object 
-                style="pointer-events: none;"
-                class="img-responsive ilus-home js-illustration" 
-                type="image/svg+xml"
-                data-color="${color}"
-                data-variant="${variant}"
-                data-tags="${tags}"
-                data-image="${filename}" 
-                aria-label="${label}" 
-                data-name="${ilusname}"
-                data="${imagePath}${filename}.svg${params}">
-                <p>
-                    ${label}
-                </p>
-            </object>
-            <div class="tags hidden">${tags}</div>`;
-        }
 
+        jQuery.getJSON(
+            "https://raw.githubusercontent.com/argob/poncho/release-1.x/dist/jsons/illustrations-colors.json",
+            function(response){
+                    // Obtengo cada ul contenedor de muestras de color.
+                    const ulColors = document.querySelectorAll(".js-dropdown__colors");
+                    ulColors.forEach(function(element){
+                        element.innerHTML = "";
+                        // A cada listado le agrego los li con los datos.
+                        response.forEach(function(entry){
+                            if(entry == null){
+                                return;
+                            }
+                            const {color, variant, name} = entry;
+                            const halfVariant = variant.find(f => f.variant == "half");
 
-            // Definición de colores
-            function changeColor(color, variant){
-                document.querySelectorAll('.js-illustration').forEach(function(element){
-                    
-                    const {image, label, tags, name} = element.dataset;
+                            const span = document.createElement("span");
+                            span.className = "sr-only";
+                            span.textContent = name;
 
-                    const imgObj = imageObject(ILLUS_PATH, image, label,tags, color, variant, name);
-                    const elementParent = element.parentNode;
-                    elementParent.innerHTML = imgObj
-                });
-            }
+                            const li = document.createElement("li");
+                            li.classList.add("btn-color-circles", "js-color__sample");
+                            li.style.backgroundColor = color;
+                            li.dataset.color = color;
 
-            jQuery.getJSON(
-                "https://raw.githubusercontent.com/argob/poncho/release-1.x/dist/jsons/illustrations-colors.json",
-                function(response){
-                        // Obtengo cada ul contenedor de muestras de color.
-                        const ulColors = document.querySelectorAll(".js-dropdown__colors");
-                        ulColors.forEach(function(element){
-                            element.innerHTML = "";
-                            // A cada listado le agrego los li con los datos.
-                            response.forEach(function(entry){
-                                if(entry == null){
-                                    return;
-                                }
-                                const {color, variant, name} = entry;
+                            li.dataset.variant = (halfVariant ? halfVariant.color : "");
+                            li.appendChild(span);
 
-                                const span = document.createElement("span");
-                                span.className = "sr-only";
-                                span.textContent = name;
-
-                                const li = document.createElement("li");
-                                li.classList.add("btn-color-circles", "js-color__sample");
-                                li.style.backgroundColor = color;
-                                li.dataset.color = color;
-                                li.dataset.variant = variant.variant.half;
-                                li.appendChild(span);
-
-                                element.appendChild(li);
-                            });
+                            element.appendChild(li);
                         });
+                    });
 
-                        const sample = document.querySelectorAll('.js-color__sample');
-                        sample.forEach(e => e.addEventListener("click", function(ele){
-                            changeColor(ele.target.dataset.color, ele.target.dataset.variant.color);
-                        }))
-                }
-            );
-        </script>
+                    const sample = document.querySelectorAll('.js-color__sample');
+                    sample.forEach(e => e.addEventListener("click", function(ele){
+
+                        changeColor(ele.target.dataset.color, ele.target.dataset.variant);
+                    }))
+            }
+        );
+    </script>
 
         <script type="module">
             import 'https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate';
