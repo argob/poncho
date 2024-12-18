@@ -24,6 +24,7 @@
     <link rel="apple-touch-icon" href="/poncho/img/iconos/icon-192x192.png">
     <link rel="manifest" href="/poncho/manifest.json">
 
+    
     <!-- Nav and address bar color -->
     <meta name="theme-color" content="#0072b8">
     <meta name="msapplication-navbutton-color" content="#0072b8">
@@ -43,6 +44,10 @@
     <script src="/poncho/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="/poncho/js/scripts.js"></script>
     <script src="/poncho/js/prism.js"></script>
+
+
+
+
 
     <!--PWA ServiceWorker-->
     <script type="module"> 
@@ -98,6 +103,24 @@
     }
     </script>
     <!-- End Jekyll SEO tag -->
+
+
+
+    <!-- DEV ONLY
+    <link href="https://argob.github.io/poncho/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://argob.github.io/poncho/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://argob.github.io/poncho/css/prism.css" rel="stylesheet">
+    <script src="https://argob.github.io/poncho/node_modules/list.js/dist/list.min.js"></script>
+    <script src="https://argob.github.io/poncho/node_modules/clipboard/dist/clipboard.min.js"></script>
+    <script src="https://argob.github.io/poncho/node_modules/datatables.net/js/jquery.dataTables.min.js"></script>
+    <link href="https://argob.github.io/poncho/node_modules/datatables.net-dt/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <script src="https://argob.github.io/poncho/node_modules/intl/dist/Intl.min.js"></script>
+    <link href="https://www.argentina.gob.ar/sites/default/files/ponchotable/ponchotable-1.1.css" rel="stylesheet" />
+    <script src="/poncho/node_modules/showdown/dist/showdown.min.js"></script>
+    <script src="https://argob.github.io/poncho/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="https://argob.github.io/poncho/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="https://argob.github.io/poncho/js/scripts.js"></script>
+    <script src="https://argob.github.io/poncho/js/prism.js"></script> -->
 </head>
 
 <body data-spy="scroll" data-target="#navbar-docs">
@@ -566,6 +589,7 @@
                 data-tags="${tags}"
                 data-image="${filename}" 
                 aria-label="${label}" 
+                data-label="${label}" 
                 data-name="${ilusname}"
                 data="${imagePath}${filename}.svg${params}">
                 <p>
@@ -579,14 +603,13 @@
             // Definición de colores
             function changeColor(color, variant){
                 document.querySelectorAll('.js-illustration').forEach(function(element){
-                    
                     const {image, label, tags, name} = element.dataset;
-
-                    const imgObj = imageObject(ILLUS_PATH, image, label,tags, color, variant, name);
+                    const imgObj = imageObject(ILLUS_PATH, image, label, tags, color, variant, name);
                     const elementParent = element.parentNode;
                     elementParent.innerHTML = imgObj
                 });
             }
+
 
             jQuery.getJSON(
                 "https://raw.githubusercontent.com/argob/poncho/release-1.x/dist/jsons/illustrations-colors.json",
@@ -601,6 +624,7 @@
                                     return;
                                 }
                                 const {color, variant, name} = entry;
+                                const halfVariant = variant.find(f => f.variant == "half");
 
                                 const span = document.createElement("span");
                                 span.className = "sr-only";
@@ -610,7 +634,8 @@
                                 li.classList.add("btn-color-circles", "js-color__sample");
                                 li.style.backgroundColor = color;
                                 li.dataset.color = color;
-                                li.dataset.variant = variant.variant.half;
+
+                                li.dataset.variant = (halfVariant ? halfVariant.color : "");
                                 li.appendChild(span);
 
                                 element.appendChild(li);
@@ -619,7 +644,8 @@
 
                         const sample = document.querySelectorAll('.js-color__sample');
                         sample.forEach(e => e.addEventListener("click", function(ele){
-                            changeColor(ele.target.dataset.color, ele.target.dataset.variant.color);
+
+                            changeColor(ele.target.dataset.color, ele.target.dataset.variant);
                         }))
                 }
             );
