@@ -552,7 +552,7 @@
             return code;
         }
 
-        function imageObject(imagePath, filename, label, tags, color="", variant="", ilusname=""){
+        function imageObject(imagePath, filename, label, tags, color="", variant="", ilusname="Ilustración"){
             let params = ""
             if([color, variant].every(e => typeof e !== "undefined" && e )){
                 params = `?c1=${color}&c2=${variant}`;
@@ -580,9 +580,9 @@
             function changeColor(color, variant){
                 document.querySelectorAll('.js-illustration').forEach(function(element){
                     
-                    const {image, label, tags} = element.dataset;
+                    const {image, label, tags, name} = element.dataset;
 
-                    const imgObj = imageObject(ILLUS_PATH, image, label,tags, color, variant);
+                    const imgObj = imageObject(ILLUS_PATH, image, label,tags, color, variant, name);
                     const elementParent = element.parentNode;
                     elementParent.innerHTML = imgObj
                 });
