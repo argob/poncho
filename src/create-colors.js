@@ -191,6 +191,7 @@ function colorNames() {
         };
         acc[key] = headersBackground[key].map((color) => {
             const colorRefactor = color.replace("bg-", "");
+            console.log(colorRefactor.replace(/^mix-/, "").split("-"))
             const colorName = (colorRefactor.startsWith("mix-")
                 ? "Mix " + _color.colorName(
                     colorRefactor.replace(/^mix-/, "").split("-"),
