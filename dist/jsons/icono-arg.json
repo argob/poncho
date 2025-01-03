@@ -2907,6 +2907,11 @@
       },
     
       {
+        "nombre": "mi-argentina-extended",
+        "clase": "icono-arg-mi-argentina-extended"
+      },
+    
+      {
         "nombre": "mi-pueblo-conectado",
         "clase": "icono-arg-mi-pueblo-conectado"
       },
