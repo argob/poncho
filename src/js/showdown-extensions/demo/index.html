@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>gob.ar |  Parser markdown</title>
+  <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+<link rel='stylesheet' href='https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/vendor/bootstrap/css/bootstrap.min.css'>
+<link rel='stylesheet' href='https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css'>
+<link rel='stylesheet' href='https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/poncho.min.css'>
+<link rel="stylesheet" href="../demo/css/style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div class="container-fluid">
+    <div class="row pt-2">
+        <div class='col-md-12'>
+            <h1 class="h3 text-arandano">Parser markdown</h1>
+            <div>
+                <textarea name="texto_libre" class="form-control mb-2" id="texto_id" cols="78" rows="8"></textarea>
+            </div>
+            <button id="parse" class="btn btn-info m-t-1 m-b-2">
+                Parse Markdown
+            </button>
+        </div>
+        <hr>
+    </div>
+    <div class="row">
+        <div id="show_parsed_id" class="col-md-12 pt-4 demo"></div>
+    </div>
+</div>
+<!-- partial -->
+  <script src='https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js'></script>
+<script src='https://www.argentina.gob.ar/sites/default/files/ponchotable/showdown.js'></script>
+<!-- <script src='https://qa2-back.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/extensiones/showdown-extensions.js'></script> -->
+<script src="../showdown-extensions.js"></script>
+<script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
+<script  src="../demo/js/script.js"></script>
+
+</body>
+</html>

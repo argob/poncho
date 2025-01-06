@@ -333,42 +333,68 @@ if(showdown){ // IF showdown
    */
   showdown.extension("alerts", function() {
     "use strict";
+
+    function trim(value){
+        const regex = /(^\s*|\s*$)/gm;
+        return value.replace(regex, "");
+    }
+
+    function getHeader(value){
+        const regexHeader = /(?<header>^#{2,6})/;
+        const headers = regexHeader.exec(value);
+        const headerVal = (headers ? headers.groups.header.length : false);
+        return headerVal;
+    }
+
+    function setTitleTag(headerVal){
+        return (headerVal ? `h${headerVal}` : 'p');
+    }
+
     return [
       {
         type: "lang",
         filter: function(text, converter, options) {
           const regex = /\[\[alerta-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([\w-\s]*?)\}-\{(warning|danger|info|success)\}\]\]/;
 
-          var main_regex = new RegExp(regex, "gm");
+          var mainRegex = new RegExp(regex, "gm");
 
-          text = text.replace(main_regex, function(e){
-            // Proceso cada una de los matcheos.
-            var main_regex = new RegExp(regex, "gm");
-            var rgx_data = main_regex.exec(e);
 
-            if(rgx_data){
-              var color  = rgx_data[4];
-              var icon   = rgx_data[3];
-              var titulo = converter.makeHtml(rgx_data[1]);
-              var texto  = converter.makeHtml(rgx_data[2]);
-              var html   = `<div class="alert alert-${color}">
-                    <div class="media">
-                      <div class="media-left">
-                        <i class="fa ${icon} fa-fw fa-4x"></i>
-                      </div>
-                      <div class="media-body">
-                        <h5></h5>
-                        <h5>${titulo}</h5>
-                        <p class="margin-0"></p>
-                        <p>${texto}</p>
-                        <p></p>
-                      </div>
-                    </div>
-                  </div>`;
-            }
-            return html;
+          text = text.replace(mainRegex, function(e){
+              // Proceso cada una de los matcheos.
+              var mainRegex = new RegExp(regex, "gm");
+              var rgxData = mainRegex.exec(e);
+
+              if(rgxData){
+                let [, title, content, icon, color] = rgxData;
+                const refactorIcon = (icon.startsWith("fa-") ? `fa ${icon}` : icon )
+
+                // trim
+                title = trim(title);
+
+                const headerVal = getHeader(title);
+                const titleTag = setTitleTag(headerVal);
+
+                // Remuevo los caracteres numeral
+                title = title.replaceAll("#", "");
+
+                // @TODO buscar una solución que permita excluir el </p> contenedor.
+                title = converter.makeHtml(title).replace(/(\<p\>|\<\/p\>)/g, '');
+
+                content = trim(content);
+                const html = '<div class="alert alert-' + color + '">'
+                    + '<div class="media">'
+                    + '<div class="media-left">'
+                    + '<i class="' + refactorIcon + ' fa-fw fa-4x"></i>'
+                    + '</div>'
+                    + '<div class="media-body">'
+                    + `<${titleTag} class="h5">${title}</${titleTag}>`
+                    + converter.makeHtml(content)
+                    + '</div>'
+                    + '</div>'
+                    + '</div>';
+                return html;
+              }
           });
-
 
           return text;
         }
