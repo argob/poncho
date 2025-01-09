@@ -26,20 +26,7 @@ function cleanner(e,n){"object"!=typeof n&&(n=[]);var r=["html","body","div","sp
                           data-gtm-yt-inspected-1807370_611="true" 
                           data-gtm-yt-inspected-1807370_618="true">
                       </iframe>
-                    </div>`)),r})}}]}),showdown.extension("alerts",function(){"use strict";return[{type:"lang",filter:function(e,n,t){const r=/\[\[alerta-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([\w-\s]*?)\}-\{(warning|danger|info|success)\}\]\]/;var a=new RegExp(r,"gm");return e=e.replace(a,function(e){var t,e=new RegExp(r,"gm").exec(e);return t=e?`<div class="alert alert-${e[4]}">
-                    <div class="media">
-                      <div class="media-left">
-                        <i class="fa ${e[3]} fa-fw fa-4x"></i>
-                      </div>
-                      <div class="media-body">
-                        <h5></h5>
-                        <h5>${n.makeHtml(e[1])}</h5>
-                        <p class="margin-0"></p>
-                        <p>${n.makeHtml(e[2])}</p>
-                        <p></p>
-                      </div>
-                    </div>
-                  </div>`:t})}}]}),showdown.extension("ejes",function(){"use strict";return[{type:"lang",filter:function(e,t,n){const r=/(col([1-4])<<)[\s\S]*?\[\[ejes-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}\]\][\s\S]*?(>>)/;var a=new RegExp(r,"gmi");return e=e.replace(a,function(e){var e=new RegExp(r,"gmi").exec(e),t={2:"6",3:"4",4:"3",1:"12"};return`<div class="col-xs-12 col-sm-${t[e[2]]} col-md-${t[e[2]]}">
+                    </div>`)),r})}}]}),showdown.extension("alerts",function(){"use strict";function c(e){return e.replace(/(^\s*|\s*$)/gm,"")}return[{type:"lang",filter:function(e,i,t){const n=/\[\[alerta-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([\w-\s]*?)\}-\{(warning|danger|info|success)\}\]\]/;var r=new RegExp(n,"gm");return e=e.replace(r,function(a){a=new RegExp(n,"gm").exec(a);if(a){let[,e,t,n,r]=a;var a=n.startsWith("fa-")?"fa "+n:n,s=(e=c(e),s=e,!!(s=/(?<header>^#{2,6})/.exec(s))&&s.groups.header.length),s=(s=s)?"h"+s:"p",a=(e=e.replaceAll("#",""),e=i.makeHtml(e).replace(/(\<p\>|\<\/p\>)/g,""),t=c(t),'<div class="alert alert-'+r+'"><div class="media"><div class="media-left"><i class="'+a+' fa-fw fa-4x"></i></div><div class="media-body">'+`<${s} class="h5">${e}</${s}>`+i.makeHtml(t)+"</div></div></div>");return a}})}}]}),showdown.extension("ejes",function(){"use strict";return[{type:"lang",filter:function(e,t,n){const r=/(col([1-4])<<)[\s\S]*?\[\[ejes-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}\]\][\s\S]*?(>>)/;var a=new RegExp(r,"gmi");return e=e.replace(a,function(e){var e=new RegExp(r,"gmi").exec(e),t={2:"6",3:"4",4:"3",1:"12"};return`<div class="col-xs-12 col-sm-${t[e[2]]} col-md-${t[e[2]]}">
               <div class="icon-item">
                 <i class="${e[5]} ${e[6]}"></i>
                 <p></p>
