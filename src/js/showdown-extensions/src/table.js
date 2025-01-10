@@ -85,14 +85,24 @@ if(showdown){ // IF showdown
         return [{
             type: "output",
             filter: function (html, converter, options) {
-                var liveHtml = jQuery("<div></div>").html(html);
-                jQuery("table", liveHtml).each(function(){
-                    var table = jQuery(this);
-                    table
-                        .addClass("table table-bordered")
-                        .wrap("<div class=\"table-responsive\"></div>");
+
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+
+                const tables = doc.querySelectorAll('table');
+
+                tables.forEach(table => {
+                    const wrapper = doc.createElement('div');
+                    wrapper.classList.add('table-responsive');
+                    table.classList.add("table", "table-bordered");
+                    table.parentNode.replaceChild(wrapper, table);
+                    wrapper.appendChild(table); 
                 });
-                return liveHtml.html();
+
+                const serializer = new XMLSerializer();
+                const modifiedHtml = serializer.serializeToString(doc);
+
+                return modifiedHtml;
             }
         }];
     });
