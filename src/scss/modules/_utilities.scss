@@ -311,23 +311,28 @@
 
 /* uso particular en SNT */
 
-.ql-indent-1{
-   padding-left: 1rem!important;
+.ql-indent-1 {
+  padding-left: 1rem !important;
 }
-.ql-indent-2{
- padding-left: 2rem!important;
+
+.ql-indent-2 {
+  padding-left: 2rem !important;
 }
-.ql-indent-3{
- padding-left: 3rem!important;
+
+.ql-indent-3 {
+  padding-left: 3rem !important;
 }
-.ql-indent-4{
- padding-left: 4rem!important;
+
+.ql-indent-4 {
+  padding-left: 4rem !important;
 }
-.ql-indent-5{
- padding-left: 5rem!important;
+
+.ql-indent-5 {
+  padding-left: 5rem !important;
 }
-.ql-indent-6{
- padding-left: 6rem!important;
+
+.ql-indent-6 {
+  padding-left: 6rem !important;
 }
 
 /* fin uso SNT */
@@ -375,9 +380,11 @@
   .text-sm-left {
     text-align: left !important;
   }
+
   .text-sm-right {
     text-align: right !important;
   }
+
   .text-sm-center {
     text-align: center !important;
   }
@@ -387,9 +394,11 @@
   .text-md-left {
     text-align: left !important;
   }
+
   .text-md-right {
     text-align: right !important;
   }
+
   .text-md-center {
     text-align: center !important;
   }
@@ -399,33 +408,39 @@
   .text-lg-left {
     text-align: left !important;
   }
+
   .text-lg-right {
     text-align: right !important;
   }
+
   .text-lg-center {
     text-align: center !important;
   }
 }
+
 .img .img-rounded {
-	 border-radius: 10px
-		 }
+  border-radius: 10px
+}
+
 .panel-heading {
-	border-top-left-radius: 9px !important;
-	border-top-right-radius: 9px !important
-		}
+  border-top-left-radius: 0px !important;
+  border-top-right-radius: 0px !important
+}
 
 pre {
-	 border: solid 1px #ddd
-		 }
+  border: solid 1px #ddd
+}
+
 .alert {
-	border-radius: 10px
-		}
-  
+  border-radius: 10px
+}
+
 // Grupo de atajos
 .atajos-agrupados .h2 {
   margin-bottom: 1.35em;
   margin-top: 2.25em
 }
+
 .atajos-agrupados .lead {
   margin-bottom: 0.26em
 }
@@ -437,6 +452,6 @@ pre {
 }
 
 //BORDER
-.bdr-pry-1{
+.bdr-pry-1 {
   border: 1px solid #0072bb !important;
 }

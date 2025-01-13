@@ -86,12 +86,47 @@ gulp.task('jshint', function(){
  */
 gulp.task('compress', function () {
     return gulp.src([
-            './src/js/showdown-extensions/showdown-extensions.js',
+            // './src/js/showdown-extensions/dist/showdown-extensions.js',
             './src/js/mapa-argentina/mapa-argentina.js',
             './src/js/device-breadcrumb/src/js/device-breadcrumb.js',
             './src/js/national-holidays/src/js/national-holidays.js',
             './src/js/device-panel-menu/device-panel-menu.js'
         ])
+        .pipe(uglify(generalCompressOptions))
+        .pipe(gulp.dest('./dist/js/'));
+});
+
+
+// MARKDOWN
+const markdownFiles = [
+    "./src/js/showdown-extensions/src/utils.js",
+    "./src/js/showdown-extensions/src/alert.js",
+    "./src/js/showdown-extensions/src/image.js",
+    "./src/js/showdown-extensions/src/table.js",
+    "./src/js/showdown-extensions/src/button.js",
+    "./src/js/showdown-extensions/src/details.js",
+    "./src/js/showdown-extensions/src/eje.js",
+    "./src/js/showdown-extensions/src/numbers.js",
+    "./src/js/showdown-extensions/src/target.js",
+    "./src/js/showdown-extensions/src/video.js"
+]
+/**
+ * Minifica los siguientes componentes
+ * — Mapa de argentina en SVG
+ * — Extensiones showdown markdown
+ * — omponente para controlar las migas de pan en Argentina.gob.ar
+ */
+gulp.task('js-dist-showdown-extensions', function () {
+    return gulp.src(markdownFiles)
+        .pipe(concat('showdown-extensions.js'))
+        .pipe(uglify(generalCompressOptions))
+        .pipe(gulp.dest('./src/js/showdown-extensions/dist/'));
+});
+
+// Envia el archivo a main dist
+gulp.task('js-showdown-extensions', function () {
+    return gulp.src(markdownFiles)
+        .pipe(concat('showdown-extensions.js'))
         .pipe(uglify(generalCompressOptions))
         .pipe(gulp.dest('./dist/js/'));
 });
@@ -161,5 +196,7 @@ gulp.task('default', gulp.series(
     'poncho',
     'ponchomin',
     "sass_poncho-map",
-    "sass_poncho-table"
+    "sass_poncho-table", 
+    "js-showdown-extensions",
+    "js-dist-showdown-extensions"
 ))

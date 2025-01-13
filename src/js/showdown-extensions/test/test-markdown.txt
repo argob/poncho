@@ -1,0 +1,89 @@
+## Test markdown js
+
+### Tablas 
+
+#### Ejemplo 1
+
+| Cabecera A | Cabecera B |
+| ---------- | ---------- |
+| Campo A0   | Campo B0   |
+| Campo A1   | Campo B1   |
+
+#### Ejemplo 2
+
+| Elemento | Cantidad | Precio |
+| :------- | :------: | -----: |
+| Item 1   | 15       | 150€   |
+| Item 2   | 3250     | 23,65€ |
+
+### Imágenes
+
+![Paisaje Jujuy](https://www.argentina.gob.ar/sites/default/files/paisaje_jujuy.jpg "Este es el epígrafe")
+
+### Videos
+
+#### YouTube
+
+[[youtube-{16by9}-{KRXdD8bHJrY}]] 
+
+#### Vimeo
+
+[[vimeo-{16by9}-{46167294}]]
+
+### Alertas
+
+[[alerta-{#####Título}-{En estos momentos, la DNRPA implementa [la cédula única](http://google.com) para automotores.}-{}-{info}]]
+
+[[alerta-{}-{En el [Sistema  de Gestión Documental Electrónica](https://www.argentina.gob.ar/modernizacion/administrativa/gde) (GDE), la documentación deberá estar en **soporte digital** y en **papel**.}-{}-{warning}]]
+
+[[alerta-{#####Título con [link](http://google.com) en el texto.}-{En estos momentos, la DNRPA implementa la cédula única para automotores.}-{fa-car}-{warning}]] 
+
+### Botones
+
+[Botón verde grande](https://www.argentina.gob.ar){.btn.btn-lg.btn-success}
+
+[Botón verde mediano](https://www.argentina.gob.ar){.btn.btn-success}
+
+[Botón verde chico](https://www.argentina.gob.ar){.btn.btn-success.btn-sm}
+
+
+[Botón azul grande](https://www.argentina.gob.ar){.btn.btn-lg.btn-primary}
+
+[Botón azul mediano](https://www.argentina.gob.ar){.btn.btn-primary}
+
+[Botón azul chico](https://www.argentina.gob.ar){.btn.btn-primary.btn-sm}
+
+
+[Botón gris grande](https://www.argentina.gob.ar){.btn.btn-lg.btn-link}
+
+[Botón gris mediano](https://www.argentina.gob.ar){.btn.btn-link}
+
+[Botón gris chico](https://www.argentina.gob.ar){.btn.btn-link.btn-sm}
+
+
+### Presentar conceptos con íconos
+
+[[col2-{
+[[ejes-{Lorem ipsum}-{Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet odio justo. Aliquam volutpat.}-{icono-arg-bailar}-{text-primary}]]
+}-]]
+[[col2-{
+[[ejes-{Lorem ipsum}-{Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet odio justo. Aliquam volutpat.}-{icono-arg-juegos}-{text-primary}]]
+}-]]
+
+
+### Presentar datos estadísticos con números
+
+[[col2-{
+[[numeros-{392.493-}-{visitas los últimos 30 días}-{visitantes únicos}-{text-success}]]
+}-]]
+
+[[col2-{
+[[numeros-{10-%}-{de incremento}-{respecto del mes anterior}-{text-uva}]]
+}-]]
+
+
+### Usar información colapsable
+
+[[details-close{[Título del contenido colapsado][
+Aquí escribís el texto del componente, puede tener más de un párrafo, aunque no es recomendable por usabilidad.
+]}]]
