@@ -116,12 +116,19 @@ if(showdown){ // IF showdown
                     if(rgxData){
                         let [, title, content, icon, color] = rgxData;
                         // const refactorIcon = (icon.startsWith("fa-") ? 
-                        const nameAlert = /fa\-/g;
+
                         icon = icon.trim().replace(/fa\s/, ""); // Remuevo fa 
 
-    
-                        const refactorIcon = ( icon.match(nameAlert) ? 
-                            `fa ${icon} fa-fw fa-3x` : `${icon} fa-3x` )
+                        let htmlIcon = "";
+                        if(icon){
+                            const nameAlert = /fa\-/g;
+                            const refactorIcon = ( icon.match(nameAlert) ? 
+                                `fa ${icon} fa-fw fa-3x` : `${icon} fa-3x` );
+
+                            htmlIcon = '<div class="media-left">'
+                                + '<i class="' + refactorIcon + '"></i>'
+                                + '</div>';
+                        }
 
                         // trim
                         title = trim(title);
@@ -143,9 +150,7 @@ if(showdown){ // IF showdown
 
                         const html = '<div class="alert alert-' + color + '">'
                             + '<div class="media">'
-                            + '<div class="media-left">'
-                            + '<i class="' + refactorIcon + '"></i>'
-                            + '</div>'
+                            + htmlIcon
                             + '<div class="media-body">'
                             + printTitle
                             + converter.makeHtml( trim(content) )
