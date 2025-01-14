@@ -38,6 +38,8 @@
 
 [[alerta-{#####Título con [link](http://google.com) en el texto.}-{En estos momentos, la DNRPA implementa la cédula única para automotores.}-{fa-car}-{warning}]] 
 
+-----
+
 ### Botones
 
 [Botón verde grande](https://www.argentina.gob.ar){.btn.btn-lg.btn-success}
@@ -60,6 +62,7 @@
 
 [Botón gris chico](https://www.argentina.gob.ar){.btn.btn-link.btn-sm}
 
+-----
 
 ### Presentar conceptos con íconos
 
@@ -71,6 +74,18 @@
 }-]]
 
 
+[[col3-{
+[[ejes-{Lorem ipsum}-{Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet odio justo. Aliquam volutpat.}-{icono-arg-bailar}-{text-arg-verdin}]]
+}-]]
+[[col3-{
+[[ejes-{Lorem ipsum}-{Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet odio justo. Aliquam volutpat.}-{icono-arg-juegos}-{text-arg-cielo}]]
+}-]]
+[[col3-{
+[[ejes-{Lorem ipsum}-{Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet odio justo. Aliquam volutpat.}-{fa fa-car}-{text-arg-rojo}]]
+}-]]
+
+-----
+
 ### Presentar datos estadísticos con números
 
 [[col2-{
@@ -81,9 +96,29 @@
 [[numeros-{10-%}-{de incremento}-{respecto del mes anterior}-{text-uva}]]
 }-]]
 
+-----
 
 ### Usar información colapsable
 
 [[details-close{[Título del contenido colapsado][
 Aquí escribís el texto del componente, puede tener más de un párrafo, aunque no es recomendable por usabilidad.
 ]}]]
+
+-----
+
+### Enlace con target blank
+
+[la página web de ANSES](blank:#https://www.anses.gob.ar/)
+
+[(54–11) 2771-6463](blank:#https://api.whatsapp.com/send?phone=5491127716463)
+
+[(54–11) 88888888](blank:#https://api.whatsapp.com/send?phone=número-de-teléfono)
+
+Este es un link al teléfono [(54–11) 2771-6463](blank:#https://api.whatsapp.com/send?phone=5491127716463&text=¡Hola,%20Cómo%20estás!)
+
+Este es un link al teléfono [(54–11) 2771-6463](blank:#https://api.whatsapp.com/send?phone=5491127716463&text=¡Hola,%20Cómo%20estás!)
+
+
+------
+
+Más ejemplos puede verse en: [https://www.argentina.gob.ar/contenidosdigitales/markdown](https://www.argentina.gob.ar/contenidosdigitales/markdown).

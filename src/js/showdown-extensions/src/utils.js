@@ -101,6 +101,8 @@ const target = function(text){
     /(\[(.*?)\]\(((blank):#)([-\_\.\~\!\*\'\(\)\;\:\@\&\=\+\$\,\/\?\%\#\[\]\!\¿\?\¡0-9a-zA-Záéíóúñ]*)\))/,
     "gmi"
     );
-    text = text.replace(mainRegex, `<a href="$5" target="_$4">$2</a>`);
+    text = text.replace(mainRegex, `<a href="$5" target="_$4" 
+            title="Abre en una nueva ventana">$2 
+            <span class="sr-only">(Abre en una nueva ventana)</span></a>`);
     return text;
 }

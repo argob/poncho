@@ -79,14 +79,14 @@ if(showdown){ // IF showdown
      * Números
      *
      * @see https://www.argentina.gob.ar/contenidosdigitales/markdown/numeros
-     * @regexp https://regex101.com/r/HSPGZn/6
+     * @regexp https://regex101.com/r/mrmNik/1
      */
     showdown.extension("numbers", function() {
         "use strict";
         return [{
             type: "lang",
             filter: function(text, converter, options) {
-                const regex = /((?:\[\[)?col([2-4])(?:-\{|<<))[\s\S]*?\[\[numeros-\{([^\{\}-]*?)-([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}\]\][\s\S]*?(>>|\}-\]\])/;
+                const regex = /((?:\[\[)?col([2-4])(?:-\{|<<))[\s\S]\[\[numeros-\{([^\{\}-]*?)-([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}\]\][\s\S](>>|\}-\]\])/;
                 const main_regex = new RegExp(regex, "gmi");
 
                 text = text.replace(main_regex, function(e){
