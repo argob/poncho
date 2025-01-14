@@ -136,7 +136,7 @@ if(showdown){ // IF showdown
                         const titleTag = setTitleTag(headerVal);
 
                         // Remuevo los caracteres numeral
-                        title = title.replaceAll("#", "");
+                        title = title.replaceAll(/^(#*)/g, "");
 
                         // @TODO buscar una solución que permita excluir 
                         // el </p> contenedor.
