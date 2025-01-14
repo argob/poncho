@@ -1,4 +1,4 @@
-# Test
+# Test extensiones markdown JavaScript
 
 Acceder al módulo para testeos de parser markdown JS en: <https://codepen.io/agustinbouillet/pen/YzGYbwO>
 
@@ -51,3 +51,20 @@ Acceder al módulo para testeos de parser markdown JS en: <https://codepen.io/ag
  - **Tipo**: warning.
 
 [[alerta-{}-{En estos momentos, la DNRPA implementa [la cédula única](http://google.com) para automotores.}-{}-{warning}]]
+
+
+### Caso 7
+
+ - **Ícono**: Sin ícono. 
+ - **Título**: Con título en h6. Si el usuario usa más de 7 númerales el valor es [h6].
+ - **Tipo**: warning.
+
+[[alerta-{#######Caso 7}-{En estos momentos, la DNRPA implementa [la cédula única](http://google.com) para automotores.}-{}-{warning}]]
+
+### Caso 8
+
+ - **Ícono**: Sin ícono. 
+ - **Título**: Con título en [p]. El usuario intentó imprimir un [h1].
+ - **Tipo**: warning.
+
+[[alerta-{#Caso 8}-{En estos momentos, la DNRPA implementa [la cédula única](http://google.com) para automotores.}-{}-{warning}]]
