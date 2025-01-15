@@ -20,6 +20,7 @@ Acceder al módulo para testeos de parser markdown JS en: <https://codepen.io/ag
 
 [[alerta-{Caso 2, título _[con enlace](http://google.com)_ }-{En estos momentos, la DNRPA implementa [la cédula única](http://google.com) para automotores.}-{}-{success}]]
 
+
 ### Caso 3
 
  - **Ícono**: Ícono _fa-car_ de la librería [font awesome versión 4](https://fontawesome.com/v4/icons/). 
@@ -68,3 +69,13 @@ Acceder al módulo para testeos de parser markdown JS en: <https://codepen.io/ag
  - **Tipo**: warning.
 
 [[alerta-{#Caso 8}-{En estos momentos, la DNRPA implementa [la cédula única](http://google.com) para automotores.}-{}-{warning}]]
+
+
+### Caso 9
+
+ - **Ícono**: Sin ícono. 
+ - **Título**: Con título en [h2].
+ - **Mensaje**: Ninguno.
+ - **Tipo**: danger.
+
+[[alerta-{##Caso 9 #### con numerales en el medio}-{}-{}-{danger}]]
