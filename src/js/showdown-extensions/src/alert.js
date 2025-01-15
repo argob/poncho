@@ -104,66 +104,69 @@ if(showdown){ // IF showdown
         return [{
             type: "lang",
             filter: function(text, converter, options) {
+
                 const regex = /\[\[alerta-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([\w-\s]*?)\}-\{(warning|danger|info|success)\}\]\]/;
 
                 var mainRegex = new RegExp(regex, "gm");
 
-                text = text.replace(mainRegex, function(e){
-                    // Proceso cada una de los matcheos.
-                    var mainRegex = new RegExp(regex, "gm");
-                    var rgxData = mainRegex.exec(e);
-
-                    if(rgxData){
-                        let [, title, content, icon, color] = rgxData;
-                        // const refactorIcon = (icon.startsWith("fa-") ? 
-
-                        icon = icon.trim().replace(/fa\s/, ""); // Remuevo fa 
-
+                const convertedMarkdown = text.replace(mainRegex, function(e){
+                    // Crear expresión regular principal
+                    const mainRegex = new RegExp(regex, "gm");
+                    const matchData = mainRegex.exec(e);
+                
+                    if (matchData) {
+                        // Extraer datos de los grupos de la regex
+                        let [, title, content, icon, color] = matchData;
+                
+                        // Limpieza y formato del ícono
+                        icon = icon.trim().replace(/fa\s/, ""); // Remover prefijo "fa"
                         let htmlIcon = "";
-                        if(icon){
-                            const nameAlert = /fa\-/g;
-                            const refactorIcon = ( icon.match(nameAlert) ? 
-                                `fa ${icon} fa-fw fa-3x` : `${icon} fa-3x` );
-
-                            htmlIcon = '<div class="media-left">'
-                                + '<i class="' + refactorIcon + '"></i>'
-                                + '</div>';
+                
+                        if (icon) {
+                            const hasFaPrefix = /fa\-/g.test(icon);
+                            const formattedIcon = hasFaPrefix
+                                ? `fa ${icon} fa-fw fa-3x`
+                                : `${icon} fa-3x`;
+                
+                            htmlIcon = `<div class="media-left">
+                                    <i class="${formattedIcon}"></i>
+                                </div>`;
                         }
-
-                        // trim
-                        title = trim(title);
-                        const headerVal = getHeader(title);
-                        const titleTag = setTitleTag(headerVal);
-
-                        // Remuevo los caracteres numeral
-                        title = title.replaceAll(/^(#*)/g, "");
-
-                        // @TODO buscar una solución que permita excluir 
-                        // el </p> contenedor.
-                        title = converter
-                            .makeHtml(title)
-                            .replace(/(\<p\>|\<\/p\>)/g, '');
-
-                        const printTitle = (title ? 
-                            `<${titleTag} class="h5">${title}</${titleTag}>` :
-                            "");
-
-                        const html = '<div class="alert alert-' + color + '">'
-                            + '<div class="media">'
-                            + htmlIcon
-                            + '<div class="media-body">'
-                            + printTitle
-                            + converter.makeHtml( trim(content) )
-                            + '</div>'
-                            + '</div>'
-                            + '</div>';
-                        return html;
+                
+                        // Limpieza y formato del título
+                        title = title.trim().replace(/^(#*)/, ""); // Remover caracteres numeral
+                        const headerValue = getHeader(title); // Determinar encabezado
+                        const titleTag = setTitleTag(headerValue);
+                
+                        const formattedTitle = title
+                            ? `<${titleTag} class="h5">
+                                ${converter.makeHtml(title).replace(/<\/?p>/g, "")}
+                            </${titleTag}>`
+                            : "";
+                
+                        // Formatear el contenido
+                        const formattedContent = converter.makeHtml(content.trim());
+                
+                        // Generar el HTML final
+                        const alertHtml = `<div class="alert alert-${color}">
+                                <div class="media">
+                                    ${htmlIcon}
+                                    <div class="media-body">
+                                        ${formattedTitle}
+                                        ${formattedContent}
+                                    </div>
+                                </div>
+                            </div>`;
+                
+                        return alertHtml;
                     }
+
+                    return ""; // Retornar cadena vacía si no hay coincidencias
                 });
 
-                return text;
+                return convertedMarkdown;
             }
         }];
     });
 
-}
+} // end if
