@@ -3229,7 +3229,7 @@ var ponchoUbicacion = function(options) {
     */
     function parseJsonMunicipios(data) {
         const groupedData = data.municipios.reduce((acc, current) => {
-            const key = `${current.nombre_completo}`;
+            const key = `${current.nombre}`;
             current.label = key;
             if (!acc[key]) {
                 acc[key] = current;
