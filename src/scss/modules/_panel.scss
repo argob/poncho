@@ -131,7 +131,7 @@
 .panel-disabled {
   background: $gray-lighter;
   border: solid 1px $gray-light;
-  border-radius: 10px;
+  border-radius: 0px;
   box-shadow: none;
   color: #888 !important;
   display: block;
@@ -164,9 +164,6 @@ a {
     p,
     span {
       transition: color 0.15s;
-      // transition-timing-function: ease;
-      // -webkit-transition-delay: 0s; /* Safari */
-      // transition-delay: 0s;
     }
 
     .panel-heading {

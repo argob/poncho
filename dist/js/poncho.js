@@ -1885,9 +1885,9 @@ const ponchoTableDependant = opt => {
             "btn", "btn-primary", "btn-sm", "margin-btn");
         btn.href = value;
         btn.target = "_blank";
-        btn.textContent = label;
-        btn.title = "Abre en una nueva ventana";
-        btn.setAttribute("aria-label", label);
+        // btn.textContent = label;
+        btn.innerHTML = `${label} <span class="sr-only">(Abre en una nueva ventana)</span>`;
+        btn.setAttribute("aria-label", `${label} (Abre en una nueva ventana)`);
         btn.setAttribute("rel", "noopener noreferrer");
 
         return btn.outerHTML;
@@ -3229,7 +3229,7 @@ var ponchoUbicacion = function(options) {
     */
     function parseJsonMunicipios(data) {
         const groupedData = data.municipios.reduce((acc, current) => {
-            const key = `${current.nombre_completo}`;
+            const key = `${current.nombre}`;
             current.label = key;
             if (!acc[key]) {
                 acc[key] = current;

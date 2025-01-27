@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head>
+    <link rel="profile" href="http://www.w3.org/1999/xhtml/vocab" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script 
+        src="https://www.argentina.gob.ar/profiles/argentinagobar/libraries/jquery.jquery-371/jquery-3.7.1.min.js?v=3.7.1" >
+        </script>
+    <link 
+        rel="stylesheet" 
+        href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+    <link 
+        rel="stylesheet" 
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" 
+        integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+        crossorigin="anonymous" 
+        referrerpolicy="no-referrer" />  
+    <link 
+        rel="stylesheet" 
+        href="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css">
+    <!-- /Base -->
+    <link rel="stylesheet" href="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/poncho.min.css" />
+    <link rel="stylesheet" href="../src/" />
+    <title>Tabla vialidad</title>
+    <style>
+        body {
+            padding: 2em;
+        }
+    </style>
+    <script src="../../utils/color.js"></script>
+    <script src="../../utils/connect.js"></script>
+    <script src="../../utils/string.js"></script>
+    <script src="../../utils/html.js"></script>
+    <script src="../poncho-table.js"></script>
+    <script src="../poncho-table-dependant.js"></script>
+    <script src="../../gapi-sheet-data/gapi-sheet-data.js"></script>
+</head>
+<body class="p-t-3">
+    <h1>Componentes poncho</h1>
+    <!-- /**
+    * 
+    * Muestra y oculta los elementos de la tabla
+    * @summary 
+    */ 
+   function displayDataTable(obj){
+       const form = new FormData(obj);
+       hasValues = form.entries().some(s => s[1].trim());
+       displayStatus = (hasValues ? "block" : "none" );
+
+       if(displayStatus == "block"){
+           // sin tabla
+           document
+               .querySelectorAll(`[data-visible-as-table="false"]`)
+               .forEach(d => d.style.display = "none");
+       } else {
+           document
+               .querySelectorAll(`[data-visible-as-table="false"]`)
+               .forEach(d => d.style.display = "block");
+       }
+
+       if(displayStatus == "none"){
+           // sin tabla
+           document
+               .querySelectorAll(`[data-visible-as-table="true"]`)
+               .forEach(d => d.style.display = "none");
+       } else {
+           document
+               .querySelectorAll(`[data-visible-as-table="true"]`)
+               .forEach(d => d.style.display = "block");
+       }
+
+       const selectorList = ["#js-toggle-datatable"];
+       document
+           .querySelectorAll(selectorList.join(","))
+           .forEach(e => e.style.display = displayStatus);
+   } -->
+<!-- 
+COPIAR DESDE ACÁ…
+-->
+<!-- INCLUDE SCRIPTS -->
+<link href="/profiles/argentinagobar/themes/contrib/poncho/css/ponchoTable-1.1.css" rel="stylesheet">
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/datatables.min.js"></script> 
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/intl.min.js"></script>
+<script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
+<script src="https://www.argentina.gob.ar/sites/default/files/ponchotable/showdown.js"></script>
+<script src="https://qa2-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/showdown-extensions.js"></script>
+<!-- / INCLUDE SCRIPTS -->
+
+<!-- FILTROS -->
+<form action="" class="row" id="form-table">
+    <div class="col-sm-4" id="ponchoTableFiltroCont" style="display:none">
+        <div class="form-group">
+            <label for="ponchoTableFiltro" id="tituloFiltro">Filtro</label>
+            <select class="form-control" id="ponchoTableFiltro" name="ponchoTableFiltro">
+                <option value="">Todos</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Oculto el buscador -->
+    <div style="display: none;">
+        <div class="col-sm-8" id="ponchoTableSearchCont" style="display:none">
+            <div class="form-group">
+                <label for="ponchoTableSearch">
+                    Buscá por palabra clave
+                </label>
+                <input 
+                    class="form-control" 
+                    id="ponchoTableSearch" 
+                    name="ponchoTableSearch" 
+                    type="search" />
+            </div>
+        </div>
+    </div>
+    <!-- / Oculto el buscador -->
+</form>
+<!-- / FILTROS -->
+
+<!-- MENSAJE -->
+<div class="alert alert-info" data-visible-as-table="false">
+    <p>Seleccione un componenete.</p>
+</div>
+<!-- / MENSAJE -->
+
+<!-- TABLA -->
+<div class="row" id="js-toggle-datatable" style="display: none;">
+    <div class="col-md-12 m-b-4">
+        <table class="table tabla-condensed table-striped" id="ponchoTable">
+            <caption></caption>
+            <thead><tr></tr></thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
+<!-- / TABLA -->
+
+<script>
+    // loading
+    document.querySelector("#ponchoTable").classList.add("state-loading");
+
+    // REnder table
+    (async () => {
+        var ponchoTableOpciones = {
+            emptyLabel: "--------",
+            idSpread: "1CTq7lCm9Dwz4NdINAgtIE818L2_Smnv-_zvFcapjT6Q",
+            hojaNombre: "Hoja 1",
+            tituloTabla: "Componenetes poncho",
+            ordenColumna: 1, 
+            ordenTipo: "asc",
+            ocultarColumnas: [],
+            cantidadItems: 10,
+            filterClassList: ["col-sm-12", "col-md-6"],
+            filterContClassList: ["col-md-12"],
+            searchContClassList: ["col-md-12"],
+            hash: true,
+            allowedTags: ["*"],
+            columnsWidth: [["20%", 0]],
+            urlParams:true,
+            pushState:true,
+            // wizard:true
+        };
+        
+        ponchoTable(ponchoTableOpciones);
+
+        function displayDataTable(e){e=new FormData(e);hasValues=e.entries().some(e=>e[1].trim()),"block"==(displayStatus=hasValues?"block":"none")?document.querySelectorAll('[data-visible-as-table="false"]').forEach(e=>e.style.display="none"):document.querySelectorAll('[data-visible-as-table="false"]').forEach(e=>e.style.display="block"),"none"==displayStatus?document.querySelectorAll('[data-visible-as-table="true"]').forEach(e=>e.style.display="none"):document.querySelectorAll('[data-visible-as-table="true"]').forEach(e=>e.style.display="block");document.querySelectorAll(["#js-toggle-datatable"].join(",")).forEach(e=>e.style.display=displayStatus)}
+
+        var formTable = document.querySelector("#form-table");
+        setTimeout(function(e){
+            displayDataTable(formTable)
+        }, 500);
+
+        formTable.addEventListener('change', function(e){
+            displayDataTable(formTable);
+        });
+})();
+</script>
+<!-- / COPIAR HASTA ACA -->
+
+</body>
+</html>
