@@ -2056,7 +2056,7 @@ const ponchoTableDependant = opt => {
                 // permitidas si existen los prefijos _btn-_ y _fecha-_
                 // respectivamente.
                 if(header.startsWith("btn-") && filas != ""){
-                    allowed_tags = [...allowed_tags, "a"];
+                    allowed_tags = [...allowed_tags, "a", "span"];
                 } else if(header.startsWith("fecha-") && filas != ""){
                     allowed_tags = [...allowed_tags, "span", "time"];
                 }
@@ -3117,6 +3117,7 @@ const ponchoTableDependant = opt => {
     }
 
 };
+
 
 /**
  * POPOVER
