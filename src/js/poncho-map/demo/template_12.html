@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head>
+    <link rel="profile" href="http://www.w3.org/1999/xhtml/vocab" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
+        </script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+        integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet"
+        href="https://capacita-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css?rfqjsh">
+    <link rel="stylesheet" href="../../../../dist/css/poncho.min.css" />
+    <link rel="stylesheet" href="./css/demo.css">
+    <title>Poncho Map — Puntos digitales</title>
+</head>
+<body >
+
+    <div class="demo-nav container">
+        <ul class="demo-menu">
+            <li><a href="./">Inicio</a></li>
+        </ul>
+    </div>
+
+    <h1>Subastas</h1>
+
+
+
+
+<!-- 
+COPIAR DESDE ACÁ…
+-->
+<div class="_col-md-12 m-b-1">
+<!-- PONCHO MAP SEARCH -->
+<form action="" id="poncho-map-search">
+    <div data-scope="poncho-map-search">
+        <div class="input-group">
+            <input 
+                type="search" 
+                id="search"
+                name="search" 
+                class="js-poncho-map-search__input form-control" 
+                list="js-porcho-map-search__list">
+            <datalist id="js-porcho-map-search__list" class="js-porcho-map-search__list"></datalist>
+            <span class="input-group-btn">
+                <button class="js-poncho-map-search__submit btn btn-primary">
+                    <i class="fa fa-search text-white"></i>
+                </button>
+            </span>
+        </div>
+        <div data-scope="poncho-map" class="m-b-1">
+            <div class="js-poncho-map__help small text-default"></div>
+        </div>
+    </div>
+</form>
+<!-- / PONCHO MAP SEARCH -->
+
+<!-- REFERENCIAS -->
+<ul class="pm-legend list-unstyled small">
+    <li class="">
+        <i class="fa fa-circle" aria-label="Marcador amarillo" style="color:var(--arg-mandarina)"></i> 
+        Subasta futura
+    </li>
+    <li>
+        <i class="fa fa-circle" aria-label="Marcador violeta" style="color:var(--arg-uva)"></i> 
+        Oportunidad disponible
+    </li>
+    <li class="">
+        <i class="fa fa-circle" aria-label="Marcador verde" style="color:var(--arg-verde)"></i> 
+        A subastar
+    </li>
+</ul>
+<!-- / REFERENCIAS -->
+
+<div class="_col-md-12">
+<!-- PONCHO MAP -->
+    <div class="poncho-map" data-scope="poncho-map">
+        <div 
+            class="leaflet-container leaflet-touch 
+                    leaflet-fade-anim leaflet-grab leaflet-touch-drag 
+                    leaflet-touch-zoom" 
+            id="map" 
+            style="height:600px;width: 100%;" 
+            tabindex="0">&nbsp;
+        </div>
+    </div>
+<!-- / PONCHO MAP -->
+</div>
+
+
+<!-- INCLUDES -->
+<script src="https://www.argentina.gob.ar/sites/default/files/ponchotable/showdown.js"></script>
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/extensiones/showdown-extensions.js"></script>
+<script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.js"></script>
+<script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script>
+<link href="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.css" rel="stylesheet" />
+<link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.css" rel="stylesheet" />
+<link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.Default.css" rel="stylesheet" />
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
+<!-- / INCLUDES -->
+
+
+<!-- SCRIPTS -->
+
+<script>
+    var pm;
+    
+    headStyle('id', `.pm-legend{display:flex; gap:1em;}`);
+
+    /**
+     * Define el estado de la subasta
+     * @return {string}
+     */ 
+    function estadoSubasta(entry){
+        const {fecha_subasta, estado} = entry;
+
+        if(estado == null && fecha_subasta.trim() == ""){
+            return "futura";
+        }
+        else if(estado == "desierta"){
+            return "desierta";
+        } 
+        else if(estado == null && fecha_subasta.trim() != ""){
+            return "aSubastar";
+        }
+
+        return "default";
+    }
+
+    // Configurar opciones para el formato
+    let colorByEstado = {
+        futura: "mandarina",
+        desierta: "uva",
+        aSubastar: "verde"
+    }
+
+    // Titulo por estado
+    let leadByEstado = {
+        futura: "Subasta futura",
+        desierta: "Oportunidad disponible",
+        aSubastar: "A subastar"
+    };
+
+
+    /**
+     * Define el template para el slider
+     */
+    function template(entry){
+        const {
+                fecha_subasta, superficie, title, precio_subasta, 
+                tipo_moneda, url, imagen_alt, imagen_url, nid} = entry;
+
+        let htmlBlock = `
+            <p class="badge bg-${ colorByEstado[estadoSubasta(entry)] }">
+                ${ leadByEstado[ estadoSubasta(entry) ] }
+            </p>`;
+
+        if(imagen_url.trim() != ""){ 
+            htmlBlock += `<div class="m-b-1">
+                <img src="${imagen_url}" alt="${imagen_alt}" />    
+            </div>`;
+        }
+
+        // fecha subasta
+        if(fecha_subasta.trim() != ""){
+
+            const fechaOriginal = fecha_subasta; 
+            const fecha = new Date(fechaOriginal);
+            const opcionesFecha = {
+                weekday: 'short', 
+                day: '2-digit', 
+                month: '2-digit', 
+                year: 'numeric'
+            };
+            const opcionesHora = { hour: '2-digit', minute: '2-digit', hour12: false };
+            const fechaFormateada = fecha.toLocaleDateString('es-ES', opcionesFecha);
+            const horaFormateada = fecha.toLocaleTimeString('es-ES', opcionesHora);
+
+            // const date = new Date(fecha_subasta);
+            htmlBlock += `<dl>
+                    <dt>
+                        <i class="icono-arg-calendario-2"></i> 
+                        Fecha
+                    </dt>
+                    <dd>
+                        <time datetime="${ fecha_subasta}">
+                            ${fechaFormateada}, ${horaFormateada}
+                        </time>
+                    </dd>
+                </dl>`;
+        }
+
+        htmlBlock += `<h2 class="h5 text-primary m-t-1">
+                ${title}
+            </h2>
+            <dl>
+                <dt><i class="fa fa-map-o"></i> Superficie</dt>
+                <dd>${superficie} m²</dd>
+                <dt>
+                    <i class="icono-arg-martillo"></i> 
+                    Subasta pública
+                </dt>
+                <dd>${nid}</dd>`;
+
+        // Precio subasta
+        if(precio_subasta){
+            htmlBlock += `
+            <dt class="sr-only">Precio base</dt>
+            <dd>
+                ${tipo_moneda}  ${precio_subasta} 
+                <p class="m-t-0 small">Precio base</p>
+            </dd>`;
+        }
+
+        htmlBlock += `</dl><p>
+            <a href="${url}" class="btn btn-primary">
+                ir a la subasta<span class="sr-only">: 
+                    ${title}</span>
+            </a>
+        </p>`;
+
+        return htmlBlock;
+    }
+
+    // Cover loader para el mapa
+    const loader = new PonchoMapLoader({scope: "poncho-map"});
+    loader.load();
+
+    // Obtengo la info.
+    (async() => {
+        const googlesheetData = await fetch_json("./data/subastas.json");
+
+        const entries = googlesheetData.reduce((acc, entry) => {
+            entry["tipo_subasta"] = leadByEstado[ estadoSubasta(entry) ];
+                acc = [...acc, entry];
+            return acc;
+        }, []);
+
+
+        const options = {
+            marker_cluster_options: {
+                maxClusterRadius: 1
+            },
+            tooltip: true,
+            id: "nid",
+            scope: "poncho-map",
+            title: "title",
+            template_markdown: true,
+            template: (self, entry) => template( entry ),
+            marker: (self, ele) => colorByEstado[ estadoSubasta(ele) ],
+            slider: true,
+            hash: true,
+            filters_info: false,
+            filters:[
+                {
+                    "legend": "Tipo de subasta",
+                    "type": "checkbox",
+                    "field": ["tipo_subasta", "checked"],
+                    "fields": false,
+                    "check_uncheck_all": true
+                },
+            ]
+        };
+        
+        // render map
+        pm = new PonchoMapFilter(entries, options);
+        pm.render();
+        loader.close();
+
+        const search_options = {
+            "scope": "poncho-map-search", 
+            "placeholder": "Buscar subastas",
+            "datalist": false,
+            "search_fields": ["tipo_subasta", "title", "nid"] 
+        };
+        const pmsearch = new PonchoMapSearch(pm, search_options);
+        pmsearch.render();
+    })();
+</script>
+</body>
+</html>
