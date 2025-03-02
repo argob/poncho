@@ -105,7 +105,7 @@ if(showdown){ // IF showdown
             type: "lang",
             filter: function(text, converter, options) {
 
-                const regex = /\[\[alerta-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([\w-\s]*?)\}-\{(warning|danger|info|success)\}\]\]/;
+                const regex = /\[\[alerta-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([\w-\s]*?)\}-\{(warning|danger|info|success|default)\}\]\]/;
 
                 var mainRegex = new RegExp(regex, "gm");
 
