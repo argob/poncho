@@ -129,13 +129,13 @@ if(showdown){ // IF showdown
                                 : `${icon} fa-3x`;
                 
                             htmlIcon = `<div class="media-left">
-                                    <i class="${formattedIcon}"></i>
+                                <i class="${formattedIcon}"></i>
                                 </div>`;
                         }
                 
+                        const headerValue = getHeader(title); // Determinar encabezado
                         // Limpieza y formato del título
                         title = title.trim().replace(/^(#*)/, ""); // Remover caracteres numeral
-                        const headerValue = getHeader(title); // Determinar encabezado
                         const titleTag = setTitleTag(headerValue);
                 
                         const formattedTitle = title
