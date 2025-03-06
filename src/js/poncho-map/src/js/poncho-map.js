@@ -1732,6 +1732,7 @@ class PonchoMap {
      * @see https://leafletjs.com/reference.html#path
      */
     markersMap = (entries) => { 
+
         var _this = this;
         this._clearLayers();
         this.geojson = new L.geoJson(entries, {
