@@ -1685,15 +1685,15 @@ class PonchoMap {
             button.classList.add(`js-reset-view${this.scope_sufix}`, 
                                 "leaflet-control-zoom-reset");
             button.href = "#";
-            button.title = "Zoom para ver todo el mapa";
+            button.title = "Ver mapa completo";
             button.setAttribute("role", "button");
-            button.setAttribute("aria-label", "Zoom para ver todo el mapa");
+            button.setAttribute("aria-label", "Ver mapa completo");
             button.appendChild(icon);
-            button.onclick = (e) => {
-                e.preventDefault();
-                this.cleanState();
-                this.resetView();
-            };
+            // button.onclick = (e) => {
+            //     e.preventDefault();
+            //     this.cleanState();
+            //     this.resetView();
+            // };
             ele.after(button);
         });
     };
@@ -1987,6 +1987,11 @@ class PonchoMap {
                 class: "js-fit-bounds"
             },
             {
+                text: "Ver mapa completo",
+                anchor: "#",
+                class: "js-reset-view--ponchomap"
+            },
+            {
                 text: "Ir al panel de zoom",
                 anchor: `#${anchors[1][1]}` 
             },
@@ -2073,6 +2078,7 @@ class PonchoMap {
     });
 
 
+
     /**
      * Remueve elementos agregados al mapa
      */
@@ -2092,6 +2098,38 @@ class PonchoMap {
      * @returns {undefined}
      */
     cleanState = () => history.replaceState(null, null, ' ');
+
+
+    /**
+     * Listener global
+     */
+    _listeners = () => {
+        const _this = this;
+    
+        /**
+         * Zoom out
+         * @summary Adjusts the map markers to fit the view.
+         * @param {object} e Event object.
+         */
+        const handleResetView = (e) => {
+            const resetViewButton = e.target.closest(
+                    `.js-reset-view${this.scope_sufix}`);
+            if (resetViewButton) {
+                e.preventDefault();
+
+                _this.cleanState();
+                _this.resetView();
+            }
+        };
+
+        // mount
+        document.body.addEventListener("click", handleResetView);
+
+        // unmount
+        this.removeListeners = () => {
+            document.body.removeEventListener("click", handleResetView);
+        };
+    };
 
 
     /**
@@ -2124,6 +2162,8 @@ class PonchoMap {
         this._accesibleMenu();
         this.mapOpacity();
         this.mapBackgroundColor();
+
+        this._listeners();
     };
 };
 // end class

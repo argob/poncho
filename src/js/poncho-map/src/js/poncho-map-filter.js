@@ -942,6 +942,8 @@ class PonchoMapFilter extends PonchoMap {
         }
         this.mapOpacity();
         this.mapBackgroundColor();
+
+        this._listeners();
     };
 };
 // end of class
