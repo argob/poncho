@@ -863,6 +863,7 @@ class PonchoMapFilter extends PonchoMap {
             .forEach(e => {
                 e.onclick = (event => {
                     event.preventDefault();
+                    
                     this._resetFormFilters();
                     this._filteredData(this.entries);
                     this._clearSearchInput();
