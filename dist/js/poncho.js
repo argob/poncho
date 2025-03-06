@@ -5058,6 +5058,7 @@ class PonchoMap {
 
         const button = document.createElement("button");
         button.title = "Cambiar tema";
+        button.id = `themes-tool-button${this.scope_sufix}`;
         button.tabIndex = "0";
         button.classList.add("pm-btn", "pm-btn-rounded-circle");
         button.appendChild(icon);
@@ -6407,10 +6408,7 @@ class PonchoMap {
         if(!this.reset_zoom){
             return;
         }
-        // función a evaluar. Busca y remueve un botón de reset si existiera.
-        // if( document.querySelector(`.leaflet-control-zoom-reset`) ){
-        //     return;
-        // }
+
         document.querySelectorAll(
             `.js-reset-view${this.scope_sufix}`).forEach(e => e.remove());
         
@@ -6426,15 +6424,10 @@ class PonchoMap {
             button.classList.add(`js-reset-view${this.scope_sufix}`, 
                                 "leaflet-control-zoom-reset");
             button.href = "#";
-            button.title = "Zoom para ver todo el mapa";
+            button.title = "Ver mapa completo";
             button.setAttribute("role", "button");
-            button.setAttribute("aria-label", "Zoom para ver todo el mapa");
+            button.setAttribute("aria-label", "Ver mapa completo");
             button.appendChild(icon);
-            button.onclick = (e) => {
-                e.preventDefault();
-                this.cleanState();
-                this.resetView();
-            };
             ele.after(button);
         });
     };
@@ -6672,8 +6665,8 @@ class PonchoMap {
                 ]   
             ],
             [
-                `.js-themes-tool${this.scope_sufix}`,
-                `themes-tool${this.scope_sufix}`,
+                `.js-themes-tool-button${this.scope_sufix}`,
+                `themes-tool-button${this.scope_sufix}`,
                 [
                     ["aria-label", "Herramienta para cambiar de tema visual"],
                     ["role", "region"],
@@ -6728,12 +6721,18 @@ class PonchoMap {
                 class: "js-fit-bounds"
             },
             {
+                text: "Ver mapa completo",
+                anchor: "#",
+                class: `js-reset-view${this.scope_sufix}`
+            },
+            {
                 text: "Ir al panel de zoom",
                 anchor: `#${anchors[1][1]}` 
             },
             {
                 text: "Cambiar de tema",
-                anchor: `#${anchors[2][1]}` 
+                anchor: `#${anchors[2][1]}`,
+                class: `js-themes-tool-button${this.scope_sufix}`
             },
         ]
         values = [
@@ -6761,6 +6760,7 @@ class PonchoMap {
 
         const ul = document.createElement("ul");
         ul.classList.add("pm-list-unstyled");
+
         values.forEach((link, index) => {
             const a = document.createElement("a");
             a.classList.add("pm-item-link", "pm-accesible")
@@ -6814,6 +6814,7 @@ class PonchoMap {
     });
 
 
+
     /**
      * Remueve elementos agregados al mapa
      */
@@ -6833,6 +6834,55 @@ class PonchoMap {
      * @returns {undefined}
      */
     cleanState = () => history.replaceState(null, null, ' ');
+
+
+    /**
+     * Listener global
+     */
+    _listeners = () => {
+        const _this = this;
+    
+        /**
+         * Zoom out
+         * @summary Adjusts the map markers to fit the view.
+         */
+        const handleResetView = (e) => {
+            const resetViewButton = e.target.closest(
+                    `.js-reset-view${this.scope_sufix}`);
+            if (resetViewButton) {
+                e.preventDefault();
+
+                _this.cleanState();
+                _this.resetView();
+            }
+        };
+
+        /**
+         * themes focus
+         * @summary Hace foco en la herramienta para cambiar de tema.
+         */
+        const handleThemeToolFocus = (e) => {
+            const resetViewButton = e.target.closest(
+                    `.js-themes-tool-button${_this.scope_sufix}`);
+
+            if (resetViewButton) {
+                e.preventDefault();
+                document
+                    .querySelector(`#themes-tool-button${_this.scope_sufix}`)
+                    .focus({ focusVisible: true, preventScroll: false })
+            }
+        };
+
+        // mount
+        document.body.addEventListener("click", handleResetView);
+        document.body.addEventListener("click", handleThemeToolFocus);
+
+        // unmount
+        this.removeListeners = () => {
+            document.body.removeEventListener("click", handleResetView);
+            document.body.removeEventListener("click", handleThemeToolFocus);
+        };
+    };
 
 
     /**
@@ -6865,6 +6915,8 @@ class PonchoMap {
         this._accesibleMenu();
         this.mapOpacity();
         this.mapBackgroundColor();
+
+        this._listeners();
     };
 };
 // end class
@@ -7892,6 +7944,8 @@ class PonchoMapFilter extends PonchoMap {
         }
         this.mapOpacity();
         this.mapBackgroundColor();
+
+        this._listeners();
     };
 };
 // end of class
