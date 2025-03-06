@@ -4974,13 +4974,11 @@ class PonchoMap {
         this.titleLayer = new L.tileLayer(
             "https://mapa-ign.argentina.gob.ar/osm/{z}/{x}/{-y}.png",
             { 
-                attribution: ("Contribuidores: "
-                    + "<a href=\"https://www.ign.gob.ar/AreaServicios/Argenmap/Introduccion\" " 
-                    + "target=\"_blank\">"
-                    + "Instituto Geográfico Nacional</a>, "
-                    + "<a href=\"https://www.openstreetmap.org/copyright\" "
-                    + "target=\"_blank\">"
-                    + "OpenStreetMap</a>")
+                attribution: (`Contribuidores: `
+                    + `<a href="https://www.ign.gob.ar/AreaServicios/Argenmap/Introduccion">`
+                    + `<abbr hreflang="es" title="Instituto Geográfico Nacional">IGN</abbr></a>, `
+                    + `<a hreflang="es" href="https://www.openstreetmap.org/copyright">`
+                    + `OpenStreetMap</a>`)
             });
         if(L.hasOwnProperty("markerClusterGroup")){
             this.markers = new L.markerClusterGroup(this.marker_cluster_options);
