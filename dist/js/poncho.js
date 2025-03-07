@@ -4975,14 +4975,19 @@ class PonchoMap {
             "https://mapa-ign.argentina.gob.ar/osm/{z}/{x}/{-y}.png",
             { 
                 attribution: (`Contribuidores: `
-                    + `<a href="https://www.ign.gob.ar/AreaServicios/Argenmap/Introduccion">`
-                    + `<abbr hreflang="es" title="Instituto Geográfico Nacional">IGN</abbr></a>, `
+                    + `<a hreflang="es" href="https://www.ign.gob.ar/AreaServicios/Argenmap/Introduccion">`
+                    + `<abbr lang="es" title="Instituto Geográfico Nacional">IGN</abbr></a>, `
                     + `<a hreflang="es" href="https://www.openstreetmap.org/copyright">`
                     + `OpenStreetMap</a>`)
             });
+
+        // Si se importó el componente _markerCluster_, lo usa. De otro modo
+        // Utiliza _FeatureGroup_ y muestra todos los markers simultáneamente.
         if(L.hasOwnProperty("markerClusterGroup")){
             this.markers = new L.markerClusterGroup(this.marker_cluster_options);
-        } 
+        } else {
+            this.markers = new L.FeatureGroup();
+        }
         this.ponchoLoaderTimeout;
     }
 
