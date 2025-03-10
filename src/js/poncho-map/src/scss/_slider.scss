@@ -38,6 +38,10 @@
             box-shadow: 0 -10px 20px var(--pm-slider-background) inset;
             word-break: break-word;
 
+            &:has(.pm-open-map){
+                height: calc(100% - 20px);
+            }
+
             &:after {
                 content: "";
                 background: var(--pm-slider-background);

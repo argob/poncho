@@ -1,5 +1,5 @@
-
 #{$scope} {
+
     /* MAP THEMES */
     &.map-black .leaflet-tile-pane {
         filter: sepia(0.5) saturate(0.3) brightness(.95);
@@ -43,12 +43,13 @@
     &.map-transparent {
         --pm-map-background: transparent;
     }
+
     &.map-transparent .leaflet-tile-pane {
         opacity: 0 !important;
     }
 
     /* UI THEMES */
-    
+
     &.ui-dark,
     &.ui-blue {
         --pm-color-primary: var(--celeste-argentina, skyblue);
@@ -89,7 +90,7 @@
         --pm-slider-border: 1px solid #ddd;
         --pm-slider-border-color: color-mix(in srgb, var(--verde-cemento) 80%, white);
     }
-    
+
 
     // &.ui-grayscale, &.ui-default {
     // }
@@ -104,5 +105,73 @@
     &.map-dark.ui-dark [data-theme="dark"] {
         background: var(--pm-active-background);
         color: var(--pm-active-color);
+    }
+}
+
+
+
+
+// APLICACION TEMPORAL
+
+#{$scope} {
+
+    &.ui-dark .content-container,
+    &.ui-contrast .content-container,
+    &.ui-dark .content-container>*,
+    &.ui-contrast .content-container>* {
+        color: inherit
+    }
+
+    &.ui-dark .text-arandano,
+    &.ui-contrast .text-arandano {
+        color: var(--arg-fucsia-300) !important;
+        filter: saturate(1.5)
+    }
+
+    &.ui-contrast .btn-primary,
+    &.ui-dark .btn-primary {
+        background: var(--arg-escarapela);
+        color: black
+    }
+
+
+
+    &.ui-contrast summary,
+    &.ui-dark summary{
+        color: var(--pm-color-base) !important;
+
+    }
+
+    &.ui-dark .pm-color-primary,
+    &.ui-dark .text-primary,
+
+    &.ui-contrast .pm-color-primary,
+    &.ui-contrast .text-primary {
+        color: var(--arg-escarapela) !important;
+
+    }
+
+    &.ui-contrast summary:before,
+    &.ui-dark summary:before {
+        border-color: white;
+    }
+
+
+
+    &.ui-dark .text-success,
+    &.ui-contrast .text-success {
+        color: var(--arg-verde-300) !important;
+    }
+
+
+    &.ui-dark .text-uva,
+    &.ui-contrast .text-uva {
+        color: var(--arg-violeta-300) !important;
+    }
+
+
+    &.ui-dark .text-muted,
+    &.ui-contrast .text-muted {
+        color: var(--arg-negro-200) !important;
     }
 }
