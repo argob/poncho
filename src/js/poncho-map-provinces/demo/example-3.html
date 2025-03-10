@@ -71,7 +71,7 @@ COPIAR DESDE ACÁ…
 <div class="col-md-12">
 
     <!-- SELECT PROVINCIAS -->
-    <div class="form-group poncho-map-province__toggle-element">
+    <div class="form-group poncho-map-province__toggle-element" data-scope-related="poncho-map">
         <label for="id_provincia">Provincias</label>
         <div>
             <select class="form-control" name="provincia" id="id_provincia">
@@ -181,12 +181,13 @@ fetch_json(geoJSON, { headers: {"Accept": "application/json"}}).then(geoProvince
             theme_map: "transparent", // Tema del mapa
             map_opacity: 1, // Opacidad del mapa OSM
             // map_view: (new PonchoMapProvinces).mapView, // Define la vista principal del mapa
-            map_background: "color-mix(in srgb, var(--verde-cemento) 40%, white)",  // define el color de fondo del mapa 
+            map_background: "color-mix(in srgb, var(--gna-verde-cemento) 20%, white)",  // define el color de fondo del mapa 
             // initial_entry: "42-la-pampa", // Si se agrega el id (que aprece en URL), inicia con esa entrada.
             // random_entry: true, // Permite que la página se cargue con una entrada aleatoria.
-            hide_select: false, // Si es true el select solo se muestra en mobile
+            hide_select: true, // Si es true el select solo se muestra en mobile
             overlay_image: true, // ture habilita tener una imagen sobre e mapa
             overlay_image_opacity: 1, // Opacidad de la imagen sobre el mapa.
+            toggle_select: false
         };
 
         // Instancia para controlar ponchoMap con filtro por provincias.

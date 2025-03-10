@@ -101,15 +101,16 @@ class Color { //jslint-ignore-line
                 "El valor a buscar debe ser una cadena de texto.");
             return [];
         }
+        let searchTerm = value.toLowerCase();
+        let searchList = [
+            ...this.variables.map(([code, color]) => [code, color]),
+            ...this.colors];
 
-        const searchResults = this.variables.filter( function(f){
-            if( f[0].includes( value ) ){
-                return f
+        let searchResults = searchList.filter( function(item){
+            if( item[0].includes( searchTerm ) ){
+                return item;
             }
-        }).map(m => {
-                const [code, color] = m;
-                return [code, color];
-        });
+        }).map(([code, color]) => [code, color]);
 
         return searchResults;
     }
@@ -124,20 +125,38 @@ class Color { //jslint-ignore-line
         let collect = [];
 
         this.list.flatMap(m => {
-            const {alias, color, description, code, variant={}} = m;
+            const {alias, color, description, code, variant=[], name} = m;
 
             alias.forEach(function(a){
-                collect.push( [a.code, color, description, code] );
+                collect.push( [a.code, color, description, code, name] );
 
-                Object.entries(variant).forEach(function(value){
+                variant.forEach(function(value){
                     if(!a.exclude){
-                        collect.push( [`${a.code}-${value[0]}`, value[1], '', code] );
+                        collect.push( [`${a.code}-${value.variant}`, value.color, "", code, value.name] );
                     }
                 });
             })
         });
         return collect.sort();
     };
+
+
+    get spaces(){
+        return this.definitions.map(m => m.space).sort();
+    }
+
+
+    groupsBySpace = space => {
+        if (typeof space !== 'string') {
+            throw new TypeError('groupsBySpace: El argumetno debe ser un string');
+        }
+        const spaceToLower = space.toLocaleLowerCase();
+        const data = this.definitions
+            .find(f => f.space == spaceToLower)?.data?.map(m => m.group);
+
+        const result = data ? data.sort() : [];
+        return result;
+    }
 
 
     /**
@@ -161,12 +180,35 @@ class Color { //jslint-ignore-line
             return defaultColor;
         }
 
-        const definition = this.variables.find(function(f){
-            return (f[0] == self.replaceSpecialChars(color).toLowerCase());
-        });
+        const searchTerm = self.replaceSpecialChars(color).toLowerCase();
+
+        const definition = (this.variables.find(v => v[0] === searchTerm) ||
+            this.colors.find(c => c[0] === searchTerm));
 
         return (definition ? definition[1] : defaultColor);
     };
+
+
+    /**
+     * Listado de colores 
+     * @returns 
+     */
+    get colors(){
+        const colorList = this.definitions
+            .map(space => space.data)
+            .flatMap(function(spaceGroups){
+
+                return spaceGroups.flatMap(function(groupColor){
+                    const {color, group, scope} = groupColor;
+                    return Object.entries(color).map(function(colorValues){
+                        const [label, value] = colorValues;
+                        return [`${scope}-${group}-${label}`, value]
+                    });
+                });
+        });
+
+        return colorList || [];
+    }
 
 
     /**
@@ -196,8 +238,13 @@ class Color { //jslint-ignore-line
 
                 // Itero sobre las instancias de color
                 for(let x = 0; x <= instance.length - 1; x += 1) {
-                    const {alias} = instance[x];
-                    if (alias.some(s => s.code == lowerCasePonchoColor)) {
+                    const {alias, variant} = instance[x];
+                    debugger
+                    if ( alias.some(s => s.code == lowerCasePonchoColor) ) {
+                        result = instance[x];
+                        break;
+                    }
+                    else if( variant.some(s => s.code == lowerCasePonchoColor) ){
                         result = instance[x];
                         break;
                     }
@@ -353,42 +400,73 @@ class Color { //jslint-ignore-line
 
 
     /**
+     * Imprime el nombre de un color
      * 
-     * @param  {...any} args Argumentos string
-     * @returns 
+     * @param  {array} args Array list [arg, arg, arg]
+     * @param  {array} options object Objeto con opciones para los switch.
+     * @example
+     * // maíz - azul a verde
+     * colorName(
+     *     ["arg-maiz", "arg-azul", "arg-verde"], 
+     *     {
+     *         switchLastConnector: {'i': "a", "o": "a"}, 
+     *         defaultLastConnector: "a", 
+     *         listConnector: " - "
+     *     }
+     * )
+     * @returns {string}
      */
-    colorName = (...args) => {
+    colorName = (args, options={}) => {
+        if(typeof args == "undefined"){
+            return
+        }
+
         if(args.length < 1){
             console.error("Error.", "Debe pasar al menos un argumento.");
             return;
         }
-        
+
+        if(typeof args == "string"){
+            args = [args];
+        }
+
         if(!args.every(e => typeof e === "string")){
             console.error("Error.", "Solo se admiten cadenas de texto");
             return;
         }
 
+        // Options
+        const defaultConnectorSwitch = {"i": "e", "o": "u"};
+        const defaultConnector = "y";
+        const defaultListConnector = ", ";
+
+        const optionConnectorSwitch = (typeof options == "object" && 
+            options.hasOwnProperty('switchLastConnector') ? 
+            options.switchLastConnector : defaultConnectorSwitch);
+        const optionDefaultConnector = (typeof options == "object" && 
+            options.hasOwnProperty('defaultLastConnector') ? 
+            options.defaultLastConnector : defaultConnector);
+        const optionDefaultListConnector = (typeof options == "object" && 
+            options.hasOwnProperty('listConnector') ? 
+            options.listConnector : defaultListConnector);
+
+
         const getColorName = (arg) => {
-            if (this.colorDefinitions) {
-                const definition = this.colorDefinitions(arg);
-                return definition?.name || arg;
-            } else {
-                return arg;
-            }
+            const result = this.variables.find(f => (f[0] == arg)); 
+            return typeof result != "undefined" ? result[4] : arg;
         };
-    
+
         if (args.length === 1) {
             return getColorName(args.join(""));
         }
-    
+
         const totalArgs = args.length;
-    
         const lastArg = args.pop(totalArgs - 1);
         const firstCharName = Array.from( getColorName(lastArg) )[0].toLowerCase();
-        const connectorSwitch = {"i": "e", "o": "u"};
-        const connector = connectorSwitch[firstCharName] || "y";
+        const connector = (optionConnectorSwitch[firstCharName] || 
+                optionDefaultConnector);
     
-        const result = `${args.map(m => getColorName(m)).join(", ")} ${connector}` 
+        const result = `${args.map(m => getColorName(m)).join(optionDefaultListConnector)} ${connector}` 
                 + ` ${getColorName(lastArg)}`; 
     
         return result.toLowerCase();

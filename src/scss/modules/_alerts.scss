@@ -1,9 +1,10 @@
 .alert {
-    border-width: 2px;
-    font-weight: 500;
-    .btn i {
-      color: $white
-    }     
+  border-width: 2px;
+  font-weight: 500;
+
+  .btn i {
+    color: $white
+  }
 }
 
 .alert-warning,
@@ -21,6 +22,7 @@
     color: $brand-warning;
   }
 }
+
 .alert-success {
   background: lighten($brand-success, 63%);
   border-color: $brand-success;
@@ -28,8 +30,9 @@
   i {
     color: $brand-success;
   }
-   
+
 }
+
 .alert-info {
   background: lighten($brand-info, 51%);
   border-color: $brand-info;
@@ -38,6 +41,7 @@
     color: $brand-info;
   }
 }
+
 .alert-danger {
   background: lighten($brand-danger, 51%);
   border-color: $brand-danger;
@@ -62,6 +66,7 @@ a.alert {
       color: $brand-warning;
     }
   }
+
   &.alert-success {
     &:hover {
       background: lighten($brand-success, 63%);
@@ -71,6 +76,7 @@ a.alert {
       color: $brand-success;
     }
   }
+
   &.alert-info {
     &:hover {
       background: lighten($brand-primary, 61%);
@@ -80,6 +86,7 @@ a.alert {
       color: $brand-info;
     }
   }
+
   &.alert-danger {
     &:hover {
       background: lighten($brand-danger, 51%);
@@ -92,13 +99,15 @@ a.alert {
 }
 
 
-.alert h2{ 
-    font-size: 1.3em!important;
-    margin-top: 0px!important;
-    margin-bottom: 8px!important;
-    font-weight: 700!important;  
+.alert h2 {
+  font-size: 1.3em !important;
+  margin-top: 0px !important;
+  margin-bottom: 8px !important;
+  font-weight: 700 !important;
 }
 
+
+/*
 @media (max-width: 544px) {
   .alert .fa.fa-fw {
     width: 1em;
@@ -110,3 +119,4 @@ a.alert {
     width: 0.7em;
   }
 }
+  */

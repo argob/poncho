@@ -30,6 +30,9 @@ $brand-arg-azul-morado: #3A3796 !default;
 $brand-arg-cielo: #039BE5 !default;
 $brand-arg-default: #838383 !default;
 $brand-arg-escarapela: #68C3EF !default;
+$brand-arg-eucalipto: #306D69 !default;
+$brand-arg-eucalipto-dark: #255450 !default;
+$brand-arg-eucalipto-lighter: #A4D9D7 !default;
 $brand-arg-fucsia: #EC407A !default;
 $brand-arg-fucsia-dark: #9A144A !default;
 $brand-arg-fucsia-light: #F16798 !default;
@@ -84,9 +87,6 @@ $brand-arg-verde: #2E7D33 !default;
 $brand-arg-verde-azulado: #3B8681 !default;
 $brand-arg-verde-dark: #1F5421 !default;
 $brand-arg-verde-half: #96BE99 !default;
-$brand-arg-verde-jade: #306D69 !default;
-$brand-arg-verde-jade-dark: #255450 !default;
-$brand-arg-verde-jade-lighter: #A4D9D7 !default;
 $brand-arg-verde-light: #6EA015 !default;
 $brand-arg-verdin: #6EA015 !default;
 $brand-arg-verdin-dark: #2E7D33 !default;
@@ -191,6 +191,9 @@ $colores: ("amarillo", $brand-amarillo),
 ("arg-cielo", $brand-arg-cielo),
 ("arg-default", $brand-arg-default),
 ("arg-escarapela", $brand-arg-escarapela),
+("arg-eucalipto", $brand-arg-eucalipto),
+("arg-eucalipto-dark", $brand-arg-eucalipto-dark),
+("arg-eucalipto-lighter", $brand-arg-eucalipto-lighter),
 ("arg-fucsia", $brand-arg-fucsia),
 ("arg-fucsia-dark", $brand-arg-fucsia-dark),
 ("arg-fucsia-light", $brand-arg-fucsia-light),
@@ -245,9 +248,6 @@ $colores: ("amarillo", $brand-amarillo),
 ("arg-verde-azulado", $brand-arg-verde-azulado),
 ("arg-verde-dark", $brand-arg-verde-dark),
 ("arg-verde-half", $brand-arg-verde-half),
-("arg-verde-jade", $brand-arg-verde-jade),
-("arg-verde-jade-dark", $brand-arg-verde-jade-dark),
-("arg-verde-jade-lighter", $brand-arg-verde-jade-lighter),
 ("arg-verde-light", $brand-arg-verde-light),
 ("arg-verdin", $brand-arg-verdin),
 ("arg-verdin-dark", $brand-arg-verdin-dark),
@@ -483,6 +483,9 @@ html {
 	--arg-cielo:#039BE5;
 	--arg-default:#838383;
 	--arg-escarapela:#68C3EF;
+	--arg-eucalipto:#306D69;
+	--arg-eucalipto-dark:#255450;
+	--arg-eucalipto-lighter:#A4D9D7;
 	--arg-fucsia:#EC407A;
 	--arg-fucsia-dark:#9A144A;
 	--arg-fucsia-light:#F16798;
@@ -537,9 +540,6 @@ html {
 	--arg-verde-azulado:#3B8681;
 	--arg-verde-dark:#1F5421;
 	--arg-verde-half:#96BE99;
-	--arg-verde-jade:#306D69;
-	--arg-verde-jade-dark:#255450;
-	--arg-verde-jade-lighter:#A4D9D7;
 	--arg-verde-light:#6EA015;
 	--arg-verdin:#6EA015;
 	--arg-verdin-dark:#2E7D33;

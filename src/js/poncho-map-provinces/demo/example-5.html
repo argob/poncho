@@ -165,7 +165,7 @@ fetch_json(_PONCHOMAP_GEOJSON_PROVINCES, {headers: {}}).then(geoProvinces => {
             // inferior a los 992 píxeles de ancho, el componente html, select, con el listado de provincias se 
             // mostrará, mientras que el mapa permanecerá oculto.false Cuando la opción sea falsa, tanto el 
             // componente html, select, como el mapa estarán visibles en todo momento.
-            hide_select: true // Si la opción es true, el componente html, select, no se mostrará en ningún caso.
+            hide_select: false // Si la opción es true, el componente html, select, no se mostrará en ningún caso.
         };
         // Instancia para controlar ponchoMap con filtro por provincias.
         map = new ponchoMapProvincesCustom(geoProvinces, entries, options);

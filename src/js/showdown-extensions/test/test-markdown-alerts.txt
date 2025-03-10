@@ -1,0 +1,81 @@
+# Test extensiones markdown JavaScript
+
+Acceder al módulo para testeos de parser markdown JS en: <https://codepen.io/agustinbouillet/pen/YzGYbwO>
+
+## Pruebas
+
+### Caso 1
+
+ - **Ícono**: No debe tener ícono. 
+ - **Título**: Debe estar contenido en la etiqueta [h5] con clase [h5].
+ - **Tipo**: warning.
+
+[[alerta-{#####Caso 1}-{En estos momentos, la DNRPA implementa [la cédula única](http://google.com) para automotores.}-{}-{warning}]]
+
+### Caso 2
+
+ - **Ícono**: No debe tener ícono. 
+ - **Título**: Debe estar contenido en la etiqueta [p] con clase [h5].
+ - **Tipo**: success.
+
+[[alerta-{Caso 2, título _[con enlace](http://google.com)_ }-{En estos momentos, la DNRPA implementa [la cédula única](http://google.com) para automotores.}-{}-{success}]]
+
+
+### Caso 3
+
+ - **Ícono**: Ícono _fa-car_ de la librería [font awesome versión 4](https://fontawesome.com/v4/icons/). 
+ - **Título**: Debe estar contenido en la etiqueta [h2] con clase [h5].
+ - **Tipo**: danger.
+
+[[alerta-{##Caso 3}-{En estos momentos, la DNRPA implementa [la cédula única](http://google.com) para automotores.}-{fa-car}-{danger}]]
+
+### Caso 4
+
+ - **Ícono**: Ícono _fa-commenting-o_ de la librería [font awesome versión 4](https://fontawesome.com/v4/icons/). 
+ - **Título**: Sin título.
+ - **Tipo**: info.
+
+[[alerta-{}-{En estos momentos, la DNRPA implementa [la cédula única](http://google.com) para automotores.}-{fa-commenting-o}-{info}]]
+
+### Caso 5
+
+ - **Ícono**: Ícono _icono-arg-fantasma-videojuego_ de la librería [poncho íconos](https://argob.github.io/poncho/identidad/iconos/). 
+ - **Título**: Debe estar contenido en la etiqueta [h3] con clase [h5].
+ - **Tipo**: danger.
+
+[[alerta-{###Caso 5}-{En estos momentos, la DNRPA implementa [la cédula única](http://google.com) para automotores.}-{icono-arg-fantasma-videojuego}-{danger}]]
+
+### Caso 6
+
+ - **Ícono**: Sin ícono. 
+ - **Título**: Sin título.
+ - **Tipo**: warning.
+
+[[alerta-{}-{En estos momentos, la DNRPA implementa [la cédula única](http://google.com) para automotores.}-{}-{warning}]]
+
+
+### Caso 7
+
+ - **Ícono**: Sin ícono. 
+ - **Título**: Con título en h6. Si el usuario usa más de 7 númerales el valor es [h6].
+ - **Tipo**: warning.
+
+[[alerta-{#######Caso 7}-{En estos momentos, la DNRPA implementa [la cédula única](http://google.com) para automotores.}-{}-{warning}]]
+
+### Caso 8
+
+ - **Ícono**: Sin ícono. 
+ - **Título**: Con título en [p]. El usuario intentó imprimir un [h1].
+ - **Tipo**: warning.
+
+[[alerta-{#Caso 8}-{En estos momentos, la DNRPA implementa [la cédula única](http://google.com) para automotores.}-{}-{warning}]]
+
+
+### Caso 9
+
+ - **Ícono**: Sin ícono. 
+ - **Título**: Con título en [h2].
+ - **Mensaje**: Ninguno.
+ - **Tipo**: danger.
+
+[[alerta-{##Caso 9 #### con numerales en el medio}-{}-{}-{danger}]]

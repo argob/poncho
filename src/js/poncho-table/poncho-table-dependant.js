@@ -325,9 +325,9 @@ const ponchoTableDependant = opt => {
             "btn", "btn-primary", "btn-sm", "margin-btn");
         btn.href = value;
         btn.target = "_blank";
-        btn.textContent = label;
-        btn.title = "Abre en una nueva ventana";
-        btn.setAttribute("aria-label", label);
+        // btn.textContent = label;
+        btn.innerHTML = `${label} <span class="sr-only">(Abre en una nueva ventana)</span>`;
+        btn.setAttribute("aria-label", `${label} (Abre en una nueva ventana)`);
         btn.setAttribute("rel", "noopener noreferrer");
 
         return btn.outerHTML;
@@ -496,7 +496,7 @@ const ponchoTableDependant = opt => {
                 // permitidas si existen los prefijos _btn-_ y _fecha-_
                 // respectivamente.
                 if(header.startsWith("btn-") && filas != ""){
-                    allowed_tags = [...allowed_tags, "a"];
+                    allowed_tags = [...allowed_tags, "a", "span"];
                 } else if(header.startsWith("fecha-") && filas != ""){
                     allowed_tags = [...allowed_tags, "span", "time"];
                 }

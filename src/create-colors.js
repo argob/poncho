@@ -185,19 +185,24 @@ fs.writeFile(
  */
 function colorNames() {
     return Object.keys(headersBackground).reduce((acc, key) => {
-
+        const connectors = {
+            switchLastConnector: {'i': "a", "o": "a"}, 
+            defaultLastConnector: "a"
+        };
         acc[key] = headersBackground[key].map((color) => {
             const colorRefactor = color.replace("bg-", "");
+            console.log(colorRefactor.replace(/^mix-/, "").split("-"))
             const colorName = (colorRefactor.startsWith("mix-")
                 ? "Mix " + _color.colorName(
-                        ...colorRefactor.replace(/^mix-/, "").split("-"))
-                : _color.colorName(colorRefactor));
+                    colorRefactor.replace(/^mix-/, "").split("-"),
+                    connectors
+                )
+                : _color.colorName(colorRefactor, connectors));
 
                 return [color, colorName];
         });
 
         return acc;
-
     }, {});
 }
 

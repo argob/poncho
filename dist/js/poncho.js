@@ -26,7 +26,7 @@
  * SOFTWARE.
  */
 const ponchoColorDefinitionsList = 
-[{"name": "www.argentina.gob.ar", "space": "arg", "hidden_space": false, "description": "", "data": [{"scope": "arg", "name": "Azul principal", "group": "primary", "color": {"900": "#232D4F", "800": "#2C3C5F", "700": "#354B6E", "600": "#3E5A7E", "500": "#5A7290", "400": "#7589A3", "300": "#91A1B5", "200": "#ACB8C8", "100": "#C8D0DA", "50": "#E3E7ED"}, "instance": [{"name": "Azul", "code": "arg-azul", "description": "Color principal", "scope": "arg", "related_color": "900", "parent_group": "primary", "color": "#232D4F", "variant": {"half": "#9296A7", "lighter": "#C8D0DA"}, "alias": [{"code": "arg-azul", "exclude": false}, {"code": "primary", "exclude": true}, {"code": "azul", "exclude": true}, {"code": "azul-marino", "exclude": true}, {"code": "primary-alt", "exclude": true}]}, {"name": "Secundario", "code": "arg-secundario", "description": "", "scope": "arg", "related_color": "600", "parent_group": "primary", "color": "#3E5A7E", "variant": {}, "alias": [{"code": "arg-secundario", "exclude": false}, {"code": "secondary", "exclude": true}, {"code": "secundario", "exclude": true}]}, {"name": "Primary light", "code": "arg-primary-light", "description": "", "scope": "arg", "related_color": "50", "parent_group": "primary", "color": "#E3E7ED", "variant": {}, "alias": [{"code": "arg-primary-light", "exclude": false}, {"code": "primary-light", "exclude": true}]}, {"name": "Info", "code": "arg-info", "description": "", "scope": "arg", "related_color": "500", "parent_group": "primary", "color": "#5A7290", "variant": {"lighter": "#E3E7ED"}, "alias": [{"code": "arg-info", "exclude": false}, {"code": "info", "exclude": true}]}]}, {"scope": "arg", "name": "Verde", "group": "verde", "color": {"50": "#F1F5D7", "100": "#DEE8A3", "200": "#CCDB6E", "300": "#B9CE39", "400": "#93B727", "500": "#6EA015", "600": "#4E8F24", "700": "#2E7D33", "800": "#27692A", "900": "#1F5421"}, "instance": [{"name": "Verde", "code": "arg-verde", "description": "", "scope": "arg", "related_color": "700", "parent_group": "verde", "color": "#2E7D33", "variant": {"light": "#6EA015", "half": "#96BE99", "dark": "#1F5421"}, "alias": [{"code": "arg-verde", "exclude": false}, {"code": "success", "exclude": true}, {"code": "verde", "exclude": true}]}, {"name": "Verd\u00edn", "code": "arg-verdin", "description": "", "scope": "arg", "related_color": "500", "parent_group": "verde", "color": "#6EA015", "variant": {"light": "#B9CE39", "dark": "#2E7D33"}, "alias": [{"code": "arg-verdin", "exclude": false}, {"code": "verdin", "exclude": true}]}, {"name": "Lima", "code": "arg-lima", "description": "", "scope": "arg", "related_color": "300", "parent_group": "verde", "color": "#B9CE39", "variant": {"light": "#DEE8A3", "dark": "#6EA015"}, "alias": [{"code": "arg-lima", "exclude": false}, {"code": "limon", "exclude": true}, {"code": "lima", "exclude": true}]}]}, {"scope": "arg", "name": "Amarillo", "group": "amarillo", "color": {"50": "#FFFAE8", "100": "#FFF1C0", "200": "#FFE997", "300": "#FFE06E", "400": "#FFD745", "500": "#FFCE1C", "600": "#D8AE18", "700": "#B18F15", "800": "#8A6F12", "900": "#634F0E"}, "instance": [{"name": "Ma\u00edz", "code": "arg-maiz", "description": "", "scope": "arg", "related_color": "500", "parent_group": "amarillo", "color": "#FFCE1C", "variant": {"light": "#FFE997", "dark": "#B18F15"}, "alias": [{"code": "arg-maiz", "exclude": false}, {"code": "maiz", "exclude": true}]}]}, {"scope": "arg", "name": "Fucsia", "group": "fucsia", "color": {"50": "#FCDDE6", "100": "#F8B6C9", "200": "#F48EAB", "300": "#F16798", "400": "#ED3F85", "500": "#EC407A", "600": "#D72C6B", "700": "#C2185B", "800": "#9A144A", "900": "#721038"}, "instance": [{"name": "Ar\u00e1ndano", "code": "arg-arandano", "description": "", "scope": "arg", "related_color": "700", "parent_group": "fucsia", "color": "#C2185B", "variant": {"light": "#EC407A", "dark": "#721038", "half": "#E18CAD", "lighter": "#FCDDE6"}, "alias": [{"code": "arg-arandano", "exclude": false}, {"code": "arandano", "exclude": true}]}, {"name": "Fucsia", "code": "arg-fucsia", "description": "", "scope": "arg", "related_color": "500", "parent_group": "fucsia", "color": "#EC407A", "variant": {"light": "#F16798", "dark": "#9A144A"}, "alias": [{"code": "arg-fucsia", "exclude": false}, {"code": "cereza", "exclude": true}, {"code": "fucsia", "exclude": true}]}, {"name": "Rosado", "code": "arg-rosado", "description": "", "scope": "arg", "related_color": "200", "parent_group": "fucsia", "color": "#F48EAB", "variant": {"light": "#FCDDE6", "dark": "#ED3F85", "half": "#FAC7D5"}, "alias": [{"code": "arg-rosado", "exclude": false}]}]}, {"scope": "arg", "name": "Violeta", "group": "violeta", "color": {"50": "#E9E6F2", "100": "#D3CEE5", "200": "#BEB5D8", "300": "#A89DCB", "400": "#9284BE", "500": "#8561B2", "700": "#6A1B99", "800": "#4B0F7A", "900": "#2C035C", "600": "#773EA5"}, "instance": [{"name": "Lavanda", "code": "arg-lavanda", "description": "", "scope": "arg", "related_color": "400", "parent_group": "violeta", "color": "#9284BE", "variant": {}, "alias": [{"code": "arg-lavanda", "exclude": false}, {"code": "lavanda", "exclude": true}]}, {"name": "Uva", "code": "arg-uva", "description": "", "scope": "arg", "related_color": "700", "parent_group": "violeta", "color": "#6A1B99", "variant": {}, "alias": [{"code": "arg-uva", "exclude": false}, {"code": "uva", "exclude": true}]}]}, {"scope": "arg", "name": "Negro", "group": "negro", "color": {"50": "#F0F0F0", "100": "#E9E9E9", "200": "#DDDDDD", "300": "#838383", "150": "#DEE2E6", "75": "#F2F2F2", "500": "#555555", "600": "#444444", "900": "#141414", "25": "#FFFFFF"}, "instance": [{"name": "Negro", "code": "arg-negro", "description": "Elementos b\u00e1sicos", "scope": "arg", "related_color": "900", "parent_group": "negro", "color": "#141414", "variant": {"lighter": "#F0F0F0", "light": "#DDDDDD"}, "alias": [{"code": "arg-negro", "exclude": false}, {"code": "negro", "exclude": true}, {"code": "black", "exclude": true}, {"code": "gray-base", "exclude": true}]}, {"name": "Default", "code": "arg-default", "description": "", "scope": "arg", "related_color": "300", "parent_group": "negro", "color": "#838383", "variant": {}, "alias": [{"code": "arg-default", "exclude": false}, {"code": "default", "exclude": true}]}, {"name": "Gray light", "code": "arg-gray-light", "description": "", "scope": "arg", "related_color": "200", "parent_group": "negro", "color": "#DDDDDD", "variant": {}, "alias": [{"code": "arg-gray-light", "exclude": false}, {"code": "gray-light", "exclude": true}]}, {"name": "Gray hover", "code": "arg-gray-hover", "description": "", "scope": "arg", "related_color": "100", "parent_group": "negro", "color": "#E9E9E9", "variant": {}, "alias": [{"code": "arg-gray-hover", "exclude": false}, {"code": "gray-hover", "exclude": true}]}, {"name": "Gray hover light", "code": "arg-gray-hover-light", "description": "", "scope": "arg", "related_color": "50", "parent_group": "negro", "color": "#F0F0F0", "variant": {}, "alias": [{"code": "arg-gray-hover-light", "exclude": false}, {"code": "gray-hover-light", "exclude": true}]}, {"name": "Gris intermedio", "code": "arg-gris-intermedio", "description": "", "scope": "arg", "related_color": "500", "parent_group": "negro", "color": "#555555", "variant": {}, "alias": [{"code": "arg-gris-intermedio", "exclude": false}, {"code": "gray", "exclude": true}, {"code": "grisintermedio", "exclude": true}, {"code": "gris-area", "exclude": true}, {"code": "gris", "exclude": false}]}, {"name": "Gray dark", "code": "arg-gray-dark", "description": "", "scope": "arg", "related_color": "600", "parent_group": "negro", "color": "#444444", "variant": {}, "alias": [{"code": "arg-gray-dark", "exclude": false}, {"code": "gray-dark", "exclude": true}]}, {"name": "Gray border", "code": "arg-gray-border", "description": "", "scope": "arg", "related_color": "150", "parent_group": "negro", "color": "#DEE2E6", "variant": {}, "alias": [{"code": "arg-gray-border", "exclude": false}, {"code": "gray-border", "exclude": true}]}, {"name": "Gris niebla", "code": "arg-gris-niebla", "description": "", "scope": "arg", "related_color": "75", "parent_group": "negro", "color": "#F2F2F2", "variant": {}, "alias": [{"code": "arg-gris-niebla", "exclude": false}, {"code": "gray-lighter", "exclude": true}]}, {"name": "Gray background", "code": "arg-gray-background", "description": "", "scope": "arg", "related_color": "25", "parent_group": "negro", "color": "#FFFFFF", "variant": {}, "alias": [{"code": "arg-gray-background", "exclude": false}, {"code": "gray-background", "exclude": true}]}]}, {"scope": "arg", "name": "Turquesa", "group": "turquesa", "color": {"50": "#DCF1F0", "100": "#C0E5E3", "200": "#A4D9D7", "300": "#88CECB", "400": "#6CC3BE", "500": "#50B7B2", "600": "#459E99", "700": "#3B8681", "800": "#306D69", "900": "#255450"}, "instance": [{"name": "Palta", "code": "arg-palta", "description": "", "scope": "arg", "related_color": "500", "parent_group": "turquesa", "color": "#50B7B2", "variant": {"half": "#A8DBD9", "lighter": "#C0E5E3"}, "alias": [{"code": "arg-palta", "exclude": false}, {"code": "palta", "exclude": true}]}, {"name": "Verde azulado", "code": "arg-verde-azulado", "description": "", "scope": "arg", "related_color": "700", "parent_group": "turquesa", "color": "#3B8681", "variant": {}, "alias": [{"code": "arg-verde-azulado", "exclude": false}, {"code": "verde-azulado", "exclude": true}, {"code": "verdeazulado", "exclude": true}]}, {"name": "Verde jade", "code": "arg-verde-jade", "description": "", "scope": "arg", "related_color": "800", "parent_group": "turquesa", "color": "#306D69", "variant": {"lighter": "#A4D9D7", "dark": "#255450"}, "alias": [{"code": "arg-verde-jade", "exclude": false}]}]}, {"scope": "arg", "name": "Azul", "group": "azul", "color": {"50": "#CDEBFA", "100": "#9AD7F5", "200": "#68C3EF", "300": "#35AFEA", "400": "#039BE5", "500": "#0581C6", "600": "#0767A7", "700": "#084E87", "800": "#0A3468", "900": "#0C1A49"}, "instance": [{"name": "Cielo", "code": "arg-cielo", "description": "", "scope": "arg", "related_color": "400", "parent_group": "azul", "color": "#039BE5", "variant": {}, "alias": [{"code": "arg-cielo", "exclude": false}, {"code": "cielo", "exclude": true}, {"code": "celeste", "exclude": true}]}, {"name": "Escarapela", "code": "arg-escarapela", "description": "", "scope": "arg", "related_color": "200", "parent_group": "azul", "color": "#68C3EF", "variant": {}, "alias": [{"code": "arg-escarapela", "exclude": false}, {"code": "escarapela", "exclude": true}, {"code": "celesteargentina", "exclude": true}, {"code": "celeste-argentina", "exclude": false}]}]}, {"scope": "arg", "name": "Rojo", "group": "rojo", "color": {"50": "#FCDDDC", "100": "#F9BBB9", "200": "#F69896", "300": "#F27673", "400": "#EF5350", "500": "#E14543", "600": "#D43635", "700": "#C62828", "800": "#A12222", "900": "#7C1C1C"}, "instance": [{"name": "Rojo", "code": "arg-rojo", "description": "Atenci\u00f3n o peligro", "scope": "arg", "related_color": "700", "parent_group": "rojo", "color": "#C62828", "variant": {"light": "#E14543", "dark": "#7C1C1C", "lighter": "#FCDDDC"}, "alias": [{"code": "arg-rojo", "exclude": false}, {"code": "danger", "exclude": true}, {"code": "rojo", "exclude": true}]}, {"name": "Tomate", "code": "arg-tomate", "description": "", "scope": "arg", "related_color": "400", "parent_group": "rojo", "color": "#EF5350", "variant": {"light": "#F69896", "dark": "#C62828"}, "alias": [{"code": "arg-tomate", "exclude": false}, {"code": "complementary", "exclude": true}, {"code": "tomate", "exclude": true}]}]}, {"scope": "arg", "name": "Naranja", "group": "naranja", "color": {"50": "#FDE7BF", "100": "#FBCE80", "200": "#F9B640", "300": "#F79D00", "400": "#F38500", "500": "#EF6C00", "600": "#CE5701", "700": "#AE4203", "800": "#8D2D04", "900": "#6C1805"}, "instance": [{"name": "Marr\u00f3n claro", "code": "arg-marron-claro", "description": "", "scope": "arg", "related_color": "800", "parent_group": "naranja", "color": "#8D2D04", "variant": {"light": "#CE5701", "dark": "#6C1805"}, "alias": [{"code": "arg-marron-claro", "exclude": false}, {"code": "marron-claro", "exclude": true}]}, {"name": "Naranja", "code": "arg-naranja", "description": "", "scope": "arg", "related_color": "500", "parent_group": "naranja", "color": "#EF6C00", "variant": {"light": "#EF6C00", "dark": "#6C1805"}, "alias": [{"code": "arg-naranja", "exclude": false}, {"code": "naranjaoscuro", "exclude": true}, {"code": "naranja", "exclude": true}]}, {"name": "Mandarina", "code": "arg-mandarina", "description": "", "scope": "arg", "related_color": "300", "parent_group": "naranja", "color": "#F79D00", "variant": {"light": "#FBCE80", "dark": "#CE5701"}, "alias": [{"code": "arg-mandarina", "exclude": false}, {"code": "mandarina", "exclude": true}]}]}, {"scope": "arg", "name": "Blanco", "group": "blanco", "color": {"150": "#FFFFFF"}, "instance": [{"name": "Blanco", "code": "arg-white", "description": "", "scope": "arg", "related_color": "150", "parent_group": "blanco", "color": "#FFFFFF", "variant": {}, "alias": [{"code": "arg-white", "exclude": false}, {"code": "white", "exclude": true}]}]}, {"scope": "arg", "name": "Ocre", "group": "ocre", "color": {"50": "#FAF8ED", "100": "#F4F0DB", "200": "#EAE1B7", "300": "#E9CE8C", "400": "#E7BA61", "500": "#C98941", "600": "#AA5821", "700": "#8C2701", "800": "#6F2001", "900": "#511901"}, "instance": [{"name": "Arena", "code": "arg-arena", "description": "", "scope": "arg", "related_color": "200", "parent_group": "ocre", "color": "#EAE1B7", "variant": {"light": "#FAF8ED", "dark": "#E7BA61", "half": "#F5F0DB"}, "alias": [{"code": "arg-arena", "exclude": false}]}, {"name": "Amarillo", "code": "arg-amarillo", "description": "Foco o alerta", "scope": "arg", "related_color": "400", "parent_group": "ocre", "color": "#E7BA61", "variant": {"light": "#EAE1B7", "dark": "#AA5821", "half": "#F3DDB0"}, "alias": [{"code": "arg-amarillo", "exclude": false}, {"code": "warning", "exclude": true}, {"code": "amarillo", "exclude": true}, {"code": "amarillo-intenso", "exclude": true}]}, {"name": "Marr\u00f3n oscuro", "code": "arg-marron-oscuro", "description": "", "scope": "arg", "related_color": "900", "parent_group": "ocre", "color": "#511901", "variant": {}, "alias": [{"code": "arg-marron-oscuro", "exclude": false}]}]}, {"scope": "arg", "name": "Morado", "group": "morado", "color": {"150": "#3A3796"}, "instance": [{"name": "Azul morado", "code": "arg-azul-morado", "description": "", "scope": "arg", "related_color": "150", "parent_group": "morado", "color": "#3A3796", "variant": {}, "alias": [{"code": "arg-azul-morado", "exclude": false}]}]}]}, {"name": "MiArgentina", "space": "miarg", "hidden_space": false, "description": "", "data": [{"scope": "miarg", "name": "Azul MiArgentina", "group": "azul", "color": {"150": "#3526C3"}, "instance": [{"name": "Azul MiArgentina", "code": "miarg-azul", "description": "Azul principal para aplicaciones MiArgentina", "scope": "miarg", "related_color": "150", "parent_group": "azul", "color": "#3526C3", "variant": {"half": "#6B66CC"}, "alias": [{"code": "miarg-azul", "exclude": false}]}]}, {"scope": "miarg", "name": "Celeste MiArgentina", "group": "celeste", "color": {"150": "#2CB9EE"}, "instance": [{"name": "Celeste MiArgentina", "code": "miarg-celeste", "description": "", "scope": "miarg", "related_color": "150", "parent_group": "celeste", "color": "#2CB9EE", "variant": {}, "alias": [{"code": "miarg-celeste", "exclude": false}]}]}, {"scope": "miarg", "name": "Amarillo claro MiArgentina", "group": "amarillo-claro", "color": {"150": "#ffe9b8"}, "instance": [{"name": "Amarillo claro MiArgentina", "code": "miarg-amarillo-claro", "description": "", "scope": "miarg", "related_color": "150", "parent_group": "amarillo-claro", "color": "#ffe9b8", "variant": {}, "alias": [{"code": "miarg-amarillo-claro", "exclude": false}]}]}, {"scope": "miarg", "name": "Rosa claro MiArgentina", "group": "rosa-claro", "color": {"150": "#EECCCF"}, "instance": [{"name": "Rosa claro MiArgentina", "code": "miarg-rosa-claro", "description": "", "scope": "miarg", "related_color": "150", "parent_group": "rosa-claro", "color": "#EECCCF", "variant": {}, "alias": [{"code": "miarg-rosa-claro", "exclude": false}]}]}, {"scope": "miarg", "name": "Verde claro MiArgentina", "group": "verde-claro", "color": {"150": "#CFEEDC"}, "instance": [{"name": "Verde claro MiArgentina", "code": "miarg-verde-claro", "description": "", "scope": "miarg", "related_color": "150", "parent_group": "verde-claro", "color": "#CFEEDC", "variant": {}, "alias": [{"code": "miarg-verde-claro", "exclude": false}]}]}, {"scope": "miarg", "name": "Azul oscuro MiArgentina", "group": "azul-oscuro", "color": {"150": "#222C50"}, "instance": [{"name": "Azul oscuro MiArgentina", "code": "miarg-oscuro", "description": "", "scope": "miarg", "related_color": "150", "parent_group": "azul-oscuro", "color": "#222C50", "variant": {}, "alias": [{"code": "miarg-oscuro", "exclude": false}]}]}, {"scope": "miarg", "name": "Gris MiArgentina", "group": "gris", "color": {"150": "#7E848E"}, "instance": [{"name": "Gris MiArgentina", "code": "miarg-gris", "description": "", "scope": "miarg", "related_color": "150", "parent_group": "gris", "color": "#7E848E", "variant": {}, "alias": [{"code": "miarg-gris", "exclude": false}]}]}, {"scope": "miarg", "name": "Celeste claro MiArgentina", "group": "celeste-claro", "color": {"150": "#BEE6F6"}, "instance": [{"name": "Celeste claro MiArgentina", "code": "miarg-celeste-claro", "description": "", "scope": "miarg", "related_color": "150", "parent_group": "celeste-claro", "color": "#BEE6F6", "variant": {}, "alias": [{"code": "miarg-celeste-claro", "exclude": false}]}]}]}, {"name": "Colores de la bandera de la Rep\u00fablica Argentina", "space": "bandera", "hidden_space": false, "description": "De acuerdo al <a href=\"https://www.argentina.gob.ar/normativa/nacional/decreto-1650-2010-175328\">Decreto  1650/2010</a>, que establece las medidas, caracter\u00edsticas de la tela, colores y accesorios de la Bandera Argentina.", "data": [{"scope": "bandera", "name": "Amarillo", "group": "amarillo", "color": {"150": "#FCBF49"}, "instance": [{"name": "Amarillo Bandera", "code": "bandera-amarillo", "description": "Color amarillo oficial para la bandera Argentina", "scope": "bandera", "related_color": "150", "parent_group": "amarillo", "color": "#FCBF49", "variant": {}, "alias": [{"code": "bandera-amarillo", "exclude": false}]}]}, {"scope": "bandera", "name": "Celeste", "group": "celeste", "color": {"150": "#75AADB"}, "instance": [{"name": "Celeste Bandera", "code": "bandera-celeste", "description": "Color celeste oficial para la bandera Argentina", "scope": "bandera", "related_color": "150", "parent_group": "celeste", "color": "#75AADB", "variant": {}, "alias": [{"code": "bandera-celeste", "exclude": false}]}]}, {"scope": "bandera", "name": "Marr\u00f3n", "group": "marron", "color": {"150": "#843511"}, "instance": [{"name": "Marr\u00f3n Bandera", "code": "bandera-marron", "description": "Color marr\u00f3n oficial para la bandera Argentina", "scope": "bandera", "related_color": "150", "parent_group": "marron", "color": "#843511", "variant": {}, "alias": [{"code": "bandera-marron", "exclude": false}]}]}]}, {"name": "Gendarmer\u00eda Nacional", "space": "gna", "hidden_space": false, "description": "", "data": [{"scope": "gna", "name": "Verde jade", "group": "verde-jade", "color": {"150": "#006666"}, "instance": [{"name": "Verde jade", "code": "gna-verde-jade", "description": "", "scope": "gna", "related_color": "150", "parent_group": "verde-jade", "color": "#006666", "variant": {}, "alias": [{"code": "gna-verde-jade", "exclude": false}, {"code": "verde-jade", "exclude": true}, {"code": "verdejade", "exclude": true}]}]}, {"scope": "gna", "name": "Verde aloe", "group": "verde-aloe", "color": {"150": "#4FBB73"}, "instance": [{"name": "Verde aloe", "code": "gna-verde-aloe", "description": "", "scope": "gna", "related_color": "150", "parent_group": "verde-aloe", "color": "#4FBB73", "variant": {}, "alias": [{"code": "gna-verde-aloe", "exclude": false}, {"code": "verde-aloe", "exclude": true}]}]}, {"scope": "gna", "name": "Verde cemento", "group": "verde-cemento", "color": {"150": "#B4BEBA"}, "instance": [{"name": "Verde cemento", "code": "gna-verde-cemento", "description": "", "scope": "gna", "related_color": "150", "parent_group": "verde-cemento", "color": "#B4BEBA", "variant": {}, "alias": [{"code": "gna-verde-cemento", "exclude": false}, {"code": "verde-cemento", "exclude": true}, {"code": "verdecemento", "exclude": true}]}]}]}];
+[{"name": "www.argentina.gob.ar", "space": "arg", "hidden_space": false, "description": "", "data": [{"scope": "arg", "name": "Azul principal", "group": "primary", "color": {"900": "#232D4F", "800": "#2C3C5F", "700": "#354B6E", "600": "#3E5A7E", "500": "#5A7290", "400": "#7589A3", "300": "#91A1B5", "200": "#ACB8C8", "100": "#C8D0DA", "50": "#E3E7ED"}, "instance": [{"name": "Azul", "code": "arg-azul", "description": "Color principal", "scope": "arg", "related_color": "900", "parent_group": "primary", "color": "#232D4F", "variant": [{"variant": "half", "color": "#9296A7", "name": "Azul medio tono", "code": "arg-azul-half"}, {"variant": "lighter", "color": "#C8D0DA", "name": "Azul muy claro", "code": "arg-azul-lighter"}], "alias": [{"code": "arg-azul", "exclude": false}, {"code": "primary", "exclude": true}, {"code": "azul", "exclude": true}, {"code": "azul-marino", "exclude": true}, {"code": "primary-alt", "exclude": true}]}, {"name": "Azul cobalto", "code": "arg-secundario", "description": "", "scope": "arg", "related_color": "600", "parent_group": "primary", "color": "#3E5A7E", "variant": [], "alias": [{"code": "arg-secundario", "exclude": false}, {"code": "secondary", "exclude": true}, {"code": "secundario", "exclude": true}]}, {"name": "Primary light", "code": "arg-primary-light", "description": "", "scope": "arg", "related_color": "50", "parent_group": "primary", "color": "#E3E7ED", "variant": [], "alias": [{"code": "arg-primary-light", "exclude": false}, {"code": "primary-light", "exclude": true}]}, {"name": "Azul acero", "code": "arg-info", "description": "", "scope": "arg", "related_color": "500", "parent_group": "primary", "color": "#5A7290", "variant": [{"variant": "lighter", "color": "#E3E7ED", "name": "Azul acero muy claro", "code": "arg-info-lighter"}], "alias": [{"code": "arg-info", "exclude": false}, {"code": "info", "exclude": true}]}]}, {"scope": "arg", "name": "Verde", "group": "verde", "color": {"50": "#F1F5D7", "100": "#DEE8A3", "200": "#CCDB6E", "300": "#B9CE39", "400": "#93B727", "500": "#6EA015", "600": "#4E8F24", "700": "#2E7D33", "800": "#27692A", "900": "#1F5421"}, "instance": [{"name": "Verde", "code": "arg-verde", "description": "", "scope": "arg", "related_color": "700", "parent_group": "verde", "color": "#2E7D33", "variant": [{"variant": "light", "color": "#6EA015", "name": "Verde claro", "code": "arg-verde-light"}, {"variant": "half", "color": "#96BE99", "name": "Verde medio tono", "code": "arg-verde-half"}, {"variant": "dark", "color": "#1F5421", "name": "Verde oscuro", "code": "arg-verde-dark"}], "alias": [{"code": "arg-verde", "exclude": false}, {"code": "success", "exclude": true}, {"code": "verde", "exclude": true}]}, {"name": "Verd\u00edn", "code": "arg-verdin", "description": "", "scope": "arg", "related_color": "500", "parent_group": "verde", "color": "#6EA015", "variant": [{"variant": "light", "color": "#B9CE39", "name": "Verd\u00edn claro", "code": "arg-verdin-light"}, {"variant": "dark", "color": "#2E7D33", "name": "Verd\u00edn oscuro", "code": "arg-verdin-dark"}], "alias": [{"code": "arg-verdin", "exclude": false}, {"code": "verdin", "exclude": true}]}, {"name": "Lima", "code": "arg-lima", "description": "", "scope": "arg", "related_color": "300", "parent_group": "verde", "color": "#B9CE39", "variant": [{"variant": "light", "color": "#DEE8A3", "name": "Lima claro", "code": "arg-lima-light"}, {"variant": "dark", "color": "#6EA015", "name": "Lima oscuro", "code": "arg-lima-dark"}], "alias": [{"code": "arg-lima", "exclude": false}, {"code": "limon", "exclude": true}, {"code": "lima", "exclude": true}]}]}, {"scope": "arg", "name": "Amarillo", "group": "amarillo", "color": {"50": "#FFFAE8", "100": "#FFF1C0", "200": "#FFE997", "300": "#FFE06E", "400": "#FFD745", "500": "#FFCE1C", "600": "#D8AE18", "700": "#B18F15", "800": "#8A6F12", "900": "#634F0E"}, "instance": [{"name": "Ma\u00edz", "code": "arg-maiz", "description": "", "scope": "arg", "related_color": "500", "parent_group": "amarillo", "color": "#FFCE1C", "variant": [{"variant": "light", "color": "#FFE997", "name": "Ma\u00edz claro", "code": "arg-maiz-light"}, {"variant": "dark", "color": "#B18F15", "name": "Ma\u00edz oscuro", "code": "arg-maiz-dark"}], "alias": [{"code": "arg-maiz", "exclude": false}, {"code": "maiz", "exclude": true}]}]}, {"scope": "arg", "name": "Fucsia", "group": "fucsia", "color": {"50": "#FCDDE6", "100": "#F8B6C9", "200": "#F48EAB", "300": "#F16798", "400": "#ED3F85", "500": "#EC407A", "600": "#D72C6B", "700": "#C2185B", "800": "#9A144A", "900": "#721038"}, "instance": [{"name": "Ar\u00e1ndano", "code": "arg-arandano", "description": "", "scope": "arg", "related_color": "700", "parent_group": "fucsia", "color": "#C2185B", "variant": [{"variant": "light", "color": "#EC407A", "name": "Ar\u00e1ndano claro", "code": "arg-arandano-light"}, {"variant": "dark", "color": "#721038", "name": "Ar\u00e1ndano oscuro", "code": "arg-arandano-dark"}, {"variant": "half", "color": "#E18CAD", "name": "Ar\u00e1ndano medio tono", "code": "arg-arandano-half"}, {"variant": "lighter", "color": "#FCDDE6", "name": "Ar\u00e1ndano muy claro", "code": "arg-arandano-lighter"}], "alias": [{"code": "arg-arandano", "exclude": false}, {"code": "arandano", "exclude": true}]}, {"name": "Fucsia", "code": "arg-fucsia", "description": "", "scope": "arg", "related_color": "500", "parent_group": "fucsia", "color": "#EC407A", "variant": [{"variant": "light", "color": "#F16798", "name": "Fucsia claro", "code": "arg-fucsia-light"}, {"variant": "dark", "color": "#9A144A", "name": "Fucsia oscuro", "code": "arg-fucsia-dark"}], "alias": [{"code": "arg-fucsia", "exclude": false}, {"code": "cereza", "exclude": true}, {"code": "fucsia", "exclude": true}]}, {"name": "Rosado", "code": "arg-rosado", "description": "", "scope": "arg", "related_color": "200", "parent_group": "fucsia", "color": "#F48EAB", "variant": [{"variant": "light", "color": "#FCDDE6", "name": "Rosado claro", "code": "arg-rosado-light"}, {"variant": "dark", "color": "#ED3F85", "name": "Rosado oscuro", "code": "arg-rosado-dark"}, {"variant": "half", "color": "#FAC7D5", "name": "Rosado medio tono", "code": "arg-rosado-half"}], "alias": [{"code": "arg-rosado", "exclude": false}]}]}, {"scope": "arg", "name": "Violeta", "group": "violeta", "color": {"50": "#E9E6F2", "100": "#D3CEE5", "200": "#BEB5D8", "300": "#A89DCB", "400": "#9284BE", "500": "#8561B2", "700": "#6A1B99", "800": "#4B0F7A", "900": "#2C035C", "600": "#773EA5"}, "instance": [{"name": "Lavanda", "code": "arg-lavanda", "description": "", "scope": "arg", "related_color": "400", "parent_group": "violeta", "color": "#9284BE", "variant": [], "alias": [{"code": "arg-lavanda", "exclude": false}, {"code": "lavanda", "exclude": true}]}, {"name": "Uva", "code": "arg-uva", "description": "", "scope": "arg", "related_color": "700", "parent_group": "violeta", "color": "#6A1B99", "variant": [], "alias": [{"code": "arg-uva", "exclude": false}, {"code": "uva", "exclude": true}]}]}, {"scope": "arg", "name": "Negro", "group": "negro", "color": {"50": "#F0F0F0", "100": "#E9E9E9", "200": "#DDDDDD", "300": "#838383", "150": "#DEE2E6", "75": "#F2F2F2", "500": "#555555", "600": "#444444", "900": "#141414", "25": "#FFFFFF"}, "instance": [{"name": "Negro", "code": "arg-negro", "description": "Elementos b\u00e1sicos", "scope": "arg", "related_color": "900", "parent_group": "negro", "color": "#141414", "variant": [{"variant": "lighter", "color": "#F0F0F0", "name": "Negro muy claro", "code": "arg-negro-lighter"}, {"variant": "light", "color": "#DDDDDD", "name": "Gris", "code": "arg-negro-light"}], "alias": [{"code": "arg-negro", "exclude": false}, {"code": "negro", "exclude": true}, {"code": "black", "exclude": true}, {"code": "gray-base", "exclude": true}]}, {"name": "Default", "code": "arg-default", "description": "", "scope": "arg", "related_color": "300", "parent_group": "negro", "color": "#838383", "variant": [], "alias": [{"code": "arg-default", "exclude": false}, {"code": "default", "exclude": true}]}, {"name": "Gray light", "code": "arg-gray-light", "description": "", "scope": "arg", "related_color": "200", "parent_group": "negro", "color": "#DDDDDD", "variant": [], "alias": [{"code": "arg-gray-light", "exclude": false}, {"code": "gray-light", "exclude": true}]}, {"name": "Gray hover", "code": "arg-gray-hover", "description": "", "scope": "arg", "related_color": "100", "parent_group": "negro", "color": "#E9E9E9", "variant": [], "alias": [{"code": "arg-gray-hover", "exclude": false}, {"code": "gray-hover", "exclude": true}]}, {"name": "Gray hover light", "code": "arg-gray-hover-light", "description": "", "scope": "arg", "related_color": "50", "parent_group": "negro", "color": "#F0F0F0", "variant": [], "alias": [{"code": "arg-gray-hover-light", "exclude": false}, {"code": "gray-hover-light", "exclude": true}]}, {"name": "Gris intermedio", "code": "arg-gris-intermedio", "description": "", "scope": "arg", "related_color": "500", "parent_group": "negro", "color": "#555555", "variant": [], "alias": [{"code": "arg-gris-intermedio", "exclude": false}, {"code": "gray", "exclude": true}, {"code": "grisintermedio", "exclude": true}, {"code": "gris-area", "exclude": true}, {"code": "gris", "exclude": false}]}, {"name": "Gray dark", "code": "arg-gray-dark", "description": "", "scope": "arg", "related_color": "600", "parent_group": "negro", "color": "#444444", "variant": [], "alias": [{"code": "arg-gray-dark", "exclude": false}, {"code": "gray-dark", "exclude": true}]}, {"name": "Gray border", "code": "arg-gray-border", "description": "", "scope": "arg", "related_color": "150", "parent_group": "negro", "color": "#DEE2E6", "variant": [], "alias": [{"code": "arg-gray-border", "exclude": false}, {"code": "gray-border", "exclude": true}]}, {"name": "Gris niebla", "code": "arg-gris-niebla", "description": "", "scope": "arg", "related_color": "75", "parent_group": "negro", "color": "#F2F2F2", "variant": [], "alias": [{"code": "arg-gris-niebla", "exclude": false}, {"code": "gray-lighter", "exclude": true}]}, {"name": "Gray background", "code": "arg-gray-background", "description": "", "scope": "arg", "related_color": "25", "parent_group": "negro", "color": "#FFFFFF", "variant": [], "alias": [{"code": "arg-gray-background", "exclude": false}, {"code": "gray-background", "exclude": true}]}]}, {"scope": "arg", "name": "Turquesa", "group": "turquesa", "color": {"50": "#DCF1F0", "100": "#C0E5E3", "200": "#A4D9D7", "300": "#88CECB", "400": "#6CC3BE", "500": "#50B7B2", "600": "#459E99", "700": "#3B8681", "800": "#306D69", "900": "#255450"}, "instance": [{"name": "Palta", "code": "arg-palta", "description": "", "scope": "arg", "related_color": "500", "parent_group": "turquesa", "color": "#50B7B2", "variant": [{"variant": "half", "color": "#A8DBD9", "name": "Palta medio tono", "code": "arg-palta-half"}, {"variant": "lighter", "color": "#C0E5E3", "name": "Palta muy claro", "code": "arg-palta-lighter"}], "alias": [{"code": "arg-palta", "exclude": false}, {"code": "palta", "exclude": true}]}, {"name": "Verde azulado", "code": "arg-verde-azulado", "description": "", "scope": "arg", "related_color": "700", "parent_group": "turquesa", "color": "#3B8681", "variant": [], "alias": [{"code": "arg-verde-azulado", "exclude": false}, {"code": "verde-azulado", "exclude": true}, {"code": "verdeazulado", "exclude": true}]}, {"name": "Eucalipto", "code": "arg-eucalipto", "description": "", "scope": "arg", "related_color": "800", "parent_group": "turquesa", "color": "#306D69", "variant": [{"variant": "lighter", "color": "#A4D9D7", "name": "Eucalipto muy claro", "code": "arg-eucalipto-lighter"}, {"variant": "dark", "color": "#255450", "name": "Eucalipto oscuro", "code": "arg-eucalipto-dark"}], "alias": [{"code": "arg-eucalipto", "exclude": false}]}]}, {"scope": "arg", "name": "Azul", "group": "azul", "color": {"50": "#CDEBFA", "100": "#9AD7F5", "200": "#68C3EF", "300": "#35AFEA", "400": "#039BE5", "500": "#0581C6", "600": "#0767A7", "700": "#084E87", "800": "#0A3468", "900": "#0C1A49"}, "instance": [{"name": "Cielo", "code": "arg-cielo", "description": "", "scope": "arg", "related_color": "400", "parent_group": "azul", "color": "#039BE5", "variant": [], "alias": [{"code": "arg-cielo", "exclude": false}, {"code": "cielo", "exclude": true}, {"code": "celeste", "exclude": true}]}, {"name": "Escarapela", "code": "arg-escarapela", "description": "", "scope": "arg", "related_color": "200", "parent_group": "azul", "color": "#68C3EF", "variant": [], "alias": [{"code": "arg-escarapela", "exclude": false}, {"code": "escarapela", "exclude": true}, {"code": "celesteargentina", "exclude": true}, {"code": "celeste-argentina", "exclude": false}]}]}, {"scope": "arg", "name": "Rojo", "group": "rojo", "color": {"50": "#FCDDDC", "100": "#F9BBB9", "200": "#F69896", "300": "#F27673", "400": "#EF5350", "500": "#E14543", "600": "#D43635", "700": "#C62828", "800": "#A12222", "900": "#7C1C1C"}, "instance": [{"name": "Rojo", "code": "arg-rojo", "description": "Atenci\u00f3n o peligro", "scope": "arg", "related_color": "700", "parent_group": "rojo", "color": "#C62828", "variant": [{"variant": "light", "color": "#E14543", "name": "Rojo claro", "code": "arg-rojo-light"}, {"variant": "dark", "color": "#7C1C1C", "name": "Rojo oscuro", "code": "arg-rojo-dark"}, {"variant": "lighter", "color": "#FCDDDC", "name": "Rojo muy claro", "code": "arg-rojo-lighter"}], "alias": [{"code": "arg-rojo", "exclude": false}, {"code": "danger", "exclude": true}, {"code": "rojo", "exclude": true}]}, {"name": "Tomate", "code": "arg-tomate", "description": "", "scope": "arg", "related_color": "400", "parent_group": "rojo", "color": "#EF5350", "variant": [{"variant": "light", "color": "#F69896", "name": "Tomate claro", "code": "arg-tomate-light"}, {"variant": "dark", "color": "#C62828", "name": "Tomate oscuro", "code": "arg-tomate-dark"}], "alias": [{"code": "arg-tomate", "exclude": false}, {"code": "complementary", "exclude": true}, {"code": "tomate", "exclude": true}]}]}, {"scope": "arg", "name": "Naranja", "group": "naranja", "color": {"50": "#FDE7BF", "100": "#FBCE80", "200": "#F9B640", "300": "#F79D00", "400": "#F38500", "500": "#EF6C00", "600": "#CE5701", "700": "#AE4203", "800": "#8D2D04", "900": "#6C1805"}, "instance": [{"name": "Marr\u00f3n claro", "code": "arg-marron-claro", "description": "", "scope": "arg", "related_color": "800", "parent_group": "naranja", "color": "#8D2D04", "variant": [{"variant": "light", "color": "#CE5701", "name": "Marr\u00f3n claro claro", "code": "arg-marron-claro-light"}, {"variant": "dark", "color": "#6C1805", "name": "Marr\u00f3n claro oscuro", "code": "arg-marron-claro-dark"}], "alias": [{"code": "arg-marron-claro", "exclude": false}, {"code": "marron-claro", "exclude": true}]}, {"name": "Naranja", "code": "arg-naranja", "description": "", "scope": "arg", "related_color": "500", "parent_group": "naranja", "color": "#EF6C00", "variant": [{"variant": "light", "color": "#EF6C00", "name": "Naranja claro", "code": "arg-naranja-light"}, {"variant": "dark", "color": "#6C1805", "name": "Naranja oscuro", "code": "arg-naranja-dark"}], "alias": [{"code": "arg-naranja", "exclude": false}, {"code": "naranjaoscuro", "exclude": true}, {"code": "naranja", "exclude": true}]}, {"name": "Mandarina", "code": "arg-mandarina", "description": "", "scope": "arg", "related_color": "300", "parent_group": "naranja", "color": "#F79D00", "variant": [{"variant": "light", "color": "#FBCE80", "name": "Mandarina claro", "code": "arg-mandarina-light"}, {"variant": "dark", "color": "#CE5701", "name": "Mandarina oscuro", "code": "arg-mandarina-dark"}], "alias": [{"code": "arg-mandarina", "exclude": false}, {"code": "mandarina", "exclude": true}]}]}, {"scope": "arg", "name": "Blanco", "group": "blanco", "color": {"150": "#FFFFFF"}, "instance": [{"name": "Blanco", "code": "arg-white", "description": "", "scope": "arg", "related_color": "150", "parent_group": "blanco", "color": "#FFFFFF", "variant": [], "alias": [{"code": "arg-white", "exclude": false}, {"code": "white", "exclude": true}]}]}, {"scope": "arg", "name": "Ocre", "group": "ocre", "color": {"50": "#FAF8ED", "100": "#F4F0DB", "200": "#EAE1B7", "300": "#E9CE8C", "400": "#E7BA61", "500": "#C98941", "600": "#AA5821", "700": "#8C2701", "800": "#6F2001", "900": "#511901"}, "instance": [{"name": "Arena", "code": "arg-arena", "description": "", "scope": "arg", "related_color": "200", "parent_group": "ocre", "color": "#EAE1B7", "variant": [{"variant": "light", "color": "#FAF8ED", "name": "Arena claro", "code": "arg-arena-light"}, {"variant": "dark", "color": "#E7BA61", "name": "Arena oscuro", "code": "arg-arena-dark"}, {"variant": "half", "color": "#F5F0DB", "name": "Arena medio tono", "code": "arg-arena-half"}], "alias": [{"code": "arg-arena", "exclude": false}]}, {"name": "Amarillo", "code": "arg-amarillo", "description": "Foco o alerta", "scope": "arg", "related_color": "400", "parent_group": "ocre", "color": "#E7BA61", "variant": [{"variant": "light", "color": "#EAE1B7", "name": "Amarillo claro", "code": "arg-amarillo-light"}, {"variant": "dark", "color": "#AA5821", "name": "Amarillo oscuro", "code": "arg-amarillo-dark"}, {"variant": "half", "color": "#F3DDB0", "name": "Amarillo medio tono", "code": "arg-amarillo-half"}], "alias": [{"code": "arg-amarillo", "exclude": false}, {"code": "warning", "exclude": true}, {"code": "amarillo", "exclude": true}, {"code": "amarillo-intenso", "exclude": true}]}, {"name": "Marr\u00f3n oscuro", "code": "arg-marron-oscuro", "description": "", "scope": "arg", "related_color": "900", "parent_group": "ocre", "color": "#511901", "variant": [], "alias": [{"code": "arg-marron-oscuro", "exclude": false}]}]}, {"scope": "arg", "name": "Morado", "group": "morado", "color": {"150": "#3A3796"}, "instance": [{"name": "Azul morado", "code": "arg-azul-morado", "description": "", "scope": "arg", "related_color": "150", "parent_group": "morado", "color": "#3A3796", "variant": [], "alias": [{"code": "arg-azul-morado", "exclude": false}]}]}]}, {"name": "MiArgentina", "space": "miarg", "hidden_space": false, "description": "", "data": [{"scope": "miarg", "name": "Azul MiArgentina", "group": "azul", "color": {"150": "#3526C3"}, "instance": [{"name": "Azul MiArgentina", "code": "miarg-azul", "description": "Azul principal para aplicaciones MiArgentina", "scope": "miarg", "related_color": "150", "parent_group": "azul", "color": "#3526C3", "variant": [{"variant": "half", "color": "#6B66CC", "name": "Azul MiArgentina medio tono", "code": "miarg-azul-half"}], "alias": [{"code": "miarg-azul", "exclude": false}]}]}, {"scope": "miarg", "name": "Celeste MiArgentina", "group": "celeste", "color": {"150": "#2CB9EE"}, "instance": [{"name": "Celeste MiArgentina", "code": "miarg-celeste", "description": "", "scope": "miarg", "related_color": "150", "parent_group": "celeste", "color": "#2CB9EE", "variant": [], "alias": [{"code": "miarg-celeste", "exclude": false}]}]}, {"scope": "miarg", "name": "Amarillo claro MiArgentina", "group": "amarillo-claro", "color": {"150": "#ffe9b8"}, "instance": [{"name": "Amarillo claro MiArgentina", "code": "miarg-amarillo-claro", "description": "", "scope": "miarg", "related_color": "150", "parent_group": "amarillo-claro", "color": "#ffe9b8", "variant": [], "alias": [{"code": "miarg-amarillo-claro", "exclude": false}]}]}, {"scope": "miarg", "name": "Rosa claro MiArgentina", "group": "rosa-claro", "color": {"150": "#EECCCF"}, "instance": [{"name": "Rosa claro MiArgentina", "code": "miarg-rosa-claro", "description": "", "scope": "miarg", "related_color": "150", "parent_group": "rosa-claro", "color": "#EECCCF", "variant": [], "alias": [{"code": "miarg-rosa-claro", "exclude": false}]}]}, {"scope": "miarg", "name": "Verde claro MiArgentina", "group": "verde-claro", "color": {"150": "#CFEEDC"}, "instance": [{"name": "Verde claro MiArgentina", "code": "miarg-verde-claro", "description": "", "scope": "miarg", "related_color": "150", "parent_group": "verde-claro", "color": "#CFEEDC", "variant": [], "alias": [{"code": "miarg-verde-claro", "exclude": false}]}]}, {"scope": "miarg", "name": "Azul oscuro MiArgentina", "group": "azul-oscuro", "color": {"150": "#222C50"}, "instance": [{"name": "Azul oscuro MiArgentina", "code": "miarg-oscuro", "description": "", "scope": "miarg", "related_color": "150", "parent_group": "azul-oscuro", "color": "#222C50", "variant": [], "alias": [{"code": "miarg-oscuro", "exclude": false}]}]}, {"scope": "miarg", "name": "Gris MiArgentina", "group": "gris", "color": {"150": "#7E848E"}, "instance": [{"name": "Gris MiArgentina", "code": "miarg-gris", "description": "", "scope": "miarg", "related_color": "150", "parent_group": "gris", "color": "#7E848E", "variant": [], "alias": [{"code": "miarg-gris", "exclude": false}]}]}, {"scope": "miarg", "name": "Celeste claro MiArgentina", "group": "celeste-claro", "color": {"150": "#BEE6F6"}, "instance": [{"name": "Celeste claro MiArgentina", "code": "miarg-celeste-claro", "description": "", "scope": "miarg", "related_color": "150", "parent_group": "celeste-claro", "color": "#BEE6F6", "variant": [], "alias": [{"code": "miarg-celeste-claro", "exclude": false}]}]}]}, {"name": "Colores de la bandera de la Rep\u00fablica Argentina", "space": "bandera", "hidden_space": false, "description": "De acuerdo al <a href=\"https://www.argentina.gob.ar/normativa/nacional/decreto-1650-2010-175328\">Decreto  1650/2010</a>, que establece las medidas, caracter\u00edsticas de la tela, colores y accesorios de la Bandera Argentina.", "data": [{"scope": "bandera", "name": "Amarillo", "group": "amarillo", "color": {"150": "#FCBF49"}, "instance": [{"name": "Amarillo Bandera", "code": "bandera-amarillo", "description": "Color amarillo oficial para la bandera Argentina", "scope": "bandera", "related_color": "150", "parent_group": "amarillo", "color": "#FCBF49", "variant": [], "alias": [{"code": "bandera-amarillo", "exclude": false}]}]}, {"scope": "bandera", "name": "Celeste", "group": "celeste", "color": {"150": "#75AADB"}, "instance": [{"name": "Celeste Bandera", "code": "bandera-celeste", "description": "Color celeste oficial para la bandera Argentina", "scope": "bandera", "related_color": "150", "parent_group": "celeste", "color": "#75AADB", "variant": [], "alias": [{"code": "bandera-celeste", "exclude": false}]}]}, {"scope": "bandera", "name": "Marr\u00f3n", "group": "marron", "color": {"150": "#843511"}, "instance": [{"name": "Marr\u00f3n Bandera", "code": "bandera-marron", "description": "Color marr\u00f3n oficial para la bandera Argentina", "scope": "bandera", "related_color": "150", "parent_group": "marron", "color": "#843511", "variant": [], "alias": [{"code": "bandera-marron", "exclude": false}]}]}]}, {"name": "Gendarmer\u00eda Nacional", "space": "gna", "hidden_space": false, "description": "", "data": [{"scope": "gna", "name": "Verde jade", "group": "verde-jade", "color": {"150": "#006666"}, "instance": [{"name": "Verde oscuro Gendarmer\u00eda", "code": "gna-verde-jade", "description": "", "scope": "gna", "related_color": "150", "parent_group": "verde-jade", "color": "#006666", "variant": [], "alias": [{"code": "gna-verde-jade", "exclude": false}, {"code": "verde-jade", "exclude": true}, {"code": "verdejade", "exclude": true}]}]}, {"scope": "gna", "name": "Verde aloe", "group": "verde-aloe", "color": {"150": "#4FBB73"}, "instance": [{"name": "Verde claro Gendarmer\u00eda", "code": "gna-verde-aloe", "description": "", "scope": "gna", "related_color": "150", "parent_group": "verde-aloe", "color": "#4FBB73", "variant": [], "alias": [{"code": "gna-verde-aloe", "exclude": false}, {"code": "verde-aloe", "exclude": true}]}]}, {"scope": "gna", "name": "Verde cemento", "group": "verde-cemento", "color": {"150": "#B4BEBA"}, "instance": [{"name": "Gris Gendarmer\u00eda", "code": "gna-verde-cemento", "description": "", "scope": "gna", "related_color": "150", "parent_group": "verde-cemento", "color": "#B4BEBA", "variant": [], "alias": [{"code": "gna-verde-cemento", "exclude": false}, {"code": "verde-cemento", "exclude": true}, {"code": "verdecemento", "exclude": true}]}]}]}];
 
 if (typeof exports !== "undefined") {
     module.exports = {
@@ -138,15 +138,16 @@ class Color { //jslint-ignore-line
                 "El valor a buscar debe ser una cadena de texto.");
             return [];
         }
+        let searchTerm = value.toLowerCase();
+        let searchList = [
+            ...this.variables.map(([code, color]) => [code, color]),
+            ...this.colors];
 
-        const searchResults = this.variables.filter( function(f){
-            if( f[0].includes( value ) ){
-                return f
+        let searchResults = searchList.filter( function(item){
+            if( item[0].includes( searchTerm ) ){
+                return item;
             }
-        }).map(m => {
-                const [code, color] = m;
-                return [code, color];
-        });
+        }).map(([code, color]) => [code, color]);
 
         return searchResults;
     }
@@ -161,20 +162,38 @@ class Color { //jslint-ignore-line
         let collect = [];
 
         this.list.flatMap(m => {
-            const {alias, color, description, code, variant={}} = m;
+            const {alias, color, description, code, variant=[], name} = m;
 
             alias.forEach(function(a){
-                collect.push( [a.code, color, description, code] );
+                collect.push( [a.code, color, description, code, name] );
 
-                Object.entries(variant).forEach(function(value){
+                variant.forEach(function(value){
                     if(!a.exclude){
-                        collect.push( [`${a.code}-${value[0]}`, value[1], '', code] );
+                        collect.push( [`${a.code}-${value.variant}`, value.color, "", code, value.name] );
                     }
                 });
             })
         });
         return collect.sort();
     };
+
+
+    get spaces(){
+        return this.definitions.map(m => m.space).sort();
+    }
+
+
+    groupsBySpace = space => {
+        if (typeof space !== 'string') {
+            throw new TypeError('groupsBySpace: El argumetno debe ser un string');
+        }
+        const spaceToLower = space.toLocaleLowerCase();
+        const data = this.definitions
+            .find(f => f.space == spaceToLower)?.data?.map(m => m.group);
+
+        const result = data ? data.sort() : [];
+        return result;
+    }
 
 
     /**
@@ -198,12 +217,35 @@ class Color { //jslint-ignore-line
             return defaultColor;
         }
 
-        const definition = this.variables.find(function(f){
-            return (f[0] == self.replaceSpecialChars(color).toLowerCase());
-        });
+        const searchTerm = self.replaceSpecialChars(color).toLowerCase();
+
+        const definition = (this.variables.find(v => v[0] === searchTerm) ||
+            this.colors.find(c => c[0] === searchTerm));
 
         return (definition ? definition[1] : defaultColor);
     };
+
+
+    /**
+     * Listado de colores 
+     * @returns 
+     */
+    get colors(){
+        const colorList = this.definitions
+            .map(space => space.data)
+            .flatMap(function(spaceGroups){
+
+                return spaceGroups.flatMap(function(groupColor){
+                    const {color, group, scope} = groupColor;
+                    return Object.entries(color).map(function(colorValues){
+                        const [label, value] = colorValues;
+                        return [`${scope}-${group}-${label}`, value]
+                    });
+                });
+        });
+
+        return colorList || [];
+    }
 
 
     /**
@@ -233,8 +275,13 @@ class Color { //jslint-ignore-line
 
                 // Itero sobre las instancias de color
                 for(let x = 0; x <= instance.length - 1; x += 1) {
-                    const {alias} = instance[x];
-                    if (alias.some(s => s.code == lowerCasePonchoColor)) {
+                    const {alias, variant} = instance[x];
+                    debugger
+                    if ( alias.some(s => s.code == lowerCasePonchoColor) ) {
+                        result = instance[x];
+                        break;
+                    }
+                    else if( variant.some(s => s.code == lowerCasePonchoColor) ){
                         result = instance[x];
                         break;
                     }
@@ -390,42 +437,73 @@ class Color { //jslint-ignore-line
 
 
     /**
+     * Imprime el nombre de un color
      * 
-     * @param  {...any} args Argumentos string
-     * @returns 
+     * @param  {array} args Array list [arg, arg, arg]
+     * @param  {array} options object Objeto con opciones para los switch.
+     * @example
+     * // maíz - azul a verde
+     * colorName(
+     *     ["arg-maiz", "arg-azul", "arg-verde"], 
+     *     {
+     *         switchLastConnector: {'i': "a", "o": "a"}, 
+     *         defaultLastConnector: "a", 
+     *         listConnector: " - "
+     *     }
+     * )
+     * @returns {string}
      */
-    colorName = (...args) => {
+    colorName = (args, options={}) => {
+        if(typeof args == "undefined"){
+            return
+        }
+
         if(args.length < 1){
             console.error("Error.", "Debe pasar al menos un argumento.");
             return;
         }
-        
+
+        if(typeof args == "string"){
+            args = [args];
+        }
+
         if(!args.every(e => typeof e === "string")){
             console.error("Error.", "Solo se admiten cadenas de texto");
             return;
         }
 
+        // Options
+        const defaultConnectorSwitch = {"i": "e", "o": "u"};
+        const defaultConnector = "y";
+        const defaultListConnector = ", ";
+
+        const optionConnectorSwitch = (typeof options == "object" && 
+            options.hasOwnProperty('switchLastConnector') ? 
+            options.switchLastConnector : defaultConnectorSwitch);
+        const optionDefaultConnector = (typeof options == "object" && 
+            options.hasOwnProperty('defaultLastConnector') ? 
+            options.defaultLastConnector : defaultConnector);
+        const optionDefaultListConnector = (typeof options == "object" && 
+            options.hasOwnProperty('listConnector') ? 
+            options.listConnector : defaultListConnector);
+
+
         const getColorName = (arg) => {
-            if (this.colorDefinitions) {
-                const definition = this.colorDefinitions(arg);
-                return definition?.name || arg;
-            } else {
-                return arg;
-            }
+            const result = this.variables.find(f => (f[0] == arg)); 
+            return typeof result != "undefined" ? result[4] : arg;
         };
-    
+
         if (args.length === 1) {
             return getColorName(args.join(""));
         }
-    
+
         const totalArgs = args.length;
-    
         const lastArg = args.pop(totalArgs - 1);
         const firstCharName = Array.from( getColorName(lastArg) )[0].toLowerCase();
-        const connectorSwitch = {"i": "e", "o": "u"};
-        const connector = connectorSwitch[firstCharName] || "y";
+        const connector = (optionConnectorSwitch[firstCharName] || 
+                optionDefaultConnector);
     
-        const result = `${args.map(m => getColorName(m)).join(", ")} ${connector}` 
+        const result = `${args.map(m => getColorName(m)).join(optionDefaultListConnector)} ${connector}` 
                 + ` ${getColorName(lastArg)}`; 
     
         return result.toLowerCase();
@@ -479,12 +557,12 @@ const illustrationColors = [
     "miarg-azul",
 ];
 
-
 const headersBackground = {
     solid: [
         "bg-arg-azul",
+        "bg-arg-rojo",
         "bg-arg-info",
-        "bg-arg-verde-jade",
+        "bg-arg-eucalipto",
         "bg-arg-palta",
         "bg-arg-arandano",
         "bg-arg-negro-light"
@@ -502,7 +580,7 @@ const headersBackground = {
  */
 const colorVariations = {
     high: [
-        'arg-azul', 'gna-verde-jade', 'arg-verde', 'arg-naranja', 'arg-rojo', 
+        'arg-azul', 'arg-eucalipto', 'arg-verde', 'arg-naranja', 'arg-rojo', 
         'arg-arandano', 'arg-uva', 'arg-cielo', 'arg-palta', 'arg-verdin', 
         'arg-amarillo', 'arg-tomate', 'arg-fucsia', 'arg-lavanda', 'arg-negro'
     ],
@@ -1807,9 +1885,9 @@ const ponchoTableDependant = opt => {
             "btn", "btn-primary", "btn-sm", "margin-btn");
         btn.href = value;
         btn.target = "_blank";
-        btn.textContent = label;
-        btn.title = "Abre en una nueva ventana";
-        btn.setAttribute("aria-label", label);
+        // btn.textContent = label;
+        btn.innerHTML = `${label} <span class="sr-only">(Abre en una nueva ventana)</span>`;
+        btn.setAttribute("aria-label", `${label} (Abre en una nueva ventana)`);
         btn.setAttribute("rel", "noopener noreferrer");
 
         return btn.outerHTML;
@@ -1978,7 +2056,7 @@ const ponchoTableDependant = opt => {
                 // permitidas si existen los prefijos _btn-_ y _fecha-_
                 // respectivamente.
                 if(header.startsWith("btn-") && filas != ""){
-                    allowed_tags = [...allowed_tags, "a"];
+                    allowed_tags = [...allowed_tags, "a", "span"];
                 } else if(header.startsWith("fecha-") && filas != ""){
                     allowed_tags = [...allowed_tags, "span", "time"];
                 }
@@ -3040,6 +3118,7 @@ const ponchoTableDependant = opt => {
 
 };
 
+
 /**
  * POPOVER
  */
@@ -3085,16 +3164,21 @@ function pophidde(){
  */
 var ponchoUbicacion = function(options) {
     var urlProvincias = '/profiles/argentinagobar/themes/contrib/poncho/resources/jsons/geoprovincias.json';
+    var urlMunicipios = '/profiles/argentinagobar/themes/contrib/poncho/resources/jsons/geomunicipios.json';
     var urlLocalidades = '/profiles/argentinagobar/themes/contrib/poncho/resources/jsons/geolocalidades.json';
     var provincias;
+    var municipios;
     var localidades;
     var iProvincia = jQuery('input[name="submitted[' + options.provincia + ']"]');
+    var iMunicipio = jQuery('input[name="submitted[' + options.municipio + ']"]');
     var iLocalidad = jQuery('input[name="submitted[' + options.localidad + ']"]');
     var sProvincia;
+    var sMunicipios;
     var sLocalidades;
 
     function init() {
         urlProvincias = (options.urlProvincias ? options.urlProvincias : urlProvincias);
+        urlMunicipios = (options.urlMunicipios ? options.urlMunicipios : urlMunicipios);
         urlLocalidades = (options.urlLocalidades ? options.urlLocalidades : urlLocalidades);
 
         jQuery.getJSON(urlProvincias, function(data) {
@@ -3105,6 +3189,14 @@ var ponchoUbicacion = function(options) {
             jQuery(sProvincia).select2();
         });
 
+        jQuery.getJSON(urlMunicipios, function(data) {
+            municipios = parseJsonMunicipios(data);
+            sMunicipios = getSelectMunicipios(municipios, sProvincia.val());
+            addMunEvent();
+            iMunicipio.after(sMunicipios);
+            jQuery(sMunicipios).select2();
+        });
+
         jQuery.getJSON(urlLocalidades, function(data) {
             localidades = parseJsonLocalidades(data);
             sLocalidades = getSelectLocalidades(localidades, sProvincia.val());
@@ -3113,6 +3205,7 @@ var ponchoUbicacion = function(options) {
             jQuery(sLocalidades).select2();
         });
         iProvincia.hide();
+        iMunicipio.hide();
         iLocalidad.hide();
     }
 
@@ -3124,12 +3217,28 @@ var ponchoUbicacion = function(options) {
      */
     function parseJsonProvincias(data) {
         provincias = [];
-        data.results.forEach(function(provincia, index) {
+        data.provincias.forEach(function(provincia, index) {
             provincias.push(provincia);
         });
         return provincias;
     }
 
+    /**
+    * 
+    * @param {*} data 
+    * @returns 
+    */
+    function parseJsonMunicipios(data) {
+        const groupedData = data.municipios.reduce((acc, current) => {
+            const key = `${current.nombre}`;
+            current.label = key;
+            if (!acc[key]) {
+                acc[key] = current;
+            }
+            return acc;
+        }, {});
+    return Object.values(groupedData);
+    }
     
     /**
      * 
@@ -3137,7 +3246,7 @@ var ponchoUbicacion = function(options) {
      * @returns 
      */
     function parseJsonLocalidades(data) {
-        const groupedData = data.results.reduce((acc, current) => {
+        const groupedData = data.localidades.reduce((acc, current) => {
             const key = `${current.departamento.nombre} - ${current.nombre}`;
             current.label = key;
             if (!acc[key]) {
@@ -3155,18 +3264,39 @@ var ponchoUbicacion = function(options) {
     function addProvEvent() {
         sProvincia.on('change', function(e) {
             iProvincia.val('');
+            iMunicipio.val('');
             iLocalidad.val('');
+            sMunicipios.children('option:not(:first)').remove();
             sLocalidades.children('option:not(:first)').remove();
             if (sProvincia.val() != '') {
+                iMunicipio.val(sMunicipios.find(":selected").text());
                 iProvincia.val(sProvincia.find(":selected").text());
-                var sAux = getSelectLocalidades(localidades, sProvincia.val());
-                var sOpt = sAux.find('option');
-                sLocalidades.append(sOpt);
+
+                var sAuxM = getSelectMunicipios(municipios, sProvincia.val());
+                var sOptM = sAuxM.find('option');
+                sMunicipios.append(sOptM);
+                sMunicipios.val('');
+                
+                var sAuxL = getSelectLocalidades(localidades, sProvincia.val());
+                var sOptL = sAuxL.find('option');
+                sLocalidades.append(sOptL);
                 sLocalidades.val('');
+
             }
         });
     }
 
+    /**
+    * 
+    */
+    function addMunEvent() {
+        sMunicipios.on('change', function(e) {
+            iMunicipio.val('');
+            if (sMunicipios.val() != '') {
+                iMunicipio.val(sMunicipios.find(":selected").text());
+            }
+        });
+    }
 
     /**
      * 
@@ -3236,6 +3366,42 @@ var ponchoUbicacion = function(options) {
             required, true, iProvincia.val()
         );
         return select;
+    }
+
+    /**
+    * 
+    * @param {*} municipios 
+    * @param {*} provincia
+    * @returns 
+    */
+    function getSelectMunicipios(municipios, provincia) {
+        var muniSelect = {};
+        var required = iMunicipio.prop('required');
+        var select = null;
+        
+        if (iProvincia.val()) {
+        muniSelect = municipios
+                .filter(function(municipio) {
+                    return String(municipio.provincia.id) == String(provincia);
+                })
+                .sort(function(a, b) {
+                    var nameA = a.label.toUpperCase();
+                    var nameB = b.label.toUpperCase();
+                    return nameA.localeCompare(nameB);
+                });
+        emptyOption = false;
+            select = getDropDownList(
+                'sMunicipios', 'sMunicipios',
+                muniSelect, required, emptyOption, iMunicipio.val()
+            );
+        }else {
+            select = getDropDownList(
+                'sMunicipios', 'sMunicipios',
+            [], required, true, false
+            );
+        }
+        
+    return select;
     }
 
 
@@ -4808,17 +4974,20 @@ class PonchoMap {
         this.titleLayer = new L.tileLayer(
             "https://mapa-ign.argentina.gob.ar/osm/{z}/{x}/{-y}.png",
             { 
-                attribution: ("Contribuidores: "
-                    + "<a href=\"https://www.ign.gob.ar/AreaServicios/Argenmap/Introduccion\" " 
-                    + "target=\"_blank\">"
-                    + "Instituto Geográfico Nacional</a>, "
-                    + "<a href=\"https://www.openstreetmap.org/copyright\" "
-                    + "target=\"_blank\">"
-                    + "OpenStreetMap</a>")
+                attribution: (`Contribuidores: `
+                    + `<a hreflang="es" href="https://www.ign.gob.ar/AreaServicios/Argenmap/Introduccion">`
+                    + `<abbr lang="es" title="Instituto Geográfico Nacional">IGN</abbr></a>, `
+                    + `<a hreflang="es" href="https://www.openstreetmap.org/copyright">`
+                    + `OpenStreetMap</a>`)
             });
+
+        // Si se importó el componente _markerCluster_, lo usa. De otro modo
+        // Utiliza _FeatureGroup_ y muestra todos los markers simultáneamente.
         if(L.hasOwnProperty("markerClusterGroup")){
             this.markers = new L.markerClusterGroup(this.marker_cluster_options);
-        } 
+        } else {
+            this.markers = new L.FeatureGroup();
+        }
         this.ponchoLoaderTimeout;
     }
 
@@ -4892,6 +5061,7 @@ class PonchoMap {
 
         const button = document.createElement("button");
         button.title = "Cambiar tema";
+        button.id = `themes-tool-button${this.scope_sufix}`;
         button.tabIndex = "0";
         button.classList.add("pm-btn", "pm-btn-rounded-circle");
         button.appendChild(icon);
@@ -6241,10 +6411,7 @@ class PonchoMap {
         if(!this.reset_zoom){
             return;
         }
-        // función a evaluar. Busca y remueve un botón de reset si existiera.
-        // if( document.querySelector(`.leaflet-control-zoom-reset`) ){
-        //     return;
-        // }
+
         document.querySelectorAll(
             `.js-reset-view${this.scope_sufix}`).forEach(e => e.remove());
         
@@ -6260,15 +6427,10 @@ class PonchoMap {
             button.classList.add(`js-reset-view${this.scope_sufix}`, 
                                 "leaflet-control-zoom-reset");
             button.href = "#";
-            button.title = "Zoom para ver todo el mapa";
+            button.title = "Ver mapa completo";
             button.setAttribute("role", "button");
-            button.setAttribute("aria-label", "Zoom para ver todo el mapa");
+            button.setAttribute("aria-label", "Ver mapa completo");
             button.appendChild(icon);
-            button.onclick = (e) => {
-                e.preventDefault();
-                this.cleanState();
-                this.resetView();
-            };
             ele.after(button);
         });
     };
@@ -6316,6 +6478,7 @@ class PonchoMap {
      * @see https://leafletjs.com/reference.html#path
      */
     markersMap = (entries) => { 
+
         var _this = this;
         this._clearLayers();
         this.geojson = new L.geoJson(entries, {
@@ -6506,8 +6669,8 @@ class PonchoMap {
                 ]   
             ],
             [
-                `.js-themes-tool${this.scope_sufix}`,
-                `themes-tool${this.scope_sufix}`,
+                `.js-themes-tool-button${this.scope_sufix}`,
+                `themes-tool-button${this.scope_sufix}`,
                 [
                     ["aria-label", "Herramienta para cambiar de tema visual"],
                     ["role", "region"],
@@ -6562,12 +6725,18 @@ class PonchoMap {
                 class: "js-fit-bounds"
             },
             {
+                text: "Ver mapa completo",
+                anchor: "#",
+                class: `js-reset-view${this.scope_sufix}`
+            },
+            {
                 text: "Ir al panel de zoom",
                 anchor: `#${anchors[1][1]}` 
             },
             {
                 text: "Cambiar de tema",
-                anchor: `#${anchors[2][1]}` 
+                anchor: `#${anchors[2][1]}`,
+                class: `js-themes-tool-button${this.scope_sufix}`
             },
         ]
         values = [
@@ -6595,6 +6764,7 @@ class PonchoMap {
 
         const ul = document.createElement("ul");
         ul.classList.add("pm-list-unstyled");
+
         values.forEach((link, index) => {
             const a = document.createElement("a");
             a.classList.add("pm-item-link", "pm-accesible")
@@ -6648,6 +6818,7 @@ class PonchoMap {
     });
 
 
+
     /**
      * Remueve elementos agregados al mapa
      */
@@ -6667,6 +6838,55 @@ class PonchoMap {
      * @returns {undefined}
      */
     cleanState = () => history.replaceState(null, null, ' ');
+
+
+    /**
+     * Listener global
+     */
+    _listeners = () => {
+        const _this = this;
+    
+        /**
+         * Zoom out
+         * @summary Adjusts the map markers to fit the view.
+         */
+        const handleResetView = (e) => {
+            const resetViewButton = e.target.closest(
+                    `.js-reset-view${this.scope_sufix}`);
+            if (resetViewButton) {
+                e.preventDefault();
+
+                _this.cleanState();
+                _this.resetView();
+            }
+        };
+
+        /**
+         * themes focus
+         * @summary Hace foco en la herramienta para cambiar de tema.
+         */
+        const handleThemeToolFocus = (e) => {
+            const resetViewButton = e.target.closest(
+                    `.js-themes-tool-button${_this.scope_sufix}`);
+
+            if (resetViewButton) {
+                e.preventDefault();
+                document
+                    .querySelector(`#themes-tool-button${_this.scope_sufix}`)
+                    .focus({ focusVisible: true, preventScroll: false })
+            }
+        };
+
+        // mount
+        document.body.addEventListener("click", handleResetView);
+        document.body.addEventListener("click", handleThemeToolFocus);
+
+        // unmount
+        this.removeListeners = () => {
+            document.body.removeEventListener("click", handleResetView);
+            document.body.removeEventListener("click", handleThemeToolFocus);
+        };
+    };
 
 
     /**
@@ -6699,6 +6919,8 @@ class PonchoMap {
         this._accesibleMenu();
         this.mapOpacity();
         this.mapBackgroundColor();
+
+        this._listeners();
     };
 };
 // end class
@@ -7647,6 +7869,7 @@ class PonchoMapFilter extends PonchoMap {
             .forEach(e => {
                 e.onclick = (event => {
                     event.preventDefault();
+                    
                     this._resetFormFilters();
                     this._filteredData(this.entries);
                     this._clearSearchInput();
@@ -7726,6 +7949,8 @@ class PonchoMapFilter extends PonchoMap {
         }
         this.mapOpacity();
         this.mapBackgroundColor();
+
+        this._listeners();
     };
 };
 // end of class
@@ -7835,21 +8060,48 @@ class PonchoMapSearch {
     _triggerSearch = () => {
         const input = document.querySelector(
             `${this.search_scope_selector} .js-poncho-map-search__input`);
-            input.id = `id-poncho-map-search${this.scope_sufix}`;
+        input.id = `id-poncho-map-search${this.scope_sufix}`;
+        
         const submit = document.querySelectorAll(
                 `${this.search_scope_selector} .js-poncho-map-search__submit`);
-
+                
         submit.forEach(e => {
             e.onclick = (event => {
                 event.preventDefault();
+        
                 const element = document.querySelector(
-                      `#js-search-input${this.instance.scope_sufix}`);
+                    `#js-search-input${this.instance.scope_sufix}`);
                 element.value = input.value;
                 const term = input.value;
+
                 this._renderSearch(term);
             });
         });
     };
+
+
+    /**
+     * Búsca un término en el mapa.
+     * 
+     * @param {string} term - Término a buscar.
+     * @returns {undefined}
+     */
+    searchTerm = (term) => {
+        if(typeof term !== "string" || term.trim() == ""){
+            console.error(
+                "searchTerm", 
+                "El término de búsqueda no puede estar vacío.");
+            return;
+        }
+        
+        const search_value = document
+            .querySelector(`#js-search-input${this.instance.scope_sufix}`);
+        search_value.value = term;
+        
+        this.instance._resetSearch();
+        this._renderSearch(term);
+    };
+
 
     /**
      * en el keyup copia el value al input hidden de filtros.
@@ -7857,16 +8109,18 @@ class PonchoMapSearch {
      */
     _keyup = () => {
         const input = document.querySelectorAll(
-              `${this.search_scope_selector} .js-poncho-map-search__input`);
+            `${this.search_scope_selector} .js-poncho-map-search__input`);
         input.forEach(ele => {
 
             const filter_search_input = document.querySelector(
                 `#js-search-input${this.instance.scope_sufix}`);
+            
             ele.onkeyup = (() => {
-              filter_search_input.value = ele.value;
+                filter_search_input.value = ele.value;
             });
+
             ele.onkeydown = (() => {
-              filter_search_input.value = ele.value;
+                filter_search_input.value = ele.value;
             });
         });
     };
@@ -7880,7 +8134,7 @@ class PonchoMapSearch {
             return "";
         }
         document.querySelectorAll(
-              `${this.search_scope_selector} .js-poncho-map-search__input`)
+            `${this.search_scope_selector} .js-poncho-map-search__input`)
             .forEach(element => element.placeholder = this.placeholder.toString());
     };
 
@@ -7890,6 +8144,13 @@ class PonchoMapSearch {
      * @returns {undefined}
      */
     _renderSearch = (term) => {
+        if(typeof term !== "string" || term.trim() == ""){
+            console.error(
+                "_renderSearch", 
+                "El término de búsqueda no puede estar vacío.");
+            return;
+        }
+
         const entries = this.instance._filterData();
         // Renderizo el mapa
         // @see PonchoMap
@@ -7906,7 +8167,8 @@ class PonchoMapSearch {
         }
         // Alejo el mapa a su posición por defecto.
         // @see PonchoMap resetView()
-        this.instance.resetView();
+        // this.instance.resetView();
+        
         // Si la búsqueda encontró una sola entrada, voy a esa
         // entrada y muestro la info, ya sea un popUp o un slider.
         // Si hay más de una entrada muestro los markers y hago 
