@@ -540,13 +540,13 @@ class PonchoMap {
         const {items=[], label} = this.open_maps_options;
         if(items.length > 0){
             for(const item of items){
-                const {link, label, lang, rel} = item;
+                const {link, label, lang, rel, plataform} = item;
                 const regex = /(?=.*\{\{latitude\}\})(?=.*\{\{longitude\}\}).*/gm;
 
-                if(navigator.userAgent.includes('Mac')){
+                if(!navigator.userAgent.includes('Mac') && plataform == "mac"){
                     continue;
                 }
-                
+
                 if(!regex.test(link)){
                     continue;
                 }
