@@ -151,7 +151,31 @@ class PonchoMap {
                     text: "Ayudá a mejorar el mapa",
                     anchor: "https://www.argentina.gob.ar/sugerencias",
                 }
-            ]
+            ],
+            open_on_maps: false,
+            open_on_maps_options: {
+                label: "Abrir en:",
+                items: [
+                    {
+                        link: 'https://www.google.com/maps/search/?api=1&query={{latitude}},{{longitude}}',
+                        label: "Google maps",
+                        lang: "en",
+                        rel: "alternate"
+                    },
+                    {
+                        link: "https://maps.apple.com/?q={{latitude}},{{longitude}}",
+                        label: "Apple maps",
+                        lang: "en",
+                        rel: "alternate"
+                    },
+                    {
+                        link: "https://www.openstreetmap.org/?mlat={{latitude}}&mlon={{longitude}}#map=16/{{latitude}}/{{longitude}}",
+                        label: "Open street maps",
+                        lang: "en",
+                        rel: "alternate"
+                    },
+                ]
+            }
         };
         let opts = Object.assign({}, defaults, options);
         this.error_reporting = opts.error_reporting;
@@ -221,6 +245,8 @@ class PonchoMap {
         };
         this.accesible_menu_search = [];
         this.accesible_menu_filter = [];
+        this.open_on_maps = opts.open_on_maps;
+        this.open_on_maps_options = opts.open_on_maps_options;
         this.accesible_menu_extras = opts.accesible_menu_extras;
         this.geojson;
 
@@ -476,6 +502,103 @@ class PonchoMap {
         if(this.theme_map){
             this._setTheme(this.theme_map, ["map"]);
         }
+    }
+
+
+    /**
+     * Abre las coordenadas en varios servicios de mapas configurados
+     * 
+     * @param {number|string} latitude - Latitud de la ubicación
+     * @param {number|string} longitude - Longitud de la ubicación
+     * @returns {HTMLElement|null} - El contenedor creado o null si no se pudo crear
+     */
+    _openOnMaps = (latitude, longitude) => {
+        if(typeof this.open_on_maps != "boolean" || !this.open_on_maps){
+            console.debug("Función de mapas desactivada");
+            return;
+        }
+
+        if(!this.validateCoordinates(latitude, longitude)){
+            console.warn(
+                `Coordenadas inválidas: lat=${latitude}, lng=${longitude}`);
+            return;
+        }
+
+        const ul = document.createElement("ul");
+        ul.className = "list-unstyled";
+
+        const {items=[], label} = this.open_on_maps_options;
+        if(items.length > 0){
+            for(const item of items){
+                const {link, label, lang, rel} = item;
+                const regex = /(?=.*\{\{latitude\}\})(?=.*\{\{longitude\}\}).*/gm;
+
+                if(!regex.test(link)){
+                    continue;
+                }
+
+                const a = document.createElement("a");
+                const setAnchor = link
+                    .replace(/\{\{latitude\}\}/g, latitude)
+                    .replace(/\{\{longitude\}\}/g, longitude);
+                a.href = setAnchor;
+                a.textContent = label; 
+                a.setAttribute("lang", lang); 
+                a.rel = rel;
+
+                const li = document.createElement("li");
+                li.appendChild(a);
+                ul.appendChild(li);
+            }
+        }
+
+        const summary = document.createElement("summary");
+        summary.textContent = label;
+
+        const details = document.createElement("details");
+        details.appendChild(summary);
+        details.appendChild(ul);
+
+        const container = document.createElement("div");
+        container.className = "pm-open-map";
+        container.appendChild(details);
+
+        const parentSelector = `.js-content${this.scope_sufix}`;
+        const parentNode = document.querySelector(parentSelector);
+        parentNode.appendChild(container);
+    }
+
+
+    /**
+     * Valida si las coordenadas de latitud y longitud son válidas
+     * @param {number|string} latitude - Latitud a validar (-90 a 90)
+     * @param {number|string} longitude - Longitud a validar (-180 a 180)
+     * @returns {boolean} - Verdadero si ambas coordenadas son válidas, 
+     * falso en caso contrario.
+     */
+    validateCoordinates(latitude, longitude) {
+        // Convertir a números en caso de que se pasen como strings
+        const lat = (typeof latitude === 'string' ? 
+            parseFloat(latitude) : latitude);
+        const lng = (typeof longitude === 'string' ? 
+            parseFloat(longitude) : longitude);
+        
+        // Verificar que sean números válidos (no NaN)
+        if (isNaN(lat) || isNaN(lng)) {
+            return false;
+        }
+        
+        // Validar rango de latitud: -90 a 90 grados
+        if (lat < -90 || lat > 90) {
+            return false;
+        }
+        
+        // Validar rango de longitud: -180 a 180 grados
+        if (lng < -180 || lng > 180) {
+            return false;
+        }
+        
+        return true;
     }
 
 
@@ -954,7 +1077,6 @@ class PonchoMap {
         if(!this.isSliderOpen()){
             this.toggleSlider();
         }
-
         const html = (typeof this.template == "function") ? 
             this.template(this, data) : this.defaultTemplate(this, data);
 
@@ -967,12 +1089,12 @@ class PonchoMap {
             .querySelectorAll(`.js-close-slider${this.scope_sufix}`)
             .forEach(e => {
                 e.dataset.entryId = data[this.id];
-            
-            });  
-        
-        const entry = this.entry(data[this.id]);
-        const [longitude, latitude] = entry.geometry.coordinates;
-        this._openMap(latitude, longitude);
+            });      
+
+
+        const [latitude, longitude] = this.entry(data[this.id]).geometry.coordinates
+        // this._openOnMaps(latitude, longitude);
+        this._openOnMaps(longitude, latitude);
     };
 
 
@@ -1041,30 +1163,6 @@ class PonchoMap {
     };
 
 
-    _openMap = (latitude, longitude) => {
-        const u = new URL('maps/search/', 'https://www.google.com');
-        u.searchParams.append('api', 1);
-        u.searchParams.append('query', [latitude,longitude].join(','));
-
-        const link = document.createElement("a");
-        link.textContent = "Abrir en Google Maps";
-        link.href = u.href;
-        
-        const container = document.createElement("div");
-        container.className = "open-map__item";
-        container.appendChild(link);
-
-        document
-            .querySelectorAll(`.js-slider${this.scope_sufix} .open-map`)
-            .forEach(elem => {
-                elem.innerHTML = "";
-                elem.appendChild(container);
-            });
-
-        return container;
-    };
-
-
     /**
      * Crea el bloque html para el slider.
      */
@@ -1097,12 +1195,8 @@ class PonchoMap {
         const content = document.createElement("div");
         content.classList.add("content", `js-content${this.scope_sufix}`);
         content.tabIndex = 0;
-        content_container.appendChild(content);
 
-        // Contenedor para el botón: abrir en google maps
-        const openMapContainer = document.createElement("div");
-        openMapContainer.className = "open-map";
-        content_container.appendChild(openMapContainer);
+        content_container.appendChild(content);
 
         const container = document.createElement("div");
         container.style.display = "none";
@@ -1114,7 +1208,6 @@ class PonchoMap {
         container.appendChild(close_button);
         container.appendChild(anchor);
         container.appendChild(content_container);
-
         document
             .querySelector(`${this.scope_selector}.poncho-map`)
             .appendChild(container);
