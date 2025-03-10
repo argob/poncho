@@ -152,27 +152,30 @@ class PonchoMap {
                     anchor: "https://www.argentina.gob.ar/sugerencias",
                 }
             ],
-            open_on_maps: false,
-            open_on_maps_options: {
+            open_maps: false,
+            open_maps_options: {
                 label: "Abrir en:",
                 items: [
                     {
                         link: 'https://www.google.com/maps/search/?api=1&query={{latitude}},{{longitude}}',
                         label: "Google maps",
                         lang: "en",
-                        rel: "alternate"
+                        rel: "alternate",
+                        plataform: "all"
                     },
                     {
                         link: "https://maps.apple.com/?q={{latitude}},{{longitude}}",
                         label: "Apple maps",
                         lang: "en",
-                        rel: "alternate"
+                        rel: "alternate",
+                        plataform: "mac"
                     },
                     {
                         link: "https://www.openstreetmap.org/?mlat={{latitude}}&mlon={{longitude}}#map=16/{{latitude}}/{{longitude}}",
                         label: "Open street maps",
                         lang: "en",
-                        rel: "alternate"
+                        rel: "alternate",
+                        plataform: "all"
                     },
                 ]
             }
@@ -245,8 +248,8 @@ class PonchoMap {
         };
         this.accesible_menu_search = [];
         this.accesible_menu_filter = [];
-        this.open_on_maps = opts.open_on_maps;
-        this.open_on_maps_options = opts.open_on_maps_options;
+        this.open_maps = opts.open_maps;
+        this.open_maps_options = opts.open_maps_options;
         this.accesible_menu_extras = opts.accesible_menu_extras;
         this.geojson;
 
@@ -505,6 +508,13 @@ class PonchoMap {
     }
 
 
+    plataform = () => {
+        var isMac = navigator.platform.toUpperCase().indexOf('MAC')>=0;
+        var isMacLike = /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform);
+        var isIOS = /(iPhone|iPod|iPad)/i.test(navigator.platform);
+        };
+
+
     /**
      * Abre las coordenadas en varios servicios de mapas configurados
      * 
@@ -513,7 +523,7 @@ class PonchoMap {
      * @returns {HTMLElement|null} - El contenedor creado o null si no se pudo crear
      */
     _openOnMaps = (latitude, longitude) => {
-        if(typeof this.open_on_maps != "boolean" || !this.open_on_maps){
+        if(typeof this.open_maps != "boolean" || !this.open_maps){
             console.debug("Función de mapas desactivada");
             return;
         }
@@ -527,12 +537,16 @@ class PonchoMap {
         const ul = document.createElement("ul");
         ul.className = "list-unstyled";
 
-        const {items=[], label} = this.open_on_maps_options;
+        const {items=[], label} = this.open_maps_options;
         if(items.length > 0){
             for(const item of items){
                 const {link, label, lang, rel} = item;
                 const regex = /(?=.*\{\{latitude\}\})(?=.*\{\{longitude\}\}).*/gm;
 
+                if(navigator.userAgent.includes('Mac')){
+                    continue;
+                }
+                
                 if(!regex.test(link)){
                     continue;
                 }
