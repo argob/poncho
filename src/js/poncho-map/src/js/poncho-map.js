@@ -161,7 +161,6 @@ class PonchoMap {
                         label: "Google maps",
                         lang: "en",
                         rel: "alternate",
-                        plataform: "all"
                     },
                     {
                         link: "https://maps.apple.com/?q={{latitude}},{{longitude}}",
@@ -175,7 +174,6 @@ class PonchoMap {
                         label: "Open street maps",
                         lang: "en",
                         rel: "alternate",
-                        plataform: "all"
                     },
                 ]
             }
@@ -249,7 +247,12 @@ class PonchoMap {
         this.accesible_menu_search = [];
         this.accesible_menu_filter = [];
         this.open_maps = opts.open_maps;
-        this.open_maps_options = opts.open_maps_options;
+        // this.open_maps_options = opts.open_maps_options;
+
+        // let opts = Object.assign({}, defaults, options);
+        this.open_maps_options = Object.assign(
+            {}, defaults.open_maps_options, options?.open_maps_options);
+
         this.accesible_menu_extras = opts.accesible_menu_extras;
         this.geojson;
 
@@ -538,10 +541,12 @@ class PonchoMap {
         ul.className = "list-unstyled";
 
         const {items=[], label} = this.open_maps_options;
+
         if(items.length > 0){
             for(const item of items){
-                const {link, label, lang, rel, plataform} = item;
+                const {link, label, lang, rel, plataform="all", target} = item;
                 const regex = /(?=.*\{\{latitude\}\})(?=.*\{\{longitude\}\}).*/gm;
+                const regexTarget = /(_self|_blank|_parent|_top)/;
 
                 if(!navigator.userAgent.includes('Mac') && plataform == "mac"){
                     continue;
@@ -559,6 +564,9 @@ class PonchoMap {
                 a.textContent = label; 
                 a.setAttribute("lang", lang); 
                 a.rel = rel;
+                if(typeof target == "string" && regexTarget.test(target.trim())){
+                    a.target = target;
+                }
 
                 const li = document.createElement("li");
                 li.appendChild(a);
@@ -771,6 +779,7 @@ class PonchoMap {
                 );
             }
         });
+
 
         delete entry[this.latitude];
         delete entry[this.longitude];
@@ -1107,7 +1116,6 @@ class PonchoMap {
 
 
         const [latitude, longitude] = this.entry(data[this.id]).geometry.coordinates
-        // this._openOnMaps(latitude, longitude);
         this._openOnMaps(longitude, latitude);
     };
 

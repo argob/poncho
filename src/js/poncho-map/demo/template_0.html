@@ -153,7 +153,19 @@ COPIAR DESDE ACÁ…
             "horarios_custom": "",
             "estado_funcionamiento_custom": "",
         },
-        open_maps: true
+        open_maps: true,
+        open_maps_options: {
+            label: "Abrir punto en:",
+            items : [
+                {
+                    link: 'https://www.google.com/maps/search/?api=1&query={{latitude}},{{longitude}}',
+                    label: "Google maps",
+                    lang: "en",
+                    rel: "alternate",
+                    plataform: "all"
+                },
+            ]
+        }
     };
     // render map
     filter = new PonchoMapFilter(gdata, options);
@@ -170,6 +182,7 @@ COPIAR DESDE ACÁ…
     search.render();
     });
 </script>
+<iframe src="" name="foo" frameborder="0"></iframe>
 <!-- / SCRIPTS -->
 </body>
 </html>
