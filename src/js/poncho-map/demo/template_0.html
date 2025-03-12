@@ -49,7 +49,7 @@ COPIAR DESDE ACÁ…
 <script src="/sites/default/files/ponchotable/showdown.js"></script>
 <script src="/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/extensiones/showdown-extensions.js"></script>
 <script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.js"></script>
-<script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script>
+<!-- <script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script> -->
 <link href="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.css" rel="stylesheet">
 <link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.css" rel="stylesheet">
 <link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.Default.css" rel="stylesheet">
@@ -85,6 +85,7 @@ COPIAR DESDE ACÁ…
               
 <!-- SCRIPTS -->
 <script>
+    var search, filter;
     // const url = 'https://servicios.puntodigital.paisdigital.modernizacion.gob.ar/ws/ws-eventos.php?method=getPDs';
     const url = './data/response.json';
     jQuery.getJSON(url, function(sheet_data) {
@@ -151,10 +152,23 @@ COPIAR DESDE ACÁ…
             "institucion": "Institución",
             "horarios_custom": "",
             "estado_funcionamiento_custom": "",
+        },
+        open_maps: true,
+        open_maps_options: {
+            label: "Abrir punto en:",
+            items : [
+                {
+                    link: 'https://www.google.com/maps/search/?api=1&query={{latitude}},{{longitude}}',
+                    label: "Google maps",
+                    lang: "en",
+                    rel: "alternate",
+                    plataform: "all"
+                },
+            ]
         }
     };
     // render map
-    const filter = new PonchoMapFilter(gdata, options);
+    filter = new PonchoMapFilter(gdata, options);
     filter.render();
     // Buscador
     const search_options = {
@@ -168,6 +182,7 @@ COPIAR DESDE ACÁ…
     search.render();
     });
 </script>
+<iframe src="" name="foo" frameborder="0"></iframe>
 <!-- / SCRIPTS -->
 </body>
 </html>

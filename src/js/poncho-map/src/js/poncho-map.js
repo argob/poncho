@@ -151,7 +151,32 @@ class PonchoMap {
                     text: "Ayudá a mejorar el mapa",
                     anchor: "https://www.argentina.gob.ar/sugerencias",
                 }
-            ]
+            ],
+            open_maps: false,
+            open_maps_options: {
+                label: "Abrir en:",
+                items: [
+                    {
+                        link: 'https://www.google.com/maps/search/?api=1&query={{latitude}},{{longitude}}',
+                        label: "Google maps",
+                        lang: "en",
+                        rel: "alternate",
+                    },
+                    {
+                        link: "https://maps.apple.com/?q={{latitude}},{{longitude}}",
+                        label: "Apple maps",
+                        lang: "en",
+                        rel: "alternate",
+                        plataform: "mac"
+                    },
+                    {
+                        link: "https://www.openstreetmap.org/?mlat={{latitude}}&mlon={{longitude}}#map=16/{{latitude}}/{{longitude}}",
+                        label: "Open street maps",
+                        lang: "en",
+                        rel: "alternate",
+                    },
+                ]
+            }
         };
         let opts = Object.assign({}, defaults, options);
         this.error_reporting = opts.error_reporting;
@@ -221,6 +246,13 @@ class PonchoMap {
         };
         this.accesible_menu_search = [];
         this.accesible_menu_filter = [];
+        this.open_maps = opts.open_maps;
+        // this.open_maps_options = opts.open_maps_options;
+
+        // let opts = Object.assign({}, defaults, options);
+        this.open_maps_options = Object.assign(
+            {}, defaults.open_maps_options, options?.open_maps_options);
+
         this.accesible_menu_extras = opts.accesible_menu_extras;
         this.geojson;
 
@@ -233,17 +265,20 @@ class PonchoMap {
         this.titleLayer = new L.tileLayer(
             "https://mapa-ign.argentina.gob.ar/osm/{z}/{x}/{-y}.png",
             { 
-                attribution: ("Contribuidores: "
-                    + "<a href=\"https://www.ign.gob.ar/AreaServicios/Argenmap/Introduccion\" " 
-                    + "target=\"_blank\">"
-                    + "Instituto Geográfico Nacional</a>, "
-                    + "<a href=\"https://www.openstreetmap.org/copyright\" "
-                    + "target=\"_blank\">"
-                    + "OpenStreetMap</a>")
+                attribution: (`Contribuidores: `
+                    + `<a hreflang="es" href="https://www.ign.gob.ar/AreaServicios/Argenmap/Introduccion">`
+                    + `<abbr lang="es" title="Instituto Geográfico Nacional">IGN</abbr></a>, `
+                    + `<a hreflang="es" href="https://www.openstreetmap.org/copyright">`
+                    + `OpenStreetMap</a>`)
             });
+
+        // Si se importó el componente _markerCluster_, lo usa. De otro modo
+        // Utiliza _FeatureGroup_ y muestra todos los markers simultáneamente.
         if(L.hasOwnProperty("markerClusterGroup")){
             this.markers = new L.markerClusterGroup(this.marker_cluster_options);
-        } 
+        } else {
+            this.markers = new L.FeatureGroup();
+        }
         this.ponchoLoaderTimeout;
     }
 
@@ -317,6 +352,7 @@ class PonchoMap {
 
         const button = document.createElement("button");
         button.title = "Cambiar tema";
+        button.id = `themes-tool-button${this.scope_sufix}`;
         button.tabIndex = "0";
         button.classList.add("pm-btn", "pm-btn-rounded-circle");
         button.appendChild(icon);
@@ -475,6 +511,119 @@ class PonchoMap {
     }
 
 
+    plataform = () => {
+        var isMac = navigator.platform.toUpperCase().indexOf('MAC')>=0;
+        var isMacLike = /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform);
+        var isIOS = /(iPhone|iPod|iPad)/i.test(navigator.platform);
+        };
+
+
+    /**
+     * Abre las coordenadas en varios servicios de mapas configurados
+     * 
+     * @param {number|string} latitude - Latitud de la ubicación
+     * @param {number|string} longitude - Longitud de la ubicación
+     * @returns {HTMLElement|null} - El contenedor creado o null si no se pudo crear
+     */
+    _openOnMaps = (latitude, longitude) => {
+        if(typeof this.open_maps != "boolean" || !this.open_maps){
+            console.debug("Función de mapas desactivada");
+            return;
+        }
+
+        if(!this.validateCoordinates(latitude, longitude)){
+            console.warn(
+                `Coordenadas inválidas: lat=${latitude}, lng=${longitude}`);
+            return;
+        }
+
+        const ul = document.createElement("ul");
+        ul.className = "list-unstyled";
+
+        const {items=[], label} = this.open_maps_options;
+
+        if(items.length > 0){
+            for(const item of items){
+                const {link, label, lang, rel, plataform="all", target} = item;
+                const regex = /(?=.*\{\{latitude\}\})(?=.*\{\{longitude\}\}).*/gm;
+                const regexTarget = /(_self|_blank|_parent|_top)/;
+
+                if(!navigator.userAgent.includes('Mac') && plataform == "mac"){
+                    continue;
+                }
+
+                if(!regex.test(link)){
+                    continue;
+                }
+
+                const a = document.createElement("a");
+                const setAnchor = link
+                    .replace(/\{\{latitude\}\}/g, latitude)
+                    .replace(/\{\{longitude\}\}/g, longitude);
+                a.href = setAnchor;
+                a.textContent = label; 
+                a.setAttribute("lang", lang); 
+                a.rel = rel;
+                if(typeof target == "string" && regexTarget.test(target.trim())){
+                    a.target = target;
+                }
+
+                const li = document.createElement("li");
+                li.appendChild(a);
+                ul.appendChild(li);
+            }
+        }
+
+        const summary = document.createElement("summary");
+        summary.textContent = label;
+
+        const details = document.createElement("details");
+        details.appendChild(summary);
+        details.appendChild(ul);
+
+        const container = document.createElement("div");
+        container.className = "pm-open-map";
+        container.appendChild(details);
+
+        const parentSelector = `.js-content${this.scope_sufix}`;
+        const parentNode = document.querySelector(parentSelector);
+        parentNode.appendChild(container);
+    }
+
+
+    /**
+     * Valida si las coordenadas de latitud y longitud son válidas
+     * @param {number|string} latitude - Latitud a validar (-90 a 90)
+     * @param {number|string} longitude - Longitud a validar (-180 a 180)
+     * @returns {boolean} - Verdadero si ambas coordenadas son válidas, 
+     * falso en caso contrario.
+     */
+    validateCoordinates(latitude, longitude) {
+        // Convertir a números en caso de que se pasen como strings
+        const lat = (typeof latitude === 'string' ? 
+            parseFloat(latitude) : latitude);
+        const lng = (typeof longitude === 'string' ? 
+            parseFloat(longitude) : longitude);
+        
+        // Verificar que sean números válidos (no NaN)
+        if (isNaN(lat) || isNaN(lng)) {
+            return false;
+        }
+        
+        // Validar rango de latitud: -90 a 90 grados
+        if (lat < -90 || lat > 90) {
+            return false;
+        }
+        
+        // Validar rango de longitud: -180 a 180 grados
+        if (lng < -180 || lng > 180) {
+            return false;
+        }
+        
+        return true;
+    }
+
+
     /**
      * Alias de sluglify
      * 
@@ -630,6 +779,7 @@ class PonchoMap {
                 );
             }
         });
+
 
         delete entry[this.latitude];
         delete entry[this.longitude];
@@ -963,6 +1113,10 @@ class PonchoMap {
             .forEach(e => {
                 e.dataset.entryId = data[this.id];
             });      
+
+
+        const [latitude, longitude] = this.entry(data[this.id]).geometry.coordinates
+        this._openOnMaps(longitude, latitude);
     };
 
 
@@ -1063,6 +1217,7 @@ class PonchoMap {
         const content = document.createElement("div");
         content.classList.add("content", `js-content${this.scope_sufix}`);
         content.tabIndex = 0;
+
         content_container.appendChild(content);
 
         const container = document.createElement("div");
@@ -1666,10 +1821,7 @@ class PonchoMap {
         if(!this.reset_zoom){
             return;
         }
-        // función a evaluar. Busca y remueve un botón de reset si existiera.
-        // if( document.querySelector(`.leaflet-control-zoom-reset`) ){
-        //     return;
-        // }
+
         document.querySelectorAll(
             `.js-reset-view${this.scope_sufix}`).forEach(e => e.remove());
         
@@ -1685,15 +1837,10 @@ class PonchoMap {
             button.classList.add(`js-reset-view${this.scope_sufix}`, 
                                 "leaflet-control-zoom-reset");
             button.href = "#";
-            button.title = "Zoom para ver todo el mapa";
+            button.title = "Ver mapa completo";
             button.setAttribute("role", "button");
-            button.setAttribute("aria-label", "Zoom para ver todo el mapa");
+            button.setAttribute("aria-label", "Ver mapa completo");
             button.appendChild(icon);
-            button.onclick = (e) => {
-                e.preventDefault();
-                this.cleanState();
-                this.resetView();
-            };
             ele.after(button);
         });
     };
@@ -1741,6 +1888,7 @@ class PonchoMap {
      * @see https://leafletjs.com/reference.html#path
      */
     markersMap = (entries) => { 
+
         var _this = this;
         this._clearLayers();
         this.geojson = new L.geoJson(entries, {
@@ -1931,8 +2079,8 @@ class PonchoMap {
                 ]   
             ],
             [
-                `.js-themes-tool${this.scope_sufix}`,
-                `themes-tool${this.scope_sufix}`,
+                `.js-themes-tool-button${this.scope_sufix}`,
+                `themes-tool-button${this.scope_sufix}`,
                 [
                     ["aria-label", "Herramienta para cambiar de tema visual"],
                     ["role", "region"],
@@ -1987,12 +2135,18 @@ class PonchoMap {
                 class: "js-fit-bounds"
             },
             {
+                text: "Ver mapa completo",
+                anchor: "#",
+                class: `js-reset-view${this.scope_sufix}`
+            },
+            {
                 text: "Ir al panel de zoom",
                 anchor: `#${anchors[1][1]}` 
             },
             {
                 text: "Cambiar de tema",
-                anchor: `#${anchors[2][1]}` 
+                anchor: `#${anchors[2][1]}`,
+                class: `js-themes-tool-button${this.scope_sufix}`
             },
         ]
         values = [
@@ -2020,6 +2174,7 @@ class PonchoMap {
 
         const ul = document.createElement("ul");
         ul.classList.add("pm-list-unstyled");
+
         values.forEach((link, index) => {
             const a = document.createElement("a");
             a.classList.add("pm-item-link", "pm-accesible")
@@ -2073,6 +2228,7 @@ class PonchoMap {
     });
 
 
+
     /**
      * Remueve elementos agregados al mapa
      */
@@ -2092,6 +2248,55 @@ class PonchoMap {
      * @returns {undefined}
      */
     cleanState = () => history.replaceState(null, null, ' ');
+
+
+    /**
+     * Listener global
+     */
+    _listeners = () => {
+        const _this = this;
+    
+        /**
+         * Zoom out
+         * @summary Adjusts the map markers to fit the view.
+         */
+        const handleResetView = (e) => {
+            const resetViewButton = e.target.closest(
+                    `.js-reset-view${this.scope_sufix}`);
+            if (resetViewButton) {
+                e.preventDefault();
+
+                _this.cleanState();
+                _this.resetView();
+            }
+        };
+
+        /**
+         * themes focus
+         * @summary Hace foco en la herramienta para cambiar de tema.
+         */
+        const handleThemeToolFocus = (e) => {
+            const resetViewButton = e.target.closest(
+                    `.js-themes-tool-button${_this.scope_sufix}`);
+
+            if (resetViewButton) {
+                e.preventDefault();
+                document
+                    .querySelector(`#themes-tool-button${_this.scope_sufix}`)
+                    .focus({ focusVisible: true, preventScroll: false })
+            }
+        };
+
+        // mount
+        document.body.addEventListener("click", handleResetView);
+        document.body.addEventListener("click", handleThemeToolFocus);
+
+        // unmount
+        this.removeListeners = () => {
+            document.body.removeEventListener("click", handleResetView);
+            document.body.removeEventListener("click", handleThemeToolFocus);
+        };
+    };
 
 
     /**
@@ -2124,6 +2329,8 @@ class PonchoMap {
         this._accesibleMenu();
         this.mapOpacity();
         this.mapBackgroundColor();
+
+        this._listeners();
     };
 };
 // end class

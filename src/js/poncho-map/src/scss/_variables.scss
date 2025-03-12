@@ -29,8 +29,8 @@
     // Debajo del slider se crea un div con opacidad.
     --pm-slider-modal-color: var(--black);
     
-    --pm-active-marker-color: 255, 206, 0;
-    --pm-active-marker-alpha: 0.5;
+    --pm-active-marker-color: var(--arg-maiz, gold);
+    --pm-active-marker-color-darker: var(--arg-naranja, orange);
 
     --pm-accesible-background: #eaeaea;
 

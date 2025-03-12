@@ -59,6 +59,10 @@
 | fit_bounds_onevent | `boolean` | `true` | Realiza un zoom en el polígono, línea o marcador, cuando se utilia el select o por URL. |
 | map_opacity | `float` | 1 | Permite transparentar los mozaicos (_tiles_, del inglés), que componen el mapa. El rango es de 0 a 1. Por ejémplo: `map_opacity: 0.5` |
 | map_background | `string` | `#DDD` | Permite definir un color de fondo para el mapa.<br><br>Junto a `map_opacity`, puede resulter de un uso interesante. |
+| open_maps | `boolean` | `false` | Muestra en la parte de abajo del _slider_, un desplegable con distintas opciones de mapas extenrnos, donde visualizar el punto geográfico. |
+| open_maps_options | `object` |  | Permite redefinir el nombre del desplegable y cargar enlaces a gusto del usuario |
+
+
 
 
 

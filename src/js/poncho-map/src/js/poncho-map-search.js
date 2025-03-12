@@ -103,21 +103,48 @@ class PonchoMapSearch {
     _triggerSearch = () => {
         const input = document.querySelector(
             `${this.search_scope_selector} .js-poncho-map-search__input`);
-            input.id = `id-poncho-map-search${this.scope_sufix}`;
+        input.id = `id-poncho-map-search${this.scope_sufix}`;
+        
         const submit = document.querySelectorAll(
                 `${this.search_scope_selector} .js-poncho-map-search__submit`);
-
+                
         submit.forEach(e => {
             e.onclick = (event => {
                 event.preventDefault();
+        
                 const element = document.querySelector(
-                      `#js-search-input${this.instance.scope_sufix}`);
+                    `#js-search-input${this.instance.scope_sufix}`);
                 element.value = input.value;
                 const term = input.value;
+
                 this._renderSearch(term);
             });
         });
     };
+
+
+    /**
+     * Búsca un término en el mapa.
+     * 
+     * @param {string} term - Término a buscar.
+     * @returns {undefined}
+     */
+    searchTerm = (term) => {
+        if(typeof term !== "string" || term.trim() == ""){
+            console.error(
+                "searchTerm", 
+                "El término de búsqueda no puede estar vacío.");
+            return;
+        }
+        
+        const search_value = document
+            .querySelector(`#js-search-input${this.instance.scope_sufix}`);
+        search_value.value = term;
+        
+        this.instance._resetSearch();
+        this._renderSearch(term);
+    };
+
 
     /**
      * en el keyup copia el value al input hidden de filtros.
@@ -125,16 +152,18 @@ class PonchoMapSearch {
      */
     _keyup = () => {
         const input = document.querySelectorAll(
-              `${this.search_scope_selector} .js-poncho-map-search__input`);
+            `${this.search_scope_selector} .js-poncho-map-search__input`);
         input.forEach(ele => {
 
             const filter_search_input = document.querySelector(
                 `#js-search-input${this.instance.scope_sufix}`);
+            
             ele.onkeyup = (() => {
-              filter_search_input.value = ele.value;
+                filter_search_input.value = ele.value;
             });
+
             ele.onkeydown = (() => {
-              filter_search_input.value = ele.value;
+                filter_search_input.value = ele.value;
             });
         });
     };
@@ -148,7 +177,7 @@ class PonchoMapSearch {
             return "";
         }
         document.querySelectorAll(
-              `${this.search_scope_selector} .js-poncho-map-search__input`)
+            `${this.search_scope_selector} .js-poncho-map-search__input`)
             .forEach(element => element.placeholder = this.placeholder.toString());
     };
 
@@ -158,6 +187,13 @@ class PonchoMapSearch {
      * @returns {undefined}
      */
     _renderSearch = (term) => {
+        if(typeof term !== "string" || term.trim() == ""){
+            console.error(
+                "_renderSearch", 
+                "El término de búsqueda no puede estar vacío.");
+            return;
+        }
+
         const entries = this.instance._filterData();
         // Renderizo el mapa
         // @see PonchoMap
@@ -174,7 +210,8 @@ class PonchoMapSearch {
         }
         // Alejo el mapa a su posición por defecto.
         // @see PonchoMap resetView()
-        this.instance.resetView();
+        // this.instance.resetView();
+        
         // Si la búsqueda encontró una sola entrada, voy a esa
         // entrada y muestro la info, ya sea un popUp o un slider.
         // Si hay más de una entrada muestro los markers y hago 

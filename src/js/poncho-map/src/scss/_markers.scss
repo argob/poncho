@@ -4,18 +4,19 @@
     */
     .marker--active {
         --color: 247, 149, 37;
+
         position: relative;
-        box-shadow: 0 0 20px rgba(var(--pm-active-marker-color), 1);
-        background: radial-gradient(circle,
-                rgba(var(--pm-active-marker-color), var(--pm-active-marker-alpha)) 10%,
-                rgba(var(--pm-active-marker-color), var(--pm-active-marker-alpha)) 80%);
+        background: transparent;
+        filter: /* drop-shadow(0px 0px 2px var(--pm-active-marker-color)) */
+            drop-shadow(1px -1px 2px var(--pm-active-marker-color)) 
+            drop-shadow(-1px -1px 2px var(--pm-active-marker-color)) 
+            drop-shadow(0 -2px 4px color-mix( in srgb, var(--pm-active-marker-color) 50%, var(--pm-active-marker-color-darker) 50%)  );
     }
 
     path{
         &.marker--active {
             -webkit-filter: brightness(.7) saturate(1.15) !important;
             filter: brightness(.7) saturate(1.15) !important;
-
             transition: filter .15s
         }
 

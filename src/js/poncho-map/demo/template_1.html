@@ -174,7 +174,7 @@
             loaderMap1.close();
         })();
 
-
+        var filter2;
         // SEGUNDO MAPA
         (async () => {
             const loaderMap2 = new PonchoMapLoader({scope: "dos"});
@@ -210,9 +210,10 @@
                         "field": ["institucion"]
                     }
                 ],
+                open_maps:true
             };
 
-            const filter2 = new PonchoMapFilter(geoJSON, mapOptions2);
+             filter2 = new PonchoMapFilter(geoJSON, mapOptions2);
             filter2.render();
             const searchOptions2 = {
                     "scope": "poncho-map-search-2",
