@@ -1,4 +1,5 @@
-﻿/*!
+@charset "UTF-8";
+/*!
  * Poncho v0.3.3 (https://github.com/argob/poncho)
  * Copyright 2016
  * Subsecretaría de Tecnologías de la Información
@@ -11469,15 +11470,27 @@ a.label:hover, a.label:focus {
 }
 
 .pm-p-1 {
-  padding: var(--pm-slider-distance);
+  padding: var(--pm-slider-distance) !important;
 }
 
 .pm-p-2 {
-  padding: calc(var(--pm-slider-distance) * 2);
+  padding: calc(var(--pm-slider-distance) * 2) !important;
 }
 
 .pm-p-3 {
-  padding: calc(var(--pm-slider-distance) * 3);
+  padding: calc(var(--pm-slider-distance) * 3) !important;
+}
+
+.pm-pb-1 {
+  padding-bottom: var(--pm-slider-distance) !important;
+}
+
+.pm-pb-2 {
+  padding-bottom: calc(var(--pm-slider-distance) * 2) !important;
+}
+
+.pm-pb-3 {
+  padding-bottom: calc(var(--pm-slider-distance) * 3) !important;
 }
 
 .poncho-map .pm-visually-hidden {
@@ -11930,7 +11943,10 @@ input[type=search].js-poncho-map-search__input::-webkit-search-cancel-button {
   transition: 0.2s;
 }
 
-.pm-open-map {
+footer.pm-open-map {
+  padding: 0;
+  margin: 0;
+  border: none;
   position: absolute;
   color: var(--pm-color-base);
   bottom: calc(var(--pm-content-padding) / 2);
@@ -11940,30 +11956,30 @@ input[type=search].js-poncho-map-search__input::-webkit-search-cancel-button {
   width: calc(100% - var(--pm-content-padding));
   background: var(--pm-slider-background);
 }
-.pm-open-map > details {
+footer.pm-open-map > details {
   border-color: var(--pm-slider-border-color) transparent transparent !important;
   border-style: solid;
   border-width: var(--pm-slider-border-width);
   border-radius: 0;
 }
-.pm-open-map > details > summary:focus {
+footer.pm-open-map > details > summary:focus {
   outline: none;
   outline-style: none !important;
   box-shadow: none !important;
 }
-.pm-open-map > details[open] {
+footer.pm-open-map > details[open] {
   border: var(--pm-slider-border-width) solid var(--pm-slider-border-color) !important;
   border-radius: max(var(--pm-slider-radius) / 2, var(--pm-slider-radius) - var(--pm-content-padding) - 2px) !important;
   box-shadow: 0 1px calc(var(--pm-content-padding) / 2) rgba(0, 0, 0, 0.3);
 }
-.pm-open-map > details > summary {
+footer.pm-open-map > details > summary {
   color: var(--pm-color-base) !important;
   font-weight: 600;
 }
-.pm-open-map details[open] summary ~ * {
+footer.pm-open-map details[open] summary ~ * {
   padding: 0 calc(var(--pm-content-padding) / 2);
 }
-.pm-open-map ul > li > a {
+footer.pm-open-map ul > li > a {
   margin-bottom: 2px;
   border-radius: calc(var(--pm-slider-radius) - var(--pm-slider-distance));
   display: block;
@@ -11972,7 +11988,7 @@ input[type=search].js-poncho-map-search__input::-webkit-search-cancel-button {
   color: var(--pm-color-base);
   text-decoration: none;
 }
-.pm-open-map ul > li > a:hover, .pm-open-map ul > li > a:focus {
+footer.pm-open-map ul > li > a:hover, footer.pm-open-map ul > li > a:focus {
   background-color: var(--pm-hover-background);
   color: var(--pm-hover-color);
   transition: background 0.15s;
@@ -14953,4 +14969,3 @@ DEGRADÉ: .bg-mix-azul-info .bg-mix-info-azul .bg-mix-palta-azul .bg-mix-azul-pa
     display: inherit;
   }
 }
-

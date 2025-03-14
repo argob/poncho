@@ -5279,7 +5279,7 @@ class PonchoMap {
         }
 
         const ul = document.createElement("ul");
-        ul.classList.add("pm-list-unstyled");
+        ul.classList.add("pm-list-unstyled", "pm-pb-1");
 
         const {items=[], label} = this.open_maps_options;
 
