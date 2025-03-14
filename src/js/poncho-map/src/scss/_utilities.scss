@@ -45,13 +45,24 @@
 }
 
 .pm-p-1 {
-    padding: var(--pm-slider-distance);
+    padding: var(--pm-slider-distance) !important;
 }
 
 .pm-p-2 {
-    padding: calc(var(--pm-slider-distance) * 2);
+    padding: calc(var(--pm-slider-distance) * 2) !important;
 }
 
 .pm-p-3 {
-    padding: calc(var(--pm-slider-distance) * 3);
+    padding: calc(var(--pm-slider-distance) * 3) !important;
+}
+
+.pm-pb-1 {
+    padding-bottom: var(--pm-slider-distance) !important;
+}
+.pm-pb-2 {
+    padding-bottom: calc(var(--pm-slider-distance) * 2) !important;
+}
+
+.pm-pb-3 {
+    padding-bottom: calc(var(--pm-slider-distance) * 3) !important;
 }
