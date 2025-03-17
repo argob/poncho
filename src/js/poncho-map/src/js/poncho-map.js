@@ -538,7 +538,7 @@ class PonchoMap {
         }
 
         const ul = document.createElement("ul");
-        ul.className = "list-unstyled";
+        ul.classList.add("pm-list-unstyled", "pm-pb-1");
 
         const {items=[], label} = this.open_maps_options;
 
@@ -581,7 +581,7 @@ class PonchoMap {
         details.appendChild(summary);
         details.appendChild(ul);
 
-        const container = document.createElement("div");
+        const container = document.createElement("footer");
         container.className = "pm-open-map";
         container.appendChild(details);
 
@@ -1214,7 +1214,7 @@ class PonchoMap {
         const content_container = document.createElement("div");
         content_container.classList.add("content-container");
 
-        const content = document.createElement("div");
+        const content = document.createElement("article");
         content.classList.add("content", `js-content${this.scope_sufix}`);
         content.tabIndex = 0;
 
@@ -1722,7 +1722,7 @@ class PonchoMap {
         const {template_structure:structure} = this;
         const tpl_list = this._templateList(row);
         const tpl_title = this._templateTitle(row);
-        const container = document.createElement("article");
+        const container = document.createElement("div");
         container.classList.add(... structure.container_classlist);
         const definitions = document.createElement(structure.definition_list_tag);
         definitions.classList.add(...structure.definition_list_classlist);

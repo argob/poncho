@@ -1,4 +1,7 @@
-.pm-open-map {
+footer.pm-open-map {
+    padding: 0;
+    margin: 0;
+    border: none;
     position: absolute;
     color: var(--pm-color-base);
     bottom: calc(var(--pm-content-padding) / 2);
