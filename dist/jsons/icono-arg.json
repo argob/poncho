@@ -467,6 +467,11 @@
       },
     
       {
+        "nombre": "batimetrias",
+        "clase": "icono-arg-batimetrias"
+      },
+    
+      {
         "nombre": "bebe-01",
         "clase": "icono-arg-bebe-01"
       },
@@ -2297,6 +2302,11 @@
       },
     
       {
+        "nombre": "hidrometros",
+        "clase": "icono-arg-hidrometros"
+      },
+    
+      {
         "nombre": "hogar-y-familia",
         "clase": "icono-arg-hogar-y-familia"
       },
@@ -3024,6 +3034,11 @@
       {
         "nombre": "natacion",
         "clase": "icono-arg-natacion"
+      },
+    
+      {
+        "nombre": "navegacion",
+        "clase": "icono-arg-navegacion"
       },
     
       {
@@ -3969,6 +3984,11 @@
       {
         "nombre": "semaforo",
         "clase": "icono-arg-semaforo"
+      },
+    
+      {
+        "nombre": "senalizacion",
+        "clase": "icono-arg-senalizacion"
       },
     
       {
