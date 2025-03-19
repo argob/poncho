@@ -5953,10 +5953,10 @@ class PonchoMap {
         anchor.id = `js-anchor-slider${this.scope_sufix}`;
 
         const content_container = document.createElement("div");
-        content_container.classList.add("content-container");
+        content_container.classList.add("pm-content-container");
 
         const content = document.createElement("article");
-        content.classList.add("content", `js-content${this.scope_sufix}`);
+        content.classList.add("pm-content", `js-content${this.scope_sufix}`);
         content.tabIndex = 0;
 
         content_container.appendChild(content);
@@ -6255,7 +6255,7 @@ class PonchoMap {
         }
 
         const header = document.createElement("header");
-        header.className = "header";
+        header.className = "pm-header";
         header.appendChild(title);
 
         return header;
