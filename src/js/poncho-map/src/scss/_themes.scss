@@ -174,4 +174,11 @@
     &.ui-contrast .text-muted {
         color: var(--arg-negro-200) !important;
     }
+
+    &.poncho-map.ui-contrast a,
+    &.poncho-map.ui-dark a {
+        color: #9AD7F5 !important
+    }
+    &.poncho-map.ui-dark a:visited,
+    &.poncho-map.ui-contrast a:visited { color: #BEB5D8 !important }
 }

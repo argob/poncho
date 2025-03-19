@@ -10,6 +10,14 @@
         scrollbar-width: thin;
     }
 
+    /* HEADER */
+    .pm-header {
+        margin-bottom: 1em;
+        padding: 0;
+        border: none;
+    }
+
+
     /* FUCUSABLE */
     *:focus {
         border-radius: 3px;
