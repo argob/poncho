@@ -21,10 +21,6 @@
         transition: filter .1s;
     }
 
-    // &.map-default {
-
-    // }
-
     &.map-contrast .leaflet-tile-pane {
         filter: grayscale(1) invert(1) brightness(2);
         transition: filter .1s;
@@ -92,9 +88,6 @@
     }
 
 
-    // &.ui-grayscale, &.ui-default {
-    // }
-
     /* THEME NAV ACTIVE STATE */
     &.map-default.ui-default [data-theme="default"],
     &.map-sepia.ui-sepia [data-theme="sepia"],
@@ -137,7 +130,7 @@
 
 
     &.ui-contrast summary,
-    &.ui-dark summary{
+    &.ui-dark summary {
         color: var(--pm-color-base) !important;
 
     }
@@ -179,6 +172,9 @@
     &.poncho-map.ui-dark a {
         color: #9AD7F5 !important
     }
+
     &.poncho-map.ui-dark a:visited,
-    &.poncho-map.ui-contrast a:visited { color: #BEB5D8 !important }
+    &.poncho-map.ui-contrast a:visited {
+        color: #BEB5D8 !important
+    }
 }
