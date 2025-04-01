@@ -5,6 +5,12 @@
  * Nacionales de la República Argentina. 
  */
 const calendar = {
+    dictionary: {
+        es:{
+            falta: {plural:"Faltan", singular:"Falta"},
+            dia: {plural:"Días", singular:"día"},
+        },
+    },
   TODAY: null,
   months: [
       "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio",
@@ -214,29 +220,37 @@ const calendar = {
         const detalleHTML = document.querySelector("#js-detalle");
         const lectorHTML = document.querySelector("#js-lector");
         const detallehoy = document.querySelector("#js-detallehoy");
-      
+        const strDia = document.querySelector(".js-dia");
+        const strFalta = document.querySelector(".js-falta");
+
         for (var i in this.options.markers[0]) {
             const holiday = this.options.markers[0][i];
             const splittedDate = holiday.date.split('/');
             const date = new Date(splittedDate[2], splittedDate[1] - 1, splittedDate[0]);
-  
+
             if (today < date && holiday.type !== 'no_laborable') {
                 n_days.classList.add(`text-${this.options.holidays_type[holiday.type]}`);
                 detalleHTML.classList.add(`text-${this.options.holidays_type[holiday.type]}`);
                 var time_diff = Math.abs(date.getTime() - today.getTime());
-                var faltan = Math.ceil(time_diff / (1000 * 3600 * 24));
+                var dayCount = Math.ceil(time_diff / (1000 * 3600 * 24));
                 var day = date.getDate();
                 var month = this.months[date.getMonth()];
-                var proximo = `${day} de ${month} de ${date.getFullYear()} `;
+                var proximo = `${day} de ${month.toLocaleLowerCase()} de ${date.getFullYear()} `;
                 var detalle = holiday.label;
                 break;
             }
         }
-  
-        faltanHTML.innerHTML = faltan;
+        const dict = this.dictionary.es;
+        const isSingular = (dayCount == 1 ? true : false);
+
+        strDia.textContent = (isSingular ? dict.dia.singular.toUpperCase() : 
+                dict.dia.plural.toUpperCase());
+        strFalta.textContent = (isSingular ? dict.falta.singular : 
+                dict.falta.plural);
+        faltanHTML.innerHTML = dayCount;
         proximoHTML.innerHTML = proximo;
         detalleHTML.innerHTML = detalle;
-        lectorHTML.innerHTML = `Faltan ${faltan} días para el próximo feriado. `
+        lectorHTML.innerHTML = `Faltan ${dayCount} días para el próximo feriado. `
             + `El próximo feriado es el ${proximo}. ${detalle}`;
   
         for (var i in this.options.markers[0]) {
