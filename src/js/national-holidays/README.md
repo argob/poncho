@@ -171,7 +171,7 @@ const holidays2025 = [
     { "date": "24/11/2025", "label": "Día de la Soberanía Nacional (20/11)", "type": "trasladable" },
     { "date": "08/12/2025", "label": "Inmaculada Concepción de María", "type": "inamovible" },
     { "date": "25/12/2025", "label": "Navidad", "type": "inamovible" },
-    { "date": "01/01/2026", "label": "Año nuevo", "type": "inamovible" },
+    { "date": "01/01/2026", "label": "Año nuevo", "type": "inamovible" }
 ];
 ```
 
@@ -184,7 +184,6 @@ const holidays2025 = [
 En la llamada al calendario hay que modificar dos índices: `calendarYear`, donde se define el año de la agenda y `markers`, donde se incluye el documento JSON con la información de los feriados.
 
 ```js
-<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", function() {
     const calendarOptions = {
