@@ -163,7 +163,7 @@
     <link rel="stylesheet" href="http://127.0.0.1:5501/src/demo/national-holidays/css/main.css">
     <script src="../src/js/national-holidays.js"></script>
   
-    <script>
+<script>
     const holidays2023 = [
         { "date": "01/01/2023", "label": "Año Nuevo", "type": "inamovible" },
         { "date": "20/02/2023", "label": "Carnaval", "type": "inamovible" },
@@ -346,10 +346,10 @@
 document.addEventListener("DOMContentLoaded", function() {
     const calendarOptions = {
         "calendarYear": 2025,
+        "markers": [holidays2025],
         "allowHTML": true,
         "containerId": "#calendar-container",
         "templateId": "#month-tpl",
-        "markers": [holidays2025],
         "holidays_type": {
             "inamovible": "primary",
             "trasladable": "success",
@@ -359,7 +359,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     calendar.render(calendarOptions);
 });
-
-    </script>
+</script>
   </body>
 </html>

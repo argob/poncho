@@ -1,5 +1,12 @@
-# Bloque html
+![JavaScript](https://img.shields.io/badge/javascript-555555?logo=javascript&logoColor=f5f5f5) ![HTML5](https://img.shields.io/badge/HTML5-555555?logo=html5&logoColor=f5f5f5)
 
+# 📦 Feriados nacionales
+
+## 🚀 Instalación
+
+### 1. Incluir código HTML
+
+Copie y pegue el código HTML sin modificar ninguno de los selectores en el código. 
 
 ```html
 <!-- Calendar -->
@@ -34,7 +41,6 @@
           <p id="js-lector">&nbsp;</p>
       </div>
       <!-- / Bloque dinámico -->
-
       <div class="row">
           <div class="col-md-12">
               <div class="row">
@@ -120,7 +126,17 @@
 ```
 
 
-### Datos en formato JSON
+### 2. Incluir la información para cada feriado en formato JSON
+
+Cree un documento JSON con la información de cada uno de los feriados se parados por entradas independientes.
+
+Estructura del documento JSON para cada una de las entradas.
+
+| Clave | Valor |
+|:--|:--|
+| **date** | Fecha en formato dd/mm/yyyy (día, mes y año). Utilizando ceros a la izquierda en día y mes cuando solo tenga un dígito. |
+| **label** | Nombre del feriado |
+| **type** | Define uno de los cuatro tipos de feriado: `inamovible`, `no_laborable`, `turistico` y `transladable`. |
 
 ```json
 const holidays2025 = [
@@ -159,25 +175,31 @@ const holidays2025 = [
 ];
 ```
 
+### 3. Incluir librería poncho.min.js
+```js
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
+```
 
-### Script Javascript
+### 4. Incluir la llamada al calendario
+En la llamada al calendario hay que modificar dos índices: `calendarYear`, donde se define el año de la agenda y `markers`, donde se incluye el documento JSON con la información de los feriados.
 
 ```js
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", function() {
     const calendarOptions = {
         "calendarYear": 2025,
+        "markers": [holidays2025],
         "allowHTML": true,
         "containerId": "#calendar-container",
         "templateId": "#month-tpl",
-        "markers": [holidays2025],
         "holidays_type": {
             "inamovible": "primary",
             "trasladable": "success",
             "no_laborable": "nl",
             "turistico": "turistico"
         }
-    }
+    };
     calendar.render(calendarOptions);
 });
 </script>
