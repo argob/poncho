@@ -210,15 +210,14 @@ const calendar = {
     const today = new Date();
     const hoynoes = document.querySelector("#js-hoynoes");
     const hoyes = document.querySelector("#js-hoyes");
-  
+
     if (this.options.calendarYear === new Date(Date.now()).getFullYear() || (
-      this.options.calendarYear - 1) === new Date(Date.now()).getFullYear()) {
+        this.options.calendarYear - 1) === new Date(Date.now()).getFullYear()){
 
         const n_days = document.querySelector('#js-ndays');
         const faltanHTML = document.querySelector("#js-faltan");
         const proximoHTML = document.querySelector("#js-proximo");
         const detalleHTML = document.querySelector("#js-detalle");
-        const lectorHTML = document.querySelector("#js-lector");
         const detallehoy = document.querySelector("#js-detallehoy");
         const strDia = document.querySelector(".js-dia");
         const strFalta = document.querySelector(".js-falta");
@@ -250,27 +249,23 @@ const calendar = {
         faltanHTML.innerHTML = dayCount;
         proximoHTML.innerHTML = proximo;
         detalleHTML.innerHTML = detalle;
-        lectorHTML.innerHTML = `Faltan ${dayCount} días para el próximo feriado. `
-            + `El próximo feriado es el ${proximo}. ${detalle}`;
-  
+
         for (var i in this.options.markers[0]) {
             var holiday = this.options.markers[0][i];
             var splittedDate = holiday.date.split('/');
             var date = new Date(splittedDate[2], splittedDate[1] - 1, splittedDate[0]);
-  
+
             if (today.getDate() == date.getDate() &&
                 today.getMonth() == date.getMonth() &&
                 holiday.type !== 'no_laborable') {
-  
+
                 hoyes.classList.remove('hidden');
                 hoyes.classList.add(`text-${this.options.holidays_type[holiday.type]}`);
-  
+
                 hoynoes.classList.add('hidden');
-  
+
                 detallehoy.innerHTML = holiday.label;
                 detallehoy.className = `text-${this.options.holidays_type[holiday.type]}`;
-  
-                lectorHTML.innerHTML = `Hoy es feriado. ${holiday.label}`;
                 break;
             }
         };
