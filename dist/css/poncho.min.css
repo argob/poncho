@@ -14879,6 +14879,9 @@ DEGRADÉ: .bg-mix-azul-info .bg-mix-info-azul .bg-mix-palta-azul .bg-mix-azul-pa
 .national-holidays .date {
   font-weight: 600;
 }
+.national-holidays .display-block {
+  display: block;
+}
 .national-holidays .bg-success {
   color: white;
 }
@@ -14898,7 +14901,15 @@ DEGRADÉ: .bg-mix-azul-info .bg-mix-info-azul .bg-mix-palta-azul .bg-mix-azul-pa
   color: #c1c1c1;
 }
 .national-holidays .text-turistico {
-  color: var(--uva, #6a1b99);
+  color: var(--arg-uva, #6a1b99);
+}
+.national-holidays .conteo-regresivo-dias {
+  font-size: 70px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0px;
 }
 
 /* References */
@@ -14924,63 +14935,15 @@ DEGRADÉ: .bg-mix-azul-info .bg-mix-info-azul .bg-mix-palta-azul .bg-mix-azul-pa
     grid-template-columns: repeat(2, 1fr);
     grid-column-gap: 2.5em;
   }
+  .national-holidays .conteo-regresivo-dias {
+    font-size: calc(1.375rem + 4vw);
+  }
 }
 @media (max-width: 767px) {
   .national-holidays .calendar {
     grid-template-columns: repeat(1, 1fr);
   }
 }
-/* 
-#infoFeriado {
-  font-size: 20px;
-}
-
-#detalle {
-  margin-top: 20px;
-}
-
-.icono-arg-mi-argentina.fa-fw.fa-3x:before {
-  line-height: 58px;
-}
-
-.jumbotron {
-  background-size: inherit;
-  background-color: var(--cielo);
-}
-
-#block-system-main
-  > div
-  > div.panel-pane.pane-jumbotron
-  > div
-  > section
-  > div.jumbotron_bar
-  > div
-  > div
-  > div
-  > ul {
-  display: none !important;
-}
-
-#jumbo-menu {
-  display: none;
-}
-
-@media (max-width: 991px) {
-  .col-md-3 {
-    text-align: center;
-  }
-}
-
-@media (min-width: 992px) {
-  .col-md-3:nth-of-type(1) {
-    text-align: right;
-  }
-
-  .col-md-3:nth-of-type(2) {
-    text-align: left;
-  }
-}
- */
 .poncho-map-province__toggle-element {
   display: none;
 }
