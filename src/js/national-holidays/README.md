@@ -13,7 +13,7 @@ Copie y pegue el código HTML sin modificar ninguno de los selectores en el cód
 <section class="national-holidays">
     <!-- Bloque dinámico -->
     <!-- days countdown -->
-    <div class="row numbers m-b-3" id="js-hoynoes">
+    <div class="row m-b-4 clearfix" id="js-hoynoes">
         <div class="col-md-4 col-md-offset-4 col-xs-12 col-sm-12">
             <p class="m-b-0 text-arg-azul">
                 <span class="js-falta">Faltan</span>
@@ -34,8 +34,8 @@ Copie y pegue el código HTML sin modificar ninguno de los selectores en el cód
     </div>
     <!-- / days countdown -->
     <!-- Is hollyday -->
-    <div class="m-b-3 hidden" id="js-hoyes" >
-        <p class="col-md-4 col-md-offset-4 col-xs-12 col-sm-12 m-b-4">
+    <div class="m-b-4 hidden clearfix" id="js-hoyes">
+        <p class="col-md-4 col-md-offset-4 col-xs-12 col-sm-12">
             <span class="p-y-0 m-y-0 text-arg-azul h1 conteo-regresivo-dias" id="js-hoy">
                 <i class="fa icono-arg-calendario-2 text-arg-azul "></i>
                 <span>Hoy</span>
@@ -47,7 +47,6 @@ Copie y pegue el código HTML sin modificar ninguno de los selectores en el cód
         </p>
     </div>
     <!-- / Is hollyday -->
-    <div id="js-lector" style="display: none;"></div>
     <!-- / Bloque dinámico -->
     <div class="row">
         <div class="col-md-12">
@@ -132,7 +131,6 @@ Copie y pegue el código HTML sin modificar ninguno de los selectores en el cód
                     <div class="holidays js-holidays list-unstyled"></div>
                 </div>
                 <!-- / Template -->
-
             </div>
         </div>
     </div>
