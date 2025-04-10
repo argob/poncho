@@ -1,1 +1,1 @@
-sass --update --trace ../../scss/calendar/_national-holidays.scss:./css/main.css --style compressed;
+sass --update --trace ../src/scss/_national-holidays.scss:./css/main.css --style compressed;
