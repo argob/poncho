@@ -234,7 +234,7 @@ const calendar = {
                 var dayCount = Math.ceil(time_diff / (1000 * 3600 * 24));
                 var day = date.getDate();
                 var month = this.months[date.getMonth()];
-                var proximo = `${day} de ${month.toLocaleLowerCase()} de ${date.getFullYear()} `;
+                var proximo = `${day} de ${month.toLocaleLowerCase()} de ${date.getFullYear()}`;
                 var detalle = holiday.label;
                 break;
             }
