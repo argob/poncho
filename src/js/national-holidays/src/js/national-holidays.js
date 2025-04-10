@@ -243,8 +243,7 @@ const calendar = {
         const dict = this.dictionary.es;
         const isSingular = (dayCount == 1 ? true : false);
 
-        strDia.textContent = (isSingular ? dict.dia.singular.toUpperCase() : 
-                dict.dia.plural.toUpperCase());
+        strDia.textContent = (isSingular ? dict.dia.singular : dict.dia.plural);
         strFalta.textContent = (isSingular ? dict.falta.singular : 
                 dict.falta.plural);
         faltanHTML.innerHTML = dayCount;
