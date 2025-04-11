@@ -1,0 +1,40 @@
+// USAGE
+// <p><span>Hello <span class="br-sm"><em>inner text</em></span> world.</p>
+// <p><span>Hello <span class="br-md"></span> world.</p>
+// <p><span>Hello <span class="br-lg"></span> world.</p>
+
+
+/* Extra small devices (phones, less than 576px) */
+@media (max-width: 575.98px) {
+    .br-sm {
+        display: block;
+    }
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+    .br-sm {
+        display: block;
+    }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .br-md {
+        display: block;
+    }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    .br-lg {
+        display: block;
+    }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    .br-lg {
+        display: block;
+    }
+}

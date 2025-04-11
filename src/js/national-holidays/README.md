@@ -16,14 +16,15 @@ Copie y pegue el código HTML sin modificar ninguno de los selectores en el cód
     <div class="row m-b-4 clearfix" id="js-hoynoes">
         <div class="col-md-4 col-md-offset-4 col-xs-12 col-sm-12">
             <p class="m-b-0 text-arg-azul">
-                <span class="js-falta">Faltan</span>
+                <span class="js-falta text-capitalize">faltan</span>
                 <span class="h1 conteo-regresivo-dias" id="js-ndays">
                     <i class="fa icono-arg-calendario-2"></i>
                     <span id="js-faltan">0</span>
                     <span class="js-dia"></span>
                 </span>
                 <span class="lead">
-                    para el próximo feriado que es el 
+                    para el próximo feriado que es el
+                    <span class="br-lg"></span>
                     <span id="js-proximo"></span><span class="sr-only">.</span>
                 </span>
                 <span 
