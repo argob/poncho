@@ -8,7 +8,7 @@ const calendar = {
     dictionary: {
         es:{
             falta: {plural:"Faltan", singular:"Falta"},
-            dia: {plural:"Días", singular:"día"},
+            dia: {plural:"días", singular:"día"},
         },
     },
   TODAY: null,
