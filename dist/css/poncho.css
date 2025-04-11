@@ -14446,6 +14446,68 @@ ul.colores li:hover {
   display: inline-block;
 }
 
+.en-space {
+  font-size: 0.5em !important;
+}
+
+.em-space {
+  font-size: 1em !important;
+}
+
+.third-space {
+  font-size: 0.3333333333em !important;
+}
+
+.quarter-space {
+  font-size: 0.25em !important;
+}
+
+.sixth-space {
+  font-size: 0.1666666667em !important;
+}
+
+.thin-space {
+  font-size: 0.125em !important;
+}
+
+.hair-space {
+  font-size: 0.0416666667em !important;
+}
+
+.text-uppercase {
+  text-transform: uppercase;
+}
+
+/* Extra small devices (phones, less than 576px) */
+@media (max-width: 575.98px) {
+  .br-sm {
+    display: block;
+  }
+}
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .br-sm {
+    display: block;
+  }
+}
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .br-md {
+    display: block;
+  }
+}
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .br-lg {
+    display: block;
+  }
+}
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .br-lg {
+    display: block;
+  }
+}
 /* ENCABEZADOS
 
 Los encabezados pueden usarse en 7 colores plenos y 4 degradé 
