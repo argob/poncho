@@ -37,14 +37,16 @@ const calendar = {
                 "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio",
                 "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
             ],
-            weekDayName: ["Dom", "Lun", "Mar", "Mie", "Jue", "Vie"]
+            weekDaysAbbr: ["Dom", "Lun", "Mar", "Mie", "Jue", "Vie", "Sab"],
+            weekDays: ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"]
         },
         en:{
             months: [
                 "January", "February", "March", "April", "May", "June", "July",
                 "August", "September", "October", "November", "December"
             ],
-            weekDayName: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri"]
+            weekDaysAbbr: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+            weekDays: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
         },
     },
     daysOfMonth: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
@@ -66,8 +68,10 @@ const calendar = {
         this.ln = "es";
         this.daysOfMonth = (options.daysOfMonth ? 
                 options.daysOfMonth : this.daysOfMonth);
-        this.container = jQuery(this.options.containerId);
+        // this.container = jQuery(this.options.containerId);
+        this.container = document.querySelector(this.options.containerId);
         this.template = jQuery(this.options.templateId);
+        this._template = document.getElementById("monthtpl");
         this.iteration_date = this.TODAY;
 
         this.renderCalendar();
@@ -82,27 +86,38 @@ const calendar = {
     },
     renderCalendar: function() {
         let iteration_date = this.TODAY;
-        this.template.hide();
+        // this.template.hide();
 
-        for(let monthNumber in this.dictionary[this.ln].months){
-            let monthId = 'm' + this.dictionary[this.ln].months[monthNumber];
-            let iMonth = this.getTplClone(this.template, monthId);
-            this.container.append(iMonth);
+        for(let monthNumber in [...Array(12).keys()]){
+            const clonedMonth = this._template.content.cloneNode(true);
+            const month = this.drawCalendarMonth(iteration_date, monthNumber, clonedMonth);
+            this.container.appendChild(month);
+
             iteration_date.setUTCMonth(monthNumber);
-            this.drawCalendarMonth(iteration_date, iMonth.attr('id'));
         }
     },
-    drawCalendarMonth: function(iteration_date, monthId) {
-        var month = iteration_date.getUTCMonth();
-        var day = iteration_date.getUTCDay();
-        var year = iteration_date.getUTCFullYear();
-        var date = iteration_date.getUTCDate();
-        var totalDaysOfMonth = this.daysOfMonth[month];
+    drawCalendarMonth: function(iteration_date, monthNumber, tpl) {
+        const month = iteration_date.getUTCMonth();
+        const day = iteration_date.getUTCDay();
+        const year = iteration_date.getUTCFullYear();
+        const date = iteration_date.getUTCDate();
+        const totalDaysOfMonth = this.daysOfMonth[month];
+        let monthName = this.dictionary[this.ln].months[monthNumber];
 
-        var $h2 = jQuery('#' + monthId).find('h2').first();
+        tpl.querySelector(".js-tpl-id").id = `m${monthName}`;
+        tpl.querySelector(".js-tpl-month").textContent = monthName;
 
-        $h2.text(this.dictionary[this.ln].months[month]);
-        var dateToHighlight = 0;
+        // Creo los días de la semana
+        const tr = document.createElement("tr");
+        for(let d of this.dictionary[this.ln].weekDaysAbbr){
+            const td = document.createElement("th");
+            td.textContent = d;
+            tr.appendChild(td);
+        }
+        tpl.querySelector(".js-tpl-weekdays").appendChild(tr);
+
+
+        let dateToHighlight = 0;
         // Determine if Month && Year are current for Date Highlight
         if (iteration_date.getUTCMonth() === month && 
                 iteration_date.getUTCFullYear() === year) {
@@ -114,21 +129,27 @@ const calendar = {
                 totalDaysOfMonth = 29;
             }
         }
+
         // Get Start Day
         this.renderMonth(
-            monthId,
+            tpl,
             this.getCalendarStart(day, date), totalDaysOfMonth, dateToHighlight
         );
+        return tpl
     },
-    renderMonth: function(monthId, startDay, totalDays, currentDate) {
+    renderMonth: function(tpl, startDay, totalDays, currentDate) {
         let currentRow = 1;
         let currentDay = startDay;
-        var $monthTpl = jQuery('#' + monthId);
-        var $week = this.drawCalendarRow($monthTpl);
+        // var $monthTpl = jQuery('#' + monthId);
+        // var $week = this.drawCalendarRow($monthTpl);
         var $day;
         let i = 1;
 
+
+        debugger
+
         for (; i <= totalDays; i++) {
+            debugger
             $day = $week.find('td').eq(currentDay);
             $day.text(i);
 
@@ -140,6 +161,7 @@ const calendar = {
             // Generate new row when day is Saturday, but only if there are
             // additional days to render
             if (currentDay === 0 && (i + 1 <= totalDays)) {
+                const tr = document.createElement("tr");
                 $week = this.drawCalendarRow($monthTpl);
                 currentRow++;
             }
@@ -150,29 +172,33 @@ const calendar = {
             currentRow++;
         }
     },
-    drawCalendarRow: function($monthTpl) {
-        var $table = $monthTpl.find('table').first();
-        var $tr = jQuery('<tr/>');
-        for (var i = 0, len = 7; i < len; i++) {
-            $tr.append(jQuery('<td/>').html('&nbsp;'));
+    drawCalendarRow: function() {
+        const tr = document.createElement("tr");
+        for (let i = 0, len = 7; i < len; i++) {
+            const td = document.createElement("td");
+            td.innerHTML = "&nbsp;";
+            tr.appendChild(td);
         }
-        $table.append($tr);
-
-        return $tr;
+        return tr;
     },
     // Returns the day of week which month starts (eg 0 
     // for Sunday, 1 for Monday, etc.)
     getCalendarStart: function(dayOfWeek, currentDate) {
-        var date = currentDate - 1;
-        var startOffset = (date % 7) - dayOfWeek;
+        const date = currentDate - 1;
+        const startOffset = (date % 7) - dayOfWeek;
         if (startOffset > 0) {
             startOffset -= 7;
         }
         return Math.abs(startOffset);
     },
-    getTplClone: function(tpl, id) {
-        return tpl.clone().attr('id', id).show();
-    },
+    // getTplClone: function(tpl, id) {
+    //     const clone = tpl.content.cloneNode(true);
+    //     const month = clone.querySelector(".month");
+    //     month.id = id;
+    //     return clone;
+    //     // return clone;
+    //     return tpl.clone().attr('id', id).show();
+    // },
     markDates: function(markers) {
         var previousLabel = "";
         var previousDate = null;
@@ -198,8 +224,10 @@ const calendar = {
             const label = markerLabel;
 
             if (year === this.TODAY.getUTCFullYear()) {
-                mesTable.find('td').eq(date + (startDate) + 6).addClass(
-                    'bg-' + this.options.holidays_type[classes]
+                mesTable
+                    .find('td')
+                    .eq(date + (startDate) + 6)
+                    .addClass(`bg-${this.options.holidays_type[classes]}`
                 );
 
                 this.addLabel(mesTable, date, label, previousLabel, previousDate);
@@ -260,7 +288,6 @@ const calendar = {
                     markerDay, 
                     markerMonth, 
                     markerYear] = markerDate.split('/');
- 
                 const date = this.tZone(
                     new Date(markerYear, markerMonth - 1, markerDay),
                     this.timeZone);
@@ -273,7 +300,8 @@ const calendar = {
                     const day = date.getDate();
                     const month = this.dictionary[this.ln].months[date.getMonth()];
                     proximo = {
-                        es: `${day} de ${month.toLocaleLowerCase()} ` + `de ${date.getFullYear()}`,
+                        es: `${day} de ${month.toLocaleLowerCase()} ` 
+                            + `de ${date.getFullYear()}`,
                         en: `${month} ${day}th, ${date.getFullYear()}`
                     }
                     detalle = markerLabel;
@@ -299,8 +327,10 @@ const calendar = {
                     date:markerDate, 
                     type:markerType, 
                     label:markerLabel} = markers[0][i];
-
-                const [markerDay, markerMonth, markerYear] = markerDate.split('/');
+                const [
+                    markerDay,
+                    markerMonth,
+                    markerYear] = markerDate.split('/');
                 const date = this.tZone(
                     new Date(markerYear, markerMonth - 1, markerDay), 
                     this.timeZone);

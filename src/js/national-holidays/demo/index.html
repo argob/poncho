@@ -156,10 +156,7 @@
                         </div>
                     </div>
                     <!-- / References -->
-
                 </div>
-
-                
                 <div id="calendar-container" class="calendar"></div>
                 
                 <!-- Template -->
@@ -189,28 +186,20 @@
     </div>
 </section>
 <!-- / Calendar -->
-
+<!-- Template -->
 <template id="monthtpl">
-        <div class="month">
-            <h2 class="h5 text-center">Mes</h2>
-            <table class="table table-striped text-center small" role="presentation">
-                <thead>
-                    <tr>
-                        <td aria-hidden="true" class="text-center day">Dom</td>
-                        <td aria-hidden="true" class="text-center day">Lun</td>
-                        <td aria-hidden="true" class="text-center day">Mar</td>
-                        <td aria-hidden="true" class="text-center day">Mié</td>
-                        <td aria-hidden="true" class="text-center day">Jue</td>
-                        <td aria-hidden="true" class="text-center day">Vie</td>
-                        <td aria-hidden="true" class="text-center day">Sáb</td>
-                    </tr>
-                </thead>
-                <tbody class="js-tbody"></tbody>
-            </table>
-        </div>
-        <div class="holidays js-holidays list-unstyled"></div>
+    <div class="month js-tpl-id">
+        <h2 class="h5 text-center js-tpl-month"></h2>
+        <table 
+            class="table table-striped text-center small" 
+            role="presentation">
+            <thead class="js-tpl-weekdays"></thead>
+            <tbody class="js-tpl-tbody"></tbody>
+        </table>
+    </div>
+    <div class="holidays js-holidays list-unstyled"></div>
 </template>
-    
+<!-- / Template -->
 
 
 
