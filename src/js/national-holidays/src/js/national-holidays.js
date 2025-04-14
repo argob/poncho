@@ -37,14 +37,14 @@ const calendar = {
                 "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio",
                 "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
             ],
-            weekDayName: ["Dom", "Lun", "Mar", "Mie", "Jue", "Vie"]
+            weekDaysAbbr: ["Dom", "Lun", "Mar", "Mie", "Jue", "Vie", "Sab"]
         },
         en:{
             months: [
                 "January", "February", "March", "April", "May", "June", "July",
                 "August", "September", "October", "November", "December"
             ],
-            weekDayName: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri"]
+            weekDaysAbbr: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
         },
     },
     daysOfMonth: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],

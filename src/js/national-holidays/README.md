@@ -14,13 +14,19 @@ Copie y pegue el código HTML sin modificar ninguno de los selectores en el cód
     <!-- Bloque dinámico -->
     <!-- days countdown -->
     <div class="row m-b-4 clearfix" id="js-hoynoes">
-        <div class="col-md-4 col-md-offset-4 col-xs-12 col-sm-12">
+        <div class="col-md-4 col-md-offset-4 col-xs-12 col-sm-12" role="text">
             <p class="m-b-0 text-arg-azul">
-                <span class="js-falta text-capitalize">faltan</span>
+                <span 
+                    class="js-falta text-capitalize" 
+                    data-text-singular-es="falta"
+                    data-text-plural-es="faltan">faltan</span>
                 <span class="h1 conteo-regresivo-dias" id="js-ndays">
                     <i class="fa icono-arg-calendario-2"></i>
                     <span id="js-faltan">0</span>
-                    <span class="js-dia"></span>
+                    <span 
+                        class="js-dia" 
+                        data-text-singular-es="día" 
+                        data-text-plural-es="días"></span>
                 </span>
                 <span class="lead">
                     para el próximo feriado que es el
@@ -35,9 +41,11 @@ Copie y pegue el código HTML sin modificar ninguno de los selectores en el cód
     </div>
     <!-- / days countdown -->
     <!-- Is hollyday -->
-    <div class="m-b-4 hidden clearfix" id="js-hoyes">
+    <div class="m-b-4 hidden clearfix" id="js-hoyes" aria-hidden="true">
         <p class="col-md-4 col-md-offset-4 col-xs-12 col-sm-12">
-            <span class="p-y-0 m-y-0 text-arg-azul h1 conteo-regresivo-dias" id="js-hoy">
+            <span 
+                class="p-y-0 m-y-0 text-arg-azul h1 conteo-regresivo-dias" 
+                id="js-hoy">
                 <i class="fa icono-arg-calendario-2 text-arg-azul "></i>
                 <span>Hoy</span>
             </span>
@@ -132,6 +140,7 @@ Copie y pegue el código HTML sin modificar ninguno de los selectores en el cód
                     <div class="holidays js-holidays list-unstyled"></div>
                 </div>
                 <!-- / Template -->
+
             </div>
         </div>
     </div>
