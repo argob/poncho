@@ -4,28 +4,35 @@
  * @summary Hace un render de un calendario anual de los feriados 
  * Nacionales de la República Argentina. 
  */
-function tZone(date, timeZone="America/Argentina/Buenos_Aires") {
-    if (!(date instanceof Date)) {
-        throw new TypeError("Se espera un objeto Date()");
-    }
-    const options = {
-        timeZone: timeZone,
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-    };
-    return new Date(date.toLocaleString('en-US', options));
-}
-
 const calendar = {
+    toggleText(scope, ln){
+        function toCamelCase(slug){
+            return slug.toLowerCase()
+                .replace(/-([a-z])/g, (_, letter) => letter.toUpperCase());
+        }
+        for( let i of document.querySelectorAll(`[data-${scope}-${ln}]`)){
+            const key = toCamelCase(`${scope}-${ln}`);
+            i.textContent = i.dataset[key];
+        } 
+    },
+    tZone(date, timeZone="America/Argentina/Buenos_Aires") {
+        if (!(date instanceof Date)) {
+            throw new TypeError("Se espera un objeto Date()");
+        }
+        const options = {
+            timeZone: timeZone,
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+        };
+        return new Date(date.toLocaleString('en-US', options));
+    },
     timeZone: "America/Argentina/Buenos_Aires",
     dictionary:{
         es:{
-            falta: {plural:"faltan", singular:"falta"},
-            dia: {plural:"días", singular:"día"},
             months: [
                 "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio",
                 "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
@@ -33,8 +40,6 @@ const calendar = {
             weekDayName: ["Dom", "Lun", "Mar", "Mie", "Jue", "Vie"]
         },
         en:{
-            falta: {plural:"left", singular:"left"},
-            dia: {plural:"days", singular:"day"},
             months: [
                 "January", "February", "March", "April", "May", "June", "July",
                 "August", "September", "October", "November", "December"
@@ -42,8 +47,8 @@ const calendar = {
             weekDayName: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri"]
         },
     },
-    TODAY: null,
     daysOfMonth: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
+    TODAY: null,
     container: null,
     template: null,
     options: {},
@@ -53,14 +58,14 @@ const calendar = {
             .forEach(e => e.innerHTML = "");
 
         // Define el primer día del [año{options.calendarYear}]
-        this.TODAY = tZone(
+        this.TODAY = this.tZone(
             new Date(options.calendarYear, 0, 1, 3, 0, 0),
             this.timeZone);
 
         this.options = options;
-        this.ln = "en";
+        this.ln = "es";
         this.daysOfMonth = (options.daysOfMonth ? 
-            options.daysOfMonth : this.daysOfMonth);
+                options.daysOfMonth : this.daysOfMonth);
         this.container = jQuery(this.options.containerId);
         this.template = jQuery(this.options.templateId);
         this.iteration_date = this.TODAY;
@@ -179,7 +184,7 @@ const calendar = {
                 label:markerLabel} = markers[indice];
 
             const [markerDay, markerMonth, markerYear] = markerDate.split('/');
-            const objMarkerDate = tZone(
+            const objMarkerDate = this.tZone(
                 new Date(markerYear, markerMonth - 1, markerDay, 3, 0, 0),
                 this.timeZone);
 
@@ -228,7 +233,7 @@ const calendar = {
          * Agrega la información para el bloque que informa sobre si 
          * es o no un día feriado y cuanto falta para el próixmo
          */
-        const today = tZone((new Date), this.timeZone);
+        const today = this.tZone((new Date), this.timeZone);
         const hoynoes = document.querySelector("#js-hoynoes");
         const hoyes = document.querySelector("#js-hoyes");
 
@@ -237,15 +242,14 @@ const calendar = {
         
         let dayCount = 0;
         let proximo = detalle = "";
-        
+
+
         if (calendarYear === nowYear || (calendarYear - 1) === nowYear){
             const n_days = document.querySelector('#js-ndays');
             const faltanHTML = document.querySelector("#js-faltan");
             const proximoHTML = document.querySelector("#js-proximo");
             const detalleHTML = document.querySelector("#js-detalle");
             const detallehoy = document.querySelector("#js-detallehoy");
-            const strDia = document.querySelector(".js-dia");
-            const strFalta = document.querySelector(".js-falta");
 
             for (var i in markers[0]) {
                 const {
@@ -257,7 +261,7 @@ const calendar = {
                     markerMonth, 
                     markerYear] = markerDate.split('/');
  
-                const date = tZone(
+                const date = this.tZone(
                     new Date(markerYear, markerMonth - 1, markerDay),
                     this.timeZone);
 
@@ -268,22 +272,26 @@ const calendar = {
                     dayCount = Math.ceil(time_diff / (1000 * 3600 * 24));
                     const day = date.getDate();
                     const month = this.dictionary[this.ln].months[date.getMonth()];
-                    proximo = `${day} de ${month.toLocaleLowerCase()} `
-                        + `de ${date.getFullYear()}`;
+                    proximo = {
+                        es: `${day} de ${month.toLocaleLowerCase()} ` + `de ${date.getFullYear()}`,
+                        en: `${month} ${day}th, ${date.getFullYear()}`
+                    }
                     detalle = markerLabel;
 
                     break;
                 }
             }
 
-            const {falta, dia} = this.dictionary.es;
             const isSingular = (dayCount == 1 ? true : false);
+            if(isSingular){
+                this.toggleText("text-singular", this.ln);
+            } else {
+                this.toggleText("text-plural", this.ln);
+            }
+            this.toggleText("text", this.ln);
 
-            strDia.textContent = (isSingular ? dia.singular : dia.plural);
-            strFalta.textContent = (isSingular ? falta.singular : 
-                    falta.plural);
             faltanHTML.innerHTML = dayCount;
-            proximoHTML.innerHTML = proximo;
+            proximoHTML.innerHTML = proximo[this.ln];
             detalleHTML.innerHTML = detalle;
 
             for (var i in markers[0]) {
@@ -293,7 +301,7 @@ const calendar = {
                     label:markerLabel} = markers[0][i];
 
                 const [markerDay, markerMonth, markerYear] = markerDate.split('/');
-                const date = tZone(
+                const date = this.tZone(
                     new Date(markerYear, markerMonth - 1, markerDay), 
                     this.timeZone);
 
@@ -302,15 +310,18 @@ const calendar = {
                     markerType !== 'no_laborable') {
 
                     hoyes.classList.remove('hidden');
-                    hoyes.classList.add(`text-${holidays_type[markerType]}`);
+                    hoyes.removeAttribute("aria-hidden");
+                    hoyes.classList.add(`text-${holidaysType[markerType]}`);
 
                     hoynoes.classList.add('hidden');
+                    hoynoes.setAttribute("aria-hidden", "true");
 
                     detallehoy.innerHTML = markerLabel;
-                    detallehoy.className = `text-${holidays_type[markerType]}`;
+                    detallehoy.className = `text-${holidaysType[markerType]}`;
                     break;
                 }
             };
+
         } else {
             // Año distinto al actual
             hoynoes.classList.add('hidden');
