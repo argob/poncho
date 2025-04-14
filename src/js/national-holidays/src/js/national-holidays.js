@@ -4,42 +4,71 @@
  * @summary Hace un render de un calendario anual de los feriados 
  * Nacionales de la República Argentina. 
  */
+function tZone(date, timeZone="America/Argentina/Buenos_Aires") {
+    if (!(date instanceof Date)) {
+        throw new TypeError("Se espera un objeto Date()");
+    }
+    const options = {
+        timeZone: timeZone,
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+    };
+    return new Date(date.toLocaleString('en-US', options));
+}
+
 const calendar = {
-    dictionary: {
+    timeZone: "America/Argentina/Buenos_Aires",
+    dictionary:{
         es:{
             falta: {plural:"faltan", singular:"falta"},
             dia: {plural:"días", singular:"día"},
+            months: [
+                "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio",
+                "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+            ],
+            weekDayName: ["Dom", "Lun", "Mar", "Mie", "Jue", "Vie"]
+        },
+        en:{
+            falta: {plural:"left", singular:"left"},
+            dia: {plural:"days", singular:"day"},
+            months: [
+                "January", "February", "March", "April", "May", "June", "July",
+                "August", "September", "October", "November", "December"
+            ],
+            weekDayName: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri"]
         },
     },
     TODAY: null,
-    months: [
-        "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio",
-        "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
-    ],
-    weekDayName: ["Dom", "Lun", "Mar", "Mie", "Jue", "Vie"],
     daysOfMonth: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
     container: null,
     template: null,
     options: {},
     render: function(options) {
-        _this = this;
         document
             .querySelectorAll(`${options.containerId}, .js-holidays`)
             .forEach(e => e.innerHTML = "");
 
-        this.TODAY = new Date(Date.UTC(options.calendarYear, 0, 1, 3, 0, 0));
+        // Define el primer día del [año{options.calendarYear}]
+        this.TODAY = tZone(
+            new Date(options.calendarYear, 0, 1, 3, 0, 0),
+            this.timeZone);
+
         this.options = options;
+        this.ln = "en";
         this.daysOfMonth = (options.daysOfMonth ? 
             options.daysOfMonth : this.daysOfMonth);
         this.container = jQuery(this.options.containerId);
         this.template = jQuery(this.options.templateId);
-        this.iteration_date = new Date(
-            Date.UTC(this.TODAY.getFullYear(), this.TODAY.getMonth(), 1, 3, 0, 0)
-        );
+        this.iteration_date = this.TODAY;
+
         this.renderCalendar();
-        this.options.markers.forEach(function(e) {
-            _this.markDates(e);
-        });
+        for(let e of this.options.markers){
+            this.markDates(e);
+        }
         this.daysLeft();
         // remueve los <ul> vacíos.
         document
@@ -47,20 +76,16 @@ const calendar = {
             .forEach(e => !e.hasChildNodes() ? e.remove() : null);
     },
     renderCalendar: function() {
-        _this = this;
-        var iteration_date = new Date(
-            Date.UTC(
-                _this.TODAY.getFullYear(), _this.TODAY.getMonth(), 1, 3, 0, 0
-            )
-        );
+        let iteration_date = this.TODAY;
         this.template.hide();
-        this.months.forEach(function(month, monthNumber) {
-            let monthId = 'm' + month;
-            let iMonth = _this.getTplClone(_this.template, monthId);
-            _this.container.append(iMonth);
+
+        for(let monthNumber in this.dictionary[this.ln].months){
+            let monthId = 'm' + this.dictionary[this.ln].months[monthNumber];
+            let iMonth = this.getTplClone(this.template, monthId);
+            this.container.append(iMonth);
             iteration_date.setUTCMonth(monthNumber);
-            _this.drawCalendarMonth(iteration_date, iMonth.attr('id'));
-        });
+            this.drawCalendarMonth(iteration_date, iMonth.attr('id'));
+        }
     },
     drawCalendarMonth: function(iteration_date, monthId) {
         var month = iteration_date.getUTCMonth();
@@ -71,7 +96,7 @@ const calendar = {
 
         var $h2 = jQuery('#' + monthId).find('h2').first();
 
-        $h2.text(this.months[month]);
+        $h2.text(this.dictionary[this.ln].months[month]);
         var dateToHighlight = 0;
         // Determine if Month && Year are current for Date Highlight
         if (iteration_date.getUTCMonth() === month && 
@@ -144,36 +169,37 @@ const calendar = {
         return tpl.clone().attr('id', id).show();
     },
     markDates: function(markers) {
-        _this = this;
-        var previousLabel = '';
+        var previousLabel = "";
         var previousDate = null;
 
-        for (var indice in markers) {
+        for (var indice in markers){
+            const {
+                date:markerDate, 
+                type:markerType, 
+                label:markerLabel} = markers[indice];
 
-            const splittedDate = markers[indice].date.split('/');
-            const markerDate = new Date(
-                Date.UTC(splittedDate[2],
-                    splittedDate[1] - 1,
-                    splittedDate[0], 3, 0, 0)
-            );
+            const [markerDay, markerMonth, markerYear] = markerDate.split('/');
+            const objMarkerDate = tZone(
+                new Date(markerYear, markerMonth - 1, markerDay, 3, 0, 0),
+                this.timeZone);
 
-            const mes = _this.months[markerDate.getMonth()];
+            const mes = this.dictionary[this.ln].months[objMarkerDate.getUTCMonth()];
             const mesTable = jQuery('#m' + mes);
-            const date = markerDate.getDate();
-            const year = markerDate.getUTCFullYear();
-            const UTCDay = markerDate.getUTCDay();
-            const classes = markers[indice].type;
-            const startDate = _this.getCalendarStart(UTCDay, date);
-            const label = markers[indice].label;
+            const date = objMarkerDate.getDate();
+            const year = objMarkerDate.getUTCFullYear();
+            const UTCDay = objMarkerDate.getUTCDay();
+            const classes = markerType;
+            const startDate = this.getCalendarStart(UTCDay, date);
+            const label = markerLabel;
 
-            if (year === _this.TODAY.getUTCFullYear()) {
+            if (year === this.TODAY.getUTCFullYear()) {
                 mesTable.find('td').eq(date + (startDate) + 6).addClass(
-                    'bg-' + _this.options.holidays_type[classes]
+                    'bg-' + this.options.holidays_type[classes]
                 );
 
-                _this.addLabel(mesTable, date, label, previousLabel, previousDate);
-                previousLabel = markers[indice].label;
-                previousDate = markerDate;
+                this.addLabel(mesTable, date, label, previousLabel, previousDate);
+                previousLabel = markerLabel;
+                previousDate = objMarkerDate;
             }
         }
     },
@@ -202,18 +228,17 @@ const calendar = {
          * Agrega la información para el bloque que informa sobre si 
          * es o no un día feriado y cuanto falta para el próixmo
          */
-        const today = new Date();
+        const today = tZone((new Date), this.timeZone);
         const hoynoes = document.querySelector("#js-hoynoes");
         const hoyes = document.querySelector("#js-hoyes");
 
-        const {calendarYear, markers, holidays_type} = this.options;
+        const {calendarYear, markers, holidays_type:holidaysType} = this.options;
         const nowYear = today.getFullYear();
         
         let dayCount = 0;
         let proximo = detalle = "";
         
         if (calendarYear === nowYear || (calendarYear - 1) === nowYear){
-
             const n_days = document.querySelector('#js-ndays');
             const faltanHTML = document.querySelector("#js-faltan");
             const proximoHTML = document.querySelector("#js-proximo");
@@ -223,21 +248,29 @@ const calendar = {
             const strFalta = document.querySelector(".js-falta");
 
             for (var i in markers[0]) {
-                const holiday = markers[0][i];
-                const splittedDate = holiday.date.split('/');
-                const date = new Date(splittedDate[2], splittedDate[1] - 1, 
-                                      splittedDate[0]);
+                const {
+                    date:markerDate, 
+                    type:markerType, 
+                    label:markerLabel} = markers[0][i];
+                const [
+                    markerDay, 
+                    markerMonth, 
+                    markerYear] = markerDate.split('/');
+ 
+                const date = tZone(
+                    new Date(markerYear, markerMonth - 1, markerDay),
+                    this.timeZone);
 
-                if (today < date && holiday.type !== 'no_laborable') {
-                    n_days.classList.add(`text-${holidays_type[holiday.type]}`);
-                    detalleHTML.classList.add(`text-${holidays_type[holiday.type]}`);
+                if (today < date && markerType !== 'no_laborable') {
+                    n_days.classList.add(`text-${holidaysType[markerType]}`);
+                    detalleHTML.classList.add(`text-${holidaysType[markerType]}`);
                     const time_diff = Math.abs(date.getTime() - today.getTime());
                     dayCount = Math.ceil(time_diff / (1000 * 3600 * 24));
                     const day = date.getDate();
-                    const month = this.months[date.getMonth()];
+                    const month = this.dictionary[this.ln].months[date.getMonth()];
                     proximo = `${day} de ${month.toLocaleLowerCase()} `
                         + `de ${date.getFullYear()}`;
-                    detalle = holiday.label;
+                    detalle = markerLabel;
 
                     break;
                 }
@@ -254,21 +287,27 @@ const calendar = {
             detalleHTML.innerHTML = detalle;
 
             for (var i in markers[0]) {
-                const holiday = markers[0][i];
-                const splittedDate = holiday.date.split('/');
-                const date = new Date(splittedDate[2], splittedDate[1] - 1, splittedDate[0]);
+                const {
+                    date:markerDate, 
+                    type:markerType, 
+                    label:markerLabel} = markers[0][i];
+
+                const [markerDay, markerMonth, markerYear] = markerDate.split('/');
+                const date = tZone(
+                    new Date(markerYear, markerMonth - 1, markerDay), 
+                    this.timeZone);
 
                 if (today.getDate() == date.getDate() &&
                     today.getMonth() == date.getMonth() &&
-                    holiday.type !== 'no_laborable') {
+                    markerType !== 'no_laborable') {
 
                     hoyes.classList.remove('hidden');
-                    hoyes.classList.add(`text-${holidays_type[holiday.type]}`);
+                    hoyes.classList.add(`text-${holidays_type[markerType]}`);
 
                     hoynoes.classList.add('hidden');
 
-                    detallehoy.innerHTML = holiday.label;
-                    detallehoy.className = `text-${holidays_type[holiday.type]}`;
+                    detallehoy.innerHTML = markerLabel;
+                    detallehoy.className = `text-${holidays_type[markerType]}`;
                     break;
                 }
             };
