@@ -52,12 +52,14 @@ DEGRADÉ: .bg-mix-azul-info .bg-mix-info-azul .bg-mix-palta-azul .bg-mix-azul-pa
         color: $black !important;
     }
 
+    /*
     .enc-link {
         padding: 0px;
         width: 48%;
         vertical-align: text-top;
         margin: 1% 4px 3px 0px;
-    }
+    }*/
+    
 
     .w-100 {
         width: 100%;
@@ -96,14 +98,43 @@ DEGRADÉ: .bg-mix-azul-info .bg-mix-info-azul .bg-mix-palta-azul .bg-mix-azul-pa
         margin: 0px;
         max-width: 100%;
     }
+
+    /* Menú superior */
+    .enc-link {
+      padding: 0px;
+      width: 31%;
+      margin: 20px 3px 3px 14px;
+    
+      a {
+        text-decoration: underline;
+        text-underline-offset: 0.25em;
+      }
+    
+      &.active a span {
+        background-image: linear-gradient(to top, #000 3px, transparent 3px, transparent);
+        font-weight: 600;
+      }
+    
+      a {
+        &[href^="https://"][target^=_blank]:after, &[href^="http://"][target^=_blank]:after {
+          content: none;
+        }
+      }
+    }
+
+    
 }
 
+
+
 /* MOBILE */
+/*
 @media (max-width: 768px) {
     #encabezado .enc-link {
         width: 96%;
     }
 }
+*/
 
 /* COLOR DEGRADÉ */
 @media (max-width: 992px) {
@@ -123,7 +154,7 @@ DEGRADÉ: .bg-mix-azul-info .bg-mix-info-azul .bg-mix-palta-azul .bg-mix-azul-pa
         .bg-mix-azul-info {
             background: $brand-primary;
         }
-
+        
         h1 {
             margin-top: 20px !important;
             font-size: calc(1.375rem + 1.5vw);
@@ -155,5 +186,12 @@ DEGRADÉ: .bg-mix-azul-info .bg-mix-info-azul .bg-mix-palta-azul .bg-mix-azul-pa
                 margin-left: 25px;
               }   
         }
+
+        /* Menú superior mobile */
+        .enc-link {
+            width: 96%;
+            margin-left: 28px;
+        }
+        
     }
 }
