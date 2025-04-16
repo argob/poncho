@@ -79,6 +79,8 @@ const calendar = {
                 "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio",
                 "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
             ],
+            jumpToList: "Ir al listado de {month}",
+            dayAnchor: "{day} de {month}",
             weekDaysAbbr: ["Dom", "Lun", "Mar", "Mie", "Jue", "Vie", "Sab"],
             weekDays: [
                 "Domingo", "Lunes", "Martes", "Miércoles", 
@@ -95,7 +97,8 @@ const calendar = {
                 "January", "February", "March", "April", "May", "June", "July",
                 "August", "September", "October", "November", "December"
             ],
-
+            jumpToList: "Jump to {month} list",
+            dayAnchor: "{month} {day}th.",
             weekDaysAbbr: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
             weekDays: [
                 "Sunday", "Monday", "Tuesday", "Wednesday", 
@@ -193,7 +196,12 @@ const calendar = {
 
         // Asigno el ID al tpl.
         const tplId = tpl.querySelector(".js-tpl-id");
+        tplId.lang = this.ln;
         tplId.id = `m${monthName}`;
+
+        // Lang a la tabla
+        const tplTable = tpl.querySelector(".js-table");
+        tplTable.lang = this.ln;
 
         // Agrego el nombre del mes.
         const tplMonth = tpl.querySelector(".js-tpl-month");
@@ -219,6 +227,17 @@ const calendar = {
 
         // Get Start Day
         const entries = this.eventsByMonth(parseInt(monthNumber) + 1, year);
+
+        if(entries.length > 0){
+            const tplJumpToList = tpl.querySelector(".js-jump-to-list");
+            const anchor = document.createElement("a");
+            anchor.href = `#holiday-list-${parseInt(monthNumber) + 1}`;
+            anchor.lang = this.ln;
+            anchor.textContent = this.dictionary[this.ln]
+                    .jumpToList.replace("{month}", monthName);
+            tplJumpToList.appendChild(anchor);
+        }
+
         const startDay = this.getCalendarStart(day, date);
         this.renderMonth(tpl, startDay, totalDaysOfMonth, entries);
 
@@ -240,6 +259,9 @@ const calendar = {
         for (let i = 0; i < arr.length; i += 7) {
             tableRows.push(arr.slice(i, i + 7));
         }
+
+
+
         // Agrego tr al tbody
         const tplBody = tpl.querySelector(".js-tpl-tbody");
         for(let tableRow of tableRows){
@@ -248,6 +270,7 @@ const calendar = {
         }
     },
     drawCalendarRow: function(tableRow, entries) {
+        const dict = this.dictionary[this.ln];
         let searchEntry = entries.map(e => {
             if(e){
                 const {type} = e;
@@ -269,13 +292,17 @@ const calendar = {
 
             const entry = searchEntry.find(f => f[0] === cell);
             if(entry){
+                const label = dict.dayAnchor
+                    .replace("{month}", dict.months[entry[2]])
+                    .replace("{day}", entry[0]);
                 const mark = document.createElement("mark");
                 const a = document.createElement("a");
                 a.href = `#hd-${entry[2]}-${cell}`;
-                a.textContent = cell;
+                a.setAttribute("aria-label", label);
+                a.textContent = entry[0];
                 mark.classList.add(`bg-transparent`);
                 mark.appendChild(a);
-                // mark.id = `hd-${entry[2]}-${entry[0]}-${cell}`;
+                
                 td.classList.add(`bg-${this.options.holidays_type[entry[1]]}`);
                 td.appendChild(mark)
             } else {
@@ -307,11 +334,13 @@ const calendar = {
         if( isNaN(Number(monthId)) ){
             return;
         }
+
         // Agrupa un listado de eventos por su nombre.
         const markerList = this.eventsByMonth(parseInt(monthId) + 1, year);
         if(!markerList){
             return [];
         }
+
         const result = markerList.reduce((acc, item) => {
             if (acc[item.label]) {
                 acc[item.label].push(item);
@@ -322,7 +351,9 @@ const calendar = {
         }, {});
 
         const ul = document.createElement("ul");
+        ul.lang = this.ln;
         ul.classList.add("holidays", "list-unstyled");
+        ul.id = `holiday-list-${parseInt(monthId) + 1}`;
 
         for(let entry of Object.keys(result)){
             const event = result[entry];
