@@ -4,9 +4,6 @@
     <link rel="profile" href="http://www.w3.org/1999/xhtml/vocab" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <script
-        src="https://www.argentina.gob.ar/profiles/argentinagobar/libraries/jquery.jquery-371/jquery-3.7.1.min.js?v=3.7.1">
-        </script>
     <link 
         rel="stylesheet" 
         href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
@@ -20,14 +17,21 @@
         rel="stylesheet"
         href="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css">
     <!-- /Base -->
-    <!-- <link 
+    <link 
         rel="stylesheet"
-        href="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/poncho.min.css" /> -->
+        href="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/poncho.min.css" />
     <link rel="stylesheet" href="../../../../dist/css/poncho.min.css">
-    <link rel="stylesheet" href="./css/main.css">
+    <!-- <link rel="stylesheet" href="./css/main.css"> -->
     <style>
         body {
             padding: 2em;
+        }
+        .table {
+            border-bottom: 1px solid #ddd
+        }
+        .bg-transparent {
+            background-color: transparent !important;
+            color: inherit;
         }
     </style>
     <title>develop | feriados nacionales</title>
@@ -148,27 +152,6 @@
                     <!-- / References -->
                 </div>
                 <div id="calendar-container" class="calendar"></div>
-                <!-- Template -->
-                <div id="month-tpl">
-                    <div class="month">
-                        <h2 class="h5 text-center">Mes</h2>
-                        <table class="table table-striped text-center small" role="presentation">
-                            <tbody>
-                                <tr>
-                                    <td aria-hidden="true" class="text-center day">Dom</td>
-                                    <td aria-hidden="true" class="text-center day">Lun</td>
-                                    <td aria-hidden="true" class="text-center day">Mar</td>
-                                    <td aria-hidden="true" class="text-center day">Mié</td>
-                                    <td aria-hidden="true" class="text-center day">Jue</td>
-                                    <td aria-hidden="true" class="text-center day">Vie</td>
-                                    <td aria-hidden="true" class="text-center day">Sáb</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="holidays js-holidays list-unstyled"></div>
-                </div>
-                <!-- / Template -->
 
             </div>
         </div>
@@ -176,9 +159,25 @@
 </section>
 <!-- / Calendar -->
 
+<!-- Template -->
+<template id="monthtpl">
+    <div>
+    <div class="month js-tpl-id">
+        <h2 class="h5 text-center js-tpl-month"></h2>
+        <table 
+            class="table text-center small" 
+            role="presentation">
+            <thead class="js-tpl-weekdays"></thead>
+            <tbody class="js-tpl-tbody"></tbody>
+        </table>
+    </div>
+    <div class="holidays js-tpl-holidays list-unstyled"></div>
+</div>
+</template>
+<!-- / Template -->
 
 
-<link rel="stylesheet" href="http://127.0.0.1:5501/src/demo/national-holidays/css/main.css">
+
 <script src="../src/js/national-holidays.js"></script>
 <script>
     const holidays2023 = [
@@ -325,55 +324,90 @@
         { "date": "01/01/2021", "label": "Año Nuevo", "type": "inamovible" },
     ];
 
-    const holidays2025 = [
-        //  { "date": "12/04/2025", label: "Día Nacional de la Memoria por la Verdad y la Justicia", "type": "inamovible" },
-
-        { "date": "01/01/2025", "label": "Año Nuevo", "type": "inamovible" },
-        { "date": "03/03/2025", "label": "Carnaval", "type": "inamovible" },
-        { "date": "04/03/2025", "label": "Carnaval", "type": "inamovible" },
-        { "date": "24/03/2025", "label": "Día Nacional de la Memoria por la Verdad y la Justicia", "type": "inamovible" },
-        { "date": "02/04/2025", "label": "Día del Veterano y de los Caídos en la Guerra de Malvinas", "type": "inamovible" },
-        { "date": "31/03/2025", "label": "Fiesta de la Ruptura del Ayuno del Sagrado Mes de Ramadán (Id al-Fitr) (c)", "type": "no_laborable" },
-        { "date": "13/04/2025", "label": "Primeros dos días de la Pascua Judía (b)", "type": "no_laborable" },
-        { "date": "14/04/2025", "label": "Primeros dos días de la Pascua Judía (b)", "type": "no_laborable" },
-        { "date": "17/04/2025", "label": "Jueves Santo Festividad Cristiana", "type": "no_laborable" },
-        { "date": "18/04/2025", "label": "Viernes Santo Festividad Cristiana", "type": "inamovible" },
-        { "date": "19/04/2025", "label": "Últimos dos días de la Pascua Judía (b)", "type": "no_laborable" },
-        { "date": "20/04/2025", "label": "Últimos dos días de la Pascua Judía (b)", "type": "no_laborable" },
-        { "date": "24/04/2025", "label": "Día de acción por la tolerancia y el respeto entre los pueblos (a)", "type": "no_laborable" },
-        { "date": "01/05/2025", "label": "Día del Trabajador", "type": "inamovible" },
-        { "date": "02/05/2025", "label": "Día no laborable con fines turísticos", "type": "turistico" },
-        { "date": "25/05/2025", "label": "Día de la Revolución de Mayo", "type": "inamovible" },
-        { "date": "10/06/2025", "label": "Fiesta del Sacrificio (c)", "type": "no_laborable" },
-        { "date": "16/06/2025", "label": "Paso a la Inmortalidad del Gral. Don Martín Miguel de Güemes (17/6)", "type": "trasladable" },
-        { "date": "20/06/2025", "label": "Paso a la Inmortalidad del Gral. Manuel Belgrano", "type": "inamovible" },
-        { "date": "26/06/2025", "label": "Año Nuevo Islámico (c)", "type": "no_laborable" },
-        { "date": "09/07/2025", "label": "Día de la Independencia ", "type": "inamovible" },
-        { "date": "15/08/2025", "label": "Día no laborable con fines turísticos", "type": "turistico" },
-        { "date": "17/08/2025", "label": "Paso a la Inmortalidad del Gral. José de San Martín", "type": "trasladable" },
-        { "date": "23/09/2025", "label": "Año Nuevo Judío (b)", "type": "no_laborable" },
-        { "date": "24/09/2025", "label": "Año Nuevo Judío (b)", "type": "no_laborable" },
-        { "date": "02/10/2025", "label": "Día del Perdón (b)", "type": "no_laborable" },
-        { "date": "12/10/2025", "label": "Día de la  Raza", "type": "trasladable" },
-        { "date": "21/11/2025", "label": "Día no laborable con fines turísticos", "type": "turistico" },
-        { "date": "24/11/2025", "label": "Día de la Soberanía Nacional (20/11)", "type": "trasladable" },
-        { "date": "08/12/2025", "label": "Inmaculada Concepción de María", "type": "inamovible" },
-        { "date": "25/12/2025", "label": "Navidad", "type": "inamovible" },
-        { "date": "01/01/2026", "label": "Año nuevo", "type": "inamovible" },
-        ];
+    const holidays2025 = {
+        es: [
+            { "date": "01/01/2025", "label": "Año Nuevo", "type": "inamovible" },
+            { "date": "03/03/2025", "label": "Carnaval", "type": "inamovible" },
+            { "date": "04/03/2025", "label": "Carnaval", "type": "inamovible" },
+            { "date": "24/03/2025", "label": "Día Nacional de la Memoria por la Verdad y la Justicia", "type": "inamovible" },
+            { "date": "02/04/2025", "label": "Día del Veterano y de los Caídos en la Guerra de Malvinas", "type": "inamovible" },
+            { "date": "31/03/2025", "label": "Fiesta de la Ruptura del Ayuno del Sagrado Mes de Ramadán (Id al-Fitr) (c)", "type": "no_laborable" },
+            { "date": "13/04/2025", "label": "Primeros dos días de la Pascua Judía (b)", "type": "no_laborable" },
+            { "date": "14/04/2025", "label": "Primeros dos días de la Pascua Judía (b)", "type": "no_laborable" },
+            { "date": "17/04/2025", "label": "Jueves Santo Festividad Cristiana", "type": "no_laborable" },
+            { "date": "18/04/2025", "label": "Viernes Santo Festividad Cristiana", "type": "no_laborable" },
+            { "date": "19/04/2025", "label": "Últimos dos días de la Pascua Judía (b)", "type": "no_laborable" },
+            { "date": "20/04/2025", "label": "Últimos dos días de la Pascua Judía (b)", "type": "no_laborable" },
+            { "date": "24/04/2025", "label": "Día de acción por la tolerancia y el respeto entre los pueblos (a)", "type": "no_laborable" },
+            { "date": "01/05/2025", "label": "Día del Trabajador", "type": "inamovible" },
+            { "date": "02/05/2025", "label": "Día no laborable con fines turísticos", "type": "turistico" },
+            { "date": "25/05/2025", "label": "Día de la Revolución de Mayo", "type": "inamovible" },
+            { "date": "10/06/2025", "label": "Fiesta del Sacrificio (c)", "type": "no_laborable" },
+            { "date": "16/06/2025", "label": "Paso a la Inmortalidad del Gral. Don Martín Miguel de Güemes (17/6)", "type": "trasladable" },
+            { "date": "20/06/2025", "label": "Paso a la Inmortalidad del Gral. Manuel Belgrano", "type": "inamovible" },
+            { "date": "26/06/2025", "label": "Año Nuevo Islámico (c)", "type": "no_laborable" },
+            { "date": "09/07/2025", "label": "Día de la Independencia ", "type": "inamovible" },
+            { "date": "15/08/2025", "label": "Día no laborable con fines turísticos", "type": "turistico" },
+            { "date": "17/08/2025", "label": "Paso a la Inmortalidad del Gral. José de San Martín", "type": "trasladable" },
+            { "date": "23/09/2025", "label": "Año Nuevo Judío (b)", "type": "no_laborable" },
+            { "date": "24/09/2025", "label": "Año Nuevo Judío (b)", "type": "no_laborable" },
+            { "date": "02/10/2025", "label": "Día del Perdón (b)", "type": "no_laborable" },
+            { "date": "12/10/2025", "label": "Día de la  Raza", "type": "trasladable" },
+            { "date": "21/11/2025", "label": "Día no laborable con fines turísticos", "type": "turistico" },
+            { "date": "24/11/2025", "label": "Día de la Soberanía Nacional (20/11)", "type": "trasladable" },
+            { "date": "08/12/2025", "label": "Inmaculada Concepción de María", "type": "inamovible" },
+            { "date": "25/12/2025", "label": "Navidad", "type": "inamovible" },
+            { "date": "01/01/2026", "label": "Año nuevo", "type": "inamovible" },
+        ],
+        en: [
+            { "date": "01/01/2025", "label": "New Year's Day", "type": "inamovible" },
+            { "date": "03/03/2025", "label": "Carnival", "type": "inamovible" },
+            { "date": "04/03/2025", "label": "Carnival", "type": "inamovible" },
+            { "date": "24/03/2025", "label": "National Day of Remembrance for Truth and Justice", "type": "inamovible" },
+            { "date": "02/04/2025", "label": "Veterans' and Fallen in the Malvinas War Day", "type": "inamovible" },
+            { "date": "31/03/2025", "label": "Feast of the Breaking of the Fast of the Sacred Month of Ramadan (Eid al-Fitr) (c)", "type": "no_laborable" },
+            { "date": "13/04/2025", "label": "First two days of Passover (b)", "type": "no_laborable" },
+            { "date": "14/04/2025", "label": "First two days of Passover (b)", "type": "no_laborable" },
+            { "date": "17/04/2025", "label": "Holy Thursday Christian Holiday", "type": "no_laborable" },
+            { "date": "18/04/2025", "label": "Good Friday Christian Holiday", "type": "no_laborable" },
+            { "date": "19/04/2025", "label": "Last two days of Passover (b)", "type": "no_laborable" },
+            { "date": "20/04/2025", "label": "Last two days of Passover (b)", "type": "no_laborable" },
+            { "date": "24/04/2025", "label": "Day of action for tolerance and respect among peoples (a)", "type": "no_laborable" },
+            { "date": "01/05/2025", "label": "Labour Day", "type": "inamovible" },
+            { "date": "02/05/2025", "label": "Non-working day for tourism purposes", "type": "turistico" },
+            { "date": "25/05/2025", "label": "May Revolution Day", "type": "inamovible" },
+            { "date": "10/06/2025", "label": "Feast of the Sacrifice (Eid al-Adha) (c)", "type": "no_laborable" },
+            { "date": "16/06/2025", "label": "Passage to Immortality of General Don Martín Miguel de Güemes (17/6)", "type": "trasladable" },
+            { "date": "20/06/2025", "label": "Passage to Immortality of General Manuel Belgrano", "type": "inamovible" },
+            { "date": "26/06/2025", "label": "Islamic New Year (c)", "type": "no_laborable" },
+            { "date": "09/07/2025", "label": "Independence Day", "type": "inamovible" },
+            { "date": "15/08/2025", "label": "Non-working day for tourism purposes", "type": "turistico" },
+            { "date": "17/08/2025", "label": "Passage to Immortality of General José de San Martín", "type": "trasladable" },
+            { "date": "23/09/2025", "label": "Jewish New Year (Rosh Hashanah) (b)", "type": "no_laborable" },
+            { "date": "24/09/2025", "label": "Jewish New Year (Rosh Hashanah) (b)", "type": "no_laborable" },
+            { "date": "02/10/2025", "label": "Day of Atonement (Yom Kippur) (b)", "type": "no_laborable" },
+            { "date": "12/10/2025", "label": "Day of Respect for Cultural Diversity", "type": "trasladable" },
+            { "date": "21/11/2025", "label": "Non-working day for tourism purposes", "type": "turistico" },
+            { "date": "24/11/2025", "label": "National Sovereignty Day (20/11)", "type": "trasladable" },
+            { "date": "08/12/2025", "label": "Immaculate Conception of Mary", "type": "inamovible" },
+            { "date": "25/12/2025", "label": "Christmas", "type": "inamovible" },
+            { "date": "01/01/2026", "label": "New Year", "type": "inamovible" }
+        ]
+    }
 
 document.addEventListener("DOMContentLoaded", function() {
     const calendarOptions = {
-        "calendarYear": 2025,
-        "markers": [holidays2025],
-        "allowHTML": true,
-        "containerId": "#calendar-container",
-        "templateId": "#month-tpl",
-        "holidays_type": {
-            "inamovible": "primary",
-            "trasladable": "success",
-            "no_laborable": "nl",
-            "turistico": "turistico"
+        calendarYear: 2025,
+        markers: holidays2025,
+        allowHTML: true,
+        containerId: "#calendar-container",
+        templateId: "#month-tpl",
+        lang: "en",
+        holidays_type: {
+            inamovible: "primary",
+            trasladable: "success",
+            no_laborable: "nl",
+            turistico: "turistico"
         }
     }
     calendar.render(calendarOptions);
