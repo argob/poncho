@@ -5,6 +5,48 @@
  * Nacionales de la República Argentina. 
  */
 const calendar = {
+    convertirFecha(fechaString) {
+        const partes = fechaString.split('/');
+        const [markerDay, markerMonth, markerYear] = fechaString.split('/');
+        const dateObject = new Date(markerYear, markerMonth - 1, markerDay);
+        return {dateObject, markerDay, markerMonth, markerYear};
+    },
+    ordenarPorFecha(array) {
+        return array.sort((a, b) => {
+            const fechaA = this.convertirFecha(a.date).dateObject;
+            const fechaB = this.convertirFecha(b.date).dateObject;
+            return fechaA - fechaB;
+        });
+    },      
+    /**
+     * 
+     * @param {string} dateString Fecha en formato dd/mm/yyyy.
+     * @returns {object}
+     */
+    parseDate(dateString) {
+        if(typeof dateString !== "string"){
+            return;
+        }
+        const [markerDay, markerMonth, markerYear] = dateString.split('/');
+        const dateObject = new Date(markerYear, markerMonth - 1, markerDay);
+        const markerDayInt = parseInt(markerDay);
+        const markerMonthInt = parseInt(markerMonth);
+        const markerYearInt = parseInt(markerYear);
+        return {
+            dateObject, 
+            markerDay, 
+            markerMonth, 
+            markerYear, 
+            markerDayInt,
+            markerMonthInt, 
+            markerYearInt};
+    },
+    /**
+     * 
+     * @param {string} scope 
+     * @param {string} ln Lenguaje, ej: es, en.
+     * @returns {undefined}
+     */
     toggleText(scope, ln){
         function toCamelCase(slug){
             return slug.toLowerCase()
@@ -38,7 +80,15 @@ const calendar = {
                 "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
             ],
             weekDaysAbbr: ["Dom", "Lun", "Mar", "Mie", "Jue", "Vie", "Sab"],
-            weekDays: ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"]
+            weekDays: [
+                "Domingo", "Lunes", "Martes", "Miércoles", 
+                "Jueves", "Viernes", "Sábado"],
+            holidaysType: {
+                inamovible: "Feriado inamovible",
+                trasladable: "Feriado trasladable",
+                no_laborable: "Día no laborable",
+                turistico: "Feriado turístico"
+            }
         },
         en:{
             months: [
@@ -46,8 +96,16 @@ const calendar = {
                 "August", "September", "October", "November", "December"
             ],
             weekDaysAbbr: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
-            weekDays: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
-        },
+            weekDays: [
+                "Sunday", "Monday", "Tuesday", "Wednesday", 
+                "Thursday", "Friday", "Saturday"],
+            holidaysType: {
+                inamovible: "Fixed Holiday",
+                trasladable: "Movable Holiday",
+                no_laborable: "Non-Working Day",
+                turistico: "Tourist Holiday"
+            }
+        }
     },
     daysOfMonth: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
     TODAY: null,
@@ -56,205 +114,224 @@ const calendar = {
     options: {},
     render: function(options) {
         document
-            .querySelectorAll(`${options.containerId}, .js-holidays`)
+            .querySelectorAll(options.containerId)
             .forEach(e => e.innerHTML = "");
 
         // Define el primer día del [año{options.calendarYear}]
         this.TODAY = this.tZone(
-            new Date(options.calendarYear, 0, 1, 3, 0, 0),
+            new Date(options.calendarYear, 0, 1, 12, 0, 0),
             this.timeZone);
 
-        this.options = options;
-        this.ln = "es";
-        this.daysOfMonth = (options.daysOfMonth ? 
-                options.daysOfMonth : this.daysOfMonth);
-        // this.container = jQuery(this.options.containerId);
-        this.container = document.querySelector(this.options.containerId);
-        this.template = jQuery(this.options.templateId);
-        this._template = document.getElementById("monthtpl");
-        this.iteration_date = this.TODAY;
+        if(options.marker){
 
-        this.renderCalendar();
-        for(let e of this.options.markers){
-            this.markDates(e);
         }
+        this.options = options;
+        this.ln = (options.hasOwnProperty("lang") ? options.lang : "es");
+        const isMultiLang = Object
+            .keys(options.markers)
+            .some(f => Object.keys(this.dictionary).includes(f));
+        if(isMultiLang){
+            this.markers = options.markers[this.ln];
+        } else {
+            this.markers = options.markers[0];
+        }
+
+        this.container = document.querySelector(this.options.containerId);
+        this.template = document.getElementById("monthtpl");
+
         this.daysLeft();
-        // remueve los <ul> vacíos.
-        document
-            .querySelectorAll(".js-holidays")
-            .forEach(e => !e.hasChildNodes() ? e.remove() : null);
+        this.renderCalendar();
+    },
+    eventsByMonth(month, year){
+        if( isNaN(Number(month)) || isNaN(Number(year)) ){
+            return;
+        }
+        if(month < 0 || month > 12){
+            return;
+        }
+        const _t = this;
+        const list = this.markers.filter(f => {
+            const {markerMonth, markerYear} = _t.parseDate(f.date);
+            if(markerMonth == month && markerYear == year){
+                return true;
+            }
+            return false;
+        });
+        return this.ordenarPorFecha(list);
     },
     renderCalendar: function() {
-        let iteration_date = this.TODAY;
-        // this.template.hide();
-
-        for(let monthNumber in [...Array(12).keys()]){
-            const clonedMonth = this._template.content.cloneNode(true);
-            const month = this.drawCalendarMonth(iteration_date, monthNumber, clonedMonth);
-            this.container.appendChild(month);
-
-            iteration_date.setUTCMonth(monthNumber);
+        for(const monthNumber in [...Array(12).keys()]){
+            const iterationDate = this.tZone(
+                new Date(this.options.calendarYear, monthNumber, 1, 12, 0, 0),
+                this.timeZone);
+            console.log(monthNumber, iterationDate)
+            const clonedMonth = this.template.content.cloneNode(true);
+            const monthObj = this.drawCalendarMonth(
+                iterationDate, monthNumber, clonedMonth);
+            this.container.appendChild(monthObj);
         }
     },
-    drawCalendarMonth: function(iteration_date, monthNumber, tpl) {
-        const month = iteration_date.getUTCMonth();
-        const day = iteration_date.getUTCDay();
-        const year = iteration_date.getUTCFullYear();
-        const date = iteration_date.getUTCDate();
-        const totalDaysOfMonth = this.daysOfMonth[month];
-        let monthName = this.dictionary[this.ln].months[monthNumber];
-
-        tpl.querySelector(".js-tpl-id").id = `m${monthName}`;
-        tpl.querySelector(".js-tpl-month").textContent = monthName;
-
-        // Creo los días de la semana
+    createWeekDays(){
         const tr = document.createElement("tr");
-        for(let d of this.dictionary[this.ln].weekDaysAbbr){
+        for(const day of this.dictionary[this.ln].weekDaysAbbr){
             const td = document.createElement("th");
-            td.textContent = d;
+            td.textContent = day;
             tr.appendChild(td);
         }
-        tpl.querySelector(".js-tpl-weekdays").appendChild(tr);
+        return tr;
+    },
+    drawCalendarMonth: function(iterationDate, monthNumber, tpl) {
+        const day = iterationDate.getDay();
+        const date = iterationDate.getDate();
+        const year = iterationDate.getFullYear();
+        
+        const totalDaysOfMonth = this.daysOfMonth[monthNumber];
+        const monthName = this.dictionary[this.ln].months[monthNumber];
 
+        // Asigno el ID al tpl.
+        const tplId = tpl.querySelector(".js-tpl-id");
+        tplId.id = `m${monthName}`;
 
-        let dateToHighlight = 0;
-        // Determine if Month && Year are current for Date Highlight
-        if (iteration_date.getUTCMonth() === month && 
-                iteration_date.getUTCFullYear() === year) {
-            dateToHighlight = date;
+        // Agrego el nombre del mes.
+        const tplMonth = tpl.querySelector(".js-tpl-month");
+        tplMonth.textContent = monthName;
+
+        // Creo los días de la semana.
+        const tplWeekdays = tpl.querySelector(".js-tpl-weekdays");
+        tplWeekdays.appendChild(this.createWeekDays());
+
+        // Agrego el listado de feriados.
+        const tplHollidays = tpl.querySelector(".js-tpl-holidays");
+        const hollidaysLabels = this.addLabel(monthNumber, year);
+        if(hollidaysLabels){
+            tplHollidays.appendChild(hollidaysLabels);
         }
-        //Getting February Days Including The Leap Year
-        if (month === 1) {
+
+        // Calcula si es año biciesto
+        if (monthNumber === 1) {
             if ((year % 100 !== 0) && (year % 4 === 0) || (year % 400 === 0)){
                 totalDaysOfMonth = 29;
             }
         }
 
         // Get Start Day
-        this.renderMonth(
-            tpl,
-            this.getCalendarStart(day, date), totalDaysOfMonth, dateToHighlight
-        );
-        return tpl
+        const entries = this.eventsByMonth(parseInt(monthNumber) + 1, year);
+        const startDay = this.getCalendarStart(day, date);
+        this.renderMonth(tpl, startDay, totalDaysOfMonth, entries);
+
+        return tpl;
     },
-    renderMonth: function(tpl, startDay, totalDays, currentDate) {
-        let currentRow = 1;
-        let currentDay = startDay;
-        // var $monthTpl = jQuery('#' + monthId);
-        // var $week = this.drawCalendarRow($monthTpl);
-        var $day;
-        let i = 1;
-
-
-        debugger
-
-        for (; i <= totalDays; i++) {
-            debugger
-            $day = $week.find('td').eq(currentDay);
-            $day.text(i);
-
-            if (i === currentDate) {
-                $day.addClass('today');
-            }
-            // +1 next day until Saturday (6), then reset to Sunday (0)
-            currentDay = ++currentDay % 7;
-            // Generate new row when day is Saturday, but only if there are
-            // additional days to render
-            if (currentDay === 0 && (i + 1 <= totalDays)) {
-                const tr = document.createElement("tr");
-                $week = this.drawCalendarRow($monthTpl);
-                currentRow++;
-            }
+    renderMonth: function(tpl, startDay, totalDays, entries) {
+        // El total de celdas del tbody es de 42 en 6 filas.
+        // creo un array marcando los días del calendario y el resto
+        // en false. 
+        const calLen = 42;
+        const arr = Array(calLen).fill(false);
+        let day = 1;
+        for (let i = startDay; i < startDay + totalDays && i < calLen; i++){
+            arr[i] = day;
+            day++;
         }
-
-        while (currentRow < 6) {
-            $week = this.drawCalendarRow($monthTpl);
-            currentRow++;
+        // Separo en grupos de siete para representar cada TR
+        const tableRows = [];
+        for (let i = 0; i < arr.length; i += 7) {
+            tableRows.push(arr.slice(i, i + 7));
+        }
+        // Agrego tr al tbody
+        const tplBody = tpl.querySelector(".js-tpl-tbody");
+        for(let tableRow of tableRows){
+            const tr = this.drawCalendarRow(tableRow, entries);
+            tplBody.appendChild(tr);
         }
     },
-    drawCalendarRow: function() {
+    drawCalendarRow: function(tableRow, entries) {
+        let searchEntry = entries.map(e => {
+            if(e){
+                const {type} = e;
+                const {markerDayInt} = this.parseDate(e.date);
+                return [markerDayInt, type];
+            }
+            return;
+        });
+
         const tr = document.createElement("tr");
-        for (let i = 0, len = 7; i < len; i++) {
+        for(let cell of tableRow){
             const td = document.createElement("td");
-            td.innerHTML = "&nbsp;";
+            if(!cell){
+                td.innerHTML = "&nbsp;";
+                td.setAttribute("aria-hidden", "true");
+                tr.appendChild(td);
+                continue;
+            }
+
+            const entry = searchEntry.find(f => f[0] === cell);
+            if(entry){
+                const mark = document.createElement("mark");
+                mark.innerHTML = cell;
+                mark.classList.add(`bg-transparent`);
+                td.classList.add(`bg-${this.options.holidays_type[entry[1]]}`);
+                td.appendChild(mark)
+            } else {
+                td.innerHTML = cell;
+            }
             tr.appendChild(td);
         }
         return tr;
     },
-    // Returns the day of week which month starts (eg 0 
+    // Returns the day of week which month starts (eg 0
     // for Sunday, 1 for Monday, etc.)
     getCalendarStart: function(dayOfWeek, currentDate) {
-        const date = currentDate - 1;
-        const startOffset = (date % 7) - dayOfWeek;
-        if (startOffset > 0) {
-            startOffset -= 7;
+        if (!Number.isInteger(dayOfWeek) || dayOfWeek < 0 || dayOfWeek > 6) {
+            console.error("El parámetro dayOfWeek debe ser un número " +
+                "entero entre 0 y 6.");
+            return;
         }
-        return Math.abs(startOffset);
-    },
-    // getTplClone: function(tpl, id) {
-    //     const clone = tpl.content.cloneNode(true);
-    //     const month = clone.querySelector(".month");
-    //     month.id = id;
-    //     return clone;
-    //     // return clone;
-    //     return tpl.clone().attr('id', id).show();
-    // },
-    markDates: function(markers) {
-        var previousLabel = "";
-        var previousDate = null;
 
-        for (var indice in markers){
-            const {
-                date:markerDate, 
-                type:markerType, 
-                label:markerLabel} = markers[indice];
-
-            const [markerDay, markerMonth, markerYear] = markerDate.split('/');
-            const objMarkerDate = this.tZone(
-                new Date(markerYear, markerMonth - 1, markerDay, 3, 0, 0),
-                this.timeZone);
-
-            const mes = this.dictionary[this.ln].months[objMarkerDate.getUTCMonth()];
-            const mesTable = jQuery('#m' + mes);
-            const date = objMarkerDate.getDate();
-            const year = objMarkerDate.getUTCFullYear();
-            const UTCDay = objMarkerDate.getUTCDay();
-            const classes = markerType;
-            const startDate = this.getCalendarStart(UTCDay, date);
-            const label = markerLabel;
-
-            if (year === this.TODAY.getUTCFullYear()) {
-                mesTable
-                    .find('td')
-                    .eq(date + (startDate) + 6)
-                    .addClass(`bg-${this.options.holidays_type[classes]}`
-                );
-
-                this.addLabel(mesTable, date, label, previousLabel, previousDate);
-                previousLabel = markerLabel;
-                previousDate = objMarkerDate;
-            }
+        if (!Number.isInteger(currentDate) || currentDate <= 0) {
+            console.error("El parámetro currentDate debe ser un número " +
+                "entero positivo.");
+            return;
         }
+        const daysToSubtract = currentDate - 1;
+        const startDayOfWeek = (dayOfWeek - (daysToSubtract % 7) + 7) % 7;
+        return startDayOfWeek;
     },
-    addLabel: function(target, day, label, previousLabel, previousDate) {
-        let text = '';
-        let textArea = null;
-        const previousDay = (previousDate ? previousDate.getDate() : day);
+    addLabel: function( monthId, year ) {
+        if( isNaN(Number(monthId)) ){
+            return;
+        }
 
-        if (label == previousLabel && day === (previousDay + 1)) {
-            textArea = target.find('.js-holidays').find('p').last();
-            text = textArea.text().replace(/(\d+),*\./, "$1, " + day + '.');
-            if(this.options.allowHTML){
-                textArea.html(text);
+        // Agrupa un listado de eventos por su nombre.
+        const markerList = this.eventsByMonth(parseInt(monthId) + 1, year);
+
+        if(!markerList){
+            return [];
+        }
+        const result = markerList.reduce((acc, item) => {
+            if (acc[item.label]) {
+                acc[item.label].push(item);
             } else {
-                textArea.text(text);
+                acc[item.label] = [item];
             }
-        } else {
-            text = (this.options.allowHTML ? jQuery('<p/>').html(day + '. ' + label) : 
-                    jQuery('<p/>').text(day + '. ' + label));
-            textArea = target.find('.js-holidays');
-            textArea.append(text);
+            return acc;
+        }, {});
+
+        const ul = document.createElement("ul");
+        ul.classList.add("holidays", "list-unstyled");
+
+        for(let entry of Object.keys(result)){
+            const event = result[entry];
+            const compileDays = event.map(e => this.parseDate(e.date).markerDayInt);
+            const {label, type} = event[0];
+            const holidayType = this.dictionary[this.ln].holidaysType[type];
+            const text = `${compileDays.join(", ")}. `
+                + `<span class="sr-only">${holidayType} — </span>${label}.`;
+            // 
+            const li = document.createElement("li");
+            li.innerHTML = text;
+            ul.appendChild(li);
         }
+        return ul;
     }, 
     daysLeft: function(){
         /**
@@ -265,12 +342,12 @@ const calendar = {
         const hoynoes = document.querySelector("#js-hoynoes");
         const hoyes = document.querySelector("#js-hoyes");
 
-        const {calendarYear, markers, holidays_type:holidaysType} = this.options;
+        const {calendarYear, holidays_type:holidaysType} = this.options;
+        const markers = this.markers;
         const nowYear = today.getFullYear();
         
         let dayCount = 0;
         let proximo = detalle = "";
-
 
         if (calendarYear === nowYear || (calendarYear - 1) === nowYear){
             const n_days = document.querySelector('#js-ndays');
@@ -279,15 +356,15 @@ const calendar = {
             const detalleHTML = document.querySelector("#js-detalle");
             const detallehoy = document.querySelector("#js-detallehoy");
 
-            for (var i in markers[0]) {
+            for (var i in markers) {
                 const {
                     date:markerDate, 
                     type:markerType, 
-                    label:markerLabel} = markers[0][i];
-                const [
+                    label:markerLabel} = markers[i];
+                const {
                     markerDay, 
                     markerMonth, 
-                    markerYear] = markerDate.split('/');
+                    markerYear} = this.parseDate(markerDate);
                 const date = this.tZone(
                     new Date(markerYear, markerMonth - 1, markerDay),
                     this.timeZone);
@@ -322,15 +399,15 @@ const calendar = {
             proximoHTML.innerHTML = proximo[this.ln];
             detalleHTML.innerHTML = detalle;
 
-            for (var i in markers[0]) {
+            for (var i in markers) {
                 const {
                     date:markerDate, 
                     type:markerType, 
-                    label:markerLabel} = markers[0][i];
-                const [
-                    markerDay,
-                    markerMonth,
-                    markerYear] = markerDate.split('/');
+                    label:markerLabel} = markers[i];
+                const {
+                    markerDay, 
+                    markerMonth, 
+                    markerYear} = this.parseDate(markerDate);
                 const date = this.tZone(
                     new Date(markerYear, markerMonth - 1, markerDay), 
                     this.timeZone);

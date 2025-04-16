@@ -12,7 +12,13 @@
     .calendar * {
         box-sizing: border-box;
     }
-
+    .table {
+        border-bottom: 1px solid #ddd
+    }
+    .bg-transparent {
+        background-color: transparent !important;
+        color: inherit;
+    }
     .calendar {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
