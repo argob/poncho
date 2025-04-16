@@ -14945,6 +14945,13 @@ DEGRADÉ: .bg-mix-azul-info .bg-mix-info-azul .bg-mix-palta-azul .bg-mix-azul-pa
 .national-holidays .calendar * {
   box-sizing: border-box;
 }
+.national-holidays .table {
+  border-bottom: 1px solid #ddd;
+}
+.national-holidays .bg-transparent {
+  background-color: transparent !important;
+  color: inherit;
+}
 .national-holidays .calendar {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
