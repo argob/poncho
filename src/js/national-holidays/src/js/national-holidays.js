@@ -151,9 +151,9 @@ const calendar = {
         if(month < 0 || month > 12){
             return;
         }
-        const _t = this;
+
         const list = this.markers.filter(f => {
-            const {markerMonth, markerYear} = _t.parseDate(f.date);
+            const {markerMonth, markerYear} = this.parseDate(f.date);
             if(markerMonth == month && markerYear == year){
                 return true;
             }
@@ -176,9 +176,10 @@ const calendar = {
     createWeekDays(){
         const tr = document.createElement("tr");
         for(const day of this.dictionary[this.ln].weekDaysAbbr){
-            const td = document.createElement("th");
-            td.textContent = day;
-            tr.appendChild(td);
+            const th = document.createElement("th");
+            th.setAttribute("scope", "col");
+            th.textContent = day;
+            tr.appendChild(th);
         }
         return tr;
     },
@@ -250,8 +251,8 @@ const calendar = {
         let searchEntry = entries.map(e => {
             if(e){
                 const {type} = e;
-                const {markerDayInt} = this.parseDate(e.date);
-                return [markerDayInt, type];
+                const {markerDayInt, markerMonthInt} = this.parseDate(e.date);
+                return [markerDayInt, type, markerMonthInt];
             }
             return;
         });
@@ -269,8 +270,12 @@ const calendar = {
             const entry = searchEntry.find(f => f[0] === cell);
             if(entry){
                 const mark = document.createElement("mark");
-                mark.innerHTML = cell;
+                const a = document.createElement("a");
+                a.href = `#hd-${entry[2]}-${cell}`;
+                a.textContent = cell;
                 mark.classList.add(`bg-transparent`);
+                mark.appendChild(a);
+                // mark.id = `hd-${entry[2]}-${entry[0]}-${cell}`;
                 td.classList.add(`bg-${this.options.holidays_type[entry[1]]}`);
                 td.appendChild(mark)
             } else {
@@ -302,10 +307,8 @@ const calendar = {
         if( isNaN(Number(monthId)) ){
             return;
         }
-
         // Agrupa un listado de eventos por su nombre.
         const markerList = this.eventsByMonth(parseInt(monthId) + 1, year);
-
         if(!markerList){
             return [];
         }
@@ -323,9 +326,16 @@ const calendar = {
 
         for(let entry of Object.keys(result)){
             const event = result[entry];
-            const compileDays = event.map(e => this.parseDate(e.date).markerDayInt);
             const {label, type} = event[0];
             const holidayType = this.dictionary[this.ln].holidaysType[type];
+            const compileDays = event.map(m => {
+                const {markerDayInt, markerMonthInt} = this.parseDate(m.date);
+                const span = document.createElement("span");
+                span.textContent = markerDayInt;
+                span.id = `hd-${markerMonthInt}-${markerDayInt}`;
+                return span.outerHTML;
+            });
+
             const text = `${compileDays.join(", ")}. `
                 + `<span class="sr-only">${holidayType} — </span>${label}.`;
             // 
