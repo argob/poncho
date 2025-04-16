@@ -103,6 +103,7 @@ var ponchoUbicacion = function(options) {
             }
             return acc;
         }, {});
+
     return Object.values(groupedData);
     }
     
@@ -241,6 +242,7 @@ var ponchoUbicacion = function(options) {
     * @returns 
     */
     function getSelectMunicipios(municipios, provincia) {
+        debugger
         var muniSelect = {};
         var required = iMunicipio.prop('required');
         var select = null;
