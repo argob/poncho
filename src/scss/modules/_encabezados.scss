@@ -16,6 +16,25 @@ DEGRADÉ: .bg-mix-azul-info .bg-mix-info-azul .bg-mix-palta-azul .bg-mix-azul-pa
     background: linear-gradient(to right, $colorA 75%, $colorB);
 }
 
+
+/* VISUALIZACIÓN EN CONTENEDOR ESPECÍFICO */
+#superior .panel-pane {
+  .pane-content > * {
+    display: none;
+  }
+
+  &:nth-of-type(1) .pane-content > #encabezado {
+    display: block;
+  }
+}
+.container .panel-pane .pane-content > #encabezado {
+  display: none;
+}
+
+
+
+
+
 #encabezado {
 
     .bg-arg-azul,
@@ -50,16 +69,7 @@ DEGRADÉ: .bg-mix-azul-info .bg-mix-info-azul .bg-mix-palta-azul .bg-mix-azul-pa
     /* Generales */
     a {
         color: $black !important;
-    }
-
-    /*
-    .enc-link {
-        padding: 0px;
-        width: 48%;
-        vertical-align: text-top;
-        margin: 1% 4px 3px 0px;
-    }*/
-    
+    }  
 
     .w-100 {
         width: 100%;
@@ -104,6 +114,7 @@ DEGRADÉ: .bg-mix-azul-info .bg-mix-info-azul .bg-mix-palta-azul .bg-mix-azul-pa
       padding: 0px;
       width: 31%;
       margin: 20px 3px 3px 14px;
+      vertical-align: top;
     
       a {
         text-decoration: underline;
@@ -121,22 +132,9 @@ DEGRADÉ: .bg-mix-azul-info .bg-mix-info-azul .bg-mix-palta-azul .bg-mix-azul-pa
         }
       }
     }
-
-    
+   
 }
 
-
-
-/* MOBILE */
-/*
-@media (max-width: 768px) {
-    #encabezado .enc-link {
-        width: 96%;
-    }
-}
-*/
-
-/* COLOR DEGRADÉ */
 @media (max-width: 992px) {
     #encabezado {
         .bg-mix-info-azul {
