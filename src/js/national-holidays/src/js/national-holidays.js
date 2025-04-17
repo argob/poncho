@@ -1,24 +1,55 @@
 /**
  * FERIADOS NACIONALES
  * 
+ * Version: 2.0.0
+ * 
  * @summary Hace un render de un calendario anual de los feriados 
  * Nacionales de la República Argentina. 
+ * @param {object} options 
+ * @author Agustín Bouillet <bouilleta@jefatura.gob.ar>
+ * @docs https://github.com/argob/poncho/tree/master/src/js/national-holidays
+ * 
+ * 
+ * MIT License
+ *
+ * Copyright (c) 2025 Argentina.gob.ar
+ *
+ * Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation
+ * files (the "Software"), to deal in the Software without restriction,
+ * including without limitation the rightsto use, copy, modify, merge,
+ * publish, distribute, sublicense, and/or sell copies of the Software,
+ * and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+ * BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+ * ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+ * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  */
 const calendar = {
-    convertirFecha(fechaString) {
-        const partes = fechaString.split('/');
-        const [markerDay, markerMonth, markerYear] = fechaString.split('/');
-        const dateObject = new Date(markerYear, markerMonth - 1, markerDay);
-        return {dateObject, markerDay, markerMonth, markerYear};
-    },
+    /**
+     * Ordernar por key date
+     * 
+     * @param {array} array Array con las entradas 
+     * @returns {array}
+     */
     ordenarPorFecha(array) {
         return array.sort((a, b) => {
-            const fechaA = this.convertirFecha(a.date).dateObject;
-            const fechaB = this.convertirFecha(b.date).dateObject;
+            const fechaA = this.parseDate(a.date).dateObject;
+            const fechaB = this.parseDate(b.date).dateObject;
             return fechaA - fechaB;
         });
     },      
     /**
+     * Deconstruye la fecha y la retrna en sus partes y en objeto Date.
      * 
      * @param {string} dateString Fecha en formato dd/mm/yyyy.
      * @returns {object}
@@ -27,7 +58,7 @@ const calendar = {
         if(typeof dateString !== "string"){
             return;
         }
-        const [markerDay, markerMonth, markerYear] = dateString.split('/');
+        const [markerDay, markerMonth, markerYear] = dateString.split("/");
         const dateObject = new Date(markerYear, markerMonth - 1, markerDay);
         const markerDayInt = parseInt(markerDay);
         const markerMonthInt = parseInt(markerMonth);
@@ -42,8 +73,17 @@ const calendar = {
             markerYearInt};
     },
     /**
+     * Remplaza un texto asignado a un dataset.
      * 
-     * @param {string} scope 
+     * @summary Remplaza el texto de una etiqueta por el asginado en el 
+     * dataset con formato: `data-[scope]-[lang]`.
+     * @example
+     * <span 
+     *     data-text-singular-en="day" 
+     *     data-text-plural-en="days" 
+     *     data-text-singular-es="día" 
+     *     data-text-plural-es="días"></span>
+     * @param {string} scope nombre del dataset sin el sufijo [-lang].
      * @param {string} ln Lenguaje, ej: es, en.
      * @returns {undefined}
      */
@@ -55,64 +95,121 @@ const calendar = {
         for( let i of document.querySelectorAll(`[data-${scope}-${ln}]`)){
             const key = toCamelCase(`${scope}-${ln}`);
             i.textContent = i.dataset[key];
+            i.lang = ln;
         } 
     },
+    /**
+     * Fuerza un objeto Date a un timezone.
+     * 
+     * @param {Date} date Objeto Date
+     * @param {string} timeZone Time zone ej. America/Argentina/Buenos_Aires.
+     * @returns {Date}
+     */
     tZone(date, timeZone="America/Argentina/Buenos_Aires") {
         if (!(date instanceof Date)) {
             throw new TypeError("Se espera un objeto Date()");
         }
         const options = {
             timeZone: timeZone,
-            year: 'numeric',
-            month: '2-digit',
-            day: '2-digit',
-            hour: '2-digit',
-            minute: '2-digit',
-            second: '2-digit',
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit",
         };
-        return new Date(date.toLocaleString('en-US', options));
+        return new Date(date.toLocaleString("en-US", options));
     },
     timeZone: "America/Argentina/Buenos_Aires",
     dictionary:{
         es:{
-            months: [
-                "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio",
-                "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
-            ],
-            jumpToList: "Ir al listado de {month}",
             dayAnchor: "{day} de {month}",
             holidaysListTitle: "Listado de feriados",
-            weekDaysAbbr: ["Dom", "Lun", "Mar", "Mie", "Jue", "Vie", "Sab"],
-            weekDays: [
-                "Domingo", "Lunes", "Martes", "Miércoles", 
-                "Jueves", "Viernes", "Sábado"],
             holidaysType: {
                 inamovible: "Feriado inamovible",
-                trasladable: "Feriado trasladable",
                 no_laborable: "Día no laborable",
+                trasladable: "Feriado trasladable",
                 turistico: "Feriado turístico"
-            }
-        },
-        en:{
+            },
+            jumpToList: "Ir al listado de {month}",
             months: [
-                "January", "February", "March", "April", "May", "June", "July",
-                "August", "September", "October", "November", "December"
+                "Enero",
+                "Febrero",
+                "Marzo",
+                "Abril",
+                "Mayo",
+                "Junio",
+                "Julio",
+                "Agosto",
+                "Septiembre",
+                "Octubre",
+                "Noviembre",
+                "Diciembre"
             ],
-            jumpToList: "Jump to {month} list",
+            nextHoliday: `{day} de {month} de {year}`,
+            weekDays: [
+                "Domingo",
+                "Lunes",
+                "Martes",
+                "Miércoles",
+                "Jueves",
+                "Viernes",
+                "Sábado"
+            ],
+            weekDaysAbbr: [
+                "Dom",
+                "Lun",
+                "Mar",
+                "Mie",
+                "Jue",
+                "Vie",
+                "Sab"
+            ]
+        },
+        en: {
             dayAnchor: "{month} {day}th.",
             holidaysListTitle: "Holidays list",
-            weekDaysAbbr: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
-            weekDays: [
-                "Sunday", "Monday", "Tuesday", "Wednesday", 
-                "Thursday", "Friday", "Saturday"],
             holidaysType: {
                 inamovible: "Fixed Holiday",
-                trasladable: "Movable Holiday",
                 no_laborable: "Non-Working Day",
+                trasladable: "Movable Holiday",
                 turistico: "Tourist Holiday"
-            }
+            },
+            jumpToList: "Jump to {month} list",
+            months: [
+                "January",
+                "February",
+                "March",
+                "April",
+                "May",
+                "June",
+                "July",
+                "August",
+                "September",
+                "October",
+                "November",
+                "December"
+            ],
+            nextHoliday: `{month} {day}th, {year}`,
+            weekDays: [
+                "Sunday",
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday"
+            ],
+            weekDaysAbbr: [
+                "Sun",
+                "Mon",
+                "Tue",
+                "Wed",
+                "Thu",
+                "Fri",
+                "Sat"
+            ]
         }
-
     },
     daysOfMonth: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
     TODAY: null,
@@ -120,23 +217,30 @@ const calendar = {
     template: null,
     options: {},
     render: function(options) {
-        document
-            .querySelectorAll(options.containerId)
-            .forEach(e => e.innerHTML = "");
+        const mainContainer = document.querySelector(options.containerId);
+        if(mainContainer){
+            mainContainer.innerHTML = "";
+        } else {
+            throw new Error(
+                `No se puede encontrar el id: ${options.containerId}`);
+        }
 
         // Define el primer día del [año{options.calendarYear}]
         this.TODAY = this.tZone(
             new Date(options.calendarYear, 0, 1, 12, 0, 0),
             this.timeZone);
 
-        if(options.marker){
-
-        }
+        
         this.options = options;
-        this.ln = (options.hasOwnProperty("lang") ? options.lang : "es");
+        this.availableLanguages = Object.keys(this.dictionary);
+
+        this.ln = (options.hasOwnProperty("lang") && 
+                this.availableLanguages.includes(options.lang) ? 
+                options.lang : "es");
+
         const isMultiLang = Object
             .keys(options.markers)
-            .some(f => Object.keys(this.dictionary).includes(f));
+            .some(f => this.availableLanguages.includes(f));
         if(isMultiLang){
             this.markers = options.markers[this.ln];
         } else {
@@ -144,11 +248,19 @@ const calendar = {
         }
 
         this.container = document.querySelector(this.options.containerId);
-        this.template = document.getElementById("monthtpl");
-
+        this.template = document.querySelector(this.options.templateId);
+        
+        // RENDER
         this.daysLeft();
         this.renderCalendar();
     },
+    /**
+     * Retorna los eventos por mes y año.
+     * 
+     * @param {number} month Número de mes comenzando en 0. Ej. enero = 0.
+     * @param {number} year Año en formato: yyyy. 
+     * @returns {object}
+     */
     eventsByMonth(month, year){
         if( isNaN(Number(month)) || isNaN(Number(year)) ){
             return;
@@ -171,13 +283,19 @@ const calendar = {
             const iterationDate = this.tZone(
                 new Date(this.options.calendarYear, monthNumber, 1, 12, 0, 0),
                 this.timeZone);
-            console.log(monthNumber, iterationDate)
-            const clonedMonth = this.template.content.cloneNode(true);
-            const monthObj = this.drawCalendarMonth(
-                iterationDate, monthNumber, clonedMonth);
+            
+                console.info(monthNumber, iterationDate)
+
+            const tpl = this.template.content.cloneNode(true);
+            const monthObj = this.drawCalendarMonth(iterationDate, 
+                    monthNumber, tpl);
             this.container.appendChild(monthObj);
         }
     },
+    /**
+     * Crea los días para los </th> del </thead>.
+     * @returns {HTMLTableRowElement}
+     */
     createWeekDays(){
         const tr = document.createElement("tr");
         for(const day of this.dictionary[this.ln].weekDaysAbbr){
@@ -188,11 +306,19 @@ const calendar = {
         }
         return tr;
     },
+    /**
+     * Compone la información para el mes.
+     * 
+     * @param {Date} iterationDate Objeto date para el mes.
+     * @param {number} monthNumber Número de mes comenzando en 0.
+     * @param {HTMLElement} tpl Template content
+     * @returns {HTMLElement} Template con sus elementos completados.
+     */
     drawCalendarMonth: function(iterationDate, monthNumber, tpl) {
         const day = iterationDate.getDay();
         const date = iterationDate.getDate();
         const year = iterationDate.getFullYear();
-        
+
         const totalDaysOfMonth = this.daysOfMonth[monthNumber];
         const monthName = this.dictionary[this.ln].months[monthNumber];
 
@@ -213,13 +339,6 @@ const calendar = {
         const tplWeekdays = tpl.querySelector(".js-tpl-weekdays");
         tplWeekdays.appendChild(this.createWeekDays());
 
-        // Agrego el listado de feriados.
-        const tplHollidays = tpl.querySelector(".js-tpl-holidays");
-        const hollidaysLabels = this.addLabel(monthNumber, year);
-        if(hollidaysLabels){
-            tplHollidays.appendChild(hollidaysLabels);
-        }
-
         // Calcula si es año biciesto
         if (monthNumber === 1) {
             if ((year % 100 !== 0) && (year % 4 === 0) || (year % 400 === 0)){
@@ -230,14 +349,24 @@ const calendar = {
         // Get Start Day
         const entries = this.eventsByMonth(parseInt(monthNumber) + 1, year);
 
+        // Si el mes tiene feriados imprimo el listado y un ancla 
+        // para llegar a ellos.
         if(entries.length > 0){
             const tplJumpToList = tpl.querySelector(".js-jump-to-list");
             const anchor = document.createElement("a");
+            anchor.setAttribute("tabindex", "0");
             anchor.href = `#holiday-list-${parseInt(monthNumber) + 1}`;
             anchor.lang = this.ln;
             anchor.textContent = this.dictionary[this.ln]
                     .jumpToList.replace("{month}", monthName);
             tplJumpToList.appendChild(anchor);
+
+            // Agrego el listado de feriados.
+            const tplHollidays = tpl.querySelector(".js-tpl-holidays");
+            const hollidaysLabels = this.addLabel(monthNumber, year);
+            if(hollidaysLabels){
+                tplHollidays.appendChild(hollidaysLabels);
+            }
         }
 
         const startDay = this.getCalendarStart(day, date);
@@ -245,6 +374,15 @@ const calendar = {
 
         return tpl;
     },
+    /**
+     * Dibuja todas las filas de la tabla.
+     * 
+     * @param {HTMLElement} tpl Objeto element clone.
+     * @param {number} startDay Día en que inicia el mes.
+     * @param {number} totalDays Cantidad de días que tiene el mes.
+     * @param {array} entries Listado de feriados.
+     * @returns {undefined}
+     */
     renderMonth: function(tpl, startDay, totalDays, entries) {
         // El total de celdas del tbody es de 42 en 6 filas.
         // creo un array marcando los días del calendario y el resto
@@ -261,9 +399,6 @@ const calendar = {
         for (let i = 0; i < arr.length; i += 7) {
             tableRows.push(arr.slice(i, i + 7));
         }
-
-
-
         // Agrego tr al tbody
         const tplBody = tpl.querySelector(".js-tpl-tbody");
         for(let tableRow of tableRows){
@@ -271,6 +406,15 @@ const calendar = {
             tplBody.appendChild(tr);
         }
     },
+    /**
+     * Compronel e </tr> para la tabla de agenda de un mes.
+     * 
+     * @param {array} tableRow Listado con los días de la semana. 
+     * false si en la casilla aun no empieza el mes o si falta para 
+     * terminar la fila.
+     * @param {array} entries Listado de feriados.
+     * @returns {HTMLTableRowElement}
+     */
     drawCalendarRow: function(tableRow, entries) {
         const dict = this.dictionary[this.ln];
         let searchEntry = entries.map(e => {
@@ -287,25 +431,29 @@ const calendar = {
             const td = document.createElement("td");
             if(!cell){
                 td.innerHTML = "&nbsp;";
-                td.setAttribute("aria-hidden", "true");
                 tr.appendChild(td);
                 continue;
             }
 
             const entry = searchEntry.find(f => f[0] === cell);
             if(entry){
+                const [markerDayInt, type, markerMonthInt] = entry;
                 const label = dict.dayAnchor
-                    .replace("{month}", dict.months[entry[2]])
-                    .replace("{day}", entry[0]);
-                const mark = document.createElement("mark");
+                    .replace("{month}", dict.months[markerMonthInt-1])
+                    .replace("{day}", markerDayInt);
+                    
                 const a = document.createElement("a");
-                a.href = `#hd-${entry[2]}-${cell}`;
+                a.href = `#hd-${cell}-${markerMonthInt}`;
+                a.setAttribute("tabindex", "0");
                 a.setAttribute("aria-label", label);
-                a.textContent = entry[0];
+                a.lang = this.ln;
+                a.textContent = markerDayInt;
+
+                const mark = document.createElement("mark");
                 mark.classList.add(`bg-transparent`);
                 mark.appendChild(a);
                 
-                td.classList.add(`bg-${this.options.holidays_type[entry[1]]}`);
+                td.classList.add(`bg-${this.options.holidays_type[type]}`);
                 td.appendChild(mark)
             } else {
                 td.innerHTML = cell;
@@ -314,8 +462,14 @@ const calendar = {
         }
         return tr;
     },
-    // Returns the day of week which month starts (eg 0
-    // for Sunday, 1 for Monday, etc.)
+    /**
+     * Devuelve el día de la semana en que comienza el mes (ej. 0 para 
+     * Domingo, 1 para Lunes, etc.).
+     * 
+     * @param {number} dayOfWeek Día de la semana.
+     * @param {number} currentDate Día actual.
+     * @returns {number}
+     */
     getCalendarStart: function(dayOfWeek, currentDate) {
         if (!Number.isInteger(dayOfWeek) || dayOfWeek < 0 || dayOfWeek > 6) {
             console.error("El parámetro dayOfWeek debe ser un número " +
@@ -332,7 +486,14 @@ const calendar = {
         const startDayOfWeek = (dayOfWeek - (daysToSubtract % 7) + 7) % 7;
         return startDayOfWeek;
     },
-    addLabel: function( monthId, year ) {
+    /**
+     * Compone el listado de feriados
+     * 
+     * @param {number} monthId Número de mes comenzando en 0. Ej. enero = 0.
+     * @param {number} year Año en formato: yyyy. 
+     * @returns {HTMLElement}
+     */
+    addLabel: function(monthId, year) {
         if( isNaN(Number(monthId)) ){
             return;
         }
@@ -354,6 +515,8 @@ const calendar = {
 
         const ul = document.createElement("ul");
         ul.lang = this.ln;
+        ul.setAttribute("role", "region");
+        ul.setAttribute("tabindex", "0");
         ul.classList.add("holidays", "list-unstyled");
         ul.id = `holiday-list-${parseInt(monthId) + 1}`;
 
@@ -365,12 +528,12 @@ const calendar = {
                 const {markerDayInt, markerMonthInt} = this.parseDate(m.date);
                 const span = document.createElement("span");
                 span.textContent = markerDayInt;
-                span.id = `hd-${markerMonthInt}-${markerDayInt}`;
+                span.id = `hd-${markerDayInt}-${markerMonthInt}`;
                 return span.outerHTML;
             });
 
             const text = `${compileDays.join(", ")}. `
-                + `<span class="sr-only">${holidayType} — </span>${label}.`;
+                + `<span class="sr-only">${holidayType}&nbsp;—&nbsp;</span>${label.trim()}.`;
             // 
             const li = document.createElement("li");
             li.innerHTML = text;
@@ -378,11 +541,14 @@ const calendar = {
         }
         return ul;
     }, 
+    /**
+     * Agrega la información para el bloque que informa sobre si 
+     * es o no un día feriado y cuanto falta para el próixmo.
+     * 
+     * @returns {undefined}
+     */
     daysLeft: function(){
-        /**
-         * Agrega la información para el bloque que informa sobre si 
-         * es o no un día feriado y cuanto falta para el próixmo
-         */
+        const dict = this.dictionary[this.ln];
         const today = this.tZone((new Date), this.timeZone);
         const hoynoes = document.querySelector("#js-hoynoes");
         const hoyes = document.querySelector("#js-hoyes");
@@ -395,7 +561,7 @@ const calendar = {
         let proximo = detalle = "";
 
         if (calendarYear === nowYear || (calendarYear - 1) === nowYear){
-            const n_days = document.querySelector('#js-ndays');
+            const n_days = document.querySelector("#js-ndays");
             const faltanHTML = document.querySelector("#js-faltan");
             const proximoHTML = document.querySelector("#js-proximo");
             const detalleHTML = document.querySelector("#js-detalle");
@@ -414,18 +580,17 @@ const calendar = {
                     new Date(markerYear, markerMonth - 1, markerDay),
                     this.timeZone);
 
-                if (today < date && markerType !== 'no_laborable') {
+                if (today < date && markerType !== "no_laborable") {
                     n_days.classList.add(`text-${holidaysType[markerType]}`);
                     detalleHTML.classList.add(`text-${holidaysType[markerType]}`);
                     const time_diff = Math.abs(date.getTime() - today.getTime());
                     dayCount = Math.ceil(time_diff / (1000 * 3600 * 24));
                     const day = date.getDate();
-                    const month = this.dictionary[this.ln].months[date.getMonth()];
-                    proximo = {
-                        es: `${day} de ${month.toLocaleLowerCase()} ` 
-                            + `de ${date.getFullYear()}`,
-                        en: `${month} ${day}th, ${date.getFullYear()}`
-                    }
+                    const month = dict.months[date.getMonth()];
+                    proximo = dict.nextHoliday
+                        .replace("{day}", day)
+                        .replace("{month}", month)
+                        .replace("{year}", date.getFullYear());
                     detalle = markerLabel;
 
                     break;
@@ -441,7 +606,8 @@ const calendar = {
             this.toggleText("text", this.ln);
 
             faltanHTML.innerHTML = dayCount;
-            proximoHTML.innerHTML = proximo[this.ln];
+            proximoHTML.innerHTML = proximo;
+            proximoHTML.lang = this.ln;
             detalleHTML.innerHTML = detalle;
 
             for (var i in markers) {
@@ -459,13 +625,13 @@ const calendar = {
 
                 if (today.getDate() == date.getDate() &&
                     today.getMonth() == date.getMonth() &&
-                    markerType !== 'no_laborable') {
+                    markerType !== "no_laborable") {
 
-                    hoyes.classList.remove('hidden');
+                    hoyes.classList.remove("hidden");
                     hoyes.removeAttribute("aria-hidden");
                     hoyes.classList.add(`text-${holidaysType[markerType]}`);
 
-                    hoynoes.classList.add('hidden');
+                    hoynoes.classList.add("hidden");
                     hoynoes.setAttribute("aria-hidden", "true");
 
                     detallehoy.innerHTML = markerLabel;
@@ -476,8 +642,8 @@ const calendar = {
 
         } else {
             // Año distinto al actual
-            hoynoes.classList.add('hidden');
-            hoyes.classList.add('hidden');
+            hoynoes.classList.add("hidden");
+            hoyes.classList.add("hidden");
         }
     }
 };

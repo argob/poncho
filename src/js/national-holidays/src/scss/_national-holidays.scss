@@ -56,6 +56,9 @@
     .bg-turistico {
         background-color: var(--uva, #6a1b99);
         color: white;
+        a {
+            color:white 
+        }
     }
 
     .bg-success,
