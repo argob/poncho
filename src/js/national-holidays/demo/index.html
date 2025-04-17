@@ -21,7 +21,7 @@
         rel="stylesheet"
         href="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/poncho.min.css" />
     <link rel="stylesheet" href="../../../../dist/css/poncho.min.css">
-    <!-- <link rel="stylesheet" href="./css/main.css"> -->
+    <link rel="stylesheet" href="./css/main.css">
     <style>
         body {
             padding: 2em;
@@ -47,7 +47,7 @@
     <!-- Bloque dinámico -->
     <!-- days countdown -->
     <div class="row m-b-4 clearfix" id="js-hoynoes">
-        <div class="col-md-4 col-md-offset-4 col-xs-12 col-sm-12" role="text">
+        <div class="col-md-4 col-md-offset-4 col-xs-12 col-sm-12" tabindex="0" role="text">
             <p class="m-b-0 text-arg-azul">
                 <span 
                     class="js-falta text-capitalize" 
@@ -125,7 +125,7 @@
                             <i class="fa fa-2x fa-circle text-primary fa-fw"></i>
                             </div>
                             <div aria-hidden="true" class="media-body">
-                                <p class="text-muted">Feriados inamovibles</p>
+                                <p class="text-muted" data-text-en="Fixed holidays">Feriados inamovibles</p>
                             </div>
                         </div>
                         <div class="media" role="presentation">
@@ -133,7 +133,7 @@
                             <i class="fa fa-2x fa-circle text-success fa-fw"></i>
                             </div>
                             <div aria-hidden="true" class="media-body">
-                                <p class="text-muted">Feriados trasladables</p>
+                                <p class="text-muted" data-text-en="Movable holidays">Feriados trasladables</p>
                             </div>
                         </div>
                         <div class="media" role="presentation">
@@ -141,7 +141,7 @@
                             <i class="fa fa-2x fa-circle text-nl fa-fw"></i>
                             </div>
                             <div aria-hidden="true" class="media-body">
-                                <p class="text-muted">Días no laborables</p>
+                                <p class="text-muted" data-text-en="Non-Working days">Días no laborables</p>
                             </div>
                         </div>
                         <div class="media" role="presentation">
@@ -149,7 +149,7 @@
                             <i class="fa fa-2x fa-circle text-turistico fa-fw"></i>
                             </div>
                             <div aria-hidden="true" class="media-body">
-                                <p class="text-muted">Turísticos</p>
+                                <p class="text-muted" data-text-en="Tourist holidays">Turísticos</p>
                             </div>
                         </div>
                     </div>
@@ -164,20 +164,19 @@
 <!-- / Calendar -->
 
 <!-- Template -->
-<template id="monthtpl">
-    <div>
+<template id="month-tpl">
+    <article>
     <div class="month js-tpl-id">
         <h2 class="h5 text-center js-tpl-month"></h2>
         <div class="js-jump-to-list sr-only"></div>
         <table 
-            class="table text-center small js-table" 
-            role="presentation">
+            class="table text-center small js-table">
             <thead class="js-tpl-weekdays"></thead>
             <tbody class="js-tpl-tbody"></tbody>
         </table>
     </div>
     <div class="holidays js-tpl-holidays"></div>
-</div>
+    </article>
 </template>
 <!-- / Template -->
 
@@ -400,13 +399,19 @@
     }
 
 document.addEventListener("DOMContentLoaded", function() {
+    const url = new URL(window.location.href)
+    let ln = url.searchParams.get('lang');
+    if(!["en", "es"].includes(ln)){
+        ln = "es";
+    }
+
     const calendarOptions = {
         calendarYear: 2025,
         markers: holidays2025,
         allowHTML: true,
         containerId: "#calendar-container",
         templateId: "#month-tpl",
-        lang: "es",
+        lang: ln,
         holidays_type: {
             inamovible: "primary",
             trasladable: "success",
