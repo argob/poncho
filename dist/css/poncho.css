@@ -14985,6 +14985,9 @@ DEGRADÉ: .bg-mix-azul-info .bg-mix-info-azul .bg-mix-palta-azul .bg-mix-azul-pa
   background-color: var(--uva, #6a1b99);
   color: white;
 }
+.national-holidays .bg-turistico a {
+  color: white;
+}
 .national-holidays .bg-success,
 .national-holidays .bg-primary,
 .national-holidays .bg-nl {
