@@ -81,6 +81,7 @@ const calendar = {
             ],
             jumpToList: "Ir al listado de {month}",
             dayAnchor: "{day} de {month}",
+            holidaysListTitle: "Listado de feriados",
             weekDaysAbbr: ["Dom", "Lun", "Mar", "Mie", "Jue", "Vie", "Sab"],
             weekDays: [
                 "Domingo", "Lunes", "Martes", "Miércoles", 
@@ -99,6 +100,7 @@ const calendar = {
             ],
             jumpToList: "Jump to {month} list",
             dayAnchor: "{month} {day}th.",
+            holidaysListTitle: "Holidays list",
             weekDaysAbbr: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
             weekDays: [
                 "Sunday", "Monday", "Tuesday", "Wednesday", 
