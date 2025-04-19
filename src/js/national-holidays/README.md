@@ -4,21 +4,79 @@
 
 Este componente JavaScript facilita la visualización de los feriados nacionales en un calendario.
 
+## Versión
+
+2.0.0
+
 ## ⚙️ Opciones de configuración
 
 La inicialización del calendario se realiza mediante un objeto de configuración con las siguientes opciones:
 
 | **Opción** | **Descripción** | **Valores Posibles** |
 |:--|:--|:--|
-| containerId | ID (`id=""[containerId]""`) del elemento HTML donde se renderizará el calendario. | Cualquier selector CSS válido (ej: #mi-div, .calendario) |
-| templateId | ID de la plantilla HTML que se utilizará para renderizar el mes. | Cualquier selector CSS válido (ej: #tpl-mes) |
-| allowHTML | Indica si se permite HTML dentro de los nombres de los eventos/días. | true, false |
+| containerId | ID (`id=""[containerId]""`) del elemento HTML donde se renderizará el calendario. | Cualquier selector válido (ej: #mi-div, .calendario). Por defecto: `#calendar-container`. |
+| templateId | ID de la plantilla HTML que se utilizará para renderizar el mes. | Cualquier selector válido (ej: #tpl-mes). Por defecto: `#month-tpl` |
+| allowHTML | Indica si se permite HTML dentro de los nombres de los eventos. | true, false |
 | lang | El código del idioma que se utilizará para la visualización del calendario. | "es" (español), "en" (inglés), etc. |
-| holidays_type | Define los estilos (clases CSS) para diferentes tipos de días festivos. | Objeto JavaScript con las siguientes claves: |
-|  |  | - **inamovible**: Clase CSS para feriados inamovibles |
-|  |  | - **trasladable**: Clase CSS para feriados trasladables |
-|  |  | - **no_laborable**: Clase CSS para días no laborables |
-|  |  | - **turistico**: Clase CSS para feriados turísticos |
+| holidays_type | Define los estilos (clases CSS), para diferentes tipos de feriados y días festivos. | Objeto JavaScript con las siguientes claves: |
+|  |  | - **inamovible**: Clase CSS para feriados inamovibles. Default `primary`. |
+|  |  | - **trasladable**: Clase CSS para feriados trasladables. Default `success`. |
+|  |  | - **no_laborable**: Clase CSS para días no laborables. Default `nl`. |
+|  |  | - **turistico**: Clase CSS para feriados turísticos. Default `turistico`. |
+
+
+### Internacionalización de Textos
+
+Esta herramienta facilita la adaptación de textos a diferentes idiomas mediante el atributo data-text-[lang] en cualquier etiqueta HTML. Al procesar la etiqueta, el intérprete reemplazará el contenido según el idioma configurado en las opciones del calendario.
+
+**Ejemplo**:
+
+Considerando un calendario con soporte para inglés (lang: "en") y español (lang: "es"), se puede definir textos multilingües de la siguiente manera:
+
+```html
+<p data-text-en="Hello world!" data-text-es="¡Hola mundo!"></p>
+```
+
+Si el idioma activo es inglés, el contenido renderizado será:
+
+```html
+Hello world!
+```
+
+Al cambiar el idioma a español, el contenido se actualizará a:
+
+```html
+¡Hola mundo!
+```
+
+#### Gestión de textos en singular y plural
+
+Para escenarios como la cuenta regresiva de días, donde algunas palabras varían entre singular y plural (por ejemplo, "día" vs. "días", "falta" vs. "faltan"), se proporciona el atributo data-singular-[lang] y data-plural-[lang].
+
+**Ejemplo**:
+
+Para el idioma español, se puede especificar las formas singular y plural así:
+
+```html
+<span data-singular-es="día" data-plural-es="días">días</span>
+```
+
+
+Cuando solo reste 1 día, el texto se mostrará en singular:
+
+```html
+día
+```
+
+Esta funcionalidad se puede combinar con la internacionalización de textos para manejar múltiples idiomas:
+
+```html
+<p 
+    data-text-singular-en="There is" 
+    data-text-plural-en="There are" 
+    data-text-singular-es="falta"
+    data-text-plural-es="faltan">faltan</p>
+```
 
 
 
@@ -211,9 +269,10 @@ _(Copie y pegue el código HTML sin modificar ninguno de los selectores en el c�
 
 
 
-### 3. Incluir librería `poncho.min.js`
+### 3. Incluir _national-holidays.js_
+
 ```js
-<script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
+<script src="/profiles/argentinagobar/themes/contrib/poncho/js/national-holidays.js"></script>
 ```
 
 ### 4. Incluir la llamada al calendario
@@ -224,20 +283,17 @@ En la llamada al calendario hay que modificar dos índices: `calendarYear`, dond
 document.addEventListener("DOMContentLoaded", function() {
     const calendarOptions = {
         "calendarYear": 2025,
-        "markers": [holidays2025],
+        "markers": holidaysData,
         "allowHTML": true,
+        "lang": "es",
         "containerId": "#calendar-container",
-        "templateId": "#month-tpl",
-        "holidays_type": {
-            "inamovible": "primary",
-            "trasladable": "success",
-            "no_laborable": "nl",
-            "turistico": "turistico"
-        }
+        "templateId": "#month-tpl"
     };
     calendar.render(calendarOptions);
 });
 </script>
 ```
+
+
 
 

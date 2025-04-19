@@ -221,11 +221,15 @@ const calendar = {
      * @returns {boolean}
      */
     isValidDate(year, month, day) {
+        const areValid = [year, month, day].every(num => !isNaN(Number(num)));
+        if(!areValid){
+            return false;
+        }
         const date = new Date(year, month - 1, day);
         return (
-            date.getFullYear() === year &&
-            date.getMonth() === month - 1 &&
-            date.getDate() === day
+            date.getFullYear() === parseInt(year) &&
+            date.getMonth() === parseInt(month) - 1 &&
+            date.getDate() === parseInt(day)
         );
     },
     /**
@@ -752,3 +756,8 @@ const calendar = {
         this.toggleText("text", this.ln);
     }
 };
+
+
+if (typeof exports !== "undefined") {
+    module.exports = {calendar};
+}
