@@ -131,6 +131,7 @@ const calendar = {
                 trasladable: "Feriado trasladable",
                 turistico: "Feriado turístico"
             },
+            calendarCaption: "Calendario de {month}",
             jumpToList: "Ir al listado de {month}",
             months: [
                 "Enero",
@@ -175,6 +176,7 @@ const calendar = {
                 trasladable: "Movable Holiday",
                 turistico: "Tourist Holiday"
             },
+            calendarCaption: "{month} calendar",
             jumpToList: "Jump to {month} list",
             months: [
                 "January",
@@ -278,6 +280,45 @@ const calendar = {
 
         return true;
     },
+    /**
+     * Los markers tienen índice lang.
+     * @param {object} markers Objeto con markers. 
+     * @returns {boolean}
+     */
+    isMultiLang: function(markers){
+        return Object
+            .keys(markers)
+            .some(f => this.availableLanguages.includes(f))
+    }, 
+    /**
+     * Valida los markers.
+     * 
+     * @summary Valida que el array con eventos esté bien formado. 
+     * Caso contrario ejecuta una excepción y frena toda ejecución.
+     * 
+     * @param {object} markers Listado de markers
+     * @returns {true|Error} 
+     */
+    validateMarkers: function(markers){
+        if (markers === null || markers === undefined) {
+            throw new Error("El listado de eventos es incorrecto.");
+        }
+
+        if(Array.isArray(markers) && !markers[0].hasOwnProperty("date")){
+            throw new Error("El listado de eventos, está mal formado.");
+        }
+
+        if(typeof markers === "object" && !this.isMultiLang(markers)){
+            throw new Error(
+                "El listado (object), no tiene definido un lenguaje válido");
+        }
+
+        if(typeof markers === "object" && 
+            this.isMultiLang(markers) && 
+            markers[this.ln].length < 1){
+            throw new Error("El listado está vacío o mal formado.");
+        }
+    },
     render: function(options) {
         const defaults = {
             containerId: "#calendar-container",
@@ -314,34 +355,16 @@ const calendar = {
                 + `id: ${opts.templateId}`);
         }
 
-        // Valido y preparo los markers.
-        if(!opts.hasOwnProperty("markers")){
-            throw new Error("No se encuentra la clave: 'markers', "
-                + "dentro de las opciones.");
-        }
+        // Valido y preparolos markers.
+        this.validateMarkers(opts.markers);  
 
-        if (opts.markers === null || opts.markers === undefined) {
-            throw new Error("El listado de eventos es incorrecto.");
-        }
-
-        if(Array.isArray(opts.markers) && opts.markers.length < 1){
-            throw new Error("El listado (array), no puede estar vacío.");
-        }
-
-        if(typeof opts.markers === "object" && Object.keys(opts.markers).length < 1){
-            throw new Error("El listado (object), no puede estar vacío.");
-        }
-
-        const isMultiLang = Object
-            .keys(opts.markers)
-            .some(f => this.availableLanguages.includes(f));
-        this.inputMarkers = (isMultiLang ? opts.markers[this.ln] : 
-            opts.markers[0]);
+        // Defino los markers.
+        this.inputMarkers = (this.isMultiLang(opts.markers) ? 
+                opts.markers[this.ln] : opts.markers[0]);
         this.inputMarkers.forEach(entry => this.isValidEntry(entry));
         this.markers = this.oerderByDate(this.inputMarkers);
 
         this.dict = this.dictionary[this.ln];
-
 
         // RENDER CALENDAR
         this.daysLeft();
@@ -382,8 +405,6 @@ const calendar = {
             const iterationDate = this.tZone(
                 new Date(this.calendarYear, monthNumber, 1, 12, 0, 0),
                 this.timeZone);
-            
-                console.info(monthNumber, iterationDate)
 
             const tpl = this.template.content.cloneNode(true);
             const monthObj = this.drawCalendarMonth(iterationDate, 
@@ -397,7 +418,7 @@ const calendar = {
      */
     createWeekDays(){
         const tr = document.createElement("tr");
-        for(const day of this.dictionary[this.ln].weekDaysAbbr){
+        for(const day of this.dict.weekDaysAbbr){
             const th = document.createElement("th");
             th.setAttribute("scope", "col");
             th.textContent = day;
@@ -419,7 +440,7 @@ const calendar = {
         const year = iterationDate.getFullYear();
 
         const totalDaysOfMonth = this.daysOfMonth[monthNumber];
-        const monthName = this.dictionary[this.ln].months[monthNumber];
+        const monthName = this.dict.months[monthNumber];
 
         // Asigno el ID al tpl.
         const tplId = tpl.querySelector(".js-tpl-id");
@@ -429,6 +450,10 @@ const calendar = {
         // Lang a la tabla
         const tplTable = tpl.querySelector(".js-table");
         tplTable.lang = this.ln;
+
+        const tplCaption = tpl.querySelector(".js-tpl-caption");
+        tplCaption.textContent = this.dict.calendarCaption
+                .replace("{month}", monthName);
 
         // Agrego el nombre del mes.
         const tplMonth = tpl.querySelector(".js-tpl-month");
@@ -451,14 +476,28 @@ const calendar = {
         // Si el mes tiene feriados imprimo el listado y un ancla 
         // para llegar a ellos.
         if(entries.length > 0){
-            const tplJumpToList = tpl.querySelector(".js-jump-to-list");
+            // Iconos accesibilidad. Decorativo.
+            const uaIcon = document.createElement("i");
+            uaIcon.classList.add("nh-icon", "universal-access");
+            uaIcon.setAttribute("aria-hidden", "true");
+
+            // Enlace de salto.
             const anchor = document.createElement("a");
+            anchor.classList.add("sr-only", "sr-only-focusable");
             anchor.setAttribute("tabindex", "0");
             anchor.href = `#holiday-list-${parseInt(monthNumber) + 1}`;
             anchor.lang = this.ln;
-            anchor.textContent = this.dictionary[this.ln]
-                    .jumpToList.replace("{month}", monthName);
-            tplJumpToList.appendChild(anchor);
+            const anchorText = this.dict.jumpToList
+                    .replace("{month}", monthName);
+            anchor.innerHTML = `${uaIcon.outerHTML} ${anchorText}`; 
+
+            // Contenedor <p>
+            const jumpToListContainer = document.createElement("p");
+            jumpToListContainer.className = "jump-to-list";
+            jumpToListContainer.appendChild(anchor);
+
+            const tplJumpToList = tpl.querySelector(".js-jump-to-list");
+            tplJumpToList.appendChild(jumpToListContainer);
 
             // Agrego el listado de feriados.
             const tplHollidays = tpl.querySelector(".js-tpl-holidays");
@@ -621,30 +660,35 @@ const calendar = {
         for(let entry of Object.keys(result)){
             const event = result[entry];
             const {label, type} = event[0];
-            const holidayType = this.dictionary[this.ln].holidaysType[type];
+            const refactorLabel = (!label.endsWith(".") ? label + "." : label);
+            const holidayType = this.dict.holidaysType[type];
+
             const compileDays = event.map(m => {
                 const {markerDayInt, markerMonthInt} = this.parseDate(m.date);
+                const ariaLabel = this.dict.dayAnchor
+                    .replace("{month}", this.dict.months[markerMonthInt-1])
+                    .replace("{day}", markerDayInt);
+
                 const span = document.createElement("span");
                 span.textContent = markerDayInt;
+                span.setAttribute("aria-label", ariaLabel);
                 span.id = `hd-${markerDayInt}-${markerMonthInt}`;
                 return span.outerHTML;
             });
 
-            let obj;
-            if(this.allowHTML){
-                obj = document.createElement('span')
-                obj.innerHTML = label.trim();
-            } else {
-                obj = document.createTextNode(label);
-            }
+            const refactorCompliedDays = `${compileDays.join(", ")}. `
+            const refactorHolidayType = `<span class="sr-only">`
+                + `${holidayType}&nbsp;—&nbsp;</span>`;
 
-            const text = `${compileDays.join(", ")}. `
-                + `<span class="sr-only">`
-                + `${holidayType}&nbsp;—&nbsp;</span> `;
-            // 
             const li = document.createElement("li");
-            li.innerHTML = text;
-            li.appendChild(obj);
+            li.innerHTML = refactorCompliedDays + refactorHolidayType;
+
+            if (this.allowHTML){
+                li.insertAdjacentHTML('beforeend', refactorLabel);
+            } else {
+                const obj = document.createTextNode(refactorLabel);
+                li.appendChild(obj);
+            }
 
             ul.appendChild(li);
         }
