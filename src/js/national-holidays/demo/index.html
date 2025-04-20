@@ -19,11 +19,12 @@
     <!-- /Base -->
 
     <link rel="stylesheet" href="../../../../dist/css/poncho.min.css">
-    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="../dist/css/national-holidays.css">
     <style>
         body {
             padding: 2em;
         }
+
     </style>
     <title>develop | Feriados nacionales</title>
 </head>
@@ -156,17 +157,16 @@
 
 <!-- Template -->
 <template id="month-tpl">
-    <article>
-    <div class="month js-tpl-id">
+    <article class="month js-tpl-id">
         <h2 class="h5 text-center js-tpl-month"></h2>
-        <div class="js-jump-to-list sr-only"></div>
+        <div class="js-jump-to-list"></div>
         <table 
-            class="table text-center small js-table">
+            class="table text-center table-borderless small js-table">
+            <caption class="js-tpl-caption sr-only"></caption>
             <thead class="js-tpl-weekdays"></thead>
             <tbody class="js-tpl-tbody"></tbody>
         </table>
-    </div>
-    <div class="js-tpl-holidays"></div>
+        <div class="js-tpl-holidays"></div>
     </article>
 </template>
 <!-- / Template -->
@@ -320,7 +320,7 @@
 
 const holidays2025 = {
     es: [
-        { "date": "1/01/2025", "label": "Año Nuevo", "type": "inamovible" },
+        { "date": "1/01/2025", "label": "Año Nuevo.", "type": "inamovible" },
         { "date": "03/03/2025", "label": "Carnaval", "type": "inamovible" },
         { "date": "04/03/2025", "label": "Carnaval", "type": "inamovible" },
         { "date": "24/03/2025", "label": "Día Nacional de la Memoria por la Verdad y la Justicia", "type": "inamovible" },

@@ -95,9 +95,9 @@ Cree un archivo JSON que contenga la información de cada feriado como una entra
 | **label** | Nombre del feriado |
 | **type** | Define uno de los cuatro tipos de feriado: `inamovible`, `no_laborable`, `turistico` y `transladable`. |
 
-```json
+```js
 const holidaysData = {
-    es: [
+    "es": [
         { "date": "01/01/2025", "label": "Año Nuevo", "type": "inamovible" },
         { "date": "03/03/2025", "label": "Carnaval", "type": "inamovible" },
         { "date": "04/03/2025", "label": "Carnaval", "type": "inamovible" },
@@ -250,8 +250,7 @@ _(Copie y pegue el código HTML sin modificar ninguno de los selectores en el c�
 ```html
 <!-- Template -->
 <template id="month-tpl">
-    <article>
-    <div class="month js-tpl-id">
+    <article class="month js-tpl-id">
         <h2 class="h5 text-center js-tpl-month"></h2>
         <div class="js-jump-to-list sr-only"></div>
         <table 
@@ -259,8 +258,7 @@ _(Copie y pegue el código HTML sin modificar ninguno de los selectores en el c�
             <thead class="js-tpl-weekdays"></thead>
             <tbody class="js-tpl-tbody"></tbody>
         </table>
-    </div>
-    <div class="js-tpl-holidays"></div>
+        <div class="js-tpl-holidays"></div>
     </article>
 </template>
 <!-- / Template -->
