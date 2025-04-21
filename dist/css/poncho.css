@@ -7119,8 +7119,14 @@ h6.section-title, .h6.section-title {
 
 a {
   color: #232D4F;
-  font-weight: 400;
+  font-weight: inherit;
+  border: 0;
+  cursor: pointer;
+  padding-inline: 0.125rem;
   text-decoration: underline;
+  -webkit-text-decoration-skip: ink;
+  text-decoration-skip-ink: auto;
+  text-underline-offset: 0.25em;
 }
 a:hover, a:focus, a:active {
   color: #6A1B99;
