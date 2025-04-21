@@ -7131,7 +7131,7 @@ a {
 }
 a:hover, a:focus, a:active {
   color: #6A1B99;
-  color: var(--arg-azul-700);
+  color: var(--arg-azul-800);
 }
 
 main a:not(.btn) {
