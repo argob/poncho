@@ -191,7 +191,7 @@
         { "date": "01/05/2023", "label": "Día del Trabajador", "type": "inamovible" },
         { "date": "25/05/2023", "label": "Día de la Revolución de Mayo", "type": "inamovible" },
         { "date": "26/05/2023", "label": "Feriado con fines turísticos", "type": "turistico" },
-        { "date": "17/06/2023", "label": "Paso a la Inmortalidad del <a href=\"https://www.argentina.gob.ar/noticias/guemes-lider-revolucionario\">Gral. Don Martín Miguel de Güemes</a>", "type": "trasladable" },
+        { "date": "17/06/2023", "label": "Paso a la Inmortalidad del Gral. Don Martín Miguel de Güemes", "type": "trasladable" },
         { "date": "20/06/2023", "label": "Paso a la Inmortalidad del Gral. Manuel Belgrano", "type": "inamovible" },
         { "date": "19/06/2023", "label": "Feriado con fines turísticos", "type": "turistico" },
         { "date": "28/06/2023", "label": "Fiesta del Sacrificio (c)", "type": "no_laborable" },
@@ -396,6 +396,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const ln = (allowedLangs.includes(url.searchParams.get('lang')) ? 
         url.searchParams.get('lang') : defaultLang);
 
+    // Inicializa el calendario
     const calendarOptions = {
         calendarYear: 2025,
         markers: holidays2025,
