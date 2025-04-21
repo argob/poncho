@@ -288,7 +288,7 @@ const calendar = {
     isMultiLang: function(markers){
         return Object
             .keys(markers)
-            .some(f => this.availableLanguages.includes(f))
+            .some(f => this.availableLanguages.includes(f));
     }, 
     /**
      * Valida los markers.
@@ -296,28 +296,20 @@ const calendar = {
      * @summary Valida que el array con eventos esté bien formado. 
      * Caso contrario ejecuta una excepción y frena toda ejecución.
      * 
-     * @param {object} markers Listado de markers
+     * @param {object} opts opciones
      * @returns {true|Error} 
      */
-    validateMarkers: function(markers){
-        if (markers === null || markers === undefined) {
+    validateMarkers: function(opts){
+        if(!opts.hasOwnProperty("markers")){
+            throw new Error(
+                "El índice `markers`, no está incluido en las opciones.");
+        }
+
+        if (opts.markers === null || opts.markers === undefined) {
             throw new Error("El listado de eventos es incorrecto.");
         }
 
-        if(Array.isArray(markers) && !markers[0].hasOwnProperty("date")){
-            throw new Error("El listado de eventos, está mal formado.");
-        }
-
-        if(typeof markers === "object" && !this.isMultiLang(markers)){
-            throw new Error(
-                "El listado (object), no tiene definido un lenguaje válido");
-        }
-
-        if(typeof markers === "object" && 
-            this.isMultiLang(markers) && 
-            markers[this.ln].length < 1){
-            throw new Error("El listado está vacío o mal formado.");
-        }
+        return true;
     },
     render: function(options) {
         const defaults = {
@@ -334,7 +326,6 @@ const calendar = {
         };
 
         let opts = Object.assign({}, defaults, options);
-
         this.availableLanguages = Object.keys(this.dictionary);
         this.allowHTML = opts.allowHTML;
         this.holidayType = opts.holidays_type;
@@ -356,7 +347,7 @@ const calendar = {
         }
 
         // Valido y preparolos markers.
-        this.validateMarkers(opts.markers);  
+        this.validateMarkers(opts);  
 
         // Defino los markers.
         this.inputMarkers = (this.isMultiLang(opts.markers) ? 
