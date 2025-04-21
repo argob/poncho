@@ -476,7 +476,7 @@ const calendar = {
             const anchor = document.createElement("a");
             anchor.classList.add("sr-only", "sr-only-focusable");
             anchor.setAttribute("tabindex", "0");
-            anchor.href = `#holiday-list-${parseInt(monthNumber) + 1}`;
+            anchor.href = `#feriados-${parseInt(monthNumber) + 1}`;
             anchor.lang = this.ln;
             const anchorText = this.dict.jumpToList
                     .replace("{month}", monthName);
@@ -571,7 +571,7 @@ const calendar = {
                     .replace("{day}", markerDayInt);
 
                 const a = document.createElement("a");
-                a.href = `#hd-${cell}-${markerMonthInt}`;
+                a.href = `#feriado-${cell}-${markerMonthInt}`;
                 a.setAttribute("tabindex", "0");
                 a.setAttribute("aria-label", label);
                 a.lang = this.ln;
@@ -643,10 +643,9 @@ const calendar = {
 
         const ul = document.createElement("ul");
         ul.lang = this.ln;
-        ul.setAttribute("role", "region");
         ul.setAttribute("tabindex", "0");
         ul.classList.add("holidays", "list-unstyled");
-        ul.id = `holiday-list-${parseInt(monthId) + 1}`;
+        ul.id = `feriados-${parseInt(monthId) + 1}`;
 
         for(let entry of Object.keys(result)){
             const event = result[entry];
@@ -663,7 +662,7 @@ const calendar = {
                 const span = document.createElement("span");
                 span.textContent = markerDayInt;
                 span.setAttribute("aria-label", ariaLabel);
-                span.id = `hd-${markerDayInt}-${markerMonthInt}`;
+                span.id = `feriado-${markerDayInt}-${markerMonthInt}`;
                 return span.outerHTML;
             });
 
