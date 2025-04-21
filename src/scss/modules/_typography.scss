@@ -69,6 +69,7 @@ h6, .h6 {
 
 a {
   color: $brand-primary;
+  color: var(--arg-azul-600, #0767A7);
   font-weight: inherit;
 
 
@@ -85,6 +86,7 @@ a {
   &:focus,
   &:active {
     color: $link-hover-color;
+    color: var(--arg-azul-700);
     
   }
 }
