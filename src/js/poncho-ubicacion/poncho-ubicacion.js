@@ -95,16 +95,12 @@ var ponchoUbicacion = function(options) {
     * @returns 
     */
     function parseJsonMunicipios(data) {
-        const groupedData = data.municipios.reduce((acc, current) => {
-            const key = `${current.nombre}`;
-            current.label = key;
-            if (!acc[key]) {
-                acc[key] = current;
-            }
-            return acc;
-        }, {});
-
-    return Object.values(groupedData);
+        return data.municipios.map(municipio => {
+            return {
+                ...municipio,
+                label: municipio.nombre_completo
+            };
+        });
     }
     
     /**
@@ -113,15 +109,12 @@ var ponchoUbicacion = function(options) {
      * @returns 
      */
     function parseJsonLocalidades(data) {
-        const groupedData = data.localidades.reduce((acc, current) => {
-            const key = `${current.departamento.nombre} - ${current.nombre}`;
-            current.label = key;
-            if (!acc[key]) {
-                acc[key] = current;
-            }
-            return acc;
-        }, {});
-        return Object.values(groupedData);
+        return data.localidades.map(localidad => {
+            return {
+                ...localidad,
+                label: `${localidad.departamento.nombre} - ${localidad.nombre}`
+            };
+        });
     }
 
 
@@ -242,7 +235,6 @@ var ponchoUbicacion = function(options) {
     * @returns 
     */
     function getSelectMunicipios(municipios, provincia) {
-        debugger
         var muniSelect = {};
         var required = iMunicipio.prop('required');
         var select = null;
@@ -295,8 +287,7 @@ var ponchoUbicacion = function(options) {
                     return nameA.localeCompare(nameB);
                 });
             
-            emptyOption = (iLocalidad.val() ? true : false);
-            select = getDropDownList(
+             select = getDropDownList(
                 'sLocalidades', 'sLocalidades',
                 locaSelect, required, emptyOption, iLocalidad.val()
             );
