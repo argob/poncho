@@ -13,7 +13,7 @@
 - Ahora se puede hacer un documento JSON con indices por idioma, ej:
   
 
-    ```json
+    ```js
     const data = {
         "es": [
             {…}
