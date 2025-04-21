@@ -574,6 +574,7 @@ const calendar = {
                 a.href = `#feriado-${cell}-${markerMonthInt}`;
                 a.setAttribute("tabindex", "0");
                 a.setAttribute("aria-label", label);
+                a.id = `feriado-cal-${cell}-${markerMonthInt}`;
                 a.lang = this.ln;
                 a.textContent = markerDayInt;
 
@@ -718,8 +719,7 @@ const calendar = {
 
         const faltanHTML = document.querySelector("#js-faltan");
         const proximoHTML = document.querySelector("#js-proximo");
-        const detalleHTML = document.querySelector("#js-detalle");
-        const detallehoy = document.querySelector("#js-detallehoy");
+        const detalle = document.querySelector(".js-detalle");
 
         // Verifico si hoy es un feriado.
         const todayIsHoliday = this.markers.find(entry => {
@@ -754,9 +754,7 @@ const calendar = {
             dayCount = this.dayCount(today, date);
             faltanHTML.innerHTML = dayCount;
 
-            // Nombre el feriado
-            detalleHTML.innerHTML = markerLabel;
-            
+
             // Cuándo es el próximo feriado
             const day = date.getDate();
             const month = this.dict.months[date.getMonth()];
@@ -766,11 +764,20 @@ const calendar = {
                 .replace("{year}", date.getFullYear());
             proximoHTML.innerHTML = proximoText;
             proximoHTML.lang = this.ln;
+
+
+            // Nombre el feriado
+            const anchorDetalle = document.createElement("a");
+            anchorDetalle.href = `#feriado-cal-${day}-${date.getMonth() + 1}`;
+            anchorDetalle.textContent = markerLabel;
+
+            detalle.appendChild(anchorDetalle);
         }
 
         // Opciones para cuando el día es feriado.
         if(todayIsHoliday){
             const {label:markerLabel} = todayIsHoliday;
+            const parseDate = a = this.parseDate(todayIsHoliday.date);
 
             hoyes.classList.remove("hidden");
             hoyes.removeAttribute("aria-hidden");
@@ -778,7 +785,12 @@ const calendar = {
             hoynoes.classList.add("hidden");
             hoynoes.setAttribute("aria-hidden", "true");
 
-            detallehoy.innerHTML = markerLabel;
+            const anchorDetalleHoy = document.createElement("a");
+            anchorDetalleHoy.href = `#feriado-cal-${parseDate.markerDayInt}`
+                + `-${parseDate.markerMonthInt}`;
+            anchorDetalleHoy.textContent = markerLabel;
+
+            detalle.appendChild(anchorDetalleHoy);
         };
 
         // Opciones para un día o más de uno.
