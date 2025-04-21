@@ -120,6 +120,7 @@ const holidaysData = {
 _(Copie y pegue el código HTML sin modificar ninguno de los selectores en el código)._
 
 ```html
+
 <!-- Calendar -->
 <section class="national-holidays">
     <!-- Bloque dinámico -->
@@ -151,8 +152,8 @@ _(Copie y pegue el código HTML sin modificar ninguno de los selectores en el c�
                     <span id="js-proximo"></span><span class="sr-only">.</span>
                 </span>
                 <span 
-                    class="lead text-arg-secundario display-block" 
-                    id="js-detalle"></span><span class="sr-only">.</span>
+                    class="lead text-arg-secundario display-block js-detalle">
+                </span><span class="sr-only">.</span>
             </p>
         </div>
     </div>
@@ -166,8 +167,8 @@ _(Copie y pegue el código HTML sin modificar ninguno de los selectores en el c�
             </span>
             <span class="lead m-b-0" data-text-en="is holiday">es feriado</span>. 
             <span 
-                class="lead text-arg-secundario" 
-                id="js-detallehoy"></span><span class="sr-only">.</span>
+                class="lead text-arg-secundario js-detalle">
+            </span><span class="sr-only">.</span>
         </p>
     </div>
     <!-- / Is hollyday -->
