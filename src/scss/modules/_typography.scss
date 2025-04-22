@@ -69,13 +69,20 @@ h6, .h6 {
 
 a {
   color: $brand-primary;
-  font-weight: 400;
+  color: var(--arg-azul-600, #0767A7);
+  font-weight: inherit;
+  border: 0;
+  cursor: pointer;
+  padding-inline: 0.125rem;
   text-decoration: underline;
+  -webkit-text-decoration-skip: ink;
+  text-decoration-skip-ink: auto;
+  text-underline-offset: 0.25em;
   &:hover,
   &:focus,
   &:active {
     color: $link-hover-color;
-    
+    color: var(--arg-azul-800);
   }
 }
 

@@ -10,6 +10,14 @@
         scrollbar-width: thin;
     }
 
+    /* HEADER */
+    .pm-header {
+        margin-bottom: 1em;
+        padding: 0;
+        border: none;
+    }
+
+
     /* FUCUSABLE */
     *:focus {
         border-radius: 3px;
@@ -29,6 +37,17 @@
         border-radius: var(--pm-slider-radius);
         transform-style: preserve-3d;
         border: var(--pm-slider-border-width) solid var(--pm-slider-border-color)
+
+        article {
+            margin: 0;
+            border: none;
+            padding: 0; 
+        }
+        article header {
+            margin: 0;
+            border: none;
+            padding: 0;
+        }
     }
 
     .pm-tools {

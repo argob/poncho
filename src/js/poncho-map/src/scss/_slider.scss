@@ -19,7 +19,7 @@
 
 
 
-        .content-container {
+        .pm-content-container {
             height: calc(100%);
             padding-right: var(--pm-content-padding);
             padding-left: var(--pm-content-padding);
@@ -27,7 +27,7 @@
             padding-bottom: calc(var(--pm-content-padding) * 2);
         }
 
-        .content {
+        .pm-content {
             inline-size: min-content;
             color: var(--pm-color-base);
             background-color: transparent;

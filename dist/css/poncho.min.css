@@ -7119,11 +7119,19 @@ h6.section-title, .h6.section-title {
 
 a {
   color: #232D4F;
-  font-weight: 400;
+  color: var(--arg-azul-600, #0767A7);
+  font-weight: inherit;
+  border: 0;
+  cursor: pointer;
+  padding-inline: 0.125rem;
   text-decoration: underline;
+  -webkit-text-decoration-skip: ink;
+  text-decoration-skip-ink: auto;
+  text-underline-offset: 0.25em;
 }
 a:hover, a:focus, a:active {
   color: #6A1B99;
+  color: var(--arg-azul-800);
 }
 
 main a:not(.btn) {
@@ -11142,11 +11150,17 @@ a.label:hover, a.label:focus {
   position: relative;
   width: 100%;
   /* SCROLLBARS */
+  /* HEADER */
   /* FUCUSABLE */
 }
 .poncho-map * {
   scrollbar-color: var(--pm-scrollbar-handle) var(--pm-scrollbar-background);
   scrollbar-width: thin;
+}
+.poncho-map .pm-header {
+  margin-bottom: 1em;
+  padding: 0;
+  border: none;
 }
 .poncho-map *:focus {
   border-radius: 3px;
@@ -11163,7 +11177,15 @@ a.label:hover, a.label:focus {
   color: var(--pm-color-base);
   border-radius: var(--pm-slider-radius);
   transform-style: preserve-3d;
-  border: var(--pm-slider-border-width) solid var(--pm-slider-border-color);
+  border: var(--pm-slider-border-width) solid var(--pm-slider-border-color) article;
+  border-margin: 0;
+  border-border: none;
+  border-padding: 0;
+}
+.poncho-map .pm-container article header {
+  margin: 0;
+  border: none;
+  padding: 0;
 }
 .poncho-map .pm-tools {
   position: absolute;
@@ -11280,14 +11302,14 @@ a.label:hover, a.label:focus {
 .poncho-map .slider img {
   max-width: 100%;
 }
-.poncho-map .slider .content-container {
+.poncho-map .slider .pm-content-container {
   height: 100%;
   padding-right: var(--pm-content-padding);
   padding-left: var(--pm-content-padding);
   padding-top: calc(var(--pm-content-padding) * 3);
   padding-bottom: calc(var(--pm-content-padding) * 2);
 }
-.poncho-map .slider .content {
+.poncho-map .slider .pm-content {
   inline-size: min-content;
   color: var(--pm-color-base);
   background-color: transparent;
@@ -11298,10 +11320,10 @@ a.label:hover, a.label:focus {
   box-shadow: 0 -10px 20px var(--pm-slider-background) inset;
   word-break: break-word;
 }
-.poncho-map .slider .content:has(.pm-open-map) {
+.poncho-map .slider .pm-content:has(.pm-open-map) {
   height: calc(100% - 20px);
 }
-.poncho-map .slider .content:after {
+.poncho-map .slider .pm-content:after {
   content: "";
   background: var(--pm-slider-background);
   background: -moz-linear-gradient(0deg, var(--pm-slider-background) 30%, rgba(255, 255, 255, 0) 100%);
@@ -11841,6 +11863,12 @@ input[type=search].js-poncho-map-search__input::-webkit-search-cancel-button {
 }
 .poncho-map.ui-dark .text-muted, .poncho-map.ui-contrast .text-muted {
   color: var(--arg-negro-200) !important;
+}
+.poncho-map.poncho-map.ui-contrast a, .poncho-map.poncho-map.ui-dark a {
+  color: #9AD7F5 !important;
+}
+.poncho-map.poncho-map.ui-dark a:visited, .poncho-map.poncho-map.ui-contrast a:visited {
+  color: #BEB5D8 !important;
 }
 
 .poncho-map * > .pmi {
@@ -14426,6 +14454,68 @@ ul.colores li:hover {
   display: inline-block;
 }
 
+.en-space {
+  font-size: 0.5em !important;
+}
+
+.em-space {
+  font-size: 1em !important;
+}
+
+.third-space {
+  font-size: 0.3333333333em !important;
+}
+
+.quarter-space {
+  font-size: 0.25em !important;
+}
+
+.sixth-space {
+  font-size: 0.1666666667em !important;
+}
+
+.thin-space {
+  font-size: 0.125em !important;
+}
+
+.hair-space {
+  font-size: 0.0416666667em !important;
+}
+
+.text-uppercase {
+  text-transform: uppercase;
+}
+
+/* Extra small devices (phones, less than 576px) */
+@media (max-width: 575.98px) {
+  .br-sm {
+    display: block;
+  }
+}
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .br-sm {
+    display: block;
+  }
+}
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .br-md {
+    display: block;
+  }
+}
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .br-lg {
+    display: block;
+  }
+}
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .br-lg {
+    display: block;
+  }
+}
 /* ENCABEZADOS
 
 Los encabezados pueden usarse en 7 colores plenos y 4 degradé 
@@ -14433,10 +14523,23 @@ Los encabezados pueden usarse en 7 colores plenos y 4 degradé
 PLENOS: .bg-arg-azul .bg-arg-info .bg-gna-verde-jade .bg-arg-palta .bg-arg-arandano .bg-arg-rojo .bg-arg-gray-light 
 DEGRADÉ: .bg-mix-azul-info .bg-mix-info-azul .bg-mix-palta-azul .bg-mix-azul-palta
 */
+/* VISUALIZACIÓN EN CONTENEDOR ESPECÍFICO */
+#superior .panel-pane .pane-content > * {
+  display: none;
+}
+#superior .panel-pane:nth-of-type(1) .pane-content > #encabezado {
+  display: block;
+}
+
+.container .panel-pane .pane-content > #encabezado {
+  display: none;
+}
+
 #encabezado {
   /*  COLOR DEGRADÉ */
   /* Generales */
   /* iso + logo + imagen */
+  /* Menú superior */
 }
 #encabezado .bg-arg-azul,
 #encabezado .bg-arg-eucalipto,
@@ -14492,12 +14595,6 @@ DEGRADÉ: .bg-mix-azul-info .bg-mix-info-azul .bg-mix-palta-azul .bg-mix-azul-pa
 #encabezado a {
   color: #141414 !important;
 }
-#encabezado .enc-link {
-  padding: 0px;
-  width: 48%;
-  vertical-align: text-top;
-  margin: 1% 4px 3px 0px;
-}
 #encabezado .w-100 {
   width: 100%;
 }
@@ -14528,15 +14625,28 @@ DEGRADÉ: .bg-mix-azul-info .bg-mix-info-azul .bg-mix-palta-azul .bg-mix-azul-pa
   margin: 0px;
   max-width: 100%;
 }
-
-/* MOBILE */
-@media (max-width: 768px) {
-  #encabezado .enc-link {
-    width: 96%;
-  }
+#encabezado .enc-link {
+  padding: 0px;
+  width: 31%;
+  margin: 20px 3px 3px 14px;
+  vertical-align: top;
 }
-/* COLOR DEGRADÉ */
+#encabezado .enc-link a {
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+#encabezado .enc-link.active a span {
+  background-image: linear-gradient(to top, #000 3px, transparent 3px, transparent);
+  font-weight: 600;
+}
+#encabezado .enc-link a[href^="https://"][target^=_blank]:after, #encabezado .enc-link a[href^="http://"][target^=_blank]:after {
+  content: none;
+}
+
 @media (max-width: 992px) {
+  #encabezado {
+    /* Menú superior mobile */
+  }
   #encabezado .bg-mix-info-azul {
     background: #5A7290;
   }
@@ -14575,6 +14685,10 @@ DEGRADÉ: .bg-mix-azul-info .bg-mix-info-azul .bg-mix-palta-azul .bg-mix-azul-pa
   }
   #encabezado .enc-img .btn {
     margin-left: 25px;
+  }
+  #encabezado .enc-link {
+    width: 96%;
+    margin-left: 28px;
   }
 }
 .nav-menu {
@@ -14833,6 +14947,7 @@ DEGRADÉ: .bg-mix-azul-info .bg-mix-info-azul .bg-mix-palta-azul .bg-mix-azul-pa
  * @author Agustín Bouillet <bouilleta@jefatura.gob.ar>
  */
 .national-holidays {
+  --icon-universal-access: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><path d="M0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm161.5-86.1c-12.2-5.2-26.3 .4-31.5 12.6s.4 26.3 12.6 31.5l11.9 5.1c17.3 7.4 35.2 12.9 53.6 16.3v50.1c0 4.3-.7 8.6-2.1 12.6l-28.7 86.1c-4.2 12.6 2.6 26.2 15.2 30.4s26.2-2.6 30.4-15.2l24.4-73.2c1.3-3.8 4.8-6.4 8.8-6.4s7.6 2.6 8.8 6.4l24.4 73.2c4.2 12.6 17.8 19.4 30.4 15.2s19.4-17.8 15.2-30.4l-28.7-86.1c-1.4-4.1-2.1-8.3-2.1-12.6V235.5c18.4-3.5 36.3-8.9 53.6-16.3l11.9-5.1c12.2-5.2 17.8-19.3 12.6-31.5s-19.3-17.8-31.5-12.6L338.7 175c-26.1 11.2-54.2 17-82.7 17s-56.5-5.8-82.7-17l-11.9-5.1zM256 160a40 40 0 1 0 0-80 40 40 0 1 0 0 80z"/></svg>');
   /* Colors */
 }
 .national-holidays .calendar,
@@ -14847,17 +14962,15 @@ DEGRADÉ: .bg-mix-azul-info .bg-mix-info-azul .bg-mix-palta-azul .bg-mix-azul-pa
   grid-row-gap: 1em;
   clear: both;
 }
-.national-holidays .day {
-  font-weight: 500;
+.national-holidays .table {
+  border-bottom: 1px solid #ddd;
 }
-.national-holidays .month {
-  min-height: 10px;
+.national-holidays .bg-transparent {
+  background-color: transparent !important;
+  color: inherit;
 }
-.national-holidays .holidays {
-  height: 100%;
-}
-.national-holidays .date {
-  font-weight: 600;
+.national-holidays .display-block {
+  display: block;
 }
 .national-holidays .bg-success {
   color: white;
@@ -14866,7 +14979,10 @@ DEGRADÉ: .bg-mix-azul-info .bg-mix-info-azul .bg-mix-palta-azul .bg-mix-azul-pa
   background-color: #c1c1c1;
 }
 .national-holidays .bg-turistico {
-  background-color: var(--uva, #6a1b99);
+  background-color: var(--arg-uva, #6a1b99);
+  color: white;
+}
+.national-holidays .bg-turistico a {
   color: white;
 }
 .national-holidays .bg-success,
@@ -14878,7 +14994,49 @@ DEGRADÉ: .bg-mix-azul-info .bg-mix-info-azul .bg-mix-palta-azul .bg-mix-azul-pa
   color: #c1c1c1;
 }
 .national-holidays .text-turistico {
-  color: var(--uva, #6a1b99);
+  color: var(--arg-uva, #6a1b99);
+}
+.national-holidays .conteo-regresivo-dias {
+  font-size: 70px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0px;
+}
+.national-holidays .nh-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  padding: 1px;
+  line-height: 1.5em;
+  vertical-align: -15%;
+  -webkit-mask-origin: fill-box;
+  -webkit-mask-repeat: no-repeat !important;
+  -webkit-mask-size: contain;
+  mask-repeat: no-repeat !important;
+  mask-size: contain;
+  mask-origin: fill-box;
+}
+.national-holidays .nh-icon.universal-access {
+  -webkit-mask-image: var(--icon-universal-access);
+  mask-image: var(--icon-universal-access);
+  background-color: var(--arg-azul-200, dodgerblue);
+}
+.national-holidays .jump-to-list {
+  margin-bottom: 0;
+  padding: 0;
+}
+.national-holidays .sr-only-focusable:focus {
+  background: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  color: black;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.2);
+  outline-color: var(--arg-cielo, inherit);
+  outline-width: 2px;
+  outline-style: solid;
+  display: block;
 }
 
 /* References */
@@ -14904,63 +15062,15 @@ DEGRADÉ: .bg-mix-azul-info .bg-mix-info-azul .bg-mix-palta-azul .bg-mix-azul-pa
     grid-template-columns: repeat(2, 1fr);
     grid-column-gap: 2.5em;
   }
+  .national-holidays .conteo-regresivo-dias {
+    font-size: calc(1.375rem + 4vw);
+  }
 }
 @media (max-width: 767px) {
   .national-holidays .calendar {
     grid-template-columns: repeat(1, 1fr);
   }
 }
-/* 
-#infoFeriado {
-  font-size: 20px;
-}
-
-#detalle {
-  margin-top: 20px;
-}
-
-.icono-arg-mi-argentina.fa-fw.fa-3x:before {
-  line-height: 58px;
-}
-
-.jumbotron {
-  background-size: inherit;
-  background-color: var(--cielo);
-}
-
-#block-system-main
-  > div
-  > div.panel-pane.pane-jumbotron
-  > div
-  > section
-  > div.jumbotron_bar
-  > div
-  > div
-  > div
-  > ul {
-  display: none !important;
-}
-
-#jumbo-menu {
-  display: none;
-}
-
-@media (max-width: 991px) {
-  .col-md-3 {
-    text-align: center;
-  }
-}
-
-@media (min-width: 992px) {
-  .col-md-3:nth-of-type(1) {
-    text-align: right;
-  }
-
-  .col-md-3:nth-of-type(2) {
-    text-align: left;
-  }
-}
- */
 .poncho-map-province__toggle-element {
   display: none;
 }

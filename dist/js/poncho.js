@@ -3229,15 +3229,12 @@ var ponchoUbicacion = function(options) {
     * @returns 
     */
     function parseJsonMunicipios(data) {
-        const groupedData = data.municipios.reduce((acc, current) => {
-            const key = `${current.nombre}`;
-            current.label = key;
-            if (!acc[key]) {
-                acc[key] = current;
-            }
-            return acc;
-        }, {});
-    return Object.values(groupedData);
+        return data.municipios.map(municipio => {
+            return {
+                ...municipio,
+                label: municipio.nombre_completo
+            };
+        });
     }
     
     /**
@@ -3246,15 +3243,12 @@ var ponchoUbicacion = function(options) {
      * @returns 
      */
     function parseJsonLocalidades(data) {
-        const groupedData = data.localidades.reduce((acc, current) => {
-            const key = `${current.departamento.nombre} - ${current.nombre}`;
-            current.label = key;
-            if (!acc[key]) {
-                acc[key] = current;
-            }
-            return acc;
-        }, {});
-        return Object.values(groupedData);
+        return data.localidades.map(localidad => {
+            return {
+                ...localidad,
+                label: `${localidad.departamento.nombre} - ${localidad.nombre}`
+            };
+        });
     }
 
 
@@ -3427,8 +3421,7 @@ var ponchoUbicacion = function(options) {
                     return nameA.localeCompare(nameB);
                 });
             
-            emptyOption = (iLocalidad.val() ? true : false);
-            select = getDropDownList(
+             select = getDropDownList(
                 'sLocalidades', 'sLocalidades',
                 locaSelect, required, emptyOption, iLocalidad.val()
             );
@@ -3444,6 +3437,7 @@ var ponchoUbicacion = function(options) {
 
     init();
 };
+
 
 /**
  * PONCHO CHART
@@ -5953,10 +5947,10 @@ class PonchoMap {
         anchor.id = `js-anchor-slider${this.scope_sufix}`;
 
         const content_container = document.createElement("div");
-        content_container.classList.add("content-container");
+        content_container.classList.add("pm-content-container");
 
         const content = document.createElement("article");
-        content.classList.add("content", `js-content${this.scope_sufix}`);
+        content.classList.add("pm-content", `js-content${this.scope_sufix}`);
         content.tabIndex = 0;
 
         content_container.appendChild(content);
@@ -6255,7 +6249,7 @@ class PonchoMap {
         }
 
         const header = document.createElement("header");
-        header.className = "header";
+        header.className = "pm-header";
         header.appendChild(title);
 
         return header;

@@ -8,150 +8,165 @@
  * @author Agustín Bouillet <bouilleta@jefatura.gob.ar>
  */
 .national-holidays {
-  .calendar,
-  .calendar * {
-    box-sizing: border-box;
-  }
+    --icon-universal-access: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><path d="M0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm161.5-86.1c-12.2-5.2-26.3 .4-31.5 12.6s.4 26.3 12.6 31.5l11.9 5.1c17.3 7.4 35.2 12.9 53.6 16.3v50.1c0 4.3-.7 8.6-2.1 12.6l-28.7 86.1c-4.2 12.6 2.6 26.2 15.2 30.4s26.2-2.6 30.4-15.2l24.4-73.2c1.3-3.8 4.8-6.4 8.8-6.4s7.6 2.6 8.8 6.4l24.4 73.2c4.2 12.6 17.8 19.4 30.4 15.2s19.4-17.8 15.2-30.4l-28.7-86.1c-1.4-4.1-2.1-8.3-2.1-12.6V235.5c18.4-3.5 36.3-8.9 53.6-16.3l11.9-5.1c12.2-5.2 17.8-19.3 12.6-31.5s-19.3-17.8-31.5-12.6L338.7 175c-26.1 11.2-54.2 17-82.7 17s-56.5-5.8-82.7-17l-11.9-5.1zM256 160a40 40 0 1 0 0-80 40 40 0 1 0 0 80z"/></svg>');
 
-  .calendar {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-auto-rows: min-content;
-    grid-column-gap: 2.5em;
-    grid-row-gap: 1em;
-    clear: both;
-  }
-  .day {
-    font-weight: 500;
-  }
-  .month {
-    min-height: 10px;
-  }
-  .holidays {
-    height: 100%;
-  }
-  .date {
-    font-weight: 600;
-  }
 
-  /* Colors */
-  .bg-success {
-    color: white;
-  }
 
-  .bg-nl {
-    background-color: #c1c1c1;
-  }
+    .calendar,
+    .calendar * {
+        box-sizing: border-box;
+    }
 
-  .bg-turistico {
-    background-color: var(--uva, #6a1b99);
-    color: white;
-  }
+    .calendar {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-auto-rows: min-content;
+        grid-column-gap: 2.5em;
+        grid-row-gap: 1em;
+        clear: both;
+    }
 
-  .bg-success,
-  .bg-primary,
-  .bg-nl {
-    font-weight: 500;
-  }
+    .table {
+        border-bottom: 1px solid #ddd
+    }
 
-  .text-nl {
-    color: #c1c1c1;
-  }
+    .bg-transparent {
+        background-color: transparent !important;
+        color: inherit;
+    }
 
-  .text-turistico {
-    color: var(--uva, #6a1b99);
-  }
+    .display-block {
+        display: block;
+    }
+
+    /* Colors */
+    .bg-success {
+        color: white;
+    }
+
+    .bg-nl {
+        background-color: #c1c1c1;
+    }
+
+    .bg-turistico {
+        background-color: var(--arg-uva, #6a1b99);
+        color: white;
+
+        a {
+            color: white
+        }
+    }
+
+    .bg-success,
+    .bg-primary,
+    .bg-nl {
+        font-weight: 500;
+    }
+
+    .text-nl {
+        color: #c1c1c1;
+    }
+
+    .text-turistico {
+        color: var(--arg-uva, #6a1b99);
+    }
+
+    .conteo-regresivo-dias {
+        font-size: 70px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 0px;
+    }
+
+
+
+    .nh-icon {
+        display: inline-block;
+        width: 1em;
+        height: 1em;
+        padding: 1px;
+        line-height: 1.5em;
+        vertical-align: -15%;
+        -webkit-mask-origin: fill-box;
+        -webkit-mask-repeat: no-repeat !important;
+        -webkit-mask-size: contain;
+        mask-repeat: no-repeat !important;
+        mask-size: contain;
+        mask-origin: fill-box;
+
+        &.universal-access {
+            -webkit-mask-image: var(--icon-universal-access);
+            mask-image: var(--icon-universal-access);
+            background-color: var(--arg-azul-200, dodgerblue);
+        }
+    }
+
+    .jump-to-list {
+        margin-bottom: 0;
+        padding: 0;
+    }
+
+    .sr-only-focusable:focus {
+        background: white;
+        padding: 6px 12px;
+        border-radius: 6px;
+        color: black;
+        box-shadow: 0 1px 8px rgb(0 0 0 / .2);
+        outline-color: var(--arg-cielo, inherit);
+        outline-width: 2px;
+        outline-style: solid;
+        display: block
+    }
 }
 
 /* References */
 @media (min-width: 768px) {
-  .national-holidays {
-    .references {
-      padding-left: 0;
-      padding-right: 0;
+    .national-holidays {
+        .references {
+            padding-left: 0;
+            padding-right: 0;
 
-      .media {
-        display: inline-block;
-        margin-right: 10px;
-      }
+            .media {
+                display: inline-block;
+                margin-right: 10px;
+            }
 
-      .media-body {
-        width: initial;
-        vertical-align: middle;
-      }
+            .media-body {
+                width: initial;
+                vertical-align: middle;
+            }
 
-      .media-body p {
-        margin-bottom: 0;
-      }
+            .media-body p {
+                margin-bottom: 0;
+            }
+        }
     }
-  }
+
+
+
+
+
 }
 
 @media (max-width: 991px) and (min-width: 768px) {
-  .national-holidays {
-    .calendar {
-      grid-template-columns: repeat(2, 1fr);
-      grid-column-gap: 2.5em;
+    .national-holidays {
+        .calendar {
+            grid-template-columns: repeat(2, 1fr);
+            grid-column-gap: 2.5em;
+        }
+
+        .conteo-regresivo-dias {
+            font-size: calc(1.375rem + 4vw);
+        }
     }
-  }
 }
 
 @media (max-width: 767px) {
-  .national-holidays {
-    .calendar {
-      grid-template-columns: repeat(1, 1fr);
+    .national-holidays {
+        .calendar {
+            grid-template-columns: repeat(1, 1fr);
+        }
     }
-  }
 }
-
-/* 
-#infoFeriado {
-  font-size: 20px;
-}
-
-#detalle {
-  margin-top: 20px;
-}
-
-.icono-arg-mi-argentina.fa-fw.fa-3x:before {
-  line-height: 58px;
-}
-
-.jumbotron {
-  background-size: inherit;
-  background-color: var(--cielo);
-}
-
-#block-system-main
-  > div
-  > div.panel-pane.pane-jumbotron
-  > div
-  > section
-  > div.jumbotron_bar
-  > div
-  > div
-  > div
-  > ul {
-  display: none !important;
-}
-
-#jumbo-menu {
-  display: none;
-}
-
-@media (max-width: 991px) {
-  .col-md-3 {
-    text-align: center;
-  }
-}
-
-@media (min-width: 992px) {
-  .col-md-3:nth-of-type(1) {
-    text-align: right;
-  }
-
-  .col-md-3:nth-of-type(2) {
-    text-align: left;
-  }
-}
- */

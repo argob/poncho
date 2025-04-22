@@ -1,0 +1,31 @@
+.en-space {
+    font-size: .5em !important;
+}
+
+.em-space {
+    font-size: 1em !important;
+}
+
+.third-space {
+    font-size: calc(1em / 3) !important;
+}
+
+.quarter-space {
+    font-size: .25em !important;
+}
+
+.sixth-space {
+    font-size: calc(1em / 6) !important;
+}
+
+.thin-space {
+    font-size: calc(1em / 8) !important;
+}
+
+.hair-space {
+    font-size: calc(1em / 24) !important;
+}
+
+.text-uppercase {
+    text-transform: uppercase;
+}
