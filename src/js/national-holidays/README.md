@@ -117,10 +117,9 @@ const holidaysData = {
 
 #### Header y contenedor del calendario
 
-_(Copie y pegue el código HTML sin modificar ninguno de los selectores en el código)._
+Pegue el código HTML sin alterar su estructura o modificar los selectores.
 
 ```html
-
 <!-- Calendar -->
 <section class="national-holidays">
     <!-- Bloque dinámico -->
@@ -235,7 +234,6 @@ _(Copie y pegue el código HTML sin modificar ninguno de los selectores en el c�
                     <!-- / References -->
                 </div>
                 <div id="calendar-container" class="calendar"></div>
-
             </div>
         </div>
     </div>
@@ -246,16 +244,17 @@ _(Copie y pegue el código HTML sin modificar ninguno de los selectores en el c�
 
 #### Plantilla HTML
 
-_(Copie y pegue el código HTML sin modificar ninguno de los selectores en el código)._
+Pegue el código HTML sin alterar su estructura o modificar los selectores.
 
 ```html
 <!-- Template -->
 <template id="month-tpl">
     <article class="month js-tpl-id">
         <h2 class="h5 text-center js-tpl-month"></h2>
-        <div class="js-jump-to-list sr-only"></div>
+        <div class="js-jump-to-list"></div>
         <table 
-            class="table text-center small js-table">
+            class="table text-center table-borderless small js-table">
+            <caption class="js-tpl-caption sr-only"></caption>
             <thead class="js-tpl-weekdays"></thead>
             <tbody class="js-tpl-tbody"></tbody>
         </table>
@@ -281,18 +280,14 @@ En la llamada al calendario hay que modificar dos índices: `calendarYear`, dond
 <script>
 document.addEventListener("DOMContentLoaded", function() {
     const calendarOptions = {
-        "calendarYear": 2025,
-        "markers": holidaysData,
-        "allowHTML": true,
-        "lang": "es",
-        "containerId": "#calendar-container",
-        "templateId": "#month-tpl"
+        calendarYear: 2025,
+        markers: holidaysData,
+        allowHTML: true,
+        lang: "es",
+        containerId: "#calendar-container",
+        templateId: "#month-tpl"
     };
     calendar.render(calendarOptions);
 });
 </script>
 ```
-
-
-
-
