@@ -115,129 +115,13 @@ const holidaysData = {
 
 ### 2. Incluir código HTML
 
-#### Header y contenedor del calendario
+#### Contenedor del calendario
 
 Pegue el código HTML sin alterar su estructura o modificar los selectores.
 
 ```html
 <!-- Calendar -->
-<section class="national-holidays">
-    <!-- Bloque dinámico -->
-    <!-- days countdown -->
-    <div class="row m-b-4 clearfix" id="js-hoynoes">
-        <div class="col-md-4 col-md-offset-4 col-xs-12 col-sm-12" tabindex="0" role="text">
-            <p class="m-b-0 text-arg-azul">
-                <span 
-                    class="js-falta text-capitalize" 
-                    data-text-singular-en="There is" 
-                    data-text-plural-en="There are" 
-                    data-text-singular-es="falta"
-                    data-text-plural-es="faltan">faltan</span>
-                <span class="h1 conteo-regresivo-dias" id="js-ndays">
-                    <i class="fa icono-arg-calendario-2"></i>
-                    <span id="js-faltan">0</span>
-                    <span 
-                        class="js-dia" 
-                        data-text-singular-en="day" 
-                        data-text-plural-en="days"
-                        data-text-singular-es="día" 
-                        data-text-plural-es="días"></span>
-                </span>
-                <span class="lead">
-                    <span 
-                        data-text-en="For the next holiday, which is"
-                        data-text-es="para el próximo feriado que es el"></span>
-                    <span class="br-lg"></span>
-                    <span id="js-proximo"></span><span class="sr-only">.</span>
-                </span>
-                <span 
-                    class="lead text-arg-secundario display-block js-detalle">
-                </span><span class="sr-only">.</span>
-            </p>
-        </div>
-    </div>
-    <!-- / days countdown -->
-    <!-- Is hollyday -->
-    <div class="m-b-4 hidden clearfix" id="js-hoyes" aria-hidden="true">
-        <p class="col-md-4 col-md-offset-4 col-xs-12 col-sm-12">
-            <span class="p-y-0 m-y-0 text-arg-azul h1 conteo-regresivo-dias" id="js-hoy">
-                <i class="fa icono-arg-calendario-2 text-arg-azul "></i>
-                <span data-text-en="Today">Hoy</span>
-            </span>
-            <span class="lead m-b-0" data-text-en="is holiday">es feriado</span>. 
-            <span 
-                class="lead text-arg-secundario js-detalle">
-            </span><span class="sr-only">.</span>
-        </p>
-    </div>
-    <!-- / Is hollyday -->
-    <!-- / Bloque dinámico -->
-    <div class="row">
-        <div class="col-md-12">
-            <div class="row">
-                <!-- Subscribe -->
-                <div class="col-md-8 col-md-offset-2">
-                    <div class="alert alert-info">
-                        <div class="media">
-                            <div class="media-left">&nbsp;</div>
-                            <div class="media-body">
-                                <h2>
-                                    ¿Querés enterarte cuándo es el próximo feriado?
-                                </h2>
-                                <p class="margin-0">
-                                    Creá tu cuenta en 
-                                    <a href="https://www.argentina.gob.ar/miargentina">
-                                        Mi Argentina</a> 
-                                    y recibí las notificaciones en el teléfono.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- / Subscribe -->
-                <div class="col-xs-12 m-b-2">
-                    <!-- References -->
-                    <div class="panel-body references text-md-center">
-                        <div class="media" role="presentation">
-                            <div class="media-left p-r-0">
-                            <i class="fa fa-2x fa-circle text-primary fa-fw"></i>
-                            </div>
-                            <div aria-hidden="true" class="media-body">
-                                <p class="text-muted" data-text-en="Fixed holidays">Feriados inamovibles</p>
-                            </div>
-                        </div>
-                        <div class="media" role="presentation">
-                            <div class="media-left p-r-0">
-                            <i class="fa fa-2x fa-circle text-success fa-fw"></i>
-                            </div>
-                            <div aria-hidden="true" class="media-body">
-                                <p class="text-muted" data-text-en="Movable holidays">Feriados trasladables</p>
-                            </div>
-                        </div>
-                        <div class="media" role="presentation">
-                            <div class="media-left p-r-0">
-                            <i class="fa fa-2x fa-circle text-nl fa-fw"></i>
-                            </div>
-                            <div aria-hidden="true" class="media-body">
-                                <p class="text-muted" data-text-en="Non-Working days">Días no laborables</p>
-                            </div>
-                        </div>
-                        <div class="media" role="presentation">
-                            <div class="media-left p-r-0">
-                            <i class="fa fa-2x fa-circle text-turistico fa-fw"></i>
-                            </div>
-                            <div aria-hidden="true" class="media-body">
-                                <p class="text-muted" data-text-en="Tourist holidays">Turísticos</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- / References -->
-                </div>
-                <div id="calendar-container" class="calendar"></div>
-            </div>
-        </div>
-    </div>
-</section>
+<div id="calendar-container" class="calendar"></div>
 <!-- / Calendar -->
 ```
 
