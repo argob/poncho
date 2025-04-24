@@ -30,8 +30,7 @@
 <body class="p-t-3">
 <h1
     data-text-en="National holidays"
-    data-text-es="Feriados nacionales"
->Feriados nacionales</h1>
+    data-text-es="Feriados nacionales">Feriados nacionales</h1>
 
 <!--
 --------------------
@@ -40,11 +39,14 @@ COPIAR DESDE ACÁ
 -->
 
 <!-- Calendar -->
-<section class="national-holidays">
+<div class="national-holidays">
     <!-- Bloque dinámico -->
     <!-- days countdown -->
     <div class="row m-b-4 clearfix" id="js-hoynoes">
-        <div class="col-md-4 col-md-offset-4 col-xs-12 col-sm-12" tabindex="0" role="text">
+        <div 
+            class="col-md-4 col-md-offset-4 col-xs-12 col-sm-12" 
+            tabindex="0" 
+            role="text">
             <p class="m-b-0 text-arg-azul">
                 <span 
                     class="js-falta text-capitalize" 
@@ -70,7 +72,7 @@ COPIAR DESDE ACÁ
                     <span id="js-proximo"></span><span class="sr-only">.</span>
                 </span>
                 <span 
-                    class="lead text-arg-secundario display-block js-detalle">
+                    class="js-detalle lead text-arg-secundario display-block">
                 </span><span class="sr-only">.</span>
             </p>
         </div>
@@ -85,7 +87,7 @@ COPIAR DESDE ACÁ
             </span>
             <span class="lead m-b-0" data-text-en="is holiday">es feriado</span>. 
             <span 
-                class="lead text-arg-secundario js-detalle">
+                class="js-detalle lead text-arg-secundario">
             </span><span class="sr-only">.</span>
         </p>
     </div>
@@ -157,7 +159,7 @@ COPIAR DESDE ACÁ
             </div>
         </div>
     </div>
-</section>
+</div>
 <!-- / Calendar -->
 
 <!-- Template -->
@@ -201,7 +203,7 @@ const holidays2025 = [
     { "date": "14/04/2025", "label": "Licitación", "type": "licitacion" },
     { "date": "16/04/2025", "label": "Liquidación", "type": "liquidacion" },
     { "date": "22/04/2025", "label": "Llamado", "type": "llamado" },
-    { "date": "24/04/2025", "label": "Licitación", "type": "licitacion" },
+    // { "date": "24/04/2025", "label": "Licitación", "type": "licitacion" },
     { "date": "28/04/2025", "label": "Liquidación", "type": "liquidacion" },
     { "date": "12/05/2025", "label": "Llamado", "type": "llamado" },
     { "date": "14/05/2025", "label": "Licitación", "type": "licitacion" },
@@ -254,6 +256,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const calendarOptions = {
         calendarYear: 2025,
         allowHTML: true,
+        lang: "es",
         containerId: "#calendar-container",
         templateId: "#month-tpl",
         markers: [holidays2025],
