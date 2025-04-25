@@ -4,9 +4,20 @@
 
 Este componente JavaScript facilita la visualización de los feriados nacionales en un calendario.
 
+## Contenidos
+
+ - [Versión](#version)
+ - [Opciones de configuración](#opciones-de-configuracion)
+ - [Guía de instalación](#guia-de-instalacion)
+ - [Compatibilidad con versiones anteriores](#compatibilidad-con-versiones-anteriores)
+
+<span id="version"></span>
+
 ## Versión
 
 2.0.0
+
+<span id="opciones-de-configuracion"></span>
 
 ## ⚙️ Opciones de configuración
 
@@ -79,6 +90,7 @@ Esta funcionalidad se puede combinar con la internacionalización de textos para
 ```
 
 
+<span id="guia-de-instalacion"></span>
 
 ## Guía de instalación
 
@@ -175,3 +187,35 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 ```
+
+----
+<span id="compatibilidad-con-versiones-anteriores"></span>
+## Compatibilidad con versiones anteriores
+
+La versión 2.0.0 del script introduce compatibilidad con dos estructuras de documentos JSON: la versión 1.x y la versión 2.0.
+
+```js
+// v1.x
+const holidaysData = [
+    { "date": "01/01/2025", "label": "Año Nuevo", "type": "inamovible" },
+    { "date": "03/03/2025", "label": "Carnaval", "type": "inamovible" },
+    { "date": "04/03/2025", "label": "Carnaval", "type": "inamovible" },
+    ...
+];
+```
+
+```js
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const calendarOptions = {
+        calendarYear: 2025,
+        markers: [holidaysData], // <- El array debe estar entre corchetes.
+        allowHTML: true,
+        containerId: "#calendar-container",
+        templateId: "#month-tpl"
+    };
+    calendar.render(calendarOptions);
+});
+</script>
+```
+
