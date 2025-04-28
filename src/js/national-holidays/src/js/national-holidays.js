@@ -87,16 +87,24 @@ const calendar = {
      * @param {string} ln Lenguaje, ej: es, en.
      * @returns {undefined}
      */
-    toggleText(scope, ln){
+    toggleText: function(scope, ln){
+        if(typeof scope !== "string" && !scope.trim()){
+            return;
+        }
+
         function toCamelCase(slug){
             return slug.toLowerCase()
                 .replace(/-([a-z])/g, (_, letter) => letter.toUpperCase());
         }
-        for( let i of document.querySelectorAll(`[data-${scope}-${ln}]`)){
+        
+        document.querySelectorAll(`[data-${scope}-${ln}]`).forEach(i => {
             const key = toCamelCase(`${scope}-${ln}`);
-            i.textContent = i.dataset[key];
+            console.log(key)
+            const value = i.dataset[key];
+            console.log(value)
+            i.textContent = value;
             i.lang = ln;
-        } 
+        }); 
     },
     /**
      * Fuerza un objeto Date a un timezone.
@@ -326,6 +334,7 @@ const calendar = {
         };
 
         let opts = Object.assign({}, defaults, options);
+
         this.availableLanguages = Object.keys(this.dictionary);
         this.allowHTML = opts.allowHTML;
         this.holidayType = opts.holidays_type;
@@ -335,6 +344,7 @@ const calendar = {
 
         // Defino el objecto Container
         this.container = document.querySelector(opts.containerId);
+        this.container.innerHTML = "";
         if(!this.container){
             throw new Error(`No se encuentra la etiqueta con ` 
                 + `el id: ${opts.containerId}`);
@@ -705,21 +715,21 @@ const calendar = {
      */
     daysLeft: function(){
         const today = this.tZone((new Date), this.timeZone);
-        const hoynoes = document.querySelector("#js-hoynoes");
-        const hoyes = document.querySelector("#js-hoyes");
+
+        const hoynoes = document.querySelectorAll("#js-hoynoes");
+        const hoyes = document.querySelectorAll("#js-hoyes");
+        const faltanHTML = document.querySelectorAll("#js-faltan");
+        const proximoHTML = document.querySelectorAll("#js-proximo");
+        const detalle = document.querySelectorAll(".js-detalle");
 
         let dayCount = 0;
 
         // Si el año es distinto al actual oculto el encabezado.
         if(this.calendarYear !== today.getFullYear()){
-            hoynoes.classList.add("hidden");
-            hoyes.classList.add("hidden");
+            hoynoes.forEach(elem => elem.classList.add("hidden"));
+            hoyes.forEach(elem => elem.classList.add("hidden"));
             return;
         }
-
-        const faltanHTML = document.querySelector("#js-faltan");
-        const proximoHTML = document.querySelector("#js-proximo");
-        const detalle = document.querySelector(".js-detalle");
 
         // Verifico si hoy es un feriado.
         const todayIsHoliday = this.markers.find(entry => {
@@ -738,7 +748,7 @@ const calendar = {
         });
 
         // Opciones para el próixmo feriado
-        if(nextHoliday){
+        if(nextHoliday && Object.keys(nextHoliday).length > 0 && !todayIsHoliday){
             const {
                 date:markerDate, 
                 label:markerLabel} = nextHoliday;
@@ -752,8 +762,7 @@ const calendar = {
 
             // Días que faltan para el feriado.
             dayCount = this.dayCount(today, date);
-            faltanHTML.innerHTML = dayCount;
-
+            faltanHTML.forEach(elem => elem.innerHTML = dayCount);
 
             // Cuándo es el próximo feriado
             const day = date.getDate();
@@ -762,35 +771,39 @@ const calendar = {
                 .replace("{day}", day)
                 .replace("{month}", month)
                 .replace("{year}", date.getFullYear());
-            proximoHTML.innerHTML = proximoText;
-            proximoHTML.lang = this.ln;
 
+            proximoHTML.forEach(elem => {
+                elem.innerHTML = proximoText;
+                elem.lang = this.ln;
+            });
 
             // Nombre el feriado
             const anchorDetalle = document.createElement("a");
             anchorDetalle.href = `#feriado-cal-${day}-${date.getMonth() + 1}`;
             anchorDetalle.textContent = markerLabel;
-
-            detalle.appendChild(anchorDetalle);
+            detalle.forEach(detail => detail.innerHTML = anchorDetalle.outerHTML);
         }
 
         // Opciones para cuando el día es feriado.
-        if(todayIsHoliday){
+        if(todayIsHoliday && Object.keys(todayIsHoliday).length > 0 ){
             const {label:markerLabel} = todayIsHoliday;
             const parseDate = a = this.parseDate(todayIsHoliday.date);
 
-            hoyes.classList.remove("hidden");
-            hoyes.removeAttribute("aria-hidden");
+            hoyes.forEach(elem => {
+                elem.classList.remove("hidden");
+                elem.removeAttribute("aria-hidden");
+            });
 
-            hoynoes.classList.add("hidden");
-            hoynoes.setAttribute("aria-hidden", "true");
+            hoynoes.forEach(elem => {
+                elem.classList.add("hidden");
+                elem.setAttribute("aria-hidden", "true");
+            });
 
             const anchorDetalleHoy = document.createElement("a");
             anchorDetalleHoy.href = `#feriado-cal-${parseDate.markerDayInt}`
-                + `-${parseDate.markerMonthInt}`;
+                    + `-${parseDate.markerMonthInt}`;
             anchorDetalleHoy.textContent = markerLabel;
-
-            detalle.appendChild(anchorDetalleHoy);
+            detalle.forEach(elem => elem.appendChild(anchorDetalleHoy));
         };
 
         // Opciones para un día o más de uno.

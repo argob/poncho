@@ -161,8 +161,6 @@ Pegue el código HTML sin alterar su estructura o modificar los selectores.
 ```
 
 
-
-
 ### 3. Incluir _national-holidays.js_
 
 ```js
@@ -194,28 +192,22 @@ document.addEventListener("DOMContentLoaded", function() {
 
 La versión 2.0.0 del script introduce compatibilidad con dos estructuras de documentos JSON: la versión 1.x y la versión 2.0.
 
+### Implementación en la versión 1.x
+
 ```js
 // v1.x
 const holidaysData = [
     { "date": "01/01/2025", "label": "Año Nuevo", "type": "inamovible" },
-    { "date": "03/03/2025", "label": "Carnaval", "type": "inamovible" },
-    { "date": "04/03/2025", "label": "Carnaval", "type": "inamovible" },
     ...
 ];
 ```
 
 ```js
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-    const calendarOptions = {
-        calendarYear: 2025,
-        markers: [holidaysData], // <- El array debe estar entre corchetes.
-        allowHTML: true,
-        containerId: "#calendar-container",
-        templateId: "#month-tpl"
-    };
-    calendar.render(calendarOptions);
-});
+const calendarOptions = {
+    markers: [holidaysData], // <- El array debe estar entre corchetes.
+    ...
+};
+calendar.render(calendarOptions);
 </script>
 ```
-
