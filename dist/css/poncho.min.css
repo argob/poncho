@@ -11162,7 +11162,7 @@ a.label:hover, a.label:focus {
   padding: 0;
   border: none;
 }
-.poncho-map *:focus {
+.poncho-map *:focus, .poncho-map .focus-element:focus {
   border-radius: 3px;
   box-sizing: border-box;
   box-shadow: 0 0 8px var(--cielo, #039be5) !important;
@@ -11178,13 +11178,13 @@ a.label:hover, a.label:focus {
   border-radius: var(--pm-slider-radius);
   transform-style: preserve-3d;
   border: var(--pm-slider-border-width) solid var(--pm-slider-border-color) article;
-  border-margin: 0;
   border-border: none;
+  border-margin: 0;
   border-padding: 0;
 }
 .poncho-map .pm-container article header {
-  margin: 0;
   border: none;
+  margin: 0;
   padding: 0;
 }
 .poncho-map .pm-tools {
@@ -11737,6 +11737,16 @@ input[type=search].js-poncho-map-search__input::-webkit-search-cancel-button {
 }
 
 /* BRUTAL MODIFIERS :) */
+.poncho-map .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
 .poncho-map.hide-attribution .leaflet-control-attribution {
   position: absolute !important;
   left: -9999em !important;
@@ -11990,10 +12000,12 @@ footer.pm-open-map > details {
   border-width: var(--pm-slider-border-width);
   border-radius: 0;
 }
-footer.pm-open-map > details > summary:focus {
-  outline: none;
-  outline-style: none !important;
-  box-shadow: none !important;
+footer.pm-open-map > details > summary:focus,
+footer.pm-open-map > details:focus-within {
+  border-radius: max(var(--pm-slider-radius) / 2, var(--pm-slider-radius) - var(--pm-content-padding) - 2px) !important;
+  box-shadow: 0 1px calc(var(--pm-content-padding) / 2) rgba(0, 0, 0, 0.3);
+  outline: 2px solid var(--cielo, #039be5);
+  outline-style: solid;
 }
 footer.pm-open-map > details[open] {
   border: var(--pm-slider-border-width) solid var(--pm-slider-border-color) !important;

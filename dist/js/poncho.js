@@ -5076,7 +5076,6 @@ class PonchoMap {
             `js-themes-tool${this.scope_sufix}`
         );
 
-
         const item = document.createElement("li");
         item.setAttribute("tabindex", "-1");
         item.dataset.toggle="true";
@@ -5315,6 +5314,7 @@ class PonchoMap {
         const details = document.createElement("details");
         details.appendChild(summary);
         details.appendChild(ul);
+        // details.tabIndex = 0;
 
         const container = document.createElement("footer");
         container.className = "pm-open-map";
@@ -5942,14 +5942,14 @@ class PonchoMap {
         close_button.innerHTML = "<span class=\"pm-visually-hidden\">Cerrar</span>✕";
 
         const anchor = document.createElement("a");
-
         anchor.setAttribute("tabindex", 0);
         anchor.id = `js-anchor-slider${this.scope_sufix}`;
+        anchor.classList.add('sr-only');
 
-        const content_container = document.createElement("div");
+        const content_container = document.createElement("article");
         content_container.classList.add("pm-content-container");
 
-        const content = document.createElement("article");
+        const content = document.createElement("div");
         content.classList.add("pm-content", `js-content${this.scope_sufix}`);
         content.tabIndex = 0;
 
@@ -6539,9 +6539,9 @@ class PonchoMap {
      * Hace zoom hasta los límites de los markers
      * @return {undefined}
      */
-    fitBounds = () => {
+    fitBounds = (padding=0.005) => {
         try {
-            this.map.fitBounds(this.geojson.getBounds().pad(0.005));
+            this.map.fitBounds(this.geojson.getBounds().pad(padding));
         } catch (error) {
             console.error(error);
         }
@@ -6879,7 +6879,7 @@ class PonchoMap {
                 anchor: `#${anchors[1][1]}` 
             },
             {
-                text: "Cambiar de tema",
+                text: "Cambiar de tema visual",
                 anchor: `#${anchors[2][1]}`,
                 class: `js-themes-tool-button${this.scope_sufix}`
             },
@@ -7040,6 +7040,7 @@ class PonchoMap {
     render = () => {
         this._hiddenSearchInput();
         this._resetViewButton();
+        this._menuTheme();
         this._setThemes();
         
         this.titleLayer.addTo(this.map);
