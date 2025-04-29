@@ -75,13 +75,8 @@
 
 
 <!-- INCLUDE SCRIPTS -->
-<script src="https://www.argentina.gob.ar/sites/default/files/ponchotable/showdown.js"></script>
-<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/extensiones/showdown-extensions.js"></script>
 <script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.js"></script>
-<script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script>
 <link href="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.css" rel="stylesheet"/> 
-<link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.css" rel="stylesheet"/> 
-<link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.Default.css" rel="stylesheet"/> 
 <script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
 <!-- / INCLUDE SCRIPTS -->
 
@@ -92,11 +87,12 @@
     const longitude = -58.37393;
     const mapOptions = {
         "scope": "poncho-map",
+        theme_tool: false,
         "no_info": true,
         "map_zoom": 17, 
         "map_view": [latitude, longitude]
     };
-     filter = new PonchoMap([{"latitud": latitude, "longitud": longitude}], mapOptions);
+    filter = new PonchoMap([{"latitud": latitude, "longitud": longitude}], mapOptions);
     filter.render();
 </script>
 <!-- / SCRIPTS -->
