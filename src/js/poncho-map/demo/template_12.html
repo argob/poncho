@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head>
+    <link rel="profile" href="http://www.w3.org/1999/xhtml/vocab" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
+        </script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+        integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet"
+        href="https://capacita-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css?rfqjsh">
+    <link rel="stylesheet" href="../../../../dist/css/poncho.min.css" />
+
+    <!-- 
+        Script para debug 
+        Se reemplazan en producción por poncho.min.js
+    -->
+    <script src="../../color/src/js/color.js"></script>
+    <script src="../../utils/connect.js"></script>
+    <script src="../../utils/string.js"></script>
+    <script src="../../utils/html.js"></script>
+    <script src="../src/js/poncho-map.js"></script>
+    <script src="../src/js/poncho-map-filter.js"></script>
+    <script src="../src/js/poncho-map-search.js"></script>
+    <script src="../../gapi-sheet-data/gapi-sheet-data.js"></script>
+    <link rel="stylesheet" href="./css/demo.css">
+    <!-- / Script para debug -->
+    <title>Poncho Map — Template 6</title>
+  <style>
+    html, body { height: 100%;}
+    .leaflet-marker-icon.leaflet-div-icon {
+      background-color:transparent;
+      border: none;
+    }
+    .poncho-map__div-icon {
+        background-color:transparent;
+        height:38px;
+        width:38px;
+        position:relative;
+        display:block;
+        margin:auto;
+        text-align:center;
+        border-radius: 50%;
+
+    }
+    .poncho-map__div-icon > i {
+        font-size:1.7em; 
+        position:absolute; 
+        margin:auto; 
+        top: 50%; 
+        right: 50%;
+        transform: translate(50%,-50%);
+        opacity: .9;
+        transition: .2s;
+        text-shadow: 1px 1px 1px rgba(0,0,0,.2);
+    }
+    .poncho-map__div-icon:hover > i {
+      opacity: 1;
+      transition: .2s;
+    } 
+  </style>
+</head>
+<body>
+
+  <div class="demo-nav container">
+    <ul class="demo-menu">
+      <li><a href="./">Inicio</a></li>
+    </ul>
+</div>
+<!-- 
+MAPA CON BUSCADOR FILTRO  
+
+COPIAR DESDE ACÁ…
+-->
+<div class="col-md-12">
+<!-- PONCHO MAP SEARCH -->
+<form action="" id="poncho-map-search">
+    <div data-scope="poncho-map-search">
+        <div class="input-group">
+            <input 
+                type="search" 
+                id="search"
+                name="search" 
+                autocomplete="off"
+                class="js-poncho-map-search__input form-control" 
+                list="js-porcho-map-search__list">
+            <datalist id="js-porcho-map-search__list"></datalist>
+            <span class="input-group-btn">
+              <button class="js-poncho-map-search__submit btn btn-primary">
+                  <i class="fa fa-search text-white"></i>
+              </button>
+            </span>
+        </div>
+        <div data-scope="poncho-map" class="m-b-1">
+            <div class="js-poncho-map__help small text-default" style="position: relative;">
+              
+            </div>
+        </div>
+    </div>
+</form>
+<!-- / PONCHO MAP SEARCH -->
+</div>
+<div class="col-md-12">
+<!-- PONCHO MAP -->
+<div class="poncho-map" data-scope="poncho-map">
+    <div
+        class="leaflet-container leaflet-touch leaflet-fade-anim 
+              leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
+        id="map"
+        style="height: 650px; width: 100%;"
+        tabindex="0">
+    </div>
+</div>
+<!-- / PONCHO MAP -->
+</div>
+
+<!-- INCLUDE SCRIPTS -->
+<script src="https://www.argentina.gob.ar/sites/default/files/ponchotable/showdown.js"></script>
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/extensiones/showdown-extensions.js"></script>
+<script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.js"></script>
+<script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script>
+<link href="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.css" rel="stylesheet"/> 
+<link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.css" rel="stylesheet"/> 
+<link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.Default.css" rel="stylesheet"/> 
+<!-- <script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script> -->
+<!-- / INCLUDE SCRIPTS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.9.0/axios.min.js" integrity="sha512-FPlUpimug7gt7Hn7swE8N2pHw/+oQMq/+R/hH/2hZ43VOQ+Kjh25rQzuLyPz7aUWKlRpI7wXbY6+U3oFPGjPOA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- SCRIPTS -->
+<script>
+const loader = new PonchoMapLoader({ scope: "poncho-map", cover_opacity: .3 });
+loader.load();
+
+
+var poncho_filter;
+ // init
+(async() => {
+
+    // const res = await axios.get("https://capacita.argentina.gob.ar/sites/default/files/puntos.json");
+    // debugger
+
+
+
+    // GApi helpers
+    const gapi = new GapiSheetData();
+    // fetch data
+    const opt = {
+        mode: 'no-cors', 
+        // origin: '*', 
+        headers: {
+            // "Accept": "text/html"
+            // "Accept": "application/txt",
+            // "Content-Type": "application/json"
+        }
+    }
+    // const googlesheet_data = await fetch_json( "https://capacita.argentina.gob.ar/sites/default/files/puntos.json"); 
+    const googlesheet_data = await fetch_json( "./data/json-template-12.json", opt ); 
+
+
+    // const googlesheet_data = await fetch_json( gapi.url("dataset", "1DTX_ZrjmjcgM8HPj_BP4dVe8UW0B-Vk9kleG6SDK2nU") ); 
+    // const gapi_data = gapi.json_data(googlesheet_data);
+    // map options
+    const options = {
+        "scope": "poncho-map",
+        "id":"id",
+        "title": "Cruise",
+        "template_markdown": true,
+        "template_structure" : {
+            "values": [  
+                "Cruise",
+                "datetime",         
+                "Station_N",
+                "Total_Dep",
+                "Sample_Dep",
+                "CLAT",
+                "CLA_5",
+                "E0_PAR_",
+                "Edz_PAR_",
+                "AbsPart",
+                "PP"
+            ],
+            // "exclude": []
+            "mixing": [
+                {
+                    "key": "datetime",
+                    "header": "Fecha y hora",
+                    "values": [
+                        "Day_GMT", "Month_GMT","Year_GMT"
+                    ],
+                    "separator": "-"
+                }
+            ],
+        },
+        "headers": {
+                "Cruise": "Cruise",
+                "Station_N": "Estación N",
+                "Day_GMT": "Día",
+                "Month_GMT": "Mes",
+                "Year_GMT": "Año",
+                "Hour_GMT": "Hora",
+                "Min_GMT": "Minutos",
+                "LAT_decim": "Latitud",
+                "LONG_decim": "Longitud",
+                "Total_Dep": "Total Dep",
+                "Sample_Dep": "Muestra Dep",
+                "CLAT": "CLAT",
+                "CLA_5": "CLA 5",
+                "E0_PAR_": "E0 PAR",
+                "Edz_PAR_": "EDZ PAR",
+                "AbsPart": "AbsPart",
+                "PP": "PP"
+            },
+        open_maps:true,
+        "marker" : (self, ele) => (typeof ele.color !== "undefined" && ele.color != "" ? ele.color : "azul"),
+        "slider": true, // Activo/Inactivo
+        "hash": true, // Activo/Inactivo
+        "filters" :[
+            {
+            "legend" : "Filtrar por tipo",
+            "field": ["Year_GMT", "checked"],
+            "fields": false,
+            "check_uncheck_all": true,
+            },
+
+        ],
+    };
+    // render map
+    poncho_filter = new PonchoMapFilter(googlesheet_data, options);
+    poncho_filter.render();
+
+    // Buscador
+    const search_options = {
+        "scope": "poncho-map-search", 
+        "placeholder": "Buscar centro",
+        "search_fields": ["keywords", "nombre", "area"] 
+    };
+    const search = new PonchoMapSearch(poncho_filter, search_options);
+    search.render();
+    
+    loader.close();
+  })();
+</script>
+<!-- / SCRIPTS -->
+</body>
+</html>

@@ -6,17 +6,43 @@
 
 ![Poncho Map](./demo/img/map.png)
 
-## Conteidos
 
-* [Opciones generales](#opciones)
-* [Opciones para PonchoMapFilter](#opciones-poncho-map-filter)
-* [Opciones para PonchoSearch](#opciones-poncho-map-search)
-* [Métodos](#metodos)
-  * [Métodos PonchoMap](#metodos-poncho-map)
-  * [Métodos PonchoMapFilter](#metodos-poncho-map-filter)
-* [Modo de uso](#modo-uso)
-  * [Código](#codigo)
-  * [Ejemplos en codepen.io](#ejemplos-codepen)
+## Tabla de contenidos
+
+- [PonchoMap](#ponchomap)
+  - [Tabla de contenidos](#tabla-de-contenidos)
+  - [¶ Opciones generales](#-opciones-generales)
+    - [Opciones para `template_structure` ⏎](#opciones-para-template_structure-)
+      - [Opciones para `lead` ⏎](#opciones-para-lead-)
+      - [Opciones para `mixing` ⏎](#opciones-para-mixing-)
+        - [Parámetros](#parámetros)
+    - [ Opciones para `header_icons` ⏎](#-opciones-para-header_icons-)
+    - [Opciones para `marker` ⏎](#opciones-para-marker-)
+      - [Definiendo colores](#definiendo-colores)
+      - [Modificando el tipo de marker](#modificando-el-tipo-de-marker)
+    - [ Opciones para `template` ⏎](#-opciones-para-template-)
+      - [Ejemplos](#ejemplos)
+        - [Función dentro y fuera del grupo de opciones](#función-dentro-y-fuera-del-grupo-de-opciones)
+        - [Modificando la entrada y retornando el template por defecto](#modificando-la-entrada-y-retornando-el-template-por-defecto)
+    - [Headers ⏎](#headers-)
+    - [Opciones para `marker_cluster_options` ⏎](#opciones-para-marker_cluster_options-)
+      - [Valores por defecto](#valores-por-defecto)
+    - [Opciones para `markdown_options` ⏎](#opciones-para-markdown_options-)
+      - [Valores por defecto](#valores-por-defecto-1)
+  - [¶ Opciones para PonchoMapFilter](#-opciones-para-ponchomapfilter)
+    - [ Opciones para `filters`   ⏎](#-opciones-para-filters---)
+      - [ Opciones para `field`   ⏎](#-opciones-para-field---)
+      - [ Opciones para `fields`   ⏎](#-opciones-para-fields---)
+  - [¶ Opciones para PonchoMapSearch](#-opciones-para-ponchomapsearch)
+      - [Ejemplo de uso para el buscador](#ejemplo-de-uso-para-el-buscador)
+  - [¶ Métodos](#-métodos)
+    - [¶ PonchoMap](#-ponchomap)
+    - [¶ PonchoMapFilter](#-ponchomapfilter)
+  - [¶ Modo de uso](#-modo-de-uso)
+    - [Estructura HTML](#estructura-html)
+  - [Referencias](#referencias)
+
+
 
 ---
 
@@ -126,23 +152,46 @@ const options = {
 
 ![Mixing](./demo/img/mixing.png)
 
+Los mixings facilitan la creación de composiciones a partir de información fragmentada presente en una entrada JSON. Permiten combinar valores de diferentes claves para generar una nueva entrada con una clave unificada.
+
+Ejemplo:
+
+Considerando una entrada JSON con información de ubicación distribuida en las claves: calle, numero, localidad y provincia. Mediante un mixin, podemos concatenar estos valores en una única clave.
+
+**Entrada de ejemplo**
+
+```js
+{
+    "calle": "Mercedes",
+    "numero": "3180",
+    "localidad": "Malvinas Argentinas",
+    "provincia": "Buenos Aires",
+}
+```
+
+**La sintaxis para el mixing seria:**
+
 ```js
 "template_structure": {
     "mixing":[
         {
             "key": "direccion",
             "header": "Dirección",
-            "values": ["direccion", "localidad", "provincia"],
-            "separator": ", "
+            "values": "values": ["calle", "numero", ", ", "localidad", ", ", "provincia"],
+            "separator": ""
         },
         ...
     ]
 }
+
+// Resultado: Mercedes 3180, Malvinas Argentinas, Buenos Aires
 ```
+
+##### Parámetros
 
 | Parámetro | Tipo | Default | Descripción |
 |:---|:---|:---|:---|
-| key | `string` | "" | Clave de la entrada del JSON o del geoJSON _feature.properties_. | 
+| key | `string` | "" | Clave de la entrada del JSON o del geoJSON `feature.properties`. | 
 | header | `string` | "" | Nombre que va a tener el campo como título. |
 | values | `Array` | [] | Listado de keys ordenados según el orden de aparición. |
 | separator | `string` | "" | Caracter o cadena de caracteres con la que se van a concatener los valores. |
