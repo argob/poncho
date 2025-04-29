@@ -7123,7 +7123,6 @@ a {
   font-weight: inherit;
   border: 0;
   cursor: pointer;
-  padding-inline: 0.125rem;
   text-decoration: underline;
   -webkit-text-decoration-skip: ink;
   text-decoration-skip-ink: auto;
