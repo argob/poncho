@@ -60,16 +60,17 @@
 
 <pre><code class="language-html">&lt;!-- SCRIPTS --&gt;
 &lt;script&gt;
-    const latitude = -34.60759;
-    const longitude = -58.37393;
+    const latitud = -34.60759;
+    const longitud = -58.37393;
     const mapOptions = {
-        "scope": "poncho-map",
-        "no_info": true,
-        "map_zoom": 17, 
-        "map_view": [latitude, longitude]
+        scope: "poncho-map",
+        theme_tool: true,
+        no_info: true,
+        map_zoom: 17,  
+        map_view: [latitud, longitud]
     };
-    const filter = new PonchoMap([{"latitud": latitude, "longitud": longitude}], mapOptions);
-    filter.render();
+    const pm = new PonchoMap([{latitud, longitud}], mapOptions);
+    pm.render();
 &lt;/script&gt;
 &lt;!-- / SCRIPTS --&gt;</code></pre>
 
@@ -82,18 +83,17 @@
 
 <!-- SCRIPTS -->
 <script>
-    var filter;
-    const latitude = -34.60759;
-    const longitude = -58.37393;
+    const latitud = -34.60759;
+    const longitud = -58.37393;
     const mapOptions = {
-        "scope": "poncho-map",
-        theme_tool: false,
-        "no_info": true,
-        "map_zoom": 17, 
-        "map_view": [latitude, longitude]
+        scope: "poncho-map",
+        theme_tool: true,
+        no_info: true,
+        map_zoom: 17,  
+        map_view: [latitud, longitud]
     };
-    filter = new PonchoMap([{"latitud": latitude, "longitud": longitude}], mapOptions);
-    filter.render();
+    const pm = new PonchoMap([{latitud, longitud}], mapOptions);
+    pm.render();
 </script>
 <!-- / SCRIPTS -->
 
