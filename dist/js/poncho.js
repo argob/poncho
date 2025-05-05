@@ -3243,7 +3243,20 @@ var ponchoUbicacion = function(options) {
      * @returns 
      */
     function parseJsonLocalidades(data) {
-        return data.localidades.map(localidad => {
+        const seenByProvincia = new Map();
+        return data.localidades.filter(localidad => {
+            const provinciaId = localidad.provincia.id;
+            const label = `${localidad.departamento.nombre} - ${localidad.nombre}`;
+            if (!seenByProvincia.has(provinciaId)) {
+                seenByProvincia.set(provinciaId, new Set());
+            }
+            const seenLabels = seenByProvincia.get(provinciaId);
+            if (seenLabels.has(label)) {
+                return false;
+            }
+            seenLabels.add(label);
+            return true;
+        }).map(localidad => {
             return {
                 ...localidad,
                 label: `${localidad.departamento.nombre} - ${localidad.nombre}`
