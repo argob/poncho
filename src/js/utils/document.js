@@ -94,7 +94,7 @@ const headStyle = (id, styleDefinitions, mediaType) => {
  * @param {function} callback Función de retorno.
  * @returns {void}
  */
-function _copyToClipboard(selector, callback) {
+function copyToClipboard(selector, callback) {
     if((!["string", "object"].includes(typeof selector) && 
             selector != "string" || !(selector instanceof HTMLElement))){
         return;
