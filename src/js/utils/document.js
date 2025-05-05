@@ -94,12 +94,20 @@ const headStyle = (id, styleDefinitions, mediaType) => {
  * @param {function} callback Función de retorno.
  * @returns {void}
  */
-function copyToClipboard(selector, callback) {
-    if(typeof selector !== "string" || selector == ""){
+function _copyToClipboard(selector, callback) {
+    if((!["string", "object"].includes(typeof selector) && 
+            selector != "string" || !(selector instanceof HTMLElement))){
         return;
     }
 
-    const copyText = document.querySelector(selector);
+    const element = (typeof selector === 'string' ? 
+            document.querySelector(selector) : selector);
+
+    if (!element || !(element instanceof HTMLElement)) {
+        return; 
+    }
+
+    const copyText = element;
     if(!copyText){
         console.error("[copyToClipboard] No se puede encontrar el elemento.");
         return;
