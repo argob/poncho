@@ -857,6 +857,11 @@
       },
     
       {
+        "nombre": "centro-de-fronteras",
+        "clase": "icono-arg-centro-de-fronteras"
+      },
+    
+      {
         "nombre": "centro-de-generos-en-tecnologia",
         "clase": "icono-arg-centro-de-generos-en-tecnologia"
       },
