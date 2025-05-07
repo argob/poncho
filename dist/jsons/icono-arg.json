@@ -1802,13 +1802,13 @@
       },
     
       {
-        "nombre": "enfermera",
-        "clase": "icono-arg-enfermera"
+        "nombre": "enfermera-salud",
+        "clase": "icono-arg-enfermera-salud"
       },
     
       {
-        "nombre": "enfermero",
-        "clase": "icono-arg-enfermero"
+        "nombre": "enfermero-salud",
+        "clase": "icono-arg-enfermero-salud"
       },
     
       {
@@ -2362,6 +2362,11 @@
       },
     
       {
+        "nombre": "hospital-salud",
+        "clase": "icono-arg-hospital-salud"
+      },
+    
+      {
         "nombre": "hosting",
         "clase": "icono-arg-hosting"
       },
@@ -2867,6 +2872,11 @@
       },
     
       {
+        "nombre": "medica-salud",
+        "clase": "icono-arg-medica-salud"
+      },
+    
+      {
         "nombre": "medicamentos",
         "clase": "icono-arg-medicamentos"
       },
@@ -2899,6 +2909,11 @@
       {
         "nombre": "medico",
         "clase": "icono-arg-medico"
+      },
+    
+      {
+        "nombre": "medico-salud",
+        "clase": "icono-arg-medico-salud"
       },
     
       {
