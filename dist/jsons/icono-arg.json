@@ -1802,6 +1802,16 @@
       },
     
       {
+        "nombre": "enfermera",
+        "clase": "icono-arg-enfermera"
+      },
+    
+      {
+        "nombre": "enfermero",
+        "clase": "icono-arg-enfermero"
+      },
+    
+      {
         "nombre": "entradas",
         "clase": "icono-arg-entradas"
       },
@@ -2849,6 +2859,11 @@
       {
         "nombre": "mecedora",
         "clase": "icono-arg-mecedora"
+      },
+    
+      {
+        "nombre": "medica",
+        "clase": "icono-arg-medica"
       },
     
       {
