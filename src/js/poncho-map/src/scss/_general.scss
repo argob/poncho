@@ -19,7 +19,7 @@
 
 
     /* FUCUSABLE */
-    *:focus {
+    *:focus, .focus-element:focus {
         border-radius: 3px;
         box-sizing: border-box;
         box-shadow: 0 0 8px var(--cielo, #039be5) !important;
@@ -39,13 +39,13 @@
         border: var(--pm-slider-border-width) solid var(--pm-slider-border-color)
 
         article {
-            margin: 0;
             border: none;
+            margin: 0;
             padding: 0; 
         }
         article header {
-            margin: 0;
             border: none;
+            margin: 0;
             padding: 0;
         }
     }

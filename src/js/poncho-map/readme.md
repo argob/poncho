@@ -6,21 +6,51 @@
 
 ![Poncho Map](./demo/img/map.png)
 
-## Conteidos
 
-* [Opciones generales](#opciones)
-* [Opciones para PonchoMapFilter](#opciones-poncho-map-filter)
-* [Opciones para PonchoSearch](#opciones-poncho-map-search)
-* [Métodos](#metodos)
-  * [Métodos PonchoMap](#metodos-poncho-map)
-  * [Métodos PonchoMapFilter](#metodos-poncho-map-filter)
-* [Modo de uso](#modo-uso)
-  * [Código](#codigo)
-  * [Ejemplos en codepen.io](#ejemplos-codepen)
+## Tabla de contenidos
+
+- [PonchoMap](#ponchomap)
+  - [Tabla de contenidos](#tabla-de-contenidos)
+  - [Opciones generales](#opciones-generales)
+    - [Opciones para `template_structure`](#opciones-para-template_structure)
+      - [Sintaxis](#sintaxis)
+      - [Parámetros](#parámetros)
+      - [Opciones para Lead](#opciones-para-lead)
+        - [Sintaxis](#sintaxis-1)
+        - [Parámetros](#parámetros-1)
+      - [Opciones para `mixing`](#opciones-para-mixing)
+        - [Parámetros](#parámetros-2)
+    - [Opciones para `header_icons`](#opciones-para-header_icons)
+    - [Opciones para `marker`](#opciones-para-marker)
+      - [Definiendo colores](#definiendo-colores)
+      - [Modificando el tipo de marker](#modificando-el-tipo-de-marker)
+    - [Opciones para `template`](#opciones-para-template)
+      - [Ejemplos](#ejemplos)
+        - [Función dentro y fuera del grupo de opciones](#función-dentro-y-fuera-del-grupo-de-opciones)
+        - [Modificando la entrada y retornando el template por defecto](#modificando-la-entrada-y-retornando-el-template-por-defecto)
+    - [Headers](#headers)
+    - [Opciones para `marker_cluster_options`](#opciones-para-marker_cluster_options)
+      - [Valores por defecto](#valores-por-defecto)
+    - [Opciones para `markdown_options`](#opciones-para-markdown_options)
+      - [Valores por defecto](#valores-por-defecto-1)
+  - [Opciones para PonchoMapFilter](#opciones-para-ponchomapfilter)
+    - [Opciones para filters](#opciones-para-filters)
+      - [Opciones para field](#opciones-para-field)
+      - [Opciones para fields](#opciones-para-fields)
+  - [Opciones para PonchoMapSearch](#opciones-para-ponchomapsearch)
+      - [Ejemplo de uso para el buscador](#ejemplo-de-uso-para-el-buscador)
+  - [Métodos](#métodos)
+    - [PonchoMap](#ponchomap-1)
+    - [PonchoMapFilter](#ponchomapfilter)
+  - [Modo de uso](#modo-de-uso)
+    - [Estructura HTML](#estructura-html)
+  - [Referencias](#referencias)
+
+
 
 ---
 
-## <a id="opciones" href="#opciones">¶</a> Opciones generales
+## Opciones generales
 
 | Parámetro | Tipo | Default | Descripción |
 |:---|:---|:---|:---|
@@ -66,7 +96,11 @@
 
 
 
-### <a id="opciones-template-structure"></a>Opciones para `template_structure` [⏎](#opciones "Ir al listado de opciones generales")
+### Opciones para `template_structure`
+
+Template structure permite controlar el formato de la información que se presenta en el panel desplegable (slider) o en modo popup. Dentro de las opciones que ofrece esta herramienta, se pueden gestionar elementos como: lead (volanta), nombrar o renombrar encabezados (headers), definir un título, agregar o excluir valores de la entrada JSON, especificar el tipo de etiquetas HTML y aplicar estilos. En esta sección, se detalla el uso y el tipo de valor esperado para cada índice, junto con ejemplos de uso.
+
+#### Sintaxis
 
 ```js
 const options = {
@@ -88,6 +122,7 @@ const options = {
     }
 }
 ```
+#### Parámetros
 
 | Parámetro | Tipo | Default | Descripción |
 |:---|:---|:---|:---|
@@ -104,7 +139,13 @@ const options = {
 | term_tag | `strng` | `dt` | Define la etiqueta HTML para el término.| 
 | definition_tag | `strng` | `dd` | Define la etiqueta HTML para la descripción.| 
 
-#### <a id="opciones-para-lead"></a>Opciones para `lead` [⏎](#opciones-template-structure "Ir al listado de opciones para template_structure")
+#### Opciones para Lead
+
+![Mixing](./demo/img/lead.png)
+
+El lead (o volanta) es un texto breve que se ubica sobre el título principal. Al utilizar la lead dentro de template_structure, se puede modificar su estilo directamente mediante atributos style en línea, o bien, aplicar estilos a través de una definición CSS.
+
+##### Sintaxis
 
 ```js
 "template_structure": {
@@ -116,15 +157,36 @@ const options = {
 } 
 ```
 
+##### Parámetros
 
 | Parámetro | Tipo | Default | Descripción |
 |:---|:---|:---|:---|
 | key | `string` | "" | Clave de la entrada del JSON o del geoJSON _feature.properties_. | 
 | css | `string, function` | "" | **String**<br>Definición de css, ej: `"text-primary bg-warning"`.<br><br>**Función** <br>`css: (self, entry) => string;`<br>Dónde `self` el la instancia del objeto *PonchoMap* o *PonchoMapFilter* y `entry` corresponde a una entrada o feature del JSON. |
 | style | `string, function` | "" | **String**<br>Definición para _style_, ej:<br>`"color: orange; font-size:2em; margin: 2em auto;"`.<br><br>**Función** <br>`css: (self, entry) => string;`<br>Dónde `self` el la instancia del objeto *PonchoMap* o *PonchoMapFilter* y `entry` corresponde a una entrada o feature del JSON. |
-#### <a id="opciones-para-mixing"></a>Opciones para `mixing` [⏎](#opciones-template-structure)
+
+#### Opciones para `mixing`
 
 ![Mixing](./demo/img/mixing.png)
+
+Los mixings facilitan la creación de composiciones a partir de información fragmentada presente en una entrada JSON. Permiten combinar valores de diferentes claves para generar una nueva entrada con una clave unificada.
+
+Ejemplo:
+
+Considerando una entrada JSON con información de ubicación distribuida en las claves: calle, numero, localidad y provincia. Mediante un mixin, podemos concatenar estos valores en una única clave.
+
+**Entrada de ejemplo**
+
+```js
+{
+    "calle": "Mercedes",
+    "numero": "3180",
+    "localidad": "Malvinas Argentinas",
+    "provincia": "Buenos Aires",
+}
+```
+
+**La sintaxis para el mixing seria:**
 
 ```js
 "template_structure": {
@@ -132,23 +194,27 @@ const options = {
         {
             "key": "direccion",
             "header": "Dirección",
-            "values": ["direccion", "localidad", "provincia"],
-            "separator": ", "
+            "values": "values": ["calle", "numero", ", ", "localidad", ", ", "provincia"],
+            "separator": ""
         },
         ...
     ]
 }
+
+// Resultado: Mercedes 3180, Malvinas Argentinas, Buenos Aires
 ```
+
+##### Parámetros
 
 | Parámetro | Tipo | Default | Descripción |
 |:---|:---|:---|:---|
-| key | `string` | "" | Clave de la entrada del JSON o del geoJSON _feature.properties_. | 
+| key | `string` | "" | Clave de la entrada del JSON o del geoJSON `feature.properties`. | 
 | header | `string` | "" | Nombre que va a tener el campo como título. |
 | values | `Array` | [] | Listado de keys ordenados según el orden de aparición. |
 | separator | `string` | "" | Caracter o cadena de caracteres con la que se van a concatener los valores. |
 
 
-### <a id="opciones-header-icons"></a> Opciones para `header_icons` [⏎](#opciones)
+### Opciones para `header_icons`
 
 ![Header icons](./demo/img/header-icons.png)
 
@@ -178,7 +244,7 @@ const options = {
 | html | `string, function` | {} | **String**<br>Retornando un string HTML, ej.<br>`<i class="icono-arg-cannabis-medicinal-1"></i>`<br><br>**Función** <br>Retornando un string en una función ej.<br>`(self, entry) => string;` |
 
 
-### <a id="opciones-marker" href="#opciones-marker"></a>Opciones para `marker` [⏎](#opciones "Ir al listado de opciones generales")
+### Opciones para `marker`
 
 #### Definiendo colores
 
@@ -223,11 +289,12 @@ const options = {
 }
 ```
 
-### <a id="opciones-templates"></a> Opciones para `template` [⏎](#opciones)
+### Opciones para `template`
 
 La opción `template` debe recibir un string de retorno. Para ello, es posible definir el atributo como una función o asignar un string directamente.
 
 #### Ejemplos
+
 ##### Función dentro y fuera del grupo de opciones
 
 ```js
@@ -295,7 +362,7 @@ const options = {
 ```
 
 
-### <a name="headers"></a>Headers [⏎](#opciones "Ir al listado de opciones generales")
+### Headers
 
 La opción `headers`, permite mapear cada una de las claves de la entrada con un nombre apropiado para mostrar en pantalla. 
 
@@ -310,7 +377,7 @@ const opciones = {
 };
 ```
 
-### <a id="opciones-marker-cluster-options"></a>Opciones para `marker_cluster_options` [⏎](#opciones "Ir al listado de opciones generales")
+### Opciones para `marker_cluster_options`
 
 Se puede obtener el extenso listado de opciones y su documentación en [Leaflet Clusters](https://github.com/Leaflet/Leaflet.markercluster). 
 
@@ -330,7 +397,7 @@ Se puede obtener el extenso listado de opciones y su documentación en [Leaflet 
 }
 ```
 
-### <a id="opciones-markdown-options"></a>Opciones para `markdown_options` [⏎](#opciones "Ir al listado de opciones generales")
+### Opciones para `markdown_options`
 
 #### Valores por defecto
 
@@ -357,7 +424,7 @@ const options = {
 ```
 
 
-## <a id="opciones-poncho-map-filter" href="#opciones-poncho-map-filter">¶</a> Opciones para PonchoMapFilter
+## Opciones para PonchoMapFilter
 
 | Parámetro | Tipo | Default | Descripción |
 |:---|:---|:---|:---|
@@ -365,7 +432,7 @@ const options = {
 | filters_visible | `boolean` | `false` | Configura el estado inicial del panel de filtros. |
 | filters_info | `boolean` | `false` | Muestra un icono con un _tooltip_ con el total de resultados por filtro. |
 
-### <a id="opciones-filters"></a> Opciones para `filters`   [⏎](#opciones-poncho-map-filter "Ver opciones para PonchoMapFilter")
+###  Opciones para filters
 
 ```js
 const options = {
@@ -380,7 +447,9 @@ const options = {
   ]
 };
 ```
+
 O con filtros armados manualmente
+
 ```js
 const options = {
   "filters": [
@@ -410,7 +479,7 @@ const options = {
 | check_uncheck_all | `boolean` | `false` | Si se habilita dentro de cada fieldset, debajo del legend, se pueden visualizar los botones de: _marcar todos_ y _desmarcar todos_, los checkbox de ese filtro. |
 
 
-####  <a id="opciones-field"></a> Opciones para `field`   [⏎](#opciones-filters "Ver opciones para filters")
+#### Opciones para field 
 
 ```js
 const options = {
@@ -430,7 +499,7 @@ const options = {
 | 1 | {`string|boolean`, ["checked",`false`]} | Designa el estado inicial de los checkbox. |
 
 
-####  <a id="opciones-fields"></a> Opciones para `fields`   [⏎](#opciones-filters "Ver opciones para filters")
+#### Opciones para fields
 
 ```js
 const options = {
@@ -464,7 +533,7 @@ const options = {
 
 ----
 
-## <a id="opciones-poncho-map-search" href="#opciones-poncho-map-search">¶</a> Opciones para PonchoMapSearch
+## Opciones para PonchoMapSearch
 
 | Parámetro | Tipo | Default | Descripción | Tipo de uso |
 |:---|:---|:---|:---|:---|
@@ -498,9 +567,9 @@ search.render();
 ```
 
 
-## <a id="metodos" href="#metodos">¶</a> Métodos
+## Métodos
 
-### <a id="metodos-poncho-map" href="#metodos-poncho-map">¶</a> PonchoMap
+### PonchoMap
 
 | Método | Retrono | Descripción |
 |:--|:--|:--|
@@ -514,7 +583,7 @@ search.render();
 | map | `object` | Objeto map de leaflet. |
 | markers | `object` | Objeto markers de leaflet. |
 
-### <a id="metodos-poncho-map-filter" href="#metodos-poncho-map-filter">¶</a> PonchoMapFilter
+### PonchoMapFilter
 
 | Método | Retrono | Descripción |
 |:--|:--|:--|
@@ -524,9 +593,9 @@ search.render();
 
 
 
-## <a id="modo-uso" href="#modo-uso">¶</a> Modo de uso
+## Modo de uso
 
-### <a id="codigo" href="#codigo"></a>Estructura HTML
+### Estructura HTML
 
 Lo conveniente es tener la asignación de documentos CSS dentro de la etiqueta `<head>` y la llamada a los documentos JavaScript inmediatamente antes del cierre del body (`</body>`).
 
@@ -575,7 +644,9 @@ Si se desea utilizar el buscador debe incluirse el siguiente código. El código
 </form>
 <!-- / PONCHO MAP SEARCH -->
 ```
+
 Para que se imprima el mapa con todas las opciones de PonchoMap se debe incluir el siguiente código.  Pueden agregarse atributos, pero  `data-scope=""` y la clase `poncho-map` deben estar presentes.
+
 ```html
 <!-- PONCHO MAP -->
 <div class="poncho-map" data-scope="poncho-map-scope">
@@ -588,6 +659,7 @@ Para que se imprima el mapa con todas las opciones de PonchoMap se debe incluir 
 </div>
 <!-- / PONCHO MAP -->
 ```
+
 Por último agregamos la llamada al mapa.
 
 ```js

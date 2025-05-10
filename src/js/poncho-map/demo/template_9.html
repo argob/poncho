@@ -68,14 +68,14 @@ COPIAR DESDE ACÁ…
 </form>
 <!-- / PONCHO MAP SEARCH -->
 </div>
-<div class="col-md-12">
+<div class="col-md-12" style="width: 1000px;">
 <!-- PONCHO MAP -->
 <div class="poncho-map" data-scope="poncho-map">
     <div
         class="leaflet-container leaflet-touch leaflet-fade-anim 
             leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
         id="map"
-        style="height: 600px; width: 100%;">
+        style="height: 625px; width:1000px;">
     </div>
 </div>
 <!-- / PONCHO MAP -->
@@ -120,6 +120,8 @@ COPIAR DESDE ACÁ…
                     `<a href="${entry.boton}">Conocer más sobre ${entry.nombre}</a>` : "");
                 return self.defaultTemplate(self, entry);
             },
+            theme_ui: 'default',
+            theme_map: 'dark',
             "scope": "poncho-map",
             "filters_info": false,
             "title": "nombre",
@@ -215,7 +217,7 @@ COPIAR DESDE ACÁ…
                     ele.color : "azul");
                 return icon_color;
             },
-            "_tooltip": true,
+            "tooltip": true,
             "no_info": false,
             "slider": true,
             "hash": true,

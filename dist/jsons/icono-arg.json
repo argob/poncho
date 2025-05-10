@@ -857,6 +857,11 @@
       },
     
       {
+        "nombre": "centro-de-fronteras",
+        "clase": "icono-arg-centro-de-fronteras"
+      },
+    
+      {
         "nombre": "centro-de-generos-en-tecnologia",
         "clase": "icono-arg-centro-de-generos-en-tecnologia"
       },
@@ -1797,6 +1802,16 @@
       },
     
       {
+        "nombre": "enfermera-salud",
+        "clase": "icono-arg-enfermera-salud"
+      },
+    
+      {
+        "nombre": "enfermero-salud",
+        "clase": "icono-arg-enfermero-salud"
+      },
+    
+      {
         "nombre": "entradas",
         "clase": "icono-arg-entradas"
       },
@@ -2347,6 +2362,11 @@
       },
     
       {
+        "nombre": "hospital-salud",
+        "clase": "icono-arg-hospital-salud"
+      },
+    
+      {
         "nombre": "hosting",
         "clase": "icono-arg-hosting"
       },
@@ -2847,6 +2867,16 @@
       },
     
       {
+        "nombre": "medica",
+        "clase": "icono-arg-medica"
+      },
+    
+      {
+        "nombre": "medica-salud",
+        "clase": "icono-arg-medica-salud"
+      },
+    
+      {
         "nombre": "medicamentos",
         "clase": "icono-arg-medicamentos"
       },
@@ -2879,6 +2909,11 @@
       {
         "nombre": "medico",
         "clase": "icono-arg-medico"
+      },
+    
+      {
+        "nombre": "medico-salud",
+        "clase": "icono-arg-medico-salud"
       },
     
       {
