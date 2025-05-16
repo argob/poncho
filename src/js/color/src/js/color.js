@@ -181,11 +181,8 @@ class Color { //jslint-ignore-line
         const colorDefinition = this.variables?.find(v => v[0] === normalizedColor) ||
                                 this.colors?.find(c => c[0] === normalizedColor);
 
-        if (!colorDefinition) {
-            return defaultColor;
-        }
 
-        const hexColor = colorDefinition[1];
+        const hexColor = !colorDefinition ? defaultColor : colorDefinition[1];
         const lowerCaseMode = mode.trim().toLowerCase();
 
         switch (lowerCaseMode) {
