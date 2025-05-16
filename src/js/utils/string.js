@@ -24,6 +24,10 @@ const replaceSpecialChars = (data) => {
     return data.toString().replace(p, c => b.charAt(a.indexOf(c)));
 };
 
+String.prototype.replaceSpecialChars = function(){
+    return replaceSpecialChars(this.valueOf());
+}
+
 
 /**
  * Slugify
@@ -55,6 +59,10 @@ const slugify = (str) =>{
         .replace(/-+$/, "");
 };
 
+String.prototype.slugify = function(){
+    return slugify(this.valueOf());
+}
+
 
 /**
  * Palabras en title-case.
@@ -63,10 +71,15 @@ const slugify = (str) =>{
  * @returns {string}
  */
 const toTitleCase = (str, allWords=true) => {
-    if(typeof str !== "string" || str.trim().length === 0){
-        console.warn("[toTitleCase] Debe ingresar una cadena de texto.");
+    console.log(typeof str !== 'string')
+    console.log(!(str instanceof String))
+
+
+    if (typeof str !== 'string') {
+        console.warn("[toTitleCase]", "Debe ingresar una cadena de texto.");
         return str;
     }
+
     const titleCase = w => w[0].toUpperCase() + w.substring(1).toLowerCase();
     str = str.replace(/(^\s+|\s+$)/g, "");
     
@@ -75,7 +88,12 @@ const toTitleCase = (str, allWords=true) => {
     }
     const words = str.split(/\s+/);
     return words.map(w => titleCase(w)).join(" ");
+};
+
+String.prototype.toTitleCase = function(allWords=true){
+    return toTitleCase(this.valueOf(), allWords);
 }
+
 
 
 if (typeof exports !== "undefined") {
