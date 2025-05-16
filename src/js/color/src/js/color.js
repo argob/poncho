@@ -169,31 +169,33 @@ class Color { //jslint-ignore-line
      * getColor("celeste")
      * @returns {string} Color en formato hexadecimal.
      */
-    ponchoColor = (color, mode="hex") => {
+    ponchoColor = (color, mode = "hex") => {
         const defaultColor = "#999999";
-        const self = this;
 
-        if (typeof color !== "string") {
-            console.warn(
-                `Invalid color provided. Using default: ${defaultColor}`
-            );
+        if (typeof color !== "string" || color.trim() === "") {
+            console.warn(`El valor pasado es inválido.`);
             return defaultColor;
         }
 
-        const searchTerm = self.replaceSpecialChars(color).toLowerCase();
+        const normalizedColor = this.replaceSpecialChars(color).toLowerCase();
+        const colorDefinition = this.variables?.find(v => v[0] === normalizedColor) ||
+                                this.colors?.find(c => c[0] === normalizedColor);
 
-        const definition = (this.variables.find(v => v[0] === searchTerm) ||
-            this.colors.find(c => c[0] === searchTerm));
-
-        let formatedColor = definition[1];
-
-        if(mode.toLowerCase() == "rgb"){
-            formatedColor = this.hexToRgb(definition[1]);
-        } else if(mode.trim().toLowerCase() == "hsl"){
-            formatedColor = this.rgbToHsl(...this.hexToRgb(definition[1]));
+        if (!colorDefinition) {
+            return defaultColor;
         }
 
-        return (definition ? formatedColor : defaultColor);
+        const hexColor = colorDefinition[1];
+        const lowerCaseMode = mode.trim().toLowerCase();
+
+        switch (lowerCaseMode) {
+            case "rgb":
+                return this.hexToRgb(hexColor);
+            case "hsl":
+                return this.rgbToHsl(...this.hexToRgb(hexColor));
+            default:
+                return hexColor;
+        }
     };
 
 
