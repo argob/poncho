@@ -169,7 +169,7 @@ class Color { //jslint-ignore-line
      * getColor("celeste")
      * @returns {string} Color en formato hexadecimal.
      */
-    ponchoColor = color => {
+    ponchoColor = (color, mode="hex") => {
         const defaultColor = "#999999";
         const self = this;
 
@@ -185,7 +185,15 @@ class Color { //jslint-ignore-line
         const definition = (this.variables.find(v => v[0] === searchTerm) ||
             this.colors.find(c => c[0] === searchTerm));
 
-        return (definition ? definition[1] : defaultColor);
+        let formatedColor = definition[1];
+
+        if(mode.toLowerCase() == "rgb"){
+            formatedColor = this.hexToRgb(definition[1]);
+        } else if(mode.trim().toLowerCase() == "hsl"){
+            formatedColor = this.rgbToHsl(...this.hexToRgb(definition[1]));
+        }
+
+        return (definition ? formatedColor : defaultColor);
     };
 
 
@@ -239,7 +247,7 @@ class Color { //jslint-ignore-line
                 // Itero sobre las instancias de color
                 for(let x = 0; x <= instance.length - 1; x += 1) {
                     const {alias, variant} = instance[x];
-                    debugger
+                    
                     if ( alias.some(s => s.code == lowerCasePonchoColor) ) {
                         result = instance[x];
                         break;
@@ -379,6 +387,59 @@ class Color { //jslint-ignore-line
 
 
     /**
+     * Convierte un color RGB a HSL.
+     * 
+     * @param {number} r Color rojo (Red).
+     * @param {number} g Color verde (Green).
+     * @param {number} b Color blue (Blue).
+     * @returns {object} Array con el siguiente formato: [11, '1.1%', '1.1%']
+     */
+    rgbToHsl = (r, g, b) => {
+        // 1. Normalizar los valores RGB a un rango de 0 a 1
+        const rNorm = r / 255;
+        const gNorm = g / 255;
+        const bNorm = b / 255;
+      
+        // 2. Encontrar el valor máximo (Cmax) y el valor mínimo (Cmin)
+        const cmax = Math.max(rNorm, gNorm, bNorm);
+        const cmin = Math.min(rNorm, gNorm, bNorm);
+        const delta = cmax - cmin;
+      
+        // 3. Calcular la luminancia (L)
+        const l = ((cmax + cmin) / 2) * 100;
+      
+        // 4. Calcular la saturación (S)
+        let s = 0;
+        if (delta !== 0) {
+            s = (delta / (1 - Math.abs(2 * l / 100 - 1))) * 100;
+        }
+      
+        // 5. Calcular el tono (H)
+        let h = 0;
+        if (delta !== 0) {
+            switch (cmax) {
+                case rNorm:
+                    h = 60 * (((gNorm - bNorm) / delta) % 6);
+                break;
+                case gNorm:
+                    h = 60 * ((bNorm - rNorm) / delta + 2);
+                break;
+                case bNorm:
+                    h = 60 * ((rNorm - gNorm) / delta + 4);
+                break;
+            }
+        }
+      
+        // Asegurarse de que el tono esté en el rango de 0 a 360
+        if (h < 0) {
+            h += 360;
+        }
+      
+        return [Math.round(h),`${s.toFixed(1)}%`, `${l.toFixed(1)}%`];
+    };
+
+
+    /**
      * Converson de HEX a RGB.
      * @param {string} hexColor Color hexadecimal
      * @returns {object}
@@ -397,6 +458,7 @@ class Color { //jslint-ignore-line
 
         return [red, green, blue];
     }
+
 
 
     /**
