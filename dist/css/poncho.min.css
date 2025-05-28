@@ -11017,6 +11017,7 @@ Las clases "dato-nro" y "dato-eje" corresponde a los formatos markdown definidos
 */
 .dato-nro, .dato-eje {
   text-align: left;
+  margin-bottom: 40px;
 }
 
 .dato-nro .h2 {
