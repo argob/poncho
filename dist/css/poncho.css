@@ -11008,6 +11008,38 @@ a.label:hover, a.label:focus {
   background-color: rgb(155.5714285714, 31.4285714286, 31.4285714286);
 }
 
+/* DESTACADOS VERTICALES 
+
+Las clases "dato-nro" y "dato-eje" corresponde a los formatos markdown definidos como: 
+- Destacar concepto o eje de gestión
+- Destacar número o dato estadístico
+
+*/
+.dato-nro, .dato-eje {
+  text-align: left;
+}
+
+.dato-nro .h2 {
+  margin-bottom: 0.2em;
+}
+.dato-nro p {
+  margin: 0px;
+  line-height: 1.4;
+}
+
+.dato-eje .icon-item {
+  text-align: left;
+}
+.dato-eje .icon-item i {
+  justify-content: left;
+  margin: 0px;
+}
+.dato-eje .icon-item .h3 {
+  margin-top: 0px;
+  margin-bottom: 0.2em;
+  font-size: 1.6em;
+}
+
 .poncho-map {
   --pm-slider-width: 326px;
   --pm-tools-width: 250px;
