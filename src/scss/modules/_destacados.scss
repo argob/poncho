@@ -1,0 +1,40 @@
+
+
+/* DESTACADOS VERTICALES 
+
+Las clases "dato-nro" y "dato-eje" corresponde a los formatos markdown definidos como: 
+- Destacar concepto o eje de gestión
+- Destacar número o dato estadístico
+
+*/
+
+
+.dato-nro, .dato-eje {
+  text-align: left;
+}
+
+.dato-nro {
+  .h2 {
+    margin-bottom: 0.2em;
+  }
+
+  p {
+    margin: 0px;
+    line-height: 1.4;
+  }
+}
+
+.dato-eje .icon-item {
+  text-align: left;
+
+  i {
+    justify-content: left;
+    margin: 0px;
+  }
+
+  .h3 {
+    margin-top: 0px;
+    margin-bottom: 0.2em;
+    font-size: 1.6em;
+  }
+}
