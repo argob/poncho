@@ -5,6 +5,8 @@
     - [spaces](#spaces)
     - [groupsBySpace()](#groupsbyspace)
     - [colorGroup()](#colorgroup)
+    - [colorSpace()](#colorspace)
+    - [ponchoColor()](#ponchocolor)
 
 
 
@@ -35,7 +37,7 @@ color.spaces
 
 **Descripción:**
 
-Este método tiene como propósito retornar el listado de grupos de color definidos para un espacio de color específico. Dentro de un espacio de color, se organizan conjuntos de colores relacionados por su tinte principal, formando lo que se denomina un "grupo".
+Este método retorna el listado de grupos de color definidos para un espacio de color específico. Dentro de un espacio de color, se organizan conjuntos de colores relacionados por su tinte principal y dentro de cada grupo, las instancias que son valores seleccionados especialmente para representar una paleta controlada de colores. 
 
 **Parámetros:**
 
@@ -61,20 +63,7 @@ Para el espacio de color `'arg'`, la invocación de `groupsBySpace('arg')` podr�
 
 **Descripción:**
 
-Este método retorna la definición completa de un grupo de color específico dentro de un espacio de color dado. Un grupo de color se define por un tinte base y una vari{
-    50: "#CDEBFA",
-    ​​100: "#9AD7F5",
-    ​​200: "#68C3EF",
-    ​​300: "#35AFEA",
-    ​​400: "#039BE5",
-    ​​500: "#0581C6",
-    ​​600: "#0767A7",
-    ​​700: "#084E87",
-    ​​800: "#0A3468",
-    ​​900: "#0C1A49",
-}
-
-edad de colores derivados de este tinte. La intensidad o variación de estos colores se representa típicamente en una escala numérica que puede ir de 0 a 99, aunque en la práctica, la mayoría de los grupos suelen contener entre nueve y diez variaciones distintas.
+Este método retorna la definición completa de un grupo de color específico dentro de un espacio de color dado. Un grupo de color se define por un tinte base y una variedad de colores derivados de este tinte. La intensidad o variación de estos colores se representa típicamente en una escala numérica que puede ir de 0 a 99, aunque en la práctica, la mayoría de los grupos suelen contener entre nueve y diez variaciones distintas.
 
 **Parámetros:**
 
@@ -137,3 +126,16 @@ color.colorGroup("arg", "azul");
 }
 ```
 
+### colorSpace()
+
+**Descripción:**
+
+Este método retorna una lista que contiene todos los grupos de color definidos para el espacio de color actual. Cada elemento de la lista es un objeto que encapsula la información completa de un grupo de color.
+
+**Parámetros:**
+
+* `space` (*String*, requerido): El identificador único del espacio de color al que pertenece el grupo. Por ejemplo: `arg`.
+
+### ponchoColor()
+
+**Descripción:**
