@@ -256,7 +256,9 @@ class Color { //jslint-ignore-line
                         break;
                     }
                 }
-                if (result) break;
+                if (result) {
+                    break;
+                }
             }
         }
 
