@@ -38,7 +38,7 @@ const ponchoMinList = [
     // './src/js/poncho-map-provinces/src/js/poncho-map-provinces-contenidos.js',
     './src/js/gapi-sheet-data/gapi-sheet-data.js',
     './src/js/translate-html/translate-html.js',
-    './src/js/loader/src/loader.js',
+    './src/js/loader/src/js/loader.js',
 ];
 
 
