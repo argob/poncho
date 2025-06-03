@@ -11008,6 +11008,39 @@ a.label:hover, a.label:focus {
   background-color: rgb(155.5714285714, 31.4285714286, 31.4285714286);
 }
 
+/* DESTACADOS VERTICALES 
+
+Las clases "dato-nro" y "dato-eje" corresponde a los formatos markdown definidos como: 
+- Destacar concepto o eje de gestión
+- Destacar número o dato estadístico
+
+*/
+.dato-nro, .dato-eje {
+  text-align: left;
+  margin-bottom: 40px;
+}
+
+.dato-nro .h2 {
+  margin-bottom: 0.2em;
+}
+.dato-nro p {
+  margin: 0px;
+  line-height: 1.4;
+}
+
+.dato-eje .icon-item {
+  text-align: left;
+}
+.dato-eje .icon-item i {
+  justify-content: left;
+  margin: 0px;
+}
+.dato-eje .icon-item .h3 {
+  margin-top: 0px;
+  margin-bottom: 0.2em;
+  font-size: 1.6em;
+}
+
 .poncho-map {
   --pm-slider-width: 326px;
   --pm-tools-width: 250px;
@@ -13307,7 +13340,7 @@ pre {
  * Subsecretaría de Tecnologías de la Información
  * Presidencia de la Nación Argentina
  * Licenciado bajo MIT (https://github.com/argob/poncho/LICENSE)
- */
+  */
 /* Main
    ======================================================================== */
 main a[href^="http://"][target^=_blank]:after,
@@ -14895,6 +14928,49 @@ DEGRADÉ: .bg-mix-azul-info .bg-mix-info-azul .bg-mix-palta-azul .bg-mix-azul-pa
   }
 }
 /*  / ASIDE  */
+.poncho-loader {
+  --pm-loader-background: var(--arg-gray-background, #FFFFFF);
+  --pm-loader-spinner-color: var(--arg-azul-500, #0581C6);
+  --pm-loader-spinner-background: #ccc;
+  --pm-loader-spinner-size: 80px;
+  --pm-loader-spinner-weight: 4px;
+  position: relative;
+  height: 100%;
+  /* loader */
+}
+@keyframes pm-loader-rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.poncho-loader .loader {
+  width: 100%;
+  height: 100%;
+  background: var(--pm-loader-background);
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 9999;
+  padding: 0;
+}
+.poncho-loader .loader .load {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -40px;
+  width: var(--pm-loader-spinner-size);
+  height: var(--pm-loader-spinner-size);
+  border: var(--pm-loader-spinner-weight) solid var(--pm-loader-spinner-background);
+  border-bottom-color: var(--pm-loader-spinner-color);
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: pm-loader-rotation 1s linear infinite;
+}
+
 .device-breadcrumb__hidden {
   display: none;
 }

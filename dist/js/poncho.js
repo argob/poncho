@@ -206,23 +206,30 @@ class Color { //jslint-ignore-line
      * getColor("celeste")
      * @returns {string} Color en formato hexadecimal.
      */
-    ponchoColor = color => {
+    ponchoColor = (color, mode = "hex") => {
         const defaultColor = "#999999";
-        const self = this;
 
-        if (typeof color !== "string") {
-            console.warn(
-                `Invalid color provided. Using default: ${defaultColor}`
-            );
+        if (typeof color !== "string" || color.trim() === "") {
+            console.warn(`El valor pasado es inválido.`);
             return defaultColor;
         }
 
-        const searchTerm = self.replaceSpecialChars(color).toLowerCase();
+        const normalizedColor = this.replaceSpecialChars(color).toLowerCase();
+        const colorDefinition = this.variables?.find(v => v[0] === normalizedColor) ||
+                                this.colors?.find(c => c[0] === normalizedColor);
 
-        const definition = (this.variables.find(v => v[0] === searchTerm) ||
-            this.colors.find(c => c[0] === searchTerm));
 
-        return (definition ? definition[1] : defaultColor);
+        const hexColor = !colorDefinition ? defaultColor : colorDefinition[1];
+        const lowerCaseMode = mode.trim().toLowerCase();
+
+        switch (lowerCaseMode) {
+            case "rgb":
+                return this.hexToRgb(hexColor);
+            case "hsl":
+                return this.rgbToHsl(...this.hexToRgb(hexColor));
+            default:
+                return hexColor;
+        }
     };
 
 
@@ -276,7 +283,7 @@ class Color { //jslint-ignore-line
                 // Itero sobre las instancias de color
                 for(let x = 0; x <= instance.length - 1; x += 1) {
                     const {alias, variant} = instance[x];
-                    debugger
+                    
                     if ( alias.some(s => s.code == lowerCasePonchoColor) ) {
                         result = instance[x];
                         break;
@@ -286,7 +293,9 @@ class Color { //jslint-ignore-line
                         break;
                     }
                 }
-                if (result) break;
+                if (result) {
+                    break;
+                }
             }
         }
 
@@ -416,6 +425,59 @@ class Color { //jslint-ignore-line
 
 
     /**
+     * Convierte un color RGB a HSL.
+     * 
+     * @param {number} r Color rojo (Red).
+     * @param {number} g Color verde (Green).
+     * @param {number} b Color blue (Blue).
+     * @returns {object} Array con el siguiente formato: [11, '1.1%', '1.1%']
+     */
+    rgbToHsl = (r, g, b) => {
+        // 1. Normalizar los valores RGB a un rango de 0 a 1
+        const rNorm = r / 255;
+        const gNorm = g / 255;
+        const bNorm = b / 255;
+      
+        // 2. Encontrar el valor máximo (Cmax) y el valor mínimo (Cmin)
+        const cmax = Math.max(rNorm, gNorm, bNorm);
+        const cmin = Math.min(rNorm, gNorm, bNorm);
+        const delta = cmax - cmin;
+      
+        // 3. Calcular la luminancia (L)
+        const l = ((cmax + cmin) / 2) * 100;
+      
+        // 4. Calcular la saturación (S)
+        let s = 0;
+        if (delta !== 0) {
+            s = (delta / (1 - Math.abs(2 * l / 100 - 1))) * 100;
+        }
+      
+        // 5. Calcular el tono (H)
+        let h = 0;
+        if (delta !== 0) {
+            switch (cmax) {
+                case rNorm:
+                    h = 60 * (((gNorm - bNorm) / delta) % 6);
+                break;
+                case gNorm:
+                    h = 60 * ((bNorm - rNorm) / delta + 2);
+                break;
+                case bNorm:
+                    h = 60 * ((rNorm - gNorm) / delta + 4);
+                break;
+            }
+        }
+      
+        // Asegurarse de que el tono esté en el rango de 0 a 360
+        if (h < 0) {
+            h += 360;
+        }
+      
+        return [Math.round(h),`${s.toFixed(1)}%`, `${l.toFixed(1)}%`];
+    };
+
+
+    /**
      * Converson de HEX a RGB.
      * @param {string} hexColor Color hexadecimal
      * @returns {object}
@@ -434,6 +496,7 @@ class Color { //jslint-ignore-line
 
         return [red, green, blue];
     }
+
 
 
     /**
@@ -9065,4 +9128,90 @@ class TranslateHTML {
         });
     };
 }
+
+
+
+/**
+ * PONCHO MAP LOADER
+ * 
+ * @summary Permite incorporar a un mapa un spinner. 
+ */
+class Loader {
+
+    constructor(options){
+        const defaults = {
+            selector: "",
+            scope: "poncho-loader",
+            timeout: 50000,
+            cover_opacity: 1,
+            cover_style: {},
+        };
+        let opts = Object.assign({}, defaults, options);
+        this.scope = opts.scope;
+        this.cover_opacity = opts.cover_opacity;
+        this.cover_style = opts.cover_style;
+        this.timeout = opts.timeout;
+        this.scope_sufix = `--${this.scope}`;
+        this.scope_selector = `[data-scope="${this.scope}"]`;
+        this.ponchoLoaderTimeout;
+        this.selector = opts.selector;
+    }
+
+
+    /**
+     * Cierra el spinner.
+     * @returns {undefined}
+     */
+    close = () => document
+            .querySelectorAll(`.js-poncho-map__loader${this.scope_sufix}`)
+            .forEach(e => e.remove());
+
+
+    /**
+     * Carga el spinner.
+     * @returns {undefined}
+     */
+    load = () => {
+        this.close();
+        clearTimeout(this.ponchoLoaderTimeout);
+        const selector = `${this.selector}${this.scope_selector}`;
+        const element = document.querySelector(selector);
+;
+        const loader = document.createElement("span");
+        loader.className = "load";
+
+        const cover = document.createElement('div');
+        cover.dataset.scope = this.selector
+        cover.classList.add(
+            "loader", 
+            `js-poncho-map__loader${this.scope_sufix}`
+        );
+        // Background opacity
+        Object.assign(cover.style, this.cover_style);
+        if(this.cover_opacity){
+            cover.style.backgroundColor = `color-mix(in srgb, transparent, `
+                + `var(--pm-loader-background) ` 
+                + `${this.cover_opacity.toString() * 100}%)`;
+        }
+
+        cover.appendChild(loader);
+        element.appendChild(cover);  
+        this.ponchoLoaderTimeout = setTimeout(this.remove, this.timeout);
+    };
+
+
+    /**
+     * Loader
+     * @param {integer} timeout Tiempo máximo de ejecución del loader. 
+     * @returns {unde}
+     */
+    loader = (callback, timeout=500) => {
+        this.load();
+        setTimeout(() => {
+            callback();
+            this.close();
+        }, timeout);
+    };
+}
+
 

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./dist/css/loader.css">
+</head>
+<body>
+    <div 
+        class="loading poncho-loader" 
+        data-scope="poncho-loader" 
+        style="position: relative; height: 400px; width: 100%; background-color: gray;">
+
+    </div>
+
+    <script src="./src/js/loader.js"></script>
+    <script>
+        const loader = new Loader({selector: ".loading", scope: "poncho-loader"});
+        // loader.load();
+        // setTimeout(function(){
+        //     console.log('open');
+        //          loader.close();
+        // }, 5000)
+
+
+        loader.loader(function(e){
+ 
+        })
+   
+    </script>
+</body>
+</html>

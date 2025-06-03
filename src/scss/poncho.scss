@@ -40,6 +40,8 @@
 @import "modules/values";
 @import "modules/news";
 @import "modules/labels";
+@import "modules/destacados";
+
 
 @import "../js/poncho-map/src/scss/poncho-map";
 @import "../js/poncho-agenda/src/scss/poncho-agenda";
@@ -65,6 +67,8 @@
 @import "modules/servicios-acciones"; // Trámites | Servicios y acciones
 @import "modules/tramites"; // Trámites 
 
+
+@import "../js/loader/src/scss/loader.scss";
 @import "../js/device-breadcrumb/src/scss/device-breadcrumb";
 
 @import "../js/national-holidays/src/scss/national-holidays";
