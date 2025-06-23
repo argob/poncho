@@ -41,7 +41,7 @@
 }
 
 .btn-danger {
- /* background-color: $brand-danger;*/
+  /* background-color: $brand-danger;*/
 
   &:hover,
   &:focus,
@@ -53,21 +53,22 @@
 .btn-link {
   color: $brand-primary;
   background-color: $white;
-  border:3px solid $gray-light!important;
+  border: 3px solid $gray-light !important;
 
   &:hover,
   &:focus,
   &:active {
     text-decoration: none;
-    background-color: darken($white, 5)!important;
+    background-color: darken($white, 5) !important;
     color: $brand-primary;
   }
 }
 
-.navbar-default .navbar-nav > .open > .dropdown-toggle {
+.navbar-default .navbar-nav>.open>.dropdown-toggle {
   &.btn-primary {
     background-color: $brand-primary;
   }
+
   &.btn-success {
     background-color: $brand-success;
   }
@@ -86,7 +87,7 @@
   }
 }
 
-.open > .dropdown-toggle {
+.open>.dropdown-toggle {
   &.btn-inverse {
     background-color: $white;
     color: $brand-primary;
@@ -118,12 +119,12 @@ fieldset[disabled] .btn-default.active {
   border-radius: 30px;
   color: $brand-primary;
   background-color: $white;
-  border:3px solid $gray-light!important;
-  
+  border: 3px solid $gray-light !important;
+
   &:hover,
   &:focus,
   &.active,
-  &:active {	
+  &:active {
     text-decoration: none;
     background-color: darken($white, 5);
     color: $brand-primary;
@@ -132,7 +133,7 @@ fieldset[disabled] .btn-default.active {
 
 
 .btn {
-  border:3px solid transparent;
+  border: 3px solid transparent;
   font-size: 16px;
   font-weight: 600;
   margin-bottom: 10px;
@@ -143,16 +144,17 @@ fieldset[disabled] .btn-default.active {
   word-break: initial;
   text-decoration: none;
   letter-spacing: inherit;
-	border-radius: 30px;
+  border-radius: 30px;
   line-height: 1.42857143;
 
   &:hover {
-    border:3px solid transparent;
+    border: 3px solid transparent;
   }
 
-  &:focus{
-    border: 3px solid #FEC221!important;outline: none;
-	  border-radius: 30px !important
+  &:focus {
+    border: 3px solid #FEC221 !important;
+    outline: none;
+    border-radius: 30px !important
   }
 
   &.btn-lg {
@@ -176,12 +178,15 @@ fieldset[disabled] .btn-default.active {
     &.fa-2x {
       font-size: 2em;
     }
+
     &.fa-3x {
       font-size: 3em;
     }
+
     &.fa-4x {
       font-size: 4em;
     }
+
     &.fa-5x {
       font-size: 5em;
     }
@@ -238,8 +243,8 @@ span {
 
     &.active,
     &:active {
-      border-color: $brand-primary!important;
-      color: $brand-primary!important;
+      border-color: $brand-primary !important;
+      color: $brand-primary !important;
       box-shadow: none;
       cursor: default;
     }
@@ -265,17 +270,19 @@ span {
 .btn-mi-argentina {
   color: $brand-primary;
   background-color: $white;
-    text-decoration: none;
-   }
+  text-decoration: none;
+}
 
-.btn-tag { font-size: 13px;
-	text-transform: uppercase;
-    padding: 6px 10px;
-    border: 2px solid #ddd!important;}
+.btn-tag {
+  font-size: 13px;
+  text-transform: uppercase;
+  padding: 6px 10px;
+  border: 2px solid #ddd !important;
+}
 
 @media (max-width: 767px) {
-  .btn{
-    font-weight:600!important  
+  .btn {
+    font-weight: 600 !important
   }
 }
 
