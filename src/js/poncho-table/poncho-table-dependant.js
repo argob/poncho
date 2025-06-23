@@ -1005,6 +1005,8 @@ const ponchoTableDependant = opt => {
         }
         
         const resetBtn = document.createElement("a");
+        resetBtn.setAttribute(
+            "aria-label", "Restablecer resultados de la tabla");
         resetBtn.id = "poncho-table-reset-form";
         resetBtn.href = "#";
         resetBtn.textContent = "Restablecer";
