@@ -22,7 +22,9 @@
 /* Foco o alerta */
 /* Foco o alerta */
 /* Color principal */
+/* Enlace */
 /* Elementos básicos */
+/* Color principal */
 /* Atención o peligro */
 /* Color principal */
 /* Color principal */
@@ -195,8 +197,12 @@ html {
   --arg-azul-half:#9296A7;
   --arg-azul-lighter:#C8D0DA;
   --arg-azul-morado:#3A3796;
+  --arg-blanco:#FFFFFF;
   --arg-cielo:#039BE5;
   --arg-default:#838383;
+  --arg-enlace:#0767A7;
+  --arg-enlace-dark:#084E87;
+  --arg-enlace-light:#0581C6;
   --arg-escarapela:#68C3EF;
   --arg-eucalipto:#306D69;
   --arg-eucalipto-dark:#255450;
@@ -237,6 +243,7 @@ html {
   --arg-palta:#50B7B2;
   --arg-palta-half:#A8DBD9;
   --arg-palta-lighter:#C0E5E3;
+  --arg-primary:#232D4F;
   --arg-primary-light:#E3E7ED;
   --arg-rojo:#C62828;
   --arg-rojo-dark:#7C1C1C;
@@ -259,7 +266,6 @@ html {
   --arg-verdin:#6EA015;
   --arg-verdin-dark:#2E7D33;
   --arg-verdin-light:#B9CE39;
-  --arg-white:#FFFFFF;
   --azul:#232D4F;
   --azul-marino:#232D4F;
   --bandera-amarillo:#FCBF49;
@@ -535,12 +541,28 @@ aside section {
   background-color: #3A3796 !important;
 }
 
+.bg-arg-blanco {
+  background-color: #FFFFFF !important;
+}
+
 .bg-arg-cielo {
   background-color: #039BE5 !important;
 }
 
 .bg-arg-default {
   background-color: #838383 !important;
+}
+
+.bg-arg-enlace {
+  background-color: #0767A7 !important;
+}
+
+.bg-arg-enlace-dark {
+  background-color: #084E87 !important;
+}
+
+.bg-arg-enlace-light {
+  background-color: #0581C6 !important;
 }
 
 .bg-arg-escarapela {
@@ -703,6 +725,10 @@ aside section {
   background-color: #C0E5E3 !important;
 }
 
+.bg-arg-primary {
+  background-color: #232D4F !important;
+}
+
 .bg-arg-primary-light {
   background-color: #E3E7ED !important;
 }
@@ -789,10 +815,6 @@ aside section {
 
 .bg-arg-verdin-light {
   background-color: #B9CE39 !important;
-}
-
-.bg-arg-white {
-  background-color: #FFFFFF !important;
 }
 
 .bg-azul {
@@ -5753,12 +5775,28 @@ a.bg-danger p {
   color: #3A3796 !important;
 }
 
+.text-arg-blanco {
+  color: #FFFFFF !important;
+}
+
 .text-arg-cielo {
   color: #039BE5 !important;
 }
 
 .text-arg-default {
   color: #838383 !important;
+}
+
+.text-arg-enlace {
+  color: #0767A7 !important;
+}
+
+.text-arg-enlace-dark {
+  color: #084E87 !important;
+}
+
+.text-arg-enlace-light {
+  color: #0581C6 !important;
 }
 
 .text-arg-escarapela {
@@ -5921,6 +5959,10 @@ a.bg-danger p {
   color: #C0E5E3 !important;
 }
 
+.text-arg-primary {
+  color: #232D4F !important;
+}
+
 .text-arg-primary-light {
   color: #E3E7ED !important;
 }
@@ -6007,10 +6049,6 @@ a.bg-danger p {
 
 .text-arg-verdin-light {
   color: #B9CE39 !important;
-}
-
-.text-arg-white {
-  color: #FFFFFF !important;
 }
 
 .text-azul {
@@ -12696,11 +12734,23 @@ pre {
 .listas-destacadas.arg-azul-morado > ol li:before, .listas-destacadas.arg-azul-morado > ul li:before {
   color: var(--arg-azul-morado);
 }
+.listas-destacadas.arg-blanco > ol li:before, .listas-destacadas.arg-blanco > ul li:before {
+  color: var(--arg-blanco);
+}
 .listas-destacadas.arg-cielo > ol li:before, .listas-destacadas.arg-cielo > ul li:before {
   color: var(--arg-cielo);
 }
 .listas-destacadas.arg-default > ol li:before, .listas-destacadas.arg-default > ul li:before {
   color: var(--arg-default);
+}
+.listas-destacadas.arg-enlace > ol li:before, .listas-destacadas.arg-enlace > ul li:before {
+  color: var(--arg-enlace);
+}
+.listas-destacadas.arg-enlace-dark > ol li:before, .listas-destacadas.arg-enlace-dark > ul li:before {
+  color: var(--arg-enlace-dark);
+}
+.listas-destacadas.arg-enlace-light > ol li:before, .listas-destacadas.arg-enlace-light > ul li:before {
+  color: var(--arg-enlace-light);
 }
 .listas-destacadas.arg-escarapela > ol li:before, .listas-destacadas.arg-escarapela > ul li:before {
   color: var(--arg-escarapela);
@@ -12822,6 +12872,9 @@ pre {
 .listas-destacadas.arg-palta-lighter > ol li:before, .listas-destacadas.arg-palta-lighter > ul li:before {
   color: var(--arg-palta-lighter);
 }
+.listas-destacadas.arg-primary > ol li:before, .listas-destacadas.arg-primary > ul li:before {
+  color: var(--arg-primary);
+}
 .listas-destacadas.arg-primary-light > ol li:before, .listas-destacadas.arg-primary-light > ul li:before {
   color: var(--arg-primary-light);
 }
@@ -12887,9 +12940,6 @@ pre {
 }
 .listas-destacadas.arg-verdin-light > ol li:before, .listas-destacadas.arg-verdin-light > ul li:before {
   color: var(--arg-verdin-light);
-}
-.listas-destacadas.arg-white > ol li:before, .listas-destacadas.arg-white > ul li:before {
-  color: var(--arg-white);
 }
 .listas-destacadas.azul > ol li:before, .listas-destacadas.azul > ul li:before {
   color: var(--azul);

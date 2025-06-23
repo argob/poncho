@@ -27,8 +27,12 @@ $brand-arg-azul: #232D4F !default; /* Color principal */
 $brand-arg-azul-half: #9296A7 !default;
 $brand-arg-azul-lighter: #C8D0DA !default;
 $brand-arg-azul-morado: #3A3796 !default;
+$brand-arg-blanco: #FFFFFF !default;
 $brand-arg-cielo: #039BE5 !default;
 $brand-arg-default: #838383 !default;
+$brand-arg-enlace: #0767A7 !default; /* Enlace */ 
+$brand-arg-enlace-dark: #084E87 !default;
+$brand-arg-enlace-light: #0581C6 !default;
 $brand-arg-escarapela: #68C3EF !default;
 $brand-arg-eucalipto: #306D69 !default;
 $brand-arg-eucalipto-dark: #255450 !default;
@@ -69,6 +73,7 @@ $brand-arg-negro-lighter: #F0F0F0 !default;
 $brand-arg-palta: #50B7B2 !default;
 $brand-arg-palta-half: #A8DBD9 !default;
 $brand-arg-palta-lighter: #C0E5E3 !default;
+$brand-arg-primary: #232D4F !default; /* Color principal */ 
 $brand-arg-primary-light: #E3E7ED !default;
 $brand-arg-rojo: #C62828 !default; /* Atención o peligro */ 
 $brand-arg-rojo-dark: #7C1C1C !default;
@@ -91,7 +96,6 @@ $brand-arg-verde-light: #6EA015 !default;
 $brand-arg-verdin: #6EA015 !default;
 $brand-arg-verdin-dark: #2E7D33 !default;
 $brand-arg-verdin-light: #B9CE39 !default;
-$arg-white: #FFFFFF !default;
 $brand-azul: #232D4F !default; /* Color principal */ 
 $brand-azul-marino: #232D4F !default; /* Color principal */ 
 $brand-bandera-amarillo: #FCBF49 !default; /* Color amarillo oficial para la bandera Argentina */ 
@@ -188,8 +192,12 @@ $colores: ("amarillo", $brand-amarillo),
 ("arg-azul-half", $brand-arg-azul-half),
 ("arg-azul-lighter", $brand-arg-azul-lighter),
 ("arg-azul-morado", $brand-arg-azul-morado),
+("arg-blanco", $brand-arg-blanco),
 ("arg-cielo", $brand-arg-cielo),
 ("arg-default", $brand-arg-default),
+("arg-enlace", $brand-arg-enlace),
+("arg-enlace-dark", $brand-arg-enlace-dark),
+("arg-enlace-light", $brand-arg-enlace-light),
 ("arg-escarapela", $brand-arg-escarapela),
 ("arg-eucalipto", $brand-arg-eucalipto),
 ("arg-eucalipto-dark", $brand-arg-eucalipto-dark),
@@ -230,6 +238,7 @@ $colores: ("amarillo", $brand-amarillo),
 ("arg-palta", $brand-arg-palta),
 ("arg-palta-half", $brand-arg-palta-half),
 ("arg-palta-lighter", $brand-arg-palta-lighter),
+("arg-primary", $brand-arg-primary),
 ("arg-primary-light", $brand-arg-primary-light),
 ("arg-rojo", $brand-arg-rojo),
 ("arg-rojo-dark", $brand-arg-rojo-dark),
@@ -252,7 +261,6 @@ $colores: ("amarillo", $brand-amarillo),
 ("arg-verdin", $brand-arg-verdin),
 ("arg-verdin-dark", $brand-arg-verdin-dark),
 ("arg-verdin-light", $brand-arg-verdin-light),
-("arg-white", $arg-white),
 ("azul", $brand-azul),
 ("azul-marino", $brand-azul-marino),
 ("bandera-amarillo", $brand-bandera-amarillo),
@@ -480,8 +488,12 @@ html {
 	--arg-azul-half:#9296A7;
 	--arg-azul-lighter:#C8D0DA;
 	--arg-azul-morado:#3A3796;
+	--arg-blanco:#FFFFFF;
 	--arg-cielo:#039BE5;
 	--arg-default:#838383;
+	--arg-enlace:#0767A7;
+	--arg-enlace-dark:#084E87;
+	--arg-enlace-light:#0581C6;
 	--arg-escarapela:#68C3EF;
 	--arg-eucalipto:#306D69;
 	--arg-eucalipto-dark:#255450;
@@ -522,6 +534,7 @@ html {
 	--arg-palta:#50B7B2;
 	--arg-palta-half:#A8DBD9;
 	--arg-palta-lighter:#C0E5E3;
+	--arg-primary:#232D4F;
 	--arg-primary-light:#E3E7ED;
 	--arg-rojo:#C62828;
 	--arg-rojo-dark:#7C1C1C;
@@ -544,7 +557,6 @@ html {
 	--arg-verdin:#6EA015;
 	--arg-verdin-dark:#2E7D33;
 	--arg-verdin-light:#B9CE39;
-	--arg-white:#FFFFFF;
 	--azul:#232D4F;
 	--azul-marino:#232D4F;
 	--bandera-amarillo:#FCBF49;

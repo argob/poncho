@@ -20,7 +20,9 @@
 /* Foco o alerta */
 /* Foco o alerta */
 /* Color principal */
+/* Enlace */
 /* Elementos básicos */
+/* Color principal */
 /* Atención o peligro */
 /* Color principal */
 /* Color principal */
@@ -193,8 +195,12 @@ html {
   --arg-azul-half:#9296A7;
   --arg-azul-lighter:#C8D0DA;
   --arg-azul-morado:#3A3796;
+  --arg-blanco:#FFFFFF;
   --arg-cielo:#039BE5;
   --arg-default:#838383;
+  --arg-enlace:#0767A7;
+  --arg-enlace-dark:#084E87;
+  --arg-enlace-light:#0581C6;
   --arg-escarapela:#68C3EF;
   --arg-eucalipto:#306D69;
   --arg-eucalipto-dark:#255450;
@@ -235,6 +241,7 @@ html {
   --arg-palta:#50B7B2;
   --arg-palta-half:#A8DBD9;
   --arg-palta-lighter:#C0E5E3;
+  --arg-primary:#232D4F;
   --arg-primary-light:#E3E7ED;
   --arg-rojo:#C62828;
   --arg-rojo-dark:#7C1C1C;
@@ -257,7 +264,6 @@ html {
   --arg-verdin:#6EA015;
   --arg-verdin-dark:#2E7D33;
   --arg-verdin-light:#B9CE39;
-  --arg-white:#FFFFFF;
   --azul:#232D4F;
   --azul-marino:#232D4F;
   --bandera-amarillo:#FCBF49;
