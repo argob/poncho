@@ -95,11 +95,6 @@ const headStyle = (id, styleDefinitions, mediaType) => {
  * @returns {void}
  */
 function copyToClipboard(selector, callback) {
-    if((!["string", "object"].includes(typeof selector) && 
-            selector != "string" || !(selector instanceof HTMLElement))){
-        return;
-    }
-
     const element = (typeof selector === 'string' ? 
             document.querySelector(selector) : selector);
 
