@@ -37,6 +37,11 @@
     <title>Poncho Map — Mapa por provincia</title>
 </head>
 <body>
+<div 
+    style="height: 600px; width: 100%; background-color: red;" 
+    data-scope="olivia" 
+    class="emilia poncho-map"></div>
+
 <div class="container">
 <div class="row">
 
@@ -107,6 +112,8 @@ COPIAR DESDE ACÁ…
 <!-- <script src="https://raw.githack.com/argob/poncho/release-1.x/src/js/poncho-map-provinces/src/js/poncho-map-provinces-contenidos.js"></script> -->
 <!-- / INCLUDE SCRIPTS -->
 
+
+
 <!-- SCRIPTS -->
 <script>
     var map;
@@ -117,7 +124,8 @@ const _PONCHOMAP_GEOJSON_PROVINCES = "https://gist.githack.com/agustinbouillet/"
     + "provincias-argentinas.json";
 
 // Loading
-const loader = new PonchoMapLoader({scope: "poncho-map"});
+// const loader = new PonchoMapLoader({scope: "poncho-map"});
+const loader = new PonchoMapLoader({scope: "olivia", selector: ".emilia"});
 loader.load();
 
 fetch_json(_PONCHOMAP_GEOJSON_PROVINCES, {headers: {}}).then(geoProvinces => {
@@ -165,7 +173,7 @@ fetch_json(_PONCHOMAP_GEOJSON_PROVINCES, {headers: {}}).then(geoProvinces => {
             // inferior a los 992 píxeles de ancho, el componente html, select, con el listado de provincias se 
             // mostrará, mientras que el mapa permanecerá oculto.false Cuando la opción sea falsa, tanto el 
             // componente html, select, como el mapa estarán visibles en todo momento.
-            hide_select: false // Si la opción es true, el componente html, select, no se mostrará en ningún caso.
+            hide_select: true // Si la opción es true, el componente html, select, no se mostrará en ningún caso.
         };
         // Instancia para controlar ponchoMap con filtro por provincias.
         map = new ponchoMapProvincesCustom(geoProvinces, entries, options);

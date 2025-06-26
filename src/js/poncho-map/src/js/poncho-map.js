@@ -2346,7 +2346,7 @@ class PonchoMapLoader {
 
     constructor(options){
         const defaults = {
-            selector: "",
+            selector: ".poncho-map",
             scope: "",
             timeout: 50000,
             cover_opacity: 1,
@@ -2360,6 +2360,7 @@ class PonchoMapLoader {
         this.scope_sufix = `--${this.scope}`;
         this.scope_selector = `[data-scope="${this.scope}"]`;
         this.ponchoLoaderTimeout;
+        this.selector = opts.selector;
     }
 
 
@@ -2380,13 +2381,13 @@ class PonchoMapLoader {
         this.close();
         clearTimeout(this.ponchoLoaderTimeout);
 
-        const element = document.querySelector(`.poncho-map${this.scope_selector}`);
-        
+        const element = document.querySelector(`${this.selector}${this.scope_selector}`);
+      
         const loader = document.createElement("span");
         loader.className = "loader";
 
         const cover = document.createElement('div');
-        cover.dataset.scope = this.selector
+        cover.dataset.scope = this.scope;
         cover.classList.add(
             "poncho-map__loader", `js-poncho-map__loader${this.scope_sufix}`
         );
@@ -2395,6 +2396,7 @@ class PonchoMapLoader {
         if(this.cover_opacity){
             cover.style.backgroundColor = `color-mix(in srgb, transparent, var(--pm-loader-background) ${this.cover_opacity.toString() * 100}%)`;
         }
+
         cover.appendChild(loader);
         element.appendChild(cover);  
         this.ponchoLoaderTimeout = setTimeout(this.remove, this.timeout);

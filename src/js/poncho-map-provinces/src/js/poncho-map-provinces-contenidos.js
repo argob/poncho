@@ -129,7 +129,8 @@ class ponchoMapProvincesCustom extends PonchoMapProvinces {
             hide_select: true,
             overlay_image: true,
             overlay_image_opacity: 0.75,
-            fit_bounds: true
+            fit_bounds: true,
+            
         };
 
 

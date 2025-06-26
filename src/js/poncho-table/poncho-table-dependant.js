@@ -36,17 +36,27 @@
 const ponchoTableDependant = opt => {
     var gapi_data;
     var filtersList = [];
+
     var wizard = (opt.hasOwnProperty("wizard") && opt.wizard ?
             true : false);
+
     var emptyLabel = (opt.hasOwnProperty("emptyLabel") && opt.emptyLabel ?
             opt.emptyLabel : "Todos");
     var filtro = {};
+
     var orderFilter = (opt.hasOwnProperty("orderFilter") && opt.orderFilter ?
             opt.orderFilter : false);
+
+    var resetValues = (opt.hasOwnProperty("resetValues") && typeof opt.resetValues == "boolean" ? 
+            opt.resetValues : true);
+
     var asFilter = {};
+
     var allowedTags = ["*"];
+
     var pushState = (opt.hasOwnProperty("pushState") && 
         opt.pushState == true ? true : false);
+
     var copyResults = (opt.hasOwnProperty("copyResults") && 
         opt.copyResults == true ? true : false);
 
@@ -54,6 +64,7 @@ const ponchoTableDependant = opt => {
     var urlParams = false;
     if(opt.hasOwnProperty("urlParams") && opt.urlParams == true){
         urlParams = true;
+
     } else if( copyResults == true || pushState == true){
         urlParams = true;
     }
@@ -952,6 +963,73 @@ const ponchoTableDependant = opt => {
 
 
     /**
+     * 
+     */
+    function _resetForm(){
+        const filters = filtersList.map(m => m.replace("filtro-", ""));
+
+        document
+            .querySelectorAll(`#ponchoTableSearch`)
+            .forEach(function(e){
+                e.value = '';
+            _eventDispatcher("ponchoTableSearch", "", "keyup");
+        });
+
+        for(let filter of filters){
+            document
+                .querySelectorAll(`#${filter}`)
+                .forEach(function(e){
+                    e.selectedIndex = 0;
+            });
+            _eventDispatcher(filter, "", "change");
+        }
+    }
+
+
+    /**
+     * Permite restablecer los filtros de búsqueda y el input search.
+     * @returns {undefined}
+     */
+    function _resetFormButton(){
+ 
+        if( !resetValues ){
+            return;
+        }
+
+        try {
+            document
+                .querySelectorAll("#poncho-table-reset-form")
+                .forEach(e => e.remove());
+        } catch (error) {
+            console.error(error);
+        }
+        
+        const resetBtn = document.createElement("a");
+        resetBtn.setAttribute(
+            "aria-label", "Restablecer resultados de la tabla");
+        resetBtn.id = "poncho-table-reset-form";
+        resetBtn.href = "#";
+        resetBtn.textContent = "Restablecer";
+        resetBtn.classList.add("js-pt-reset-form");
+        
+        const info = document.querySelector("#ponchoTable_info");
+        if(info){
+            const infoContainer = info.parentElement;
+            infoContainer.classList.add("share");
+            infoContainer.appendChild(resetBtn);
+        }
+
+        const element = document.querySelectorAll(".js-pt-reset-form");
+        element.forEach(function(event){
+            event.addEventListener("click", e => {
+                e.preventDefault();
+                _resetForm();
+            });
+        });
+    }
+
+    
+    /**
      * window pushState
      * 
      * @param {string} url Url
@@ -1111,10 +1189,16 @@ const ponchoTableDependant = opt => {
         infoContainer.classList.add("share");
         infoContainer.appendChild(b);
 
-        headStyle(
-            "ponchoTable-share-button", 
-            `.share{display:flex;gap:1.5em;align-items:baseline}.share .dropdown-menu{min-width:250px}`);
+        _styleOnHead();
         _copyToClipboard();
+    }
+
+
+    function _styleOnHead(){
+        headStyle(
+            "ponchoTable-share", 
+            `.share{display:flex;gap:1.5em;align-items:baseline}`
+            +`.share .dropdown-menu{min-width:250px}`);
     }
 
 
@@ -1490,15 +1574,19 @@ const ponchoTableDependant = opt => {
             .classList.remove("state-loading");
 
         initDataTable();
-
         _shareLink();
+        _resetFormButton();
+        _styleOnHead();
+
 
         setTimeout(() => {
             const ele = document.querySelectorAll(`[id^="dt-search-"], #ponchoTable_filter`);
             ele.forEach(elem => {
                 elem.closest(".row").remove();
             });
+
         }, 300);
+
     };
 
 
@@ -1513,7 +1601,6 @@ const ponchoTableDependant = opt => {
             gapi_data = gapi.json_data(data);
 
             render(gapi_data);
-
         }); // end async
     };
 
