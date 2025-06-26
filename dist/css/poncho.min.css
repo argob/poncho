@@ -15026,6 +15026,51 @@ DEGRADÉ: .bg-mix-azul-info .bg-mix-info-azul .bg-mix-palta-azul .bg-mix-azul-pa
   }
 }
 /*  / ASIDE  */
+/*lista ordenada*/
+.servicio-timeline {
+  list-style: none;
+  counter-reset: step;
+  margin: 0;
+  padding-left: 2.7em;
+  position: relative;
+}
+.servicio-timeline li {
+  position: relative;
+  counter-increment: step;
+  margin-bottom: 2em;
+}
+.servicio-timeline li::before {
+  content: counter(step);
+  position: absolute;
+  left: -2.5em;
+  top: 0;
+  background: #232D4F;
+  color: #FFFFFF;
+  border-radius: 50%;
+  text-align: center;
+  z-index: 1;
+  width: 32px;
+  line-height: 32px;
+}
+.servicio-timeline li::after {
+  content: "";
+  position: absolute;
+  left: -1.6em;
+  top: 2em;
+  width: 1px;
+  height: 100%;
+  background-color: #DEE2E6;
+  z-index: 0;
+}
+.servicio-timeline li:last-child::after {
+  content: none;
+}
+
+@media (max-width: 767px) {
+  .servicio-timeline li {
+    padding-left: 0.4em;
+  }
+}
 .poncho-loader {
   --pm-loader-background: var(--arg-gray-background, #FFFFFF);
   --pm-loader-spinner-color: var(--arg-azul-500, #0581C6);
