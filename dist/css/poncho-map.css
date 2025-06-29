@@ -499,10 +499,12 @@ html {
   color: var(--pm-color-base);
   border-radius: var(--pm-slider-radius);
   transform-style: preserve-3d;
-  border: var(--pm-slider-border-width) solid var(--pm-slider-border-color) article;
-  border-border: none;
-  border-margin: 0;
-  border-padding: 0;
+  border: var(--pm-slider-border-width) solid var(--pm-slider-border-color);
+}
+.poncho-map .pm-container article {
+  border: none;
+  margin: 0;
+  padding: 0;
 }
 .poncho-map .pm-container article header {
   border: none;

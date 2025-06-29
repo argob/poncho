@@ -5230,9 +5230,10 @@ class PonchoMap {
         if(!this.theme_tool){
             return;
         }
+
         document
-        .querySelectorAll(`#themes-tool${this.scope_sufix}`)
-        .forEach(ele => ele.remove());
+            .querySelectorAll(`#themes-tool${this.scope_sufix}`)
+            .forEach(ele => ele.remove());
 
         const navContainer = document.createElement("ul");
         navContainer.classList.add(
@@ -5286,11 +5287,12 @@ class PonchoMap {
 
         item.appendChild(button);
         item.appendChild(list);
-        navContainer.appendChild(item)
+        navContainer.appendChild(item);
 
         const element = document.querySelectorAll(this.scope_selector);
         element.forEach(e => e.appendChild(navContainer));
 
+        
         // listeners
         document
             .querySelectorAll(".js-reset-theme")
@@ -5426,7 +5428,6 @@ class PonchoMap {
      */
     _openOnMaps = (latitude, longitude) => {
         if(typeof this.open_maps != "boolean" || !this.open_maps){
-            console.debug("Función de mapas desactivada");
             return;
         }
 
@@ -7205,6 +7206,7 @@ class PonchoMap {
     render = () => {
         this._hiddenSearchInput();
         this._resetViewButton();
+
         this._menuTheme();
         this._setThemes();
         
@@ -7226,8 +7228,10 @@ class PonchoMap {
         }
 
         setTimeout(this.gotoHashedEntry, this.anchor_delay);
+        
         this._setFetureAttributes();
         this._accesibleMenu();
+
         this.mapOpacity();
         this.mapBackgroundColor();
 
@@ -7282,12 +7286,11 @@ class PonchoMapLoader {
         clearTimeout(this.ponchoLoaderTimeout);
 
         const element = document.querySelector(`${this.selector}${this.scope_selector}`);
-      
         const loader = document.createElement("span");
         loader.className = "loader";
 
         const cover = document.createElement('div');
-        cover.dataset.scope = this.scope;
+        cover.dataset.scope = this.selector;
         cover.classList.add(
             "poncho-map__loader", `js-poncho-map__loader${this.scope_sufix}`
         );
