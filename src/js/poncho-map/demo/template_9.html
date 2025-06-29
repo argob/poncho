@@ -20,7 +20,7 @@
         Script para debug 
         Se reemplazan en producción por poncho.min.js
     -->
-    <script src="../../utils/color.js"></script>
+    <script src="../../color/src/js/color.js"></script>
     <script src="../../utils/connect.js"></script>
     <script src="../../utils/string.js"></script>
     <script src="../../utils/html.js"></script>
@@ -90,7 +90,7 @@ COPIAR DESDE ACÁ…
 <link href="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.css" rel="stylesheet"/> 
 <link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.css" rel="stylesheet"/> 
 <link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.Default.css" rel="stylesheet"/> 
-<script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
+<!-- <script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script> -->
 <!-- / INCLUDE SCRIPTS -->
 
 
@@ -128,7 +128,7 @@ COPIAR DESDE ACÁ…
             "template_innerhtml": true,
             "template_markdown": true,
             "allowed_tags": ["a", "sup", "img"],
-            "marker_cluster_options": {
+            "_marker_cluster_options": {
                         "spiderfyOnMaxZoom": true,
                         "showCoverageOnHover": false,
                         "zoomToBoundsOnClick": true,
@@ -235,6 +235,7 @@ COPIAR DESDE ACÁ…
                     "fields": false
                 },
             ],
+            open_maps:true
         };
 
         const searchOptions = {
