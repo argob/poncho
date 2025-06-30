@@ -15123,7 +15123,7 @@ details {
   --caret-y-distance--open: 14px;
   border-color: var(--item-border-color);
   border-style: solid;
-  border-width: 0 0 0 0;
+  border-width: 0 0 1px 0;
   padding: var(--item-padding-y) var(--item-padding-x);
 }
 details:last-child {
@@ -15211,21 +15211,21 @@ details[open] > summary::after {
   opacity: 1;
 }
 details.warning > summary::before {
-  background: var(--arg-maiz) !important;
+  background: var(--arg-amarillo) !important;
 }
 details.warning > summary:after {
   border-left-color: black;
   border-bottom-color: black;
 }
 details.success > summary::before {
-  background: var(--arg-verdin) !important;
+  background: var(--arg-verde) !important;
 }
 details.success > summary:after {
   border-left-color: white;
   border-bottom-color: white;
 }
 details.danger > summary::before {
-  background: var(--arg-tomate) !important;
+  background: var(--arg-rojo) !important;
 }
 details.danger > summary:after {
   border-left-color: white;
@@ -15245,12 +15245,33 @@ details.primary > summary:after {
   border-left-color: white;
   border-bottom-color: white;
 }
+details.azul-morado > summary::before {
+  background: var(--arg-azul-morado) !important;
+}
+details.azul-morado > summary:after {
+  border-left-color: white;
+  border-bottom-color: white;
+}
+details.dark > summary::before {
+  background: var(--arg-negro-600) !important;
+}
+details.dark > summary:after {
+  border-left-color: white;
+  border-bottom-color: white;
+}
 details.blank > summary::before {
   background: transparent !important;
 }
 details.blank > summary:after {
   border-left-color: var(--arg-azul);
   border-bottom-color: var(--arg-azul);
+}
+details.rosado > summary::before {
+  background: var(--arg-rosado) !important;
+}
+details.rosado > summary:after {
+  border-left-color: white;
+  border-bottom-color: white;
 }
 details .details-content {
   padding-left: var(--summary-padding-x);
