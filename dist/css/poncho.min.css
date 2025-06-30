@@ -15094,13 +15094,17 @@ DEGRADÉ: .bg-mix-azul-info .bg-mix-info-azul .bg-mix-palta-azul .bg-mix-azul-pa
 /**
  * DETAILS 
  */
+details + details {
+  margin-bottom: 0 !important;
+}
+
 details {
   --item-border-color: #ddd;
   --item-padding-x: 0px;
   --item-padding-y: 9px;
-  --summary-line-height: 40px;
+  --summary-line-height: 1.35em;
   --summary-padding-x: 0px;
-  --circle-size: 40px;
+  --circle-size: 39px;
   --circle-margin-right: 10px;
   --circle-circle-border-style: solid;
   --circle-border-width: 0px;
@@ -15108,7 +15112,7 @@ details {
   --caret-border-width: 2px;
   --caret-width: 9px;
   --caret-border-color: var(--arg-azul);
-  --caret-background: var(--arg-gray-light);
+  --caret-background: var(--arg-negro-100);
   --caret-padding: 4px;
   --caret-distance: calc(
       var(--circle-size) / 2 - (var(--caret-width) / sin(45deg) / 2) +
