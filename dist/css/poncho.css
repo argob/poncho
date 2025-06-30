@@ -15145,6 +15145,7 @@ details summary {
   position: relative;
   list-style-type: none;
   cursor: pointer;
+  color: var(--arg-primary-700);
   font-weight: 600;
   transition: 0.1s ease-in-out;
   padding-left: var(--summary-padding-x);
