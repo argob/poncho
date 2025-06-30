@@ -15098,10 +15098,10 @@ details {
   --item-border-color: #ddd;
   --item-padding--x: 0px;
   --item-padding--y: 9px;
-  --summary-line-height: 1.25em;
+  --summary-line-height: 35px;
   --summary-padding--x: 0px;
-  --circle-size: 2em;
-  --circle-margin-right: 0.5em;
+  --circle-size: 35px;
+  --circle-margin-right: 10px;
   --circle-circle-border-style: solid;
   --circle-border-width: 0px;
   --circle-border-color: #ccc;
