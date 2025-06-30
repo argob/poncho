@@ -15096,11 +15096,11 @@ DEGRADÉ: .bg-mix-azul-info .bg-mix-info-azul .bg-mix-palta-azul .bg-mix-azul-pa
  */
 details {
   --item-border-color: #ddd;
-  --item-padding--x: 0px;
-  --item-padding--y: 9px;
-  --summary-line-height: 35px;
-  --summary-padding--x: 0px;
-  --circle-size: 35px;
+  --item-padding-x: 0px;
+  --item-padding-y: 9px;
+  --summary-line-height: 40px;
+  --summary-padding-x: 0px;
+  --circle-size: 40px;
   --circle-margin-right: 10px;
   --circle-circle-border-style: solid;
   --circle-border-width: 0px;
@@ -15120,7 +15120,7 @@ details {
   border-color: var(--item-border-color);
   border-style: solid;
   border-width: 0 0 1px 0;
-  padding: var(--item-padding--y) var(--item-padding--x);
+  padding: var(--item-padding-y) var(--item-padding-x);
 }
 details:last-child {
   border-bottom: 1px solid var(--item-border-color);
@@ -15133,8 +15133,8 @@ details.border-top {
   border-top: 1px solid var(--item-border-color);
 }
 details summary {
-  min-height: calc(var(--circle-size) + var(--item-padding--x) * 2);
-  line-height: calc(var(--circle-size) + var(--item-padding--x) * 2);
+  min-height: calc(var(--circle-size) + var(--item-padding-x) * 2);
+  line-height: calc(var(--circle-size) + var(--item-padding-x) * 2);
   line-height: var(--summary-line-height);
   display: flex;
   align-items: center;
@@ -15143,8 +15143,8 @@ details summary {
   cursor: pointer;
   font-weight: 600;
   transition: 0.1s ease-in-out;
-  padding-left: var(--summary-padding--x);
-  padding-right: calc(var(--circle-size) + var(--item-padding--x) + var(--circle-margin-right) + var(--summary-padding--x));
+  padding-left: var(--summary-padding-x);
+  padding-right: calc(var(--circle-size) + var(--item-padding-x) + var(--circle-margin-right) + var(--summary-padding-x));
 }
 details summary::-webkit-details-marker {
   display: none;
@@ -15160,7 +15160,7 @@ details summary::before {
   aspect-ratio: 1/1 !important;
   top: 0;
   left: initial;
-  right: var(--summary-padding--x);
+  right: var(--summary-padding-x);
 }
 details summary::after {
   content: "";
@@ -15179,14 +15179,14 @@ details summary::after {
   transition: 0.1s ease-in-out;
   top: calc(var(--caret-y-distance) + 1px);
   left: initial;
-  right: calc(var(--caret-x-distance) + var(--summary-padding--x));
+  right: calc(var(--caret-x-distance) + var(--summary-padding-x));
 }
 details.left summary {
-  padding-left: calc(var(--circle-size) + var(--item-padding--x) + var(--circle-margin-right) + var(--summary-padding--x));
-  padding-right: var(--summary-padding--x);
+  padding-left: calc(var(--circle-size) + var(--item-padding-x) + var(--circle-margin-right) + var(--summary-padding-x));
+  padding-right: var(--summary-padding-x);
 }
 details.left summary::before {
-  left: var(--summary-padding--x);
+  left: var(--summary-padding-x);
   top: 0;
 }
 details.left summary::after {
@@ -15248,8 +15248,8 @@ details.blank > summary:after {
   border-bottom-color: var(--arg-azul);
 }
 details .details-content {
-  padding-left: var(--summary-padding--x);
-  padding-right: var(--summary-padding--x);
+  padding-left: var(--summary-padding-x);
+  padding-right: var(--summary-padding-x);
   line-height: 1.5em;
 }
 
