@@ -1,4 +1,5 @@
 
+
 /**
  * DETAILS 
  */
@@ -70,7 +71,7 @@ details {
     --caret-border-width: 2px;
     --caret-width: 9px;
     --caret-border-color: var(--arg-azul);
-    --caret-background: var(--arg-gray-light);
+    --caret-background: var(--arg-negro-100);
     --caret-padding: 4px;
     --caret-distance: calc(
         var(--circle-size) / 2 - (var(--caret-width) / sin(45deg) / 2) +
@@ -213,7 +214,7 @@ details {
                 );
         }
     }
-   
+
     .details-content {
         padding: {
             left: var(--summary-padding-x);
@@ -236,14 +237,14 @@ details {
 
 
 @keyframes open {
-  from {
-    opacity: 0;
-    transform: translateY(-5px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 
