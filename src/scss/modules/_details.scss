@@ -1,3 +1,4 @@
+
 /**
  * DETAILS 
  */
@@ -47,15 +48,20 @@ $color-themes: (
 );
 
 
+
+details + details {
+    margin-bottom: 0 !important
+}
+
 details {
     --item-border-color: #ddd;
     --item-padding-x: 0px;
     --item-padding-y: 9px;
 
-    --summary-line-height: 40px;
+    --summary-line-height: 1.35em;
     --summary-padding-x: 0px;
 
-    --circle-size: 40px;
+    --circle-size: 39px;
     --circle-margin-right: 10px;
     --circle-circle-border-style: solid;
     --circle-border-width: 0px;
@@ -199,8 +205,6 @@ details {
         }
     }
 
-
-
     @each $theme-name, $theme-colors in $color-themes {
         &.#{$theme-name} {
             @include caret-color(
@@ -209,7 +213,6 @@ details {
                 );
         }
     }
-
    
     .details-content {
         padding: {
@@ -242,3 +245,5 @@ details {
     transform: translateY(0);
   }
 }
+
+
