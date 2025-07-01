@@ -1323,6 +1323,8 @@ footer.pm-open-map > details {
   border-style: solid;
   border-width: var(--pm-slider-border-width);
   border-radius: 0;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 footer.pm-open-map > details > summary:focus,
 footer.pm-open-map > details:focus-within {
@@ -1339,6 +1341,8 @@ footer.pm-open-map > details[open] {
 footer.pm-open-map > details > summary {
   color: var(--pm-color-base) !important;
   font-weight: 600;
+  padding-left: var(--pm-content-padding);
+  padding-right: var(--pm-content-padding);
 }
 footer.pm-open-map details[open] summary ~ * {
   padding: 0 calc(var(--pm-content-padding) / 2);
