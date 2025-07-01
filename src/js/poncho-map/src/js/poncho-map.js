@@ -561,6 +561,7 @@ class PonchoMap {
                     .replace(/\{\{latitude\}\}/g, latitude)
                     .replace(/\{\{longitude\}\}/g, longitude);
                 a.href = setAnchor;
+                a.tabIndex = 0;
                 a.textContent = label; 
                 a.setAttribute("lang", lang); 
                 a.rel = rel;
@@ -576,11 +577,14 @@ class PonchoMap {
 
         const summary = document.createElement("summary");
         summary.textContent = label;
+        summary.tabIndex = 0;
+        summary.setAttribute(
+            "aria-label", "Abrir el marcador en un mapa alternativo");
 
         const details = document.createElement("details");
+        details.classList.add("blank");
         details.appendChild(summary);
         details.appendChild(ul);
-        // details.tabIndex = 0;
 
         const container = document.createElement("footer");
         container.className = "pm-open-map";
@@ -1097,7 +1101,9 @@ class PonchoMap {
         if(this.no_info){
             return;
         }
+        
         this._focusOnSlider();
+
         if(!this.isSliderOpen()){
             this.toggleSlider();
         }
@@ -1133,19 +1139,25 @@ class PonchoMap {
             return;
         }
         if(this.isSliderOpen()){
-            document.querySelector(`.js-close-slider${this.scope_sufix}`)
+            document.querySelector(`.js-slider${this.scope_sufix}`)
                     .focus();
         } else {
-            const animation = document.querySelector(
-                `.js-slider${this.scope_sufix}`
-            );
-            if(animation){
-                animation.addEventListener("animationend", () => {
-                    document
-                        .querySelector(`.js-close-slider${this.scope_sufix}`)
-                        .focus();
-                });
-            }
+                const animation = document.querySelector(
+                    `div.js-slider${this.scope_sufix}`
+                );
+                if(animation){
+                    animation.addEventListener("animationend", (event) => {
+                        if(event.animationName == "open"){
+                            // pach para detectar el movimiento de <details>
+                            // @TODO enontrar un método distinto
+                            return;
+                        }
+                        document
+                            .querySelector(`.js-slider${this.scope_sufix}`)
+                            .focus();
+                    });
+                }
+
         }
     };
 
@@ -1223,6 +1235,7 @@ class PonchoMap {
 
         const container = document.createElement("div");
         container.style.display = "none";
+        container.tabIndex = "0";
         container.setAttribute("role", "region");
         container.setAttribute("aria-live", "polite");
         container.setAttribute("aria-label", "Panel de información");

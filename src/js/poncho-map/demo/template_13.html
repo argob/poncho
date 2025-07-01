@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head>
+    <link rel="profile" href="http://www.w3.org/1999/xhtml/vocab" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
+        </script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+        integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet"
+        href="https://capacita-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css">
+    <link rel="stylesheet" href="../../../../dist/css/poncho.min.css" />
+    <link rel="stylesheet" href="./css/demo.css">
+    <title>Poncho Map — Template 6</title>
+  <style>
+    html, body { height: 100%;}
+
+  </style>
+</head>
+<body>
+
+  <div class="demo-nav container">
+    <ul class="demo-menu">
+      <li><a href="./">Inicio</a></li>
+    </ul>
+</div>
+<!-- 
+COPIAR DESDE ACÁ…
+-->
+<div class="container">
+    <div
+        class="alert alert-warning js-warning-message"
+        aria-live="polite"
+        style="display: none">
+        <p>
+            <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+            No se encontraron puntos con los criterios buscados
+        </p>
+    </div>
+
+<form id="form-filters">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+            <label for="provincia">Provincia</label>
+            <select name="provincia" class="form-control" id="provincia">
+                <option value="">Todas</option>
+            </select>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+            <label for="tipo_inmueble">Tipo de inmueble</label>
+            <select 
+                name="tipo_inmueble" 
+                class="form-control"
+                id="tipo_inmueble">
+                <option value="">Todos</option>
+                <option value="Grandes proyectos urbanos">
+                    Grandes proyectos urbanos
+                </option>
+                <option value="Desarrollo inmobiliario">
+                    Desarrollo inmobiliario
+                </option>
+                <option value="Desarrollo escala local">
+                    Desarrollo escala local
+                </option>
+                <option value="Desarrollo productivo">
+                    Desarrollo productivo
+                </option>
+            </select>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+            <label for="estado">Estado</label>
+            <select name="estado" class="form-control" id="estado">
+                <option value="">Todas</option>
+                <option value="vigente">Subastas en curso</option>
+                <option value="subastas_futuras">Subastas futuras</option>
+                <option value="desierta">Oportunidades disponibles</option>
+                <option value="finalizada">Subastas finalizadas</option>
+            </select>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <!-- PONCHO MAP SEARCH -->
+            <form action="" id="poncho-map-search" >
+                <div data-scope="poncho-map-search">
+                    <div class="input-group">
+                        <input 
+                            type="search" 
+                            id="search"
+                            name="search" 
+                            autocomplete="off"
+                            class="js-poncho-map-search__input form-control" 
+                            list="js-porcho-map-search__list">
+                        <datalist id="js-porcho-map-search__list"></datalist>
+                        <span class="input-group-btn">
+                        <button class="js-poncho-map-search__submit btn btn-primary">
+                            <i class="fa fa-search text-white"></i>
+                        </button>
+                        </span>
+                    </div>
+                    <div data-scope="poncho-map" class="m-b-1">
+                        <div 
+                            class="js-poncho-map__help small text-arg-negro" 
+                            style="position: relative;">
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <!-- / PONCHO MAP SEARCH -->
+        </div>
+    </div>
+
+    <input
+        type="submit"
+        id="filter-map"
+        class="btn btn-primary"
+        value="Filtrar"/>
+    <button 
+        id="reset-filter-map" 
+        class="js-reset-filter-map btn btn-default">
+        Restablecer
+    </button>
+</form>
+
+<div class="m-t-1">
+    <!-- REFERENCIAS -->
+    <ul class="pm-legend list-unstyled small">
+        <li>
+            <i 
+                class="fa fa-circle text-arg-verde" 
+                aria-label="Círculo verde"></i>
+            Subastas en curso
+        </li>
+        <li>
+            <i 
+                class="fa fa-circle text-arg-arandano"
+                aria-label="Círculo arandano"></i>
+            Subastas futuras
+        </li>
+        <li>
+            <i
+                class="fa fa-circle text-arg-azul-morado"
+                aria-label="Círculo morado"></i>
+            Oportunidades disponibles
+        </li>
+        <li>
+            <i
+                class="fa fa-circle text-arg-gris-intermedio"
+                aria-label="Círculo gris intermedio"></i>
+            Subastas finalizadas
+        </li>
+    </ul>
+    <!-- / REFERENCIAS -->
+</div>
+
+
+<!-- PONCHO MAP -->
+<div class="poncho-map" data-scope="poncho-map">
+    <div
+        class="leaflet-container leaflet-touch leaflet-fade-anim 
+                leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
+        id="map"
+        style="height: 700px; width: 100%"
+        tabindex="0">
+    </div>
+</div>
+<!-- / PONCHO MAP -->
+</div>
+
+<!-- INCLUDES -->
+<link href="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.css" rel="stylesheet" />
+<link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.Default.css" rel="stylesheet" />
+<link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.css" rel="stylesheet" />
+<script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.js"></script>
+<script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script>
+<script src="https://qa2-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
+<!-- / INCLUDES -->
+
+<!-- SCRIPTS -->
+<script>
+    const env = "prod";
+    const config = {
+        dev: {
+            data: "./data/aabe.json",
+        },
+        prod: {
+            data: "/bienesdelestado/listado",
+        }
+    };
+    const conf = config[env];
+</script>
+
+<script>
+    // Obtengo la info.
+    var map;
+    var entries;
+
+    function getParametroOrigen() {
+        const params = new URLSearchParams(window.location.search);
+        const origen = params.get("origen");
+        if (!origen) {
+            return null;
+        };
+
+        // Solo nos quedamos con el segmento final de la URL
+        const partes = origen.split("/");
+        return partes[partes.length - 1];
+    }
+
+    /**
+     * Obtiene las entradas para el mapa
+     * @returns {object}
+     */
+    async function rawEntries() {
+    const googlesheetData = await fetch_json(conf.data);
+    const entries = googlesheetData.reduce((acc, entry) => {
+        entry["tipo_subasta"] = leadByEstado[estadoSubasta(entry)];
+        acc = [...acc, entry];
+        return acc;
+    }, []);
+
+    return entries;
+    }
+
+    headStyle("id", `.pm-legend{display:flex; gap:1em;}`);
+
+    /**
+     * Define el estado de la subasta
+     * @return {string}
+     */
+    function estadoSubasta(entry) {
+        const { fecha_subasta, estado } = entry;
+
+        // Finalizada: estado es "finalizado" o "adjudicado"
+        if (estado === "finalizado" || estado === "adjudicado") {
+            return "finalizada";
+        }
+        // Desierta: estado es "desierta"
+        else if (estado === "desierta") {
+            return "desierta";
+        }
+        // Vigente (aSubastar): tienen fecha de subasta pero no tienen estado
+        else if (
+            (estado == null || estado === "") &&
+            fecha_subasta &&
+            fecha_subasta.trim() !== ""
+        ) {
+            return "aSubastar";
+        }
+        // Subastas futuras (futura): no tienen fecha y no tienen estado
+        else if (
+            (estado == null || estado === "") &&
+            (fecha_subasta == null || fecha_subasta.trim() === "")
+        ) {
+            return "futura";
+        }
+
+        return "default";
+    }
+
+    // Configurar opciones para el formato
+    let colorByEstado = {
+        futura: "arandano",
+        desierta: "arg-azul-morado",
+        aSubastar: "verde",
+        finalizada: "gris",
+    };
+
+    // Titulo por estado
+    let leadByEstado = {
+        futura: "Subastas futuras",
+        desierta: "Oportunidades disponibles",
+        aSubastar: "Subastas en curso",
+        finalizada: "Subastas finalizadas",
+    };
+
+    /**
+     * Define el template para el slider
+     */
+    function template(entry) {
+    const {
+        fecha_subasta,
+        superficie,
+        title,
+        precio_subasta,
+        provincia,
+        localidad,
+        departamento,
+        tipo_moneda,
+        url,
+        imagen_alt,
+        imagen_url,
+        nid,
+        tipo_inmueble,
+        tipo_aabe,
+        subtipo_aabe,
+        calle,
+        numero,
+        piso,
+        id,
+    } = entry;
+
+    let tipoAabeTexto = "";
+    if (tipo_aabe === "aabe-inmueble" && subtipo_aabe === "venta") {
+        tipoAabeTexto = "Venta";
+    } else if (
+        tipo_aabe === "aabe-inmueble" &&
+        subtipo_aabe === "concesion"
+    ) {
+        tipoAabeTexto = "Concesion";
+    } else if (tipo_aabe === "aabe-mueble") {
+        tipoAabeTexto = "Mueble";
+    } else {
+        tipoAabeTexto = "";
+    }
+    let htmlBlock = ``;
+    htmlBlock += `<div class="m-b-1">`;
+    htmlBlock += `<p class="m-b-0">Subasta pública ${id}</p> `;
+    htmlBlock += `<strong>${tipoAabeTexto}</strong> `;
+    htmlBlock += `<strong>${tipo_inmueble}</strong>`;
+    htmlBlock += `</div>`;
+
+    htmlBlock += `
+        <p class="badge bg-${colorByEstado[estadoSubasta(entry)]}">
+            ${leadByEstado[estadoSubasta(entry)]}
+        </p>`;
+
+    if (imagen_url && imagen_url.trim() != "") {
+        htmlBlock += `<div class="m-b-1">
+            <img src="${imagen_url}" alt="${imagen_alt}" />    
+        </div>`;
+    }
+    //Dirección
+    let direccion = [calle || "", numero || "", piso || ""]
+        .filter((part) => part && part.trim() !== "")
+        .join(" ");
+    let ubicacion = [localidad || "", departamento || "", provincia || ""]
+        .filter((part) => part && part.trim() !== "")
+        .join(", ");
+    htmlBlock += `
+        <dt><i class="icono-arg-marcador-ubicacion-1"></i> Dirección</dt>
+        <dd>${direccion} ${ubicacion}</dd>`;
+
+    // Superficie
+    if (superficie && superficie.toString().trim() !== "") {
+        let superficieFormateada = "";
+
+        const numero = parseFloat(superficie);
+        if (!isNaN(numero)) {
+        superficieFormateada = numero.toLocaleString("es-AR", {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+        });
+        } else {
+        superficieFormateada = superficie;
+        }
+
+        htmlBlock += `
+        <dt><i class="fa fa-cube"></i> Superficie</dt>
+        <dd>${superficieFormateada} m²</dd>`;
+    }
+    // Precio
+    if (
+        (precio_subasta && precio_subasta.toString().trim() !== "") ||
+        (tipo_moneda && tipo_moneda.toString().trim() !== "")
+    ) {
+        // Formatear el precio con puntos de miles y comas decimales
+        let precioFormateado = "";
+        if (precio_subasta && precio_subasta.toString().trim() !== "") {
+        const numero = parseFloat(precio_subasta);
+        if (!isNaN(numero)) {
+            precioFormateado = numero.toLocaleString("es-AR", {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+            });
+        } else {
+            precioFormateado = precio_subasta;
+        }
+        }
+
+        // Convertir tipo_moneda a formato legible
+        let tipoMonedaFormateado = "";
+        if (tipo_moneda) {
+        if (tipo_moneda.trim() === "$") {
+            tipoMonedaFormateado = "ARS";
+        } else if (tipo_moneda.trim() === "USD$") {
+            tipoMonedaFormateado = "USD";
+        } else {
+            tipoMonedaFormateado = tipo_moneda.trim();
+        }
+        }
+
+        htmlBlock += `
+        <dt><i class="fa icono-arg-pesos"></i> Precio base</dt>
+        <dd>${tipoMonedaFormateado} ${precioFormateado}</dd>`;
+    }
+    // Cuándo
+    // Función para formatear fecha y hora
+    function formatearFechaYHora(fechaISO) {
+        if (!fechaISO) return { fecha: "", hora: "" };
+        const fecha = new Date(fechaISO);
+
+        const opcionesFecha = {
+        weekday: "long", // Cambiado de 'short' a 'long' para nombre completo
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+        };
+
+        const opcionesHora = {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false,
+        };
+
+        const fechaFormateada = new Intl.DateTimeFormat(
+        "es-AR",
+        opcionesFecha
+        ).format(fecha);
+        const horaFormateada = new Intl.DateTimeFormat(
+        "es-AR",
+        opcionesHora
+        ).format(fecha);
+
+        return {
+        fecha: fechaFormateada,
+        hora: horaFormateada,
+        };
+    }
+
+    // Ejemplo de uso
+    if (fecha_subasta && fecha_subasta.toString().trim() !== "") {
+        const { fecha, hora } = formatearFechaYHora(fecha_subasta);
+        htmlBlock += `
+        <dt><i class="fa icono-arg-reloj"></i> Cuándo</dt>
+        <dd>${fecha}<br>${hora}</dd>`;
+    }
+
+    // Estado
+    if (
+        entry.estado !== undefined &&
+        entry.estado !== null &&
+        entry.estado !== ""
+    ) {
+        const estadosTexto = {
+        adjudicado: "Adjudicado",
+        finalizado: "Finalizado",
+        desierta: "Desierta",
+        };
+        const estadoTexto = estadosTexto[entry.estado] || entry.estado;
+        htmlBlock += `
+        <dt><i class="fa fa-exclamation-circle"></i> Estado</dt>
+        <dd>
+            ${estadoTexto}
+        </dd>`;
+    }
+
+    htmlBlock += `</dl>
+        <p>
+            <a href="${url}" class="btn btn-primary">
+                ver más<span class="sr-only">: 
+                    ${title}</span>
+            </a>
+        </p>`;
+        return htmlBlock;
+    }
+
+    const mapOptions = {
+        tooltip: true,
+        id: "nid",
+        scope: "poncho-map",
+        title: "title",
+        template: (self, entry) => template(entry),
+        marker: (self, ele) => colorByEstado[estadoSubasta(ele)],
+        slider: true,
+        hash: false,
+        open_maps: false,
+        marker_cluster_options: {
+            spiderfyOnMaxZoom: true,
+            showCoverageOnHover: false,
+            zoomToBoundsOnClick: true,
+            maxClusterRadius: 30,
+            spiderfyDistanceMultiplier: 0.5,
+            spiderLegPolylineOptions: {
+            weight: 1,
+            color: "#666",
+            opacity: 0.5,
+            "fill-opacity": 0.5,
+            },
+        },
+    };
+
+    // Cover loader para el mapa
+    const loader = new PonchoMapLoader({ scope: "poncho-map" });
+
+    function renderMap(data) {
+        try {
+            map.map.remove();
+            map = null;
+        } catch (error) {
+            console.warn(error);
+        }
+
+        loader.load();
+
+        // render map
+        map = new PonchoMapFilter(data, mapOptions);
+        map.render();
+        map.fitBounds();
+
+        // Buscador
+        const search_options = {
+            "scope": "poncho-map-search", 
+            "placeholder": "Buscar centro",
+            "search_fields": [
+                "nid", 
+                "title", 
+                "estado", 
+                "latitud",
+                "longitud",
+                "fecha_subasta",
+                "superficie",
+                "id",
+                "precio_subasta",
+                "tipo_moneda",
+                "imagen_url",
+                "imagen_alt",
+                "url",
+                "localidad",
+                "departamento",
+                "provincia",
+                "tipo_aabe",
+                "subtipo_aabe",
+                "calle",
+                "numero",
+                "piso",
+                "tipo_inmueble"] 
+        };
+        const search = new PonchoMapSearch(map, search_options);
+        search.render();
+
+
+        setTimeout(() => {
+            loader.close();
+        }, 400);
+    }
+
+    /**
+     * Filtra la información.
+     */
+    function filterData(entries, form, filterList) {
+    const filteredEntries = entries.filter(function (entry) {
+        let matchesAllFilters = true;
+
+        // Filtro por provincia
+        if (form.provincia && form.provincia.trim() !== "") {
+            if (
+                !entry.provincia ||
+                slugify(entry.provincia) !== slugify(form.provincia)
+            ) {
+                matchesAllFilters = false;
+            }
+        }
+
+        // Filtro por tipo_inmueble
+        if (form.tipo_inmueble && form.tipo_inmueble.trim() !== "") {
+            if (entry.tipo_inmueble != form.tipo_inmueble) {
+                matchesAllFilters = false;
+            }
+        }
+
+        // Filtro por estado - NUEVA LÓGICA
+        if (form.estado && form.estado.trim() !== "") {
+            const { fecha_subasta, estado } = entry;
+
+            switch (form.estado) {
+                case "finalizada":
+                // Finalizada: estado es "finalizado" o "adjudicado"
+                if (estado !== "finalizado" && estado !== "adjudicado") {
+                    matchesAllFilters = false;
+                }
+                break;
+
+                case "desierta":
+                // Desierta: estado es "desierta"
+                if (estado !== "desierta") {
+                    matchesAllFilters = false;
+                }
+                break;
+
+                case "vigente":
+                // Vigente: tienen fecha de subasta pero no tienen estado
+                if (
+                    !(
+                    (estado == null || estado === "") &&
+                    fecha_subasta &&
+                    fecha_subasta.trim() !== ""
+                    )
+                ) {
+                    matchesAllFilters = false;
+                }
+                break;
+
+                case "subastas_futuras":
+                // Subastas futuras: no tienen fecha y no tienen estado
+                if (
+                    !(
+                    (estado == null || estado === "") &&
+                    (fecha_subasta == null || fecha_subasta.trim() === "")
+                    )
+                ) {
+                    matchesAllFilters = false;
+                }
+                break;
+
+                default:
+                // Para cualquier otro valor, no filtrar
+                break;
+            }
+            }
+
+            return matchesAllFilters;
+        });
+
+        return filteredEntries;
+    }
+
+    function cargarProvincias(entries) {
+        const selectProvincia = document.getElementById("provincia");
+        const provinciasUnicas = new Set();
+
+        entries.forEach((entry) => {
+            if (entry.provincia && entry.provincia.trim() !== "") {
+            provinciasUnicas.add(entry.provincia.trim());
+            }
+        });
+
+        // Limpio y agrego opción "Todas"
+        selectProvincia.innerHTML = '<option value="">Todas</option>';
+
+        Array.from(provinciasUnicas)
+            .sort((a, b) => a.localeCompare(b, "es", { sensitivity: "base" }))
+            .forEach((provincia) => {
+            const option = document.createElement("option");
+            option.value = provincia;
+            option.textContent = provincia;
+            selectProvincia.appendChild(option);
+            });
+    }
+
+    function initialState() {
+        alertMessage(false);
+        document.getElementById("provincia").value = "";
+        document.getElementById("tipo_inmueble").value = "";
+        document.getElementById("estado").value = "";
+
+        rawEntries().then((e) => {
+            entries = e;
+            cargarProvincias(entries);
+            
+            // Filtrar para mostrar solo estados específicos por defecto
+            const entriesPorDefecto = entries.filter(function(entry) {
+            const estado = estadoSubasta(entry);
+            // Solo mostrar: en curso (aSubastar), futuras (futura) y disponibles (desierta)
+            return estado === 'aSubastar' || estado === 'futura' || estado === 'desierta';
+            });
+            
+            renderMap(entriesPorDefecto);
+        });
+    }
+
+    function alertMessage(status = true, type = "warning") {
+        const display = status ? "block" : "none";
+        document.querySelector(".js-warning-message").style.display = display;
+        return;
+    }
+
+    document.addEventListener("DOMContentLoaded", (event) => {
+        rawEntries().then((e) => {
+            entries = e;
+            cargarProvincias(entries); 
+
+            const origen = getParametroOrigen();
+            if (origen) {
+                const entrada = entries.find((entry) => {
+                    if (!entry.url) return false;
+                    const url = new URL(entry.url, window.location.origin);
+                    const pathname = url.pathname.replace(/\/+$/, "");
+                    const ultimoSegmento = pathname.split("/").pop();
+                    return ultimoSegmento === origen;
+                });
+
+                if (entrada) {
+                    renderMap([entrada]);
+                } else {
+                    renderMap(entries); // fallback si no se encuentra la entrada
+                }
+            } else {
+                initialState(); // solo si no hay origen
+            }
+        });
+    });
+
+    // Listeners
+    document.addEventListener("click", function (event) {
+        const target = event.target;
+
+        if (target.matches("#filter-map")) {
+            event.preventDefault();
+            // Obtengo los datos del form
+            const formData = document.querySelector("#form-filters");
+            const fieldsData = new FormData(formData);
+            const form = Object.fromEntries(fieldsData);
+            const filterList = Object.keys(form);
+
+            // Hago el render del mapa
+            rawEntries().then((entries) => {
+                const filteredEntries = filterData(entries, form, filterList);
+                if (filteredEntries.length > 0) {
+                    renderMap(filteredEntries);
+                    alertMessage(false);
+                    return;
+                }
+
+                alertMessage(true);
+            });
+        }
+        if (target.matches(".js-reset-filter-map")) {
+            event.preventDefault();
+            initialState();
+        }
+    });
+</script>
+<!-- / SCRIPTS -->
+<!-- / COPIAR HASTA ACÁ -->
+</body>
+</html>
