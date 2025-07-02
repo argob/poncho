@@ -1,3 +1,7 @@
+$circleSizeMin: 31px;
+$caretWidthMin:8px;
+
+
 /**
  * DETAILS 
  */
@@ -114,11 +118,8 @@ details {
         transition: 0.1s ease-in-out;
 
         padding-left: var(--summary-padding-x);
-        padding-right: calc(
-            var(--circle-size) 
-            + var(--item-padding-x) 
-            + var(--circle-margin-right) 
-            + var(--summary-padding-x));
+        padding-right: calc(var(--circle-size) + var(--item-padding-x) + var(--circle-margin-right) + var(--summary-padding-x));
+
 
         &::-webkit-details-marker {
             display: none;
@@ -215,13 +216,33 @@ details {
     }
 }
 
+@container detailsSize (max-width: 350px) {
+    details summary {
+        --circle-size: $circleSizeMin;
+        --caret-width: $caretWidthMin;
+        /* 
+        No modificar las variables subsiguientes. 
+        Deben coincidir con las del :root 
+        */
+        --caret-distance: calc(var(--circle-size) / 2 - (var(--caret-width) / sin(45deg) / 2) + var(--caret-border-width) / 2);
+        --caret-x-distance: var(--caret-distance);
+        --caret-y-distance: var(--caret-distance);
+    }
+}
+
+details {
+    container-type: inline-size;
+    container-name: detailsSize;
+}
+
+
+
 @media all and (max-width: 768px) {
 
     details,
     .details-accordion {
-        --caret-width: 7px;
-        --caret-padding: 40px;
-        --circle-size: 1.75em;
+        --circle-size: $circleSizeMin;
+        --caret-width: $caretWidthMin;
         --summary-line-height: 1.25em;
     }
 }
