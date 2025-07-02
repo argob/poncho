@@ -120,6 +120,7 @@ details {
         padding-left: var(--summary-padding-x);
         padding-right: calc(var(--circle-size) + var(--item-padding-x) + var(--circle-margin-right) + var(--summary-padding-x));
 
+
         &::-webkit-details-marker {
             display: none;
         }
@@ -237,6 +238,7 @@ details {
 
 
 @media all and (max-width: 768px) {
+
     details,
     .details-accordion {
         --circle-size: $circleSizeMin;
