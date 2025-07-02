@@ -1,7 +1,3 @@
-$circleSizeMin: 31px;
-$caretWidthMin:8px;
-
-
 /**
  * DETAILS 
  */
@@ -218,8 +214,8 @@ details {
 
 @container detailsSize (max-width: 350px) {
     details summary {
-        --circle-size: $circleSizeMin;
-        --caret-width: $caretWidthMin;
+        --circle-size: 31px;
+        --caret-width: 8px;
         /* 
         No modificar las variables subsiguientes. 
         Deben coincidir con las del :root 
@@ -241,8 +237,8 @@ details {
 
     details,
     .details-accordion {
-        --circle-size: $circleSizeMin;
-        --caret-width: $caretWidthMin;
+        --circle-size: 31px;
+        --caret-width: 8px;
         --summary-line-height: 1.25em;
     }
 }
