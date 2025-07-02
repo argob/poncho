@@ -15173,8 +15173,8 @@ details .details-content {
 
 @container detailsSize (max-width: 350px) {
   details summary {
-    --circle-size: $circleSizeMin;
-    --caret-width: $caretWidthMin;
+    --circle-size: 31px;
+    --caret-width: 8px;
     /* 
     No modificar las variables subsiguientes. 
     Deben coincidir con las del :root 
@@ -15192,8 +15192,8 @@ details {
 @media all and (max-width: 768px) {
   details,
   .details-accordion {
-    --circle-size: $circleSizeMin;
-    --caret-width: $caretWidthMin;
+    --circle-size: 31px;
+    --caret-width: 8px;
     --summary-line-height: 1.25em;
   }
 }
