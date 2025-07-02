@@ -15171,12 +15171,29 @@ details .details-content {
   line-height: 1.5em;
 }
 
+@container detailsSize (max-width: 350px) {
+  details summary {
+    --circle-size: $circleSizeMin;
+    --caret-width: $caretWidthMin;
+    /* 
+    No modificar las variables subsiguientes. 
+    Deben coincidir con las del :root 
+    */
+    --caret-distance: calc(var(--circle-size) / 2 - (var(--caret-width) / sin(45deg) / 2) + var(--caret-border-width) / 2);
+    --caret-x-distance: var(--caret-distance);
+    --caret-y-distance: var(--caret-distance);
+  }
+}
+details {
+  container-type: inline-size;
+  container-name: detailsSize;
+}
+
 @media all and (max-width: 768px) {
   details,
   .details-accordion {
-    --caret-width: 7px;
-    --caret-padding: 40px;
-    --circle-size: 1.75em;
+    --circle-size: $circleSizeMin;
+    --caret-width: $caretWidthMin;
     --summary-line-height: 1.25em;
   }
 }
