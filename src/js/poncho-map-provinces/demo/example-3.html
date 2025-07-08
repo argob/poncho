@@ -122,13 +122,12 @@ const geoJSON = "https://gist.githack.com/agustinbouillet/"
     + "a5cdf04c6b19ed248aa85b27deaee6a2/raw/"
     + "3880083e157a587629e8a6ea21126c79f78e776b/" 
     + "provincias-argentinas.json";
-
+const newJson = "../data/provincias-antartida.json";
 // Loading
 const loader = new PonchoMapLoader({scope: "poncho-map"});
 loader.load();
 
-fetch_json(geoJSON, { headers: {"Accept": "application/json"}}).then(geoProvinces => {
-// fetch_json( PONCHOMAP_GEOJSON_PROVINCES, { headers: {} }).then(geoProvinces => {
+fetch_json(newJson, { headers: {"Accept": "application/json"}}).then(geoProvinces => {
     const gapi = new GapiSheetData();
     fetch_json(
         gapi.url(
@@ -136,114 +135,69 @@ fetch_json(geoJSON, { headers: {"Accept": "application/json"}}).then(geoProvince
             "1qEJoLbtJwq_6i3e8R_Q85xK_ZZ5-Iu5Tu8BAnp2V1N4" //<<< ID del documento en Google Sheets.
         )        
     ).then(googlesheet_data => {
-
         const gapi_data = gapi.json_data(googlesheet_data);
         const {entries, headers} = gapi_data;
         const options = {
-//            content_selector: ".js-pm-text-content", // NOMBRE DE LA COLUMNA DE TEXTO DE  LA DERECHA. SI EL MAPA VA A 12, COMENTAR EL INICIO DE ESTA  LÍNEA (DOBRE BARRA AL INICIO). ASÍ LA INFO SE SOBREIMPRIME AL MAPA.
-            scope: "poncho-map", 
-            title: "filttro-provincia", // ID DE LA COLUMNA CON EL NOMBRE DE LAS PROVINCIAS
-            template_markdown: true,
-            markdown_options: {
-                "tables": true,
-                "simpleLineBreaks": true,
-                "extensions": [
-                    'details', 
-                    'images', 
-                    'alerts', 
-                    'numbers', 
-                    'ejes', 
-                    'button',
-                    'target',
-                    'bootstrap-tables', 
-                    'video'
-                ]
+            id_mixing: ["in1", "nam"], // Permite configurar cómo debe ser el ID en la URL.
+            // content_selector: ".js-pm-text-content", // Nombre de la clase o id dónde se imprime el contenido.
+            scope: "poncho-map",
+            title: "nam",
+            template_markdown: true, // Habilita el uso del markdown.
+            allowed_tags: ["*"], // Habilita etiquetas HTML.
+            headers:{
+                ...headers, 
+                ...{"subtitulos--ignore": "", description: "", img: "", content: "", region: "Región"}
             },
-            allowed_tags: [], // Habilita etiquetas HTML. Para habilitar todas las etiquetas se utiliza ["*"]. Si se quiere especificar cuales deben usarse, ej.: ["a", "strong"]. Evitar html []. 
-            headers: headers,
-            theme_map: "default",
+            template:(self, entry) => {
+                entry["img"] = entry.image ? `<div class="img"><img src="${entry.image}"></img>` : false;
+                entry["content"] = `<hr><div class="row">${entry["subtitulos--ignore"]}</div>`;
+                return self.defaultTemplate(self, entry); 
+            },
+            template_structure: {
+                values: ["img", "description", "capital", "population", "surface", "web", /*"content"*/ ],
+                title_classlist: ["h2","text-cielo"],
+                term_classlist: ["h5", "text-cielo"],
+                lead: {
+                    key: "region", 
+                    style: "text-transform:uppercase;" 
+                        + "border-bottom: 1px solid var(--gray-border, #ccc);" 
+                        + "padding-bottom:.25em; color:var(--default) " 
+                        + "font-size:small;"
+                },  
+            },
+            filters: [
+                {
+                    legend: "Filtrar por título",
+                    field: ["region", "checked"],
+                    fields: false,
+                    check_uncheck_all: true
+                }
+            ],
             tooltip: true, // Tooltip en marker o región
             hash: true, // Permite abrir un item via URL.
-            province_index: "filttro-provincia", // Nombre de la columna con el nombre de la provincia
+            province_index: "provincia", // Nombre de la columna con el nombre de la provincia
             fit_bounds_onevent: false, // true hace zoom en la provincia cuando se utilia el select o por url
-            // map_background: "color-mix(in srgb, var(--verde-cemento) 40%, white)",  // define el color de fondo del mapa 
-            fit_bounds: false, // Hace que los polígonos o markers se ajusten a los límites del mapa
-            toggle_select: false, // true Cuando la opción sea verdadera y el viewport o tamaño del display sea 
-            // inferior a los 992 píxeles de ancho, el componente html, select, con el listado de provincias se 
-            // mostrará, mientras que el mapa permanecerá oculto.false Cuando la opción sea falsa, tanto el 
-            // componente html, select, como el mapa estarán visibles en todo momento.
-            hide_select: true, // Si la opción es true, el componente html, select, no se mostrará en ningún caso.
-            map_opacity: 1
-        };
-        // Instancia para controlar ponchoMap con filtro por provincias.
-        const map = new ponchoMapProvincesCustom(geoProvinces, entries, options);
-        map.renderProvinceMap();
-        loader.close();
-
-
-        
-        // const gapi_data = gapi.json_data(googlesheet_data);
-        // const {entries, headers} = gapi_data;
-        // const options = {
-        //     id_mixing: ["in1", "nam"], // Permite configurar cómo debe ser el ID en la URL.
-        //     // content_selector: ".js-pm-text-content", // Nombre de la clase o id dónde se imprime el contenido.
-        //     scope: "poncho-map",
-        //     title: "nam",
-        //     template_markdown: true, // Habilita el uso del markdown.
-        //     allowed_tags: ["*"], // Habilita etiquetas HTML.
-        //     headers:{
-        //         ...headers, 
-        //         ...{"subtitulos--ignore": "", description: "", img: "", content: "", region: "Región"}
-        //     },
-        //     template:(self, entry) => {
-        //         entry["img"] = entry.image ? `<div class="img"><img src="${entry.image}"></img>` : false;
-        //         entry["content"] = `<hr><div class="row">${entry["subtitulos--ignore"]}</div>`;
-        //         return self.defaultTemplate(self, entry); 
-        //     },
-        //     template_structure: {
-        //         values: ["img", "description", "capital", "population", "surface", "web", /*"content"*/ ],
-        //         title_classlist: ["h2","text-cielo"],
-        //         term_classlist: ["h5", "text-cielo"],
-        //         lead: {
-        //             key: "region", 
-        //             style: "text-transform:uppercase;" 
-        //                 + "border-bottom: 1px solid var(--gray-border, #ccc);" 
-        //                 + "padding-bottom:.25em; color:var(--default) " 
-        //                 + "font-size:small;"
-        //         },  
-        //     },
-        //     filters: [
-        //         {
-        //             legend: "Filtrar por título",
-        //             field: ["region", "checked"],
-        //             fields: false,
-        //             check_uncheck_all: true
-        //         }
-        //     ],
-        //     tooltip: true, // Tooltip en marker o región
-        //     hash: true, // Permite abrir un item via URL.
-        //     province_index: "provincia", // Nombre de la columna con el nombre de la provincia
-        //     fit_bounds_onevent: false, // true hace zoom en la provincia cuando se utilia el select o por url
-        //     theme_ui: "default", // tema del slider y control de zoom
-        //     // theme_map: "transparent", // Tema del mapa
-        //     map_opacity: 1, // Opacidad del mapa OSM
-        //     // map_view: (new PonchoMapProvinces).mapView, // Define la vista principal del mapa
-        //     // map_background: "color-mix(in srgb, var(--gna-verde-cemento) 20%, white)",  // define el color de fondo del mapa 
-        //     // initial_entry: "42-la-pampa", // Si se agrega el id (que aprece en URL), inicia con esa entrada.
-        //     // random_entry: true, // Permite que la página se cargue con una entrada aleatoria.
-        //     overlay_image: true, // ture habilita tener una imagen sobre e mapa
-        //     overlay_image_opacity: 1, // Opacidad de la imagen sobre el mapa.
+            theme_ui: "default", // tema del slider y control de zoom
+            // theme_map: "transparent", // Tema del mapa
+            map_opacity: 1, // Opacidad del mapa OSM
+            // map_view: (new PonchoMapProvinces).mapView, // Define la vista principal del mapa
+            // map_background: "color-mix(in srgb, var(--gna-verde-cemento) 20%, white)",  // define el color de fondo del mapa 
+            // initial_entry: "42-la-pampa", // Si se agrega el id (que aprece en URL), inicia con esa entrada.
+            // random_entry: true, // Permite que la página se cargue con una entrada aleatoria.
+            overlay_image: true, // ture habilita tener una imagen sobre e mapa
+            overlay_image_opacity: 1, // Opacidad de la imagen sobre el mapa.
             
-        //     hide_select: true, // Si es true el select solo se muestra en mobile
-        //     toggle_select: false,
-        //     theme_tool: true
-        // };
+            hide_select: true, // Si es true el select solo se muestra en mobile
+            toggle_select: false,
+            theme_tool: true,
+            fit_bounds: false,
+        };
 
         // Instancia para controlar ponchoMap con filtro por provincias.
         // const provinces = new PonchoMapProvinces(options);
-        //  map = new PonchoMapProvinces(geoProvinces, entries, options);
-        // map.renderProvinceMap();
-        // loader.close();
+        map = new PonchoMapProvinces(geoProvinces, entries, options);
+        map.renderProvinceMap();
+        loader.close();
     });
 });
 </script>

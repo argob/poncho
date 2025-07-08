@@ -37,69 +37,58 @@
     <title>Poncho Map — Mapa por provincia</title>
 </head>
 <body>
-<div 
-    style="height: 600px; width: 100%; background-color: red;" 
-    data-scope="olivia" 
-    class="emilia poncho-map"></div>
 
 <div class="container">
-<div class="row">
-
-<div class="col-md-12">
-    <p class="m-t-1 p-a-0"><a href="./">Inicio</a></p>
-    <hr class="p-a-0 m-a-0">
-    <h1>Mapa con provincia</h1>
-</div>
-
-
-<!--
-COPIAR DESDE ACÁ…
--->
-<div class="col-md-12">
-
-    <!-- SELECT PROVINCIAS -->
-    <div 
-        data-scope-related="poncho-map"
-        class="form-group poncho-map-province__toggle-element">
-        <label for="id_provincia">Provincias</label>
-        <div>
-            <select class="form-control" name="provincia" id="id_provincia">
-            </select>
+    <div class="row">
+        <div class="col-md-12">
+            <p class="m-t-1 p-a-0"><a href="./">Inicio</a></p>
+            <hr class="p-a-0 m-a-0">
+            <h1>Mapa con provincia</h1>
         </div>
-    </div>
-    <!-- / SELECT PROVINCIAS -->
-
-</div>
-
-<div class="col-md-6">
-
-    <!-- MAPA COLUMNA IZQUIERDA: PONCHO MAP-->
-    <div 
-        class="poncho-map poncho-map-province__toggle-map hide-attribution" 
-        data-scope="poncho-map" 
-        style="border-radius: 6px;">
-        <div
-            class="leaflet-container leaflet-touch leaflet-fade-anim 
-                leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
-            id="map"
-            style="height: 700px;"
-            tabindex="0">
+        <!--
+        COPIAR DESDE ACÁ…
+        -->
+        <div class="col-md-12">
+            <!-- SELECT PROVINCIAS -->
+            <div 
+                data-scope-related="poncho-map"
+                class="form-group poncho-map-province__toggle-element">
+                <label for="id_provincia">Provincias</label>
+                <div>
+                    <select class="form-control" name="provincia" id="id_provincia">
+                    </select>
+                </div>
+            </div>
+            <!-- / SELECT PROVINCIAS -->
         </div>
-    </div>
-    <!-- / PONCHO MAP -->
 
-</div>
-
-<div class="col-md-6">
-    <!-- BLOQUE DE TEXTO COLUMNA DERECHA: CONTENIDO-->
-    <div class="js-pm-text-content">
-        <div class="alert alert-info">
-            <p>Seleccione una provincia</p>
+        <div class="col-md-6">
+            <!-- MAPA COLUMNA IZQUIERDA: PONCHO MAP-->
+            <div 
+                class="poncho-map poncho-map-province__toggle-map hide-attribution" 
+                data-scope="poncho-map" 
+                style="border-radius: 12px;">
+                <div
+                    class="leaflet-container leaflet-touch leaflet-fade-anim 
+                        leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
+                    id="map"
+                    style="height: 700px; width: 100%;" 
+                    tabindex="0">
+                </div>
+            </div>
+            <!-- / PONCHO MAP -->
         </div>
-    </div>
-    <!-- / CONTENIDO -->
-</div>
-</div> 
+
+        <div class="col-md-6">
+            <!-- BLOQUE DE TEXTO COLUMNA DERECHA: CONTENIDO-->
+            <div class="js-pm-text-content">
+                <div class="alert alert-info">
+                    <p>Seleccione una provincia</p>
+                </div>
+            </div>
+            <!-- / CONTENIDO -->
+        </div>
+    </div> 
 </div>
 
 <!-- INCLUDE SCRIPTS -->
@@ -125,7 +114,7 @@ const _PONCHOMAP_GEOJSON_PROVINCES = "https://gist.githack.com/agustinbouillet/"
 
 // Loading
 // const loader = new PonchoMapLoader({scope: "poncho-map"});
-const loader = new PonchoMapLoader({scope: "olivia", selector: ".emilia"});
+const loader = new PonchoMapLoader({scope: "poncho-map"});
 loader.load();
 
 fetch_json(_PONCHOMAP_GEOJSON_PROVINCES, {headers: {}}).then(geoProvinces => {

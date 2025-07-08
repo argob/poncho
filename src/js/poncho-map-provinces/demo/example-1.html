@@ -89,7 +89,7 @@ COPIAR DESDE ACÁ…
     <div 
         class="poncho-map poncho-map-province__toggle-map hide-attribution" 
         data-scope="poncho-map" 
-        style="border-radius: 6px;">
+        style="border-radius: 12px;">
         <div
             class="leaflet-container leaflet-touch leaflet-fade-anim 
                 leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
@@ -130,12 +130,12 @@ const geoJSON = "https://gist.githack.com/agustinbouillet/"
     + "a5cdf04c6b19ed248aa85b27deaee6a2/raw/"
     + "3880083e157a587629e8a6ea21126c79f78e776b/" 
     + "provincias-argentinas.json";
-
+const newJson = "../data/provincias-antartida.json";
 // Loading
 const loader = new PonchoMapLoader({scope: "poncho-map"});
 loader.load();
 
-fetch_json(geoJSON, { headers: {} }).then(geoProvinces => {
+fetch_json(newJson, { headers: {} }).then(geoProvinces => {
     const gapi = new GapiSheetData();
     fetch_json(
         gapi.url(

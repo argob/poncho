@@ -189,6 +189,15 @@ fetch_json(geoJSON, { headers: {} }).then(geoProvinces => {
             hide_select: true, // Si es true el select solo se muestra en mobile
             overlay_image: true,
             overlay_image_opacity: 1,
+            filters: [
+                {
+                    "legend": "Filtrar región",
+                    "type": "checkbox",
+                    "field": ["region", "checked"],
+                    "fields": false,
+                    "check_uncheck_all": true
+                }
+            ]
         };
 
         // Instancia para controlar ponchoMap con filtro por provincias.

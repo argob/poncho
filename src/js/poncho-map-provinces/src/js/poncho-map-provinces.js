@@ -53,10 +53,20 @@ const ponchoMapProvinceMergeData = (geoProvinces={}, entries={},
     }
 
     geoProvinces.features.forEach((feature, key) => {
-        const jsonEntry = entries.find(entry =>
-            (entry[provinceIndex] == feature.properties.fna ||
-            entry[provinceIndex] == feature.properties.nam)
-        );
+        const jsonEntry = entries.find(function(entry){
+            const entryTerm = slugify( entry[provinceIndex] );
+            const fnaTerm = slugify( feature.properties.fna );
+            const namTerm = slugify( feature.properties.nam );
+
+            if(entryTerm == fnaTerm || entryTerm == namTerm){
+                return true;
+            }
+            return false;
+        });
+
+
+        console.log(jsonEntry)
+
         // Si no existe la provincia en el JSON, borra el feature.
         if(!jsonEntry && feature.properties.fna){
             delete geoProvinces.features[key];
@@ -347,7 +357,7 @@ class PonchoMapProvinces extends PonchoMapFilter {
         if(!this.overlayImage){
             return;
         }
-console.log(this.overlayImageUrl)
+
         if(typeof this.overlayImageUrl !== "string"){
             console.error("Hubo un problema con la ruta o nombre de la imagen");
             return;
