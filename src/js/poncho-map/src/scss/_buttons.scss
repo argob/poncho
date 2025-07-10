@@ -28,7 +28,9 @@
         color: var(--pm-color-base);
         text-align: center;
         border: var(--pm-slider-border-width) solid var(--pm-slider-border-color);
-
+        display: flex;
+        text-align: center;
+        
         &:focus {
             border-radius: 50%;
         }

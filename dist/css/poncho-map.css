@@ -499,10 +499,12 @@ html {
   color: var(--pm-color-base);
   border-radius: var(--pm-slider-radius);
   transform-style: preserve-3d;
-  border: var(--pm-slider-border-width) solid var(--pm-slider-border-color) article;
-  border-border: none;
-  border-margin: 0;
-  border-padding: 0;
+  border: var(--pm-slider-border-width) solid var(--pm-slider-border-color);
+}
+.poncho-map .pm-container article {
+  border: none;
+  margin: 0;
+  padding: 0;
 }
 .poncho-map .pm-container article header {
   border: none;
@@ -737,6 +739,8 @@ html {
   color: var(--pm-color-base);
   text-align: center;
   border: var(--pm-slider-border-width) solid var(--pm-slider-border-color);
+  display: flex;
+  text-align: center;
 }
 .poncho-map .pm-btn:focus {
   border-radius: 50%;
@@ -1218,6 +1222,7 @@ input[type=search].js-poncho-map-search__input::-webkit-search-cancel-button {
   display: inline-block;
   width: 1em;
   height: 1em;
+  margin: auto;
   line-height: 1.5em;
   vertical-align: -15%;
   -webkit-mask-origin: fill-box;
@@ -1321,6 +1326,8 @@ footer.pm-open-map > details {
   border-style: solid;
   border-width: var(--pm-slider-border-width);
   border-radius: 0;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 footer.pm-open-map > details > summary:focus,
 footer.pm-open-map > details:focus-within {
@@ -1337,6 +1344,8 @@ footer.pm-open-map > details[open] {
 footer.pm-open-map > details > summary {
   color: var(--pm-color-base) !important;
   font-weight: 600;
+  padding-left: var(--pm-content-padding);
+  padding-right: var(--pm-content-padding);
 }
 footer.pm-open-map details[open] summary ~ * {
   padding: 0 calc(var(--pm-content-padding) / 2);

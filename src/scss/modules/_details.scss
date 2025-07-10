@@ -1,0 +1,257 @@
+/**
+ * DETAILS 
+ */
+@mixin caret-color($background, $border) {
+    &>summary {
+        &::before {
+            background: $background !important;
+        }
+
+        &:after {
+            border-left-color: $border;
+            border-bottom-color: $border;
+        }
+    }
+}
+
+@mixin bg-color($background, $carret) {
+    background: $background;
+    @include caret-color(transparent, $carret);
+    border-bottom-color: darken($background, 30);
+}
+
+$color-themes: (
+    warning: (background: var(--arg-amarillo),
+        caret: black,
+    ),
+    success: (background: var(--arg-verde),
+        caret: white,
+    ),
+    danger: (background: var(--arg-rojo),
+        caret: white,
+    ),
+    palta: (background: var(--arg-palta),
+        caret: black,
+    ),
+    primary: (background: var(--arg-azul),
+        caret: white,
+    ),
+    azul-morado: (background:var(--arg-azul-morado),
+        caret: white,
+    ),
+    dark: (background: var(--arg-negro-600),
+        caret: white,
+    ),
+    blank: (background: transparent,
+        caret: var(--arg-azul),
+    ),
+
+    rosado: (background: var(--arg-rosado),
+        caret: white,
+    ),
+);
+
+
+
+details+details {
+    margin-bottom: 0 !important
+}
+
+details {
+    --item-border-color: #ddd;
+    --item-padding-x: 0px;
+    --item-padding-y: 9px;
+
+    --summary-line-height: 1.35em;
+    --summary-padding-x: 0px;
+
+    --circle-size: 39px;
+    --circle-margin-right: 10px;
+    --circle-circle-border-style: solid;
+    --circle-border-width: 0px;
+    --circle-border-color: #ccc;
+
+    --caret-border-width: 2px;
+    --caret-width: 9px;
+    --caret-border-color: var(--arg-azul);
+    --caret-background: var(--arg-negro-100);
+    --caret-padding: 4px;
+    --caret-distance: calc(var(--circle-size) / 2 - (var(--caret-width) / sin(45deg) / 2) + var(--caret-border-width) / 2);
+    --caret-x-distance: var(--caret-distance);
+    --caret-y-distance: var(--caret-distance);
+    --caret-y-distance--open: 14px;
+
+    border-color: var(--item-border-color);
+    border-style: solid;
+    border-width: 0 0 1px 0;
+    padding: var(--item-padding-y) var(--item-padding-x);
+
+    &:last-child {
+        border-bottom: 1px solid var(--item-border-color);
+    }
+
+    &.borderless {
+        border-width: 0 0 0 0;
+        border-color: none;
+    }
+
+    &.border-top {
+        border-top: 1px solid var(--item-border-color);
+    }
+
+    summary {
+        min-height: calc(var(--circle-size) + var(--item-padding-x) * 2);
+        line-height: calc(var(--circle-size) + var(--item-padding-x) * 2);
+        line-height: var(--summary-line-height);
+        display: flex;
+        align-items: center;
+        position: relative;
+        list-style-type: none;
+        cursor: pointer;
+        color: var(--arg-primary-700);
+
+        font-weight: 600;
+        transition: 0.1s ease-in-out;
+
+        padding-left: var(--summary-padding-x);
+        padding-right: calc(var(--circle-size) + var(--item-padding-x) + var(--circle-margin-right) + var(--summary-padding-x));
+
+
+        &::-webkit-details-marker {
+            display: none;
+        }
+
+        &::before {
+            content: " ";
+            position: absolute;
+            background: var(--caret-background);
+            height: var(--circle-size);
+            width: var(--circle-size);
+            border-radius: 50%;
+            text-align: center;
+            aspect-ratio: 1 / 1 !important;
+            top: 0;
+            left: initial;
+            right: var(--summary-padding-x);
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            height: var(--caret-width);
+            width: var(--caret-width);
+
+            border-left-color: var(--caret-border-color);
+            border-left-style: solid;
+            border-left-width: var(--caret-border-width);
+
+            border-bottom-color: var(--caret-border-color);
+            border-bottom-style: solid;
+            border-bottom-width: var(--caret-border-width);
+
+            box-sizing: border-box;
+            transform: rotate(-45deg);
+            background: transparent;
+            transition: 0.1s ease-in-out;
+            top: calc(var(--caret-y-distance) + 1px);
+            left: initial;
+            right: calc(var(--caret-x-distance) + var(--summary-padding-x));
+        }
+    }
+
+    &.left {
+        summary {
+            padding-left: calc(var(--circle-size) + var(--item-padding-x) + var(--circle-margin-right) + var(--summary-padding-x));
+            padding-right: var(--summary-padding-x);
+
+            &::before {
+                left: var(--summary-padding-x);
+                top: 0;
+            }
+
+            &::after {
+                top: calc(var(--caret-y-distance) + 1px);
+                left: calc(var(--caret-x-distance) + var(--caret-border-width) - 1px);
+            }
+        }
+    }
+
+    &[open] {
+        summary~* {
+            -webkit-animation: open 0.2s ease-in-out;
+        }
+
+        >summary {
+            &::before {
+                content: " ";
+            }
+
+            &::after {
+                transform: rotate(135deg);
+                top: calc(var(--caret-y-distance) + 2px);
+                transition: 0.1s ease-in-out;
+                opacity: 1;
+            }
+        }
+    }
+
+    @each $theme-name, $theme-colors in $color-themes {
+        &.#{$theme-name} {
+            @include caret-color(map-get($theme-colors, background),
+                map-get($theme-colors, caret));
+        }
+    }
+
+    .details-content {
+        padding: {
+            left: var(--summary-padding-x);
+            right: var(--summary-padding-x);
+        }
+
+        line-height: 1.5em;
+    }
+}
+
+@container detailsSize (max-width: 350px) {
+    details summary {
+        --circle-size: 31px;
+        --caret-width: 8px;
+        /* 
+        No modificar las variables subsiguientes. 
+        Deben coincidir con las del :root 
+        */
+        --caret-distance: calc(var(--circle-size) / 2 - (var(--caret-width) / sin(45deg) / 2) + var(--caret-border-width) / 2);
+        --caret-x-distance: var(--caret-distance);
+        --caret-y-distance: var(--caret-distance);
+    }
+}
+
+details {
+    container-type: inline-size;
+    container-name: detailsSize;
+}
+
+
+
+@media all and (max-width: 768px) {
+
+    details,
+    .details-accordion {
+        --circle-size: 31px;
+        --caret-width: 8px;
+        --summary-line-height: 1.25em;
+    }
+}
+
+
+@keyframes open {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

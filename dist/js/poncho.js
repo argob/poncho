@@ -5230,9 +5230,10 @@ class PonchoMap {
         if(!this.theme_tool){
             return;
         }
+
         document
-        .querySelectorAll(`#themes-tool${this.scope_sufix}`)
-        .forEach(ele => ele.remove());
+            .querySelectorAll(`#themes-tool${this.scope_sufix}`)
+            .forEach(ele => ele.remove());
 
         const navContainer = document.createElement("ul");
         navContainer.classList.add(
@@ -5286,11 +5287,12 @@ class PonchoMap {
 
         item.appendChild(button);
         item.appendChild(list);
-        navContainer.appendChild(item)
+        navContainer.appendChild(item);
 
         const element = document.querySelectorAll(this.scope_selector);
         element.forEach(e => e.appendChild(navContainer));
 
+        
         // listeners
         document
             .querySelectorAll(".js-reset-theme")
@@ -5426,7 +5428,6 @@ class PonchoMap {
      */
     _openOnMaps = (latitude, longitude) => {
         if(typeof this.open_maps != "boolean" || !this.open_maps){
-            console.debug("Función de mapas desactivada");
             return;
         }
 
@@ -5460,6 +5461,7 @@ class PonchoMap {
                     .replace(/\{\{latitude\}\}/g, latitude)
                     .replace(/\{\{longitude\}\}/g, longitude);
                 a.href = setAnchor;
+                a.tabIndex = 0;
                 a.textContent = label; 
                 a.setAttribute("lang", lang); 
                 a.rel = rel;
@@ -5475,11 +5477,14 @@ class PonchoMap {
 
         const summary = document.createElement("summary");
         summary.textContent = label;
+        summary.tabIndex = 0;
+        summary.setAttribute(
+            "aria-label", "Abrir el marcador en un mapa alternativo");
 
         const details = document.createElement("details");
+        details.classList.add("blank");
         details.appendChild(summary);
         details.appendChild(ul);
-        // details.tabIndex = 0;
 
         const container = document.createElement("footer");
         container.className = "pm-open-map";
@@ -5996,7 +6001,9 @@ class PonchoMap {
         if(this.no_info){
             return;
         }
+        
         this._focusOnSlider();
+
         if(!this.isSliderOpen()){
             this.toggleSlider();
         }
@@ -6032,19 +6039,25 @@ class PonchoMap {
             return;
         }
         if(this.isSliderOpen()){
-            document.querySelector(`.js-close-slider${this.scope_sufix}`)
+            document.querySelector(`.js-slider${this.scope_sufix}`)
                     .focus();
         } else {
-            const animation = document.querySelector(
-                `.js-slider${this.scope_sufix}`
-            );
-            if(animation){
-                animation.addEventListener("animationend", () => {
-                    document
-                        .querySelector(`.js-close-slider${this.scope_sufix}`)
-                        .focus();
-                });
-            }
+                const animation = document.querySelector(
+                    `div.js-slider${this.scope_sufix}`
+                );
+                if(animation){
+                    animation.addEventListener("animationend", (event) => {
+                        if(event.animationName == "open"){
+                            // pach para detectar el movimiento de <details>
+                            // @TODO enontrar un método distinto
+                            return;
+                        }
+                        document
+                            .querySelector(`.js-slider${this.scope_sufix}`)
+                            .focus();
+                    });
+                }
+
         }
     };
 
@@ -6122,6 +6135,7 @@ class PonchoMap {
 
         const container = document.createElement("div");
         container.style.display = "none";
+        container.tabIndex = "0";
         container.setAttribute("role", "region");
         container.setAttribute("aria-live", "polite");
         container.setAttribute("aria-label", "Panel de información");
@@ -7205,6 +7219,7 @@ class PonchoMap {
     render = () => {
         this._hiddenSearchInput();
         this._resetViewButton();
+
         this._menuTheme();
         this._setThemes();
         
@@ -7226,8 +7241,10 @@ class PonchoMap {
         }
 
         setTimeout(this.gotoHashedEntry, this.anchor_delay);
+        
         this._setFetureAttributes();
         this._accesibleMenu();
+
         this.mapOpacity();
         this.mapBackgroundColor();
 
@@ -7282,12 +7299,11 @@ class PonchoMapLoader {
         clearTimeout(this.ponchoLoaderTimeout);
 
         const element = document.querySelector(`${this.selector}${this.scope_selector}`);
-      
         const loader = document.createElement("span");
         loader.className = "loader";
 
         const cover = document.createElement('div');
-        cover.dataset.scope = this.scope;
+        cover.dataset.scope = this.selector;
         cover.classList.add(
             "poncho-map__loader", `js-poncho-map__loader${this.scope_sufix}`
         );

@@ -15,18 +15,20 @@ footer.pm-open-map {
         border-color: var(--pm-slider-border-color) transparent transparent !important;
         border-style: solid;
         border-width: var(--pm-slider-border-width);
-        border-radius: 0
+        border-radius: 0;
+        padding-top: 0;
+        padding-bottom: 0;
     }
 
-    >details>summary:focus,
-    >details:focus-within  {
+    > details>summary:focus,
+    > details:focus-within  {
         border-radius: max(calc(var(--pm-slider-radius)/2), calc(var(--pm-slider-radius) - var(--pm-content-padding) - 2px)) !important;
         box-shadow: 0 1px calc(var(--pm-content-padding) / 2) rgb(0 0 0 / .3);
         outline: 2px solid var(--cielo, #039be5);
         outline-style: solid;
     }
 
-    >details[open] {
+    > details[open] {
         border: var(--pm-slider-border-width) solid var(--pm-slider-border-color) !important;
         border-radius: max(calc(var(--pm-slider-radius)/2), calc(var(--pm-slider-radius) - var(--pm-content-padding) - 2px)) !important;
         box-shadow: 0 1px calc(var(--pm-content-padding) / 2) rgb(0 0 0 / .3)
@@ -35,6 +37,8 @@ footer.pm-open-map {
     >details>summary {
         color: var(--pm-color-base) !important;
         font-weight: 600;
+        padding-left:  var(--pm-content-padding);
+        padding-right:  var(--pm-content-padding);
     }
 
     details[open] summary~* {
@@ -58,9 +62,4 @@ footer.pm-open-map {
         }
     }
 
-
-
-
-
-    
 }
