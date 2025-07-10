@@ -487,6 +487,11 @@
       },
     
       {
+        "nombre": "bicicleta",
+        "clase": "icono-arg-bicicleta"
+      },
+    
+      {
         "nombre": "bidon",
         "clase": "icono-arg-bidon"
       },
