@@ -227,6 +227,11 @@
       },
     
       {
+        "nombre": "anlis-recursos-didacticos",
+        "clase": "icono-arg-anlis-recursos-didacticos"
+      },
+    
+      {
         "nombre": "anlis-uoccb",
         "clase": "icono-arg-anlis-uoccb"
       },
