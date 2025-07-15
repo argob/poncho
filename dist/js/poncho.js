@@ -1955,15 +1955,18 @@ const ponchoTableDependant = opt => {
      * @param {string} value Href para el botón.
      * @return {undefined}
      */
-    const button = (label, value) => {
+    const button = (label, value, ariaLabel=false) => {
+
+        let refactorAriaLabel = (ariaLabel ? `: ${ariaLabel}` : "");
+        refactorAriaLabel = refactorAriaLabel.replaceAll("*", "");
+
         const btn = document.createElement("a");
         btn.classList.add(
             "btn", "btn-primary", "btn-sm", "margin-btn");
         btn.href = value;
         btn.target = "_blank";
-        // btn.textContent = label;
-        btn.innerHTML = `${label} <span class="sr-only">(Abre en una nueva ventana)</span>`;
-        btn.setAttribute("aria-label", `${label} (Abre en una nueva ventana)`);
+        btn.innerHTML = `${label}<span class="sr-only">${refactorAriaLabel} (Abre en una nueva ventana)</span>`;
+        // btn.setAttribute("aria-label", `${refactorAriaLabel} (Abre en una nueva ventana)`);
         btn.setAttribute("rel", "noopener noreferrer");
 
         return btn.outerHTML;
@@ -2111,8 +2114,19 @@ const ponchoTableDependant = opt => {
                 let filas = entry[header];
 
                 if (header.startsWith("btn-") && filas != "") {
-                    const label = header.replace("btn-", "").replace("-", " ");
-                    filas = button(label, filas);
+
+                    let ariaLabel = false;
+                    let repl = "";
+                    const getAriaLabel = header.split("-").slice(-1);
+                    if(gapi_data.headers.hasOwnProperty(getAriaLabel)){
+                        ariaLabel = entry[ getAriaLabel ];
+                        repl = `-${getAriaLabel}`;
+                    }
+                    const label = header.replace("btn-", "").replace(repl, "").replaceAll("-", " ");
+                    // const refactorLabel = (ariaLabel ? 
+                    //         label.replace(repl,"") : label);
+                    filas = button(label, filas, ariaLabel);
+
                 } else if (header.startsWith("fecha-") && filas != "") {
                     filas = tdDate(filas);
                 }
@@ -2681,7 +2695,6 @@ const ponchoTableDependant = opt => {
         // @todo Permitir que se mantengan parámetros seteados previamente.
         // const searchUrl = new URLSearchParams(window.location.search);
         // let searchValues = Object.entries(Object.fromEntries(searchUrl));
-        
         const url = new URL(window.location.pathname, window.location.origin);
 
         const filters = filtersList.map(m => m.replace("filtro-", ""));
