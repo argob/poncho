@@ -86,7 +86,7 @@ const template_punto_digital = (self, row) => {
       return `<li class="${style}"><strong>${day[0]}</strong>: ${datos} h.</li>`;
   }).join('');
 
-  let horarios_list = "sdf";
+  let horarios_list = "";
 
   if(horarios){
 
@@ -109,7 +109,7 @@ const template_punto_digital = (self, row) => {
         + "<dd>"
         + "<details style=\"font-size:.93em\" close>"
         + "<summary class=\"p-b-0 p-t-0\">Horarios de atención</summary>"
-        + "<ul class=\"list-unstyled m-t-0\">"
+        + "<ul class=\"list-unstyled m-t-1 m-b-0\">"
         + horarios
         + "</ul>"
         + "</details>"

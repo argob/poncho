@@ -961,8 +961,9 @@ class ArgentinaMap {
                 element.style.fill = color;
             });
         } else if(selector instanceof Node){
-            selector.style.fill = color;
-            // selector.setAttribute("fill", color);
+			selector.style.fill = color;
+			selector.setAttribute("fill", color);
+			console.log(color)
         }
     };
 

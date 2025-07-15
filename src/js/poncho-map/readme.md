@@ -33,6 +33,7 @@
       - [Valores por defecto](#valores-por-defecto)
     - [Opciones para `markdown_options`](#opciones-para-markdown_options)
       - [Valores por defecto](#valores-por-defecto-1)
+    - [Opciones para `open_maps_options`](#opciones-para-open_maps_options)
   - [Opciones para PonchoMapFilter](#opciones-para-ponchomapfilter)
     - [Opciones para filters](#opciones-para-filters)
       - [Opciones para field](#opciones-para-field)
@@ -89,8 +90,8 @@
 | fit_bounds_onevent | `boolean` | `true` | Realiza un zoom en el polígono, línea o marcador, cuando se utilia el select o por URL. |
 | map_opacity | `float` | 1 | Permite transparentar los mozaicos (_tiles_, del inglés), que componen el mapa. El rango es de 0 a 1. Por ejémplo: `map_opacity: 0.5` |
 | map_background | `string` | `#DDD` | Permite definir un color de fondo para el mapa.<br><br>Junto a `map_opacity`, puede resulter de un uso interesante. |
-| open_maps | `boolean` | `false` | Muestra en la parte de abajo del _slider_, un desplegable con distintas opciones de mapas extenrnos, donde visualizar el punto geográfico. |
-| open_maps_options | `object` |  | Permite redefinir el nombre del desplegable y cargar enlaces a gusto del usuario |
+| open_maps | `boolean` | `false` | Muestra en la parte de abajo del _slider_, un desplegable con distintas opciones de mapas externos, donde visualizar el punto geográfico. |
+| open_maps_options | `object` |  | Permite redefinir el nombre del desplegable y los enlaces a mapas externos. Ver [opciones para open\_maps\_options()](#opciones-para-open_maps_options) |
 
 
 
@@ -138,6 +139,9 @@ const options = {
 | definition_list_tag | `strng` | `dl` | Define la etiqueta HTML que contiene el listado de términos y descripciones.| 
 | term_tag | `strng` | `dt` | Define la etiqueta HTML para el término.| 
 | definition_tag | `strng` | `dd` | Define la etiqueta HTML para la descripción.| 
+
+
+
 
 #### Opciones para Lead
 
@@ -422,7 +426,43 @@ const options = {
 	},
 };
 ```
+### Opciones para `open_maps_options`
 
+Esta opción te permite configurar el texto de la etiqueta `summary` y los enlaces que se muestran al desplegar `details`. Para incluir los valores de latitud y longitud en los enlaces, se deben usar los marcadores de posición `{{latitude}}` y `{{longitude}}`, según lo indicado en la documentación del mapa de destino.
+
+**Definiciones**
+
+| Parámetro | Tipo | Default | Descripción |
+|:---|:---|:---|:---|
+| label |`string`| Abrir en: | Texto para la etiqueta `summary` o enlace para abrir o cerrar el desplegable. |
+| items | `object` |  | Permite definir la cantidad de entradas, o enlaces. |
+
+**Definiciones para items**
+
+| Parámetro | Tipo | Descripción |
+|:---|:---|:---|
+| link |`string`| URL externo. Se pueden utilizar los marcadores `{{latitude}}` y `{{longitude}}` cuantas veces sea necesario, para representar el enlace.  |
+| label |`string`| Nombre del enlace.  |
+| lang |`string`| Lenguaje definido en la página de destino.  |
+| rel |`string`| Tipo de relación con el documento. Más referencias en: [Developer, Mozilla. HTML attribute: rel](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Attributes/rel) |
+| target |`string`| Define en que *frame* debe abrirse el hipervínculo.  |
+
+**Sintaxis**
+
+```js
+open_maps_options: {
+    label: "Abrir en:",
+    items: [
+        {
+            link: 'https://www.google.com/maps/search/?api=1&query={{latitude}},{{longitude}}',
+            label: "Google maps",
+            lang: "en",
+            rel: "alternate",
+        },
+        ...
+    ]
+}
+```
 
 ## Opciones para PonchoMapFilter
 

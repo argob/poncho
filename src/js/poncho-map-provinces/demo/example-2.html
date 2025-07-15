@@ -124,6 +124,8 @@ COPIAR DESDE ACÁ…
 
 <!-- SCRIPTS -->
 <script>
+
+var map;
 // URL temporal
 const geoJSON = "https://gist.githack.com/agustinbouillet/" 
     + "a5cdf04c6b19ed248aa85b27deaee6a2/raw/"
@@ -133,8 +135,9 @@ const geoJSON = "https://gist.githack.com/agustinbouillet/"
 // Loading
 const loader = new PonchoMapLoader({scope: "poncho-map"});
 loader.load();
-
-fetch_json(geoJSON, { headers: {} }).then(geoProvinces => {
+var v = .05;
+const newJson = "../data/provincias-antartida.json";
+fetch_json(newJson, { headers: {} }).then(geoProvinces => {
 // fetch_json( PONCHOMAP_GEOJSON_PROVINCES, { headers: {} }).then(geoProvinces => {
     const gapi = new GapiSheetData();
     fetch_json(
@@ -187,11 +190,25 @@ fetch_json(geoJSON, { headers: {} }).then(geoProvinces => {
             hide_select: false, 
             overlay_image: true,
             overlay_image_opacity: 1,
+            fit_bounds: false,
+            map_background: "color-mix(in srgb, var(--gna-verde-cemento) 40%, white)",  // define el color de fondo del mapa 
+            _filters: [
+                {
+                    "legend": "Filtrar región",
+                    "type": "checkbox",
+                    "field": ["region", "checked"],
+                    "fields": false,
+                    "check_uncheck_all": true
+                }
+            ],
+            overlay_image_url: false,
+            overlay_image_url: "../src/img/map-shadow-antartida.png",
         };
 
+        console.log(options)
         // Instancia para controlar ponchoMap con filtro por provincias.
         // const provinces = new PonchoMapProvinces(options);
-        const map = new PonchoMapProvinces(geoProvinces, entries, options);
+        map = new PonchoMapProvinces(geoProvinces, entries, options);
         map.renderProvinceMap();
         loader.close();
     });

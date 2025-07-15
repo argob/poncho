@@ -72,4 +72,3 @@ Por otro lado se le agregó en el índice _properties_, los siguientes valores:
 ``` 
 
 
-agustin bouillet

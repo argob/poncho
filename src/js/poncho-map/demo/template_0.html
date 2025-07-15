@@ -154,7 +154,7 @@ COPIAR DESDE ACÁ…
             "estado_funcionamiento_custom": "",
         },
         open_maps: true,
-        _open_maps_options: {
+        open_maps_options: {
             label: "Abrir punto en:",
             items : [
                 {
@@ -164,7 +164,21 @@ COPIAR DESDE ACÁ…
                     rel: "alternate",
                     plataform: "all"
                 },
+                {
+                    link: 'https://waze.com/ul?ll={{latitude}},{{longitude}}&navigate=yes',
+                    label: "Waze",
+                    lang: "en",
+                    rel: "alternate",
+                },
+                {
+                    link: 'https://www.mapquest.com/latlng/{{latitude}},{{longitude}}',
+                    label: "MapQuest",
+                    lang: "en",
+                    rel: "alternate",
+                },
             ]
+
+            
         }
     };
     // render map
