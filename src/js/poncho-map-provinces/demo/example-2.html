@@ -82,7 +82,7 @@ COPIAR DESDE ACÁ…
 
 </div>
 
-<div class="col-md-5">
+<div class="col-md-6">
 
     <!-- PONCHO MAP -->
     <div 
@@ -100,7 +100,7 @@ COPIAR DESDE ACÁ…
     <!-- / PONCHO MAP -->
 
 </div>
-<div class="col-md-7">
+<div class="col-md-6">
 
     <!-- CONTENIDO -->
     <div class="js-pm-text-content">
@@ -135,7 +135,7 @@ const geoJSON = "https://gist.githack.com/agustinbouillet/"
 // Loading
 const loader = new PonchoMapLoader({scope: "poncho-map"});
 loader.load();
-
+var v = .05;
 const newJson = "../data/provincias-antartida.json";
 fetch_json(newJson, { headers: {} }).then(geoProvinces => {
 // fetch_json( PONCHOMAP_GEOJSON_PROVINCES, { headers: {} }).then(geoProvinces => {
@@ -191,7 +191,7 @@ fetch_json(newJson, { headers: {} }).then(geoProvinces => {
             overlay_image: true,
             overlay_image_opacity: 1,
             fit_bounds: false,
-            map_background: "color-mix(in srgb, var(--gna-verde-cemento) 20%, white)",  // define el color de fondo del mapa 
+            map_background: "color-mix(in srgb, var(--gna-verde-cemento) 40%, white)",  // define el color de fondo del mapa 
             _filters: [
                 {
                     "legend": "Filtrar región",
@@ -200,9 +200,12 @@ fetch_json(newJson, { headers: {} }).then(geoProvinces => {
                     "fields": false,
                     "check_uncheck_all": true
                 }
-            ]
+            ],
+            overlay_image_url: false,
+            overlay_image_url: "../src/img/map-shadow-antartida.png",
         };
 
+        console.log(options)
         // Instancia para controlar ponchoMap con filtro por provincias.
         // const provinces = new PonchoMapProvinces(options);
         map = new PonchoMapProvinces(geoProvinces, entries, options);

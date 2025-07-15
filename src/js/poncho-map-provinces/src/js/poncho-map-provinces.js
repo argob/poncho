@@ -64,9 +64,6 @@ const ponchoMapProvinceMergeData = (geoProvinces={}, entries={},
             return false;
         });
 
-
-        console.log(jsonEntry)
-
         // Si no existe la provincia en el JSON, borra el feature.
         if(!jsonEntry && feature.properties.fna){
             delete geoProvinces.features[key];
@@ -137,18 +134,18 @@ class PonchoMapProvinces extends PonchoMapFilter {
             random_entry: false,
             overlay_image: true,
             overlay_image_bounds: [
-                [-20.56830872133435, -44.91768177759874],
-                [-55.861359445914566, -75.2246121480093]
+                [ -20.70565857951651, -24.50543849552044 ],
+                [ -88.20759652502107, -74.4619171280653 ]
             ],
             overlay_image_opacity: 0.8,
             overlay_image_url: "https://www.argentina.gob.ar/"
-                + "sites/default/files/map-shadow.png",
+                + "sites/default/files/map-shadow-antartida.png",
             hide_select: false,
             toggle_select: true,
             province_index: "provincia",
             fit_bounds: true,
             // Sobreescribo opciones de PonchoMap
-            map_view:[-40.47815508388363,-60.0045383246273],
+            map_view:[-40.47815508388363, -62.802101128049806],
             map_init_options: {
                 zoomSnap: 0.2,
                 zoomControl: true,
@@ -170,7 +167,6 @@ class PonchoMapProvinces extends PonchoMapFilter {
         };
         // Merge options
         let opts = Object.assign({}, defaultOptions, options);
-        console.log(opts)
         ponchoMapProvinceCssStyles(opts.toggle_select);
 
         // PonchoMapFilter instance
@@ -354,7 +350,7 @@ class PonchoMapProvinces extends PonchoMapFilter {
      * @returns {undefined}
      */
     _overlayImage = () => {
-        if(!this.overlayImage){
+        if(!this.overlayImageUrl){
             return;
         }
 

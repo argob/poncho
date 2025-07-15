@@ -164,13 +164,21 @@ COPIAR DESDE ACÁ…
                     rel: "alternate",
                     plataform: "all"
                 },
-                        {
-            link: 'https://www.argentina.gob.ar?api={{latitude}},{{longitude}}&latlang={{latitude}},{{longitude}}',
-            label: "fofo",
-            lang: "en",
-            rel: "alternate",
-        },
+                {
+                    link: 'https://waze.com/ul?ll={{latitude}},{{longitude}}&navigate=yes',
+                    label: "Waze",
+                    lang: "en",
+                    rel: "alternate",
+                },
+                {
+                    link: 'https://www.mapquest.com/latlng/{{latitude}},{{longitude}}',
+                    label: "MapQuest",
+                    lang: "en",
+                    rel: "alternate",
+                },
             ]
+
+            
         }
     };
     // render map
