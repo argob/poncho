@@ -266,6 +266,7 @@ html {
   --arg-verdin:#6EA015;
   --arg-verdin-dark:#2E7D33;
   --arg-verdin-light:#B9CE39;
+  --arg-white:#FFFFFF;
   --azul:#232D4F;
   --azul-marino:#232D4F;
   --bandera-amarillo:#FCBF49;
@@ -815,6 +816,10 @@ aside section {
 
 .bg-arg-verdin-light {
   background-color: #B9CE39 !important;
+}
+
+.bg-arg-white {
+  background-color: #FFFFFF !important;
 }
 
 .bg-azul {
@@ -6049,6 +6054,10 @@ a.bg-danger p {
 
 .text-arg-verdin-light {
   color: #B9CE39 !important;
+}
+
+.text-arg-white {
+  color: #FFFFFF !important;
 }
 
 .text-azul {
@@ -12858,6 +12867,9 @@ pre {
 }
 .listas-destacadas.arg-verdin-light > ol li:before, .listas-destacadas.arg-verdin-light > ul li:before {
   color: var(--arg-verdin-light);
+}
+.listas-destacadas.arg-white > ol li:before, .listas-destacadas.arg-white > ul li:before {
+  color: var(--arg-white);
 }
 .listas-destacadas.azul > ol li:before, .listas-destacadas.azul > ul li:before {
   color: var(--azul);
