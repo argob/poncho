@@ -38,25 +38,14 @@ COPIAR DESDE ACÁ…
 -->
 <!-- SHOWDOWN -->
 <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/showdown.js"></script>
-<!-- <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/extensiones/showdown-extensions.js"></script> -->
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/extensiones/showdown-extensions.js"></script>
 <!-- / SHOWDOWN -->
 
 <!-- INCLUDE SCRIPTS -->
-<link href="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/ponchoTable-1.1.css" rel="stylesheet"> 
-<!-- <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/datatables.min.js"></script>  -->
-
-
-
-<!-- <link href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.min.css" rel="stylesheet">-->
-
-<script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script> 
-
-<!-- <script src="https://cdn.datatables.net/responsive/3.0.2/js/dataTables.responsive.js"></script> -->
-<script src="https://cdn.datatables.net/responsive/3.0.2/js/responsive.dataTables.js"></script>
-
-
-<!-- <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/intl.min.js"></script> -->
-<!-- <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>  -->
+<link href="/profiles/argentinagobar/themes/contrib/poncho/css/ponchoTable-1.1.css" rel="stylesheet">
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/datatables.min.js"></script> 
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/intl.min.js"></script>
+<script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
 
 <script src="../../utils/color.js"></script>
 <script src="../../utils/connect.js"></script>
@@ -98,7 +87,7 @@ COPIAR DESDE ACÁ…
 </div>
 <!-- / TABLE -->
 <script>
-   (function($) {
+    (function($) {
         var ponchoTableOpciones = {
             "idSpread": "1owBWgI38bNCyLymcGU75oq7CVHsf6hkI0dfKLlunjj4", // SIEMPRE PUBLICAR SPREADSHEET, el id va entre comillas
             "hojaNumero": 1, // SIEMPRE VERIFICAR PESTAÑA DE LA PLANILLA, default: 1
@@ -107,20 +96,11 @@ COPIAR DESDE ACÁ…
             "ordenTipo": "asc", // SIEMPRE VERIFICAR TIPO DE ORDEN, ASCENDENTE O DESCENDENTE, "asc" es de A a Z y de menor a mayor, "desc" es de Z a A y mayor a menor
             //"ocultarColumnas":[], // SI HAY QUE OCULTAR UNA O VARIAS COLUMNAS, ELIMINAR DOBLE BARRA DEL INICIO DE LA LÍNEA Y AGREGAR NÚMERO DE COL,UMNA ENTRE CORCHETES, la primera columna es cero, para varias columnas se las separa con comas
             "cantidadItems": 20, // DETERMINA CANTIDAD DE FILAS QUE SE MUESTRAN A LA VEZ, default 10
-        
             "markdownOptions": {
-                //   "tables": true,
                 "simpleLineBreaks": true,
                 "extensions": [
-                    //     'details', 
-                    //     'images', 
-                    //     'alerts', 
-                    //    'numbers', 
-                    //     'ejes', 
                     'button',
                     'target',
-                    //     'bootstrap-tables', 
-                    //    'video'
                 ]
             }
         };
