@@ -188,6 +188,18 @@ gulp.task('sass_poncho-table', function(){
 });
 
 
+/**
+ * GeoJson provincias
+ */
+
+gulp.task('compress-geojson-provincias', function () {
+    return gulp.src([
+            './src/js/geo-provincias-argentinas/geo-provincias-argentinas.json'
+        ])
+        .pipe(gulp.dest('./dist/jsons/'));
+});
+
+
 
 gulp.task('default', gulp.series(
     'ponchoMapProvincesContenidos',
@@ -199,5 +211,6 @@ gulp.task('default', gulp.series(
     "sass_poncho-map",
     "sass_poncho-table", 
     "js-showdown-extensions",
-    "js-dist-showdown-extensions"
+    "js-dist-showdown-extensions",
+    "compress-geojson-provincias"
 ))
