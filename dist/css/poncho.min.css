@@ -14235,6 +14235,7 @@ small {
 .desplegable-tramitar summary::before {
   right: 0.5em;
   left: auto;
+  background-color: transparent;
 }
 .desplegable-tramitar .list-inline > li {
   display: flex;
