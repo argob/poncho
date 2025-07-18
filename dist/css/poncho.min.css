@@ -14965,12 +14965,12 @@ DEGRADÉ: .bg-mix-azul-info .bg-mix-info-azul .bg-mix-palta-azul .bg-mix-azul-pa
   padding-left: 2.7em;
   position: relative;
 }
-.servicio-timeline li {
+.servicio-timeline > li {
   position: relative;
   counter-increment: step;
   margin-bottom: 2em;
 }
-.servicio-timeline li::before {
+.servicio-timeline > li::before {
   content: counter(step);
   position: absolute;
   left: -2.5em;
@@ -14983,7 +14983,7 @@ DEGRADÉ: .bg-mix-azul-info .bg-mix-info-azul .bg-mix-palta-azul .bg-mix-azul-pa
   width: 32px;
   line-height: 32px;
 }
-.servicio-timeline li::after {
+.servicio-timeline > li::after {
   content: "";
   position: absolute;
   left: -1.6em;
@@ -14993,7 +14993,7 @@ DEGRADÉ: .bg-mix-azul-info .bg-mix-info-azul .bg-mix-palta-azul .bg-mix-azul-pa
   background-color: #DEE2E6;
   z-index: 0;
 }
-.servicio-timeline li:last-child::after {
+.servicio-timeline > li:last-child::after {
   content: none;
 }
 
