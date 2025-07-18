@@ -191,7 +191,6 @@ gulp.task('sass_poncho-table', function(){
 /**
  * GeoJson provincias
  */
-
 gulp.task('compress-geojson-provincias', function () {
     return gulp.src([
             './src/js/geo-provincias-argentinas/geo-provincias-argentinas.json'
