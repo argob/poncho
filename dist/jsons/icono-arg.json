@@ -4127,6 +4127,11 @@
       },
     
       {
+        "nombre": "streaming",
+        "clase": "icono-arg-streaming"
+      },
+    
+      {
         "nombre": "sube",
         "clase": "icono-arg-sube"
       },

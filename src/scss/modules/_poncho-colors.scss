@@ -96,6 +96,7 @@ $brand-arg-verde-light: #6EA015 !default;
 $brand-arg-verdin: #6EA015 !default;
 $brand-arg-verdin-dark: #2E7D33 !default;
 $brand-arg-verdin-light: #B9CE39 !default;
+$arg-white: #FFFFFF !default;
 $brand-azul: #232D4F !default; /* Color principal */ 
 $brand-azul-marino: #232D4F !default; /* Color principal */ 
 $brand-bandera-amarillo: #FCBF49 !default; /* Color amarillo oficial para la bandera Argentina */ 
@@ -261,6 +262,7 @@ $colores: ("amarillo", $brand-amarillo),
 ("arg-verdin", $brand-arg-verdin),
 ("arg-verdin-dark", $brand-arg-verdin-dark),
 ("arg-verdin-light", $brand-arg-verdin-light),
+("arg-white", $arg-white),
 ("azul", $brand-azul),
 ("azul-marino", $brand-azul-marino),
 ("bandera-amarillo", $brand-bandera-amarillo),
@@ -557,6 +559,7 @@ html {
 	--arg-verdin:#6EA015;
 	--arg-verdin-dark:#2E7D33;
 	--arg-verdin-light:#B9CE39;
+	--arg-white:#FFFFFF;
 	--azul:#232D4F;
 	--azul-marino:#232D4F;
 	--bandera-amarillo:#FCBF49;

@@ -123,7 +123,7 @@
   padding-left: 2.7em;
   position: relative;
 
-  li {
+  > li {
     position: relative;
     counter-increment: step;
     margin-bottom: 2em;

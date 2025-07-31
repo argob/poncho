@@ -89,7 +89,7 @@ COPIAR DESDE ACÁ…
     <div 
         class="poncho-map poncho-map-province__toggle-map hide-attribution" 
         data-scope="poncho-map" 
-        style="border-radius: 6px;">
+        style="border-radius: 12px;">
         <div
             class="leaflet-container leaflet-touch leaflet-fade-anim 
                 leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
@@ -130,12 +130,13 @@ const geoJSON = "https://gist.githack.com/agustinbouillet/"
     + "a5cdf04c6b19ed248aa85b27deaee6a2/raw/"
     + "3880083e157a587629e8a6ea21126c79f78e776b/" 
     + "provincias-argentinas.json";
-
+const newJson = "../data/provincias-antartida.json";
 // Loading
 const loader = new PonchoMapLoader({scope: "poncho-map"});
 loader.load();
-
-fetch_json(geoJSON, { headers: {} }).then(geoProvinces => {
+var v = .07;
+var a = .075;
+fetch_json(newJson, { headers: {} }).then(geoProvinces => {
     const gapi = new GapiSheetData();
     fetch_json(
         gapi.url(
@@ -188,13 +189,14 @@ fetch_json(geoJSON, { headers: {} }).then(geoProvinces => {
             theme_ui: "default", // tema del slider y control de zoom
             theme_map: "transparent", // Transparent se puede utilizar solo para los mozaicos del mapa 
             // map_opacity: 1, // Opacidad del mapa OSM. Los valores van de 0 a 1 o de 0 a 100%
-            map_background: "color-mix(in srgb, var(--verde-cemento) 50%, white)",  // define el color de fondo del mapa 
+            map_background: "color-mix(in srgb, var(--verde-cemento) 75%, white)",  // define el color de fondo del mapa 
             // initial_entry: "42-la-pampa", // Si se agrega el id (que aprece en URL), inicia con esa entrada.
             random_entry: true, // Permite que la página se cargue con una entrada aleatoria.
             hide_select: false, // Si es true el select solo se muestra en mobile
             overlay_image: true, // Permite mostrar o quitar una imagen superpuesta en el mapa
-            overlay_image_opacity: 0.75, // Permite darle opacidad al a la imagen superpuesta en el mapa
-            fit_bounds: true // Hace que los polígonos o markers se ajusten a los límites del mapa
+            overlay_image_opacity: 0.8, // Permite darle opacidad al a la imagen superpuesta en el mapa
+            fit_bounds: true, // Hace que los polígonos o markers se ajusten a los límites del mapa
+            overlay_image_url: "../src/img/map-shadow-antartida.png",
         };
 
         // Instancia para controlar ponchoMap con filtro por provincias.
