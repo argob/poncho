@@ -15037,7 +15037,7 @@ details {
   --content-padding-e: 1px;
   --content-margin-t: .5rem;
   --content-margin-b: 1rem;
-  --circle-size: 39px;
+  --circle-size: 40px;
   --circle-margin-right: 10px;
   --caret-width: 26px;
   --caret-color: var(--arg-negro-600, #444444);
@@ -15223,7 +15223,7 @@ details .ar-details__content {
   line-height: inherit;
 }
 details.caret-small > summary {
-  --circle-size: 31px;
+  --circle-size: 32px;
   --caret-width: 22px;
   --summary-line-height: 1.25em;
 }
@@ -15239,7 +15239,7 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
 */
 @container detailsSize (max-width: 350px) {
   details > summary {
-    --circle-size: 31px;
+    --circle-size: 32px;
     --caret-width: 22px;
     --summary-line-height: 1.25em;
   }
@@ -15252,7 +15252,7 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
 }
 @media all and (max-width: 768px) {
   details > summary {
-    --circle-size: 31px;
+    --circle-size: 32px;
     --caret-width: 22px;
     --summary-line-height: 1.25em;
   }
@@ -15278,16 +15278,16 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
   border: none;
 }
 .details-container.details-container__rounded {
-  border-radius: calc(39px / 2 + 9px);
+  border-radius: calc(40px / 2 + 9px);
 }
 .details-container.details-container__rounded .details-container {
-  border-radius: calc(39px / 2 + 9px - var(--content-padding-s));
+  border-radius: calc(40px / 2 + 9px - var(--content-padding-s));
 }
 .details-container.details-container__rounded:has(details.caret-small) {
-  border-radius: calc(31px / 2 + 9px);
+  border-radius: calc(32px / 2 + 9px);
 }
 .details-container.details-container__rounded:has(details.caret-small) .details-container:has(details.caret-small) {
-  border-radius: calc(31px / 2 + 9px - var(--content-padding-s));
+  border-radius: calc(32px / 2 + 9px - var(--content-padding-s));
 }
 .details-container:not(:is(.details-container__borderless)) details:last-of-type {
   border-bottom: none;
@@ -15307,7 +15307,7 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
 
 @media all and (max-width: 768px) {
   .details-container.details-container__rounded {
-    border-radius: calc(31px / 2 + 9px);
+    border-radius: calc(32px / 2 + 9px);
   }
 }
 .poncho-loader {
