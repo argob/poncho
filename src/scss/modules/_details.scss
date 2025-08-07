@@ -1,3 +1,5 @@
+
+
 /**
  * DETAILS & SUMMARY
  *
@@ -196,15 +198,19 @@ details {
     }
 
     summary {
-        min-height: calc(var(--circle-size) + var(--details-padding-x) * 2);
+        min-height: calc( var(--circle-size) + (var(--summary-padding-t) + var(--summary-padding-b)));
         line-height: var(--summary-line-height);
         display: flex;
         align-items: center;
         position: relative;
         list-style-type: none;
         cursor: pointer;
+        
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        
         font-weight: 600;
-        transition: 0.1s ease-in-out;
         padding: {
             top: var(--summary-padding-t);
             bottom: var(--summary-padding-b);
