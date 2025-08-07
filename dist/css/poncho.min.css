@@ -15003,61 +15003,84 @@ DEGRADÉ: .bg-mix-azul-info .bg-mix-info-azul .bg-mix-palta-azul .bg-mix-azul-pa
   }
 }
 /**
- * DETAILS 
+ * DETAILS & SUMMARY
+ *
+ * @see https://github.com/argob/poncho/blob/master/src/scss/modules/_details.scss
+ * @demo en: https://codepen.io/agustinbouillet/pen/dyxZpNz?editors=0100
+ * @author Agustín Bouillet <bouilleta@jefatura.gob.ar>
+ * Copyright (c) 2025 Argentina.gob.ar
  */
-details + details {
-  margin-bottom: 0 !important;
-}
-
+/**
+ * Variables SCSS
+ */
+/**
+ * Definiciones para el cambio de tamaño del caret
+ */
+/**
+ * Color de los caret
+ *
+ * @param {string} $background Color de fondo para el contenedor del caret.
+ * @param {string} $fill Color para el caret.
+ */
+/* Definición de temas de color */
 details {
-  --item-border-color: #ddd;
-  --item-padding-x: 0px;
-  --item-padding-y: 9px;
+  --icon: url('data:image/svg+xml;utf8,<svg focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"></path></svg>');
+  --details-border-color: #CCCCCC;
+  --details-padding-x: 0px;
+  --details-padding-y: 9px;
   --summary-line-height: 1.35em;
-  --summary-padding-x: 0px;
+  --summary-padding-s: 1px;
+  --summary-padding-e: 1px;
+  --summary-padding-t: 9px;
+  --summary-padding-b: 9px;
+  --content-padding-s: 1px;
+  --content-padding-e: 1px;
+  --content-margin-t: .5rem;
+  --content-margin-b: 1rem;
   --circle-size: 39px;
   --circle-margin-right: 10px;
-  --circle-circle-border-style: solid;
-  --circle-border-width: 0px;
-  --circle-border-color: #ccc;
-  --caret-border-width: 2px;
-  --caret-width: 9px;
-  --caret-border-color: var(--arg-azul);
-  --caret-background: var(--arg-negro-100);
-  --caret-padding: 4px;
-  --caret-distance: calc(var(--circle-size) / 2 - (var(--caret-width) / sin(45deg) / 2) + var(--caret-border-width) / 2);
-  --caret-x-distance: var(--caret-distance);
-  --caret-y-distance: var(--caret-distance);
-  --caret-y-distance--open: 14px;
-  border-color: var(--item-border-color);
+  --caret-width: 26px;
+  --caret-color: var(--arg-negro-600, #444444);
+  --caret-background: var(--arg-negro-100, #E9E9E9);
+  /* Definitions */
+  container-type: inline-size;
+  container-name: detailsSize;
+  border-color: var(--details-border-color);
   border-style: solid;
   border-width: 0 0 1px 0;
-  padding: var(--item-padding-y) var(--item-padding-x);
+  /* Creo los caret de color */
+  /* Define los atributos del contenedor para el contenido */
+  /* Caret small */
 }
 details:last-child {
-  border-bottom: 1px solid var(--item-border-color);
+  border-bottom: 1px solid var(--details-border-color);
 }
-details.borderless {
-  border-width: 0 0 0 0;
-  border-color: none;
+details.details-borderless {
+  border: none !important;
 }
-details.border-top {
-  border-top: 1px solid var(--item-border-color);
+details.details-border-top {
+  border-top: 1px solid var(--details-border-color);
+}
+details.details-border-light {
+  border-color: rgba(255, 255, 255, 0.75) !important;
+}
+details.details-border-dark {
+  border-color: rgba(0, 0, 0, 0.25) !important;
 }
 details summary {
-  min-height: calc(var(--circle-size) + var(--item-padding-x) * 2);
-  line-height: calc(var(--circle-size) + var(--item-padding-x) * 2);
+  min-height: calc(var(--circle-size) + var(--details-padding-x) * 2);
   line-height: var(--summary-line-height);
   display: flex;
   align-items: center;
   position: relative;
   list-style-type: none;
   cursor: pointer;
-  color: var(--arg-primary-700);
   font-weight: 600;
   transition: 0.1s ease-in-out;
-  padding-left: var(--summary-padding-x);
-  padding-right: calc(var(--circle-size) + var(--item-padding-x) + var(--circle-margin-right) + var(--summary-padding-x));
+  padding-top: var(--summary-padding-t);
+  padding-bottom: var(--summary-padding-b);
+  padding-left: var(--summary-padding-s);
+  padding-right: calc(var(--circle-size) + var(--details-padding-x) + var(--circle-margin-right) + var(--summary-padding-s) + var(--summary-padding-e));
 }
 details summary::-webkit-details-marker {
   display: none;
@@ -15071,156 +15094,218 @@ details summary::before {
   border-radius: 50%;
   text-align: center;
   aspect-ratio: 1/1 !important;
-  top: 0;
+  top: var(--summary-padding-t);
   left: initial;
-  right: var(--summary-padding-x);
+  right: var(--summary-padding-e);
 }
 details summary::after {
+  width: var(--caret-width);
+  height: var(--caret-width);
+  margin: auto;
+  vertical-align: -15%;
+  -webkit-mask-image: var(--icon);
+  -webkit-mask-origin: fill-box;
+  -webkit-mask-repeat: no-repeat !important;
+  -webkit-mask-size: contain;
+  mask-image: var(--icon);
+  mask-origin: fill-box;
+  mask-repeat: no-repeat !important;
+  mask-size: contain;
+  background-color: var(--caret-color);
   content: "";
   position: absolute;
-  height: var(--caret-width);
-  width: var(--caret-width);
-  border-left-color: var(--caret-border-color);
-  border-left-style: solid;
-  border-left-width: var(--caret-border-width);
-  border-bottom-color: var(--caret-border-color);
-  border-bottom-style: solid;
-  border-bottom-width: var(--caret-border-width);
-  box-sizing: border-box;
-  transform: rotate(-45deg);
-  background: transparent;
-  transition: 0.1s ease-in-out;
-  top: calc(var(--caret-y-distance) + 1px);
   left: initial;
-  right: calc(var(--caret-x-distance) + var(--summary-padding-x));
+  top: calc(var(--circle-size) - var(--caret-width) + 4px);
+  right: calc((var(--circle-size) - var(--caret-width)) / 2 + var(--summary-padding-e));
 }
-details.left summary {
-  padding-left: calc(var(--circle-size) + var(--item-padding-x) + var(--circle-margin-right) + var(--summary-padding-x));
-  padding-right: var(--summary-padding-x);
+details.caret-left > summary {
+  padding-left: calc(var(--circle-size) + var(--details-padding-x) + var(--circle-margin-right) + var(--summary-padding-s));
+  padding-right: var(--summary-padding-e);
 }
-details.left summary::before {
-  left: var(--summary-padding-x);
-  top: 0;
+details.caret-left > summary::before {
+  left: var(--summary-padding-s);
+  top: var(--details-padding-y);
 }
-details.left summary::after {
-  top: calc(var(--caret-y-distance) + 1px);
-  left: calc(var(--caret-x-distance) + var(--caret-border-width) - 1px);
-}
-details[open] summary ~ * {
-  -webkit-animation: open 0.2s ease-in-out;
-}
-details[open] > summary::before {
-  content: " ";
+details.caret-left > summary::after {
+  right: initial;
+  left: calc((var(--circle-size) - var(--caret-width)) / 2 + var(--summary-padding-s));
 }
 details[open] > summary::after {
-  transform: rotate(135deg);
-  top: calc(var(--caret-y-distance) + 2px);
-  transition: 0.1s ease-in-out;
-  opacity: 1;
+  transform: rotate(180deg);
+  top: calc(var(--circle-size) - var(--caret-width) + 2px);
 }
-details.warning > summary::before {
-  background: var(--arg-amarillo) !important;
+details.caret-warning > summary::before {
+  background: var(--arg-amarillo);
 }
-details.warning > summary:after {
-  border-left-color: black;
-  border-bottom-color: black;
+details.caret-warning > summary::after {
+  background-color: black;
 }
-details.success > summary::before {
-  background: var(--arg-verde) !important;
+details.caret-success > summary::before {
+  background: var(--arg-verde);
 }
-details.success > summary:after {
-  border-left-color: white;
-  border-bottom-color: white;
+details.caret-success > summary::after {
+  background-color: white;
 }
-details.danger > summary::before {
-  background: var(--arg-rojo) !important;
+details.caret-danger > summary::before {
+  background: var(--arg-rojo);
 }
-details.danger > summary:after {
-  border-left-color: white;
-  border-bottom-color: white;
+details.caret-danger > summary::after {
+  background-color: white;
 }
-details.palta > summary::before {
-  background: var(--arg-palta) !important;
+details.caret-blanco > summary::before {
+  background: var(--arg-blanco);
 }
-details.palta > summary:after {
-  border-left-color: black;
-  border-bottom-color: black;
+details.caret-blanco > summary::after {
+  background-color: black;
 }
-details.primary > summary::before {
-  background: var(--arg-azul) !important;
+details.caret-palta > summary::before {
+  background: var(--arg-palta);
 }
-details.primary > summary:after {
-  border-left-color: white;
-  border-bottom-color: white;
+details.caret-palta > summary::after {
+  background-color: black;
 }
-details.azul-morado > summary::before {
-  background: var(--arg-azul-morado) !important;
+details.caret-primary > summary::before {
+  background: var(--arg-azul);
 }
-details.azul-morado > summary:after {
-  border-left-color: white;
-  border-bottom-color: white;
+details.caret-primary > summary::after {
+  background-color: white;
 }
-details.dark > summary::before {
-  background: var(--arg-negro-600) !important;
+details.caret-azul-morado > summary::before {
+  background: var(--arg-azul-morado);
 }
-details.dark > summary:after {
-  border-left-color: white;
-  border-bottom-color: white;
+details.caret-azul-morado > summary::after {
+  background-color: white;
 }
-details.blank > summary::before {
-  background: transparent !important;
+details.caret-negro > summary::before {
+  background: var(--arg-negro-600);
 }
-details.blank > summary:after {
-  border-left-color: var(--arg-azul);
-  border-bottom-color: var(--arg-azul);
+details.caret-negro > summary::after {
+  background-color: white;
 }
-details.rosado > summary::before {
-  background: var(--arg-rosado) !important;
+details.caret-dark > summary::before {
+  background: rgba(0, 0, 0, 0.35);
 }
-details.rosado > summary:after {
-  border-left-color: white;
-  border-bottom-color: white;
+details.caret-dark > summary::after {
+  background-color: white;
 }
-details .details-content {
-  padding-left: var(--summary-padding-x);
-  padding-right: var(--summary-padding-x);
-  line-height: 1.5em;
+details.caret-light > summary::before {
+  background: rgba(255, 255, 255, 0.75);
+}
+details.caret-light > summary::after {
+  background-color: black;
+}
+details.caret-default > summary::before {
+  background: var(--arg-negro-100, #E9E9E9);
+}
+details.caret-default > summary::after {
+  background-color: var(--arg-negro-600, #444444);
+}
+details.caret-transparent > summary::before {
+  background: transparent;
+}
+details.caret-transparent > summary::after {
+  background-color: var(--arg-azul);
+}
+details.caret-rosado > summary::before {
+  background: var(--arg-rosado);
+}
+details.caret-rosado > summary::after {
+  background-color: white;
+}
+details .ar-details__content {
+  background: transparent;
+  padding-left: var(--content-padding-s);
+  padding-right: var(--content-padding-s);
+  margin-top: var(--content-margin-t);
+  margin-bottom: var(--content-margin-b);
+  line-height: inherit;
+}
+details.caret-small > summary {
+  --circle-size: 31px;
+  --caret-width: 22px;
+  --summary-line-height: 1.25em;
+}
+details.caret-small > summary::after {
+  top: calc(var(--circle-size) - var(--caret-width) + 6px);
+}
+details.caret-small[open] > summary::after {
+  top: calc(var(--circle-size) - var(--caret-width) + 4px);
 }
 
+/*
+Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
+*/
 @container detailsSize (max-width: 350px) {
-  details summary {
+  details > summary {
     --circle-size: 31px;
-    --caret-width: 8px;
-    /* 
-    No modificar las variables subsiguientes. 
-    Deben coincidir con las del :root 
-    */
-    --caret-distance: calc(var(--circle-size) / 2 - (var(--caret-width) / sin(45deg) / 2) + var(--caret-border-width) / 2);
-    --caret-x-distance: var(--caret-distance);
-    --caret-y-distance: var(--caret-distance);
+    --caret-width: 22px;
+    --summary-line-height: 1.25em;
+  }
+  details > summary::after {
+    top: calc(var(--circle-size) - var(--caret-width) + 6px);
+  }
+  details[open] > summary::after {
+    top: calc(var(--circle-size) - var(--caret-width) + 4px);
   }
 }
-details {
-  container-type: inline-size;
-  container-name: detailsSize;
+@media all and (max-width: 768px) {
+  details > summary {
+    --circle-size: 31px;
+    --caret-width: 22px;
+    --summary-line-height: 1.25em;
+  }
+  details > summary::after {
+    top: calc(var(--circle-size) - var(--caret-width) + 6px);
+  }
+  details[open] > summary::after {
+    top: calc(var(--circle-size) - var(--caret-width) + 4px);
+  }
+}
+/**
+ * Contenedores
+ * Definición para los contenedores de los details
+ */
+.details-container {
+  overflow: hidden;
+  position: relative;
+  border: 1px solid #CCCCCC;
+  margin-bottom: 1em;
+  border-radius: 3px;
+}
+.details-container.details-container__borderless {
+  border: none;
+}
+.details-container.details-container__rounded {
+  border-radius: calc(39px / 2 + 9px);
+}
+.details-container.details-container__rounded .details-container {
+  border-radius: calc(39px / 2 + 9px - var(--content-padding-s));
+}
+.details-container.details-container__rounded:has(details.caret-small) {
+  border-radius: calc(31px / 2 + 9px);
+}
+.details-container.details-container__rounded:has(details.caret-small) .details-container:has(details.caret-small) {
+  border-radius: calc(31px / 2 + 9px - var(--content-padding-s));
+}
+.details-container:not(:is(.details-container__borderless)) details:last-of-type {
+  border-bottom: none;
+}
+.details-container > details {
+  --summary-padding-s: 18px;
+  --summary-padding-e: 9px;
+  --content-padding-s: 18px;
+  --content-padding-e: 18px;
+}
+.details-container > details:is(.caret-left) {
+  --summary-padding-s: 9px;
+  --summary-padding-e: 9px;
+  --content-padding-s: 18px;
+  --content-padding-e: 18px;
 }
 
 @media all and (max-width: 768px) {
-  details,
-  .details-accordion {
-    --circle-size: 31px;
-    --caret-width: 8px;
-    --summary-line-height: 1.25em;
-  }
-}
-@keyframes open {
-  from {
-    opacity: 0;
-    transform: translateY(-5px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  .details-container.details-container__rounded {
+    border-radius: calc(31px / 2 + 9px);
   }
 }
 .poncho-loader {
