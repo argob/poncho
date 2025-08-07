@@ -15031,8 +15031,8 @@ details {
   --summary-line-height: 1.35em;
   --summary-padding-s: 1px;
   --summary-padding-e: 1px;
-  --summary-padding-t: 9px;
-  --summary-padding-b: 9px;
+  --summary-padding-t: 10px;
+  --summary-padding-b: 10px;
   --content-padding-s: 1px;
   --content-padding-e: 1px;
   --content-margin-t: .5rem;
@@ -15075,6 +15075,7 @@ details summary {
   position: relative;
   list-style-type: none;
   cursor: pointer;
+  transition: all 0.1s ease-in-out;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -15117,7 +15118,7 @@ details summary::after {
   content: "";
   position: absolute;
   left: initial;
-  top: calc(var(--circle-size) - var(--caret-width) + 4px);
+  top: calc((var(--circle-size) / 2 - var(--caret-width) / 2 + var(--summary-padding-t)) * 1.0625);
   right: calc((var(--circle-size) - var(--caret-width)) / 2 + var(--summary-padding-e));
 }
 details.caret-left > summary {
@@ -15134,7 +15135,7 @@ details.caret-left > summary::after {
 }
 details[open] > summary::after {
   transform: rotate(180deg);
-  top: calc(var(--circle-size) - var(--caret-width) + 2px);
+  top: calc(var(--circle-size) / 2 - var(--caret-width) / 2 + var(--summary-padding-t));
 }
 details.caret-warning > summary::before {
   background: var(--arg-amarillo);
@@ -15227,12 +15228,6 @@ details.caret-small > summary {
   --caret-width: 22px;
   --summary-line-height: 1.25em;
 }
-details.caret-small > summary::after {
-  top: calc(var(--circle-size) - var(--caret-width) + 6px);
-}
-details.caret-small[open] > summary::after {
-  top: calc(var(--circle-size) - var(--caret-width) + 4px);
-}
 
 /*
 Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
@@ -15243,24 +15238,12 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
     --caret-width: 22px;
     --summary-line-height: 1.25em;
   }
-  details > summary::after {
-    top: calc(var(--circle-size) - var(--caret-width) + 6px);
-  }
-  details[open] > summary::after {
-    top: calc(var(--circle-size) - var(--caret-width) + 4px);
-  }
 }
 @media all and (max-width: 768px) {
   details > summary {
     --circle-size: 32px;
     --caret-width: 22px;
     --summary-line-height: 1.25em;
-  }
-  details > summary::after {
-    top: calc(var(--circle-size) - var(--caret-width) + 6px);
-  }
-  details[open] > summary::after {
-    top: calc(var(--circle-size) - var(--caret-width) + 4px);
   }
 }
 /**
