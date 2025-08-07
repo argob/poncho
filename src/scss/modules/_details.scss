@@ -1,5 +1,3 @@
-
-
 /**
  * DETAILS & SUMMARY
  *
@@ -20,8 +18,8 @@ $detailsBorderColor: #CCCCCC;
 // summary tag
 $summaryPaddingS: 1px;
 $summaryPaddingE: 1px;
-$summaryPaddingT: 9px;
-$summaryPaddingB: 9px;
+$summaryPaddingT: 10px;
+$summaryPaddingB: 10px;
 $summaryLineHeightSmall: 1.25em;
 $summaryLineHeightDefault: 1.35em;
 
@@ -31,10 +29,6 @@ $circleSmallSize: 32px;
 
 $caretDefaultSize: 26px;
 $caretSmallSize: 22px;
-$caretOpenCorrectionSmall: 4px; // @todo Definir los valores automáticamente.
-$caretCloseCorrectionSmall: 6px;
-$caretOpenCorrectionDefault: 2px;
-$caretCloseCorrectionDefault: 4px;
 $caretColor: var(--arg-negro-600, #444444);
 $caretBackground: var(--arg-negro-100, #E9E9E9);
 
@@ -51,24 +45,6 @@ $containerBreakpoint: 350px;
         --circle-size: #{$circleSmallSize};
         --caret-width: #{$caretSmallSize};
         --summary-line-height: #{$summaryLineHeightSmall};
-    }
-    > summary {
-        &::after {
-            top: calc(
-                (var(--circle-size) - var(--caret-width)) +
-                #{$caretCloseCorrectionSmall}
-            );
-        }
-    }
-    &[open] {
-        > summary {
-            &::after {
-                top: calc(
-                    (var(--circle-size) - var(--caret-width)) +
-                    #{$caretOpenCorrectionSmall}
-                );
-            }
-        }
     }
 }
 
@@ -180,7 +156,7 @@ details {
         style: solid;
         width: 0 0 1px 0;
     }
-
+    
     &:last-child {
         border-bottom: 1px solid var(--details-border-color);
     }
@@ -205,6 +181,7 @@ details {
         position: relative;
         list-style-type: none;
         cursor: pointer;
+        transition: all .1s ease-in-out;
         
         box-sizing: border-box;
         -moz-box-sizing: border-box;
@@ -263,7 +240,8 @@ details {
             position: absolute;
             left: initial;
             top: calc(
-                (var(--circle-size) - var(--caret-width)) + #{$caretCloseCorrectionDefault}
+                    ( ( (var(--circle-size) / 2) - (var(--caret-width) / 2) ) + 
+                     var(--summary-padding-t ) ) * 1.0625
             );
             right: calc(
                 ((var(--circle-size) - var(--caret-width)) / 2) +
@@ -301,9 +279,9 @@ details {
         > summary {
             &::after {
                 transform: rotate(180deg);
-                top: calc(
-                    (var(--circle-size) - var(--caret-width)) +
-                    #{$caretOpenCorrectionDefault}
+                top:
+                    calc( ( (var(--circle-size) / 2) - (var(--caret-width) / 2) ) + 
+                    var(--summary-padding-t) 
                 );
             }
         }
