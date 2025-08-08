@@ -24,8 +24,9 @@ $summaryLineHeightSmall: 1.25em;
 $summaryLineHeightDefault: 1.35em;
 
 // caret
-$circleDefaultSize: 40px;
-$circleSmallSize: 32px;
+$circleDefaultSize: 40px; // Tamaño del círculo 
+$circleSmallSize: 32px; // Tamaño del círculo pequeño
+$circleMarginRight: 10px; // Margen entre el círuclo y el inicio de texto
 
 $caretDefaultSize: 26px;
 $caretSmallSize: 22px;
@@ -36,6 +37,20 @@ $caretBackground: var(--arg-negro-100, #E9E9E9);
 $mediaBreakpoint: 768px;
 $containerBreakpoint: 350px;
 
+$contentMarginT: .5rem; // margin-top contenido
+$contentMarginB: 1rem; // margin-bottom contenido
+
+/* Definiciones para el contenedor */
+// Default
+$containerSummaryPaddingS: 18px; // padding-left summary
+$containerSummaryPaddingE: 9px; // padding-right summary
+$containerContentPaddingS: 18px; // padding-left content
+$containerContentPaddingE: 18px; // padding-right content
+// Left
+$containerLeftSummaryPaddingS: 9px; // padding-left summary
+$containerLeftSummaryPaddingE: 9px; // padding-right summary
+$containerLeftContentPaddingS: 18px; // padding-left content
+$containerLeftContentPaddingE: 18px; // padding-right content
 
 /**
  * Definiciones para el cambio de tamaño del caret
@@ -124,8 +139,9 @@ $colorThemes: (
 
 details {
     --icon: url('data:image/svg+xml;utf8,<svg focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"></path></svg>');
+
     --details-border-color: #{$detailsBorderColor};
-    --details-padding-x: 0px;
+    --details-padding-x: #{$detailsPaddingX};
     --details-padding-y: #{$detailsPaddingY};
 
     --summary-line-height: #{$summaryLineHeightDefault};
@@ -137,15 +153,16 @@ details {
     
     --content-padding-s: #{$summaryPaddingS}; // padding-left contenido
     --content-padding-e: #{$summaryPaddingE}; // padding-right contenido
-    --content-margin-t: .5rem; // margin-top contenido
-    --content-margin-b: 1rem; // margin-bottom contenido
+    --content-margin-t: #{$contentMarginT}; // margin-top contenido
+    --content-margin-b: #{$contentMarginB}; // margin-bottom contenido
     
     --circle-size: #{$circleDefaultSize};
-    --circle-margin-right: 10px;
+    --circle-margin-right: #{$circleMarginRight};
     --caret-width: #{$caretDefaultSize};
     --caret-color: #{$caretColor};
     --caret-background: #{$caretBackground};
 
+ 
     /* Definitions */
     container: {
         type: inline-size;
@@ -262,7 +279,6 @@ details {
 
             &::before {
                 left: var(--summary-padding-s);
-                top: var(--details-padding-y);
             }
 
             &::after {
@@ -334,7 +350,6 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
     }
 }
 
-
 /**
  * Contenedores
  * Definición para los contenedores de los details
@@ -369,16 +384,16 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
         border-bottom: none;
     }
     & > details  {
-        --summary-padding-s: 18px; // padding-left summary
-        --summary-padding-e: 9px; // padding-right summary
-        --content-padding-s: 18px; // padding-left content
-        --content-padding-e: 18px; // padding-right content
+        --summary-padding-s: #{$containerSummaryPaddingS};
+        --summary-padding-e: #{$containerSummaryPaddingE};
+        --content-padding-s: #{$containerContentPaddingS};
+        --content-padding-e: #{$containerContentPaddingE};
     }
     & > details:is(.caret-left)  {
-        --summary-padding-s: 9px; // padding-left summary
-        --summary-padding-e: 9px; // padding-right summary
-        --content-padding-s: 18px; // padding-left content
-        --content-padding-e: 18px; // padding-right content
+        --summary-padding-s: #{$containerLeftSummaryPaddingS};
+        --summary-padding-e: #{$containerLeftSummaryPaddingE};
+        --content-padding-s: #{$containerLeftContentPaddingS};
+        --content-padding-e: #{$containerLeftContentPaddingE};
     }
 }
 
