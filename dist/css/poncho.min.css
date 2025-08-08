@@ -15013,6 +15013,7 @@ DEGRADÉ: .bg-mix-azul-info .bg-mix-info-azul .bg-mix-palta-azul .bg-mix-azul-pa
 /**
  * Variables SCSS
  */
+/* Definiciones para el contenedor */
 /**
  * Definiciones para el cambio de tamaño del caret
  */
@@ -15035,7 +15036,7 @@ details {
   --summary-padding-b: 10px;
   --content-padding-s: 1px;
   --content-padding-e: 1px;
-  --content-margin-t: .5rem;
+  --content-margin-t: 0.5rem;
   --content-margin-b: 1rem;
   --circle-size: 40px;
   --circle-margin-right: 10px;
@@ -15127,7 +15128,6 @@ details.caret-left > summary {
 }
 details.caret-left > summary::before {
   left: var(--summary-padding-s);
-  top: var(--details-padding-y);
 }
 details.caret-left > summary::after {
   right: initial;
