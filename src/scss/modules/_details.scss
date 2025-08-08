@@ -5,11 +5,21 @@
  * @demo en: https://codepen.io/agustinbouillet/pen/dyxZpNz?editors=0100
  * @author Agustín Bouillet <bouilleta@jefatura.gob.ar>
  * Copyright (c) 2025 Argentina.gob.ar
+ * 
+ * @example Componenete DetailsPoncho
+ * //<details class="js-details ar-details">
+ * //    <summary class="ar-details__title">[[summary]]</summary>
+ * //    <div class="ar-details__content">
+ * //        [[content]]
+ * //    </div>
+ * //</details>
  */
 
 /**
  * Variables SCSS
  */
+$detailsScope: "details"; // define el alcance del componente, ej.: `details.ar-details`.
+
 // details tag
 $detailsPaddingY: 9px;
 $detailsPaddingX: 0px;
@@ -137,7 +147,7 @@ $colorThemes: (
 );
 
 
-details {
+#{$detailsScope} {
     --icon: url('data:image/svg+xml;utf8,<svg focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"></path></svg>');
 
     --details-border-color: #{$detailsBorderColor};
@@ -146,15 +156,15 @@ details {
 
     --summary-line-height: #{$summaryLineHeightDefault};
     
-    --summary-padding-s: #{$summaryPaddingS}; // padding-left summary
-    --summary-padding-e: #{$summaryPaddingE}; // padding-right summary
-    --summary-padding-t: #{$summaryPaddingT}; // padding-top summary
-    --summary-padding-b: #{$summaryPaddingB}; // padding-bottom summary
+    --summary-padding-s: #{$summaryPaddingS};
+    --summary-padding-e: #{$summaryPaddingE};
+    --summary-padding-t: #{$summaryPaddingT};
+    --summary-padding-b: #{$summaryPaddingB};
     
-    --content-padding-s: #{$summaryPaddingS}; // padding-left contenido
-    --content-padding-e: #{$summaryPaddingE}; // padding-right contenido
-    --content-margin-t: #{$contentMarginT}; // margin-top contenido
-    --content-margin-b: #{$contentMarginB}; // margin-bottom contenido
+    --content-padding-s: #{$summaryPaddingS};
+    --content-padding-e: #{$summaryPaddingE};
+    --content-margin-t: #{$contentMarginT};
+    --content-margin-b: #{$contentMarginB};
     
     --circle-size: #{$circleDefaultSize};
     --circle-margin-right: #{$circleMarginRight};
@@ -257,8 +267,8 @@ details {
             position: absolute;
             left: initial;
             top: calc(
-                    ( ( (var(--circle-size) / 2) - (var(--caret-width) / 2) ) + 
-                     var(--summary-padding-t ) ) * 1.0625
+                (((var(--circle-size) / 2) - (var(--caret-width) / 2)) + 
+                var(--summary-padding-t)) * 1.0625
             );
             right: calc(
                 ((var(--circle-size) - var(--caret-width)) / 2) +
@@ -272,20 +282,21 @@ details {
             padding: {
                 left: calc(
                     var(--circle-size) + var(--details-padding-x) +
-                        var(--circle-margin-right) + var(--summary-padding-s)
+                    var(--circle-margin-right) + var(--summary-padding-s)
                 );
                 right: var(--summary-padding-e);
             }
 
             &::before {
                 left: var(--summary-padding-s);
+              
             }
 
             &::after {
                 right: initial;
                 left: calc(
                     ((var(--circle-size) - var(--caret-width)) / 2) +
-                        var(--summary-padding-s)
+                    var(--summary-padding-s)
                 );
             }
         }
@@ -296,7 +307,7 @@ details {
             &::after {
                 transform: rotate(180deg);
                 top:
-                    calc( ( (var(--circle-size) / 2) - (var(--caret-width) / 2) ) + 
+                    calc(((var(--circle-size) / 2) - (var(--caret-width) / 2)) + 
                     var(--summary-padding-t) 
                 );
             }
@@ -339,13 +350,13 @@ details {
 Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
 */
 @container detailsSize (max-width: #{$containerBreakpoint}) {
-    details {
+    #{$detailsScope} {
         @include smallCaret();
     }
 }
 
 @media all and (max-width: #{$mediaBreakpoint}) {
-    details {
+    #{$detailsScope} {
         @include smallCaret();
     }
 }
@@ -383,13 +394,13 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
     &:not(:is(.details-container__borderless)) details:last-of-type {
         border-bottom: none;
     }
-    & > details  {
+    & > #{$detailsScope}  {
         --summary-padding-s: #{$containerSummaryPaddingS};
         --summary-padding-e: #{$containerSummaryPaddingE};
         --content-padding-s: #{$containerContentPaddingS};
         --content-padding-e: #{$containerContentPaddingE};
     }
-    & > details:is(.caret-left)  {
+    & > #{$detailsScope}:is(.caret-left)  {
         --summary-padding-s: #{$containerLeftSummaryPaddingS};
         --summary-padding-e: #{$containerLeftSummaryPaddingE};
         --content-padding-s: #{$containerLeftContentPaddingS};
