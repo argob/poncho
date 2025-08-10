@@ -1,3 +1,4 @@
+
 /**
  * DETAILS & SUMMARY
  *
@@ -5,14 +6,6 @@
  * @demo en: https://codepen.io/agustinbouillet/pen/dyxZpNz?editors=0100
  * @author Agustín Bouillet <bouilleta@jefatura.gob.ar>
  * Copyright (c) 2025 Argentina.gob.ar
- * 
- * @example Componenete DetailsPoncho
- * //<details class="js-details ar-details">
- * //    <summary class="ar-details__title">[[summary]]</summary>
- * //    <div class="ar-details__content">
- * //        [[content]]
- * //    </div>
- * //</details>
  */
 
 /**
@@ -23,7 +16,7 @@ $detailsScope: "details"; // define el alcance del componente, ej.: `details.ar-
 // details tag
 $detailsPaddingY: 9px;
 $detailsPaddingX: 0px;
-$detailsBorderColor: #CCCCCC;
+$detailsBorderColor: #cccccc;
 
 // summary tag
 $summaryPaddingS: 1px;
@@ -34,20 +27,20 @@ $summaryLineHeightSmall: 1.25em;
 $summaryLineHeightDefault: 1.35em;
 
 // caret
-$circleDefaultSize: 40px; // Tamaño del círculo 
+$circleDefaultSize: 40px; // Tamaño del círculo
 $circleSmallSize: 32px; // Tamaño del círculo pequeño
 $circleMarginRight: 10px; // Margen entre el círuclo y el inicio de texto
 
 $caretDefaultSize: 26px;
 $caretSmallSize: 22px;
 $caretColor: var(--arg-negro-600, #444444);
-$caretBackground: var(--arg-negro-100, #E9E9E9);
+$caretBackground: var(--arg-negro-100, #e9e9e9);
 
 // media queries
 $mediaBreakpoint: 768px;
 $containerBreakpoint: 350px;
 
-$contentMarginT: .5rem; // margin-top contenido
+$contentMarginT: 0.5rem; // margin-top contenido
 $contentMarginB: 1rem; // margin-bottom contenido
 
 /* Definiciones para el contenedor */
@@ -93,59 +86,68 @@ $containerLeftContentPaddingE: 18px; // padding-right content
 /* Definición de temas de color */
 $colorThemes: (
     warning: (
-        background: var(--arg-amarillo),
-        caret: black
+        caretBackground: var(--arg-amarillo),
+        caret: black,
+        containerBackground: var(--arg-amarillo-50),
+        borderColor: var(--arg-amarillo-400)
     ),
     success: (
-        background: var(--arg-verde),
-        caret: white
+        caretBackground: var(--arg-verde),
+        caret: white,
+        containerBackground: var(--arg-verde-50),
+        borderColor: var(--arg-verde-300)
     ),
     danger: (
-        background: var(--arg-rojo),
-        caret: white
+        caretBackground: var(--arg-rojo),
+        caret: white,
+        containerBackground: var(--arg-rojo-50),
+        borderColor: var(--arg-rojo-200)
     ),
     blanco: (
-        background: var(--arg-blanco),
+        caretBackground: var(--arg-blanco),
         caret: black
     ),
     palta: (
-        background: var(--arg-palta),
+        caretBackground: var(--arg-palta),
         caret: black
     ),
     primary: (
-        background: var(--arg-azul),
-        caret: white
+        caretBackground: var(--arg-azul),
+        caret: white,
+        containerBackground: var(--arg-primary-50),
+        borderColor: var(--arg-primary-200)
     ),
     azul-morado: (
-        background: var(--arg-azul-morado),
+        caretBackground: var(--arg-azul-morado),
         caret: white
     ),
     negro: (
-        background: var(--arg-negro-600),
+        caretBackground: var(--arg-negro-600),
         caret: white
     ),
     dark: (
-        background: rgb(0 0 0 / 0.35),
+        caretBackground: rgb(0 0 0 / 0.35),
         caret: white
     ),
     light: (
-        background: rgb(255 255 255 / 0.75),
+        caretBackground: rgb(255 255 255 / 0.75),
         caret: black
     ),
     default: (
-        background: #{$caretBackground},
-        caret: #{$caretColor}
+        caretBackground: #ddd,
+        caret: black,
+        containerBackground: #f4f4f4,
+        borderColor: #ccc
     ),
     transparent: (
-        background: transparent,
+        caretBackground: transparent,
         caret: var(--arg-azul)
     ),
     rosado: (
-        background: var(--arg-rosado),
+        caretBackground: var(--arg-rosado),
         caret: white
     )
 );
-
 
 #{$detailsScope} {
     --icon: url('data:image/svg+xml;utf8,<svg focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"></path></svg>');
@@ -155,24 +157,23 @@ $colorThemes: (
     --details-padding-y: #{$detailsPaddingY};
 
     --summary-line-height: #{$summaryLineHeightDefault};
-    
+
     --summary-padding-s: #{$summaryPaddingS};
     --summary-padding-e: #{$summaryPaddingE};
     --summary-padding-t: #{$summaryPaddingT};
     --summary-padding-b: #{$summaryPaddingB};
-    
+
     --content-padding-s: #{$summaryPaddingS};
     --content-padding-e: #{$summaryPaddingE};
     --content-margin-t: #{$contentMarginT};
     --content-margin-b: #{$contentMarginB};
-    
+
     --circle-size: #{$circleDefaultSize};
     --circle-margin-right: #{$circleMarginRight};
     --caret-width: #{$caretDefaultSize};
     --caret-color: #{$caretColor};
     --caret-background: #{$caretBackground};
 
- 
     /* Definitions */
     container: {
         type: inline-size;
@@ -183,7 +184,7 @@ $colorThemes: (
         style: solid;
         width: 0 0 1px 0;
     }
-    
+
     &:last-child {
         border-bottom: 1px solid var(--details-border-color);
     }
@@ -201,29 +202,31 @@ $colorThemes: (
     }
 
     summary {
-        min-height: calc( var(--circle-size) + (var(--summary-padding-t) + var(--summary-padding-b)));
+        min-height: calc(
+            var(--circle-size) +
+                (var(--summary-padding-t) + var(--summary-padding-b))
+        );
         line-height: var(--summary-line-height);
         display: flex;
         align-items: center;
         position: relative;
         list-style-type: none;
         cursor: pointer;
-        transition: all .1s ease-in-out;
-        
+        transition: all 0.1s ease-in-out;
+
         box-sizing: border-box;
         -moz-box-sizing: border-box;
         -webkit-box-sizing: border-box;
-        
+
         font-weight: 600;
         padding: {
             top: var(--summary-padding-t);
             bottom: var(--summary-padding-b);
             left: var(--summary-padding-s);
             right: calc(
-                var(--circle-size) + 
-                var(--details-padding-x) +
-                var(--circle-margin-right) + 
-                (var(--summary-padding-s) + var(--summary-padding-e))
+                var(--circle-size) + var(--details-padding-x) +
+                    var(--circle-margin-right) +
+                    (var(--summary-padding-s) + var(--summary-padding-e))
             );
         }
 
@@ -267,12 +270,14 @@ $colorThemes: (
             position: absolute;
             left: initial;
             top: calc(
-                (((var(--circle-size) / 2) - (var(--caret-width) / 2)) + 
-                var(--summary-padding-t)) * 1.0625
+                (
+                        ((var(--circle-size) / 2) - (var(--caret-width) / 2)) +
+                            var(--summary-padding-t)
+                    ) * 1.0625
             );
             right: calc(
                 ((var(--circle-size) - var(--caret-width)) / 2) +
-                var(--summary-padding-e)
+                    var(--summary-padding-e)
             );
         }
     }
@@ -282,21 +287,20 @@ $colorThemes: (
             padding: {
                 left: calc(
                     var(--circle-size) + var(--details-padding-x) +
-                    var(--circle-margin-right) + var(--summary-padding-s)
+                        var(--circle-margin-right) + var(--summary-padding-s)
                 );
                 right: var(--summary-padding-e);
             }
 
             &::before {
                 left: var(--summary-padding-s);
-              
             }
 
             &::after {
                 right: initial;
                 left: calc(
                     ((var(--circle-size) - var(--caret-width)) / 2) +
-                    var(--summary-padding-s)
+                        var(--summary-padding-s)
                 );
             }
         }
@@ -306,9 +310,9 @@ $colorThemes: (
         > summary {
             &::after {
                 transform: rotate(180deg);
-                top:
-                    calc(((var(--circle-size) / 2) - (var(--caret-width) / 2)) + 
-                    var(--summary-padding-t) 
+                top: calc(
+                    ((var(--circle-size) / 2) - (var(--caret-width) / 2)) +
+                        var(--summary-padding-t)
                 );
             }
         }
@@ -318,7 +322,7 @@ $colorThemes: (
     @each $theme-name, $theme-colors in $colorThemes {
         &.caret-#{$theme-name} {
             @include caretColor(
-                map-get($theme-colors, background),
+                map-get($theme-colors, caretBackground),
                 map-get($theme-colors, caret)
             );
         }
@@ -370,7 +374,7 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
     position: relative;
     border: 1px solid $detailsBorderColor;
     margin-bottom: 1em;
-    border-radius: 3px;
+    border-radius: 4px;
     &.details-container__borderless {
         border: none;
     }
@@ -378,29 +382,36 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
     &.details-container__rounded {
         border-radius: calc(#{$circleDefaultSize} / 2 + #{$detailsPaddingY});
     }
-    
+
     &.details-container__rounded .details-container {
-        border-radius: calc(#{$circleDefaultSize} / 2 + #{$detailsPaddingY}  - var(--content-padding-s) );
+        border-radius: calc(
+            #{$circleDefaultSize} / 2 + #{$detailsPaddingY} -
+                var(--content-padding-s)
+        );
     }
 
     &.details-container__rounded:has(details.caret-small) {
-        border-radius: calc(#{$circleSmallSize} / 2 + #{$detailsPaddingY} );
+        border-radius: calc(#{$circleSmallSize} / 2 + #{$detailsPaddingY});
     }
-    
-    &.details-container__rounded:has(details.caret-small) .details-container:has(details.caret-small)  {
-        border-radius: calc(#{$circleSmallSize} / 2 + #{$detailsPaddingY} - var(--content-padding-s) );
+
+    &.details-container__rounded:has(details.caret-small)
+        .details-container:has(details.caret-small) {
+        border-radius: calc(
+            #{$circleSmallSize} / 2 + #{$detailsPaddingY} -
+                var(--content-padding-s)
+        );
     }
 
     &:not(:is(.details-container__borderless)) details:last-of-type {
         border-bottom: none;
     }
-    & > #{$detailsScope}  {
+    & > #{$detailsScope} {
         --summary-padding-s: #{$containerSummaryPaddingS};
         --summary-padding-e: #{$containerSummaryPaddingE};
         --content-padding-s: #{$containerContentPaddingS};
         --content-padding-e: #{$containerContentPaddingE};
     }
-    & > #{$detailsScope}:is(.caret-left)  {
+    & > #{$detailsScope}:is(.caret-left) {
         --summary-padding-s: #{$containerLeftSummaryPaddingS};
         --summary-padding-e: #{$containerLeftSummaryPaddingE};
         --content-padding-s: #{$containerLeftContentPaddingS};
@@ -414,4 +425,62 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
             border-radius: calc(#{$circleSmallSize} / 2 + #{$detailsPaddingY});
         }
     }
+}
+
+/**/
+
+/* TEMAS DE COLOR */
+@each $theme-name, $theme-colors in $colorThemes {
+    @if map-get($theme-colors, containerBackground) {
+        .details-container.theme-#{$theme-name} {
+            background-color: #{map-get($theme-colors, containerBackground)};
+            border-color: #{map-get($theme-colors, borderColor)};
+
+            details {
+                border-bottom-color: #{map-get($theme-colors, borderColor)};
+
+                @include caretColor(
+                    map-get($theme-colors, caretBackground),
+                    map-get($theme-colors, caret)
+                );
+            }
+        }
+    }
+}
+
+/* LADNDING */
+.details-landing {
+    p:empty {
+        display: none;
+        height: 0px;
+        overflow: hidden;
+    }
+
+    details {
+        --icon-size: 1.5rem;
+        --icon-text-gap: 15px;
+        --icon-color: inherit;
+    }
+
+    summary:has(i.fa-2x),
+    summary:has(.figure) {
+        font-size: 1.15rem;
+        gap: var(--icon-text-gap);
+        color: var(--arg-secundario);
+    }
+
+    summary:has(i.fa-2x) i,
+    summary > .figure {
+        flex: 0 0 calc(var(--icon-size) * 2 + var(--icon-text-gap));
+        text-align: center;
+        background: transparent;
+        font-size: 1.75em;
+        color: var(--icon-color);
+    }
+
+    summary > .figure {
+        letter-spacing: 0.5pt;
+        font-weight: 800;
+    }
+
 }
