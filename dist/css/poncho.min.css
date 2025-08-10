@@ -15009,14 +15009,6 @@ DEGRADÉ: .bg-mix-azul-info .bg-mix-info-azul .bg-mix-palta-azul .bg-mix-azul-pa
  * @demo en: https://codepen.io/agustinbouillet/pen/dyxZpNz?editors=0100
  * @author Agustín Bouillet <bouilleta@jefatura.gob.ar>
  * Copyright (c) 2025 Argentina.gob.ar
- * 
- * @example Componenete DetailsPoncho
- * //<details class="js-details ar-details">
- * //    <summary class="ar-details__title">[[summary]]</summary>
- * //    <div class="ar-details__content">
- * //        [[content]]
- * //    </div>
- * //</details>
  */
 /**
  * Variables SCSS
@@ -15034,7 +15026,7 @@ DEGRADÉ: .bg-mix-azul-info .bg-mix-info-azul .bg-mix-palta-azul .bg-mix-azul-pa
 /* Definición de temas de color */
 details {
   --icon: url('data:image/svg+xml;utf8,<svg focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"></path></svg>');
-  --details-border-color: #CCCCCC;
+  --details-border-color: #cccccc;
   --details-padding-x: 0px;
   --details-padding-y: 9px;
   --summary-line-height: 1.35em;
@@ -15050,7 +15042,7 @@ details {
   --circle-margin-right: 10px;
   --caret-width: 26px;
   --caret-color: var(--arg-negro-600, #444444);
-  --caret-background: var(--arg-negro-100, #E9E9E9);
+  --caret-background: var(--arg-negro-100, #e9e9e9);
   /* Definitions */
   container-type: inline-size;
   container-name: detailsSize;
@@ -15206,10 +15198,10 @@ details.caret-light > summary::after {
   background-color: black;
 }
 details.caret-default > summary::before {
-  background: var(--arg-negro-100, #E9E9E9);
+  background: #ddd;
 }
 details.caret-default > summary::after {
-  background-color: var(--arg-negro-600, #444444);
+  background-color: black;
 }
 details.caret-transparent > summary::before {
   background: transparent;
@@ -15261,9 +15253,9 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
 .details-container {
   overflow: hidden;
   position: relative;
-  border: 1px solid #CCCCCC;
+  border: 1px solid #cccccc;
   margin-bottom: 1em;
-  border-radius: 3px;
+  border-radius: 4px;
 }
 .details-container.details-container__borderless {
   border: none;
@@ -15301,6 +15293,108 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
     border-radius: calc(32px / 2 + 9px);
   }
 }
+/**/
+/* TEMAS DE COLOR */
+.details-container.theme-warning {
+  background-color: var(--arg-amarillo-50);
+  border-color: var(--arg-amarillo-400);
+}
+.details-container.theme-warning details {
+  border-bottom-color: var(--arg-amarillo-400);
+}
+.details-container.theme-warning details > summary::before {
+  background: var(--arg-amarillo);
+}
+.details-container.theme-warning details > summary::after {
+  background-color: black;
+}
+
+.details-container.theme-success {
+  background-color: var(--arg-verde-50);
+  border-color: var(--arg-verde-300);
+}
+.details-container.theme-success details {
+  border-bottom-color: var(--arg-verde-300);
+}
+.details-container.theme-success details > summary::before {
+  background: var(--arg-verde);
+}
+.details-container.theme-success details > summary::after {
+  background-color: white;
+}
+
+.details-container.theme-danger {
+  background-color: var(--arg-rojo-50);
+  border-color: var(--arg-rojo-200);
+}
+.details-container.theme-danger details {
+  border-bottom-color: var(--arg-rojo-200);
+}
+.details-container.theme-danger details > summary::before {
+  background: var(--arg-rojo);
+}
+.details-container.theme-danger details > summary::after {
+  background-color: white;
+}
+
+.details-container.theme-primary {
+  background-color: var(--arg-primary-50);
+  border-color: var(--arg-primary-200);
+}
+.details-container.theme-primary details {
+  border-bottom-color: var(--arg-primary-200);
+}
+.details-container.theme-primary details > summary::before {
+  background: var(--arg-azul);
+}
+.details-container.theme-primary details > summary::after {
+  background-color: white;
+}
+
+.details-container.theme-default {
+  background-color: #f4f4f4;
+  border-color: #ccc;
+}
+.details-container.theme-default details {
+  border-bottom-color: #ccc;
+}
+.details-container.theme-default details > summary::before {
+  background: #ddd;
+}
+.details-container.theme-default details > summary::after {
+  background-color: black;
+}
+
+/* LADNDING */
+.details-landing p:empty {
+  display: none;
+  height: 0px;
+  overflow: hidden;
+}
+.details-landing details {
+  --icon-size: 1.5rem;
+  --icon-text-gap: 15px;
+  --icon-color: inherit;
+}
+.details-landing summary:has(i.fa-2x),
+.details-landing summary:has(.figure) {
+  font-size: 1.15rem;
+  gap: var(--icon-text-gap);
+  color: var(--arg-secundario);
+}
+.details-landing summary:has(i.fa-2x) i,
+.details-landing summary > .figure {
+  flex: 0 0 calc(var(--icon-size) * 2 + var(--icon-text-gap));
+  text-align: center;
+  background: transparent;
+  font-size: 1.75em;
+  color: var(--icon-color);
+}
+.details-landing summary > .figure {
+  letter-spacing: 0.5pt;
+  font-weight: 800;
+}
+
 .poncho-loader {
   --pm-loader-background: var(--arg-gray-background, #FFFFFF);
   --pm-loader-spinner-color: var(--arg-azul-500, #0581C6);
