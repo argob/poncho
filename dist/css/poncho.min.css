@@ -11995,6 +11995,9 @@ footer.pm-open-map > details {
   padding-top: 0;
   padding-bottom: 0;
 }
+footer.pm-open-map > details > summary:before {
+  background-color: transparent;
+}
 footer.pm-open-map > details > summary:focus,
 footer.pm-open-map > details:focus-within {
   border-radius: max(var(--pm-slider-radius) / 2, var(--pm-slider-radius) - var(--pm-content-padding) - 2px) !important;
