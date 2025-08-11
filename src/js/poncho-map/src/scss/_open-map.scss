@@ -11,6 +11,13 @@ footer.pm-open-map {
     width: calc(100% - var(--pm-content-padding));
     background: var(--pm-slider-background);
 
+
+    > details {
+            --summary-padding-t: 4px;
+    --summary-padding-b: 4px;
+    }
+    
+
     >details {
         border-color: var(--pm-slider-border-color) transparent transparent !important;
         border-style: solid;
