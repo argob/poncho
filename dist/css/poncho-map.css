@@ -1323,6 +1323,10 @@ footer.pm-open-map {
   background: var(--pm-slider-background);
 }
 footer.pm-open-map > details {
+  --summary-padding-t: 4px;
+  --summary-padding-b: 4px;
+}
+footer.pm-open-map > details {
   border-color: var(--pm-slider-border-color) transparent transparent !important;
   border-style: solid;
   border-width: var(--pm-slider-border-width);
