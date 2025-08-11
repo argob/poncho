@@ -13320,7 +13320,7 @@ pre {
  * Subsecretaría de Tecnologías de la Información
  * Presidencia de la Nación Argentina
  * Licenciado bajo MIT (https://github.com/argob/poncho/LICENSE)
-   */
+*/
 /* Main
    ======================================================================== */
 main a[href^="http://"][target^=_blank]:after,
@@ -13369,7 +13369,7 @@ main > div > div > div > section {
 }
 
 /* Form-type
-   ======================================================================== 
+  ======================================================================== 
 */
 .form-type-date .form-inline {
   margin: 0 -15px;
@@ -13628,20 +13628,11 @@ footer ul.nav li a {
   font-weight: 600; /*color: red; cambiar color para visualizar mejor que se esta cambiando*/
 }
 
-/* Modificador para leaflet
-   ======================================================================== */
 @media screen and (max-width: 767px) {
   .c_bajada {
     display: none;
   }
 }
-/* ajuste para respetar jerarquías en el listado de noticias
-#divnoticias .panel h3,
-#divnoticias .panel .h3 {
-	font-weight: 600 !important;
-	font-size: 18px;
-	line-height: 1.3;
-}*/
 .pane-area-estructura .img-rounded {
   margin-top: 10px !important;
 }
@@ -13655,42 +13646,6 @@ footer ul.nav li a {
 #destacados h3,
 #destacados p {
   color: #fff !important;
-}
-
-/* Trámites (iconos)
-   ======================================================================== */
-.tramites-iconos .panel-default {
-  border: none !important;
-  margin-bottom: 5px !important;
-}
-
-.tramites-iconos {
-  text-align: center !important;
-}
-
-.tramites-iconos .media-left {
-  display: block;
-  padding: 0 !important;
-}
-
-.tramites-iconos .media-left i {
-  padding: 20px;
-  margin: 0 auto 15px auto;
-  display: block;
-  width: 90px;
-  height: 90px;
-  border-radius: 90px;
-  color: #fff !important;
-  vertical-align: middle;
-}
-
-.tramites-iconos .media-left i.fa {
-  padding: 30px 20px 20px 20px;
-}
-
-.tramites-iconos .panel h3,
-.tramites-iconos .panel .h3 {
-  color: #141414;
 }
 
 /* Header
@@ -13835,12 +13790,6 @@ footer .nav > li > a:hover {
   background-color: #fff !important;
 }
 
-/* Panel icon
-   ======================================================================== */
-small {
-  font-weight: 500 !important;
-}
-
 .social-share a {
   font-size: 20px;
   margin-top: -6px;
@@ -13878,6 +13827,28 @@ small {
   box-shadow: none !important;
 }
 
+.d-inline-block {
+  display: inline-block !important;
+}
+
+.btn-search-reset {
+  padding: 10px 11px !important;
+  border: 1px solid #141414 !important;
+  line-height: 1.38 !important;
+}
+
+/* Footer
+   ======================================================================== */
+.sub-footer {
+  background-color: #232D4F;
+  padding: 20px 0 40px 0;
+}
+
+@media print {
+  .main-footer {
+    display: none;
+  }
+}
 .box-campania {
   padding: 30px 0 0 0;
   background-color: #f3faff;
@@ -13892,14 +13863,6 @@ small {
   margin-left: auto;
 }
 
-@media (max-width: 768px) {
-  .panel-camp-principal {
-    margin-top: 160px;
-  }
-  .box-camp-principal {
-    padding: 0px !important;
-  }
-}
 .container-campania {
   padding-right: 15px;
   padding-left: 15px;
@@ -13908,6 +13871,14 @@ small {
   border-radius: 10px !important;
 }
 
+@media (max-width: 768px) {
+  .panel-camp-principal {
+    margin-top: 160px;
+  }
+  .box-camp-principal {
+    padding: 0px !important;
+  }
+}
 @media (min-width: 300px) {
   .container-campania {
     width: 100% !important;
@@ -13958,16 +13929,6 @@ small {
     width: 1270px !important;
   }
 }
-.d-inline-block {
-  display: inline-block !important;
-}
-
-.btn-search-reset {
-  padding: 10px 11px !important;
-  border: 1px solid #141414 !important;
-  line-height: 1.38 !important;
-}
-
 @media (min-width: 768px) and (max-width: 991.98px) {
   #pastilla-campana-2 .panel-heading,
   #pastilla-campana-3 .panel-heading,
@@ -13978,29 +13939,6 @@ small {
     width: 50%;
     float: left;
     border-top-right-radius: 0px !important;
-  }
-}
-/* alineación central para las alertas solo de la home */
-.align-middle .media-body {
-  vertical-align: middle !important;
-}
-
-/* Footer
-   ======================================================================== */
-/*.main-footer {
-	padding: 50px 0 0 0;
-	margin-top: 10px;
-	background: $gray-lighter !important;
-}
-*/
-.sub-footer {
-  background-color: #232D4F;
-  padding: 20px 0 40px 0;
-}
-
-@media print {
-  .main-footer {
-    display: none;
   }
 }
 .menu_org {
@@ -15002,6 +14940,42 @@ DEGRADÉ: .bg-mix-azul-info .bg-mix-info-azul .bg-mix-palta-azul .bg-mix-azul-pa
     padding-left: 0.4em;
   }
 }
+/* Trámites (iconos)
+   ======================================================================== */
+.tramites-iconos .panel-default {
+  border: none !important;
+  margin-bottom: 5px !important;
+}
+
+.tramites-iconos {
+  text-align: center !important;
+}
+
+.tramites-iconos .media-left {
+  display: block;
+  padding: 0 !important;
+}
+
+.tramites-iconos .media-left i {
+  padding: 20px;
+  margin: 0 auto 15px auto;
+  display: block;
+  width: 90px;
+  height: 90px;
+  border-radius: 90px;
+  color: #fff !important;
+  vertical-align: middle;
+}
+
+.tramites-iconos .media-left i.fa {
+  padding: 30px 20px 20px 20px;
+}
+
+.tramites-iconos .panel h3,
+.tramites-iconos .panel .h3 {
+  color: #141414;
+}
+
 /**
  * DETAILS & SUMMARY
  *
