@@ -15358,10 +15358,11 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
   --figure-text-gap: 15px;
   --figure-color: inherit;
   --figure-font-size: 1.75em;
+  --summary-font-size: 1.15rem;
 }
 .details-landing summary:has(i.fa-2x),
 .details-landing summary:has(.figure) {
-  font-size: 1.15rem;
+  font-size: var(--summary-font-size);
   gap: var(--figure-text-gap);
   color: var(--arg-secundario);
 }
