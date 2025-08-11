@@ -199,13 +199,13 @@ gulp.task('compress-geojson-provincias', function () {
 });
 
 /**
- * Copia imágenes al directorio dist/img
+ * Copia imágenes al directorio dist/img {encoding: false}
  */
 gulp.task('copy-images', function () {
-    return gulp.src([
-        './src/js/poncho-map-provinces/src/img/map-shadow-antartida.png',
-        './src/js/poncho-map-provinces/src/img/map-shadow.png',
-        ])
+    return gulp.src(
+            './src/js/poncho-map-provinces/src/img/*.*',
+            {encoding: false}
+        )
         .pipe(gulp.dest('./dist/img/'));
 });
 
