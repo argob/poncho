@@ -15366,6 +15366,7 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
 }
 
 /* LADNDING */
+.details-landing br,
 .details-landing p:empty {
   display: none;
   height: 0px;
