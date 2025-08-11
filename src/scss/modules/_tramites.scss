@@ -113,57 +113,88 @@
 }
 /*  / ASIDE  */
 
-
-
 /*lista ordenada*/
 .servicio-timeline {
-  list-style: none;
-  counter-reset: step;
-  margin: 0;
-  padding-left: 2.7em;
-  position: relative;
-
-  > li {
+    list-style: none;
+    counter-reset: step;
+    margin: 0;
+    padding-left: 2.7em;
     position: relative;
-    counter-increment: step;
-    margin-bottom: 2em;
 
-    &::before {
-      content: counter(step);
-      position: absolute;
-      left: -2.5em;
-      top: 0;
-      background: $brand-arg-azul;
-      color: $white;
-      border-radius: 50%;
-      text-align: center;
-      z-index: 1;
-      width: 32px;
-      line-height: 32px;
-    }
+    > li {
+        position: relative;
+        counter-increment: step;
+        margin-bottom: 2em;
 
-    &::after {
-      content: "";
-      position: absolute;
-      left: -1.6em;
-      top: 2em;
-      width: 1px;
-      height: 100%;
-      background-color: $gray-border;
-      z-index: 0;
-    }
+        &::before {
+            content: counter(step);
+            position: absolute;
+            left: -2.5em;
+            top: 0;
+            background: $brand-arg-azul;
+            color: $white;
+            border-radius: 50%;
+            text-align: center;
+            z-index: 1;
+            width: 32px;
+            line-height: 32px;
+        }
 
-    &:last-child::after {
-      content: none;
+        &::after {
+            content: "";
+            position: absolute;
+            left: -1.6em;
+            top: 2em;
+            width: 1px;
+            height: 100%;
+            background-color: $gray-border;
+            z-index: 0;
+        }
+
+        &:last-child::after {
+            content: none;
+        }
     }
-  }
 }
-
 
 @media (max-width: 767px) {
-  .servicio-timeline li {
-    padding-left: .4em;
-  }
+    .servicio-timeline li {
+        padding-left: 0.4em;
+    }
 }
 
+/* Trámites (iconos)
+   ======================================================================== */
+.tramites-iconos .panel-default {
+    border: none !important;
+    margin-bottom: 5px !important;
+}
 
+.tramites-iconos {
+    text-align: center !important;
+}
+
+.tramites-iconos .media-left {
+    display: block;
+    padding: 0 !important;
+}
+
+.tramites-iconos .media-left i {
+    padding: 20px;
+    margin: 0 auto 15px auto;
+    display: block;
+    width: 90px;
+    height: 90px;
+    border-radius: 90px;
+    color: #fff !important;
+    vertical-align: middle;
+}
+
+.tramites-iconos .media-left i.fa {
+    padding: 30px 20px 20px 20px;
+}
+
+.tramites-iconos .panel h3,
+.tramites-iconos .panel .h3 {
+    color: $black;
+}

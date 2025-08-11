@@ -1,0 +1,101 @@
+
+.box-campania {
+	padding: 30px 0 0 0;
+	background-color: #f3faff;
+}
+
+.container-campania {
+	border-radius: 10px;
+	width: 1270px !important;
+	padding-right: 15px;
+	padding-left: 15px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.container-campania {
+	padding-right: 15px;
+	padding-left: 15px;
+	margin-right: auto;
+	margin-left: auto;
+	border-radius: 10px !important;
+}
+
+@media (max-width:768px) {
+	.panel-camp-principal {
+		margin-top: 160px
+	}
+	.box-camp-principal {
+		padding: 0px !important
+	}
+}
+
+@media (min-width:300px) {
+	.container-campania {
+		width: 100% !important;
+	}
+}
+
+@media (max-width:767px) {
+	.container-campania {
+		width: 100% !important;
+		border-radius: 0px !important;
+		height: 250px;
+		overflow: visible;
+	}
+	.container-campania:not(:root:root) {
+		margin-bottom: 155px;
+	}
+	.box-campania {
+		padding: 0px;
+	}
+}
+
+@media (min-width:768px) {
+	.container-campania {
+		width: 750px !important;
+	}
+}
+
+@media only screen and (min-width:768px) and (max-width:991px) {
+	.container-campania.jumbotron {
+		height: 275px;
+		margin-bottom: 150px
+	}
+	.panel.panel-default.panel-border-escarapela.etapa2.panel-camp-principal {
+		margin-bottom: 30px;
+		margin-top: 162px
+	}
+}
+
+@media (min-width:992px) {
+	.container-campania {
+		width: 970px !important;
+		min-height: 354px;
+	}
+}
+
+@media (min-width:1200px) {
+	.container-campania {
+		width: 1170px !important;
+	}
+}
+
+@media (min-width:1270px) {
+	.container-campania {
+		width: 1270px !important;
+	}
+}
+
+@media (min-width:768px) and (max-width:991.98px) {
+	#pastilla-campana-2 .panel-heading,
+	#pastilla-campana-3 .panel-heading,
+	#pastilla-campana-4 .panel-heading,
+	#pastilla-campana-2 .panel-body,
+	#pastilla-campana-3 .panel-body,
+	#pastilla-campana-4 .panel-body {
+		width: 50%;
+		float: left;
+		border-top-right-radius: 0px !important
+	}
+}
