@@ -1,0 +1,221 @@
+/* FORMULARIOS Y SELECT2 */
+/* Oculta selección previa de meses */
+
+#filter-cuando+.select2-container .select2-selection__choice {
+    display: none;
+}
+
+/* Pills de meses seleccionados */
+
+#filtros-avanzados {
+    .selected-months-container {
+        margin-top: 6px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+    }
+
+    .pill-month {
+        display: inline-flex;
+        align-items: center;
+        background: #e2e8f0;
+        border-radius: 999px;
+        padding: 4px 10px;
+        font-size: 0.85rem;
+        gap: 6px;
+
+        .remove-month {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            line-height: 1;
+            padding: 0;
+        }
+    }
+
+    .select2-container--default .select2-selection--multiple::before {
+        content: "Elegí mes o meses...";
+        color: #a0a0a0;
+        position: absolute;
+        left: 8px;
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none;
+        font-size: 0.9rem;
+    }
+
+    .select2-container--open .select2-selection--multiple::before {
+        content: "";
+    }
+
+    .select2-container--default .select2-selection--multiple {
+        padding: 6px;
+        min-height: auto;
+    }
+
+    .select2.select2-container.select2-container--default {
+        width: 100% !important;
+        padding: 0px !important;
+        background: white !important;
+        border: 1px solid #555 !important;
+    }
+
+    .select2-search__field:focus-visible {
+        outline: none !important;
+        box-shadow: none !important;
+        border-color: #ccc !important;
+    }
+}
+
+/* Placeholder fijo */
+
+/* Ajustes de Select2 */
+
+/* Resaltado y borde de opciones */
+
+.select2-results__option.select2-results__option--selectable {
+    &.select2-results__option--highlighted[aria-selected="true"] {
+        background: #e2e8f0;
+    }
+
+    border-radius: 0px !important;
+}
+
+/* Oculta la 'x' de limpiar selección */
+
+#filtros-avanzados .select2-container--default .select2-selection--multiple .select2-selection__clear {
+    display: none !important;
+}
+
+
+/* ESTRUCTURA Y COMPONENTES HTML */
+/* Control de listas descriptivas */
+
+.info-list {
+
+    dt,
+    dd {
+        margin: 0;
+        padding: 0.1rem 0;
+    }
+
+    dt.inline-pair,
+    dd.inline-pair {
+        display: inline-block;
+        vertical-align: baseline;
+    }
+}
+
+/* Listas y ficha */
+
+#ventas-container ol {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.ficha {
+
+    dl,
+    dd {
+        margin-bottom: 0rem;
+    }
+}
+
+.nombre-obra {
+    display: inline-block !important;
+}
+
+/* Títulos y bloques */
+
+.tit-desktop {
+    margin-top: auto;
+}
+
+.bloque-desktop {
+    display: block;
+}
+
+/* Imagen y títulos en mobile */
+@media (max-width: 992px) {
+    .imagen-mobile {
+        margin-bottom: 1rem;
+    }
+
+    .tit-desktop {
+        margin-top: 0;
+    }
+}
+
+/* Flecha de acceso */
+
+.flecha-acceso {
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-end;
+    margin-top: 0.3rem;
+}
+
+@media (max-width: 1200px) {
+    .flecha-acceso {
+        display: none !important;
+    }
+}
+
+
+/* ESTILOS BASE Y UTILIDADES */
+/* Botón de rango */
+
+.btn-rango {
+    background: var(--arg-primary-100);
+}
+
+/* Tipografía y pesos */
+
+.fw-light {
+    font-weight: 400 !important;
+}
+
+.fw-medium {
+    font-weight: 500 !important;
+}
+
+.fw-semibold {
+    font-weight: 600 !important;
+}
+
+.fw-bold {
+    font-weight: 700 !important;
+}
+
+.text-small {
+    font-size: 85%;
+}
+
+/* Utilidades de layout */
+
+.d-flex {
+    display: flex;
+}
+
+.margin-small-left {
+    margin-left: 0.3rem;
+}
+
+/* Alineación responsiva */
+
+.align-responsive {
+    float: left;
+}
+
+@media (min-width: 993px) {
+    .align-responsive {
+        float: right;
+    }
+}
+
+/* Íconos */
+
+.icon-success {
+    padding-right: 0.2rem;
+}
