@@ -1,4 +1,3 @@
-
 /**
  * DETAILS & SUMMARY
  *
@@ -19,10 +18,10 @@ $detailsPaddingX: 0px;
 $detailsBorderColor: #cccccc;
 
 // summary tag
-$summaryPaddingS: 1px;
-$summaryPaddingE: 1px;
-$summaryPaddingT: 10px;
-$summaryPaddingB: 10px;
+$summaryPaddingS: 1px; // Padding start
+$summaryPaddingE: 1px; // Padding end
+$summaryPaddingT: 10px; // Padding top
+$summaryPaddingB: 10px; // Padding bottom
 $summaryLineHeightSmall: 1.25em;
 $summaryLineHeightDefault: 1.35em;
 
@@ -31,8 +30,8 @@ $circleDefaultSize: 40px; // Tamaño del círculo
 $circleSmallSize: 32px; // Tamaño del círculo pequeño
 $circleMarginRight: 10px; // Margen entre el círuclo y el inicio de texto
 
-$caretDefaultSize: 26px;
-$caretSmallSize: 22px;
+$caretDefaultSize: 26px; // Tamaño del caret, o flecha.
+$caretSmallSize: 22px; // Tamaño del caret cuando es pequeño.
 $caretColor: var(--arg-negro-600, #444444);
 $caretBackground: var(--arg-negro-100, #e9e9e9);
 
@@ -450,6 +449,7 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
 
 /* LADNDING */
 .details-landing {
+    br,
     p:empty {
         display: none;
         height: 0px;
