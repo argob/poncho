@@ -15354,23 +15354,24 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
   overflow: hidden;
 }
 .details-landing details {
-  --icon-size: 1.5rem;
-  --icon-text-gap: 15px;
-  --icon-color: inherit;
+  --figure-width: 1.5rem;
+  --figure-text-gap: 15px;
+  --figure-color: inherit;
+  --figure-font-size: 1.75em;
 }
 .details-landing summary:has(i.fa-2x),
 .details-landing summary:has(.figure) {
   font-size: 1.15rem;
-  gap: var(--icon-text-gap);
+  gap: var(--figure-text-gap);
   color: var(--arg-secundario);
 }
 .details-landing summary:has(i.fa-2x) i,
 .details-landing summary > .figure {
-  flex: 0 0 calc(var(--icon-size) * 2 + var(--icon-text-gap));
+  flex: 0 0 calc(var(--figure-width) * 2 + var(--figure-text-gap));
   text-align: center;
   background: transparent;
-  font-size: 1.75em;
-  color: var(--icon-color);
+  font-size: var(--figure-font-size);
+  color: var(--figure-color);
 }
 .details-landing summary > .figure {
   letter-spacing: 0.5pt;
