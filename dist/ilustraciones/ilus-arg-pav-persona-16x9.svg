@@ -48,4 +48,4 @@ xmlns:xlink="http://www.w3.org/1999/xlink">
 <path d="M256.497 96.2988C256.097 100.099 254.697 103.799 252.697 107.099C251.097 109.799 248.797 112.099 253.597 112.699C254.497 112.799 255.497 112.799 256.397 112.799C255.497 112.999 254.497 113.099 253.497 112.999C252.097 112.999 249.797 112.499 250.097 110.699C250.397 109.199 251.397 107.999 252.097 106.799C254.197 103.599 255.597 99.9988 256.497 96.2988Z" fill="black"/>
 <path d="M319.602 204C319.602 225.2 318.302 246.5 315.602 267.5C315.602 246.3 316.902 225.1 319.602 204Z" fill="black"/>
 <path d="M220 204.6C223.1 225.9 224.9 247.5 225.3 269C222.1 247.7 220.4 226.2 220 204.6Z" fill="black"/>
-<script type="text/ecmascript" xlink:href="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/w3c/ref2.js"></script></svg>
+<script type="text/ecmascript" xlink:href="https://dev.w3.org/SVG/modules/ref/master/ref2.js"></script></svg>
