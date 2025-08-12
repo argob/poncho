@@ -456,13 +456,27 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
         overflow: hidden;
     }
 
+    // details {
+    //     --figure-width: 1.5rem;
+    //     --figure-text-gap: 15px;
+    //     --figure-color: inherit;
+    //     --figure-font-size: 1.75em;
+    //     --summary-font-size: 1.15rem;
+    // }
+
     details {
-        --figure-width: 1.5rem;
-        --figure-text-gap: 15px;
+        --figure-width: 1.75rem;
+        --figure-text-gap: 10px;
         --figure-color: inherit;
-        --figure-font-size: 1.75em;
-        --summary-font-size: 1.15rem;
+        --figure-font-size: 1.9em;
+        --summary-font-size: 1.2rem;
+        /* Global componente */
+        --summary-padding-t: 15px;
+        --summary-padding-b: 15px;
     }
+
+
+
 
     summary:has(i.fa-2x),
     summary:has(.figure) {
