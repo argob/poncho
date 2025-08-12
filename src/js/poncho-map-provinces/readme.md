@@ -70,7 +70,8 @@ Módulo para implementar _ponchoMap_ utilizando un GeoJSON con polígonos por pr
 <td style="text-align:left"><code>boolean</code></td>
 <td style="text-align:left">true</td>
 <td style="text-align:left"><dl><dt><code>true</code> (verdadero)</dt><dd>Cuando la opción sea verdadera y  el <em>viewport</em> o tamaño del display sea inferior a los 992 píxeles de ancho, el componente html, select, con el listado de provincias se mostrará, mientras que el mapa permanecerá oculto.</dd>
-<dt><code>false</code> (falso)</dt><dd>Cuando la opción sea falsa, tanto el componente html, select, como el mapa estarán visibles en todo momento.</dd></dl></td>
+<dt><code>false</code> (falso)</dt><dd>Cuando la opción sea falsa, tanto el componente html, select, como el mapa estarán visibles en todo momento.</dd></dl>
+<p>* Es importante tenes en cuenta que cuando se utilice el mapa completo —mapa con slider o popup—, true ocultará el mapa. Esta opción es aconsejable en modo: mapa con descripción fuera del mapa.</p></td>
 </tr>
 <tr>
 <td style="text-align:left">hide_select</td>
