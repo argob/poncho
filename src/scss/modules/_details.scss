@@ -1,4 +1,3 @@
-
 /**
  * DETAILS & SUMMARY
  *
@@ -496,7 +495,7 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
     }
 
     details {
-        --figure-width: 1.5rem;
+        --figure-width: 1.3rem;
         --figure-text-gap: 10px;
         --figure-color: currentColor;
         --figure-font-size: 1.5em;
@@ -504,6 +503,7 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
     }
 
     &#{&}-md > details {
+           --figure-width: 1.5rem;
         --figure-font-size: 1.75em;
         --summary-font-size: 1.15rem;
     }
@@ -535,8 +535,8 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
     }
 
     summary > .figure {
-        letter-spacing: 0.5pt;
-        font-weight: 800;
+        letter-spacing: -0.25pt;
+        font-weight: 700;
         font-style: normal;
     }
 }
