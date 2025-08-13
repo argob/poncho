@@ -14996,7 +14996,13 @@ DEGRADÉ: .bg-mix-azul-info .bg-mix-info-azul .bg-mix-palta-azul .bg-mix-azul-pa
  */
 /* Definiciones para el contenedor */
 /**
+ * Definición para los temas de color.
+ */
+/**
  * Definiciones para el cambio de tamaño del caret
+ */
+/**
+ * Fija el caret a la altura definida por el tamaño del padding top
  */
 /**
  * Color de los caret
@@ -15004,9 +15010,9 @@ DEGRADÉ: .bg-mix-azul-info .bg-mix-info-azul .bg-mix-palta-azul .bg-mix-azul-pa
  * @param {string} $background Color de fondo para el contenedor del caret.
  * @param {string} $fill Color para el caret.
  */
-/* Definición de temas de color */
 details {
-  --icon: url('data:image/svg+xml;utf8,<svg focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"></path></svg>');
+  --icon-close: url('data:image/svg+xml;utf8,<svg focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16.59,9.79l-4.59,4.58-4.59-4.58-1.41,1.41,6,6,6-6-1.41-1.41Z"></path></svg>');
+  --icon-open: url('data:image/svg+xml;utf8,<svg focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7.41,15.51l4.59-4.58,4.59,4.58,1.41-1.41-6-6-6,6,1.41,1.41Z"></path></svg>');
   --details-border-color: #cccccc;
   --details-padding-x: 0px;
   --details-padding-y: 9px;
@@ -15079,7 +15085,6 @@ details summary::before {
   border-radius: 50%;
   text-align: center;
   aspect-ratio: 1/1 !important;
-  top: var(--summary-padding-t);
   left: initial;
   right: var(--summary-padding-e);
 }
@@ -15088,11 +15093,11 @@ details summary::after {
   height: var(--caret-width);
   margin: auto;
   vertical-align: -15%;
-  -webkit-mask-image: var(--icon);
+  -webkit-mask-image: var(--icon-close);
   -webkit-mask-origin: fill-box;
   -webkit-mask-repeat: no-repeat !important;
   -webkit-mask-size: contain;
-  mask-image: var(--icon);
+  mask-image: var(--icon-close);
   mask-origin: fill-box;
   mask-repeat: no-repeat !important;
   mask-size: contain;
@@ -15100,7 +15105,6 @@ details summary::after {
   content: "";
   position: absolute;
   left: initial;
-  top: calc((var(--circle-size) / 2 - var(--caret-width) / 2 + var(--summary-padding-t)) * 1.0625);
   right: calc((var(--circle-size) - var(--caret-width)) / 2 + var(--summary-padding-e));
 }
 details.caret-left > summary {
@@ -15115,8 +15119,8 @@ details.caret-left > summary::after {
   left: calc((var(--circle-size) - var(--caret-width)) / 2 + var(--summary-padding-s));
 }
 details[open] > summary::after {
-  transform: rotate(180deg);
-  top: calc(var(--circle-size) / 2 - var(--caret-width) / 2 + var(--summary-padding-t));
+  -webkit-mask-image: var(--icon-open);
+  mask-image: var(--icon-open);
 }
 details.caret-warning > summary::before {
   background: var(--arg-amarillo);
@@ -15204,6 +15208,15 @@ details .ar-details__content {
   margin-bottom: var(--content-margin-b);
   line-height: inherit;
 }
+details.caret-fixed > summary::before {
+  top: var(--summary-padding-t);
+}
+details.caret-fixed > summary::after {
+  top: calc(var(--circle-size) / 2 - var(--caret-width) / 2 + var(--summary-padding-t));
+}
+details.caret-fixed[open] > summary::after {
+  top: calc(var(--circle-size) / 2 - var(--caret-width) / 2 + var(--summary-padding-t));
+}
 details.caret-small > summary {
   --circle-size: 32px;
   --caret-width: 22px;
@@ -15237,6 +15250,15 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
   border: 1px solid #cccccc;
   margin-bottom: 1em;
   border-radius: 4px;
+}
+.details-container.caret-fixed > details > summary::before {
+  top: var(--summary-padding-t);
+}
+.details-container.caret-fixed > details > summary::after {
+  top: calc(var(--circle-size) / 2 - var(--caret-width) / 2 + var(--summary-padding-t));
+}
+.details-container.caret-fixed > details[open] > summary::after {
+  top: calc(var(--circle-size) / 2 - var(--caret-width) / 2 + var(--summary-padding-t));
 }
 .details-container.details-container__borderless {
   border: none;
