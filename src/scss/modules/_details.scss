@@ -58,75 +58,49 @@ $containerLeftContentPaddingE: 18px; // padding-right content
  * Definición para los temas de color.
  */
 $colorThemes: (
-    warning: (
-        caretBackground: var(--arg-amarillo),
+    warning: (caretBackground: var(--arg-amarillo),
         caret: black,
         containerBackground: var(--arg-amarillo-50),
-        borderColor: var(--arg-amarillo-400)
-    ),
-    success: (
-        caretBackground: var(--arg-verde),
+        borderColor: var(--arg-amarillo-400)),
+    success: (caretBackground: var(--arg-verde),
         caret: white,
         containerBackground: var(--arg-verde-50),
-        borderColor: var(--arg-verde-300)
-    ),
-    danger: (
-        caretBackground: var(--arg-rojo),
+        borderColor: var(--arg-verde-300)),
+    danger: (caretBackground: var(--arg-rojo),
         caret: white,
         containerBackground: var(--arg-rojo-50),
-        borderColor: var(--arg-rojo-200)
-    ),
-    blanco: (
-        caretBackground: var(--arg-blanco),
-        caret: black
-    ),
-    palta: (
-        caretBackground: var(--arg-palta),
-        caret: black
-    ),
-    primary: (
-        caretBackground: var(--arg-azul),
+        borderColor: var(--arg-rojo-200)),
+    blanco: (caretBackground: var(--arg-blanco),
+        caret: black),
+    palta: (caretBackground: var(--arg-palta),
+        caret: black),
+    primary: (caretBackground: var(--arg-azul),
         caret: white,
         containerBackground: var(--arg-primary-50),
-        borderColor: var(--arg-primary-200)
-    ),
-    azul-morado: (
-        caretBackground: var(--arg-azul-morado),
-        caret: white
-    ),
-    negro: (
-        caretBackground: var(--arg-negro-600),
-        caret: white
-    ),
-    dark: (
-        caretBackground: rgb(0 0 0 / 0.35),
-        caret: white
-    ),
-    light: (
-        caretBackground: rgb(255 255 255 / 0.75),
-        caret: black
-    ),
-    default: (
-        caretBackground: #ddd,
+        borderColor: var(--arg-primary-200)),
+    azul-morado: (caretBackground: var(--arg-azul-morado),
+        caret: white),
+    negro: (caretBackground: var(--arg-negro-600),
+        caret: white),
+    dark: (caretBackground: rgb(0 0 0 / 0.35),
+        caret: white),
+    light: (caretBackground: rgb(255 255 255 / 0.75),
+        caret: black),
+    default: (caretBackground: #ddd,
         caret: black,
         containerBackground: #f4f4f4,
-        borderColor: #ccc
-    ),
-    transparent: (
-        caretBackground: transparent,
-        caret: var(--arg-azul)
-    ),
-    rosado: (
-        caretBackground: var(--arg-rosado),
-        caret: white
-    )
+        borderColor: #ccc),
+    transparent: (caretBackground: transparent,
+        caret: var(--arg-azul)),
+    rosado: (caretBackground: var(--arg-rosado),
+        caret: white)
 );
 
 /**
  * Definiciones para el cambio de tamaño del caret
  */
 @mixin caretSmall() {
-    > summary {
+    >summary {
         --circle-size: #{$circleSmallSize};
         --caret-width: #{$caretSmallSize};
         --summary-line-height: #{$summaryLineHeightSmall};
@@ -137,28 +111,20 @@ $colorThemes: (
  * Fija el caret a la altura definida por el tamaño del padding top
  */
 @mixin caretFixed() {
-    > summary {
+    >summary {
         &::before {
             top: var(--summary-padding-t);
         }
 
         &::after {
-            top: calc(
-                (
-                    ((var(--circle-size) / 2) - (var(--caret-width) / 2)) +
-                        var(--summary-padding-t)
-                )
-            );
+            top: calc((((var(--circle-size) / 2) - (var(--caret-width) / 2)) + var(--summary-padding-t)));
         }
     }
 
     &[open] {
-        > summary {
+        >summary {
             &::after {
-                top: calc(
-                    ((var(--circle-size) / 2) - (var(--caret-width) / 2)) +
-                        var(--summary-padding-t)
-                );
+                top: calc(((var(--circle-size) / 2) - (var(--caret-width) / 2)) + var(--summary-padding-t));
             }
         }
     }
@@ -171,10 +137,11 @@ $colorThemes: (
  * @param {string} $fill Color para el caret.
  */
 @mixin caretColor($background, $fill) {
-    & > summary {
+    &>summary {
         &::before {
             background: $background;
         }
+
         &::after {
             background-color: $fill;
         }
@@ -212,6 +179,7 @@ $colorThemes: (
         type: inline-size;
         name: detailsSize;
     }
+
     border: {
         color: var(--details-border-color);
         style: solid;
@@ -221,25 +189,26 @@ $colorThemes: (
     &:last-child {
         border-bottom: 1px solid var(--details-border-color);
     }
+
     &.details-borderless {
         border: none !important;
     }
+
     &.details-border-top {
         border-top: 1px solid var(--details-border-color);
     }
+
     &.details-border-light {
         border-color: rgb(255 255 255 / 0.75) !important;
     }
+
     &.details-border-dark {
         border-color: rgb(0 0 0 / 0.25) !important;
     }
 
 
     summary {
-        min-height: calc(
-            var(--circle-size) +
-                (var(--summary-padding-t) + var(--summary-padding-b))
-        );
+        min-height: calc(var(--circle-size) + (var(--summary-padding-t) + var(--summary-padding-b)));
         line-height: var(--summary-line-height);
         display: flex;
         align-items: center;
@@ -253,15 +222,12 @@ $colorThemes: (
         -webkit-box-sizing: border-box;
 
         font-weight: 600;
+
         padding: {
             top: var(--summary-padding-t);
             bottom: var(--summary-padding-b);
             left: var(--summary-padding-s);
-            right: calc(
-                var(--circle-size) + var(--details-padding-x) +
-                    var(--circle-margin-right) +
-                    (var(--summary-padding-s) + var(--summary-padding-e))
-            );
+            right: calc(var(--circle-size) + var(--details-padding-x) + var(--circle-margin-right) + (var(--summary-padding-s) + var(--summary-padding-e)));
         }
 
         &::-webkit-details-marker {
@@ -286,36 +252,33 @@ $colorThemes: (
             height: var(--caret-width);
             margin: auto;
             vertical-align: -15%;
+
             -webkit-mask: {
                 image: var(--icon-close);
                 origin: fill-box;
                 repeat: no-repeat !important;
                 size: contain;
             }
+
             mask: {
                 image: var(--icon-close);
                 origin: fill-box;
                 repeat: no-repeat !important;
                 size: contain;
             }
+
             background-color: var(--caret-color);
             content: "";
             position: absolute;
             left: initial;
-            right: calc(
-                ((var(--circle-size) - var(--caret-width)) / 2) +
-                    var(--summary-padding-e)
-            );
+            right: calc(((var(--circle-size) - var(--caret-width)) / 2) + var(--summary-padding-e));
         }
     }
 
     &.caret-left {
-        > summary {
+        >summary {
             padding: {
-                left: calc(
-                    var(--circle-size) + var(--details-padding-x) +
-                        var(--circle-margin-right) + var(--summary-padding-s)
-                );
+                left: calc(var(--circle-size) + var(--details-padding-x) + var(--circle-margin-right) + var(--summary-padding-s));
                 right: var(--summary-padding-e);
             }
 
@@ -325,20 +288,18 @@ $colorThemes: (
 
             &::after {
                 right: initial;
-                left: calc(
-                    ((var(--circle-size) - var(--caret-width)) / 2) +
-                        var(--summary-padding-s)
-                );
+                left: calc(((var(--circle-size) - var(--caret-width)) / 2) + var(--summary-padding-s));
             }
         }
     }
 
     &[open] {
-        > summary {
+        >summary {
             &::after {
                 -webkit-mask: {
                     image: var(--icon-open);
                 }
+
                 mask: {
                     image: var(--icon-open);
                 }
@@ -349,26 +310,28 @@ $colorThemes: (
     /* Creo los caret de color */
     @each $theme-name, $theme-colors in $colorThemes {
         &.caret-#{$theme-name} {
-            @include caretColor(
-                map-get($theme-colors, caretBackground),
-                map-get($theme-colors, caret)
-            );
+            @include caretColor(map-get($theme-colors, caretBackground),
+                map-get($theme-colors, caret));
         }
     }
 
     /* Define los atributos del contenedor para el contenido */
     .ar-details__content {
         background: transparent;
+
         padding: {
             left: var(--content-padding-s);
             right: var(--content-padding-s);
         }
+
         margin: {
             top: var(--content-margin-t);
             bottom: var(--content-margin-b);
         }
+
         line-height: inherit;
     }
+
     // @todo usar el pseudo elemento cuando esté habilitado
     // &[open]::details-content { }
 
@@ -409,7 +372,7 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
     margin-bottom: 1em;
     border-radius: 4px;
 
-    &.caret-fixed > details {
+    &.caret-fixed>details {
         @include caretFixed();
     }
 
@@ -422,34 +385,29 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
     }
 
     &.details-container__rounded .details-container {
-        border-radius: calc(
-            #{$circleDefaultSize} / 2 + #{$detailsPaddingY} -
-                var(--content-padding-s)
-        );
+        border-radius: calc(#{$circleDefaultSize} / 2 + #{$detailsPaddingY} - var(--content-padding-s));
     }
 
     &.details-container__rounded:has(details.caret-small) {
         border-radius: calc(#{$circleSmallSize} / 2 + #{$detailsPaddingY});
     }
 
-    &.details-container__rounded:has(details.caret-small)
-        .details-container:has(details.caret-small) {
-        border-radius: calc(
-            #{$circleSmallSize} / 2 + #{$detailsPaddingY} -
-                var(--content-padding-s)
-        );
+    &.details-container__rounded:has(details.caret-small) .details-container:has(details.caret-small) {
+        border-radius: calc(#{$circleSmallSize} / 2 + #{$detailsPaddingY} - var(--content-padding-s));
     }
 
     &:not(:is(.details-container__borderless)) details:last-of-type {
         border-bottom: none;
     }
-    & > #{$detailsScope} {
+
+    &>#{$detailsScope} {
         --summary-padding-s: #{$containerSummaryPaddingS};
         --summary-padding-e: #{$containerSummaryPaddingE};
         --content-padding-s: #{$containerContentPaddingS};
         --content-padding-e: #{$containerContentPaddingE};
     }
-    & > #{$detailsScope}:is(.caret-left) {
+
+    &>#{$detailsScope}:is(.caret-left) {
         --summary-padding-s: #{$containerLeftSummaryPaddingS};
         --summary-padding-e: #{$containerLeftSummaryPaddingE};
         --content-padding-s: #{$containerLeftContentPaddingS};
@@ -477,10 +435,8 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
             details {
                 border-bottom-color: #{map-get($theme-colors, borderColor)};
 
-                @include caretColor(
-                    map-get($theme-colors, caretBackground),
-                    map-get($theme-colors, caret)
-                );
+                @include caretColor(map-get($theme-colors, caretBackground),
+                    map-get($theme-colors, caret));
             }
         }
     }
@@ -488,6 +444,7 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
 
 /* LADNDING */
 .details-landing {
+
     br,
     p:empty {
         display: none;
@@ -503,13 +460,13 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
         --summary-font-size: 1em;
     }
 
-    &#{&}-md > details {
-           --figure-width: 1.5rem;
+    &#{&}-md>details {
+        --figure-width: 1.5rem;
         --figure-font-size: 1.75em;
         --summary-font-size: 1.15rem;
     }
 
-    &#{&}-lg > details {
+    &#{&}-lg>details {
         --figure-width: 1.75rem;
         --figure-text-gap: 15px;
         --figure-font-size: 1.9em;
@@ -527,7 +484,7 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
     }
 
     summary:has(i.fa-2x) i,
-    summary > .figure {
+    summary>.figure {
         flex: 0 0 calc(var(--figure-width) * 2 + var(--figure-text-gap));
         text-align: center;
         background: transparent;
@@ -535,10 +492,10 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
         color: var(--figure-color);
     }
 
-    summary > .figure {
+    summary>.figure {
         letter-spacing: -0.25pt;
         font-weight: 700;
         font-style: normal;
+        line-height: var(--summary-line-height);
     }
 }
-
