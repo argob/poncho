@@ -15527,6 +15527,10 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
   display: block;
 }
 
+.subtitulo-subasta::before {
+  content: "| ";
+}
+
 /* Imagen y títulos en mobile */
 @media (max-width: 992px) {
   .imagen-mobile {
@@ -15534,6 +15538,11 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
   }
   .tit-desktop {
     margin-top: 0;
+  }
+  .inline-pair.text-muted.small.fw-light.align-responsive,
+  .h3.fw-semibold.home-new.w-100 {
+    display: block;
+    width: 100%;
   }
 }
 /* Flecha de acceso */
@@ -15579,6 +15588,14 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
 /* Utilidades de layout */
 .d-flex {
   display: flex;
+}
+
+.font-sans-serif {
+  font-family: "Montserrat", sans-serif;
+}
+
+.font-serif {
+  font-family: "Lora", serif;
 }
 
 .margin-small-left {

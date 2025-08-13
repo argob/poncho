@@ -126,4 +126,4 @@ xmlns:xlink="http://www.w3.org/1999/xlink">
 </g>
 </g>
 <path d="M43.1241 342L584.98 342.883C586.1 342.883 587 343.61 587 344.507C587 345.397 586.1 346.124 584.98 346.124L43.1241 347C41.4007 347 40 345.886 40 344.507C40 343.121 41.4007 342 43.1241 342.007" fill="black"/>
-<script type="text/ecmascript" xlink:href="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/w3c/ref2.js"></script></svg>
+<script type="text/ecmascript" xlink:href="https://dev.w3.org/SVG/modules/ref/master/ref2.js"></script></svg>

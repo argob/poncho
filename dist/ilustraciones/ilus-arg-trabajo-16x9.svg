@@ -179,4 +179,4 @@ xmlns:xlink="http://www.w3.org/1999/xlink">
 <path d="M458.509 274.375H456.678C455.98 274.375 455.418 273.813 455.418 273.114V271.292C455.418 270.593 455.98 270.031 456.678 270.031H458.509C459.207 270.031 459.769 270.593 459.769 271.292V273.114C459.769 273.813 459.207 274.375 458.509 274.375Z" fill="black"/>
 <path d="M463.56 274.375H461.729C461.031 274.375 460.469 273.813 460.469 273.114V271.292C460.469 270.593 461.031 270.031 461.729 270.031H463.56C464.258 270.031 464.82 270.593 464.82 271.292V273.114C464.82 273.813 464.258 274.375 463.56 274.375Z" fill="black"/>
 <path d="M581.92 325.18H61.7383V351.298H581.92V325.18Z" fill="black"/>
-<script type="text/ecmascript" xlink:href="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/w3c/ref2.js"></script></svg>
+<script type="text/ecmascript" xlink:href="https://dev.w3.org/SVG/modules/ref/master/ref2.js"></script></svg>
