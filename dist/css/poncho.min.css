@@ -15376,13 +15376,14 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
   overflow: hidden;
 }
 .details-landing details {
-  --figure-width: 1.5rem;
+  --figure-width: 1.3rem;
   --figure-text-gap: 10px;
   --figure-color: currentColor;
   --figure-font-size: 1.5em;
   --summary-font-size: 1em;
 }
 .details-landing.details-landing-md > details {
+  --figure-width: 1.5rem;
   --figure-font-size: 1.75em;
   --summary-font-size: 1.15rem;
 }
@@ -15410,8 +15411,8 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
   color: var(--figure-color);
 }
 .details-landing summary > .figure {
-  letter-spacing: 0.5pt;
-  font-weight: 800;
+  letter-spacing: -0.25pt;
+  font-weight: 700;
   font-style: normal;
 }
 
