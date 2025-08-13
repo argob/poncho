@@ -15414,6 +15414,7 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
   letter-spacing: -0.25pt;
   font-weight: 700;
   font-style: normal;
+  line-height: var(--summary-line-height);
 }
 
 /* FORMULARIOS Y SELECT2 */
