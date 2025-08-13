@@ -234,6 +234,7 @@ $colorThemes: (
         border-color: rgb(0 0 0 / 0.25) !important;
     }
 
+
     summary {
         min-height: calc(
             var(--circle-size) +
@@ -505,14 +506,14 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
     &#{&}-md > details {
            --figure-width: 1.5rem;
         --figure-font-size: 1.75em;
-        --summary-font-size: 1.15rem;
+        --summary-font-size: 1.1rem;
     }
 
     &#{&}-lg > details {
         --figure-width: 1.75rem;
         --figure-text-gap: 15px;
         --figure-font-size: 1.9em;
-        --summary-font-size: 1.2rem;
+        --summary-font-size: 1.15rem;
         /* Global componente */
         --summary-padding-t: 15px;
         --summary-padding-b: 15px;
@@ -540,3 +541,4 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
         font-style: normal;
     }
 }
+
