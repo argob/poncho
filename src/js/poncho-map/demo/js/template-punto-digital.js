@@ -93,7 +93,7 @@ const template_punto_digital = (self, row) => {
     let today_text = false;
     if(today){
         today_text = "<dd class=\"text-arandano\" style=\"font-weight:bold; margin-bottom:0\">"
-            + "<i class=\"fa fa-clock-o text-arandano\"></i>&nbsp;"
+            + "<i class=\"fa fa-clock-o text-arandano\"></i> "
             + "Hoy abierto"
             + "</dd>" 
             + "<dd class=\"text-arandano\">" 
@@ -107,9 +107,9 @@ const template_punto_digital = (self, row) => {
         + "</dt>"
         + (today_text ? today_text : '')
         + "<dd>"
-        + "<details style=\"font-size:.93em\" close>"
-        + "<summary class=\"p-b-0 p-t-0\">Horarios de atención</summary>"
-        + "<ul class=\"list-unstyled m-t-1 m-b-0\">"
+        + "<details class=\"js-details ar-details\">"
+        + "<summary class=\"ar-details__title\">Horarios de atención</summary>"
+        + "<ul class=\"ar-details__content list-unstyled small\">"
         + horarios
         + "</ul>"
         + "</details>"

@@ -198,6 +198,16 @@ gulp.task('compress-geojson-provincias', function () {
         .pipe(gulp.dest('./dist/jsons/'));
 });
 
+/**
+ * Copia imágenes al directorio dist/img {encoding: false}
+ */
+gulp.task('copy-images', function () {
+    return gulp.src(
+            './src/js/poncho-map-provinces/src/img/*.*',
+            {encoding: false}
+        )
+        .pipe(gulp.dest('./dist/img/'));
+});
 
 
 gulp.task('default', gulp.series(
@@ -211,5 +221,6 @@ gulp.task('default', gulp.series(
     "sass_poncho-table", 
     "js-showdown-extensions",
     "js-dist-showdown-extensions",
-    "compress-geojson-provincias"
+    "compress-geojson-provincias",
+    "copy-images"
 ))

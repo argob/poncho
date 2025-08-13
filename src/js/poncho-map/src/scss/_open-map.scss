@@ -11,6 +11,13 @@ footer.pm-open-map {
     width: calc(100% - var(--pm-content-padding));
     background: var(--pm-slider-background);
 
+
+    > details {
+            --summary-padding-t: 4px;
+    --summary-padding-b: 4px;
+    }
+    
+
     >details {
         border-color: var(--pm-slider-border-color) transparent transparent !important;
         border-style: solid;
@@ -19,7 +26,7 @@ footer.pm-open-map {
         padding-top: 0;
         padding-bottom: 0;
     }
-
+    > details > summary:before {background-color: transparent;}
     > details>summary:focus,
     > details:focus-within  {
         border-radius: max(calc(var(--pm-slider-radius)/2), calc(var(--pm-slider-radius) - var(--pm-content-padding) - 2px)) !important;
