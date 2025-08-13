@@ -136,6 +136,10 @@
     display: block;
 }
 
+.subtitulo-subasta::before {
+    content: "| ";
+}
+
 /* Imagen y títulos en mobile */
 @media (max-width: 992px) {
     .imagen-mobile {
@@ -145,7 +149,14 @@
     .tit-desktop {
         margin-top: 0;
     }
+
+    .inline-pair.text-muted.small.fw-light.align-responsive,
+    .h3.fw-semibold.home-new.w-100 {
+        display: block;
+        width: 100%;
+    }
 }
+
 
 /* Flecha de acceso */
 
@@ -196,6 +207,14 @@
 
 .d-flex {
     display: flex;
+}
+
+.font-sans-serif {
+    font-family: $font-family-sans-serif;
+}
+
+.font-serif {
+    font-family: $font-family-serif;
 }
 
 .margin-small-left {
