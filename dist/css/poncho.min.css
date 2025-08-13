@@ -15376,9 +15376,19 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
   overflow: hidden;
 }
 .details-landing details {
-  --figure-width: 1.75rem;
+  --figure-width: 1.5rem;
   --figure-text-gap: 10px;
-  --figure-color: inherit;
+  --figure-color: currentColor;
+  --figure-font-size: 1.5em;
+  --summary-font-size: 1em;
+}
+.details-landing.details-landing-md > details {
+  --figure-font-size: 1.75em;
+  --summary-font-size: 1.15rem;
+}
+.details-landing.details-landing-lg > details {
+  --figure-width: 1.75rem;
+  --figure-text-gap: 15px;
   --figure-font-size: 1.9em;
   --summary-font-size: 1.2rem;
   /* Global componente */
@@ -15398,10 +15408,12 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
   background: transparent;
   font-size: var(--figure-font-size);
   color: var(--figure-color);
+  background: cyan;
 }
 .details-landing summary > .figure {
   letter-spacing: 0.5pt;
   font-weight: 800;
+  font-style: normal;
 }
 
 /* FORMULARIOS Y SELECT2 */
