@@ -55,7 +55,6 @@ $containerLeftSummaryPaddingE: 9px; // padding-right summary
 $containerLeftContentPaddingS: 18px; // padding-left content
 $containerLeftContentPaddingE: 18px; // padding-right content
 
-
 /**
  * Definición para los temas de color.
  */
@@ -124,7 +123,6 @@ $colorThemes: (
     )
 );
 
-
 /**
  * Definiciones para el cambio de tamaño del caret
  */
@@ -183,7 +181,6 @@ $colorThemes: (
         }
     }
 }
-
 
 #{$detailsScope} {
     --icon-close: url('data:image/svg+xml;utf8,<svg focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16.59,9.79l-4.59,4.58-4.59-4.58-1.41,1.41,6,6,6-6-1.41-1.41Z"></path></svg>');
@@ -498,18 +495,22 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
         overflow: hidden;
     }
 
-    // details {
-    //     --figure-width: 1.5rem;
-    //     --figure-text-gap: 15px;
-    //     --figure-color: inherit;
-    //     --figure-font-size: 1.75em;
-    //     --summary-font-size: 1.15rem;
-    // }
-
     details {
-        --figure-width: 1.75rem;
+        --figure-width: 1.5rem;
         --figure-text-gap: 10px;
-        --figure-color: inherit;
+        --figure-color: currentColor;
+        --figure-font-size: 1.5em;
+        --summary-font-size: 1em;
+    }
+
+    &#{&}-md > details {
+        --figure-font-size: 1.75em;
+        --summary-font-size: 1.15rem;
+    }
+
+    &#{&}-lg > details {
+        --figure-width: 1.75rem;
+        --figure-text-gap: 15px;
         --figure-font-size: 1.9em;
         --summary-font-size: 1.2rem;
         /* Global componente */
@@ -531,10 +532,12 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
         background: transparent;
         font-size: var(--figure-font-size);
         color: var(--figure-color);
+        background: cyan;
     }
 
     summary > .figure {
         letter-spacing: 0.5pt;
         font-weight: 800;
+        font-style: normal;
     }
 }
