@@ -13108,9 +13108,6 @@ pre {
   --collapse-icon-color: gray;
   --collapse-line-color: gray;
 }
-.page-sidebar * {
-  font-family: "Montserrat", sans-serif !important;
-}
 .page-sidebar .btn-title a {
   font-weight: bold !important;
 }
@@ -13164,8 +13161,13 @@ pre {
 .card {
   width: 100%;
 }
-.card.card-body * {
-  font-family: "Montserrat", sans-serif !important;
+.card :has(.fa) i {
+  font-family: "FontAwesome";
+}
+.card *, .card.card-body * {
+  letter-spacing: -0.15pt;
+  font-size: 18px;
+  font-family: "Montserrat", sans-serif;
 }
 .card.card-body details {
   --summary-padding-s: 20px;
