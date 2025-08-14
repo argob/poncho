@@ -13172,10 +13172,6 @@ pre {
 .card.card-body details {
   border: none;
 }
-.card.card-body summary,
-.card.card-body details ~ * {
-  animation: none !important;
-}
 
 @media only screen and (max-width: 991px) {
   .page-sidebar .nav-pills li.active a.active {
@@ -13259,14 +13255,6 @@ pre {
             border: 1px solid #ccc;
           }
     */
-  }
-  .card.card-body summary::before {
-    right: 1.5em;
-    left: auto;
-    border-bottom-color: var(--primary);
-    border-right-color: var(--primary);
-    width: 10px;
-    height: 10px;
   }
   .card.card-body summary {
     display: block !important;
