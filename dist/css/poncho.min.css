@@ -15252,12 +15252,15 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
   --container-border-style: solid;
   --container-border-width: 1px;
   --container-border-radius: 3px;
+  --container-margin-y: 1em;
   border-radius: var(--container-border-radius);
   overflow: hidden;
   position: relative;
   border-color: var(--container-border-color);
   border-style: var(--container-border-style);
   border-width: var(--container-border-width);
+  margin-bottom: var(--container-margin-y);
+  margin-top: var(--container-margin-y);
 }
 .details-container.caret-fixed > details > summary::before {
   top: var(--summary-padding-t);
@@ -15376,7 +15379,11 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
   background-color: black;
 }
 
-/* LADNDING */
+/** 
+ *  LADNDING
+ *  @summary Estilos para las páginas langing de algunos productos o servicios.
+ *  @see www.argentina.gob.ar/vacaciones.
+ */
 .details-landing br,
 .details-landing p:empty {
   display: none;
