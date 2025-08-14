@@ -1,96 +1,181 @@
+/* CONTENIDO DE LA PAGINA TRAMITAR V1.1 */
 
-/*CONTENIDO DE LA PAGINA TRAMITAR V1.1*/
 .desplegable-tramitar {
-	border: 2px solid #242c4f;
-	border-radius: 8px;
-	a {
-		text-decoration: none;
-	}
-	summary {
-		&::before {
-			right: .5em;
-			left: auto;
-			background-color: transparent;
-		}
-		border-bottom: 2px solid #242c4f;
-	}
-	.list-inline {
-		>li {
-			display: flex;
-			width: 100%;
-			a {
-				width: 100%;
-			}
-		}
-	}
+    /**
+	 *	Modifica las variables para details global.
+     *	@see https://github.com/argob/poncho/blob/master/src/scss/modules/_details.scss
+	 */
+    &.details-container {
+        --container-border-color: var(--arg-azul);
+        --container-border-width: 2px;
+        --container-border-radius: 8px;
+    }
+
+    // Agrego el border bottom al summary cuando está abierto
+    &.details-container > .ar-details[open] > .ar-details__title {
+        border-bottom: 2px solid var(--arg-azul);
+        transition: 0s;
+    }
+
+    // asignación para el ul
+    &__lista > li {
+        margin-bottom: 4px;
+    }
+
+    .items-desplegable-tramitar {
+        --margin: 0.45em;
+
+        display: grid;
+        grid-template-columns: 1.75em 1fr 1.25em;
+        align-items: center;
+        gap: 5px;
+        row-gap: 1px;
+        padding: var(--margin);
+        border-radius: 6px;
+        margin: auto calc(var(--margin) * -1);
+        text-decoration: none;
+        transition: background 0.2s ease-in-out;
+
+        &:hover {
+            text-decoration: none;
+            background-color: var(--arg-primary-50);
+        }
+
+        & > i {
+            width: 100%;
+            text-align: center;
+        }
+
+        &.activo:hover,
+        &.activo {
+            background: var(--arg-azul-50);
+            color: var(--arg-azul-700);
+        }
+
+        &.activo {
+            .icon-select-margin {
+                &::before {
+                    content: "\f046";
+                }
+            }
+        }
+
+        .icon-select-margin {
+            &::before {
+                content: "\f096";
+            }
+        }
+    }
 }
+
+// .desplegable-tramitar {
+// border: 2px solid #242c4f;
+// border-radius: 8px;
+// a {
+// 	text-decoration: none;
+// }
+// summary {
+// 	&::before {
+// 		right: .5em;
+// 		left: auto;
+// 		background-color: transparent;
+// 	}
+// 	border-bottom: 2px solid #242c4f;
+// }
+// .list-inline {
+// 	>li {
+// 		display: flex;
+// 		width: 100%;
+// 		a {
+// 			width: 100%;
+// 		}
+// 	}
+// }
+// }
+/*
 .items-desplegable-tramitar {
-	border-radius: 15px;
-	padding: 5px 0 2px 5px;
-	margin: 8px;
-	display: table;
-	font-weight: 500;
-	.icon-select-margin {
-		margin-left: 0px;
-		&::before {
-			content: "\f096";
-		}
-	}
+    // border-radius: 15px;
+    // padding: 5px 0 2px 5px;
+    // margin: 8px;
+    // display: table;
+    // font-weight: 500;
+    .icon-select-margin {
+        // margin-left: 0px;
+        &::before {
+            content: "\f096";
+        }
+    }
 }
+*/
+
+/* @todo gcaitai Definir si se utiliza */
 .items-desplegable-tramitar-select {
-	border: 3px solid #2E7D33;
-	border-radius: 15px;
-	padding: 5px;
-	margin: 8px;
-	height: auto;
+    border: 3px solid var(--arg-verde);
+    border-radius: 15px;
+    padding: 5px;
+    margin: 8px;
+    height: auto;
 }
+/*
 a.items-desplegable-tramitar {
-	&:hover {
-		background: #e3e7ed;
-	}
+    &:hover {
+        background-color: var(--arg-primary-50);
+    }
 }
+*/
+/*
 .items-desplegable-tramitar.activo {
-	.icon-select-margin {
-		&::before {
-			content: "\f046";
-		}
-	}
+    .icon-select-margin {
+        &::before {
+            content: "\f046";
+        }
+    }
 }
-.listas-destacadas {
-	ul.search-results {
-		li {
-			&::before {
-				display: none;
-			}
-		}
-	}
-}
-.ar-details__content.p-r-1 {
-	padding-left: .5rem;
-	padding-right: .15rem !important;
-}
+*/
+// .ar-details__content.p-r-1 {
+// 	padding-left: .5rem;
+// 	padding-right: .15rem !important;
+// }
+
+/* @todo gcaiati. Revisar si estos estilos se utilizan en otra parte del sitio. */
 .m-t-05 {
-	margin-top: 0.5rem;
+    margin-top: 0.5rem;
 }
+
 .m-r-05 {
-	margin-right: 0.5rem;
+    margin-right: 0.5rem;
 }
+
 .f-rigth {
-	float: right;
+    float: right;
 }
+
 .bdr-l {
-	margin: 20px 0px;
-	float: right;
+    margin: 20px 0px;
+    float: right;
 }
-@media (min-width: 991px) {
-	li.items-desplegable-tramitar {
-		width: 100%;
-	}
+
+// @media (min-width: 991px) {
+// 	li.items-desplegable-tramitar {
+// 		width: 100%;
+// 	}
+// }
+
+/* Listas destacadas */
+.listas-destacadas {
+    ul.search-results {
+        li {
+            &::before {
+                display: none;
+            }
+        }
+    }
 }
+
 @media (max-width: 991px) {
-	.jumbotron_body {
-		img[alt="tramitar"] {
-			width: 60%;
-		}
-	}
+    .jumbotron_body {
+        img[alt="tramitar"] {
+            width: 60%;
+        }
+    }
 }

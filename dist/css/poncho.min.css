@@ -13098,7 +13098,7 @@ pre {
  * visualización en dispositivos móviles.
  */
 .page-sidebar {
-  /* 
+  /** 
    * @TODO revisar los valores de las variables. 
    * No estaban declaradas. 
    */
@@ -13107,6 +13107,9 @@ pre {
   --collapse-box-shadow: 0 0 6px rgb(0 0 0 / .1);
   --collapse-icon-color: gray;
   --collapse-line-color: gray;
+}
+.page-sidebar * {
+  font-family: "Montserrat", sans-serif !important;
 }
 .page-sidebar .btn-title a {
   font-weight: bold !important;
@@ -13158,20 +13161,27 @@ pre {
 }
 
 /* Escritorio */
+.card {
+  width: 100%;
+}
+.card.card-body * {
+  font-family: "Montserrat", sans-serif !important;
+}
+.card.card-body details {
+  --summary-padding-s: 20px;
+  --summary-padding-e: 8px;
+  --summary-padding-t: 8px;
+  --summary-padding-b: 8px;
+  border: none;
+  border-radius: 4px;
+}
 .card.card-body summary {
   display: none;
   animation: none;
 }
-.card.card-body div.details-info {
+.card.card-body .details-info {
   padding: 0;
   border: none;
-}
-.card.card-body details {
-  border: none;
-}
-.card.card-body summary,
-.card.card-body details ~ * {
-  animation: none !important;
 }
 
 @media only screen and (max-width: 991px) {
@@ -13186,82 +13196,17 @@ pre {
   .card {
     margin-bottom: 2rem;
   }
-  .card.card-body summary::before {
-    right: 1.5em;
-    left: auto;
-    border-bottom-color: var(--primary);
-    border-right-color: var(--primary);
-    width: 10px;
-    height: 10px;
-  }
-  .card.card-body summary {
-    border-radius: 4px;
-  }
-  .card.card-body > summary > p > strong {
-    color: black;
-    margin-left: 10px;
-  }
-  .card.card-body .details-info {
-    border: 2px solid #c4c4c4;
-    border-top-color: rgba(196, 196, 196, 0.37);
-    border-top-style: solid;
-    border-top-width: 2px;
-    border-top-color: rgba(196, 196, 196, 0.37);
-    border-top-style: solid;
-    border-top-width: 2px;
-    border-top: 2px solid black;
-  }
   .card.card-body > details {
-    background: var(--collapse-bg);
-    color: var(--collapse-color);
-    border-radius: 4px;
-    margin-bottom: 0px;
-    -webkit-box-shadow: var(--collapse-box-shadow);
-    box-shadow: var(--collapse-box-shadow);
+    border: 1px solid #ccc;
   }
-  .card.card-body > summary {
-    display: -ms-grid;
-    display: grid;
-    -ms-grid-columns: 1fr auto;
-    grid-template-columns: 1fr auto;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    cursor: pointer;
-    list-style-type: none;
-  }
-  .card.card-body > summary,
-  .card.card-body > summary .icon {
-    display: inline-block;
-    width: 24px;
-    height: 24px;
-    -webkit-transition: -webkit-transform 0.26s;
-    transition: -webkit-transform 0.26s;
-    -o-transition: transform 0.26s;
-    transition: transform 0.26s;
-    transition: transform 0.26s, -webkit-transform 0.26s;
-    color: var(--collapse-icon-color);
-  }
-  .card.card-body > details[open] summary .icon {
-    -webkit-transform: rotate(180deg);
-    -ms-transform: rotate(180deg);
-    transform: rotate(180deg);
+  .card.card-body > details > summary {
+    display: flex !important;
   }
   .card.card-body .details-info {
-    padding: 0;
-    border-top: 2px solid var(--collapse-line-color, #666) !important;
+    border-top: 2px solid var(--arg-negro);
   }
   .card.card-body .page-sidebar {
     margin-bottom: 0;
-  }
-  .card.card-body summary {
-    display: block !important;
-  }
-  .card.card-body div.details-info {
-    padding: 0;
-  }
-  .card.card-body details {
-    border: 1px solid #ccc;
   }
   .fa.fa-list.pe-3 {
     color: gray;
@@ -14166,69 +14111,98 @@ footer .nav > li > a:hover {
     margin-top: 0px !important;
   }
 }
-/*CONTENIDO DE LA PAGINA TRAMITAR V1.1*/
+/* CONTENIDO DE LA PAGINA TRAMITAR V1.1 */
 .desplegable-tramitar {
-  border: 2px solid #242c4f;
-  border-radius: 8px;
+  /**
+  *	Modifica las variables para details global.
+     *	@see https://github.com/argob/poncho/blob/master/src/scss/modules/_details.scss
+  */
 }
-.desplegable-tramitar a {
+.desplegable-tramitar.details-container {
+  --container-border-color: var(--arg-azul);
+  --container-border-width: 2px;
+  --container-border-radius: 8px;
+}
+.desplegable-tramitar.details-container > .ar-details[open] > .ar-details__title {
+  border-bottom: 2px solid var(--arg-azul);
+  transition: 0s;
+}
+.desplegable-tramitar__lista > li {
+  margin-bottom: 4px;
+}
+.desplegable-tramitar .items-desplegable-tramitar {
+  --margin: 0.45em;
+  display: grid;
+  grid-template-columns: 1.75em 1fr 1.25em;
+  align-items: center;
+  gap: 5px;
+  row-gap: 1px;
+  padding: var(--margin);
+  border-radius: 6px;
+  margin: auto calc(var(--margin) * -1);
   text-decoration: none;
+  transition: background 0.2s ease-in-out;
 }
-.desplegable-tramitar summary {
-  border-bottom: 2px solid #242c4f;
+.desplegable-tramitar .items-desplegable-tramitar:hover {
+  text-decoration: none;
+  background-color: var(--arg-primary-50);
 }
-.desplegable-tramitar summary::before {
-  right: 0.5em;
-  left: auto;
-  background-color: transparent;
-}
-.desplegable-tramitar .list-inline > li {
-  display: flex;
+.desplegable-tramitar .items-desplegable-tramitar > i {
   width: 100%;
+  text-align: center;
 }
-.desplegable-tramitar .list-inline > li a {
-  width: 100%;
+.desplegable-tramitar .items-desplegable-tramitar.activo:hover, .desplegable-tramitar .items-desplegable-tramitar.activo {
+  background: var(--arg-azul-50);
+  color: var(--arg-azul-700);
 }
-
-.items-desplegable-tramitar {
-  border-radius: 15px;
-  padding: 5px 0 2px 5px;
-  margin: 8px;
-  display: table;
-  font-weight: 500;
+.desplegable-tramitar .items-desplegable-tramitar.activo .icon-select-margin::before {
+  content: "\f046";
 }
-.items-desplegable-tramitar .icon-select-margin {
-  margin-left: 0px;
-}
-.items-desplegable-tramitar .icon-select-margin::before {
+.desplegable-tramitar .items-desplegable-tramitar .icon-select-margin::before {
   content: "\f096";
 }
 
+/*
+.items-desplegable-tramitar {
+    // border-radius: 15px;
+    // padding: 5px 0 2px 5px;
+    // margin: 8px;
+    // display: table;
+    // font-weight: 500;
+    .icon-select-margin {
+        // margin-left: 0px;
+        &::before {
+            content: "\f096";
+        }
+    }
+}
+*/
+/* @todo gcaitai Definir si se utiliza */
 .items-desplegable-tramitar-select {
-  border: 3px solid #2E7D33;
+  border: 3px solid var(--arg-verde);
   border-radius: 15px;
   padding: 5px;
   margin: 8px;
   height: auto;
 }
 
-a.items-desplegable-tramitar:hover {
-  background: #e3e7ed;
+/*
+a.items-desplegable-tramitar {
+    &:hover {
+        background-color: var(--arg-primary-50);
+    }
 }
-
-.items-desplegable-tramitar.activo .icon-select-margin::before {
-  content: "\f046";
+*/
+/*
+.items-desplegable-tramitar.activo {
+    .icon-select-margin {
+        &::before {
+            content: "\f046";
+        }
+    }
 }
-
-.listas-destacadas ul.search-results li::before {
-  display: none;
-}
-
-.ar-details__content.p-r-1 {
-  padding-left: 0.5rem;
-  padding-right: 0.15rem !important;
-}
-
+*/
+/* @todo gcaiati. Revisar si estos estilos se utilizan en otra parte del sitio. */
 .m-t-05 {
   margin-top: 0.5rem;
 }
@@ -14246,11 +14220,11 @@ a.items-desplegable-tramitar:hover {
   float: right;
 }
 
-@media (min-width: 991px) {
-  li.items-desplegable-tramitar {
-    width: 100%;
-  }
+/* Listas destacadas */
+.listas-destacadas ul.search-results li::before {
+  display: none;
 }
+
 @media (max-width: 991px) {
   .jumbotron_body img[alt=tramitar] {
     width: 60%;
@@ -15014,6 +14988,8 @@ details {
   --icon-close: url('data:image/svg+xml;utf8,<svg focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16.59,9.79l-4.59,4.58-4.59-4.58-1.41,1.41,6,6,6-6-1.41-1.41Z"></path></svg>');
   --icon-open: url('data:image/svg+xml;utf8,<svg focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7.41,15.51l4.59-4.58,4.59,4.58,1.41-1.41-6-6-6,6,1.41,1.41Z"></path></svg>');
   --details-border-color: #cccccc;
+  --details-border-style: solid;
+  --details-border-width: 1px;
   --details-padding-x: 0px;
   --details-padding-y: 9px;
   --summary-line-height: 1.35em;
@@ -15033,9 +15009,10 @@ details {
   /* Definitions */
   container-type: inline-size;
   container-name: detailsSize;
-  border-color: var(--details-border-color);
-  border-style: solid;
-  border-width: 0 0 1px 0;
+  border-width: 0;
+  border-bottom-color: var(--details-border-color);
+  border-bottom-style: var(--details-border-style);
+  border-bottom-width: var(--details-border-width);
   /* Creo los caret de color */
   /* Define los atributos del contenedor para el contenido */
   /* Caret small */
@@ -15245,11 +15222,20 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
  * Definición para los contenedores de los details
  */
 .details-container {
+  --container-border-color: #cccccc;
+  --container-border-style: solid;
+  --container-border-width: 1px;
+  --container-border-radius: 3px;
+  --container-margin-t: 0px;
+  --container-margin-b: 1em;
+  border-radius: var(--container-border-radius);
   overflow: hidden;
   position: relative;
-  border: 1px solid #cccccc;
-  margin-bottom: 1em;
-  border-radius: 4px;
+  border-color: var(--container-border-color);
+  border-style: var(--container-border-style);
+  border-width: var(--container-border-width);
+  margin-bottom: var(--container-margin-b);
+  margin-top: var(--container-margin-t);
 }
 .details-container.caret-fixed > details > summary::before {
   top: var(--summary-padding-t);
@@ -15368,7 +15354,11 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
   background-color: black;
 }
 
-/* LADNDING */
+/** 
+ *  LADNDING
+ *  @summary Estilos para las páginas langing de algunos productos o servicios.
+ *  @see www.argentina.gob.ar/vacaciones.
+ */
 .details-landing br,
 .details-landing p:empty {
   display: none;
@@ -15403,17 +15393,18 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
   color: var(--arg-secundario);
 }
 .details-landing summary:has(i.fa-2x) i,
-.details-landing summary > .figure {
+.details-landing summary .figure {
   flex: 0 0 calc(var(--figure-width) * 2 + var(--figure-text-gap));
   text-align: center;
   background: transparent;
   font-size: var(--figure-font-size);
   color: var(--figure-color);
 }
-.details-landing summary > .figure {
+.details-landing summary .figure {
   letter-spacing: -0.25pt;
   font-weight: 700;
   font-style: normal;
+  line-height: var(--summary-line-height);
 }
 
 /* FORMULARIOS Y SELECT2 */
