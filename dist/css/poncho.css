@@ -13189,6 +13189,79 @@ pre {
   .card {
     margin-bottom: 2rem;
   }
+  .card.card-body {
+    /*
+          summary {
+            border-radius: 4px;
+          }
+
+          > summary > p > strong {
+            color: black;
+            margin-left: 10px;
+          }
+
+          .details-info {
+            border: 2px solid #c4c4c4;
+            border-top-color: rgba(196, 196, 196, 0.37);
+            border-top-style: solid;
+            border-top-width: 2px;
+            border-top-color: rgba(196, 196, 196, 0.37);
+            border-top-style: solid;
+            border-top-width: 2px;
+            border-top: 2px solid black;
+          }
+
+          > details {
+            background: var(--collapse-bg);
+            color: var(--collapse-color);
+            border-radius: 4px;
+            margin-bottom: 0px;
+            -webkit-box-shadow: var(--collapse-box-shadow);
+            box-shadow: var(--collapse-box-shadow);
+          }
+
+          > summary {
+            display: -ms-grid;
+            display: grid;
+            -ms-grid-columns: 1fr auto;
+            grid-template-columns: 1fr auto;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            cursor: pointer;
+            list-style-type: none;
+          }
+          > summary,
+          > summary .icon {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            -webkit-transition: -webkit-transform 0.26s;
+            transition: -webkit-transform 0.26s;
+            -o-transition: transform 0.26s;
+            transition: transform 0.26s;
+            transition: transform 0.26s, -webkit-transform 0.26s;
+            color: var(--collapse-icon-color);
+          }
+          > details[open] summary .icon {
+            -webkit-transform: rotate(180deg);
+            -ms-transform: rotate(180deg);
+            transform: rotate(180deg);
+          }
+
+          .details-info {
+            padding: 0;
+            border-top: 2px solid var(--collapse-line-color, #666) !important;
+          }
+                  summary {
+            display: block !important;
+          }
+
+                details {
+            border: 1px solid #ccc;
+          }
+    */
+  }
   .card.card-body summary::before {
     right: 1.5em;
     left: auto;
@@ -13197,74 +13270,11 @@ pre {
     width: 10px;
     height: 10px;
   }
-  .card.card-body summary {
-    border-radius: 4px;
-  }
-  .card.card-body > summary > p > strong {
-    color: black;
-    margin-left: 10px;
-  }
-  .card.card-body .details-info {
-    border: 2px solid #c4c4c4;
-    border-top-color: rgba(196, 196, 196, 0.37);
-    border-top-style: solid;
-    border-top-width: 2px;
-    border-top-color: rgba(196, 196, 196, 0.37);
-    border-top-style: solid;
-    border-top-width: 2px;
-    border-top: 2px solid black;
-  }
-  .card.card-body > details {
-    background: var(--collapse-bg);
-    color: var(--collapse-color);
-    border-radius: 4px;
-    margin-bottom: 0px;
-    -webkit-box-shadow: var(--collapse-box-shadow);
-    box-shadow: var(--collapse-box-shadow);
-  }
-  .card.card-body > summary {
-    display: -ms-grid;
-    display: grid;
-    -ms-grid-columns: 1fr auto;
-    grid-template-columns: 1fr auto;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    cursor: pointer;
-    list-style-type: none;
-  }
-  .card.card-body > summary,
-  .card.card-body > summary .icon {
-    display: inline-block;
-    width: 24px;
-    height: 24px;
-    -webkit-transition: -webkit-transform 0.26s;
-    transition: -webkit-transform 0.26s;
-    -o-transition: transform 0.26s;
-    transition: transform 0.26s;
-    transition: transform 0.26s, -webkit-transform 0.26s;
-    color: var(--collapse-icon-color);
-  }
-  .card.card-body > details[open] summary .icon {
-    -webkit-transform: rotate(180deg);
-    -ms-transform: rotate(180deg);
-    transform: rotate(180deg);
-  }
-  .card.card-body .details-info {
-    padding: 0;
-    border-top: 2px solid var(--collapse-line-color, #666) !important;
-  }
   .card.card-body .page-sidebar {
     margin-bottom: 0;
   }
-  .card.card-body summary {
-    display: block !important;
-  }
   .card.card-body div.details-info {
     padding: 0;
-  }
-  .card.card-body details {
-    border: 1px solid #ccc;
   }
   .fa.fa-list.pe-3 {
     color: gray;
