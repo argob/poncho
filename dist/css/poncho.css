@@ -13253,9 +13253,7 @@ pre {
             padding: 0;
             border-top: 2px solid var(--collapse-line-color, #666) !important;
           }
-                  summary {
-            display: block !important;
-          }
+
 
                 details {
             border: 1px solid #ccc;
@@ -13269,6 +13267,9 @@ pre {
     border-right-color: var(--primary);
     width: 10px;
     height: 10px;
+  }
+  .card.card-body summary {
+    display: block !important;
   }
   .card.card-body .page-sidebar {
     margin-bottom: 0;
