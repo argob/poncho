@@ -15220,15 +15220,16 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
   --container-border-style: solid;
   --container-border-width: 1px;
   --container-border-radius: 3px;
-  --container-margin-y: 1em;
+  --container-margin-t: 0px;
+  --container-margin-b: 1em;
   border-radius: var(--container-border-radius);
   overflow: hidden;
   position: relative;
   border-color: var(--container-border-color);
   border-style: var(--container-border-style);
   border-width: var(--container-border-width);
-  margin-bottom: var(--container-margin-y);
-  margin-top: var(--container-margin-y);
+  margin-bottom: var(--container-margin-b);
+  margin-top: var(--container-margin-t);
 }
 .details-container.caret-fixed > details > summary::before {
   top: var(--summary-padding-t);
