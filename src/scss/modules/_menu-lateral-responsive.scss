@@ -69,7 +69,7 @@
 
 /* Escritorio */
 .card {
-    width: 100%;
+    width: 100%; // reseteo valores impuestos
 
     &.card-body {
         details {
@@ -81,15 +81,10 @@
             animation: none;
         }
 
-        div.details-info {
+        .details-info {
             padding: 0;
             border: none;
         }
-
-        // summary,
-        // details ~ * {
-        //   animation: none !important;
-        // }
     }
 }
 
@@ -112,9 +107,7 @@
         margin-bottom: 2rem;
 
         &.card-body {
-
-
-            >details>summary {
+            > details > summary {
                 display: flex !important;
             }
 
@@ -137,15 +130,7 @@
             //   }
 
             .details-info {
-                border: 1px solid #c4c4c4;
-                // border-top-color: rgba(196, 196, 196, 0.37);
-                // border-top-style: solid;
-                // border-top-width: 2px;
-                // border-top-color: rgba(196, 196, 196, 0.37);
-                // border-top-style: solid;
-                // border-top-width: 2px;
-                border-top: 2px solid black;
-                padding: 0;
+                border-top: 2px solid var(--arg-negro);
             }
 
             //   > details {
@@ -192,9 +177,9 @@
             //   }
 
 
-            //         details {
-            //     border: 1px solid #ccc;
-            //   }
+            details {
+                border: 1px solid #ccc;
+            }
 
             summary {
                 display: block;
@@ -203,9 +188,6 @@
             .page-sidebar {
                 margin-bottom: 0;
             }
-
-
-
         }
     }
 
