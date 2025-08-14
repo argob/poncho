@@ -13158,6 +13158,9 @@ pre {
 }
 
 /* Escritorio */
+.card {
+  width: 100%;
+}
 .card.card-body summary {
   display: none;
   animation: none;
