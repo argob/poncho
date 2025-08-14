@@ -15014,6 +15014,8 @@ details {
   --icon-close: url('data:image/svg+xml;utf8,<svg focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16.59,9.79l-4.59,4.58-4.59-4.58-1.41,1.41,6,6,6-6-1.41-1.41Z"></path></svg>');
   --icon-open: url('data:image/svg+xml;utf8,<svg focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7.41,15.51l4.59-4.58,4.59,4.58,1.41-1.41-6-6-6,6,1.41,1.41Z"></path></svg>');
   --details-border-color: #cccccc;
+  --details-border-style: solid;
+  --details-border-width: 1px;
   --details-padding-x: 0px;
   --details-padding-y: 9px;
   --summary-line-height: 1.35em;
@@ -15033,9 +15035,10 @@ details {
   /* Definitions */
   container-type: inline-size;
   container-name: detailsSize;
-  border-color: var(--details-border-color);
-  border-style: solid;
-  border-width: 0 0 1px 0;
+  border-width: 0;
+  border-bottom-color: var(--details-border-color);
+  border-bottom-style: var(--details-border-style);
+  border-bottom-width: var(--details-border-width);
   /* Creo los caret de color */
   /* Define los atributos del contenedor para el contenido */
   /* Caret small */
@@ -15245,11 +15248,16 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
  * Definición para los contenedores de los details
  */
 .details-container {
+  --container-border-color: #cccccc;
+  --container-border-style: solid;
+  --container-border-width: 1px;
+  --container-border-radius: 3px;
+  border-radius: var(--container-border-radius);
   overflow: hidden;
   position: relative;
-  border: 1px solid #cccccc;
-  margin-bottom: 1em;
-  border-radius: 4px;
+  border-color: var(--container-border-color);
+  border-style: var(--container-border-style);
+  border-width: var(--container-border-width);
 }
 .details-container.caret-fixed > details > summary::before {
   top: var(--summary-padding-t);
@@ -15403,19 +15411,18 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
   color: var(--arg-secundario);
 }
 .details-landing summary:has(i.fa-2x) i,
-.details-landing summary > .figure {
+.details-landing summary .figure {
   flex: 0 0 calc(var(--figure-width) * 2 + var(--figure-text-gap));
   text-align: center;
   background: transparent;
   font-size: var(--figure-font-size);
   color: var(--figure-color);
 }
-.details-landing summary > .figure {
+.details-landing summary .figure {
   letter-spacing: -0.25pt;
   font-weight: 700;
   font-style: normal;
   line-height: var(--summary-line-height);
-  line-height: 1.5;
 }
 
 /* FORMULARIOS Y SELECT2 */
