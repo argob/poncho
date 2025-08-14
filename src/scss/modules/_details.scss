@@ -42,6 +42,7 @@ $caretBackground: var(--arg-negro-100, #e9e9e9);
 $mediaBreakpoint: 768px;
 $containerBreakpoint: 350px;
 $containerBorderRadius: 3px; // Define el border-radius por defecto
+$containerMarginY: 1em;
 
 $contentMarginT: 0.5rem; // margin-top contenido
 $contentMarginB: 1rem; // margin-bottom contenido
@@ -416,6 +417,7 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
     --container-border-style: #{$detailsBorderStyle};
     --container-border-width: #{$detailsBorderWidth};
     --container-border-radius: #{$containerBorderRadius};
+    --container-margin-y: #{$containerMarginY};
 
     border-radius: var(--container-border-radius);
     overflow: hidden;
@@ -424,6 +426,10 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
         color: var(--container-border-color);
         style: var(--container-border-style);
         width: var(--container-border-width);
+    }
+    margin: {
+        bottom: var(--container-margin-y);
+        top: var(--container-margin-y);
     }
 
     &.caret-fixed > details {
@@ -503,15 +509,22 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
     }
 }
 
-/* LADNDING */
+
+/** 
+ *  LADNDING
+ *  @summary Estilos para las páginas langing de algunos productos o servicios.
+ *  @see www.argentina.gob.ar/vacaciones.
+ */
 .details-landing {
+    // Elimino/oculto las etiquetas de párrafo vacías y los br.
     br,
     p:empty {
         display: none;
         height: 0px;
         overflow: hidden;
     }
-
+    // Redefino details
+    // Vista default
     details {
         --figure-width: 1.3rem;
         --figure-text-gap: 10px;
@@ -519,13 +532,13 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
         --figure-font-size: 1.5em;
         --summary-font-size: 1em;
     }
-
+    // Vista media
     &#{&}-md > details {
         --figure-width: 1.5rem;
         --figure-font-size: 1.75em;
         --summary-font-size: 1.15rem;
     }
-
+    // Vista grande
     &#{&}-lg > details {
         --figure-width: 1.75rem;
         --figure-text-gap: 15px;
@@ -536,6 +549,7 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
         --summary-padding-b: 15px;
     }
 
+    // definición para los íconos
     summary:has(i.fa-2x),
     summary:has(.figure) {
         font-size: var(--summary-font-size);
