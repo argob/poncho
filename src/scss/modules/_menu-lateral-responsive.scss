@@ -82,10 +82,10 @@
       border: none;
     }
 
-    summary,
-    details ~ * {
-      animation: none !important;
-    }
+    // summary,
+    // details ~ * {
+    //   animation: none !important;
+    // }
   }
 }
 
@@ -108,14 +108,14 @@
     margin-bottom: 2rem;
     
     &.card-body {
-      summary::before {
-        right: 1.5em;
-        left: auto;
-        border-bottom-color: var(--primary);
-        border-right-color: var(--primary);
-        width: 10px;
-        height: 10px;
-      }
+      // summary::before {
+      //   right: 1.5em;
+      //   left: auto;
+      //   border-bottom-color: var(--primary);
+      //   border-right-color: var(--primary);
+      //   width: 10px;
+      //   height: 10px;
+      // }
 /*
       summary {
         border-radius: 4px;
