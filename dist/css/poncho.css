@@ -13098,7 +13098,7 @@ pre {
  * visualización en dispositivos móviles.
  */
 .page-sidebar {
-  /* 
+  /** 
    * @TODO revisar los valores de las variables. 
    * No estaban declaradas. 
    */
@@ -13107,6 +13107,9 @@ pre {
   --collapse-box-shadow: 0 0 6px rgb(0 0 0 / .1);
   --collapse-icon-color: gray;
   --collapse-line-color: gray;
+}
+.page-sidebar * {
+  font-family: "Montserrat", sans-serif !important;
 }
 .page-sidebar .btn-title a {
   font-weight: bold !important;
@@ -13158,20 +13161,27 @@ pre {
 }
 
 /* Escritorio */
+.card {
+  width: 100%;
+}
+.card.card-body * {
+  font-family: "Montserrat", sans-serif !important;
+}
+.card.card-body details {
+  --summary-padding-s: 20px;
+  --summary-padding-e: 8px;
+  --summary-padding-t: 8px;
+  --summary-padding-b: 8px;
+  border: none;
+  border-radius: 4px;
+}
 .card.card-body summary {
   display: none;
   animation: none;
 }
-.card.card-body div.details-info {
+.card.card-body .details-info {
   padding: 0;
   border: none;
-}
-.card.card-body details {
-  border: none;
-}
-.card.card-body summary,
-.card.card-body details ~ * {
-  animation: none !important;
 }
 
 @media only screen and (max-width: 991px) {
@@ -13186,82 +13196,17 @@ pre {
   .card {
     margin-bottom: 2rem;
   }
-  .card.card-body summary::before {
-    right: 1.5em;
-    left: auto;
-    border-bottom-color: var(--primary);
-    border-right-color: var(--primary);
-    width: 10px;
-    height: 10px;
-  }
-  .card.card-body summary {
-    border-radius: 4px;
-  }
-  .card.card-body > summary > p > strong {
-    color: black;
-    margin-left: 10px;
-  }
-  .card.card-body .details-info {
-    border: 2px solid #c4c4c4;
-    border-top-color: rgba(196, 196, 196, 0.37);
-    border-top-style: solid;
-    border-top-width: 2px;
-    border-top-color: rgba(196, 196, 196, 0.37);
-    border-top-style: solid;
-    border-top-width: 2px;
-    border-top: 2px solid black;
-  }
   .card.card-body > details {
-    background: var(--collapse-bg);
-    color: var(--collapse-color);
-    border-radius: 4px;
-    margin-bottom: 0px;
-    -webkit-box-shadow: var(--collapse-box-shadow);
-    box-shadow: var(--collapse-box-shadow);
+    border: 1px solid #ccc;
   }
-  .card.card-body > summary {
-    display: -ms-grid;
-    display: grid;
-    -ms-grid-columns: 1fr auto;
-    grid-template-columns: 1fr auto;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    cursor: pointer;
-    list-style-type: none;
-  }
-  .card.card-body > summary,
-  .card.card-body > summary .icon {
-    display: inline-block;
-    width: 24px;
-    height: 24px;
-    -webkit-transition: -webkit-transform 0.26s;
-    transition: -webkit-transform 0.26s;
-    -o-transition: transform 0.26s;
-    transition: transform 0.26s;
-    transition: transform 0.26s, -webkit-transform 0.26s;
-    color: var(--collapse-icon-color);
-  }
-  .card.card-body > details[open] summary .icon {
-    -webkit-transform: rotate(180deg);
-    -ms-transform: rotate(180deg);
-    transform: rotate(180deg);
+  .card.card-body > details > summary {
+    display: flex !important;
   }
   .card.card-body .details-info {
-    padding: 0;
-    border-top: 2px solid var(--collapse-line-color, #666) !important;
+    border-top: 2px solid var(--arg-negro);
   }
   .card.card-body .page-sidebar {
     margin-bottom: 0;
-  }
-  .card.card-body summary {
-    display: block !important;
-  }
-  .card.card-body div.details-info {
-    padding: 0;
-  }
-  .card.card-body details {
-    border: 1px solid #ccc;
   }
   .fa.fa-list.pe-3 {
     color: gray;
@@ -15281,15 +15226,16 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
   --container-border-style: solid;
   --container-border-width: 1px;
   --container-border-radius: 3px;
-  --container-margin-y: 1em;
+  --container-margin-t: 0px;
+  --container-margin-b: 1em;
   border-radius: var(--container-border-radius);
   overflow: hidden;
   position: relative;
   border-color: var(--container-border-color);
   border-style: var(--container-border-style);
   border-width: var(--container-border-width);
-  margin-bottom: var(--container-margin-y);
-  margin-top: var(--container-margin-y);
+  margin-bottom: var(--container-margin-b);
+  margin-top: var(--container-margin-t);
 }
 .details-container.caret-fixed > details > summary::before {
   top: var(--summary-padding-t);
