@@ -15,10 +15,6 @@
     --collapse-line-color: gray;
 
 
-    & * {
-        font-family:'Montserrat',sans-serif !important;
-    }
-
     .btn-title a {
         font-weight: bold !important;
     }
@@ -76,12 +72,16 @@
 /* Escritorio */
 .card {
     width: 100%; // reseteo valores impuestos
+    :has(.fa) i {
+        font-family: 'FontAwesome';
+    }
+    * , 
+    &.card-body * {
+        @include family-sans-serif-attributes;
+    }
 
     &.card-body {
-        * {
-            font-family:'Montserrat',sans-serif !important;
-        }
-        
+
         details {
             // Redefinimos valores del componente details.
             // @see https://github.com/argob/poncho/blob/master/src/scss/modules/_details.scss
