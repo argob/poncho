@@ -13108,8 +13108,8 @@ pre {
   --collapse-icon-color: gray;
   --collapse-line-color: gray;
 }
-.page-sidebar a {
-  font-family: "Montserrat", sans-serif;
+.page-sidebar * {
+  font-family: "Montserrat", sans-serif !important;
 }
 .page-sidebar .btn-title a {
   font-weight: bold !important;
