@@ -13168,7 +13168,7 @@ pre {
   display: none;
   animation: none;
 }
-.card.card-body div.details-info {
+.card.card-body .details-info {
   padding: 0;
   border: none;
 }
@@ -13189,9 +13189,10 @@ pre {
     display: flex !important;
   }
   .card.card-body .details-info {
-    border: 1px solid #c4c4c4;
-    border-top: 2px solid black;
-    padding: 0;
+    border-top: 2px solid var(--arg-negro);
+  }
+  .card.card-body details {
+    border: 1px solid #ccc;
   }
   .card.card-body summary {
     display: block;
