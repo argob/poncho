@@ -13164,6 +13164,9 @@ pre {
 .card {
   width: 100%;
 }
+.card.card-body * {
+  font-family: "Montserrat", sans-serif !important;
+}
 .card.card-body details {
   --summary-padding-s: 20px;
   --summary-padding-e: 8px;
