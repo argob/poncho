@@ -4,10 +4,10 @@
  * visualización en dispositivos móviles.
  */
 .page-sidebar {
-    /* 
-   * @TODO revisar los valores de las variables. 
-   * No estaban declaradas. 
-   */
+    /** 
+     * @TODO revisar los valores de las variables. 
+     * No estaban declaradas. 
+     */
     --collapse-bg: gray;
     --collapse-color: gray;
     --collapse-box-shadow: 0 0 6px rgb(0 0 0 / .1);
@@ -63,9 +63,10 @@
                 margin-left: #{$start + $i * $increment}px;
             }
         }
-
     }
 }
+
+
 
 /* Escritorio */
 .card {
@@ -73,7 +74,18 @@
 
     &.card-body {
         details {
+            // Redefinimos valores del componente details.
+            // @see https://github.com/argob/poncho/blob/master/src/scss/modules/_details.scss
+            --summary-padding-s: 16px;
+            --summary-padding-e: 8px;
+            --summary-padding-t: 8px;
+            --summary-padding-b: 8px;
+
+            // --caret-background:transparent;
+            // --circle-size:36px;
+
             border: none;
+            border-radius: 4px;
         }
 
         summary {
@@ -87,6 +99,7 @@
         }
     }
 }
+
 
 @media only screen and (max-width: 991px) {
     .page-sidebar {
@@ -107,82 +120,16 @@
         margin-bottom: 2rem;
 
         &.card-body {
-            > details > summary {
-                display: flex !important;
+            >details {
+                border: 1px solid #ccc;
+
+                >summary {
+                    display: flex !important;
+                }
             }
-
-            // summary::before {
-            //   right: 1.5em;
-            //   left: auto;
-            //   border-bottom-color: var(--primary);
-            //   border-right-color: var(--primary);
-            //   width: 10px;
-            //   height: 10px;
-            // }
-
-            //   summary {
-            //     border-radius: 4px;
-            //   }
-
-            //   > summary > p > strong {
-            //     color: black;
-            //     margin-left: 10px;
-            //   }
 
             .details-info {
                 border-top: 2px solid var(--arg-negro);
-            }
-
-            //   > details {
-            //     background: var(--collapse-bg);
-            //     color: var(--collapse-color);
-            //     border-radius: 4px;
-            //     margin-bottom: 0px;
-            //     -webkit-box-shadow: var(--collapse-box-shadow);
-            //     box-shadow: var(--collapse-box-shadow);
-            //   }
-
-            //   > summary {
-            //     display: -ms-grid;
-            //     display: grid;
-            //     -ms-grid-columns: 1fr auto;
-            //     grid-template-columns: 1fr auto;
-            //     -webkit-box-align: center;
-            //     -ms-flex-align: center;
-            //     align-items: center;
-            //     cursor: pointer;
-            //     list-style-type: none;
-            //   }
-            //   > summary,
-            //   > summary .icon {
-            //     display: inline-block;
-            //     width: 24px;
-            //     height: 24px;
-            //     -webkit-transition: -webkit-transform 0.26s;
-            //     transition: -webkit-transform 0.26s;
-            //     -o-transition: transform 0.26s;
-            //     transition: transform 0.26s;
-            //     transition: transform 0.26s, -webkit-transform 0.26s;
-            //     color: var(--collapse-icon-color);
-            //   }
-            //   > details[open] summary .icon {
-            //     -webkit-transform: rotate(180deg);
-            //     -ms-transform: rotate(180deg);
-            //     transform: rotate(180deg);
-            //   }
-
-            //   .details-info {
-            //     padding: 0;
-            //     border-top: 2px solid var(--collapse-line-color, #666) !important;
-            //   }
-
-
-            details {
-                border: 1px solid #ccc;
-            }
-
-            summary {
-                display: block;
             }
 
             .page-sidebar {
