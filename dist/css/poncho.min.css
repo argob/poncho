@@ -13098,10 +13098,10 @@ pre {
  * visualización en dispositivos móviles.
  */
 .page-sidebar {
-  /* 
-  * @TODO revisar los valores de las variables. 
-  * No estaban declaradas. 
-  */
+  /** 
+   * @TODO revisar los valores de las variables. 
+   * No estaban declaradas. 
+   */
   --collapse-bg: gray;
   --collapse-color: gray;
   --collapse-box-shadow: 0 0 6px rgb(0 0 0 / .1);
@@ -13162,7 +13162,12 @@ pre {
   width: 100%;
 }
 .card.card-body details {
+  --summary-padding-s: 16px;
+  --summary-padding-e: 8px;
+  --summary-padding-t: 8px;
+  --summary-padding-b: 8px;
   border: none;
+  border-radius: 4px;
 }
 .card.card-body summary {
   display: none;
@@ -13185,17 +13190,14 @@ pre {
   .card {
     margin-bottom: 2rem;
   }
+  .card.card-body > details {
+    border: 1px solid #ccc;
+  }
   .card.card-body > details > summary {
     display: flex !important;
   }
   .card.card-body .details-info {
     border-top: 2px solid var(--arg-negro);
-  }
-  .card.card-body details {
-    border: 1px solid #ccc;
-  }
-  .card.card-body summary {
-    display: block;
   }
   .card.card-body .page-sidebar {
     margin-bottom: 0;
