@@ -78,6 +78,10 @@
     width: 100%; // reseteo valores impuestos
 
     &.card-body {
+        * {
+            font-family:'Montserrat',sans-serif !important;
+        }
+        
         details {
             // Redefinimos valores del componente details.
             // @see https://github.com/argob/poncho/blob/master/src/scss/modules/_details.scss
