@@ -14,11 +14,6 @@
     --collapse-icon-color: gray;
     --collapse-line-color: gray;
 
-
-    & a {
-        font-family:'Montserrat',sans-serif;
-    }
-
     .btn-title a {
         font-weight: bold !important;
     }
@@ -76,6 +71,13 @@
 /* Escritorio */
 .card {
     width: 100%; // reseteo valores impuestos
+    :has(.fa) i {
+        font-family: 'FontAwesome';
+    }
+    * , 
+    &.card-body * {
+        @include family-sans-serif-attributes;
+    }
 
     &.card-body {
         details {
