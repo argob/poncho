@@ -13108,6 +13108,9 @@ pre {
   --collapse-icon-color: gray;
   --collapse-line-color: gray;
 }
+.page-sidebar * {
+  font-family: Lora, serif;
+}
 .page-sidebar .btn-title a {
   font-weight: bold !important;
 }
