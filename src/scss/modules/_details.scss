@@ -42,7 +42,8 @@ $caretBackground: var(--arg-negro-100, #e9e9e9);
 $mediaBreakpoint: 768px;
 $containerBreakpoint: 350px;
 $containerBorderRadius: 3px; // Define el border-radius por defecto
-$containerMarginY: 1em;
+$containerMarginT: 0px;
+$containerMarginB: 1em;
 
 $contentMarginT: 0.5rem; // margin-top contenido
 $contentMarginB: 1rem; // margin-bottom contenido
@@ -417,7 +418,8 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
     --container-border-style: #{$detailsBorderStyle};
     --container-border-width: #{$detailsBorderWidth};
     --container-border-radius: #{$containerBorderRadius};
-    --container-margin-y: #{$containerMarginY};
+    --container-margin-t: #{$containerMarginT};
+    --container-margin-b: #{$containerMarginB};
 
     border-radius: var(--container-border-radius);
     overflow: hidden;
@@ -428,8 +430,8 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
         width: var(--container-border-width);
     }
     margin: {
-        bottom: var(--container-margin-y);
-        top: var(--container-margin-y);
+        bottom: var(--container-margin-b);
+        top: var(--container-margin-t);
     }
 
     &.caret-fixed > details {
