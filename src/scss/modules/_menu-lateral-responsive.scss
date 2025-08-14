@@ -116,7 +116,7 @@
         width: 10px;
         height: 10px;
       }
-
+/*
       summary {
         border-radius: 4px;
       }
@@ -179,21 +179,24 @@
         padding: 0;
         border-top: 2px solid var(--collapse-line-color, #666) !important;
       }
+              summary {
+        display: block !important;
+      }
 
+            details {
+        border: 1px solid #ccc;
+      }
+*/
       .page-sidebar {
         margin-bottom: 0;
       }
 
-      summary {
-        display: block !important;
-      }
+
 
       div.details-info {
         padding: 0;
       }
-      details {
-        border: 1px solid #ccc;
-      }
+
     }
   }
 
