@@ -15,8 +15,8 @@
     --collapse-line-color: gray;
 
 
-    & a {
-        font-family:'Montserrat',sans-serif;
+    & * {
+        font-family:'Montserrat',sans-serif !important;
     }
 
     .btn-title a {
