@@ -1,6 +1,7 @@
 /* Main
    ======================================================================== */
-   main {
+main {
+
 	a[href^="http://"][target^="_blank"]:after,
 	a[href^="https://"][target^="_blank"]:after,
 	footer[href^="http://"][target^="_blank"]:after,
@@ -47,9 +48,7 @@
 		max-width: none;
 	}
 
-	> div > div > div > section {
+	>div>div>div>section {
 		padding-top: 20px;
 	}
 }
-
-

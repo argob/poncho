@@ -40,7 +40,6 @@
 }
 
 .jumbotron_bar {
-
 	.breadcrumb {
 
 		&>li+li:before,
@@ -49,19 +48,6 @@
 		}
 	}
 }
-
-/* Breadcrumb */
-/* Se pasó  device*/
-// button.device-breadcrumb__compress-button {
-// 	padding: 0.25em 0;
-// 	background: transparent;
-// 	border: none;
-// 	font-size: 11px;
-// }
-
-// .device-breadcrumb__expand-button::after {
-// 	font-size: 14px;
-// }
 
 ol.breadcrumb {
 	li {

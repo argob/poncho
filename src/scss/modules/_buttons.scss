@@ -1,97 +1,95 @@
 .btn-primary {
-  background-color: $brand-primary;
+    background-color: $brand-primary;
 
-  &:hover,
-  &:focus,
-  &:active,
-  &.focus,
-  &.active {
-    background-color: darken($brand-primary, 10);
-  }
+    &:hover,
+    &:focus,
+    &:active,
+    &.focus,
+    &.active {
+        background-color: darken($brand-primary, 10);
+    }
 }
 
 .btn-success {
-  background-color: $brand-success;
+    background-color: $brand-success;
 
-  &:hover,
-  &:focus,
-  &:active {
-    background-color: darken($brand-success, 10);
-  }
+    &:hover,
+    &:focus,
+    &:active {
+        background-color: darken($brand-success, 10);
+    }
 }
 
 .btn-info {
-  background-color: $brand-primary;
+    background-color: $brand-primary;
 
-  &:hover,
-  &:focus,
-  &:active {
-    background-color: darken($brand-primary, 10);
-  }
+    &:hover,
+    &:focus,
+    &:active {
+        background-color: darken($brand-primary, 10);
+    }
 }
 
 .btn-warning {
-  background-color: $brand-warning;
+    background-color: $brand-warning;
 
-  &:hover,
-  &:focus,
-  &:active {
-    background-color: darken($brand-danger, 10);
-  }
+    &:hover,
+    &:focus,
+    &:active {
+        background-color: darken($brand-danger, 10);
+    }
 }
 
 .btn-danger {
-  /* background-color: $brand-danger;*/
-
-  &:hover,
-  &:focus,
-  &:active {
-    background-color: darken($brand-danger, 10);
-  }
+    &:hover,
+    &:focus,
+    &:active {
+        background-color: darken($brand-danger, 10);
+    }
 }
 
 .btn-link {
-  color: $brand-primary;
-  background-color: $white;
-  border: 3px solid $gray-light !important;
-
-  &:hover,
-  &:focus,
-  &:active {
-    text-decoration: none;
-    background-color: darken($white, 5) !important;
     color: $brand-primary;
-  }
+    background-color: $white;
+    border: 3px solid $gray-light !important;
+
+    &:hover,
+    &:focus,
+    &:active {
+        text-decoration: none;
+        background-color: darken($white, 5) !important;
+        color: $brand-primary;
+    }
 }
 
 .navbar-default .navbar-nav>.open>.dropdown-toggle {
-  &.btn-primary {
-    background-color: $brand-primary;
-  }
+    &.btn-primary {
+        background-color: $brand-primary;
+    }
 
-  &.btn-success {
-    background-color: $brand-success;
-  }
+    &.btn-success {
+        background-color: $brand-success;
+    }
 }
 
 .btn-inverse {
-  background-color: $gray-hover;
-  color: $gray;
+    background-color: $gray-hover;
+    color: $gray;
 
-  &:hover,
-  &:focus,
-  &:active,
-  &.active {
-    background-color: $gray-light;
-    color: $black;
-  }
+    &:hover,
+    &:focus,
+    &:active,
+    &.active {
+        background-color: $gray-light;
+        color: $black;
+    }
 }
 
 .open>.dropdown-toggle {
-  &.btn-inverse {
-    background-color: $white;
-    color: $brand-primary;
-  }
+    &.btn-inverse {
+        background-color: $white;
+        color: $brand-primary;
+    }
 }
 
 .btn-default.disabled,
@@ -112,183 +110,183 @@ fieldset[disabled] .btn-default:focus,
 fieldset[disabled] .btn-default.focus,
 fieldset[disabled] .btn-default:active,
 fieldset[disabled] .btn-default.active {
-  background-color: $gray-light;
+    background-color: $gray-light;
 }
 
 .btn-default {
-  border-radius: 30px;
-  color: $brand-primary;
-  background-color: $white;
-  border: 3px solid $gray-light !important;
-
-  &:hover,
-  &:focus,
-  &.active,
-  &:active {
-    text-decoration: none;
-    background-color: darken($white, 5);
+    border-radius: 30px;
     color: $brand-primary;
-  }
+    background-color: $white;
+    border: 3px solid $gray-light !important;
+
+    &:hover,
+    &:focus,
+    &.active,
+    &:active {
+        text-decoration: none;
+        background-color: darken($white, 5);
+        color: $brand-primary;
+    }
 }
 
 
 .btn {
-  border: 3px solid transparent;
-  font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 10px;
-  padding: 8px 20px;
-  text-transform: inherit;
-  vertical-align: top;
-  white-space: normal;
-  word-break: initial;
-  text-decoration: none;
-  letter-spacing: inherit;
-  border-radius: 30px;
-  line-height: 1.42857143;
-
-  &:hover {
     border: 3px solid transparent;
-  }
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    padding: 8px 20px;
+    text-transform: inherit;
+    vertical-align: top;
+    white-space: normal;
+    word-break: initial;
+    text-decoration: none;
+    letter-spacing: inherit;
+    border-radius: 30px;
+    line-height: 1.42857143;
 
-  &:focus {
-    border: 3px solid #FEC221 !important;
-    outline: none;
-    border-radius: 30px !important
-  }
-
-  &.btn-lg {
-    font-size: 20px;
-    padding: 20px 40px;
-  }
-
-  &.btn-sm {
-    font-size: 12px;
-    padding: 2px 10px;
-  }
-
-  &.btn-xs {
-    font-size: 12px;
-    padding: 1px 5px;
-  }
-
-  .fa {
-    font-size: 1.2em;
-
-    &.fa-2x {
-      font-size: 2em;
+    &:hover {
+        border: 3px solid transparent;
     }
 
-    &.fa-3x {
-      font-size: 3em;
+    &:focus {
+        border: 3px solid #{$brand-arg-maiz} !important;
+        outline: none;
+        border-radius: 30px !important
     }
 
-    &.fa-4x {
-      font-size: 4em;
+    &.btn-lg {
+        font-size: 20px;
+        padding: 20px 40px;
     }
 
-    &.fa-5x {
-      font-size: 5em;
+    &.btn-sm {
+        font-size: 12px;
+        padding: 2px 10px;
     }
-  }
+
+    &.btn-xs {
+        font-size: 12px;
+        padding: 1px 5px;
+    }
+
+    .fa {
+        font-size: 1.2em;
+
+        &.fa-2x {
+            font-size: 2em;
+        }
+
+        &.fa-3x {
+            font-size: 3em;
+        }
+
+        &.fa-4x {
+            font-size: 4em;
+        }
+
+        &.fa-5x {
+            font-size: 5em;
+        }
+    }
 }
 
 .input-group-btn {
-  .btn {
-    margin-top: 0;
-  }
+    .btn {
+        margin-top: 0;
+    }
 }
 
 .btn-xl {
-  font-size: 24px;
-  line-height: 32px;
-  margin-top: 32px;
-  padding: 24px 96px;
+    font-size: 24px;
+    line-height: 32px;
+    margin-top: 32px;
+    padding: 24px 96px;
 }
 
 .social-btn {
-  a {
-    color: $brand-primary;
-  }
+    a {
+        color: $brand-primary;
+    }
 }
 
 .form-tramite {
-  .btn {
-    height: 49px;
-  }
+    .btn {
+        height: 49px;
+    }
 }
 
 span {
-  &.btn {
-    &:hover {
-      cursor: default;
+    &.btn {
+        &:hover {
+            cursor: default;
+        }
     }
-  }
 }
 
 
 .btn-group {
-  .btn-default {
-    background-color: $white;
-    color: $brand-primary;
-    border-right: 1px solid $gray-light;
+    .btn-default {
+        background-color: $white;
+        color: $brand-primary;
+        border-right: 1px solid $gray-light;
 
-    &:last-of-type {
-      border: none;
+        &:last-of-type {
+            border: none;
+        }
+
+        &:hover {
+            background-color: darken($white, 5);
+        }
+
+        &.active,
+        &:active {
+            border-color: $brand-primary !important;
+            color: $brand-primary !important;
+            box-shadow: none;
+            cursor: default;
+        }
     }
 
-    &:hover {
-      background-color: darken($white, 5);
-    }
+    &.btn-group-vertical {
+        .btn {
+            border: none;
+            border-radius: 10px !important;
+        }
 
-    &.active,
-    &:active {
-      border-color: $brand-primary !important;
-      color: $brand-primary !important;
-      box-shadow: none;
-      cursor: default;
-    }
-  }
+        &.btn-group-justified {
+            display: block;
 
-  &.btn-group-vertical {
-    .btn {
-      border: none;
-      border-radius: 10px !important;
+            .btn {
+                display: block;
+                width: 100%;
+            }
+        }
     }
-
-    &.btn-group-justified {
-      display: block;
-
-      .btn {
-        display: block;
-        width: 100%;
-      }
-    }
-  }
 }
 
 .btn-mi-argentina {
-  color: $brand-primary;
-  background-color: $white;
-  text-decoration: none;
+    color: $brand-primary;
+    background-color: $white;
+    text-decoration: none;
 }
 
 .btn-tag {
-  font-size: 13px;
-  text-transform: uppercase;
-  padding: 6px 10px;
-  border: 2px solid #ddd !important;
+    font-size: 13px;
+    text-transform: uppercase;
+    padding: 6px 10px;
+    border: 2px solid #ddd !important;
 }
 
 @media (max-width: 767px) {
-  .btn {
-    font-weight: 600 !important
-  }
+    .btn {
+        font-weight: 600 !important
+    }
 }
 
 
 .btn-danger {
-  background: none;
-  border-color: #c62828;
-  color: #c62828;
+    background: none;
+    border-color: $brand-danger;
+    color: $brand-danger;
 }
