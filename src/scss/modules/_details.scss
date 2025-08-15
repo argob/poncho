@@ -1,4 +1,3 @@
-
 /**
  * DETAILS & SUMMARY
  *
@@ -517,6 +516,18 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
  *  @summary Estilos para las páginas langing de algunos productos o servicios.
  *  @see www.argentina.gob.ar/vacaciones.
  */
+
+/** 
+ *  Configuración de variables por defecto
+ */
+@mixin landingDefault() {
+    --figure-width: 1.15rem;
+    --figure-text-gap: 10px;
+    --figure-color: inherit;
+    --figure-font-size: 1.5em;
+    --summary-font-size: 1em;
+}
+
 .details-landing {
     // Elimino/oculto las etiquetas de párrafo vacías y los br.
     br,
@@ -528,11 +539,7 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
     // Redefino details
     // Vista default
     details {
-        --figure-width: 1.3rem;
-        --figure-text-gap: 10px;
-        --figure-color: inherit;
-        --figure-font-size: 1.5em;
-        --summary-font-size: 1em;
+        @include landingDefault();
     }
     // Vista media
     &#{&}-md > details {
@@ -573,5 +580,17 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
         font-weight: 700;
         font-style: normal;
         line-height: var(--summary-line-height);
+    }
+}
+
+@media (max-width: 768px) {
+    .details-landing {
+        &#{&}-md > details,
+        &#{&}-lg > details {
+            @include landingDefault();
+            /* Global componente */
+            --summary-padding-t: #{$summaryPaddingT};
+            --summary-padding-b: #{$summaryPaddingB};
+        }
     }
 }
