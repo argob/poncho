@@ -77,6 +77,7 @@
 }
 
 /* @todo gcaiati. Revisar si estos estilos se utilizan en otra parte del sitio. */
+// @todo ¿m-t-* no deberían estan en _utilities.scss con la incorporación de los otros márgenes y paddings?
 .m-t-05 {
     margin-top: 0.5rem;
 }
@@ -85,17 +86,17 @@
     margin-right: 0.5rem;
 }
 
+// f-rigth (mal escrito). Define un float. ¿Usamos algo así?
 .f-rigth {
     float: right;
 }
-
+// ¿bdr-l?
 .bdr-l {
     margin: 20px 0px;
     float: right;
 }
 
-
-/* Listas destacadas */
+/* @todo gcaiati. No entiendo qué es lo que hace */
 .listas-destacadas {
     ul.search-results {
         li {
