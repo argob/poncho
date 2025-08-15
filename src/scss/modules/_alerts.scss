@@ -1,122 +1,107 @@
 .alert {
-  border-width: 2px;
-  font-weight: 500;
+    border-width: 2px;
+    font-weight: 500;
 
-  .btn i {
-    color: $white
-  }
+    .btn i {
+        color: $white
+    }
 }
 
 .alert-warning,
 .alert-success,
 .alert-info,
 .alert-danger {
-  color: $gray-dark;
+    color: $gray-dark;
 }
 
 .alert-warning {
-  background: lighten($brand-warning, 32%);
-  border-color: $brand-warning;
+    background: lighten($brand-warning, 32%);
+    border-color: $brand-warning;
 
-  i {
-    color: $brand-warning;
-  }
+    i {
+        color: $brand-warning;
+    }
 }
 
 .alert-success {
-  background: lighten($brand-success, 63%);
-  border-color: $brand-success;
+    background: lighten($brand-success, 63%);
+    border-color: $brand-success;
 
-  i {
-    color: $brand-success;
-  }
+    i {
+        color: $brand-success;
+    }
 
 }
 
 .alert-info {
-  background: lighten($brand-info, 51%);
-  border-color: $brand-info;
+    background: lighten($brand-info, 51%);
+    border-color: $brand-info;
 
-  i {
-    color: $brand-info;
-  }
+    i {
+        color: $brand-info;
+    }
 }
 
 .alert-danger {
-  background: lighten($brand-danger, 51%);
-  border-color: $brand-danger;
+    background: lighten($brand-danger, 51%);
+    border-color: $brand-danger;
 
-  i {
-    color: $brand-danger;
-  }
+    i {
+        color: $brand-danger;
+    }
 }
 
 a.alert {
-  &:hover {
-    text-decoration: none;
-    color: $black;
-  }
-
-  &.alert-warning {
     &:hover {
-      background: lighten($brand-warning, 42%);
+        text-decoration: none;
+        color: $black;
     }
 
-    i {
-      color: $brand-warning;
-    }
-  }
+    &.alert-warning {
+        &:hover {
+            background: lighten($brand-warning, 42%);
+        }
 
-  &.alert-success {
-    &:hover {
-      background: lighten($brand-success, 63%);
-    }
-
-    i {
-      color: $brand-success;
-    }
-  }
-
-  &.alert-info {
-    &:hover {
-      background: lighten($brand-primary, 61%);
+        i {
+            color: $brand-warning;
+        }
     }
 
-    i {
-      color: $brand-info;
-    }
-  }
+    &.alert-success {
+        &:hover {
+            background: lighten($brand-success, 63%);
+        }
 
-  &.alert-danger {
-    &:hover {
-      background: lighten($brand-danger, 51%);
+        i {
+            color: $brand-success;
+        }
     }
 
-    i {
-      color: $brand-danger;
+    &.alert-info {
+        &:hover {
+            background: lighten($brand-primary, 61%);
+        }
+
+        i {
+            color: $brand-info;
+        }
     }
-  }
+
+    &.alert-danger {
+        &:hover {
+            background: lighten($brand-danger, 51%);
+        }
+
+        i {
+            color: $brand-danger;
+        }
+    }
 }
 
 
 .alert h2 {
-  font-size: 1.3em !important;
-  margin-top: 0px !important;
-  margin-bottom: 8px !important;
-  font-weight: 700 !important;
+    font-size: 1.3em !important;
+    margin-top: 0px !important;
+    margin-bottom: 8px !important;
+    font-weight: 700 !important;
 }
-
-
-/*
-@media (max-width: 544px) {
-  .alert .fa.fa-fw {
-    width: 1em;
-  }
-}
-
-@media (max-width: 330px) {
-  .alert .fa.fa-fw {
-    width: 0.7em;
-  }
-}
-  */
