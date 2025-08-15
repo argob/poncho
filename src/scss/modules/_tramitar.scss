@@ -23,16 +23,15 @@
     }
 
     .items-desplegable-tramitar {
-        --margin: 0.45em;
+        $margin: 0.45em;
 
         display: grid;
         grid-template-columns: 1.75em 1fr 1.25em;
         align-items: center;
         gap: 5px;
-        row-gap: 1px;
-        padding: var(--margin);
+        padding: #{$margin};
         border-radius: 6px;
-        margin: auto calc(var(--margin) * -1);
+        margin: auto calc(#{$margin} * -1);
         text-decoration: none;
         transition: background 0.2s ease-in-out;
 
@@ -76,7 +75,6 @@
     margin: 8px;
     height: auto;
 }
-/*
 
 /* @todo gcaiati. Revisar si estos estilos se utilizan en otra parte del sitio. */
 .m-t-05 {
