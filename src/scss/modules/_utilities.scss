@@ -1,4 +1,27 @@
 /**
+ * Generador de variables tipográficas 
+ * ([nombre], [valor]) 
+ */
+$configTypeWeights: (
+    (thin, 100),
+    (extra-light, 200),
+    (light, 300),
+    (normal, 400),
+    (medium, 500),
+    (semi-bold, 600),
+    (bold, 700),
+    (extra-bold, 800),
+    (black, 900)
+);
+
+@each $name, $value in $configTypeWeights {
+    .fw-#{$name} {
+        font-weight: #{$value} !important;
+    }
+}
+
+
+/**
  * Generador de espacios 
  * ([nombre], [valor]) 
  */
@@ -11,18 +34,6 @@ $configSpaces: (
     (3, 3rem),
     (4, 4rem),
 );
-
-/* ([nombre], [valor]) */
-$configSpaces: (
-    ("05", 0.5rem),
-    (4, 4rem),
-    (3, 3rem),
-    (2, 1.5rem),
-    (1, 1rem),
-    (0, 0px),
-    (auto, auto)
-);
-
 @each $name, $value in $configSpaces {
     @if $name != auto {
         .p-#{$name} {
@@ -144,6 +155,8 @@ $configSpaces: (
   white-space: nowrap;
 }
 
+
+
 .text-xs-left {
   text-align: left !important;
 }
@@ -155,6 +168,8 @@ $configSpaces: (
 .text-xs-center {
   text-align: center !important;
 }
+
+
 
 @media (min-width: 768px) {
   .text-sm-left {
