@@ -7265,9 +7265,6 @@ article h1.icon.aside {
   background-color: rgb(155.5714285714, 31.4285714286, 31.4285714286);
 }
 
-.btn-danger {
-  /* background-color: $brand-danger;*/
-}
 .btn-danger:hover, .btn-danger:focus, .btn-danger:active {
   background-color: rgb(155.5714285714, 31.4285714286, 31.4285714286);
 }
@@ -7356,7 +7353,7 @@ fieldset[disabled] .btn-default.active {
   border: 3px solid transparent;
 }
 .btn:focus {
-  border: 3px solid #FEC221 !important;
+  border: 3px solid #FFCE1C !important;
   outline: none;
   border-radius: 30px !important;
 }
@@ -7460,8 +7457,8 @@ span.btn:hover {
 }
 .btn-danger {
   background: none;
-  border-color: #c62828;
-  color: #c62828;
+  border-color: #C62828;
+  color: #C62828;
 }
 
 .navbar .open > .dropdown-menu {
@@ -7647,7 +7644,6 @@ header nav .input-search:focus {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   box-shadow: none;
-  /*border-bottom: solid 1px $gray-light;*/
   margin: 0;
   z-index: 9;
 }
@@ -7946,10 +7942,6 @@ header nav .input-search:focus {
     height: 64px;
     padding: 14px 15px;
     line-height: 1.8;
-    /* img {
-      height: 36px;
-      width: auto;
-    } */
   }
   .navbar .navbar-brand h1 {
     font-size: 14px;
@@ -7995,23 +7987,6 @@ header nav .input-search:focus {
     height: 32px !important;
   }
 }
-/*@media (min-width: 351px) and (max-width: 420px){
-
-	.navbar {
-		.container {
-			.navbar-header {
-				.navbar-brand {
-
-					width: 210px;
-							img{
-    						width: auto!important;
-							height: 40px;
-						}
-						}
-				}
-			}
-		}
-}*/
 @media (max-width: 320px) {
   header .btn {
     padding: 7px;
@@ -8369,8 +8344,6 @@ a.list-group-item:hover, a.list-group-item:focus, a.list-group-item:hover small,
   color: #DEE2E6;
 }
 
-/* Breadcrumb */
-/* Se pasó  device*/
 ol.breadcrumb li:before {
   content: none !important;
 }
@@ -10697,19 +10670,6 @@ a.alert.alert-danger i {
   font-weight: 700 !important;
 }
 
-/*
-@media (max-width: 544px) {
-  .alert .fa.fa-fw {
-    width: 1em;
-  }
-}
-
-@media (max-width: 330px) {
-  .alert .fa.fa-fw {
-    width: 0.7em;
-  }
-}
-  */
 .embed-responsive-1by1 {
   padding-bottom: 100%;
 }
@@ -14133,15 +14093,13 @@ footer .nav > li > a:hover {
   margin-bottom: 4px;
 }
 .desplegable-tramitar .items-desplegable-tramitar {
-  --margin: 0.45em;
   display: grid;
   grid-template-columns: 1.75em 1fr 1.25em;
   align-items: center;
   gap: 5px;
-  row-gap: 1px;
-  padding: var(--margin);
+  padding: 0.45em;
   border-radius: 6px;
-  margin: auto calc(var(--margin) * -1);
+  margin: auto calc(0.45em * -1);
   text-decoration: none;
   transition: background 0.2s ease-in-out;
 }
@@ -14164,21 +14122,6 @@ footer .nav > li > a:hover {
   content: "\f096";
 }
 
-/*
-.items-desplegable-tramitar {
-    // border-radius: 15px;
-    // padding: 5px 0 2px 5px;
-    // margin: 8px;
-    // display: table;
-    // font-weight: 500;
-    .icon-select-margin {
-        // margin-left: 0px;
-        &::before {
-            content: "\f096";
-        }
-    }
-}
-*/
 /* @todo gcaitai Definir si se utiliza */
 .items-desplegable-tramitar-select {
   border: 3px solid var(--arg-verde);
@@ -14188,22 +14131,6 @@ footer .nav > li > a:hover {
   height: auto;
 }
 
-/*
-a.items-desplegable-tramitar {
-    &:hover {
-        background-color: var(--arg-primary-50);
-    }
-}
-*/
-/*
-.items-desplegable-tramitar.activo {
-    .icon-select-margin {
-        &::before {
-            content: "\f046";
-        }
-    }
-}
-*/
 /* @todo gcaiati. Revisar si estos estilos se utilizan en otra parte del sitio. */
 .m-t-05 {
   margin-top: 0.5rem;
@@ -14222,7 +14149,7 @@ a.items-desplegable-tramitar {
   float: right;
 }
 
-/* Listas destacadas */
+/* @todo gcaiati. No entiendo qué es lo que hace */
 .listas-destacadas ul.search-results li::before {
   display: none;
 }
@@ -14522,49 +14449,6 @@ DEGRADÉ: .bg-mix-azul-info .bg-mix-info-azul .bg-mix-palta-azul .bg-mix-azul-pa
     margin-left: 3px;
   }
 }
-/* fin menu superior - ajuste márgenes */
-/* Menú superior - ver para borrar -
-
-#encabezado-menu {
-  a {
-     color: $black;
-  }
-
-  ul {
-    width: 100%;
-  }
-
-  .enc-link {
-    padding: 0px;
-    width: 31%;
-    margin: 20px 3px 3px 14px;
-    vertical-align: top;
-
-    a {
-      text-decoration: underline;
-      text-underline-offset: 0.25em;
-    }
-
-    &.active a span {
-      background-image: linear-gradient(to top, #000 3px, transparent 3px, transparent);
-      font-weight: 600;
-    }
-
-    a {
-      &[href^="https://"][target^=_blank]:after, &[href^="http://"][target^=_blank]:after {
-        content: none;
-      }
-    }
-  }
-}
-@media (max-width: 992px) {
-  #encabezado-menu .enc-link {
-    width: 96%;
-    margin-left: 28px;
-  }
-}
-
-*/
 #encabezado {
   /*  COLOR DEGRADÉ */
   /* Generales */
@@ -14686,7 +14570,8 @@ DEGRADÉ: .bg-mix-azul-info .bg-mix-info-azul .bg-mix-palta-azul .bg-mix-azul-pa
   #encabezado .enc-img {
     padding: 0px;
   }
-  #encabezado .enc-img h1, #encabezado .enc-img p {
+  #encabezado .enc-img h1,
+  #encabezado .enc-img p {
     padding: 0px 25px;
   }
   #encabezado .enc-img .iso {
@@ -15361,6 +15246,9 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
  *  @summary Estilos para las páginas langing de algunos productos o servicios.
  *  @see www.argentina.gob.ar/vacaciones.
  */
+/** 
+ *  Configuración de variables por defecto
+ */
 .details-landing br,
 .details-landing p:empty {
   display: none;
@@ -15368,7 +15256,7 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
   overflow: hidden;
 }
 .details-landing details {
-  --figure-width: 1.3rem;
+  --figure-width: 1.15rem;
   --figure-text-gap: 10px;
   --figure-color: inherit;
   --figure-font-size: 1.5em;
@@ -15382,7 +15270,7 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
 .details-landing.details-landing-lg > details {
   --figure-width: 1.75rem;
   --figure-text-gap: 15px;
-  --figure-font-size: 1.9em;
+  --figure-font-size: 2em;
   --summary-font-size: 1.2rem;
   /* Global componente */
   --summary-padding-t: 15px;
@@ -15409,6 +15297,18 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
   line-height: var(--summary-line-height);
 }
 
+@media (max-width: 768px) {
+  .details-landing.details-landing-md > details, .details-landing.details-landing-lg > details {
+    --figure-width: 1.15rem;
+    --figure-text-gap: 10px;
+    --figure-color: inherit;
+    --figure-font-size: 1.5em;
+    --summary-font-size: 1em;
+    /* Global componente */
+    --summary-padding-t: 10px;
+    --summary-padding-b: 10px;
+  }
+}
 /* FORMULARIOS Y SELECT2 */
 /* Oculta selección previa de meses */
 #filter-cuando + .select2-container .select2-selection__choice {
