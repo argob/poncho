@@ -140,6 +140,10 @@
     content: "| ";
 }
 
+.node-type-subasta .row.m-y-3 {
+  margin: 0px !important;
+}
+
 @media (max-width: 575.98px) {
   .filtro {
     &.col-xs-12, .panel-body {
