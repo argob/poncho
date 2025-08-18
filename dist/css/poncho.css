@@ -13295,17 +13295,6 @@ pre {
  * convierte el menú en un desplegable para la 
  * visualización en dispositivos móviles.
  */
-.page-sidebar {
-  /** 
-   * @TODO revisar los valores de las variables. 
-   * No estaban declaradas. 
-   */
-  --collapse-bg: gray;
-  --collapse-color: gray;
-  --collapse-box-shadow: 0 0 6px rgb(0 0 0 / 0.1);
-  --collapse-icon-color: gray;
-  --collapse-line-color: gray;
-}
 .page-sidebar .btn-title a {
   font-weight: bold !important;
 }
@@ -13359,13 +13348,13 @@ pre {
 .card {
   width: 100%;
 }
-.card :has(.fa) i {
-  font-family: "FontAwesome";
-}
 .card *, .card.card-body * {
   letter-spacing: -0.15pt;
   font-size: 18px;
   font-family: "Montserrat", sans-serif;
+}
+.card :has(.fa) i {
+  font-family: "FontAwesome";
 }
 .card.card-body details {
   --summary-padding-s: 20px;
@@ -13378,6 +13367,7 @@ pre {
 .card.card-body summary {
   display: none;
   animation: none;
+  padding-left: 1em;
 }
 .card.card-body .details-info {
   padding: 0;
