@@ -4,16 +4,6 @@
  * visualización en dispositivos móviles.
  */
 .page-sidebar {
-    /** 
-     * @TODO revisar los valores de las variables. 
-     * No estaban declaradas. 
-     */
-    --collapse-bg: gray;
-    --collapse-color: gray;
-    --collapse-box-shadow: 0 0 6px rgb(0 0 0 / 0.1);
-    --collapse-icon-color: gray;
-    --collapse-line-color: gray;
-
     .btn-title a {
         font-weight: bold !important;
     }
@@ -68,13 +58,15 @@
 /* Escritorio */
 .card {
     width: 100%; // reseteo valores impuestos
-    :has(.fa) i {
-        font-family: "FontAwesome";
-    }
+
     *,
     &.card-body * {
         @include family-sans-serif-attributes;
     }
+    :has(.fa) i {
+        font-family: "FontAwesome";
+    }
+
 
     &.card-body {
         details {
@@ -95,6 +87,7 @@
         summary {
             display: none;
             animation: none;
+            padding-left: 1em;
         }
 
         .details-info {
