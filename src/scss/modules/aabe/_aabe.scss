@@ -140,6 +140,61 @@
     content: "| ";
 }
 
+.node-type-subasta .row.m-y-3 {
+  margin: 0px !important;
+}
+
+@media (max-width: 575.98px) {
+  .filtro {
+    &.col-xs-12, .panel-body {
+      padding: 0px;
+    }
+  }
+
+  .bloque-desktop {
+    dd, dt {
+      font-size: 0.85rem;
+    }
+  }
+
+  .pane-tag-subasta {
+    dd, dt {
+      font-size: 0.85rem;
+    }
+  }
+}
+/* Medium devices (tablets, less than 992px) */
+@media (max-width: 991.98px) {
+  .node-type-subasta {
+    h3, .h3, h4, .h4, h5, .h5 {
+      font-size: 1.06rem;
+      padding-top: 0.5rem;
+    }
+
+    .fa-2x {
+      font-size: 1.5rem;
+      line-height: 1.8rem;
+    }
+
+    .m-t-3, .m-b-3 {
+      margin: 0 !important;
+    }
+  }
+
+  .pane-tag-subasta {
+    .label {
+      padding: 0.48rem;
+      float: left !important;
+    }
+
+    .tag-subasta {
+      clear: both;
+      margin-left: 0rem !important;
+      margin-top: 0.0rem !important;
+      padding: 0.1rem;
+    }
+  }
+}
 /* Imagen y títulos en mobile */
 @media (max-width: 992px) {
     .imagen-mobile {
@@ -181,29 +236,6 @@
     background: var(--arg-primary-100);
 }
 
-/* Tipografía y pesos */
-// Ya existe definición para tipografías... 
-// @see _utilities.scss
-/*
-.fw-light { ¡¡¡¡light y ponés normal!!!!
-    font-weight: 400 !important;
-}
-
-.fw-medium {
-    font-weight: 500 !important;
-}
-
-.fw-semibold {
-    font-weight: 600 !important;
-}
-
-.fw-bold {
-    font-weight: 700 !important;
-}
-*/
-
-
-
 .text-small {
     font-size: 85%;
 }
@@ -242,4 +274,12 @@
 
 .icon-success {
     padding-right: 0.2rem;
+}
+
+.f-left {
+  float: left;
+}
+
+.f-right {
+  float: right;
 }
