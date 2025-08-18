@@ -23,16 +23,15 @@
     }
 
     .items-desplegable-tramitar {
-        --margin: 0.45em;
+        $margin: 0.45em;
 
         display: grid;
         grid-template-columns: 1.75em 1fr 1.25em;
         align-items: center;
         gap: 5px;
-        row-gap: 1px;
-        padding: var(--margin);
+        padding: #{$margin};
         border-radius: 6px;
-        margin: auto calc(var(--margin) * -1);
+        margin: auto calc(#{$margin} * -1);
         text-decoration: none;
         transition: background 0.2s ease-in-out;
 
@@ -68,46 +67,6 @@
     }
 }
 
-// .desplegable-tramitar {
-// border: 2px solid #242c4f;
-// border-radius: 8px;
-// a {
-// 	text-decoration: none;
-// }
-// summary {
-// 	&::before {
-// 		right: .5em;
-// 		left: auto;
-// 		background-color: transparent;
-// 	}
-// 	border-bottom: 2px solid #242c4f;
-// }
-// .list-inline {
-// 	>li {
-// 		display: flex;
-// 		width: 100%;
-// 		a {
-// 			width: 100%;
-// 		}
-// 	}
-// }
-// }
-/*
-.items-desplegable-tramitar {
-    // border-radius: 15px;
-    // padding: 5px 0 2px 5px;
-    // margin: 8px;
-    // display: table;
-    // font-weight: 500;
-    .icon-select-margin {
-        // margin-left: 0px;
-        &::before {
-            content: "\f096";
-        }
-    }
-}
-*/
-
 /* @todo gcaitai Definir si se utiliza */
 .items-desplegable-tramitar-select {
     border: 3px solid var(--arg-verde);
@@ -116,52 +75,19 @@
     margin: 8px;
     height: auto;
 }
-/*
-a.items-desplegable-tramitar {
-    &:hover {
-        background-color: var(--arg-primary-50);
-    }
-}
-*/
-/*
-.items-desplegable-tramitar.activo {
-    .icon-select-margin {
-        &::before {
-            content: "\f046";
-        }
-    }
-}
-*/
-// .ar-details__content.p-r-1 {
-// 	padding-left: .5rem;
-// 	padding-right: .15rem !important;
-// }
 
 /* @todo gcaiati. Revisar si estos estilos se utilizan en otra parte del sitio. */
-.m-t-05 {
-    margin-top: 0.5rem;
-}
-
-.m-r-05 {
-    margin-right: 0.5rem;
-}
-
+// f-rigth (mal escrito). Define un float. ¿Usamos algo así?
 .f-rigth {
     float: right;
 }
-
+// ¿bdr-l?
 .bdr-l {
     margin: 20px 0px;
     float: right;
 }
 
-// @media (min-width: 991px) {
-// 	li.items-desplegable-tramitar {
-// 		width: 100%;
-// 	}
-// }
-
-/* Listas destacadas */
+/* @todo gcaiati. No entiendo qué es lo que hace */
 .listas-destacadas {
     ul.search-results {
         li {

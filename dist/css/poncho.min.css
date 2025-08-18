@@ -372,10 +372,6 @@ hr.hr-sm {
   margin: 15px 0;
 }
 
-.social-share a {
-  font-size: 30px;
-}
-
 .inline {
   display: inline-block;
 }
@@ -7005,77 +7001,122 @@ body {
   font-family: "Montserrat", sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
   letter-spacing: -0.2pt;
   font-family: "Lora", serif;
   font-weight: 700;
   margin: 0.5em 0 0.7em 0;
 }
 h1 small,
-h1 .small, h2 small,
-h2 .small, h3 small,
-h3 .small, h4 small,
-h4 .small, h5 small,
-h5 .small, h6 small,
-h6 .small, .h1 small,
-.h1 .small, .h2 small,
-.h2 .small, .h3 small,
-.h3 .small, .h4 small,
-.h4 .small, .h5 small,
-.h5 .small, .h6 small,
+h1 .small,
+h2 small,
+h2 .small,
+h3 small,
+h3 .small,
+h4 small,
+h4 .small,
+h5 small,
+h5 .small,
+h6 small,
+h6 .small,
+.h1 small,
+.h1 .small,
+.h2 small,
+.h2 .small,
+.h3 small,
+.h3 .small,
+.h4 small,
+.h4 .small,
+.h5 small,
+.h5 .small,
+.h6 small,
 .h6 .small {
   color: #555555;
 }
-h1.section-title, h2.section-title, h3.section-title, h4.section-title, h5.section-title, h6.section-title, .h1.section-title, .h2.section-title, .h3.section-title, .h4.section-title, .h5.section-title, .h6.section-title {
+h1.section-title,
+h2.section-title,
+h3.section-title,
+h4.section-title,
+h5.section-title,
+h6.section-title,
+.h1.section-title,
+.h2.section-title,
+.h3.section-title,
+.h4.section-title,
+.h5.section-title,
+.h6.section-title {
   color: #555555;
   margin-bottom: 24px;
 }
 
-h1, .h1 {
+h1,
+.h1 {
   font-size: 2.5rem;
 }
-h1.section-title, .h1.section-title {
+h1.section-title,
+.h1.section-title {
   font-size: 1.8em;
 }
 
-h2, .h2 {
+h2,
+.h2 {
   font-size: 2rem;
 }
-h2.section-title, .h2.section-title {
+h2.section-title,
+.h2.section-title {
   font-size: 1.6em;
 }
 
-h3, .h3 {
+h3,
+.h3 {
   font-size: 1.75rem;
 }
-h3.section-title, .h3.section-title {
+h3.section-title,
+.h3.section-title {
   font-size: 1.4em;
 }
 
-h4, .h4 {
+h4,
+.h4 {
   font-size: 1.5rem;
 }
-h4.section-title, .h4.section-title {
+h4.section-title,
+.h4.section-title {
   font-size: 1.2em;
 }
 
-h5, .h5 {
+h5,
+.h5 {
   font-size: 1.25rem;
 }
-h5.section-title, .h5.section-title {
+h5.section-title,
+.h5.section-title {
   font-size: 1em;
 }
 
-h6, .h6 {
+h6,
+.h6 {
   font-size: 1rem;
 }
-h6.section-title, .h6.section-title {
+h6.section-title,
+.h6.section-title {
   font-size: 0.8em;
 }
 
 a {
   color: #232D4F;
-  color: var(--arg-azul-600, #0767A7);
+  color: var(--arg-azul-600, #0767a7);
   font-weight: inherit;
   border: 0;
   cursor: pointer;
@@ -7095,20 +7136,64 @@ main a:not(.btn) {
 }
 
 /* ///  INICIO CORTE DE PALABRA TITULOS PANELES  /// */
-.pane-atajos h3, .pane-atajos .h3 {
+.pane-atajos h3,
+.pane-atajos .h3 {
   font-size: 1.18rem;
 }
 
 /* ///  Saco corte de palabra en la home  /// */
-.front .pane-atajos h3, .front .pane-atajos .h3 {
+.front .pane-atajos h3,
+.front .pane-atajos .h3 {
   font-size: 1.28rem;
 }
 
 /* ///  FIN CORTE DE PALABRA TITULOS PANELES  /// */
-p a, li a, h1 a, h2 a, h3 a, h4 a, h5 a, h6 a, .h1 a, .h2 a, .h3 a, .h4 a, .h5 a, .h6 a, table tbody a {
+p a,
+li a,
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a,
+.h1 a,
+.h2 a,
+.h3 a,
+.h4 a,
+.h5 a,
+.h6 a,
+table tbody a {
   text-decoration: underline;
 }
-p a:hover, p a:focus, li a:hover, li a:focus, h1 a:hover, h1 a:focus, h2 a:hover, h2 a:focus, h3 a:hover, h3 a:focus, h4 a:hover, h4 a:focus, h5 a:hover, h5 a:focus, h6 a:hover, h6 a:focus, .h1 a:hover, .h1 a:focus, .h2 a:hover, .h2 a:focus, .h3 a:hover, .h3 a:focus, .h4 a:hover, .h4 a:focus, .h5 a:hover, .h5 a:focus, .h6 a:hover, .h6 a:focus, table tbody a:hover, table tbody a:focus {
+p a:hover, p a:focus,
+li a:hover,
+li a:focus,
+h1 a:hover,
+h1 a:focus,
+h2 a:hover,
+h2 a:focus,
+h3 a:hover,
+h3 a:focus,
+h4 a:hover,
+h4 a:focus,
+h5 a:hover,
+h5 a:focus,
+h6 a:hover,
+h6 a:focus,
+.h1 a:hover,
+.h1 a:focus,
+.h2 a:hover,
+.h2 a:focus,
+.h3 a:hover,
+.h3 a:focus,
+.h4 a:hover,
+.h4 a:focus,
+.h5 a:hover,
+.h5 a:focus,
+.h6 a:hover,
+.h6 a:focus,
+table tbody a:hover,
+table tbody a:focus {
   text-decoration: underline;
 }
 
@@ -7120,11 +7205,13 @@ fieldset {
   font-weight: 400;
 }
 
-b, strong {
+b,
+strong {
   font-weight: 600;
 }
 
-.text-muted, time {
+.text-muted,
+time {
   color: #555555;
 }
 
@@ -7178,10 +7265,30 @@ article h1.icon.aside {
   margin-top: 10px;
 }
 
-.content_format h2, .content_format h3, .content_format h4, .content_format h5, .content_format h6, .content_format .h2, .content_format .h3, .content_format .h4, .content_format .h5, .content_format .h6 {
+.content_format h2,
+.content_format h3,
+.content_format h4,
+.content_format h5,
+.content_format h6,
+.content_format .h2,
+.content_format .h3,
+.content_format .h4,
+.content_format .h5,
+.content_format .h6 {
   margin-top: 2em;
 }
-.content_format .alert h1, .content_format .alert h2, .content_format .alert h3, .content_format .alert h4, .content_format .alert h5, .content_format .alert h6, .content_format .alert .h1, .content_format .alert .h2, .content_format .alert .h3, .content_format .alert .h4, .content_format .alert .h5, .content_format .alert .h6,
+.content_format .alert h1,
+.content_format .alert h2,
+.content_format .alert h3,
+.content_format .alert h4,
+.content_format .alert h5,
+.content_format .alert h6,
+.content_format .alert .h1,
+.content_format .alert .h2,
+.content_format .alert .h3,
+.content_format .alert .h4,
+.content_format .alert .h5,
+.content_format .alert .h6,
 .content_format .well h1,
 .content_format .well h2,
 .content_format .well h3,
@@ -7265,9 +7372,6 @@ article h1.icon.aside {
   background-color: rgb(155.5714285714, 31.4285714286, 31.4285714286);
 }
 
-.btn-danger {
-  /* background-color: $brand-danger;*/
-}
 .btn-danger:hover, .btn-danger:focus, .btn-danger:active {
   background-color: rgb(155.5714285714, 31.4285714286, 31.4285714286);
 }
@@ -7356,7 +7460,7 @@ fieldset[disabled] .btn-default.active {
   border: 3px solid transparent;
 }
 .btn:focus {
-  border: 3px solid #FEC221 !important;
+  border: 3px solid #FFCE1C !important;
   outline: none;
   border-radius: 30px !important;
 }
@@ -7460,8 +7564,8 @@ span.btn:hover {
 }
 .btn-danger {
   background: none;
-  border-color: #c62828;
-  color: #c62828;
+  border-color: #C62828;
+  color: #C62828;
 }
 
 .navbar .open > .dropdown-menu {
@@ -7647,7 +7751,6 @@ header nav .input-search:focus {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   box-shadow: none;
-  /*border-bottom: solid 1px $gray-light;*/
   margin: 0;
   z-index: 9;
 }
@@ -7946,10 +8049,6 @@ header nav .input-search:focus {
     height: 64px;
     padding: 14px 15px;
     line-height: 1.8;
-    /* img {
-      height: 36px;
-      width: auto;
-    } */
   }
   .navbar .navbar-brand h1 {
     font-size: 14px;
@@ -7995,23 +8094,6 @@ header nav .input-search:focus {
     height: 32px !important;
   }
 }
-/*@media (min-width: 351px) and (max-width: 420px){
-
-	.navbar {
-		.container {
-			.navbar-header {
-				.navbar-brand {
-
-					width: 210px;
-							img{
-    						width: auto!important;
-							height: 40px;
-						}
-						}
-				}
-			}
-		}
-}*/
 @media (max-width: 320px) {
   header .btn {
     padding: 7px;
@@ -8369,8 +8451,6 @@ a.list-group-item:hover, a.list-group-item:focus, a.list-group-item:hover small,
   color: #DEE2E6;
 }
 
-/* Breadcrumb */
-/* Se pasó  device*/
 ol.breadcrumb li:before {
   content: none !important;
 }
@@ -8403,7 +8483,8 @@ ol.breadcrumb li:after {
 }
 
 .pagination > li > a:hover,
-.pagination > li > a:focus, pagination .pagination > li > span:hover,
+.pagination > li > a:focus,
+pagination .pagination > li > span:hover,
 .pagination > li > span:focus {
   background-color: #F2F2F2;
   border-color: transparent;
@@ -8433,6 +8514,13 @@ ol.breadcrumb li:after {
   border-color: #dfd7ca;
   color: #dfd7ca;
   cursor: not-allowed;
+}
+
+.pagination > li:first-child > a,
+.pagination > li:first-child > span,
+.pagination > li:last-child > a,
+.pagination > li:last-child > span {
+  border-radius: 30px !important;
 }
 
 article > div > header {
@@ -10697,19 +10785,10 @@ a.alert.alert-danger i {
   font-weight: 700 !important;
 }
 
-/*
-@media (max-width: 544px) {
-  .alert .fa.fa-fw {
-    width: 1em;
-  }
+.alert {
+  border-radius: 10px;
 }
 
-@media (max-width: 330px) {
-  .alert .fa.fa-fw {
-    width: 0.7em;
-  }
-}
-  */
 .embed-responsive-1by1 {
   padding-bottom: 100%;
 }
@@ -10817,7 +10896,12 @@ a.alert.alert-danger i {
     margin-top: 0 !important;
   }
   /* evita cortes de titulos entre paginas */
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     break-inside: avoid !important;
   }
 }
@@ -10971,7 +11055,8 @@ Las clases "dato-nro" y "dato-eje" corresponde a los formatos markdown definidos
 - Destacar número o dato estadístico
 
 */
-.dato-nro, .dato-eje {
+.dato-nro,
+.dato-eje {
   text-align: left;
   margin-bottom: 40px;
 }
@@ -10995,6 +11080,17 @@ Las clases "dato-nro" y "dato-eje" corresponde a los formatos markdown definidos
   margin-top: 0px;
   margin-bottom: 0.2em;
   font-size: 1.6em;
+}
+
+/* Destacados (obtenido de argentina.scss)
+   ======================================================================== */
+#destacados .panel-default {
+  border: none !important;
+}
+
+#destacados h3,
+#destacados p {
+  color: #fff !important;
 }
 
 .poncho-map {
@@ -12089,22 +12185,26 @@ footer.pm-open-map ul > li > a:hover, footer.pm-open-map ul > li > a:focus {
   padding-left: 30px;
   padding-right: 30px;
 }
-.numbers h1, .numbers .h1 {
+.numbers h1,
+.numbers .h1 {
   font-size: 4em;
   font-weight: bold;
   margin: 0.2em 0;
 }
-.numbers h2, .numbers .h2 {
+.numbers h2,
+.numbers .h2 {
   font-size: 3em;
   font-weight: bold;
   margin: 0.2em 0;
 }
-.numbers h3, .numbers .h3 {
+.numbers h3,
+.numbers .h3 {
   font-size: 2.4em;
   font-weight: bold;
   margin: 0.2em 0;
 }
-.numbers h4, .numbers .h4 {
+.numbers h4,
+.numbers .h4 {
   font-size: 1.8em;
   font-weight: bold;
   margin: 0.2em 0;
@@ -12139,197 +12239,205 @@ footer.pm-open-map ul > li > a:hover, footer.pm-open-map ul > li > a:focus {
   height: 12px;
 }
 
+/**
+ * Generador de variables tipográficas 
+ * ([nombre], [valor]) 
+ */
+.fw-thin {
+  font-weight: 100 !important;
+}
+
+.fw-extra-light {
+  font-weight: 200 !important;
+}
+
+.fw-light {
+  font-weight: 300 !important;
+}
+
+.fw-normal {
+  font-weight: 400 !important;
+}
+
+.fw-medium {
+  font-weight: 500 !important;
+}
+
+.fw-semibold {
+  font-weight: 600 !important;
+}
+
+.fw-bold {
+  font-weight: 700 !important;
+}
+
+.fw-extra-bold {
+  font-weight: 800 !important;
+}
+
+.fw-black {
+  font-weight: 900 !important;
+}
+
+/**
+ * Generador de espacios 
+ * ([nombre], [valor]) 
+ */
+.m-a-auto,
+.m-auto {
+  margin: auto !important;
+}
+
+.m-t-auto {
+  margin-top: auto !important;
+}
+
+.m-r-auto {
+  margin-right: auto !important;
+}
+
+.m-b-auto {
+  margin-bottom: auto !important;
+}
+
+.m-l-auto {
+  margin-left: auto !important;
+}
+
 .m-x-auto {
   margin-right: auto !important;
   margin-left: auto !important;
 }
 
-.m-a-0 {
-  margin: 0 0 !important;
+.m-y-auto {
+  margin-top: auto !important;
+  margin-bottom: auto !important;
+}
+
+.p-0 {
+  padding: 0px !important;
+}
+
+.p-t-0 {
+  padding-top: 0px !important;
+}
+
+.p-r-0 {
+  padding-right: 0px !important;
+}
+
+.p-b-0 {
+  padding-bottom: 0px !important;
+}
+
+.p-l-0 {
+  padding-left: 0px !important;
+}
+
+.p-x-0 {
+  padding-right: 0px !important;
+  padding-left: 0px !important;
+}
+
+.p-y-0 {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+}
+
+.m-a-0,
+.m-0 {
+  margin: 0px !important;
 }
 
 .m-t-0 {
-  margin-top: 0 !important;
+  margin-top: 0px !important;
 }
 
 .m-r-0 {
-  margin-right: 0 !important;
+  margin-right: 0px !important;
 }
 
 .m-b-0 {
-  margin-bottom: 0 !important;
+  margin-bottom: 0px !important;
 }
 
 .m-l-0 {
-  margin-left: 0 !important;
+  margin-left: 0px !important;
 }
 
 .m-x-0 {
-  margin-right: 0 !important;
-  margin-left: 0 !important;
+  margin-right: 0px !important;
+  margin-left: 0px !important;
 }
 
 .m-y-0 {
-  margin-top: 0 !important;
-  margin-bottom: 0 !important;
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+}
+
+.p-05 {
+  padding: 0.5rem !important;
+}
+
+.p-t-05 {
+  padding-top: 0.5rem !important;
+}
+
+.p-r-05 {
+  padding-right: 0.5rem !important;
+}
+
+.p-b-05 {
+  padding-bottom: 0.5rem !important;
+}
+
+.p-l-05 {
+  padding-left: 0.5rem !important;
+}
+
+.p-x-05 {
+  padding-right: 0.5rem !important;
+  padding-left: 0.5rem !important;
+}
+
+.p-y-05 {
+  padding-top: 0.5rem !important;
+  padding-bottom: 0.5rem !important;
+}
+
+.m-a-05,
+.m-05 {
+  margin: 0.5rem !important;
 }
 
 .m-t-05 {
   margin-top: 0.5rem !important;
 }
 
-.m-a-1 {
-  margin: 1rem 1rem !important;
+.m-r-05 {
+  margin-right: 0.5rem !important;
 }
 
-.m-t-1 {
-  margin-top: 1rem !important;
+.m-b-05 {
+  margin-bottom: 0.5rem !important;
 }
 
-.m-r-1 {
-  margin-right: 1rem !important;
+.m-l-05 {
+  margin-left: 0.5rem !important;
 }
 
-.m-b-1 {
-  margin-bottom: 1rem !important;
+.m-x-05 {
+  margin-right: 0.5rem !important;
+  margin-left: 0.5rem !important;
 }
 
-.m-l-1 {
-  margin-left: 1rem !important;
+.m-y-05 {
+  margin-top: 0.5rem !important;
+  margin-bottom: 0.5rem !important;
 }
 
-.m-x-1 {
-  margin-right: 1rem !important;
-  margin-left: 1rem !important;
-}
-
-.m-y-1 {
-  margin-top: 1rem !important;
-  margin-bottom: 1rem !important;
-}
-
-.m-a-2 {
-  margin: 1.5rem 1.5rem !important;
-}
-
-.m-t-2 {
-  margin-top: 1.5rem !important;
-}
-
-.m-r-2 {
-  margin-right: 1.5rem !important;
-}
-
-.m-b-2 {
-  margin-bottom: 1.5rem !important;
-}
-
-.m-l-2 {
-  margin-left: 1.5rem !important;
-}
-
-.m-x-2 {
-  margin-right: 1.5rem !important;
-  margin-left: 1.5rem !important;
-}
-
-.m-y-2 {
-  margin-top: 1.5rem !important;
-  margin-bottom: 1.5rem !important;
-}
-
-.m-a-3 {
-  margin: 3rem 3rem !important;
-}
-
-.m-t-3 {
-  margin-top: 3rem !important;
-}
-
-.m-r-3 {
-  margin-right: 3rem !important;
-}
-
-.m-b-3 {
-  margin-bottom: 3rem !important;
-}
-
-.m-l-3 {
-  margin-left: 3rem !important;
-}
-
-.m-x-3 {
-  margin-right: 3rem !important;
-  margin-left: 3rem !important;
-}
-
-.m-y-3 {
-  margin-top: 3rem !important;
-  margin-bottom: 3rem !important;
-}
-
-.m-a-4 {
-  margin: 4rem 4rem !important;
-}
-
-.m-t-4 {
-  margin-top: 4rem !important;
-}
-
-.m-r-4 {
-  margin-right: 4rem !important;
-}
-
-.m-b-4 {
-  margin-bottom: 4rem !important;
-}
-
-.m-l-4 {
-  margin-left: 4rem !important;
-}
-
-.m-x-4 {
-  margin-right: 4rem !important;
-  margin-left: 4rem !important;
-}
-
-.m-y-4 {
-  margin-top: 4rem !important;
-  margin-bottom: 4rem !important;
-}
-
-.p-a-0 {
-  padding: 0 0 !important;
-}
-
-.p-t-0 {
-  padding-top: 0 !important;
-}
-
-.p-r-0 {
-  padding-right: 0 !important;
-}
-
-.p-b-0 {
-  padding-bottom: 0 !important;
-}
-
-.p-l-0 {
-  padding-left: 0 !important;
-}
-
-.p-x-0 {
-  padding-right: 0 !important;
-  padding-left: 0 !important;
-}
-
-.p-y-0 {
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
-}
-
-.p-a-1 {
-  padding: 1rem 1rem !important;
+.p-1 {
+  padding: 1rem !important;
 }
 
 .p-t-1 {
@@ -12358,8 +12466,39 @@ footer.pm-open-map ul > li > a:hover, footer.pm-open-map ul > li > a:focus {
   padding-bottom: 1rem !important;
 }
 
-.p-a-2 {
-  padding: 1.5rem 1.5rem !important;
+.m-a-1,
+.m-1 {
+  margin: 1rem !important;
+}
+
+.m-t-1 {
+  margin-top: 1rem !important;
+}
+
+.m-r-1 {
+  margin-right: 1rem !important;
+}
+
+.m-b-1 {
+  margin-bottom: 1rem !important;
+}
+
+.m-l-1 {
+  margin-left: 1rem !important;
+}
+
+.m-x-1 {
+  margin-right: 1rem !important;
+  margin-left: 1rem !important;
+}
+
+.m-y-1 {
+  margin-top: 1rem !important;
+  margin-bottom: 1rem !important;
+}
+
+.p-2 {
+  padding: 1.5rem !important;
 }
 
 .p-t-2 {
@@ -12388,8 +12527,39 @@ footer.pm-open-map ul > li > a:hover, footer.pm-open-map ul > li > a:focus {
   padding-bottom: 1.5rem !important;
 }
 
-.p-a-3 {
-  padding: 3rem 3rem !important;
+.m-a-2,
+.m-2 {
+  margin: 1.5rem !important;
+}
+
+.m-t-2 {
+  margin-top: 1.5rem !important;
+}
+
+.m-r-2 {
+  margin-right: 1.5rem !important;
+}
+
+.m-b-2 {
+  margin-bottom: 1.5rem !important;
+}
+
+.m-l-2 {
+  margin-left: 1.5rem !important;
+}
+
+.m-x-2 {
+  margin-right: 1.5rem !important;
+  margin-left: 1.5rem !important;
+}
+
+.m-y-2 {
+  margin-top: 1.5rem !important;
+  margin-bottom: 1.5rem !important;
+}
+
+.p-3 {
+  padding: 3rem !important;
 }
 
 .p-t-3 {
@@ -12418,8 +12588,39 @@ footer.pm-open-map ul > li > a:hover, footer.pm-open-map ul > li > a:focus {
   padding-bottom: 3rem !important;
 }
 
-.p-a-3 {
-  padding: 3rem 3rem !important;
+.m-a-3,
+.m-3 {
+  margin: 3rem !important;
+}
+
+.m-t-3 {
+  margin-top: 3rem !important;
+}
+
+.m-r-3 {
+  margin-right: 3rem !important;
+}
+
+.m-b-3 {
+  margin-bottom: 3rem !important;
+}
+
+.m-l-3 {
+  margin-left: 3rem !important;
+}
+
+.m-x-3 {
+  margin-right: 3rem !important;
+  margin-left: 3rem !important;
+}
+
+.m-y-3 {
+  margin-top: 3rem !important;
+  margin-bottom: 3rem !important;
+}
+
+.p-4 {
+  padding: 4rem !important;
 }
 
 .p-t-4 {
@@ -12448,32 +12649,37 @@ footer.pm-open-map ul > li > a:hover, footer.pm-open-map ul > li > a:focus {
   padding-bottom: 4rem !important;
 }
 
-/* uso particular en SNT */
-.ql-indent-1 {
-  padding-left: 1rem !important;
+.m-a-4,
+.m-4 {
+  margin: 4rem !important;
 }
 
-.ql-indent-2 {
-  padding-left: 2rem !important;
+.m-t-4 {
+  margin-top: 4rem !important;
 }
 
-.ql-indent-3 {
-  padding-left: 3rem !important;
+.m-r-4 {
+  margin-right: 4rem !important;
 }
 
-.ql-indent-4 {
-  padding-left: 4rem !important;
+.m-b-4 {
+  margin-bottom: 4rem !important;
 }
 
-.ql-indent-5 {
-  padding-left: 5rem !important;
+.m-l-4 {
+  margin-left: 4rem !important;
 }
 
-.ql-indent-6 {
-  padding-left: 6rem !important;
+.m-x-4 {
+  margin-right: 4rem !important;
+  margin-left: 4rem !important;
 }
 
-/* fin uso SNT */
+.m-y-4 {
+  margin-top: 4rem !important;
+  margin-bottom: 4rem !important;
+}
+
 .pos-f-t {
   position: fixed;
   top: 0;
@@ -12496,18 +12702,17 @@ footer.pm-open-map ul > li > a:hover, footer.pm-open-map ul > li > a:focus {
   white-space: nowrap;
 }
 
-.text-xs-left {
-  text-align: left !important;
+@media (max-width: 575.98px) {
+  .text-xs-left {
+    text-align: left !important;
+  }
+  .text-xs-right {
+    text-align: right !important;
+  }
+  .text-xs-center {
+    text-align: center !important;
+  }
 }
-
-.text-xs-right {
-  text-align: right !important;
-}
-
-.text-xs-center {
-  text-align: center !important;
-}
-
 @media (min-width: 768px) {
   .text-sm-left {
     text-align: left !important;
@@ -12554,10 +12759,6 @@ pre {
   border: solid 1px #ddd;
 }
 
-.alert {
-  border-radius: 10px;
-}
-
 .atajos-agrupados .h2 {
   margin-bottom: 1.35em;
   margin-top: 2.25em;
@@ -12572,11 +12773,8 @@ pre {
   flex-wrap: wrap;
 }
 
-.bdr-pry-1 {
-  border: 1px solid #0072bb !important;
-}
-
-.listas-destacadas > ol, .listas-destacadas > ul {
+.listas-destacadas > ol,
+.listas-destacadas > ul {
   list-style: none;
   padding: 0;
   margin: 0 0 0 2.389rem;
@@ -13104,12 +13302,9 @@ pre {
    */
   --collapse-bg: gray;
   --collapse-color: gray;
-  --collapse-box-shadow: 0 0 6px rgb(0 0 0 / .1);
+  --collapse-box-shadow: 0 0 6px rgb(0 0 0 / 0.1);
   --collapse-icon-color: gray;
   --collapse-line-color: gray;
-}
-.page-sidebar * {
-  font-family: "Montserrat", sans-serif !important;
 }
 .page-sidebar .btn-title a {
   font-weight: bold !important;
@@ -13164,8 +13359,13 @@ pre {
 .card {
   width: 100%;
 }
-.card.card-body * {
-  font-family: "Montserrat", sans-serif !important;
+.card :has(.fa) i {
+  font-family: "FontAwesome";
+}
+.card *, .card.card-body * {
+  letter-spacing: -0.15pt;
+  font-size: 18px;
+  font-family: "Montserrat", sans-serif;
 }
 .card.card-body details {
   --summary-padding-s: 20px;
@@ -13321,7 +13521,7 @@ main > div > div > div > section {
 }
 
 /* Form-type
-  ======================================================================== 
+   ======================================================================== 
 */
 .form-type-date .form-inline {
   margin: 0 -15px;
@@ -13524,7 +13724,8 @@ footer ul.nav li a {
 
 /* Generar mas contraste con este color al texto*/
 .h3.section-title {
-  color: #141414; /* archivo tipography.scss line 43 le agrega por defecto color: #707070 */
+  color: #141414;
+  /* archivo tipography.scss line 43 le agrega por defecto color: #707070 */
 }
 
 .m-l-m15 {
@@ -13569,15 +13770,19 @@ footer ul.nav li a {
   font-size: 1.3em !important;
   font-weight: 500 !important;
   line-height: 1.3 !important;
-  margin: 0.25em 0 !important; /*color: red; cambiar color para visualizar mejor que se esta cambiando*/
+  margin: 0.25em 0 !important;
+  /*color: red; cambiar color para visualizar mejor que se esta cambiando*/
 }
 
 /* modificar paneles sacar headings por parrafos o span */
 .icon-item .h3_title {
-  font-size: 1.6em !important; /* global.scss line 90*/
-  margin-top: 0 !important; /* global.scss line 85*/
+  font-size: 1.6em !important;
+  /* global.scss line 90*/
+  margin-top: 0 !important;
+  /* global.scss line 85*/
   margin-bottom: 0.2em;
-  font-weight: 600; /*color: red; cambiar color para visualizar mejor que se esta cambiando*/
+  font-weight: 600;
+  /*color: red; cambiar color para visualizar mejor que se esta cambiando*/
 }
 
 @media screen and (max-width: 767px) {
@@ -13587,17 +13792,6 @@ footer ul.nav li a {
 }
 .pane-area-estructura .img-rounded {
   margin-top: 10px !important;
-}
-
-/* Destacados
-   ======================================================================== */
-#destacados .panel-default {
-  border: none !important;
-}
-
-#destacados h3,
-#destacados p {
-  color: #fff !important;
 }
 
 /* Header
@@ -13687,13 +13881,6 @@ ul.dropdown-menu li a {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-.pagination > li:first-child > a,
-.pagination > li:first-child > span,
-.pagination > li:last-child > a,
-.pagination > li:last-child > span {
-  border-radius: 30px !important;
 }
 
 .checkbox label,
@@ -13801,6 +13988,30 @@ footer .nav > li > a:hover {
     display: none;
   }
 }
+.ql-indent-1 {
+  padding-left: 1rem !important;
+}
+
+.ql-indent-2 {
+  padding-left: 2rem !important;
+}
+
+.ql-indent-3 {
+  padding-left: 3rem !important;
+}
+
+.ql-indent-4 {
+  padding-left: 4rem !important;
+}
+
+.ql-indent-5 {
+  padding-left: 5rem !important;
+}
+
+.ql-indent-6 {
+  padding-left: 6rem !important;
+}
+
 .box-campania {
   padding: 30px 0 0 0;
   background-color: #f3faff;
@@ -14005,7 +14216,7 @@ footer .nav > li > a:hover {
   }
 }
 /* 
-///// Define estilos para modulo de subastas ////.
+Define estilos para modulo de subastas
 */
 .mapa-inmuebles {
   float: right;
@@ -14131,15 +14342,13 @@ footer .nav > li > a:hover {
   margin-bottom: 4px;
 }
 .desplegable-tramitar .items-desplegable-tramitar {
-  --margin: 0.45em;
   display: grid;
   grid-template-columns: 1.75em 1fr 1.25em;
   align-items: center;
   gap: 5px;
-  row-gap: 1px;
-  padding: var(--margin);
+  padding: 0.45em;
   border-radius: 6px;
-  margin: auto calc(var(--margin) * -1);
+  margin: auto calc(0.45em * -1);
   text-decoration: none;
   transition: background 0.2s ease-in-out;
 }
@@ -14162,21 +14371,6 @@ footer .nav > li > a:hover {
   content: "\f096";
 }
 
-/*
-.items-desplegable-tramitar {
-    // border-radius: 15px;
-    // padding: 5px 0 2px 5px;
-    // margin: 8px;
-    // display: table;
-    // font-weight: 500;
-    .icon-select-margin {
-        // margin-left: 0px;
-        &::before {
-            content: "\f096";
-        }
-    }
-}
-*/
 /* @todo gcaitai Definir si se utiliza */
 .items-desplegable-tramitar-select {
   border: 3px solid var(--arg-verde);
@@ -14186,31 +14380,7 @@ footer .nav > li > a:hover {
   height: auto;
 }
 
-/*
-a.items-desplegable-tramitar {
-    &:hover {
-        background-color: var(--arg-primary-50);
-    }
-}
-*/
-/*
-.items-desplegable-tramitar.activo {
-    .icon-select-margin {
-        &::before {
-            content: "\f046";
-        }
-    }
-}
-*/
 /* @todo gcaiati. Revisar si estos estilos se utilizan en otra parte del sitio. */
-.m-t-05 {
-  margin-top: 0.5rem;
-}
-
-.m-r-05 {
-  margin-right: 0.5rem;
-}
-
 .f-rigth {
   float: right;
 }
@@ -14220,7 +14390,7 @@ a.items-desplegable-tramitar {
   float: right;
 }
 
-/* Listas destacadas */
+/* @todo gcaiati. No entiendo qué es lo que hace */
 .listas-destacadas ul.search-results li::before {
   display: none;
 }
@@ -14432,7 +14602,7 @@ ul.colores li:hover {
 
 /* Extra small devices (phones, less than 576px) */
 @media (max-width: 575.98px) {
-  .br-sm {
+  .br-xs {
     display: block;
   }
 }
@@ -14520,49 +14690,6 @@ DEGRADÉ: .bg-mix-azul-info .bg-mix-info-azul .bg-mix-palta-azul .bg-mix-azul-pa
     margin-left: 3px;
   }
 }
-/* fin menu superior - ajuste márgenes */
-/* Menú superior - ver para borrar -
-
-#encabezado-menu {
-  a {
-     color: $black;
-  }
-
-  ul {
-    width: 100%;
-  }
-
-  .enc-link {
-    padding: 0px;
-    width: 31%;
-    margin: 20px 3px 3px 14px;
-    vertical-align: top;
-
-    a {
-      text-decoration: underline;
-      text-underline-offset: 0.25em;
-    }
-
-    &.active a span {
-      background-image: linear-gradient(to top, #000 3px, transparent 3px, transparent);
-      font-weight: 600;
-    }
-
-    a {
-      &[href^="https://"][target^=_blank]:after, &[href^="http://"][target^=_blank]:after {
-        content: none;
-      }
-    }
-  }
-}
-@media (max-width: 992px) {
-  #encabezado-menu .enc-link {
-    width: 96%;
-    margin-left: 28px;
-  }
-}
-
-*/
 #encabezado {
   /*  COLOR DEGRADÉ */
   /* Generales */
@@ -14684,7 +14811,8 @@ DEGRADÉ: .bg-mix-azul-info .bg-mix-info-azul .bg-mix-palta-azul .bg-mix-azul-pa
   #encabezado .enc-img {
     padding: 0px;
   }
-  #encabezado .enc-img h1, #encabezado .enc-img p {
+  #encabezado .enc-img h1,
+  #encabezado .enc-img p {
     padding: 0px 25px;
   }
   #encabezado .enc-img .iso {
@@ -14758,10 +14886,6 @@ DEGRADÉ: .bg-mix-azul-info .bg-mix-info-azul .bg-mix-palta-azul .bg-mix-azul-pa
   text-align: left;
 }
 
-.fw-normal {
-  font-weight: normal !important;
-}
-
 .accionmodal {
   font-size: 0.8rem;
   line-height: 2.5;
@@ -14786,10 +14910,6 @@ DEGRADÉ: .bg-mix-azul-info .bg-mix-info-azul .bg-mix-palta-azul .bg-mix-azul-pa
   z-index: 2;
   min-height: calc(100vh - 1rem);
   margin-bottom: 1rem;
-}
-
-.fw-normal {
-  font-weight: normal !important;
 }
 
 .accionmodal {
@@ -15359,6 +15479,9 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
  *  @summary Estilos para las páginas langing de algunos productos o servicios.
  *  @see www.argentina.gob.ar/vacaciones.
  */
+/** 
+ *  Configuración de variables por defecto
+ */
 .details-landing br,
 .details-landing p:empty {
   display: none;
@@ -15366,7 +15489,7 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
   overflow: hidden;
 }
 .details-landing details {
-  --figure-width: 1.3rem;
+  --figure-width: 1.15rem;
   --figure-text-gap: 10px;
   --figure-color: inherit;
   --figure-font-size: 1.5em;
@@ -15380,7 +15503,7 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
 .details-landing.details-landing-lg > details {
   --figure-width: 1.75rem;
   --figure-text-gap: 15px;
-  --figure-font-size: 1.9em;
+  --figure-font-size: 2em;
   --summary-font-size: 1.2rem;
   /* Global componente */
   --summary-padding-t: 15px;
@@ -15407,6 +15530,18 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
   line-height: var(--summary-line-height);
 }
 
+@media (max-width: 768px) {
+  .details-landing.details-landing-md > details, .details-landing.details-landing-lg > details {
+    --figure-width: 1.15rem;
+    --figure-text-gap: 10px;
+    --figure-color: inherit;
+    --figure-font-size: 1.5em;
+    --summary-font-size: 1em;
+    /* Global componente */
+    --summary-padding-t: 10px;
+    --summary-padding-b: 10px;
+  }
+}
 /* FORMULARIOS Y SELECT2 */
 /* Oculta selección previa de meses */
 #filter-cuando + .select2-container .select2-selection__choice {
@@ -15556,22 +15691,23 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
 }
 
 /* Tipografía y pesos */
-.fw-light {
-  font-weight: 400 !important;
+/*
+.fw-light { ¡¡¡¡light y ponés normal!!!!
+    font-weight: 400 !important;
 }
 
 .fw-medium {
-  font-weight: 500 !important;
+    font-weight: 500 !important;
 }
 
 .fw-semibold {
-  font-weight: 600 !important;
+    font-weight: 600 !important;
 }
 
 .fw-bold {
-  font-weight: 700 !important;
+    font-weight: 700 !important;
 }
-
+*/
 .text-small {
   font-size: 85%;
 }

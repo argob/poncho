@@ -10,14 +10,9 @@
      */
     --collapse-bg: gray;
     --collapse-color: gray;
-    --collapse-box-shadow: 0 0 6px rgb(0 0 0 / .1);
+    --collapse-box-shadow: 0 0 6px rgb(0 0 0 / 0.1);
     --collapse-icon-color: gray;
     --collapse-line-color: gray;
-
-
-    & * {
-        font-family:'Montserrat',sans-serif !important;
-    }
 
     .btn-title a {
         font-weight: bold !important;
@@ -25,10 +20,9 @@
 
     .nav-pills {
         li.active {
-
-            >a,
-            >a:hover,
-            >a:focus {
+            > a,
+            > a:hover,
+            > a:focus {
                 font-weight: bold !important;
                 border-radius: 0;
             }
@@ -40,7 +34,7 @@
             margin: 0px 7px;
         }
 
-        li>a {
+        li > a {
             color: var(--primary);
             border-radius: 0;
         }
@@ -49,7 +43,7 @@
             color: white;
         }
 
-        li>a:visited::before {
+        li > a:visited::before {
             color: var(--uva);
         }
 
@@ -64,24 +58,25 @@
                 $selector: $selector + "> ul > li";
             }
 
-            >li>ul>li #{$selector}>a::before {
+            > li > ul > li #{$selector} > a::before {
                 margin-left: #{$start + $i * $increment}px;
             }
         }
     }
 }
 
-
-
 /* Escritorio */
 .card {
     width: 100%; // reseteo valores impuestos
+    :has(.fa) i {
+        font-family: "FontAwesome";
+    }
+    *,
+    &.card-body * {
+        @include family-sans-serif-attributes;
+    }
 
     &.card-body {
-        * {
-            font-family:'Montserrat',sans-serif !important;
-        }
-        
         details {
             // Redefinimos valores del componente details.
             // @see https://github.com/argob/poncho/blob/master/src/scss/modules/_details.scss
@@ -109,7 +104,6 @@
     }
 }
 
-
 @media only screen and (max-width: 991px) {
     .page-sidebar {
         .nav-pills {
@@ -117,7 +111,7 @@
                 color: #fff !important;
             }
 
-            li>a:visited {
+            li > a:visited {
                 color: var(--uva);
             }
         }
@@ -129,10 +123,10 @@
         margin-bottom: 2rem;
 
         &.card-body {
-            >details {
+            > details {
                 border: 1px solid #ccc;
 
-                >summary {
+                > summary {
                     display: flex !important;
                 }
             }
@@ -160,11 +154,11 @@
         display: flex;
         flex-direction: column !important;
 
-        >article[class*="col-md-"] {
+        > article[class*="col-md-"] {
             order: 2;
         }
 
-        >aside[class*="col-md-"] {
+        > aside[class*="col-md-"] {
             order: 1;
         }
     }
