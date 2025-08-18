@@ -41,7 +41,6 @@ a.label {
 
 // Colors
 // Contextual variations (linked labels get darker on :hover)
-
 .label-default {
     @include label-variant($label-default-bg);
     color: $black;

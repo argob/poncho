@@ -54,11 +54,12 @@
 @import "modules/campaign";
 
 @import "modules/argentina.scss";
+@import "modules/snt/snt";
 @import "modules/campanias.scss";
 @import "modules/menu-org.scss";
 
-@import "modules/subastas";
-@import "modules/tramitar";
+@import "modules/aabe/subastas";
+@import "modules/tramitar/tramitar";
 @import "modules/home-new";
 @import "modules/identidad";
 @import "modules/typography-spaces";
@@ -66,9 +67,9 @@
 
 @import "modules/encabezados"; // Encabezados con degradee
 @import "modules/servicios-acciones"; // Trámites | Servicios y acciones
-@import "modules/tramites"; // Trámites 
+@import "modules/tramitar/tramites"; // Trámites 
 @import "modules/details";
-@import "modules/aabe"; // AABE
+@import "modules/aabe/aabe"; // AABE
 
 
 @import "../js/loader/src/scss/loader.scss";

@@ -1,17 +1,12 @@
-
-.media-right, 
+.media-right,
 .media > .pull-right {
     padding-left: 1rem;
 }
 
-
 @media (max-width: 767px) {
-
-  .media-right {
-      display: block;
-      padding-left: 0!important;
-      margin-top: 10px;
-  }
-
+    .media-right {
+        display: block;
+        padding-left: 0 !important;
+        margin-top: 10px;
+    }
 }
-

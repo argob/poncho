@@ -1,34 +1,58 @@
 @media print {
-  .social-share, 
-  .service-rating {
-    display: none;
-  }  
-	.main-footer,
-	body .main-footer {
-	  display: none;
-	}
+    .social-share,
+    .service-rating {
+        display: none;
+    }
+    .main-footer,
+    body .main-footer {
+        display: none;
+    }
 
-     /* paneles */
-     .panel-default>.panel-heading{height: initial!important;min-height: initial!important;}
-     .panel-body{padding: 0!important;}
-     .panel-icon .panel-heading{text-align: left!important;}
-     .panel-icon .panel-heading i{padding: 0!important;}
-     /* iconos */
-     .icon-item i{height: initial!important;}
-     /* jumbotron */
-     .jumbotron .text-center{text-align: left!important;}
-     .jumbotron .jumbotron_body{padding: 20px 0!important;}
-     /* */
-     .content_format h2,
-     .content_format h3,
-     .content_format h4,
-     .content_format h5,
-     .content_format h6,
-     .content_format .h2,
-     .content_format .h3,
-     .content_format .h4,
-     .content_format .h5,
-     .content_format .h6{margin-top: 0!important}
-     /* evita cortes de titulos entre paginas */
-     h1, h2, h3, h4, h5, h6{break-inside: avoid!important;}
+    /* paneles */
+    .panel-default > .panel-heading {
+        height: initial !important;
+        min-height: initial !important;
+    }
+    .panel-body {
+        padding: 0 !important;
+    }
+    .panel-icon .panel-heading {
+        text-align: left !important;
+    }
+    .panel-icon .panel-heading i {
+        padding: 0 !important;
+    }
+    /* iconos */
+    .icon-item i {
+        height: initial !important;
+    }
+    /* jumbotron */
+    .jumbotron .text-center {
+        text-align: left !important;
+    }
+    .jumbotron .jumbotron_body {
+        padding: 20px 0 !important;
+    }
+    /* */
+    .content_format h2,
+    .content_format h3,
+    .content_format h4,
+    .content_format h5,
+    .content_format h6,
+    .content_format .h2,
+    .content_format .h3,
+    .content_format .h4,
+    .content_format .h5,
+    .content_format .h6 {
+        margin-top: 0 !important;
+    }
+    /* evita cortes de titulos entre paginas */
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        break-inside: avoid !important;
+    }
 }

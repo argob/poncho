@@ -1,5 +1,3 @@
-
-
 /* DESTACADOS VERTICALES 
 
 Las clases "dato-nro" y "dato-eje" corresponde a los formatos markdown definidos como: 
@@ -7,35 +5,46 @@ Las clases "dato-nro" y "dato-eje" corresponde a los formatos markdown definidos
 - Destacar número o dato estadístico
 
 */
-
-
-.dato-nro, .dato-eje {
-  text-align: left;
-  margin-bottom: 40px;
+.dato-nro,
+.dato-eje {
+    text-align: left;
+    margin-bottom: 40px;
 }
 
 .dato-nro {
-  .h2 {
-    margin-bottom: 0.2em;
-  }
+    .h2 {
+        margin-bottom: 0.2em;
+    }
 
-  p {
-    margin: 0px;
-    line-height: 1.4;
-  }
+    p {
+        margin: 0px;
+        line-height: 1.4;
+    }
 }
 
 .dato-eje .icon-item {
-  text-align: left;
+    text-align: left;
 
-  i {
-    justify-content: left;
-    margin: 0px;
-  }
+    i {
+        justify-content: left;
+        margin: 0px;
+    }
 
-  .h3 {
-    margin-top: 0px;
-    margin-bottom: 0.2em;
-    font-size: 1.6em;
-  }
+    .h3 {
+        margin-top: 0px;
+        margin-bottom: 0.2em;
+        font-size: 1.6em;
+    }
+}
+
+
+/* Destacados (obtenido de argentina.scss)
+   ======================================================================== */
+#destacados .panel-default {
+    border: none !important;
+}
+
+#destacados h3,
+#destacados p {
+    color: #fff !important;
 }

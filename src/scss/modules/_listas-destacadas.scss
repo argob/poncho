@@ -1,48 +1,44 @@
-
 .listas-destacadas {
-  > ol, > ul {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 0 2.389rem;
-  }
-
-  > ol li *,
- > ul li * {
-    list-style-type: disc;
-}
-
-> ol > li ,
- > ul > li {
-    padding: 0;
-    list-style: none;
-    color: inherit;
-    font-size: 1.125rem;
-    font-weight: 500;
-    line-height: 1.2;
-    margin: 0 0 1.5rem;
-}
-> ol > li:before,
- > ul > li:before {
-    content: "\f061";
-    display: inline-grid;
-    vertical-align: top;
-    font-size: 2rem;
-    font-family: FontAwesome;
-    line-height: 24px;
-    margin: 0 .5rem 0 -2.222rem;
-    font-weight: normal;
-    font-style: normal;
-    font-variant: normal;
-}
-
-
-
-  
-  
-  @each $name, $color in $colores {
-    &.#{$name} > ol li:before ,
-    &.#{$name} > ul li:before {
-      color: var(--#{$name});
+    > ol,
+    > ul {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 0 2.389rem;
     }
-  }
+
+    > ol li *,
+    > ul li * {
+        list-style-type: disc;
+    }
+
+    > ol > li,
+    > ul > li {
+        padding: 0;
+        list-style: none;
+        color: inherit;
+        font-size: 1.125rem;
+        font-weight: 500;
+        line-height: 1.2;
+        margin: 0 0 1.5rem;
+    }
+    > ol > li:before,
+    > ul > li:before {
+        content: "\f061";
+        display: inline-grid;
+        vertical-align: top;
+        font-size: 2rem;
+        font-family: FontAwesome;
+        line-height: 24px;
+        margin: 0 0.5rem 0 -2.222rem;
+        font-weight: normal;
+        font-style: normal;
+        font-variant: normal;
+    }
+
+    @each $name, $color in $colores {
+        &.#{$name} > ol li:before,
+        &.#{$name} > ul li:before {
+            color: var(--#{$name});
+        }
+    }
 }

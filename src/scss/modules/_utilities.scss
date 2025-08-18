@@ -34,11 +34,13 @@ $configSpaces: (
     (3, 3rem),
     (4, 4rem),
 );
+
 @each $name, $value in $configSpaces {
-    @if $name != auto {
+    @if $name !=auto {
         .p-#{$name} {
             padding: #{$value} !important;
         }
+
         .p-t-#{$name} {
             padding-top: #{$value} !important;
         }
@@ -65,6 +67,7 @@ $configSpaces: (
             padding-bottom: #{$value} !important;
         }
     }
+
     .m-a-#{$name},
     .m-#{$name} {
         margin: #{$value} !important;
@@ -98,155 +101,112 @@ $configSpaces: (
 }
 
 
-
-
-/* uso particular en SNT */
-
-.ql-indent-1 {
-  padding-left: 1rem !important;
-}
-
-.ql-indent-2 {
-  padding-left: 2rem !important;
-}
-
-.ql-indent-3 {
-  padding-left: 3rem !important;
-}
-
-.ql-indent-4 {
-  padding-left: 4rem !important;
-}
-
-.ql-indent-5 {
-  padding-left: 5rem !important;
-}
-
-.ql-indent-6 {
-  padding-left: 6rem !important;
-}
-
-/* fin uso SNT */
-
-
-
-
-
-
 .pos-f-t {
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  z-index: 1030;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
 }
 
 .text-justify {
-  text-align: justify !important;
+    text-align: justify !important;
 }
 
 .text-nowrap {
-  white-space: nowrap !important;
+    white-space: nowrap !important;
 }
 
 .text-truncate {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 
 
-.text-xs-left {
-  text-align: left !important;
+@media (max-width: 575.98px) {
+    .text-xs-left {
+        text-align: left !important;
+    }
+
+    .text-xs-right {
+        text-align: right !important;
+    }
+
+    .text-xs-center {
+        text-align: center !important;
+    }
 }
-
-.text-xs-right {
-  text-align: right !important;
-}
-
-.text-xs-center {
-  text-align: center !important;
-}
-
-
 
 @media (min-width: 768px) {
-  .text-sm-left {
-    text-align: left !important;
-  }
+    .text-sm-left {
+        text-align: left !important;
+    }
 
-  .text-sm-right {
-    text-align: right !important;
-  }
+    .text-sm-right {
+        text-align: right !important;
+    }
 
-  .text-sm-center {
-    text-align: center !important;
-  }
+    .text-sm-center {
+        text-align: center !important;
+    }
 }
 
 @media (min-width: 992px) {
-  .text-md-left {
-    text-align: left !important;
-  }
+    .text-md-left {
+        text-align: left !important;
+    }
 
-  .text-md-right {
-    text-align: right !important;
-  }
+    .text-md-right {
+        text-align: right !important;
+    }
 
-  .text-md-center {
-    text-align: center !important;
-  }
+    .text-md-center {
+        text-align: center !important;
+    }
 }
 
 @media (min-width: 1200px) {
-  .text-lg-left {
-    text-align: left !important;
-  }
+    .text-lg-left {
+        text-align: left !important;
+    }
 
-  .text-lg-right {
-    text-align: right !important;
-  }
+    .text-lg-right {
+        text-align: right !important;
+    }
 
-  .text-lg-center {
-    text-align: center !important;
-  }
+    .text-lg-center {
+        text-align: center !important;
+    }
 }
 
 .img .img-rounded {
-  border-radius: 10px
+    border-radius: 10px
 }
 
 .panel-heading {
-  border-top-left-radius: 0px !important;
-  border-top-right-radius: 0px !important
+    border-top-left-radius: 0px !important;
+    border-top-right-radius: 0px !important
 }
 
 pre {
-  border: solid 1px #ddd
+    border: solid 1px #ddd
 }
 
-.alert {
-  border-radius: 10px
-}
 
 // Grupo de atajos
 .atajos-agrupados .h2 {
-  margin-bottom: 1.35em;
-  margin-top: 2.25em
+    margin-bottom: 1.35em;
+    margin-top: 2.25em
 }
 
 .atajos-agrupados .lead {
-  margin-bottom: 0.26em
+    margin-bottom: 0.26em
 }
 
 // Misma altura del contenedor de atajos
 .atajos-agrupados {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-//BORDER
-.bdr-pry-1 {
-  border: 1px solid #0072bb !important;
+    display: flex;
+    flex-wrap: wrap;
 }
