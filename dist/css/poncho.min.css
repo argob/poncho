@@ -372,10 +372,6 @@ hr.hr-sm {
   margin: 15px 0;
 }
 
-.social-share a {
-  font-size: 30px;
-}
-
 .inline {
   display: inline-block;
 }
@@ -7005,77 +7001,122 @@ body {
   font-family: "Montserrat", sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
   letter-spacing: -0.2pt;
   font-family: "Lora", serif;
   font-weight: 700;
   margin: 0.5em 0 0.7em 0;
 }
 h1 small,
-h1 .small, h2 small,
-h2 .small, h3 small,
-h3 .small, h4 small,
-h4 .small, h5 small,
-h5 .small, h6 small,
-h6 .small, .h1 small,
-.h1 .small, .h2 small,
-.h2 .small, .h3 small,
-.h3 .small, .h4 small,
-.h4 .small, .h5 small,
-.h5 .small, .h6 small,
+h1 .small,
+h2 small,
+h2 .small,
+h3 small,
+h3 .small,
+h4 small,
+h4 .small,
+h5 small,
+h5 .small,
+h6 small,
+h6 .small,
+.h1 small,
+.h1 .small,
+.h2 small,
+.h2 .small,
+.h3 small,
+.h3 .small,
+.h4 small,
+.h4 .small,
+.h5 small,
+.h5 .small,
+.h6 small,
 .h6 .small {
   color: #555555;
 }
-h1.section-title, h2.section-title, h3.section-title, h4.section-title, h5.section-title, h6.section-title, .h1.section-title, .h2.section-title, .h3.section-title, .h4.section-title, .h5.section-title, .h6.section-title {
+h1.section-title,
+h2.section-title,
+h3.section-title,
+h4.section-title,
+h5.section-title,
+h6.section-title,
+.h1.section-title,
+.h2.section-title,
+.h3.section-title,
+.h4.section-title,
+.h5.section-title,
+.h6.section-title {
   color: #555555;
   margin-bottom: 24px;
 }
 
-h1, .h1 {
+h1,
+.h1 {
   font-size: 2.5rem;
 }
-h1.section-title, .h1.section-title {
+h1.section-title,
+.h1.section-title {
   font-size: 1.8em;
 }
 
-h2, .h2 {
+h2,
+.h2 {
   font-size: 2rem;
 }
-h2.section-title, .h2.section-title {
+h2.section-title,
+.h2.section-title {
   font-size: 1.6em;
 }
 
-h3, .h3 {
+h3,
+.h3 {
   font-size: 1.75rem;
 }
-h3.section-title, .h3.section-title {
+h3.section-title,
+.h3.section-title {
   font-size: 1.4em;
 }
 
-h4, .h4 {
+h4,
+.h4 {
   font-size: 1.5rem;
 }
-h4.section-title, .h4.section-title {
+h4.section-title,
+.h4.section-title {
   font-size: 1.2em;
 }
 
-h5, .h5 {
+h5,
+.h5 {
   font-size: 1.25rem;
 }
-h5.section-title, .h5.section-title {
+h5.section-title,
+.h5.section-title {
   font-size: 1em;
 }
 
-h6, .h6 {
+h6,
+.h6 {
   font-size: 1rem;
 }
-h6.section-title, .h6.section-title {
+h6.section-title,
+.h6.section-title {
   font-size: 0.8em;
 }
 
 a {
   color: #232D4F;
-  color: var(--arg-azul-600, #0767A7);
+  color: var(--arg-azul-600, #0767a7);
   font-weight: inherit;
   border: 0;
   cursor: pointer;
@@ -7095,20 +7136,64 @@ main a:not(.btn) {
 }
 
 /* ///  INICIO CORTE DE PALABRA TITULOS PANELES  /// */
-.pane-atajos h3, .pane-atajos .h3 {
+.pane-atajos h3,
+.pane-atajos .h3 {
   font-size: 1.18rem;
 }
 
 /* ///  Saco corte de palabra en la home  /// */
-.front .pane-atajos h3, .front .pane-atajos .h3 {
+.front .pane-atajos h3,
+.front .pane-atajos .h3 {
   font-size: 1.28rem;
 }
 
 /* ///  FIN CORTE DE PALABRA TITULOS PANELES  /// */
-p a, li a, h1 a, h2 a, h3 a, h4 a, h5 a, h6 a, .h1 a, .h2 a, .h3 a, .h4 a, .h5 a, .h6 a, table tbody a {
+p a,
+li a,
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a,
+.h1 a,
+.h2 a,
+.h3 a,
+.h4 a,
+.h5 a,
+.h6 a,
+table tbody a {
   text-decoration: underline;
 }
-p a:hover, p a:focus, li a:hover, li a:focus, h1 a:hover, h1 a:focus, h2 a:hover, h2 a:focus, h3 a:hover, h3 a:focus, h4 a:hover, h4 a:focus, h5 a:hover, h5 a:focus, h6 a:hover, h6 a:focus, .h1 a:hover, .h1 a:focus, .h2 a:hover, .h2 a:focus, .h3 a:hover, .h3 a:focus, .h4 a:hover, .h4 a:focus, .h5 a:hover, .h5 a:focus, .h6 a:hover, .h6 a:focus, table tbody a:hover, table tbody a:focus {
+p a:hover, p a:focus,
+li a:hover,
+li a:focus,
+h1 a:hover,
+h1 a:focus,
+h2 a:hover,
+h2 a:focus,
+h3 a:hover,
+h3 a:focus,
+h4 a:hover,
+h4 a:focus,
+h5 a:hover,
+h5 a:focus,
+h6 a:hover,
+h6 a:focus,
+.h1 a:hover,
+.h1 a:focus,
+.h2 a:hover,
+.h2 a:focus,
+.h3 a:hover,
+.h3 a:focus,
+.h4 a:hover,
+.h4 a:focus,
+.h5 a:hover,
+.h5 a:focus,
+.h6 a:hover,
+.h6 a:focus,
+table tbody a:hover,
+table tbody a:focus {
   text-decoration: underline;
 }
 
@@ -7120,11 +7205,13 @@ fieldset {
   font-weight: 400;
 }
 
-b, strong {
+b,
+strong {
   font-weight: 600;
 }
 
-.text-muted, time {
+.text-muted,
+time {
   color: #555555;
 }
 
@@ -7178,10 +7265,30 @@ article h1.icon.aside {
   margin-top: 10px;
 }
 
-.content_format h2, .content_format h3, .content_format h4, .content_format h5, .content_format h6, .content_format .h2, .content_format .h3, .content_format .h4, .content_format .h5, .content_format .h6 {
+.content_format h2,
+.content_format h3,
+.content_format h4,
+.content_format h5,
+.content_format h6,
+.content_format .h2,
+.content_format .h3,
+.content_format .h4,
+.content_format .h5,
+.content_format .h6 {
   margin-top: 2em;
 }
-.content_format .alert h1, .content_format .alert h2, .content_format .alert h3, .content_format .alert h4, .content_format .alert h5, .content_format .alert h6, .content_format .alert .h1, .content_format .alert .h2, .content_format .alert .h3, .content_format .alert .h4, .content_format .alert .h5, .content_format .alert .h6,
+.content_format .alert h1,
+.content_format .alert h2,
+.content_format .alert h3,
+.content_format .alert h4,
+.content_format .alert h5,
+.content_format .alert h6,
+.content_format .alert .h1,
+.content_format .alert .h2,
+.content_format .alert .h3,
+.content_format .alert .h4,
+.content_format .alert .h5,
+.content_format .alert .h6,
 .content_format .well h1,
 .content_format .well h2,
 .content_format .well h3,
@@ -8376,7 +8483,8 @@ ol.breadcrumb li:after {
 }
 
 .pagination > li > a:hover,
-.pagination > li > a:focus, pagination .pagination > li > span:hover,
+.pagination > li > a:focus,
+pagination .pagination > li > span:hover,
 .pagination > li > span:focus {
   background-color: #F2F2F2;
   border-color: transparent;
@@ -8406,6 +8514,13 @@ ol.breadcrumb li:after {
   border-color: #dfd7ca;
   color: #dfd7ca;
   cursor: not-allowed;
+}
+
+.pagination > li:first-child > a,
+.pagination > li:first-child > span,
+.pagination > li:last-child > a,
+.pagination > li:last-child > span {
+  border-radius: 30px !important;
 }
 
 article > div > header {
@@ -10670,6 +10785,10 @@ a.alert.alert-danger i {
   font-weight: 700 !important;
 }
 
+.alert {
+  border-radius: 10px;
+}
+
 .embed-responsive-1by1 {
   padding-bottom: 100%;
 }
@@ -10777,7 +10896,12 @@ a.alert.alert-danger i {
     margin-top: 0 !important;
   }
   /* evita cortes de titulos entre paginas */
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     break-inside: avoid !important;
   }
 }
@@ -10931,7 +11055,8 @@ Las clases "dato-nro" y "dato-eje" corresponde a los formatos markdown definidos
 - Destacar número o dato estadístico
 
 */
-.dato-nro, .dato-eje {
+.dato-nro,
+.dato-eje {
   text-align: left;
   margin-bottom: 40px;
 }
@@ -10955,6 +11080,17 @@ Las clases "dato-nro" y "dato-eje" corresponde a los formatos markdown definidos
   margin-top: 0px;
   margin-bottom: 0.2em;
   font-size: 1.6em;
+}
+
+/* Destacados (obtenido de argentina.scss)
+   ======================================================================== */
+#destacados .panel-default {
+  border: none !important;
+}
+
+#destacados h3,
+#destacados p {
+  color: #fff !important;
 }
 
 .poncho-map {
@@ -12049,22 +12185,26 @@ footer.pm-open-map ul > li > a:hover, footer.pm-open-map ul > li > a:focus {
   padding-left: 30px;
   padding-right: 30px;
 }
-.numbers h1, .numbers .h1 {
+.numbers h1,
+.numbers .h1 {
   font-size: 4em;
   font-weight: bold;
   margin: 0.2em 0;
 }
-.numbers h2, .numbers .h2 {
+.numbers h2,
+.numbers .h2 {
   font-size: 3em;
   font-weight: bold;
   margin: 0.2em 0;
 }
-.numbers h3, .numbers .h3 {
+.numbers h3,
+.numbers .h3 {
   font-size: 2.4em;
   font-weight: bold;
   margin: 0.2em 0;
 }
-.numbers h4, .numbers .h4 {
+.numbers h4,
+.numbers .h4 {
   font-size: 1.8em;
   font-weight: bold;
   margin: 0.2em 0;
@@ -12540,32 +12680,6 @@ footer.pm-open-map ul > li > a:hover, footer.pm-open-map ul > li > a:focus {
   margin-bottom: 4rem !important;
 }
 
-/* uso particular en SNT */
-.ql-indent-1 {
-  padding-left: 1rem !important;
-}
-
-.ql-indent-2 {
-  padding-left: 2rem !important;
-}
-
-.ql-indent-3 {
-  padding-left: 3rem !important;
-}
-
-.ql-indent-4 {
-  padding-left: 4rem !important;
-}
-
-.ql-indent-5 {
-  padding-left: 5rem !important;
-}
-
-.ql-indent-6 {
-  padding-left: 6rem !important;
-}
-
-/* fin uso SNT */
 .pos-f-t {
   position: fixed;
   top: 0;
@@ -12588,18 +12702,17 @@ footer.pm-open-map ul > li > a:hover, footer.pm-open-map ul > li > a:focus {
   white-space: nowrap;
 }
 
-.text-xs-left {
-  text-align: left !important;
+@media (max-width: 575.98px) {
+  .text-xs-left {
+    text-align: left !important;
+  }
+  .text-xs-right {
+    text-align: right !important;
+  }
+  .text-xs-center {
+    text-align: center !important;
+  }
 }
-
-.text-xs-right {
-  text-align: right !important;
-}
-
-.text-xs-center {
-  text-align: center !important;
-}
-
 @media (min-width: 768px) {
   .text-sm-left {
     text-align: left !important;
@@ -12646,10 +12759,6 @@ pre {
   border: solid 1px #ddd;
 }
 
-.alert {
-  border-radius: 10px;
-}
-
 .atajos-agrupados .h2 {
   margin-bottom: 1.35em;
   margin-top: 2.25em;
@@ -12664,11 +12773,8 @@ pre {
   flex-wrap: wrap;
 }
 
-.bdr-pry-1 {
-  border: 1px solid #0072bb !important;
-}
-
-.listas-destacadas > ol, .listas-destacadas > ul {
+.listas-destacadas > ol,
+.listas-destacadas > ul {
   list-style: none;
   padding: 0;
   margin: 0 0 0 2.389rem;
@@ -13196,7 +13302,7 @@ pre {
    */
   --collapse-bg: gray;
   --collapse-color: gray;
-  --collapse-box-shadow: 0 0 6px rgb(0 0 0 / .1);
+  --collapse-box-shadow: 0 0 6px rgb(0 0 0 / 0.1);
   --collapse-icon-color: gray;
   --collapse-line-color: gray;
 }
@@ -13415,7 +13521,7 @@ main > div > div > div > section {
 }
 
 /* Form-type
-  ======================================================================== 
+   ======================================================================== 
 */
 .form-type-date .form-inline {
   margin: 0 -15px;
@@ -13618,7 +13724,8 @@ footer ul.nav li a {
 
 /* Generar mas contraste con este color al texto*/
 .h3.section-title {
-  color: #141414; /* archivo tipography.scss line 43 le agrega por defecto color: #707070 */
+  color: #141414;
+  /* archivo tipography.scss line 43 le agrega por defecto color: #707070 */
 }
 
 .m-l-m15 {
@@ -13663,15 +13770,19 @@ footer ul.nav li a {
   font-size: 1.3em !important;
   font-weight: 500 !important;
   line-height: 1.3 !important;
-  margin: 0.25em 0 !important; /*color: red; cambiar color para visualizar mejor que se esta cambiando*/
+  margin: 0.25em 0 !important;
+  /*color: red; cambiar color para visualizar mejor que se esta cambiando*/
 }
 
 /* modificar paneles sacar headings por parrafos o span */
 .icon-item .h3_title {
-  font-size: 1.6em !important; /* global.scss line 90*/
-  margin-top: 0 !important; /* global.scss line 85*/
+  font-size: 1.6em !important;
+  /* global.scss line 90*/
+  margin-top: 0 !important;
+  /* global.scss line 85*/
   margin-bottom: 0.2em;
-  font-weight: 600; /*color: red; cambiar color para visualizar mejor que se esta cambiando*/
+  font-weight: 600;
+  /*color: red; cambiar color para visualizar mejor que se esta cambiando*/
 }
 
 @media screen and (max-width: 767px) {
@@ -13681,17 +13792,6 @@ footer ul.nav li a {
 }
 .pane-area-estructura .img-rounded {
   margin-top: 10px !important;
-}
-
-/* Destacados
-   ======================================================================== */
-#destacados .panel-default {
-  border: none !important;
-}
-
-#destacados h3,
-#destacados p {
-  color: #fff !important;
 }
 
 /* Header
@@ -13781,13 +13881,6 @@ ul.dropdown-menu li a {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-.pagination > li:first-child > a,
-.pagination > li:first-child > span,
-.pagination > li:last-child > a,
-.pagination > li:last-child > span {
-  border-radius: 30px !important;
 }
 
 .checkbox label,
@@ -13895,6 +13988,30 @@ footer .nav > li > a:hover {
     display: none;
   }
 }
+.ql-indent-1 {
+  padding-left: 1rem !important;
+}
+
+.ql-indent-2 {
+  padding-left: 2rem !important;
+}
+
+.ql-indent-3 {
+  padding-left: 3rem !important;
+}
+
+.ql-indent-4 {
+  padding-left: 4rem !important;
+}
+
+.ql-indent-5 {
+  padding-left: 5rem !important;
+}
+
+.ql-indent-6 {
+  padding-left: 6rem !important;
+}
+
 .box-campania {
   padding: 30px 0 0 0;
   background-color: #f3faff;
@@ -14099,7 +14216,7 @@ footer .nav > li > a:hover {
   }
 }
 /* 
-///// Define estilos para modulo de subastas ////.
+Define estilos para modulo de subastas
 */
 .mapa-inmuebles {
   float: right;
@@ -14485,7 +14602,7 @@ ul.colores li:hover {
 
 /* Extra small devices (phones, less than 576px) */
 @media (max-width: 575.98px) {
-  .br-sm {
+  .br-xs {
     display: block;
   }
 }
