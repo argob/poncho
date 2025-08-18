@@ -14205,113 +14205,6 @@ footer .nav > li > a:hover {
     width: 100% !important;
   }
 }
-/* 
-Define estilos para modulo de subastas
-*/
-.mapa-inmuebles {
-  float: right;
-}
-
-.descargas .fa-long-arrow-down {
-  border-bottom: 5px solid #3e5a7e;
-  padding-bottom: 4px;
-  margin-top: -8px;
-}
-
-.descargas,
-.node-type-subasta .pane-drupar-mapa-osm {
-  display: table-cell;
-}
-
-.tag-subasta {
-  padding: 0.2em 0.6em 0.3em;
-}
-
-.pane-tag-subasta {
-  display: table-cell;
-}
-
-.pane-informacion-subasta,
-.pane-informacion-propiedad,
-.descargas,
-.pane-drupar-mapa-osm,
-.node-type-subasta .js-details.ar-details,
-.seguir-subasta,
-.alerta-contenido {
-  padding-left: 1em !important;
-  padding-right: 1em !important;
-}
-
-.node-type-subasta .row.m-y-3 {
-  margin: 0px !important;
-}
-
-/* /// Corte de palabra en titulos /// */
-/* En paneles */
-.nombre-obra {
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-/* En detalle */
-.mapa-inmuebles .small.ubicacion {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.pane-informacion-propiedad .row {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-}
-
-.f-left {
-  float: left;
-}
-
-.f-right {
-  float: right;
-}
-
-/* Medium devices (tablets, less than 992px) */
-@media (max-width: 991.98px) {
-  .alerta-contenido {
-    margin-top: 1.8em;
-  }
-  .node-type-subasta h3,
-  .node-type-subasta .h3,
-  .node-type-subasta h4,
-  .node-type-subasta .h4,
-  .node-type-subasta h5,
-  .node-type-subasta .h5 {
-    font-size: 1.06rem;
-    padding-top: 0.5rem;
-  }
-  .node-type-subasta .fa-2x {
-    font-size: 1.5rem;
-    line-height: 1.8rem;
-  }
-  .mapa-inmuebles.m-t-3 {
-    margin-top: 0px !important;
-  }
-  .node-type-subasta .section-actions.col-md-12.social-share {
-    display: none;
-  }
-  .node-type-subasta .m-t-3,
-  .node-type-subasta .m-b-3 {
-    margin: 0 !important;
-  }
-  .pane-tag-subasta .label,
-  .pane-tag-subasta .tag-subasta {
-    clear: both;
-    margin-left: 0px !important;
-    margin-top: 0px !important;
-  }
-}
 /* CONTENIDO DE LA PAGINA TRAMITAR V1.1 */
 .desplegable-tramitar {
   /**
@@ -14359,30 +14252,6 @@ Define estilos para modulo de subastas
 }
 .desplegable-tramitar .items-desplegable-tramitar .icon-select-margin::before {
   content: "\f096";
-}
-
-/* @todo gcaitai Definir si se utiliza */
-.items-desplegable-tramitar-select {
-  border: 3px solid var(--arg-verde);
-  border-radius: 15px;
-  padding: 5px;
-  margin: 8px;
-  height: auto;
-}
-
-/* @todo gcaiati. Revisar si estos estilos se utilizan en otra parte del sitio. */
-.f-rigth {
-  float: right;
-}
-
-.bdr-l {
-  margin: 20px 0px;
-  float: right;
-}
-
-/* @todo gcaiati. No entiendo qué es lo que hace */
-.listas-destacadas ul.search-results li::before {
-  display: none;
 }
 
 @media (max-width: 991px) {
@@ -15647,6 +15516,45 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
   content: "| ";
 }
 
+.node-type-subasta .row.m-y-3 {
+  margin: 0px !important;
+}
+
+@media (max-width: 575.98px) {
+  .filtro.col-xs-12, .filtro .panel-body {
+    padding: 0px;
+  }
+  .bloque-desktop dd, .bloque-desktop dt {
+    font-size: 0.85rem;
+  }
+  .pane-tag-subasta dd, .pane-tag-subasta dt {
+    font-size: 0.85rem;
+  }
+}
+/* Medium devices (tablets, less than 992px) */
+@media (max-width: 991.98px) {
+  .node-type-subasta h3, .node-type-subasta .h3, .node-type-subasta h4, .node-type-subasta .h4, .node-type-subasta h5, .node-type-subasta .h5 {
+    font-size: 1.06rem;
+    padding-top: 0.5rem;
+  }
+  .node-type-subasta .fa-2x {
+    font-size: 1.5rem;
+    line-height: 1.8rem;
+  }
+  .node-type-subasta .m-t-3, .node-type-subasta .m-b-3 {
+    margin: 0 !important;
+  }
+  .pane-tag-subasta .label {
+    padding: 0.48rem;
+    float: left !important;
+  }
+  .pane-tag-subasta .tag-subasta {
+    clear: both;
+    margin-left: 0rem !important;
+    margin-top: 0rem !important;
+    padding: 0.1rem;
+  }
+}
 /* Imagen y títulos en mobile */
 @media (max-width: 992px) {
   .imagen-mobile {
@@ -15680,24 +15588,6 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
   background: var(--arg-primary-100);
 }
 
-/* Tipografía y pesos */
-/*
-.fw-light { ¡¡¡¡light y ponés normal!!!!
-    font-weight: 400 !important;
-}
-
-.fw-medium {
-    font-weight: 500 !important;
-}
-
-.fw-semibold {
-    font-weight: 600 !important;
-}
-
-.fw-bold {
-    font-weight: 700 !important;
-}
-*/
 .text-small {
   font-size: 85%;
 }
@@ -15732,6 +15622,14 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
 /* Íconos */
 .icon-success {
   padding-right: 0.2rem;
+}
+
+.f-left {
+  float: left;
+}
+
+.f-right {
+  float: right;
 }
 
 .poncho-loader {
