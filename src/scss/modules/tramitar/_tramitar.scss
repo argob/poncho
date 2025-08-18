@@ -67,37 +67,6 @@
     }
 }
 
-/* @todo gcaitai Definir si se utiliza */
-.items-desplegable-tramitar-select {
-    border: 3px solid var(--arg-verde);
-    border-radius: 15px;
-    padding: 5px;
-    margin: 8px;
-    height: auto;
-}
-
-/* @todo gcaiati. Revisar si estos estilos se utilizan en otra parte del sitio. */
-// f-rigth (mal escrito). Define un float. ¿Usamos algo así?
-.f-rigth {
-    float: right;
-}
-// ¿bdr-l?
-.bdr-l {
-    margin: 20px 0px;
-    float: right;
-}
-
-/* @todo gcaiati. No entiendo qué es lo que hace */
-.listas-destacadas {
-    ul.search-results {
-        li {
-            &::before {
-                display: none;
-            }
-        }
-    }
-}
-
 @media (max-width: 991px) {
     .jumbotron_body {
         img[alt="tramitar"] {
