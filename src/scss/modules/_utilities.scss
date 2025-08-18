@@ -3,15 +3,15 @@
  * ([nombre], [valor]) 
  */
 $configTypeWeights: (
-    ('thin', 100),
-    ('extra-light', 200),
-    ('light', 300),
-    ('normal', 400),
-    ('medium', 500),
-    ('semibold', 600),
-    ('bold', 700),
-    ('extra-bold', 800),
-    ('black', 900)
+    ("thin", 100),
+    ("extra-light", 200),
+    ("light", 300),
+    ("normal", 400),
+    ("medium", 500),
+    ("semibold", 600),
+    ("bold", 700),
+    ("extra-bold", 800),
+    ("black", 900)
 );
 
 @each $name, $value in $configTypeWeights {
@@ -20,7 +20,6 @@ $configTypeWeights: (
     }
 }
 
-
 /**
  * Generador de espacios 
  * ([nombre], [valor]) 
@@ -28,11 +27,11 @@ $configTypeWeights: (
 $configSpaces: (
     (auto, auto),
     (0, 0px),
-    ('05', 0.5rem),
+    ("05", 0.5rem),
     (1, 1rem),
     (2, 1.5rem),
     (3, 3rem),
-    (4, 4rem),
+    (4, 4rem)
 );
 
 @each $name, $value in $configSpaces {
@@ -100,7 +99,6 @@ $configSpaces: (
     }
 }
 
-
 .pos-f-t {
     position: fixed;
     top: 0;
@@ -122,8 +120,9 @@ $configSpaces: (
     text-overflow: ellipsis;
     white-space: nowrap;
 }
-
-
+.text-uppercase {
+    text-transform: uppercase;
+}
 
 @media (max-width: 575.98px) {
     .text-xs-left {
@@ -182,27 +181,26 @@ $configSpaces: (
 }
 
 .img .img-rounded {
-    border-radius: 10px
+    border-radius: 10px;
 }
 
 .panel-heading {
     border-top-left-radius: 0px !important;
-    border-top-right-radius: 0px !important
+    border-top-right-radius: 0px !important;
 }
 
 pre {
-    border: solid 1px #ddd
+    border: solid 1px #ddd;
 }
-
 
 // Grupo de atajos
 .atajos-agrupados .h2 {
     margin-bottom: 1.35em;
-    margin-top: 2.25em
+    margin-top: 2.25em;
 }
 
 .atajos-agrupados .lead {
-    margin-bottom: 0.26em
+    margin-bottom: 0.26em;
 }
 
 // Misma altura del contenedor de atajos
