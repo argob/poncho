@@ -10,7 +10,7 @@
         font-weight: 500 !important;
         padding: 2px 0 !important;
     }
-  
+
     a {
         text-decoration: none !important;
         &:hover {
@@ -21,26 +21,26 @@
     .bg-primary {
         background-color: $brand-celeste-argentina !important;
     }
-    
+
     .bg-info h2.tituloContainerCam {
         color: $white !important;
     }
-    
-   .bg-link {
+
+    .bg-link {
         border-bottom: 1px solid $brand-primary !important;
     }
 }
 
 /* media */
-@media (max-width:767px) {
+@media (max-width: 767px) {
     #campaign h2 {
         margin-right: auto;
         margin-left: auto;
     }
 }
 
-@media (max-width:768px) {
+@media (max-width: 768px) {
     #campaign02 {
-        line-height: 1.4
+        line-height: 1.4;
     }
 }

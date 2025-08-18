@@ -1,266 +1,312 @@
 // Mofifica valores generales para los headers.
 body {
-  @include family-sans-serif-attributes;
+    @include family-sans-serif-attributes;
 }
 
-h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-  @include family-serif-attributes;
-  margin: .5em 0 .7em 0;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+    @include family-serif-attributes;
+    margin: 0.5em 0 0.7em 0;
 
-  small,
-  .small {
-    color: $gray;
-  }
+    small,
+    .small {
+        color: $gray;
+    }
 
-  &.section-title {
-    color: $gray;
-    margin-bottom: 24px;
-  }
+    &.section-title {
+        color: $gray;
+        margin-bottom: 24px;
+    }
 }
 
-h1, .h1 {
-  font-size: 2.5rem;
+h1,
+.h1 {
+    font-size: 2.5rem;
 
-
-  &.section-title {
-    font-size: 1.8em;
-  }
+    &.section-title {
+        font-size: 1.8em;
+    }
 }
 
-h2, .h2 {
-  font-size: 2rem;
+h2,
+.h2 {
+    font-size: 2rem;
 
-  &.section-title {
-    font-size: 1.6em;
-  }
+    &.section-title {
+        font-size: 1.6em;
+    }
 }
 
-h3, .h3 {
-  font-size: 1.75rem;
+h3,
+.h3 {
+    font-size: 1.75rem;
 
-  &.section-title {
-    font-size: 1.4em;
-  }
+    &.section-title {
+        font-size: 1.4em;
+    }
 }
 
-h4, .h4 {
-  font-size: 1.5rem;
+h4,
+.h4 {
+    font-size: 1.5rem;
 
-  &.section-title {
-    font-size: 1.2em;
-  }
+    &.section-title {
+        font-size: 1.2em;
+    }
 }
 
-h5, .h5 {
-  font-size: 1.25rem;
+h5,
+.h5 {
+    font-size: 1.25rem;
 
-  &.section-title {
-    font-size: 1em;
-  }
+    &.section-title {
+        font-size: 1em;
+    }
 }
 
-h6, .h6 {
-  font-size: 1rem;
+h6,
+.h6 {
+    font-size: 1rem;
 
-  &.section-title {
-    font-size: 0.8em;
-  }
+    &.section-title {
+        font-size: 0.8em;
+    }
 }
 
 a {
-  color: $brand-primary;
-  color: var(--arg-azul-600, #0767A7);
-  font-weight: inherit;
-  border: 0;
-  cursor: pointer;
-  text-decoration: underline;
-  -webkit-text-decoration-skip: ink;
-  text-decoration-skip-ink: auto;
-  text-underline-offset: 0.25em;
-  &:hover,
-  &:focus,
-  &:active {
-    color: $link-hover-color;
-    color: var(--arg-azul-800);
-  }
+    color: $brand-primary;
+    color: var(--arg-azul-600, #0767a7);
+    font-weight: inherit;
+    border: 0;
+    cursor: pointer;
+    text-decoration: underline;
+    -webkit-text-decoration-skip: ink;
+    text-decoration-skip-ink: auto;
+    text-underline-offset: 0.25em;
+    &:hover,
+    &:focus,
+    &:active {
+        color: $link-hover-color;
+        color: var(--arg-azul-800);
+    }
 }
 
 main a:not(.btn) {
-  word-wrap: break-word;
-  word-break: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
 }
 
 /* ///  INICIO CORTE DE PALABRA TITULOS PANELES  /// */
-.pane-atajos h3, .pane-atajos .h3 {
-		font-size: 1.18rem
+.pane-atajos h3,
+.pane-atajos .h3 {
+    font-size: 1.18rem;
 }
 /* ///  Saco corte de palabra en la home  /// */
-.front .pane-atajos h3, .front .pane-atajos .h3 {
-		font-size: 1.28rem
+.front .pane-atajos h3,
+.front .pane-atajos .h3 {
+    font-size: 1.28rem;
 }
 /* ///  FIN CORTE DE PALABRA TITULOS PANELES  /// */
 
-p, li, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, table tbody {
-
-  a {
-      text-decoration: underline;
-    &:hover,
-    &:focus {
-      text-decoration: underline;
+p,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+table tbody {
+    a {
+        text-decoration: underline;
+        &:hover,
+        &:focus {
+            text-decoration: underline;
+        }
     }
-  }  
-
 }
-
-
 
 p,
 ul,
 ol,
 table,
-fieldset { font-weight: 400; }
+fieldset {
+    font-weight: 400;
+}
 
-b, strong {
+b,
+strong {
     font-weight: 600;
 }
 
-.text-muted, time {
-  color: $gray;
+.text-muted,
+time {
+    color: $gray;
 }
 .text-gray {
-  color: $gray-dark;
+    color: $gray-dark;
 }
 
 .lead {
-  font-size: $font-base-weight + 2;
-  font-weight: 500;
-  line-height: 1.2;
+    font-size: $font-base-weight + 2;
+    font-weight: 500;
+    line-height: 1.2;
 }
 
-.help-block{
-  font-size: $font-base-weight -2;
-	color: $gray
+.help-block {
+    font-size: $font-base-weight -2;
+    color: $gray;
 }
-
 
 .jumbotron {
-  p {
-    font-weight: 400;
-  }
-  h1 {
-    &.h1-sm {
-      font-size: 44px;
+    p {
+        font-weight: 400;
     }
-  }
+    h1 {
+        &.h1-sm {
+            font-size: 44px;
+        }
+    }
 }
 
 h2 {
-  &.h2-lg {
-    font-size: 4em;
-  }
+    &.h2-lg {
+        font-size: 4em;
+    }
 }
 
 h3 {
-  &.h3-lg {
-    font-size: 2.85em;
-  }
+    &.h3-lg {
+        font-size: 2.85em;
+    }
 }
 
 h4 {
-  &.h4-lg {
-    font-size: 2.3em;
-  }
+    &.h4-lg {
+        font-size: 2.3em;
+    }
 }
 
 article {
-  h1 {
-    &.icon {
-      font-size: 7em;
-      line-height: 0;
-      margin: 0;
+    h1 {
+        &.icon {
+            font-size: 7em;
+            line-height: 0;
+            margin: 0;
 
-      &.aside {
-        line-height: 1.5;
-        text-align: center;
+            &.aside {
+                line-height: 1.5;
+                text-align: center;
+            }
         }
-      }
-
     }
 }
 
 .row-color {
-  h3 {
-    color: $white;
-    font-size: 32px;
-    margin-top: 10px;
-  }
+    h3 {
+        color: $white;
+        font-size: 32px;
+        margin-top: 10px;
+    }
 }
 
 .content_format {
-  h2, h3, h4, h5, h6, .h2, .h3, .h4, .h5, .h6 {
-    margin-top: 2em;
-  }
-
-  .alert,
-  .well {
-    h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-      margin: .5em 0;
-    }
-  }
-
-  li {
-    margin: 0 0 15px;
-  }
-
-  .additional_data {
-    h1,
     h2,
     h3,
     h4,
     h5,
-    h6 {
-      margin-top: 10px;
-    }
-  }
-
-  .credits {
-    p {
-      color: $gray;
-      font-size: $font-base-weight - 3;
-      line-height: $font-base-weight - 1;
-      margin-top: 40px; 
+    h6,
+    .h2,
+    .h3,
+    .h4,
+    .h5,
+    .h6 {
+        margin-top: 2em;
     }
 
-    cite {
-    border-top: 1px solid #b4beba;
-    padding-top: $font-base-weight;
-    display: block;
-    font-style: normal;
-    font-size: 85%;
-  }
+    .alert,
+    .well {
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        .h1,
+        .h2,
+        .h3,
+        .h4,
+        .h5,
+        .h6 {
+            margin: 0.5em 0;
+        }
+    }
 
-  }
+    li {
+        margin: 0 0 15px;
+    }
 
+    .additional_data {
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            margin-top: 10px;
+        }
+    }
+
+    .credits {
+        p {
+            color: $gray;
+            font-size: $font-base-weight - 3;
+            line-height: $font-base-weight - 1;
+            margin-top: 40px;
+        }
+
+        cite {
+            border-top: 1px solid #b4beba;
+            padding-top: $font-base-weight;
+            display: block;
+            font-style: normal;
+            font-size: 85%;
+        }
+    }
 }
-
 
 @media (min-width: 768px) {
-  p {
-    font-size: $font-base-weight;
-  }
-
+    p {
+        font-size: $font-base-weight;
+    }
 }
 @media (min-width: 992px) {
-  .jumbotron {
-    li {
-      font-size: $font-base-weight - 2;
+    .jumbotron {
+        li {
+            font-size: $font-base-weight - 2;
 
-      a {
-        font-weight: 400;
-      }
+            a {
+                font-weight: 400;
+            }
+        }
     }
-  }
-  .lead {
-    font-size: $font-base-weight + 2;
-  }
+    .lead {
+        font-size: $font-base-weight + 2;
+    }
 }

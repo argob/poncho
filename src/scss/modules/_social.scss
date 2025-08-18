@@ -1,176 +1,186 @@
 .social-share {
-  margin: 0;
-  min-height: 32px;
-	overflow: auto;
-
-  p {
-    color: $gray;
-    float: left;
-    line-height: 1.2;
-    margin-bottom: 0;
-    margin-top: 8px;
-  }
-
-  span {color: $gray;}
-
-  ul {
-    float: left;
-    margin: 5px 10px 5px 5px;
-    }
-
-  li {
-    border-radius: 30px;
     margin: 0;
-    padding: 6px;
+    min-height: 32px;
+    overflow: auto;
 
-    &:hover {
-      background: $brand-primary;
-
-      span,
-      i {color: $white}
+    p {
+        color: $gray;
+        float: left;
+        line-height: 1.2;
+        margin-bottom: 0;
+        margin-top: 8px;
     }
-  }
 
-  small {
-    @include position(relative, -4px null null null);
-    font-size: 14px;
-  }
+    span {
+        color: $gray;
+    }
 
-  a {
-    display: inherit;
-    font-size: 30px;
-    line-height: 0;
-    min-width: 35px;
-    padding: 3px 5px 2px;
-    text-align: center;
+    ul {
+        float: left;
+        margin: 5px 10px 5px 5px;
+    }
 
-  }
+    li {
+        border-radius: 30px;
+        margin: 0;
+        padding: 6px;
 
-  h3 {
-    margin-top: 0;
+        &:hover {
+            background: $brand-primary;
 
-    strong {
-      float: left;
-      font-size: 32px;
-
+            span,
+            i {
+                color: $white;
+            }
+        }
     }
 
     small {
-      @include position(relative, -22px null null 15px);
-      float: left;
+        @include position(relative, -4px null null null);
+        font-size: 14px;
     }
-  }
 
-  &.is_area{
-    text-align: center;
-    br {display: none;}
-    span {margin-bottom: 10px;}
+    a {
+        display: inherit;
+        font-size: 30px;
+        line-height: 0;
+        min-width: 35px;
+        padding: 3px 5px 2px;
+        text-align: center;
+    }
 
-    p,
-    ul {float: none;}
+    h3 {
+        margin-top: 0;
 
-   }
+        strong {
+            float: left;
+            font-size: 32px;
+        }
+
+        small {
+            @include position(relative, -22px null null 15px);
+            float: left;
+        }
+    }
+
+    &.is_area {
+        text-align: center;
+
+        br {
+            display: none;
+        }
+
+        span {
+            margin-bottom: 10px;
+        }
+
+        p,
+        ul {
+            float: none;
+        }
+    }
 }
 
 .social-btn {
-  min-height: 48px;
+    min-height: 48px;
 
-  ul {
-    padding: 0;
+    ul {
+        padding: 0;
 
-    li {
-      float: left;
-      list-style: none;
+        li {
+            float: left;
+            list-style: none;
+        }
     }
-  }
 
-  .social-label {
-    color: $gray;
-    float: left;
-    line-height: 1.3;
-    margin: 3px 8px 0 0;
-  }
-
-  a {
-    @include position(relative, -1px null null null);
-    border-radius: 30px;
-    display: block;
-    font-size: 30px;
-    height: 48px;
-    line-height: 1;
-    padding: 0 10px;
-    padding-top: 9px;
-    text-align: center;
-    width: 48px;
-
-    &:hover,
-    &:focus {
-      background: $brand-primary;
-      color: $white;
+    .social-label {
+        color: $gray;
+        float: left;
+        line-height: 1.3;
+        margin: 3px 8px 0 0;
     }
-  }
 
+    a {
+        @include position(relative, -1px null null null);
+        border-radius: 30px;
+        display: block;
+        font-size: 30px;
+        height: 48px;
+        line-height: 1;
+        padding: 0 10px;
+        padding-top: 9px;
+        text-align: center;
+        width: 48px;
+
+        &:hover,
+        &:focus {
+            background: $brand-primary;
+            color: $white;
+        }
+    }
 }
 
 .main-footer {
-  .social-btn {
-    ul {margin-top: -15px;}
+    .social-btn {
+        ul {
+            margin-top: -15px;
+        }
 
-    a {
-      @include position(relative, -1px null null null);
-      border-radius: 30px;
-      display: block;
-      font-size: 30px;
-      height: 48px;
-      line-height: 1;
-      padding: 0 10px;
-      padding-top: 9px;
-      text-align: center;
-      width: 48px;
-      }
-  }
-
+        a {
+            @include position(relative, -1px null null null);
+            border-radius: 30px;
+            display: block;
+            font-size: 30px;
+            height: 48px;
+            line-height: 1;
+            padding: 0 10px;
+            padding-top: 9px;
+            text-align: center;
+            width: 48px;
+        }
+    }
 }
 
+.social-btn-contact {
+    p {
+        margin-bottom: 16px;
+    }
 
-.social-btn-contact  {
-  p {
-    margin-bottom: 16px;
-  }
+    a {
+        font-size: 32px;
+        text-decoration: none;
 
-  a {
-    font-size: 32px;
-    text-decoration: none;
+        &:hover,
+        &:focus {
+            text-decoration: underline;
+        }
+    }
 
-    &:hover,
-    &:focus {text-decoration: underline;}
-  }
-
-  .fa {
-    margin-right: 10px;
-    text-align: center;
-    width: 30px;
-  }
+    .fa {
+        margin-right: 10px;
+        text-align: center;
+        width: 30px;
+    }
 }
 
 .actions-items {
-  .social-btn {
-    display: inline;
+    .social-btn {
+        display: inline;
 
-    .social-label {
-      padding: 10px 0;
+        .social-label {
+            padding: 10px 0;
+        }
     }
-  }
 }
 
 .social-date {
-  min-height: 36px;
+    min-height: 36px;
 
-  h4 {
-    @include position(relative, 7px null null null);
-    color: $gray;
-    font-size: 14px;
-    padding-left: 30px;
-    text-align: right;
-  }
+    h4 {
+        @include position(relative, 7px null null null);
+        color: $gray;
+        font-size: 14px;
+        padding-left: 30px;
+        text-align: right;
+    }
 }
