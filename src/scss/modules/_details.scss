@@ -63,65 +63,65 @@ $containerLeftContentPaddingE: 18px; // padding-right content
  * Definición para los temas de color.
  */
 $colorThemes: (
-    warning: (
+    'warning': (
         caretBackground: var(--arg-amarillo),
         caret: black,
         containerBackground: var(--arg-amarillo-50),
         borderColor: var(--arg-amarillo-400)
     ),
-    success: (
+    'success': (
         caretBackground: var(--arg-verde),
         caret: white,
         containerBackground: var(--arg-verde-50),
         borderColor: var(--arg-verde-300)
     ),
-    danger: (
+    'danger': (
         caretBackground: var(--arg-rojo),
         caret: white,
         containerBackground: var(--arg-rojo-50),
         borderColor: var(--arg-rojo-200)
     ),
-    blanco: (
+    'blanco': (
         caretBackground: var(--arg-blanco),
         caret: black
     ),
-    palta: (
+    'palta': (
         caretBackground: var(--arg-palta),
         caret: black
     ),
-    primary: (
+    'primary': (
         caretBackground: var(--arg-azul),
         caret: white,
         containerBackground: var(--arg-primary-50),
         borderColor: var(--arg-primary-200)
     ),
-    azul-morado: (
+    'azul-morado': (
         caretBackground: var(--arg-azul-morado),
         caret: white
     ),
-    negro: (
+    'negro': (
         caretBackground: var(--arg-negro-600),
         caret: white
     ),
-    dark: (
+    'dark': (
         caretBackground: rgb(0 0 0 / 0.35),
         caret: white
     ),
-    light: (
+    'light': (
         caretBackground: rgb(255 255 255 / 0.75),
         caret: black
     ),
-    default: (
+    'default': (
         caretBackground: #ddd,
         caret: black,
         containerBackground: #f4f4f4,
         borderColor: #ccc
     ),
-    transparent: (
+    'transparent': (
         caretBackground: transparent,
         caret: var(--arg-azul)
     ),
-    rosado: (
+    'rosado': (
         caretBackground: var(--arg-rosado),
         caret: white
     )
