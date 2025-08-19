@@ -1,31 +1,20 @@
-.en-space {
-    font-size: .5em !important;
-}
+/**
+ * Generador de espacios tipográficos
+ * ([nombre], [valor]) 
+ */
+$typeSpaces: (
+    ("en-space", 0.5em),
+    ("em-space", 1em),
+    ("third-space", calc(1em / 3)),
+    ("quarter-space", 0.25em),
+    ("sixth-space", calc(1em / 6)),
+    ("thin-space", calc(1em / 8)),
+    ("hair-space", calc(1em / 24))
+);
 
-.em-space {
-    font-size: 1em !important;
-}
-
-.third-space {
-    font-size: calc(1em / 3) !important;
-}
-
-.quarter-space {
-    font-size: .25em !important;
-}
-
-.sixth-space {
-    font-size: calc(1em / 6) !important;
-}
-
-.thin-space {
-    font-size: calc(1em / 8) !important;
-}
-
-.hair-space {
-    font-size: calc(1em / 24) !important;
-}
-
-.text-uppercase {
-    text-transform: uppercase;
+@each $name, $value in $typeSpaces {
+    .#{$name} {
+        width: #{$value} !important;
+        display: inline-block;
+    }
 }

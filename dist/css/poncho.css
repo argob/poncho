@@ -12702,6 +12702,10 @@ footer.pm-open-map ul > li > a:hover, footer.pm-open-map ul > li > a:focus {
   white-space: nowrap;
 }
 
+.text-uppercase {
+  text-transform: uppercase;
+}
+
 @media (max-width: 575.98px) {
   .text-xs-left {
     text-align: left !important;
@@ -14254,6 +14258,27 @@ footer .nav > li > a:hover {
   content: "\f096";
 }
 
+.items-desplegable-tramitar-select {
+  border: 3px solid var(--arg-verde);
+  border-radius: 15px;
+  padding: 5px;
+  margin: 8px;
+  height: auto;
+}
+
+.f-rigth {
+  float: right;
+}
+
+.bdr-l {
+  margin: 20px 0px;
+  float: right;
+}
+
+.listas-destacadas ul.search-results li::before {
+  display: none;
+}
+
 @media (max-width: 991px) {
   .jumbotron_body img[alt=tramitar] {
     width: 60%;
@@ -14427,36 +14452,43 @@ ul.colores li:hover {
   display: inline-block;
 }
 
+/**
+ * Generador de espacios tipográficos
+ * ([nombre], [valor]) 
+ */
 .en-space {
-  font-size: 0.5em !important;
+  width: 0.5em !important;
+  display: inline-block;
 }
 
 .em-space {
-  font-size: 1em !important;
+  width: 1em !important;
+  display: inline-block;
 }
 
 .third-space {
-  font-size: 0.3333333333em !important;
+  width: 0.3333333333em !important;
+  display: inline-block;
 }
 
 .quarter-space {
-  font-size: 0.25em !important;
+  width: 0.25em !important;
+  display: inline-block;
 }
 
 .sixth-space {
-  font-size: 0.1666666667em !important;
+  width: 0.1666666667em !important;
+  display: inline-block;
 }
 
 .thin-space {
-  font-size: 0.125em !important;
+  width: 0.125em !important;
+  display: inline-block;
 }
 
 .hair-space {
-  font-size: 0.0416666667em !important;
-}
-
-.text-uppercase {
-  text-transform: uppercase;
+  width: 0.0416666667em !important;
+  display: inline-block;
 }
 
 /* Extra small devices (phones, less than 576px) */
