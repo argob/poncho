@@ -924,7 +924,7 @@ class PonchoMapFilter extends PonchoMap {
             this._createFilters(this.filters);
         }
 
-        this.titleLayer.addTo(this.map);
+        this.tileLayer.addTo(this.map);
 
         this._filteredData();
         this._totalsInfo();
@@ -945,6 +945,8 @@ class PonchoMapFilter extends PonchoMap {
         this.mapBackgroundColor();
 
         this._listeners();
+
+        this.layerViewConf.setVisuals();
     };
 };
 // end of class

@@ -19,21 +19,8 @@ input[type="search"].js-poncho-map-search__input::-webkit-search-cancel-button {
         border: 0;
     }
 
-    &.hide-attribution {
-        .leaflet-control-attribution {
-            position: absolute !important;
-            left: -9999em !important;
-            top: -9999em !important;
-
-        }
-    }
-
     .leaflet-control-attribution {
         opacity: 0.8;
-
-        .leaflet-attribution-flag {
-            display: none !important;
-        }
     }
 
     .leaflet-tile-pane img {
@@ -45,7 +32,9 @@ input[type="search"].js-poncho-map-search__input::-webkit-search-cancel-button {
 @media (max-width: 575.98px) {
     #{$scope} {
         .leaflet-control-attribution {
-            display: none !important;
+            position: absolute !important;
+            left: -9999em !important;
+            top: -9999em !important;
         }
     }
 }
