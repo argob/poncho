@@ -4958,6 +4958,8 @@ class PonchoMap {
             id: "id",
             id_mixing: [],
             template: false,
+            map_layers: true,
+            map_layers_default: "osm",
             template_structure: {
                 // lead: [],
                 // header: false,
@@ -5070,6 +5072,12 @@ class PonchoMap {
                 label: "Abrir en:",
                 items: [
                     {
+                        link: "https://mapa.ign.gob.ar/beta/?zoom=17&lat={{latitude}}&lng={{longitude}}&layers=argenmap",
+                        label: `<abbr lang="es" title="Instituto Geográfico Nacional">IGN</abbr> – ArgenMap`,
+                        lang: "es",
+                        rel: "alternate",
+                    },
+                    {
                         link: 'https://www.google.com/maps/search/?api=1&query={{latitude}},{{longitude}}',
                         label: "Google maps",
                         lang: "en",
@@ -5080,7 +5088,7 @@ class PonchoMap {
                         label: "Apple maps",
                         lang: "en",
                         rel: "alternate",
-                        plataform: "mac"
+                        plataform: "mac",
                     },
                     {
                         link: "https://www.openstreetmap.org/?mlat={{latitude}}&mlon={{longitude}}#map=16/{{latitude}}/{{longitude}}",
@@ -5151,6 +5159,8 @@ class PonchoMap {
             "MultiPoint",
             "MultiLineString"
         ];
+        this.map_layers = opts.map_layers;
+        this.map_layers_default = opts.map_layers_default;
         this.featureStyle = {
             stroke: "dodgerblue",
             "stroke-opacity": 1,
@@ -5160,30 +5170,66 @@ class PonchoMap {
         this.accesible_menu_search = [];
         this.accesible_menu_filter = [];
         this.open_maps = opts.open_maps;
-        // this.open_maps_options = opts.open_maps_options;
-
-        // let opts = Object.assign({}, defaults, options);
         this.open_maps_options = Object.assign(
             {}, defaults.open_maps_options, options?.open_maps_options);
 
         this.accesible_menu_extras = opts.accesible_menu_extras;
         this.geojson;
-
+            
         // OSM
-        this.map = new L.map(this.map_selector, {
-            renderer: L.svg(),
-            ...this.map_init_options
-        }
-        ).setView(this.map_view, this.map_zoom);
-        this.titleLayer = new L.tileLayer(
-            "https://mapa-ign.argentina.gob.ar/osm/{z}/{x}/{-y}.png",
-            { 
-                attribution: (`Contribuidores: `
-                    + `<a hreflang="es" href="https://www.ign.gob.ar/AreaServicios/Argenmap/Introduccion">`
-                    + `<abbr lang="es" title="Instituto Geográfico Nacional">IGN</abbr></a>, `
-                    + `<a hreflang="es" href="https://www.openstreetmap.org/copyright">`
-                    + `OpenStreetMap</a>`)
-            });
+        const osmAttributionLink = `<a hreflang="es" `
+            + `href="https://www.openstreetmap.org/copyright">`
+            + `<abbr lang="en" title="Open Street Map">OSM</abbr></a>`;
+        const ersiAttributionLik = `Mapas satelitales ` 
+            + `© <a hreflant="es" href="https://www.esri.com/es-es/home">`
+            + `<abbr lang="en" title="Environmental Systems Research Institute">`
+            + `Esri</abbr></a>`;
+        const ignAttributionLink = `<a hreflang="es" `
+            + `href="https://www.ign.gob.ar/AreaServicios/Argenmap/Introduccion">`
+            + `<abbr lang="es" title="Instituto Geográfico Nacional">IGN</abbr>`
+            + `</a>`;
+        const attributionHeading = "Contribuidores: ";
+        this.prefix = `<a hreflang="en" href="https://leafletjs.com/" `
+            + `title="Biblioteca JavaScript para mapas interactivos">`
+            + `Leaflet</a>`;
+        this.ersiURL ='https://server.arcgisonline.com/arcgis/rest/services/'
+            + 'World_Imagery/MapServer/tile/{z}/{y}/{x}';
+        this.ersiAttribution = (attributionHeading
+            + [osmAttributionLink, ersiAttributionLik].join(", "));
+
+        this.osmAttribution = (attributionHeading
+            + [ignAttributionLink, osmAttributionLink].join(", "));
+        this.osmURL = "https://mapa-ign.argentina.gob.ar/osm/{z}/{x}/{-y}.png";
+
+        this.layerViewSettings = {
+            satelital:{
+                label: "Mapa satelital",
+                tilesUrl: this.ersiURL,
+                attribution: this.ersiAttribution,
+                setVisuals: this._setSatelitalView,
+            },
+            osm:{
+                label: "Mapa",
+                tilesUrl: this.osmURL,
+                attribution: this.osmAttribution,
+                setVisuals: this._setOsmView,
+            }
+        };
+
+
+        this.layerViewConf = (this.map_layers_default == "satelital" && 
+            this.map_layers ? this.layerViewSettings[this.map_layers_default] : 
+            this.layerViewSettings["osm"]);
+
+        this.tileLayer = new L.tileLayer(this.layerViewConf.tilesUrl, {
+            // maxNativeZoom: 17,
+            // minZoom: 0,
+            // maxZoom: 19,
+        });
+        const mapOptions = {renderer: L.svg(), ...this.map_init_options}
+        this.map = new L.map(this.map_selector, mapOptions);
+        this.map.setView(this.map_view, this.map_zoom);
+        this.map.attributionControl.setPrefix(this.prefix);
 
         // Si se importó el componente _markerCluster_, lo usa. De otro modo
         // Utiliza _FeatureGroup_ y muestra todos los markers simultáneamente.
@@ -5194,7 +5240,6 @@ class PonchoMap {
         }
         this.ponchoLoaderTimeout;
     }
-
 
     //
     // TEMA PARA EL MAPA
@@ -5232,6 +5277,75 @@ class PonchoMap {
         document
             .querySelectorAll(`${this.scope_selector} .leaflet-container`)
             .forEach(e => e.style.backgroundColor = color);
+    };
+
+
+    /**
+     * Habilita o deshabilita un botón
+     * 
+     * @param {Array} themes Array de temas, ej: ['map-dark', 'map-contrast']
+     * @param {string} attr Estado del atributo. Default: disabled
+     * @returns {undefined}
+     */
+    _disabledEnableThemes = (themes, attr="disabled") => {
+        for(let item of themes){
+            document.querySelectorAll(`${this.scope_selector} [data-theme="${item}"]`).forEach(ele =>{
+                if(attr=="disabled"){
+                    ele.setAttribute("disabled", "disabled");
+                } else {
+                    ele.removeAttribute("disabled");
+                }
+            });
+        }
+    };
+
+
+    /**
+     * Setea el esetado de los css en los menu y en el mapa.
+     * 
+     * @param {Array} removeList  Lista de temas que deben removerse al 
+     *                            aplicar la vista.
+     * @param {string} addLayer   Esitlo para el layer que se utilizará.
+     * @param {string} disabled   Agrega el atributo disabled en los botones.
+     * @returns {undefined}
+     */
+    _setLayerTheme = (removeList, addLayer, disabled) => {
+        const themeList = ["map-contrast", "map-dark", "ui-contrast", "ui-dark"];
+        const selector = document.querySelectorAll(this.scope_selector);
+        selector.forEach(element => {
+            element.classList.remove(...removeList, ...themeList);
+            element.classList.add(addLayer);
+        });
+        this._disabledEnableThemes(["contrast", "dark"], disabled);
+    }
+
+
+    /**
+     * Características para aplicar el mapa OSM
+     * @returns {undefined}
+     */
+    
+    _setOsmView = () => {
+        this.tileLayer.setUrl(this.osmURL);
+        this.map.attributionControl.removeAttribution(this.ersiAttribution);
+        this.map.attributionControl.addAttribution(this.osmAttribution);
+        // this.map.setMaxZoom(18);
+        this._setLayerTheme(["layer-satelital"], "layer-osm", false);
+    };
+    
+
+
+    /**
+     * Características para aplicar el mapa satelital.
+     * @returns {undefined}
+     */
+    
+    _setSatelitalView = () => {
+        this.tileLayer.setUrl(this.ersiURL);
+        this.map.attributionControl.removeAttribution(this.osmAttribution);
+        this.map.attributionControl.addAttribution(this.ersiAttribution);
+        // this.map.setMaxZoom(17);
+        this._setLayerTheme(["layer-osm"], "layer-satelital", "disabled");
     };
 
 
@@ -5284,19 +5398,38 @@ class PonchoMap {
         const li = document.createElement("li");
         li.classList.add("pm-item-separator");
         li.appendChild(restart);
+
         list.appendChild(li);
 
+        const totalItems = this.default_themes.length;
         this.default_themes.map(m => m[0]).forEach((value, key)  => {
             const buttonTheme = document.createElement("button");
             buttonTheme.dataset.theme = value;
             buttonTheme.textContent = this.default_themes[key][1];
             buttonTheme.classList.add("js-set-theme", "pm-item-link");
-            
-            const li = document.createElement("li");
-            li.appendChild(buttonTheme);
 
+            const li = document.createElement("li");
+            if(key == totalItems -1 && this.map_layers){
+                li.classList.add("pm-item-separator");
+            }
+            li.appendChild(buttonTheme);
             list.appendChild(li);
         });
+
+        // Si no se setea multilayer, oculto los items del menú.
+        if(this.map_layers){
+            for(let item of Object.keys(filter.layerViewSettings)){
+                const {label} = this.layerViewSettings[item];
+
+                const sateliteButton = document.createElement("button");
+                sateliteButton.textContent = label;
+                sateliteButton.dataset.theme = `layer-${item}`;
+                sateliteButton.classList.add("pm-item-link", `js-${item}-layer`);
+                const li = document.createElement("li");
+                li.appendChild(sateliteButton);
+                list.appendChild(li);
+            }
+        }
 
         item.appendChild(button);
         item.appendChild(list);
@@ -5305,20 +5438,31 @@ class PonchoMap {
         const element = document.querySelectorAll(this.scope_selector);
         element.forEach(e => e.appendChild(navContainer));
 
-        
         // listeners
         document
-            .querySelectorAll(".js-reset-theme")
+            .querySelectorAll(`${this.scope_selector} .js-satelital-layer`)
+            .forEach(ele => ele.addEventListener(
+                "click", () => this._setSatelitalView())
+            );
+        document
+            .querySelectorAll(`${this.scope_selector} .js-osm-layer`)
+            .forEach(ele => ele.addEventListener(
+                "click", () => this._setOsmView())
+            );
+
+        document
+            .querySelectorAll(`${this.scope_selector} .js-reset-theme`)
             .forEach(ele => ele.addEventListener(
                 "click", () => {
                     localStorage.removeItem("mapTheme");
                     this._removeThemes();
                     this._setThemes();
+                    this.layerViewConf.setVisuals();
                 })
             );
 
         document
-            .querySelectorAll(".js-set-theme")
+            .querySelectorAll(`${this.scope_selector} .js-set-theme`)
             .forEach(ele => ele.addEventListener(
                 "click", () => {
                     const th = ele.dataset.theme;
@@ -5469,17 +5613,26 @@ class PonchoMap {
                     continue;
                 }
 
+                const hasTarget = (typeof target == "string" && 
+                    regexTarget.test(target.trim()) ? true : false);
+
                 const a = document.createElement("a");
                 const setAnchor = link
                     .replace(/\{\{latitude\}\}/g, latitude)
                     .replace(/\{\{longitude\}\}/g, longitude);
                 a.href = setAnchor;
                 a.tabIndex = 0;
-                a.textContent = label; 
                 a.setAttribute("lang", lang); 
                 a.rel = rel;
-                if(typeof target == "string" && regexTarget.test(target.trim())){
+                a.innerHTML = label; 
+                if(hasTarget){
                     a.target = target;
+                }
+                if(target == "_blank"){
+                    a.innerHTML = `${label} <span class="sr-only">`
+                            +`(Abre en una nueva pestaña)</span>`; 
+                } else {
+                    a.innerHTML = label;
                 }
 
                 const li = document.createElement("li");
@@ -5697,8 +5850,6 @@ class PonchoMap {
                 );
             }
         });
-
-
         delete entry[this.latitude];
         delete entry[this.longitude];
 
@@ -5839,7 +5990,7 @@ class PonchoMap {
     entry = (id) => {
         return this.entries.find(e => {
             if(e?.properties && e.properties[this.id] === id && 
-               e.properties?.["pm-interactive"] !== "n"){
+                e.properties?.["pm-interactive"] !== "n"){
                 return true;
             }
             return false;
@@ -7236,7 +7387,7 @@ class PonchoMap {
         this._menuTheme();
         this._setThemes();
         
-        this.titleLayer.addTo(this.map);
+        this.tileLayer.addTo(this.map);
         this.markersMap(this.entries);
         this._selectedMarker();
 
@@ -7262,6 +7413,8 @@ class PonchoMap {
         this.mapBackgroundColor();
 
         this._listeners();
+
+        this.layerViewConf.setVisuals();
     };
 };
 // end class
@@ -8272,7 +8425,7 @@ class PonchoMapFilter extends PonchoMap {
             this._createFilters(this.filters);
         }
 
-        this.titleLayer.addTo(this.map);
+        this.tileLayer.addTo(this.map);
 
         this._filteredData();
         this._totalsInfo();
@@ -8293,6 +8446,8 @@ class PonchoMapFilter extends PonchoMap {
         this.mapBackgroundColor();
 
         this._listeners();
+
+        this.layerViewConf.setVisuals();
     };
 };
 // end of class
