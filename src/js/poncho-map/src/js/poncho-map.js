@@ -505,7 +505,7 @@ class PonchoMap {
 
         // Si no se setea multilayer, oculto los items del menú.
         if(this.map_layers){
-            for(let item of Object.keys(filter.layerViewSettings)){
+            for(let item of Object.keys(this.layerViewSettings)){
                 const {label} = this.layerViewSettings[item];
 
                 const sateliteButton = document.createElement("button");
