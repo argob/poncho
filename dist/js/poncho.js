@@ -8896,6 +8896,7 @@ class PonchoMapProvinces extends PonchoMapFilter {
                 [ -88.20759652502107, -74.4619171280653 ]
             ],
             overlay_image_opacity: 0.8,
+            map_layers: false,
             overlay_image_url: 
                 "/profiles/argentinagobar/themes/contrib/poncho/img/map-shadow-antartida.png",
             hide_select: false,
