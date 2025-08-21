@@ -45,7 +45,8 @@ class PonchoMapFilter extends PonchoMap {
             search_fields: [],
             messages: {
                 reset: " <a href=\"#\" class=\"{{reset_search}}\" "
-                        + "title=\"Restablece el mapa a su estado inicial\">"
+                        + "title=\"Restablece el mapa a su estado inicial\" "
+                        + "aria-label=\"Restablecer valores del mapa\">"
                         + "Restablecer mapa</a>",
                 initial: "Hay {{total_results}} puntos en el mapa.",
                 no_results_by_term: "No encontramos resultados para tu búsqueda.",
@@ -68,6 +69,12 @@ class PonchoMapFilter extends PonchoMap {
             {
                 text: "Ir al panel de filtros",
                 anchor: `#filtrar-busqueda${this.scope_sufix}`
+            },
+            {
+                text: "Restablecer mapa",
+                aria_label: "Restablecer valores del mapa",
+                anchor: "#",
+                css: [`js-poncho-map-reset${this.scope_sufix}`],
             },
         ];
     }
@@ -118,11 +125,14 @@ class PonchoMapFilter extends PonchoMap {
 
             // Arma el listado de mensajes.
             const ul = document.createElement("ul");
+            
             ul.classList.add("m-b-0", "list-unstyled");
-            ul.setAttribute("aria-live", "polite");
+
             const li = content => { 
-                const item = document.createElement("li"); 
+                const item = document.createElement("li");
+                item.setAttribute("aria-live", "assertive"); 
                 item.innerHTML = content; 
+                item.tabIndex = 0;
                 return item;
             };
 
@@ -825,7 +835,7 @@ class PonchoMapFilter extends PonchoMap {
         this.markersMap(feed); 
         this._selectedMarker();
         this._helpText(feed);
-        this._resetSearch();
+        // this._resetSearch();
         this._clickToggleFilter();
         
         if(this.slider){
@@ -858,18 +868,51 @@ class PonchoMapFilter extends PonchoMap {
      * @returns {undefined}
      */
     _resetSearch = () => {  
-        document
-            .querySelectorAll(`.js-poncho-map-reset${this.scope_sufix}`)
-            .forEach(e => {
-                e.onclick = (event => {
-                    event.preventDefault();
-                    
-                    this._resetFormFilters();
-                    this._filteredData(this.entries);
-                    this._clearSearchInput();
-                    this.resetView();
-            });
+        var _this = this;
+
+        document.addEventListener("click", function(event){
+            const target = event.target;
+    
+            if(target.matches(`.js-poncho-map-reset${_this.scope_sufix}`)){
+                event.preventDefault();
+                event.stopPropagation();
+
+                try {
+                    _this._resetFormFilters();
+                } catch (error) {
+                    console.error(error);
+                }
+                try {
+                    _this._filteredData(_this.entries);
+                } catch (error) {
+                    console.error(error);
+                }
+                try {
+                    _this._clearSearchInput();
+                } catch (error) {
+                    console.error(error);
+                }
+                try {
+                    _this.resetView();
+                } catch (error) {
+                    console.error(error);
+                }
+            }
         });
+
+
+        // document
+        //     .querySelectorAll(`.js-poncho-map-reset${this.scope_sufix}`)
+        //     .forEach(e => {
+        //         e.onclick = (event => {
+        //             event.preventDefault();
+                    
+        //             this._resetFormFilters();
+        //             this._filteredData(this.entries);
+        //             this._clearSearchInput();
+        //             this.resetView();
+        //     });
+        // });
     };
 
 
@@ -945,8 +988,10 @@ class PonchoMapFilter extends PonchoMap {
         this.mapBackgroundColor();
 
         this._listeners();
-
+        this._accesibleExtras();
+        
         this.layerViewConf.setVisuals();
+        this._resetSearch();
     };
 };
 // end of class

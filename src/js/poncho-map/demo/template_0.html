@@ -34,22 +34,19 @@
     <link rel="stylesheet" href="./css/demo.css">
     <title>Poncho Map — Puntos digitales</title>
 </head>
-<body >
+<body>
+<div class="demo-nav container">
+    <ul class="demo-menu">
+        <li><a href="./">Inicio</a></li>
+    </ul>
+</div>
 
-    <div class="demo-nav container">
-        <ul class="demo-menu">
-            <li><a href="./">Inicio</a></li>
-        </ul>
-    </div>
-
-
-    
 <div class="container">
     <div class="row">
-         <div class="col-md-12">
-             <h1 class="h3">Punto Digital</h1>
-         </div>
-    </div>
+        <div class="col-md-12">
+            <h1 class="h3">Punto Digital</h1>
+        </div>
+    </div>                          
 </div>
 <!-- 
 COPIAR DESDE ACÁ…
@@ -80,7 +77,7 @@ COPIAR DESDE ACÁ…
 <datalist class="js-porcho-map-search__list" id="js-porcho-map-search__list"></datalist> 
 <span class="input-group-btn">
 <button class="js-poncho-map-search__submit btn btn-primary" type="submit"><i class="fa fa-search text-white">&nbsp;</i>
-<span class="sr-only">Buscar término</span></button> </span></div><div data-scope="ponchomap"><div class="js-poncho-map__help text-mutted small">&nbsp;</div>
+<span class="sr-only">Buscar término</span></button> </span></div><div data-scope="ponchomap"><div class="js-poncho-map__help text-mutted small"></div>
 </div>
 </div>
 </form>
@@ -107,7 +104,7 @@ COPIAR DESDE ACÁ…
     const options = {
         "template": template_punto_digital,
         "title":"nombre",
-        map_layers: false,
+        map_layers: true,
         // map_layers_default: 'satelital',
         "scope":"ponchomap",
         "allowed_tags": ["*"],
