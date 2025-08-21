@@ -102,7 +102,7 @@ class PonchoMap {
                     code: "relax",
                     name: "Relax",
                     aria_label: false,
-                    description: "Paleta de colores suave y relajada.",
+                    description: "Paleta de colores suaves.",
                 }
             ],
             
@@ -512,7 +512,8 @@ class PonchoMap {
         const list = document.createElement("ul");
         list.classList.add(
             "pm-container", "pm-list", "pm-list-unstyled", 
-            "pm-p-1", "pm-caret", "pm-caret-b", "pm-toggle");
+            "pm-p-1", "pm-caret", "pm-caret-b", "pm-toggle", 
+            "pm-accesible-menu");
 
         // Botón para restablecer el mapa
         const restart = document.createElement("button");
@@ -2625,7 +2626,8 @@ class PonchoMapLoader {
         this.close();
         clearTimeout(this.ponchoLoaderTimeout);
 
-        const element = document.querySelector(`${this.selector}${this.scope_selector}`);
+        const element = document.querySelector(
+                `${this.selector}${this.scope_selector}`);
         const loader = document.createElement("span");
         loader.className = "loader";
 
@@ -2637,7 +2639,11 @@ class PonchoMapLoader {
         // Background opacity
         Object.assign(cover.style, this.cover_style);
         if(this.cover_opacity){
-            cover.style.backgroundColor = `color-mix(in srgb, transparent, var(--pm-loader-background) ${this.cover_opacity.toString() * 100}%)`;
+            cover.style.backgroundColor = `color-mix(`
+                + `in srgb, ` 
+                + `transparent, `
+                + `var(--pm-loader-background) `
+                + `${this.cover_opacity.toString() * 100}%)`;
         }
 
         cover.appendChild(loader);
