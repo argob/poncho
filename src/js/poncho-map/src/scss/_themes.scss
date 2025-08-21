@@ -26,17 +26,6 @@
         transition: filter 0.1s;
     }
 
-    &.map-sepia .leaflet-tile-pane {
-        filter: sepia(0.5) saturate(0.24) contrast(1);
-        transition: filter 0.1s;
-    }
-
-    &.map-blue .leaflet-tile-pane {
-        filter: sepia(1) hue-rotate(326deg) invert(1) brightness(8)
-            saturate(0.45) grayscale(0.5) opacity(0.75);
-        transition: filter 0.1s;
-    }
-
     &.map-transparent {
         --pm-map-background: transparent;
     }
@@ -47,13 +36,11 @@
 
     /* UI THEMES */
 
-    &.ui-dark,
-    &.ui-blue {
-        --pm-color-primary: var(--celeste-argentina, skyblue);
+    &.ui-dark {
+        --pm-color-primary: var(--arg-cielo, skyblue);
         --pm-color-base: #eaeaea;
         --pm-slider-background: #343232;
-        --pm-slider-border-color: #626161;
-        --pm-slider-border-color: color-mix(in srgb, #626161 80%, white);
+        --pm-slider-border-color: color-mix(in srgb, #626161 40%, white);
         --pm-slider-border-width: 1px;
 
         --pm-scrollbar-handle: #eaeaea;
@@ -66,8 +53,8 @@
     }
 
     &.ui-contrast {
-        --pm-color-primary: #68cef3;
-        --pm-color-base: #eaeaea;
+        --pm-color-primary:var(--arg-azul-200, skyblue);
+        --pm-color-base: white;
         --pm-slider-background: #222;
         --pm-slider-border-color: white;
         --pm-slider-border-width: 2.5px;
@@ -76,7 +63,7 @@
 
         --pm-hover-background: var(--pm-color-base);
         --pm-hover-color: var(--pm-slider-background);
-        --pm-active-color: #343232;
+        --pm-active-color: #111;
         --pm-active-background: var(--pm-color-primary);
     }
 
@@ -98,10 +85,8 @@
 
     /* THEME NAV ACTIVE STATE */
     &.map-default.ui-default [data-theme="default"],
-    &.map-sepia.ui-sepia [data-theme="sepia"],
     &.map-relax.ui-relax [data-theme="relax"],
     &.map-grayscale.ui-grayscale [data-theme="grayscale"],
-    &.map-blue.ui-blue [data-theme="blue"],
     &.ui-contrast.map-contrast [data-theme="contrast"],
     &.map-dark.ui-dark [data-theme="dark"],
     &.layer-osm [data-theme="layer-osm"],
@@ -172,11 +157,11 @@
 
     &.poncho-map.ui-contrast a,
     &.poncho-map.ui-dark a {
-        color: #9ad7f5 !important;
+        color:var(--arg-azul-100, #9ad7f5) !important;
     }
 
     &.poncho-map.ui-dark a:visited,
     &.poncho-map.ui-contrast a:visited {
-        color: #beb5d8 !important;
+        color:#D3CEE5 !important;
     }
 }
