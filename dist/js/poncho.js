@@ -5097,7 +5097,7 @@ class PonchoMap {
                 items: [
                     {
                         link: "https://mapa.ign.gob.ar/beta/?zoom=17&lat={{latitude}}&lng={{longitude}}&layers=argenmap",
-                        label: `<abbr lang="es" title="Instituto Geográfico Nacional">IGN</abbr> – ArgenMap <small class="sr-only d-block">(El contenido podría no ser adecuado para usuarios de tecnología de asistencia)</small>`,
+                        label: `<abbr lang="es" title="Instituto Geográfico Nacional">IGN</abbr> – ArgenMap <small class="sr-only d-block">(El contenido podría no ser adecuado para usuarios de tecnología asistiva)</small>`,
                         lang: "es",
                         rel: "alternate",
                     },
