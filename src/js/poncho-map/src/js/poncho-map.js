@@ -421,10 +421,9 @@ class PonchoMap {
      * @returns {undefined}
      */
     _setLayerTheme = (removeList, addLayer, disabled) => {
-        const themeList = ["map-contrast", "map-dark", "ui-contrast", "ui-dark"];
         const selector = document.querySelectorAll(this.scope_selector);
         selector.forEach(element => {
-            element.classList.remove(...removeList, ...themeList);
+            element.classList.remove(...removeList);
             element.classList.add(addLayer);
         });
         this._disabledEnableThemes(["contrast", "dark"], disabled);
@@ -456,7 +455,9 @@ class PonchoMap {
         this.map.attributionControl.removeAttribution(this.osmAttribution);
         this.map.attributionControl.addAttribution(this.ersiAttribution);
         // this.map.setMaxZoom(17);
-        this._setLayerTheme(["layer-osm"], "layer-satelital", "disabled");
+        this._setLayerTheme(
+            ["layer-osm","map-contrast", "map-dark", "ui-contrast", "ui-dark"], 
+            "layer-satelital", "disabled");
     };
 
 
