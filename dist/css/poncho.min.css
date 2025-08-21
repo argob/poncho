@@ -11246,7 +11246,8 @@ Las clases "dato-nro" y "dato-eje" corresponde a los formatos markdown definidos
   padding: 0;
   border: none;
 }
-.poncho-map *:focus, .poncho-map .focus-element:focus {
+.poncho-map *:focus,
+.poncho-map .focus-element:focus {
   border-radius: 3px;
   box-sizing: border-box;
   box-shadow: 0 0 8px var(--cielo, #039be5) !important;
@@ -11277,6 +11278,9 @@ Las clases "dato-nro" y "dato-eje" corresponde a los formatos markdown definidos
   position: absolute;
   bottom: var(--pm-slider-distance);
   left: var(--pm-slider-distance);
+  z-index: 998;
+}
+.poncho-map .pm-tools:has([data-toggle=true]):has(:focus) {
   z-index: 1000;
 }
 .poncho-map .pm-toggle {
@@ -11285,6 +11289,7 @@ Las clases "dato-nro" y "dato-eje" corresponde a los formatos markdown definidos
   width: var(--pm-tools-width);
   bottom: 49px;
 }
+.poncho-map [data-toggle=true]:focus,
 .poncho-map [data-toggle=true]:focus > .pm-toggle,
 .poncho-map [data-toggle=true]:focus-within > .pm-toggle {
   display: block;
