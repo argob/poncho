@@ -4987,14 +4987,38 @@ class PonchoMap {
             map_background: "#DDD",
             theme: "default",
             default_themes: [
-                ["default", "Original"], 
-                ["contrast", "Alto contraste"],
-                ["dark", "Oscuro"],
-                ["grayscale", "Gris"],
-                // ["sepia", "Sepia"],
-                // ["blue", "Azul"],
-                ["relax", "Relax"]
+                {
+                    code: "default",
+                    name: "Original",
+                    aria_label: false,
+                    description: "Colores predeterminados del proveedor del mapa.",
+                },
+                {
+                    code: "contrast",
+                    name: "Alto contraste",
+                    aria_label: false,
+                    description: "Fondo oscuro con bordes blancos.",
+                },
+                {
+                    code: "dark",
+                    name: "Oscuro",
+                    aria_label: false,
+                    description: "Fondo oscuro con bordes blancos de contraste medio.",
+                },
+                {
+                    code: "grayscale",
+                    name: "Gris",
+                    aria_label: false,
+                    description: "Mapa e interfaz en tonos de gris.",
+                },
+                {
+                    code: "relax",
+                    name: "Relax",
+                    aria_label: false,
+                    description: "Paleta de colores suave y relajada.",
+                }
             ],
+            
             markdown_options: {
                 extensions :[
                     "details",
@@ -5073,7 +5097,7 @@ class PonchoMap {
                 items: [
                     {
                         link: "https://mapa.ign.gob.ar/beta/?zoom=17&lat={{latitude}}&lng={{longitude}}&layers=argenmap",
-                        label: `<abbr lang="es" title="Instituto Geográfico Nacional">IGN</abbr> – ArgenMap`,
+                        label: `<abbr lang="es" title="Instituto Geográfico Nacional">IGN</abbr> – ArgenMap <small class="sr-only d-block">(El contenido podría no ser adecuado para usuarios de tecnología de asistencia)</small>`,
                         lang: "es",
                         rel: "alternate",
                     },
@@ -5357,26 +5381,36 @@ class PonchoMap {
         if(!this.theme_tool){
             return;
         }
+        // const themeDetails = document.createElement("details");
+        // const themeSummary = document.createElement("summary");
+        // themeSummary.textContent = "Details";
+        // const themeDetailsContent = document.createElement("div");
+        // themeDetailsContent.textContent = "hola mundo"
+        // themeDetails.appendChild(themeSummary);
+        // themeDetails.appendChild(themeDetailsContent);
 
         document
             .querySelectorAll(`#themes-tool${this.scope_sufix}`)
             .forEach(ele => ele.remove());
 
-        const navContainer = document.createElement("ul");
+        // Contenedor general
+        const navContainer = document.createElement("div");
         navContainer.classList.add(
-            "pm-list-unstyled", "pm-list",
-            "pm-tools",
+            "pm-list-unstyled", "pm-list","pm-tools",
             `js-themes-tool${this.scope_sufix}`
         );
 
-        const item = document.createElement("li");
+        // contenedor enlaces
+        const item = document.createElement("div");
         item.setAttribute("tabindex", "-1");
         item.dataset.toggle="true";
 
+        // icono del menú
         const icon = document.createElement("i");
         icon.setAttribute("aria-hidden", "true");
         icon.classList.add("pmi", "pmi-adjust");
 
+        // Botón para abrir el menú.
         const button = document.createElement("button");
         button.title = "Cambiar tema";
         button.id = `themes-tool-button${this.scope_sufix}`;
@@ -5386,6 +5420,7 @@ class PonchoMap {
         button.setAttribute("role", "button");
         button.setAttribute("aria-label", "Abre el panel de temas");
 
+
         const list = document.createElement("ul");
         list.classList.add(
             "pm-container", "pm-list", "pm-list-unstyled", 
@@ -5394,6 +5429,7 @@ class PonchoMap {
         // Botón para restablecer el mapa
         const restart = document.createElement("button");
         restart.textContent = "Restablecer";
+        restart.setAttribute("aria-label", "Restablece los valores originales");
         restart.classList.add("pm-item-link", "js-reset-theme");
         const li = document.createElement("li");
         li.classList.add("pm-item-separator");
@@ -5401,20 +5437,42 @@ class PonchoMap {
 
         list.appendChild(li);
 
+        // Genero los botones para los temas. 
         const totalItems = this.default_themes.length;
-        this.default_themes.map(m => m[0]).forEach((value, key)  => {
+        for(let i = 0; i <= totalItems - 1; i++){
+            const {code, name, aria_label, description} = this.default_themes[i];
+            
+            const spanName = document.createElement("span");
+            spanName.textContent = name;
+
             const buttonTheme = document.createElement("button");
-            buttonTheme.dataset.theme = value;
-            buttonTheme.textContent = this.default_themes[key][1];
+            buttonTheme.dataset.theme = code;
+            buttonTheme.appendChild(spanName);
+            
+            if(aria_label){
+                buttonTheme.setAttribute("aria-label", aria_label);
+            }
+            if(description){
+                const small = document.createElement("small");
+                small.classList.add("d-block", "small", "sr-only");
+                small.textContent = description;
+                buttonTheme.appendChild(document.createTextNode(" "));
+                buttonTheme.appendChild(small);
+            }
+
             buttonTheme.classList.add("js-set-theme", "pm-item-link");
 
+            // Agrego una línea de separación.
+            // @todo Separar los botones con details/summary
             const li = document.createElement("li");
-            if(key == totalItems -1 && this.map_layers){
+            if(i == totalItems -1 && this.map_layers){
                 li.classList.add("pm-item-separator");
             }
+
             li.appendChild(buttonTheme);
             list.appendChild(li);
-        });
+        }	
+
 
         // Si no se setea multilayer, oculto los items del menú.
         if(this.map_layers){
@@ -5435,6 +5493,7 @@ class PonchoMap {
         item.appendChild(list);
         navContainer.appendChild(item);
 
+        // imprimo el menú en el mapa
         const element = document.querySelectorAll(this.scope_selector);
         element.forEach(e => e.appendChild(navContainer));
 
@@ -5449,7 +5508,6 @@ class PonchoMap {
             .forEach(ele => ele.addEventListener(
                 "click", () => this._setOsmView())
             );
-
         document
             .querySelectorAll(`${this.scope_selector} .js-reset-theme`)
             .forEach(ele => ele.addEventListener(
@@ -5460,7 +5518,6 @@ class PonchoMap {
                     this.layerViewConf.setVisuals();
                 })
             );
-
         document
             .querySelectorAll(`${this.scope_selector} .js-set-theme`)
             .forEach(ele => ele.addEventListener(
@@ -5493,9 +5550,9 @@ class PonchoMap {
         const element = document.querySelectorAll(this.scope_selector);
         element.forEach(ele => {
             [
-                ...this.default_themes,
-                ...this.temes_not_visibles
-            ].map(m => m[0]).forEach(th => {
+                ...this.default_themes.map(m => m.code),
+                ...this.temes_not_visibles.map(m => m[0])
+            ].forEach(th => {
                 ele.classList.remove(...this._setThemeStyles(th, prefix));
             });
         });
@@ -5645,7 +5702,7 @@ class PonchoMap {
         summary.textContent = label;
         summary.tabIndex = 0;
         summary.setAttribute(
-            "aria-label", "Abrir el marcador en un mapa alternativo");
+            "aria-label", "Abrir el punto geográfico en un mapa alternativo");
 
         const details = document.createElement("details");
         details.classList.add("blank");
@@ -7210,12 +7267,12 @@ class PonchoMap {
             {
                 text: "Ajustar marcadores al mapa",
                 anchor: "#",
-                class: "js-fit-bounds"
+                css: ["js-fit-bounds"]
             },
             {
                 text: "Ver mapa completo",
                 anchor: "#",
-                class: `js-reset-view${this.scope_sufix}`
+                css: [`js-reset-view${this.scope_sufix}`]
             },
             {
                 text: "Ir al panel de zoom",
@@ -7224,7 +7281,7 @@ class PonchoMap {
             {
                 text: "Cambiar de tema visual",
                 anchor: `#${anchors[2][1]}`,
-                class: `js-themes-tool-button${this.scope_sufix}`
+                css: [`js-themes-tool-button${this.scope_sufix}`]
             },
         ]
         values = [
@@ -7254,13 +7311,19 @@ class PonchoMap {
         ul.classList.add("pm-list-unstyled");
 
         values.forEach((link, index) => {
+            const {text, aria_label} = link;
+
             const a = document.createElement("a");
             a.classList.add("pm-item-link", "pm-accesible")
-            a.textContent = link.text;
+            a.textContent = text;
+            if(link.hasOwnProperty("aria_label")){
+                a.setAttribute("aria-label", aria_label);
+            }
             a.tabIndex = 0;
             a.href = link.anchor;
-            if(link.hasOwnProperty("class") && link.class != ""){
-                a.classList.add(...link.class.split(" "))
+
+            if(link.hasOwnProperty("css") && link?.css != ""){
+                a.classList.add(...link.css)
             }
 
             const li = document.createElement("li");
@@ -7378,6 +7441,16 @@ class PonchoMap {
 
 
     /**
+     * Seteo de opciones accesibles de uso general.
+     */
+    _accesibleExtras = () => {
+        document
+            .querySelectorAll(".js-poncho-map__help")
+            .forEach(e => e.setAttribute("aria-live", "polite"));
+    }
+
+
+    /**
      * Hace el render del mapa.
      */
     render = () => {
@@ -7408,12 +7481,12 @@ class PonchoMap {
         
         this._setFetureAttributes();
         this._accesibleMenu();
+        this._accesibleExtras();
 
         this.mapOpacity();
         this.mapBackgroundColor();
 
         this._listeners();
-
         this.layerViewConf.setVisuals();
     };
 };
@@ -7546,7 +7619,8 @@ class PonchoMapFilter extends PonchoMap {
             search_fields: [],
             messages: {
                 reset: " <a href=\"#\" class=\"{{reset_search}}\" "
-                        + "title=\"Restablece el mapa a su estado inicial\">"
+                        + "title=\"Restablece el mapa a su estado inicial\" "
+                        + "aria-label=\"Restablecer valores del mapa\">"
                         + "Restablecer mapa</a>",
                 initial: "Hay {{total_results}} puntos en el mapa.",
                 no_results_by_term: "No encontramos resultados para tu búsqueda.",
@@ -7569,6 +7643,12 @@ class PonchoMapFilter extends PonchoMap {
             {
                 text: "Ir al panel de filtros",
                 anchor: `#filtrar-busqueda${this.scope_sufix}`
+            },
+            {
+                text: "Restablecer mapa",
+                aria_label: "Restablecer valores del mapa",
+                anchor: "#",
+                css: [`js-poncho-map-reset${this.scope_sufix}`],
             },
         ];
     }
@@ -7619,11 +7699,14 @@ class PonchoMapFilter extends PonchoMap {
 
             // Arma el listado de mensajes.
             const ul = document.createElement("ul");
+            
             ul.classList.add("m-b-0", "list-unstyled");
-            ul.setAttribute("aria-live", "polite");
+
             const li = content => { 
-                const item = document.createElement("li"); 
+                const item = document.createElement("li");
+                item.setAttribute("aria-live", "assertive"); 
                 item.innerHTML = content; 
+                item.tabIndex = 0;
                 return item;
             };
 
@@ -8326,7 +8409,7 @@ class PonchoMapFilter extends PonchoMap {
         this.markersMap(feed); 
         this._selectedMarker();
         this._helpText(feed);
-        this._resetSearch();
+        // this._resetSearch();
         this._clickToggleFilter();
         
         if(this.slider){
@@ -8359,18 +8442,51 @@ class PonchoMapFilter extends PonchoMap {
      * @returns {undefined}
      */
     _resetSearch = () => {  
-        document
-            .querySelectorAll(`.js-poncho-map-reset${this.scope_sufix}`)
-            .forEach(e => {
-                e.onclick = (event => {
-                    event.preventDefault();
-                    
-                    this._resetFormFilters();
-                    this._filteredData(this.entries);
-                    this._clearSearchInput();
-                    this.resetView();
-            });
+        var _this = this;
+
+        document.addEventListener("click", function(event){
+            const target = event.target;
+    
+            if(target.matches(`.js-poncho-map-reset${_this.scope_sufix}`)){
+                event.preventDefault();
+                event.stopPropagation();
+
+                try {
+                    _this._resetFormFilters();
+                } catch (error) {
+                    console.error(error);
+                }
+                try {
+                    _this._filteredData(_this.entries);
+                } catch (error) {
+                    console.error(error);
+                }
+                try {
+                    _this._clearSearchInput();
+                } catch (error) {
+                    console.error(error);
+                }
+                try {
+                    _this.resetView();
+                } catch (error) {
+                    console.error(error);
+                }
+            }
         });
+
+
+        // document
+        //     .querySelectorAll(`.js-poncho-map-reset${this.scope_sufix}`)
+        //     .forEach(e => {
+        //         e.onclick = (event => {
+        //             event.preventDefault();
+                    
+        //             this._resetFormFilters();
+        //             this._filteredData(this.entries);
+        //             this._clearSearchInput();
+        //             this.resetView();
+        //     });
+        // });
     };
 
 
@@ -8446,8 +8562,10 @@ class PonchoMapFilter extends PonchoMap {
         this.mapBackgroundColor();
 
         this._listeners();
-
+        this._accesibleExtras();
+        
         this.layerViewConf.setVisuals();
+        this._resetSearch();
     };
 };
 // end of class
@@ -8518,8 +8636,8 @@ class PonchoMapSearch {
         this.instance.search_fields = opts.search_fields;
         this.instance.accesible_menu_search = [
             {
-              "text": "Hacer una búsqueda",
-              "anchor": `#id-poncho-map-search${this.scope_sufix}`
+                "text": "Hacer una búsqueda",
+                "anchor": `#id-poncho-map-search${this.scope_sufix}`
             }
         ];
     };

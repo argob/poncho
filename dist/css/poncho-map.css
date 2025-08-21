@@ -334,7 +334,7 @@ html {
 
 .poncho-map {
   --pm-slider-width: 326px;
-  --pm-tools-width: 250px;
+  --pm-tools-width: 300px;
   --pm-color-primary: var(--primary, #0072bb);
   --pm-map-background:white;
   --pm-color-base: var(--black, #333);
@@ -516,7 +516,7 @@ html {
   position: absolute;
   bottom: var(--pm-slider-distance);
   left: var(--pm-slider-distance);
-  z-index: 900;
+  z-index: 1000;
 }
 .poncho-map .pm-toggle {
   display: none;
@@ -1064,6 +1064,15 @@ input[type=search].js-poncho-map-search__input::-webkit-search-cancel-button {
 }
 
 /* BRUTAL MODIFIERS :) */
+.poncho-map .small {
+  font-size: 75%;
+}
+.poncho-map .d-block {
+  display: block;
+}
+.poncho-map .d-none {
+  display: none;
+}
 .poncho-map .sr-only {
   position: absolute;
   width: 1px;
@@ -1075,7 +1084,7 @@ input[type=search].js-poncho-map-search__input::-webkit-search-cancel-button {
   border: 0;
 }
 .poncho-map .leaflet-control-attribution {
-  opacity: 0.8;
+  opacity: 0.9;
 }
 .poncho-map .leaflet-tile-pane img {
   border-radius: 0px !important;
