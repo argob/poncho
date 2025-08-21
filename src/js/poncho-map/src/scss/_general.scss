@@ -6,7 +6,8 @@
 
     /* SCROLLBARS */
     * {
-        scrollbar-color: var(--pm-scrollbar-handle) var(--pm-scrollbar-background);
+        scrollbar-color: var(--pm-scrollbar-handle)
+            var(--pm-scrollbar-background);
         scrollbar-width: thin;
     }
 
@@ -17,9 +18,9 @@
         border: none;
     }
 
-
     /* FUCUSABLE */
-    *:focus, .focus-element:focus {
+    *:focus,
+    .focus-element:focus {
         border-radius: 3px;
         box-sizing: border-box;
         box-shadow: 0 0 8px var(--cielo, #039be5) !important;
@@ -36,12 +37,13 @@
         color: var(--pm-color-base);
         border-radius: var(--pm-slider-radius);
         transform-style: preserve-3d;
-        border: var(--pm-slider-border-width) solid var(--pm-slider-border-color);
+        border: var(--pm-slider-border-width) solid
+            var(--pm-slider-border-color);
 
         article {
             border: none;
             margin: 0;
-            padding: 0; 
+            padding: 0;
         }
         article header {
             border: none;
@@ -54,20 +56,24 @@
         position: absolute;
         bottom: var(--pm-slider-distance);
         left: var(--pm-slider-distance);
-        z-index: 1000
+        z-index: 998;
+
+        &:has([data-toggle="true"]):has(:focus) {
+            z-index: 1000;
+        }
     }
 
     .pm-toggle {
         display: none;
-
         position: absolute;
         width: var(--pm-tools-width);
         bottom: 49px;
     }
 
-    [data-toggle="true"]:focus>.pm-toggle,
-    [data-toggle="true"]:focus-within>.pm-toggle {
-        display: block
+    [data-toggle="true"]:focus,
+    [data-toggle="true"]:focus > .pm-toggle,
+    [data-toggle="true"]:focus-within > .pm-toggle {
+        display: block;
     }
 
     .pm-list li {
@@ -79,8 +85,9 @@
         width: 100%;
         display: block;
         height: 0;
-        border-bottom: var(--pm-slider-border-width, 1px) solid var(--pm-slider-border-color);
-        margin: calc(var(--pm-slider-distance) / 2) 0
+        border-bottom: var(--pm-slider-border-width, 1px) solid
+            var(--pm-slider-border-color);
+        margin: calc(var(--pm-slider-distance) / 2) 0;
     }
 
     .pm-item-link {
@@ -93,15 +100,18 @@
         width: 100%;
         color: var(--pm-color-base);
         margin-bottom: 2px;
-        padding: calc(var(--pm-slider-distance) / 3 * 2) var(--pm-slider-distance);
-        border-radius: calc(var(--pm-slider-radius) - var(--pm-slider-distance));
-        transition: background .15s;
+        padding: calc(var(--pm-slider-distance) / 3 * 2)
+            var(--pm-slider-distance);
+        border-radius: calc(
+            var(--pm-slider-radius) - var(--pm-slider-distance)
+        );
+        transition: background 0.15s;
 
         &:hover,
         &:focus {
             background-color: var(--pm-hover-background);
             color: var(--pm-hover-color);
-            transition: background .15s;
+            transition: background 0.15s;
         }
 
         text-decoration: none;
