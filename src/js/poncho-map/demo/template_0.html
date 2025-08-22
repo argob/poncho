@@ -86,7 +86,7 @@ COPIAR DESDE ACÁ…
 <div class="col-md-12">
 <!-- PONCHO MAP -->
 <div class="poncho-map" data-scope="ponchomap">
-<div class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" id="map" style="height:700px;width: 100%;" tabindex="0">&nbsp;</div>
+<div class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" id="map" style="height:713px;width: 100%;" tabindex="0">&nbsp;</div>
 </div>
 <!-- / PONCHO MAP --></div>
 </div></div>
@@ -102,20 +102,21 @@ COPIAR DESDE ACÁ…
     const gdata = Object.keys(sheet_data.aPDs).map(e => sheet_data.aPDs[e]).flat();
     // map options
     const options = {
-        "template": template_punto_digital,
-        "title":"nombre",
+        template: template_punto_digital,
+        title:"nombre",
         map_layers: true,
-        // map_layers_default: 'satelital',
-        "scope":"ponchomap",
-        "allowed_tags": ["*"],
-        "template_markdown": true,
-        "latitud": "lat",
-        "longitud": "long",
-        "id": "id_pd",
-        "hash": true,
-        "slider": true,
-        "scroll": true,
-        "marker": (self, ele) => (ele.estado_funcionamiento == "3" ? 
+        map_layers_default: 'satelital',
+        scope:"ponchomap",
+        allowed_tags: ["*"],
+        template_markdown: true,
+        map_opacity:1,
+        latitud: "lat",
+        longitud: "long",
+        id: "id_pd",
+        hash: true,
+        slider: true,
+        scroll: true,
+        marker: (self, ele) => (ele.estado_funcionamiento == "3" ? 
                 "mandarina" : "azul"),
         "header_icons":[
             {
@@ -165,32 +166,6 @@ COPIAR DESDE ACÁ…
             "estado_funcionamiento_custom": "",
         },
         open_maps: true,
-        _open_maps_options: {
-            label: "Abrir punto en:",
-            items : [
-                {
-                    link: 'https://www.google.com/maps/search/?api=1&query={{latitude}},{{longitude}}',
-                    label: "Google maps",
-                    lang: "en",
-                    rel: "alternate",
-                    plataform: "all"
-                },
-                {
-                    link: 'https://waze.com/ul?ll={{latitude}},{{longitude}}&navigate=yes',
-                    label: "Waze",
-                    lang: "en",
-                    rel: "alternate",
-                },
-                {
-                    link: 'https://www.mapquest.com/latlng/{{latitude}},{{longitude}}',
-                    label: "MapQuest",
-                    lang: "en",
-                    rel: "alternate",
-                },
-            ]
-
-            
-        }
     };
     // render map
     filter = new PonchoMapFilter(gdata, options);
