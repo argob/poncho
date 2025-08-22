@@ -64,8 +64,8 @@ class PonchoMapSearch {
         this.instance.search_fields = opts.search_fields;
         this.instance.accesible_menu_search = [
             {
-              "text": "Hacer una búsqueda",
-              "anchor": `#id-poncho-map-search${this.scope_sufix}`
+                "text": "Hacer una búsqueda",
+                "anchor": `#id-poncho-map-search${this.scope_sufix}`
             }
         ];
     };

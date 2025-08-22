@@ -34,15 +34,20 @@
     <link rel="stylesheet" href="./css/demo.css">
     <title>Poncho Map — Puntos digitales</title>
 </head>
-<body >
+<body>
+<div class="demo-nav container">
+    <ul class="demo-menu">
+        <li><a href="./">Inicio</a></li>
+    </ul>
+</div>
 
-    <div class="demo-nav container">
-        <ul class="demo-menu">
-            <li><a href="./">Inicio</a></li>
-        </ul>
-    </div>
-
-  <h1>Punto Digital</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="h3">Punto Digital</h1>
+        </div>
+    </div>                          
+</div>
 <!-- 
 COPIAR DESDE ACÁ…
 -->
@@ -59,8 +64,10 @@ COPIAR DESDE ACÁ…
 <script src="./js/template-punto-digital.js"></script>
 
 <!-- / INCLUDE SCRIPTS -->
+<div class="container">
+<div class="row">
 
-<div class="_col-md-12 m-b-1">
+<div class="col-md-12 m-b-1">
 <!-- PONCHO SEARCH -->
 <form action="">
 <div data-scope="search-efectores">
@@ -70,19 +77,19 @@ COPIAR DESDE ACÁ…
 <datalist class="js-porcho-map-search__list" id="js-porcho-map-search__list"></datalist> 
 <span class="input-group-btn">
 <button class="js-poncho-map-search__submit btn btn-primary" type="submit"><i class="fa fa-search text-white">&nbsp;</i>
-<span class="sr-only">Buscar término</span></button> </span></div><div data-scope="ponchomap"><div class="js-poncho-map__help text-mutted small">&nbsp;</div>
+<span class="sr-only">Buscar término</span></button> </span></div><div data-scope="ponchomap"><div class="js-poncho-map__help text-mutted small"></div>
 </div>
 </div>
 </form>
 <!-- / PONCHO SEARCH -->
 </div>
-<div class="_col-md-12">
+<div class="col-md-12">
 <!-- PONCHO MAP -->
 <div class="poncho-map" data-scope="ponchomap">
-<div class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" id="map" style="height:600px;width: 100%;" tabindex="0">&nbsp;</div>
+<div class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" id="map" style="height:713px;width: 100%;" tabindex="0">&nbsp;</div>
 </div>
 <!-- / PONCHO MAP --></div>
-
+</div></div>
 
               
 <!-- SCRIPTS -->
@@ -95,18 +102,21 @@ COPIAR DESDE ACÁ…
     const gdata = Object.keys(sheet_data.aPDs).map(e => sheet_data.aPDs[e]).flat();
     // map options
     const options = {
-        "template": template_punto_digital,
-        "title":"nombre",
-        "scope":"ponchomap",
-        "allowed_tags": ["*"],
-        "template_markdown": true,
-        "latitud": "lat",
-        "longitud": "long",
-        "id": "id_pd",
-        "hash": true,
-        "slider": true,
-        "scroll": true,
-        "marker": (self, ele) => (ele.estado_funcionamiento == "3" ? 
+        template: template_punto_digital,
+        title:"nombre",
+        map_layers: true,
+        map_layers_default: 'satelital',
+        scope:"ponchomap",
+        allowed_tags: ["*"],
+        template_markdown: true,
+        map_opacity:1,
+        latitud: "lat",
+        longitud: "long",
+        id: "id_pd",
+        hash: true,
+        slider: true,
+        scroll: true,
+        marker: (self, ele) => (ele.estado_funcionamiento == "3" ? 
                 "mandarina" : "azul"),
         "header_icons":[
             {
@@ -156,32 +166,6 @@ COPIAR DESDE ACÁ…
             "estado_funcionamiento_custom": "",
         },
         open_maps: true,
-        open_maps_options: {
-            label: "Abrir punto en:",
-            items : [
-                {
-                    link: 'https://www.google.com/maps/search/?api=1&query={{latitude}},{{longitude}}',
-                    label: "Google maps",
-                    lang: "en",
-                    rel: "alternate",
-                    plataform: "all"
-                },
-                {
-                    link: 'https://waze.com/ul?ll={{latitude}},{{longitude}}&navigate=yes',
-                    label: "Waze",
-                    lang: "en",
-                    rel: "alternate",
-                },
-                {
-                    link: 'https://www.mapquest.com/latlng/{{latitude}},{{longitude}}',
-                    label: "MapQuest",
-                    lang: "en",
-                    rel: "alternate",
-                },
-            ]
-
-            
-        }
     };
     // render map
     filter = new PonchoMapFilter(gdata, options);
@@ -200,5 +184,7 @@ COPIAR DESDE ACÁ…
 </script>
 <iframe src="" name="foo" frameborder="0"></iframe>
 <!-- / SCRIPTS -->
+
+
 </body>
 </html>

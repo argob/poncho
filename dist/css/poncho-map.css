@@ -334,7 +334,7 @@ html {
 
 .poncho-map {
   --pm-slider-width: 326px;
-  --pm-tools-width: 250px;
+  --pm-tools-width: 300px;
   --pm-color-primary: var(--primary, #0072bb);
   --pm-map-background:white;
   --pm-color-base: var(--black, #333);
@@ -485,7 +485,8 @@ html {
   padding: 0;
   border: none;
 }
-.poncho-map *:focus, .poncho-map .focus-element:focus {
+.poncho-map *:focus,
+.poncho-map .focus-element:focus {
   border-radius: 3px;
   box-sizing: border-box;
   box-shadow: 0 0 8px var(--cielo, #039be5) !important;
@@ -516,7 +517,10 @@ html {
   position: absolute;
   bottom: var(--pm-slider-distance);
   left: var(--pm-slider-distance);
-  z-index: 900;
+  z-index: 998;
+}
+.poncho-map .pm-tools:has([data-toggle=true]):has(:focus) {
+  z-index: 1000;
 }
 .poncho-map .pm-toggle {
   display: none;
@@ -524,6 +528,7 @@ html {
   width: var(--pm-tools-width);
   bottom: 49px;
 }
+.poncho-map [data-toggle=true]:focus,
 .poncho-map [data-toggle=true]:focus > .pm-toggle,
 .poncho-map [data-toggle=true]:focus-within > .pm-toggle {
   display: block;
@@ -1064,6 +1069,15 @@ input[type=search].js-poncho-map-search__input::-webkit-search-cancel-button {
 }
 
 /* BRUTAL MODIFIERS :) */
+.poncho-map .small {
+  font-size: 75%;
+}
+.poncho-map .d-block {
+  display: block;
+}
+.poncho-map .d-none {
+  display: none;
+}
 .poncho-map .sr-only {
   position: absolute;
   width: 1px;
@@ -1074,16 +1088,8 @@ input[type=search].js-poncho-map-search__input::-webkit-search-cancel-button {
   clip: rect(0, 0, 0, 0);
   border: 0;
 }
-.poncho-map.hide-attribution .leaflet-control-attribution {
-  position: absolute !important;
-  left: -9999em !important;
-  top: -9999em !important;
-}
 .poncho-map .leaflet-control-attribution {
-  opacity: 0.8;
-}
-.poncho-map .leaflet-control-attribution .leaflet-attribution-flag {
-  display: none !important;
+  opacity: 0.9;
 }
 .poncho-map .leaflet-tile-pane img {
   border-radius: 0px !important;
@@ -1092,7 +1098,9 @@ input[type=search].js-poncho-map-search__input::-webkit-search-cancel-button {
 
 @media (max-width: 575.98px) {
   .poncho-map .leaflet-control-attribution {
-    display: none !important;
+    position: absolute !important;
+    left: -9999em !important;
+    top: -9999em !important;
   }
 }
 .poncho-map {
@@ -1120,56 +1128,60 @@ input[type=search].js-poncho-map-search__input::-webkit-search-cancel-button {
   filter: grayscale(1) invert(1) brightness(2);
   transition: filter 0.1s;
 }
-.poncho-map.map-sepia .leaflet-tile-pane {
-  filter: sepia(0.5) saturate(0.24) contrast(1);
-  transition: filter 0.1s;
-}
-.poncho-map.map-blue .leaflet-tile-pane {
-  filter: sepia(1) hue-rotate(326deg) invert(1) brightness(8) saturate(0.45) grayscale(0.5) opacity(0.75);
-  transition: filter 0.1s;
-}
 .poncho-map.map-transparent {
   --pm-map-background: transparent;
 }
 .poncho-map.map-transparent .leaflet-tile-pane {
   opacity: 0 !important;
 }
-.poncho-map.ui-dark, .poncho-map.ui-blue {
-  --pm-color-primary: var(--celeste-argentina, skyblue);
+.poncho-map.ui-dark {
+  --pm-color-primary: var(--arg-cielo, skyblue);
   --pm-color-base: #eaeaea;
   --pm-slider-background: #343232;
-  --pm-slider-border-color: #626161;
-  --pm-slider-border-color: color-mix(in srgb, #626161 80%, white);
+  --pm-slider-border-color: color-mix(in srgb, #626161 40%, white);
   --pm-slider-border-width: 1px;
   --pm-scrollbar-handle: #eaeaea;
-  --pm-scrollbar-background: rgb(0, 0, 0, .15);
+  --pm-scrollbar-background: rgb(0, 0, 0, 0.15);
   --pm-hover-background: #252424;
   --pm-hover-color: white;
   --pm-active-color: #343232;
   --pm-active-background: var(--pm-color-primary);
 }
 .poncho-map.ui-contrast {
-  --pm-color-primary: #68CEF3;
-  --pm-color-base: #eaeaea;
+  --pm-color-primary:var(--arg-azul-200, skyblue);
+  --pm-color-base: white;
   --pm-slider-background: #222;
   --pm-slider-border-color: white;
   --pm-slider-border-width: 2.5px;
   --pm-active-color: var(--pm-slider-background);
   --pm-hover-background: var(--pm-color-base);
   --pm-hover-color: var(--pm-slider-background);
-  --pm-active-color: #343232;
+  --pm-active-color: #111;
   --pm-active-background: var(--pm-color-primary);
 }
 .poncho-map.ui-relax {
   --pm-color-primary: color-mix(in srgb, var(--primary) 80%, black);
   --pm-color-base: #5a5a5a;
-  --pm-slider-background: color-mix(in srgb, var(--verde-cemento) 15%, white);
+  --pm-slider-background: color-mix(
+      in srgb,
+      var(--verde-cemento) 15%,
+      white
+  );
   --pm-slider-border: 1px solid #ddd;
-  --pm-slider-border-color: color-mix(in srgb, var(--verde-cemento) 80%, white);
+  --pm-slider-border-color: color-mix(
+      in srgb,
+      var(--verde-cemento) 80%,
+      white
+  );
 }
-.poncho-map.map-default.ui-default [data-theme=default], .poncho-map.map-sepia.ui-sepia [data-theme=sepia], .poncho-map.map-relax.ui-relax [data-theme=relax], .poncho-map.map-grayscale.ui-grayscale [data-theme=grayscale], .poncho-map.map-blue.ui-blue [data-theme=blue], .poncho-map.ui-contrast.map-contrast [data-theme=contrast], .poncho-map.map-dark.ui-dark [data-theme=dark] {
+.poncho-map.map-default.ui-default [data-theme=default], .poncho-map.map-relax.ui-relax [data-theme=relax], .poncho-map.map-grayscale.ui-grayscale [data-theme=grayscale], .poncho-map.ui-contrast.map-contrast [data-theme=contrast], .poncho-map.map-dark.ui-dark [data-theme=dark], .poncho-map.layer-osm [data-theme=layer-osm], .poncho-map.layer-satelital [data-theme=layer-satelital] {
   background: var(--pm-active-background);
   color: var(--pm-active-color);
+}
+.poncho-map .pm-item-link:disabled {
+  opacity: 0.45;
+  cursor: not-allowed !important;
+  font-style: italic;
 }
 
 .poncho-map.ui-dark .content-container, .poncho-map.ui-contrast .content-container, .poncho-map.ui-dark .content-container > *, .poncho-map.ui-contrast .content-container > * {
@@ -1202,10 +1214,10 @@ input[type=search].js-poncho-map-search__input::-webkit-search-cancel-button {
   color: var(--arg-negro-200) !important;
 }
 .poncho-map.poncho-map.ui-contrast a, .poncho-map.poncho-map.ui-dark a {
-  color: #9AD7F5 !important;
+  color: var(--arg-azul-100, #9ad7f5) !important;
 }
 .poncho-map.poncho-map.ui-dark a:visited, .poncho-map.poncho-map.ui-contrast a:visited {
-  color: #BEB5D8 !important;
+  color: #D3CEE5 !important;
 }
 
 .poncho-map * > .pmi {
