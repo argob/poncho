@@ -4976,6 +4976,12 @@ class PonchoMap {
                 term_tag: "dt",
                 title_classlist: ["h4","pm-color-primary","m-t-0"]
             },
+            accesible_menu_extras: [
+                {
+                    text: "Ayudá a mejorar el mapa",
+                    anchor: "https://www.argentina.gob.ar/sugerencias",
+                }
+            ],
             fit_bounds_onevent: true,
             allowed_tags: [],
             template_innerhtml: false,
@@ -5085,40 +5091,42 @@ class PonchoMap {
                     "fill-opacity": 0.5
                 }
             },
-            accesible_menu_extras: [
-                {
-                    text: "Ayudá a mejorar el mapa",
-                    anchor: "https://www.argentina.gob.ar/sugerencias",
-                }
-            ],
             open_maps: false,
             open_maps_options: {
                 label: "Abrir en:",
                 items: [
                     {
                         link: "https://mapa.ign.gob.ar/beta/?zoom=17&lat={{latitude}}&lng={{longitude}}&layers=argenmap",
-                        label: `<abbr lang="es" title="Instituto Geográfico Nacional">IGN</abbr> – ArgenMap <small class="sr-only d-block">(El contenido podría no ser adecuado para usuarios de tecnología asistiva)</small>`,
+                        label: `<abbr lang="es" title="Instituto Geográfico Nacional">IGN</abbr> – ArgenMap <small class="sr-only d-block">(El contenido podría no estar adecuado para usuarios de tecnología asistiva)</small>`,
                         lang: "es",
+                        hreflang: "es",
                         rel: "alternate",
+                        aria_label: false,
                     },
                     {
                         link: 'https://www.google.com/maps/search/?api=1&query={{latitude}},{{longitude}}',
                         label: "Google maps",
                         lang: "en",
+                        hreflang: false,
                         rel: "alternate",
+                        aria_label: false,
                     },
                     {
                         link: "https://maps.apple.com/?q={{latitude}},{{longitude}}",
                         label: "Apple maps",
                         lang: "en",
+                        hreflang: "en",
                         rel: "alternate",
                         plataform: "mac",
+                        aria_label: false,
                     },
                     {
                         link: "https://www.openstreetmap.org/?mlat={{latitude}}&mlon={{longitude}}#map=16/{{latitude}}/{{longitude}}",
                         label: "Open street maps",
                         lang: "en",
+                        hreflang: "en",
                         rel: "alternate",
+                        aria_label: false,
                     },
                 ]
             }
@@ -5201,11 +5209,11 @@ class PonchoMap {
         this.geojson;
             
         // OSM
-        const osmAttributionLink = `<a hreflang="es" `
+        const osmAttributionLink = `<a hreflang="en" `
             + `href="https://www.openstreetmap.org/copyright">`
             + `<abbr lang="en" title="Open Street Map">OSM</abbr></a>`;
         const ersiAttributionLik = `Mapas satelitales ` 
-            + `© <a hreflant="es" href="https://www.esri.com/es-es/home">`
+            + `© <a hreflang="es" href="https://www.esri.com/es-es/home">`
             + `<abbr lang="en" title="Environmental Systems Research Institute">`
             + `Esri</abbr></a>`;
         const ignAttributionLink = `<a hreflang="es" `
@@ -5245,11 +5253,7 @@ class PonchoMap {
             this.map_layers ? this.layerViewSettings[this.map_layers_default] : 
             this.layerViewSettings["osm"]);
 
-        this.tileLayer = new L.tileLayer(this.layerViewConf.tilesUrl, {
-            // maxNativeZoom: 17,
-            // minZoom: 0,
-            // maxZoom: 19,
-        });
+        this.tileLayer = new L.tileLayer(this.layerViewConf.tilesUrl);
         const mapOptions = {renderer: L.svg(), ...this.map_init_options}
         this.map = new L.map(this.map_selector, mapOptions);
         this.map.setView(this.map_view, this.map_zoom);
@@ -5279,10 +5283,7 @@ class PonchoMap {
      */
     mapOpacity = (value=false) => {
         const opacity = (value ? value : this.map_opacity);
-        document
-            .querySelectorAll(
-                `${this.scope_selector} .leaflet-pane .leaflet-tile-pane`)
-            .forEach(e => e.style.opacity=opacity);
+        this.tileLayer.setOpacity(opacity);
     }
 
 
@@ -5431,7 +5432,8 @@ class PonchoMap {
         // Botón para restablecer el mapa
         const restart = document.createElement("button");
         restart.textContent = "Restablecer";
-        restart.setAttribute("aria-label", "Restablece los valores originales");
+        restart.lang = "es";
+        restart.ariaLabel = "Restablece los valores originales";
         restart.classList.add("pm-item-link", "js-reset-theme");
         const li = document.createElement("li");
         li.classList.add("pm-item-separator");
@@ -5458,7 +5460,10 @@ class PonchoMap {
                 const small = document.createElement("small");
                 small.classList.add("d-block", "small", "sr-only");
                 small.textContent = description;
-                buttonTheme.appendChild(document.createTextNode(" "));
+                const comma = document.createElement("span");
+                comma.textContent = ", ";
+                comma.className = "sr-only";
+                buttonTheme.appendChild(comma);
                 buttonTheme.appendChild(small);
             }
 
@@ -5638,6 +5643,9 @@ class PonchoMap {
     /**
      * Abre las coordenadas en varios servicios de mapas configurados
      * 
+     * @summary
+     * lang y href lang solo aceptan lenguajes tipo: ISO-639-1.
+     * 
      * @param {number|string} latitude - Latitud de la ubicación
      * @param {number|string} longitude - Longitud de la ubicación
      * @returns {HTMLElement|null} - El contenedor creado o null si no se pudo crear
@@ -5660,9 +5668,10 @@ class PonchoMap {
 
         if(items.length > 0){
             for(const item of items){
-                const {link, label, lang, rel, plataform="all", target} = item;
+                const {link, label, lang, rel, hreflang, plataform="all", target} = item;
                 const regex = /(?=.*\{\{latitude\}\})(?=.*\{\{longitude\}\}).*/gm;
                 const regexTarget = /(_self|_blank|_parent|_top)/;
+                const regexLang = /[a-zA-Z]{2}/;
 
                 if(!navigator.userAgent.includes('Mac') && plataform == "mac"){
                     continue;
@@ -5671,7 +5680,10 @@ class PonchoMap {
                 if(!regex.test(link)){
                     continue;
                 }
-
+                const hasLang = (typeof lang == "string" &&
+                    regexLang.test(lang) ? true : false);
+                const hasHreflang = (typeof hreflang == "string" &&
+                    regexLang.test(hreflang) ? true : false);
                 const hasTarget = (typeof target == "string" && 
                     regexTarget.test(target.trim()) ? true : false);
 
@@ -5681,9 +5693,11 @@ class PonchoMap {
                     .replace(/\{\{longitude\}\}/g, longitude);
                 a.href = setAnchor;
                 a.tabIndex = 0;
-                a.setAttribute("lang", lang); 
+                a.lang = lang; 
                 a.rel = rel;
+                a.hreflang = (hasHreflang ? hreflang : "");
                 a.innerHTML = label; 
+                
                 if(hasTarget){
                     a.target = target;
                 }
@@ -7285,12 +7299,19 @@ class PonchoMap {
                 anchor: `#${anchors[2][1]}`,
                 css: [`js-themes-tool-button${this.scope_sufix}`]
             },
-        ]
+        ];
+        const accesibleMenuEndItems = [
+            {
+                text: "Salir del mapa",
+                anchor: `#accesible-return-nav${this.scope_sufix}`
+            }
+        ];
         values = [
             ...values,
             ...this.accesible_menu_filter,
             ...this.accesible_menu_search,
-            ...this.accesible_menu_extras
+            ...this.accesible_menu_extras,
+            ...accesibleMenuEndItems
         ];
 
         // Imprimo los enlaces
@@ -7338,7 +7359,7 @@ class PonchoMap {
 
         // enlace de retorno
         const back_to_nav = document.createElement("a");
-        back_to_nav.textContent = "Ir a la navegación del mapa";
+        back_to_nav.textContent = "Ir menú del mapa";
         back_to_nav.classList.add("pm-item-link", "pm-accesible");
         back_to_nav.href = `#pm-accesible-nav${this.scope_sufix}`;
         back_to_nav.id = `accesible-return-nav${this.scope_sufix}`;
