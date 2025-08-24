@@ -65,8 +65,9 @@ class PonchoMap {
             },
             accesible_menu_extras: [
                 {
-                    text: "Ayudá a mejorar el mapa",
-                    anchor: "https://www.argentina.gob.ar/sugerencias",
+                    label: "Ayudá a mejorar el mapa",
+                    link: "https://www.argentina.gob.ar/sugerencias",
+                    target: "_blank"
                 }
             ],
             fit_bounds_onevent: true,
@@ -184,10 +185,11 @@ class PonchoMap {
                 items: [
                     {
                         link: "https://mapa.ign.gob.ar/beta/?zoom=17&lat={{latitude}}&lng={{longitude}}&layers=argenmap",
-                        label: `<abbr lang="es" title="Instituto Geográfico Nacional">IGN</abbr> – ArgenMap <small class="sr-only d-block">(El contenido podría no estar adecuado para usuarios de tecnología asistiva)</small>`,
+                        label: `<abbr lang="es" title="Instituto Geográfico Nacional">IGN</abbr> – ArgenMap <small class="sr-only d-block">, El contenido podría no estar adecuado para usuarios de tecnología asistiva</small>`,
                         lang: "es",
+                        target: "_blank",
                         hreflang: "es",
-                        rel: "alternate",
+                        rel: ["alternate"],
                         aria_label: false,
                     },
                     {
@@ -195,7 +197,7 @@ class PonchoMap {
                         label: "Google maps",
                         lang: "en",
                         hreflang: false,
-                        rel: "alternate",
+                        rel: ["alternate"],
                         aria_label: false,
                     },
                     {
@@ -203,7 +205,7 @@ class PonchoMap {
                         label: "Apple maps",
                         lang: "en",
                         hreflang: "en",
-                        rel: "alternate",
+                        rel: ["alternate"],
                         plataform: "mac",
                         aria_label: false,
                     },
@@ -212,7 +214,7 @@ class PonchoMap {
                         label: "Open street maps",
                         lang: "en",
                         hreflang: "en",
-                        rel: "alternate",
+                        rel: ["alternate"],
                         aria_label: false,
                     },
                 ]
@@ -335,7 +337,6 @@ class PonchoMap {
             }
         };
 
-
         this.layerViewConf = (this.map_layers_default == "satelital" && 
             this.map_layers ? this.layerViewSettings[this.map_layers_default] : 
             this.layerViewSettings["osm"]);
@@ -355,6 +356,106 @@ class PonchoMap {
         }
         this.ponchoLoaderTimeout;
     }
+
+
+    /**
+     * Crea un elemento anchor <a>
+     * * @param {object} options 
+     * @param {object} options.id Especifica el id del elemento.
+     * @param {object} options.title Especifica el title del elemento.
+     * @param {object} options.css Array de clases CSS para el elemento.
+     * @param {string} options.label El texto que se mostrará dentro del enlace.
+     * @param {string} options.aria_label El texto para el atributo 
+     * 'aria-label'.
+     * @param {string} options.link La URL a la que apunta el enlace.
+     * @param {string} options.hreflang El idioma del documento de destino.
+     * @param {string} options.lang El idioma del elemento.
+     * @param {string} options.target Especifica dónde se abrirá el documento 
+     * vinculado. Valores posibles: '_self', '_blank', '_parent', '_top'.
+     * @param {string[]} options.rel Especifica la relación entre el 
+     * documento actual y el documento vinculado.
+     * @param {object} options.datasets Un objeto de pares clave-valor para 
+     * los atributos de datos (data-*).
+     * @param {object} options.attributes Un objeto de pares clave-valor 
+     * para otros atributos personalizados.
+     * @returns {HTMLAnchorElement}
+     */
+    addAnchorElement = (options) => {
+        const {
+            id,
+            title,
+            css,
+            label = null,
+            aria_label,
+            link = '#',
+            hreflang,
+            lang,
+            target,
+            rel,
+            datasets = {},
+            attributes = {}
+        } = options;
+
+        const regexLang = /^[a-zA-Z]{2}$/;
+        const isValidLang = (typeof lang === "string" &&
+                regexLang.test(lang));
+        const isValidHrefLang = (typeof hreflang === "string" &&
+                regexLang.test(hreflang));
+        const isValidTarget = [
+                '_self', '_blank', '_parent', '_top'].includes(target);
+
+        // Anchor
+        const element = document.createElement("a");
+        element.href = link;
+
+        if(label && isValidTarget && target == "_blank"){
+            element.innerHTML = `${label} <span class="sr-only">`
+                    + `(Abre en una nueva pestaña)</span>`; 
+        } else if(label){
+            element.innerHTML = label;
+        }
+
+        if (Array.isArray(rel)) {
+            const uniqueRel = [...new Set(rel)];
+            if (isValidTarget && target === "_blank") {
+                uniqueRel.push('noopener', 'noreferrer');
+            }
+            element.rel = uniqueRel.join(" ");
+        }
+
+        if(isValidLang){
+            element.lang = lang;
+        }
+        if(isValidHrefLang){
+            element.hreflang = hreflang;
+        }
+        if(isValidTarget){
+            element.target = target;
+        }
+        if(aria_label){
+            element.setAttribute("aria-label", aria_label);
+        }
+        if(id){
+            element.id = id;
+        }
+        if(title){
+            element.title = title;
+        }
+        if(Array.isArray(css)){
+            element.classList.add(...css);
+        }
+        Object
+            .entries(attributes)
+            .forEach(([key, value]) => 
+                element.setAttribute(key, value));
+        Object
+            .entries(datasets)
+            .forEach(([key, value]) => 
+                element.setAttribute(`data-${key}`, value));
+
+        return element;
+    };
+
 
     //
     // TEMA PARA EL MAPA
@@ -403,9 +504,11 @@ class PonchoMap {
         for(let item of themes){
             document.querySelectorAll(`${this.scope_selector} [data-theme="${item}"]`).forEach(ele =>{
                 if(attr=="disabled"){
-                    ele.setAttribute("disabled", "disabled");
+                    ele.setAttribute("aria-hidden", "true");
+                    ele.parentElement.style.display = "none";
                 } else {
-                    ele.removeAttribute("disabled");
+                    ele.removeAttribute("aria-hidden");
+                    ele.parentElement.style.display = "initial";
                 }
             });
         }
@@ -428,6 +531,16 @@ class PonchoMap {
             element.classList.add(addLayer);
         });
         this._disabledEnableThemes(["contrast", "dark"], disabled);
+
+        const menuitemLayerTheme = document.querySelectorAll(
+                `${this.scope_selector} [data-theme^="layer-"]`);
+        menuitemLayerTheme.forEach(ele => {
+            if(ele.dataset.theme == addLayer){
+                ele.setAttribute("aria-current", "true");
+            } else {
+                ele.setAttribute("aria-current", "false");
+            }
+        });
     }
 
 
@@ -506,23 +619,33 @@ class PonchoMap {
         button.tabIndex = "0";
         button.classList.add("pm-btn", "pm-btn-rounded-circle");
         button.appendChild(icon);
-        button.setAttribute("role", "button");
-        button.setAttribute("aria-label", "Abre el panel de temas");
-
+        button.ariaHasPopup = "true";
+        button.ariaControls = "menu";
+        button.role = "button";
+        button.ariaLabel = "Abre el panel de temas";
 
         const list = document.createElement("ul");
+        list.id = `list-themes-tool-button${this.scope_sufix}`;
+        list.role = "menu";
+        list.setAttribute(
+            "aria-labelledby", 
+            `themes-tool-button${this.scope_sufix}`);
         list.classList.add(
             "pm-container", "pm-list", "pm-list-unstyled", 
             "pm-p-1", "pm-caret", "pm-caret-b", "pm-toggle", 
             "pm-accesible-menu");
 
         // Botón para restablecer el mapa
-        const restart = document.createElement("button");
-        restart.textContent = "Restablecer";
-        restart.lang = "es";
-        restart.ariaLabel = "Restablece los valores originales";
-        restart.classList.add("pm-item-link", "js-reset-theme");
+        const restartLinkOptions = {
+            label: "Restablecer",
+            attributes: {role: "menuitem"},
+            aria_label: "Restablece los valores originales",
+            css: ["pm-item-link", "js-reset-theme"]
+        };
+        const restart = this.addAnchorElement(restartLinkOptions);
+
         const li = document.createElement("li");
+        li.role = "presentation";
         li.classList.add("pm-item-separator");
         li.appendChild(restart);
 
@@ -533,32 +656,36 @@ class PonchoMap {
         for(let i = 0; i <= totalItems - 1; i++){
             const {code, name, aria_label, description} = this.default_themes[i];
             
+
+            const buttonThemeOptions = {
+                aria_label,
+                css: ["js-set-theme", "pm-item-link"],
+                attributes: {role: "menuitem"},
+                datasets: {theme: code}
+            };
+            const buttonTheme = this.addAnchorElement(buttonThemeOptions);
+
             const spanName = document.createElement("span");
             spanName.textContent = name;
-
-            const buttonTheme = document.createElement("button");
-            buttonTheme.dataset.theme = code;
             buttonTheme.appendChild(spanName);
-            
-            if(aria_label){
-                buttonTheme.setAttribute("aria-label", aria_label);
-            }
+
             if(description){
                 const small = document.createElement("small");
                 small.classList.add("d-block", "small", "sr-only");
                 small.textContent = description;
+
                 const comma = document.createElement("span");
                 comma.textContent = ", ";
                 comma.className = "sr-only";
+
                 buttonTheme.appendChild(comma);
                 buttonTheme.appendChild(small);
             }
 
-            buttonTheme.classList.add("js-set-theme", "pm-item-link");
-
             // Agrego una línea de separación.
             // @todo Separar los botones con details/summary
             const li = document.createElement("li");
+            li.role="presentation";
             if(i == totalItems -1 && this.map_layers){
                 li.classList.add("pm-item-separator");
             }
@@ -595,17 +722,24 @@ class PonchoMap {
         document
             .querySelectorAll(`${this.scope_selector} .js-satelital-layer`)
             .forEach(ele => ele.addEventListener(
-                "click", () => this._setSatelitalView())
+                "click", (e) => {
+                    e.preventDefault();
+                    this._setSatelitalView();
+                })
             );
         document
             .querySelectorAll(`${this.scope_selector} .js-osm-layer`)
             .forEach(ele => ele.addEventListener(
-                "click", () => this._setOsmView())
+                "click", (e) => {
+                    e.preventDefault();
+                    this._setOsmView();
+                })
             );
         document
             .querySelectorAll(`${this.scope_selector} .js-reset-theme`)
             .forEach(ele => ele.addEventListener(
-                "click", () => {
+                "click", (e) => {
+                    e.preventDefault();
                     localStorage.removeItem("mapTheme");
                     this._removeThemes();
                     this._setThemes();
@@ -615,7 +749,8 @@ class PonchoMap {
         document
             .querySelectorAll(`${this.scope_selector} .js-set-theme`)
             .forEach(ele => ele.addEventListener(
-                "click", () => {
+                "click", (e) => {
+                    e.preventDefault();
                     const th = ele.dataset.theme;
                     this.useTheme(th);
                     localStorage.setItem("mapTheme", th);
@@ -630,9 +765,11 @@ class PonchoMap {
      * @param {object} prefix Lista de prefijos. ui o map 
      * @returns {object} Array con los estilos definidos.
      */
-    _setThemeStyles = (theme=false, prefix=["ui", "map"]) => prefix.map(m => {
-        return (["ui", "map"].includes(m) ? `${m}-${theme}` : false);
-    });
+    _setThemeStyles = (theme=false, prefix=["ui", "map"]) => {
+        return prefix.map(function(m){
+            return (["ui", "map"].includes(m) ? `${m}-${theme}` : false);
+        });
+    };
 
 
     /**
@@ -650,6 +787,10 @@ class PonchoMap {
                 ele.classList.remove(...this._setThemeStyles(th, prefix));
             });
         });
+        // Aria-current false
+        const themeMenuItems = document.querySelectorAll(
+            `${this.scope_selector} .js-set-theme`);
+        themeMenuItems.forEach(ele => ele.setAttribute("aria-current", "false"));
     };
 
 
@@ -665,6 +806,10 @@ class PonchoMap {
         element.forEach(ele => {
             ele.classList.add( ...this._setThemeStyles(theme, prefix) ); 
         });
+        // Agrega aria-current al item seleccionado
+        const themeMenuItems = document.querySelectorAll(
+            `${this.scope_selector} .js-set-theme[data-theme="${theme}"]`);
+        themeMenuItems.forEach(ele => ele.setAttribute("aria-current", "true"));
     }
 
 
@@ -720,13 +865,6 @@ class PonchoMap {
     }
 
 
-    plataform = () => {
-        var isMac = navigator.platform.toUpperCase().indexOf('MAC')>=0;
-        var isMacLike = /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform);
-        var isIOS = /(iPhone|iPod|iPad)/i.test(navigator.platform);
-        };
-
-
     /**
      * Abre las coordenadas en varios servicios de mapas configurados
      * 
@@ -757,44 +895,23 @@ class PonchoMap {
             for(const item of items){
                 const {link, label, lang, rel, hreflang, plataform="all", target} = item;
                 const regex = /(?=.*\{\{latitude\}\})(?=.*\{\{longitude\}\}).*/gm;
-                const regexTarget = /(_self|_blank|_parent|_top)/;
-                const regexLang = /[a-zA-Z]{2}/;
 
                 if(!navigator.userAgent.includes('Mac') && plataform == "mac"){
                     continue;
                 }
-
                 if(!regex.test(link)){
                     continue;
                 }
-                const hasLang = (typeof lang == "string" &&
-                    regexLang.test(lang) ? true : false);
-                const hasHreflang = (typeof hreflang == "string" &&
-                    regexLang.test(hreflang) ? true : false);
-                const hasTarget = (typeof target == "string" && 
-                    regexTarget.test(target.trim()) ? true : false);
 
-                const a = document.createElement("a");
                 const setAnchor = link
                     .replace(/\{\{latitude\}\}/g, latitude)
                     .replace(/\{\{longitude\}\}/g, longitude);
-                a.href = setAnchor;
-                a.tabIndex = 0;
-                a.lang = lang; 
-                a.rel = rel;
-                a.hreflang = (hasHreflang ? hreflang : "");
-                a.innerHTML = label; 
-                
-                if(hasTarget){
-                    a.target = target;
-                }
-                if(target == "_blank"){
-                    a.innerHTML = `${label} <span class="sr-only">`
-                            +`(Abre en una nueva pestaña)</span>`; 
-                } else {
-                    a.innerHTML = label;
-                }
 
+                const anchorOptions = {
+                    lang, hreflang, target, label, rel, 
+                    link: setAnchor, attributes: {tabindex: 0}
+                };
+                const a = this.addAnchorElement(anchorOptions);
                 const li = document.createElement("li");
                 li.appendChild(a);
                 ul.appendChild(li);
@@ -942,17 +1059,10 @@ class PonchoMap {
         container.id = `js-error-message${this.scope_sufix}`;
         container.classList.add("poncho-map--message", type);
 
-
-        const mapIcon = document.createElement("i");
-        mapIcon.classList.add(
-            "icono-arg-mapa-argentina", "poncho-map--message__icon"
-        );
-
         const title = document.createElement("h2");
         title.classList.add("h6", "title", "pm-visually-hidden");
         title.textContent = "¡Se produjo un error!";
 
-        container.appendChild(mapIcon);
         container.appendChild(title);
 
         const messagesList = [
@@ -1443,11 +1553,12 @@ class PonchoMap {
         close_button.setAttribute("aria-label", "Cerrar panel de información");
         close_button.innerHTML = "<span class=\"pm-visually-hidden\">Cerrar</span>✕";
 
-        const anchor = document.createElement("a");
-        anchor.setAttribute("tabindex", 0);
-        anchor.id = `js-anchor-slider${this.scope_sufix}`;
-        anchor.classList.add('sr-only');
-
+        const anchorOptions = {
+            attributes: {tabindex: 0},
+            id: `js-anchor-slider${this.scope_sufix}`,
+            css: ['sr-only']
+        };
+        const anchor = this.addAnchorElement(anchorOptions);
         const content_container = document.createElement("article");
         content_container.classList.add("pm-content-container");
 
@@ -2071,13 +2182,17 @@ class PonchoMap {
             icon.classList.add("pmi", "pmi-expand");
             icon.setAttribute("aria-hidden","true");
 
-            const button = document.createElement("a");
-            button.classList.add(`js-reset-view${this.scope_sufix}`, 
-                                "leaflet-control-zoom-reset");
-            button.href = "#";
-            button.title = "Ver mapa completo";
-            button.setAttribute("role", "button");
-            button.setAttribute("aria-label", "Ver mapa completo");
+            const buttonOptions = {
+                link: "#",
+                title: "Ver mapa completo",
+                attributes: {role: "button"},
+                aria_label: "Ver mapa completo",
+                css: [
+                    `js-reset-view${this.scope_sufix}`, 
+                    "leaflet-control-zoom-reset"]
+            };
+            const button = this.addAnchorElement(buttonOptions);
+
             button.appendChild(icon);
             ele.after(button);
         });
@@ -2302,35 +2417,39 @@ class PonchoMap {
      */
     _accesibleAnchors = () => {
         const anchors = [
-            [
-                `${this.scope_selector} .leaflet-map-pane`, 
-                `leaflet-map-pane${this.scope_sufix}`, [
-                    ["role", "region"]
-                ]
-            ],
-            [
-                `${this.scope_selector} .leaflet-control-zoom`,
-                `leaflet-control-zoom${this.scope_sufix}`,
-                [
-                    ["aria-label", "Herramientas de zoom"],
-                    ["role", "region"],
-                ]   
-            ],
-            [
-                `.js-themes-tool-button${this.scope_sufix}`,
-                `themes-tool-button${this.scope_sufix}`,
-                [
-                    ["aria-label", "Herramienta para cambiar de tema visual"],
-                    ["role", "region"],
-                ]   
-            ],
+            {
+                selector: `${this.scope_selector} .leaflet-map-pane`, 
+                id: `leaflet-map-pane${this.scope_sufix}`, 
+                attributes: {
+                    role: "region"
+                }
+            },
+            {
+                selector: `${this.scope_selector} .leaflet-control-zoom`,
+                id: `leaflet-control-zoom${this.scope_sufix}`,
+                attributes: {
+                    "aria-label": "Herramientas de zoom",
+                    role: "region",
+                }   
+            },
+            {
+                selector: `.js-themes-tool-button${this.scope_sufix}`,
+                id: `themes-tool-button${this.scope_sufix}`,
+                attributes: {
+                    "aria-label": "Herramienta para cambiar de tema visual",
+                    "role": "region",
+                }   
+            },
         ];
-        anchors.forEach(anchor => {
-            const element = document.querySelectorAll(anchor[0]);
-            element.forEach( ele => {
-                ele.id = anchor[1]
-                anchor[2].forEach(e => ele.setAttribute(e[0], e[1]));
-            } );
+        anchors.forEach(entry => {
+            const {selector, id, attributes} = entry;
+            const element = document.querySelectorAll(selector);
+            element.forEach(ele => {
+                ele.id = id;
+                Object
+                    .entries(attributes)
+                    .forEach(([key, value]) => ele.setAttribute(key, value));
+            });
             
         });
         return anchors;
@@ -2364,33 +2483,33 @@ class PonchoMap {
         // Enlace
         let values = [
             {
-                text: "Ir a los marcadores del mapa",
-                anchor: `#${anchors[0][1]}`
+                label: "Ir a los marcadores del mapa",
+                link: `#${anchors[0]["id"]}`
             },
             {
-                text: "Ajustar marcadores al mapa",
-                anchor: "#",
+                label: "Ajustar marcadores al mapa",
+                link: "#",
                 css: ["js-fit-bounds"]
             },
             {
-                text: "Ver mapa completo",
-                anchor: "#",
+                label: "Ver mapa completo",
+                link: "#",
                 css: [`js-reset-view${this.scope_sufix}`]
             },
             {
-                text: "Ir al panel de zoom",
-                anchor: `#${anchors[1][1]}` 
+                label: "Ir al panel de zoom",
+                link: `#${anchors[1]["id"]}` 
             },
             {
-                text: "Cambiar de tema visual",
-                anchor: `#${anchors[2][1]}`,
+                label: "Cambiar de tema visual",
+                link: `#${anchors[2]["id"]}`,
                 css: [`js-themes-tool-button${this.scope_sufix}`]
             },
         ];
         const accesibleMenuEndItems = [
             {
-                text: "Salir del mapa",
-                anchor: `#accesible-return-nav${this.scope_sufix}`
+                label: "Salir del mapa",
+                link: `#accesible-return-nav${this.scope_sufix}`
             }
         ];
         values = [
@@ -2418,25 +2537,24 @@ class PonchoMap {
         nav.tabIndex=0;
 
         const ul = document.createElement("ul");
+        ul.role = "menu";
         ul.classList.add("pm-list-unstyled");
 
-        values.forEach((link, index) => {
-            const {text, aria_label} = link;
+        values.forEach((links) => {
+            const {label, css=[], aria_label, link} = links;
 
-            const a = document.createElement("a");
-            a.classList.add("pm-item-link", "pm-accesible")
-            a.textContent = text;
-            if(link.hasOwnProperty("aria_label")){
-                a.setAttribute("aria-label", aria_label);
-            }
-            a.tabIndex = 0;
-            a.href = link.anchor;
-
-            if(link.hasOwnProperty("css") && link?.css != ""){
-                a.classList.add(...link.css)
-            }
+            const anchorOpts = {
+                ...links,
+                css:[...css, ...["pm-item-link", "pm-accesible"]], 
+                attributes: {
+                    role: "menuitem",
+                    tabIndex: 0
+                }
+            };
+            const a = this.addAnchorElement(anchorOpts);
 
             const li = document.createElement("li");
+            li.role = "presentation";
             li.appendChild(a);
             ul.appendChild(li);
         });
@@ -2445,21 +2563,22 @@ class PonchoMap {
         nav.appendChild(ul);
 
         // enlace de retorno
-        const back_to_nav = document.createElement("a");
-        back_to_nav.textContent = "Ir menú del mapa";
-        back_to_nav.classList.add("pm-item-link", "pm-accesible");
-        back_to_nav.href = `#pm-accesible-nav${this.scope_sufix}`;
-        back_to_nav.id = `accesible-return-nav${this.scope_sufix}`;
-
-        const return_nav = document.createElement("div");
-        return_nav.classList.add("pm-accesible-nav", "bottom");
-        return_nav.appendChild(icon.cloneNode(true));
-        return_nav.appendChild(back_to_nav);
+        const anchorOptions = {
+            label: "Ir al menú del mapa",
+            link: `#pm-accesible-nav${this.scope_sufix}`,
+            id: `accesible-return-nav${this.scope_sufix}`,
+            css: ["pm-item-link", "pm-accesible"],
+        };
+        const backToNav = this.addAnchorElement(anchorOptions);
+        const returnNav = document.createElement("div");
+        returnNav.classList.add("pm-accesible-nav", "bottom");
+        returnNav.appendChild(icon.cloneNode(true));
+        returnNav.appendChild(backToNav);
 
         const navigation = document.querySelectorAll(`${this.scope_selector}`);
         navigation.forEach(element => {
             element.insertBefore(nav, element.children[0]);
-            element.appendChild(return_nav);
+            element.appendChild(returnNav);
         });
         this.fit();
     };

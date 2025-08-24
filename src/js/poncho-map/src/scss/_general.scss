@@ -107,11 +107,20 @@
         );
         transition: background 0.15s;
 
+
+        // &:visited {
+        //     color: var(--pm-active-visited-color) !important;
+        // }
+
         &:hover,
         &:focus {
             background-color: var(--pm-hover-background);
             color: var(--pm-hover-color);
             transition: background 0.15s;
+
+            // &:visited {
+            //     color: var(--pm-active-visited-color) !important;
+            // }
         }
 
         text-decoration: none;

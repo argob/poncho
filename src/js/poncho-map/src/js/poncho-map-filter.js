@@ -67,13 +67,13 @@ class PonchoMapFilter extends PonchoMap {
         this.messages = opts.messages;
         this.accesible_menu_filter = [
             {
-                text: "Ir al panel de filtros",
-                anchor: `#filtrar-busqueda${this.scope_sufix}`
+                label: "Ir al panel de filtros",
+                link: `#filtrar-busqueda${this.scope_sufix}`
             },
             {
-                text: "Restablecer mapa",
+                label: "Restablecer mapa",
                 aria_label: "Restablecer valores del mapa",
-                anchor: "#",
+                link: "#",
                 css: [`js-poncho-map-reset${this.scope_sufix}`],
             },
         ];
