@@ -11104,6 +11104,7 @@ Las clases "dato-nro" y "dato-eje" corresponde a los formatos markdown definidos
   --pm-hover-color: var(--pm-color-base);
   --pm-active-color: white;
   --pm-active-background: var(--pm-color-primary);
+  --pm-active-visited-color: var(--arg-uva, blueviolet);
   --pm-slider-background: rgba(255, 255, 255, 1);
   --pm-slider-border-color: #ddd;
   --pm-slider-border-width: 1px;
@@ -11906,6 +11907,7 @@ input[type=search].js-poncho-map-search__input::-webkit-search-cancel-button {
   --pm-hover-background: #252424;
   --pm-hover-color: white;
   --pm-active-color: #343232;
+  --pm-active-visited-color: violet;
   --pm-active-background: var(--pm-color-primary);
 }
 .poncho-map.ui-contrast {
@@ -11915,6 +11917,7 @@ input[type=search].js-poncho-map-search__input::-webkit-search-cancel-button {
   --pm-slider-border-color: white;
   --pm-slider-border-width: 2.5px;
   --pm-active-color: var(--pm-slider-background);
+  --pm-active-visited-color: red;
   --pm-hover-background: var(--pm-color-base);
   --pm-hover-color: var(--pm-slider-background);
   --pm-active-color: #111;
@@ -11939,9 +11942,11 @@ input[type=search].js-poncho-map-search__input::-webkit-search-cancel-button {
   background: var(--pm-active-background);
   color: var(--pm-active-color);
 }
+.poncho-map .pm-item-link[aria-hidden=true],
 .poncho-map .pm-item-link:disabled {
   opacity: 0.45;
   cursor: not-allowed !important;
+  pointer-events: none;
   font-style: italic;
 }
 
