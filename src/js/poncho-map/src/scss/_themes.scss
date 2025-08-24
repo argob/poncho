@@ -49,6 +49,7 @@
         --pm-hover-background: #252424;
         --pm-hover-color: white;
         --pm-active-color: #343232;
+        --pm-active-visited-color: violet;
         --pm-active-background: var(--pm-color-primary);
     }
 
@@ -61,6 +62,8 @@
 
         --pm-active-color: var(--pm-slider-background);
 
+        --pm-active-visited-color: red;
+        
         --pm-hover-background: var(--pm-color-base);
         --pm-hover-color: var(--pm-slider-background);
         --pm-active-color: #111;
@@ -94,9 +97,11 @@
         background: var(--pm-active-background);
         color: var(--pm-active-color);
     }
+    .pm-item-link[aria-hidden="true"], 
     .pm-item-link:disabled {
         opacity: 0.45;
         cursor: not-allowed !important;
+        pointer-events: none;
         font-style: italic;
     }
 }
