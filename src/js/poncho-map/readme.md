@@ -83,7 +83,7 @@
 | map_view | `Array Object` | `[-40.44, -63.59]` | Geoposicionamiento inicial del mapa. | 
 | error_reporting | `boolean` | true | Activa la visualización de errores o warnings en el mapa. | 
 | marker_cluster_options | `Object` | `"marker_cluster_options": {}` | Ver opciones para [marker_cluster_options](#opciones-marker-cluster-options) |
-| theme | `string` | `default` | Permite cambiar el tema de la interfase y el mapa. Las opciones disponibles son:<br>  <ul><li>_default_, Original</li><li>_contrast_, Alto contraste</li><li>_dark_, Oscuro</li><li>_grayscale_, Gris</li><li>_sepia_, Sepia</li><li>_blue_, Azul</li><li>_relax_, Relax</li></ul> |
+| theme | `string` | `default` | Permite cambiar el tema de la interfase y el mapa. Las opciones disponibles son:<br>  <ul><li>_default_, Original</li><li>_contrast_, Alto contraste</li><li>_dark_, Oscuro</li><li>_grayscale_, Gris</li><li>_sepia_, Sepia</li><li>_blue_, Azul</li><li>_relax_, Relax</li><li>_transparent_, Transparente</li></ul> |
 | theme_ui | `string` | `default` | Permite definir un tema de color para la interfase del mapa. |
 | theme_map | `string` | `default` | Permite definir un tema de color para el mapa. |
 | theme_tool | `boolean` | `true` | Permite remover la herramienta de temas para el usuario. |
@@ -92,10 +92,10 @@
 | map_background | `string` | `#DDD` | Permite definir un color de fondo para el mapa.<br><br>Junto a `map_opacity`, puede resulter de un uso interesante. |
 | open_maps | `boolean` | `false` | Muestra en la parte de abajo del _slider_, un desplegable con distintas opciones de mapas externos, donde visualizar el punto geográfico. |
 | open_maps_options | `object` |  | Permite redefinir el nombre del desplegable y los enlaces a mapas externos. Ver [opciones para open\_maps\_options()](#opciones-para-open_maps_options) |
+| map_layers | `boolean` | `true` | Habilita o deshabilita la opción para visualizar el mapa en vista satelital o mapa por defecto. |
+| map_layers_default | `string` | `map` | Permite iniciar el mapa en una de las visstas disponibles: _satelital_ o _map_. |
 
-
-
-
+  
 
 ### Opciones para `template_structure`
 
