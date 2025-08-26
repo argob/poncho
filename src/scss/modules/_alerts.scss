@@ -1,3 +1,4 @@
+/*
 .alert {
     border-width: 2px;
     font-weight: 500;
@@ -108,93 +109,77 @@ a.alert {
 .alert {
     border-radius: 10px;
 }
-
+*/
 /**
- * RECUADRO 
+ * ALERTAS 
  */
-
-/**
- * Definición para los temas de color.
- */
-$colorThemesRecuadro: (
-    "azul": (
-        themeColor: var(--arg-azul, #{$brand-arg-azul}),
-        buttonColor: white,
-    ),
-    "secundario": (
-        themeColor: var(--arg-secundario, #{$brand-arg-secundario}),
-        buttonColor: white,
-    ),
-    "palta": (
-        themeColor: var(--arg-palta, #{$brand-arg-palta}),
-        buttonColor: palta,
-    ),
-    "uva": (
-        themeColor: var(--arg-uva, #{$brand-arg-uva}),
-        buttonColor: white,
-    ),
-    "rosado": (
-        themeColor: var(--arg-rosado, #{$brand-arg-rosado}),
-        buttonColor: black,
-    ),
-);
-
-.recuadro-destacado {
-    --color: var(--arg-gris-intermedio, #{$brand-gris});
-
-    background-color: #ffffff;
-    border-left: 0.444rem solid var(--color);
-    padding: 1.111rem;
-    margin-top: 1.667rem;
-    margin-bottom: 2.5rem;
-    border-radius: 2px;
-    box-shadow: 4px 8px 12px rgba(0, 0, 0, 0.15);
+.alert {
+    border-radius: 0;
+    border-top: none;
+    border-right: none;
+    border-bottom: none;
 
     .media-left {
-        padding-right: 0.667rem;
+        padding-right: 10px;
     }
 
     i {
-        margin-top: 0.056rem;
+        color: currentColor;
     }
 
     p {
-        padding-top: 0.611rem;
-        margin-bottom: 0.778rem;
+        margin-bottom: 0.556rem;
     }
-    .btn {
-        background: var(--color);
-        color: white;
+
+    .h5 {
+        margin-top: 0rem;
     }
 }
 
 @media (max-width: 768px) {
-    .recuadro-destacado .media-left {
+    .alert .media-left {
         float: none;
         display: block;
         margin-bottom: 0.444rem;
-
-        .h5 {
-            margin-top: 0rem;
-        }
-        i {
-            color: var(--color);
-        }
-
-        p {
-            margin-bottom: 0.556rem;
-            &.h5 {
-                margin-bottom: 0.278rem;
-            }
-        }
     }
 }
 
-@each $themeName, $themeValues in $colorThemesRecuadro {
-    .recuadro-destacado.arg-#{$themeName} {
-        --color: #{map-get($themeValues, themeColor)};
+/**
+ * Definición para los temas de color.
+ */
+$colorThemesAlerts: (
+    "info": (
+        themeColor: var(--arg-azul-500),
+        backgroundColor: var(--arg-azul-50),
+        buttonColor: white,
+    ),
+    "danger": (
+        themeColor: var(--arg-rojo-500),
+        backgroundColor: var(--arg-rojo-50),
+        buttonColor: white,
+    ),
+    "success": (
+        themeColor: var(--arg-verde-700),
+        backgroundColor: var(--arg-verde-50),
+        buttonColor: white,
+    ),
+    "warning": (
+        themeColor: var(--arg-amarillo-500),
+        backgroundColor: var(--arg-amarillo-50),
+        buttonColor: black,
+    ),
+);
+
+@each $themeName, $themeValues in $colorThemesAlerts {
+    .alert-#{$themeName} {
+        background-color: #{map-get($themeValues, backgroundColor)};
+        border-left: 0.333rem solid #{map-get($themeValues, themeColor)};
     }
-    .recuadro-destacado.arg-#{$themeName} .btn {
+    .alert-#{$themeName} .media-left i {
+        color: #{map-get($themeValues, themeColor)};
+    }
+    .alert-#{$themeName} .btn {
+        background-color: #{map-get($themeValues, themeColor)};
         color: #{map-get($themeValues, buttonColor)};
     }
 }
