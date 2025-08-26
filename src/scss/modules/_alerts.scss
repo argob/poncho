@@ -1,9 +1,10 @@
+/*
 .alert {
     border-width: 2px;
     font-weight: 500;
 
     .btn i {
-        color: $white
+        color: $white;
     }
 }
 
@@ -30,7 +31,6 @@
     i {
         color: $brand-success;
     }
-
 }
 
 .alert-info {
@@ -98,7 +98,6 @@ a.alert {
     }
 }
 
-
 .alert h2 {
     font-size: 1.3em !important;
     margin-top: 0px !important;
@@ -108,5 +107,79 @@ a.alert {
 
 // from argentina.scss
 .alert {
-    border-radius: 10px
+    border-radius: 10px;
+}
+*/
+/**
+ * ALERTAS 
+ */
+.alert {
+    border-radius: 0;
+    border-top: none;
+    border-right: none;
+    border-bottom: none;
+
+    .media-left {
+        padding-right: 10px;
+    }
+
+    i {
+        color: currentColor;
+    }
+
+    p {
+        margin-bottom: 0.556rem;
+    }
+
+    .h5 {
+        margin-top: 0rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .alert .media-left {
+        float: none;
+        display: block;
+        margin-bottom: 0.444rem;
+    }
+}
+
+/**
+ * Definición para los temas de color.
+ */
+$colorThemesAlerts: (
+    "info": (
+        themeColor: var(--arg-azul-500),
+        backgroundColor: var(--arg-azul-50),
+        buttonColor: white,
+    ),
+    "danger": (
+        themeColor: var(--arg-rojo-500),
+        backgroundColor: var(--arg-rojo-50),
+        buttonColor: white,
+    ),
+    "success": (
+        themeColor: var(--arg-verde-700),
+        backgroundColor: var(--arg-verde-50),
+        buttonColor: white,
+    ),
+    "warning": (
+        themeColor: var(--arg-amarillo-500),
+        backgroundColor: var(--arg-amarillo-50),
+        buttonColor: black,
+    ),
+);
+
+@each $themeName, $themeValues in $colorThemesAlerts {
+    .alert-#{$themeName} {
+        background-color: #{map-get($themeValues, backgroundColor)};
+        border-left: 0.333rem solid #{map-get($themeValues, themeColor)};
+    }
+    .alert-#{$themeName} .media-left i {
+        color: #{map-get($themeValues, themeColor)};
+    }
+    .alert-#{$themeName} .btn {
+        background-color: #{map-get($themeValues, themeColor)};
+        color: #{map-get($themeValues, buttonColor)};
+    }
 }

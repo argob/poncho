@@ -1,0 +1,89 @@
+/**
+ * RECUADROS
+ */
+
+/**
+ * Definición para los temas de color.
+ */
+$colorThemesRecuadro: (
+    "azul": (
+        themeColor: var(--arg-azul, #{$brand-arg-azul}),
+        buttonColor: white,
+    ),
+    "secundario": (
+        themeColor: var(--arg-secundario, #{$brand-arg-secundario}),
+        buttonColor: white,
+    ),
+    "palta": (
+        themeColor: var(--arg-palta, #{$brand-arg-palta}),
+        buttonColor: palta,
+    ),
+    "uva": (
+        themeColor: var(--arg-uva, #{$brand-arg-uva}),
+        buttonColor: white,
+    ),
+    "rosado": (
+        themeColor: var(--arg-rosado, #{$brand-arg-rosado}),
+        buttonColor: black,
+    ),
+);
+
+.recuadro-destacado {
+    --color: var(--arg-gris-intermedio, #{$brand-gris});
+
+    background-color: #ffffff;
+    border-left: 0.444rem solid var(--color);
+    padding: 1.111rem;
+    margin-top: 1.667rem;
+    margin-bottom: 2.5rem;
+    border-radius: 2px;
+    box-shadow: 4px 8px 12px rgba(0, 0, 0, 0.15);
+
+    .media-left {
+        padding-right: 0.667rem;
+    }
+
+    i {
+        margin-top: 0.056rem;
+    }
+
+    p {
+        padding-top: 0.611rem;
+        margin-bottom: 0.778rem;
+    }
+    .btn {
+        background: var(--color);
+        color: white;
+    }
+}
+
+@media (max-width: 768px) {
+    .recuadro-destacado .media-left {
+        float: none;
+        display: block;
+        margin-bottom: 0.444rem;
+
+        .h5 {
+            margin-top: 0rem;
+        }
+        i {
+            color: var(--color);
+        }
+
+        p {
+            margin-bottom: 0.556rem;
+            &.h5 {
+                margin-bottom: 0.278rem;
+            }
+        }
+    }
+}
+
+@each $themeName, $themeValues in $colorThemesRecuadro {
+    .recuadro-destacado.arg-#{$themeName} {
+        --color: #{map-get($themeValues, themeColor)};
+    }
+    .recuadro-destacado.arg-#{$themeName} .btn {
+        color: #{map-get($themeValues, buttonColor)};
+    }
+}
