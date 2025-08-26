@@ -10702,91 +10702,294 @@ input[type=text]:-ms-input-placeholder {
   display: none;
 }
 
+/*
 .alert {
-  border-width: 2px;
-  font-weight: 500;
-}
-.alert .btn i {
-  color: #FFFFFF;
+    border-width: 2px;
+    font-weight: 500;
+
+    .btn i {
+        color: $white;
+    }
 }
 
 .alert-warning,
 .alert-success,
 .alert-info,
 .alert-danger {
-  color: #444444;
+    color: $gray-dark;
 }
 
 .alert-warning {
-  background: rgb(252.5208791209, 247.8725274725, 238.6791208791);
-  border-color: #E7BA61;
-}
-.alert-warning i {
-  color: #E7BA61;
+    background: lighten($brand-warning, 32%);
+    border-color: $brand-warning;
+
+    i {
+        color: $brand-warning;
+    }
 }
 
 .alert-success {
-  background: rgb(242.0614035088, 250.2385964912, 242.5789473684);
-  border-color: #2E7D33;
-}
-.alert-success i {
-  color: #2E7D33;
+    background: lighten($brand-success, 63%);
+    border-color: $brand-success;
+
+    i {
+        color: $brand-success;
+    }
 }
 
 .alert-info {
-  background: rgb(245.2153846154, 246.8461538462, 248.8846153846);
-  border-color: #5A7290;
-}
-.alert-info i {
-  color: #5A7290;
+    background: lighten($brand-info, 51%);
+    border-color: $brand-info;
+
+    i {
+        color: $brand-info;
+    }
 }
 
 .alert-danger {
-  background: rgb(253, 245.1, 245.1);
-  border-color: #C62828;
-}
-.alert-danger i {
-  color: #C62828;
+    background: lighten($brand-danger, 51%);
+    border-color: $brand-danger;
+
+    i {
+        color: $brand-danger;
+    }
 }
 
-a.alert:hover {
-  text-decoration: none;
-  color: #141414;
-}
-a.alert.alert-warning:hover {
-  background: white;
-}
-a.alert.alert-warning i {
-  color: #E7BA61;
-}
-a.alert.alert-success:hover {
-  background: rgb(242.0614035088, 250.2385964912, 242.5789473684);
-}
-a.alert.alert-success i {
-  color: #2E7D33;
-}
-a.alert.alert-info:hover {
-  background: rgb(196.1657894737, 203.6131578947, 228.9342105263);
-}
-a.alert.alert-info i {
-  color: #5A7290;
-}
-a.alert.alert-danger:hover {
-  background: rgb(253, 245.1, 245.1);
-}
-a.alert.alert-danger i {
-  color: #C62828;
+a.alert {
+    &:hover {
+        text-decoration: none;
+        color: $black;
+    }
+
+    &.alert-warning {
+        &:hover {
+            background: lighten($brand-warning, 42%);
+        }
+
+        i {
+            color: $brand-warning;
+        }
+    }
+
+    &.alert-success {
+        &:hover {
+            background: lighten($brand-success, 63%);
+        }
+
+        i {
+            color: $brand-success;
+        }
+    }
+
+    &.alert-info {
+        &:hover {
+            background: lighten($brand-primary, 61%);
+        }
+
+        i {
+            color: $brand-info;
+        }
+    }
+
+    &.alert-danger {
+        &:hover {
+            background: lighten($brand-danger, 51%);
+        }
+
+        i {
+            color: $brand-danger;
+        }
+    }
 }
 
 .alert h2 {
-  font-size: 1.3em !important;
-  margin-top: 0px !important;
-  margin-bottom: 8px !important;
-  font-weight: 700 !important;
+    font-size: 1.3em !important;
+    margin-top: 0px !important;
+    margin-bottom: 8px !important;
+    font-weight: 700 !important;
 }
 
+// from argentina.scss
 .alert {
-  border-radius: 10px;
+    border-radius: 10px;
+}
+*/
+/**
+ * ALERTAS 
+ */
+.alert {
+  border-radius: 0;
+  border-top: none;
+  border-right: none;
+  border-bottom: none;
+}
+.alert .media-left {
+  padding-right: 10px;
+}
+.alert i {
+  color: currentColor;
+}
+.alert p {
+  margin-bottom: 0.556rem;
+}
+.alert .h5 {
+  margin-top: 0rem;
+}
+
+@media (max-width: 768px) {
+  .alert .media-left {
+    float: none;
+    display: block;
+    margin-bottom: 0.444rem;
+  }
+}
+/**
+ * Definición para los temas de color.
+ */
+.alert-info {
+  background-color: var(--arg-azul-50);
+  border-left: 0.333rem solid var(--arg-azul-500);
+}
+
+.alert-info .media-left i {
+  color: var(--arg-azul-500);
+}
+
+.alert-info .btn {
+  background-color: var(--arg-azul-500);
+  color: white;
+}
+
+.alert-danger {
+  background-color: var(--arg-rojo-50);
+  border-left: 0.333rem solid var(--arg-rojo-500);
+}
+
+.alert-danger .media-left i {
+  color: var(--arg-rojo-500);
+}
+
+.alert-danger .btn {
+  background-color: var(--arg-rojo-500);
+  color: white;
+}
+
+.alert-success {
+  background-color: var(--arg-verde-50);
+  border-left: 0.333rem solid var(--arg-verde-700);
+}
+
+.alert-success .media-left i {
+  color: var(--arg-verde-700);
+}
+
+.alert-success .btn {
+  background-color: var(--arg-verde-700);
+  color: white;
+}
+
+.alert-warning {
+  background-color: var(--arg-amarillo-50);
+  border-left: 0.333rem solid var(--arg-amarillo-500);
+}
+
+.alert-warning .media-left i {
+  color: var(--arg-amarillo-500);
+}
+
+.alert-warning .btn {
+  background-color: var(--arg-amarillo-500);
+  color: black;
+}
+
+/**
+ * RECUADROS
+ */
+/**
+ * Definición para los temas de color.
+ */
+.recuadro-destacado {
+  --color: var(--arg-gris-intermedio, #555555);
+  background-color: #ffffff;
+  border-left: 0.444rem solid var(--color);
+  padding: 1.111rem;
+  margin-top: 1.667rem;
+  margin-bottom: 2.5rem;
+  border-radius: 2px;
+  box-shadow: 4px 8px 12px rgba(0, 0, 0, 0.15);
+}
+.recuadro-destacado .media-left {
+  padding-right: 0.667rem;
+}
+.recuadro-destacado i {
+  margin-top: 0.056rem;
+}
+.recuadro-destacado p {
+  padding-top: 0.611rem;
+  margin-bottom: 0.778rem;
+}
+.recuadro-destacado .btn {
+  background: var(--color);
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .recuadro-destacado .media-left {
+    float: none;
+    display: block;
+    margin-bottom: 0.444rem;
+  }
+  .recuadro-destacado .media-left .h5 {
+    margin-top: 0rem;
+  }
+  .recuadro-destacado .media-left i {
+    color: var(--color);
+  }
+  .recuadro-destacado .media-left p {
+    margin-bottom: 0.556rem;
+  }
+  .recuadro-destacado .media-left p.h5 {
+    margin-bottom: 0.278rem;
+  }
+}
+.recuadro-destacado.arg-azul {
+  --color: var(--arg-azul, #232D4F);
+}
+
+.recuadro-destacado.arg-azul .btn {
+  color: white;
+}
+
+.recuadro-destacado.arg-secundario {
+  --color: var(--arg-secundario, #3E5A7E);
+}
+
+.recuadro-destacado.arg-secundario .btn {
+  color: white;
+}
+
+.recuadro-destacado.arg-palta {
+  --color: var(--arg-palta, #50B7B2);
+}
+
+.recuadro-destacado.arg-palta .btn {
+  color: palta;
+}
+
+.recuadro-destacado.arg-uva {
+  --color: var(--arg-uva, #6A1B99);
+}
+
+.recuadro-destacado.arg-uva .btn {
+  color: white;
+}
+
+.recuadro-destacado.arg-rosado {
+  --color: var(--arg-rosado, #F48EAB);
+}
+
+.recuadro-destacado.arg-rosado .btn {
+  color: black;
 }
 
 .embed-responsive-1by1 {
