@@ -118,9 +118,18 @@ a.alert {
     border-top: none;
     border-right: none;
     border-bottom: none;
+            border-left: 8px solid #555;
+            color: #555;
+            background-color: white;
+                box-shadow: 4px 8px 12px rgba(0, 0, 0, 0.15);
 
     .media-left {
         padding-right: 10px;
+
+    }
+
+    .fa-x4 {
+        font-size: 3rem;
     }
 
     i {
@@ -133,6 +142,11 @@ a.alert {
 
     .h5 {
         margin-top: 0rem;
+    }
+
+    .btn {
+        background-color: #555;
+        color: white
     }
 }
 
@@ -147,39 +161,44 @@ a.alert {
 /**
  * Definición para los temas de color.
  */
-$colorThemesAlerts: (
-    "info": (
-        themeColor: var(--arg-azul-500),
-        backgroundColor: var(--arg-azul-50),
-        buttonColor: white,
-    ),
-    "danger": (
-        themeColor: var(--arg-rojo-500),
-        backgroundColor: var(--arg-rojo-50),
-        buttonColor: white,
-    ),
-    "success": (
-        themeColor: var(--arg-verde-700),
-        backgroundColor: var(--arg-verde-50),
-        buttonColor: white,
-    ),
-    "warning": (
-        themeColor: var(--arg-amarillo-500),
-        backgroundColor: var(--arg-amarillo-50),
-        buttonColor: black,
-    ),
-);
+// $colorThemesAlerts: (
+//     "default": (
+//         themeColor: #555,
+//         backgroundColor: white,
+//         buttonColor: white,
+//     ),
+//     "info": (
+//         themeColor: var(--arg-azul-500),
+//         backgroundColor: var(--arg-azul-50),
+//         buttonColor: white,
+//     ),
+//     "danger": (
+//         themeColor: var(--arg-rojo-500),
+//         backgroundColor: var(--arg-rojo-50),
+//         buttonColor: white,
+//     ),
+//     "success": (
+//         themeColor: var(--arg-verde-700),
+//         backgroundColor: var(--arg-verde-50),
+//         buttonColor: white,
+//     ),
+//     "warning": (
+//         themeColor: var(--arg-amarillo-500),
+//         backgroundColor: var(--arg-amarillo-50),
+//         buttonColor: black,
+//     ),
+// );
 
-@each $themeName, $themeValues in $colorThemesAlerts {
-    .alert-#{$themeName} {
-        background-color: #{map-get($themeValues, backgroundColor)};
-        border-left: 0.333rem solid #{map-get($themeValues, themeColor)};
-    }
-    .alert-#{$themeName} .media-left i {
-        color: #{map-get($themeValues, themeColor)};
-    }
-    .alert-#{$themeName} .btn {
-        background-color: #{map-get($themeValues, themeColor)};
-        color: #{map-get($themeValues, buttonColor)};
-    }
-}
+// @each $themeName, $themeValues in $colorThemesAlerts {
+//     .alert-#{$themeName} {
+//         background-color: #{map-get($themeValues, backgroundColor)};
+//         border-left: 0.333rem solid #{map-get($themeValues, themeColor)};
+//     }
+//     .alert-#{$themeName} .media-left i {
+//         color: #{map-get($themeValues, themeColor)};
+//     }
+//     .alert-#{$themeName} .btn {
+//         background-color: #{map-get($themeValues, themeColor)};
+//         color: #{map-get($themeValues, buttonColor)};
+//     }
+// }

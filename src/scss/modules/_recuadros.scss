@@ -1,7 +1,8 @@
 /**
  * RECUADROS
  */
-
+$recuadrosScope: ".recuadro-destacado";
+// $recuadrosScope: ".alert";
 /**
  * Definición para los temas de color.
  */
@@ -28,7 +29,7 @@ $colorThemesRecuadro: (
     ),
 );
 
-.recuadro-destacado {
+#{$recuadrosScope} {
     --color: var(--arg-gris-intermedio, #{$brand-gris});
 
     background-color: #ffffff;
@@ -46,6 +47,9 @@ $colorThemesRecuadro: (
     i {
         margin-top: 0.056rem;
     }
+    .fa-4x {
+        font-size: 3rem;
+    }
 
     p {
         padding-top: 0.611rem;
@@ -58,7 +62,7 @@ $colorThemesRecuadro: (
 }
 
 @media (max-width: 768px) {
-    .recuadro-destacado .media-left {
+    #{$recuadrosScope} .media-left {
         float: none;
         display: block;
         margin-bottom: 0.444rem;
@@ -80,10 +84,10 @@ $colorThemesRecuadro: (
 }
 
 @each $themeName, $themeValues in $colorThemesRecuadro {
-    .recuadro-destacado.arg-#{$themeName} {
+    #{$recuadrosScope}.arg-#{$themeName} {
         --color: #{map-get($themeValues, themeColor)};
     }
-    .recuadro-destacado.arg-#{$themeName} .btn {
+    #{$recuadrosScope}.arg-#{$themeName} .btn {
         color: #{map-get($themeValues, buttonColor)};
     }
 }
