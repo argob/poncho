@@ -10822,9 +10822,16 @@ a.alert {
   border-top: none;
   border-right: none;
   border-bottom: none;
+  border-left: 8px solid #555;
+  color: #555;
+  background-color: white;
+  box-shadow: 4px 8px 12px rgba(0, 0, 0, 0.15);
 }
 .alert .media-left {
   padding-right: 10px;
+}
+.alert .fa-x4 {
+  font-size: 3rem;
 }
 .alert i {
   color: currentColor;
@@ -10834,6 +10841,10 @@ a.alert {
 }
 .alert .h5 {
   margin-top: 0rem;
+}
+.alert .btn {
+  background-color: #555;
+  color: white;
 }
 
 @media (max-width: 768px) {
@@ -10846,62 +10857,6 @@ a.alert {
 /**
  * Definición para los temas de color.
  */
-.alert-info {
-  background-color: var(--arg-azul-50);
-  border-left: 0.333rem solid var(--arg-azul-500);
-}
-
-.alert-info .media-left i {
-  color: var(--arg-azul-500);
-}
-
-.alert-info .btn {
-  background-color: var(--arg-azul-500);
-  color: white;
-}
-
-.alert-danger {
-  background-color: var(--arg-rojo-50);
-  border-left: 0.333rem solid var(--arg-rojo-500);
-}
-
-.alert-danger .media-left i {
-  color: var(--arg-rojo-500);
-}
-
-.alert-danger .btn {
-  background-color: var(--arg-rojo-500);
-  color: white;
-}
-
-.alert-success {
-  background-color: var(--arg-verde-50);
-  border-left: 0.333rem solid var(--arg-verde-700);
-}
-
-.alert-success .media-left i {
-  color: var(--arg-verde-700);
-}
-
-.alert-success .btn {
-  background-color: var(--arg-verde-700);
-  color: white;
-}
-
-.alert-warning {
-  background-color: var(--arg-amarillo-50);
-  border-left: 0.333rem solid var(--arg-amarillo-500);
-}
-
-.alert-warning .media-left i {
-  color: var(--arg-amarillo-500);
-}
-
-.alert-warning .btn {
-  background-color: var(--arg-amarillo-500);
-  color: black;
-}
-
 /**
  * RECUADROS
  */
@@ -10923,6 +10878,9 @@ a.alert {
 }
 .recuadro-destacado i {
   margin-top: 0.056rem;
+}
+.recuadro-destacado .fa-4x {
+  font-size: 3rem;
 }
 .recuadro-destacado p {
   padding-top: 0.611rem;
