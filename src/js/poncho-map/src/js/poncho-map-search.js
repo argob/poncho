@@ -62,13 +62,24 @@ class PonchoMapSearch {
         this.search_scope_selector = (
             this.scope ? `[data-scope="${this.scope}"]`: "");
         this.instance.search_fields = opts.search_fields;
-        this.instance.accesible_menu_search = [
-            {
+        this.instance.accesible_menu_search = [];
+
+        if(this.isSearch()){
+            this.instance.accesible_menu_search.push({
                 label: "Hacer una búsqueda",
                 link: `#id-poncho-map-search${this.scope_sufix}`
-            }
-        ];
+            });
+        }
     };
+
+
+    /**
+     * Vefifica si está habilitado para hacer búsquedas.
+     * @returns 
+     */
+    isSearch = () => (document.querySelector(this.search_scope_selector) ? 
+            true : false);
+
 
     /**
      * Ordena un listado de objetos.

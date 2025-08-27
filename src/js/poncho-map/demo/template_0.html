@@ -56,7 +56,7 @@ COPIAR DESDE ACÁ…
 <script src="/sites/default/files/ponchotable/showdown.js"></script>
 <script src="/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/extensiones/showdown-extensions.js"></script>
 <script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.js"></script>
-<!-- <script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script> -->
+<script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script> 
 <link href="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.css" rel="stylesheet">
 <link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.css" rel="stylesheet">
 <link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.Default.css" rel="stylesheet">
@@ -112,7 +112,7 @@ COPIAR DESDE ACÁ…
         template: template_punto_digital,
         title:"nombre",
         map_layers: true,
-        map_layers_default: 'satelital',
+        // map_layers_default: 'satelital',
         scope:"ponchomap",
         allowed_tags: ["*"],
         template_markdown: true,
@@ -173,10 +173,21 @@ COPIAR DESDE ACÁ…
             "estado_funcionamiento_custom": "",
         },
         map_style: {
-            "slider-width": "50%"
+            "slider-width": "33%"
         },
         map_align: "left",
-        open_maps: true,
+        // theme_tool: false,
+        // open_maps: true,
+        //             map_init_options: {
+        //         // zoomSnap: .2,
+        //         // zoomControl: false,
+        //         // scrollWheelZoom: false,
+        //         // touchZoom: false,
+        //         // doubleClickZoom: false,
+        //         // scrollWheelZoom: false,
+        //         // boxZoom: false,
+        //         // dragging:false
+        //     },
     };
     // render map
     filter = new PonchoMapFilter(gdata, options);
@@ -190,7 +201,7 @@ COPIAR DESDE ACÁ…
         "id": "id_pd",
         "placeholder": "Buscá tu Punto Digital"
     };
-    search = new PonchoMapSearch(filter, search_options);
+    search = new PonchoMapSearch(filter, { "scope": "search-efectores"});
     search.render();
 });
 </script>

@@ -67,16 +67,20 @@ class PonchoMapFilter extends PonchoMap {
         this.messages = opts.messages;
         this.accesible_menu_filter = [
             {
-                label: "Ir al panel de filtros",
-                link: `#filtrar-busqueda${this.scope_sufix}`
-            },
-            {
                 label: "Restablecer mapa",
                 aria_label: "Restablecer valores del mapa",
                 link: "#",
                 css: [`js-poncho-map-reset${this.scope_sufix}`],
             },
         ];
+
+        // Si no hay filtros cargados remuevo el item del menú.
+        if(this.filters.length > 0){
+            this.accesible_menu_filter.push({
+                label: "Ir al panel de filtros",
+                link: `#filtrar-busqueda${this.scope_sufix}`
+            });
+        }
     }
 
     /**
