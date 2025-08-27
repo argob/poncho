@@ -85,8 +85,8 @@ const __templateStructure = (headers) => {
                 }
             });
         })(),
-        title_classlist: ["h2"],
-        term_classlist: ["h3", "class=h5"], 
+        title_classlist: ["h3"],
+        term_classlist: ["h5"], 
         lead: {
             key: "volanta", 
             style: "text-transform:uppercase;" 
