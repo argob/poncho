@@ -41,6 +41,7 @@ class PonchoMap {
         const defaults = {
             error_reporting: true,
             no_info: false,
+            map_style: {},
             title: false,
             id: "id",
             id_mixing: [],
@@ -217,7 +218,20 @@ class PonchoMap {
                         aria_label: false,
                     },
                 ]
-            }
+            },
+            breakpoint: {
+                lg: 992,
+                xl: 1200,
+                sm: 576,
+                md: 768,
+            },
+            breakpoint_fraction: {
+                sm: "1:4",
+                md: "1:4",
+                lg: "1:3",
+                xl: "2:7"
+            },
+            map_align: "center"
         };
         let opts = Object.assign({}, defaults, options);
         this.error_reporting = opts.error_reporting;
@@ -292,7 +306,10 @@ class PonchoMap {
         this.open_maps = opts.open_maps;
         this.open_maps_options = Object.assign(
             {}, defaults.open_maps_options, options?.open_maps_options);
-
+        this.breakpoint = opts.breakpoint;
+        this.breakpoint_fraction = opts.breakpoint_fraction;
+        this.map_align = opts.map_align;
+        this.map_style = opts.map_style;
         this.accesible_menu_extras = opts.accesible_menu_extras;
         this.geojson;
             
@@ -355,6 +372,122 @@ class PonchoMap {
         }
         this.ponchoLoaderTimeout;
     }
+
+
+    /**
+     * Setea definiciones de estilo
+     * @returns {undefined}
+     */
+    _setCssVariables = () => {
+        if (typeof headStyle !== 'function') {
+            return;
+        }
+
+        const entries = Object.entries(this.map_style);
+        if(entries.length < 1){
+            return;
+        }
+        var acc = [];
+        for(let entry of entries){
+            let [key, value] = entry;
+            acc.push(`--pm-${key}: ${value};`);
+        }
+        headStyle(
+            `ponchomap__${this.map_selector}`, 
+            `.poncho-map:has(#${this.map_selector}){${acc.join("")}}`
+        );
+    }
+
+
+    /**
+     * Define la fracción en la que puede alinearse el mapa.
+     * 
+     * @summary Si el usuario elige alineación: «left» o «right»; en función
+     * del tamaño del mapa, elige la fracción que mejor representa el mapa
+     * alineado.
+     * @param {Number} mediaSize Número entero.
+     * @returns {string} Fracción, ej: 1:3
+     */
+    _setFraction = (mediaSize=false) => {
+        if(mediaSize && typeof mediaSize != "number"){
+            console.error('setFraction', 'mediaSize espera un valor entero.');
+            return;
+        }
+
+        const mSize = (mediaSize ? mediaSize : 
+            document.getElementById(this.map_selector).offsetWidth);
+        
+        let breakpointEntries = Object.entries(this.breakpoint);
+        breakpointEntries.sort((a, b) => b[1] - a[1]);
+
+        let fraction = '1:1';
+        for(const entry of breakpointEntries){
+            const [key, size] = entry;
+            if(!this.breakpoint_fraction.hasOwnProperty(key)){
+                continue;
+            }
+
+            if(!Number.isInteger(Number(size))){
+                continue;
+            }
+
+            if(mSize >= size){
+                fraction = this.breakpoint_fraction[key];
+                break;
+            }
+        }
+
+        return fraction;
+    }
+
+
+    /**
+     * Alinea el mapa horizontalmente hacia la izquierda o la derecha.
+     *
+     * @param {string} align - La alineación horizontal del mapa. Los 
+     * valores válidos son 'left' o 'right'.
+     * @param {string} [fraction=false] - Opcional. Una cadena de fracción 
+     * (por ejemplo, '1:3') para centrar el mapa en la vista alineada.
+     * @param {number[]} [initialCenter=this.map_view] - Opcional. Un array 
+     * `[latitud, longitud]` para establecer un punto central inicial.
+     * @returns {undefined}
+     */
+    setMapAlignment = (align, fraction=false, initialCenter=this.map_view) => {
+        if(!["left", "right"].includes(align.toLowerCase())){
+            return;
+        }
+
+        fraction = (!fraction ? this._setFraction() : fraction);
+        if(!/^[0-9]\:[0-9]$/.test(fraction)){
+            console.error(
+                "La fracción para posicionar el mapa tiene errores sintácticos.");
+            return;
+        }
+
+        const [numerator, denominator] = fraction.split(":");
+        const result = numerator/denominator;
+        if((Number(result) === 1 || Number(result) === 0.5)){
+            return null;
+        }
+
+        const [lat, lng] = initialCenter;
+        const currentCenter = (Array.isArray(initialCenter) ? {lat, lng} : 
+                this.map.getCenter());
+
+        let currentCenterPoint = this.map.latLngToContainerPoint(currentCenter);
+        const fractionPos = (align == "left" ? denominator - numerator : numerator);
+        let newX = ((document.querySelector(".poncho-map").offsetWidth / 
+                denominator) * fractionPos);
+
+        let newY = currentCenterPoint.y;
+        let newCenterPoint = L.point(newX, newY);
+
+        let newCenterLatLng = this.map.containerPointToLatLng(newCenterPoint);
+        console.log(newCenterPoint, newCenterLatLng)
+        //this.map.setView(currentCenter);
+        this.map_view = [newCenterLatLng.lat, newCenterLatLng.lng]
+        this.map.setView(newCenterLatLng);
+    };
 
 
     /**
@@ -2716,6 +2849,8 @@ class PonchoMap {
 
         this._listeners();
         this.layerViewConf.setVisuals();
+        this.setMapAlignment(this.map_align);
+        this._setCssVariables();
     };
 };
 // end class
