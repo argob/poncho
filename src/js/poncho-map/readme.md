@@ -94,8 +94,11 @@
 | open_maps_options | `object` |  | Permite redefinir el nombre del desplegable y los enlaces a mapas externos. Ver [opciones para open\_maps\_options()](#opciones-para-open_maps_options) |
 | map_layers | `boolean` | `true` | Habilita o deshabilita la opción para visualizar el mapa en vista satelital o mapa por defecto. |
 | map_layers_default | `string` | `map` | Permite iniciar el mapa en una de las visstas disponibles: _satelital_ o _map_. |
+| map_align | `string` | `center` | Permite alinear el mapa a la izquierda o a la derecha de su contenedor. Opciones: _«left»_ o _«right»_. |
+| breakpoint | `Array object`|  | Definición para tamaño de dispositivos. ```breakpoint: {lg: 992,xl: 1200,sm: 576,md: 768}``` |
+| breakpoint_fraction | `Array object`| | Alineación del mapa según el tamaño del dispositivo. ```breakpoint_fraction: {sm: "1:4",md: "1:4",lg: "1:3",xl: "2:7"}``` |
 
-  
+
 
 ### Opciones para `template_structure`
 

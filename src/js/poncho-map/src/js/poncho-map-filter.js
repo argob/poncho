@@ -991,7 +991,9 @@ class PonchoMapFilter extends PonchoMap {
         this._accesibleExtras();
         
         this.layerViewConf.setVisuals();
+        this.setMapAlignment(this.map_align);
         this._resetSearch();
+        this._setCssVariables();
     };
 };
 // end of class
