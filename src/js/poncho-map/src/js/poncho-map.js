@@ -2627,23 +2627,34 @@ class PonchoMap {
                 label: "Ver mapa completo",
                 link: "#",
                 css: [`js-reset-view${this.scope_sufix}`]
-            },
-            {
+            }
+        ];
+
+        // Agrego el botón para controlar el zoom
+        if(!this.map_init_options.hasOwnProperty("zoomControl") || 
+            this.map_init_options.zoomControl !== false){
+            values.splice(2, 0, {
                 label: "Ir al panel de zoom",
                 link: `#${anchors[1]["id"]}` 
-            },
-            {
+            });
+        }
+
+        // Agrego el item para cambiar temas
+        if(this.theme_tool){
+            values.push({
                 label: "Cambiar de tema visual",
                 link: `#${anchors[2]["id"]}`,
                 css: [`js-themes-tool-button${this.scope_sufix}`]
-            },
-        ];
-        const accesibleMenuEndItems = [
+            });
+        }
+
+        let accesibleMenuEndItems = [
             {
                 label: "Salir del mapa",
                 link: `#accesible-return-nav${this.scope_sufix}`
             }
         ];
+
         values = [
             ...values,
             ...this.accesible_menu_filter,
