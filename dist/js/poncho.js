@@ -7540,23 +7540,34 @@ class PonchoMap {
                 label: "Ver mapa completo",
                 link: "#",
                 css: [`js-reset-view${this.scope_sufix}`]
-            },
-            {
+            }
+        ];
+
+        // Agrego el botón para controlar el zoom
+        if(!this.map_init_options.hasOwnProperty("zoomControl") || 
+            this.map_init_options.zoomControl !== false){
+            values.splice(2, 0, {
                 label: "Ir al panel de zoom",
                 link: `#${anchors[1]["id"]}` 
-            },
-            {
+            });
+        }
+
+        // Agrego el item para cambiar temas
+        if(this.theme_tool){
+            values.push({
                 label: "Cambiar de tema visual",
                 link: `#${anchors[2]["id"]}`,
                 css: [`js-themes-tool-button${this.scope_sufix}`]
-            },
-        ];
-        const accesibleMenuEndItems = [
+            });
+        }
+
+        let accesibleMenuEndItems = [
             {
                 label: "Salir del mapa",
                 link: `#accesible-return-nav${this.scope_sufix}`
             }
         ];
+
         values = [
             ...values,
             ...this.accesible_menu_filter,
@@ -7922,16 +7933,20 @@ class PonchoMapFilter extends PonchoMap {
         this.messages = opts.messages;
         this.accesible_menu_filter = [
             {
-                label: "Ir al panel de filtros",
-                link: `#filtrar-busqueda${this.scope_sufix}`
-            },
-            {
                 label: "Restablecer mapa",
                 aria_label: "Restablecer valores del mapa",
                 link: "#",
                 css: [`js-poncho-map-reset${this.scope_sufix}`],
             },
         ];
+
+        // Si no hay filtros cargados remuevo el item del menú.
+        if(this.filters.length > 0){
+            this.accesible_menu_filter.push({
+                label: "Ir al panel de filtros",
+                link: `#filtrar-busqueda${this.scope_sufix}`
+            });
+        }
     }
 
     /**
@@ -8917,13 +8932,24 @@ class PonchoMapSearch {
         this.search_scope_selector = (
             this.scope ? `[data-scope="${this.scope}"]`: "");
         this.instance.search_fields = opts.search_fields;
-        this.instance.accesible_menu_search = [
-            {
+        this.instance.accesible_menu_search = [];
+
+        if(this.isSearch()){
+            this.instance.accesible_menu_search.push({
                 label: "Hacer una búsqueda",
                 link: `#id-poncho-map-search${this.scope_sufix}`
-            }
-        ];
+            });
+        }
     };
+
+
+    /**
+     * Vefifica si está habilitado para hacer búsquedas.
+     * @returns 
+     */
+    isSearch = () => (document.querySelector(this.search_scope_selector) ? 
+            true : false);
+
 
     /**
      * Ordena un listado de objetos.
