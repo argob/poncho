@@ -172,12 +172,12 @@ COPIAR DESDE ACÁ…
             "horarios_custom": "",
             "estado_funcionamiento_custom": "",
         },
-        _map_style: {
-            "slider-width": "33%"
+        map_style: {
+            "slider-width": "calc((100% / 7) * 3 - 20px)"
         },
         map_align: "left",
         // theme_tool: false,
-        // open_maps: true,
+        open_maps: true,
         //             map_init_options: {
         //         // zoomSnap: .2,
         //         // zoomControl: false,
@@ -188,6 +188,7 @@ COPIAR DESDE ACÁ…
         //         // boxZoom: false,
         //         // dragging:false
         //     },
+        breakpoint_fraction: {sm: "1:4",md: "1:4",lg: "1:3",xl: "2:7"}
     };
     // render map
     filter = new PonchoMapFilter(gdata, options);
