@@ -8537,10 +8537,6 @@ article a.btn {
 article a:hover, article a:focus {
   text-decoration: underline;
 }
-article p {
-  line-height: 1.6;
-  margin-bottom: 24px;
-}
 article ul {
   margin-bottom: 24px;
   margin-top: 24px;
@@ -12945,6 +12941,26 @@ footer.pm-open-map ul > li > a:hover, footer.pm-open-map ul > li > a:focus {
   text-transform: uppercase;
 }
 
+.f-left {
+  float: left;
+}
+
+.f-right {
+  float: right;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.font-sans-serif {
+  font-family: "Montserrat", sans-serif;
+}
+
+.font-serif {
+  font-family: "Lora", serif;
+}
+
 @media (max-width: 575.98px) {
   .text-xs-left {
     text-align: left !important;
@@ -15864,18 +15880,6 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
 }
 
 /* Utilidades de layout */
-.d-flex {
-  display: flex;
-}
-
-.font-sans-serif {
-  font-family: "Montserrat", sans-serif;
-}
-
-.font-serif {
-  font-family: "Lora", serif;
-}
-
 .margin-small-left {
   margin-left: 0.3rem;
 }
@@ -15893,14 +15897,6 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
 /* Íconos */
 .icon-success {
   padding-right: 0.2rem;
-}
-
-.f-left {
-  float: left;
-}
-
-.f-right {
-  float: right;
 }
 
 .poncho-loader {

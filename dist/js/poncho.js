@@ -7029,6 +7029,25 @@ class PonchoMap {
 
 
     /**
+     * Retorna un listado de selectores css.
+     * 
+     * @param {string|array} value 
+     * @returns {array|undefined}
+     */
+    _setClassList = (value) => {
+        const spliter = str => String(str).split(/\s+/).filter(Boolean);
+        
+        if (typeof value == "string" && value.trim()) {
+            return spliter(value);
+        } else if(Array.isArray(value) && value.length > 0 ){
+            return value.flatMap(m => spliter(m));
+        }
+        return;
+    }
+
+
+
+    /**
      * Imprime una volanta en la estructura por defecto.
      * 
      * @returns {object|boolean} Elemento html <p> o false si no 
@@ -7045,7 +7064,7 @@ class PonchoMap {
         }
 
         const {
-            key = false, css = "small", style = false 
+            key = false, css="small", style = false 
         } = this.template_structure.lead;
 
         if(!entry[key].trim()){
@@ -7056,13 +7075,14 @@ class PonchoMap {
         p.textContent = entry[key];
         // Style definitions
         const setStyle = this._setType(style, entry);
+
         if(setStyle){
             p.setAttribute("style", setStyle);
         }
         // CSS Class
-        const setClasslist = this._setType(css, entry);
+        const setClasslist = this._setClassList(this._setType(css, entry));
         if(setClasslist){
-            p.classList.add(...setClasslist.split(" "));
+            p.classList.add(...setClasslist);
         }
         return p;
     }; 
@@ -7083,12 +7103,13 @@ class PonchoMap {
             const {css=false, style=false, html=false} = item;
             const setHtml = this._setType(html, entry, key);
             const setStyle = this._setType(style, entry, key);
-            const setClasslist = this._setType(css, entry, key);
+            const setClasslist = this._setClassList(
+                this._setType(css, entry, key));
 
             if(setClasslist){
                 const icon = document.createElement("i");
                 icon.setAttribute("aria-hidden","true");
-                icon.classList.add(...setClasslist.split(" "));
+                icon.classList.add(...setClasslist);
                 if(setStyle){
                     icon.setAttribute("style", setStyle);
                 }
