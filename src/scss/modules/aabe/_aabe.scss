@@ -242,17 +242,6 @@
 
 /* Utilidades de layout */
 
-.d-flex {
-    display: flex;
-}
-
-.font-sans-serif {
-    font-family: $font-family-sans-serif;
-}
-
-.font-serif {
-    font-family: $font-family-serif;
-}
 
 .margin-small-left {
     margin-left: 0.3rem;
@@ -276,10 +265,3 @@
     padding-right: 0.2rem;
 }
 
-.f-left {
-  float: left;
-}
-
-.f-right {
-  float: right;
-}
