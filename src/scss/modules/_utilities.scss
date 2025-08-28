@@ -125,6 +125,26 @@ $configSpaces: (
     text-transform: uppercase;
 }
 
+.f-left {
+    float: left;
+}
+
+.f-right {
+    float: right;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.font-sans-serif {
+    font-family: $font-family-sans-serif;
+}
+
+.font-serif {
+    font-family: $font-family-serif;
+}
+
 @media (max-width: 575.98px) {
     .text-xs-left {
         text-align: left !important;
