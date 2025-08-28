@@ -5238,14 +5238,14 @@ class PonchoMap {
             + `href="https://www.ign.gob.ar/AreaServicios/Argenmap/Introduccion">`
             + `<abbr lang="es" title="Instituto Geográfico Nacional">IGN</abbr>`
             + `</a>`;
-        const attributionHeading = "Contribuidores: ";
+        const attributionHeading = `<span class="sr-only">Contribuidores: </span>`;
         this.prefix = `<a hreflang="en" href="https://leafletjs.com/" `
             + `title="Biblioteca JavaScript para mapas interactivos">`
             + `Leaflet</a>`;
         this.ersiURL ='https://server.arcgisonline.com/arcgis/rest/services/'
             + 'World_Imagery/MapServer/tile/{z}/{y}/{x}';
         this.ersiAttribution = (attributionHeading
-            + [osmAttributionLink, ersiAttributionLik].join(", "));
+            + [ersiAttributionLik].join(", "));
 
         this.osmAttribution = (attributionHeading
             + [ignAttributionLink, osmAttributionLink].join(", "));

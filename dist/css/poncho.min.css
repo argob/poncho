@@ -12553,6 +12553,67 @@ footer.pm-open-map ul > li > a:hover, footer.pm-open-map ul > li > a:focus {
   margin-bottom: 0px !important;
 }
 
+.p-xs {
+  padding: 0.25rem !important;
+}
+
+.p-t-xs {
+  padding-top: 0.25rem !important;
+}
+
+.p-r-xs {
+  padding-right: 0.25rem !important;
+}
+
+.p-b-xs {
+  padding-bottom: 0.25rem !important;
+}
+
+.p-l-xs {
+  padding-left: 0.25rem !important;
+}
+
+.p-x-xs {
+  padding-right: 0.25rem !important;
+  padding-left: 0.25rem !important;
+}
+
+.p-y-xs {
+  padding-top: 0.25rem !important;
+  padding-bottom: 0.25rem !important;
+}
+
+.m-a-xs,
+.m-xs {
+  margin: 0.25rem !important;
+}
+
+.m-t-xs {
+  margin-top: 0.25rem !important;
+}
+
+.m-r-xs {
+  margin-right: 0.25rem !important;
+}
+
+.m-b-xs {
+  margin-bottom: 0.25rem !important;
+}
+
+.m-l-xs {
+  margin-left: 0.25rem !important;
+}
+
+.m-x-xs {
+  margin-right: 0.25rem !important;
+  margin-left: 0.25rem !important;
+}
+
+.m-y-xs {
+  margin-top: 0.25rem !important;
+  margin-bottom: 0.25rem !important;
+}
+
 .p-05 {
   padding: 0.5rem !important;
 }
