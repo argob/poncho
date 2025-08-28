@@ -85,13 +85,13 @@ const __templateStructure = (headers) => {
                 }
             });
         })(),
-        title_classlist: ["h3"],
-        term_classlist: ["h5"], 
+        title_classlist: ["h3", "m-y-1"],
+        term_classlist: ["h5", "m-b-05"], 
         lead: {
             key: "volanta", 
             style: "text-transform:uppercase;" 
                 + "border-bottom: 1px solid var(--gray-border, #ccc);" 
-                + "padding-bottom:.25em; color:var(--default) " 
+                + "padding-bottom:.25em; color:var(--default);" 
                 + "font-size:small;"
         },  
     };
