@@ -56,7 +56,7 @@ gulp.task('poncho', function(){
 gulp.task('ponchoMapProvincesContenidos', function(){
     return gulp.src(['./src/js/poncho-map-provinces/src/js/poncho-map-provinces-contenidos.js'])
         .pipe(uglify(generalCompressOptions))
-        .pipe(gulp.dest('./src/js/poncho-map-provinces/dist/js/'));
+        .pipe(gulp.dest('./dist/js/'));
 });
 
 
