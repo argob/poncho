@@ -89,7 +89,7 @@ const __templateStructure = (headers) => {
         term_classlist: ["h5", "m-b-05"], 
         lead: {
             key: "volanta", 
-            css: "text-default p-b-xs small text-uppercase",
+            css: "text-default small text-uppercase p-b-xs m-b-1",
             style: "border-bottom: 1px solid var(--gray-border, #ccc);" 
         },  
     };
