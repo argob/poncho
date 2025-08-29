@@ -1221,6 +1221,7 @@ class PonchoMap {
      * @param {string} text Mensaje de error 
      */
     showAlert = (entry, type="danger") => {
+        // 1. Validación
         if(typeof entry === "object" && Object.keys(entry).length === 0){
             console.error("No se encontraron las claves: title o messages.");
             return;
@@ -1238,12 +1239,14 @@ class PonchoMap {
             }
         }
 
+        // Contenedor de errores
         let logContainer = document
                 .querySelector(`#log-container${this.scope_sufix}`);
         if(!logContainer){
             logContainer = document.createElement("div");
             logContainer.id = `log-container${this.scope_sufix}`;
-            //Select node
+
+            // Ubico el contenedor de logs antes del
             const node = document.querySelector(
                 `${this.scope_selector}.poncho-map`
             );
@@ -1251,23 +1254,24 @@ class PonchoMap {
         }
         logContainer.innerHTML = "";
 
+        // Contenedor de alerta
         let container = document.createElement("div");
         container.classList.add(
             `js-error-message${this.scope_sufix}`, 
             "poncho-map--message", 
             type);
 
+        // Título de la alerta
         const heading = document.createElement("h2");
-        heading.classList.add("h6", "title", "pm-visually-hidden", "sr-only");
-        heading.textContent = "No se puede mostrar el mapa";
-
-        container.appendChild(heading);
+        heading.classList.add("pm-visually-hidden", "sr-only");
+        heading.textContent = "Registro de errores en el mapa";
 
         // Mensajes
         const {title, messages=[], terminal=false} = entry;
         if(typeof title === "string" && title.trim() != ""){
             const messageLabel = document.createElement("p");
             messageLabel.innerHTML = title;
+            // Agrego el título al contenedor.
             container.appendChild(messageLabel);
         }
 
@@ -1278,6 +1282,8 @@ class PonchoMap {
                 contentListItem.innerHTML = item;
                 contentList.appendChild(contentListItem);
             }
+
+            // Agrego listado de sugerencias al contenedor
             container.appendChild(contentList);
         }
 
@@ -1297,16 +1303,18 @@ class PonchoMap {
             const showConsole = document.createElement("code");
             showConsole.innerHTML = JSON.stringify(terminal);
 
+            // APPEND
             consoleContainer.appendChild(showConsole);
             details.appendChild(summary);
             details.appendChild(consoleContainer);
-
             detailsContainer.appendChild(details);
+            // Agrego el mensaje terminal al contenedor
             container.appendChild(detailsContainer);
         }
 
         // Imprimo el error en la página
         if(this.error_reporting) {
+            logContainer.appendChild(heading);
             logContainer.appendChild(container);
 
             if(this.throw_exceptions){
@@ -1347,6 +1355,10 @@ class PonchoMap {
                     title: `El archivo contiene errores en la definición de `
                         + `latitud y longitud.`,
                     messages: [
+                        `Corrobore que los valores de las claves para `
+                            + `<code>latitud</code> `
+                            + `(${this.latitude}) y <code>longitud</code> `
+                            + `(${this.longitude}), no estén vacíos.`,
                         "Revise que el separador de decimales sea un punto y no una coma.",
                         "Verifque que los rangos de latitud y longitud sean correctos."
                     ],
@@ -2129,24 +2141,6 @@ class PonchoMap {
      * @param {object} row Entrada de datos.
      * @return {object} Listado de índices seleccionados de la entrada.
      */
-    // __templateList = (row) => {
-
-    //     const estructura = this.template_structure;
-    //     let lista = Object.keys(row);
-
-    //     let list = lista;
-    //     if(estructura.hasOwnProperty("values") && estructura?.values?.length > 0){
-    //         list = estructura.values;
-    //     } else if(estructura.hasOwnProperty("exclude") && 
-    //             estructura.exclude.length > 0){
-    //         for(const key of estructura.exclude){
-    //             list = this.removeListElement(lista, key);
-    //         }
-    //     }
-    //     console.log(list)
-    //     return list;
-    // };
-
     _templateList = (row) => {
         // 1. Validar y usar 'values' si están definidos
         if (this.template_structure?.values?.length) {
