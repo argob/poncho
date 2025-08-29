@@ -182,6 +182,7 @@
 
             const geoJSON = await fetch_json("./data/test-data.geojson");
             const mapOptions2 = {
+                error_reporting: 1,
                 id_mixing: function(self, entry){
                     return [
                         entry.properties.ID, 

@@ -1771,49 +1771,63 @@ class PonchoMap {
      * Crea el bloque html para el slider.
      */
     _renderSlider = () => {
-        if(!this.render_slider || this.content_outside){
-            return;
-        } else if(this.no_info){
+        // 1. Validación
+        if (!this.render_slider || this.content_outside || this.no_info) {
             return;
         }
+
+        // 2. Limpieza (eliminando sliders existentes)
         document
             .querySelectorAll(`.js-slider${this.scope_sufix}`)
             .forEach(e => e.remove());
-        const close_button = document.createElement("button");
-        close_button.classList.add(
+
+        // 3. Creación y configuración de elementos
+        // Contenedor principal del slider
+        const container = document.createElement("div");
+        container.id = `slider${this.scope_sufix}`;
+        container.classList.add(
+            "pm-container", "slider",`js-slider${this.scope_sufix}`
+        );
+        container.style.display = "none";
+        container.tabIndex = "0";
+        container.setAttribute("role", "region");
+        container.setAttribute("aria-live", "polite");
+        container.setAttribute("aria-label", "Panel de información");
+
+        // Botón para cerrar el slider
+        const closeButton = document.createElement("button");
+        closeButton.classList.add(
                 "btn", "btn-xs", "btn-secondary", "btn-close", 
                 `js-close-slider${this.scope_sufix}`);
-        close_button.title = "Cerrar panel";
-        close_button.setAttribute("role", "button");
-        close_button.setAttribute("aria-label", "Cerrar panel de información");
-        close_button.innerHTML = "<span class=\"pm-visually-hidden\">Cerrar</span>✕";
+        closeButton.title = "Cerrar panel";
+        closeButton.innerHTML = "<span class=\"pm-visually-hidden\">Cerrar</span>✕";
+        closeButton.setAttribute("role", "button");
+        closeButton.setAttribute("aria-label", "Cerrar panel de información");
 
+        // Enlace anchor.
         const anchorOptions = {
             attributes: {tabindex: 0},
             id: `js-anchor-slider${this.scope_sufix}`,
             css: ['sr-only']
         };
         const anchor = this.addAnchorElement(anchorOptions);
-        const content_container = document.createElement("article");
-        content_container.classList.add("pm-content-container");
 
+        // Contenedor del contenido
+        const contentContainer = document.createElement("article");
+        contentContainer.classList.add("pm-content-container");
+
+        // Contenido
         const content = document.createElement("div");
         content.classList.add("pm-content", `js-content${this.scope_sufix}`);
         content.tabIndex = 0;
-
-        content_container.appendChild(content);
-
-        const container = document.createElement("div");
-        container.style.display = "none";
-        container.tabIndex = "0";
-        container.setAttribute("role", "region");
-        container.setAttribute("aria-live", "polite");
-        container.setAttribute("aria-label", "Panel de información");
-        container.classList.add("pm-container", "slider",`js-slider${this.scope_sufix}`);
-        container.id = `slider${this.scope_sufix}`;
-        container.appendChild(close_button);
+        
+        // 4. Append
+        contentContainer.appendChild(content);
+        container.appendChild(closeButton);
         container.appendChild(anchor);
-        container.appendChild(content_container);
+        container.appendChild(contentContainer);
+
+        // 5. Inserción en el DOM
         document
             .querySelector(`${this.scope_selector}.poncho-map`)
             .appendChild(container);
@@ -2115,19 +2129,39 @@ class PonchoMap {
      * @param {object} row Entrada de datos.
      * @return {object} Listado de índices seleccionados de la entrada.
      */
-    _templateList = (row) => {
-        const estructura = this.template_structure;
-        let lista = Object.keys(row);
+    // __templateList = (row) => {
 
-        let list = lista;
-        if(estructura.hasOwnProperty("values") && estructura?.values?.length > 0){
-            list = estructura.values;
-        } else if(estructura.hasOwnProperty("exclude") && 
-                estructura.exclude.length > 0){
-            for(const key of estructura.exclude){
-                list = this.removeListElement(lista, key);
-            }
+    //     const estructura = this.template_structure;
+    //     let lista = Object.keys(row);
+
+    //     let list = lista;
+    //     if(estructura.hasOwnProperty("values") && estructura?.values?.length > 0){
+    //         list = estructura.values;
+    //     } else if(estructura.hasOwnProperty("exclude") && 
+    //             estructura.exclude.length > 0){
+    //         for(const key of estructura.exclude){
+    //             list = this.removeListElement(lista, key);
+    //         }
+    //     }
+    //     console.log(list)
+    //     return list;
+    // };
+
+    _templateList = (row) => {
+        // 1. Validar y usar 'values' si están definidos
+        if (this.template_structure?.values?.length) {
+            return this.template_structure.values;
         }
+
+        // 2. Si no hay 'values', obtener todas las claves de 'row'
+        let list = Object.keys(row);
+
+        // 3. Si hay 'exclude', eliminar las claves de la lista
+        if (this.template_structure?.exclude?.length) {
+            const excludedKeys = new Set(this.template_structure.exclude);
+            list = list.filter(key => !excludedKeys.has(key));
+        }
+
         return list;
     };
 
@@ -2143,13 +2177,14 @@ class PonchoMap {
      * @see https://showdownjs.com/
      */
     _mdToHtml = (text) => {
-        if(this.template_markdown && this._markdownEnable()){
-            const converter = new showdown.Converter(this.markdown_options);
-            const cleannedText = secureHTML(text, this.allowed_tags);
-            return converter.makeHtml(`${cleannedText}`.trim());
+        if (!this.template_markdown || !this._markdownEnable()) {
+            return text;
         }
-        return text;
-    }
+
+        const converter = new showdown.Converter(this.markdown_options);
+        const cleanedText = secureHTML(text, this.allowed_tags);
+        return converter.makeHtml( String(cleanedText).trim() );
+    };
 
 
     /**
