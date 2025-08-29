@@ -109,6 +109,7 @@ COPIAR DESDE ACÁ…
     const gdata = Object.keys(sheet_data.aPDs).map(e => sheet_data.aPDs[e]).flat();
     // map options
     const options = {
+        error_reporting:1,
         template: template_punto_digital,
         title:"nombre",
         map_layers: true,
@@ -158,10 +159,11 @@ COPIAR DESDE ACÁ…
             ],
             "mixing": [
                 {
-                    "key": "ubicacion",
-                    "header": "Ubicación",
-                    "values": ["calle", "municipio_nombre", "provincia"],
-                    "separator": ", "
+                    template: "<span class=\"text-arg-arandano\">{{calle}}</span>, {{municipio_nombre}}, {{provincia}}.",
+                    key: "ubicacion",
+                    header: "Ubicación",
+                    values: false,
+                    separator: ", "
                 },
             ]
         },
@@ -172,7 +174,7 @@ COPIAR DESDE ACÁ…
             "horarios_custom": "",
             "estado_funcionamiento_custom": "",
         },
-        map_style: {
+        _map_style: {
             "slider-width": "calc((100% / 7) * 3 - 20px)"
         },
         map_align: "left",

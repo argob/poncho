@@ -84,26 +84,6 @@ class PonchoMapFilter extends PonchoMap {
     }
 
     /**
-     * Parser de template simple
-     * 
-     * @param {string} value Cadena de texto a parsear
-     * @param {object} kwargs Objeto con clave valor para hacer la sustitución.
-     * @example
-     * // returns Mi hija se llama Olivia.
-     * tplParser("Mi hija se llama {{nombre}}.", {nombre:"Olivia"})
-     * @returns {string} Cadena de texto con los *placeholders* reemplazados.
-     */
-    tplParser = (value, kwargs) => {
-        return Object.keys(kwargs).reduce(function(str, key){
-            const regex = new RegExp(
-                '\\{\\{\\s{0,2}' + key + '\\s{0,2}\\}\\}', 'gm');
-            str = str.replace(regex, kwargs[key]);
-            return str;
-        }, value);
-    };
-
-
-    /**
      * Mensajes de ayuda
      * 
      * @param {string} term Término buscado
@@ -175,11 +155,11 @@ class PonchoMapFilter extends PonchoMap {
                 );
             }
             // Si los resultados están siendo filtrados.
-            if(!this.usingFilters()){
+            //if(!this.usingFilters()){
                 // ul.appendChild(
                 //     li(this.tplParser(this.messages.has_filters, values))
                 // );
-            }
+            //}
             element.appendChild(ul);
         });
     };
@@ -350,8 +330,11 @@ class PonchoMapFilter extends PonchoMap {
             field: optField = false} = fieldsItems;
 
         if(!optFields && !optField){
-            this.errorMessage(
-                "Filters requiere el uso del atributo `field` o `fields`.",
+            this.showAlert({
+                    title: "Filters requiere el uso del atributo "
+                        + "<code>field</code> o <code>fields</code>.",
+                    terminal: fieldsItems    
+                },
                 "warning"
             );
         }
