@@ -64,7 +64,7 @@ COPIAR DESDE ACÁ…
 <script src="./js/template-punto-digital.js"></script>
 
 <!-- / INCLUDE SCRIPTS -->
-<div class="container-fluid">
+<div class="container">
 <div class="row">
 
 <div class="col-md-12 m-b-1">
@@ -109,7 +109,8 @@ COPIAR DESDE ACÁ…
     const gdata = Object.keys(sheet_data.aPDs).map(e => sheet_data.aPDs[e]).flat();
     // map options
     const options = {
-        error_reporting:1,
+        error_reporting: 1,
+        // throw_exceptions: 1,
         template: template_punto_digital,
         title:"nombre",
         map_layers: true,
