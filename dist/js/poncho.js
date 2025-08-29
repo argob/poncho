@@ -4952,7 +4952,8 @@ if (typeof exports !== "undefined") {
 class PonchoMap {
     constructor(data, options){
         const defaults = {
-            error_reporting: true,
+            error_reporting: false,
+            throw_exceptions: false,
             no_info: false,
             map_style: {},
             title: false,
@@ -5119,7 +5120,7 @@ class PonchoMap {
                         lang: "en",
                         hreflang: "en",
                         rel: ["alternate"],
-                        plataform: "mac",
+                        platform: "mac",
                         aria_label: false,
                     },
                     {
@@ -5148,6 +5149,7 @@ class PonchoMap {
         };
         let opts = Object.assign({}, defaults, options);
         this.error_reporting = opts.error_reporting;
+        this.throw_exceptions = opts.throw_exceptions;
         this.scope = opts.scope;
         this.render_slider = opts.render_slider;
         this.template = opts.template;
@@ -5288,6 +5290,40 @@ class PonchoMap {
 
 
     /**
+     * Parser de template simple
+     * 
+     * @param {string} value Cadena de texto a parsear
+     * @param {object} kwargs Objeto con clave valor para hacer la sustitución.
+     * @example
+     * // returns Mi hija se llama Olivia.
+     * tplParser("Mi hija se llama {{nombre}}.", {nombre:"Olivia"})
+     * @returns {string} Cadena de texto con los *placeholders* reemplazados.
+     */
+    tplParser = (value, kwargs) => {
+        if (typeof value !== "string" || value.trim() === "") {
+            console.warn("El primer parámetro debe ser una cadena de texto no vacía.");
+            return;
+        }
+                
+        if (typeof kwargs !== "object" || kwargs === null || Array.isArray(kwargs)) {
+            console.warn("El segundo parámetro debe ser un objeto de tipo clave/valor.");
+            return;
+        }
+        
+        if (Object.keys(kwargs).length === 0) {
+            console.warn("El segundo parámetro (kwargs) no debe ser un objeto vacío.");
+            return;
+        }
+
+        return Object.keys(kwargs).reduce(function(str, key){
+            const regex = new RegExp(
+                '\\{\\{\\s{0,2}' + key + '\\s{0,2}\\}\\}', 'gm');
+            str = str.replace(regex, kwargs[key]);
+            return str;
+        }, value);
+    };
+
+    /**
      * Setea definiciones de estilo
      * @returns {undefined}
      */
@@ -5396,8 +5432,7 @@ class PonchoMap {
         let newCenterPoint = L.point(newX, newY);
 
         let newCenterLatLng = this.map.containerPointToLatLng(newCenterPoint);
-        console.log(newCenterPoint, newCenterLatLng)
-        //this.map.setView(currentCenter);
+
         this.map_view = [newCenterLatLng.lat, newCenterLatLng.lng]
         this.map.setView(newCenterLatLng);
     };
@@ -5561,7 +5596,7 @@ class PonchoMap {
 
 
     /**
-     * Setea el esetado de los css en los menu y en el mapa.
+     * Setea el estado de los CSS en los menú y en el mapa.
      * 
      * @param {Array} removeList  Lista de temas que deben removerse al 
      *                            aplicar la vista.
@@ -5593,12 +5628,10 @@ class PonchoMap {
      * Características para aplicar el mapa OSM
      * @returns {undefined}
      */
-    
     _setOsmView = () => {
         this.tileLayer.setUrl(this.osmURL);
         this.map.attributionControl.removeAttribution(this.ersiAttribution);
         this.map.attributionControl.addAttribution(this.osmAttribution);
-        // this.map.setMaxZoom(18);
         this._setLayerTheme(["layer-satelital"], "layer-osm", false);
     };
     
@@ -5613,7 +5646,6 @@ class PonchoMap {
         this.tileLayer.setUrl(this.ersiURL);
         this.map.attributionControl.removeAttribution(this.osmAttribution);
         this.map.attributionControl.addAttribution(this.ersiAttribution);
-        // this.map.setMaxZoom(17);
         this._setLayerTheme(
             ["layer-osm","map-contrast", "map-dark", "ui-contrast", "ui-dark"], 
             "layer-satelital", "disabled");
@@ -5936,31 +5968,29 @@ class PonchoMap {
 
         const {items=[], label} = this.open_maps_options;
 
-        if(items.length > 0){
-            for(const item of items){
-                const {link, label, lang, rel, hreflang, plataform="all", target} = item;
-                const regex = /(?=.*\{\{latitude\}\})(?=.*\{\{longitude\}\}).*/gm;
+        for(const item of items){
+            const {link:templateLink, platform="all"} = item;
+            const regex = /(?=.*\{\{latitude\}\})(?=.*\{\{longitude\}\}).*/gm;
 
-                if(!navigator.userAgent.includes('Mac') && plataform == "mac"){
-                    continue;
-                }
-                if(!regex.test(link)){
-                    continue;
-                }
-
-                const setAnchor = link
-                    .replace(/\{\{latitude\}\}/g, latitude)
-                    .replace(/\{\{longitude\}\}/g, longitude);
-
-                const anchorOptions = {
-                    lang, hreflang, target, label, rel, 
-                    link: setAnchor, attributes: {tabindex: 0}
-                };
-                const a = this.addAnchorElement(anchorOptions);
-                const li = document.createElement("li");
-                li.appendChild(a);
-                ul.appendChild(li);
+            if (platform === 'mac' && !navigator.userAgent.includes('Mac')) {
+                continue;
             }
+
+            if(!regex.test(templateLink)){
+                continue;
+            }
+
+            const link = this.tplParser(templateLink, {latitude, longitude});
+            const anchorOptions = {
+                ...item, 
+                link,
+                attributes: {tabindex: 0}
+            };
+
+            const a = this.addAnchorElement(anchorOptions);
+            const li = document.createElement("li");
+            li.appendChild(a);
+            ul.appendChild(li);
         }
 
         const summary = document.createElement("summary");
@@ -6072,8 +6102,15 @@ class PonchoMap {
      */
     formatInput = (input) => {
         if(input.length < 1){
-            this.errorMessage(
-                "No se puede visualizar el mapa, el documento está vacío", 
+            this.showAlert([
+                    {
+                        title: "No se puede visualizar el mapa, el documento está vacío",
+                        messages: [
+                            "Es posible que el documento esté vacío.",
+                            "Verifique el formato del documento JSON o GeoJSON."
+                        ]
+                    }
+                ], 
                 "warning"
             );
         }
@@ -6088,7 +6125,7 @@ class PonchoMap {
         return this._setIdIfNotExists(geoJSON);
     };
 
-        
+
     /**
      * Reporta un error bloqueante
      * 
@@ -6096,55 +6133,103 @@ class PonchoMap {
      * mostrando un mensaje y removiendo el contenedor del mapa.
      * @param {string} text Mensaje de error 
      */
-    errorMessage = (text=false, type="danger") => {
-        document.querySelectorAll(`#js-error-message${this.scope_sufix}`)
-                .forEach(e => e.remove());
+    showAlert = (entry, type="danger") => {
+        if(typeof entry === "object" && Object.keys(entry).length === 0){
+            console.error("No se encontraron las claves: title o messages.");
+            return;
+        }
 
-        const container = document.createElement("div");
-        container.id = `js-error-message${this.scope_sufix}`;
-        container.classList.add("poncho-map--message", type);
+        if(typeof entry === "string" && entry.trim() === ""){
+            console.error("No hay mensajes");
+            return;
+        }
 
-        const title = document.createElement("h2");
-        title.classList.add("h6", "title", "pm-visually-hidden");
-        title.textContent = "¡Se produjo un error!";
-
-        container.appendChild(title);
-
-        const messagesList = [
-            [
-                "En estos momentos tenemos inconvenientes para mostrar el mapa.", 
-                "text-center"
-            ],
-            [
-                "<em>Disculpe las molestias</em>", 
-                "text-center",
-                "p"
-            ]
-        ];
-
-        messagesList.forEach(entry => {
-            const elementTag = (tag) => (
-                    typeof tag !== "undefined" || tag ? tag : "p"); 
-            const message = document.createElement(elementTag(entry[2]));
-            if(typeof entry[1] !== "undefined" || entry[1]){
-                message.className = entry[1];
-            }
-            message.innerHTML = entry[0];
-            container.appendChild(message);
-        });
-
-        if(this.error_reporting) {
-            const node = document.querySelector(
-                `${this.scope_selector}.poncho-map`
-            );
-            node.parentNode.insertBefore(container, node);
-            if(type == "danger"){
-                document.getElementById(this.map_selector).remove();
+        if(typeof entry === "string" && entry.trim() !== ""){
+            entry = {
+                title: entry,
+                messages: []
             }
         }
 
-        console.error(this.critical_error)
-        throw text;
+        let logContainer = document
+                .querySelector(`#log-container${this.scope_sufix}`);
+        if(!logContainer){
+            logContainer = document.createElement("div");
+            logContainer.id = `log-container${this.scope_sufix}`;
+            //Select node
+            const node = document.querySelector(
+                `${this.scope_selector}.poncho-map`
+            );
+            node.parentNode.insertBefore(logContainer, node);
+        }
+        logContainer.innerHTML = "";
+
+        let container = document.createElement("div");
+        container.classList.add(
+            `js-error-message${this.scope_sufix}`, 
+            "poncho-map--message", 
+            type);
+
+        const heading = document.createElement("h2");
+        heading.classList.add("h6", "title", "pm-visually-hidden", "sr-only");
+        heading.textContent = "No se puede mostrar el mapa";
+
+        container.appendChild(heading);
+
+        // Mensajes
+        const {title, messages=[], terminal=false} = entry;
+        if(typeof title === "string" && title.trim() != ""){
+            const messageLabel = document.createElement("p");
+            messageLabel.innerHTML = title;
+            container.appendChild(messageLabel);
+        }
+
+        if(Array.isArray(messages) && messages.length > 0){
+            const contentList = document.createElement("ul");
+            for(let item of messages){
+                const contentListItem = document.createElement("li");
+                contentListItem.innerHTML = item;
+                contentList.appendChild(contentListItem);
+            }
+            container.appendChild(contentList);
+        }
+
+        if(terminal){
+            const detailsContainer = document.createElement("div");
+            detailsContainer.classList.add("console-message-container");
+            
+            const details = document.createElement("details");
+            details.classList.add("caret-small", "caret-dark");
+            
+            const summary = document.createElement("summary");
+            summary.textContent = "Mensaje";
+
+            const consoleContainer = document.createElement("div");
+            consoleContainer.classList.add("console");
+
+            const showConsole = document.createElement("code");
+            showConsole.innerHTML = JSON.stringify(terminal);
+
+            consoleContainer.appendChild(showConsole);
+            details.appendChild(summary);
+            details.appendChild(consoleContainer);
+
+            detailsContainer.appendChild(details);
+            container.appendChild(detailsContainer);
+        }
+
+        // Imprimo el error en la página
+        if(this.error_reporting) {
+            logContainer.appendChild(container);
+
+            if(this.throw_exceptions){
+                document.getElementById(this.map_selector).remove();
+                throw new Error(JSON.stringify(entry));
+            }
+        }
+
+        // Imprimo el error en la consola
+        console.error( JSON.stringify(entry) );
     };
 
 
@@ -6155,16 +6240,35 @@ class PonchoMap {
      * @returns {object} Objeto con formato geoJSON feature.
      */
     feature = (entry) => {
+        if(![this.latitude, this.longitude].every(k => Object.keys(entry).includes(k))){
+            this.showAlert(
+                {
+                    title: `La entrada debe incluir las claves para latitud y longitud.`,
+                    terminal: entry
+                },
+                "warning"
+            ); 
+            return;
+        }
+
         const latitude = entry[this.latitude];
         const longitude = entry[this.longitude];
-        [latitude, longitude].forEach(e => {
-            if(isNaN(Number(e))){
-                this.errorMessage(
-                    `El archivo contiene errores en la definición de `
-                    + `latitud y longitud.\n ${e}`
-                );
-            }
-        });
+        
+        if(!this.validateCoordinates(latitude, longitude)){
+            this.showAlert(
+                {
+                    title: `El archivo contiene errores en la definición de `
+                        + `latitud y longitud.`,
+                    messages: [
+                        "Revise que el separador de decimales sea un punto y no una coma.",
+                        "Verifque que los rangos de latitud y longitud sean correctos."
+                    ],
+                    terminal: entry
+                },
+                "warning"
+            ); 
+        };
+
         delete entry[this.latitude];
         delete entry[this.longitude];
 
@@ -6255,7 +6359,7 @@ class PonchoMap {
         if(!this._isIdMixing() && hasId){
             return entries;
         }
- 
+
         const newEntries = entries.features.map((entry, k) => {
             if(this._isIdMixing()){
                 // Procesa la opción de id_mixing
@@ -6282,7 +6386,6 @@ class PonchoMap {
      * @return {undefined}
      */
     addHash = (value) => {
-
         if (typeof value !== "string" && !value) {
             console.error('Invalid value provided to update hash');
             return;
@@ -6995,17 +7098,27 @@ class PonchoMap {
 
                 let new_row = {}; 
                 mixing.forEach(element => {
-                    const {values, separator = ", ", key} = element;
+                    const {values, separator = ", ", key, template} = element;
+                    
                     if(typeof key === "undefined"){
-                        this.errorMessage(
-                            "Mixing requiere un valor en el atributo «key».",
+                        this.showAlert({
+                                title: "Mixing requiere un valor en " 
+                                    + "el atributo «key».",
+                                terminal: element
+                            },
                             "warning"
                         );
                     }
-                    new_row[key] = values
-                        .map(i => (i in row ? row[i] : i.toString()))
-                        .filter(v => v)
-                        .join(separator);
+                    
+                    if(typeof template === "string" && template.trim() !== ""){
+                        new_row[key] = this.tplParser(template, row);
+                    } else {
+                        new_row[key] = values
+                            .map(i => (i in row ? row[i] : i.toString()))
+                            .filter(v => v)
+                            .join(separator);
+                    }
+
                 });
                 return Object.assign({}, row, new_row);
         }
@@ -7015,6 +7128,7 @@ class PonchoMap {
 
     /**
      * Prepara un objeto según su tipo
+     * 
      * @param {object} ele 
      * @param {object} entry 
      * @param {*} value 
@@ -7046,7 +7160,6 @@ class PonchoMap {
     }
 
 
-
     /**
      * Imprime una volanta en la estructura por defecto.
      * 
@@ -7057,14 +7170,27 @@ class PonchoMap {
         if(!this.template_structure.hasOwnProperty("lead")){
             return;
         } else if(!this.template_structure.lead.hasOwnProperty("key")){
-            this.errorMessage(
-                "Lead requiere un valor en el atributo «key».",
+            this.showAlert(
+                {
+                    title: "Lead requiere la clave «key»",
+                    messages: [
+                        "En la sección de configuraciones verifique que, "
+                        + "dentro de <code>template_structure</code>, la "
+                        + "entrada <code>lead</code> contenga la clave "
+                        + "<code>key</code>.",
+                        "Compruebe que la clave esté escrita de forma "
+                        + "correcta y que no haya espacios o caracteres "
+                        + "inválidos."
+                    ],
+                    terminal: this.template_structure.lead
+                },
                 "warning"
             );
+            return;
         }
 
         const {
-            key = false, css="small", style = false 
+            key=false, css="small", style=false
         } = this.template_structure.lead;
 
         if(!entry[key].trim()){
@@ -7675,7 +7801,6 @@ class PonchoMap {
     });
 
 
-
     /**
      * Remueve elementos agregados al mapa
      */
@@ -7971,26 +8096,6 @@ class PonchoMapFilter extends PonchoMap {
     }
 
     /**
-     * Parser de template simple
-     * 
-     * @param {string} value Cadena de texto a parsear
-     * @param {object} kwargs Objeto con clave valor para hacer la sustitución.
-     * @example
-     * // returns Mi hija se llama Olivia.
-     * tplParser("Mi hija se llama {{nombre}}.", {nombre:"Olivia"})
-     * @returns {string} Cadena de texto con los *placeholders* reemplazados.
-     */
-    tplParser = (value, kwargs) => {
-        return Object.keys(kwargs).reduce(function(str, key){
-            const regex = new RegExp(
-                '\\{\\{\\s{0,2}' + key + '\\s{0,2}\\}\\}', 'gm');
-            str = str.replace(regex, kwargs[key]);
-            return str;
-        }, value);
-    };
-
-
-    /**
      * Mensajes de ayuda
      * 
      * @param {string} term Término buscado
@@ -8062,11 +8167,11 @@ class PonchoMapFilter extends PonchoMap {
                 );
             }
             // Si los resultados están siendo filtrados.
-            if(!this.usingFilters()){
+            //if(!this.usingFilters()){
                 // ul.appendChild(
                 //     li(this.tplParser(this.messages.has_filters, values))
                 // );
-            }
+            //}
             element.appendChild(ul);
         });
     };
@@ -8237,8 +8342,11 @@ class PonchoMapFilter extends PonchoMap {
             field: optField = false} = fieldsItems;
 
         if(!optFields && !optField){
-            this.errorMessage(
-                "Filters requiere el uso del atributo `field` o `fields`.",
+            this.showAlert({
+                    title: "Filters requiere el uso del atributo "
+                        + "<code>field</code> o <code>fields</code>.",
+                    terminal: fieldsItems    
+                },
                 "warning"
             );
         }
