@@ -176,11 +176,11 @@ El lead (o volanta) es un texto breve que se ubica sobre el título principal. A
 
 ![Mixing](./demo/img/mixing.png)
 
-Los mixings facilitan la creación de composiciones a partir de información fragmentada presente en una entrada JSON. Permiten combinar valores de diferentes claves para generar una nueva entrada con una clave unificada.
+Los _mixings_ facilitan la creación de composiciones a partir de información fragmentada presente en una entrada JSON. Permiten combinar valores de diferentes claves para generar una nueva entrada con una clave unificada.
 
 Ejemplo:
 
-Considerando una entrada JSON con información de ubicación distribuida en las claves: calle, numero, localidad y provincia. Mediante un mixin, podemos concatenar estos valores en una única clave.
+Considerando una entrada JSON con información de ubicación distribuida en las claves: calle, numero, localidad y provincia. Mediante un _mixing_, podemos concatenar estos valores en una única clave.
 
 **Entrada de ejemplo**
 
@@ -193,15 +193,16 @@ Considerando una entrada JSON con información de ubicación distribuida en las 
 }
 ```
 
-**La sintaxis para el mixing seria:**
+**La sintaxis para el _mixing_ seria:**
 
 ```js
 "template_structure": {
     "mixing":[
         {
+            "template": false,
             "key": "direccion",
             "header": "Dirección",
-            "values": "values": ["calle", "numero", ", ", "localidad", ", ", "provincia"],
+            "values": ["calle", "numero", ", ", "localidad", ", ", "provincia"],
             "separator": ""
         },
         ...
@@ -211,10 +212,48 @@ Considerando una entrada JSON con información de ubicación distribuida en las 
 // Resultado: Mercedes 3180, Malvinas Argentinas, Buenos Aires
 ```
 
+Mismo resultado utilizando la clave `template`.
+
+```js
+"template_structure": {
+    "mixing":[
+        {
+            "template": "{{calle}} {{numero}}, {{localidad}}, {{provincia}}",
+            "key": "direccion",
+            "header": "Dirección",
+            "values": false,
+            "separator": ""
+        },
+        ...
+    ]
+}
+
+// Resultado: Mercedes 3180, Malvinas Argentinas, Buenos Aires
+```
+
+También puede utilizarse etiquetas html.
+
+```js
+"template_structure": {
+    "mixing":[
+        {
+            "template": "<strong>{{calle}} {{numero}}</strong>,<br>{{localidad}},<br>{{provincia}}.", 
+            ...
+        },
+        ...
+    ]
+}
+
+// Resultado: <strong>Mercedes 3180</strong>,<br>Malvinas Argentinas<br>Buenos Aires.
+```
+
+
+
 ##### Parámetros
 
 | Parámetro | Tipo | Default | Descripción |
 |:---|:---|:---|:---|
+| template | `string` | false | Permite componer una plantilla HTML con las claves encerradas en doble llave, por ejemplo: `"{{valor}} <strong>{{porcentaje}} %</strong>"`. `valor` y `porcentaje` son ejemplos de claves que corresponden a las propiedades del objeto de datos que se ingrese. | 
 | key | `string` | "" | Clave de la entrada del JSON o del geoJSON `feature.properties`. | 
 | header | `string` | "" | Nombre que va a tener el campo como título. |
 | values | `Array` | [] | Listado de keys ordenados según el orden de aparición. |
