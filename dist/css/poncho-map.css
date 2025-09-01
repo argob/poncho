@@ -333,7 +333,7 @@ html {
 }
 
 .poncho-map {
-  --pm-slider-width: 326px;
+  --pm-slider-width: 350px;
   --pm-tools-width: 300px;
   --pm-color-primary: var(--primary, #0072bb);
   --pm-map-background:white;
@@ -731,9 +731,9 @@ html {
   background-image: none;
   width: auto;
   height: auto;
-  top: 0.75rem;
-  right: 0.75rem;
-  background-color: transparent;
+  top: var(--pm-slider-distance);
+  right: var(--pm-slider-distance);
+  background-color: rgba(0, 0, 0, 0.1);
   color: var(--pm-color-base);
 }
 .poncho-map .pm-btn-rounded-circle {
@@ -741,6 +741,23 @@ html {
   width: 40px;
   height: 40px;
   border-radius: 50%;
+}
+.poncho-map .pm-btn-xs {
+  font-size: 14px;
+  padding: 1px 5px;
+}
+.poncho-map .btn {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  text-transform: inherit;
+  vertical-align: top;
+  white-space: normal;
+  word-break: initial;
+  text-decoration: none;
+  letter-spacing: inherit;
+  border-radius: 30px;
+  line-height: 1.42857143;
 }
 .poncho-map .pm-btn {
   background: var(--pm-slider-background, white);
@@ -1240,6 +1257,7 @@ input[type=search].js-poncho-map-search__input::-webkit-search-cancel-button {
   --pmi-adjust: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><path d="M448 256c0-106-86-192-192-192V448c106 0 192-86 192-192zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg>');
   --pmi-expand: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><path d="M344 0H488c13.3 0 24 10.7 24 24V168c0 9.7-5.8 18.5-14.8 22.2s-19.3 1.7-26.2-5.2l-39-39-87 87c-9.4 9.4-24.6 9.4-33.9 0l-32-32c-9.4-9.4-9.4-24.6 0-33.9l87-87L327 41c-6.9-6.9-8.9-17.2-5.2-26.2S334.3 0 344 0zM168 512H24c-13.3 0-24-10.7-24-24V344c0-9.7 5.8-18.5 14.8-22.2s19.3-1.7 26.2 5.2l39 39 87-87c9.4-9.4 24.6-9.4 33.9 0l32 32c9.4 9.4 9.4 24.6 0 33.9l-87 87 39 39c6.9 6.9 8.9 17.2 5.2 26.2s-12.5 14.8-22.2 14.8z"/></svg>');
   --pmi-universal-access: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><path d="M0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm161.5-86.1c-12.2-5.2-26.3 .4-31.5 12.6s.4 26.3 12.6 31.5l11.9 5.1c17.3 7.4 35.2 12.9 53.6 16.3v50.1c0 4.3-.7 8.6-2.1 12.6l-28.7 86.1c-4.2 12.6 2.6 26.2 15.2 30.4s26.2-2.6 30.4-15.2l24.4-73.2c1.3-3.8 4.8-6.4 8.8-6.4s7.6 2.6 8.8 6.4l24.4 73.2c4.2 12.6 17.8 19.4 30.4 15.2s19.4-17.8 15.2-30.4l-28.7-86.1c-1.4-4.1-2.1-8.3-2.1-12.6V235.5c18.4-3.5 36.3-8.9 53.6-16.3l11.9-5.1c12.2-5.2 17.8-19.3 12.6-31.5s-19.3-17.8-31.5-12.6L338.7 175c-26.1 11.2-54.2 17-82.7 17s-56.5-5.8-82.7-17l-11.9-5.1zM256 160a40 40 0 1 0 0-80 40 40 0 1 0 0 80z"/></svg>');
+  --pmi-close: url('data:image/svg+xml;utf8,<svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>');
   display: inline-block;
   width: 1em;
   height: 1em;
@@ -1272,6 +1290,10 @@ input[type=search].js-poncho-map-search__input::-webkit-search-cancel-button {
 .poncho-map .pmi.pmi-universal-access {
   -webkit-mask-image: var(--pmi-universal-access);
   mask-image: var(--pmi-universal-access);
+}
+.poncho-map .pmi.pmi-close {
+  -webkit-mask-image: var(--pmi-close);
+  mask-image: var(--pmi-close);
 }
 
 .poncho-map {
