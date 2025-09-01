@@ -1,0 +1,122 @@
+/**
+ * ALERTAS 
+ */
+.alert {
+    --spread-size: 9px;
+
+    position: relative;
+    background: white;
+    width: calc(100% - var(--spread-size));
+    border-radius: 0;
+    border-top: none;
+    border-right: none;
+    border-bottom: none;
+    border-left: 6px solid #555;
+    border-radius: 2px;
+    color: #555;
+    background-color: white;
+    box-shadow: 4px 6px calc(var(--spread-size) + 1px) rgba(0, 0, 0, 0.15);
+
+    // REDEFINIMOS MEDIA
+    .media {
+        grid-template-columns: 4em 1fr;
+        display: grid;
+        gap: 10px;
+
+        &:not(:has(.media-left)) {
+            grid-template-columns: 1fr;
+        }
+        .media-left {
+            padding: {
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+            }
+            text-align: center;
+        }
+        .media-body {
+            width: auto;
+            align-self: center;
+        }
+    }
+
+
+
+    .fa-4x {
+        font-size: 3rem;
+    }
+
+    i {
+        color: currentColor;
+    }
+
+    p {
+        margin-bottom: 1em;
+
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+    }
+
+    .h5 {
+        margin-top: 0rem;
+    }
+    .btn {
+        @include button-variant(#fff, #555, #444);
+        margin-bottom: 1em;
+    }
+}
+
+@media (max-width: 768px) {
+    .alert .media-left {
+        float: none;
+        display: block;
+        margin-bottom: 0.444rem;
+    }
+}
+
+/**
+ * Definición para los temas de color.
+ */
+// $colorThemesAlerts: (
+//     "default": (
+//         themeColor: #555,
+//         backgroundColor: white,
+//         buttonColor: white,
+//     ),
+//     "info": (
+//         themeColor: var(--arg-azul-500),
+//         backgroundColor: var(--arg-azul-50),
+//         buttonColor: white,
+//     ),
+//     "danger": (
+//         themeColor: var(--arg-rojo-500),
+//         backgroundColor: var(--arg-rojo-50),
+//         buttonColor: white,
+//     ),
+//     "success": (
+//         themeColor: var(--arg-verde-700),
+//         backgroundColor: var(--arg-verde-50),
+//         buttonColor: white,
+//     ),
+//     "warning": (
+//         themeColor: var(--arg-amarillo-500),
+//         backgroundColor: var(--arg-amarillo-50),
+//         buttonColor: black,
+//     ),
+// );
+
+// @each $themeName, $themeValues in $colorThemesAlerts {
+//     .alert-#{$themeName} {
+//         background-color: #{map-get($themeValues, backgroundColor)};
+//         border-left: 0.333rem solid #{map-get($themeValues, themeColor)};
+//     }
+//     .alert-#{$themeName} .media-left i {
+//         color: #{map-get($themeValues, themeColor)};
+//     }
+//     .alert-#{$themeName} .btn {
+//         background-color: #{map-get($themeValues, themeColor)};
+//         color: #{map-get($themeValues, buttonColor)};
+//     }
+// }
