@@ -333,7 +333,7 @@ html {
 }
 
 .poncho-map {
-  --pm-slider-width: 350px;
+  --pm-slider-width: 330px;
   --pm-tools-width: 300px;
   --pm-color-primary: var(--primary, #0072bb);
   --pm-map-background:white;
