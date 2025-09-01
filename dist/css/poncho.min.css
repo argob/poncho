@@ -10698,133 +10698,42 @@ input[type=text]:-ms-input-placeholder {
   display: none;
 }
 
-/*
-.alert {
-    border-width: 2px;
-    font-weight: 500;
-
-    .btn i {
-        color: $white;
-    }
-}
-
-.alert-warning,
-.alert-success,
-.alert-info,
-.alert-danger {
-    color: $gray-dark;
-}
-
-.alert-warning {
-    background: lighten($brand-warning, 32%);
-    border-color: $brand-warning;
-
-    i {
-        color: $brand-warning;
-    }
-}
-
-.alert-success {
-    background: lighten($brand-success, 63%);
-    border-color: $brand-success;
-
-    i {
-        color: $brand-success;
-    }
-}
-
-.alert-info {
-    background: lighten($brand-info, 51%);
-    border-color: $brand-info;
-
-    i {
-        color: $brand-info;
-    }
-}
-
-.alert-danger {
-    background: lighten($brand-danger, 51%);
-    border-color: $brand-danger;
-
-    i {
-        color: $brand-danger;
-    }
-}
-
-a.alert {
-    &:hover {
-        text-decoration: none;
-        color: $black;
-    }
-
-    &.alert-warning {
-        &:hover {
-            background: lighten($brand-warning, 42%);
-        }
-
-        i {
-            color: $brand-warning;
-        }
-    }
-
-    &.alert-success {
-        &:hover {
-            background: lighten($brand-success, 63%);
-        }
-
-        i {
-            color: $brand-success;
-        }
-    }
-
-    &.alert-info {
-        &:hover {
-            background: lighten($brand-primary, 61%);
-        }
-
-        i {
-            color: $brand-info;
-        }
-    }
-
-    &.alert-danger {
-        &:hover {
-            background: lighten($brand-danger, 51%);
-        }
-
-        i {
-            color: $brand-danger;
-        }
-    }
-}
-
-.alert h2 {
-    font-size: 1.3em !important;
-    margin-top: 0px !important;
-    margin-bottom: 8px !important;
-    font-weight: 700 !important;
-}
-
-// from argentina.scss
-.alert {
-    border-radius: 10px;
-}
-*/
 /**
  * ALERTAS 
  */
 .alert {
+  --spread-size: 9px;
+  position: relative;
+  background: white;
+  width: calc(100% - var(--spread-size));
   border-radius: 0;
   border-top: none;
   border-right: none;
   border-bottom: none;
-  border-left: 8px solid #555;
+  border-left: 6px solid #555;
+  border-radius: 2px;
   color: #555;
   background-color: white;
-  box-shadow: 4px 8px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 4px 6px calc(var(--spread-size) + 1px) rgba(0, 0, 0, 0.15);
 }
-.alert .media-left {
-  padding-right: 10px;
+.alert .media {
+  grid-template-columns: 4em 1fr;
+  display: grid;
+  gap: 10px;
+}
+.alert .media:not(:has(.media-left)) {
+  grid-template-columns: 1fr;
+}
+.alert .media .media-left {
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  text-align: center;
+}
+.alert .media .media-body {
+  width: auto;
+  align-self: center;
 }
 .alert .fa-4x {
   font-size: 3rem;
@@ -10833,14 +10742,50 @@ a.alert {
   color: currentColor;
 }
 .alert p {
-  margin-bottom: 0.556rem;
+  margin-bottom: 1em;
+}
+.alert p:last-of-type {
+  margin-bottom: 0;
 }
 .alert .h5 {
   margin-top: 0rem;
 }
 .alert .btn {
+  color: #fff;
   background-color: #555;
-  color: white;
+  border-color: #444;
+  margin-bottom: 1em;
+}
+.alert .btn:focus, .alert .btn.focus {
+  color: #fff;
+  background-color: rgb(59.5, 59.5, 59.5);
+  border-color: rgb(4.25, 4.25, 4.25);
+}
+.alert .btn:hover {
+  color: #fff;
+  background-color: rgb(59.5, 59.5, 59.5);
+  border-color: rgb(37.4, 37.4, 37.4);
+}
+.alert .btn:active, .alert .btn.active, .open > .alert .btn.dropdown-toggle {
+  color: #fff;
+  background-color: rgb(59.5, 59.5, 59.5);
+  border-color: rgb(37.4, 37.4, 37.4);
+}
+.alert .btn:active:hover, .alert .btn:active:focus, .alert .btn:active.focus, .alert .btn.active:hover, .alert .btn.active:focus, .alert .btn.active.focus, .open > .alert .btn.dropdown-toggle:hover, .open > .alert .btn.dropdown-toggle:focus, .open > .alert .btn.dropdown-toggle.focus {
+  color: #fff;
+  background-color: rgb(41.65, 41.65, 41.65);
+  border-color: rgb(4.25, 4.25, 4.25);
+}
+.alert .btn:active, .alert .btn.active, .open > .alert .btn.dropdown-toggle {
+  background-image: none;
+}
+.alert .btn.disabled:hover, .alert .btn.disabled:focus, .alert .btn.disabled.focus, .alert .btn[disabled]:hover, .alert .btn[disabled]:focus, .alert .btn[disabled].focus, fieldset[disabled] .alert .btn:hover, fieldset[disabled] .alert .btn:focus, fieldset[disabled] .alert .btn.focus {
+  background-color: #555;
+  border-color: #444;
+}
+.alert .btn .badge {
+  color: #555;
+  background-color: #fff;
 }
 
 @media (max-width: 768px) {
