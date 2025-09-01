@@ -1,30 +1,42 @@
 /**
  * ALERTAS 
  */
-.alert {
-    --spread-size: 9px;
-    --main-color: #555;
+$scopeAlert: ".alert";
 
-    width: calc(100% - var(--spread-size));
+#{$scopeAlert} {
+    --main-theme: #555;
+    --main-shadow-spread-size: 9px;
+    --main-color: #555;
+    --main-border-left-weight: 6px;
+    --main-padding: #{$grid-gutter-width / 2};
+    --media-col-gap: #{$grid-gutter-width / 3};
+    --media-row-gap: calc(var(--media-col-gap) / 2);
+    --icon-size: 3rem;
+
+    width: calc(100% - var(--main-shadow-spread-size));
     position: relative;
     background: white;
     border-top: none;
     border-right: none;
     border-bottom: none;
-    border-left: 6px solid #555;
+    border-left: var(--main-border-left-weight) solid var(--main-theme);
     border-radius: 2px;
-    padding: 15px 15px 15px 10px;
+    padding: var(--main-padding) var(--main-padding) var(--main-padding)
+        var(--media-col-gap);
+    margin-bottom: $grid-gutter-width;
     color: #555;
     background-color: white;
-    box-shadow: 4px 6px calc(var(--spread-size) + 1px) rgba(0, 0, 0, 0.15);
+    box-shadow: 4px 6px calc(var(--main-shadow-spread-size) + 1px)
+        rgba(0, 0, 0, 0.15);
+    // Si el componente no tiene icono
     &:not(:has(.media-left)) {
-        padding: 15px;
+        padding: var(--main-padding);
     }
     // REDEFINIMOS MEDIA
     .media {
-        grid-template-columns: 4.5rem 1fr;
+        grid-template-columns: calc(var(--icon-size) + 1.5em) 1fr;
         display: grid;
-        gap: 10px;
+        gap: var(--media-col-gap);
 
         &:not(:has(.media-left)) {
             grid-template-columns: 1fr;
@@ -42,6 +54,13 @@
             width: auto;
             align-self: center;
         }
+
+        .h5,
+        p.h5,
+        h5 {
+            margin-top: 0.5em;
+            margin-bottom: 0.5em;
+        }
     }
 
     // Corrección de tamaños.
@@ -50,7 +69,7 @@
     .fa-4x,
     .fa-3x,
     .fa-5x {
-        font-size: 3rem !important;
+        font-size: var(--icon-size) !important;
     }
 
     // Tamaños para iconos específicos.
@@ -58,7 +77,7 @@
     .fa.fa-times-circle,
     .fa.fa-info-circle,
     .fa.fa-check-circle {
-        font-size: 3.15em !important;
+        font-size: calc(var(--icon-size) + 0.15em) !important;
         margin: 0;
     }
 
@@ -74,73 +93,76 @@
         }
     }
 
-    .h5,
-    h5 {
-        margin-top: 0px;
-    }
-
     .btn {
         @include button-variant(#fff, #555, #555);
-        margin-bottom: 1em;
-        margin-top: 1em;
+        margin-bottom: #{$grid-gutter-width / 2};
+        margin-top: #{$grid-gutter-width / 2};
     }
 }
 
 @media (max-width: 768px) {
-    .alert {
+    #{$scopeAlert} {
         padding: 15px;
-    }
-    .alert .media {
-        grid-template-columns: none;
-        grid-template-rows: auto;
-        row-gap: 5px;
-    }
-    .alert .media .media-left {
-        text-align: left;
+
+        .media {
+            grid-template-columns: none;
+            grid-template-rows: auto;
+            row-gap: 5px;
+
+            .media-left {
+                text-align: left;
+            }
+        }
     }
 }
 
 /**
  * Definición para los temas de color.
  */
-// $colorThemesAlerts: (
-//     "default": (
-//         themeColor: #555,
-//         backgroundColor: white,
-//         buttonColor: white,
-//     ),
-//     "info": (
-//         themeColor: var(--arg-azul-500),
-//         backgroundColor: var(--arg-azul-50),
-//         buttonColor: white,
-//     ),
-//     "danger": (
-//         themeColor: var(--arg-rojo-500),
-//         backgroundColor: var(--arg-rojo-50),
-//         buttonColor: white,
-//     ),
-//     "success": (
-//         themeColor: var(--arg-verde-700),
-//         backgroundColor: var(--arg-verde-50),
-//         buttonColor: white,
-//     ),
-//     "warning": (
-//         themeColor: var(--arg-amarillo-500),
-//         backgroundColor: var(--arg-amarillo-50),
-//         buttonColor: black,
-//     ),
-// );
 
-// @each $themeName, $themeValues in $colorThemesAlerts {
-//     .alert-#{$themeName} {
-//         background-color: #{map-get($themeValues, backgroundColor)};
-//         border-left: 0.333rem solid #{map-get($themeValues, themeColor)};
-//     }
-//     .alert-#{$themeName} .media-left i {
-//         color: #{map-get($themeValues, themeColor)};
-//     }
-//     .alert-#{$themeName} .btn {
-//         background-color: #{map-get($themeValues, themeColor)};
-//         color: #{map-get($themeValues, buttonColor)};
-//     }
-// }
+$colorThemesAlerts: (
+    "default": (
+        themeColor: #555,
+        backgroundColor: white,
+        buttonColor: white,
+    ),
+    "info": (
+        themeColor: #0581C6,
+        backgroundColor: #CDEBFA,
+        buttonColor: white,
+    ),
+    "danger": (
+        themeColor:#E14543,
+        backgroundColor: #FCDDDC,
+        buttonColor: white,
+    ),
+    "success": (
+        themeColor: #2E7D33,
+        backgroundColor: #F1F5D7,
+        buttonColor: white,
+    ),
+    "warning": (
+        themeColor: #F79D00,
+        backgroundColor: #FDE7BF,
+        buttonColor: black,
+    ),
+);
+
+@each $themeName, $themeValues in $colorThemesAlerts {
+    #{$scopeAlert}-#{$themeName} {
+        background-color: #{map-get($themeValues, backgroundColor)};
+        border-left: 0.333rem solid #{map-get($themeValues, themeColor)};
+    }
+    #{$scopeAlert}-#{$themeName} .media-left i {
+        color: #{map-get($themeValues, themeColor)};
+    }
+    #{$scopeAlert}-#{$themeName} .btn {
+
+
+                @include button-variant(
+            map-get($themeValues, buttonColor),
+            map-get($themeValues, themeColor),
+            map-get($themeValues, themeColor)
+        );
+    }
+}

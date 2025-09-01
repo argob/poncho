@@ -8,86 +8,152 @@ $recuadrosScope: ".recuadro-destacado";
  */
 $colorThemesRecuadro: (
     "azul": (
-        themeColor: var(--arg-azul, #{$brand-arg-azul}),
+        themeColor: $brand-arg-azul,
         buttonColor: white,
     ),
     "secundario": (
-        themeColor: var(--arg-secundario, #{$brand-arg-secundario}),
+        themeColor: $brand-arg-secundario,
         buttonColor: white,
     ),
     "palta": (
-        themeColor: var(--arg-palta, #{$brand-arg-palta}),
+        themeColor:$brand-arg-palta,
         buttonColor: palta,
     ),
     "uva": (
-        themeColor: var(--arg-uva, #{$brand-arg-uva}),
+        themeColor: $brand-arg-uva,
         buttonColor: white,
     ),
     "rosado": (
-        themeColor: var(--arg-rosado, #{$brand-arg-rosado}),
+        themeColor:$brand-arg-rosado,
         buttonColor: black,
     ),
 );
 
+
+
 #{$recuadrosScope} {
-    --color: var(--arg-gris-intermedio, #{$brand-gris});
+    --main-theme:#555;
+    --main-shadow-spread-size: 9px;
+    --main-color: #555;
+    --main-border-left-weight:6px;
+    --main-padding: #{$grid-gutter-width / 2};
+    --media-col-gap: #{$grid-gutter-width / 3};
+    --media-row-gap: calc(var(--media-col-gap) / 2);
+    --icon-size: 2rem;
 
-    background-color: #ffffff;
-    border-left: 0.444rem solid var(--color);
-    padding: 1.111rem;
-    margin-top: 1.667rem;
-    margin-bottom: 2.5rem;
+    width: calc(100% - var(--main-shadow-spread-size));
+    position: relative;
+    background: white;
+    border-top: none;
+    border-right: none;
+    border-bottom: none;
+    border-left: var(--main-border-left-weight) solid var(--main-theme);
     border-radius: 2px;
-    box-shadow: 4px 8px 12px rgba(0, 0, 0, 0.15);
+    padding: var(--main-padding) var(--main-padding) var(--main-padding) var(--media-col-gap);
+    margin-bottom: $grid-gutter-width;
+    color: #555;
+    background-color: white;
+    box-shadow: 4px 6px calc(var(--main-shadow-spread-size) + 1px) rgba(0, 0, 0, 0.15);
+    // Si el componente no tiene icono
+    &:not(:has(.media-left)) {
+        padding: var(--main-padding);
+    }
+    // REDEFINIMOS MEDIA
+    .media {
+        grid-template-columns: calc(var(--icon-size) + 1.5em) 1fr;
+        display: grid;
+        gap: var(--media-col-gap);
 
-    .media-left {
-        padding-right: 0.667rem;
+        &:not(:has(.media-left)) {
+            grid-template-columns: 1fr;
+        }
+        .media-left {
+            padding: {
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+            }
+            text-align: center;
+        }
+        .media-body {
+            width: auto;
+            align-self: center;
+        }
+
+        .h5,
+        p.h5,
+        h5 {
+            margin-top: 0.5em;
+            margin-bottom: 0.5em;
+        }
+    }
+
+    // Corrección de tamaños.
+    .fa-1x,
+    .fa-2x,
+    .fa-4x,
+    .fa-3x,
+    .fa-5x {
+        font-size: var(--icon-size) !important;
+    }
+
+    // Tamaños para iconos específicos.
+    .fa.fa-warning,
+    .fa.fa-times-circle,
+    .fa.fa-info-circle,
+    .fa.fa-check-circle {
+        font-size: calc(var(--icon-size) + .15em) !important;
+        margin: 0;
     }
 
     i {
-        margin-top: 0.056rem;
-    }
-    .fa-4x {
-        font-size: 3rem;
+        color: currentColor;
     }
 
     p {
-        padding-top: 0.611rem;
-        margin-bottom: 0.778rem;
+        margin-bottom: 1em;
+
+        &:last-of-type {
+            margin-bottom: 0;
+        }
     }
+
     .btn {
-        background: var(--color);
-        color: white;
+        @include button-variant(#fff, #555, #555);
+        margin-bottom: #{$grid-gutter-width / 2};
+        margin-top: #{$grid-gutter-width / 2};
     }
 }
 
 @media (max-width: 768px) {
-    #{$recuadrosScope} .media-left {
-        float: none;
-        display: block;
-        margin-bottom: 0.444rem;
+    #{$recuadrosScope} {
+        padding: var(--main-padding);
 
-        .h5 {
-            margin-top: 0rem;
-        }
-        i {
-            color: var(--color);
-        }
+        .media {
+            grid-template-columns: none;
+            grid-template-rows: auto;
+            row-gap: var(--media-row-gap);
 
-        p {
-            margin-bottom: 0.556rem;
-            &.h5 {
-                margin-bottom: 0.278rem;
+            .media-left {
+                text-align: left;
             }
         }
     }
 }
 
+
+
+
 @each $themeName, $themeValues in $colorThemesRecuadro {
     #{$recuadrosScope}.arg-#{$themeName} {
-        --color: #{map-get($themeValues, themeColor)};
+        --main-theme: #{map-get($themeValues, themeColor)};
     }
     #{$recuadrosScope}.arg-#{$themeName} .btn {
-        color: #{map-get($themeValues, buttonColor)};
+        @include button-variant(
+            map-get($themeValues, buttonColor),
+            map-get($themeValues, themeColor),
+            map-get($themeValues, themeColor)
+        );
     }
 }
