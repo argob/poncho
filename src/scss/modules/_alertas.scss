@@ -56,7 +56,7 @@ $scopeAlert: ".alert";
         }
 
         .h5,
-        p.h5,
+        *.h5,
         h5 {
             margin-top: 0.5em;
             margin-bottom: 0.5em;
@@ -128,22 +128,22 @@ $colorThemesAlerts: (
     ),
     "info": (
         themeColor: #0581C6,
-        backgroundColor: #CDEBFA,
+        backgroundColor: lighten(#CDEBFA, 7%),
         buttonColor: white,
     ),
     "danger": (
         themeColor:#E14543,
-        backgroundColor: #FCDDDC,
+        backgroundColor: lighten(#FCDDDC, 5%),
         buttonColor: white,
     ),
     "success": (
         themeColor: #2E7D33,
-        backgroundColor: #F1F5D7,
+        backgroundColor: lighten(#F1F5D7, 7%),
         buttonColor: white,
     ),
     "warning": (
         themeColor: #F79D00,
-        backgroundColor: #FDE7BF,
+        backgroundColor: lighten( #FFFAE8, 2%),
         buttonColor: black,
     ),
 );
