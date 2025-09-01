@@ -11558,7 +11558,7 @@ Las clases "dato-nro" y "dato-eje" corresponde a los formatos markdown definidos
   height: 100%;
   padding-right: var(--pm-content-padding);
   padding-left: var(--pm-content-padding);
-  padding-top: calc(var(--pm-content-padding) * 3);
+  padding-top: calc(var(--pm-content-padding) * 3 + 5px);
   padding-bottom: calc(var(--pm-content-padding) * 2);
 }
 .poncho-map .slider .pm-content {
