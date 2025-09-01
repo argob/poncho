@@ -376,6 +376,60 @@ class PonchoMap {
     }
 
 
+
+    /* VALIDATORS */
+    /**
+     * Valid string
+     * @param {*} str 
+     * @returns {boolean}
+     */
+    isString(value) {
+        return typeof value === 'string';
+    }
+
+    isEmtpyString(str) {
+        return typeof str === 'string' && str.trim().length === 0;
+    }
+
+    /**
+     * Valid number
+     * @param {*} num 
+     * @returns {boolean}
+     */
+    isNumber(num){
+        return typeof num === "number"  && isFinite(num);
+    }
+
+    /**
+     * Valida que el input sea un objeto
+     * @param {*} obj Elemento a validar  
+     * @returns {boolean}
+     */
+    isObject(obj) {
+        if (typeof obj !== 'object' || obj === null) {
+            console.warn("El valor no es un objeto válido.");
+            return false;
+        }
+        if (Array.isArray(obj)) {
+            console.warn("El valor es un array, no un objeto.");
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Valida si un valor es un objeto y está vacío.
+     * @param {*} obj El valor a validar.
+     * @returns {boolean} Retorna `true` si es un objeto válido y vacío; de lo contrario, `false`.
+     */
+    isEmptyObject(obj) {
+        if (typeof obj !== 'object' || obj === null || Array.isArray(obj)) {
+            return false;
+        }
+        return Object.keys(obj).length === 0;
+    }
+
+
     /**
      * Parser de template simple
      * 
@@ -387,22 +441,35 @@ class PonchoMap {
      * @returns {string} Cadena de texto con los *placeholders* reemplazados.
      */
     tplParser = (value, kwargs) => {
-        if (typeof value !== "string" || value.trim() === "") {
-            console.warn("El primer parámetro debe ser una cadena de texto no vacía.");
+        if(!this.isString(value)){
+            return;
+        }
+
+        if (this.isEmtpyString(value)) {
+            console.warn(
+                "El primer parámetro debe ser una cadena de texto no vacía."
+            );
             return;
         }
                 
-        if (typeof kwargs !== "object" || kwargs === null || Array.isArray(kwargs)) {
-            console.warn("El segundo parámetro debe ser un objeto de tipo clave/valor.");
+        if (!this.isObject(kwargs)) {
+            console.warn(
+                "El segundo parámetro debe ser un objeto de tipo clave/valor."
+            );
             return;
         }
         
-        if (Object.keys(kwargs).length === 0) {
-            console.warn("El segundo parámetro (kwargs) no debe ser un objeto vacío.");
+        if (this.isEmptyObject(kwargs)) {
+            console.warn(
+                "El segundo parámetro (kwargs) no debe ser un objeto vacío."
+            );
             return;
         }
 
         return Object.keys(kwargs).reduce(function(str, key){
+            if(!kwargs.hasOwnProperty(key)){
+                return;
+            }
             const regex = new RegExp(
                 '\\{\\{\\s{0,2}' + key + '\\s{0,2}\\}\\}', 'gm');
             str = str.replace(regex, kwargs[key]);
@@ -444,10 +511,11 @@ class PonchoMap {
      * @param {Number} mediaSize Número entero.
      * @returns {string} Fracción, ej: 1:3
      */
-    _setFraction = (mediaSize=false) => {
-        if(mediaSize && typeof mediaSize != "number"){
-            console.error('setFraction', 'mediaSize espera un valor entero.');
-            return;
+    _setFraction = (mediaSize) => {
+        let fraction = '1:1';
+
+        if(!this.isNumber(mediaSize)){
+            return fraction;
         }
 
         const mSize = (mediaSize ? mediaSize : 
@@ -456,7 +524,6 @@ class PonchoMap {
         let breakpointEntries = Object.entries(this.breakpoint);
         breakpointEntries.sort((a, b) => b[1] - a[1]);
 
-        let fraction = '1:1';
         for(const entry of breakpointEntries){
             const [key, size] = entry;
             if(!this.breakpoint_fraction.hasOwnProperty(key)){
@@ -564,9 +631,9 @@ class PonchoMap {
         } = options;
 
         const regexLang = /^[a-zA-Z]{2}$/;
-        const isValidLang = (typeof lang === "string" &&
+        const isValidLang = (this.isString(lang) &&
                 regexLang.test(lang));
-        const isValidHrefLang = (typeof hreflang === "string" &&
+        const isValidHrefLang = (this.isString(hreflang) &&
                 regexLang.test(hreflang));
         const isValidTarget = [
                 '_self', '_blank', '_parent', '_top'].includes(target);
@@ -669,7 +736,10 @@ class PonchoMap {
      */
     _disabledEnableThemes = (themes, attr="disabled") => {
         for(let item of themes){
-            document.querySelectorAll(`${this.scope_selector} [data-theme="${item}"]`).forEach(ele =>{
+            document
+                .querySelectorAll(
+                    `${this.scope_selector} [data-theme="${item}"]`)
+                .forEach(function(ele){
                 if(attr=="disabled"){
                     ele.setAttribute("aria-hidden", "true");
                     ele.parentElement.style.display = "none";
@@ -782,11 +852,11 @@ class PonchoMap {
         button.id = `themes-tool-button${this.scope_sufix}`;
         button.tabIndex = "0";
         button.classList.add("pm-btn", "pm-btn-rounded-circle");
-        button.appendChild(icon);
         button.ariaHasPopup = "true";
         button.ariaControls = "menu";
         button.role = "button";
         button.ariaLabel = "Abre el panel de temas";
+        button.appendChild(icon);
 
         const list = document.createElement("ul");
         list.id = `list-themes-tool-button${this.scope_sufix}`;
@@ -827,10 +897,12 @@ class PonchoMap {
                 attributes: {role: "menuitem"},
                 datasets: {theme: code}
             };
-            const buttonTheme = this.addAnchorElement(buttonThemeOptions);
 
+            // Label para el botón
             const spanName = document.createElement("span");
             spanName.textContent = name;
+            
+            const buttonTheme = this.addAnchorElement(buttonThemeOptions);
             buttonTheme.appendChild(spanName);
 
             if(description){
@@ -1189,15 +1261,14 @@ class PonchoMap {
      */
     formatInput = (input) => {
         if(input.length < 1){
-            this.showAlert([
-                    {
-                        title: "No se puede visualizar el mapa, el documento está vacío",
-                        messages: [
-                            "Es posible que el documento esté vacío.",
-                            "Verifique el formato del documento JSON o GeoJSON."
-                        ]
-                    }
-                ], 
+            this.showAlert(
+                {
+                    title: "No se puede visualizar el mapa, el documento está vacío",
+                    messages: [
+                        "Es posible que el documento esté vacío.",
+                        "Verifique el formato del documento JSON o GeoJSON."
+                    ]
+                }, 
                 "warning"
             );
         }
@@ -1220,23 +1291,21 @@ class PonchoMap {
      * mostrando un mensaje y removiendo el contenedor del mapa.
      * @param {string} text Mensaje de error 
      */
-    showAlert = (entry, type="danger") => {
+    showAlert = (entry, type) => {
+        if(!this.isObject(entry)){
+            console.error("showAlert", "Espera un objeto de tipo clave/valor.");
+            return;
+        }
+
         // 1. Validación
-        if(typeof entry === "object" && Object.keys(entry).length === 0){
+        if(this.isEmptyObject(entry)){
+        // if(typeof entry === "object" && Object.keys(entry).length === 0){
             console.error("No se encontraron las claves: title o messages.");
             return;
         }
 
-        if(typeof entry === "string" && entry.trim() === ""){
-            console.error("No hay mensajes");
-            return;
-        }
-
-        if(typeof entry === "string" && entry.trim() !== ""){
-            entry = {
-                title: entry,
-                messages: []
-            }
+        if(!["danger", "warning", "info"].includes(type)){
+            type = "danger";
         }
 
         // Contenedor de errores
@@ -1268,7 +1337,8 @@ class PonchoMap {
 
         // Mensajes
         const {title, messages=[], terminal=false} = entry;
-        if(typeof title === "string" && title.trim() != ""){
+        // if(typeof title === "string" && title.trim() != ""){
+        if(!this.isEmtpyString(title)){
             const messageLabel = document.createElement("p");
             messageLabel.innerHTML = title;
             // Agrego el título al contenedor.
@@ -1468,7 +1538,7 @@ class PonchoMap {
                 const autoId = k + 1;
                 const useTitle = (this.title && entry.properties[this.title] ? 
                         this._slugify(entry.properties[this.title]) : "");
-                entry.properties.id = [autoId, useTitle].filter(f=>f).join('-');
+                entry.properties.id = [autoId, useTitle].filter(Boolean).join('-');
             }
             
             return entry;
@@ -1485,7 +1555,7 @@ class PonchoMap {
      * @return {undefined}
      */
     addHash = (value) => {
-        if (typeof value !== "string" && !value) {
+        if (this.isEmtpyString(value)) {
             console.error('Invalid value provided to update hash');
             return;
         }
@@ -1523,7 +1593,8 @@ class PonchoMap {
      */
     searchEntries = (term, dataset) => {
         dataset = (typeof dataset === "undefined" ? this.geoJSON: dataset);
-        if(typeof term !== "string" || term.trim().length === 0){
+        if(this.isEmtpyString(term)){
+            console.info("searchEntries", "Término vacío.");
             return dataset;
         }
         const entries = dataset.filter(entry => {
@@ -1534,28 +1605,31 @@ class PonchoMap {
 
 
     /**
-     * Busca un término en cada uno de los indices de una entrada.
+     * Busca un término en una entrada
+     * 
+     * @param {string} searchTerm Término a buscar
+     * @param {object} entry Entrada de datos
+     * @see searchEntries()
+     * @returns {object|null}
      */
-    searchEntry = (searchTerm, data) => {
-        const searchFor = [
-            ...new Set([...[this.title], ...this.search_fields])
-        ].filter(e => e);
+    searchEntry = (searchTerm, entry) => {
+        
+        const searchFields = new Set([...[this.title], ...this.search_fields]);
+        const sanitizedSearchTerm = replaceSpecialChars(searchTerm).toUpperCase();
 
-        const term = replaceSpecialChars(searchTerm).toUpperCase();
-        const result = searchFor.some(function(key){
-            const field = replaceSpecialChars(data[key])
+        const result = [...searchFields].some(function(key){
+            if (!entry.hasOwnProperty(key)) {
+                return false;
+            }
+            const field = replaceSpecialChars(entry[key])
                     .toString()
                     .toUpperCase();
-
-            try {
-                return (field.includes(term));
-            } catch (error) {
-                console.error(error);
-            }
+            return field.includes(sanitizedSearchTerm);
         });
 
-        return (result ? data : null);
+        return result ? entry : null;
     };
+
 
 
     /**
@@ -1806,13 +1880,17 @@ class PonchoMap {
         container.setAttribute("aria-live", "polite");
         container.setAttribute("aria-label", "Panel de información");
 
+        // Icono para el botón 
+        const icon = document.createElement("i");
+        icon.classList.add("pmi", "pmi-close");
+        icon.ariaHidden = "true";
+        
         // Botón para cerrar el slider
         const closeButton = document.createElement("button");
         closeButton.classList.add(
-                "btn", "btn-xs", "btn-secondary", "btn-close", 
+                "btn", "pm-btn-xs", "btn-secondary", "btn-close", 
                 `js-close-slider${this.scope_sufix}`);
         closeButton.title = "Cerrar panel";
-        closeButton.innerHTML = "<span class=\"pm-visually-hidden\">Cerrar</span>✕";
         closeButton.setAttribute("role", "button");
         closeButton.setAttribute("aria-label", "Cerrar panel de información");
 
@@ -1835,8 +1913,9 @@ class PonchoMap {
         
         // 4. Append
         contentContainer.appendChild(content);
+        closeButton.appendChild(icon);
         container.appendChild(closeButton);
-        container.appendChild(anchor);
+        // container.appendChild(anchor);
         container.appendChild(contentContainer);
 
         // 5. Inserción en el DOM
@@ -2212,7 +2291,7 @@ class PonchoMap {
             this.template_structure.mixing.length > 0){
                 const mixing = this.template_structure.mixing;
 
-                let new_row = {}; 
+                let customRow = {}; 
                 mixing.forEach(element => {
                     const {values, separator = ", ", key, template} = element;
                     
@@ -2226,17 +2305,18 @@ class PonchoMap {
                         );
                     }
                     
-                    if(typeof template === "string" && template.trim() !== ""){
-                        new_row[key] = this.tplParser(template, row);
+                    // if(typeof template === "string" && template.trim() !== ""){
+                    if(!this.isEmtpyString(template)){
+                        customRow[key] = this.tplParser(template, row);
                     } else {
-                        new_row[key] = values
+                        customRow[key] = values
                             .map(i => (i in row ? row[i] : i.toString()))
-                            .filter(v => v)
+                            .filter(Boolean)
                             .join(separator);
                     }
 
                 });
-                return Object.assign({}, row, new_row);
+                return Object.assign({}, row, customRow);
         }
         return row;
     };
@@ -2267,7 +2347,7 @@ class PonchoMap {
     _setClassList = (value) => {
         const spliter = str => String(str).split(/\s+/).filter(Boolean);
         
-        if (typeof value == "string" && value.trim()) {
+        if (typeof value === "string") {
             return spliter(value);
         } else if(Array.isArray(value) && value.length > 0 ){
             return value.flatMap(m => spliter(m));
@@ -2465,7 +2545,7 @@ class PonchoMap {
         try {
             this.map.fitBounds(this.geojson.getBounds().pad(padding));
         } catch (error) {
-            console.error(error);
+            console.error("fitBounds", error);
         }
     };
 
