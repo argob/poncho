@@ -10747,7 +10747,7 @@ input[type=text]:-ms-input-placeholder {
   align-self: center;
 }
 .alert .media .h5,
-.alert .media p.h5,
+.alert .media *.h5,
 .alert .media h5 {
   margin-top: 0.5em;
   margin-bottom: 0.5em;
@@ -10877,7 +10877,7 @@ input[type=text]:-ms-input-placeholder {
 }
 
 .alert-info {
-  background-color: #CDEBFA;
+  background-color: rgb(237.4545454545, 247.9818181818, 253.2454545455);
   border-left: 0.333rem solid #0581C6;
 }
 
@@ -10923,7 +10923,7 @@ input[type=text]:-ms-input-placeholder {
 }
 
 .alert-danger {
-  background-color: #FCDDDC;
+  background-color: rgb(254.0131578947, 243.8157894737, 243.4868421053);
   border-left: 0.333rem solid #E14543;
 }
 
@@ -10969,7 +10969,7 @@ input[type=text]:-ms-input-placeholder {
 }
 
 .alert-success {
-  background-color: #F1F5D7;
+  background-color: rgb(250.996, 252.14, 243.56);
   border-left: 0.333rem solid #2E7D33;
 }
 
@@ -11015,7 +11015,7 @@ input[type=text]:-ms-input-placeholder {
 }
 
 .alert-warning {
-  background-color: #FDE7BF;
+  background-color: rgb(255, 252.2173913043, 242.2);
   border-left: 0.333rem solid #F79D00;
 }
 
@@ -11112,7 +11112,7 @@ input[type=text]:-ms-input-placeholder {
   align-self: center;
 }
 .recuadro-destacado .media .h5,
-.recuadro-destacado .media p.h5,
+.recuadro-destacado .media *.h5,
 .recuadro-destacado .media h5 {
   margin-top: 0.5em;
   margin-bottom: 0.5em;
