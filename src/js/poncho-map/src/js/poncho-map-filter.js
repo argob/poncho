@@ -272,7 +272,7 @@ class PonchoMapFilter extends PonchoMap {
             if(entry.properties.hasOwnProperty(key)){
                 return entry.properties[key];
             }
-        }).filter(e => e);
+        }).filter(Boolean);
 
         const obj = [...new Set(entries)]
                 .map(item => [key, item, [item], status]);
@@ -486,22 +486,26 @@ class PonchoMapFilter extends PonchoMap {
         const fields_container = document.createElement("div");
         fields_container.className = `js-filters${this.scope_sufix}`;
 
-        const close_button = document.createElement("button");
-        close_button.classList.add(
+        // Icono para el botón 
+        const icon = document.createElement("i");
+        icon.classList.add("pmi", "pmi-close");
+        icon.ariaHidden = "true";
+
+        const closeButton = document.createElement("button");
+        closeButton.classList.add(
             "btn", "btn-xs",
             "btn-secondary",
             "btn-close",
             `js-close-filter${this.scope_sufix}`
         );
-        close_button.title = "Cerrar panel";
-        close_button.setAttribute("role", "button");
-        close_button.setAttribute("aria-label", "Cerrar panel de filtros");
-        close_button.innerHTML = "<span class=\"pm-visually-hidden\">Cerrar </span>✕";
-
+        closeButton.title = "Cerrar panel";
+        closeButton.setAttribute("role", "button");
+        closeButton.setAttribute("aria-label", "Cerrar panel de filtros");
+        closeButton.appendChild(icon);
 
         const form = document.createElement("form");
         form.classList.add(`js-formulario${this.scope_sufix}`);
-        form.appendChild(close_button); 
+        form.appendChild(closeButton); 
         form.appendChild(fields_container); 
 
         const container = document.createElement("div");
@@ -774,7 +778,7 @@ class PonchoMapFilter extends PonchoMap {
     _search = (entry, group, index) => {
         const filter = this._fieldsToUse(this.filters[group])[index];
         const search_for = filter[2];
-        const found = search_for.filter(i => i).some(e => {
+        const found = search_for.filter(Boolean).some(e => {
             if(entry.hasOwnProperty(filter[0])){
                 return entry[filter[0]].includes(e)
             }

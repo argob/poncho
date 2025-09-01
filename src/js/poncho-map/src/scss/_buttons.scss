@@ -6,9 +6,9 @@
         background-image: none;
         width: auto;
         height: auto;
-        top: 0.75rem;
-        right: 0.75rem;
-        background-color: transparent;
+        top: var(--pm-slider-distance);
+        right: var(--pm-slider-distance);
+        background-color: rgb(0 0 0 / 0.1);
         color: var(--pm-color-base);
     }
 
@@ -20,6 +20,28 @@
         height: 40px;
         border-radius: 50%;
     }
+
+    .pm-btn-xs {
+        font-size: 14px;
+    padding: 1px 5px;
+    }
+
+ .btn {
+
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 10px;
+
+  text-transform: inherit;
+  vertical-align: top;
+  white-space: normal;
+  word-break: initial;
+  text-decoration: none;
+  letter-spacing: inherit;
+  border-radius: 30px;
+  line-height: 1.42857143;
+ }
+
 
     .pm-btn {
         background: var(--pm-slider-background, white);

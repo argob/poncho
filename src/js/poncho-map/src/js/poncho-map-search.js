@@ -141,17 +141,22 @@ class PonchoMapSearch {
      * @returns {undefined}
      */
     searchTerm = (term) => {
-        if(typeof term !== "string" || term.trim() == ""){
+        // if(typeof term !== "string" || term.trim() == ""){
+        if(this.instance.isEmtpyString(term)){
             console.error(
                 "searchTerm", 
                 "El término de búsqueda no puede estar vacío.");
             return;
         }
         
-        const search_value = document
-            .querySelector(`#js-search-input${this.instance.scope_sufix}`);
-        search_value.value = term;
+        const hiddenInputselector = `#js-search-input${this.instance.scope_sufix}`;
+        const filterValue = document.querySelectorAll(hiddenInputselector);
+        filterValue.forEach(element => element.value = term);
         
+        const searchInputSelector = `#id-poncho-map-search${this.scope_sufix}`;
+        const searchInput = document.querySelectorAll(searchInputSelector);
+        searchInput.forEach(element => element.value = term);
+
         this.instance._resetSearch();
         this._renderSearch(term);
     };
