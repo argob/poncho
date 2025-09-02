@@ -15,7 +15,7 @@
     <link rel="stylesheet"
         href="https://capacita-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css?rfqjsh">
     <link rel="stylesheet" href="../../../../dist/css/poncho.min.css" />
-  
+
     <!-- 
         Script para debug 
         Se reemplazan en producción por poncho.min.js
@@ -109,7 +109,7 @@ COPIAR DESDE ACÁ…
     const gdata = Object.keys(sheet_data.aPDs).map(e => sheet_data.aPDs[e]).flat();
     // map options
     const options = {
-        error_reporting: 1,
+        error_reporting: 0,
         // throw_exceptions: 1,
         template: template_punto_digital,
         title:"nombre",
@@ -178,7 +178,7 @@ COPIAR DESDE ACÁ…
         _map_style: {
             "slider-width": "calc((100% / 7) * 3 - 20px)"
         },
-        map_align: "left",
+        // map_align: "left",
         // theme_tool: false,
         open_maps: true,
         // map_init_options: {

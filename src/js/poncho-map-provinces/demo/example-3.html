@@ -115,7 +115,13 @@ COPIAR DESDE ACÁ…
 <script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
 <!-- / INCLUDE SCRIPTS -->
 
-
+<style>
+     @media (max-width: 992px) {
+        .poncho-map[data-scope="poncho-map"] {
+           --pm-slider-width: calc(100% - 20px);
+        }
+     }
+</style>
 <!-- SCRIPTS -->
 <script>
 // URL temporal
@@ -188,15 +194,16 @@ fetch_json(newJson, { headers: {"Accept": "application/json"}}).then(geoProvince
             overlay_image: true, // ture habilita tener una imagen sobre e mapa
             overlay_image_opacity: 1, // Opacidad de la imagen sobre el mapa.
             overlay_image_url: "https://qa2-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/img/map-shadow-antartida.png",
-            hide_select: false, // Si es true el select NO se muestra
+            hide_select: true, // Si es true el select NO se muestra
             toggle_select: false, // Para mapa con texto fuera del componente. Activa o desactiva el select en función de dispositivo.
             theme_tool: true,
             fit_bounds: false,
             map_opacity: 0,
             map_align: "left",
-            map_style: {
-                "slider-width": "calc( (100% / 5) * 2 - 20px)"
-            },
+            // map_style: {
+            //     "slider-width": "calc(100% - 20px); @media (max-width: 575.98px) {} "
+            // },
+            breakpoint_fraction:  {sm: "1:4",md: "1:4",lg: "1:4",xl: "2:7"}
         };
 
         // Instancia para controlar ponchoMap con filtro por provincias.
@@ -207,6 +214,9 @@ fetch_json(newJson, { headers: {"Accept": "application/json"}}).then(geoProvince
     });
 });
 </script>
+
+
+
 <!-- / SCRIPTS -->
 </body>
 </html>

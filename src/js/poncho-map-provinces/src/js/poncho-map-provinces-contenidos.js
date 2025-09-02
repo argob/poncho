@@ -85,6 +85,7 @@ const __templateStructure = (headers) => {
                 }
             });
         })(),
+        // map_align: "left",
         title_classlist: ["h3", "m-b-1", "m-t-0"],
         term_classlist: ["h5", "m-b-05"], 
         lead: {
