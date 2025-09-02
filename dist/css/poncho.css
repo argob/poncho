@@ -12058,7 +12058,7 @@ Las clases "dato-nro" y "dato-eje" corresponde a los formatos markdown definidos
   width: var(--pm-tools-width);
   padding-right: var(--pm-content-padding);
   padding-left: var(--pm-content-padding);
-  padding-top: calc(var(--pm-content-padding) * 2);
+  padding-top: calc(var(--pm-content-padding) * 3);
   padding-bottom: var(--pm-content-padding);
   box-shadow: var(--pm-slider-shadow);
   color: var(--pm-color-base);
