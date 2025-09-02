@@ -141,8 +141,7 @@ class PonchoMapSearch {
      * @returns {undefined}
      */
     searchTerm = (term) => {
-        // if(typeof term !== "string" || term.trim() == ""){
-        if(this.instance.isEmtpyString(term)){
+        if(this.instance.isEmptyString(term)){
             console.error(
                 "searchTerm", 
                 "El término de búsqueda no puede estar vacío.");
@@ -203,7 +202,7 @@ class PonchoMapSearch {
      * @returns {undefined}
      */
     _renderSearch = (term) => {
-        if(typeof term !== "string" || term.trim() == ""){
+        if(this.instance.isEmptyString(term)){
             console.error(
                 "_renderSearch", 
                 "El término de búsqueda no puede estar vacío.");

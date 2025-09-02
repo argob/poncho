@@ -232,7 +232,7 @@ class PonchoMapFilter extends PonchoMap {
         pos.style.maxHeight = `${filters_height}px`;
 
         // Valor tomado de la hoja de estilos
-        const inner_padding = 45;
+        const inner_padding = 55;
         const height = pos.offsetHeight - inner_padding;
         const filters = document.querySelector(`.js-filters${this.scope_sufix}`);
         filters.style.height = `${height}px`;
