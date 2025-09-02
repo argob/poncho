@@ -113,6 +113,7 @@ COPIAR DESDE ACÁ…
 <script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script>
 <link href="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.css" rel="stylesheet"/> 
 <script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
+<script src="../src/js/poncho-map-provinces-contenidos.js"></script>
 <!-- / INCLUDE SCRIPTS -->
 
 <style>
@@ -124,6 +125,7 @@ COPIAR DESDE ACÁ…
 </style>
 <!-- SCRIPTS -->
 <script>
+    var map;
 // URL temporal
 const geoJSON = "https://gist.githack.com/agustinbouillet/" 
     + "a5cdf04c6b19ed248aa85b27deaee6a2/raw/"
@@ -138,29 +140,32 @@ fetch_json(newJson, { headers: {"Accept": "application/json"}}).then(geoProvince
     const gapi = new GapiSheetData();
     fetch_json(
         gapi.url(
-            "dataset3", //<<< Nombre de la solapa en Google Sheets. Preferentemente, sin espacios y acentos.
-            "1qEJoLbtJwq_6i3e8R_Q85xK_ZZ5-Iu5Tu8BAnp2V1N4" //<<< ID del documento en Google Sheets.
+            "mapa_publicado", //<<< Nombre de la solapa en Google Sheets. Preferentemente, sin espacios y acentos.
+            // "dataset3", //<<< Nombre de la solapa en Google Sheets. Preferentemente, sin espacios y acentos.
+            // "1qEJoLbtJwq_6i3e8R_Q85xK_ZZ5-Iu5Tu8BAnp2V1N4" //<<< ID del documento en Google Sheets.
+            "1UHfminuVxxmn1VIqo4DE2kKN5TXnj34WVBMCwnmW5vo" //<<< ID del documento en Google Sheets.
         )        
     ).then(googlesheet_data => {
         const gapi_data = gapi.json_data(googlesheet_data);
         const {entries, headers} = gapi_data;
         const options = {
-            id_mixing: ["in1", "nam"], // Permite configurar cómo debe ser el ID en la URL.
+            _id_mixing: ["in1", "nam"], // Permite configurar cómo debe ser el ID en la URL.
             // content_selector: ".js-pm-text-content", // Nombre de la clase o id dónde se imprime el contenido.
             scope: "poncho-map",
             title: "nam",
             template_markdown: true, // Habilita el uso del markdown.
             allowed_tags: ["*"], // Habilita etiquetas HTML.
-            headers:{
+            headers: headers,
+            _id_mixing:{
                 ...headers, 
                 ...{"subtitulos--ignore": "", description: "", img: "", content: "", region: "Región"}
             },
-            template:(self, entry) => {
+            _template:(self, entry) => {
                 entry["img"] = entry.image ? `<div class="img"><img src="${entry.image}"></img>` : false;
                 entry["content"] = `<hr><div class="row">${entry["subtitulos--ignore"]}</div>`;
                 return self.defaultTemplate(self, entry); 
             },
-            template_structure: {
+            _template_structure: {
                 values: ["img", "description", "capital", "population", "surface", "web", /*"content"*/ ],
                 title_classlist: ["h2","text-cielo"],
                 term_classlist: ["h5", "text-cielo"],
@@ -172,7 +177,7 @@ fetch_json(newJson, { headers: {"Accept": "application/json"}}).then(geoProvince
                         + "font-size:small;"
                 },  
             },
-            filters: [
+            _filters: [
                 {
                     legend: "Filtrar por título",
                     field: ["region", "checked"],
@@ -182,7 +187,7 @@ fetch_json(newJson, { headers: {"Accept": "application/json"}}).then(geoProvince
             ],
             tooltip: true, // Tooltip en marker o región
             hash: true, // Permite abrir un item via URL.
-            province_index: "provincia", // Nombre de la columna con el nombre de la provincia
+            province_index: "filtro-provincia", // Nombre de la columna con el nombre de la provincia
             fit_bounds_onevent: false, // true hace zoom en la provincia cuando se utilia el select o por url
             theme_ui: "default", // tema del slider y control de zoom
             theme_map: "defaul", // Tema del mapa
@@ -193,12 +198,12 @@ fetch_json(newJson, { headers: {"Accept": "application/json"}}).then(geoProvince
             // random_entry: true, // Permite que la página se cargue con una entrada aleatoria.
             overlay_image: true, // ture habilita tener una imagen sobre e mapa
             overlay_image_opacity: 1, // Opacidad de la imagen sobre el mapa.
-            overlay_image_url: "https://qa2-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/img/map-shadow-antartida.png",
+            _overlay_image_url: "https://qa2-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/img/map-shadow-antartida.png",
             hide_select: true, // Si es true el select NO se muestra
             toggle_select: false, // Para mapa con texto fuera del componente. Activa o desactiva el select en función de dispositivo.
             theme_tool: true,
             fit_bounds: false,
-            map_opacity: 0,
+            map_opacity: 1,
             map_align: "left",
             // map_style: {
             //     "slider-width": "calc(100% - 20px); @media (max-width: 575.98px) {} "
@@ -208,7 +213,7 @@ fetch_json(newJson, { headers: {"Accept": "application/json"}}).then(geoProvince
 
         // Instancia para controlar ponchoMap con filtro por provincias.
         // const provinces = new PonchoMapProvinces(options);
-        map = new PonchoMapProvinces(geoProvinces, entries, options);
+        map = new ponchoMapProvincesCustom(geoProvinces, entries, options);
         map.renderProvinceMap();
         loader.close();
     });

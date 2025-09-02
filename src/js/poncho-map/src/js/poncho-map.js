@@ -1820,7 +1820,6 @@ class PonchoMap {
         const sliderElement = document.querySelector(animationSelector);
 
         if (!sliderElement) {
-            console.warn(`No se encontró el elemento con el selector: ${sliderSelector}`);
             return;
         }
 
@@ -1829,10 +1828,6 @@ class PonchoMap {
             return;
         }
 
-        // const animation = document.querySelector(`div${animationSelector}`);
-        // if(!animation){
-        //     return;
-        // }
         sliderElement.addEventListener("animationend", (event) => {
             if (event.animationName === "open") {
                 // pach para detectar el movimiento de <details>
@@ -2420,10 +2415,10 @@ class PonchoMap {
         }
 
         const {
-            key=false, css="small", style=false
+            key="", css="small", style=false
         } = this.template_structure.lead;
 
-        if(!entry[key].trim()){
+        if(!entry.hasOwnProperty(key)){
             return;
         }
 
