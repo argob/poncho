@@ -44,18 +44,13 @@ class PonchoMapFilter extends PonchoMap {
             filters_info: false,
             search_fields: [],
             messages: {
-                reset: " <a href=\"#\" class=\"{{reset_search}}\" "
-                        + "title=\"Restablece el mapa a su estado inicial\" "
-                        + "aria-label=\"Restablecer valores del mapa\">"
-                        + "Restablecer mapa</a>",
-                initial: "Hay {{total_results}} puntos en el mapa.",
-                no_results_by_term: "No encontramos resultados para tu búsqueda.",
-                no_results: "No s + this.messages.resete encontraron entradas.",
-                results: "{{total_results}} resultados coinciden con tu búsqueda.",
-                one_result: "{{total_results}} resultado coincide con tu búsqueda.",
-                has_filters: "<i title=\"¡Advertencia!\" aria-hidden=\"true\" "
-                        + "class=\"fa fa-warning text-danger\"></i> "
-                        + "Se están usando filtros."
+                reset: "filter_reset_values_link",
+                initial: "filter_initial",
+                no_results_by_term: "filter_no_results_by_term",
+                no_results: "filter_no_results",
+                results: "filter_results",
+                one_result: "filter_one_result",
+                has_filters: "filters_has"
             }
         };
         let opts = Object.assign({}, defaults, options);
@@ -67,8 +62,8 @@ class PonchoMapFilter extends PonchoMap {
         this.messages = opts.messages;
         this.accesible_menu_filter = [
             {
-                label: "Restablecer mapa",
-                aria_label: "Restablecer valores del mapa",
+                label: "filters_reset",
+                aria_label: "filters_aria_label_reset",
                 link: "#",
                 css: [`js-poncho-map-reset${this.scope_sufix}`],
             },
@@ -123,43 +118,51 @@ class PonchoMapFilter extends PonchoMap {
             // Estado inicial. Totalidad de registros.
             if(values.total_entries === values.total_results){
                 ul.appendChild(
-                    li(this.tplParser(this.messages.initial, values))
+                    li(this._t(this.messages.initial, values))
                 );
             }
             // 0 entradas con criterio de búsqueda.
             else if(values.total_results < 1){
                 ul.appendChild(
-                    li(this.tplParser(this.messages.no_results_by_term 
-                                    + this.messages.reset, values))
+                    li(
+                        this._t(this.messages.no_results_by_term, values)
+                        + this._t(this.messages.reset, values)
+                    )
                 );
             }
             // 0 entradas, sin creterio de búsqueda.
             else if(this.inputSearchValue === "" && values.total_results < 1){
                 ul.appendChild(
-                    li(this.tplParser(this.messages.no_results 
-                                    + this.messages.reset, values))
+                    li(
+                        this._t(this.messages.no_results, values) 
+                        + this._t(this.messages.reset, values)
+                    )
                 );
             }
             // Si solo hay un resultado
             else if(values.total_results == 1){
                 ul.appendChild(
-                    li(this.tplParser(this.messages.one_result 
-                                    + this.messages.reset, values))
+                    li(
+                        this._t(this.messages.one_result, values)
+                        + this._t(this.messages.reset, values)
+                    )
                 );
             }
             // Si hay más de un resultado
             else if(values.total_results > 1){
                 ul.appendChild(
-                    li(this.tplParser(this.messages.results 
-                                    + this.messages.reset, values))
+                    li(
+                        this._t(this.messages.results, values) 
+                        + this._t(this.messages.reset, values)
+                    )
                 );
             }
             // Si los resultados están siendo filtrados.
-            //if(!this.usingFilters()){
-                // ul.appendChild(
-                //     li(this.tplParser(this.messages.has_filters, values))
-                // );
-            //}
+            // if(!this.usingFilters()){
+            //     ul.appendChild(
+            //         li(this._t(this.messages.has_filters, values))
+            //     );
+            // }
             element.appendChild(ul);
         });
     };
