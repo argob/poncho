@@ -6,7 +6,7 @@
  * @author Agustín Bouillet <bouilleta@jefatura.gob.ar>
  * @requires leaflet.js,leaflet.markercluster.js,leaflet.css,utils.js,
  * MarkerCluster.Default.css,MarkerCluster.css
- * @see https://github.com/argob/poncho/blob/master/src/demo/poncho-maps/readme-poncho-maps.md
+ * @see https://github.com/argob/poncho/tree/master/src/js/poncho-map
  * @see https://geojson.org/
  * @see https://leafletjs.com/
  *
@@ -42,16 +42,13 @@ const PM_TRANSLATE = {
         cluster_large: "Grupo grande de {{count}} ubicaciones",
         cluster_medium: "Grupo mediano de {{count}} ubicaciones",
         cluster_small: "Grupo chico de {{count}} ubicaciones",
-
         map_exit: "Salir del mapa",
         map_help_us: "Ayudá a mejorar el mapa",
         map_fit_bounds: "Ajustar marcadores al mapa",
         map_full_view: "Ver mapa completo",
         map_goto_markers: "Ir a los marcadores del mapa",
-        
         openmap_aria_label: "Abrir el punto geográfico en un mapa alternativo",
         openmap_label: "Abrir en:",
-
         theme_aria_label_panel: "Herramienta para cambiar de tema visual",
         theme_change: "Cambiar tema del mapa",
         theme_description_contrast: "Fondo oscuro con bordes blancos.",
@@ -66,12 +63,10 @@ const PM_TRANSLATE = {
         theme_name_relax: "Relax",
         theme_open_panel: "Abre el panel de temas",
         theme_reset: "Restablece el tema del mapa a su configuración original",
-        
         zoom_aria_label_panel: "Herramientas de zoom",
         zoom_goto_panel: "Ir a la herramienta de zoom",
         zoom_in: "Acercar",
         zoom_out: "Alejar",
-
         filter_reset_values_link: ` <a href="#" class="{{reset_search}}"` 
                         + `aria-label="Restablecer valores del mapa">`
                         + "Restablecer mapa</a>",
@@ -83,7 +78,6 @@ const PM_TRANSLATE = {
         filters_has: "Se están usando filtros.",
         filters_reset: "Restablecer mapa",
         filters_aria_label_reset: "Restablecer valores del mapa",
-
         search_data: "Hacer una búsqueda",
         search_placeholder: "Su búsqueda",
     },
@@ -212,15 +206,21 @@ class PonchoMap {
                 aria_label: "openmap_aria_label",
                 items: [
                     {
-                        link: "https://mapa.ign.gob.ar/beta/?zoom=17&lat={{latitude}}&lng={{longitude}}&layers=argenmap&marker={{latitude}},{{longitude}}",
-                        label: `<abbr lang="es" title="Instituto Geográfico Nacional">IGN</abbr> – ArgenMap`,
+                        link: new URL(
+                            "/beta/?zoom=17&lat={{latitude}}&lng={{longitude}}&layers="
+                            + "argenmap&marker={{latitude}},{{longitude}}",
+                            "https://mapa.ign.gob.ar").href,
+                        label: `<abbr lang="es" title="Instituto Geográfico `
+                            + `Nacional">IGN</abbr> – ArgenMap`,
                         lang: "es",
                         hreflang: "es",
                         rel: ["alternate"],
                         aria_label: false,
                     },
                     {
-                        link: 'https://www.google.com/maps/search/?api=1&query={{latitude}},{{longitude}}',
+                        link: new URL(
+                            "/maps/search/?api=1&query={{latitude}},{{longitude}}", 
+                            "https://www.google.com").href,
                         label: "Google maps",
                         lang: "en",
                         hreflang: false,
@@ -228,7 +228,9 @@ class PonchoMap {
                         aria_label: false,
                     },
                     {
-                        link: "https://maps.apple.com/?q={{latitude}},{{longitude}}",
+                        link: new URL(
+                            "/?q={{latitude}},{{longitude}}", 
+                            "https://maps.apple.com").href,
                         label: "Apple maps",
                         lang: "en",
                         hreflang: "en",
@@ -237,7 +239,10 @@ class PonchoMap {
                         aria_label: false,
                     },
                     {
-                        link: "https://www.openstreetmap.org/?mlat={{latitude}}&mlon={{longitude}}#map=16/{{latitude}}/{{longitude}}",
+                        link: new URL(
+                            "/?mlat={{latitude}}&mlon={{longitude}}"
+                            + "#map=16/{{latitude}}/{{longitude}}", 
+                            "https://www.openstreetmap.org").href,
                         label: "Open street maps",
                         lang: "en",
                         hreflang: "en",
@@ -376,30 +381,51 @@ class PonchoMap {
         this.map_style = opts.map_style;
         this.accesible_menu_extras = opts.accesible_menu_extras;
         this.geojson;
-        // OSM
-        const osmAttributionLink = `<a hreflang="en" `
-            + `href="https://www.openstreetmap.org/copyright">`
-            + `<abbr lang="en" title="Open Street Map">OSM</abbr></a>`;
-        const ersiAttributionLik = `Mapas satelitales ` 
-            + `© <a hreflang="es" href="https://www.esri.com/es-es/home">`
-            + `<abbr lang="en" title="Environmental Systems Research Institute">`
-            + `Esri</abbr></a>`;
-        const ignAttributionLink = `<a hreflang="es" `
-            + `href="https://www.ign.gob.ar/AreaServicios/Argenmap/Introduccion">`
-            + `<abbr lang="es" title="Instituto Geográfico Nacional">IGN</abbr>`
-            + `</a>`;
-        const attributionHeading = `<span class="sr-only">Contribuidores: </span>`;
-        this.prefix = `<a hreflang="en" href="https://leafletjs.com/" `
-            + `title="Biblioteca JavaScript para mapas interactivos">`
-            + `Leaflet</a>`;
+
+        // Map tiles
         this.ersiURL ='https://server.arcgisonline.com/arcgis/rest/services/'
             + 'World_Imagery/MapServer/tile/{z}/{y}/{x}';
-        this.ersiAttribution = (attributionHeading
-            + [ersiAttributionLik].join(", "));
-
-        this.osmAttribution = (attributionHeading
-            + [ignAttributionLink, osmAttributionLink].join(", "));
         this.osmURL = "https://mapa-ign.argentina.gob.ar/osm/{z}/{x}/{-y}.png";
+
+        // Attribution settings
+        const attributions = {
+            ign: {
+                link: "https://www.ign.gob.ar/AreaServicios/Argenmap/Introduccion",
+                label: `<abbr lang="es" title="Instituto Geográfico Nacional">IGN</abbr>`,
+                lang: "es",
+                hreflang: "es"
+            },
+            ersi: {
+                link: "https://www.esri.com/es-es/home",
+                label: `© <abbr lang="en" title="Environmental Systems Research Institute">Esri</abbr>`,
+                lang: "en",
+                hreflang: "es"
+            },
+            osm: {
+                link: "https://www.openstreetmap.org/copyright",
+                label: `<abbr lang="en" title="Open Street Map">OSM</abbr>`,
+                lang: "en",
+                hreflang: "en"
+            },
+            leaflet: {
+                link: "https://leafletjs.com/",
+                label: "Leaflet",
+                lang: "en",
+                hreflang: "en",
+                title: "Biblioteca JavaScript para mapas interactivos",
+            }
+        };
+
+        // Attribution links
+        const {leaflet, ersi, ign, osm} = attributions;
+        this.prefix = this.addAnchorElement(leaflet, "html");
+        this.ersiAttribution = `Contribuidores: `
+                + `${this.addAnchorElement(ersi, "html")}`;
+        this.osmAttribution = `Contribuidores: `
+                + `${this.addAnchorElement(ign, "html")}, `
+                + `${this.addAnchorElement(osm, "html")}`;
+
+        // Layer set
         this.layerViewSettings = {
             satelital:{
                 label: "Mapa satelital",
@@ -415,14 +441,22 @@ class PonchoMap {
             }
         };
 
+        // Bloquea el componente si no existe leaflet.
         if (typeof L === "undefined" || !L.hasOwnProperty("map")){
+            const helpLink = {
+                link: "https://leafletjs.com/examples/quick-start/",
+                label: "<em>Quick start</em>",
+                lang: "en",
+                hreflang: "en",
+                target: "_blank"
+            }
             this.showAlert({
                 title: "No se encuentra el componenete Leaflet",
                 messages: [
-                    "Verifique que <strong>Leaflet</strong>, esté incluido en el documento HTML.",
-                    `Lea las indicaciones para usar el componente <em>leaflet</em> en: 
-                    <a href="https://leafletjs.com/examples/quick-start/" 
-                    hreflang="en">https://leafletjs.com/examples/quick-start/</a>.`,
+                    "Verifique que <strong>Leaflet</strong>, esté incluido "
+                    + "en el documento HTML.",
+                    `Lea las indicaciones para usar el componente leaflet `
+                    + `en: ${this.addAnchorElement(helpLink, "html")}.`,
                 ]
             }, "danger", true);
         }
@@ -489,8 +523,6 @@ class PonchoMap {
 
         const replaceDef = (this.dictionary.hasOwnProperty(definition) ? 
                 this.dictionary[definition] : definition);
-
-        console.log(definition, '---->', replaceDef, '- - ', this.tplParser(replaceDef, tpl))
 
         // if(!this.isEmptyObject(tpl)){
         return this.tplParser(replaceDef, tpl);
@@ -790,7 +822,7 @@ class PonchoMap {
      * para otros atributos personalizados.
      * @returns {HTMLAnchorElement}
      */
-    addAnchorElement = (options) => {
+    addAnchorElement = (options, output="object") => {
         const {
             id,
             title,
@@ -863,7 +895,7 @@ class PonchoMap {
             .forEach(([key, value]) => 
                 element.setAttribute(`data-${key}`, value));
 
-        return element;
+        return output == "html" ? element.outerHTML : element;
     };
 
 

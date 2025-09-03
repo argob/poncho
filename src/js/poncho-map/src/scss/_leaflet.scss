@@ -43,8 +43,6 @@
         font-weight: normal;
     }
 
-    
-
     /* leaflet popup */
     // previene el margen en p
     .leaflet-popup {
@@ -58,16 +56,17 @@
         .leaflet-popup-content-wrapper {
             border-radius: var(--pm-slider-radius);
         }
-        
-        .leaflet-popup-tip-container{
+
+        .leaflet-popup-tip-container {
             margin-top: calc(var(--pm-slider-border-width) * -1) !important;
-        } 
+        }
         .leaflet-popup-content-wrapper,
         .leaflet-popup-tip {
             background: var(--pm-slider-background);
             color: var(--pm-color-base);
-            
-            border: var(--pm-slider-border-width) solid var(--pm-slider-border-color);
+
+            border: var(--pm-slider-border-width) solid
+                var(--pm-slider-border-color);
 
             .leaflet-popup-content {
                 width: calc(100% - 26px);
@@ -99,7 +98,8 @@
         @include borderRadius(12px);
         overflow: hidden;
         box-shadow: var(--pm-slider-shadow);
-        border: var(--pm-slider-border-width) solid var(--pm-slider-border-color);
+        border: var(--pm-slider-border-width) solid
+            var(--pm-slider-border-color);
     }
 
     .leaflet-control-zoom.leaflet-control a {
@@ -107,15 +107,14 @@
         height: 38px;
         line-height: 38px;
         color: var(--pm-color-base);
-        transition: background .15s;
+        transition: background 0.15s;
         text-decoration: none;
 
         &:hover {
             color: var(--pm-hover-color);
             background: var(--pm-hover-background);
-            transition: background .15s;
+            transition: background 0.15s;
         }
-
     }
 
     .leaflet-control-zoom-in,
@@ -127,11 +126,6 @@
     .leaflet-control-zoom-out {
         font-size: 22px;
     }
-
-
-
-
-
 
     .leaflet-touch {
         .leaflet-control-zoom-in {
@@ -157,8 +151,8 @@
     }
 
     .leaflet-container a.leaflet-popup-close-button.leaflet-popup-close-button {
-        top: 5px;
-        right: 5px;
-        color: var(--pm-color-base)
+        top: 10px;
+        right: 10px;
+        color: var(--pm-color-base);
     }
 }
