@@ -867,6 +867,8 @@ class PonchoMapFilter extends PonchoMap {
             if(target.matches(`.js-poncho-map-reset${_this.scope_sufix}`)){
                 event.preventDefault();
                 event.stopPropagation();
+                
+                _this.removeHash();
 
                 try {
                     _this._resetFormFilters();

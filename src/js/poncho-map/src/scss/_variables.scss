@@ -1,3 +1,12 @@
+@mixin borderRadius($value) {
+    -webkit-border-radius: #{$value};
+    -moz-border-radius: #{$value};
+    border-radius: #{$value};
+}
+
+
+
+
 #{$scope}  {
     --pm-slider-width: 330px;
     --pm-tools-width: 300px;
@@ -20,7 +29,7 @@
 
     --pm-slider-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     --pm-slider-distance: 10px;
-    --pm-slider-radius: 16px;
+    --pm-slider-radius: 22px;
     --pm-slider-media-mobile-height: 100%;
     
     // Colores para el tooltip

@@ -5,7 +5,7 @@
     #{$scope} {
         &:has(.slider:is(.slider--in)) {
             position: relative;
-            border-radius: calc(var(--pm-slider-radius) + var(--pm-slider-distance));
+            @include borderRadius(calc(var(--pm-slider-radius) + var(--pm-slider-distance)));
             transition: 0.4s;
 
             .leaflet-control-attribution {

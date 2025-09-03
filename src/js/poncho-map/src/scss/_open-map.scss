@@ -29,10 +29,10 @@ footer.pm-open-map {
     }
     > details > summary:focus,
     > details:focus-within {
-        border-radius: max(
+        @include borderRadius(max(
             calc(var(--pm-slider-radius) / 2),
             calc(var(--pm-slider-radius) - var(--pm-content-padding) - 2px)
-        ) !important;
+        ) !important);
         box-shadow: 0 1px calc(var(--pm-content-padding) / 2) rgb(0 0 0 / 0.3);
         outline: 2px solid var(--cielo, #039be5);
         outline-style: solid;
@@ -45,6 +45,7 @@ footer.pm-open-map {
             calc(var(--pm-slider-radius) / 2),
             calc(var(--pm-slider-radius) - var(--pm-content-padding) - 2px)
         ) !important;
+        
         box-shadow: 0 1px calc(var(--pm-content-padding) / 2) rgb(0 0 0 / 0.3);
     }
 

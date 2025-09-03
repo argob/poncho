@@ -3,7 +3,7 @@
     &--message {
         padding: 15px;
         font-size: smaller;
-        border-radius: 3px;
+        @include borderRadius(3px);
         border-left: 6px solid #444;
         margin: 1em 0;
         color: #444;
