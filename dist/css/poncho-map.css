@@ -349,7 +349,7 @@ html {
   --pm-slider-border-width: 1px;
   --pm-slider-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   --pm-slider-distance: 10px;
-  --pm-slider-radius: 16px;
+  --pm-slider-radius: 22px;
   --pm-slider-media-mobile-height: 100%;
   --pm-tooltip: #333;
   --pm-tooltip-color: white;
@@ -393,6 +393,8 @@ html {
 .poncho-map--message {
   padding: 15px;
   font-size: smaller;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
   border-radius: 3px;
   border-left: 6px solid #444;
   margin: 1em 0;
@@ -465,6 +467,8 @@ html {
   height: var(--pm-loader-spinner-size);
   border: var(--pm-loader-spinner-weight) solid var(--pm-loader-spinner-background);
   border-bottom-color: var(--pm-loader-spinner-color);
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
   border-radius: 50%;
   display: inline-block;
   box-sizing: border-box;
@@ -491,6 +495,8 @@ html {
 }
 .poncho-map *:focus,
 .poncho-map .focus-element:focus {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
   border-radius: 3px;
   box-sizing: border-box;
   box-shadow: 0 0 8px var(--cielo, #039be5) !important;
@@ -503,9 +509,14 @@ html {
   box-shadow: var(--pm-slider-shadow);
   background-color: var(--pm-slider-background);
   color: var(--pm-color-base);
+  -webkit-border-radius: var(--pm-slider-radius);
+  -moz-border-radius: var(--pm-slider-radius);
   border-radius: var(--pm-slider-radius);
   transform-style: preserve-3d;
   border: var(--pm-slider-border-width) solid var(--pm-slider-border-color);
+  padding: 0;
+  margin: unset;
+  inset-inline-start: unset;
 }
 .poncho-map .pm-container article {
   border: none;
@@ -560,6 +571,8 @@ html {
   color: var(--pm-color-base);
   margin-bottom: 2px;
   padding: calc(var(--pm-slider-distance) / 3 * 2) var(--pm-slider-distance);
+  -webkit-border-radius: calc(var(--pm-slider-radius) - var(--pm-slider-distance));
+  -moz-border-radius: calc(var(--pm-slider-radius) - var(--pm-slider-distance));
   border-radius: calc(var(--pm-slider-radius) - var(--pm-slider-distance));
   transition: background 0.15s;
   text-decoration: none;
@@ -725,6 +738,8 @@ html {
   */
 }
 .poncho-map .btn-close {
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
   border-radius: 50%;
   aspect-ratio: 1/1;
   position: absolute;
@@ -740,6 +755,8 @@ html {
   aspect-ratio: 1/1;
   width: 40px;
   height: 40px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
   border-radius: 50%;
 }
 .poncho-map .pm-btn-xs {
@@ -756,6 +773,8 @@ html {
   word-break: initial;
   text-decoration: none;
   letter-spacing: inherit;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
   border-radius: 30px;
   line-height: 1.42857143;
 }
@@ -770,6 +789,8 @@ html {
   text-align: center;
 }
 .poncho-map .pm-btn:focus {
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
   border-radius: 50%;
 }
 .poncho-map .pm-btn:hover {
@@ -781,6 +802,8 @@ html {
 }
 .poncho-map .select-items__button {
   font-size: 0.75rem;
+  -webkit-border-radius: 9px;
+  -moz-border-radius: 9px;
   border-radius: 9px;
   padding: 1px 0.75em;
   margin: 0 2px;
@@ -891,6 +914,8 @@ html {
   border: 2.5px solid #eaeaea;
   background: #111;
   padding: var(--pm-slider-distance);
+  -webkit-border-radius: var(--pm-slider-radius);
+  -moz-border-radius: var(--pm-slider-radius);
   border-radius: var(--pm-slider-radius);
   box-shadow: var(--pm-slider-shadow);
 }
@@ -991,6 +1016,8 @@ html {
   border: none;
 }
 .poncho-map .leaflet-control-zoom.leaflet-bar {
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: var(--pm-slider-shadow);
@@ -1046,6 +1073,8 @@ html {
 @media (max-width: 575.98px) {
   .poncho-map:has(.slider:is(.slider--in)) {
     position: relative;
+    -webkit-border-radius: calc(var(--pm-slider-radius) + var(--pm-slider-distance));
+    -moz-border-radius: calc(var(--pm-slider-radius) + var(--pm-slider-distance));
     border-radius: calc(var(--pm-slider-radius) + var(--pm-slider-distance));
     transition: 0.4s;
   }
@@ -1381,6 +1410,8 @@ footer.pm-open-map > details > summary:before {
 }
 footer.pm-open-map > details > summary:focus,
 footer.pm-open-map > details:focus-within {
+  -webkit-border-radius: max(var(--pm-slider-radius) / 2, var(--pm-slider-radius) - var(--pm-content-padding) - 2px) !important;
+  -moz-border-radius: max(var(--pm-slider-radius) / 2, var(--pm-slider-radius) - var(--pm-content-padding) - 2px) !important;
   border-radius: max(var(--pm-slider-radius) / 2, var(--pm-slider-radius) - var(--pm-content-padding) - 2px) !important;
   box-shadow: 0 1px calc(var(--pm-content-padding) / 2) rgba(0, 0, 0, 0.3);
   outline: 2px solid var(--cielo, #039be5);

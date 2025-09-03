@@ -4949,35 +4949,46 @@ if (typeof exports !== "undefined") {
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+const PM_TRANSLATE = {
+    es: {
+        cluster_click: "Clic para hacer zoom",
+        cluster_large: "Grupo grande de {{count}} ubicaciones",
+        cluster_medium: "Grupo mediano de {{count}} ubicaciones",
+        cluster_small: "Grupo chico de {{count}} ubicaciones",
+        
+        map_exit: "Salir del mapa",
+        map_fit_bounds: "Ajustar marcadores al mapa",
+        map_full_view: "Ver mapa completo",
+        map_goto_markers: "Ir a los marcadores del mapa",
+        
+        openmap_aria_label: "Abrir el punto geográfico en un mapa alternativo",
+        openmap_label: "Abrir en:",
+
+        
+        theme_aria_label_panel: "Herramienta para cambiar de tema visual",
+        theme_change: "Cambiar tema del mapa",
+        theme_description_contrast: "Fondo oscuro con bordes blancos.",
+        theme_description_dark: "Fondo oscuro con bordes blancos de contraste medio.",
+        theme_description_default: "Colores predeterminados del proveedor del mapa.",
+        theme_description_grayscale: "Mapa e interfaz en tonos de gris.",
+        theme_description_relax: "Paleta de colores suaves.",
+        theme_name_contrast: "Alto contraste",
+        theme_name_dark: "Oscuro",
+        theme_name_default: "Original",
+        theme_name_grayscale: "Gris",
+        theme_name_relax: "Relax",
+        theme_open_panel: "Abre el panel de temas",
+        theme_reset: "Restablece el tema del mapa a su configuración original",
+        
+        zoom_aria_label_panel: "Herramientas de zoom",
+        zoom_goto_panel: "Ir a la herramienta de zoom",
+        zoom_in: "Acercar",
+        zoom_out: "Alejar"
+    }
+};
 class PonchoMap {
     constructor(data, options){
         const defaults = {
-            error_reporting: false,
-            throw_exceptions: false,
-            no_info: false,
-            map_style: {},
-            title: false,
-            id: "id",
-            id_mixing: [],
-            template: false,
-            map_layers: true,
-            map_layers_default: "osm",
-            template_structure: {
-                // lead: [],
-                // header: false,
-                // title: "",
-                // mixing: [],
-                // values: [],
-                // exclude: [],
-                container_classlist: ["info-container"],
-                definition_classlist: [],
-                definition_list_classlist:["definition-list"],
-                definition_list_tag: "dl",
-                definition_tag: "dd",
-                term_classlist: ["h6", "m-b-0"],
-                term_tag: "dt",
-                title_classlist: ["h4","pm-color-primary","m-t-0"]
-            },
             accesible_menu_extras: [
                 {
                     label: "Ayudá a mejorar el mapa",
@@ -4985,49 +4996,83 @@ class PonchoMap {
                     target: "_blank"
                 }
             ],
-            fit_bounds_onevent: true,
             allowed_tags: [],
-            template_innerhtml: false,
-            template_markdown: false,
-            theme_ui: false,
-            theme_map: false,
-            theme_tool: true,
-            map_opacity: 1,
-            map_background: "#DDD",
-            theme: "default",
+            anchor_delay: 0,
+            breakpoint: {
+                lg: 992,
+                xl: 1200,
+                sm: 576,
+                md: 768,
+            },
+            breakpoint_fraction: {
+                sm: "1:4",
+                md: "1:4",
+                lg: "1:3",
+                xl: "2:7"
+            },
+            content_selector: false,
             default_themes: [
                 {
                     code: "default",
-                    name: "Original",
+                    name: "theme_name_default",
                     aria_label: false,
-                    description: "Colores predeterminados del proveedor del mapa.",
+                    description: "theme_description_default",
                 },
                 {
                     code: "contrast",
-                    name: "Alto contraste",
+                    name: "theme_name_contrast",
                     aria_label: false,
-                    description: "Fondo oscuro con bordes blancos.",
+                    description: "theme_description_contrast",
                 },
                 {
                     code: "dark",
-                    name: "Oscuro",
+                    name: "theme_name_dark",
                     aria_label: false,
-                    description: "Fondo oscuro con bordes blancos de contraste medio.",
+                    description: "theme_description_dark",
                 },
                 {
                     code: "grayscale",
-                    name: "Gris",
+                    name: "theme_name_grayscale",
                     aria_label: false,
-                    description: "Mapa e interfaz en tonos de gris.",
+                    description: "theme_description_grayscale",
                 },
                 {
                     code: "relax",
-                    name: "Relax",
+                    name: "theme_name_relax",
                     aria_label: false,
-                    description: "Paleta de colores suaves.",
+                    description: "theme_description_relax",
                 }
             ],
-            
+            error_reporting: false,
+            fit_bounds_onevent: true,
+            hash: false,
+            header_icons: [],
+            headers: {},
+            id: "id",
+            id_mixing: [],
+            lang: "es",
+            latitud: "latitud",
+            longitud: "longitud",
+            map_align: "center",
+            map_anchor_zoom: 16,
+            map_background: "#DDD",
+            map_init_options: {
+                // zoomSnap: .2,
+                // zoomControl: false,
+                // scrollWheelZoom: false,
+                // touchZoom: false,
+                // doubleClickZoom: false,
+                // scrollWheelZoom: false,
+                // boxZoom: false,
+                // dragging:false
+            },
+            map_layers: true,
+            map_layers_default: "osm",
+            map_opacity: 1,
+            map_selector: "map",
+            map_style: {},
+            map_view: [-40.44, -63.59],
+            map_zoom: 4,
             markdown_options: {
                 extensions :[
                     "details",
@@ -5043,44 +5088,7 @@ class PonchoMap {
                 simpleLineBreaks: true,
                 tables: true
             },
-            render_slider: true,
-            scope: "",
-            slider: false,
-            scroll: false,
-            hash: false,
-            headers: {},
-            header_icons: [],
-            content_selector: false,
-            map_selector: "map",
-            anchor_delay: 0,
-            slider_selector: ".slider",
-            map_view: [-40.44, -63.59],
-            map_anchor_zoom: 16,
-            map_zoom: 4,
-            min_zoom: 2,
-            map_init_options: {
-                // zoomSnap: .2,
-                // zoomControl: false,
-                // scrollWheelZoom: false,
-                // touchZoom: false,
-                // doubleClickZoom: false,
-                // scrollWheelZoom: false,
-                // boxZoom: false,
-                // dragging:false
-            },
-            reset_zoom: true,
-            latitud: "latitud",
-            longitud: "longitud",
             marker: "azul",
-            tooltip: false,
-            tooltip_options:{
-                permanent: false,
-                className: "leaflet-tooltip-own",
-                direction: "auto",
-                offset: [13,-18], 
-                sticky: false,
-                opacity: 1,
-            },
             marker_cluster_options: {
                 spiderfyOnMaxZoom: true,
                 showCoverageOnHover: false,
@@ -5094,13 +5102,16 @@ class PonchoMap {
                     "fill-opacity": 0.5
                 }
             },
+            min_zoom: 2,
+            no_info: false,
             open_maps: false,
             open_maps_options: {
-                label: "Abrir en:",
+                label: "openmap_label",
+                aria_label: "openmap_aria_label",
                 items: [
                     {
                         link: "https://mapa.ign.gob.ar/beta/?zoom=17&lat={{latitude}}&lng={{longitude}}&layers=argenmap&marker={{latitude}},{{longitude}}",
-                        label: `<abbr lang="es" title="Instituto Geográfico Nacional">IGN</abbr> – ArgenMap <small class="sr-only d-block">, El contenido podría no estar adecuado para usuarios de tecnología asistiva</small>`,
+                        label: `<abbr lang="es" title="Instituto Geográfico Nacional">IGN</abbr> – ArgenMap`,
                         lang: "es",
                         hreflang: "es",
                         rel: ["alternate"],
@@ -5133,21 +5144,54 @@ class PonchoMap {
                     },
                 ]
             },
-            breakpoint: {
-                lg: 992,
-                xl: 1200,
-                sm: 576,
-                md: 768,
+            render_slider: true,
+            reset_zoom: true,
+            scope: "",
+            scroll: false,
+            slider: false,
+            slider_selector: ".slider",
+            template: false,
+            template_innerhtml: false,
+            template_markdown: false,
+            template_structure: {
+                // lead: [],
+                // header: false,
+                // title: "",
+                // mixing: [],
+                // values: [],
+                // exclude: [],
+                container_classlist: ["info-container"],
+                definition_classlist: [],
+                definition_list_classlist:["definition-list"],
+                definition_list_tag: "dl",
+                definition_tag: "dd",
+                term_classlist: ["h6", "m-b-0"],
+                term_tag: "dt",
+                title_classlist: ["h4","pm-color-primary","m-t-0"]
             },
-            breakpoint_fraction: {
-                sm: "1:4",
-                md: "1:4",
-                lg: "1:3",
-                xl: "2:7"
-            },
-            map_align: "center"
+            theme: "default",
+            theme_map: false,
+            theme_tool: true,
+            theme_ui: false,
+            throw_exceptions: false,
+            title: false,
+            tooltip: false,
+            tooltip_options:{
+                permanent: false,
+                className: "leaflet-tooltip-own",
+                direction: "auto",
+                offset: [13,-18], 
+                sticky: false,
+                opacity: 1,
+            }
         };
+
+        // Assign options
         let opts = Object.assign({}, defaults, options);
+
+        // Set variables
+        this.lang = opts.lang;
+        this.dictionary = PM_TRANSLATE[this.lang];
         this.error_reporting = opts.error_reporting;
         this.throw_exceptions = opts.throw_exceptions;
         this.scope = opts.scope;
@@ -5220,14 +5264,16 @@ class PonchoMap {
         this.accesible_menu_filter = [];
         this.open_maps = opts.open_maps;
         this.open_maps_options = Object.assign(
-            {}, defaults.open_maps_options, options?.open_maps_options);
+            {}, 
+            defaults.open_maps_options, 
+            options?.open_maps_options
+        );
         this.breakpoint = opts.breakpoint;
         this.breakpoint_fraction = opts.breakpoint_fraction;
         this.map_align = opts.map_align;
         this.map_style = opts.map_style;
         this.accesible_menu_extras = opts.accesible_menu_extras;
         this.geojson;
-            
         // OSM
         const osmAttributionLink = `<a hreflang="en" `
             + `href="https://www.openstreetmap.org/copyright">`
@@ -5252,7 +5298,6 @@ class PonchoMap {
         this.osmAttribution = (attributionHeading
             + [ignAttributionLink, osmAttributionLink].join(", "));
         this.osmURL = "https://mapa-ign.argentina.gob.ar/osm/{z}/{x}/{-y}.png";
-
         this.layerViewSettings = {
             satelital:{
                 label: "Mapa satelital",
@@ -5268,25 +5313,138 @@ class PonchoMap {
             }
         };
 
-        this.layerViewConf = (this.map_layers_default == "satelital" && 
-            this.map_layers ? this.layerViewSettings[this.map_layers_default] : 
+        if (typeof L === "undefined" || !L.hasOwnProperty("map")){
+            this.showAlert({
+                title: "No se encuentra el componenete Leaflet",
+                messages: [
+                    "Verifique que <strong>Leaflet</strong>, esté incluido en el documento HTML.",
+                    `Lea las indicaciones para usar el componente <em>leaflet</em> en: 
+                    <a href="https://leafletjs.com/examples/quick-start/" 
+                    hreflang="en">https://leafletjs.com/examples/quick-start/</a>.`,
+                ]
+            }, "danger", true);
+        }
+
+        // Tipo de visualización
+        this.layerViewConf = (this.map_layers_default == "satelital" ? 
+            this.layerViewSettings[this.map_layers_default] : 
             this.layerViewSettings["osm"]);
 
         this.tileLayer = new L.tileLayer(this.layerViewConf.tilesUrl);
-        const mapOptions = {renderer: L.svg(), ...this.map_init_options}
+        const mapOptions = {
+            renderer: L.svg(), 
+            ...this.map_init_options,
+            zoomControl: false
+        };
+
+        // Inicializa el mapa
         this.map = new L.map(this.map_selector, mapOptions);
         this.map.setView(this.map_view, this.map_zoom);
         this.map.attributionControl.setPrefix(this.prefix);
 
+        // Redefine los valores para la herramienta zoom
+        const customZoomControl = L.control.zoom({
+            position: 'topleft',
+            zoomInText: '+',
+            zoomOutText: '-',
+            zoomInTitle: this._t("zoom_in"),
+            zoomOutTitle: this._t("zoom_out")
+        });
+        customZoomControl.addTo(this.map);
+
         // Si se importó el componente _markerCluster_, lo usa. De otro modo
         // Utiliza _FeatureGroup_ y muestra todos los markers simultáneamente.
         if(L.hasOwnProperty("markerClusterGroup")){
-            this.markers = new L.markerClusterGroup(this.marker_cluster_options);
+            this.markers = new  L.markerClusterGroup({
+                ...this.marker_cluster_options,
+                ...this.customClusters()
+            });
         } else {
             this.markers = new L.FeatureGroup();
         }
+
         this.ponchoLoaderTimeout;
     }
+
+
+    /**
+     * Dicionario de términos según el lenguaje.
+     * 
+     * @param {string} definition Clave de diccionario
+     * @param {object} tpl Objeto con clave valor a reemplazar
+     * @returns {string|undefined}
+     */
+    _t = (definition, tpl={}) => {
+        if(this.isEmptyString(definition)){
+            console.warn("_t", "Está recibiendo una definición vacía.");
+            return definition;
+        }
+
+        if(!this.isObject(tpl)) {
+            console.warn("_t", "tpl requiere un objeto clave/valor.");
+            return;
+        }
+
+        if(!this.dictionary.hasOwnProperty(definition)){
+            return definition;
+        }
+
+        if(!this.isEmptyObject(tpl)){
+            return this.tplParser(this.dictionary[definition], tpl);
+        }
+
+        return this.dictionary[definition];
+    };
+
+
+    /**
+     * Redefine los clusters
+     * @returns 
+     */
+    customClusters = () => {
+        if(!L.hasOwnProperty("divIcon")){
+            return;
+        }
+        const _this = this;
+        return {
+            iconCreateFunction: function(cluster) {
+                const count = cluster.getChildCount();
+                let sizeClass;
+                let ariaLabelText;
+
+                if (count < 10) {
+                    sizeClass = 'small';
+                } else if (count < 100) {
+                    sizeClass = 'medium';
+                } else {
+                    sizeClass = 'large';
+                }
+
+                const ariaLabels = {
+                    small: _this._t("cluster_small", {count}),
+                    medium: _this._t("cluster_medium", {count}),
+                    large: _this._t("cluster_large", {count}),
+                };
+                ariaLabelText = ariaLabels[sizeClass];
+                const classNames = [
+                    "leaflet-marker-icon",
+                    "marker-cluster",
+                    `marker-cluster-${sizeClass}`,
+                    "leaflet-zoom-animated",
+                    "leaflet-interactive",
+                ];
+                const htmlContent = `<div title="${_this._t("cluster_click")}"`
+                    + ` aria-label="${ariaLabelText}">`
+                    + `<span>${count}</span></div>`;
+
+                return L.divIcon({
+                    html: htmlContent,
+                    className: classNames.join(" "),
+                    iconSize: L.point(40, 40),
+                });
+            }
+        }
+    };
 
 
     /* VALIDATORS */
@@ -5412,7 +5570,7 @@ class PonchoMap {
         }
         headStyle(
             `ponchomap__${this.map_selector}`, 
-            `.poncho-map:has(#${this.map_selector}){${acc.join("")}}`
+            `.poncho-map${this.scope_selector} {${acc.join("")}}`
         );
     }
 
@@ -5751,7 +5909,7 @@ class PonchoMap {
 
         // contenedor enlaces
         const item = document.createElement("div");
-        item.tabindex = "-1";
+        item.tabIndex = "-1";
         item.dataset.toggle="true";
 
         // icono del menú
@@ -5761,14 +5919,14 @@ class PonchoMap {
 
         // Botón para abrir el menú.
         const button = document.createElement("button");
-        button.title = "Cambiar tema";
+        button.title = this._t("theme_change");
         button.id = `themes-tool-button${this.scope_sufix}`;
         button.tabIndex = "0";
         button.classList.add("pm-btn", "pm-btn-rounded-circle");
         button.ariaHasPopup = "true";
         button.ariaControls = "menu";
         button.role = "button";
-        button.ariaLabel = "Abre el panel de temas";
+        button.ariaLabel = this._t("theme_open_panel");
         button.appendChild(icon);
 
         const list = document.createElement("ul");
@@ -5783,8 +5941,8 @@ class PonchoMap {
         // Botón para restablecer el mapa
         const restartLinkOptions = {
             label: "Restablecer",
-            attributes: {role: "menuitem", tabindex:0},
-            aria_label: "Restablece los valores originales",
+            attributes: {role: "menuitem", tabIndex: 0},
+            aria_label: this._t("theme_reset"),
             css: ["pm-item-link", "js-reset-theme"]
         };
         const restart = this.addAnchorElement(restartLinkOptions);
@@ -5803,13 +5961,13 @@ class PonchoMap {
             const buttonThemeOptions = {
                 aria_label,
                 css: ["js-set-theme", "pm-item-link"],
-                attributes: {role: "menuitem",tabindex: 0},
+                attributes: {role: "menuitem",tabIndex: 0},
                 datasets: {theme: code}
             };
 
             // Label para el botón
             const spanName = document.createElement("span");
-            spanName.textContent = name;
+            spanName.textContent = this._t(name);
             
             const buttonTheme = this.addAnchorElement(buttonThemeOptions);
             buttonTheme.appendChild(spanName);
@@ -5817,7 +5975,7 @@ class PonchoMap {
             if(description){
                 const small = document.createElement("small");
                 small.classList.add("d-block", "small", "sr-only");
-                small.textContent = description;
+                small.textContent = this._t(description);
 
                 const comma = document.createElement("span");
                 comma.textContent = ", ";
@@ -5846,7 +6004,7 @@ class PonchoMap {
                 const layersOptions = {
                     label,
                     css: ["pm-item-link", `js-${item}-layer`],
-                    attributes: {role: "menuitem", tabindex: 0},
+                    attributes: {role: "menuitem", tabIndex: 0},
                     datasets: {theme: `layer-${item}`},
                 };
                 const sateliteButton = this.addAnchorElement(layersOptions);
@@ -6037,22 +6195,20 @@ class PonchoMap {
         const ul = document.createElement("ul");
         ul.classList.add("pm-list-unstyled", "pm-pb-1");
 
-        const {items=[], label} = this.open_maps_options;
+        const {items=[], label, aria_label} = this.open_maps_options;
 
         for(const item of items){
             const {link: templateLink, platform = "all"} = item;
             const regex = /(?=.*\{\{latitude\}\})(?=.*\{\{longitude\}\}).*/gm;
-
             if (platform === 'mac' && !navigator.userAgent.includes('Mac')) {
                 continue;
             }
-
             if(!regex.test(templateLink)){
                 continue;
             }
 
             const link = this.tplParser(templateLink, {latitude, longitude});
-            const anchorOptions = {...item, link, attributes: {tabindex: 0}};
+            const anchorOptions = {...item, link, attributes: {tabIndex: 0}};
 
             const a = this.addAnchorElement(anchorOptions);
             const li = document.createElement("li");
@@ -6061,9 +6217,9 @@ class PonchoMap {
         }
 
         const summary = document.createElement("summary");
-        summary.textContent = label;
+        summary.textContent = this._t(label);
         summary.tabIndex = 0;
-        summary.ariaLabel = "Abrir el punto geográfico en un mapa alternativo";
+        summary.ariaLabel = this._t(aria_label);
 
         const details = document.createElement("details");
         details.classList.add("blank");
@@ -6199,7 +6355,7 @@ class PonchoMap {
      * mostrando un mensaje y removiendo el contenedor del mapa.
      * @param {string} text Mensaje de error 
      */
-    showAlert = (entry, type) => {
+    showAlert = (entry, type, block=false) => {
         if(!this.isObject(entry)){
             console.error("showAlert", "Espera un objeto de tipo clave/valor.");
             return;
@@ -6221,6 +6377,7 @@ class PonchoMap {
                 .querySelector(`#log-container${this.scope_sufix}`);
         if(!logContainer){
             logContainer = document.createElement("div");
+            logContainer.role = "alert";
             logContainer.id = `log-container${this.scope_sufix}`;
 
             // Ubico el contenedor de logs antes del
@@ -6290,11 +6447,11 @@ class PonchoMap {
         }
 
         // Imprimo el error en la página
-        if(this.error_reporting) {
+        if(this.error_reporting || block) {
             logContainer.appendChild(heading);
             logContainer.appendChild(container);
 
-            if(this.throw_exceptions){
+            if(this.throw_exceptions || block){
                 document.getElementById(this.map_selector).remove();
                 throw new Error(JSON.stringify(entry));
             }
@@ -6630,7 +6787,7 @@ class PonchoMap {
      */
     _clickToggleSlider = () => document
         .querySelectorAll(`.js-close-slider${this.scope_sufix}`)
-        .forEach(e => e.addEventListener("click", () => {
+        .forEach(e => e.addEventListener("click", (event) => {
             this._clearContent();
             this.toggleSlider();
             this._focusOnFeature(e.dataset.entryId);
@@ -6697,33 +6854,6 @@ class PonchoMap {
      * *keypress* sobre un marker. La idea es que un usuario con lector 
      * de pantalla mueva el foto a la información.
      */
-    // __focusOnSlider = () => {
-    //     if(this.no_info){
-    //         return;
-    //     }
-    //     const animationSelector = `.js-slider${this.scope_sufix}`;
-    //     const sliderElement = document.querySelector(animationSelector);
-
-    //     if(this.isSliderOpen()){
-    //         sliderElement.focus();
-    //     } else {
-    //         const animation = document.querySelector(`div${animationSelector}`);
-    //         if(animation){
-    //             animation.addEventListener("animationend", (event) => {
-    //                 if(event.animationName == "open"){
-    //                     // pach para detectar el movimiento de <details>
-    //                     // @TODO enontrar un método distinto
-    //                     return;
-    //                 }
-
-    //                 animation.focus();
-    //             }, { once: true });
-    //         }
-    //     }
-
-    // };
-
-
     _focusOnSlider = () => {
         if(this.no_info){
             return;
@@ -6803,13 +6933,14 @@ class PonchoMap {
 
         // 3. Creación y configuración de elementos
         // Contenedor principal del slider
-        const container = document.createElement("div");
+        const container = document.createElement("dialog");
         container.id = `slider${this.scope_sufix}`;
         container.classList.add(
-            "pm-container", "slider",`js-slider${this.scope_sufix}`
+            "pm-container",
+            "slider",
+            `js-slider${this.scope_sufix}`
         );
         container.style.display = "none";
-        container.tabIndex = "0";
         container.role = "region";
         container.ariaLive = "polite";
         container.ariaLabel = "Panel de información";
@@ -6827,11 +6958,12 @@ class PonchoMap {
         closeButton.title = "Cerrar panel";
         closeButton.role = "button";
         closeButton.tabIndex = 0;
+        closeButton.setAttribute("formmethod", "dialog");
         closeButton.ariaLabel = "Cerrar panel de información";
 
         // Enlace anchor.
         const anchorOptions = {
-            attributes: {tabindex: 0},
+            attributes: {tabIndex: 0},
             id: `js-anchor-slider${this.scope_sufix}`,
             css: ['sr-only']
         };
@@ -6840,6 +6972,7 @@ class PonchoMap {
         // Contenedor del contenido
         const contentContainer = document.createElement("article");
         contentContainer.classList.add("pm-content-container");
+        contentContainer.role = "article";
 
         // Contenido
         const content = document.createElement("div");
@@ -6943,7 +7076,7 @@ class PonchoMap {
             if(!layer.options.hasOwnProperty("id")){
                 return;
             }
-            
+
             if(layer.options.id == id){
                 this._setSelectedMarker(id, layer);
 
@@ -6976,19 +7109,18 @@ class PonchoMap {
      * @param {object} layer 
      */
     _setClickeable = (layer) => {
-        layer.on("keypress click", (e) => {
+        layer.on("click keypress", (event) => {
             // Borro la clase activa de los markers.
-            document.querySelectorAll(".marker--active").forEach((el) => {
-                el.classList.remove("marker--active");
-            });
+            document
+                .querySelectorAll(".marker--active")
+                .forEach(ele => ele.classList.remove("marker--active"));
 
-            // Le agrego la clase activa al marker.
-            const target = e.sourceTarget;
-            if (target._icon) {
-                target._icon.classList.add("marker--active");
-            }
-            if (target._path) {
-                target._path.classList.add("marker--active");
+            // Le agrego la clase activa al marker.         
+            const targetElement = (event.sourceTarget._icon || 
+                    event.sourceTarget._path);
+            
+            if (targetElement) {
+                targetElement.classList.add('marker--active');
             }
 
             // Busco el contenido correspondiente para actualizar.
@@ -7057,7 +7189,7 @@ class PonchoMap {
         }
 
         const setHash = (layer) => {
-            layer.on("click", () => {
+            layer.on("keypress click", () => {
                 this.addHash(layer.options.id);
             });
         }
@@ -7328,7 +7460,7 @@ class PonchoMap {
         }
 
         const {
-            key="", css="small", style=false
+            key, css="small", style=false
         } = this.template_structure.lead;
 
         if(!entry.hasOwnProperty(key)){
@@ -7501,8 +7633,9 @@ class PonchoMap {
             return;
         }
 
-        document.querySelectorAll(
-            `.js-reset-view${this.scope_sufix}`).forEach(e => e.remove());
+        document
+            .querySelectorAll(`.js-reset-view${this.scope_sufix}`)
+            .forEach(e => e.remove());
         
         document
             .querySelectorAll(`${this.scope_selector} .leaflet-control-zoom-in`)
@@ -7514,9 +7647,9 @@ class PonchoMap {
 
             const buttonOptions = {
                 link: "#",
-                title: "Ver mapa completo",
-                attributes: {role: "button", tabindex: 0},
-                aria_label: "Ver mapa completo",
+                title: this._t("map_full_view"),
+                attributes: {role: "button", tabIndex: 0},
+                aria_label: this._t("map_full_view"),
                 css: [
                     `js-reset-view${this.scope_sufix}`, 
                     "leaflet-control-zoom-reset"]
@@ -7713,27 +7846,28 @@ class PonchoMap {
      * @returns {undefined}
      */
     _setFetureAttributes = () => {
-        const setAttributes = (ele, key) => {
-            if(!ele.hasOwnProperty(key)){
+        const { title, id } = this;
+        
+        this.map.eachLayer(layer => {
+            const { _path, feature, _leaflet_id } = layer;
+            if (!feature || !_path) {
                 return;
             }
 
-            ele[key].ariaLabel = ele?.feature?.properties?.[this.title];
-            ele[key].tabindex = 0;
-            ele[key].dataset.entryId = ele?.feature?.properties?.[this.id];
-            
-            if(ele?.feature?.properties?.["pm-interactive"] == "n"){
-                ele[key].dataset.interactive = "n";
-                ele[key].role = "graphics-symbol";
-            } else {
-                ele[key].role = "button";
-            }
+            const { properties } = feature;
+            const isInteractive = properties?.["pm-interactive"] !== "n";
 
-            ele[key].dataset.leafletId = ele._leaflet_id;
-        };
-
-        this.map.eachLayer(e => setAttributes(e, "_path"));
+            Object.assign(_path, {
+                'aria-label': properties?.[title],
+                'tabIndex': 0,
+                'data-entry-id': properties?.[id],
+                'data-leaflet-id': _leaflet_id,
+                'data-interactive': isInteractive ? null : "n",
+                'role': isInteractive ? "button" : "graphics-symbol"
+            });
+        });
     };
+
 
 
     /**
@@ -7750,6 +7884,7 @@ class PonchoMap {
                 selector: `${this.scope_selector} .leaflet-map-pane`, 
                 id: `leaflet-map-pane${this.scope_sufix}`, 
                 attributes: {
+                    tabIndex: 0,
                     role: "region"
                 }
             },
@@ -7757,16 +7892,18 @@ class PonchoMap {
                 selector: `${this.scope_selector} .leaflet-control-zoom`,
                 id: `leaflet-control-zoom${this.scope_sufix}`,
                 attributes: {
-                    "aria-label": "Herramientas de zoom",
+                    "aria-label": this._t("zoom_aria_label_panel"),
                     role: "region",
+                    tabIndex: 0,
                 }   
             },
             {
                 selector: `.js-themes-tool-button${this.scope_sufix}`,
                 id: `themes-tool-button${this.scope_sufix}`,
                 attributes: {
-                    "aria-label": "Herramienta para cambiar de tema visual",
+                    "aria-label": this._t("theme_aria_label_panel"),
                     "role": "region",
+                    tabIndex: 0,
                 }   
             },
         ];
@@ -7812,16 +7949,16 @@ class PonchoMap {
         // Enlace
         let values = [
             {
-                label: "Ir a los marcadores del mapa",
+                label: this._t("map_goto_markers"),
                 link: `#${anchors[0]["id"]}`
             },
             {
-                label: "Ajustar marcadores al mapa",
+                label: this._t("map_fit_bounds"),
                 link: "#",
                 css: ["js-fit-bounds"]
             },
             {
-                label: "Ver mapa completo",
+                label: this._t("map_full_view"),
                 link: "#",
                 css: [`js-reset-view${this.scope_sufix}`]
             }
@@ -7831,7 +7968,7 @@ class PonchoMap {
         if(!this.map_init_options.hasOwnProperty("zoomControl") || 
             this.map_init_options.zoomControl !== false){
             values.splice(2, 0, {
-                label: "Ir al panel de zoom",
+                label: this._t("zoom_goto_panel"),
                 link: `#${anchors[1]["id"]}` 
             });
         }
@@ -7839,7 +7976,7 @@ class PonchoMap {
         // Agrego el item para cambiar temas
         if(this.theme_tool){
             values.push({
-                label: "Cambiar de tema visual",
+                label: this._t("theme_change"),
                 link: `#${anchors[2]["id"]}`,
                 css: [`js-themes-tool-button${this.scope_sufix}`]
             });
@@ -7847,7 +7984,7 @@ class PonchoMap {
 
         let accesibleMenuEndItems = [
             {
-                label: "Salir del mapa",
+                label: this._t("map_exit"),
                 link: `#accesible-return-nav${this.scope_sufix}`
             }
         ];
@@ -7908,7 +8045,7 @@ class PonchoMap {
             link: `#pm-accesible-nav${this.scope_sufix}`,
             id: `accesible-return-nav${this.scope_sufix}`,
             css: ["pm-item-link", "pm-accesible"],
-            attributes: {tabindex: 0}
+            attributes: {tabIndex: 0}
         };
         const backToNav = this.addAnchorElement(anchorOptions);
         const returnNav = document.createElement("div");
@@ -9018,6 +9155,8 @@ class PonchoMapFilter extends PonchoMap {
             if(target.matches(`.js-poncho-map-reset${_this.scope_sufix}`)){
                 event.preventDefault();
                 event.stopPropagation();
+                
+                _this.removeHash();
 
                 try {
                     _this._resetFormFilters();
