@@ -12431,8 +12431,8 @@ Las clases "dato-nro" y "dato-eje" corresponde a los formatos markdown definidos
   border-color: var(--pm-slider-border-color);
 }
 .poncho-map .leaflet-container a.leaflet-popup-close-button.leaflet-popup-close-button {
-  top: 5px;
-  right: 5px;
+  top: 10px;
+  right: 10px;
   color: var(--pm-color-base);
 }
 
