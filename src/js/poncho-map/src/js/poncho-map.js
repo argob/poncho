@@ -42,8 +42,9 @@ const PM_TRANSLATE = {
         cluster_large: "Grupo grande de {{count}} ubicaciones",
         cluster_medium: "Grupo mediano de {{count}} ubicaciones",
         cluster_small: "Grupo chico de {{count}} ubicaciones",
-        
+
         map_exit: "Salir del mapa",
+        map_help_us: "Ayudá a mejorar el mapa",
         map_fit_bounds: "Ajustar marcadores al mapa",
         map_full_view: "Ver mapa completo",
         map_goto_markers: "Ir a los marcadores del mapa",
@@ -51,7 +52,6 @@ const PM_TRANSLATE = {
         openmap_aria_label: "Abrir el punto geográfico en un mapa alternativo",
         openmap_label: "Abrir en:",
 
-        
         theme_aria_label_panel: "Herramienta para cambiar de tema visual",
         theme_change: "Cambiar tema del mapa",
         theme_description_contrast: "Fondo oscuro con bordes blancos.",
@@ -70,15 +70,30 @@ const PM_TRANSLATE = {
         zoom_aria_label_panel: "Herramientas de zoom",
         zoom_goto_panel: "Ir a la herramienta de zoom",
         zoom_in: "Acercar",
-        zoom_out: "Alejar"
-    }
+        zoom_out: "Alejar",
+
+        filter_reset_values_link: ` <a href="#" class="{{reset_search}}"` 
+                        + `aria-label="Restablecer valores del mapa">`
+                        + "Restablecer mapa</a>",
+        filter_initial: "Hay {{total_results}} puntos en el mapa.",
+        filter_no_results_by_term: "No encontramos resultados para tu búsqueda.",
+        filter_no_results: "No se encontraron entradas.",
+        filter_results: "{{total_results}} resultados coinciden con tu búsqueda.",
+        filter_one_result: "{{total_results}} resultado coincide con tu búsqueda.",
+        filters_has: "Se están usando filtros.",
+        filters_reset: "Restablecer mapa",
+        filters_aria_label_reset: "Restablecer valores del mapa",
+
+        search_data: "Hacer una búsqueda",
+        search_placeholder: "Su búsqueda",
+    },
 };
 class PonchoMap {
     constructor(data, options){
         const defaults = {
             accesible_menu_extras: [
                 {
-                    label: "Ayudá a mejorar el mapa",
+                    label: "map_help_us",
                     link: "https://www.argentina.gob.ar/sugerencias",
                     target: "_blank"
                 }
@@ -472,13 +487,14 @@ class PonchoMap {
             return;
         }
 
-        if(!this.dictionary.hasOwnProperty(definition)){
-            return definition;
-        }
+        const replaceDef = (this.dictionary.hasOwnProperty(definition) ? 
+                this.dictionary[definition] : definition);
 
-        if(!this.isEmptyObject(tpl)){
-            return this.tplParser(this.dictionary[definition], tpl);
-        }
+        console.log(definition, '---->', replaceDef, '- - ', this.tplParser(replaceDef, tpl))
+
+        // if(!this.isEmptyObject(tpl)){
+        return this.tplParser(replaceDef, tpl);
+        // }
 
         return this.dictionary[definition];
     };
@@ -609,7 +625,7 @@ class PonchoMap {
             console.warn(
                 "El primer parámetro debe ser una cadena de texto no vacía."
             );
-            return;
+            return value;
         }
                 
         if (!this.isObject(kwargs)) {
@@ -623,7 +639,7 @@ class PonchoMap {
             console.warn(
                 "El segundo parámetro (kwargs) no debe ser un objeto vacío."
             );
-            return;
+            return value;
         }
 
         return Object.keys(kwargs).reduce(function(str, key){
@@ -3109,6 +3125,8 @@ class PonchoMap {
 
             const anchorOpts = {
                 ...links,
+                label: this._t(label),
+                aria_label: this._t(aria_label),
                 css:[...css, ...["pm-item-link", "pm-accesible"]], 
                 attributes: {
                     role: "menuitem",

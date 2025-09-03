@@ -43,7 +43,7 @@ class PonchoMapSearch {
     constructor(instance, options){
         const defaults = {
             "scope": false,
-            "placeholder": "Su búsqueda",
+            "placeholder": "search_placeholder",
             "search_fields": instance.search_fields,
             "sort": true,
             "sort_reverse": false,
@@ -66,7 +66,7 @@ class PonchoMapSearch {
 
         if(this.isSearch()){
             this.instance.accesible_menu_search.push({
-                label: "Hacer una búsqueda",
+                label: "search_data",
                 link: `#id-poncho-map-search${this.scope_sufix}`
             });
         }
@@ -193,7 +193,7 @@ class PonchoMapSearch {
         }
         document.querySelectorAll(
             `${this.search_scope_selector} .js-poncho-map-search__input`)
-            .forEach(element => element.placeholder = this.placeholder.toString());
+            .forEach(element => element.placeholder = this.instance._t(this.placeholder));
     };
 
     /**
