@@ -69,19 +69,40 @@ COPIAR DESDE ACÁ…
 
 <div class="col-md-12 m-b-1">
 <!-- PONCHO SEARCH -->
-<form action="">
-<div data-scope="search-efectores">
-<label class="sr-only" for="search">Buscar puntos</label>
-<div class="input-group m-b-0 p-b-0 webform-component">
-<input class="js-poncho-map-search__input form-control" id="search" list="js-porcho-map-search__list" name="search" spellcheck="" type="search"> 
-<datalist class="js-porcho-map-search__list" id="js-porcho-map-search__list"></datalist> 
-<span class="input-group-btn">
-<button class="js-poncho-map-search__submit btn btn-primary" type="submit"><i class="fa fa-search text-white">&nbsp;</i>
-<span class="sr-only">Buscar término</span></button> </span></div><div data-scope="ponchomap"><div class="js-poncho-map__help text-mutted small"></div>
-</div>
-</div>
-</form>
+<search>
+    <form>
+        <div data-scope="search-poncho-map">
+            <label class="sr-only" for="search">Buscar puntos</label>
+            <div class="input-group m-b-0 p-b-0 webform-component">
+                <input 
+                    class="js-poncho-map-search__input form-control" 
+                    id="search" 
+                    list="js-porcho-map-search__list" 
+                    name="search" 
+                    autocomplete="true"
+                    spellcheck="true" 
+                    type="search"> 
+                <datalist 
+                    class="js-porcho-map-search__list" 
+                    id="js-porcho-map-search__list">
+                </datalist> 
+                <span class="input-group-btn">
+                    <button 
+                        class="js-poncho-map-search__submit btn btn-primary" 
+                        type="submit">
+                        <i class="fa fa-search text-white"></i>
+                        <span class="sr-only">Buscar término</span>
+                    </button> 
+                </span>
+            </div>
+            <div data-scope="ponchomap">
+                <div class="js-poncho-map__help text-mutted small"></div>
+            </div>
+        </div>
+    </form>
+</search>
 <!-- / PONCHO SEARCH -->
+
 </div>
 <div class="col-md-12">
 <!-- PONCHO MAP -->
@@ -110,7 +131,7 @@ COPIAR DESDE ACÁ…
     // map options
     const options = {
         error_reporting: 0,
-        // throw_exceptions: 1,
+        throw_exceptions: 0,
         template: template_punto_digital,
         title:"nombre",
         map_layers: true,
@@ -194,12 +215,13 @@ COPIAR DESDE ACÁ…
         breakpoint_fraction: {sm: "1:4", md: "1:4", lg: "1:3", xl: "2:7"}
     };
     // render map
+
     filter = new PonchoMapFilter(gdata, options);
     filter.render();
 
     // Buscador
     const search_options = {
-        "scope": "search-efectores",
+        "scope": "search-poncho-map",
         "text": "nombre",
         "search_fields": ["foo","nombre", "institucion", "calle","localidad", "provincia", "municipio_nombre"],
         "id": "id_pd",

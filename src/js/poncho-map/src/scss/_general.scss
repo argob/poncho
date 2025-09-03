@@ -21,7 +21,7 @@
     /* FUCUSABLE */
     *:focus,
     .focus-element:focus {
-        border-radius: 3px;
+        @include borderRadius(3px);
         box-sizing: border-box;
         box-shadow: 0 0 8px var(--cielo, #039be5) !important;
         outline: 3px solid var(--cielo, #039be5) !important;
@@ -35,11 +35,13 @@
         box-shadow: var(--pm-slider-shadow);
         background-color: var(--pm-slider-background);
         color: var(--pm-color-base);
-        border-radius: var(--pm-slider-radius);
+        @include borderRadius(var(--pm-slider-radius));
         transform-style: preserve-3d;
         border: var(--pm-slider-border-width) solid
             var(--pm-slider-border-color);
-
+        padding: 0;
+        margin: unset;
+        inset-inline-start: unset;
         article {
             border: none;
             margin: 0;
@@ -102,11 +104,11 @@
         margin-bottom: 2px;
         padding: calc(var(--pm-slider-distance) / 3 * 2)
             var(--pm-slider-distance);
-        border-radius: calc(
-            var(--pm-slider-radius) - var(--pm-slider-distance)
+        @include borderRadius(
+            calc(var(--pm-slider-radius) - var(--pm-slider-distance))
         );
-        transition: background 0.15s;
 
+        transition: background 0.15s;
 
         // &:visited {
         //     color: var(--pm-active-visited-color) !important;

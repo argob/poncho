@@ -23,6 +23,7 @@
     <script src="../../color/src/js/color.js"></script>
     <script src="../../utils/connect.js"></script>
     <script src="../../utils/string.js"></script>
+    <script src="../../utils/document.js"></script>
     <script src="../../utils/html.js"></script>
     <script src="../src/js/poncho-map.js"></script>
     <script src="../src/js/poncho-map-filter.js"></script>
@@ -39,12 +40,13 @@
             <li><a href="./">Inicio</a></li>
         </ul>
     </div>
-  <h1>Template 9</h1>
+    <h1>Template 9</h1>
 <!-- 
 COPIAR DESDE ACÁ…
 -->
 <div class="col-md-12">
 <!-- PONCHO MAP SEARCH -->
+ <search>
 <form>
     <div data-scope="poncho-map-search">
         <div class="input-group">
@@ -66,19 +68,23 @@ COPIAR DESDE ACÁ…
         </div>
     </div>
 </form>
+</search>
 <!-- / PONCHO MAP SEARCH -->
 </div>
-<div class="col-md-12" style="width: 1000px;">
-<!-- PONCHO MAP -->
-<div class="poncho-map" data-scope="poncho-map">
-    <div
-        class="leaflet-container leaflet-touch leaflet-fade-anim 
-            leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
-        id="map"
-        style="height: 650px; width:1000px;">
+
+<div class="container">
+    <div class="col-md-12">
+    <!-- PONCHO MAP -->
+    <div class="poncho-map" data-scope="poncho-map">
+        <div
+            class="leaflet-container leaflet-touch leaflet-fade-anim 
+                leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
+            id="map"
+            style="height: 650px;">
+        </div>
     </div>
+    <!-- / PONCHO MAP -->
 </div>
-<!-- / PONCHO MAP -->
 </div>
 
 
@@ -121,14 +127,14 @@ COPIAR DESDE ACÁ…
                 return self.defaultTemplate(self, entry);
             },
             theme_ui: 'default',
-            theme_map: 'dark',
+            theme_map: 'relax',
             "scope": "poncho-map",
             "filters_info": false,
             "title": "nombre",
             "template_innerhtml": true,
             "template_markdown": true,
             "allowed_tags": ["a", "sup", "img"],
-            "_marker_cluster_options": {
+            "marker_cluster_options": {
                         "spiderfyOnMaxZoom": true,
                         "showCoverageOnHover": false,
                         "zoomToBoundsOnClick": true,
@@ -236,7 +242,11 @@ COPIAR DESDE ACÁ…
                     "fields": false
                 },
             ],
-            open_maps:true
+            open_maps:true,
+            map_align: "left",
+            map_style: {
+                "slider-width": "calc(100% / 2 - 10px)"
+            },
         };
 
         const searchOptions = {

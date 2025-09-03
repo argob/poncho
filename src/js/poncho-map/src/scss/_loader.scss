@@ -29,7 +29,7 @@
             height: var(--pm-loader-spinner-size);
             border: var(--pm-loader-spinner-weight) solid var(--pm-loader-spinner-background);
             border-bottom-color: var(--pm-loader-spinner-color);
-            border-radius: 50%;
+            @include borderRadius(50%);
             display: inline-block;
             box-sizing: border-box;
             animation: pm-loader-rotation 1s linear infinite;

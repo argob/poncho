@@ -682,48 +682,76 @@ search.render();
 Lo conveniente es tener la asignación de documentos CSS dentro de la etiqueta `<head>` y la llamada a los documentos JavaScript inmediatamente antes del cierre del body (`</body>`).
 
 ```html
-<!-- CSS FILES -->
 <link href="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.css" rel="stylesheet"/>
-<link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.css" rel="stylesheet"/>
-<link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.Default.css" rel="stylesheet"/>
-<!-- / CSS FILES -->
 ```
 
 ```html
-<!-- JAVASCRIPT FILES -->
-<script src="https://www.argentina.gob.ar/sites/default/files/ponchotable/showdown.js"></script>
-<script  src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/extensiones/showdown-extensions.js"></script>
+<!-- PONCHO MAP SCRIPTS -->
 <script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.js"></script>
 <script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script>
-<script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
-<!-- / JAVASCRIPT FILES -->
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
+<!-- / PONCHO MAP SCRIPTS -->
 ```
+
+*CLUSTERS*
+
+**JS**
+
+```html
+<script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script>
+```
+
+**CSS**
+
+```html
+<link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.css" rel="stylesheet"/>
+<link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.Default.css" rel="stylesheet"/>
+```
+
+*SHOWDOWN*
+
+```html
+<script src="https://www.argentina.gob.ar/sites/default/files/ponchotable/showdown.js"></script>
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/extensiones/showdown-extensions.js"></script>
+```
+
 
 Si se desea utilizar el buscador debe incluirse el siguiente código. El código puede ubicarse en el lugar de la página donde sea más conveniente. 
 
 ```html
 <!-- PONCHO MAP SEARCH -->
-<form>
-  <div data-scope="poncho-map-search-scope">
-      <div class="input-group">
-          <input 
-              type="search" 
-              name="search" 
-              autocomplete="off"
-              class="js-poncho-map-search__input form-control" 
-              list="list">
-              <datalist id="list" class="js-porcho-map-search__list"></datalist>
-          <span class="input-group-btn">
-            <button class="js-poncho-map-search__submit btn btn-primary">
-              <i class="fa fa-search text-white">&nbsp;</i>
-            </button>
-          </span>
-      </div>
-      <div data-scope="poncho-map-scope" class="m-b-1">
-          <div class="js-poncho-map__help small text-default"></div>
-      </div>
-  </div>
-</form>
+<search>
+    <form>
+        <div data-scope="search-poncho-map">
+            <label class="sr-only" for="search">Buscar puntos</label>
+            <div class="input-group m-b-0 p-b-0 webform-component">
+                <input 
+                    class="js-poncho-map-search__input form-control" 
+                    id="search" 
+                    list="js-porcho-map-search__list" 
+                    name="search" 
+                    autocomplete="true"
+                    spellcheck="true" 
+                    type="search"> 
+                <datalist 
+                    class="js-porcho-map-search__list" 
+                    id="js-porcho-map-search__list">
+                </datalist> 
+                <span class="input-group-btn">
+                    <button 
+                        class="js-poncho-map-search__submit btn btn-primary" 
+                        type="submit">
+                        <i class="fa fa-search text-white"></i>
+                        <span class="sr-only">Buscar término</span>
+                    </button> 
+                </span>
+            </div>
+            <div data-scope="ponchomap">
+                <div class="js-poncho-map__help text-mutted small"></div>
+            </div>
+        </div>
+    </form>
+</search>
 <!-- / PONCHO MAP SEARCH -->
 ```
 
