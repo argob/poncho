@@ -95,7 +95,7 @@ COPIAR DESDE ACÁ…
             class="leaflet-container leaflet-touch leaflet-fade-anim 
                 leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
             id="map"
-            style="height: 700px;"
+            style="height: 712px;"
             tabindex="0">
         </div>
     </div>
@@ -227,10 +227,10 @@ fetch_json(newJson, { headers: {"Accept": "application/json"}}).then(geoProvince
             fit_bounds_onevent: false, // true hace zoom en la provincia cuando se utilia el select o por url
             theme_ui: "default", // tema del slider y control de zoom
             theme_map: "grayscale", // Tema del mapa
-            map_opacity: .9, // Opacidad del mapa OSM
+            map_opacity: .5, // Opacidad del mapa OSM
             // map_view: (new PonchoMapProvinces).mapView, // Define la vista principal del mapa
             map_background: "color-mix(in srgb, var(--gna-verde-cemento) 20%, white)",  // define el color de fondo del mapa 
-            map_background: "beige",  // define el color de fondo del mapa 
+            map_background: "#ccc",  // define el color de fondo del mapa 
             // initial_entry: "42-la-pampa", // Si se agrega el id (que aprece en URL), inicia con esa entrada.
             // random_entry: true, // Permite que la página se cargue con una entrada aleatoria.
             overlay_image: true, // ture habilita tener una imagen sobre e mapa
