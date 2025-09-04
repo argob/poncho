@@ -148,7 +148,7 @@ class PonchoMapProvinces extends PonchoMapFilter {
             // Sobreescribo opciones de PonchoMap
             map_view:[-40.47815508388363, -62.802101128049806],
             map_init_options: {
-                zoomSnap: 0.2,
+                zoomSnap: 0.1,
                 zoomControl: true,
                 doubleClickZoom: false,
                 scrollWheelZoom: false,

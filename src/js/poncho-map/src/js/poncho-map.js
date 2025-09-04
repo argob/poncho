@@ -206,10 +206,9 @@ class PonchoMap {
                 aria_label: "openmap_aria_label",
                 items: [
                     {
-                        link: new URL(
-                            "/beta/?zoom=17&lat={{latitude}}&lng={{longitude}}&layers="
+                        link: "https://mapa.ign.gob.ar"
+                            + "/beta/?zoom=17&lat={{latitude}}&lng={{longitude}}&layers="
                             + "argenmap&marker={{latitude}},{{longitude}}",
-                            "https://mapa.ign.gob.ar").href,
                         label: `<abbr lang="es" title="Instituto Geográfico `
                             + `Nacional">IGN</abbr> – ArgenMap`,
                         lang: "es",
@@ -218,9 +217,8 @@ class PonchoMap {
                         aria_label: false,
                     },
                     {
-                        link: new URL(
-                            "/maps/search/?api=1&query={{latitude}},{{longitude}}", 
-                            "https://www.google.com").href,
+                        link: "https://www.google.com"
+                            + "/maps/search/?api=1&query={{latitude}},{{longitude}}", 
                         label: "Google maps",
                         lang: "en",
                         hreflang: false,
@@ -228,9 +226,8 @@ class PonchoMap {
                         aria_label: false,
                     },
                     {
-                        link: new URL(
-                            "/?q={{latitude}},{{longitude}}", 
-                            "https://maps.apple.com").href,
+                        link: "https://maps.apple.com"
+                            + "/?q={{latitude}},{{longitude}}", 
                         label: "Apple maps",
                         lang: "en",
                         hreflang: "en",
@@ -239,10 +236,9 @@ class PonchoMap {
                         aria_label: false,
                     },
                     {
-                        link: new URL(
-                            "/?mlat={{latitude}}&mlon={{longitude}}"
+                        link: "https://www.openstreetmap.org"
+                            + "/?mlat={{latitude}}&mlon={{longitude}}"
                             + "#map=16/{{latitude}}/{{longitude}}", 
-                            "https://www.openstreetmap.org").href,
                         label: "Open street maps",
                         lang: "en",
                         hreflang: "en",
@@ -769,7 +765,7 @@ class PonchoMap {
         }
 
         fraction = (!fraction ? this._setFraction() : fraction);
-        if(!/^[0-9]\:[0-9]$/.test(fraction)){
+        if(!/^[0-9]{1,2}\:[0-9]{1,2}$/.test(fraction)){
             console.error(
                 "La fracción para posicionar el mapa tiene errores sintácticos.");
             return;
