@@ -102,16 +102,20 @@ class PonchoMap {
             allowed_tags: [],
             anchor_delay: 0,
             breakpoint: {
-                lg: 992,
-                xl: 1200,
+                xs: 576,
                 sm: 576,
                 md: 768,
+                lg: 992,
+                xl: 1200,
+                xxl: 1400,
             },
             breakpoint_fraction: {
-                sm: "1:4",
+                xs: "1:3",
+                sm: "1:1",
                 md: "1:4",
                 lg: "1:3",
-                xl: "2:7"
+                xl: "2:7",
+                xxl: "2:7"
             },
             content_selector: false,
             default_themes: [
@@ -725,28 +729,43 @@ class PonchoMap {
     _setFraction = (mediaSize) => {
         let fraction = '1:1';
 
-        const mSize = (mediaSize ? mediaSize : 
+        // Tamaño del contenedor del mapa
+        const elementSize = (mediaSize ? mediaSize : 
             document.getElementById(this.map_selector).offsetWidth);
 
-        if(!this.isNumber(mSize)){
+        if(!this.isNumber(elementSize)){
             return fraction;
         }
-
+        // Ordeno las entradas de mayor a menor medida.
         let breakpointEntries = Object.entries(this.breakpoint);
         breakpointEntries.sort((a, b) => b[1] - a[1]);
+        console.table(breakpointEntries)
+        // Si es XS
+        console.log(elementSize, this.breakpoint.xs)
+        if(elementSize < this.breakpoint.xs){
+            console.log("----> xs")
+            return this.breakpoint_fraction.xs;
+        } 
 
+        // Evaluo los otros breakpoints
         for(const entry of breakpointEntries){
-            const [key, size] = entry;
+            const [key, breakpointSize] = entry;
+
             if(!this.breakpoint_fraction.hasOwnProperty(key)){
                 continue;
             }
 
-            if(!Number.isInteger(Number(size))){
+            if(key == "xs"){
                 continue;
             }
 
-            if(mSize >= size){
+            if(!Number.isInteger(Number(breakpointSize))){
+                continue;
+            }
+
+            if(elementSize >= breakpointSize){
                 fraction = this.breakpoint_fraction[key];
+                console.log(key)
                 break;
             }
         }
