@@ -78,6 +78,13 @@ const PM_TRANSLATE = {
         filters_has: "Se están usando filtros.",
         filters_reset: "Restablecer mapa",
         filters_aria_label_reset: "Restablecer valores del mapa",
+        filters_aria_label_panel: "Panel de filtros",
+        filters_close_panel_text: "Cerrar panel",
+        filters_aria_label_close_panel: "Cerrar panel de filtros",
+        filters_aria_label_open_close_panel:  "Abre o cierra el panel de filtros",
+        filters_check_all: "Marcar todos",
+        filters_uncheck_all: "Desmarcar todos",
+
         search_data: "Hacer una búsqueda",
         search_placeholder: "Su búsqueda",
     },

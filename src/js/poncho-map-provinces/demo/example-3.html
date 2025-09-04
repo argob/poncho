@@ -305,14 +305,14 @@ fetch_json(newJson, { headers: {"Accept": "application/json"}}).then(geoProvince
         const gapi_data = gapi.json_data(googlesheet_data);
         const {entries, headers} = gapi_data;
         const options = {
-            id_mixing: ["in1", "nam"], // Permite configurar cómo debe ser el ID en la URL.
-            // content_selector: ".js-pm-text-content", // Nombre de la clase o id dónde se imprime el contenido.
+            id_mixing: ["in1", "nam"],
+            // content_selector: ".js-pm-text-content",
             scope: "poncho-map",
             title: "nam",
             // map_layers_default: "satelital",
             // map_layers: true,
-            template_markdown: true, // Habilita el uso del markdown.
-            allowed_tags: ["*"], // Habilita etiquetas HTML.
+            template_markdown: true,
+            allowed_tags: ["*"],
             headers: headers,
             id_mixing:{
                 ...headers, 
@@ -360,14 +360,13 @@ fetch_json(newJson, { headers: {"Accept": "application/json"}}).then(geoProvince
             map_opacity: .75, 
             // map_view: (new PonchoMapProvinces).mapView,
             map_background: "color-mix(in srgb, var(--gna-verde-cemento) 20%, white)",
-            map_background: "#ccc",  // define el color de fondo del mapa 
-            // initial_entry: "42-la-pampa", // Si se agrega el id (que aprece en URL), inicia con esa entrada.
-            // random_entry: true, // Permite que la página se cargue con una entrada aleatoria.
-            overlay_image: true, // ture habilita tener una imagen sobre e mapa
-            overlay_image_opacity: 0, // Opacidad de la imagen sobre el mapa.
+            // initial_entry: "42-la-pampa", 
+            // random_entry: true,
+            overlay_image: true,
+            overlay_image_opacity: 0,
             overlay_image_url: "https://qa2-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/img/map-shadow-antartida.png",
-            hide_select: true, // Si es true el select NO se muestra
-            toggle_select: false, // Para mapa con texto fuera del componente. Activa o desactiva el select en función de dispositivo.
+            hide_select: true,
+            toggle_select: false,
             theme_tool: true,
             fit_bounds: false,
             map_align: "left",
@@ -376,13 +375,15 @@ fetch_json(newJson, { headers: {"Accept": "application/json"}}).then(geoProvince
             // map_style: {
             //     "slider-width": "calc(50% - 35px)"
             // },
-            breakpoint_fraction:  {sm: "2:8", md: "3:11", lg: "1:3", xl: "1:3"}
+            // breakpoint_fraction:  {sm: "2:8", md: "3:11", lg: "1:3", xl: "1:3"}
         };
 
         if(options.hasOwnProperty("tarjeton") && options.tarjeton){
             headStyle("id_tarjeton", tarjeton);
             options.breakpoint_fraction = {sm: "2:8",md: "3:11",lg: "2:7",xl: "2:7"};
+            options.breakpoint_fraction = {sm: "1",md: "3:11",lg: "2:7",xl: "2:7"};
         } else {
+            options.breakpoint_fraction =  {sm: "2:8", md: "3:11", lg: "1:3", xl: "1:3"}
             headStyle("id_normal", normal);
         }
 

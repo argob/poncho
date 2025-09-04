@@ -230,16 +230,19 @@ COPIAR DESDE ACÁ…
             "hash": true,
             "scroll": true,
             reset_zoom: true,
+            filters_info:true,
             "filters": [
                 {
                     "legend" : "Filtrar por tipo",
                     "field": ["tipo"],
-                    "fields": false
+                    "fields": false,
+                    check_uncheck_all: true,
                 },
                 {
                     "legend" : "Filtrar por estado",
                     "field": ["estado", "checked"],
-                    "fields": false
+                    "fields": false,
+                    check_uncheck_all: true
                 },
             ],
             open_maps:true,

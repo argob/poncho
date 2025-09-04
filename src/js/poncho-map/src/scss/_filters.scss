@@ -35,7 +35,7 @@
                 min-height: 40px;
                 max-height: calc(100% - 110px);
                 overflow: auto;
-                width: calc(100% - 30px);
+                width: calc(100% - 15px);
             }
 
             legend {
@@ -49,10 +49,10 @@
             }
 
             // setea el color para el fondo de los checkbox e inputs.
-            // input[type="checkbox"],
-            // input[type="radio"] {
-            //     accent-color: var(--pm-color-primary) !important;
-            // }
+            input[type="checkbox"],
+            input[type="radio"] {
+                accent-color: var(--pm-color-primary) !important;
+            }
 
             // parche fix hasta que se use bootstrap > 4
             .form-check {
