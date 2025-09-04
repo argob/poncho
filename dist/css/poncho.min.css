@@ -12083,7 +12083,7 @@ Las clases "dato-nro" y "dato-eje" corresponde a los formatos markdown definidos
   min-height: 40px;
   max-height: calc(100% - 110px);
   overflow: auto;
-  width: calc(100% - 30px);
+  width: calc(100% - 15px);
 }
 .poncho-map .filter-container .poncho-map-filters legend {
   color: var(--pm-color-primary);
@@ -12092,6 +12092,10 @@ Las clases "dato-nro" y "dato-eje" corresponde a los formatos markdown definidos
 }
 .poncho-map .filter-container .poncho-map-filters fieldset {
   border: none;
+}
+.poncho-map .filter-container .poncho-map-filters input[type=checkbox],
+.poncho-map .filter-container .poncho-map-filters input[type=radio] {
+  accent-color: var(--pm-color-primary) !important;
 }
 .poncho-map .filter-container .poncho-map-filters .form-check {
   display: flex;

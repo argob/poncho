@@ -4991,6 +4991,13 @@ const PM_TRANSLATE = {
         filters_has: "Se están usando filtros.",
         filters_reset: "Restablecer mapa",
         filters_aria_label_reset: "Restablecer valores del mapa",
+        filters_aria_label_panel: "Panel de filtros",
+        filters_close_panel_text: "Cerrar panel",
+        filters_aria_label_close_panel: "Cerrar panel de filtros",
+        filters_aria_label_open_close_panel:  "Abre o cierra el panel de filtros",
+        filters_check_all: "Marcar todos",
+        filters_uncheck_all: "Desmarcar todos",
+
         search_data: "Hacer una búsqueda",
         search_placeholder: "Su búsqueda",
     },
@@ -5119,10 +5126,9 @@ class PonchoMap {
                 aria_label: "openmap_aria_label",
                 items: [
                     {
-                        link: new URL(
-                            "/beta/?zoom=17&lat={{latitude}}&lng={{longitude}}&layers="
+                        link: "https://mapa.ign.gob.ar"
+                            + "/beta/?zoom=17&lat={{latitude}}&lng={{longitude}}&layers="
                             + "argenmap&marker={{latitude}},{{longitude}}",
-                            "https://mapa.ign.gob.ar").href,
                         label: `<abbr lang="es" title="Instituto Geográfico `
                             + `Nacional">IGN</abbr> – ArgenMap`,
                         lang: "es",
@@ -5131,9 +5137,8 @@ class PonchoMap {
                         aria_label: false,
                     },
                     {
-                        link: new URL(
-                            "/maps/search/?api=1&query={{latitude}},{{longitude}}", 
-                            "https://www.google.com").href,
+                        link: "https://www.google.com"
+                            + "/maps/search/?api=1&query={{latitude}},{{longitude}}", 
                         label: "Google maps",
                         lang: "en",
                         hreflang: false,
@@ -5141,9 +5146,8 @@ class PonchoMap {
                         aria_label: false,
                     },
                     {
-                        link: new URL(
-                            "/?q={{latitude}},{{longitude}}", 
-                            "https://maps.apple.com").href,
+                        link: "https://maps.apple.com"
+                            + "/?q={{latitude}},{{longitude}}", 
                         label: "Apple maps",
                         lang: "en",
                         hreflang: "en",
@@ -5152,10 +5156,9 @@ class PonchoMap {
                         aria_label: false,
                     },
                     {
-                        link: new URL(
-                            "/?mlat={{latitude}}&mlon={{longitude}}"
+                        link: "https://www.openstreetmap.org"
+                            + "/?mlat={{latitude}}&mlon={{longitude}}"
                             + "#map=16/{{latitude}}/{{longitude}}", 
-                            "https://www.openstreetmap.org").href,
                         label: "Open street maps",
                         lang: "en",
                         hreflang: "en",
@@ -5682,7 +5685,7 @@ class PonchoMap {
         }
 
         fraction = (!fraction ? this._setFraction() : fraction);
-        if(!/^[0-9]\:[0-9]$/.test(fraction)){
+        if(!/^[0-9]{1,2}\:[0-9]{1,2}$/.test(fraction)){
             console.error(
                 "La fracción para posicionar el mapa tiene errores sintácticos.");
             return;
@@ -8345,7 +8348,7 @@ class PonchoMapLoader {
  * @author Agustín Bouillet <bouilleta@jefatura.gob.ar>
  * @requires leaflet.js,leaflet.markercluster.js,leaflet.css,
  * MarkerCluster.Default.css,MarkerCluster.css, PonchoMap
- * @see https://github.com/argob/poncho/blob/master/src/demo/poncho-maps/readme-poncho-maps.md
+ * @see https://github.com/argob/poncho/tree/master/src/js/poncho-map
  * 
  * 
  * MIT License
@@ -8447,7 +8450,7 @@ class PonchoMapFilter extends PonchoMap {
 
             const li = content => { 
                 const item = document.createElement("li");
-                item.setAttribute("aria-live", "assertive"); 
+                item.ariaLive = "assertive"; 
                 item.innerHTML = content; 
                 item.tabIndex = 0;
                 return item;
@@ -8566,7 +8569,6 @@ class PonchoMapFilter extends PonchoMap {
             - filter_container.offsetTop
             - filter_button.offsetHeight
             - container_position_distance;
-
 
         const pos = document
             .querySelector(`.js-poncho-map-filters${this.scope_sufix}`);
@@ -8704,7 +8706,7 @@ class PonchoMapFilter extends PonchoMap {
      */
     _fields = (fields_items, group) => {
         const fields_container = document.createElement("div");
-        fields_container.classList.add("field-list", "p-b-1");
+        fields_container.classList.add("field-list", "m-b-05");
 
         const fields_to_use = this._fieldsToUse(fields_items);
 
@@ -8753,38 +8755,37 @@ class PonchoMapFilter extends PonchoMap {
      * Crea el botón para los filtros
      */
     _filterButton = () => {
-        const filter_icon = document.createElement("i");
-        filter_icon.setAttribute("aria-hidden", "true");
-        filter_icon.classList.add("pmi", "pmi-filter");
+        // Accedo al contenedor
+        const container = document.querySelector(
+            `.poncho-map${this.scope_selector}`
+        );
 
-        const button_text = document.createElement("span");
-        button_text.textContent = "Abre o cierra el filtro de búsqueda";
-        button_text.classList.add("pm-visually-hidden");
+        // Icono
+        const filter_icon = document.createElement("i");
+        filter_icon.ariaHidden = "true";
+        filter_icon.classList.add("pmi", "pmi-filter");
 
         const button = document.createElement("button");
         button.classList.add(
-            "pm-btn", "pm-btn-rounded-circle", "pm-my-1",
+            "pm-btn",
+            "pm-btn-rounded-circle",
+            "pm-my-1",
             `js-close-filter${this.scope_sufix}`
         );
         button.id = `filtrar-busqueda${this.scope_sufix}`
-        button.appendChild(filter_icon);
-        button.appendChild(button_text);
-        button.setAttribute("role", "button");
-        button.setAttribute(
-            "aria-label", "Abre o cierra el filtro de búsqueda"
-        );
-        button.setAttribute(
-            "aria-controls", `poncho-map-filters${this.scope_sufix}`
-        );
+        button.role = "button";
+        button.ariaLabel = this._t("filters_aria_label_open_close_panel");
+        button.title = this._t("filters_aria_label_open_close_panel");
+        button.ariaControls = `poncho-map-filters${this.scope_sufix}`;
 
         const button_container = document.createElement("div");
         button_container.classList.add(
-            `js-filter-container${this.scope_sufix}`, "filter-container"
+            `js-filter-container${this.scope_sufix}`, 
+            "filter-container"
         );
-        button_container.appendChild(button);
 
-        const container = document
-            .querySelector(`.poncho-map${this.scope_selector}`);
+        button.appendChild(filter_icon);
+        button_container.appendChild(button);
         container.appendChild(button_container);
     }
 
@@ -8824,14 +8825,12 @@ class PonchoMapFilter extends PonchoMap {
      * Crea el contenedor para los filtros.
      */
     _filterContainer = () => {
-        const fields_container = document.createElement("div");
-        fields_container.className = `js-filters${this.scope_sufix}`;
-
         // Icono para el botón 
         const icon = document.createElement("i");
         icon.classList.add("pmi", "pmi-close");
         icon.ariaHidden = "true";
 
+        // Botón cerrar
         const closeButton = document.createElement("button");
         closeButton.classList.add(
             "btn", "btn-xs",
@@ -8840,15 +8839,18 @@ class PonchoMapFilter extends PonchoMap {
             `js-close-filter${this.scope_sufix}`
         );
         closeButton.title = "Cerrar panel";
-        closeButton.setAttribute("role", "button");
-        closeButton.setAttribute("aria-label", "Cerrar panel de filtros");
-        closeButton.appendChild(icon);
+        closeButton.role = "button";
+        closeButton.ariaLabel = this._t("filters_aria_label_close_panel");
 
+        // Contenedor de los filtros
+        const fields_container = document.createElement("div");
+        fields_container.className = `js-filters${this.scope_sufix}`;
+
+        // Formulario
         const form = document.createElement("form");
         form.classList.add(`js-formulario${this.scope_sufix}`);
-        form.appendChild(closeButton); 
-        form.appendChild(fields_container); 
 
+        // Contenedor
         const container = document.createElement("div");
         container.classList.add(
             `js-poncho-map-filters${this.scope_sufix}`,
@@ -8856,28 +8858,35 @@ class PonchoMapFilter extends PonchoMap {
             "poncho-map-filters",
             "pm-caret", "pm-caret-t",
         );
-        container.setAttribute("role", "region");
-        container.setAttribute("aria-live", "polite");
-        container.setAttribute("aria-label", "Panel de filtros");
+        container.role = "region";
+        container.ariaLive = "polite";
+        container.ariaLabel = this._t("filters_aria_label_panel");
         container.id = `poncho-map-filters${this.scope_sufix}`;
-
+        // Si está seteado que los filtros estén visibles.
         if(this.filters_visible){
             container.classList.add("filter--in");
         }
 
-        const cssVarComputedDistance = this._cssVarComputedDistance();
+        // Posicion del panel
+        // const cssVarComputedDistance = this._cssVarComputedDistance();
         const controlZoomSize = this._controlZoomSize();
         const styleTop = controlZoomSize.controlHeight 
                 + controlZoomSize.controlTop 
                 + "px";
 
+        closeButton.appendChild(icon);
+        form.appendChild(closeButton); 
+        form.appendChild(fields_container); 
         container.appendChild(form); 
-        document.querySelectorAll(`.js-filter-container${this.scope_sufix}`)
+
+        document
+            .querySelectorAll(`.js-filter-container${this.scope_sufix}`)
             .forEach(element => {
                 element.style.top = styleTop;
                 element.appendChild(container);
             });
     };
+
 
     /**
      * Crea los botones para seleccionar o des-seleccionar todos
@@ -8887,22 +8896,30 @@ class PonchoMapFilter extends PonchoMap {
      * @returns {object} Objeto HTML
      */
     _checkUncheckButtons = (item) => {
+        // container
+        const checkAllItems = document.createElement("div");
+        
+        // Botón check all
         const checkAllButton = document.createElement("button");
         checkAllButton.classList.add(
-            "js-select-items","select-items__button");
-        checkAllButton.textContent = "Marcar todos";
+            "js-select-items",
+            "select-items__button"
+        );
+        checkAllButton.textContent = this._t("filters_check_all");
         checkAllButton.dataset.field = item.field[0];
         checkAllButton.dataset.value = 1;
 
+        // Botón uncheck all
         const uncheckAllButton = document.createElement("button");
         uncheckAllButton.classList.add(
-            "js-select-items","select-items__button");
-        uncheckAllButton.textContent = "Desmarcar todos";
+            "js-select-items",
+            "select-items__button"
+        );
+        uncheckAllButton.textContent = this._t("filters_uncheck_all");
         uncheckAllButton.dataset.field = item.field[0];
         uncheckAllButton.dataset.value = 0;
-        
 
-        const checkAllItems = document.createElement("div");
+        // Append
         checkAllItems.classList.add("select-items");
         checkAllItems.appendChild(checkAllButton);
         checkAllItems.appendChild(uncheckAllButton);
@@ -8920,18 +8937,27 @@ class PonchoMapFilter extends PonchoMap {
         data.forEach((item, group) => {
             let legend = document.createElement("legend");
             legend.textContent = item.legend;
-            legend.classList.add("m-b-1", "color-primary", "h6")
+            legend.classList.add(
+                "m-b-05",
+                "color-primary",
+                "h6"
+            );
 
-            let fieldset = document.createElement("fieldset");
+            const fieldset = document.createElement("fieldset");
             fieldset.appendChild(legend);
-            if(item.hasOwnProperty("check_uncheck_all") && 
-                    item.check_uncheck_all && item?.type != "radio"){
+            const hasCheckUncheckAll = item.hasOwnProperty("check_uncheck_all") && 
+                                    item.check_uncheck_all && 
+                                    item?.type !== "radio";
+
+            if (hasCheckUncheckAll) {
                 fieldset.appendChild(this._checkUncheckButtons(item));
             }
+
             fieldset.appendChild(this._fields(item, group));
             form_filters.appendChild(fieldset);
         });
     };
+
 
     /**
      * Obtengo los checkbox marcados.
@@ -8940,14 +8966,15 @@ class PonchoMapFilter extends PonchoMap {
         if(this.filters.length < 1){
             return [];
         }
+
         const form_filters = document
             .querySelector(`.js-formulario${this.scope_sufix}`);
         const form_data = new FormData(form_filters);
 
         return Array.from(form_data).map(ele => {
             let val = [];
-                const pos = this._filterPosition(ele[0]);
-                val = [parseInt(pos[1]), parseInt(ele[1]), pos[0]];
+            const pos = this._filterPosition(ele[0]);
+            val = [parseInt(pos[1]), parseInt(ele[1]), pos[0]];
             return val;
         });
     };
@@ -8972,6 +8999,7 @@ class PonchoMapFilter extends PonchoMap {
         return filters;
     };
 
+
     /**
      * Verifica si se están filtrando los datos.
      * @return {boolean}
@@ -8986,6 +9014,7 @@ class PonchoMapFilter extends PonchoMap {
         return result;
     };
 
+
     /**
      * Reestablece los filtros a la configuración creada por el usuario.
      * @return {undefined}
@@ -8996,6 +9025,7 @@ class PonchoMapFilter extends PonchoMap {
             field.checked = e[3];
         });
     };
+
 
     /**
      * Value del input hidden (search)
@@ -9061,27 +9091,16 @@ class PonchoMapFilter extends PonchoMap {
             return "";
         }
         this.totals().forEach(field => {
-            const element = document.querySelector(
-                    `${this.scope_selector}`
-                    + ` [data-info="${field[4]}__${field[2]}__${field[3]}"]`);
+            const selector = `${this.scope_selector}`
+                    + ` [data-info="${field[4]}__${field[2]}__${field[3]}"]`;
+            const element = document.querySelector(selector);
             const plurals = (field[1] < 2 ? "" : "s");
-            
-            const i = document.createElement("i");
-            i.style.cursor = "help";
-            i.style.opacity = ".75";
-            i.style.marginLeft = ".5em";
-            i.style.marginRight = ".25em";
-            i.classList.add("fa", "fa-info-circle","small", "text-info");
-            i.title = `${field[1]} resultado${plurals}`;
-            i.setAttribute("aria-hidden", "true");
 
-            const span = document.createElement("span");
-            span.className = "pm-visually-hidden";
-            span.style.fontWeight = "400";
-            span.textContent = `${field[1]} elemento${plurals}.`;
+            const span = document.createElement("small");
+            span.classList.add("badge", "m-l-05", "fw-medium", "bg-arg-enlace")
+            span.innerHTML = `${field[1]}<span class="pm-visually-hidden"> elemento${plurals}</span>`;
 
             const info_container = document.createElement("small");
-            info_container.appendChild(i);
             info_container.appendChild(span);
             element.appendChild(info_container);
         });
@@ -9233,20 +9252,6 @@ class PonchoMapFilter extends PonchoMap {
                 }
             }
         });
-
-
-        // document
-        //     .querySelectorAll(`.js-poncho-map-reset${this.scope_sufix}`)
-        //     .forEach(e => {
-        //         e.onclick = (event => {
-        //             event.preventDefault();
-                    
-        //             this._resetFormFilters();
-        //             this._filteredData(this.entries);
-        //             this._clearSearchInput();
-        //             this.resetView();
-        //     });
-        // });
     };
 
 
@@ -9801,7 +9806,7 @@ class PonchoMapProvinces extends PonchoMapFilter {
             // Sobreescribo opciones de PonchoMap
             map_view:[-40.47815508388363, -62.802101128049806],
             map_init_options: {
-                zoomSnap: 0.2,
+                zoomSnap: 0.1,
                 zoomControl: true,
                 doubleClickZoom: false,
                 scrollWheelZoom: false,
