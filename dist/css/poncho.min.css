@@ -11098,6 +11098,7 @@ Las clases "dato-nro" y "dato-eje" corresponde a los formatos markdown definidos
   --pm-content-padding: 15px;
   --pm-hover-background: #ddd;
   --pm-hover-color: var(--pm-color-base);
+  --pm-link: var(--arg-enlace, #0767A7);
   --pm-active-color: white;
   --pm-active-background: var(--pm-color-primary);
   --pm-active-visited-color: var(--arg-uva, blueviolet);
@@ -11390,7 +11391,7 @@ Las clases "dato-nro" y "dato-eje" corresponde a los formatos markdown definidos
   -moz-transform: translateZ(-1px) rotate(180.1deg); /*Fix en el rotate*/
 }
 
-.poncho-map .slider {
+.poncho-map .pm-slider {
   z-index: 1000;
   position: absolute;
   top: var(--pm-slider-distance);
@@ -11398,22 +11399,22 @@ Las clases "dato-nro" y "dato-eje" corresponde a los formatos markdown definidos
   width: var(--pm-slider-width);
   height: calc(100% - var(--pm-slider-distance) - var(--pm-slider-distance));
 }
-.poncho-map .slider.slider--in {
+.poncho-map .pm-slider.pm-slider--in {
   right: var(--pm-slider-distance);
   animation-duration: 0.3s;
   animation-name: pm-slidein;
 }
-.poncho-map .slider img {
+.poncho-map .pm-slider img {
   max-width: 100%;
 }
-.poncho-map .slider .pm-content-container {
+.poncho-map .pm-slider .pm-content-container {
   height: 100%;
   padding-right: var(--pm-content-padding);
   padding-left: var(--pm-content-padding);
   padding-top: calc(var(--pm-content-padding) * 3 + 5px);
   padding-bottom: calc(var(--pm-content-padding) * 2);
 }
-.poncho-map .slider .pm-content {
+.poncho-map .pm-slider .pm-content {
   inline-size: min-content;
   color: var(--pm-color-base);
   background-color: transparent;
@@ -11424,10 +11425,10 @@ Las clases "dato-nro" y "dato-eje" corresponde a los formatos markdown definidos
   box-shadow: 0 -10px 20px var(--pm-slider-background) inset;
   word-break: break-word;
 }
-.poncho-map .slider .pm-content:has(.pm-open-map) {
+.poncho-map .pm-slider .pm-content:has(.pm-open-map) {
   height: calc(100% - 20px);
 }
-.poncho-map .slider .pm-content:after {
+.poncho-map .pm-slider .pm-content:after {
   content: "";
   background: var(--pm-slider-background);
   background: -moz-linear-gradient(0deg, var(--pm-slider-background) 30%, rgba(255, 255, 255, 0) 100%);
@@ -11481,9 +11482,12 @@ Las clases "dato-nro" y "dato-eje" corresponde a los formatos markdown definidos
 .poncho-map .filter-container .poncho-map-filters fieldset {
   border: none;
 }
+.poncho-map .filter-container .poncho-map-filters label {
+  font-weight: 400;
+}
 .poncho-map .filter-container .poncho-map-filters input[type=checkbox],
 .poncho-map .filter-container .poncho-map-filters input[type=radio] {
-  accent-color: var(--pm-color-primary) !important;
+  accent-color: var(--pm-link) !important;
 }
 .poncho-map .filter-container .poncho-map-filters .form-check {
   display: flex;
@@ -11498,7 +11502,7 @@ Las clases "dato-nro" y "dato-eje" corresponde a los formatos markdown definidos
   Botones menú filter
   */
 }
-.poncho-map .btn-close {
+.poncho-map .pm-btn-close {
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;
@@ -11571,13 +11575,12 @@ Las clases "dato-nro" y "dato-eje" corresponde a los formatos markdown definidos
   background-color: var(--pm-active-background);
   color: var(--pm-active-color);
   transition: 0.15s;
-  border: var(--pm-slider-border-width) solid var(--pm-slider-border-color);
+  border: none;
 }
 .poncho-map .select-items__button:hover {
   background-color: var(--pm-hover-background);
   color: var(--pm-hover-color);
   transition: 0.15s;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);
 }
 .poncho-map .select-items__button:first-of-type {
   margin-left: 0;
@@ -11832,18 +11835,18 @@ Las clases "dato-nro" y "dato-eje" corresponde a los formatos markdown definidos
  * smartphones, iPhone, portrait 480x320 phones
  */
 @media (max-width: 575.98px) {
-  .poncho-map:has(.slider:is(.slider--in)) {
+  .poncho-map:has(.pm-slider:is(.pm-slider--in)) {
     position: relative;
     -webkit-border-radius: calc(var(--pm-slider-radius) + var(--pm-slider-distance));
     -moz-border-radius: calc(var(--pm-slider-radius) + var(--pm-slider-distance));
     border-radius: calc(var(--pm-slider-radius) + var(--pm-slider-distance));
     transition: 0.4s;
   }
-  .poncho-map:has(.slider:is(.slider--in)) .leaflet-control-attribution {
+  .poncho-map:has(.pm-slider:is(.pm-slider--in)) .leaflet-control-attribution {
     opacity: 0.5;
     display: none;
   }
-  .poncho-map:has(.slider:is(.slider--in))::before {
+  .poncho-map:has(.pm-slider:is(.pm-slider--in))::before {
     content: "";
     width: 100%;
     height: 100%;
@@ -11855,20 +11858,20 @@ Las clases "dato-nro" y "dato-eje" corresponde a los formatos markdown definidos
     opacity: 0.75;
     transition: 0.5s;
   }
-  .poncho-map .slider {
-    height: calc(var(--pm-slider-media-mobile-height) - var(--pm-slider-distance) - var(--pm-slider-distance));
+  .poncho-map .pm-slider {
+    height: calc(var(--pm-slider-media-mobile-height) - var(--pm-slider-distance) * 2);
     top: auto;
     bottom: calc(-1 * var(--pm-slider-media-mobile-height));
     right: var(--pm-slider-distance);
     max-width: 100%;
-    width: calc(100% - var(--pm-slider-distance) - var(--pm-slider-distance));
+    width: calc(100% - var(--pm-slider-distance) * 2);
   }
-  .poncho-map .slider.slider--in {
+  .poncho-map .pm-slider.pm-slider--in {
     animation-name: pm-slidein-mobile;
     bottom: var(--pm-slider-distance);
   }
   .poncho-map .poncho-map-filters {
-    width: calc(100% - var(--pm-slider-distance) - var(--pm-slider-distance));
+    width: calc(100% - var(--pm-slider-distance) * 2);
   }
 }
 input[type=search].js-poncho-map-search__input::-webkit-search-cancel-button {
@@ -12043,6 +12046,7 @@ input[type=search].js-poncho-map-search__input::-webkit-search-cancel-button {
   background-color: var(--pm-hover-color);
 }
 .poncho-map .pmi {
+  --pmi-filter: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><path d="M3.9 54.9C10.5 40.9 24.5 32 40 32H472c15.5 0 29.5 8.9 36.1 22.9s4.6 30.5-5.2 42.5L320 320.9V448c0 12.1-6.8 23.2-17.7 28.6s-23.8 4.3-33.5-3l-64-48c-8.1-6-12.8-15.5-12.8-25.6V320.9L9 97.3C-.7 85.4-2.8 68.8 3.9 54.9z"/></svg>');
   --pmi-filter: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><path d="M3.9 54.9C10.5 40.9 24.5 32 40 32H472c15.5 0 29.5 8.9 36.1 22.9s4.6 30.5-5.2 42.5L320 320.9V448c0 12.1-6.8 23.2-17.7 28.6s-23.8 4.3-33.5-3l-64-48c-8.1-6-12.8-15.5-12.8-25.6V320.9L9 97.3C-.7 85.4-2.8 68.8 3.9 54.9z"/></svg>');
   --pmi-adjust: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><path d="M448 256c0-106-86-192-192-192V448c106 0 192-86 192-192zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg>');
   --pmi-expand: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><path d="M344 0H488c13.3 0 24 10.7 24 24V168c0 9.7-5.8 18.5-14.8 22.2s-19.3 1.7-26.2-5.2l-39-39-87 87c-9.4 9.4-24.6 9.4-33.9 0l-32-32c-9.4-9.4-9.4-24.6 0-33.9l87-87L327 41c-6.9-6.9-8.9-17.2-5.2-26.2S334.3 0 344 0zM168 512H24c-13.3 0-24-10.7-24-24V344c0-9.7 5.8-18.5 14.8-22.2s19.3-1.7 26.2 5.2l39 39 87-87c9.4-9.4 24.6-9.4 33.9 0l32 32c9.4 9.4 9.4 24.6 0 33.9l-87 87 39 39c6.9 6.9 8.9 17.2 5.2 26.2s-12.5 14.8-22.2 14.8z"/></svg>');
