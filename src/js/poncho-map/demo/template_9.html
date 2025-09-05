@@ -30,6 +30,7 @@
     <script src="../src/js/poncho-map-search.js"></script>
     <script src="../../gapi-sheet-data/gapi-sheet-data.js"></script>
     <link rel="stylesheet" href="./css/demo.css">
+    <link rel="stylesheet" href="./css/containers.css">
     <!-- / Script para debug -->
     <title>Poncho Map — Template 9</title>
 </head>
@@ -46,7 +47,7 @@ COPIAR DESDE ACÁ…
 -->
 <div class="col-md-12">
 <!-- PONCHO MAP SEARCH -->
- <search>
+<search>
 <form>
     <div data-scope="poncho-map-search">
         <div class="input-group">
@@ -227,7 +228,7 @@ COPIAR DESDE ACÁ…
             "tooltip": true,
             "no_info": false,
             "slider": true,
-            "hash": true,
+            "hash": false,
             "scroll": true,
             reset_zoom: true,
             filters_info:true,
@@ -246,10 +247,10 @@ COPIAR DESDE ACÁ…
                 },
             ],
             open_maps:true,
-            map_align: "left",
-            map_style: {
-                "slider-width": "calc(100% / 2 - 10px)"
-            },
+            // map_align: "left",
+            // map_style: {
+            //     "slider-width": "calc(100% / 2 - 10px)"
+            // },
         };
 
         const searchOptions = {
