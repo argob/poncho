@@ -47,11 +47,12 @@
             fieldset {
                 border: none;
             }
+            label { font-weight: 400;}
 
             // setea el color para el fondo de los checkbox e inputs.
             input[type="checkbox"],
             input[type="radio"] {
-                accent-color: var(--pm-color-primary) !important;
+                accent-color: var(--pm-link) !important;
             }
 
             // parche fix hasta que se use bootstrap > 4

@@ -494,7 +494,7 @@ class PonchoMapFilter extends PonchoMap {
         closeButton.classList.add(
             "btn", "btn-xs",
             "btn-secondary",
-            "btn-close",
+            "pm-btn-close",
             `js-close-filter${this.scope_sufix}`
         );
         closeButton.title = "Cerrar panel";
