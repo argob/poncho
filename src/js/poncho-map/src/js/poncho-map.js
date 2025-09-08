@@ -104,13 +104,13 @@ class PonchoMap {
             map_breakpoint: {
                 xs: {value: 0, fraction: "1:1"},
                 lg: {value: 992, fraction: "1:3"},
-                sm: {value: 576, fraction: "1:1"},
+                sm: {value: 576, fraction: "1:4"},
                 xl: {value: 1200, fraction: "2:7"},
-                md: {value: 768, fraction: "1:4"},
+                md: {value: 768, fraction: "1:3"},
                 xxl: {value: 1400, fraction: "2:7"}
             },
             media_breakpoint: {
-                xs: 576,
+                xs: 0,
                 sm: 576,
                 md: 768,
                 lg: 992,

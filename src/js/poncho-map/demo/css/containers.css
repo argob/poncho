@@ -1,3 +1,4 @@
+/*
 .poncho-map {
     container-type: inline-size;
     container-name: canvasWidthSize;
@@ -8,19 +9,56 @@
         border-left: 6px solid blueviolet !important
     }
 } 
-
 @container canvasWidthSize (min-width: 600px) {
     .pm-slider {
-        --pm-slider-width: 350px;
+        --pm-slider-width: calc(55% - 20px);
         border-left: 6px solid goldenrod !important
     }
 }
 @container canvasWidthSize (min-width: 700px) {
     .pm-slider {
-        --pm-slider-width: 350px;
+        --pm-slider-width: calc(50% - 20px);
         border-left: 6px solid salmon !important
     }
 } 
+*/
+
+
+
+.poncho-map {
+    container-type: inline-size;
+    container-name: canvasWidthSize;
+}
+@container canvasWidthSize (min-width: 0px) {
+    .pm-slider {
+        --pm-slider-width: calc(100% - 20px);
+        border-left: 1px solid blueviolet !important
+    }
+} 
+@container canvasWidthSize (min-width: 600px) {
+    .pm-slider {
+ --pm-slider-width: calc(100% / 2 - 20px);
+ --pm-slider-width: calc(325px - 20px);
+        border-left: 1px solid goldenrod !important
+    }
+}
+@container canvasWidthSize (min-width: 700px) {
+    .pm-slider {
+        --pm-slider-width: calc(100% / 2.7 - 20px);
+        border-left: 1px solid salmon !important
+    }
+} 
+
+@container canvasWidthSize (min-width: 992px) {
+    .pm-slider {
+        --pm-slider-width: calc(100% / 3 - 20px);
+        border-left: 1px solid cyan !important
+    }
+} 
+
+
+
+
 
 
 
@@ -28,6 +66,8 @@
 
 /* Small (sm) */
 /* Se aplica a pantallas de 576px y mayores */
+
+/* 
 @media (min-width: 576px) {
     .poncho-map[data-scope="poncho-map"]:has(#map) {
         --pm-slider-width: calc(100% - 20px);
@@ -46,10 +86,12 @@
         opacity: .75;
         transition: .5s
     }
-}
+}*/
 
 /* Medium (md) */
 /* Se aplica a pantallas de 768px y mayores */
+
+/* 
 @media (min-width: 768px) {
     .poncho-map[data-scope="poncho-map"]:has(#map) {
         --pm-slider-width: calc(50% - 20px);
@@ -60,28 +102,34 @@
         opacity: .0;
         display: none;
     }
-}
+}*/
 
 /* Large (lg) */
 /* Se aplica a pantallas de 992px y mayores */
+
+/* 
 @media (min-width: 992px) {
     .poncho-map[data-scope="poncho-map"]:has(#map) {
         --pm-slider-width: calc(50% - 20px);
         border-top: 6px solid blue
     }
-}
+}*/
 
 /* Extra large (xl) */
 /* Se aplica a pantallas de 1200px y mayores */
+
+/* 
 @media (min-width: 1200px) {
     .poncho-map[data-scope="poncho-map"]:has(#map) {
         --pm-slider-width: calc(50% - 20px);
         border-top: 6px solid orange
     }
-}
+}*/
 
 /* Extra extra large (xxl) */
 /* Se aplica a pantallas de 1400px y mayores */
+
+/* 
 @media (min-width: 1400px) {
     .poncho-map[data-scope="poncho-map"]:has(#map) {
         --pm-slider-width: calc(50% - 20px);
