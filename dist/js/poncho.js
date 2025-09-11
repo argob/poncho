@@ -5076,8 +5076,8 @@ class PonchoMap {
             map_align: "center",
             map_anchor_zoom: 16,
             map_background: "#DDD",
-            // zoomSnap: .2,
             map_init_options: {
+                // zoomSnap: .2,
                 // zoomControl: false,
                 // scrollWheelZoom: false,
                 // touchZoom: false,
@@ -5239,8 +5239,8 @@ class PonchoMap {
         this.scroll = opts.scroll;
         this.fit_bounds_onevent = opts.fit_bounds_onevent;
         this.map_view = opts.map_view;
-        this.anchor_delay = opts.anchor_delay;
         this.map_init_options = opts.map_init_options;
+        this.anchor_delay = opts.anchor_delay;
         this.map_zoom = opts.map_zoom;
         this.min_zoom = opts.min_zoom;
         this.map_anchor_zoom = opts.map_anchor_zoom;
@@ -5390,6 +5390,7 @@ class PonchoMap {
         const mapOptions = {
             renderer: L.svg(), 
             ...this.map_init_options,
+            zoomControl: false, // Desactiva el control por defecto
         };
 
         // Inicializa el mapa
@@ -5398,14 +5399,17 @@ class PonchoMap {
         this.map.attributionControl.setPrefix(this.prefix);
 
         // Redefine los valores para la herramienta zoom
-        const customZoomControl = L.control.zoom({
-            position: 'topleft',
-            zoomInText: '+',
-            zoomOutText: '-',
-            zoomInTitle: this._t("zoom_in"),
-            zoomOutTitle: this._t("zoom_out")
-        });
-        customZoomControl.addTo(this.map);
+        if(this.map_init_options?.zoomControl !== false){
+            const customZoomControl = L.control.zoom({
+                position: 'topleft',
+                zoomInText: '+',
+                zoomOutText: '-',
+                zoomInTitle: this._t("zoom_in"),
+                zoomOutTitle: this._t("zoom_out"),
+                zoomControl: true,
+            });
+            customZoomControl.addTo(this.map);
+        }
 
         // Si se importó el componente _markerCluster_, lo usa. De otro modo
         // Utiliza _FeatureGroup_ y muestra todos los markers simultáneamente.
