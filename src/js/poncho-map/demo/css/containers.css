@@ -1,4 +1,4 @@
-/*
+
 .poncho-map {
     container-type: inline-size;
     container-name: canvasWidthSize;
@@ -6,26 +6,23 @@
 @container canvasWidthSize (min-width: 0px) {
     .pm-slider {
         --pm-slider-width: calc(100% - 20px);
-        border-left: 6px solid blueviolet !important
     }
 } 
 @container canvasWidthSize (min-width: 600px) {
     .pm-slider {
         --pm-slider-width: calc(55% - 20px);
-        border-left: 6px solid goldenrod !important
     }
 }
 @container canvasWidthSize (min-width: 700px) {
     .pm-slider {
         --pm-slider-width: calc(50% - 20px);
-        border-left: 6px solid salmon !important
     }
 } 
-*/
 
 
 
-.poncho-map {
+
+/* .poncho-map {
     container-type: inline-size;
     container-name: canvasWidthSize;
 }
@@ -54,7 +51,7 @@
         --pm-slider-width: calc(100% / 3 - 20px);
         border-left: 1px solid cyan !important
     }
-} 
+}  */
 
 
 

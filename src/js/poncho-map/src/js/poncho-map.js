@@ -103,10 +103,10 @@ class PonchoMap {
             anchor_delay: 0,
             map_breakpoint: {
                 xs: {value: 0, fraction: "1:1"},
-                lg: {value: 992, fraction: "1:3"},
                 sm: {value: 576, fraction: "1:4"},
+                md: {value: 768, fraction: "2:7"},
+                lg: {value: 992, fraction: "1:4"},
                 xl: {value: 1200, fraction: "2:7"},
-                md: {value: 768, fraction: "1:3"},
                 xxl: {value: 1400, fraction: "2:7"}
             },
             media_breakpoint: {
@@ -163,8 +163,8 @@ class PonchoMap {
             map_align: "center",
             map_anchor_zoom: 16,
             map_background: "#DDD",
+            // zoomSnap: .2,
             map_init_options: {
-                // zoomSnap: .2,
                 // zoomControl: false,
                 // scrollWheelZoom: false,
                 // touchZoom: false,
@@ -326,8 +326,8 @@ class PonchoMap {
         this.scroll = opts.scroll;
         this.fit_bounds_onevent = opts.fit_bounds_onevent;
         this.map_view = opts.map_view;
-        this.map_init_options = opts.map_init_options;
         this.anchor_delay = opts.anchor_delay;
+        this.map_init_options = opts.map_init_options;
         this.map_zoom = opts.map_zoom;
         this.min_zoom = opts.min_zoom;
         this.map_anchor_zoom = opts.map_anchor_zoom;
@@ -477,7 +477,6 @@ class PonchoMap {
         const mapOptions = {
             renderer: L.svg(), 
             ...this.map_init_options,
-            zoomControl: false
         };
 
         // Inicializa el mapa
