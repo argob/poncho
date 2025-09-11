@@ -75,6 +75,7 @@ COPIAR DESDE ACÁ…
 
 <div class="container">
     <div class="col-md-12">
+        <div id="width"></div>
     <!-- PONCHO MAP -->
     <div class="poncho-map" data-scope="poncho-map">
         <div
@@ -120,7 +121,7 @@ COPIAR DESDE ACÁ…
             "template": (a, b) => "<h2>" + b.nombre + "</h2><ul><li>" 
                 + Object.values(b).filter(e => e).join("</li><li>") 
                 + "</li></ul>",
-            "error_reporting": 1,
+            "error_reporting": 0,
             "template": (self, entry) => {
                 entry.foto_html = (entry.foto ? `<img class="img-in" alt="${entry.name}" src="${entry.foto}" style="border-radius:6px; border:1px solid #eee" />` : ""); 
                 entry.boton_html = (entry.boton ? 
@@ -246,8 +247,8 @@ COPIAR DESDE ACÁ…
                     check_uncheck_all: true
                 },
             ],
-            open_maps:true,
-            // map_align: "left",
+            open_maps: true,
+            map_align: "left",
             // map_style: {
             //     "slider-width": "calc(100% / 2 - 10px)"
             // },
@@ -267,6 +268,17 @@ COPIAR DESDE ACÁ…
             
         loader.close();
     })();
+
+
+
+function setWidth(){
+    const mapSize = document.querySelector(".poncho-map");
+    document.querySelector("#width").textContent = mapSize.offsetWidth + "px";
+}
+setWidth()
+window.addEventListener("resize", () => {
+    setWidth()
+})
 </script>
 <!-- / SCRIPTS -->
 </body>
