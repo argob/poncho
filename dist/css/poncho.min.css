@@ -1,4 +1,5 @@
-﻿/*!
+@charset "UTF-8";
+/*!
  * Poncho v0.3.3 (https://github.com/argob/poncho)
  * Copyright 2016
  * Subsecretaría de Tecnologías de la Información
@@ -16059,4 +16060,3 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
     display: inherit;
   }
 }
-
