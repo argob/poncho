@@ -4951,7 +4951,7 @@ if (typeof exports !== "undefined") {
  */
 const PM_TRANSLATE = {
     es: {
-        cluster_click: "Clic para hacer zoom",
+        cluster_click: "Clic para expandir grupo",
         cluster_large: "Grupo grande de {{count}} ubicaciones",
         cluster_medium: "Grupo mediano de {{count}} ubicaciones",
         cluster_small: "Grupo chico de {{count}} ubicaciones",
@@ -5014,21 +5014,21 @@ class PonchoMap {
             ],
             allowed_tags: [],
             anchor_delay: 0,
-            breakpoint: {
+            map_breakpoint: {
+                xs: {value: 0, fraction: "1:1"},
+                lg: {value: 992, fraction: "1:3"},
+                sm: {value: 576, fraction: "1:1"},
+                xl: {value: 1200, fraction: "2:7"},
+                md: {value: 768, fraction: "1:4"},
+                xxl: {value: 1400, fraction: "2:7"}
+            },
+            media_breakpoint: {
                 xs: 576,
                 sm: 576,
                 md: 768,
                 lg: 992,
                 xl: 1200,
                 xxl: 1400,
-            },
-            breakpoint_fraction: {
-                xs: "1:3",
-                sm: "1:1",
-                md: "1:4",
-                lg: "1:3",
-                xl: "2:7",
-                xxl: "2:7"
             },
             content_selector: false,
             default_themes: [
@@ -5176,7 +5176,7 @@ class PonchoMap {
             scope: "",
             scroll: false,
             slider: false,
-            slider_selector: ".slider",
+            slider_selector: ".pm-slider",
             template: false,
             template_innerhtml: false,
             template_markdown: false,
@@ -5295,8 +5295,8 @@ class PonchoMap {
             defaults.open_maps_options, 
             options?.open_maps_options
         );
-        this.breakpoint = opts.breakpoint;
-        this.breakpoint_fraction = opts.breakpoint_fraction;
+        this.media_breakpoint = opts.media_breakpoint;
+        this.map_breakpoint = opts.map_breakpoint;
         this.map_align = opts.map_align;
         this.map_style = opts.map_style;
         this.accesible_menu_extras = opts.accesible_menu_extras;
@@ -5444,11 +5444,7 @@ class PonchoMap {
         const replaceDef = (this.dictionary.hasOwnProperty(definition) ? 
                 this.dictionary[definition] : definition);
 
-        // if(!this.isEmptyObject(tpl)){
         return this.tplParser(replaceDef, tpl);
-        // }
-
-        return this.dictionary[definition];
     };
 
 
@@ -5640,50 +5636,83 @@ class PonchoMap {
      * @returns {string} Fracción, ej: 1:3
      */
     _setFraction = (mediaSize) => {
-        let fraction = '1:1';
-
-        // Tamaño del contenedor del mapa
-        const elementSize = (mediaSize ? mediaSize : 
+        let fraction;
+        const _this = this;
+        // Tamaño del contenedor del mapa.
+        // Si se especifica tamaño, lo usa. De otro modo accede al tamaño
+        // del ancho del mapa.
+        const elementSize = (this.isNumber(mediaSize) ? mediaSize : 
             document.getElementById(this.map_selector).offsetWidth);
 
-        if(!this.isNumber(elementSize)){
-            return fraction;
+        // obtengo el listado de breakpoints válidos.
+        const validMediaBreakpoints = Object.keys(this.media_breakpoint);
+
+        // Las claves existen
+        const hasValidKeys = Object
+                .keys(this.map_breakpoint)
+                .every(entry => validMediaBreakpoints.includes(entry));
+
+        // Si las claves están mal, muestro un error y corto la ejecución. 
+        if(!hasValidKeys){
+            _this.showAlert({
+                title: `Una o muchas claves en: `
+                    + `<code>map_breakpoints</code>, no son `
+                    + `claves correctas.`,
+                messages: [
+                    `Compruebe que las claves coincidan con alguna de `
+                    + `las siguientes: `
+                    + `${validMediaBreakpoints.join(", ")}.`,
+                    
+                ],
+                terminal: this.map_breakpoint
+            }, "danger", true);
+
+            return;
         }
-        // Ordeno las entradas de mayor a menor medida.
-        let breakpointEntries = Object.entries(this.breakpoint);
-        breakpointEntries.sort((a, b) => b[1] - a[1]);
-        console.table(breakpointEntries)
-        // Si es XS
-        console.log(elementSize, this.breakpoint.xs)
-        if(elementSize < this.breakpoint.xs){
-            console.log("----> xs")
-            return this.breakpoint_fraction.xs;
-        } 
 
-        // Evaluo los otros breakpoints
-        for(const entry of breakpointEntries){
-            const [key, breakpointSize] = entry;
+        // Valido las definiciones por cada breakpoint
+        const hasValidDefinitions = Object
+                .values(this.map_breakpoint)
+                .every(function(entry){
+                    return (typeof entry === "object" && entry !== null && 
+                        'value' in entry && 'fraction' in entry);
+                });
 
-            if(!this.breakpoint_fraction.hasOwnProperty(key)){
+        // La validación se hace ANTES del ordenamiento
+        if (!hasValidDefinitions){
+            this.showAlert({
+                title: "La definición de <code>map_breakpoints</code>, "
+                    + "tiene errores",
+                messages: [
+                    "Verifique que para cada entrada existan las claves: "
+                    + "`value` y `fraction`."],
+                terminal: this.map_breakpoint
+            }, "warning");
+
+            return; 
+        }
+
+        // Ordeno los valores de mayor a menor. 
+        const sortedEntries = Object
+            .entries(this.map_breakpoint)
+            .sort(([, a], [, b]) => b.value - a.value);
+
+        // Verifico cual de los MAP breakpoints es el adecuado.
+        for(let entry of sortedEntries){
+            let [breakpoint, {value, fraction:definedFraction}] = entry;
+            if(!this.isNumber(value)){
                 continue;
             }
 
-            if(key == "xs"){
-                continue;
-            }
-
-            if(!Number.isInteger(Number(breakpointSize))){
-                continue;
-            }
-
-            if(elementSize >= breakpointSize){
-                fraction = this.breakpoint_fraction[key];
-                console.log(key)
+            if(elementSize >= value){
+                fraction = definedFraction;
+                console.table(sortedEntries)
+                console.log(breakpoint, value, fraction, elementSize)
                 break;
             }
         }
 
-        return fraction;
+        return fraction || "1:1";
     }
 
 
@@ -7007,7 +7036,7 @@ class PonchoMap {
         container.id = `slider${this.scope_sufix}`;
         container.classList.add(
             "pm-container",
-            "slider",
+            "pm-slider",
             `js-slider${this.scope_sufix}`
         );
         container.style.display = "none";
@@ -7023,12 +7052,16 @@ class PonchoMap {
         // Botón para cerrar el slider
         const closeButton = document.createElement("button");
         closeButton.classList.add(
-                "btn", "pm-btn-xs", "btn-secondary", "btn-close", 
-                `js-close-slider${this.scope_sufix}`);
+            "btn",
+            "pm-btn-xs",
+            "btn-secondary",
+            "pm-btn-close", 
+            `js-close-slider${this.scope_sufix}`
+        );
+        closeButton.setAttribute("autofocus", "autofocus");
         closeButton.title = "Cerrar panel";
         closeButton.role = "button";
         closeButton.tabIndex = 0;
-        closeButton.setAttribute("formmethod", "dialog");
         closeButton.ariaLabel = "Cerrar panel de información";
 
         // Enlace anchor.
@@ -8854,7 +8887,7 @@ class PonchoMapFilter extends PonchoMap {
         closeButton.classList.add(
             "btn", "btn-xs",
             "btn-secondary",
-            "btn-close",
+            "pm-btn-close",
             `js-close-filter${this.scope_sufix}`
         );
         closeButton.title = "Cerrar panel";
