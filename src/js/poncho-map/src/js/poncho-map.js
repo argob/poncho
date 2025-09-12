@@ -2901,74 +2901,74 @@ class PonchoMap {
      * Prepara las características del mapa y de cada uno de los markers.
      * @see https://leafletjs.com/reference.html#path
      */
-    markersMap = (entries) => {
-        this._clearLayers();
+    // markersMap = (entries) => {
+    //     this._clearLayers();
 
-        this.geojson = L.geoJson(entries, {
+    //     this.geojson = L.geoJson(entries, {
 
-            pointToLayer: (feature, latlng) => {
-                const { properties } = feature;
-                const markerOptions = {
-                    id: properties[this.id],
-                    alt: this.title ? properties[this.title] : null,
-                    icon: this.marker(properties)
-                };
+    //         pointToLayer: (feature, latlng) => {
+    //             const { properties } = feature;
+    //             const markerOptions = {
+    //                 id: properties[this.id],
+    //                 alt: this.title ? properties[this.title] : null,
+    //                 icon: this.marker(properties)
+    //             };
 
-                const marker = L.marker(latlng, markerOptions);
-                this.markers.addLayer(marker);
-                return marker;
-            },
+    //             const marker = L.marker(latlng, markerOptions);
+    //             this.markers.addLayer(marker);
+    //             return marker;
+    //         },
 
-            onEachFeature: (feature, layer) => {
-                const { properties, geometry } = feature;
+    //         onEachFeature: (feature, layer) => {
+    //             const { properties, geometry } = feature;
 
-                // Atributos comunes
-                layer.options.id = properties[this.id];
-                feature.properties.name = properties[this.title];
+    //             // Atributos comunes
+    //             layer.options.id = properties[this.id];
+    //             feature.properties.name = properties[this.title];
 
-                // Desactiva la interactividad
-                if(properties.hasOwnProperty("pm-interactive") && 
-                    properties["pm-interactive"] === "n"){
-                    layer.options.interactive = false;
-                }
+    //             // Desactiva la interactividad
+    //             if(properties.hasOwnProperty("pm-interactive") && 
+    //                 properties["pm-interactive"] === "n"){
+    //                 layer.options.interactive = false;
+    //             }
 
-                // Lógica para tooltips y popups
-                const hasInfo = !this.no_info && !this.slider;
-                // const isPoint = geometry.type === "Point" || geometry.type === "MultiPoint";
+    //             // Lógica para tooltips y popups
+    //             const hasInfo = !this.no_info && !this.slider;
+    //             // const isPoint = geometry.type === "Point" || geometry.type === "MultiPoint";
 
-                if (this.tooltip && properties[this.title]) {
-                    layer.bindTooltip(
-                        properties[this.title], 
-                        this.tooltip_options
-                    );
-                }
+    //             if (this.tooltip && properties[this.title]) {
+    //                 layer.bindTooltip(
+    //                     properties[this.title], 
+    //                     this.tooltip_options
+    //                 );
+    //             }
 
-                if (hasInfo) {
-                    const html = (typeof this.template === "function") ?
-                        this.template(this, properties) :
-                        this.defaultTemplate(this, properties);
-                    layer.bindPopup(html);
-                }
-            },
+    //             if (hasInfo) {
+    //                 const html = (typeof this.template === "function") ?
+    //                     this.template(this, properties) :
+    //                     this.defaultTemplate(this, properties);
+    //                 layer.bindPopup(html);
+    //             }
+    //         },
 
-            style: (feature) => {
-                const { properties } = feature;
-                return {
-                    color: properties.stroke ?? properties['stroke-color'] ?? this.featureStyle.stroke,
-                    strokeOpacity: properties['stroke-opacity'] ?? this.featureStyle['stroke-opacity'],
-                    weight: properties['stroke-width'] ?? this.featureStyle['stroke-width'],
-                    fillColor: properties.fill ?? this.featureStyle.fill,
-                    fillOpacity: properties['fill-opacity'] ?? this.featureStyle['fill-opacity']
-                };
-            }
-        });
+    //         style: (feature) => {
+    //             const { properties } = feature;
+    //             return {
+    //                 color: properties.stroke ?? properties['stroke-color'] ?? this.featureStyle.stroke,
+    //                 strokeOpacity: properties['stroke-opacity'] ?? this.featureStyle['stroke-opacity'],
+    //                 weight: properties['stroke-width'] ?? this.featureStyle['stroke-width'],
+    //                 fillColor: properties.fill ?? this.featureStyle.fill,
+    //                 fillOpacity: properties['fill-opacity'] ?? this.featureStyle['fill-opacity']
+    //             };
+    //         }
+    //     });
 
-        this.geojson.addTo(this.map);
+    //     this.geojson.addTo(this.map);
 
-        // 6. Coloca la configuración del mapa fuera del bucle de creación.
-        // Configurar `minZoom` una sola vez es mucho más eficiente que hacerlo para cada feature.
-        this.map.options.minZoom = this.min_zoom;
-    };
+    //     // 6. Coloca la configuración del mapa fuera del bucle de creación.
+    //     // Configurar `minZoom` una sola vez es mucho más eficiente que hacerlo para cada feature.
+    //     this.map.options.minZoom = this.min_zoom;
+    // };
 
 
 
@@ -2976,95 +2976,97 @@ class PonchoMap {
      * Prepara las características del mapa y de cada uno de los markers.
      * @see https://leafletjs.com/reference.html#path
      */
-    // _markersMap = (entries) => { 
+    markersMap = (entries) => { 
 
-    //     var _this = this;
-    //     this._clearLayers();
-    //     this.geojson = new L.geoJson(entries, {
+        var _this = this;
+        this._clearLayers();
+        this.geojson = new L.geoJson(entries, {
 
-    //         pointToLayer: function(feature, latlng) {
-    //             const {properties} = feature;
-    //             const icon = _this.marker(properties);
+            pointToLayer: function(feature, latlng) {
+                const {properties} = feature;
+                const icon = _this.marker(properties);
                 
-    //             let marker_attr = {};
-    //             marker_attr.id = properties[_this.id];
-    //             if(icon){
-    //                 marker_attr.icon = icon;
-    //             }
-    //             if(_this.title){
-    //                 marker_attr.alt = properties[_this.title];
-    //             }
+                let marker_attr = {};
+                marker_attr.id = properties[_this.id];
+                if(icon){
+                    marker_attr.icon = icon;
+                }
+                if(_this.title){
+                    marker_attr.alt = properties[_this.title];
+                }
                 
-    //             const marker = new L.marker(latlng, marker_attr);
-    //             _this.map.options.minZoom = _this.min_zoom;
-    //             _this.markers.addLayer(marker);
+                const marker = new L.marker(latlng, marker_attr);
+                _this.map.options.minZoom = _this.min_zoom;
+                _this.markers.addLayer(marker);
 
-    //             // Si el usuario eligió usar tooltip
-    //             if(_this.tooltip && properties[_this.title]){
-    //                 marker.bindTooltip(
-    //                     properties[_this.title], _this.tooltip_options
-    //                 );
-    //             }
+                // Si el usuario eligió usar tooltip
+                if(_this.tooltip && properties[_this.title]){
+                    marker.bindTooltip(
+                        properties[_this.title], _this.tooltip_options
+                    );
+                }
                 
-    //             // Si el usuario desea utilizar popUp en vez de slider.
-    //             if(!_this.no_info && !_this.slider){
-    //                 const html = (typeof _this.template == "function" ? 
-    //                         _this.template(_this, properties) : 
-    //                         _this.defaultTemplate(_this, properties));
-    //                 marker.bindPopup(html);
-    //             }
+                // Si el usuario desea utilizar popUp en vez de slider.
+                if(!_this.no_info && !_this.slider){
+                    const html = (typeof _this.template == "function" ? 
+                            _this.template(_this, properties) : 
+                            _this.defaultTemplate(_this, properties));
+                    marker.bindPopup(html);
+                }
                 
-    //             return _this.markers;
-    //         },
-    //         onEachFeature: function(feature, layer){
-    //             const {properties, geometry} = feature;
-    //             layer.options.id = properties[_this.id];
-    //             feature.properties.name = properties[_this.title];
+                return _this.markers;
+            },
+            onEachFeature: function(feature, layer){
+                const {properties, geometry} = feature;
+                layer.options.id = properties[_this.id];
+                feature.properties.name = properties[_this.title];
                 
-        
-    //             layer.options.interactive = false;
+                if(properties.hasOwnProperty("pm-interactive") && 
+                    properties["pm-interactive"] === "n"){
+                    layer.options.interactive = false;
+                }
 
 
-    //             // Si el usuario eligió usar tooltip
-    //             if(_this.tooltip && properties[_this.title] && 
-    //                 geometry.type != "Point" && geometry.type != "MultiPoint"){
-    //                 layer.bindTooltip(
-    //                     properties[_this.title], _this.tooltip_options
-    //                 );
-    //             }
+                // Si el usuario eligió usar tooltip
+                if(_this.tooltip && properties[_this.title] && 
+                    geometry.type != "Point" && geometry.type != "MultiPoint"){
+                    layer.bindTooltip(
+                        properties[_this.title], _this.tooltip_options
+                    );
+                }
                 
-    //             if(!_this.no_info && !_this.slider && 
-    //                 geometry.type != "Point" && geometry.type != "MultiPoint"){
-    //                 const html = (typeof _this.template == "function" ? 
-    //                         _this.template(_this, properties) : 
-    //                         _this.defaultTemplate(_this, properties));
-    //                 layer.bindPopup(html);
-    //             }
-    //         },
-    //         style: function(feature) {
-    //             const {properties} = feature;
-    //             const setProp = (key, alternative=false) => {
-    //                 if( properties.hasOwnProperty(key)) {
-    //                     return properties[key];
-    //                 } else if(alternative) {
-    //                     return alternative; 
-    //                 } else {
-    //                     return _this.featureStyle[key];
-    //                 }
-    //             };
-    //             return {
-    //                 color: setProp("stroke-color", setProp("stroke")), 
-    //                 strokeOpacity: setProp("stroke-opacity"), 
-    //                 weight: setProp("stroke-width"), 
-    //                 fillColor: setProp("stroke"), 
-    //                 opacity: setProp("stroke-opacity"), 
-    //                 fillOpacity: setProp("fill-opacity")
-    //             };  
-    //         }, 
+                if(!_this.no_info && !_this.slider && 
+                    geometry.type != "Point" && geometry.type != "MultiPoint"){
+                    const html = (typeof _this.template == "function" ? 
+                            _this.template(_this, properties) : 
+                            _this.defaultTemplate(_this, properties));
+                    layer.bindPopup(html);
+                }
+            },
+            style: function(feature) {
+                const {properties} = feature;
+                const setProp = (key, alternative=false) => {
+                    if( properties.hasOwnProperty(key)) {
+                        return properties[key];
+                    } else if(alternative) {
+                        return alternative; 
+                    } else {
+                        return _this.featureStyle[key];
+                    }
+                };
+                return {
+                    color: setProp("stroke-color", setProp("stroke")), 
+                    strokeOpacity: setProp("stroke-opacity"), 
+                    weight: setProp("stroke-width"), 
+                    fillColor: setProp("stroke"), 
+                    opacity: setProp("stroke-opacity"), 
+                    fillOpacity: setProp("fill-opacity")
+                };  
+            }, 
             
-    //     });
-    //     this.geojson.addTo(this.map);  
-    // };
+        });
+        this.geojson.addTo(this.map);  
+    };
 
 
     /**
