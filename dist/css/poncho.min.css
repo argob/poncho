@@ -11655,7 +11655,7 @@ Las clases "dato-nro" y "dato-eje" corresponde a los formatos markdown definidos
   padding-bottom: calc(var(--pm-slider-distance) * 3) !important;
 }
 
-.poncho-map .pm-visually-hidden {
+.pm-visually-hidden {
   width: 1px !important;
   height: 1px !important;
   padding: 0 !important;
@@ -11665,7 +11665,7 @@ Las clases "dato-nro" y "dato-eje" corresponde a los formatos markdown definidos
   white-space: nowrap !important;
   border: 0 !important;
 }
-.poncho-map .pm-visually-hidden:not(caption) {
+.pm-visually-hidden:not(caption) {
   position: absolute !important;
 }
 
