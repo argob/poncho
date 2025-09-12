@@ -5309,31 +5309,35 @@ class PonchoMap {
 
         // Attribution settings
         const attributions = {
-            ign: {
-                link: "https://www.ign.gob.ar/AreaServicios/Argenmap/Introduccion",
-                label: `<abbr lang="es" title="Instituto Geográfico Nacional">IGN</abbr>`,
-                lang: "es",
-                hreflang: "es"
-            },
             ersi: {
-                link: "https://www.esri.com/es-es/home",
+                attributes: {tabindex: -1},
+                hreflang: "es",
                 label: `© <abbr lang="en" title="Environmental Systems Research Institute">Esri</abbr>`,
                 lang: "en",
-                hreflang: "es"
+                link: "https://www.esri.com/es-es/home",
             },
-            osm: {
-                link: "https://www.openstreetmap.org/copyright",
-                label: `<abbr lang="en" title="Open Street Map">OSM</abbr>`,
-                lang: "en",
-                hreflang: "en"
+            ign: {
+                attributes: {tabindex: -1},
+                hreflang: "es",
+                label: `<abbr lang="es" title="Instituto Geográfico Nacional">IGN</abbr>`,
+                lang: "es",
+                link: "https://www.ign.gob.ar/AreaServicios/Argenmap/Introduccion",
             },
             leaflet: {
-                link: "https://leafletjs.com/",
+                attributes: {tabindex: -1},
+                hreflang: "en",
                 label: "Leaflet",
                 lang: "en",
-                hreflang: "en",
+                link: "https://leafletjs.com/",
                 title: "Biblioteca JavaScript para mapas interactivos",
-            }
+            },
+            osm: {
+                attributes: {tabindex: -1},
+                hreflang: "en",
+                label: `<abbr lang="en" title="Open Street Map">OSM</abbr>`,
+                lang: "en",
+                link: "https://www.openstreetmap.org/copyright",
+            },
         };
 
         // Attribution links
@@ -5389,6 +5393,7 @@ class PonchoMap {
         this.tileLayer = new L.tileLayer(this.layerViewConf.tilesUrl);
         const mapOptions = {
             renderer: L.svg(), 
+            keyboard: true,
             ...this.map_init_options,
             zoomControl: false, // Desactiva el control por defecto
         };
@@ -7809,90 +7814,170 @@ class PonchoMap {
      * Prepara las características del mapa y de cada uno de los markers.
      * @see https://leafletjs.com/reference.html#path
      */
-    markersMap = (entries) => { 
-
-        var _this = this;
+    markersMap = (entries) => {
         this._clearLayers();
-        this.geojson = new L.geoJson(entries, {
-            pointToLayer: function(feature, latlng) {
-                const {properties} = feature;
-                const icon = _this.marker(properties);
-                
-                let marker_attr = {};
-                marker_attr.id = properties[_this.id];
-                if(icon){
-                    marker_attr.icon = icon;
-                }
-                if(_this.title){
-                    marker_attr.alt = properties[_this.title];
-                }
-                
-                const marker = new L.marker(latlng, marker_attr);
-                _this.map.options.minZoom = _this.min_zoom;
-                _this.markers.addLayer(marker);
 
-                // Si el usuario eligió usar tooltip
-                if(_this.tooltip && properties[_this.title]){
-                    marker.bindTooltip(
-                        properties[_this.title], _this.tooltip_options
-                    );
-                }
-                
-                // Si el usuario desea utilizar popUp en vez de slider.
-                if(!_this.no_info && !_this.slider){
-                    const html = (typeof _this.template == "function" ? 
-                            _this.template(_this, properties) : 
-                            _this.defaultTemplate(_this, properties));
-                    marker.bindPopup(html);
-                }
-                
-                return _this.markers;
+        this.geojson = L.geoJson(entries, {
+
+            pointToLayer: (feature, latlng) => {
+                const { properties } = feature;
+                const markerOptions = {
+                    id: properties[this.id],
+                    alt: this.title ? properties[this.title] : null,
+                    icon: this.marker(properties)
+                };
+
+                const marker = L.marker(latlng, markerOptions);
+                this.markers.addLayer(marker);
+                return marker;
             },
-            onEachFeature: function(feature, layer){
-                const {properties, geometry} = feature;
-                layer.options.id = properties[_this.id];
-                feature.properties.name = properties[_this.title];
 
-                // Si el usuario eligió usar tooltip
-                if(_this.tooltip && properties[_this.title] && 
-                    geometry.type != "Point" && geometry.type != "MultiPoint"){
+            onEachFeature: (feature, layer) => {
+                const { properties, geometry } = feature;
+
+                // Atributos comunes
+                layer.options.id = properties[this.id];
+                feature.properties.name = properties[this.title];
+
+                // Desactiva la interactividad
+                if(properties.hasOwnProperty("pm-interactive") && 
+                    properties["pm-interactive"] === "n"){
+                    layer.options.interactive = false;
+                }
+
+                // Lógica para tooltips y popups
+                const hasInfo = !this.no_info && !this.slider;
+                // const isPoint = geometry.type === "Point" || geometry.type === "MultiPoint";
+
+                if (this.tooltip && properties[this.title]) {
                     layer.bindTooltip(
-                        properties[_this.title], _this.tooltip_options
+                        properties[this.title], 
+                        this.tooltip_options
                     );
                 }
-                
-                if(!_this.no_info && !_this.slider && 
-                    geometry.type != "Point" && geometry.type != "MultiPoint"){
-                    const html = (typeof _this.template == "function" ? 
-                            _this.template(_this, properties) : 
-                            _this.defaultTemplate(_this, properties));
+
+                if (hasInfo) {
+                    const html = (typeof this.template === "function") ?
+                        this.template(this, properties) :
+                        this.defaultTemplate(this, properties);
                     layer.bindPopup(html);
                 }
             },
-            style: function(feature) {
-                const {properties} = feature;
-                const setProp = (key, alternative=false) => {
-                    if( properties.hasOwnProperty(key)) {
-                        return properties[key];
-                    } else if(alternative) {
-                        return alternative; 
-                    } else {
-                        return _this.featureStyle[key];
-                    }
-                };
+
+            style: (feature) => {
+                const { properties } = feature;
                 return {
-                    color: setProp("stroke-color", setProp("stroke")), 
-                    strokeOpacity: setProp("stroke-opacity"), 
-                    weight: setProp("stroke-width"), 
-                    fillColor: setProp("stroke"), 
-                    opacity: setProp("stroke-opacity"), 
-                    fillOpacity: setProp("fill-opacity")
-                };  
-            }, 
-            
+                    color: properties.stroke ?? properties['stroke-color'] ?? this.featureStyle.stroke,
+                    strokeOpacity: properties['stroke-opacity'] ?? this.featureStyle['stroke-opacity'],
+                    weight: properties['stroke-width'] ?? this.featureStyle['stroke-width'],
+                    fillColor: properties.fill ?? this.featureStyle.fill,
+                    fillOpacity: properties['fill-opacity'] ?? this.featureStyle['fill-opacity']
+                };
+            }
         });
-        this.geojson.addTo(this.map);  
+
+        this.geojson.addTo(this.map);
+
+        // 6. Coloca la configuración del mapa fuera del bucle de creación.
+        // Configurar `minZoom` una sola vez es mucho más eficiente que hacerlo para cada feature.
+        this.map.options.minZoom = this.min_zoom;
     };
+
+
+
+    /**
+     * Prepara las características del mapa y de cada uno de los markers.
+     * @see https://leafletjs.com/reference.html#path
+     */
+    // _markersMap = (entries) => { 
+
+    //     var _this = this;
+    //     this._clearLayers();
+    //     this.geojson = new L.geoJson(entries, {
+
+    //         pointToLayer: function(feature, latlng) {
+    //             const {properties} = feature;
+    //             const icon = _this.marker(properties);
+                
+    //             let marker_attr = {};
+    //             marker_attr.id = properties[_this.id];
+    //             if(icon){
+    //                 marker_attr.icon = icon;
+    //             }
+    //             if(_this.title){
+    //                 marker_attr.alt = properties[_this.title];
+    //             }
+                
+    //             const marker = new L.marker(latlng, marker_attr);
+    //             _this.map.options.minZoom = _this.min_zoom;
+    //             _this.markers.addLayer(marker);
+
+    //             // Si el usuario eligió usar tooltip
+    //             if(_this.tooltip && properties[_this.title]){
+    //                 marker.bindTooltip(
+    //                     properties[_this.title], _this.tooltip_options
+    //                 );
+    //             }
+                
+    //             // Si el usuario desea utilizar popUp en vez de slider.
+    //             if(!_this.no_info && !_this.slider){
+    //                 const html = (typeof _this.template == "function" ? 
+    //                         _this.template(_this, properties) : 
+    //                         _this.defaultTemplate(_this, properties));
+    //                 marker.bindPopup(html);
+    //             }
+                
+    //             return _this.markers;
+    //         },
+    //         onEachFeature: function(feature, layer){
+    //             const {properties, geometry} = feature;
+    //             layer.options.id = properties[_this.id];
+    //             feature.properties.name = properties[_this.title];
+                
+        
+    //             layer.options.interactive = false;
+
+
+    //             // Si el usuario eligió usar tooltip
+    //             if(_this.tooltip && properties[_this.title] && 
+    //                 geometry.type != "Point" && geometry.type != "MultiPoint"){
+    //                 layer.bindTooltip(
+    //                     properties[_this.title], _this.tooltip_options
+    //                 );
+    //             }
+                
+    //             if(!_this.no_info && !_this.slider && 
+    //                 geometry.type != "Point" && geometry.type != "MultiPoint"){
+    //                 const html = (typeof _this.template == "function" ? 
+    //                         _this.template(_this, properties) : 
+    //                         _this.defaultTemplate(_this, properties));
+    //                 layer.bindPopup(html);
+    //             }
+    //         },
+    //         style: function(feature) {
+    //             const {properties} = feature;
+    //             const setProp = (key, alternative=false) => {
+    //                 if( properties.hasOwnProperty(key)) {
+    //                     return properties[key];
+    //                 } else if(alternative) {
+    //                     return alternative; 
+    //                 } else {
+    //                     return _this.featureStyle[key];
+    //                 }
+    //             };
+    //             return {
+    //                 color: setProp("stroke-color", setProp("stroke")), 
+    //                 strokeOpacity: setProp("stroke-opacity"), 
+    //                 weight: setProp("stroke-width"), 
+    //                 fillColor: setProp("stroke"), 
+    //                 opacity: setProp("stroke-opacity"), 
+    //                 fillOpacity: setProp("fill-opacity")
+    //             };  
+    //         }, 
+            
+    //     });
+    //     this.geojson.addTo(this.map);  
+    // };
 
 
     /**
@@ -7930,15 +8015,23 @@ class PonchoMap {
      * toma el termino a buscar o filtrar.
      */
     _hiddenSearchInput = () => {
-        const search = document.createElement("input");
-        search.type ="hidden";
-        search.name = `js-search-input${this.scope_sufix}`;
-        search.setAttribute("disabled", "disabled");
-        search.id = `js-search-input${this.scope_sufix}`;
         const container = document
-                .querySelectorAll(`${this.scope_selector}.poncho-map`);
-        container.forEach(element => element.appendChild(search));
-    }
+                .querySelector(`${this.scope_selector}.poncho-map`);
+        
+        if (!container) {
+            console.error(
+                `Contenedor no encontrado: ${this.scope_selector}.poncho-map`);
+            return;
+        }
+
+        const search = document.createElement("input");
+        search.type = "hidden";
+        search.name = `js-search-input${this.scope_sufix}`;
+        search.id = `js-search-input${this.scope_sufix}`;
+        search.disabled = true;
+
+        container.appendChild(search);
+    };
 
 
     /**
@@ -7959,13 +8052,12 @@ class PonchoMap {
             if (!feature || !_path) {
                 return;
             }
-
             const { properties } = feature;
             const isInteractive = properties?.["pm-interactive"] !== "n";
 
             Object.assign(_path, {
                 'aria-label': properties?.[title],
-                'tabIndex': 0,
+                'tabIndex': (properties["pm-interactive"] === "n" ? -1 : 0),
                 'data-entry-id': properties?.[id],
                 'data-leaflet-id': _leaflet_id,
                 'data-interactive': isInteractive ? null : "n",
@@ -8013,20 +8105,28 @@ class PonchoMap {
                 }   
             },
         ];
+
         anchors.forEach(entry => {
-            const {selector, id, attributes} = entry;
-            const element = document.querySelectorAll(selector);
-            element.forEach(ele => {
-                ele.id = id;
-                Object
-                    .entries(attributes)
-                    .forEach(([key, value]) => ele.setAttribute(key, value));
-            });
+            const { selector, id, attributes } = entry;
+            const element = document.querySelector(selector);
             
+            if (element) {
+                element.id = id;
+                for (const key in attributes) {
+                    element.setAttribute(key, attributes[key]);
+                }
+            } else {
+                console.warn(
+                    `Elemento no encontrado para el selector: ${selector}`);
+            }
         });
+
         return anchors;
     };
 
+
+
+    
 
     /**
      * Agrega anclas y enlaces para un menú accesible.
