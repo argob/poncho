@@ -130,7 +130,7 @@ COPIAR DESDE ACÁ…
     const gdata = Object.keys(sheet_data.aPDs).map(e => sheet_data.aPDs[e]).flat();
     // map options
     const options = {
-        error_reporting: 0,
+        error_reporting: 1,
         throw_exceptions: 0,
         template: template_punto_digital,
         title:"nombre",
@@ -204,7 +204,7 @@ COPIAR DESDE ACÁ…
         open_maps: true,
         map_init_options: {
                 // zoomSnap: .2,
-                zoomControl: false,
+                // zoomControl: false,
                 // scrollWheelZoom: false,
                 // touchZoom: false,
                 // doubleClickZoom: false,
