@@ -953,6 +953,8 @@ class PonchoMapFilter extends PonchoMap {
      * imprime el mapa
      */ 
     render = () =>{
+        this._addSummary();
+
         this._hiddenSearchInput();
         this._resetViewButton(); 
 
