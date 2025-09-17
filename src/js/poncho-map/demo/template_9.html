@@ -75,7 +75,7 @@ COPIAR DESDE ACÁ…
 
 <div class="container">
     <div class="col-md-12">
-        <div id="width"></div>
+        <div id="width" class="badge bg-arg-maiz text-arg-negro p-x-05 p-y-xs"></div>
     <!-- PONCHO MAP -->
     <div class="poncho-map" data-scope="poncho-map">
         <div
@@ -86,6 +86,14 @@ COPIAR DESDE ACÁ…
         </div>
     </div>
     <!-- / PONCHO MAP -->
+
+
+
+
+<div data-code-from="code_map" class="m-y-2" data-title="Código para el mapa"></div>
+<script src="../../mapa-argentina/demo/js/demo.js"></script>
+
+
 </div>
 </div>
 
@@ -103,7 +111,7 @@ COPIAR DESDE ACÁ…
 
 
 <!-- SCRIPTS -->
-<script>
+<script id="code_map">
     // init
     var map;
 
@@ -153,7 +161,7 @@ COPIAR DESDE ACÁ…
                 "title_classlist":["h4", "text-cielo", "m-t-1"],
                 "lead": {
                     key: "tipo", 
-                    css: ["text-arg-arandano", "p-b-xs", "text-arg-default", "small", "text-uppercase"],
+                    css: ["text-arg-default", "p-b-xs","fw-600", "small", "text-uppercase"],
                     style: "border-bottom: 1px solid var(--arg-negro-200);"
                 },  
                 "values": [

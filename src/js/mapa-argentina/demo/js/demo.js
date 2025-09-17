@@ -1,32 +1,54 @@
+/**
+ * Permite visualizar código
+ * 
+ * @example
+ * <div data-code-from="js-map"></div>
+ * // <script id="js-map">
+ * //    alert("hello");
+ * // </script>
+ */
 document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll("[data-code-from]").forEach(element => {
-        const placeHolder = element.dataset.codeFrom;
-        const html = document.getElementById(placeHolder);
-        const text = `&lt;script&gt;\n`
-            + `// start ${html.tagName.toLocaleLowerCase()}\n`
-            + `${html.textContent.trim()}\n`
-            + `// end ${html.tagName.toLocaleLowerCase()}\n`
-            + `&lt;/script&gt;`;
+    document.querySelectorAll('[data-code-from]').forEach(element => {
+        const { codeFrom, title="código" } = element.dataset;
 
-        const pre = document.createElement("pre");
-        pre.classList.add("demo-style");
-        pre.innerHTML = text;
+        const sourceElement = document.getElementById(codeFrom);
 
-
-
-        const titleTag = (element.dataset.htmltag ?element.dataset.htmltag : "p");
-
-        const title = document.createElement(titleTag);
-        title.textContent = element.dataset.title;
-
-        if(element.dataset.styles){
-            let headStyles = element.dataset.styles.split(/\,\s*/g).filter(f=>f);
-            title.classList.add(...headStyles);
+        if (!sourceElement) {
+            return;
         }
 
-        if(element.dataset.title){
-            element.appendChild(title);
-        }
-        element.appendChild(pre);
+        const codeText = `<script>\n// start ${sourceElement.tagName.toLocaleLowerCase()}\n${sourceElement.textContent.trim()}\n// end ${sourceElement.tagName.toLocaleLowerCase()}\n</script>`;
+
+        const preElement = document.createElement('pre');
+        preElement.classList.add("bg-arg-gray-dark", "text-miarg-celeste-claro");
+        preElement.style.borderRadius = "6px";
+        preElement.style.border = "none";
+        preElement.textContent = codeText; 
+
+        const details =  document.createElement("details");
+        details.open = true;
+        details.classList.add("js-details", "ar-details", "caret-small", "caret-dark", "details-borderless");
+        details.style.display = "block";
+        details.style.background = "#f4f4f0";
+        
+
+        const summary =  document.createElement("summary");
+        summary.classList.add("ar-details__title");
+        summary.textContent = title;
+
+        const content =  document.createElement("div");
+        content.classList.add("ar-details__content");
+        
+        const container =  document.createElement("div");
+        container.classList.add("details-container")
+        container.style.borderRadius = "6px";
+
+        content.appendChild(preElement);
+        details.appendChild(summary);
+        details.appendChild(content);
+        container.appendChild(details);
+        element.appendChild(container)
     });
 });
+
+

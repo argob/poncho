@@ -823,13 +823,28 @@ class PonchoMapFilter extends PonchoMap {
      * Filtra los markers.
      */ 
     _filterData = () => {
-        const available_filters = this.formFilters();
-        let feed = this.entries.filter(
-            entry => this._validateEntry(entry.properties, this.formFilters())
-        );
-        feed = this.searchEntries(this.inputSearchValue, feed);
-        feed = (this.filters.length < 1 || 
-                available_filters.length > 0 ? feed : []);
+        const formFiltersResult = this.formFilters();
+        const isSearchEmpty = !this.inputSearchValue;
+        const areFiltersEmpty = formFiltersResult.length === 0 && this.filters.length === 0;
+
+        if (isSearchEmpty && areFiltersEmpty) {
+            this.filtered_entries = this.entries;
+            return this.entries;
+        }
+
+        const feed = this.entries.filter(entry => {
+            const isEntryValid = this._validateEntry(
+                    entry.properties, formFiltersResult);
+
+            if (!isEntryValid) {
+                return false;
+            }
+
+            const entryMatchesSearch = this.searchEntries(
+                    this.inputSearchValue, [entry]).length > 0;
+            return entryMatchesSearch;
+        });
+        
         this.filtered_entries = feed;
         return feed;
     };

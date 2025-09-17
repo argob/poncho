@@ -357,9 +357,10 @@ class PonchoMap {
         this.selected_marker;
         this.scope_selector = `[data-scope="${this.scope}"]`;
         this.scope_sufix = `--${this.scope}`;
-        this.content_selector = (opts.content_selector ? 
-            opts.content_selector : `.js-content${this.scope_sufix}`);
-        this.content_outside = (this.content_selector !== `.js-content${this.scope_sufix}` ? true : false);
+        this.content_selector = (opts.content_selector ?
+                opts.content_selector : `.js-content${this.scope_sufix}`);
+        this.content_outside = (this.content_selector !==
+                `.js-content${this.scope_sufix}` ? true : false);
         this.data = this.formatInput(data);
         this.geometryTypes = [
             "Point",
@@ -380,8 +381,8 @@ class PonchoMap {
         this.accesible_menu_filter = [];
         this.open_maps = opts.open_maps;
         this.open_maps_options = Object.assign(
-            {}, 
-            defaults.open_maps_options, 
+            {},
+            defaults.open_maps_options,
             options?.open_maps_options
         );
         this.media_breakpoint = opts.media_breakpoint;
@@ -546,7 +547,7 @@ class PonchoMap {
     };
 
 
-    /**
+    /**,.bv
      * Redefine los clusters
      * @returns 
      */
@@ -554,9 +555,9 @@ class PonchoMap {
         if(!L.hasOwnProperty("divIcon")){
             return;
         }
-        const _this = this;
+
         return {
-            iconCreateFunction: function(cluster) {
+            iconCreateFunction: (cluster) => {
                 const count = cluster.getChildCount();
                 let sizeClass;
                 let ariaLabelText;
@@ -570,9 +571,9 @@ class PonchoMap {
                 }
 
                 const ariaLabels = {
-                    small: _this._t("cluster_small", {count}),
-                    medium: _this._t("cluster_medium", {count}),
-                    large: _this._t("cluster_large", {count}),
+                    small: this._t("cluster_small", {count}),
+                    medium: this._t("cluster_medium", {count}),
+                    large: this._t("cluster_large", {count}),
                 };
                 ariaLabelText = ariaLabels[sizeClass];
                 const classNames = [
@@ -582,7 +583,7 @@ class PonchoMap {
                     "leaflet-zoom-animated",
                     "leaflet-interactive",
                 ];
-                const htmlContent = `<div title="${_this._t("cluster_click")}"`
+                const htmlContent = `<div title="${this._t("cluster_click")}"`
                     + ` aria-label="${ariaLabelText}">`
                     + `<span>${count}</span></div>`;
 
@@ -735,7 +736,7 @@ class PonchoMap {
      */
     _setFraction = (mediaSize) => {
         let fraction;
-        const _this = this;
+
         // Tamaño del contenedor del mapa.
         // Si se especifica tamaño, lo usa. De otro modo accede al tamaño
         // del ancho del mapa.
@@ -752,7 +753,7 @@ class PonchoMap {
 
         // Si las claves están mal, muestro un error y corto la ejecución. 
         if(!hasValidKeys){
-            _this.showAlert({
+            this.showAlert({
                 title: `Una o muchas claves en: `
                     + `<code>map_breakpoints</code>, no son `
                     + `claves correctas.`,
@@ -981,6 +982,7 @@ class PonchoMap {
 
     /**
      * Define el color de fondo para el mapa. 
+     *
      * @param {string} value Color en hexadecimal o cualquier sistema de color
      * aceptado por html.
      * @example
@@ -991,9 +993,15 @@ class PonchoMap {
      */
     mapBackgroundColor = (value=false) => {
         const color = (value ? value : this.map_background);
-        document
-            .querySelectorAll(`${this.scope_selector} .leaflet-container`)
-            .forEach(e => e.style.backgroundColor = color);
+
+        const selector = `${this.scope_selector} .leaflet-container`;
+        const mapBackgroundColor = document.querySelector(selector);
+
+        if(mapBackgroundColor){
+            mapBackgroundColor.style.backgroundColor = color;
+        }
+
+        return;
     };
 
 
@@ -1781,30 +1789,31 @@ class PonchoMap {
      * @return {object}
      */
     _setIdIfNotExists = (entries) => {
-        const hasId = entries.features
-            .filter((_, k) => k === 0)
-            .every(e => e.properties.hasOwnProperty("id"));
+        const firstEntry = entries.features[0];
+        const hasId = firstEntry?.properties.hasOwnProperty("id");
 
         // Si no se configuró id_mixing y el json tiene id.
         if(!this._isIdMixing() && hasId){
             return entries;
         }
 
-        const newEntries = entries.features.map((entry, k) => {
-            if(this._isIdMixing()){
+        for (let i = 0; i < entries.features.length; i++) {
+            const entry = entries.features[i];
+            const {properties} = entry;
+
+            if (this._isIdMixing()) {
                 // Procesa la opción de id_mixing
-                entry.properties.id = this._idMixing(entry);
+                properties.id = this._idMixing(entry);
             } else {
                 // Genera un ID automático
-                const autoId = k + 1;
-                const useTitle = (this.title && entry.properties[this.title] ? 
-                        this._slugify(entry.properties[this.title]) : "");
-                entry.properties.id = [autoId, useTitle].filter(Boolean).join('-');
+                const autoId = i + 1;
+                const useTitle = properties[this.title] ?
+                    this._slugify(properties[this.title]) :
+                    "";
+                properties.id = [autoId, useTitle].filter(Boolean).join('-');
             }
-            
-            return entry;
-        }); 
-        entries.features = newEntries;
+        }
+
         return entries;
     };
 
@@ -1846,21 +1855,30 @@ class PonchoMap {
     }
 
 
-    /**
-     * Busca un término en un listado de entradas.
-     * 
-     * @param {string} term Término a buscar.
-     * @returns {object} Listado filtrado por los match
-     */
-    searchEntries = (term, dataset) => {
-        dataset = (typeof dataset === "undefined" ? this.geoJSON: dataset);
-        if(this.isEmptyString(term)){
+    searchEntries = (searchTerm, dataset) => {
+        const dataToSearch = dataset || this.geoJSON;
+
+        if(this.isEmptyString(searchTerm)){
             console.info("searchEntries", "Término vacío.");
-            return dataset;
+            return dataToSearch;
         }
-        const entries = dataset.filter(entry => {
-            return (this.searchEntry(term, entry.properties));
+
+        // Término de búsqueda sanitizado
+        // Sin acéntos o caracteres especiales.
+        const sanitizedSearchTerm = 
+                replaceSpecialChars(searchTerm).toUpperCase();
+
+        // Armo un array con los índices de búsqueda
+        const searchFields = new Set([...[this.title], ...this.search_fields]);
+
+        const entries = dataToSearch.filter(entry => {
+            return this.searchEntry(
+                sanitizedSearchTerm, 
+                entry.properties,
+                searchFields
+            );
         })
+
         return entries;
     };
 
@@ -1873,24 +1891,24 @@ class PonchoMap {
      * @see searchEntries()
      * @returns {object|null}
      */
-    searchEntry = (searchTerm, entry) => {
-        
-        const searchFields = new Set([...[this.title], ...this.search_fields]);
-        const sanitizedSearchTerm = replaceSpecialChars(searchTerm).toUpperCase();
+    searchEntry = (sanitizedSearchTerm, entry, searchFields=[]) => {
+        if (!sanitizedSearchTerm) {
+            return entry;
+        }
 
         const result = [...searchFields].some(function(key){
             if (!entry.hasOwnProperty(key)) {
                 return false;
             }
+
             const field = replaceSpecialChars(entry[key])
                     .toString()
                     .toUpperCase();
             return field.includes(sanitizedSearchTerm);
         });
 
-        return result ? entry : null;
+        return result ? entry : false;
     };
-
 
 
     /**
@@ -1959,7 +1977,7 @@ class PonchoMap {
 
 
     /**
-     * Hace foto en un feature.
+     * Hace foco en un feature.
      * @accesibility
      * @param {integer} id Id de la entrada
      * @return {undefined}
@@ -1998,19 +2016,16 @@ class PonchoMap {
      * @return {boolean} `true` si esta abierto, `false` si esta cerrado.
      */
     isSliderOpen = () => {
-        let status = [];
         const qry = document.querySelectorAll(`.js-slider${this.scope_sufix}`);
-        qry.forEach(e => {
-            if(e.classList.contains(`${this.slider_selector}--in`)){
-                status.push(true);
-            }
-        });
-        return status.some(e => e);
+        return Array
+            .from(qry)
+            .some(e => e.classList.contains(`${this.slider_selector}--in`));
     };
 
 
     /**
-     * Imprime la información del Punto Digital en el slider.
+     * Imprime la información en el slider.
+     * 
      * @param {object} data feature
      * @return {string} HTML del contenido del slider.
      */
@@ -2031,6 +2046,11 @@ class PonchoMap {
             .querySelectorAll(this.content_selector)
             .forEach(e => {
                 e.innerHTML = html;
+                e.scrollTo({
+                    top: 0,
+                    left: 0,
+                    behavior: "auto"
+                }); 
             });
         document
             .querySelectorAll(`.js-close-slider${this.scope_sufix}`)
@@ -2579,8 +2599,7 @@ class PonchoMap {
                             "warning"
                         );
                     }
-                    
-                    // if(typeof template === "string" && template.trim() !== ""){
+
                     if(!this.isEmptyString(template)){
                         customRow[key] = this.tplParser(template, row);
                     } else {
@@ -2617,17 +2636,21 @@ class PonchoMap {
      * Retorna un listado de selectores css.
      * 
      * @param {string|array} value 
+     * @example _setClassList(["agustin, ,,, bouillet amor,", "olivia",'##.', ".#emilia"])
+     * //[ "agustin", "bouillet", "amor", "olivia", "emilia" ]
      * @returns {array|undefined}
      */
     _setClassList = (value) => {
-        const spliter = str => String(str).split(/\s+/).filter(Boolean);
+        // Regex. 
+        // Admite errores como agregar:`,`, `.`, `#` y `[space]`.
+        const spliter = str => String(str).split(/\s|\,|\#|\./).filter(Boolean);
         
         if (this.isString(value)) {
             return spliter(value);
         } else if(Array.isArray(value) && value.length > 0 ){
             return value.flatMap(m => spliter(m));
         }
-        return;
+        return [];
     }
 
 
@@ -2674,7 +2697,7 @@ class PonchoMap {
         const setStyle = this._setType(style, entry);
 
         if(setStyle){
-            p.setAttribute("style", setStyle);
+            this._setStyle(p, setStyle);
         }
         // CSS Class
         const setClasslist = this._setClassList(this._setType(css, entry));
@@ -2707,8 +2730,9 @@ class PonchoMap {
                 const icon = document.createElement("i");
                 icon.setAttribute("aria-hidden","true");
                 icon.classList.add(...setClasslist);
+
                 if(setStyle){
-                    icon.setAttribute("style", setStyle);
+                    this._setStyle(icon, setStyle);
                 }
                 return icon;
 
@@ -2734,6 +2758,7 @@ class PonchoMap {
         const {template_structure:structure} = this;
         const tpl_list = this._templateList(row);
         const tpl_title = this._templateTitle(row);
+
         const container = document.createElement("div");
         container.classList.add(... structure.container_classlist);
         const definitions = document.createElement(structure.definition_list_tag);
@@ -3381,15 +3406,33 @@ class PonchoMap {
 
 
     /**
-     * Agrega un summary para identificar el proósito del mapa
+     * Agrega un summary para identificar el propósito del mapa
+     * 
+     * @summary Si el mapa no tiene un título que define su propósito, 
+     * agregando summary se vincula el id del summary con el mapa.
      */
     _addSummary = () => {
-        if(!this.isString(this.summary) || this.isEmptyString(this.summary)){
+        if(
+            this.isEmptyObject(this.summary) || 
+            this.isEmptyString(this.summary)){
             return;
         }
+        
+        let summary;
+        let isObject = false;
 
-        // const element = document.querySelector(`#${this.map_selector}`);
-        const element = document.querySelector(`.poncho-map${this.scope_selector}`);
+        // Si es un string
+        if(this.isString(this.summary)){
+            summary = this.summary;
+        } else if(
+            this.isObject(this.summary) && 
+            this.summary.hasOwnProperty("title")){
+            isObject = true;
+            summary = this.summary.title;
+        }
+
+        const selector = `.poncho-map${this.scope_selector}`;
+        const element = document.querySelector(selector);
         if(!element){
             return;
         }
@@ -3398,16 +3441,90 @@ class PonchoMap {
         const elementParent = element.parentNode;
 
         if (element.ariaLabelledby !== id) {
-            // element.ariaLabelledby = id;
             element.setAttribute("aria-labelledby", id);
         }
 
+        // Creo el elemento
         const p = document.createElement("p");
-        p.textContent = this.summary;
-        p.classList.add("pm-visually-hidden", "pm-summary");
+        p.textContent = summary;
         p.id = id;
+        p.classList.add("pm-summary");
+
+        if(isObject){
+            const {style, css, position="top", hidden=false} = this.summary;
+            p.classList.add( ...this._setClassList(css) );
+            this._setStyle(p, style);
+
+            if(hidden){
+                p.className = "pm-visually-hidden";
+            }
+
+            if(position == "bottom"){
+                elementParent.insertBefore(p, element.nextSibling);
+                return;
+            }
+        }
 
         elementParent.insertBefore(p, element);
+    };
+
+
+    /**
+     * Asigna definciones de estilo a un objeto.
+     * 
+     * @param {*} values 
+     * @returns {object}
+     */
+    _setStyle = (obj, values) => {
+        if(!values){
+            return;
+        }
+
+        if(!this.isObject(obj) || !obj instanceof HTMLElement){
+            this.showAlert({
+                title: "La función <code>_setStyle</code>, debe recibir un "
+                    + "objeto <code>HTMLElement</code>.",
+                terminal: [typeof obj, obj]
+            }, "danger", true);
+            return;
+        }
+
+        const regex = /([^;:]+)\s*\:\s*([^;:]+)/;
+        if(
+            this.isString(values) && 
+            !(this.isEmptyString(values) || values.match(regex))){
+
+            this.showAlert({
+                title: "La función <code>_setStyle</code>, debe recibir un "
+                    + "objeto del tipo clave/valor o una cadena de texto"
+                    + " con una sintaxis CSS.",
+                terminal: [typeof values, values]
+            }, "danger", true);
+            return;
+        }
+
+        // Si se pasa por parámetro un objeto, lo usa directamente.
+        if(this.isObject(values) && !this.isEmptyObject(values)){
+            for(const key in values){
+                if (values.hasOwnProperty(key)) {
+                    obj.style[key] = values[key];
+                }
+            }
+            return;
+        }
+
+        // Si values es un string lo parseo
+        var styles = {};
+        for(let entry of values.split(";")){
+            const m = regex.exec(entry);
+            if(!m){
+                continue;
+            }
+            const [,attribute, value] = m.map(ele => ele.trim());
+            styles[attribute] = value;
+        }
+
+        return Object.assign(obj.style, styles);
     };
 
 
