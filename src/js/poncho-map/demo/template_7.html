@@ -114,7 +114,6 @@ COPIAR DESDE ACÁ…
 <link href="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.css" rel="stylesheet"/> 
 <link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.css" rel="stylesheet"/> 
 <link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.Default.css" rel="stylesheet"/> 
-
 <script src="https://qa2-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
 <!-- / INCLUDE SCRIPTS -->
 
@@ -153,9 +152,7 @@ var map;
 var search;
 (async() => {
     // Levanto datos desde un geoJSON
-    entries = await fetch_json("./data/back.provincias.json");
-
-
+    entries = await fetch_json("../../poncho-map-provinces/data/provincias-antartida.json");
     // map options
     const options = {
         theme_tool: true,
@@ -168,11 +165,11 @@ var search;
                 doubleClickZoom: false,
                 scrollWheelZoom: false,
                 boxZoom: false,
-                dragging:false
-                // keyboard: false,
+                dragging:false,
+                keyboard: true,
         },
         "render_slider": false,
-        "map_zoom": 4.4,
+        "map_zoom": 4.2,
         "content_selector": ".js-foo",
         "scope": "poncho-map",
         "title": "nam",
@@ -208,28 +205,7 @@ var search;
         ],
     };
 
-
-    const find = (id) => extras.find(e => e[0] == id);
-
-    // entries.features.forEach((e, k) => {
-    //     const _id = e.properties.in1.substring(0,2);
-    //     const _extras = find(_id);
-    //     entries.features[k].properties.id_provincia = _id;
-    //     entries.features[k].properties.provincia = _extras[3];
-    //     entries.features[k].properties.region = _extras[1];
-
-    //     entries.features[k].properties["stroke-opacity"] = 1;
-    //     entries.features[k].properties["fill-opacity"] = 1;
-    //     entries.features[k].properties["stroke-width"] = 1.5;
-    //     entries.features[k].properties["stroke-color"] = "#ccc";
-    //     entries.features[k].properties["stroke"] = ponchoColor("cielo");
-    //     entries.features[k].properties.stroke =  _extras[2] ?? "dodgerblue";
-    //     entries.features[k].properties.stroke =  ponchoColor("azul") ?? "dodgerblue";
-    // });
-
-    map = new PonchoMapFilter(entries, options);
-
-
+    const map = new PonchoMapFilter(entries, options);
     map.render();
 
     const search_options = {

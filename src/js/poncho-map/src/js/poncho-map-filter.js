@@ -767,26 +767,6 @@ class PonchoMapFilter extends PonchoMap {
 
 
     /**
-     * Valida una entrada
-     * @summary
-     * 1. Obtengo la cantidad de grupos que tengo.
-     * 2. Evaluo los fields de cada grupo y junto los resultados en un array
-     * para retornar true los grupos tienen que dar true
-     * @returns {boolean}
-     */
-    _validateEntry = (entry, form_filters) => {
-        const fields_group = (group) => form_filters.filter(e => e[0] == group);
-        const total_groups = this.filters.length;
-
-        const validations = Array.from( {length: total_groups}, (_, i) => {
-            return this._validateGroup(entry, fields_group(i));
-        }).reduce((acc, val) => acc && val, true);
-
-        return validations;
-    };
-
-
-    /**
      * Valida el campo de un grupo.
      * 
      * @param {object} entry Entrada de datos
@@ -820,18 +800,71 @@ class PonchoMapFilter extends PonchoMap {
 
 
     /**
+     * Valida una entrada
+     * @summary
+     * 1. Obtengo la cantidad de grupos que tengo.
+     * 2. Evaluo los fields de cada grupo y junto los resultados en un array
+     * para retornar true los grupos tienen que dar true
+     * @returns {boolean}
+     */
+    _validateEntry = (entry, form_filters) => {
+        const fields_group = (group) => form_filters.filter(e => e[0] == group);
+        const total_groups = this.filters.length;
+
+        const validations = Array.from( {length: total_groups}, (_, i) => {
+            return this._validateGroup(entry, fields_group(i));
+        }).reduce((acc, val) => acc && val, true);
+
+        return validations;
+    };
+
+
+    /**
      * Filtra los markers.
      */ 
     _filterData = () => {
-        const available_filters = this.formFilters();
-        let feed = this.entries.filter(
-            entry => this._validateEntry(entry.properties, this.formFilters())
-        );
-        feed = this.searchEntries(this.inputSearchValue, feed);
-        feed = (this.filters.length < 1 || 
-                available_filters.length > 0 ? feed : []);
-        this.filtered_entries = feed;
-        return feed;
+        // Obtiene los filtros del formulario.
+        const formFilters = this.formFilters();
+        const hasSearchTerm = !!this.inputSearchValue;
+        const hasFormFilters = formFilters.length > 0;
+
+        // 2. Maneja el caso trivial de no tener filtros ni búsqueda.
+        if (!hasSearchTerm && !hasFormFilters) {
+            this.filtered_entries = this.entries;
+            return this.entries;
+        }
+
+        //Sanitiza el término de búsqueda.
+        const sanitizedSearchTerm = hasSearchTerm 
+            ? replaceSpecialChars(this.inputSearchValue).toUpperCase()
+            : '';
+        
+        // Define los campos a buscar, si hay un término de búsqueda.
+        const searchFields = new Set([this.title, ...this.search_fields]);
+
+        // 5. Filtra la lista.
+        const filteredEntries = this.entries.filter(entry => {
+            const entryProperties = entry.properties;
+            
+            // Aplica el filtro del formulario si existen.
+            const passesFormFilter = !hasFormFilters || 
+                    this._validateEntry(entryProperties, formFilters);
+            if (!passesFormFilter) {
+                return false;
+            }
+
+            // Aplica la búsqueda si existe.
+            const passesSearch = !hasSearchTerm || 
+                    this.searchEntry(
+                        sanitizedSearchTerm, entryProperties, searchFields
+                    );
+
+                        
+            return passesSearch;
+        });
+        
+        this.filtered_entries = filteredEntries;
+        return filteredEntries;
     };
 
 

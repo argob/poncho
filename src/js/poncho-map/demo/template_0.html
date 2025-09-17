@@ -111,7 +111,7 @@ COPIAR DESDE ACÁ…
         class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab 
             leaflet-touch-drag leaflet-touch-zoom" 
         id="map" 
-        style="height:713px;width: 100%;" 
+        style="height:650px;width: 100%;" 
         tabindex="0">
     </div>
 </div>
@@ -121,8 +121,18 @@ COPIAR DESDE ACÁ…
 </div>
 
 
+<div class="container">
+    <div class="row m-y-2">
+        <div class="col-md-12">
+            <div data-code-from="code_map" data-title="Código para el mapa"></div>
+        </div>
+    </div>
+</div>
+<script src="../../mapa-argentina/demo/js/demo.js"></script>
+
 <!-- SCRIPTS -->
-<script>
+<script id="code_map">
+    
     var search, filter;
     const url = './data/response.json';
     jQuery.getJSON(url, function(sheet_data) {
@@ -130,13 +140,22 @@ COPIAR DESDE ACÁ…
     const gdata = Object.keys(sheet_data.aPDs).map(e => sheet_data.aPDs[e]).flat();
     // map options
     const options = {
-        summary: "Mapa de Puntos Digitales en Argentina",
+        summary: {
+            hidden: false,
+            title: "Mapa de Puntos Digitales en Argentina",
+            position: "top",
+            css: "m-y-xs p-y-05 small text-arg-enlace",
+            style: {
+                borderBottom: "1px solid #ddd",
+                borderTop: "1px solid #ddd",
+            },
+        },
         error_reporting: 1,
         throw_exceptions: 0,
         template: template_punto_digital,
         title:"nombre",
         map_layers: true,
-        // map_layers_default: 'satelital',
+        map_layers_default: 'satelital',
         scope:"ponchomap",
         allowed_tags: ["*"],
         template_markdown: true,
@@ -197,27 +216,11 @@ COPIAR DESDE ACÁ…
             "horarios_custom": "",
             "estado_funcionamiento_custom": "",
         },
-        _map_style: {
-            "slider-width": "calc((100% / 7) * 3 - 20px)"
-        },
-        // map_align: "left",
-        // theme_tool: false,
         open_maps: true,
-        map_init_options: {
-                // zoomSnap: .2,
-                // zoomControl: false,
-                // scrollWheelZoom: false,
-                // touchZoom: false,
-                // doubleClickZoom: false,
-                // scrollWheelZoom: false,
-                // boxZoom: false,
-                // dragging:false
-        },
-        breakpoint_fraction: {sm: "1:4", md: "1:4", lg: "1:3", xl: "2:7"},
         
     };
-    // render map
 
+    // Render map
     filter = new PonchoMapFilter(gdata, options);
     filter.render();
 
@@ -227,9 +230,8 @@ COPIAR DESDE ACÁ…
         "text": "nombre",
         "search_fields": ["foo","nombre", "institucion", "calle","localidad", "provincia", "municipio_nombre"],
         "id": "id_pd",
-        // "placeholder": "Buscá tu Punto Digital"
+        "placeholder": "Buscá tu Punto Digital"
     };
-    // search = new PonchoMapSearch(filter, { "scope": "search-efectores"});
     search = new PonchoMapSearch(filter, search_options);
     search.render();
 });
