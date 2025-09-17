@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const codeText = `<script>\n// start ${sourceElement.tagName.toLocaleLowerCase()}\n${sourceElement.textContent.trim()}\n// end ${sourceElement.tagName.toLocaleLowerCase()}\n</script>`;
 
         const preElement = document.createElement('pre');
-        preElement.classList.add("bg-arg-gray-dark", "text-miarg-celeste-claro");
+        preElement.classList.add("bg-arg-negro", "text-arg-lima");
         preElement.style.borderRadius = "6px";
         preElement.style.border = "none";
         preElement.textContent = codeText; 
