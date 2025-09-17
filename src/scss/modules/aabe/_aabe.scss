@@ -74,7 +74,7 @@
 
 /* Resaltado y borde de opciones */
 
-.select2-results__option.select2-results__option--selectable {
+#select2-filter-cuando-results .select2-results__option.select2-results__option--selectable {
     &.select2-results__option--highlighted[aria-selected="true"] {
         background: #e2e8f0;
     }
