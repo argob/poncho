@@ -112,25 +112,31 @@ class PonchoMapSearch {
      * @returns {undefined}
      */
     _triggerSearch = () => {
-        const input = document.querySelector(
-            `${this.search_scope_selector} .js-poncho-map-search__input`);
-        input.id = `id-poncho-map-search${this.scope_sufix}`;
-        
-        const submit = document.querySelectorAll(
-                `${this.search_scope_selector} .js-poncho-map-search__submit`);
-                
-        submit.forEach(e => {
-            e.onclick = (event => {
+
+        const inputSelector = `${this.search_scope_selector} `
+                + `.js-poncho-map-search__input`;
+        const input = document.querySelector(inputSelector);
+        if(input){
+            input.id = `id-poncho-map-search${this.scope_sufix}`;
+        }
+
+        const submitSelector = `${this.search_scope_selector} `
+                + `.js-poncho-map-search__submit`;
+        const submit = document.querySelector(submitSelector);
+
+        if(submit){
+            submit.addEventListener("click", (event) => {
                 event.preventDefault();
         
-                const element = document.querySelector(
-                    `#js-search-input${this.instance.scope_sufix}`);
-                element.value = input.value;
-                const term = input.value;
-
-                this._renderSearch(term);
+                const eleSelector = `#js-search-input${this.instance.scope_sufix}`;
+                const element = document.querySelector(eleSelector);
+                if(element){
+                    element.value = input.value;
+                    const term = input.value;
+                    this._renderSearch(term);
+                }
             });
-        });
+        }
     };
 
 

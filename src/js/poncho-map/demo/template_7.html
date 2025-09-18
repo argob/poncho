@@ -16,94 +16,97 @@
         href="https://capacita-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css?rfqjsh">
     <link rel="stylesheet" href="../../../../dist/css/poncho.min.css" />
 
-    <!-- 
-        Script para debug 
-        Se reemplazan en producción por poncho.min.js
-    -->
-    <!-- <script src="../../color/src/js/color-definitions.js"></script>
-    <script src="../../color/src/js/color-variations.js"></script>
-    <script src="../../color/src/js/color.js"></script>
-    <script src="../../utils/connect.js"></script>
-    <script src="../../utils/string.js"></script>
-    <script src="../../utils/html.js"></script>
-    <script src="../src/js/poncho-map.js"></script>
-    <script src="../src/js/poncho-map-filter.js"></script>
-    <script src="../src/js/poncho-map-search.js"></script>
-    <script src="../../gapi-sheet-data/gapi-sheet-data.js"></script> -->
-
     <link rel="stylesheet" href="./css/demo.css">
     <!-- / Script para debug -->
     <title>Poncho Map — Template 7</title>
 
 
-  <style>
-    html, body { height: 100%; background: #eee;}
-  </style>
+    <style>
+        html, body { height: 100%; background: #eee;}
+    </style>
 </head>
 <body>
 
-    <div class="demo-nav container">
-        <ul class="demo-menu">
-            <li><a href="./">Inicio</a></li>
-        </ul>
+<div class="demo-nav container">
+    <ul class="demo-menu">
+        <li><a href="./">Inicio</a></li>
+    </ul>
+</div>
+
+<div class="container">
+    <div class="row m-y-2">
+
+        <h1>Template 7</h1>
+        <a href="#" class="js-reset-view--poncho-map">ejecutar</a>
+
+        <div class="row">
+            <!-- 
+            MAPA CON BUSCADOR FILTRO  
+            COPIAR DESDE ACÁ…
+            -->
+            <div class="col-md-12">
+                <!-- PONCHO MAP SEARCH -->
+                <form action="">
+                    <div data-scope="poncho-map-search">
+                        <div class="input-group">
+                            <input 
+                                type="search" 
+                                name="search" 
+                                autocomplete="off"
+                                class="js-poncho-map-search__input form-control" 
+                                list="list">
+                            <datalist id="list" class="js-porcho-map-search__list">
+                            </datalist>
+                            <span class="input-group-btn">
+                                <button class="js-poncho-map-search__submit btn btn-primary">
+                                    <i class="fa fa-search text-white"></i>
+                                </button>
+                            </span>
+                        </div>
+                        <div data-scope="poncho-map" class="m-b-1">
+                            <div class="js-poncho-map__help small text-default">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <!-- / PONCHO MAP SEARCH -->
+            </div>
+
+            <div class="col-md-6">
+                <!-- PONCHO MAP -->
+                <div 
+                    class="poncho-map hide-attribution" 
+                    data-scope="poncho-map" 
+                    style="border:1px solid #eee">
+                    <div
+                        class="leaflet-container leaflet-touch leaflet-fade-anim 
+                            leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
+                        id="map"
+                        style="height: 700px;"
+                        tabindex="0">
+                    </div>
+                </div>
+                <!-- / PONCHO MAP -->
+            </div>
+
+            <div class="js-foo col-md-6">
+                <div class="alert alert-info">Seleccione una provincia</div>
+            </div>
+        </div>
     </div>
-  <h1>Template 7</h1>
-  <a href="#" class="js-reset-view--poncho-map">ejecutar</a>
-<div class="container-fluid">
-<div class="row">
-
-<!-- 
-MAPA CON BUSCADOR FILTRO  
-
-COPIAR DESDE ACÁ…
--->
-<div class="col-md-12">
-<!-- PONCHO MAP SEARCH -->
-<form action="">
-  <div data-scope="poncho-map-search">
-      <div class="input-group">
-          <input 
-              type="search" 
-              name="search" 
-              autocomplete="off"
-              class="js-poncho-map-search__input form-control" 
-              list="list">
-              <datalist id="list" class="js-porcho-map-search__list"></datalist>
-          <span class="input-group-btn">
-            <button class="js-poncho-map-search__submit btn btn-primary">
-              <i class="fa fa-search text-white"> </i>
-            </button>
-          </span>
-      </div>
-      <div data-scope="poncho-map" class="m-b-1">
-          <div class="js-poncho-map__help small text-default"></div>
-      </div>
-  </div>
-</form>
-<!-- / PONCHO MAP SEARCH -->
 </div>
-<div class="col-md-6">
-<!-- PONCHO MAP -->
-<div class="poncho-map hide-attribution" data-scope="poncho-map" style="border:1px solid #eee">
-    <div
-        class="leaflet-container leaflet-touch leaflet-fade-anim 
-              leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
-        id="map"
-        style="height: 700px;"
-        tabindex="0">
+
+
+
+<div class="container">
+    <div class="row m-y-2">
+        <div class="col-md-12">
+            <div data-code-from="code_map" data-title="Código para el mapa"></div>
+        </div>
     </div>
 </div>
-<!-- / PONCHO MAP -->
-</div>
+<script src="../../mapa-argentina/demo/js/demo.js"></script>
 
-
-
-<div class="js-foo col-md-6">
-    <div class="alert alert-info">Seleccione una provincia</div>
-</div>
-
-    </div>
-</div>
 
 <!-- INCLUDE SCRIPTS -->
 <script src="https://www.argentina.gob.ar/sites/default/files/ponchotable/showdown.js"></script>
@@ -119,40 +122,13 @@ COPIAR DESDE ACÁ…
 
 
 <!-- SCRIPTS -->
-<script>
-    const _color = colorVariations.medium.map(c => ponchoColor(c));
-    const extras = [
-        ['06', 'Región Centro y Buenos Aires', _color[2], 'Buenos Aires'],
-        ['10', 'Región Noroeste', _color[0], 'Catamarca'],
-        ['22', 'Región del Noreste', _color[1], 'Chaco'],
-        ['26', 'Región Patagónica', _color[3], 'Chubut'],
-        ['02', 'Región Centro y Buenos Aires', _color[2], 'Ciudad Autónoma de Buenos Aires'],
-        ['14', 'Región Centro y Buenos Aires', _color[2], 'Córdoba'],
-        ['18', 'Región del Noreste', _color[1], 'Corrientes'],
-        ['30', 'Región Centro y Buenos Aires', _color[2], 'Entre Ríos'],
-        ['34', 'Región del Noreste', _color[1], 'Formosa'],
-        ['38', 'Región Noroeste', _color[0], 'Jujuy'],
-        ['42', 'Región Nuevo Cuyo', _color[4], 'La Pampa'],
-        ['46', 'Región Noroeste', _color[0], 'La Rioja'],
-        ['50', 'Región Nuevo Cuyo', _color[4], 'Mendoza'],
-        ['54', 'Región del Noreste', _color[1], 'Misiones'],
-        ['58', 'Región Patagónica', _color[3], 'Neuquén'],
-        ['62', 'Región Patagónica', _color[3], 'Río Negro'],
-        ['66', 'Región Noroeste', _color[0], 'Salta'],
-        ['70', 'Región Nuevo Cuyo', _color[4], 'San Juan'],
-        ['74', 'Región Nuevo Cuyo', _color[4], 'San Luis'],
-        ['78', 'Región Patagónica', _color[3], 'Santa Cruz'],
-        ['82', 'Región Centro y Buenos Aires', _color[2], 'Santa Fe'],
-        ['86', 'Región Noroeste', _color[0], 'Santiago del Estero'],
-        ['94', 'Región Patagónica', _color[3], 'Tierra del Fuego'],
-        ['90', 'Región Noroeste', _color[0], 'Tucumán']
-    ];
-
+<script id="code_map">
 var map;
 var search;
 (async() => {
     // Levanto datos desde un geoJSON
     entries = await fetch_json("../../poncho-map-provinces/data/provincias-antartida.json");
+
     // map options
     const options = {
         theme_tool: true,
