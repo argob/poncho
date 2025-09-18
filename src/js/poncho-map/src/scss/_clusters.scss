@@ -51,7 +51,7 @@
         height: 30px;
         margin-left: 5px;
         margin-top: 5px;
-        box-shadow: 0 -1px 3px rgb(0 0 0 / 0.1) inset;
+        // box-shadow: 0 -1px 3px rgb(0 0 0 / 0.1) inset;
         position: relative;
         text-align: center;
         border-radius: 15px;
@@ -62,7 +62,7 @@
         content: " ";
         width: calc(100% + 2px);
         background: transparent;
-        border: 2px solid rgb(255 255 255 / 0.5);
+        border: 1px solid rgb(255 255 255 / 0.5);
         height: calc(100% + 2px);
         position: absolute;
         border-radius: 50%;
