@@ -1,6 +1,6 @@
 #{$scope} {
     .marker-cluster-small {
-        background-color: rgba(185, 206, 57, 0.3);
+        background-color: rgba(185, 206, 57, 0.4);
     }
     .marker-cluster-small div {
         background-color: rgba(185, 206, 57, 1);
@@ -62,7 +62,7 @@
         content: " ";
         width: calc(100% + 2px);
         background: transparent;
-        border: 2px solid rgb(255 255 255 / 0.65);
+        border: 2px solid rgb(255 255 255 / 0.5);
         height: calc(100% + 2px);
         position: absolute;
         border-radius: 50%;
