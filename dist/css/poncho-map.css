@@ -1458,7 +1458,7 @@ footer.pm-open-map ul > li > a:hover, footer.pm-open-map ul > li > a:focus {
   /* IE 6-8 fallback colors */
 }
 .poncho-map .marker-cluster-small {
-  background-color: rgba(185, 206, 57, 0.3);
+  background-color: rgba(185, 206, 57, 0.4);
 }
 .poncho-map .marker-cluster-small div {
   background-color: rgb(185, 206, 57);
@@ -1512,7 +1512,7 @@ footer.pm-open-map ul > li > a:hover, footer.pm-open-map ul > li > a:focus {
   content: " ";
   width: calc(100% + 2px);
   background: transparent;
-  border: 2px solid rgba(255, 255, 255, 0.65);
+  border: 2px solid rgba(255, 255, 255, 0.5);
   height: calc(100% + 2px);
   position: absolute;
   border-radius: 50%;
