@@ -1,19 +1,19 @@
 /**
  * PONCHO MAP FILTER
- * 
+ *
  * @summary Generador de mapas con filtro utilizando
  * OpenStreetMap / leafleft
- * 
+ *
  * @author Agustín Bouillet <bouilleta@jefatura.gob.ar>
  * @requires leaflet.js,leaflet.markercluster.js,leaflet.css,
  * MarkerCluster.Default.css,MarkerCluster.css, PonchoMap
  * @see https://github.com/argob/poncho/tree/master/src/js/poncho-map
- * 
- * 
+ *
+ *
  * MIT License
- * 
+ *
  * Copyright (c) 2022 Argentina.gob.ar
- * 
+ *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
  * files (the "Software"), to deal in the Software without restriction,
@@ -21,10 +21,10 @@
  * publish, distribute, sublicense, and/or sell copies of the Software,
  * and to permit persons to whom the Software is furnished to do so,
  * subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be
  * included in all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
  * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -37,21 +37,21 @@
 class PonchoMapFilter extends PonchoMap {
     constructor(data, options){
         super(data, options);
-        
+
         const defaults = {
             filters: [],
-            filters_visible: false,
             filters_info: false,
-            search_fields: [],
+            filters_visible: false,
             messages: {
-                reset: "filter_reset_values_link",
+                has_filters: "filters_has",
                 initial: "filter_initial",
-                no_results_by_term: "filter_no_results_by_term",
                 no_results: "filter_no_results",
-                results: "filter_results",
+                no_results_by_term: "filter_no_results_by_term",
                 one_result: "filter_one_result",
-                has_filters: "filters_has"
-            }
+                reset: "filter_reset_values_link",
+                results: "filter_results"
+            },
+            search_fields: []
         };
         let opts = Object.assign({}, defaults, options);
         this.filters = opts.filters;
@@ -62,11 +62,11 @@ class PonchoMapFilter extends PonchoMap {
         this.messages = opts.messages;
         this.accesible_menu_filter = [
             {
-                label: "filters_reset",
                 aria_label: "filters_aria_label_reset",
-                link: "#",
                 css: [`js-poncho-map-reset${this.scope_sufix}`],
-            },
+                label: "filters_reset",
+                link: "#"
+            }
         ];
 
         // Si no hay filtros cargados remuevo el item del menú.
@@ -80,7 +80,7 @@ class PonchoMapFilter extends PonchoMap {
 
     /**
      * Mensajes de ayuda
-     * 
+     *
      * @param {string} term Término buscado
      * @param {object} results Resultados de la búsqueda.
      * @returns {undefined}
@@ -90,13 +90,13 @@ class PonchoMapFilter extends PonchoMap {
             .querySelectorAll(`${this.scope_selector} .js-poncho-map__help`);
 
         const values = {
-            total_results: results.length,
+            anchor: "#",
+            filter_class: `js-close-filter${this.scope_sufix}`,
+            reset_search: `js-poncho-map-reset${this.scope_sufix}`,
+            term: this.inputSearchValue,
             total_entries: this.entries.length,
             total_filtered_entries: this.filtered_entries.length,
-            filter_class: `js-close-filter${this.scope_sufix}`,
-            anchor: "#",
-            term: this.inputSearchValue,
-            reset_search: `js-poncho-map-reset${this.scope_sufix}`
+            total_results: results.length
         };
 
         help_container.forEach(element => {
@@ -104,13 +104,12 @@ class PonchoMapFilter extends PonchoMap {
 
             // Arma el listado de mensajes.
             const ul = document.createElement("ul");
-            
-            ul.classList.add("m-b-0", "list-unstyled");
 
-            const li = content => { 
+            ul.classList.add("m-b-0", "list-unstyled");
+            const li = content => {
                 const item = document.createElement("li");
-                item.ariaLive = "assertive"; 
-                item.innerHTML = content; 
+                item.ariaLive = "polite";
+                item.innerHTML = content;
                 item.tabIndex = 0;
                 return item;
             };
@@ -134,7 +133,7 @@ class PonchoMapFilter extends PonchoMap {
             else if(this.inputSearchValue === "" && values.total_results < 1){
                 ul.appendChild(
                     li(
-                        this._t(this.messages.no_results, values) 
+                        this._t(this.messages.no_results, values)
                         + this._t(this.messages.reset, values)
                     )
                 );
@@ -260,7 +259,7 @@ class PonchoMapFilter extends PonchoMap {
      * 
      * @summary Obtiene un _distinct_ de elementos asociados a un clave
      * dentro dentro de las entradas.
-     * @param {object} args Array con dos propiedades, siedo la 
+     * @param {object} args Array con dos propiedades, siedo la
      * segunda optativa.
      * @propertie
      * @example
@@ -297,7 +296,7 @@ class PonchoMapFilter extends PonchoMap {
 
     /**
      * Retorna el tipo de filtro seleccionado por el usuario.
-     * 
+     *
      * @summary Hay dos modos de configurar filtros
      * template_structure.filters.fields y template_structure.filters.field
      * @example
@@ -310,7 +309,7 @@ class PonchoMapFilter extends PonchoMap {
      *     {valor a buscar 2}],
      *     {status:"checked"|boolean}
      *   ]
-     * 
+     *
      * ["tipo", "Archivo provincial", ["Archivo provincial"], "checked"],
      * @example
      * — Field, permite asignar el índice por el cual se quiere filtrar,
@@ -335,7 +334,7 @@ class PonchoMapFilter extends PonchoMap {
             this.showAlert({
                     title: "Filters requiere el uso del atributo "
                         + "<code>field</code> o <code>fields</code>.",
-                    terminal: fieldsItems    
+                    terminal: fieldsItems
                 },
                 "warning"
             );
@@ -353,7 +352,7 @@ class PonchoMapFilter extends PonchoMap {
                 [fieldsToUse[0][0], "Todos", f, "checked"], ...fieldsToUse
             ];
         }
-        
+
         return fieldsToUse;
     };
 
@@ -375,7 +374,7 @@ class PonchoMapFilter extends PonchoMap {
             input.type = (this.valid_fields.includes(fields_items.type) ?
                 fields_items.type : "checkbox");
             input.id = `id__${field[0]}__${group}__${key}`;
-            
+
             if(fields_items.type == "radio"){
                 input.name = `${field[0]}__${group}`;
             } else {
@@ -439,7 +438,7 @@ class PonchoMapFilter extends PonchoMap {
 
         const button_container = document.createElement("div");
         button_container.classList.add(
-            `js-filter-container${this.scope_sufix}`, 
+            `js-filter-container${this.scope_sufix}`,
             "filter-container"
         );
 
@@ -451,9 +450,9 @@ class PonchoMapFilter extends PonchoMap {
 
     /**
      * Medida definida en la variable CSS --pm-slider-distance
-     * 
+     *
      * @summary Esta medida puede ser variable según el estilo que se
-     * quiera dar al mapa el diseñador. 
+     * quiera dar al mapa el diseñador.
      * @returns {integer}
      */
     _cssVarComputedDistance = () => {
@@ -467,7 +466,8 @@ class PonchoMapFilter extends PonchoMap {
 
 
     /**
-     * Retorna las medidas y la distancia de margen del control de zoom leaflet. 
+     * Retorna las medidas y la distancia de margen del control de 
+     * zoom leaflet.
      * @returns {object}
      */
     _controlZoomSize = () =>{
@@ -529,14 +529,14 @@ class PonchoMapFilter extends PonchoMap {
         // Posicion del panel
         // const cssVarComputedDistance = this._cssVarComputedDistance();
         const controlZoomSize = this._controlZoomSize();
-        const styleTop = controlZoomSize.controlHeight 
-                + controlZoomSize.controlTop 
+        const styleTop = controlZoomSize.controlHeight
+                + controlZoomSize.controlTop
                 + "px";
 
         closeButton.appendChild(icon);
-        form.appendChild(closeButton); 
-        form.appendChild(fields_container); 
-        container.appendChild(form); 
+        form.appendChild(closeButton);
+        form.appendChild(fields_container);
+        container.appendChild(form);
 
         document
             .querySelectorAll(`.js-filter-container${this.scope_sufix}`)
@@ -550,14 +550,14 @@ class PonchoMapFilter extends PonchoMap {
     /**
      * Crea los botones para seleccionar o des-seleccionar todos
      * los filtros.
-     * @param {object} item Objetos con los nombres de grupo e 
+     * @param {object} item Objetos con los nombres de grupo e
      * indice de grupo.
      * @returns {object} Objeto HTML
      */
     _checkUncheckButtons = (item) => {
         // container
         const checkAllItems = document.createElement("div");
-        
+
         // Botón check all
         const checkAllButton = document.createElement("button");
         checkAllButton.classList.add(
@@ -586,6 +586,7 @@ class PonchoMapFilter extends PonchoMap {
         return checkAllItems;
     }
 
+
     /**
      * Crea los checkbox para los filtros.
      */
@@ -604,8 +605,8 @@ class PonchoMapFilter extends PonchoMap {
 
             const fieldset = document.createElement("fieldset");
             fieldset.appendChild(legend);
-            const hasCheckUncheckAll = item.hasOwnProperty("check_uncheck_all") && 
-                                    item.check_uncheck_all && 
+            const hasCheckUncheckAll = item.hasOwnProperty("check_uncheck_all") &&
+                                    item.check_uncheck_all &&
                                     item?.type !== "radio";
 
             if (hasCheckUncheckAll) {
@@ -637,6 +638,7 @@ class PonchoMapFilter extends PonchoMap {
             return val;
         });
     };
+
 
     /**
      * Configuración de estado de los filtros seteados por el usuario.
@@ -953,11 +955,14 @@ class PonchoMapFilter extends PonchoMap {
      * @TODO Ver el modo de hacer focus sobre el scope
      * @returns {undefined}
      */
-    filterChange = (callback) => document
-        .querySelectorAll(`.js-filters${this.scope_sufix}`)
-        .forEach(element => {
-            element.onchange = (callback);
-    });
+    filterChange = (callback) => {
+        const selector = `.js-filters${this.scope_sufix}`;
+        const filterSelect = document.querySelector(selector);
+        if(filterSelect){
+            filterSelect.onchange = (callback);
+        }
+        return;
+    }
 
 
     /**
@@ -966,18 +971,23 @@ class PonchoMapFilter extends PonchoMap {
      * @returns {undefined}
      */
     checkUncheckFilters = () => {
-        const buttons = document.querySelectorAll(
-            `${this.scope_selector} .js-select-items`);
-        buttons.forEach(element => {
-            element.onclick = (event) => {
+        const buttonsSelector = `${this.scope_selector} .js-select-items`;
+        const buttons = document.querySelectorAll(buttonsSelector);
+
+        buttons.forEach((element) => {
+            element.addEventListener("click", (event) => {
                 event.preventDefault();
-                const inputs = document.querySelectorAll(
-                    `${this.scope_selector} [id^=id__${element.dataset.field}]`);
-                inputs.forEach(input => {
-                    input.checked = parseInt(element.dataset.value);
-                });
+
+                const {dataset:{field, value}} = element;
+
+                const inputsSelector = `${this.scope_selector} [id^=id__${field}]`;
+                const inputs = document.querySelectorAll(inputsSelector);
+
+                const elementValue = parseInt(value);
+                inputs.forEach(input => input.checked = elementValue);
+
                 this._filteredData();
-            };
+            });
         });
     };
 
