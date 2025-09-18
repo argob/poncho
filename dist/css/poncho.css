@@ -12268,7 +12268,7 @@ footer.pm-open-map ul > li > a:hover, footer.pm-open-map ul > li > a:focus {
   content: " ";
   width: calc(100% + 2px);
   background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   height: calc(100% + 2px);
   position: absolute;
   border-radius: 50%;

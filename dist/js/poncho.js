@@ -8820,13 +8820,17 @@ class PonchoMapFilter extends PonchoMap {
      * Ejecuta toggle en el onclick
      * @return {undefined}
      */
-    _clickToggleFilter = () => document
-        .querySelectorAll(`.js-close-filter${this.scope_sufix}`)
-        .forEach(element => element.onclick = (event) => {
-            event.preventDefault();
-            this.toggleFilter();
-            this._filterContainerHeight();
-    });
+    _clickToggleFilter = () => {
+        const selector = `.js-close-filter${this.scope_sufix}`;
+        const filterElement = document.querySelectorAll(selector);
+        filterElement.forEach((element) => {
+            element.addEventListener("click", (event) => {
+                event.preventDefault();
+                this.toggleFilter();
+                this._filterContainerHeight();
+            });
+        });
+    };
 
 
     /**
