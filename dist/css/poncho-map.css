@@ -1502,7 +1502,6 @@ footer.pm-open-map ul > li > a:hover, footer.pm-open-map ul > li > a:focus {
   height: 30px;
   margin-left: 5px;
   margin-top: 5px;
-  box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.1) inset;
   position: relative;
   text-align: center;
   border-radius: 15px;
@@ -1512,7 +1511,7 @@ footer.pm-open-map ul > li > a:hover, footer.pm-open-map ul > li > a:focus {
   content: " ";
   width: calc(100% + 2px);
   background: transparent;
-  border: 2px solid rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.5);
   height: calc(100% + 2px);
   position: absolute;
   border-radius: 50%;
