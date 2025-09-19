@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
         details.open = true;
         details.classList.add("js-details", "ar-details", "caret-small", "caret-dark", "details-borderless");
         details.style.display = "block";
-        details.style.background = "#f4f4f0";
+        details.style.background = "#faf9f5";
         
 
         const summary =  document.createElement("summary");
