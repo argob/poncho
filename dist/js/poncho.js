@@ -5582,23 +5582,23 @@ class PonchoMap {
         }
 
         if (this.isEmptyString(value)) {
-            console.warn(
-                "El primer parámetro debe ser una cadena de texto no vacía."
-            );
+            // console.warn(
+            //     "El primer parámetro debe ser una cadena de texto no vacía."
+            // );
             return value;
         }
                 
         if (!this.isObject(kwargs)) {
-            console.warn(
-                "El segundo parámetro debe ser un objeto de tipo clave/valor."
-            );
+            // console.warn(
+            //     "El segundo parámetro debe ser un objeto de tipo clave/valor."
+            // );
             return;
         }
         
         if (this.isEmptyObject(kwargs)) {
-            console.warn(
-                "El segundo parámetro (kwargs) no debe ser un objeto vacío."
-            );
+            // console.warn(
+            //     "El segundo parámetro (kwargs) no debe ser un objeto vacío."
+            // );
             return value;
         }
 
@@ -8069,9 +8069,6 @@ class PonchoMap {
                 for (const key in attributes) {
                     element.setAttribute(key, attributes[key]);
                 }
-            } else {
-                console.warn(
-                    `Elemento no encontrado para el selector: ${selector}`);
             }
         });
 
@@ -8823,13 +8820,16 @@ class PonchoMapFilter extends PonchoMap {
     _clickToggleFilter = () => {
         const selector = `.js-close-filter${this.scope_sufix}`;
         const filterElement = document.querySelectorAll(selector);
-        filterElement.forEach((element) => {
+        
+        return filterElement.forEach((element) => {
             element.addEventListener("click", (event) => {
                 event.preventDefault();
+
                 this.toggleFilter();
                 this._filterContainerHeight();
             });
         });
+
     };
 
 
@@ -9460,7 +9460,7 @@ class PonchoMapFilter extends PonchoMap {
         this._selectedMarker();
         this._helpText(feed);
         // this._resetSearch();
-        this._clickToggleFilter();
+        // this._clickToggleFilter();
         
         if(this.slider){
             this._renderSlider();
@@ -9557,7 +9557,8 @@ class PonchoMapFilter extends PonchoMap {
             element.addEventListener("click", (event) => {
                 event.preventDefault();
 
-                const {dataset:{field, value}} = element;
+                const field = element.dataset.field;
+                const value = element.dataset.value;
 
                 const inputsSelector = `${this.scope_selector} [id^=id__${field}]`;
                 const inputs = document.querySelectorAll(inputsSelector);
@@ -9592,6 +9593,7 @@ class PonchoMapFilter extends PonchoMap {
         this.tileLayer.addTo(this.map);
 
         this._filteredData();
+        this._clickToggleFilter();
         this._totalsInfo();
         if(this.scroll && this.hasHash()){
             this.scrollCenter();
