@@ -605,6 +605,7 @@ class PonchoMapFilter extends PonchoMap {
             let legend = document.createElement("legend");
             legend.textContent = item.legend;
             legend.classList.add(
+                "m-t-0",
                 "m-b-05",
                 "color-primary",
                 "h6"
