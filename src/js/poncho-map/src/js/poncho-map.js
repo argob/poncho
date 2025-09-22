@@ -523,6 +523,14 @@ class PonchoMap {
 
 
     /**
+     * Versión poncho
+     */
+    get version(){
+        return "2.2.0";
+    }
+
+
+    /**
      * Dicionario de términos según el lenguaje.
      * 
      * @param {string} definition Clave de diccionario
