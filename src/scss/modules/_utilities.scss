@@ -20,6 +20,29 @@ $configTypeWeights: (
     }
 }
 
+
+/**
+ * Generador de espacios gap
+ * ([nombre], [valor]) 
+ */
+$gapSpacer : 1;
+$configGap: (
+    (0, 0),
+    (1, $gapSpacer * .25),
+    (2, $gapSpacer * .5),
+    (3, $gapSpacer),
+    (4, $gapSpacer * 1.5),
+    (5, $gapSpacer * 3),
+);
+
+
+@each $name, $value in $configGap {
+    .gap-#{$name} {
+        font-weight: #{$value}rem;
+    }
+}
+
+
 /**
  * Generador de espacios 
  * ([nombre], [valor]) 
