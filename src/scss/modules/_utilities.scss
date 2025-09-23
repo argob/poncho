@@ -38,7 +38,7 @@ $configGap: (
 
 @each $name, $value in $configGap {
     .gap-#{$name} {
-        font-weight: #{$value}rem;
+        gap: #{$value}rem;
     }
 }
 
