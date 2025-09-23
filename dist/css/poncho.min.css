@@ -15488,6 +15488,9 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
 .details-container.details-container__borderless {
   border: none;
 }
+.details-container.details-container__round {
+  border-radius: 9px;
+}
 .details-container.details-container__rounded {
   border-radius: calc(40px / 2 + 9px);
 }
