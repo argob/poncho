@@ -1,7 +1,4 @@
-/**
- * DETAILS & SUMMARY
- *
- * @see https://github.com/argob/poncho/blob/master/src/scss/modules/_details.scss
+argob/poncho/blob/master/src/scss/modules/_details.scss
  * @demo en: https://codepen.io/agustinbouillet/pen/dyxZpNz?editors=0100
  * @author Agustín Bouillet <bouilleta@jefatura.gob.ar>
  * Copyright (c) 2025 Argentina.gob.ar
@@ -41,6 +38,7 @@ $caretBackground: var(--arg-negro-100, #e9e9e9);
 $mediaBreakpoint: 768px;
 $containerBreakpoint: 350px;
 $containerBorderRadius: 3px; // Define el border-radius por defecto
+$containerBorderRound: 9px;
 $containerMarginT: 0px;
 $containerMarginB: 1em;
 
@@ -63,65 +61,65 @@ $containerLeftContentPaddingE: 18px; // padding-right content
  * Definición para los temas de color.
  */
 $colorThemes: (
-    'warning': (
+    "warning": (
         caretBackground: var(--arg-amarillo),
         caret: black,
         containerBackground: var(--arg-amarillo-50),
         borderColor: var(--arg-amarillo-400)
     ),
-    'success': (
+    "success": (
         caretBackground: var(--arg-verde),
         caret: white,
         containerBackground: var(--arg-verde-50),
         borderColor: var(--arg-verde-300)
     ),
-    'danger': (
+    "danger": (
         caretBackground: var(--arg-rojo),
         caret: white,
         containerBackground: var(--arg-rojo-50),
         borderColor: var(--arg-rojo-200)
     ),
-    'blanco': (
+    "blanco": (
         caretBackground: var(--arg-blanco),
         caret: black
     ),
-    'palta': (
+    "palta": (
         caretBackground: var(--arg-palta),
         caret: black
     ),
-    'primary': (
+    "primary": (
         caretBackground: var(--arg-azul),
         caret: white,
         containerBackground: var(--arg-primary-50),
         borderColor: var(--arg-primary-200)
     ),
-    'azul-morado': (
+    "azul-morado": (
         caretBackground: var(--arg-azul-morado),
         caret: white
     ),
-    'negro': (
+    "negro": (
         caretBackground: var(--arg-negro-600),
         caret: white
     ),
-    'dark': (
+    "dark": (
         caretBackground: rgb(0 0 0 / 0.35),
         caret: white
     ),
-    'light': (
+    "light": (
         caretBackground: rgb(255 255 255 / 0.75),
         caret: black
     ),
-    'default': (
+    "default": (
         caretBackground: #ddd,
         caret: black,
         containerBackground: #f4f4f4,
         borderColor: #ccc
     ),
-    'transparent': (
+    "transparent": (
         caretBackground: transparent,
         caret: var(--arg-azul)
     ),
-    'rosado': (
+    "rosado": (
         caretBackground: var(--arg-rosado),
         caret: white
     )
@@ -440,6 +438,12 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
     &.details-container__borderless {
         border: none;
     }
+    
+    
+    &.details-container__round {
+        border-radius: $containerBorderRound;
+    }
+    
 
     &.details-container__rounded {
         border-radius: calc(#{$circleDefaultSize} / 2 + #{$detailsPaddingY});
@@ -509,7 +513,6 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
         }
     }
 }
-
 
 /** 
  *  LADNDING
