@@ -12427,6 +12427,34 @@ footer.pm-open-map ul > li > a:hover, footer.pm-open-map ul > li > a:focus {
 }
 
 /**
+ * Generador de espacios gap
+ * ([nombre], [valor]) 
+ */
+.gap-0 {
+  font-weight: 0rem;
+}
+
+.gap-1 {
+  font-weight: 0.25rem;
+}
+
+.gap-2 {
+  font-weight: 0.5rem;
+}
+
+.gap-3 {
+  font-weight: 1rem;
+}
+
+.gap-4 {
+  font-weight: 1.5rem;
+}
+
+.gap-5 {
+  font-weight: 3rem;
+}
+
+/**
  * Generador de espacios 
  * ([nombre], [valor]) 
  */
