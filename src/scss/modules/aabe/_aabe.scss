@@ -176,13 +176,17 @@
       padding-top: 0.5rem;
     }
 
-    .fa-2x {
+    .fa-2x, .fa-info-circle {
       font-size: 1.5rem;
       line-height: 1.8rem;
     }
 
     .m-t-3, .m-b-3 {
       margin: 0 !important;
+    }
+
+    .ar-details__title .media-body {
+      line-height: 1.8rem;
     }
   }
 
@@ -233,6 +237,12 @@
     }
 }
 
+/* Dispositivos pequeños (pantallas menores a 768px) */
+@media (max-width: 767.98px) {
+  .node-type-subasta .ar-details__content {
+    padding: 0!important
+    }
+}
 
 /* ESTILOS BASE Y UTILIDADES */
 /* Botón de rango */
