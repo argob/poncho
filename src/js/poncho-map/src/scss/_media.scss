@@ -3,9 +3,9 @@
  */
 @media (max-width: 575.98px) {
     #{$scope} {
-        &:has(.slider:is(.slider--in)) {
+        &:has(.pm-slider:is(.pm-slider--in)) {
             position: relative;
-            border-radius: calc(var(--pm-slider-radius) + var(--pm-slider-distance));
+            @include borderRadius(calc(var(--pm-slider-radius) + var(--pm-slider-distance)));
             transition: 0.4s;
 
             .leaflet-control-attribution {
@@ -27,23 +27,22 @@
             }
         }
 
-        .slider {
-            height: calc(var(--pm-slider-media-mobile-height) - var(--pm-slider-distance) - var(--pm-slider-distance));
+        .pm-slider {
+            height: calc(var(--pm-slider-media-mobile-height) - var(--pm-slider-distance) * 2);
             top: auto;
             bottom: calc(-1 * var(--pm-slider-media-mobile-height));
             right: var(--pm-slider-distance);
             max-width: 100%;
-            width: calc(100% - var(--pm-slider-distance) - var(--pm-slider-distance));
+            width: calc(100% - var(--pm-slider-distance) * 2);
 
-            &.slider--in {
+            &.pm-slider--in {
                 animation-name: pm-slidein-mobile;
                 bottom: var(--pm-slider-distance);
             }
         }
 
         .poncho-map-filters {
-            // max-width: 50%;
-            width: calc(100% - var(--pm-slider-distance) - var(--pm-slider-distance));
+            width: calc(100% - var(--pm-slider-distance) * 2);
         }
     }
 }

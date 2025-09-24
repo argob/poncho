@@ -1,0 +1,168 @@
+/**
+ * ALERTAS 
+ */
+$scopeAlert: ".alert";
+
+#{$scopeAlert} {
+    --main-theme: #555;
+    --main-shadow-spread-size: 9px;
+    --main-color: #555;
+    --main-border-left-weight: 6px;
+    --main-padding: #{$grid-gutter-width / 2};
+    --media-col-gap: #{$grid-gutter-width / 3};
+    --media-row-gap: calc(var(--media-col-gap) / 2);
+    --icon-size: 3rem;
+
+    width: calc(100% - var(--main-shadow-spread-size));
+    position: relative;
+    background: white;
+    border-top: none;
+    border-right: none;
+    border-bottom: none;
+    border-left: var(--main-border-left-weight) solid var(--main-theme);
+    border-radius: 2px;
+    padding: var(--main-padding) var(--main-padding) var(--main-padding)
+        var(--media-col-gap);
+    margin-bottom: $grid-gutter-width;
+    color: #555;
+    background-color: white;
+    box-shadow: 4px 6px calc(var(--main-shadow-spread-size) + 1px)
+        rgba(0, 0, 0, 0.15);
+    // Si el componente no tiene icono
+    &:not(:has(.media-left)) {
+        padding: var(--main-padding);
+    }
+    // REDEFINIMOS MEDIA
+    .media {
+        grid-template-columns: calc(var(--icon-size) + 1.5em) 1fr;
+        display: grid;
+        gap: var(--media-col-gap);
+
+        &:not(:has(.media-left)) {
+            grid-template-columns: 1fr;
+        }
+        .media-left {
+            padding: {
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+            }
+            text-align: center;
+        }
+        .media-body {
+            width: auto;
+            align-self: center;
+        }
+
+        .h5,
+        *.h5,
+        h5 {
+            margin-top: 0.5em;
+            margin-bottom: 0.5em;
+        }
+    }
+
+    // Corrección de tamaños.
+    .fa-1x,
+    .fa-2x,
+    .fa-4x,
+    .fa-3x,
+    .fa-5x {
+        font-size: var(--icon-size) !important;
+    }
+
+    // Tamaños para iconos específicos.
+    .fa.fa-warning,
+    .fa.fa-times-circle,
+    .fa.fa-info-circle,
+    .fa.fa-check-circle {
+        font-size: calc(var(--icon-size) + 0.15em) !important;
+        margin: 0;
+    }
+
+    i {
+        color: currentColor;
+    }
+
+    p {
+        margin-bottom: 1em;
+
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+    }
+
+    .btn {
+        @include button-variant(#fff, #555, #555);
+        margin-bottom: #{$grid-gutter-width / 2};
+        margin-top: #{$grid-gutter-width / 2};
+    }
+}
+
+@media (max-width: 768px) {
+    #{$scopeAlert} {
+        padding: 15px;
+
+        .media {
+            grid-template-columns: none;
+            grid-template-rows: auto;
+            row-gap: 5px;
+
+            .media-left {
+                text-align: left;
+            }
+        }
+    }
+}
+
+/**
+ * Definición para los temas de color.
+ */
+
+$colorThemesAlerts: (
+    "default": (
+        themeColor: #555,
+        backgroundColor: white,
+        buttonColor: white,
+    ),
+    "info": (
+        themeColor: #0581C6,
+        backgroundColor: lighten(#CDEBFA, 7%),
+        buttonColor: white,
+    ),
+    "danger": (
+        themeColor:#E14543,
+        backgroundColor: lighten(#FCDDDC, 5%),
+        buttonColor: white,
+    ),
+    "success": (
+        themeColor: #2E7D33,
+        backgroundColor: lighten(#F1F5D7, 7%),
+        buttonColor: white,
+    ),
+    "warning": (
+        themeColor: #F79D00,
+        backgroundColor: lighten( #FFFAE8, 2%),
+        buttonColor: black,
+    ),
+);
+
+@each $themeName, $themeValues in $colorThemesAlerts {
+    #{$scopeAlert}-#{$themeName} {
+        background-color: #{map-get($themeValues, backgroundColor)};
+        border-left: 0.333rem solid #{map-get($themeValues, themeColor)};
+    }
+    #{$scopeAlert}-#{$themeName} .media-left i {
+        color: #{map-get($themeValues, themeColor)};
+    }
+    #{$scopeAlert}-#{$themeName} .btn {
+
+
+                @include button-variant(
+            map-get($themeValues, buttonColor),
+            map-get($themeValues, themeColor),
+            map-get($themeValues, themeColor)
+        );
+    }
+}

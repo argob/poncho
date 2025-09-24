@@ -31,7 +31,7 @@
     <!-- / Script para debug -->
     <title>Poncho Map — Template</title>
     <link rel="stylesheet" href="./css/demo.css">
-
+            <script src="../../mapa-argentina/demo/js/demo.js"></script>
 </head>
 
 <body>
@@ -90,6 +90,9 @@
             </div>
             <!-- / poncho map -->
 
+      
+                <div data-code-from="code_map_1" class="m-y-1" data-title="Código para el mapa 1"></div>
+          
         </div>
         <div class="col-md-6">
             <!-- PONCHO MAP SEARCH -->
@@ -121,113 +124,124 @@
                 </div>
             </div>
             <!-- / PONCHO MAP -->
+
+
+
+
+                <div data-code-from="code_map_2" class="m-y-1" data-title="Código para el mapa 2"></div>
+
+
+
+
+
+
         </div>
     </div>
     </div>
 
-    <!-- SCRIPTS -->
-    <script>
-        // PRIMER MAPA
-        (async () => {
-            const loaderMap1 = new PonchoMapLoader({scope: "uno"});
-            loaderMap1.load();
+<!-- SCRIPTS -->
+<script id="code_map_1">
+// PRIMER MAPA
+(async () => {
+    const loaderMap1 = new PonchoMapLoader({scope: "uno"});
+    loaderMap1.load();
 
-            const gapi = new GapiSheetData();
-            const googlesheet_data = await fetch_json("./data/response-efectores.json?v2");
-            const gapi_data = gapi.json_data(googlesheet_data);
-            const {entries, headers} = gapi_data;
+    const gapi = new GapiSheetData();
+    const googlesheet_data = await fetch_json("./data/response-efectores.json?v2");
+    const gapi_data = gapi.json_data(googlesheet_data);
+    const {entries, headers} = gapi_data;
 
-            const mapOptions1 = {
-                // id_mixing: ['id', 'foo', 'nombre'],
-                "wizard": true,
-                "scope": "uno",
-                "title": "name",
-                "error_reporting": true,
-                "headers": headers,
-                "template_structure": {
-                    "values": [
-                        "address",
-                        "locality",
-                        "province", 
-                        "phone", 
-                        "email",
-                        "reference"
-                    ]
-                },
-                "hash": true,
-                "scroll": true,
-                "slider": true
-            };
-            const filter1 = new PonchoMapFilter(entries, mapOptions1);
-            filter1.render();
+    const mapOptions1 = {
+        // id_mixing: ['id', 'foo', 'nombre'],
+        "wizard": true,
+        "scope": "uno",
+        "title": "name",
+        tooltip: true,
+        "error_reporting": true,
+        "headers": headers,
+        "template_structure": {
+            "values": [
+                "address",
+                "locality",
+                "province", 
+                "phone", 
+                "email",
+                "reference"
+            ]
+        },
+        "hash": true,
+        "scroll": true,
+        "slider": false
+    };
+    const filter1 = new PonchoMapFilter(entries, mapOptions1);
+    filter1.render();
 
-            const searchOptions1 = {
-                "scope": "poncho-map-search",
-                "placeholder": "Buscar en el geoJSON",
-                "datalist": true,
-                "search_fields": ["title"],
-                "datalist": true
-            };
-            const search1 = new PonchoMapSearch(filter1, searchOptions1);
-            search1.render();
+    const searchOptions1 = {
+        "scope": "poncho-map-search",
+        "placeholder": "Buscar en el geoJSON",
+        "datalist": true,
+        "search_fields": ["title"],
+        "datalist": true
+    };
+    const search1 = new PonchoMapSearch(filter1, searchOptions1);
+    search1.render();
 
-            loaderMap1.close();
-        })();
+    loaderMap1.close();
+})();
+</script>
 
-        var filter2;
-        // SEGUNDO MAPA
-        (async () => {
-            const loaderMap2 = new PonchoMapLoader({scope: "dos"});
-            loaderMap2.load();
+<script id="code_map_2">
+// SEGUNDO MAPA
+(async () => {
+    const loaderMap2 = new PonchoMapLoader({scope: "dos"});
+    loaderMap2.load();
 
-            const geoJSON = await fetch_json("./data/test-data.geojson");
-            const mapOptions2 = {
-                id_mixing: function(self, entry){
-                    return [
-                        entry.properties.ID, 
-                        `__${entry.properties.id_pd}__`
-                        +`${self._slugify(entry.properties.nombre)}`
-                    ];
-                },
-                __id_mixing:['ID', "calle"],
-                // id: "id_pd",
-                "scope": "dos",
-                "title": "nombre",
-                "template_markdown": true,
-                "allowed_tags": ["h1", "strong", "a"],
-                "map_selector": "map2",
-                "scroll": true,
-                "hash": true,
-                "slider": true,
-                "filters": [
-                    {
-                        "legend": "Filtrar por título",
-                        "field": ["type", "checked"],
-                        "fields": false
-                    },
-                    {
-                        "legend": "institución",
-                        "field": ["institucion"]
-                    }
-                ],
-                open_maps:true
-            };
+    const geoJSON = await fetch_json("./data/test-data.geojson");
+    const mapOptions2 = {
+        error_reporting: 1,
+        id_mixing: function(self, entry){
+            const {properties:{ID, id_pd, nombre}} = entry;
+            return [
+                ID, `__${id_pd}__`, self._slugify(nombre)
+            ];
+        },
+        "scope": "dos",
+        "title": "nombre",
+        "template_markdown": true,
+        "allowed_tags": ["h1", "strong", "a"],
+        "map_selector": "map2",
+        "scroll": true,
+        "hash": true,
+        "slider": true,
+        "filters": [
+            {
+                "legend": "Filtrar por título",
+                "field": ["type", "checked"],
+                "fields": false
+            },
+            {
+                "legend": "institución",
+                "field": ["institucion"]
+            }
+        ],
+        open_maps:true
+    };
 
-             filter2 = new PonchoMapFilter(geoJSON, mapOptions2);
-            filter2.render();
-            const searchOptions2 = {
-                    "scope": "poncho-map-search-2",
-                    "placeholder": "Buscar en el geoJSON",
-                    "datalist": true,
-                    "search_fields": ["provincia", "ID", "id", "title"] 
-            };
-            const search2 = new PonchoMapSearch(filter2, searchOptions2);
-            search2.render();
+    const filter2 = new PonchoMapFilter(geoJSON, mapOptions2);
+    filter2.render();
+    const searchOptions2 = {
+            "scope": "poncho-map-search-2",
+            "placeholder": "Buscar en el geoJSON",
+            "datalist": true,
+            "search_fields": ["provincia", "ID", "id", "title"] 
+    };
+    const search2 = new PonchoMapSearch(filter2, searchOptions2);
+    search2.render();
 
-            loaderMap2.close();
-        })();
-    </script>
-    <!-- / SCRIPTS -->
+    loaderMap2.close();
+})();
+</script>
+<!-- / SCRIPTS -->
 </body>
 
 </html>

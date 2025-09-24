@@ -169,10 +169,11 @@ fetch_json(newJson, { headers: {} }).then(geoProvinces => {
                 title_classlist: ["h2","text-cielo"],
                 term_classlist: ["h5", "text-cielo"],
                 lead: {
-                    key: "region", 
+                    key: "region",
+                    css: function(self, entry){ return 'text-arg-default'}, 
                     style: "text-transform:uppercase;" 
                         + "border-bottom: 1px solid var(--gray-border, #ccc);" 
-                        + "padding-bottom:.25em; color:var(--default) " 
+                        + "padding-bottom:.25em; color:var(--default);" 
                         + "font-size:small;"
                 },  
             },

@@ -3,7 +3,7 @@
     font-weight: 500;
 
     .btn i {
-        color: $white
+        color: $white;
     }
 }
 
@@ -30,7 +30,6 @@
     i {
         color: $brand-success;
     }
-
 }
 
 .alert-info {
@@ -98,7 +97,6 @@ a.alert {
     }
 }
 
-
 .alert h2 {
     font-size: 1.3em !important;
     margin-top: 0px !important;
@@ -108,5 +106,5 @@ a.alert {
 
 // from argentina.scss
 .alert {
-    border-radius: 10px
+    border-radius: 10px;
 }

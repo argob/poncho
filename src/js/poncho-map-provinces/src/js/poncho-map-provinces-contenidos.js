@@ -85,14 +85,13 @@ const __templateStructure = (headers) => {
                 }
             });
         })(),
-        title_classlist: ["h2"],
-        term_classlist: ["h3", "class=h5"], 
+        // map_align: "left",
+        title_classlist: ["h3", "m-b-1", "m-t-0"],
+        term_classlist: ["h5", "m-b-05"], 
         lead: {
             key: "volanta", 
-            style: "text-transform:uppercase;" 
-                + "border-bottom: 1px solid var(--gray-border, #ccc);" 
-                + "padding-bottom:.25em; color:var(--default) " 
-                + "font-size:small;"
+            css: "text-default small text-uppercase p-b-xs m-b-1",
+            style: "border-bottom: 1px solid var(--gray-border, #ccc);" 
         },  
     };
 };

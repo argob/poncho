@@ -23,12 +23,14 @@
     <script src="../../color/src/js/color.js"></script>
     <script src="../../utils/connect.js"></script>
     <script src="../../utils/string.js"></script>
+    <script src="../../utils/document.js"></script>
     <script src="../../utils/html.js"></script>
     <script src="../src/js/poncho-map.js"></script>
     <script src="../src/js/poncho-map-filter.js"></script>
     <script src="../src/js/poncho-map-search.js"></script>
     <script src="../../gapi-sheet-data/gapi-sheet-data.js"></script>
     <link rel="stylesheet" href="./css/demo.css">
+    <link rel="stylesheet" href="./css/containers.css">
     <!-- / Script para debug -->
     <title>Poncho Map — Template 9</title>
 </head>
@@ -39,12 +41,13 @@
             <li><a href="./">Inicio</a></li>
         </ul>
     </div>
-  <h1>Template 9</h1>
+    <h1>Template 9</h1>
 <!-- 
 COPIAR DESDE ACÁ…
 -->
 <div class="col-md-12">
 <!-- PONCHO MAP SEARCH -->
+<search>
 <form>
     <div data-scope="poncho-map-search">
         <div class="input-group">
@@ -66,19 +69,32 @@ COPIAR DESDE ACÁ…
         </div>
     </div>
 </form>
+</search>
 <!-- / PONCHO MAP SEARCH -->
 </div>
-<div class="col-md-12" style="width: 1000px;">
-<!-- PONCHO MAP -->
-<div class="poncho-map" data-scope="poncho-map">
-    <div
-        class="leaflet-container leaflet-touch leaflet-fade-anim 
-            leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
-        id="map"
-        style="height: 625px; width:1000px;">
+
+<div class="container">
+    <div class="col-md-12">
+        <div id="width" class="badge bg-arg-maiz text-arg-negro p-x-05 p-y-xs"></div>
+    <!-- PONCHO MAP -->
+    <div class="poncho-map" data-scope="poncho-map">
+        <div
+            class="leaflet-container leaflet-touch leaflet-fade-anim 
+                leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
+            id="map"
+            style="height: 650px;">
+        </div>
     </div>
+    <!-- / PONCHO MAP -->
+
+
+
+
+<div data-code-from="code_map" class="m-y-2" data-title="Código para el mapa"></div>
+<script src="../../mapa-argentina/demo/js/demo.js"></script>
+
+
 </div>
-<!-- / PONCHO MAP -->
 </div>
 
 
@@ -95,7 +111,7 @@ COPIAR DESDE ACÁ…
 
 
 <!-- SCRIPTS -->
-<script>
+<script id="code_map">
     // init
     var map;
 
@@ -113,7 +129,7 @@ COPIAR DESDE ACÁ…
             "template": (a, b) => "<h2>" + b.nombre + "</h2><ul><li>" 
                 + Object.values(b).filter(e => e).join("</li><li>") 
                 + "</li></ul>",
-            "error_reporting": 1,
+            "error_reporting": 0,
             "template": (self, entry) => {
                 entry.foto_html = (entry.foto ? `<img class="img-in" alt="${entry.name}" src="${entry.foto}" style="border-radius:6px; border:1px solid #eee" />` : ""); 
                 entry.boton_html = (entry.boton ? 
@@ -121,14 +137,14 @@ COPIAR DESDE ACÁ…
                 return self.defaultTemplate(self, entry);
             },
             theme_ui: 'default',
-            theme_map: 'dark',
+            theme_map: 'relax',
             "scope": "poncho-map",
             "filters_info": false,
             "title": "nombre",
             "template_innerhtml": true,
             "template_markdown": true,
             "allowed_tags": ["a", "sup", "img"],
-            "_marker_cluster_options": {
+            "marker_cluster_options": {
                         "spiderfyOnMaxZoom": true,
                         "showCoverageOnHover": false,
                         "zoomToBoundsOnClick": true,
@@ -144,8 +160,9 @@ COPIAR DESDE ACÁ…
             "template_structure" : {
                 "title_classlist":["h4", "text-cielo", "m-t-1"],
                 "lead": {
-                    "key": "tipo", 
-                    "style": "text-transform:uppercase; border-bottom: 1px solid #ddd; padding-bottom:.25em; color:#999; font-size:75%;"
+                    key: "tipo", 
+                    css: ["text-arg-default", "p-b-xs","fw-600", "small", "text-uppercase"],
+                    style: "border-bottom: 1px solid var(--arg-negro-200);"
                 },  
                 "values": [
                     "estado",
@@ -208,7 +225,7 @@ COPIAR DESDE ACÁ…
                 ...headers, 
                 ...{
                     "foto_html": "", 
-                    "boton_html": "Más información", 
+                    "boton_html": "Más información +", 
                     "descripcion": ""
                 }
             },
@@ -220,22 +237,29 @@ COPIAR DESDE ACÁ…
             "tooltip": true,
             "no_info": false,
             "slider": true,
-            "hash": true,
+            "hash": false,
             "scroll": true,
             reset_zoom: true,
+            filters_info:true,
             "filters": [
                 {
                     "legend" : "Filtrar por tipo",
                     "field": ["tipo"],
-                    "fields": false
+                    "fields": false,
+                    check_uncheck_all: true,
                 },
                 {
                     "legend" : "Filtrar por estado",
                     "field": ["estado", "checked"],
-                    "fields": false
+                    "fields": false,
+                    check_uncheck_all: true
                 },
             ],
-            open_maps:true
+            open_maps: true,
+            map_align: "left",
+            // map_style: {
+            //     "slider-width": "calc(100% / 2 - 10px)"
+            // },
         };
 
         const searchOptions = {
@@ -252,6 +276,17 @@ COPIAR DESDE ACÁ…
             
         loader.close();
     })();
+
+
+
+function setWidth(){
+    const mapSize = document.querySelector(".poncho-map");
+    document.querySelector("#width").textContent = mapSize.offsetWidth + "px";
+}
+setWidth()
+window.addEventListener("resize", () => {
+    setWidth()
+})
 </script>
 <!-- / SCRIPTS -->
 </body>

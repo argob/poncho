@@ -43,7 +43,7 @@ class PonchoMapSearch {
     constructor(instance, options){
         const defaults = {
             "scope": false,
-            "placeholder": "Su búsqueda",
+            "placeholder": "search_placeholder",
             "search_fields": instance.search_fields,
             "sort": true,
             "sort_reverse": false,
@@ -62,13 +62,24 @@ class PonchoMapSearch {
         this.search_scope_selector = (
             this.scope ? `[data-scope="${this.scope}"]`: "");
         this.instance.search_fields = opts.search_fields;
-        this.instance.accesible_menu_search = [
-            {
-                "text": "Hacer una búsqueda",
-                "anchor": `#id-poncho-map-search${this.scope_sufix}`
-            }
-        ];
+        this.instance.accesible_menu_search = [];
+
+        if(this.isSearch()){
+            this.instance.accesible_menu_search.push({
+                label: "search_data",
+                link: `#id-poncho-map-search${this.scope_sufix}`
+            });
+        }
     };
+
+
+    /**
+     * Vefifica si está habilitado para hacer búsquedas.
+     * @returns 
+     */
+    isSearch = () => (document.querySelector(this.search_scope_selector) ? 
+            true : false);
+
 
     /**
      * Ordena un listado de objetos.
@@ -101,25 +112,31 @@ class PonchoMapSearch {
      * @returns {undefined}
      */
     _triggerSearch = () => {
-        const input = document.querySelector(
-            `${this.search_scope_selector} .js-poncho-map-search__input`);
-        input.id = `id-poncho-map-search${this.scope_sufix}`;
-        
-        const submit = document.querySelectorAll(
-                `${this.search_scope_selector} .js-poncho-map-search__submit`);
-                
-        submit.forEach(e => {
-            e.onclick = (event => {
+
+        const inputSelector = `${this.search_scope_selector} `
+                + `.js-poncho-map-search__input`;
+        const input = document.querySelector(inputSelector);
+        if(input){
+            input.id = `id-poncho-map-search${this.scope_sufix}`;
+        }
+
+        const submitSelector = `${this.search_scope_selector} `
+                + `.js-poncho-map-search__submit`;
+        const submit = document.querySelector(submitSelector);
+
+        if(submit){
+            submit.addEventListener("click", (event) => {
                 event.preventDefault();
         
-                const element = document.querySelector(
-                    `#js-search-input${this.instance.scope_sufix}`);
-                element.value = input.value;
-                const term = input.value;
-
-                this._renderSearch(term);
+                const eleSelector = `#js-search-input${this.instance.scope_sufix}`;
+                const element = document.querySelector(eleSelector);
+                if(element){
+                    element.value = input.value;
+                    const term = input.value;
+                    this._renderSearch(term);
+                }
             });
-        });
+        }
     };
 
 
@@ -130,17 +147,21 @@ class PonchoMapSearch {
      * @returns {undefined}
      */
     searchTerm = (term) => {
-        if(typeof term !== "string" || term.trim() == ""){
+        if(this.instance.isEmptyString(term)){
             console.error(
                 "searchTerm", 
                 "El término de búsqueda no puede estar vacío.");
             return;
         }
         
-        const search_value = document
-            .querySelector(`#js-search-input${this.instance.scope_sufix}`);
-        search_value.value = term;
+        const hiddenInputselector = `#js-search-input${this.instance.scope_sufix}`;
+        const filterValue = document.querySelectorAll(hiddenInputselector);
+        filterValue.forEach(element => element.value = term);
         
+        const searchInputSelector = `#id-poncho-map-search${this.scope_sufix}`;
+        const searchInput = document.querySelectorAll(searchInputSelector);
+        searchInput.forEach(element => element.value = term);
+
         this.instance._resetSearch();
         this._renderSearch(term);
     };
@@ -178,7 +199,7 @@ class PonchoMapSearch {
         }
         document.querySelectorAll(
             `${this.search_scope_selector} .js-poncho-map-search__input`)
-            .forEach(element => element.placeholder = this.placeholder.toString());
+            .forEach(element => element.placeholder = this.instance._t(this.placeholder));
     };
 
     /**
@@ -187,7 +208,7 @@ class PonchoMapSearch {
      * @returns {undefined}
      */
     _renderSearch = (term) => {
-        if(typeof term !== "string" || term.trim() == ""){
+        if(this.instance.isEmptyString(term)){
             console.error(
                 "_renderSearch", 
                 "El término de búsqueda no puede estar vacío.");

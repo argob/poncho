@@ -26,6 +26,7 @@
     <script src="../../utils/connect.js"></script>
     <script src="../../utils/string.js"></script>
     <script src="../../utils/html.js"></script>
+    <script src="../../utils/document.js"></script>
     <script src="../../poncho-map/src/js/poncho-map.js"></script>
     <script src="../../poncho-map/src/js/poncho-map-filter.js"></script>
     <script src="../../gapi-sheet-data/gapi-sheet-data.js"></script>
@@ -82,7 +83,7 @@ COPIAR DESDE ACÁ…
     <!-- / SELECT PROVINCIAS -->
 
 </div>
-
+<div class="row js-size text-center fw-600"></div>
 <div class="col-md-12">
 
     <!-- PONCHO MAP -->
@@ -94,13 +95,48 @@ COPIAR DESDE ACÁ…
             class="leaflet-container leaflet-touch leaflet-fade-anim 
                 leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
             id="map"
-            style="height: 700px;"
+            style="height: 712px;"
             tabindex="0">
         </div>
     </div>
     <!-- / PONCHO MAP -->
 
 </div>
+</div>
+
+
+<div class="row m-t-2">
+    <div class="col-md-6 ">
+        <div class="_bg-arg-maiz">
+            <p>
+                El Observatorio Provincial de Drogas es un instrumento clave para la producción local de conocimiento. Permite examinar las dimensiones y modalidades de los consumos en la provincia de Entre Ríos, desde una perspectiva de salud pública y derechos humanos.
+            </p>
+            <p>
+Su principal función es analizar los datos producidos por los sistemas de información sanitaria con el objetivo de caracterizar la situación de salud de la población. Además trabaja coordinadamente con el Observatorio Argentino de Drogas en los ejes de investigación, sistemas de registros, evaluación y monitoreo.
+            </p>
+            <p>
+El OPD de Entre Ríos depende de la Dirección de Abordaje Integral de Problemáticas de Consumo de la Dirección General de Salud Mental, Ministerio de Salud de Entre Ríos.
+            </p>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="_bg-arg-maiz">
+                        <p>
+                El Observatorio Provincial de Drogas es un instrumento clave para la producción local de conocimiento. Permite examinar las dimensiones y modalidades de los consumos en la provincia de Entre Ríos, desde una perspectiva de salud pública y derechos humanos.
+            </p>
+            <p>
+Su principal función es analizar los datos producidos por los sistemas de información sanitaria con el objetivo de caracterizar la situación de salud de la población. Además trabaja coordinadamente con el Observatorio Argentino de Drogas en los ejes de investigación, sistemas de registros, evaluación y monitoreo.
+            </p>
+            <p>
+El OPD de Entre Ríos depende de la Dirección de Abordaje Integral de Problemáticas de Consumo de la Dirección General de Salud Mental, Ministerio de Salud de Entre Ríos.
+            </p>
+
+        </div>
+    </div>
+</div>
+
+
+
 
 </div> 
 </div>
@@ -111,12 +147,141 @@ COPIAR DESDE ACÁ…
 <script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.js"></script>
 <script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script>
 <link href="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.css" rel="stylesheet"/> 
-<script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
+<!-- <script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script> -->
 <!-- / INCLUDE SCRIPTS -->
+<!-- {lg: 992,xl: 1200,sm: 576, md: 768} -->
+<style>
+    /* Small (sm) */
+    /* Se aplica a pantallas de 576px y mayores */
+    @media (min-width: 576px) {
+        .__poncho-map[data-scope="poncho-map"]:has(#map) {
+            --pm-slider-width: calc(100% - 20px);
+            border-top:6px solid goldenrod
+        }
 
+        .poncho-map:has(.slider:is(.slider--in))::before {
+            content:"";
+            width:100%;
+            height:100%;
+            left:0;
+            top:0;
+            position:absolute;
+            z-index:1000;
+            background:var(--pm-slider-modal-color);
+            opacity:.75;
+            transition:.5s
+        }
+    }
 
+    /* Medium (md) */
+    /* Se aplica a pantallas de 768px y mayores */
+    @media (min-width: 768px) {
+        .__poncho-map[data-scope="poncho-map"]:has(#map) {
+            --pm-slider-width: calc(50% - 20px);
+            border-top:6px solid green
+        }
+
+        .poncho-map:has(.slider:is(.slider--in))::before {
+            opacity:.0;
+            display: none;
+        }
+    }
+
+    /* Large (lg) */
+    /* Se aplica a pantallas de 992px y mayores */
+    @media (min-width: 992px) {
+        .__poncho-map[data-scope="poncho-map"]:has(#map) {
+            --pm-slider-width: calc(50% - 20px);
+            border-top:6px solid blue
+        }
+    }
+
+    /* Extra large (xl) */
+    /* Se aplica a pantallas de 1200px y mayores */
+    @media (min-width: 1200px) {
+        .__poncho-map[data-scope="poncho-map"]:has(#map) {
+            --pm-slider-width: calc(50% - 20px);
+            border-top:6px solid orange
+        }
+    }
+
+    /* Extra extra large (xxl) */
+    /* Se aplica a pantallas de 1400px y mayores */
+    @media (min-width: 1400px) {
+        .__poncho-map[data-scope="poncho-map"]:has(#map) {
+            --pm-slider-width: calc(50% - 20px);
+            border-top:6px solid red
+        }
+    }
+
+</style>
 <!-- SCRIPTS -->
-<script>
+<script> 
+var tarjeton = `@media (min-width:576px){.poncho-map[data-scope=poncho-map]:has(#map){--pm-slider-width:calc(100% - 20px);border-top:6px solid #daa520}.poncho-map:has(.slider:is(.slider--in))::before{content:"";width:100%;height:100%;left:0;top:0;position:absolute;z-index:1000;background:var(--pm-slider-modal-color);opacity:.75;transition:.5s}}@media (min-width:768px){.poncho-map[data-scope=poncho-map]:has(#map){--pm-slider-width:calc(50% - 20px);border-top:6px solid green}.poncho-map:has(.slider:is(.slider--in))::before{opacity:0;display:none}}@media (min-width:992px){.poncho-map[data-scope=poncho-map]:has(#map){--pm-slider-width:calc(50% - 20px);border-top:6px solid #00f}}@media (min-width:1200px){.poncho-map[data-scope=poncho-map]:has(#map){--pm-slider-width:calc(50% - 20px);border-top:6px solid orange}}@media (min-width:1400px){.poncho-map[data-scope=poncho-map]:has(#map){--pm-slider-width:calc(50% - 20px);border-top:6px solid red}}`;
+var normal = `/* Small (sm) */
+    /* Se aplica a pantallas de 576px y mayores */
+    @media (min-width: 576px) {
+        .poncho-map[data-scope="poncho-map"]:has(#map) {
+            --pm-slider-width: calc(100% - 20px);
+            border-top:6px solid goldenrod
+        }
+
+        .poncho-map:has(.slider:is(.slider--in))::before {
+            content:"";
+            width:100%;
+            height:100%;
+            left:0;
+            top:0;
+            position:absolute;
+            z-index:1000;
+            background:var(--pm-slider-modal-color);
+            opacity:.75;
+            transition:.5s
+        }
+    }
+
+    /* Medium (md) */
+    /* Se aplica a pantallas de 768px y mayores */
+    @media (min-width: 768px) {
+        .poncho-map[data-scope="poncho-map"]:has(#map) {
+            --pm-slider-width: calc(50% - 20px);
+            border-top:6px solid green
+        }
+
+        .poncho-map:has(.slider:is(.slider--in))::before {
+            opacity:.0;
+            display: none;
+        }
+    }
+
+    /* Large (lg) */
+    /* Se aplica a pantallas de 992px y mayores */
+    @media (min-width: 992px) {
+        .poncho-map[data-scope="poncho-map"]:has(#map) {
+            --pm-slider-width: calc(40% - 20px);
+            border-top:6px solid blue
+        }
+    }
+
+    /* Extra large (xl) */
+    /* Se aplica a pantallas de 1200px y mayores */
+    @media (min-width: 1200px) {
+        .poncho-map[data-scope="poncho-map"]:has(#map) {
+            --pm-slider-width: calc(100% / 3 - 20px);
+            border-top:6px solid orange
+        }
+    }
+
+    /* Extra extra large (xxl) */
+    /* Se aplica a pantallas de 1400px y mayores */
+    @media (min-width: 1400px) {
+        .poncho-map[data-scope="poncho-map"]:has(#map) {
+            --pm-slider-width: calc(100% / 3 - 20px);
+            border-top:6px solid red
+        }
+    }`;
+
+    var map;
 // URL temporal
 const geoJSON = "https://gist.githack.com/agustinbouillet/" 
     + "a5cdf04c6b19ed248aa85b27deaee6a2/raw/"
@@ -131,30 +296,43 @@ fetch_json(newJson, { headers: {"Accept": "application/json"}}).then(geoProvince
     const gapi = new GapiSheetData();
     fetch_json(
         gapi.url(
-            "dataset3", //<<< Nombre de la solapa en Google Sheets. Preferentemente, sin espacios y acentos.
-            "1qEJoLbtJwq_6i3e8R_Q85xK_ZZ5-Iu5Tu8BAnp2V1N4" //<<< ID del documento en Google Sheets.
+            "mapa_publicado", //<<< Nombre de la solapa en Google Sheets. Preferentemente, sin espacios y acentos.
+            // "dataset3", //<<< Nombre de la solapa en Google Sheets. Preferentemente, sin espacios y acentos.
+            // "1qEJoLbtJwq_6i3e8R_Q85xK_ZZ5-Iu5Tu8BAnp2V1N4" //<<< ID del documento en Google Sheets.
+            "1UHfminuVxxmn1VIqo4DE2kKN5TXnj34WVBMCwnmW5vo" //<<< ID del documento en Google Sheets.
         )        
     ).then(googlesheet_data => {
         const gapi_data = gapi.json_data(googlesheet_data);
         const {entries, headers} = gapi_data;
         const options = {
-            id_mixing: ["in1", "nam"], // Permite configurar cómo debe ser el ID en la URL.
-            // content_selector: ".js-pm-text-content", // Nombre de la clase o id dónde se imprime el contenido.
+            id_mixing: ["in1", "nam"],
+            // content_selector: ".js-pm-text-content",
             scope: "poncho-map",
             title: "nam",
-            template_markdown: true, // Habilita el uso del markdown.
-            allowed_tags: ["*"], // Habilita etiquetas HTML.
-            headers:{
+            // map_layers_default: "satelital",
+            // map_layers: true,
+            template_markdown: true,
+            allowed_tags: ["*"],
+            headers: headers,
+            id_mixing:{
                 ...headers, 
                 ...{"subtitulos--ignore": "", description: "", img: "", content: "", region: "Región"}
             },
-            template:(self, entry) => {
+            _template:(self, entry) => {
                 entry["img"] = entry.image ? `<div class="img"><img src="${entry.image}"></img>` : false;
                 entry["content"] = `<hr><div class="row">${entry["subtitulos--ignore"]}</div>`;
                 return self.defaultTemplate(self, entry); 
             },
-            template_structure: {
-                values: ["img", "description", "capital", "population", "surface", "web", /*"content"*/ ],
+            _template_structure: {
+                values: [
+                    "img", 
+                    "description", 
+                    "capital", 
+                    "population", 
+                    "surface", 
+                    "web", 
+                    /*"content"*/ 
+                ],
                 title_classlist: ["h2","text-cielo"],
                 term_classlist: ["h5", "text-cielo"],
                 lead: {
@@ -165,7 +343,7 @@ fetch_json(newJson, { headers: {"Accept": "application/json"}}).then(geoProvince
                         + "font-size:small;"
                 },  
             },
-            filters: [
+            _filters: [
                 {
                     legend: "Filtrar por título",
                     field: ["region", "checked"],
@@ -173,34 +351,60 @@ fetch_json(newJson, { headers: {"Accept": "application/json"}}).then(geoProvince
                     check_uncheck_all: true
                 }
             ],
-            tooltip: true, // Tooltip en marker o región
-            hash: true, // Permite abrir un item via URL.
-            province_index: "provincia", // Nombre de la columna con el nombre de la provincia
-            fit_bounds_onevent: false, // true hace zoom en la provincia cuando se utilia el select o por url
-            theme_ui: "default", // tema del slider y control de zoom
-            theme_map: "defaul", // Tema del mapa
-            map_opacity: 1, // Opacidad del mapa OSM
-            // map_view: (new PonchoMapProvinces).mapView, // Define la vista principal del mapa
-            map_background: "color-mix(in srgb, var(--gna-verde-cemento) 20%, white)",  // define el color de fondo del mapa 
-            // initial_entry: "42-la-pampa", // Si se agrega el id (que aprece en URL), inicia con esa entrada.
-            // random_entry: true, // Permite que la página se cargue con una entrada aleatoria.
-            overlay_image: true, // ture habilita tener una imagen sobre e mapa
-            overlay_image_opacity: 1, // Opacidad de la imagen sobre el mapa.
-            overlay_image_url: false,
-            hide_select: false, // Si es true el select NO se muestra
-            toggle_select: false, // Para mapa con texto fuera del componente. Activa o desactiva el select en función de dispositivo.
+            tooltip: true, 
+            hash: true,
+            province_index: "filtro-provincia",
+            fit_bounds_onevent: false,
+            theme_ui: "default",
+            theme_map: "default",
+            map_opacity: .75, 
+            // map_view: (new PonchoMapProvinces).mapView,
+            map_background: "color-mix(in srgb, var(--gna-verde-cemento) 20%, white)",
+            // initial_entry: "42-la-pampa", 
+            // random_entry: true,
+            overlay_image: true,
+            overlay_image_opacity: 0,
+            overlay_image_url: "https://qa2-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/img/map-shadow-antartida.png",
+            hide_select: true,
+            toggle_select: false,
             theme_tool: true,
             fit_bounds: false,
+            map_align: "left",
+            map_zoom: 4.3,
+            tarjeton: true,
+            // map_style: {
+            //     "slider-width": "calc(50% - 35px)"
+            // },
+            // breakpoint_fraction:  {sm: "2:8", md: "3:11", lg: "1:3", xl: "1:3"}
         };
+
+        if(options.hasOwnProperty("tarjeton") && options.tarjeton){
+            headStyle("id_tarjeton", tarjeton);
+            // options.breakpoint_fraction = {sm: "2:8",md: "3:11",lg: "2:7",xl: "2:7"};
+            options.breakpoint_fraction = {xs: "1:1", sm: "1:1",md: "1:4",lg: "2:7",xl: "2:7", xxl: "2:7"};
+        } else {
+            options.breakpoint_fraction =  {sm: "2:8", md: "3:11", lg: "1:3", xl: "1:3", xxl: "1:3"}
+            headStyle("id_normal", normal);
+        }
 
         // Instancia para controlar ponchoMap con filtro por provincias.
         // const provinces = new PonchoMapProvinces(options);
-        map = new PonchoMapProvinces(geoProvinces, entries, options);
+        map = new ponchoMapProvincesCustom(geoProvinces, entries, options);
         map.renderProvinceMap();
         loader.close();
+
+        const elementSize = document.querySelector("#map").offsetWidth;
+        document.querySelector(".js-size").textContent = elementSize;
     });
 });
+window.addEventListener("resize", function(e){
+    const elementSize = document.querySelector("#map").offsetWidth;
+    document.querySelector(".js-size").textContent = elementSize
+});
 </script>
+
+
+
 <!-- / SCRIPTS -->
 </body>
 </html>

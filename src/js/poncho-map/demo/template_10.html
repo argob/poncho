@@ -15,20 +15,12 @@
     <link rel="stylesheet"
         href="https://capacita-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css?rfqjsh">
     <link rel="stylesheet" href="../../../../dist/css/poncho.min.css" />
-
+<link rel="stylesheet" href="./css/demo.css">
     <!-- 
         Script para debug 
         Se reemplazan en producción por poncho.min.js
     -->
-    <script src="../../utils/color.js"></script>
-    <script src="../../utils/connect.js"></script>
-    <script src="../../utils/string.js"></script>
-    <script src="../../utils/html.js"></script>
-    <script src="../src/js/poncho-map.js"></script>
-    <script src="../src/js/poncho-map-filter.js"></script>
-    <script src="../src/js/poncho-map-search.js"></script>
-    <script src="../../gapi-sheet-data/gapi-sheet-data.js"></script>
-    <link rel="stylesheet" href="./css/demo.css">
+
     <!-- / Script para debug -->
     <title>Poncho Map — Template 10</title>
   <style>
@@ -41,15 +33,20 @@
         <ul class="demo-menu">
             <li><a href="./">Inicio</a></li>
         </ul>
+
+          
+
     </div>
-  <h1>Template 7</h1>
 
 <!-- 
 MAPA CON BUSCADOR FILTRO  
 
 COPIAR DESDE ACÁ…
 -->
-<div class="col-md-12">
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Template 10</h1>
 <!-- PONCHO MAP SEARCH -->
 <form action="">
   <div data-scope="poncho-map-search">
@@ -74,6 +71,7 @@ COPIAR DESDE ACÁ…
 </form>
 <!-- / PONCHO MAP SEARCH -->
 </div>
+
 <div class="col-md-12">
 <!-- PONCHO MAP -->
 <div class="poncho-map" data-scope="poncho-map">
@@ -87,17 +85,31 @@ COPIAR DESDE ACÁ…
 </div>
 <!-- / PONCHO MAP -->
 </div>
+    </div>
+</div>
 
-<script 
-    src="https://code.jquery.com/jquery-3.6.0.min.js" 
-    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
-    crossorigin="anonymous">
-</script>
-<script src="../../../src/js/utils.js"></script>
-<script src="../../../src/js/poncho-map.js"></script>
-<script src="../../../src/js/poncho-map-filter.js"></script>
-<script src="../../../src/js/poncho-map-search.js"></script>
-<script src="../../../src/js/gapi-sheet-data.js"></script>
+
+<div class="container">
+    <div class="row m-y-2">
+        <div class="col-md-12">
+                        <div data-code-from="code_map" data-title="Código para el mapa"></div>
+            <div data-code-from="code_styles" data-title="Código CSS"></div>
+        </div>
+    </div>
+</div>
+<script src="../../mapa-argentina/demo/js/demo.js"></script>
+
+<script src="../../utils/gapi-sheet-data.js"></script>
+<script src="../../utils/color.js"></script>
+<script src="../../utils/connect.js"></script>
+<script src="../../utils/string.js"></script>
+<script src="../../utils/html.js"></script>
+
+<script src="../src/js/poncho-map.js"></script>
+<script src="../src/js/poncho-map-filter.js"></script>
+<script src="../src/js/poncho-map-search.js"></script>
+
+
 
 <!-- INCLUDE SCRIPTS -->
 <script src="https://www.argentina.gob.ar/sites/default/files/ponchotable/showdown.js"></script>
@@ -107,42 +119,41 @@ COPIAR DESDE ACÁ…
 <link href="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.css" rel="stylesheet"/> 
 <link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.css" rel="stylesheet"/> 
 <link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.Default.css" rel="stylesheet"/> 
-<!-- <script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script> -->
+
 <!-- / INCLUDE SCRIPTS -->
 
-<style>
+<style id="code_styles">
     .leaflet-top, .leaflet-bottom {
-    z-index: 800;
-  }
-  .legend {
-      line-height: 1.5rem;
-      color: #5a5a5a;
-      background-color: rgb(255 255 255 / .75);
-      padding:.75em .75em .25em;
-      border-radius: 6px;
-      box-shadow: 1px 1px 6px rgb(0 0 0 / .1);
+        z-index: 800;
+    }
+    .legend {
+        line-height: 1.5rem;
+        color: #5a5a5a;
+        background-color: rgb(255 255 255 / .75);
+        padding:.75em .75em .25em;
+        border-radius: 6px;
+        box-shadow: 1px 1px 6px rgb(0 0 0 / .1);
 
-  }
-  .legend i {
-      width: 15px;
-      height: 15px;
-    display: inline-block;
-      margin-right: 8px;
+    }
+    .legend i {
+        width: 15px;
+        height: 15px;
+        display: inline-block;
+        margin-right: 8px;
 
-      border-radius: 3px;
-  }
+        border-radius: 3px;
+    }
 </style>
+
 <!-- SCRIPTS -->
-<script>
+<script id="code_map">
+// init
+const loader = new PonchoMapLoader({scope: "poncho-map"});
+loader.load();
 
-
-
-  // init
-  var map;
-  var entries;
-  (async() => {
+(async() => {
     // Levanto datos desde un geoJSON
-     entries = await fetch_json("./data/renabap_2.json");
+    const entries = await fetch_json("./data/renabap_2.json");
     /**
      * Calcula la equivalencia
      * @param {float} value Valor de equivalencia.
@@ -202,7 +213,7 @@ COPIAR DESDE ACÁ…
     const options = {
         "scope": "poncho-map",
         "id": "id",
-        "filters_info": false,
+        "filters_info": true,
         "title": "Nombre",
         "headers": {
             "Equivalen": "Equivalencia",
@@ -216,17 +227,23 @@ COPIAR DESDE ACÁ…
         "hash": true,
         "scroll": true,
         "filters_info": true,
-        "check_uncheck_all": true,
         "filters": [
             {
-              "legend":"Equivalencia",
-              "field": ["label-equivalencia"]
+                "legend":"Equivalencia",
+                "field": ["label-equivalencia"],
+                "check_uncheck_all": true,
+            },
+            {
+                "legend": "Provincia",
+                "field": ["Provincia"],
+                "check_uncheck_all": true,
             }
         ],
     };
-    map = new PonchoMapFilter(entries, options);
+    const map = new PonchoMapFilter(entries, options);
     legend.addTo(map.map);
     map.render();
+
     // SEARCH
     const search_options = {
         "scope": "poncho-map-search", 
@@ -236,11 +253,9 @@ COPIAR DESDE ACÁ…
     };
     const search = new PonchoMapSearch(map, search_options);
     search.render();
+
+    loader.close();
 })();
-
-
-
-
 </script>
 <!-- / SCRIPTS -->
 </body>

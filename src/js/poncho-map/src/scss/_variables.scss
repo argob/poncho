@@ -1,5 +1,14 @@
+@mixin borderRadius($value) {
+    -webkit-border-radius: #{$value};
+    -moz-border-radius: #{$value};
+    border-radius: #{$value};
+}
+
+
+
+
 #{$scope}  {
-    --pm-slider-width: 326px;
+    --pm-slider-width: 330px;
     --pm-tools-width: 300px;
     --pm-color-primary: var(--primary, #0072bb);
     --pm-map-background:white;
@@ -9,8 +18,10 @@
     
     --pm-hover-background: #ddd;
     --pm-hover-color: var(--pm-color-base);
+    --pm-link: var(--arg-enlace, #0767A7);
     --pm-active-color: white;
     --pm-active-background: var(--pm-color-primary);
+    --pm-active-visited-color: var(--arg-uva, blueviolet);
 
     --pm-slider-background: rgba(255, 255, 255, 1);
     --pm-slider-border-color: #ddd;
@@ -18,7 +29,7 @@
 
     --pm-slider-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     --pm-slider-distance: 10px;
-    --pm-slider-radius: 16px;
+    --pm-slider-radius: 22px;
     --pm-slider-media-mobile-height: 100%;
     
     // Colores para el tooltip

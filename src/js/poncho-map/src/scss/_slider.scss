@@ -1,6 +1,6 @@
 #{$scope} {
-    .slider {
-        &.slider--in {
+    .pm-slider {
+        &.pm-slider--in {
             right: var(--pm-slider-distance);
             animation-duration: 0.3s;
             animation-name: pm-slidein;
@@ -23,7 +23,7 @@
             height: calc(100%);
             padding-right: var(--pm-content-padding);
             padding-left: var(--pm-content-padding);
-            padding-top: calc(var(--pm-content-padding) * 3);
+            padding-top: calc(var(--pm-content-padding) * 3 + 5px);
             padding-bottom: calc(var(--pm-content-padding) * 2);
         }
 

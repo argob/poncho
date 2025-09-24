@@ -20,6 +20,29 @@ $configTypeWeights: (
     }
 }
 
+
+/**
+ * Generador de espacios gap
+ * ([nombre], [valor]) 
+ */
+$gapSpacer : 1;
+$configGap: (
+    (0, 0),
+    (1, $gapSpacer * .25),
+    (2, $gapSpacer * .5),
+    (3, $gapSpacer),
+    (4, $gapSpacer * 1.5),
+    (5, $gapSpacer * 3),
+);
+
+
+@each $name, $value in $configGap {
+    .gap-#{$name} {
+        gap: #{$value}rem;
+    }
+}
+
+
 /**
  * Generador de espacios 
  * ([nombre], [valor]) 
@@ -27,6 +50,7 @@ $configTypeWeights: (
 $configSpaces: (
     (auto, auto),
     (0, 0px),
+    ("xs", 0.25rem),
     ("05", 0.5rem),
     (1, 1rem),
     (2, 1.5rem),
@@ -122,6 +146,26 @@ $configSpaces: (
 }
 .text-uppercase {
     text-transform: uppercase;
+}
+
+.f-left {
+    float: left;
+}
+
+.f-right {
+    float: right;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.font-sans-serif {
+    font-family: $font-family-sans-serif;
+}
+
+.font-serif {
+    font-family: $font-family-serif;
 }
 
 @media (max-width: 575.98px) {

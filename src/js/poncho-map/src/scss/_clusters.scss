@@ -1,0 +1,77 @@
+#{$scope} {
+    .marker-cluster-small {
+        background-color: rgba(185, 206, 57, 0.4);
+    }
+    .marker-cluster-small div {
+        background-color: rgba(185, 206, 57, 1);
+    }
+
+    .marker-cluster-medium {
+        background-color: rgba(255, 206, 28, 0.4);
+    }
+    .marker-cluster-medium div {
+        background-color: #ffce1c;
+    }
+
+    .marker-cluster-large {
+        background-color: rgba(239, 108, 0, 0.4);
+    }
+    .marker-cluster-large div {
+        background-color: #f38500;
+    }
+
+    /* IE 6-8 fallback colors */
+    .leaflet-oldie .marker-cluster-small {
+        background-color: rgb(181, 226, 140);
+    }
+    .leaflet-oldie .marker-cluster-small div {
+        background-color: rgb(110, 204, 57);
+    }
+
+    .leaflet-oldie .marker-cluster-medium {
+        background-color: rgb(241, 211, 87);
+    }
+    .leaflet-oldie .marker-cluster-medium div {
+        background-color: rgb(240, 194, 12);
+    }
+
+    .leaflet-oldie .marker-cluster-large {
+        background-color: rgb(253, 156, 115);
+    }
+    .leaflet-oldie .marker-cluster-large div {
+        background-color: rgb(241, 128, 23);
+    }
+
+    .marker-cluster {
+        background-clip: padding-box;
+        border-radius: 20px;
+    }
+    .marker-cluster div {
+        width: 30px;
+        height: 30px;
+        margin-left: 5px;
+        margin-top: 5px;
+        position: relative;
+        text-align: center;
+        border-radius: 15px;
+        font: 500 12px "Roboto", "Helvetica Neue", Helvetica, "Noto Sans", Arial,
+            sans-serif;
+    }
+    .marker-cluster div:after {
+        content: " ";
+        width: calc(100% + 2px);
+        background: transparent;
+        border: 1px solid rgb(255 255 255 / 0.25);
+        height: calc(100% + 2px);
+        position: absolute;
+        border-radius: 50%;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .marker-cluster span {
+        line-height: 30px;
+        color: black;
+    }
+}
