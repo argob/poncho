@@ -15833,12 +15833,15 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
     font-size: 1.06rem;
     padding-top: 0.5rem;
   }
-  .node-type-subasta .fa-2x {
+  .node-type-subasta .fa-2x, .node-type-subasta .fa-info-circle {
     font-size: 1.5rem;
     line-height: 1.8rem;
   }
   .node-type-subasta .m-t-3, .node-type-subasta .m-b-3 {
     margin: 0 !important;
+  }
+  .node-type-subasta .ar-details__title .media-body {
+    line-height: 1.8rem;
   }
   .pane-tag-subasta .label {
     padding: 0.48rem;
@@ -15876,6 +15879,12 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
 @media (max-width: 1200px) {
   .flecha-acceso {
     display: none !important;
+  }
+}
+/* Dispositivos pequeños (pantallas menores a 768px) */
+@media (max-width: 767.98px) {
+  .node-type-subasta .ar-details__content {
+    padding: 0 !important;
   }
 }
 /* ESTILOS BASE Y UTILIDADES */
