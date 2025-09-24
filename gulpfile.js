@@ -11,7 +11,8 @@ const gulpIF = require('gulp-if');
 
 var generalCompressOptions = {
     compress: {
-        drop_console: true
+        drop_console: true,
+        outputStyle: 'compressed'
     }
 };
 
