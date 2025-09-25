@@ -438,9 +438,6 @@ html {
   color: #ffce1c;
 }
 
-.poncho-map {
-  /* loader */
-}
 @keyframes pm-loader-rotation {
   0% {
     transform: rotate(0deg);
@@ -448,6 +445,9 @@ html {
   100% {
     transform: rotate(360deg);
   }
+}
+.poncho-map {
+  /* loader */
 }
 .poncho-map__loader {
   width: 100%;
@@ -482,17 +482,21 @@ html {
   position: relative;
   width: 100%;
   /* SCROLLBARS */
-  /* HEADER */
-  /* FUCUSABLE */
 }
 .poncho-map * {
   scrollbar-color: var(--pm-scrollbar-handle) var(--pm-scrollbar-background);
   scrollbar-width: thin;
 }
+.poncho-map {
+  /* HEADER */
+}
 .poncho-map .pm-header {
   margin-bottom: 1em;
   padding: 0;
   border: none;
+}
+.poncho-map {
+  /* FUCUSABLE */
 }
 .poncho-map *:focus,
 .poncho-map .focus-element:focus {
@@ -576,12 +580,14 @@ html {
   -moz-border-radius: calc(var(--pm-slider-radius) - var(--pm-slider-distance));
   border-radius: calc(var(--pm-slider-radius) - var(--pm-slider-distance));
   transition: background 0.15s;
-  text-decoration: none;
 }
 .poncho-map .pm-item-link:hover, .poncho-map .pm-item-link:focus {
   background-color: var(--pm-hover-background);
   color: var(--pm-hover-color);
   transition: background 0.15s;
+}
+.poncho-map .pm-item-link {
+  text-decoration: none;
 }
 .poncho-map .pm-item-link.pm-accesible {
   color: #eaeaea !important;
@@ -634,14 +640,6 @@ html {
   -moz-transform: translateZ(-1px) rotate(180.1deg); /*Fix en el rotate*/
 }
 
-.poncho-map .pm-slider {
-  z-index: 1000;
-  position: absolute;
-  top: var(--pm-slider-distance);
-  right: calc(-1 * var(--pm-slider-width));
-  width: var(--pm-slider-width);
-  height: calc(100% - var(--pm-slider-distance) - var(--pm-slider-distance));
-}
 .poncho-map .pm-slider.pm-slider--in {
   right: var(--pm-slider-distance);
   animation-duration: 0.3s;
@@ -649,6 +647,14 @@ html {
 }
 .poncho-map .pm-slider img {
   max-width: 100%;
+}
+.poncho-map .pm-slider {
+  z-index: 1000;
+  position: absolute;
+  top: var(--pm-slider-distance);
+  right: calc(-1 * var(--pm-slider-width));
+  width: var(--pm-slider-width);
+  height: calc(100% - var(--pm-slider-distance) - var(--pm-slider-distance));
 }
 .poncho-map .pm-slider .pm-content-container {
   height: 100%;
@@ -740,11 +746,6 @@ html {
   color: var(--pm-color-base) !important;
 }
 
-.poncho-map {
-  /*
-  Botones menú filter
-  */
-}
 .poncho-map .pm-btn-close {
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
@@ -804,6 +805,11 @@ html {
 .poncho-map .pm-btn:hover {
   background-color: var(--pm-hover-background);
   color: var(--pm-hover-color);
+}
+.poncho-map {
+  /*
+  Botones menú filter
+  */
 }
 .poncho-map .select-items {
   padding: 0 0 0.75em;
@@ -940,20 +946,20 @@ html {
   margin-bottom: 4px;
 }
 
-.poncho-map {
-  /* Tooltip Leaflet personalizado */
-  /* Tooltip */
-  /* leaflet popup */
-  /* leaflet controls*/
-}
 .poncho-map .leaflet-container {
   background-color: var(--pm-map-background);
+}
+.poncho-map {
+  /* Tooltip Leaflet personalizado */
 }
 .poncho-map .leaflet-left .leaflet-control {
   margin-left: var(--pm-slider-distance);
 }
 .poncho-map .leaflet-top .leaflet-control {
   margin-top: var(--pm-slider-distance);
+}
+.poncho-map {
+  /* Tooltip */
 }
 .poncho-map .leaflet-tooltip-left:before {
   right: 0;
@@ -981,6 +987,9 @@ html {
   transition: opacity 0.2s;
   font-size: 0.75rem;
   font-weight: normal;
+}
+.poncho-map {
+  /* leaflet popup */
 }
 .poncho-map .leaflet-popup p:first-child {
   margin-block-start: 0;
@@ -1017,6 +1026,9 @@ html {
   max-height: 800px;
   overflow-y: auto;
   width: 100%;
+}
+.poncho-map {
+  /* leaflet controls*/
 }
 .poncho-map .leaflet-marker-icon.leaflet-div-icon {
   background-color: transparent;
@@ -1162,8 +1174,6 @@ input[type=search].js-poncho-map-search__input::-webkit-search-cancel-button {
 }
 .poncho-map {
   /* MAP THEMES */
-  /* UI THEMES */
-  /* THEME NAV ACTIVE STATE */
 }
 .poncho-map.map-black .leaflet-tile-pane {
   filter: sepia(0.5) saturate(0.3) brightness(0.95);
@@ -1190,6 +1200,9 @@ input[type=search].js-poncho-map-search__input::-webkit-search-cancel-button {
 }
 .poncho-map.map-transparent .leaflet-tile-pane {
   opacity: 0 !important;
+}
+.poncho-map {
+  /* UI THEMES */
 }
 .poncho-map.ui-dark {
   --pm-color-primary: var(--arg-cielo, skyblue);
@@ -1232,6 +1245,9 @@ input[type=search].js-poncho-map-search__input::-webkit-search-cancel-button {
       var(--verde-cemento) 80%,
       white
   );
+}
+.poncho-map {
+  /* THEME NAV ACTIVE STATE */
 }
 .poncho-map.map-default.ui-default [data-theme=default], .poncho-map.map-relax.ui-relax [data-theme=relax], .poncho-map.map-grayscale.ui-grayscale [data-theme=grayscale], .poncho-map.ui-contrast.map-contrast [data-theme=contrast], .poncho-map.map-dark.ui-dark [data-theme=dark], .poncho-map.layer-osm [data-theme=layer-osm], .poncho-map.layer-satelital [data-theme=layer-satelital] {
   background: var(--pm-active-background);
@@ -1337,9 +1353,6 @@ input[type=search].js-poncho-map-search__input::-webkit-search-cancel-button {
   /*
   Marker activo/seleccionado
   */
-  /**
-   * Estilos para los markers basados en <div>
-   */
 }
 .poncho-map .marker--active {
   --color: 247, 149, 37;
@@ -1361,6 +1374,11 @@ input[type=search].js-poncho-map-search__input::-webkit-search-cancel-button {
   filter: brightness(1) saturate(1) !important;
   outline: none !important;
   cursor: auto;
+}
+.poncho-map {
+  /**
+   * Estilos para los markers basados en <div>
+   */
 }
 .poncho-map__div-icon {
   background-color: transparent;
@@ -1454,9 +1472,6 @@ footer.pm-open-map ul > li > a:hover, footer.pm-open-map ul > li > a:focus {
   transition: background 0.15s;
 }
 
-.poncho-map {
-  /* IE 6-8 fallback colors */
-}
 .poncho-map .marker-cluster-small {
   background-color: rgba(185, 206, 57, 0.4);
 }
@@ -1474,6 +1489,9 @@ footer.pm-open-map ul > li > a:hover, footer.pm-open-map ul > li > a:focus {
 }
 .poncho-map .marker-cluster-large div {
   background-color: #f38500;
+}
+.poncho-map {
+  /* IE 6-8 fallback colors */
 }
 .poncho-map .leaflet-oldie .marker-cluster-small {
   background-color: rgb(181, 226, 140);
