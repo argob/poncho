@@ -8889,10 +8889,6 @@ a.panel:hover .panel-heading, a.panel:focus .panel-heading {
   min-height: 256px;
 }
 
-.panel-icon {
-  /* Agregados desde Argentina.scss */
-  /**/
-}
 .panel-icon .panel-heading {
   background-color: #232D4F;
   text-align: center;
@@ -8984,6 +8980,9 @@ a.panel:hover .panel-heading, a.panel:focus .panel-heading {
 .panel-icon.panel-verde-cemento .panel-heading {
   background-color: #B4BEBA;
 }
+.panel-icon {
+  /* Agregados desde Argentina.scss */
+}
 .panel-icon.panel-info .panel-heading {
   background-color: #5A7290;
 }
@@ -8991,6 +8990,9 @@ a.panel:hover .panel-heading, a.panel:focus .panel-heading {
   background-color: #FFFFFF;
   border: solid 1px #DDDDDD;
   border-radius: 10px;
+}
+.panel-icon {
+  /**/
 }
 
 .panel-primary .panel-heading {
@@ -9473,13 +9475,15 @@ form .panel.panel-default .panel-heading {
 @media screen and (max-width: 767px) {
   .jumbotron {
     position: relative;
-    padding: 0;
   }
   .jumbotron h1 {
     font-size: 32px !important;
   }
   .jumbotron h2 {
     font-size: 2em !important;
+  }
+  .jumbotron {
+    padding: 0;
   }
 }
 
@@ -10549,14 +10553,6 @@ input[type=text]:-ms-input-placeholder {
 .table th[align=left] {
   text-align: left;
 }
-.table td {
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  -webkit-hyphens: auto;
-  -moz-hyphens: auto;
-  -ms-hyphens: auto;
-  hyphens: auto;
-}
 .table td small {
   color: #555555;
   font-weight: 400;
@@ -10573,6 +10569,14 @@ input[type=text]:-ms-input-placeholder {
   color: #555555;
   text-align: center;
   padding: 2em 0;
+}
+.table td {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
 }
 .table.table-align-middle td {
   vertical-align: middle;
@@ -11003,10 +11007,12 @@ a.label:hover, a.label:focus {
 
 .label-default {
   background-color: #DDDDDD;
-  color: #141414;
 }
 .label-default[href]:hover, .label-default[href]:focus {
   background-color: rgb(195.5, 195.5, 195.5);
+}
+.label-default {
+  color: #141414;
 }
 
 .label-primary {
@@ -11195,9 +11201,6 @@ Las clases "dato-nro" y "dato-eje" corresponde a los formatos markdown definidos
   color: #ffce1c;
 }
 
-.poncho-map {
-  /* loader */
-}
 @keyframes pm-loader-rotation {
   0% {
     transform: rotate(0deg);
@@ -11205,6 +11208,9 @@ Las clases "dato-nro" y "dato-eje" corresponde a los formatos markdown definidos
   100% {
     transform: rotate(360deg);
   }
+}
+.poncho-map {
+  /* loader */
 }
 .poncho-map__loader {
   width: 100%;
@@ -11239,17 +11245,21 @@ Las clases "dato-nro" y "dato-eje" corresponde a los formatos markdown definidos
   position: relative;
   width: 100%;
   /* SCROLLBARS */
-  /* HEADER */
-  /* FUCUSABLE */
 }
 .poncho-map * {
   scrollbar-color: var(--pm-scrollbar-handle) var(--pm-scrollbar-background);
   scrollbar-width: thin;
 }
+.poncho-map {
+  /* HEADER */
+}
 .poncho-map .pm-header {
   margin-bottom: 1em;
   padding: 0;
   border: none;
+}
+.poncho-map {
+  /* FUCUSABLE */
 }
 .poncho-map *:focus,
 .poncho-map .focus-element:focus {
@@ -11333,12 +11343,14 @@ Las clases "dato-nro" y "dato-eje" corresponde a los formatos markdown definidos
   -moz-border-radius: calc(var(--pm-slider-radius) - var(--pm-slider-distance));
   border-radius: calc(var(--pm-slider-radius) - var(--pm-slider-distance));
   transition: background 0.15s;
-  text-decoration: none;
 }
 .poncho-map .pm-item-link:hover, .poncho-map .pm-item-link:focus {
   background-color: var(--pm-hover-background);
   color: var(--pm-hover-color);
   transition: background 0.15s;
+}
+.poncho-map .pm-item-link {
+  text-decoration: none;
 }
 .poncho-map .pm-item-link.pm-accesible {
   color: #eaeaea !important;
@@ -11391,14 +11403,6 @@ Las clases "dato-nro" y "dato-eje" corresponde a los formatos markdown definidos
   -moz-transform: translateZ(-1px) rotate(180.1deg); /*Fix en el rotate*/
 }
 
-.poncho-map .pm-slider {
-  z-index: 1000;
-  position: absolute;
-  top: var(--pm-slider-distance);
-  right: calc(-1 * var(--pm-slider-width));
-  width: var(--pm-slider-width);
-  height: calc(100% - var(--pm-slider-distance) - var(--pm-slider-distance));
-}
 .poncho-map .pm-slider.pm-slider--in {
   right: var(--pm-slider-distance);
   animation-duration: 0.3s;
@@ -11406,6 +11410,14 @@ Las clases "dato-nro" y "dato-eje" corresponde a los formatos markdown definidos
 }
 .poncho-map .pm-slider img {
   max-width: 100%;
+}
+.poncho-map .pm-slider {
+  z-index: 1000;
+  position: absolute;
+  top: var(--pm-slider-distance);
+  right: calc(-1 * var(--pm-slider-width));
+  width: var(--pm-slider-width);
+  height: calc(100% - var(--pm-slider-distance) - var(--pm-slider-distance));
 }
 .poncho-map .pm-slider .pm-content-container {
   height: 100%;
@@ -11497,11 +11509,6 @@ Las clases "dato-nro" y "dato-eje" corresponde a los formatos markdown definidos
   color: var(--pm-color-base) !important;
 }
 
-.poncho-map {
-  /*
-  Botones menú filter
-  */
-}
 .poncho-map .pm-btn-close {
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
@@ -11561,6 +11568,11 @@ Las clases "dato-nro" y "dato-eje" corresponde a los formatos markdown definidos
 .poncho-map .pm-btn:hover {
   background-color: var(--pm-hover-background);
   color: var(--pm-hover-color);
+}
+.poncho-map {
+  /*
+  Botones menú filter
+  */
 }
 .poncho-map .select-items {
   padding: 0 0 0.75em;
@@ -11697,20 +11709,20 @@ Las clases "dato-nro" y "dato-eje" corresponde a los formatos markdown definidos
   margin-bottom: 4px;
 }
 
-.poncho-map {
-  /* Tooltip Leaflet personalizado */
-  /* Tooltip */
-  /* leaflet popup */
-  /* leaflet controls*/
-}
 .poncho-map .leaflet-container {
   background-color: var(--pm-map-background);
+}
+.poncho-map {
+  /* Tooltip Leaflet personalizado */
 }
 .poncho-map .leaflet-left .leaflet-control {
   margin-left: var(--pm-slider-distance);
 }
 .poncho-map .leaflet-top .leaflet-control {
   margin-top: var(--pm-slider-distance);
+}
+.poncho-map {
+  /* Tooltip */
 }
 .poncho-map .leaflet-tooltip-left:before {
   right: 0;
@@ -11738,6 +11750,9 @@ Las clases "dato-nro" y "dato-eje" corresponde a los formatos markdown definidos
   transition: opacity 0.2s;
   font-size: 0.75rem;
   font-weight: normal;
+}
+.poncho-map {
+  /* leaflet popup */
 }
 .poncho-map .leaflet-popup p:first-child {
   margin-block-start: 0;
@@ -11774,6 +11789,9 @@ Las clases "dato-nro" y "dato-eje" corresponde a los formatos markdown definidos
   max-height: 800px;
   overflow-y: auto;
   width: 100%;
+}
+.poncho-map {
+  /* leaflet controls*/
 }
 .poncho-map .leaflet-marker-icon.leaflet-div-icon {
   background-color: transparent;
@@ -11919,8 +11937,6 @@ input[type=search].js-poncho-map-search__input::-webkit-search-cancel-button {
 }
 .poncho-map {
   /* MAP THEMES */
-  /* UI THEMES */
-  /* THEME NAV ACTIVE STATE */
 }
 .poncho-map.map-black .leaflet-tile-pane {
   filter: sepia(0.5) saturate(0.3) brightness(0.95);
@@ -11947,6 +11963,9 @@ input[type=search].js-poncho-map-search__input::-webkit-search-cancel-button {
 }
 .poncho-map.map-transparent .leaflet-tile-pane {
   opacity: 0 !important;
+}
+.poncho-map {
+  /* UI THEMES */
 }
 .poncho-map.ui-dark {
   --pm-color-primary: var(--arg-cielo, skyblue);
@@ -11989,6 +12008,9 @@ input[type=search].js-poncho-map-search__input::-webkit-search-cancel-button {
       var(--verde-cemento) 80%,
       white
   );
+}
+.poncho-map {
+  /* THEME NAV ACTIVE STATE */
 }
 .poncho-map.map-default.ui-default [data-theme=default], .poncho-map.map-relax.ui-relax [data-theme=relax], .poncho-map.map-grayscale.ui-grayscale [data-theme=grayscale], .poncho-map.ui-contrast.map-contrast [data-theme=contrast], .poncho-map.map-dark.ui-dark [data-theme=dark], .poncho-map.layer-osm [data-theme=layer-osm], .poncho-map.layer-satelital [data-theme=layer-satelital] {
   background: var(--pm-active-background);
@@ -12094,9 +12116,6 @@ input[type=search].js-poncho-map-search__input::-webkit-search-cancel-button {
   /*
   Marker activo/seleccionado
   */
-  /**
-   * Estilos para los markers basados en <div>
-   */
 }
 .poncho-map .marker--active {
   --color: 247, 149, 37;
@@ -12118,6 +12137,11 @@ input[type=search].js-poncho-map-search__input::-webkit-search-cancel-button {
   filter: brightness(1) saturate(1) !important;
   outline: none !important;
   cursor: auto;
+}
+.poncho-map {
+  /**
+   * Estilos para los markers basados en <div>
+   */
 }
 .poncho-map__div-icon {
   background-color: transparent;
@@ -12211,9 +12235,6 @@ footer.pm-open-map ul > li > a:hover, footer.pm-open-map ul > li > a:focus {
   transition: background 0.15s;
 }
 
-.poncho-map {
-  /* IE 6-8 fallback colors */
-}
 .poncho-map .marker-cluster-small {
   background-color: rgba(185, 206, 57, 0.4);
 }
@@ -12231,6 +12252,9 @@ footer.pm-open-map ul > li > a:hover, footer.pm-open-map ul > li > a:focus {
 }
 .poncho-map .marker-cluster-large div {
   background-color: #f38500;
+}
+.poncho-map {
+  /* IE 6-8 fallback colors */
 }
 .poncho-map .leaflet-oldie .marker-cluster-small {
   background-color: rgb(181, 226, 140);
@@ -14354,10 +14378,6 @@ footer .nav > li > a:hover {
     border-top-right-radius: 0px !important;
   }
 }
-.menu_org {
-  width: 100%;
-  width: 100%;
-}
 .menu_org .h-atajo {
   display: flex;
   flex-wrap: wrap;
@@ -14381,6 +14401,9 @@ footer .nav > li > a:hover {
   margin: 0 -22px;
 }
 .menu_org .w-100 {
+  width: 100%;
+}
+.menu_org {
   width: 100%;
 }
 .menu_org .close > .dropdown-menu {
@@ -14434,13 +14457,16 @@ footer .nav > li > a:hover {
   text-decoration: none !important;
   display: block;
 }
-.menu_org .open {
-  display: grid;
+.menu_org {
+  width: 100%;
 }
 .menu_org .open > .dropdown-menu {
   display: block;
   left: 0;
   z-index: 1100;
+}
+.menu_org .open {
+  display: grid;
 }
 
 @media (max-width: 767px) {
@@ -14540,9 +14566,6 @@ footer .nav > li > a:hover {
     width: 60%;
   }
 }
-.home-new {
-  /* se modifica la clase img x el uso de object - luego eliminar */
-}
 .home-new .tit-buscador {
   font-family: "Montserrat", sans-serif;
 }
@@ -14581,6 +14604,9 @@ footer .nav > li > a:hover {
 }
 .home-new .w-100 {
   width: 100%;
+}
+.home-new {
+  /* se modifica la clase img x el uso de object - luego eliminar */
 }
 .home-new img {
   text-align: center;
@@ -14837,11 +14863,6 @@ DEGRADÉ: .bg-mix-azul-info .bg-mix-info-azul .bg-mix-palta-azul .bg-mix-azul-pa
     margin-left: 3px;
   }
 }
-#encabezado {
-  /*  COLOR DEGRADÉ */
-  /* Generales */
-  /* iso + logo + imagen */
-}
 #encabezado .bg-arg-azul,
 #encabezado .bg-arg-eucalipto,
 #encabezado .bg-arg-info,
@@ -14851,6 +14872,9 @@ DEGRADÉ: .bg-mix-azul-info .bg-mix-info-azul .bg-mix-palta-azul .bg-mix-azul-pa
 #encabezado .bg-mix-azul-info,
 #encabezado .bg-mix-azul-palta {
   color: white;
+}
+#encabezado {
+  /*  COLOR DEGRADÉ */
 }
 #encabezado .bg-mix-info-azul {
   background: #5A7290;
@@ -14893,6 +14917,9 @@ DEGRADÉ: .bg-mix-azul-info .bg-mix-info-azul .bg-mix-palta-azul .bg-mix-azul-pa
   ); */
   background: linear-gradient(to right, #232D4F 75%, #50B7B2);
 }
+#encabezado {
+  /* Generales */
+}
 #encabezado a {
   color: #141414 !important;
 }
@@ -14902,6 +14929,9 @@ DEGRADÉ: .bg-mix-azul-info .bg-mix-info-azul .bg-mix-palta-azul .bg-mix-azul-pa
 #encabezado h1 {
   margin: 0px 0px 12px;
   margin-top: 20px !important;
+}
+#encabezado {
+  /* iso + logo + imagen */
 }
 #encabezado .enc-img {
   padding: 0px;
@@ -15280,9 +15310,6 @@ details {
   border-bottom-color: var(--details-border-color);
   border-bottom-style: var(--details-border-style);
   border-bottom-width: var(--details-border-width);
-  /* Creo los caret de color */
-  /* Define los atributos del contenedor para el contenido */
-  /* Caret small */
 }
 details:last-child {
   border-bottom: 1px solid var(--details-border-color);
@@ -15366,6 +15393,9 @@ details[open] > summary::after {
   -webkit-mask-image: var(--icon-open);
   mask-image: var(--icon-open);
 }
+details {
+  /* Creo los caret de color */
+}
 details.caret-warning > summary::before {
   background: var(--arg-amarillo);
 }
@@ -15444,6 +15474,9 @@ details.caret-rosado > summary::before {
 details.caret-rosado > summary::after {
   background-color: white;
 }
+details {
+  /* Define los atributos del contenedor para el contenido */
+}
 details .ar-details__content {
   background: transparent;
   padding-left: var(--content-padding-s);
@@ -15460,6 +15493,9 @@ details.caret-fixed > summary::after {
 }
 details.caret-fixed[open] > summary::after {
   top: calc(var(--circle-size) / 2 - var(--caret-width) / 2 + var(--summary-padding-t));
+}
+details {
+  /* Caret small */
 }
 details.caret-small > summary {
   --circle-size: 32px;
@@ -15754,11 +15790,11 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
 /* Placeholder fijo */
 /* Ajustes de Select2 */
 /* Resaltado y borde de opciones */
-#select2-filter-cuando-results .select2-results__option.select2-results__option--selectable {
-  border-radius: 0px !important;
-}
 #select2-filter-cuando-results .select2-results__option.select2-results__option--selectable.select2-results__option--highlighted[aria-selected=true] {
   background: #e2e8f0;
+}
+#select2-filter-cuando-results .select2-results__option.select2-results__option--selectable {
+  border-radius: 0px !important;
 }
 
 /* Oculta la 'x' de limpiar selección */
@@ -15925,7 +15961,6 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
   --pm-loader-spinner-weight: 4px;
   position: relative;
   height: 100%;
-  /* loader */
 }
 @keyframes pm-loader-rotation {
   0% {
@@ -15934,6 +15969,9 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
   100% {
     transform: rotate(360deg);
   }
+}
+.poncho-loader {
+  /* loader */
 }
 .poncho-loader .loader {
   width: 100%;
@@ -16035,7 +16073,6 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
  */
 .national-holidays {
   --icon-universal-access: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><path d="M0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm161.5-86.1c-12.2-5.2-26.3 .4-31.5 12.6s.4 26.3 12.6 31.5l11.9 5.1c17.3 7.4 35.2 12.9 53.6 16.3v50.1c0 4.3-.7 8.6-2.1 12.6l-28.7 86.1c-4.2 12.6 2.6 26.2 15.2 30.4s26.2-2.6 30.4-15.2l24.4-73.2c1.3-3.8 4.8-6.4 8.8-6.4s7.6 2.6 8.8 6.4l24.4 73.2c4.2 12.6 17.8 19.4 30.4 15.2s19.4-17.8 15.2-30.4l-28.7-86.1c-1.4-4.1-2.1-8.3-2.1-12.6V235.5c18.4-3.5 36.3-8.9 53.6-16.3l11.9-5.1c12.2-5.2 17.8-19.3 12.6-31.5s-19.3-17.8-31.5-12.6L338.7 175c-26.1 11.2-54.2 17-82.7 17s-56.5-5.8-82.7-17l-11.9-5.1zM256 160a40 40 0 1 0 0-80 40 40 0 1 0 0 80z"/></svg>');
-  /* Colors */
 }
 .national-holidays .calendar,
 .national-holidays .calendar * {
@@ -16058,6 +16095,9 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
 }
 .national-holidays .display-block {
   display: block;
+}
+.national-holidays {
+  /* Colors */
 }
 .national-holidays .bg-success {
   color: white;
