@@ -15922,6 +15922,12 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
   .node-type-subasta .ar-details__content {
     padding: 0 !important;
   }
+  /* Ajustes de filtros: se eliminan márgenes internos */
+  .filtro .form-item-tipo-proyecto,
+  .filtro .form-group.m-t-05,
+  .filtro .form-item-order-by label {
+    margin: 0 !important;
+  }
 }
 /* ESTILOS BASE Y UTILIDADES */
 /* Botón de rango */
