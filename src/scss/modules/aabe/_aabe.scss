@@ -242,6 +242,16 @@
   .node-type-subasta .ar-details__content {
     padding: 0!important
     }
+
+    /* Ajustes de filtros: se eliminan márgenes internos */
+    .filtro {
+    .form-item-tipo-proyecto,
+    .form-group.m-t-05,
+    .form-item-order-by label {
+      margin: 0 !important;
+    }
+  }
+    
 }
 
 /* ESTILOS BASE Y UTILIDADES */
