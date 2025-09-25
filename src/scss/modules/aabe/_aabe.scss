@@ -285,8 +285,12 @@
 }
 
 /* Íconos */
+.node-type-subasta {
+  .fa-info-circle {
+    font-size: 2rem;
+  }
 
-.icon-success {
+  .icon-success {
     padding-right: 0.2rem;
+  }
 }
-
