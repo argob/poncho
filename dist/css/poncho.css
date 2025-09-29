@@ -15715,6 +15715,9 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
   font-style: normal;
   line-height: var(--summary-line-height);
 }
+.details-landing.details-landing.figure-fixed summary:has(i.fa-2x) i, .details-landing.details-landing.figure-fixed summary .figure {
+  align-self: start;
+}
 
 @media (max-width: 768px) {
   .details-landing.details-landing-md > details, .details-landing.details-landing-lg > details {
@@ -15726,6 +15729,9 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
     /* Global componente */
     --summary-padding-t: 10px;
     --summary-padding-b: 10px;
+  }
+  .details-landing.details-landing.figure-xs-fixed summary:has(i.fa-2x) i, .details-landing.details-landing.figure-xs-fixed summary .figure {
+    align-self: start;
   }
 }
 /* FORMULARIOS Y SELECT2 */
