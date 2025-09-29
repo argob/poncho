@@ -15955,7 +15955,10 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
   }
 }
 /* Íconos */
-.icon-success {
+.node-type-subasta .fa-info-circle {
+  font-size: 2rem;
+}
+.node-type-subasta .icon-success {
   padding-right: 0.2rem;
 }
 
