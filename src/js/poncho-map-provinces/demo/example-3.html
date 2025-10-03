@@ -163,12 +163,12 @@ El OPD de Entre Ríos depende de la Dirección de Abordaje Integral de Problemá
 <!-- SCRIPTS -->
 <script id="code_map"> 
 var tarjeton = `@media (min-width:576px){.poncho-map[data-scope=poncho-map]:has(#map){--pm-slider-width:calc(100% - 20px);border-top:6px solid #daa520}.poncho-map:has(.slider:is(.slider--in))::before{content:"";width:100%;height:100%;left:0;top:0;position:absolute;z-index:1000;background:var(--pm-slider-modal-color);opacity:.75;transition:.5s}}@media (min-width:768px){.poncho-map[data-scope=poncho-map]:has(#map){--pm-slider-width:calc(50% - 20px);border-top:6px solid green}.poncho-map:has(.slider:is(.slider--in))::before{opacity:0;display:none}}@media (min-width:992px){.poncho-map[data-scope=poncho-map]:has(#map){--pm-slider-width:calc(50% - 20px);border-top:6px solid #00f}}@media (min-width:1200px){.poncho-map[data-scope=poncho-map]:has(#map){--pm-slider-width:calc(50% - 20px);border-top:6px solid orange}}@media (min-width:1400px){.poncho-map[data-scope=poncho-map]:has(#map){--pm-slider-width:calc(50% - 20px);border-top:6px solid red}}`;
-var normal = `/* Small (sm) */
+var mid = `/* Small (sm) */
     /* Se aplica a pantallas de 576px y mayores */
     @media (min-width: 576px) {
         .poncho-map[data-scope="poncho-map"]:has(#map) {
             --pm-slider-width: calc(100% - 20px);
-            border-top:6px solid goldenrod
+            border-top:3px solid goldenrod
         }
 
         .poncho-map:has(.slider:is(.slider--in))::before {
@@ -190,7 +190,7 @@ var normal = `/* Small (sm) */
     @media (min-width: 768px) {
         .poncho-map[data-scope="poncho-map"]:has(#map) {
             --pm-slider-width: calc(50% - 20px);
-            border-top:6px solid green
+            border-top:3px solid green
         }
 
         .poncho-map:has(.slider:is(.slider--in))::before {
@@ -204,7 +204,7 @@ var normal = `/* Small (sm) */
     @media (min-width: 992px) {
         .poncho-map[data-scope="poncho-map"]:has(#map) {
             --pm-slider-width: calc(40% - 20px);
-            border-top:6px solid blue
+            border-top:3px solid blue
         }
     }
 
@@ -213,7 +213,7 @@ var normal = `/* Small (sm) */
     @media (min-width: 1200px) {
         .poncho-map[data-scope="poncho-map"]:has(#map) {
             --pm-slider-width: calc(100% / 3 - 20px);
-            border-top:6px solid orange
+            border-top:3px solid orange
         }
     }
 
@@ -222,7 +222,7 @@ var normal = `/* Small (sm) */
     @media (min-width: 1400px) {
         .poncho-map[data-scope="poncho-map"]:has(#map) {
             --pm-slider-width: calc(100% / 3 - 20px);
-            border-top:6px solid red
+            border-top:3px solid red
         }
     }`;
 
@@ -307,18 +307,24 @@ fetch_json(geoJSON, { headers: {"Accept": "application/json"}}).then(geoProvince
             toggle_select: false,
             theme_tool: true,
             fit_bounds: false,
-            map_align: "left",
+            // map_align: "left",
             map_zoom: 4.3,
-            tarjeton: true,
+            tarjeton: false,
         };
 
         if(options.hasOwnProperty("tarjeton") && options.tarjeton){
             headStyle("id_tarjeton", tarjeton);
-            // options.breakpoint_fraction = {sm: "2:8",md: "3:11",lg: "2:7",xl: "2:7"};
-            options.breakpoint_fraction = {xs: "1:1", sm: "1:1",md: "1:4",lg: "2:7",xl: "2:7", xxl: "2:7"};
+            options.map_breakpoint = {
+                lg: {fraction: "3:10", value: 992},
+                md: {fraction: "2:7", value: 768},
+                sm: {fraction: "1:4", value: 576},
+                xl: {fraction: "2:7", value: 1200},
+                xs: {fraction: "1:1", value: 0},
+                xxl: {fraction: "2:7", value: 1400}
+            };
         } else {
             options.breakpoint_fraction =  {sm: "2:8", md: "3:11", lg: "1:3", xl: "1:3", xxl: "1:3"}
-            headStyle("id_normal", normal);
+            headStyle("id_normal", mid);
         }
 
         // Instancia para controlar ponchoMap con filtro por provincias.
