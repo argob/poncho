@@ -32,7 +32,7 @@
     <script src="../src/js/poncho-map-provinces.js"></script>
     <!-- / Script para debug -->
     <title>Poncho Map — Mapa por provincia</title>
-    <style>
+    <style id="css_map">
         /* Estilos para el ejemplo */
         html, body { height: 100%; background: #fff;}
         .img { 
@@ -112,6 +112,17 @@ COPIAR DESDE ACÁ…
 </div> 
 </div>
 
+<div class="container">
+    <div class="row m-y-2">
+        <div class="col-md-12">
+            <hr>
+            <div data-code-from="code_map" data-title="Código para el mapa"></div>
+            <div data-code-from="css_map" data-title="Estilos para el demo"></div>
+        </div>
+    </div>
+</div>
+<script src="../../mapa-argentina/demo/js/demo.js"></script>
+
 <!-- INCLUDE SCRIPTS -->
 <script src="https://www.argentina.gob.ar/sites/default/files/ponchotable/showdown.js"></script>
 <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/extensiones/showdown-extensions.js"></script>
@@ -121,51 +132,58 @@ COPIAR DESDE ACÁ…
 <script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
 <!-- / INCLUDE SCRIPTS -->
 
-
 <!-- SCRIPTS -->
-<script>
-
+<script id="code_map">
 var map;
-// URL temporal
-const geoJSON = "https://gist.githack.com/agustinbouillet/" 
-    + "a5cdf04c6b19ed248aa85b27deaee6a2/raw/"
-    + "3880083e157a587629e8a6ea21126c79f78e776b/" 
-    + "provincias-argentinas.json";
 
 // Loading
 const loader = new PonchoMapLoader({scope: "poncho-map"});
 loader.load();
-var v = .05;
-const newJson = "../data/provincias-antartida.json";
-fetch_json(newJson, { headers: {} }).then(geoProvinces => {
-// fetch_json( PONCHOMAP_GEOJSON_PROVINCES, { headers: {} }).then(geoProvinces => {
+
+const geoJSON = "../data/provincias-antartida.json";
+fetch_json(geoJSON, { headers: {} }).then(geoProvinces => {
     const gapi = new GapiSheetData();
     fetch_json(
         gapi.url(
-            "dataset", //<<< Nombre de la solapa en Google Sheets. Preferentemente, sin espacios y acentos.
-            "1qEJoLbtJwq_6i3e8R_Q85xK_ZZ5-Iu5Tu8BAnp2V1N4" //<<< ID del documento en Google Sheets.
+            "dataset",
+            "1qEJoLbtJwq_6i3e8R_Q85xK_ZZ5-Iu5Tu8BAnp2V1N4"
         )        
     ).then(googlesheet_data => {
         const gapi_data = gapi.json_data(googlesheet_data);
         const {entries, headers} = gapi_data;
         const options = {
-            id_mixing: ["in1", "nam"], // Permite configurar cómo debe ser el ID en la URL.
-            content_selector: ".js-pm-text-content", // Nombre de la clase o id dónde se imprime el contenido.
+            id_mixing: ["in1", "nam"], 
+            content_selector: ".js-pm-text-content",
             scope: "poncho-map",
             title: "nam",
-            template_markdown: true, // Habilita el uso del markdown.
-            allowed_tags: ["*"], // Habilita etiquetas HTML.
+            template_markdown: true,
+            allowed_tags: ["*"],
             headers:{
-                ...headers, 
-                ...{"subtitulos--ignore": "", description: "", img: "", content: "", region: "Región"}
+                ...headers,
+                ...{
+                    "subtitulos--ignore": "", 
+                    description: "", 
+                    img: "", 
+                    content: "", 
+                    region: "Región"
+                }
             },
             template:(self, entry) => {
-                entry["img"] = entry.image ? `<div class="img"><img src="${entry.image}"></img>` : false;
-                entry["content"] = `<hr><div class="row">${entry["subtitulos--ignore"]}</div>`;
+                entry["img"] = (entry.image ? 
+                    `<div class="img"><img src="${entry.image}"></img>`:false);
+                entry["content"] = `<hr><div class="row">`
+                    + `${entry["subtitulos--ignore"]}</div>`;
                 return self.defaultTemplate(self, entry); 
             },
             template_structure: {
-                values: ["img", "description", "capital", "population", "surface", "web", /*"content"*/ ],
+                values: [
+                    "img", 
+                    "description", 
+                    "capital", 
+                    "population", 
+                    "surface", 
+                    "web"
+                ],
                 title_classlist: ["h2","text-cielo"],
                 term_classlist: ["h5", "text-cielo"],
                 lead: {
@@ -177,23 +195,22 @@ fetch_json(newJson, { headers: {} }).then(geoProvinces => {
                         + "font-size:small;"
                 },  
             },
-            tooltip: true, // Tooltip en marker o región
-            hash: true, // Permite abrir un item via URL.
-            province_index: "provincia", // Nombre de la columna con el nombre de la provincia
-            fit_bounds_onevent: false, // true hace zoom en la provincia cuando se utilia el select o por url
-            theme_ui: "default", // tema del slider y control de zoom
-            theme_map: "transparent", // Tema del mapa
-            map_opacity: 1, // Opacidad del mapa OSM
-            // map_view: (new PonchoMapProvinces).mapView, // Define la vista principal del mapa
-            map_background: "white",  // define el color de fondo del mapa 
-            initial_entry: "24-mendoza", // Si se agrega el id (que aprece en URL), inicia con esa entrada.
-            // random_entry: true, // Permite que la página se cargue con una entrada aleatoria.
+            tooltip: true,
+            hash: true,
+            province_index: "provincia",
+            fit_bounds_onevent: false,
+            theme_ui: "default",
+            theme_map: "transparent",
+            map_opacity: 1,
+            map_background: "white",
+            initial_entry: "24-mendoza",
             hide_select: false, 
             overlay_image: true,
             overlay_image_opacity: 1,
             fit_bounds: false,
-            map_background: "color-mix(in srgb, var(--gna-verde-cemento) 40%, white)",  // define el color de fondo del mapa 
-            _filters: [
+            map_background: "color-mix(in srgb, "
+                + "var(--gna-verde-cemento) 40%, white)",
+            filters: [
                 {
                     "legend": "Filtrar región",
                     "type": "checkbox",
@@ -206,9 +223,7 @@ fetch_json(newJson, { headers: {} }).then(geoProvinces => {
             overlay_image_url: "../src/img/map-shadow-antartida.png",
         };
 
-        console.log(options)
         // Instancia para controlar ponchoMap con filtro por provincias.
-        // const provinces = new PonchoMapProvinces(options);
         map = new PonchoMapProvinces(geoProvinces, entries, options);
         map.renderProvinceMap();
         loader.close();

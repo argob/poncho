@@ -1755,7 +1755,7 @@ class PonchoMap {
      * @returns {boolean}
      */
     _isIdMixing = () => (Array.isArray(this.id_mixing) && 
-            this.id_mixing > 0 || typeof this.id_mixing === 'function');
+            this.id_mixing.length > 0 || typeof this.id_mixing === 'function');
 
 
     /**
@@ -1776,7 +1776,7 @@ class PonchoMap {
         } 
         
         const values = this.id_mixing.map(val => {
-            if(entry.properties[val]){
+            if(entry.properties.hasOwnProperty(val)){
                 return entry.properties[val].toString();
             } 
             return val;
@@ -1797,27 +1797,37 @@ class PonchoMap {
      * @return {object}
      */
     _setIdIfNotExists = (entries) => {
+        if (!entries || !Array.isArray(entries.features)) {
+            return entries;
+        }
+
         const firstEntry = entries.features[0];
         const hasId = firstEntry?.properties.hasOwnProperty("id");
 
+
+        const isIdMixingEnabled = this._isIdMixing();
+
         // Si no se configuró id_mixing y el json tiene id.
-        if(!this._isIdMixing() && hasId){
+        if(!isIdMixingEnabled && hasId){
             return entries;
         }
 
         for (let i = 0; i < entries.features.length; i++) {
-            const entry = entries.features[i];
+            const entry = entries?.features[i];
+            if(!entry){
+                continue;
+            }
+
             const {properties} = entry;
 
-            if (this._isIdMixing()) {
+            if (isIdMixingEnabled) {
                 // Procesa la opción de id_mixing
                 properties.id = this._idMixing(entry);
             } else {
                 // Genera un ID automático
                 const autoId = i + 1;
                 const useTitle = properties[this.title] ?
-                    this._slugify(properties[this.title]) :
-                    "";
+                    this._slugify(properties[this.title]) : "";
                 properties.id = [autoId, useTitle].filter(Boolean).join('-');
             }
         }
