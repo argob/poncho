@@ -1006,7 +1006,7 @@ class PonchoMap {
         const mapBackgroundColor = document.querySelector(selector);
 
         if(mapBackgroundColor){
-            mapBackgroundColor.style.backgroundColor = color;
+            mapBackgroundColor.style.background = color;
         }
 
         return;

@@ -208,8 +208,9 @@ fetch_json(geoJSON, { headers: {} }).then(geoProvinces => {
             overlay_image: true,
             overlay_image_opacity: 1,
             fit_bounds: false,
-            map_background: "color-mix(in srgb, "
-                + "var(--gna-verde-cemento) 40%, white)",
+            // map_background: "color-mix(in srgb, "
+            //     + "var(--gna-verde-cemento) 40%, white)",
+            map_background: "radial-gradient(circle, var(--arg-azul-50) 20%, var(--arg-azul-100) 100%)",
             filters: [
                 {
                     "legend": "Filtrar región",

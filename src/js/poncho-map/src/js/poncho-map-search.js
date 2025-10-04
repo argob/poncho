@@ -246,7 +246,6 @@ class PonchoMapSearch {
 
         this.instance._helpText(entries);
         this.instance._resetSearch();
-        this._clickToggleFilter();
         this.instance._clickToggleFilter();
         this.instance._setFetureAttributes();
         this.instance._accesibleMenu();

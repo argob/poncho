@@ -767,7 +767,8 @@ class PonchoMapFilter extends PonchoMap {
 
             const span = document.createElement("small");
             span.classList.add("badge", "m-l-05", "fw-medium", "bg-arg-enlace")
-            span.innerHTML = `${field[1]}<span class="pm-visually-hidden"> elemento${plurals}</span>`;
+            span.innerHTML = `${field[1]}<span class="pm-visually-hidden"> `
+                + `elemento${plurals}</span>`;
 
             const info_container = document.createElement("small");
             info_container.appendChild(span);
@@ -832,7 +833,6 @@ class PonchoMapFilter extends PonchoMap {
 
         return validations;
     };
-
 
 
     /**
@@ -977,19 +977,9 @@ class PonchoMapFilter extends PonchoMap {
      * Cambia la lista de markers en función de la selección de 
      * los filtros en PonchoMapFilter.
      * @TODO Ver el modo de hacer focus sobre el scope
+     * @param {Function} callback - La función a ejecutar cuando el valor 
+     * del filtro cambie.
      * @returns {undefined}
-     */
-    // ___filterChange = (callback) => {
-    //     const selector = `.js-filters${this.scope_sufix}`;
-    //     const filterSelect = document.querySelectorAll(selector);
-    //     filterSelect.forEach(e => e.onchange = (callback))
-
-    //     return;
-    // }
-/**
-     * Asigna un manejador de eventos 'change' a todos los elementos
-     * con la clase de filtro especificada.
-     * @param {Function} callback - La función a ejecutar cuando el valor del filtro cambie.
      */
     filterChange(callback) {
         // Asegura que callback es una función antes de proceder
@@ -1004,6 +994,7 @@ class PonchoMapFilter extends PonchoMap {
             element.onchange = callback;
         });
     }
+
 
     /**
      * Marca o desmarca todos los filtros
