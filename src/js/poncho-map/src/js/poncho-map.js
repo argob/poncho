@@ -1006,7 +1006,7 @@ class PonchoMap {
         const mapBackgroundColor = document.querySelector(selector);
 
         if(mapBackgroundColor){
-            mapBackgroundColor.style.backgroundColor = color;
+            mapBackgroundColor.style.background = color;
         }
 
         return;
@@ -1911,6 +1911,10 @@ class PonchoMap {
      */
     searchEntry = (sanitizedSearchTerm, entry, searchFields=[]) => {
         if (!sanitizedSearchTerm) {
+            return entry;
+        }
+
+        if(searchFields.length < 1){
             return entry;
         }
 
