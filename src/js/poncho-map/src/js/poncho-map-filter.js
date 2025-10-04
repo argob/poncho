@@ -800,29 +800,34 @@ class PonchoMapFilter extends PonchoMap {
      * Valida los fields del grupo.
      * 
      * @param {object} entry Entrada de datos
-     * @param {object} fields_group 
+     * @param {object} fieldsGroup 
      * @return {boolean}
      */
-    _validateGroup = (entry, fields_group) => {
-        const result = fields_group.map(e => this._search(entry, e[0], e[1]));
+    _validateGroup = (entry, fieldsGroup) => {
+        const result = fieldsGroup.map(e => this._search(entry, e[0], e[1]));
         return result.some(e => e);
     };
 
 
     /**
      * Valida una entrada
+     * 
      * @summary
      * 1. Obtengo la cantidad de grupos que tengo.
      * 2. Evaluo los fields de cada grupo y junto los resultados en un array
      * para retornar true los grupos tienen que dar true
      * @returns {boolean}
      */
-    _validateEntry = (entry, form_filters) => {
-        const fields_group = (group) => form_filters.filter(e => e[0] == group);
-        const total_groups = this.filters.length;
+    _validateEntry = (entry, formFilters) => {
+        const fieldsGroup = (group) => formFilters.filter(e => e[0] == group);
+        const totalGroups = this.filters.length;
 
-        const validations = Array.from( {length: total_groups}, (_, i) => {
-            return this._validateGroup(entry, fields_group(i));
+        if(totalGroups < 1){
+            return true;
+        }
+
+        const validations = Array.from( {length: totalGroups}, (_, i) => {
+            return this._validateGroup(entry, fieldsGroup(i));
         }).reduce((acc, val) => acc && val, true);
 
         return validations;
@@ -838,20 +843,52 @@ class PonchoMapFilter extends PonchoMap {
         const availableFilters = this.formFilters();
         const hasAvailableFilters = availableFilters.length > 0;
 
-        // 2. Filtro las entradas en en función de los filtros activos. 
-        const activeFiltersEntries = this.entries.filter(
-            entry => this._validateEntry(entry.properties, this.formFilters())
-        );
-        // 3. Filtro las entradas por el criterio de búsqueda, si existiera.
-        const searchTermsFilteredEntries = this.searchEntries(
-            this.inputSearchValue, activeFiltersEntries);
-        
-        // 4. retorna el array filtrado o un array vacío.
-        const filteredEntries = (this.filters.length < 1 || hasAvailableFilters 
-            ? searchTermsFilteredEntries : []);
+        // Se está usando PonchoMapFilter pero no hay asignado filtros. 
+        // Retorno las entradas en crudo.
+        if(Array.isArray(this.filters) && this.filters.length < 1){
+            this.filtered_entries = this.entries;
+            return this.entries;
+        }
 
-        this.filtered_entries = filteredEntries;
-        return filteredEntries;
+        // Si no hay filtros activos retorno las entradas sin modificarlas.
+        if(!hasAvailableFilters){
+            this.filtered_entries = [];
+            return [];
+        }
+
+        // 2. Filtro las entradas en en función de los filtros activos. 
+        let activeFiltersEntries = this.entries.filter(entry => {
+                // Valido si la entrada se encuentra dentro de los criterios
+                // del grupo o filtros
+                let filteredEntry = this._validateEntry(
+                    entry.properties,
+                    availableFilters
+                );
+                
+                // Si en la búsqueda, además, existe un término de búsqueda
+                // en el input search, filtro también por eso.
+                let filterSearchEntry = true;
+                if(this.inputSearchValue){
+                    const searchTerm = replaceSpecialChars(
+                        this.inputSearchValue).toUpperCase();
+                    const searchFields = new Set(
+                        [...[this.title], ...this.search_fields]
+                    );
+                    // Busco en la entrada si matchea con el término en el
+                    // search input
+                    let searchResult = this.searchEntry(
+                        searchTerm,
+                        entry.properties,
+                        searchFields
+                    );
+                    filterSearchEntry = searchResult || false;
+                }
+
+                return [filteredEntry, filterSearchEntry].every(Boolean);
+        });
+
+        this.filtered_entries = activeFiltersEntries;
+        return activeFiltersEntries;
     };
 
 
@@ -861,8 +898,10 @@ class PonchoMapFilter extends PonchoMap {
     _filteredData = (feed) => {
         feed = (typeof feed !== "undefined" ? this.entries : 
                 this._filterData());
+
         const clonedFeed = [...feed];
         this.markersMap(clonedFeed); 
+
         this._selectedMarker();
         this._helpText(clonedFeed);
         // this._resetSearch();
@@ -1017,6 +1056,14 @@ class PonchoMapFilter extends PonchoMap {
 
         this._filteredData();
         
+
+        this.filterChange((event) => {
+            event.preventDefault();
+            this._filteredData();
+        });
+        this.checkUncheckFilters();
+
+
         this._clickToggleFilter();
         this._totalsInfo();
         if(this.scroll && this.hasHash()){
@@ -1039,11 +1086,6 @@ class PonchoMapFilter extends PonchoMap {
         this._setCssVariables();
 
 
-        this.filterChange((event) => {
-            event.preventDefault();
-            this._filteredData();
-        });
-        this.checkUncheckFilters();
     };
 };
 // end of class

@@ -1914,6 +1914,10 @@ class PonchoMap {
             return entry;
         }
 
+        if(searchFields.length < 1){
+            return entry;
+        }
+
         const result = [...searchFields].some(function(key){
             if (!entry.hasOwnProperty(key)) {
                 return false;
