@@ -8537,6 +8537,10 @@ article a.btn {
 article a:hover, article a:focus {
   text-decoration: underline;
 }
+article p {
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
 article ul {
   margin-bottom: 24px;
   margin-top: 24px;
