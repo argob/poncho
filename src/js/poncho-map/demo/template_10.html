@@ -104,6 +104,7 @@ COPIAR DESDE ACÁ…
 <script src="../../utils/connect.js"></script>
 <script src="../../utils/string.js"></script>
 <script src="../../utils/html.js"></script>
+<script src="../../utils/document.js"></script>
 
 <script src="../src/js/poncho-map.js"></script>
 <script src="../src/js/poncho-map-filter.js"></script>
@@ -147,6 +148,8 @@ COPIAR DESDE ACÁ…
 
 <!-- SCRIPTS -->
 <script id="code_map">
+var map, search;
+
 // init
 const loader = new PonchoMapLoader({scope: "poncho-map"});
 loader.load();
@@ -212,6 +215,7 @@ loader.load();
     // MAP OPTIONS
     const options = {
         "scope": "poncho-map",
+        slider: true,
         "id": "id",
         "filters_info": true,
         "title": "Nombre",
@@ -240,7 +244,7 @@ loader.load();
             }
         ],
     };
-    const map = new PonchoMapFilter(entries, options);
+    map = new PonchoMapFilter(entries, options);
     legend.addTo(map.map);
     map.render();
 
@@ -251,7 +255,7 @@ loader.load();
         "datalist": true,
         "search_fields": ["Nombre", "Provincia"] 
     };
-    const search = new PonchoMapSearch(map, search_options);
+    search = new PonchoMapSearch(map, search_options);
     search.render();
 
     loader.close();
