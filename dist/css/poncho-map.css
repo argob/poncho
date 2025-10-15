@@ -1541,3 +1541,34 @@ footer.pm-open-map ul > li > a:hover, footer.pm-open-map ul > li > a:focus {
   line-height: 30px;
   color: black;
 }
+
+.poncho-map {
+  container-type: inline-size;
+  container-name: canvasWidthSize;
+}
+
+@container canvasWidthSize (min-width: 0) {
+  .slider-large .pm-slider {
+    --pm-slider-width: calc(100% - 20px);
+  }
+}
+@container canvasWidthSize (min-width: 576px) {
+  .slider-large .pm-slider {
+    --pm-slider-width: calc(50% - 20px);
+  }
+}
+@container canvasWidthSize (min-width: 0) {
+  .slider-default .pm-slider {
+    --pm-slider-width: calc(100% - 20px);
+  }
+}
+@container canvasWidthSize (min-width: 576px) {
+  .slider-default .pm-slider {
+    --pm-slider-width: calc(100% / 2 - 20px);
+  }
+}
+@container canvasWidthSize (min-width: 770px) {
+  .slider-default .pm-slider {
+    --pm-slider-width: inherit;
+  }
+}
