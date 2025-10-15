@@ -14,18 +14,17 @@
 }
 
 @container canvasWidthSize (min-width: 0) {
-    ._slider-medium .pm-slider {
+    .slider-default .pm-slider {
         --pm-slider-width: calc(100% - 20px);
     }
 }
 @container canvasWidthSize (min-width: 576px) {
-    .slider-medium .pm-slider {
+    .slider-default .pm-slider {
         --pm-slider-width: calc(100% / 2 - 20px);
     }
 }
 @container canvasWidthSize (min-width: 770px) {
-    .slider-medium .pm-slider {
+    .slider-default .pm-slider {
         --pm-slider-width: inherit;
-        ---pm-slider-width: calc(100% / 3 - 20px);
     }
 }

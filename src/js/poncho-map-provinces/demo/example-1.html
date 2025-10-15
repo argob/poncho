@@ -167,17 +167,17 @@ fetch_json(geoJSON, { headers: {} }).then(geoProvinces => {
             },
             hide_select: false,
             id_mixing: ["in1", "nam"],
-            // id: "nam",
-            map_background: "radial-gradient(circle,rgba(154, 215, 245, 1) 35%, rgba(205, 235, 250, 1) 100%)",
+            map_background: "radial-gradient(circle, rgb(180 190 186 / .6) 1%, rgb(180 190 186 / .8) 100%)",
             overlay_image: true,
-            overlay_image_opacity: 0.8,
+            overlay_image_opacity: 0.85,
             overlay_image_url: "https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/img/map-shadow-antartida.png",
             province_index: "provincia",
             random_entry: true,
             scope: "poncho-map",
             template: (self, entry) => {
                 // Defino un nuevo ID y defino el html para visualizar la imagen
-                const imgCode = `<div class="img"><img src="${entry.image}"></img>`;
+                const imgCode = `<div class="img">`
+                    +`<img src="${entry.image}" alt="Add one"></img>`;
                 entry["img"] = entry.image ? imgCode : false;
                 return self.defaultTemplate(self, entry);
             },
@@ -217,6 +217,5 @@ fetch_json(geoJSON, { headers: {} }).then(geoProvinces => {
 <!-- / SCRIPTS -->
 </body>
 </html>
-
 
 

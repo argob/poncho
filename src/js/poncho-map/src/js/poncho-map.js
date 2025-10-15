@@ -101,34 +101,6 @@ class PonchoMap {
             ],
             allowed_tags: [],
             anchor_delay: 0,
-            breakpoint_values: {
-                xs: 0,
-                sm: 576,
-                md: 768,
-                lg: 992,
-                xl: 1200,
-                xxl: 1400
-            },
-            map_breakpoint_fractions: {
-                large: {
-                    xs: "1:1",
-                    sm: "1:4",
-                    md: "2:7",
-                    lg: "3:10",
-                    xl: "2:7",
-                    xxl: "2:7"
-                },
-                medium: {
-                    xs: "1:1",
-                    sm: "1:4",
-                    md: "1:3",
-                    lg: "4:10",
-                    xl: "2:7",
-                    xxl: "2:7"
-                },
-                default: "1:1" 
-            },
-
             map_breakpoint: {
                 large: {
                     lg: {fraction: "3:10", value: 992},
@@ -138,21 +110,13 @@ class PonchoMap {
                     xs: {fraction: "1:1", value: 0},
                     xxl: {fraction: "2:7", value: 1400}
                 },
-                medium: {
+                default: {
                     lg: {fraction: "4:10", value: 992},
                     md: {fraction: "2:6", value: 768},
                     sm: {fraction: "1:4", value: 576},
                     xl: {fraction: "2:7", value: 1200},
                     xs: {fraction: "1:1", value: 0},
                     xxl: {fraction: "2:7", value: 1400}
-                }, 
-                default: {
-                    lg: {fraction: "1:1", value: 992},
-                    md: {fraction: "1:1", value: 768},
-                    sm: {fraction: "1:1", value: 576},
-                    xl: {fraction: "1:1", value: 1200},
-                    xs: {fraction: "1:1", value: 0},
-                    xxl: {fraction: "1:1", value: 1400}
                 }
             },
             media_breakpoint: {
@@ -311,7 +275,7 @@ class PonchoMap {
             scroll: false,
             slider: false,
             slider_selector: ".pm-slider",
-            slider_size: "default", // large | default | medium
+            slider_size: false, // large | default
             summary: false,
             template: false,
             template_innerhtml: false,
@@ -798,7 +762,7 @@ class PonchoMap {
         const validMediaBreakpoints = Object.keys(this.media_breakpoint);
 
         // Defino el tamaño del slider
-        const sliderSize = (["large", "default", "medium"].includes(
+        const sliderSize = (["large", "default"].includes(
                 this.slider_size) ? this.slider_size : "default");
         const mapBrekpoint = this.map_breakpoint[sliderSize];
 
@@ -1054,7 +1018,7 @@ class PonchoMap {
         const mapBackgroundColor = document.querySelector(selector);
 
         if(mapBackgroundColor){
-            mapBackgroundColor.style.backgroundColor = color;
+            mapBackgroundColor.style.background = color;
         }
 
         return;

@@ -247,9 +247,9 @@ fetch_json(geoJSON, { headers: {"Accept": "application/json"}}).then(geoProvince
             toggle_select: false,
             theme_tool: true,
             fit_bounds: false,
-            map_align: "left",
             map_zoom: 4.3,
-            slider_size: "large", // large | default | medium
+            // map_align: "center",  // left (por defecto) | center | right.
+            // slider_size: "large", // large | default. `large`: Tarjeta con ancho al 50 %. `default`: Tarjeta con tamaño por defecto (30 % aprox).
         };
 
         // Instancia para controlar ponchoMap con filtro por provincias.

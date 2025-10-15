@@ -157,6 +157,8 @@ class PonchoMapProvinces extends PonchoMapFilter {
     constructor(geoProvinces, entries, options){
 
         const defaultOptions = {
+            map_align: "left",
+            slider_size: "default",
             fit_bounds: true,
             hide_select: false,
             initial_entry: false,

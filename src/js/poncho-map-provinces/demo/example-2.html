@@ -41,9 +41,11 @@
             aspect-ratio: 1.85 / 1;
             box-shadow:  0 0 4px rgb(0 0 0 /.15);
             overflow: hidden;
+             object-fit: fill;
             background-color: #eaeaea;
         }
         .img > img {
+            object-fit: fill;
             max-width: 100%;
             min-height: 100%;
             object-fit: cover;
@@ -210,6 +212,7 @@ fetch_json(geoJSON, { headers: {} }).then(geoProvinces => {
             fit_bounds: false,
             map_background: "color-mix(in srgb, "
                 + "var(--gna-verde-cemento) 40%, white)",
+            map_background: "radial-gradient(circle, var(--arg-azul-50) 60%, var(--arg-azul-100) 100%)",
             filters: [
                 {
                     "legend": "Filtrar región",
@@ -220,7 +223,7 @@ fetch_json(geoJSON, { headers: {} }).then(geoProvinces => {
                 }
             ],
             overlay_image_url: false,
-            overlay_image_url: "../src/img/map-shadow-antartida.png",
+            overlay_image_url: "https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/img/map-shadow-antartida.png",
         };
 
         // Instancia para controlar ponchoMap con filtro por provincias.
