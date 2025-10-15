@@ -15,6 +15,7 @@
     <link rel="stylesheet"
         href="https://capacita-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css?rfqjsh">
     <link rel="stylesheet" href="../../../../dist/css/poncho.min.css" />
+    <link rel="stylesheet" href="../../poncho-map/dist/css/container.css">
 
     <!-- 
         Script para debug 
@@ -32,6 +33,8 @@
     <script src="../../gapi-sheet-data/gapi-sheet-data.js"></script>
     <script src="../src/js/poncho-map-provinces.js"></script>
     <script src="../src/js/poncho-map-provinces-contenidos.js"></script>
+
+    
     <!-- / Script para debug -->
     <title>Poncho Map — Mapa por provincia</title>
     <style>
@@ -162,70 +165,6 @@ El OPD de Entre Ríos depende de la Dirección de Abordaje Integral de Problemá
 
 <!-- SCRIPTS -->
 <script id="code_map"> 
-var tarjeton = `@media (min-width:576px){.poncho-map[data-scope=poncho-map]:has(#map){--pm-slider-width:calc(100% - 20px);border-top:6px solid #daa520}.poncho-map:has(.slider:is(.slider--in))::before{content:"";width:100%;height:100%;left:0;top:0;position:absolute;z-index:1000;background:var(--pm-slider-modal-color);opacity:.75;transition:.5s}}@media (min-width:768px){.poncho-map[data-scope=poncho-map]:has(#map){--pm-slider-width:calc(50% - 20px);border-top:6px solid green}.poncho-map:has(.slider:is(.slider--in))::before{opacity:0;display:none}}@media (min-width:992px){.poncho-map[data-scope=poncho-map]:has(#map){--pm-slider-width:calc(50% - 20px);border-top:6px solid #00f}}@media (min-width:1200px){.poncho-map[data-scope=poncho-map]:has(#map){--pm-slider-width:calc(50% - 20px);border-top:6px solid orange}}@media (min-width:1400px){.poncho-map[data-scope=poncho-map]:has(#map){--pm-slider-width:calc(50% - 20px);border-top:6px solid red}}`;
-var mid = `/* Small (sm) */
-    /* Se aplica a pantallas de 576px y mayores */
-    @media (min-width: 576px) {
-        .poncho-map[data-scope="poncho-map"]:has(#map) {
-            --pm-slider-width: calc(100% - 20px);
-            border-top:3px solid goldenrod
-        }
-
-        .poncho-map:has(.slider:is(.slider--in))::before {
-            content:"";
-            width:100%;
-            height:100%;
-            left:0;
-            top:0;
-            position:absolute;
-            z-index:1000;
-            background:var(--pm-slider-modal-color);
-            opacity:.75;
-            transition:.5s
-        }
-    }
-
-    /* Medium (md) */
-    /* Se aplica a pantallas de 768px y mayores */
-    @media (min-width: 768px) {
-        .poncho-map[data-scope="poncho-map"]:has(#map) {
-            --pm-slider-width: calc(50% - 20px);
-            border-top:3px solid green
-        }
-
-        .poncho-map:has(.slider:is(.slider--in))::before {
-            opacity:.0;
-            display: none;
-        }
-    }
-
-    /* Large (lg) */
-    /* Se aplica a pantallas de 992px y mayores */
-    @media (min-width: 992px) {
-        .poncho-map[data-scope="poncho-map"]:has(#map) {
-            --pm-slider-width: calc(40% - 20px);
-            border-top:3px solid blue
-        }
-    }
-
-    /* Extra large (xl) */
-    /* Se aplica a pantallas de 1200px y mayores */
-    @media (min-width: 1200px) {
-        .poncho-map[data-scope="poncho-map"]:has(#map) {
-            --pm-slider-width: calc(100% / 3 - 20px);
-            border-top:3px solid orange
-        }
-    }
-
-    /* Extra extra large (xxl) */
-    /* Se aplica a pantallas de 1400px y mayores */
-    @media (min-width: 1400px) {
-        .poncho-map[data-scope="poncho-map"]:has(#map) {
-            --pm-slider-width: calc(100% / 3 - 20px);
-            border-top:3px solid red
-        }
-    }`;
-
 // URL temporal
 const geoJSON = "../data/provincias-antartida.json";
 
@@ -245,7 +184,6 @@ fetch_json(geoJSON, { headers: {"Accept": "application/json"}}).then(geoProvince
         const {entries, headers} = gapi_data;
         const options = {
             id_mixing: ["in1", "nam"],
-            // content_selector: ".js-pm-text-content",
             scope: "poncho-map",
             title: "nam",
             // map_layers_default: "satelital",
@@ -259,7 +197,9 @@ fetch_json(geoJSON, { headers: {"Accept": "application/json"}}).then(geoProvince
             },
             _template:(self, entry) => {
                 entry["img"] = entry.image ? `<div class="img"><img src="${entry.image}"></img>` : false;
-                entry["content"] = `<hr><div class="row">${entry["subtitulos--ignore"]}</div>`;
+                entry["content"] = `<hr>
+                    <div class="row">${entry["subtitulos--ignore"]}
+                </div>`;
                 return self.defaultTemplate(self, entry); 
             },
             _template_structure: {
@@ -302,30 +242,15 @@ fetch_json(geoJSON, { headers: {"Accept": "application/json"}}).then(geoProvince
             // random_entry: true,
             overlay_image: true,
             overlay_image_opacity: 0,
-            overlay_image_url: "https://qa2-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/img/map-shadow-antartida.png",
+            overlay_image_url: "https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/img/map-shadow-antartida.png",
             hide_select: true,
             toggle_select: false,
             theme_tool: true,
             fit_bounds: false,
-            // map_align: "left",
+            map_align: "left",
             map_zoom: 4.3,
-            tarjeton: false,
+            slider_size: "large", // large | default | medium
         };
-
-        if(options.hasOwnProperty("tarjeton") && options.tarjeton){
-            headStyle("id_tarjeton", tarjeton);
-            options.map_breakpoint = {
-                lg: {fraction: "3:10", value: 992},
-                md: {fraction: "2:7", value: 768},
-                sm: {fraction: "1:4", value: 576},
-                xl: {fraction: "2:7", value: 1200},
-                xs: {fraction: "1:1", value: 0},
-                xxl: {fraction: "2:7", value: 1400}
-            };
-        } else {
-            options.breakpoint_fraction =  {sm: "2:8", md: "3:11", lg: "1:3", xl: "1:3", xxl: "1:3"}
-            headStyle("id_normal", mid);
-        }
 
         // Instancia para controlar ponchoMap con filtro por provincias.
         const map = new ponchoMapProvincesCustom(geoProvinces, entries, options);
@@ -335,18 +260,18 @@ fetch_json(geoJSON, { headers: {"Accept": "application/json"}}).then(geoProvince
         containerSize();
     });
 });
-
-function containerSize(){
-    const elementSize = document.querySelector("#map").offsetWidth;
-    const element = document.querySelector(".js-size");
-    element.classList.add("text-arg-default", "fw-bold");
-    element.textContent = `${elementSize}px`
-}
-
-window.addEventListener("resize", containerSize);
 </script>
 
+<script>
+    function containerSize(){
+        const elementSize = document.querySelector("#map").offsetWidth;
+        const element = document.querySelector(".js-size");
+        element.classList.add("text-arg-default", "fw-bold");
+        element.textContent = `${elementSize}px`
+    }
 
+    window.addEventListener("resize", containerSize);
+</script>
 
 <!-- / SCRIPTS -->
 </body>

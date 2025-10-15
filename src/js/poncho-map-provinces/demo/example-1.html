@@ -168,9 +168,10 @@ fetch_json(geoJSON, { headers: {} }).then(geoProvinces => {
             hide_select: false,
             id_mixing: ["in1", "nam"],
             // id: "nam",
-            map_background: "color-mix(in srgb, var(--verde-cemento) 75%, white)",
+            map_background: "radial-gradient(circle,rgba(154, 215, 245, 1) 35%, rgba(205, 235, 250, 1) 100%)",
             overlay_image: true,
             overlay_image_opacity: 0.8,
+            overlay_image_url: "https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/img/map-shadow-antartida.png",
             province_index: "provincia",
             random_entry: true,
             scope: "poncho-map",
@@ -216,5 +217,6 @@ fetch_json(geoJSON, { headers: {} }).then(geoProvinces => {
 <!-- / SCRIPTS -->
 </body>
 </html>
+
 
 

@@ -101,13 +101,59 @@ class PonchoMap {
             ],
             allowed_tags: [],
             anchor_delay: 0,
+            breakpoint_values: {
+                xs: 0,
+                sm: 576,
+                md: 768,
+                lg: 992,
+                xl: 1200,
+                xxl: 1400
+            },
+            map_breakpoint_fractions: {
+                large: {
+                    xs: "1:1",
+                    sm: "1:4",
+                    md: "2:7",
+                    lg: "3:10",
+                    xl: "2:7",
+                    xxl: "2:7"
+                },
+                medium: {
+                    xs: "1:1",
+                    sm: "1:4",
+                    md: "1:3",
+                    lg: "4:10",
+                    xl: "2:7",
+                    xxl: "2:7"
+                },
+                default: "1:1" 
+            },
+
             map_breakpoint: {
-                lg: {fraction: "1:4", value: 992},
-                md: {fraction: "2:7", value: 768},
-                sm: {fraction: "1:4", value: 576},
-                xl: {fraction: "2:7", value: 1200},
-                xs: {fraction: "1:1", value: 0},
-                xxl: {fraction: "2:7", value: 1400}
+                large: {
+                    lg: {fraction: "3:10", value: 992},
+                    md: {fraction: "2:7", value: 768},
+                    sm: {fraction: "1:4", value: 576},
+                    xl: {fraction: "2:7", value: 1200},
+                    xs: {fraction: "1:1", value: 0},
+                    xxl: {fraction: "2:7", value: 1400}
+                },
+                medium: {
+                    lg: {fraction: "4:10", value: 992},
+                    md: {fraction: "2:6", value: 768},
+                    sm: {fraction: "1:4", value: 576},
+                    xl: {fraction: "2:7", value: 1200},
+                    xs: {fraction: "1:1", value: 0},
+                    xxl: {fraction: "2:7", value: 1400}
+                }, 
+                default: {
+                    lg: {fraction: "1:1", value: 992},
+                    md: {fraction: "1:1", value: 768},
+                    sm: {fraction: "1:1", value: 576},
+                    xl: {fraction: "1:1", value: 1200},
+                    xs: {fraction: "1:1", value: 0},
+                    xxl: {fraction: "1:1", value: 1400}
+                }
             },
             media_breakpoint: {
                 lg: 992,
@@ -265,6 +311,7 @@ class PonchoMap {
             scroll: false,
             slider: false,
             slider_selector: ".pm-slider",
+            slider_size: "default", // large | default | medium
             summary: false,
             template: false,
             template_innerhtml: false,
@@ -351,6 +398,7 @@ class PonchoMap {
         this.latitude = opts.latitud;
         this.longitude = opts.longitud;
         this.slider = opts.slider;
+        this.slider_size = opts.slider_size;
         this.no_info = opts.no_info;
         this.reset_zoom = opts.reset_zoom;
         this.slider_selector=this._selectorName(opts.slider_selector);
@@ -387,6 +435,7 @@ class PonchoMap {
         );
         this.media_breakpoint = opts.media_breakpoint;
         this.map_breakpoint = opts.map_breakpoint;
+        this.map_breakpoint_fractions = opts.map_breakpoint_fractions;
         this.map_align = opts.map_align;
         this.map_style = opts.map_style;
         this.accesible_menu_extras = opts.accesible_menu_extras;
@@ -677,23 +726,14 @@ class PonchoMap {
         }
 
         if (this.isEmptyString(value)) {
-            // console.warn(
-            //     "El primer parámetro debe ser una cadena de texto no vacía."
-            // );
             return value;
         }
-                
+
         if (!this.isObject(kwargs)) {
-            // console.warn(
-            //     "El segundo parámetro debe ser un objeto de tipo clave/valor."
-            // );
             return;
         }
         
         if (this.isEmptyObject(kwargs)) {
-            // console.warn(
-            //     "El segundo parámetro (kwargs) no debe ser un objeto vacío."
-            // );
             return value;
         }
 
@@ -708,29 +748,32 @@ class PonchoMap {
         }, value);
     };
 
+
     /**
-     * Setea definiciones de estilo
+     * Especifica el tamaño del slider
      * @returns {undefined}
      */
-    _setCssVariables = () => {
-        if (typeof headStyle !== 'function') {
+    _setSliderSize = () => {
+        if(!this.isString(this.slider_size)){
             return;
         }
 
-        const entries = Object.entries(this.map_style);
-        if(entries.length < 1){
-            return;
+        const validSizes = ['large', 'default', 'medium'];
+        if (!validSizes.includes(this.slider_size)) {
+            console.warn(`Invalid slider size: ${this.slider_size}. Defaulting to 'default'.`);
+            this.slider_size = 'default';
         }
-        var acc = [];
-        for(let entry of entries){
-            let [key, value] = entry;
-            acc.push(`--pm-${key}: ${value};`);
+
+        const sliderElement = document.querySelector(`.poncho-map${this.scope_selector}`);
+        if (sliderElement) {
+            sliderElement.classList.remove(
+                'slider-large', 
+                'slider-default', 
+                'slider-medium'
+            );
+            sliderElement.classList.add(`slider-${this.slider_size}`);
         }
-        headStyle(
-            `ponchomap__${this.map_selector}`, 
-            `.poncho-map${this.scope_selector} {${acc.join("")}}`
-        );
-    }
+    };
 
 
     /**
@@ -754,9 +797,14 @@ class PonchoMap {
         // obtengo el listado de breakpoints válidos.
         const validMediaBreakpoints = Object.keys(this.media_breakpoint);
 
+        // Defino el tamaño del slider
+        const sliderSize = (["large", "default", "medium"].includes(
+                this.slider_size) ? this.slider_size : "default");
+        const mapBrekpoint = this.map_breakpoint[sliderSize];
+
         // Las claves existen
         const hasValidKeys = Object
-                .keys(this.map_breakpoint)
+                .keys(mapBrekpoint)
                 .every(entry => validMediaBreakpoints.includes(entry));
 
         // Si las claves están mal, muestro un error y corto la ejecución. 
@@ -771,7 +819,7 @@ class PonchoMap {
                     + `${validMediaBreakpoints.join(", ")}.`,
                     
                 ],
-                terminal: this.map_breakpoint
+                terminal: mapBrekpoint
             }, "danger", true);
 
             return;
@@ -779,7 +827,7 @@ class PonchoMap {
 
         // Valido las definiciones por cada breakpoint
         const hasValidDefinitions = Object
-                .values(this.map_breakpoint)
+                .values(mapBrekpoint)
                 .every(function(entry){
                     return (typeof entry === "object" && entry !== null && 
                         'value' in entry && 'fraction' in entry);
@@ -793,7 +841,7 @@ class PonchoMap {
                 messages: [
                     "Verifique que para cada entrada existan las claves: "
                     + "`value` y `fraction`."],
-                terminal: this.map_breakpoint
+                terminal: mapBrekpoint
             }, "warning");
 
             return; 
@@ -801,7 +849,7 @@ class PonchoMap {
 
         // Ordeno los valores de mayor a menor. 
         const sortedEntries = Object
-            .entries(this.map_breakpoint)
+            .entries(mapBrekpoint)
             .sort(([, a], [, b]) => b.value - a.value);
 
         // Verifico cual de los MAP breakpoints es el adecuado.
@@ -3578,13 +3626,13 @@ class PonchoMap {
         this._accesibleMenu();
         this._accesibleExtras();
 
+        this._setSliderSize();
         this.mapOpacity();
         this.mapBackgroundColor();
 
         this._listeners();
         this.layerViewConf.setVisuals();
         this.setMapAlignment(this.map_align);
-        this._setCssVariables();
     };
 };
 // end class

@@ -1037,6 +1037,8 @@ class PonchoMapFilter extends PonchoMap {
         if(this.filters_visible){
             this._filterContainerHeight();
         }
+        
+        this._setSliderSize();
         this.mapOpacity();
         this.mapBackgroundColor();
 
@@ -1046,7 +1048,6 @@ class PonchoMapFilter extends PonchoMap {
         this.layerViewConf.setVisuals();
         this.setMapAlignment(this.map_align);
         this._resetSearch();
-        this._setCssVariables();
     };
 };
 // end of class
