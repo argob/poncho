@@ -8537,6 +8537,10 @@ article a.btn {
 article a:hover, article a:focus {
   text-decoration: underline;
 }
+article p {
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
 article ul {
   margin-bottom: 24px;
   margin-top: 24px;
@@ -12305,6 +12309,36 @@ footer.pm-open-map ul > li > a:hover, footer.pm-open-map ul > li > a:focus {
   color: black;
 }
 
+.poncho-map {
+  container-type: inline-size;
+  container-name: canvasWidthSize;
+}
+
+@container canvasWidthSize (min-width: 0) {
+  .slider-large .pm-slider {
+    --pm-slider-width: calc(100% - 20px);
+  }
+}
+@container canvasWidthSize (min-width: 576px) {
+  .slider-large .pm-slider {
+    --pm-slider-width: calc(50% - 20px);
+  }
+}
+@container canvasWidthSize (min-width: 0) {
+  .slider-default .pm-slider {
+    --pm-slider-width: calc(100% - 20px);
+  }
+}
+@container canvasWidthSize (min-width: 576px) {
+  .slider-default .pm-slider {
+    --pm-slider-width: calc(100% / 2 - 20px);
+  }
+}
+@container canvasWidthSize (min-width: 770px) {
+  .slider-default .pm-slider {
+    --pm-slider-width: inherit;
+  }
+}
 /* Poncho agenda */
 .agenda-item {
   border-bottom: 1px dashed #ddd;
@@ -13746,7 +13780,7 @@ pre {
  * Subsecretaría de Tecnologías de la Información
  * Presidencia de la Nación Argentina
  * Licenciado bajo MIT (https://github.com/argob/poncho/LICENSE)
-*/
+  */
 /* Main
    ======================================================================== */
 main a[href^="http://"][target^=_blank]:after,
@@ -15715,6 +15749,9 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
   font-style: normal;
   line-height: var(--summary-line-height);
 }
+.details-landing.details-landing.figure-fixed summary:has(i.fa-2x) i, .details-landing.details-landing.figure-fixed summary .figure {
+  align-self: start;
+}
 
 @media (max-width: 768px) {
   .details-landing.details-landing-md > details, .details-landing.details-landing-lg > details {
@@ -15726,6 +15763,9 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
     /* Global componente */
     --summary-padding-t: 10px;
     --summary-padding-b: 10px;
+  }
+  .details-landing.details-landing.figure-xs-fixed summary:has(i.fa-2x) i, .details-landing.details-landing.figure-xs-fixed summary .figure {
+    align-self: start;
   }
 }
 /* FORMULARIOS Y SELECT2 */

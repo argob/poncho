@@ -5015,12 +5015,22 @@ class PonchoMap {
             allowed_tags: [],
             anchor_delay: 0,
             map_breakpoint: {
-                lg: {fraction: "1:4", value: 992},
-                md: {fraction: "2:7", value: 768},
-                sm: {fraction: "1:4", value: 576},
-                xl: {fraction: "2:7", value: 1200},
-                xs: {fraction: "1:1", value: 0},
-                xxl: {fraction: "2:7", value: 1400}
+                large: {
+                    lg: {fraction: "3:10", value: 992},
+                    md: {fraction: "2:7", value: 768},
+                    sm: {fraction: "1:4", value: 576},
+                    xl: {fraction: "2:7", value: 1200},
+                    xs: {fraction: "1:1", value: 0},
+                    xxl: {fraction: "2:7", value: 1400}
+                },
+                default: {
+                    lg: {fraction: "4:10", value: 992},
+                    md: {fraction: "2:6", value: 768},
+                    sm: {fraction: "1:4", value: 576},
+                    xl: {fraction: "2:7", value: 1200},
+                    xs: {fraction: "1:1", value: 0},
+                    xxl: {fraction: "2:7", value: 1400}
+                }
             },
             media_breakpoint: {
                 lg: 992,
@@ -5178,6 +5188,7 @@ class PonchoMap {
             scroll: false,
             slider: false,
             slider_selector: ".pm-slider",
+            slider_size: false, // large | default
             summary: false,
             template: false,
             template_innerhtml: false,
@@ -5264,6 +5275,7 @@ class PonchoMap {
         this.latitude = opts.latitud;
         this.longitude = opts.longitud;
         this.slider = opts.slider;
+        this.slider_size = opts.slider_size;
         this.no_info = opts.no_info;
         this.reset_zoom = opts.reset_zoom;
         this.slider_selector=this._selectorName(opts.slider_selector);
@@ -5300,6 +5312,7 @@ class PonchoMap {
         );
         this.media_breakpoint = opts.media_breakpoint;
         this.map_breakpoint = opts.map_breakpoint;
+        this.map_breakpoint_fractions = opts.map_breakpoint_fractions;
         this.map_align = opts.map_align;
         this.map_style = opts.map_style;
         this.accesible_menu_extras = opts.accesible_menu_extras;
@@ -5590,23 +5603,14 @@ class PonchoMap {
         }
 
         if (this.isEmptyString(value)) {
-            // console.warn(
-            //     "El primer parámetro debe ser una cadena de texto no vacía."
-            // );
             return value;
         }
-                
+
         if (!this.isObject(kwargs)) {
-            // console.warn(
-            //     "El segundo parámetro debe ser un objeto de tipo clave/valor."
-            // );
             return;
         }
         
         if (this.isEmptyObject(kwargs)) {
-            // console.warn(
-            //     "El segundo parámetro (kwargs) no debe ser un objeto vacío."
-            // );
             return value;
         }
 
@@ -5621,29 +5625,32 @@ class PonchoMap {
         }, value);
     };
 
+
     /**
-     * Setea definiciones de estilo
+     * Especifica el tamaño del slider
      * @returns {undefined}
      */
-    _setCssVariables = () => {
-        if (typeof headStyle !== 'function') {
+    _setSliderSize = () => {
+        if(!this.isString(this.slider_size)){
             return;
         }
 
-        const entries = Object.entries(this.map_style);
-        if(entries.length < 1){
-            return;
+        const validSizes = ['large', 'default', 'medium'];
+        if (!validSizes.includes(this.slider_size)) {
+            console.warn(`Invalid slider size: ${this.slider_size}. Defaulting to 'default'.`);
+            this.slider_size = 'default';
         }
-        var acc = [];
-        for(let entry of entries){
-            let [key, value] = entry;
-            acc.push(`--pm-${key}: ${value};`);
+
+        const sliderElement = document.querySelector(`.poncho-map${this.scope_selector}`);
+        if (sliderElement) {
+            sliderElement.classList.remove(
+                'slider-large', 
+                'slider-default', 
+                'slider-medium'
+            );
+            sliderElement.classList.add(`slider-${this.slider_size}`);
         }
-        headStyle(
-            `ponchomap__${this.map_selector}`, 
-            `.poncho-map${this.scope_selector} {${acc.join("")}}`
-        );
-    }
+    };
 
 
     /**
@@ -5667,9 +5674,14 @@ class PonchoMap {
         // obtengo el listado de breakpoints válidos.
         const validMediaBreakpoints = Object.keys(this.media_breakpoint);
 
+        // Defino el tamaño del slider
+        const sliderSize = (["large", "default"].includes(
+                this.slider_size) ? this.slider_size : "default");
+        const mapBrekpoint = this.map_breakpoint[sliderSize];
+
         // Las claves existen
         const hasValidKeys = Object
-                .keys(this.map_breakpoint)
+                .keys(mapBrekpoint)
                 .every(entry => validMediaBreakpoints.includes(entry));
 
         // Si las claves están mal, muestro un error y corto la ejecución. 
@@ -5684,7 +5696,7 @@ class PonchoMap {
                     + `${validMediaBreakpoints.join(", ")}.`,
                     
                 ],
-                terminal: this.map_breakpoint
+                terminal: mapBrekpoint
             }, "danger", true);
 
             return;
@@ -5692,7 +5704,7 @@ class PonchoMap {
 
         // Valido las definiciones por cada breakpoint
         const hasValidDefinitions = Object
-                .values(this.map_breakpoint)
+                .values(mapBrekpoint)
                 .every(function(entry){
                     return (typeof entry === "object" && entry !== null && 
                         'value' in entry && 'fraction' in entry);
@@ -5706,7 +5718,7 @@ class PonchoMap {
                 messages: [
                     "Verifique que para cada entrada existan las claves: "
                     + "`value` y `fraction`."],
-                terminal: this.map_breakpoint
+                terminal: mapBrekpoint
             }, "warning");
 
             return; 
@@ -5714,7 +5726,7 @@ class PonchoMap {
 
         // Ordeno los valores de mayor a menor. 
         const sortedEntries = Object
-            .entries(this.map_breakpoint)
+            .entries(mapBrekpoint)
             .sort(([, a], [, b]) => b.value - a.value);
 
         // Verifico cual de los MAP breakpoints es el adecuado.
@@ -5919,7 +5931,7 @@ class PonchoMap {
         const mapBackgroundColor = document.querySelector(selector);
 
         if(mapBackgroundColor){
-            mapBackgroundColor.style.backgroundColor = color;
+            mapBackgroundColor.style.background = color;
         }
 
         return;
@@ -6668,7 +6680,7 @@ class PonchoMap {
      * @returns {boolean}
      */
     _isIdMixing = () => (Array.isArray(this.id_mixing) && 
-            this.id_mixing > 0 || typeof this.id_mixing === 'function');
+            this.id_mixing.length > 0 || typeof this.id_mixing === 'function');
 
 
     /**
@@ -6689,7 +6701,7 @@ class PonchoMap {
         } 
         
         const values = this.id_mixing.map(val => {
-            if(entry.properties[val]){
+            if(entry.properties.hasOwnProperty(val)){
                 return entry.properties[val].toString();
             } 
             return val;
@@ -6710,27 +6722,37 @@ class PonchoMap {
      * @return {object}
      */
     _setIdIfNotExists = (entries) => {
+        if (!entries || !Array.isArray(entries.features)) {
+            return entries;
+        }
+
         const firstEntry = entries.features[0];
         const hasId = firstEntry?.properties.hasOwnProperty("id");
 
+
+        const isIdMixingEnabled = this._isIdMixing();
+
         // Si no se configuró id_mixing y el json tiene id.
-        if(!this._isIdMixing() && hasId){
+        if(!isIdMixingEnabled && hasId){
             return entries;
         }
 
         for (let i = 0; i < entries.features.length; i++) {
-            const entry = entries.features[i];
+            const entry = entries?.features[i];
+            if(!entry){
+                continue;
+            }
+
             const {properties} = entry;
 
-            if (this._isIdMixing()) {
+            if (isIdMixingEnabled) {
                 // Procesa la opción de id_mixing
                 properties.id = this._idMixing(entry);
             } else {
                 // Genera un ID automático
                 const autoId = i + 1;
                 const useTitle = properties[this.title] ?
-                    this._slugify(properties[this.title]) :
-                    "";
+                    this._slugify(properties[this.title]) : "";
                 properties.id = [autoId, useTitle].filter(Boolean).join('-');
             }
         }
@@ -6814,6 +6836,10 @@ class PonchoMap {
      */
     searchEntry = (sanitizedSearchTerm, entry, searchFields=[]) => {
         if (!sanitizedSearchTerm) {
+            return entry;
+        }
+
+        if(searchFields.length < 1){
             return entry;
         }
 
@@ -8481,13 +8507,13 @@ class PonchoMap {
         this._accesibleMenu();
         this._accesibleExtras();
 
+        this._setSliderSize();
         this.mapOpacity();
         this.mapBackgroundColor();
 
         this._listeners();
         this.layerViewConf.setVisuals();
         this.setMapAlignment(this.map_align);
-        this._setCssVariables();
     };
 };
 // end class
@@ -9153,7 +9179,7 @@ class PonchoMapFilter extends PonchoMap {
         );
         checkAllButton.textContent = this._t("filters_check_all");
         checkAllButton.dataset.field = item.field[0];
-        checkAllButton.dataset.value = 1;
+        checkAllButton.dataset.value = "1";
 
         // Botón uncheck all
         const uncheckAllButton = document.createElement("button");
@@ -9163,7 +9189,7 @@ class PonchoMapFilter extends PonchoMap {
         );
         uncheckAllButton.textContent = this._t("filters_uncheck_all");
         uncheckAllButton.dataset.field = item.field[0];
-        uncheckAllButton.dataset.value = 0;
+        uncheckAllButton.dataset.value = "0";
 
         // Append
         checkAllItems.classList.add("select-items");
@@ -9347,7 +9373,8 @@ class PonchoMapFilter extends PonchoMap {
 
             const span = document.createElement("small");
             span.classList.add("badge", "m-l-05", "fw-medium", "bg-arg-enlace")
-            span.innerHTML = `${field[1]}<span class="pm-visually-hidden"> elemento${plurals}</span>`;
+            span.innerHTML = `${field[1]}<span class="pm-visually-hidden"> `
+                + `elemento${plurals}</span>`;
 
             const info_container = document.createElement("small");
             info_container.appendChild(span);
@@ -9380,29 +9407,34 @@ class PonchoMapFilter extends PonchoMap {
      * Valida los fields del grupo.
      * 
      * @param {object} entry Entrada de datos
-     * @param {object} fields_group 
+     * @param {object} fieldsGroup 
      * @return {boolean}
      */
-    _validateGroup = (entry, fields_group) => {
-        const result = fields_group.map(e => this._search(entry, e[0], e[1]));
+    _validateGroup = (entry, fieldsGroup) => {
+        const result = fieldsGroup.map(e => this._search(entry, e[0], e[1]));
         return result.some(e => e);
     };
 
 
     /**
      * Valida una entrada
+     * 
      * @summary
      * 1. Obtengo la cantidad de grupos que tengo.
      * 2. Evaluo los fields de cada grupo y junto los resultados en un array
      * para retornar true los grupos tienen que dar true
      * @returns {boolean}
      */
-    _validateEntry = (entry, form_filters) => {
-        const fields_group = (group) => form_filters.filter(e => e[0] == group);
-        const total_groups = this.filters.length;
+    _validateEntry = (entry, formFilters) => {
+        const fieldsGroup = (group) => formFilters.filter(e => e[0] == group);
+        const totalGroups = this.filters.length;
 
-        const validations = Array.from( {length: total_groups}, (_, i) => {
-            return this._validateGroup(entry, fields_group(i));
+        if(totalGroups < 1){
+            return true;
+        }
+
+        const validations = Array.from( {length: totalGroups}, (_, i) => {
+            return this._validateGroup(entry, fieldsGroup(i));
         }).reduce((acc, val) => acc && val, true);
 
         return validations;
@@ -9413,48 +9445,56 @@ class PonchoMapFilter extends PonchoMap {
      * Filtra los markers.
      */ 
     _filterData = () => {
-        // Obtiene los filtros del formulario.
-        const formFilters = this.formFilters();
-        const hasSearchTerm = !!this.inputSearchValue;
-        const hasFormFilters = formFilters.length > 0;
+        // 1. Obtengo los filtros del formulario acivos.
+        const availableFilters = this.formFilters();
+        const hasAvailableFilters = availableFilters.length > 0;
 
-        // 2. Maneja el caso trivial de no tener filtros ni búsqueda.
-        if (!hasSearchTerm && !hasFormFilters) {
+        // Se está usando PonchoMapFilter pero no hay asignado filtros. 
+        // Retorno las entradas en crudo.
+        if(Array.isArray(this.filters) && this.filters.length < 1){
             this.filtered_entries = this.entries;
             return this.entries;
         }
 
-        //Sanitiza el término de búsqueda.
-        const sanitizedSearchTerm = hasSearchTerm 
-            ? replaceSpecialChars(this.inputSearchValue).toUpperCase()
-            : '';
-        
-        // Define los campos a buscar, si hay un término de búsqueda.
-        const searchFields = new Set([this.title, ...this.search_fields]);
+        // Si no hay filtros activos retorno las entradas sin modificarlas.
+        if(!hasAvailableFilters){
+            this.filtered_entries = [];
+            return [];
+        }
 
-        // 5. Filtra la lista.
-        const filteredEntries = this.entries.filter(entry => {
-            const entryProperties = entry.properties;
-            
-            // Aplica el filtro del formulario si existen.
-            const passesFormFilter = !hasFormFilters || 
-                    this._validateEntry(entryProperties, formFilters);
-            if (!passesFormFilter) {
-                return false;
-            }
-
-            // Aplica la búsqueda si existe.
-            const passesSearch = !hasSearchTerm || 
-                    this.searchEntry(
-                        sanitizedSearchTerm, entryProperties, searchFields
+        // 2. Filtro las entradas en en función de los filtros activos. 
+        let activeFiltersEntries = this.entries.filter(entry => {
+                // Valido si la entrada se encuentra dentro de los criterios
+                // del grupo o filtros
+                let filteredEntry = this._validateEntry(
+                    entry.properties,
+                    availableFilters
+                );
+                
+                // Si en la búsqueda, además, existe un término de búsqueda
+                // en el input search, filtro también por eso.
+                let filterSearchEntry = true;
+                if(this.inputSearchValue){
+                    const searchTerm = replaceSpecialChars(
+                        this.inputSearchValue).toUpperCase();
+                    const searchFields = new Set(
+                        [...[this.title], ...this.search_fields]
                     );
+                    // Busco en la entrada si matchea con el término en el
+                    // search input
+                    let searchResult = this.searchEntry(
+                        searchTerm,
+                        entry.properties,
+                        searchFields
+                    );
+                    filterSearchEntry = searchResult || false;
+                }
 
-                        
-            return passesSearch;
+                return [filteredEntry, filterSearchEntry].every(Boolean);
         });
-        
-        this.filtered_entries = filteredEntries;
-        return filteredEntries;
+
+        this.filtered_entries = activeFiltersEntries;
+        return activeFiltersEntries;
     };
 
 
@@ -9464,10 +9504,12 @@ class PonchoMapFilter extends PonchoMap {
     _filteredData = (feed) => {
         feed = (typeof feed !== "undefined" ? this.entries : 
                 this._filterData());
-        
-        this.markersMap(feed); 
+
+        const clonedFeed = [...feed];
+        this.markersMap(clonedFeed); 
+
         this._selectedMarker();
-        this._helpText(feed);
+        this._helpText(clonedFeed);
         // this._resetSearch();
         // this._clickToggleFilter();
         
@@ -9541,15 +9583,22 @@ class PonchoMapFilter extends PonchoMap {
      * Cambia la lista de markers en función de la selección de 
      * los filtros en PonchoMapFilter.
      * @TODO Ver el modo de hacer focus sobre el scope
+     * @param {Function} callback - La función a ejecutar cuando el valor 
+     * del filtro cambie.
      * @returns {undefined}
      */
-    filterChange = (callback) => {
-        const selector = `.js-filters${this.scope_sufix}`;
-        const filterSelect = document.querySelector(selector);
-        if(filterSelect){
-            filterSelect.onchange = (callback);
+    filterChange(callback) {
+        // Asegura que callback es una función antes de proceder
+        if (typeof callback !== 'function') {
+            console.error('filterChange requiere una función de callback.');
+            return;
         }
-        return;
+
+        const selector = `.js-filters${this.scope_sufix || ''}`;
+        const filterSelects = document.querySelectorAll(selector);
+        filterSelects.forEach(element => {
+            element.onchange = callback;
+        });
     }
 
 
@@ -9571,11 +9620,12 @@ class PonchoMapFilter extends PonchoMap {
 
                 const inputsSelector = `${this.scope_selector} [id^=id__${field}]`;
                 const inputs = document.querySelectorAll(inputsSelector);
-
-                const elementValue = parseInt(value);
-                inputs.forEach(input => input.checked = elementValue);
-
+                
+                const elementValue = parseInt(value, 10);
+                inputs.forEach(input => input.checked = (elementValue === 1));
+                
                 this._filteredData();
+                
             });
         });
     };
@@ -9602,21 +9652,27 @@ class PonchoMapFilter extends PonchoMap {
         this.tileLayer.addTo(this.map);
 
         this._filteredData();
+        
+
+        this.filterChange((event) => {
+            event.preventDefault();
+            this._filteredData();
+        });
+        this.checkUncheckFilters();
+
+
         this._clickToggleFilter();
         this._totalsInfo();
         if(this.scroll && this.hasHash()){
             this.scrollCenter();
         }
-        this.checkUncheckFilters();
-        this.filterChange((event) => {
-            event.preventDefault();
-            this._filteredData();
-        });
-
+        
         setTimeout(this.gotoHashedEntry, this.anchor_delay);
         if(this.filters_visible){
             this._filterContainerHeight();
         }
+        
+        this._setSliderSize();
         this.mapOpacity();
         this.mapBackgroundColor();
 
@@ -9626,7 +9682,6 @@ class PonchoMapFilter extends PonchoMap {
         this.layerViewConf.setVisuals();
         this.setMapAlignment(this.map_align);
         this._resetSearch();
-        this._setCssVariables();
     };
 };
 // end of class
@@ -9993,6 +10048,7 @@ const PONCHOMAP_GEOJSON_PROVINCES = "/profiles/argentinagobar/"
         + "themes/contrib/poncho/resources/jsons/"
         + "geo-provincias-argentinas.json";
 
+
 /**
  * Junta el geoJSON con el JSON de Google Sheet
  *
@@ -10003,45 +10059,72 @@ const PONCHOMAP_GEOJSON_PROVINCES = "/profiles/argentinagobar/"
  * @param {object} entries JSON con entradas por provincia.
  * @returns {object}
  */
-const ponchoMapProvinceMergeData = (geoProvinces={}, entries={},
+const ponchoMapProvinceMergeData = (geoProvinces={}, entries=[],
                                     provinceIndex="provincia") => {
 
-    if(!geoProvinces.hasOwnProperty("features")){
-        throw new Error("Invalid data format");
+    if (!geoProvinces || !geoProvinces.hasOwnProperty("features")) {
+        throw new Error(
+            "Formato de datos inválido."
+        );
     }
 
-    geoProvinces.features.forEach((feature, key) => {
-        const jsonEntry = entries.find(function(entry){
-            const entryTerm = slugify( entry[provinceIndex] );
-            const fnaTerm = slugify( feature.properties.fna );
-            const namTerm = slugify( feature.properties.nam );
+    const entriesMap = new Map();
+    entries.forEach(entry => {
+        if (entry && entry[provinceIndex]) {
+            const entryTerm = slugify(entry[provinceIndex]);
+            entriesMap.set(entryTerm, entry);
+        }
+    });
 
-            if(entryTerm == fnaTerm || entryTerm == namTerm){
-                return true;
-            }
-            return false;
-        });
+    const newFeatures = [];
 
-        // Si no existe la provincia en el JSON, borra el feature.
-        if(!jsonEntry && feature.properties.fna){
-            delete geoProvinces.features[key];
+    geoProvinces.features.forEach(feature => {
+        if (!feature.properties || 
+            (!feature.properties.fna && !feature.properties.nam)) {
             return;
         }
-        // Si hay definido un key _color_, usa el color en el fill.
-        if(jsonEntry?.color && !feature.properties["pm-type"]){
-            geoProvinces
-                .features[key]
-                .properties.stroke = ponchoColor(jsonEntry.color);
-        }
-        // Remuevo la propiedad interactive del json para que no se interponga
-        // con el valor del geoJSON.
-        if(feature.properties["pm-interactive"] === "n" && 
-                    jsonEntry?.["pm-interactive"] !== "n"){
-            delete jsonEntry["pm-interactive"];
+
+        // Nombre de provincia antecedidos por: "Provincia de", 
+        // ej. "Provincia de Buenos Aires" 
+        const fnaTerm = (feature.properties.fna ? 
+                slugify(feature.properties.fna) : null);
+        // Nombre de provincia, ej. "Buenos Aires" 
+        const namTerm = (feature.properties.nam ? 
+                slugify(feature.properties.nam) : null);
+
+        // Búsqueda en el Mapa
+        let jsonEntry = null;
+        if (fnaTerm && entriesMap.has(fnaTerm)) {
+            jsonEntry = entriesMap.get(fnaTerm);
+        } else if (namTerm && entriesMap.has(namTerm)) {
+            jsonEntry = entriesMap.get(namTerm);
         }
 
-        Object.assign(geoProvinces.features[key].properties, jsonEntry);
+        // Si no existe la provincia en el JSON, y tiene un nombre, lo descartamos
+        if (!jsonEntry && (feature.properties.fna || feature.properties.nam)) {
+            return;
+        }
+
+        if (jsonEntry) {
+            // definido un key _color_, usa el color en el fill.
+            if (jsonEntry.color && !feature.properties["pm-type"]) {
+                feature.properties.stroke = ponchoColor(jsonEntry.color);
+            }
+            
+            // Remuevo la propiedad interactive del json para que no se interponga
+            const entryToMerge = {...jsonEntry};
+            if (feature.properties["pm-interactive"] === "n" && 
+                entryToMerge["pm-interactive"] !== "n") {
+                delete entryToMerge["pm-interactive"];
+            }
+            Object.assign(feature.properties, entryToMerge);
+        }
+
+        newFeatures.push(feature);
     });
+
+    geoProvinces.features = newFeatures;
+    
     return geoProvinces;
 };
 
@@ -10071,15 +10154,14 @@ const ponchoMapProvinceCssStyles = flag => {
         return;
     }
     
-    const s = document.querySelectorAll(
-        ".poncho-map-province__toggle-map,"
-        + ".poncho-map-province__toggle-element"
-    );
-    s.forEach(element => {
-        element.classList.remove(
-            "poncho-map-province__toggle-map",
-            "poncho-map-province__toggle-element"
-        ); 
+    const classToRemove = [
+        "poncho-map-province__toggle-map",
+        "poncho-map-province__toggle-element"
+    ];
+
+    const selector = classToRemove.map(cls => `.${cls}`).join(",");
+    document.querySelectorAll(selector).forEach(ele => {
+        ele.classList.remove(...classToRemove);
     });
 };
 
@@ -10088,41 +10170,42 @@ class PonchoMapProvinces extends PonchoMapFilter {
     constructor(geoProvinces, entries, options){
 
         const defaultOptions = {
+            map_align: "left",
+            slider_size: "default",
+            fit_bounds: true,
+            hide_select: false,
             initial_entry: false,
-            random_entry: false,
+            map_init_options: {
+                boxZoom: false,
+                doubleClickZoom: false,
+                scrollWheelZoom: false,
+                zoomControl: true,
+                zoomSnap: 0.1,
+            },
+            map_layers: false,
+            map_view:[-40.47815508388363, -62.802101128049806],
+            map_zoom: 4.4,
             overlay_image: true,
             overlay_image_bounds: [
                 [ -20.70565857951651, -24.50543849552044 ],
                 [ -88.20759652502107, -74.4619171280653 ]
             ],
             overlay_image_opacity: 0.8,
-            map_layers: false,
             overlay_image_url: 
                 "/profiles/argentinagobar/themes/contrib/poncho/img/map-shadow-antartida.png",
-            hide_select: false,
-            toggle_select: true,
             province_index: "provincia",
-            fit_bounds: true,
-            // Sobreescribo opciones de PonchoMap
-            map_view:[-40.47815508388363, -62.802101128049806],
-            map_init_options: {
-                zoomSnap: 0.1,
-                zoomControl: true,
-                doubleClickZoom: false,
-                scrollWheelZoom: false,
-                boxZoom: false
-            },
-            map_zoom: 4.4,
+            random_entry: false,
+            slider: true,
+            toggle_select: true,
+            tooltip: true,
             tooltip_options: {
-                permanent: false,
                 className: "leaflet-tooltip-own",
                 direction: "auto",
                 offset: [0, -3],
-                sticky: true,
                 opacity: 1,
+                permanent: false,
+                sticky: true,
             },
-            tooltip: true,
-            slider: true
         };
         // Merge options
         let opts = Object.assign({}, defaultOptions, options);
@@ -10213,7 +10296,7 @@ class PonchoMapProvinces extends PonchoMapFilter {
                 return false;
             }
             prov[p.properties[idKey]] = name;
-        }).filter(f => f);
+        }).filter(Boolean);
 
         let provincesToList = this.sortObject( Object.entries(prov), 1);
         return provincesToList;

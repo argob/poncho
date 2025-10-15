@@ -1792,6 +1792,21 @@
       },
     
       {
+        "nombre": "energia-nuclear-chip",
+        "clase": "icono-arg-energia-nuclear-chip"
+      },
+    
+      {
+        "nombre": "energia-nuclear-ia",
+        "clase": "icono-arg-energia-nuclear-ia"
+      },
+    
+      {
+        "nombre": "energia-nuclear-rayo",
+        "clase": "icono-arg-energia-nuclear-rayo"
+      },
+    
+      {
         "nombre": "energia-solar",
         "clase": "icono-arg-energia-solar"
       },
@@ -2509,6 +2524,11 @@
       {
         "nombre": "instructor-de-tiro",
         "clase": "icono-arg-instructor-de-tiro"
+      },
+    
+      {
+        "nombre": "inteligencia-artificial",
+        "clase": "icono-arg-inteligencia-artificial"
       },
     
       {
@@ -3749,6 +3769,11 @@
       {
         "nombre": "radar-meteorologico",
         "clase": "icono-arg-radar-meteorologico"
+      },
+    
+      {
+        "nombre": "radiacion-nuclear",
+        "clase": "icono-arg-radiacion-nuclear"
       },
     
       {

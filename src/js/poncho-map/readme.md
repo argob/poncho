@@ -105,6 +105,7 @@
 | breakpoint | `Array object`|  | Definición para tamaño de dispositivos. ```breakpoint: {lg: 992,xl: 1200,sm: 576,md: 768}``` |
 | breakpoint_fraction | `Array object`| | Alineación del mapa según el tamaño del dispositivo. ```breakpoint_fraction: {sm: "1:4",md: "1:4",lg: "1:3",xl: "2:7"}``` |
 | summary | `string\|object`| | <p>Agrega una descripción o propósito del mapa. El sumario puede estar oculto, pero «visible» para lectores de pantalla o se le puede dar formato usando las opciones: css o style.</p> <div>```summary: "cadena de texto"```</div> o <div>```summary:{title:"Cadena de texto", hidden:"boolean",css:"object\|string", style: "object\|string", position: "top\|bottom" }```</div> <p>Ver, opciones para <em>summary</em>.</p> |
+| slider_size | `string\|false` | `false` | Opriones: large \| default.<br>`large`: Tarjeta con ancho al 50 %. `default`: Tarjeta con tamaño por defecto (30 % aprox).
 
 
 ### Opciones para `summary`

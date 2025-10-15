@@ -92,6 +92,25 @@ Módulo para implementar _ponchoMap_ utilizando un GeoJSON con polígonos por pr
 <td style="text-align:left">1</td>
 <td style="text-align:left">Opacidad del mapa OSM.</td>
 </tr>
+
+<tr>
+  <td>slider_size</td>
+  <td><code>string|false</code></td>
+  <td><code>false</code></td>
+  <td>
+    Opciones: large | default.<br>
+    <code>large</code>: Tarjeta con ancho al 50 %.<br>
+    <code>default</code>: Tarjeta con tamaño por defecto (30 % aprox).
+  </td>
+</tr>
+
+<tr>
+  <td>map_align</td>
+  <td><code>string</code></td>
+  <td><code>left</code></td>
+  <td>Permite alinear el mapa a la izquierda o a la derecha de su contenedor. Opciones: <em>«left»</em>, <em>«center»</em> o <em>«right»</em>.</td>
+</tr>
+
 </tbody>
 </table>
 

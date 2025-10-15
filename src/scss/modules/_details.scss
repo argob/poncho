@@ -1,3 +1,4 @@
+
 /**
  * DETAILS & SUMMARY
  *
@@ -6,7 +7,7 @@
  * @author Agustín Bouillet <bouilleta@jefatura.gob.ar>
  * Copyright (c) 2025 Argentina.gob.ar
  */
- 
+
 /**
  * Variables SCSS
  */
@@ -587,6 +588,11 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
         font-style: normal;
         line-height: var(--summary-line-height);
     }
+
+    &#{&}.figure-fixed summary:has(i.fa-2x) i,
+    &#{&}.figure-fixed summary .figure {
+        align-self: start;
+    }
 }
 
 @media (max-width: 768px) {
@@ -597,6 +603,11 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
             /* Global componente */
             --summary-padding-t: #{$summaryPaddingT};
             --summary-padding-b: #{$summaryPaddingB};
+        }
+
+        &#{&}.figure-xs-fixed summary:has(i.fa-2x) i,
+        &#{&}.figure-xs-fixed summary .figure {
+            align-self: start;
         }
     }
 }
