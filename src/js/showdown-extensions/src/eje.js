@@ -75,12 +75,11 @@
  * SOFTWARE.
  */
 if(showdown){ // IF showdown
-
     /**
      * Ejes
      *
      * @see https://www.argentina.gob.ar/contenidosdigitales/markdown/ejes
-     * @regexp https://regex101.com/r/A3J5Mn/1
+     * @regexp https://regex101.com/r/3hXCYM/1
      */
     showdown.extension("ejes", function() {
         "use strict";
@@ -88,34 +87,59 @@ if(showdown){ // IF showdown
         {
             type: "lang",
             filter: function(text, converter, options){
-            const regex = /((?:\[\[)?col(1[0-2]|[1-9])(?:-\{|<<))[\s\S]\[\[ejes-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}\]\][\s\S](>>|\}-\]\])/;
+            const regex = /((?:\[\[)?col([1-4])(?:-\{|<<))[\s\S]\[\[ejes-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}\]\][\s\S](>>|\}-\]\])/;
             var main_regex = new RegExp(regex, "gmi");
 
-            text = text.replace(main_regex, function(e){
-                var main_regex = new RegExp(regex, "gmi");
-                var rgx = main_regex.exec(e);
+            const processText = text.replace(main_regex, function(e){
+                const main_regex = new RegExp(regex, "gmi");
+                const rgx = main_regex.exec(e);
+                const [,,col,heading,textContent,icon,color] = rgx;
                 var cols = {
                     "2": "6",
                     "3": "4",
                     "4": "3",
                     "1": "12"
                 };
+                const setCols = cols[col];
 
-                var html = `<div class="col-xs-12 col-sm-${cols[rgx[2]]} col-md-${cols[rgx[2]]}">
-                <div class="icon-item">
-                    <i class="${rgx[5]} ${rgx[6]}"></i>
-                    <p class="h3">${rgx[3]}</p>
-                    <p>${rgx[4]}</p>
-                </div>
-                </div>`;
-                return html;
+                const tplContainer = document.createElement("div");
+                tplContainer.classList.add("dato-eje");
 
+                const tplCol = document.createElement("div");
+                tplCol.classList.add(
+                    "col-xs-12", `col-sm-${setCols}`, `col-md-${setCols}`
+                );
+
+                const tplIconItem = document.createElement("div");
+                tplIconItem.classList.add("icon-item");
+
+                const tplIcon = document.createElement("i");
+                tplIcon.classList.add("fa", icon, color);
+
+                const tplHeading = document.createElement("p");
+                tplHeading.classList.add("h3", "m-y-0");
+                tplHeading.textContent = heading;
+
+                const tplText = document.createElement("p");
+                tplText.textContent = textContent;
+
+                tplIconItem.appendChild(tplIcon);
+                if( heading){
+                    tplIconItem.appendChild(tplHeading);
+                }
+                if(textContent){
+                    tplIconItem.appendChild(tplText);
+                }
+                
+                tplContainer.appendChild(tplIconItem);
+                tplCol.appendChild(tplContainer);
+                return tplCol.outerHTML;
             });
-            return text;
+
+            return processText;
             }
         }
         ]
     });
 
 }
-
