@@ -43,7 +43,7 @@
         .img { 
             border-radius: 6px; 
             width: 100%;
-            aspect-ratio: 1.85 / 1;
+            aspect-ratio: 16 / 9;
             box-shadow:  0 0 4px rgb(0 0 0 /.15);
             overflow: hidden;
             background-color: #eaeaea;
@@ -53,6 +53,7 @@
             min-height: 100%;
             object-fit: cover;
             object-position: 50% 50%; 
+                        filter: hue-rotate(-15deg) sepia(.35)
         }
         .poncho-map .leaflet-popup-content {
             max-height: 300px;
@@ -176,33 +177,37 @@ fetch_json(geoJSON, { headers: {"Accept": "application/json"}}).then(geoProvince
     const gapi = new GapiSheetData();
     fetch_json(
         gapi.url(
-            "mapa_publicado",
-            "1UHfminuVxxmn1VIqo4DE2kKN5TXnj34WVBMCwnmW5vo" 
+            "dataset4",
+            "1qEJoLbtJwq_6i3e8R_Q85xK_ZZ5-Iu5Tu8BAnp2V1N4"
         )        
     ).then(googlesheet_data => {
         const gapi_data = gapi.json_data(googlesheet_data);
         const {entries, headers} = gapi_data;
         const options = {
-            id_mixing: ["in1", "nam"],
+            id_mixing: ["in1", "nam"], 
+            // content_selector: ".js-pm-text-content",
             scope: "poncho-map",
             title: "nam",
-            // map_layers_default: "satelital",
-            // map_layers: true,
             template_markdown: true,
             allowed_tags: ["*"],
-            headers: headers,
-            id_mixing:{
-                ...headers, 
-                ...{"subtitulos--ignore": "", description: "", img: "", content: "", region: "Región"}
+            headers:{
+                ...headers,
+                ...{
+                    "subtitulos--ignore": "", 
+                    description: "", 
+                    img: "", 
+                    content: "", 
+                    region: "Región"
+                }
             },
-            _template:(self, entry) => {
-                entry["img"] = entry.image ? `<div class="img"><img src="${entry.image}"></img>` : false;
-                entry["content"] = `<hr>
-                    <div class="row">${entry["subtitulos--ignore"]}
-                </div>`;
+            template:(self, entry) => {
+                entry["img"] = (entry.image ? 
+                    `<div class="img"><img src="${entry.image}"></img>`:false);
+                entry["content"] = `<hr><div class="row">`
+                    + `${entry["subtitulos--ignore"]}</div>`;
                 return self.defaultTemplate(self, entry); 
             },
-            _template_structure: {
+            template_structure: {
                 values: [
                     "img", 
                     "description", 
@@ -211,45 +216,47 @@ fetch_json(geoJSON, { headers: {"Accept": "application/json"}}).then(geoProvince
                     "surface", 
                     "web"
                 ],
-                title_classlist: ["h2","text-cielo"],
-                term_classlist: ["h5", "text-cielo"],
+                title_classlist: ["h3","text-arg-enlace", "fw-semibold","m-b-05"],
+                term_classlist: ["h5", "text-arg-enlace"],
                 lead: {
-                    key: "region", 
+                    key: "region",
+                    css: function(self, entry){ return 'text-arg-default'}, 
                     style: "text-transform:uppercase;" 
                         + "border-bottom: 1px solid var(--gray-border, #ccc);" 
-                        + "padding-bottom:.25em; color:var(--default) " 
+                        + "padding-bottom:.25em; color:var(--default);" 
                         + "font-size:small;"
                 },  
             },
-            _filters: [
-                {
-                    legend: "Filtrar por título",
-                    field: ["region", "checked"],
-                    fields: false,
-                    check_uncheck_all: true
-                }
-            ],
-            tooltip: true, 
+            tooltip: true,
             hash: true,
-            province_index: "filtro-provincia",
+            province_index: "provincia",
             fit_bounds_onevent: false,
             theme_ui: "default",
-            theme_map: "default",
-            map_opacity: .75, 
-            // map_view: (new PonchoMapProvinces).mapView,
-            map_background: "color-mix(in srgb, var(--gna-verde-cemento) 20%, white)",
-            // initial_entry: "42-la-pampa", 
-            // random_entry: true,
+            theme_map: "transparent",
+            map_opacity: 1,
+            map_background: "white",
+            initial_entry: "24-mendoza",
+            hide_select: false, 
             overlay_image: true,
-            overlay_image_opacity: 0,
-            overlay_image_url: "https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/img/map-shadow-antartida.png",
-            hide_select: true,
-            toggle_select: false,
-            theme_tool: true,
+            overlay_image_opacity: .75,
             fit_bounds: false,
-            map_zoom: 4.3,
-        };
-
+            map_background: "color-mix(in srgb, "
+                + "var(--gna-verde-cemento) 40%, white)",
+            map_background: "radial-gradient(circle, rgb(180 190 186 / .5) 50%, rgb(180 190 186 / 1) 100%)",
+            filters: [
+                {
+                    "legend": "Filtrar región",
+                    "type": "checkbox",
+                    "field": ["region", "checked"],
+                    "fields": false,
+                    "check_uncheck_all": true
+                }
+            ],
+            overlay_image_url: false,
+            overlay_image_url: "https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/img/map-shadow-antartida.png",
+            slider_size: "large"
+        }
+        // map_background: "radial-gradient(circle, rgb(180 190 186 / .5) 50%, rgb(180 190 186 / 1) 100%)",
         // Instancia para controlar ponchoMap con filtro por provincias.
         const map = new ponchoMapProvincesCustom(geoProvinces, entries, options);
         map.renderProvinceMap();
@@ -259,18 +266,6 @@ fetch_json(geoJSON, { headers: {"Accept": "application/json"}}).then(geoProvince
     });
 });
 </script>
-
-<script>
-    function containerSize(){
-        const elementSize = document.querySelector("#map").offsetWidth;
-        const element = document.querySelector(".js-size");
-        element.classList.add("text-arg-default", "fw-bold");
-        element.textContent = `${elementSize}px`
-    }
-
-    window.addEventListener("resize", containerSize);
-</script>
-
 <!-- / SCRIPTS -->
 </body>
 </html>

@@ -1,7 +1,12 @@
 # Mapa de Argentina con filtro por provincias
 
+- [Mapa de Argentina con filtro por provincias](#mapa-de-argentina-con-filtro-por-provincias)
+  - [**Opciones**](#opciones)
+    - [Orden de precedencia para entradas iniciales](#orden-de-precedencia-para-entradas-iniciales)
+
 
 ![](./img/home-display-1.png)
+
 
 
 Módulo para implementar _ponchoMap_ utilizando un GeoJSON con polígonos por provincia.
@@ -36,21 +41,26 @@ Módulo para implementar _ponchoMap_ utilizando un GeoJSON con polígonos por pr
 <td style="text-align:left">overlay_image</td>
 <td style="text-align:left"><code>boolean</code></td>
 <td style="text-align:left"><em><code>true</code></em></td>
-<td style="text-align:left">Si es <em>true</em> (Verdadero en inglés), permite que se visualice la imagen sobrepuesta al mapa de OpenStreetMap (OSM).</td>
+<td style="text-align:left">Si es <em>true</em>, permite que se visualice la imagen sobrepuesta al mapa de OpenStreetMap (OSM).</td>
 </tr>
 <tr>
 <td style="text-align:left">overlay_image_bounds</td>
 <td style="text-align:left"><code>object</code></td>
 <td style="text-align:left"><pre style="font-size:smaller"><code>[
-    [-20.70565857951651, -24.50543849552044],
-    [-88.20759652502107, -74.4619171280653]
+    [
+      -20.70565857951651, 
+      -24.50543849552044],
+    [
+      -88.20759652502107,
+      -74.4619171280653
+    ]
 ]</code></pre></td>
 <td style="text-align:left">Geo-localización de las cuatro coordenadas que definen el cuadro visible del mapa.</td>
 </tr>
 <tr>
 <td style="text-align:left">overlay_image_url</td>
 <td style="text-align:left"><code>string</code></td>
-<td style="text-align:left"><code>/profiles/argentinagobar/themes/contrib/poncho/img/map-shadow-antartida.png</code></td>
+<td style="text-align:left">/profiles/argentinagobar/themes/contrib/poncho/img/map-shadow-antartida.png</td>
 <td style="text-align:left">Permite sobreponer una imagen en el mapa OSM.</td>
 </tr>
 <tr>
@@ -69,8 +79,8 @@ Módulo para implementar _ponchoMap_ utilizando un GeoJSON con polígonos por pr
 <td style="text-align:left">toggle_select</td>
 <td style="text-align:left"><code>boolean</code></td>
 <td style="text-align:left">true</td>
-<td style="text-align:left"><dl><dt><code>true</code> (verdadero)</dt><dd>Cuando la opción sea verdadera y  el <em>viewport</em> o tamaño del display sea inferior a los 992 píxeles de ancho, el componente html, select, con el listado de provincias se mostrará, mientras que el mapa permanecerá oculto.</dd>
-<dt><code>false</code> (falso)</dt><dd>Cuando la opción sea falsa, tanto el componente html, select, como el mapa estarán visibles en todo momento.</dd></dl>
+<td style="text-align:left"><dl><dt><code>true</code></dt><dd>Cuando la opción sea verdadera y  el <em>viewport</em> o tamaño del display sea inferior a los 992 píxeles de ancho, el componente html, select, con el listado de provincias se mostrará, mientras que el mapa permanecerá oculto.</dd>
+<dt><code>false</code></dt><dd>Cuando la opción sea falsa, tanto el componente html, select, como el mapa estarán visibles en todo momento.</dd></dl>
 <p>* Es importante tenes en cuenta que cuando se utilice el mapa completo —mapa con slider o popup—, true ocultará el mapa. Esta opción es aconsejable en modo: mapa con descripción fuera del mapa.</p></td>
 </tr>
 <tr>
@@ -98,9 +108,13 @@ Módulo para implementar _ponchoMap_ utilizando un GeoJSON con polígonos por pr
   <td><code>string|false</code></td>
   <td><code>false</code></td>
   <td>
-    Opciones: large | default.<br>
-    <code>large</code>: Tarjeta con ancho al 50 %.<br>
-    <code>default</code>: Tarjeta con tamaño por defecto (30 % aprox).
+    <p>Opciones:</p>
+    <dl>
+    <dt>large</dt>
+    <dd>Tarjeta con ancho al 50&nbsp;%.</dd>
+    <dt>default</dt>
+    <dd>Tarjeta con tamaño por defecto (30&nbsp;% aprox).</dd>
+    </dl>
   </td>
 </tr>
 
@@ -108,7 +122,12 @@ Módulo para implementar _ponchoMap_ utilizando un GeoJSON con polígonos por pr
   <td>map_align</td>
   <td><code>string</code></td>
   <td><code>left</code></td>
-  <td>Permite alinear el mapa a la izquierda o a la derecha de su contenedor. Opciones: <em>«left»</em>, <em>«center»</em> o <em>«right»</em>.</td>
+  <td><p>Permite alinear el mapa a la izquierda o a la derecha de su contenedor.</p><p>Opciones:</p>
+  <ul>
+  <li>left</li>
+  <li>center</li>
+  <li>right</li>
+</td>
 </tr>
 
 </tbody>
