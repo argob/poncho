@@ -84,29 +84,29 @@ if(showdown){ // IF showdown
         return [{
             type: "lang",
             filter: function(text, converter, options) {
-            const regex = /^\[\[details(-open|-close)?\s?\{\[([\s\S]*?)\]\[([\s\S]*?)\]\}\]\]$/mg;
+            const regex = /^\[\[details(-open|-close)?\s?\{\[([\s\S]*?)\]\[([\s\S]*?)\]\}\]\]$/;
             const main_regex = new RegExp(regex, "gmi");
 
-            text = text.replace(main_regex, function(e){
-                const main_regex = new RegExp(regex, "gmi")
-                let rgx = main_regex.exec(e);
-                let cols = {
-                    "2": "6",
-                    "3": "4",
-                    "4": "3",
-                    "1": "12"
-                };
-                let open = (rgx[1] == "-open")? "true" : false;
+            text = text.replace(main_regex, (
+                match,
+                status,
+                textSummary,
+                textContent) => {
 
-                let details = document.createElement("details");
-                details.name = "foo"
+                const open = (status == "-open")? true : false;
+
+                // Details
+                const details = document.createElement("details");
+                details.classList.add("js-details", "ar-details");
                 if(open){
-                details.setAttribute("open", "true");
+                    details.setAttribute("open", true);
                 }
-                // Summary o título
-                let summary = document.createElement("summary");
+
+                // Summary
+                const summary = document.createElement("summary");
+                summary.classList.add("ar-details__title");
                 summary.innerHTML = cleanner(
-                    converter.makeHtml(rgx[2]),
+                    converter.makeHtml(textSummary),
                     [
                         "h1",
                         "h2",
@@ -119,14 +119,16 @@ if(showdown){ // IF showdown
                         "i"
                     ]
                 );
-                // Contenido
-                let div = document.createElement("div");
-                div.innerHTML = converter.makeHtml(rgx[3]);
-                details.appendChild(summary);
-                details.appendChild(div);
 
-                let html = details.outerHTML;
-                return html;
+                // Contenido
+                let content = document.createElement("div");
+                content.classList.add("ar-details__content");
+                content.innerHTML = converter.makeHtml(textContent);
+
+                details.appendChild(summary);
+                details.appendChild(content);
+
+                return details.outerHTML;
             });
 
             return text;
