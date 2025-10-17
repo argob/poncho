@@ -111,11 +111,7 @@ if(showdown){ // IF showdown
                     }
 
                     if(css){
-                        const classList = css.replace(/[\s\.]+/g, " ")
-                            .trim()
-                            .split(" ")
-                            .filter(Boolean);
-                        a.classList.add(...classList);
+                        a.classList.add(...classlist(css));
                     }
                     return a.outerHTML;
                 });

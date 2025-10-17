@@ -96,13 +96,9 @@ if(showdown){ // IF showdown
                     src,
                     css
                 ) => {
-                    const classList = css.replace(/[\s\.]+/g, ' ')
-                        .trim()
-                        .split(' ')
-                        .filter(Boolean);
                     const img = new Image();
                     img.src = src;
-                    img.classList.add(...classList);
+                    img.classList.add(...classlist(css));
                     img.alt = alt;
 
                     return img.outerHTML;

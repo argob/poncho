@@ -66,28 +66,19 @@ function cleanner(text, exclude) {
 
 /**
  * Retorna el listado de estilos css.
- * @param  {object}     arr objeto regExp
- * @param  {integer}    index Índice para el array donde se encuentra la
- *                      cadena con los estilos css.
+ * 
+ * @param  {object}     arr cadena de texto con estilos concatenados por punto
  * @return {string}     Clases concatenadas o espacio
  */
-var classlist = function(arr, index) {
-    // Verifica que el índice esté dentro de los límites del array
-    if (!Array.isArray(arr) || typeof index !== "number" || 
-        index < 0 || index >= arr.length) {
-        console.error("Índice inválido o la entrada no es un array.");
+var classlist = function(arr) {
+    if(typeof arr != "string" || arr.trim() == ""){
         return "";
     }
 
-    // Verifica que el elemento en el índice sea una cadena
-    const element = arr[index];
-    if (typeof element !== "string") {
-        console.error("El elemento no es una cadena de texto.");
-        return "";
-    }
-
-    const classList = arr[index].split(".").filter(Boolean);
-    return classList.length > 0 ? classList.join(" ") : "";
+    return arr.replace(/[\s\.]+/g, " ")
+        .trim()
+        .split(" ")
+        .filter(Boolean);
 }
 
 
