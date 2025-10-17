@@ -78,9 +78,10 @@ if(showdown){ // IF showdown
     /**
      * Imágenes con estilo bootstrap
      *
-     * @regexp https://regex101.com/r/Jcat8s/9/
-     * @todo   Definir si los estilos deben estar restringidos. Y si asi
-     *         fuera ¿cuales serian esos estilos?
+     * @regexp https://regex101.com/r/8D0cF8/1
+     * @see https://www.argentina.gob.ar/contenidosdigitales/markdown/imagenes
+     * @todo Definir si los estilos deben estar restringidos. Y si asi 
+     * fuera ¿cuales serian esos estilos?
      */
     showdown.extension("images", function() {
         "use strict";
@@ -88,16 +89,21 @@ if(showdown){ // IF showdown
             type: "lang",
             filter: function(text, converter, options) {
                 const regex = /\!\[([^\[\]]{0,255})\]\(([-\_\.\~\!\*\'\(\)\;\:\@\&\=\+\$\,\/\?\%\#\[\]\!\¿\?\¡0-9a-zA-Záéíóúñ\s]{1,255})\)\{([\w\.-]+)\}/;
-                
                 const mainRegex = new RegExp(regex, "gm");
-
-                text = text.replace(mainRegex, function(e){
-                    const regexData  = mainRegex.exec(e);
-
+                text = text.replace(mainRegex, (
+                    match,
+                    alt,
+                    src,
+                    css
+                ) => {
+                    const classList = css.replace(/[\s\.]+/g, ' ')
+                        .trim()
+                        .split(' ')
+                        .filter(Boolean);
                     const img = new Image();
-                    img.src = regexData[2];
-                    img.className = classlist(regexData, 3);
-                    img.alt = regexData[1];
+                    img.src = src;
+                    img.classList.add(...classList);
+                    img.alt = alt;
 
                     return img.outerHTML;
                 });
