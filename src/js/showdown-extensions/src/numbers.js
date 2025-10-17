@@ -79,22 +79,25 @@ if(showdown){ // IF showdown
      * Números
      *
      * @see https://www.argentina.gob.ar/contenidosdigitales/markdown/numeros
-     * @regexp https://regex101.com/r/NCaqL6/1
+     * @regexp https://regex101.com/r/E01SPC/1
      */
     showdown.extension("numbers", function() {
         "use strict";
         return [{
             type: "lang",
             filter: function(text, converter, options) {
-                const regex = /((?:\[\[)?col([1-4])(?:-\{|<<))[\s\S]\[\[numeros-\{([^\{\}-]*?)-([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}\]\][\s\S](>>|\}-\]\])/;
-                const main_regex = new RegExp(regex, "gmi");
+                const regex = /(?:(?:\[\[)?col([1-4])(?:-\{|<<))[\s\S]\[\[numeros-\{([^\{\}-]*?)-([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}\]\][\s\S](>>|\}-\]\])/;
+                const mainRegex = new RegExp(regex, "gmi");
 
-                const processText = text.replace(main_regex, (e) => {
-                    const main_regex = new RegExp(regex, "gmi");
-                    const rgx = main_regex.exec(e);
-                    const [
-                        ,, col, number, smallText,
-                        lead, textConent, color] = rgx;
+                const processText = text.replace(mainRegex, (
+                    match,
+                    col,
+                    number,
+                    smallText,
+                    lead,
+                    textConent,
+                    color
+                ) => {
                     const cols = {
                         "1": "12",
                         "2": "6",
