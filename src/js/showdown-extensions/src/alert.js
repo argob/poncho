@@ -84,84 +84,101 @@ if(showdown){ // IF showdown
      */
     showdown.extension("alerts", function() {
         "use strict";
-
-        function trim(value){
-            const regex = /(^\s*|\s*$)/gm;
-            return value.replace(regex, "");
-        }
-
-        function getHeader(value){
+        /**
+         * Determines the header level (h2-h6) from a title string.
+         * @param {string} value - The title string to check.
+         * @returns {number|boolean} The header level (2-6) or false if no header is found.
+         */
+        const getHeader = (value) => {
             const regexHeader = /(?<header>^#{2,6})/;
             const headers = regexHeader.exec(value);
-            const headerVal = (headers ? headers.groups.header.length : false);
-            return headerVal;
+            return headers ? headers.groups.header.length : false;
         }
 
-        function setTitleTag(headerVal){
-            return (headerVal ? `h${headerVal}` : 'p');
-        }
+        /**
+         * Maps a header level number to the corresponding HTML tag string.
+         * @param {number|boolean} headerVal - The header level (2-6) or false.
+         * @returns {string} The HTML tag ('h2' to 'h6' or 'p' if no header).
+         */
+        const setTitleTag = (headerVal) => (headerVal ? `h${headerVal}` : 'p');
+
+        // --- Showdown Extension Definition ---
 
         return [{
             type: "lang",
             filter: function(text, converter, options) {
-
+                // Regex match [[alerta-{title}-{content}-{icon}-{color}]]
                 const regex = /\[\[alerta-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([\w-\s]*?)\}-\{(warning|danger|info|success)\}\]\]/;
+                const mainRegex = new RegExp(regex, "gm");
 
-                var mainRegex = new RegExp(regex, "gm");
+                const convertedMarkdown = text.replace(mainRegex, (
+                    match, // The full match string (unused)
+                    title, // Group 1: The title content
+                    content, // Group 2: The alert content
+                    icon, // Group 3: The icon class
+                    color) => { // Group 4: The alert color
 
-                const convertedMarkdown = text.replace(mainRegex, function(e){
-                    // Crear expresión regular principal
-                    const mainRegex = new RegExp(regex, "gm");
-                    const matchData = mainRegex.exec(e);
-                
-                    if (matchData) {
-                        // Extraer datos de los grupos de la regex
-                        let [, title, content, icon, color] = matchData;
-                
-                        // Limpieza y formato del ícono
-                        icon = icon.trim().replace(/fa\s/, ""); // Remover prefijo "fa"
-                        let htmlIcon = "";
-                
-                        if (icon) {
-                            const hasFaPrefix = /fa\-/g.test(icon);
-                            const formattedIcon = hasFaPrefix
-                                ? `fa ${icon} fa-fw fa-3x`
-                                : `${icon} fa-3x`;
-                
-                            htmlIcon = `<div class="media-left">
-                                <i class="${formattedIcon}"></i>
-                                </div>`;
-                        }
-                
-                        const headerValue = getHeader(title); // Determinar encabezado
-                        // Limpieza y formato del título
-                        title = title.trim().replace(/^(#*)/, ""); // Remover caracteres numeral
-                        const titleTag = setTitleTag(headerValue);
-                
-                        const formattedTitle = title
-                            ? `<${titleTag} class="h5">
-                                ${converter.makeHtml(title).replace(/<\/?p>/g, "")}
-                            </${titleTag}>`
-                            : "";
-                
-                        // Formatear el contenido
-                        const formattedContent = converter.makeHtml(content.trim());
-                
-                        // Generar el HTML final
-                        const alertHtml = `<div class="alert alert-${color}">
-                                <div class="media">
-                                    ${htmlIcon}
-                                    <div class="media-body">
-                                        ${formattedTitle}
-                                        ${formattedContent}
-                                    </div>
-                                </div>
-                            </div>`;
-                
-                        return alertHtml;
+                    // --- 1. Icon Processing ---
+
+                    icon = icon.trim().replace(/fa\s/, "");
+                    let mediaLeft = null;
+
+                    if (icon) {
+                        const hasFaPrefix = /fa\-/g.test(icon);
+
+                        const formattedIconClasses = hasFaPrefix
+                            ? ["fa", icon, "fa-fw", "fa-3x"]
+                            : [icon, "fa-3x"];
+
+                        mediaLeft = document.createElement("div");
+                        mediaLeft.className = "media-left";
+
+                        const htmlIcon = document.createElement("i");
+                        htmlIcon.classList.add(...formattedIconClasses);
+
+                        mediaLeft.appendChild(htmlIcon);
                     }
 
-                    return ""; // Retornar cadena vacía si no hay coincidencias
+                    // --- 2. Title ---
+                    const headerValue = getHeader(title);
+                    title = title.trim().replace(/^(#*)/, "");
+                    const titleTag = setTitleTag(headerValue);
+
+                    // --- 3. HTML ---
+                    const containerElement = document.createElement("div");
+                    containerElement.classList.add("alert", `alert-${color}`);
+
+                    const mediaElement = document.createElement("div");
+                    mediaElement.classList.add("media");
+                    
+                    const mediaBodyElement = document.createElement("div");
+                    mediaBodyElement.classList.add("media-body");
+
+                    // Title element (if title exists)
+                    if(title){
+                        const titleElement = document.createElement(titleTag);
+                        titleElement.className = "h5";
+                        titleElement.innerHTML = converter.makeHtml(title).replace(/<\/?p>/g, "");
+                        mediaBodyElement.appendChild(titleElement);
+                    }
+
+                    // Content element
+                    const formattedContent = converter.makeHtml(content.trim());
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = formattedContent;
+                    
+                    while (tempDiv.firstChild) {
+                        mediaBodyElement.appendChild(tempDiv.firstChild);
+                    }
+
+                    if(mediaLeft){
+                        mediaElement.appendChild(mediaLeft);
+                    }
+                    mediaElement.appendChild(mediaBodyElement);
+
+                    containerElement.appendChild(mediaElement);
+
+                    return containerElement.outerHTML;
                 });
 
                 return convertedMarkdown;
