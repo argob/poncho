@@ -86,12 +86,12 @@ if(showdown){ // IF showdown
             {
                 type: "lang",
                 filter: function(text, converter, options) {
-                var main_regex = new RegExp(
-                    /(\[(.*?)\]\(((blank):#)([-\_\.\~\!\*\'\(\)\;\:\@\&\=\+\$\,\/\?\%\#\[\]\!\¿\?\¡0-9a-zA-Záéíóúñ]*)\))/,
-                    "gmi"
-                );
-                text = text.replace(main_regex, target);
-                return text;
+                    const mainRegex = new RegExp(
+                        /(\[(.*?)\]\(((blank):#)([-\_\.\~\!\*\'\(\)\;\:\@\&\=\+\$\,\/\?\%\#\[\]\!\¿\?\¡0-9a-zA-Záéíóúñ]*)\))/,
+                        "gmi"
+                    );
+                    text = text.replace(mainRegex, target);
+                    return text;
                 }
             }
         ];
