@@ -4955,7 +4955,10 @@ es: {
         cluster_large: "Grupo grande de {{count}} ubicaciones",
         cluster_medium: "Grupo mediano de {{count}} ubicaciones",
         cluster_small: "Grupo chico de {{count}} ubicaciones",
-        filter_initial: "Hay {{total_results}} puntos en el mapa.",
+        filter_initial: "Hay {{total_results}} puntos en el mapa."
+                        + ` <a href="#" class="{{reset_search}}"`
+                        + `aria-label="Restablecer valores del mapa">`
+                        + "Restablecer mapa</a>",
         filter_no_results: "No se encontraron entradas.",
         filter_no_results_by_term: "No encontramos resultados para tu búsqueda.",
         filter_one_result: "{{total_results}} resultado coincide con tu búsqueda.",
@@ -7792,7 +7795,7 @@ class PonchoMap {
         try {
             this.map.fitBounds(this.geojson.getBounds().pad(padding));
         } catch (error) {
-            console.error("fitBounds", error);
+            // console.error("fitBounds", error);
         }
     };
 
@@ -9447,22 +9450,13 @@ class PonchoMapFilter extends PonchoMap {
     _filterData = () => {
         // 1. Obtengo los filtros del formulario acivos.
         const availableFilters = this.formFilters();
-        const hasAvailableFilters = availableFilters.length > 0;
+        const hasInputSearchValue = !this.isEmptyString(this.inputSearchValue);
+        const refactorSearchTerm = (hasInputSearchValue
+            ? replaceSpecialChars(this.inputSearchValue).toUpperCase()
+            : "");
 
-        // Se está usando PonchoMapFilter pero no hay asignado filtros. 
-        // Retorno las entradas en crudo.
-        if(Array.isArray(this.filters) && this.filters.length < 1){
-            this.filtered_entries = this.entries;
-            return this.entries;
-        }
-
-        // Si no hay filtros activos retorno las entradas sin modificarlas.
-        if(!hasAvailableFilters){
-            this.filtered_entries = [];
-            return [];
-        }
-
-        // 2. Filtro las entradas en en función de los filtros activos. 
+        // 2. Filtro las entradas en en función de los filtros activos y el 
+        // criterio de búsqueda, si existiera. 
         let activeFiltersEntries = this.entries.filter(entry => {
                 // Valido si la entrada se encuentra dentro de los criterios
                 // del grupo o filtros
@@ -9470,20 +9464,19 @@ class PonchoMapFilter extends PonchoMap {
                     entry.properties,
                     availableFilters
                 );
-                
-                // Si en la búsqueda, además, existe un término de búsqueda
-                // en el input search, filtro también por eso.
+
+                // Si, en el input search se agregó un término, 
+                // filtro también por eso.
                 let filterSearchEntry = true;
                 if(this.inputSearchValue){
-                    const searchTerm = replaceSpecialChars(
-                        this.inputSearchValue).toUpperCase();
                     const searchFields = new Set(
                         [...[this.title], ...this.search_fields]
                     );
+
                     // Busco en la entrada si matchea con el término en el
                     // search input
                     let searchResult = this.searchEntry(
-                        searchTerm,
+                        refactorSearchTerm,
                         entry.properties,
                         searchFields
                     );
@@ -9543,34 +9536,50 @@ class PonchoMapFilter extends PonchoMap {
      * @returns {undefined}
      */
     _resetSearch = () => {  
-        var _this = this;
 
-        document.addEventListener("click", function(event){
+        document.addEventListener("click", (event) => {
             const target = event.target;
     
-            if(target.matches(`.js-poncho-map-reset${_this.scope_sufix}`)){
+            if(target.matches(`.js-poncho-map-reset${this.scope_sufix}`)){
                 event.preventDefault();
                 event.stopPropagation();
-                
-                _this.removeHash();
+
+                this.removeHash();
 
                 try {
-                    _this._resetFormFilters();
+                    const searchHiddenInputSelector = `#js-search-input${this.scope_sufix}`;
+                    const searchHiddenInput = document.querySelector(searchHiddenInputSelector);
+                    if(!searchHiddenInput){
+                        return;
+                    }
+
+                    const searchScope = searchHiddenInput.dataset.searchScope;
+                    const searchSelector = `#id-poncho-map-search--${searchScope}`;
+                    const searchInput = document.querySelector(searchSelector);
+                    if(searchInput){
+                        searchInput.value = "";
+                    }
+                } catch (error) {
+                    console.error(error);
+                }
+
+                try {
+                    this._resetFormFilters();
                 } catch (error) {
                     console.error(error);
                 }
                 try {
-                    _this._filteredData(_this.entries);
+                    this._filteredData(this.entries);
                 } catch (error) {
                     console.error(error);
                 }
                 try {
-                    _this._clearSearchInput();
+                    this._clearSearchInput();
                 } catch (error) {
                     console.error(error);
                 }
                 try {
-                    _this.resetView();
+                    this.resetView();
                 } catch (error) {
                     console.error(error);
                 }
@@ -9652,16 +9661,12 @@ class PonchoMapFilter extends PonchoMap {
         this.tileLayer.addTo(this.map);
 
         this._filteredData();
-        
-
         this.filterChange((event) => {
             event.preventDefault();
             this._filteredData();
         });
         this.checkUncheckFilters();
 
-
-        this._clickToggleFilter();
         this._totalsInfo();
         if(this.scroll && this.hasHash()){
             this.scrollCenter();
@@ -9682,6 +9687,7 @@ class PonchoMapFilter extends PonchoMap {
         this.layerViewConf.setVisuals();
         this.setMapAlignment(this.map_align);
         this._resetSearch();
+        this._clickToggleFilter();
     };
 };
 // end of class
@@ -9747,6 +9753,7 @@ class PonchoMapSearch {
         this.scope_sufix = `--${this.scope}`;
         this.sort = opts.sort;
         this.sort_reverse = opts.sort_reverse;
+        
         this.search_scope_selector = (
             this.scope ? `[data-scope="${this.scope}"]`: "");
         this.instance.search_fields = opts.search_fields;
@@ -9818,6 +9825,7 @@ class PonchoMapSearch {
         
                 const eleSelector = `#js-search-input${this.instance.scope_sufix}`;
                 const element = document.querySelector(eleSelector);
+
                 if(element){
                     element.value = input.value;
                     const term = input.value;
@@ -9835,6 +9843,7 @@ class PonchoMapSearch {
      * @returns {undefined}
      */
     searchTerm = (term) => {
+
         if(this.instance.isEmptyString(term)){
             console.error(
                 "searchTerm", 
@@ -9866,6 +9875,7 @@ class PonchoMapSearch {
 
             const filter_search_input = document.querySelector(
                 `#js-search-input${this.instance.scope_sufix}`);
+            filter_search_input.dataset.searchScope = this.scope;  
             
             ele.onkeyup = (() => {
                 filter_search_input.value = ele.value;
@@ -9907,6 +9917,7 @@ class PonchoMapSearch {
         // Renderizo el mapa
         // @see PonchoMap
         this.instance.markersMap(entries); 
+
         if(this.instance.slider){
             this.instance._renderSlider();
             this.instance._clickeableFeatures();
@@ -9934,7 +9945,7 @@ class PonchoMapSearch {
 
         this.instance._helpText(entries);
         this.instance._resetSearch();
-        this.instance._clickToggleFilter();
+        // this.instance._clickToggleFilter();
         this.instance._setFetureAttributes();
         this.instance._accesibleMenu();
     };
@@ -9967,7 +9978,7 @@ class PonchoMapSearch {
                 };
                 // Asocio el input con el datalist.
                 const search_input = document.querySelector(
-                  `${this.search_scope_selector} .js-poncho-map-search__input`
+                    `${this.search_scope_selector} .js-poncho-map-search__input`
                 );
                 const datalist_id = `id-datalist${this.scope_sufix}`;
                 search_input.setAttribute("list", datalist_id);
