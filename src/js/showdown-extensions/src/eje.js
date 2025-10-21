@@ -98,46 +98,50 @@ if(showdown){ // IF showdown
                     icon, // Ícono
                     color // Color del ícono
                 ) => {
-                    const cols = {
-                        "2": "6",
-                        "3": "4",
-                        "4": "3",
-                        "1": "12"
-                    };
-                    const setCols = cols[col];
+                    try {
+                        const cols = {
+                            "2": "6",
+                            "3": "4",
+                            "4": "3",
+                            "1": "12"
+                        };
+                        const setCols = cols[col];
 
-                    const tplContainer = document.createElement("div");
-                    tplContainer.classList.add("dato-eje");
+                        const tplContainer = document.createElement("div");
+                        tplContainer.classList.add("dato-eje");
 
-                    const tplCol = document.createElement("div");
-                    tplCol.classList.add(
-                        "col-xs-12", `col-sm-${setCols}`, `col-md-${setCols}`
-                    );
+                        const tplCol = document.createElement("div");
+                        tplCol.classList.add(
+                            "col-xs-12", `col-sm-${setCols}`, `col-md-${setCols}`
+                        );
 
-                    const tplIconItem = document.createElement("div");
-                    tplIconItem.classList.add("icon-item");
+                        const tplIconItem = document.createElement("div");
+                        tplIconItem.classList.add("icon-item");
 
-                    const tplIcon = document.createElement("i");
-                    tplIcon.classList.add("fa", icon.trim(), color.trim());
+                        const tplIcon = document.createElement("i");
+                        tplIcon.classList.add("fa", icon.trim(), color.trim());
 
-                    const tplHeading = document.createElement("p");
-                    tplHeading.classList.add("h3", "m-y-0");
-                    tplHeading.textContent = heading;
+                        const tplHeading = document.createElement("p");
+                        tplHeading.classList.add("h3", "m-y-0");
+                        tplHeading.textContent = heading;
 
-                    const tplText = document.createElement("p");
-                    tplText.textContent = textContent;
+                        const tplText = document.createElement("p");
+                        tplText.textContent = textContent;
 
-                    tplIconItem.appendChild(tplIcon);
-                    if( heading){
-                        tplIconItem.appendChild(tplHeading);
+                        tplIconItem.appendChild(tplIcon);
+                        if( heading){
+                            tplIconItem.appendChild(tplHeading);
+                        }
+                        if(textContent){
+                            tplIconItem.appendChild(tplText);
+                        }
+                        
+                        tplContainer.appendChild(tplIconItem);
+                        tplCol.appendChild(tplContainer);
+                        return tplCol.outerHTML;
+                    } catch (error) {
+                        return match;
                     }
-                    if(textContent){
-                        tplIconItem.appendChild(tplText);
-                    }
-                    
-                    tplContainer.appendChild(tplIconItem);
-                    tplCol.appendChild(tplContainer);
-                    return tplCol.outerHTML;
                 });
 
                 return processText;

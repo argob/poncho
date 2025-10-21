@@ -98,56 +98,60 @@ if(showdown){ // IF showdown
                     textConent,
                     color
                 ) => {
-                    const cols = {
-                        "1": "12",
-                        "2": "6",
-                        "3": "4",
-                        "4": "3",
-                    };
-                    const setCols = cols[col];
+                    try {
+                        const cols = {
+                            "1": "12",
+                            "2": "6",
+                            "3": "4",
+                            "4": "3",
+                        };
+                        const setCols = cols[col];
 
-                    const tplContainer = document.createElement("div");
-                    tplContainer.classList.add("dato-nro");
+                        const tplContainer = document.createElement("div");
+                        tplContainer.classList.add("dato-nro");
 
-                    const tplCol = document.createElement("div");
-                    tplCol.classList.add(
-                        "col-xs-12", `col-sm-${setCols}`, `col-md-${setCols}`
-                    );
+                        const tplCol = document.createElement("div");
+                        tplCol.classList.add(
+                            "col-xs-12", `col-sm-${setCols}`, `col-md-${setCols}`
+                        );
 
-                    const tplSmallText = document.createElement("small");
-                    tplSmallText.textContent = smallText.trim();
+                        const tplSmallText = document.createElement("small");
+                        tplSmallText.textContent = smallText.trim();
 
-                    const space = document.createElement("span");
-                    space.classList.add("sixth-space");
-                    space.innerHTML = "&nbsp;";
+                        const space = document.createElement("span");
+                        space.classList.add("sixth-space");
+                        space.innerHTML = "&nbsp;";
 
-                    const tplNumber = document.createElement("p");
-                    tplNumber.classList.add("m-y-0", "h2", color);
-                    tplNumber.textContent = number;
+                        const tplNumber = document.createElement("p");
+                        tplNumber.classList.add("m-y-0", "h2", color);
+                        tplNumber.textContent = number;
 
-                    const tplLead = document.createElement("p");
-                    tplLead.classList.add("lead");
-                    tplLead.textContent = lead;
+                        const tplLead = document.createElement("p");
+                        tplLead.classList.add("lead");
+                        tplLead.textContent = lead;
 
-                    const tplText = document.createElement("p");
-                    tplText.classList.add("text-muted");
-                    tplText.textContent = textConent;
+                        const tplText = document.createElement("p");
+                        tplText.classList.add("text-muted");
+                        tplText.textContent = textConent;
 
-                    // Si el símbolo o texto existe lo agrego.
-                    if(smallText){
-                        tplNumber.appendChild(space);
-                        tplNumber.appendChild(tplSmallText);
+                        // Si el símbolo o texto existe lo agrego.
+                        if(smallText){
+                            tplNumber.appendChild(space);
+                            tplNumber.appendChild(tplSmallText);
+                        }
+                        tplContainer.appendChild(tplNumber);
+                        if(lead){
+                            tplContainer.appendChild(tplLead);
+                        }
+                        if(textConent){
+                            tplContainer.appendChild(tplText);
+                        }
+
+                        tplCol.appendChild(tplContainer);
+                        return tplCol.outerHTML;
+                    } catch (error) {
+                        return match;
                     }
-                    tplContainer.appendChild(tplNumber);
-                    if(lead){
-                        tplContainer.appendChild(tplLead);
-                    }
-                    if(textConent){
-                        tplContainer.appendChild(tplText);
-                    }
-
-                    tplCol.appendChild(tplContainer);
-                    return tplCol.outerHTML;
                 });
 
                 return processText;
