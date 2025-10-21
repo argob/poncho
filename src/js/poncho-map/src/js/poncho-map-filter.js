@@ -841,22 +841,13 @@ class PonchoMapFilter extends PonchoMap {
     _filterData = () => {
         // 1. Obtengo los filtros del formulario acivos.
         const availableFilters = this.formFilters();
-        const hasAvailableFilters = availableFilters.length > 0;
+        const hasInputSearchValue = !this.isEmptyString(this.inputSearchValue);
+        const refactorSearchTerm = (hasInputSearchValue
+            ? replaceSpecialChars(this.inputSearchValue).toUpperCase()
+            : "");
 
-        // Se está usando PonchoMapFilter pero no hay asignado filtros. 
-        // Retorno las entradas en crudo.
-        if(Array.isArray(this.filters) && this.filters.length < 1){
-            this.filtered_entries = this.entries;
-            return this.entries;
-        }
-
-        // Si no hay filtros activos retorno las entradas sin modificarlas.
-        if(!hasAvailableFilters){
-            this.filtered_entries = [];
-            return [];
-        }
-
-        // 2. Filtro las entradas en en función de los filtros activos. 
+        // 2. Filtro las entradas en en función de los filtros activos y el 
+        // criterio de búsqueda, si existiera. 
         let activeFiltersEntries = this.entries.filter(entry => {
                 // Valido si la entrada se encuentra dentro de los criterios
                 // del grupo o filtros
@@ -864,20 +855,19 @@ class PonchoMapFilter extends PonchoMap {
                     entry.properties,
                     availableFilters
                 );
-                
-                // Si en la búsqueda, además, existe un término de búsqueda
-                // en el input search, filtro también por eso.
+
+                // Si, en el input search se agregó un término, 
+                // filtro también por eso.
                 let filterSearchEntry = true;
                 if(this.inputSearchValue){
-                    const searchTerm = replaceSpecialChars(
-                        this.inputSearchValue).toUpperCase();
                     const searchFields = new Set(
                         [...[this.title], ...this.search_fields]
                     );
+
                     // Busco en la entrada si matchea con el término en el
                     // search input
                     let searchResult = this.searchEntry(
-                        searchTerm,
+                        refactorSearchTerm,
                         entry.properties,
                         searchFields
                     );
@@ -945,7 +935,7 @@ class PonchoMapFilter extends PonchoMap {
             if(target.matches(`.js-poncho-map-reset${_this.scope_sufix}`)){
                 event.preventDefault();
                 event.stopPropagation();
-                
+
                 _this.removeHash();
 
                 try {
@@ -1046,16 +1036,12 @@ class PonchoMapFilter extends PonchoMap {
         this.tileLayer.addTo(this.map);
 
         this._filteredData();
-        
-
         this.filterChange((event) => {
             event.preventDefault();
             this._filteredData();
         });
         this.checkUncheckFilters();
 
-
-        this._clickToggleFilter();
         this._totalsInfo();
         if(this.scroll && this.hasHash()){
             this.scrollCenter();
@@ -1076,6 +1062,7 @@ class PonchoMapFilter extends PonchoMap {
         this.layerViewConf.setVisuals();
         this.setMapAlignment(this.map_align);
         this._resetSearch();
+        this._clickToggleFilter();
     };
 };
 // end of class

@@ -59,6 +59,7 @@ class PonchoMapSearch {
         this.scope_sufix = `--${this.scope}`;
         this.sort = opts.sort;
         this.sort_reverse = opts.sort_reverse;
+        
         this.search_scope_selector = (
             this.scope ? `[data-scope="${this.scope}"]`: "");
         this.instance.search_fields = opts.search_fields;
@@ -130,6 +131,7 @@ class PonchoMapSearch {
         
                 const eleSelector = `#js-search-input${this.instance.scope_sufix}`;
                 const element = document.querySelector(eleSelector);
+
                 if(element){
                     element.value = input.value;
                     const term = input.value;
@@ -147,6 +149,7 @@ class PonchoMapSearch {
      * @returns {undefined}
      */
     searchTerm = (term) => {
+
         if(this.instance.isEmptyString(term)){
             console.error(
                 "searchTerm", 
@@ -219,6 +222,7 @@ class PonchoMapSearch {
         // Renderizo el mapa
         // @see PonchoMap
         this.instance.markersMap(entries); 
+
         if(this.instance.slider){
             this.instance._renderSlider();
             this.instance._clickeableFeatures();
@@ -246,7 +250,7 @@ class PonchoMapSearch {
 
         this.instance._helpText(entries);
         this.instance._resetSearch();
-        this.instance._clickToggleFilter();
+        // this.instance._clickToggleFilter();
         this.instance._setFetureAttributes();
         this.instance._accesibleMenu();
     };
@@ -279,7 +283,7 @@ class PonchoMapSearch {
                 };
                 // Asocio el input con el datalist.
                 const search_input = document.querySelector(
-                  `${this.search_scope_selector} .js-poncho-map-search__input`
+                    `${this.search_scope_selector} .js-poncho-map-search__input`
                 );
                 const datalist_id = `id-datalist${this.scope_sufix}`;
                 search_input.setAttribute("list", datalist_id);
