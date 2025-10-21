@@ -181,6 +181,7 @@ class PonchoMapSearch {
 
             const filter_search_input = document.querySelector(
                 `#js-search-input${this.instance.scope_sufix}`);
+            filter_search_input.dataset.searchScope = this.scope;  
             
             ele.onkeyup = (() => {
                 filter_search_input.value = ele.value;

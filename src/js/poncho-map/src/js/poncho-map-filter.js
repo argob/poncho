@@ -927,34 +927,50 @@ class PonchoMapFilter extends PonchoMap {
      * @returns {undefined}
      */
     _resetSearch = () => {  
-        var _this = this;
 
-        document.addEventListener("click", function(event){
+        document.addEventListener("click", (event) => {
             const target = event.target;
     
-            if(target.matches(`.js-poncho-map-reset${_this.scope_sufix}`)){
+            if(target.matches(`.js-poncho-map-reset${this.scope_sufix}`)){
                 event.preventDefault();
                 event.stopPropagation();
 
-                _this.removeHash();
+                this.removeHash();
 
                 try {
-                    _this._resetFormFilters();
+                    const searchHiddenInputSelector = `#js-search-input${this.scope_sufix}`;
+                    const searchHiddenInput = document.querySelector(searchHiddenInputSelector);
+                    if(!searchHiddenInput){
+                        return;
+                    }
+
+                    const searchScope = searchHiddenInput.dataset.searchScope;
+                    const searchSelector = `#id-poncho-map-search--${searchScope}`;
+                    const searchInput = document.querySelector(searchSelector);
+                    if(searchInput){
+                        searchInput.value = "";
+                    }
+                } catch (error) {
+                    console.error(error);
+                }
+
+                try {
+                    this._resetFormFilters();
                 } catch (error) {
                     console.error(error);
                 }
                 try {
-                    _this._filteredData(_this.entries);
+                    this._filteredData(this.entries);
                 } catch (error) {
                     console.error(error);
                 }
                 try {
-                    _this._clearSearchInput();
+                    this._clearSearchInput();
                 } catch (error) {
                     console.error(error);
                 }
                 try {
-                    _this.resetView();
+                    this.resetView();
                 } catch (error) {
                     console.error(error);
                 }
