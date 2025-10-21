@@ -81,7 +81,7 @@
 [[ejes-{Lorem ipsum}-{Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet odio justo. Aliquam volutpat.}-{icono-arg-juegos}-{text-arg-cielo}]]
 }-]]
 [[col3-{
-[[ejes-{Lorem ipsum}-{Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet odio justo. Aliquam volutpat.}-{fa fa-car}-{text-arg-rojo}]]
+[[ejes-{Lorem ipsum}-{Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet odio justo. Aliquam volutpat.}-{fa-car}-{text-arg-rojo}]]
 }-]]
 
 -----
