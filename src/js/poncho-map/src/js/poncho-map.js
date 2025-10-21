@@ -42,7 +42,10 @@ es: {
         cluster_large: "Grupo grande de {{count}} ubicaciones",
         cluster_medium: "Grupo mediano de {{count}} ubicaciones",
         cluster_small: "Grupo chico de {{count}} ubicaciones",
-        filter_initial: "Hay {{total_results}} puntos en el mapa.",
+        filter_initial: "Hay {{total_results}} puntos en el mapa."
+                        + ` <a href="#" class="{{reset_search}}"`
+                        + `aria-label="Restablecer valores del mapa">`
+                        + "Restablecer mapa</a>",
         filter_no_results: "No se encontraron entradas.",
         filter_no_results_by_term: "No encontramos resultados para tu búsqueda.",
         filter_one_result: "{{total_results}} resultado coincide con tu búsqueda.",
