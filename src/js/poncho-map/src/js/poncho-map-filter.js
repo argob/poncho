@@ -935,7 +935,7 @@ class PonchoMapFilter extends PonchoMap {
             if(target.matches(`.js-poncho-map-reset${_this.scope_sufix}`)){
                 event.preventDefault();
                 event.stopPropagation();
-                
+
                 _this.removeHash();
 
                 try {
@@ -1036,16 +1036,12 @@ class PonchoMapFilter extends PonchoMap {
         this.tileLayer.addTo(this.map);
 
         this._filteredData();
-        
-
         this.filterChange((event) => {
             event.preventDefault();
             this._filteredData();
         });
         this.checkUncheckFilters();
 
-
-        this._clickToggleFilter();
         this._totalsInfo();
         if(this.scroll && this.hasHash()){
             this.scrollCenter();
@@ -1066,6 +1062,7 @@ class PonchoMapFilter extends PonchoMap {
         this.layerViewConf.setVisuals();
         this.setMapAlignment(this.map_align);
         this._resetSearch();
+        this._clickToggleFilter();
     };
 };
 // end of class

@@ -2879,7 +2879,7 @@ class PonchoMap {
         try {
             this.map.fitBounds(this.geojson.getBounds().pad(padding));
         } catch (error) {
-            console.error("fitBounds", error);
+            // console.error("fitBounds", error);
         }
     };
 
