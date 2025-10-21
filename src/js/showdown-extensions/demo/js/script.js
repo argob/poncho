@@ -28,6 +28,10 @@ button.forEach(function (e) {
         const show_parsed_text = document.querySelector("#show_parsed_id");
         show_parsed_text.innerHTML = html;
 
+
+        var code = document.querySelector("#show_code");
+        code.textContent = format(html, " ".repeat(4), 78);
+        // code.textContent = html;
         try {
         } catch (error) {
             console.error(error);

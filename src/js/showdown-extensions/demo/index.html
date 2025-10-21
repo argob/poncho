@@ -13,6 +13,7 @@
     <link rel='stylesheet'
         href='https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/poncho.min.css'>
     <link rel="stylesheet" href="../demo/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/html-format@1.1.7/index.min.js"></script>
 </head>
 
 <body>
@@ -20,20 +21,41 @@
     <div class="container">
         <div class="row pt-2">
             <div class='col-md-12'>
-                <h1 class="h3 text-arandano">Parser markdown</h1>
+                <h1 class="h3">
+                    <span class="text-arg-cielo font-sans-serif">gob.ar</span> 
+                    <span class="text-arg-default fw-extra-light font-sans-serif">|</span> 
+                    <span class="text-arg-azul">Parser markdown JavaScript</span>
+                </h1>
                 <div>
                     <textarea name="texto_libre" class="form-control mb-2" id="texto_id" cols="78" rows="8"></textarea>
                 </div>
                 <button id="parse" class="btn btn-info m-t-1 m-b-2">
-                    Parse Markdown
+                    Convertir
                 </button>
             </div>
             <hr>
         </div>
-        <div class="container">
-            <div id="show_parsed_id" class="row pt-4"></div>
-        </div>
     </div>
+
+
+
+        <div class="container">
+            <div class="row">
+                <div class="details-container details-container__round m-b-4" style="background:var(--arg-negro-600); color: white">
+                    <details class="js-details ar-details caret-light">
+                        <summary class="ar-details__title">Código HTML</summary>
+                        <div class="ar-details__content">
+                            <pre id="show_code"></pre>
+                        </div>
+                    </details>
+                </div>
+
+                <div id="show_parsed_id" class="col pt-4"></div>
+            </div>
+        </div>
+
+
+
     <!-- partial -->
     <script src='https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js'></script>
     <script src='https://www.argentina.gob.ar/sites/default/files/ponchotable/showdown.js'></script>
