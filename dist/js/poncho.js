@@ -9536,10 +9536,9 @@ class PonchoMapFilter extends PonchoMap {
      * @returns {undefined}
      */
     _resetSearch = () => {  
-
         document.addEventListener("click", (event) => {
             const target = event.target;
-    
+
             if(target.matches(`.js-poncho-map-reset${this.scope_sufix}`)){
                 event.preventDefault();
                 event.stopPropagation();
@@ -9547,12 +9546,17 @@ class PonchoMapFilter extends PonchoMap {
                 this.removeHash();
 
                 try {
+                    // Obtengo el elemento text hidden con el valor de la 
+                    // búsqueda. En este está impreso el dataset scope de
+                    // ponchoSearch.
                     const searchHiddenInputSelector = `#js-search-input${this.scope_sufix}`;
-                    const searchHiddenInput = document.querySelector(searchHiddenInputSelector);
+                    const searchHiddenInput = document.querySelector(
+                        searchHiddenInputSelector);
                     if(!searchHiddenInput){
                         return;
                     }
 
+                    // Obtengo el input de búsqueda y borro el value.
                     const searchScope = searchHiddenInput.dataset.searchScope;
                     const searchSelector = `#id-poncho-map-search--${searchScope}`;
                     const searchInput = document.querySelector(searchSelector);
