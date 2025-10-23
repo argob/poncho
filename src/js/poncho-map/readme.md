@@ -63,300 +63,281 @@
 <table>
   <thead>
     <tr>
-      <th style="text-align:left">Parámetro</th>
-      <th style="text-align:left">Tipo</th>
-      <th style="text-align:left">Default</th>
-      <th style="text-align:left">Descripción</th>
+      <th>Parámetro</th>
+      <th>Tipo</th>
+      <th>Default</th>
+      <th>Descripción</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td style="text-align:left">allowed_tags</td>
-      <td style="text-align:left"><code>object</code></td>
-      <td style="text-align:left"><code>[]</code></td>
-      <td style="text-align:left">Permite configurar un listado de etiquetas HTML que se imprimirán como parte del DOM y no como un texto. Para habilitar todas las etiquetas se utiliza <code>["*"]</code>. Si se quiere especificar cuales deben usarse, ej.: <code>["a", "strong"]</code>.</td>
+      <td>allowed_tags</td>
+      <td><code>object</code></td>
+      <td><code>[]</code></td>
+      <td>Permite configurar un listado de etiquetas HTML que se imprimirán como parte del DOM y no como un texto. Para habilitar todas las etiquetas se utiliza <code>["*"]</code>. Si se desea especificar cuales deben usarse, debe listarlas entre comillas y separadas por coma, dentro de corchetes, ej.: <code>["a", "strong"]</code>.</td>
     </tr>
     <tr>
-      <td style="text-align:left">anchor_delay</td>
-      <td style="text-align:left"><code>integer</code></td>
-      <td style="text-align:left">0</td>
-      <td style="text-align:left">Tiempo de demora entre que se carga la página y se muestra el marker pasado por url. El valor es en milisegundos (1" = 1000).</td>
+      <td>anchor_delay</td>
+      <td><code>integer</code></td>
+      <td>0</td>
+      <td>Tiempo de demora entre que se carga la página y se muestra el marker pasado por url. El valor es de milisegundos (1" = 1000).</td>
     </tr>
     <tr>
-      <td style="text-align:left">breakpoint</td>
-      <td style="text-align:left"><code>Array object</code></td>
-      <td style="text-align:left"></td>
-      <td style="text-align:left">Definición para tamaño de dispositivos. <code>breakpoint: {lg: 992,xl: 1200,sm: 576,md: 768}</code></td>
+      <td>breakpoint</td>
+      <td><code>Array object</code></td>
+      <td></td>
+      <td>Definición para tamaño de dispositivos. <code>breakpoint: {lg: 992,xl: 1200,sm: 576,md: 768}</code></td>
     </tr>
     <tr>
-      <td style="text-align:left">breakpoint_fraction</td>
-      <td style="text-align:left"><code>Array object</code></td>
-      <td style="text-align:left"></td>
-      <td style="text-align:left">Alineación del mapa según el tamaño del dispositivo. <code>breakpoint_fraction: {sm: "1:4",md: "1:4",lg: "1:3",xl: "2:7"}</code></td>
+      <td>breakpoint_fraction</td>
+      <td><code>Array object</code></td>
+      <td></td>
+      <td>Alineación del mapa según el tamaño del dispositivo. <code>Ver opciones para breakpoint_fraction</code></td>
     </tr>
     <tr>
-      <td style="text-align:left">content_selector</td>
-      <td style="text-align:left"><code>boolean</code></td>
-      <td style="text-align:left"><code>false</code></td>
-      <td style="text-align:left">Permite esetablecer un selector alternativo donde se quiera imprimir el contenido.</td>
+      <td>content_selector</td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+      <td>Permite establecer un selector alternativo donde se desee imprimir el contenido.</td>
     </tr>
     <tr>
-      <td style="text-align:left">error_reporting</td>
-      <td style="text-align:left"><code>boolean</code></td>
-      <td style="text-align:left">true</td>
-      <td style="text-align:left">Activa la visualización de errores o warnings en el mapa.</td>
+      <td>error_reporting</td>
+      <td><code>boolean</code></td>
+      <td><code>true</code></td>
+      <td>Activa la visualización de errores o warnings en el mapa.</td>
     </tr>
     <tr>
-      <td style="text-align:left">fit_bounds_onevent</td>
-      <td style="text-align:left"><code>boolean</code></td>
-      <td style="text-align:left"><code>true</code></td>
-      <td style="text-align:left">Realiza un zoom en el polígono, línea o marcador, cuando se utilia el select o por URL.</td>
+      <td>fit_bounds_onevent</td>
+      <td><code>boolean</code></td>
+      <td><code>true</code></td>
+      <td>Realiza un zoom en el polígono, línea o marcador, cuando se utiliza el componente HTML <code>select</code> o vía URL.</td>
     </tr>
     <tr>
-      <td style="text-align:left">hash</td>
-      <td style="text-align:left"><code>boolean</code></td>
-      <td style="text-align:left"><code>false</code></td>
-      <td style="text-align:left">Habilita la acción por la cual, cada vez que se hace <em>clic</em> en un marker se reemplaza el hash en la barra de dirección del navegador.</td>
+      <td>hash</td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+      <td>Habilita la acción por la cual, cada vez que se hace <em>clic</em> en un marker se reemplaza el hash en la barra de dirección del navegador.</td>
     </tr>
     <tr>
-      <td style="text-align:left">header_icons</td>
-      <td style="text-align:left"><code>object</code></td>
-      <td style="text-align:left"><code>{}</code></td>
-      <td style="text-align:left">Permite definir un ícono para cada uno de los headers de la entrada.<br><br>Ver opciones para <a href="#opciones-header-icons">header_icons</a>.</td>
+      <td>header_icons</td>
+      <td><code>object</code></td>
+      <td><code>{}</code></td>
+      <td>Permite definir un ícono para cada uno de los headers de la entrada. Ver opciones para header_icons.</td>
     </tr>
     <tr>
-      <td style="text-align:left">headers</td>
-      <td style="text-align:left"><code>object</code></td>
-      <td style="text-align:left"><code>{}</code></td>
-      <td style="text-align:left">Permite definir títulos dinámicos mapeando la clave del objeto que contiene la información con los encabezados</td>
+      <td>headers</td>
+      <td><code>object</code></td>
+      <td><code>{}</code></td>
+      <td>Permite definir títulos mapeando la clave del objeto que contiene la información con la clave de los encabezados.</td>
     </tr>
     <tr>
-      <td style="text-align:left">id</td>
-      <td style="text-align:left"><code>string</code></td>
-      <td style="text-align:left">id</td>
-      <td style="text-align:left">Nombre de la columna donde se encuentra el id. Si la fuente de datos usa otro nombre se define con esta opción. Ej. <code>"id":"id_punto_digital"</code>.</td>
+      <td>id</td>
+      <td><code>string</code></td>
+      <td><code>id</code></td>
+      <td>Nombre de la columna o clave donde se encuentra el id. Si la fuente de datos usa otro nombre se define con esta opción. Ej. <code>"id":"id_punto_digital"</code>.</td>
     </tr>
     <tr>
-      <td style="text-align:left">id_mixing</td>
-      <td style="text-align:left"><code>object</code></td>
-      <td style="text-align:left"><code>[]</code></td>
-      <td style="text-align:left">Permite definir cómo se llamará el identificador de un macador, polígono o línea del mapa, concatenando índices o cadenas de texto en un <em>array</em>. Por ejemplo: <code>["id", "cadena-de-texto", "name"]</code>. <br><br>El orden de los elementos depende del criterio de quien lo arma y, las cadenas de texto pasan por un filtro que los convierte en <a href="https://es.wikipedia.org/wiki/Slug">slug</a>.</td>
+      <td>id_mixing</td>
+      <td><code>object</code></td>
+      <td><code>[]</code></td>
+      <td>Permite definir cómo se llamará el identificador de un marcador, polígono o línea del mapa, concatenando índices o cadenas de texto en un <em>array</em>. Por ejemplo: <code>["id", "cadena-de-texto", "name"]</code>. El orden de los elementos depende del criterio de quien lo arma y, las cadenas de texto pasan por un filtro que los convierte en <a href="https://es.wikipedia.org/wiki/Slug">slug</a>.</td>
     </tr>
     <tr>
-      <td style="text-align:left">latitud</td>
-      <td style="text-align:left"><code>string</code></td>
-      <td style="text-align:left">latitud</td>
-      <td style="text-align:left">Nombre de la columna con el valor de latitud. Si la fuente de datos usa otro nombre se define con esta opción. Ej. <code>"latitud":"lat"</code>.</td>
+      <td>latitud</td>
+      <td><code>string</code></td>
+      <td><code>latitud</code></td>
+      <td>Nombre de la columna con el valor de latitud. Si la fuente de datos usa otro nombre se define con esta opción. Ej. <code>"latitud":"lat"</code>.</td>
     </tr>
     <tr>
-      <td style="text-align:left">longitud</td>
-      <td style="text-align:left"><code>string</code></td>
-      <td style="text-align:left">longitud</td>
-      <td style="text-align:left">Nombre de la columna con el valor de longitud. Si la fuente de datos usa otro nombre se define con esta opción. Ej. <code>"longitud":"lng"</code>.</td>
+      <td>longitud</td>
+      <td><code>string</code></td>
+      <td><code>longitud</code></td>
+      <td>Nombre de la columna con el valor de longitud. Si la fuente de datos usa otro nombre se define con esta opción. Ej. <code>"longitud":"lng"</code>.</td>
     </tr>
     <tr>
-      <td style="text-align:left">map_align</td>
-      <td style="text-align:left"><code>string</code></td>
-      <td style="text-align:left"><code>center</code></td>
-      <td style="text-align:left">Permite alinear el mapa a la izquierda o a la derecha de su contenedor. Opciones: <em>«left»</em> o <em>«right»</em>.</td>
+      <td>map_align</td>
+      <td><code>string</code></td>
+      <td><code>center</code></td>
+      <td>Permite alinear el mapa a la izquierda o a la derecha de su contenedor. Opciones: *«left»* o *«right»*.</td>
     </tr>
     <tr>
-      <td style="text-align:left">map_anchor_zoom</td>
-      <td style="text-align:left"><code>integer</code></td>
-      <td style="text-align:left">16</td>
-      <td style="text-align:left">Configuración del zoom para los markers que se deben visualizar pasándo por hash el id del marker.</td>
+      <td>map_anchor_zoom</td>
+      <td><code>integer</code></td>
+      <td>16</td>
+      <td>Configuración del zoom para los markers que se deben visualizar pasando por hash el id del marker.</td>
     </tr>
     <tr>
-      <td style="text-align:left">map_background</td>
-      <td style="text-align:left"><code>string</code></td>
-      <td style="text-align:left"><code>#DDD</code></td>
-      <td style="text-align:left">Permite definir un color de fondo para el mapa.<br><br>Junto a <code>map_opacity</code>, puede resulter de un uso interesante.</td>
+      <td>map_background</td>
+      <td><code>string</code></td>
+      <td><code>#DDD</code></td>
+      <td>Permite definir un color de fondo para el mapa. Junto a <code>map_opacity</code>, puede resultar de un uso interesante.</td>
     </tr>
     <tr>
-      <td style="text-align:left">map_layers</td>
-      <td style="text-align:left"><code>boolean</code></td>
-      <td style="text-align:left"><code>true</code></td>
-      <td style="text-align:left">Habilita o deshabilita la opción para visualizar el mapa en vista satelital o mapa por defecto.</td>
+      <td>map_layers</td>
+      <td><code>boolean</code></td>
+      <td><code>true</code></td>
+      <td>Habilita o deshabilita la opción para visualizar el mapa en vista satelital o mapa por defecto.</td>
     </tr>
     <tr>
-      <td style="text-align:left">map_layers_default</td>
-      <td style="text-align:left"><code>string</code></td>
-      <td style="text-align:left"><code>map</code></td>
-      <td style="text-align:left">Permite iniciar el mapa en una de las visstas disponibles: <em>satelital</em> o <em>map</em>.</td>
+      <td>map_layers_default</td>
+      <td><code>string</code></td>
+      <td><code>map</code></td>
+      <td>Permite iniciar el mapa en una de las vistas disponibles: *satelital* o *map*.</td>
     </tr>
     <tr>
-      <td style="text-align:left">map_opacity</td>
-      <td style="text-align:left"><code>float</code></td>
-      <td style="text-align:left">1</td>
-      <td style="text-align:left">Permite transparentar los mozaicos (<em>tiles</em>, del inglés), que componen el mapa. El rango es de 0 a 1. Por ejémplo: <code>map_opacity: 0.5</code></td>
+      <td>map_opacity</td>
+      <td><code>float</code></td>
+      <td>1</td>
+      <td>Permite transparentar los mosaicos (<em>tiles</em>, del inglés), que componen el mapa. El rango es de 0 a 1. Por ejemplo: <code>map_opacity: 0.5</code></td>
     </tr>
     <tr>
-      <td style="text-align:left">map_selector</td>
-      <td style="text-align:left"><code>string</code></td>
-      <td style="text-align:left">map</td>
-      <td style="text-align:left">Nombre del id que utiliza Leaflet para hacer el <em>render</em> del mapa.</td>
+      <td>map_selector</td>
+      <td><code>string</code></td>
+      <td><code>map</code></td>
+      <td>Nombre del id que utiliza Leaflet para hacer el <em>render</em> del mapa.</td>
     </tr>
     <tr>
-      <td style="text-align:left">map_view</td>
-      <td style="text-align:left"><code>Array Object</code></td>
-      <td style="text-align:left"><code>[-40.44, -63.59]</code></td>
-      <td style="text-align:left">Geoposicionamiento inicial del mapa.</td>
+      <td>map_view</td>
+      <td><code>Array Object</code></td>
+      <td><code>[-40.44, -63.59]</code></td>
+      <td>Geo-posicionamiento inicial del mapa.</td>
     </tr>
     <tr>
-      <td style="text-align:left">map_zoom</td>
-      <td style="text-align:left"><code>integer</code></td>
-      <td style="text-align:left">4</td>
-      <td style="text-align:left">Configuración del valor inicial para el zoom del mapa.</td>
+      <td>map_zoom</td>
+      <td><code>integer</code></td>
+      <td>4</td>
+      <td>Configuración del valor inicial para el zoom del mapa.</td>
     </tr>
     <tr>
-      <td style="text-align:left">marker</td>
-      <td style="text-align:left"><code>string, function</code></td>
-      <td style="text-align:left">azul</td>
-      <td style="text-align:left">Permite asignar un color distinto o usar una función para cambiar la lógica en la que se muestran los colores o usar iconos de otro tipo.<br><br>Ver opciones para <a href="#opciones-marker">marker</a>.</td>
+      <td>marker</td>
+      <td><code>string, function</code></td>
+      <td><code>azul</code></td>
+      <td>Permite asignar un color distinto o usar una función para cambiar la lógica en la que se muestran los colores o usar iconos de otro tipo. Ver opciones para marker.</td>
     </tr>
     <tr>
-      <td style="text-align:left">marker_cluster_options</td>
-      <td style="text-align:left"><code>Object</code></td>
-      <td style="text-align:left"><code>"marker_cluster_options": {}</code></td>
-      <td style="text-align:left">Ver opciones para <a href="#opciones-marker-cluster-options">marker_cluster_options</a></td>
+      <td>marker_cluster_options</td>
+      <td><code>Object</code></td>
+      <td><code>"marker_cluster_options": {}</code></td>
+      <td>Ver opciones para marker_cluster_options</td>
     </tr>
     <tr>
-      <td style="text-align:left">markdown_options</td>
-      <td style="text-align:left"><code>object</code></td>
-      <td style="text-align:left"></td>
-      <td style="text-align:left">Permite configurar las opciones del <em>plugin</em> showdown.js<br><br><a href="#opciones-markdown-options">Ver opciones para markdow_options</a></td>
+      <td>markdown_options</td>
+      <td><code>object</code></td>
+      <td></td>
+      <td>Permite configurar las opciones del <em>plugin</em> showdown.js Ver opciones para markdow_options</td>
     </tr>
     <tr>
-      <td style="text-align:left">no_info</td>
-      <td style="text-align:left"><code>boolean</code></td>
-      <td style="text-align:left"><code>false</code></td>
-      <td style="text-align:left">Permite deshabilitar la información del marker. Cuando esta opción está en false, no se despliega el popUp o el slider.</td>
+      <td>no_info</td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+      <td>Permite deshabilitar la información del marker. Cuando esta opción está en false, no se despliega el popUp o el slider.</td>
     </tr>
     <tr>
-      <td style="text-align:left">open_maps</td>
-      <td style="text-align:left"><code>boolean</code></td>
-      <td style="text-align:left"><code>false</code></td>
-      <td style="text-align:left">Muestra en la parte de abajo del <em>slider</em>, un desplegable con distintas opciones de mapas externos, donde visualizar el punto geográfico.</td>
+      <td>open_maps</td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+      <td>Muestra en la parte de abajo del <em>slider</em>, un desplegable con distintas opciones de mapas externos, donde visualizar el punto geográfico.</td>
     </tr>
     <tr>
-      <td style="text-align:left">open_maps_options</td>
-      <td style="text-align:left"><code>object</code></td>
-      <td style="text-align:left"></td>
-      <td style="text-align:left">Permite redefinir el nombre del desplegable y los enlaces a mapas externos. Ver <a href="#opciones-para-open_maps_options">opciones para open\_maps\_options()</a></td>
+      <td>open_maps_options</td>
+      <td><code>object</code></td>
+      <td></td>
+      <td>Permite redefinir el nombre del desplegable y los enlaces a mapas externos. Ver opciones para open\_maps\_options()</td>
     </tr>
     <tr>
-      <td style="text-align:left">render_slider</td>
-      <td style="text-align:left"><code>boolean</code></td>
-      <td style="text-align:left"><code>true</code></td>
-      <td style="text-align:left">Permite que se cree el componente <em>slider</em> en el mapa.</td>
+      <td>render_slider</td>
+      <td><code>boolean</code></td>
+      <td><code>true</code></td>
+      <td>Permite que se cree el componente <em>slider</em> en el mapa.</td>
     </tr>
     <tr>
-      <td style="text-align:left">reset_zoom</td>
-      <td style="text-align:left"><code>boolean</code></td>
-      <td style="text-align:left"><code>false</code></td>
-      <td style="text-align:left">Habilita el un botón en medio del botón <em>zoom-out</em> y <em>zoom-in</em> para mostrar el mapa completo con sus <em>markers</em>.</td>
+      <td>reset_zoom</td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+      <td>Habilita el un botón en medio del botón <em>zoom-out</em> y <em>zoom-in</em> para mostrar el mapa completo con sus <em>markers</em>.</td>
     </tr>
     <tr>
-      <td style="text-align:left">scope</td>
-      <td style="text-align:left"><code>string</code></td>
-      <td style="text-align:left"><em><code>empty string</code></em></td>
-      <td style="text-align:left">Es el ambiente de trabajo sobre un mapa en particular. Cuando se utiliza más de un mapa en la página esto sirve para diferenciarlos.</td>
+      <td>scope</td>
+      <td><code>string</code></td>
+      <td><em><code>empty string</code></em></td>
+      <td>Es el ambiente de trabajo sobre un mapa en particular. Cuando se utiliza más de un mapa en la página esto sirve para diferenciarlos.</td>
     </tr>
     <tr>
-      <td style="text-align:left">scroll</td>
-      <td style="text-align:left"><code>boolean</code></td>
-      <td style="text-align:left"><code>false</code></td>
-      <td style="text-align:left">Hace un scroll para posisionar la página en el borde superior del mapa cuando se carga la página.</td>
+      <td>scroll</td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+      <td>Hace un scroll para posicionar la página en el borde superior del mapa cuando se carga la página.</td>
     </tr>
     <tr>
-      <td style="text-align:left">slider</td>
-      <td style="text-align:left"><code>boolean</code></td>
-      <td style="text-align:left"><code>false</code></td>
-      <td style="text-align:left">Habilita el slider y reemplaza el popUp.</td>
+      <td>slider</td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+      <td>Habilita el slider y reemplaza el popUp.</td>
     </tr>
     <tr>
-      <td style="text-align:left">slider_size</td>
-      <td style="text-align:left"><code>string\|false</code></td>
-      <td style="text-align:left"><code>false</code></td>
-      <td style="text-align:left"><p>Opciones:</p>
-          <dl>
-    <dt>large</dt>
-    <dd>Tarjeta con ancho al 50&nbsp;%.</dd>
-    <dt>default</dt>
-    <dd>Tarjeta con tamaño por defecto (30&nbsp;% aprox).</dd>
-    </dl> </td>
+      <td>slider_size</td>
+      <td><code>string|false</code></td>
+      <td><code>false</code></td>
+      <td>Opciones: <code>large</code> Tarjeta con ancho al 50 %. <code>default</code> Tarjeta con tamaño por defecto (30 % aprox).</td>
     </tr>
     <tr>
-      <td style="text-align:left">summary</td>
-      <td style="text-align:left"><code>string|object</code></td>
-      <td style="text-align:left"></td>
-      <td style="text-align:left"><p>Agrega una descripción o propósito del mapa. El sumario puede estar oculto, pero «visible» para lectores de pantalla o se le puede dar formato usando las opciones: css o style.</p> 
-      <figure>
-      <code>summary: "cadena de texto"</code>
-      </figure> o 
-      <figure>
-<pre><code>
-summary: {
-    title: "Cadena de texto", 
-    hidden: "boolean",css:"object|string", 
-    style: "object|string", 
-    position: "top|bottom" 
-}</code></pre>
-      </figure> 
-      <p>Ver, opciones para <em>summary</em>.</p>
-      </td>
+      <td>summary</td>
+      <td><code>string|object</code></td>
+      <td></td>
+      <td>Agrega una descripción o propósito del mapa. El sumario puede estar oculto, pero «visible» para lectores de pantalla o se le puede dar formato usando las opciones: css o style. <code>summary: "cadena de texto"</code> 
+      
+      Ver, opciones para <em>summary</em>.</td>
     </tr>
     <tr>
-      <td style="text-align:left">template</td>
-      <td style="text-align:left"><code>object</code></td>
-      <td style="text-align:left"><code>null</code></td>
-      <td style="text-align:left">Define la función que controla el template para el popUp o el slider.<br><br>Ver opciones para <a href="#opciones-templates">template</a>.</td>
+      <td>template</td>
+      <td><code>object</code></td>
+      <td><code>null</code></td>
+      <td>Define la función que controla el template para el popUp o el slider. Ver opciones para template.</td>
     </tr>
     <tr>
-      <td style="text-align:left">template_innerhtml</td>
-      <td style="text-align:left"><code>boolean</code></td>
-      <td style="text-align:left"><code>false</code></td>
-      <td style="text-align:left">Permite incrustar html dentro de la descripción.</td>
+      <td>template_innerhtml</td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+      <td>Permite incrustar html dentro de la descripción.</td>
     </tr>
     <tr>
-      <td style="text-align:left">template_markdown</td>
-      <td style="text-align:left"><code>boolean</code></td>
-      <td style="text-align:left"><code>false</code></td>
-      <td style="text-align:left">Habilita el uso del <em>plugin</em> <a href="https://showdownjs.com">showdown.js</a>.</td>
+      <td>template_markdown</td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+      <td>Habilita el uso del <em>plugin</em> <a href="https://showdownjs.com">showdown.js</a>.</td>
     </tr>
     <tr>
-      <td style="text-align:left">template_structure</td>
-      <td style="text-align:left"><code>object</code></td>
-      <td style="text-align:left"><code>{}</code></td>
-      <td style="text-align:left">Permite definir un listado de valores a mostarar en el template por defecto o excluir valores que no se deseen mostrar. <br><br>Ver opciones para <a href="#opciones-template-structure">template_structure</a>.</td>
+      <td>template_structure</td>
+      <td><code>object</code></td>
+      <td><code>{}</code></td>
+      <td>Permite definir un listado de valores a mostrar en el template por defecto o excluir valores que no se deseen mostrar. Ver opciones para template_structure.</td>
     </tr>
     <tr>
-      <td style="text-align:left">theme</td>
-      <td style="text-align:left"><code>string</code></td>
-      <td style="text-align:left"><code>default</code></td>
-      <td style="text-align:left">Permite cambiar el tema de la interfase y el mapa. Las opciones disponibles son:<br>  <ul><li><em>default</em>, Original</li><li><em>contrast</em>, Alto contraste</li><li><em>dark</em>, Oscuro</li><li><em>grayscale</em>, Gris</li><li><em>sepia</em>, Sepia</li><li><em>blue</em>, Azul</li><li><em>relax</em>, Relax</li><li><em>transparent</em>, Transparente</li></ul></td>
+      <td>theme</td>
+      <td><code>string</code></td>
+      <td><code>default</code></td>
+      <td>Permite cambiar el tema de la interfase y el mapa. Las opciones disponibles son: <em>default</em>, Original <em>contrast</em>, Alto contraste <em>dark</em>, Oscuro <em>grayscale</em>, Gris <em>sepia</em>, Sepia <em>blue</em>, Azul <em>relax</em>, Relax <em>transparent</em>, Transparente</td>
     </tr>
     <tr>
-      <td style="text-align:left">theme_map</td>
-      <td style="text-align:left"><code>string</code></td>
-      <td style="text-align:left"><code>default</code></td>
-      <td style="text-align:left">Permite definir un tema de color para el mapa.</td>
+      <td>theme_map</td>
+      <td><code>string</code></td>
+      <td><code>default</code></td>
+      <td>Permite definir un tema de color para el mapa.</td>
     </tr>
     <tr>
-      <td style="text-align:left">theme_tool</td>
-      <td style="text-align:left"><code>boolean</code></td>
-      <td style="text-align:left"><code>true</code></td>
-      <td style="text-align:left">Permite remover la herramienta de temas para el usuario.</td>
+      <td>theme_tool</td>
+      <td><code>boolean</code></td>
+      <td><code>true</code></td>
+      <td>Permite remover la herramienta de temas para el usuario.</td>
     </tr>
     <tr>
-      <td style="text-align:left">theme_ui</td>
-      <td style="text-align:left"><code>string</code></td>
-      <td style="text-align:left"><code>default</code></td>
-      <td style="text-align:left">Permite definir un tema de color para la interfase del mapa.</td>
+      <td>theme_ui</td>
+      <td><code>string</code></td>
+      <td><code>default</code></td>
+      <td>Permite definir un tema de color para la interfase del mapa.</td>
     </tr>
   </tbody>
 </table>
-
 
 ### Opciones para `summary`
 
