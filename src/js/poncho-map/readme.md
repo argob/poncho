@@ -1,7 +1,3 @@
-
-
-
-
 # PonchoMap
 
 ![Poncho Map](./demo/img/map.png)
@@ -57,7 +53,6 @@
 
 
 
-
 ## Opciones generales
 
 <table>
@@ -74,13 +69,13 @@
       <td style="text-align:left">allowed_tags</td>
       <td style="text-align:left"><code>object</code></td>
       <td style="text-align:left"><code>[]</code></td>
-      <td style="text-align:left">Permite configurar un listado de etiquetas HTML que se imprimirán como parte del DOM y no como un texto. Para habilitar todas las etiquetas se utiliza <code>["*"]</code>. Si se desea especificar cuales deben usarse, debe listarse entre comillas y separadas por coma, dentro de corchetes, ej.: <code>["a", "strong"]</code>.</td>
+      <td style="text-align:left">Permite configurar un listado de etiquetas HTML que se imprimirán como parte del DOM y no como un texto. Para habilitar todas las etiquetas se utiliza <code>["*"]</code>. Si se quiere especificar cuales deben usarse, ej.: <code>["a", "strong"]</code>.</td>
     </tr>
     <tr>
       <td style="text-align:left">anchor_delay</td>
       <td style="text-align:left"><code>integer</code></td>
       <td style="text-align:left">0</td>
-      <td style="text-align:left">Tiempo de demora entre que se carga la página y se muestra el marker pasado por url. El valor es de milisegundos (1" = 1000).</td>
+      <td style="text-align:left">Tiempo de demora entre que se carga la página y se muestra el marker pasado por url. El valor es en milisegundos (1" = 1000).</td>
     </tr>
     <tr>
       <td style="text-align:left">breakpoint</td>
@@ -92,7 +87,7 @@
       <td style="text-align:left">breakpoint_fraction</td>
       <td style="text-align:left"><code>Array object</code></td>
       <td style="text-align:left"></td>
-      <td style="text-align:left">Alineación del mapa según el tamaño de su contenedor. <code>breakpoint_fraction: {sm: "1:4",md: "1:4",lg: "1:3",xl: "2:7"}</code></td>
+      <td style="text-align:left">Alineación del mapa según el tamaño del dispositivo. <code>breakpoint_fraction: {sm: "1:4",md: "1:4",lg: "1:3",xl: "2:7"}</code></td>
     </tr>
     <tr>
       <td style="text-align:left">content_selector</td>
@@ -110,7 +105,7 @@
       <td style="text-align:left">fit_bounds_onevent</td>
       <td style="text-align:left"><code>boolean</code></td>
       <td style="text-align:left"><code>true</code></td>
-      <td style="text-align:left">Realiza un zoom en el polígono, línea o marcador, cuando se utilia el componente HTML _select_ o vía URL.</td>
+      <td style="text-align:left">Realiza un zoom en el polígono, línea o marcador, cuando se utilia el select o por URL.</td>
     </tr>
     <tr>
       <td style="text-align:left">hash</td>
@@ -122,13 +117,13 @@
       <td style="text-align:left">header_icons</td>
       <td style="text-align:left"><code>object</code></td>
       <td style="text-align:left"><code>{}</code></td>
-      <td style="text-align:left">Permite definir un ícono para cada uno de los headers de la entrada.<br><br>Ver opciones para <a href="#opciones-header-icons">header_icons</a>.</td>
+      <td style="text-align:left">Permite definir un ícono para cada uno de los headers de la entrada.<br><br> <a href="#opciones-para-header_icons">Ver opciones para header_icons</a>.</td>
     </tr>
     <tr>
       <td style="text-align:left">headers</td>
       <td style="text-align:left"><code>object</code></td>
       <td style="text-align:left"><code>{}</code></td>
-      <td style="text-align:left">Permite definir títulos mapeando la clave del objeto que contiene la información con la clave de los encabezados.</td>
+      <td style="text-align:left">Permite definir títulos dinámicos mapeando la clave del objeto que contiene la información con los encabezados</td>
     </tr>
     <tr>
       <td style="text-align:left">id</td>
@@ -188,7 +183,7 @@
       <td style="text-align:left">map_opacity</td>
       <td style="text-align:left"><code>float</code></td>
       <td style="text-align:left">1</td>
-      <td style="text-align:left">Permite transparentar los mosaicos (<em>tiles</em>, del inglés), que componen el mapa. El rango es de 0 a 1. Por ejemplo: <code>map_opacity: 0.5</code></td>
+      <td style="text-align:left">Permite transparentar los mozaicos (<em>tiles</em>, del inglés), que componen el mapa. El rango es de 0 a 1. Por ejémplo: <code>map_opacity: 0.5</code></td>
     </tr>
     <tr>
       <td style="text-align:left">map_selector</td>
@@ -212,19 +207,19 @@
       <td style="text-align:left">marker</td>
       <td style="text-align:left"><code>string, function</code></td>
       <td style="text-align:left">azul</td>
-      <td style="text-align:left">Permite asignar un color distinto o usar una función para cambiar la lógica en la que se muestran los colores o usar iconos de otro tipo.<br><br>Ver opciones para <a href="#opciones-marker">marker</a>.</td>
+      <td style="text-align:left"><p>Permite asignar un color distinto o usar una función para cambiar la lógica en la que se muestran los colores o usar iconos de otro tipo.</p><p> <a href="#opciones-para-marker">Ver opciones para marker</a>.</p></td>
     </tr>
     <tr>
       <td style="text-align:left">marker_cluster_options</td>
       <td style="text-align:left"><code>Object</code></td>
       <td style="text-align:left"><code>"marker_cluster_options": {}</code></td>
-      <td style="text-align:left">Ver opciones para <a href="#opciones-marker-cluster-options">marker_cluster_options</a></td>
+      <td style="text-align:left"> <a href="#opciones-para-marker_cluster_options">Ver opciones para marker_cluster_options</a></td>
     </tr>
     <tr>
       <td style="text-align:left">markdown_options</td>
       <td style="text-align:left"><code>object</code></td>
       <td style="text-align:left"></td>
-      <td style="text-align:left">Permite configurar las opciones del <em>plugin</em> showdown.js<br><br><a href="#opciones-markdown-options">Ver opciones para markdow_options</a></td>
+      <td style="text-align:left">Permite configurar las opciones del <em>plugin</em> showdown.js<br><br><a href="#opciones-para-markdown_options">Ver opciones para markdown_options</a></td>
     </tr>
     <tr>
       <td style="text-align:left">no_info</td>
@@ -242,7 +237,7 @@
       <td style="text-align:left">open_maps_options</td>
       <td style="text-align:left"><code>object</code></td>
       <td style="text-align:left"></td>
-      <td style="text-align:left">Permite redefinir el nombre del desplegable y los enlaces a mapas externos. Ver <a href="#opciones-para-open_maps_options">opciones para open\_maps\_options()</a></td>
+      <td style="text-align:left">Permite redefinir el nombre del desplegable y los enlaces a mapas externos. <a href="#opciones-para-open_maps_options">Ver opciones para open_maps_options</a></td>
     </tr>
     <tr>
       <td style="text-align:left">render_slider</td>
@@ -291,10 +286,10 @@
       <td style="text-align:left"><code>string|object</code></td>
       <td style="text-align:left"></td>
       <td style="text-align:left"><p>Agrega una descripción o propósito del mapa. El sumario puede estar oculto, pero «visible» para lectores de pantalla o se le puede dar formato usando las opciones: css o style.</p> 
-      <figure>
+      <div>
       <code>summary: "cadena de texto"</code>
-      </figure> o 
-      <figure>
+      </div> o 
+      <div>
 <pre><code>
 summary: {
     title: "Cadena de texto", 
@@ -302,15 +297,15 @@ summary: {
     style: "object|string", 
     position: "top|bottom" 
 }</code></pre>
-      </figure> 
-      <p>Ver, opciones para <em>summary</em>.</p>
+      </div> 
+      <p><a href="#opciones-para-summary">Ver opciones para <em>summary</em></a>.</p>
       </td>
     </tr>
     <tr>
       <td style="text-align:left">template</td>
       <td style="text-align:left"><code>object</code></td>
       <td style="text-align:left"><code>null</code></td>
-      <td style="text-align:left">Define la función que controla el template para el popUp o el slider.<br><br>Ver opciones para <a href="#opciones-templates">template</a>.</td>
+      <td style="text-align:left">Define la función que controla el template para el popUp o el slider.<br><br> <a href="#opciones-para-templates">Ver opciones para template</a>.</td>
     </tr>
     <tr>
       <td style="text-align:left">template_innerhtml</td>
@@ -328,7 +323,7 @@ summary: {
       <td style="text-align:left">template_structure</td>
       <td style="text-align:left"><code>object</code></td>
       <td style="text-align:left"><code>{}</code></td>
-      <td style="text-align:left">Permite definir un listado de valores a mostarar en el template por defecto o excluir valores que no se deseen mostrar. <br><br>Ver opciones para <a href="#opciones-template-structure">template_structure</a>.</td>
+      <td style="text-align:left">Permite definir un listado de valores a mostarar en el template por defecto o excluir valores que no se deseen mostrar. <br><br> <a href="#opciones-para-template_structure">Ver opciones para template_structure</a>.</td>
     </tr>
     <tr>
       <td style="text-align:left">theme</td>
@@ -422,12 +417,12 @@ const options = {
 
 | Parámetro | Tipo | Default | Descripción |
 |:---|:---|:---|:---|
-| container_classlist | `Array()` | `["info-container"]` | Define la lista de clases CSS que pueden agregarse al contenedor del listado de terminos y descripciones. | 
+| container_classlist | `Array()` | `["info-container"]` | Define la lista de clases CSS que pueden agregarse al contenedor del listado de términos y descripciones. | 
 | lead | `object` | `{}` | Volanta.<br><br>Ver opciones para [lead](#opciones-para-lead). |
-| mixing | `object` | `{}` | Permite crear una entrada uniendo cadenas de texto o valores de la entrada.<br><br>Ver opciones para [mixing](#opciones-para-mixing). |
+| mixing | `object` | `{}` | Permite crear una entrada uniendo cadenas de texto o valores de entrada.<br><br>Ver opciones para [mixing](#opciones-para-mixing). |
 | header | `function` | `false` | Permite modificar el header del template retornando un `string` desde una función. <br>`"header": (self, entry) => string` |
 | title | `string` | "" | Permite redefinir la clave que se utiliza para el panel de información teniendo precedencia sobre la opción general _`title`_. |
-| title_classlist | `Array()` | `["h4","title"]` | Listado de selectores CSS se que aplicarán en la etiqueta HTML asignada título.| 
+| title_classlist | `Array()` | `["h4","title"]` | Listado de selectores CSS se que aplicarán en la etiqueta HTML asignada a título.| 
 | definition_list_classlist | `Array()` | `["definition-list"]` | Listado de selectores CSS se que aplicarán en la etiqueta HTML asignada contenedor del listado de términos y definiciones.| 
 | term_classlist | `Array()` | `["h6", "m-b-0"]` | Listado de selectores CSS se que aplicarán en la etiqueta HTML asignada al término.| 
 | definition_classlist | `Array()` | `[]` | Listado de selectores CSS se que aplicarán en la etiqueta HTML asignada a la definición.| 
@@ -548,8 +543,8 @@ También puede utilizarse etiquetas html.
 | template | `string` | false | Permite componer una plantilla HTML con las claves encerradas en doble llave, por ejemplo: `"{{valor}} <strong>{{porcentaje}} %</strong>"`. `valor` y `porcentaje` son ejemplos de claves que corresponden a las propiedades del objeto de datos que se ingrese. | 
 | key | `string` | "" | Clave de la entrada del JSON o del geoJSON `feature.properties`. | 
 | header | `string` | "" | Nombre que va a tener el campo como título. |
-| values | `Array` | [] | Listado de keys ordenados según el orden de aparición. |
-| separator | `string` | "" | Caracter o cadena de caracteres con la que se van a concatener los valores. |
+| values | `Array` | [] | Listado de claves ordenados según el orden de aparición. |
+| separator | `string` | "" | Carácter o cadena de caracteres con la que se van a concatenar los valores. |
 
 
 ### Opciones para `header_icons`
@@ -604,7 +599,7 @@ const options = {
 
 #### Modificando el tipo de marker
 
-Esta opción también ofrece la posibilidad de crear *markers* utilizando imágenes o en formato html. En el siguiente ejemplo se ve como se puede aplicar un icóno de Poncho Fonts en un *marker*. Cuando se utiliza la función de esta manera debe retornan una instancia de `L.icon` o variantes *leaflet*.
+Esta opción también ofrece la posibilidad de crear *markers* utilizando imágenes o en formato html. En el siguiente ejemplo se ve como se puede aplicar un ícono de Poncho Fonts en un *marker*. Cuando se utiliza la función de esta manera debe retornar una instancia de `L.icon` o variantes *leaflet*.
 
 ```js
 const options = {
@@ -684,7 +679,7 @@ const opciones = {
 
 ##### Modificando la entrada y retornando el template por defecto
 
-Otra alternativa es crear nuevos atributos personalizados para cada entrada y usar las opciones de [template_structure](#opciones-template-structure "Ver opciones de template_structure").
+Otra alternativa es crear nuevos atributos personalizados para cada entrada y usar las opciones de [template_structure](#opciones-para-template_structure).
 
 ```js
 const options = {
@@ -911,10 +906,10 @@ const options = {
 
 | Parámetro | Tipo | Default | Descripción | Tipo de uso |
 |:---|:---|:---|:---|:---|
-| scope | object |  | Scope se utiliza para asegurarse de que todas las funciones serán sobre el ambiente de un buscado y un mapa determinados. | _Requerido_ |
-| placeholder | `string` | Su búsqueda | Texto de ayuda que aparece en un tono medio en el selector de items, complementa al label de un form. | *Opcional* |
+| scope | object |  | Scope se utiliza para asegurarse de que todas las funciones serán sobre el ambiente de un buscador y un mapa determinados. | _Requerido_ |
+| placeholder | `string` | Su búsqueda | Texto de ayuda que aparece en un tono medio en el selector de items, complementa al label de un formulario. | *Opcional* |
 | search_fields | `object` | [] | Define los índices que se utilizan para realizar la búsqueda. Ej. `["provincia", "localidad", "nombre"]` | *Opcional* |
-| datalist | `boolean` | `true` | Despliega un HTML datalis para el input | *Opcional* |
+| datalist | `boolean` | `true` | Despliega un HTML datalis para el _input_ | *Opcional* |
 
 #### Ejemplo de uso para el buscador
 
@@ -949,7 +944,7 @@ search.render();
 |:--|:--|:--|
 | entry | `object` | Retrona una entrada pasándo su id por parámetro. |
 | selected_marker | `object` | Retorna el último marker seleccionado en un objeto con dos índices; el primero es la entrada asignada al *marker* y el segundo es la instancia *leaflet* de ese *marker*  |
-| resetView | `void` | Reestablece la posión y el zoom del mapa y los *markers* a su posición inicial por defecto. |
+| resetView | `void` | Restablece la posición y el zoom del mapa y los *markers* a su posición inicial por defecto. |
 | hasHash | boolean:false \| string | Retorna el identificador del *marker* pasado por URL. |
 | gotoEntry | `void` | Retorna el identificador del *marker* pasado por URL. |
 | gotoHashedEntry | `void` | Obtiene el hash desde la url y hace zoom sobre el marker con ese identificador. Según la configuración puede abrir un popUp o el slider. |
@@ -963,7 +958,7 @@ search.render();
 |:--|:--|:--|
 | filteredEntries | `object` | Objeto con las entradas filtradas. |
 | totals | `object` | Retorna la cantidad de markers por cada uno de los filtros. Asi como retorna los totales también la posición del filtro. |
-| formFilters | `object` | Retorna los fitros marcados. Los datos de retorno son: el grupo de filtro y el indice en el grupo. |
+| formFilters | `object` | Retorna los filtros marcados. Los datos de retorno son: el grupo de filtro y el índice en el grupo. |
 
 
 
