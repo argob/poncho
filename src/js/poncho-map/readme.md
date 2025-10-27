@@ -23,7 +23,7 @@
       - [Opciones para `mixing`](#opciones-para-mixing)
         - [Parámetros](#parámetros-3)
     - [Opciones para `header_icons`](#opciones-para-header_icons)
-    - [Opciones para `marker`](#opciones-para-marker)
+    - [Opciones para marker](#opciones-para-marker)
       - [Definiendo colores](#definiendo-colores)
       - [Modificando el tipo de marker](#modificando-el-tipo-de-marker)
     - [Opciones para `template`](#opciones-para-template)
@@ -35,7 +35,8 @@
       - [Valores por defecto](#valores-por-defecto)
     - [Opciones para `markdown_options`](#opciones-para-markdown_options)
       - [Valores por defecto](#valores-por-defecto-1)
-    - [Opciones para `open_maps_options`](#opciones-para-open_maps_options)
+    - [Open maps](#open-maps)
+    - [Opciones para open\_maps\_options](#opciones-para-open_maps_options)
   - [Opciones para PonchoMapFilter](#opciones-para-ponchomapfilter)
     - [Opciones para filters](#opciones-para-filters)
       - [Opciones para field](#opciones-para-field)
@@ -235,13 +236,13 @@
       <td style="text-align:left">open_maps</td>
       <td style="text-align:left"><code>boolean</code></td>
       <td style="text-align:left"><code>false</code></td>
-      <td style="text-align:left">Muestra en la parte de abajo del <em>slider</em>, un desplegable con distintas opciones de mapas externos, donde visualizar el punto geográfico.</td>
+      <td style="text-align:left"><p>Habilita el menú de enlaces alternativos.</p><p><a href="#open-maps">Ver open maps</a></p></td>
     </tr>
     <tr>
       <td style="text-align:left">open_maps_options</td>
       <td style="text-align:left"><code>object</code></td>
       <td style="text-align:left"></td>
-      <td style="text-align:left">Permite redefinir el nombre del desplegable y los enlaces a mapas externos. <a href="#opciones-para-open_maps_options">Ver opciones para open_maps_options</a></td>
+      <td style="text-align:left"><p>Permite redefinir el nombre del desplegable y los enlaces a mapas externos.</p><p><a href="#opciones-para-open_maps_options">Ver opciones para open_maps_options</a></p></td>
     </tr>
     <tr>
       <td style="text-align:left">render_slider</td>
@@ -581,7 +582,9 @@ const options = {
 | html | `string, function` | {} | **String**<br>Retornando un string HTML, ej.<br>`<i class="icono-arg-cannabis-medicinal-1"></i>`<br><br>**Función** <br>Retornando un string en una función ej.<br>`(self, entry) => string;` |
 
 
-### Opciones para `marker`
+### Opciones para marker
+
+La configuración marker ofrece flexibilidad en la definición del marcador del mapa. Permite utilizar los marcadores predefinidos de la librería de argentina.gob.ar, los cuales disponen de una gran variedad de colores y patrones o alternativamente, es posible crear un marcador completamente personalizado mediante el uso directo de los objetos `L.icon` o `L.divIcon` de la librería [leaflet](https://leafletjs.com/).
 
 #### Definiendo colores
 
@@ -589,15 +592,17 @@ La opción `marker` nos permite definir el color de los *markers* asignando el n
 
 ```js
 const options = {
-    "marker": "mandarina"
+    "marker": "arg-mandarina"
 };
 ```
 
 Otra opción es agregar una función en la que podemos definir una lógica de colores de acuerdo a la fuente de datos que nos llega, por ejemplo: 
 
 ```js
+// Si hay una entrada con clave color en: `entry.color`, la usa. De otro modo
+// muestra el color por defecto: `arg-azul`.
 const options = {
-    "marker_color": (self, entry) => (typeof  entry.color !== "undefined" && entry.color != "" ? entry.color : "azul")
+    "marker_color": (self, entry) => (typeof  entry.color !== "undefined" && entry.color != "" ? entry.color : "arg-azul")
 };
 ```
 
@@ -608,20 +613,19 @@ Esta opción también ofrece la posibilidad de crear *markers* utilizando imáge
 ```js
 const options = {
     "marker": (self, entry) => {
-      // icono tipo html
-      const icon_div = (color) => {
-          return new L.divIcon({
-              html: `<i class="icono-arg-marcador-ubicacion-2 text-${color}">`,
-              iconSize: [38, 24],
-              iconAnchor: [22, 41],
-              popupAnchor: [-3, -40]
-          });
-      };
+        const icon_div = (color) => {
+            return new L.divIcon({
+                html: `<i class="icono-arg-marcador-ubicacion-2 text-${color}">`,
+                iconSize: [38, 24],
+                iconAnchor: [22, 41],
+                popupAnchor: [-3, -40]
+            });
+        };
 
-	  if(typeof  entry.color !== "undefined" && entry.color){
-          return icon_div(entry.color);
-      }
-      return icon_div("azul");
+        if(typeof  entry.color !== "undefined" && entry.color){
+            return icon_div(entry.color);
+        }
+        return icon_div("arg-azul");
     }
 }
 ```
@@ -759,9 +763,17 @@ const options = {
 	},
 };
 ```
-### Opciones para `open_maps_options`
 
-Esta opción te permite configurar el texto de la etiqueta `summary` y los enlaces que se muestran al desplegar `details`. Para incluir los valores de latitud y longitud en los enlaces, se deben usar los marcadores de posición `{{latitude}}` y `{{longitude}}`, según lo indicado en la documentación del mapa de destino.
+### Open maps
+
+Open maps es la opción que permite crear un listado de enlaces o agregar enlaces alternativos para poder visualizar el punto geográfico seleccionado en mapas con distintas características y/o herramientas para el usuario.
+
+### Opciones para open_maps_options
+
+La opción open_maps_options, permite incluir enlaces alternativos o modificar el listado de enlaces según las preferencias del usuario. 
+
+Por cada enlace externo que se agrega al listado debe incorporarse según la documentación del proveedor del mapa de destino, la latitud y longitud utilizando la sintaxis de ponchoMap. Ej. `https://www.mapa.com/{{latitude}},{{longitude}}`.
+
 
 **Definiciones**
 
