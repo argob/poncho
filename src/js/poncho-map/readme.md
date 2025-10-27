@@ -238,9 +238,7 @@
       <td style="text-align:left">open_maps_options</td>
       <td style="text-align:left"><code>object</code></td>
       <td style="text-align:left"></td>
-
       <td style="text-align:left"><p>Permite redefinir el nombre del desplegable y los enlaces a mapas externos.</p><p><a href="#opciones-para-open_maps_options">Ver opciones para open_maps_options</a></p></td>
-
     </tr>
     <tr>
       <td style="text-align:left">render_slider</td>
@@ -291,8 +289,7 @@
       <td style="text-align:left"><p>Agrega una descripción o propósito del mapa. El sumario puede estar oculto, pero «visible» para lectores de pantalla o se le puede dar formato usando las opciones: css o style.</p> 
       <div>
       <code>summary: "cadena de texto"</code>
-      </div> o 
-      <div>
+      </div> o <div>
 <pre><code>
 summary: {
     title: "Cadena de texto", 
