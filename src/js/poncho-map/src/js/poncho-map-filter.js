@@ -841,22 +841,13 @@ class PonchoMapFilter extends PonchoMap {
     _filterData = () => {
         // 1. Obtengo los filtros del formulario acivos.
         const availableFilters = this.formFilters();
-        const hasAvailableFilters = availableFilters.length > 0;
+        const hasInputSearchValue = !this.isEmptyString(this.inputSearchValue);
+        const refactorSearchTerm = (hasInputSearchValue
+            ? replaceSpecialChars(this.inputSearchValue).toUpperCase()
+            : "");
 
-        // Se está usando PonchoMapFilter pero no hay asignado filtros. 
-        // Retorno las entradas en crudo.
-        if(Array.isArray(this.filters) && this.filters.length < 1){
-            this.filtered_entries = this.entries;
-            return this.entries;
-        }
-
-        // Si no hay filtros activos retorno las entradas sin modificarlas.
-        if(!hasAvailableFilters){
-            this.filtered_entries = [];
-            return [];
-        }
-
-        // 2. Filtro las entradas en en función de los filtros activos. 
+        // 2. Filtro las entradas en en función de los filtros activos y el 
+        // criterio de búsqueda, si existiera. 
         let activeFiltersEntries = this.entries.filter(entry => {
                 // Valido si la entrada se encuentra dentro de los criterios
                 // del grupo o filtros
@@ -864,20 +855,19 @@ class PonchoMapFilter extends PonchoMap {
                     entry.properties,
                     availableFilters
                 );
-                
-                // Si en la búsqueda, además, existe un término de búsqueda
-                // en el input search, filtro también por eso.
+
+                // Si, en el input search se agregó un término, 
+                // filtro también por eso.
                 let filterSearchEntry = true;
                 if(this.inputSearchValue){
-                    const searchTerm = replaceSpecialChars(
-                        this.inputSearchValue).toUpperCase();
                     const searchFields = new Set(
                         [...[this.title], ...this.search_fields]
                     );
+
                     // Busco en la entrada si matchea con el término en el
                     // search input
                     let searchResult = this.searchEntry(
-                        searchTerm,
+                        refactorSearchTerm,
                         entry.properties,
                         searchFields
                     );
@@ -937,34 +927,54 @@ class PonchoMapFilter extends PonchoMap {
      * @returns {undefined}
      */
     _resetSearch = () => {  
-        var _this = this;
-
-        document.addEventListener("click", function(event){
+        document.addEventListener("click", (event) => {
             const target = event.target;
-    
-            if(target.matches(`.js-poncho-map-reset${_this.scope_sufix}`)){
+
+            if(target.matches(`.js-poncho-map-reset${this.scope_sufix}`)){
                 event.preventDefault();
                 event.stopPropagation();
-                
-                _this.removeHash();
+
+                this.removeHash();
 
                 try {
-                    _this._resetFormFilters();
+                    // Obtengo el elemento text hidden con el valor de la 
+                    // búsqueda. En este está impreso el dataset scope de
+                    // ponchoSearch.
+                    const searchHiddenInputSelector = `#js-search-input${this.scope_sufix}`;
+                    const searchHiddenInput = document.querySelector(
+                        searchHiddenInputSelector);
+                    if(!searchHiddenInput){
+                        return;
+                    }
+
+                    // Obtengo el input de búsqueda y borro el value.
+                    const searchScope = searchHiddenInput.dataset.searchScope;
+                    const searchSelector = `#id-poncho-map-search--${searchScope}`;
+                    const searchInput = document.querySelector(searchSelector);
+                    if(searchInput){
+                        searchInput.value = "";
+                    }
+                } catch (error) {
+                    console.error(error);
+                }
+
+                try {
+                    this._resetFormFilters();
                 } catch (error) {
                     console.error(error);
                 }
                 try {
-                    _this._filteredData(_this.entries);
+                    this._filteredData(this.entries);
                 } catch (error) {
                     console.error(error);
                 }
                 try {
-                    _this._clearSearchInput();
+                    this._clearSearchInput();
                 } catch (error) {
                     console.error(error);
                 }
                 try {
-                    _this.resetView();
+                    this.resetView();
                 } catch (error) {
                     console.error(error);
                 }
@@ -1046,16 +1056,12 @@ class PonchoMapFilter extends PonchoMap {
         this.tileLayer.addTo(this.map);
 
         this._filteredData();
-        
-
         this.filterChange((event) => {
             event.preventDefault();
             this._filteredData();
         });
         this.checkUncheckFilters();
 
-
-        this._clickToggleFilter();
         this._totalsInfo();
         if(this.scroll && this.hasHash()){
             this.scrollCenter();
@@ -1076,6 +1082,7 @@ class PonchoMapFilter extends PonchoMap {
         this.layerViewConf.setVisuals();
         this.setMapAlignment(this.map_align);
         this._resetSearch();
+        this._clickToggleFilter();
     };
 };
 // end of class
