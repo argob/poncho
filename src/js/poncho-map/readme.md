@@ -8,28 +8,28 @@
 - [PonchoMap](#ponchomap)
   - [Tabla de contenidos](#tabla-de-contenidos)
   - [Opciones generales](#opciones-generales)
-    - [Opciones para `summary`](#opciones-para-summary)
+    - [Opciones para summary](#opciones-para-summary)
       - [Parámetros](#parámetros)
-    - [Opciones para `template_structure`](#opciones-para-template_structure)
+    - [Opciones para template\_structure](#opciones-para-template_structure)
       - [Sintaxis](#sintaxis)
       - [Parámetros](#parámetros-1)
       - [Opciones para Lead](#opciones-para-lead)
         - [Sintaxis](#sintaxis-1)
         - [Parámetros](#parámetros-2)
-      - [Opciones para `mixing`](#opciones-para-mixing)
+      - [Opciones para mixing](#opciones-para-mixing)
         - [Parámetros](#parámetros-3)
-    - [Opciones para `header_icons`](#opciones-para-header_icons)
+    - [Opciones para header\_icons](#opciones-para-header_icons)
     - [Opciones para marker](#opciones-para-marker)
       - [Definiendo colores](#definiendo-colores)
       - [Modificando el tipo de marker](#modificando-el-tipo-de-marker)
-    - [Opciones para `template`](#opciones-para-template)
+    - [Opciones para template](#opciones-para-template)
       - [Ejemplos](#ejemplos)
         - [Función dentro y fuera del grupo de opciones](#función-dentro-y-fuera-del-grupo-de-opciones)
         - [Modificando la entrada y retornando el template por defecto](#modificando-la-entrada-y-retornando-el-template-por-defecto)
     - [Headers](#headers)
-    - [Opciones para `marker_cluster_options`](#opciones-para-marker_cluster_options)
+    - [Opciones para marker\_cluster\_options](#opciones-para-marker_cluster_options)
       - [Valores por defecto](#valores-por-defecto)
-    - [Opciones para `markdown_options`](#opciones-para-markdown_options)
+    - [Opciones para markdown\_options](#opciones-para-markdown_options)
       - [Valores por defecto](#valores-por-defecto-1)
     - [Open maps](#open-maps)
     - [Opciones para open\_maps\_options](#opciones-para-open_maps_options)
@@ -353,7 +353,7 @@ summary: {
 </table>
 
 
-### Opciones para `summary`
+### Opciones para summary
 
 Incorpora una descripción o propósito al mapa. Con frecuencia, los mapas se presentan con títulos muy generales que no explican su función. Al vincular el mapa con un texto descriptivo, no solo se clarifica su contenido, sino que también se mejora significativamente la accesibilidad y la experiencia del usuario, asegurando que todos puedan entender y aprovechar la información que ofrece.
 
@@ -387,7 +387,7 @@ const options = {
 | position | `string` | `top` | <p>Posiciona el summary antes o después del mapa.</p><p>Opciones:</p> <ul><li>`top`</li><li>`bottom`</li></ul> |
 | hidden | `boolean` | `false` | Si es `true`, oculta el summary, pero admite que pueda ser leido por lectores de pantalla. `false` (por defecto), lo muestra. |
 
-### Opciones para `template_structure`
+### Opciones para template_structure
 
 Template structure permite controlar el formato de la información que se presenta en el panel desplegable (slider) o en modo popup. Dentro de las opciones que ofrece esta herramienta, se pueden gestionar elementos como: lead (volanta), nombrar o renombrar encabezados (headers), definir un título, agregar o excluir valores de la entrada JSON, especificar el tipo de etiquetas HTML y aplicar estilos. En esta sección, se detalla el uso y el tipo de valor esperado para cada índice, junto con ejemplos de uso.
 
@@ -459,7 +459,7 @@ El lead (o volanta) es un texto breve que se ubica sobre el título principal. A
 | css | `string, function` | "" | **String**<br>Definición de css, ej: `"text-primary bg-warning"`.<br><br>**Función** <br>`css: (self, entry) => string;`<br>Dónde `self` el la instancia del objeto *PonchoMap* o *PonchoMapFilter* y `entry` corresponde a una entrada o feature del JSON. |
 | style | `string, function` | "" | **String**<br>Definición para _style_, ej:<br>`"color: orange; font-size:2em; margin: 2em auto;"`.<br><br>**Función** <br>`css: (self, entry) => string;`<br>Dónde `self` el la instancia del objeto *PonchoMap* o *PonchoMapFilter* y `entry` corresponde a una entrada o feature del JSON. |
 
-#### Opciones para `mixing`
+#### Opciones para mixing
 
 ![Mixing](./demo/img/mixing.png)
 
@@ -547,7 +547,7 @@ También puede utilizarse etiquetas html.
 | separator | `string` | "" | Carácter o cadena de caracteres con la que se van a concatenar los valores. |
 
 
-### Opciones para `header_icons`
+### Opciones para header_icons
 
 ![Header icons](./demo/img/header-icons.png)
 
@@ -625,7 +625,7 @@ const options = {
 }
 ```
 
-### Opciones para `template`
+### Opciones para template
 
 La opción `template` debe recibir un string de retorno. Para ello, es posible definir el atributo como una función o asignar un string directamente.
 
@@ -713,7 +713,7 @@ const opciones = {
 };
 ```
 
-### Opciones para `marker_cluster_options`
+### Opciones para marker_cluster_options
 
 Se puede obtener el extenso listado de opciones y su documentación en [Leaflet Clusters](https://github.com/Leaflet/Leaflet.markercluster). 
 
@@ -733,7 +733,7 @@ Se puede obtener el extenso listado de opciones y su documentación en [Leaflet 
 }
 ```
 
-### Opciones para `markdown_options`
+### Opciones para markdown_options
 
 #### Valores por defecto
 
@@ -908,7 +908,6 @@ const options = {
 | 1 | `string` | Nombre que se verá en el `<label>` del checkbox |
 | 2 | `object` | Listado de valores que se deberá buscar en cada iteración de búsqueda. |
 | 3 | {`string|boolean`, ["checked",`false`]} | Designa el estado inicial del checkbox. |
-
 
 
 ----
