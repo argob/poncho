@@ -1,7 +1,3 @@
-
-
-
-
 # PonchoMap
 
 ![Poncho Map](./demo/img/map.png)
@@ -242,7 +238,9 @@
       <td style="text-align:left">open_maps_options</td>
       <td style="text-align:left"><code>object</code></td>
       <td style="text-align:left"></td>
+
       <td style="text-align:left"><p>Permite redefinir el nombre del desplegable y los enlaces a mapas externos.</p><p><a href="#opciones-para-open_maps_options">Ver opciones para open_maps_options</a></p></td>
+
     </tr>
     <tr>
       <td style="text-align:left">render_slider</td>
