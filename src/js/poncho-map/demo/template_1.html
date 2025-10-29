@@ -247,7 +247,8 @@ function _divMarker(imageUrl, text) {
         ],
         open_maps:true,
         marker: function(self, ele){
-            const iconTypeURL = "http://127.0.0.1:5502/src/js/poncho-map/demo/img/tpl-marker.svg";
+            const marker = ele.color ? ele.color : "verdin";
+            const iconTypeURL = `http://127.0.0.1:5502/src/js/poncho-map/demo/markers-v2/marcador-arg-${marker}.svg`;
             return _divMarker(iconTypeURL, `a, b`);
         },
     };

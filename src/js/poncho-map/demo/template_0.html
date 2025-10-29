@@ -79,6 +79,63 @@
         .pos-e {
             background-position-x: right;
         }
+
+
+
+            .poncho-map .marker-cluster {
+        background-clip: padding-box;
+        border-radius: 20px;
+    }
+    .poncho-map .marker-cluster div:after {
+        position: relative;
+        border:none
+    }
+
+
+    .poncho-map .marker-cluster-medium div:before {
+        height: calc(100% - 2px);
+        position: absolute;
+        border-radius: 50%;
+        left: 1px;
+        top: 1px;
+        width: calc(100% - 2px);
+        content: "";
+        background-image: url(./img/smalldots.svg);
+        background-repeat: repeat;
+        background-size: 3px;
+        opacity: 0.3;
+    }
+
+    .poncho-map .marker-cluster-small div:before {
+        height: calc(100% - 2px);
+        position: absolute;
+        border-radius: 50%;
+        left: 1px;
+        top: 1px;
+        width: calc(100% - 2px);
+        content: "";
+        background-image: url(./img/diagonal-stripe-2.svg);
+        background-repeat: repeat;
+        background-size: 5px;
+        background-position-x: -3px;
+                opacity: 0.2;
+    }
+
+
+        .poncho-map .marker-cluster-large div:before {
+        height: calc(100% - 2px);
+        position: absolute;
+        border-radius: 50%;
+        left: 1px;
+        top: 1px;
+        width: calc(100% - 2px);
+        content: "";
+        background-image: url(./img/cross.svg);
+        background-repeat: repeat;
+        background-size: 5px;
+                opacity: 0.3;
+    }
+
     </style>
 <div class="demo-nav container">
     <ul class="demo-menu">
