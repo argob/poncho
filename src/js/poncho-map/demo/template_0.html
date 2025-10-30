@@ -32,134 +32,16 @@
     <script src="../../gapi-sheet-data/gapi-sheet-data.js"></script>
     <!-- / Script para debug -->
     <link rel="stylesheet" href="./css/demo.css">
+    <link rel="stylesheet" href="../dist/css/clusters.css">
     <title>Poncho Map — Puntos digitales</title>
 </head>
 <body>
-    <style>
-        .bg-rombo {
-            text-shadow: 1px 1px 1px rgb(0 0 0 / 0.25);
-            background-image: url(./img/rombo.svg);
-            background-repeat: repeat;
-            background-size: 11px;
-            /* background-blend-mode: multiply; */
-
-        }
-        .bg-vertical-lines {
-            background-image: url(./img/vertical.svg);
-            background-repeat: repeat;
-            background-size: 12px;
-            /* background-blend-mode: multiply; */
-
-        }
-        .bg-diagonal-lines {
-            background-image: url(./img/lines.svg);
-            background-repeat: repeat;
-            background-size: 11px;
-            background-position-x: -3px;
-            /* background-blend-mode: multiply; */
-        }
-        .repeat-y {
-            background-repeat: repeat-y !important;
-        }
-        .repeat-x {
-            background-repeat: repeat-x !important;
-        }
-        .repeat-y {
-            background-repeat: repeat-y !important;
-        }
-        .pos-t {
-            background-position-x: top;
-        }
-        .pos-b {
-            background-position-y: bottom;
-        }
-        .pos-s {
-            background-position-x: left;
-        }
-        .pos-e {
-            background-position-x: right;
-        }
-
-
-
-            .poncho-map .marker-cluster {
-        background-clip: padding-box;
-        border-radius: 20px;
-    }
-    .poncho-map .marker-cluster div:after {
-        position: relative;
-        border:none
-    }
-
-
-    .poncho-map .marker-cluster-medium div:before {
-        height: calc(100% - 2px);
-        position: absolute;
-        border-radius: 50%;
-        left: 1px;
-        top: 1px;
-        width: calc(100% - 2px);
-        content: "";
-        background-image: url(./img/smalldots.svg);
-        background-repeat: repeat;
-        background-size: 4px;
-        opacity: 0.3;
-    }
-
-    .poncho-map .marker-cluster-small div:before {
-        height: calc(100% - 2px);
-        position: absolute;
-        border-radius: 50%;
-        left: 1px;
-        top: 1px;
-        width: calc(100% - 2px);
-        content: "";
-        background-image: url(./img/diagonal-stripe-2.svg);
-        background-repeat: repeat;
-        background-size: 5px;
-        background-position-x: -3px;
-                opacity: 0.2;
-    }
-
-
-        .poncho-map .marker-cluster-large div:before {
-        height: calc(100% - 2px);
-        position: absolute;
-        border-radius: 50%;
-        left: 1px;
-        top: 1px;
-        width: calc(100% - 2px);
-        content: "";
-        background-image: url(./img/cross.svg);
-        background-repeat: repeat;
-        background-size: 6px;
-         background-position-x: -3px;
-                opacity: 0.1;
-    }
-
-    </style>
 <div class="demo-nav container">
     <ul class="demo-menu">
         <li><a href="./">Inicio</a></li>
     </ul>
 </div>
 
-<div class="container">
-    <div class="row">
-        <div class="p-05 p-l-1 fw-semibold bg-arg-azul bg-rombo repeat-y  text-arg-blanco">
-    1
-</div>
-<div class="p-05 p-l-1 fw-semibold bg-arg-uva bg-rombo repeat-y text-arg-blanco">
-    2
-</div>
-<div class="p-05 p-l-1 fw-semibold bg-arg-gris-intermedio bg-vertical-lines repeat-y text-arg-blanco">
-    3
-</div>
-<div class="p-05 p-l-1 fw-semibold bg-arg-verde bg-diagonal-lines repeat-y text-arg-blanco">
-    4
-</div>
-    </div>
-</div>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
