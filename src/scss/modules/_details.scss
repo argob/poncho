@@ -189,8 +189,8 @@ $colorThemes: (
 }
 
 #{$detailsScope} {
-    --icon-close: url('data:image/svg+xml;utf8,<svg focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16.59,9.79l-4.59,4.58-4.59-4.58-1.41,1.41,6,6,6-6-1.41-1.41Z"></path></svg>');
-    --icon-open: url('data:image/svg+xml;utf8,<svg focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7.41,15.51l4.59-4.58,4.59,4.58,1.41-1.41-6-6-6,6,1.41,1.41Z"></path></svg>');
+    --icon-close: url('data:image/svg+xml;base64,PHN2ZyBmb2N1c2FibGU9ImZhbHNlIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTE2LjU5LDkuNzlsLTQuNTksNC41OC00LjU5LTQuNTgtMS40MSwxLjQxLDYsNiw2LTYtMS40MS0xLjQxWiI+PC9wYXRoPjwvc3ZnPg==');
+    --icon-open: url('data:image/svg+xml;base64,PHN2ZyBmb2N1c2FibGU9ImZhbHNlIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTcuNDEsMTUuNTFsNC41OS00LjU4LDQuNTksNC41OCwxLjQxLTEuNDEtNi02LTYsNiwxLjQxLDEuNDFaIj48L3BhdGg+PC9zdmc+');
 
     --details-border-color: #{$detailsBorderColor};
     --details-border-style: #{$detailsBorderStyle};
