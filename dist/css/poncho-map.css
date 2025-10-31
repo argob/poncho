@@ -1101,17 +1101,16 @@ html {
     opacity: 0.5;
     display: none;
   }
-  .poncho-map:has(.pm-slider:is(.pm-slider--in))::before {
-    content: "";
-    width: 100%;
+  .poncho-map:has(.pm-slider:is(.pm-slider--in)) .pm-backdrop {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.75);
     height: 100%;
+    width: 100%;
     left: 0;
     top: 0;
-    position: absolute;
     z-index: 1000;
-    background: var(--pm-slider-modal-color);
-    opacity: 0.75;
-    transition: 0.5s;
+    backdrop-filter: blur(5px);
+    transition: 0.25s ease-in-out;
   }
   .poncho-map .pm-slider {
     height: calc(var(--pm-slider-media-mobile-height) - var(--pm-slider-distance) * 2);

@@ -7099,6 +7099,10 @@ class PonchoMap {
             .forEach(e => e.remove());
 
         // 3. Creación y configuración de elementos
+        // Backdrop
+        const backdrop = document.createElement("div");
+        backdrop.className = "pm-backdrop";
+        
         // Contenedor principal del slider
         const container = document.createElement("dialog");
         container.id = `slider${this.scope_sufix}`;
@@ -7158,9 +7162,11 @@ class PonchoMap {
         container.appendChild(contentContainer);
 
         // 5. Inserción en el DOM
-        document
-            .querySelector(`${this.scope_selector}.poncho-map`)
-            .appendChild(container);
+        const ponchoMapElement = document.querySelector(`${this.scope_selector}.poncho-map`);
+        if(ponchoMapElement){
+            ponchoMapElement.appendChild(backdrop);
+            ponchoMapElement.appendChild(container);
+        }
     };
 
 
