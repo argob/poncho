@@ -15317,6 +15317,14 @@ DEGRADÉ: .bg-mix-azul-info .bg-mix-info-azul .bg-mix-palta-azul .bg-mix-azul-pa
  * @param {string} $background Color de fondo para el contenedor del caret.
  * @param {string} $fill Color para el caret.
  */
+/**
+ * Oscurece el color de fondo
+ * @param {string} $fill Color para el caret.
+ */
+:root {
+  interpolate-size: allow-keywords;
+}
+
 details {
   --icon-close: url("data:image/svg+xml;base64,PHN2ZyBmb2N1c2FibGU9ImZhbHNlIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTE2LjU5LDkuNzlsLTQuNTksNC41OC00LjU5LTQuNTgtMS40MSwxLjQxLDYsNiw2LTYtMS40MS0xLjQxWiI+PC9wYXRoPjwvc3ZnPg==");
   --icon-open: url("data:image/svg+xml;base64,PHN2ZyBmb2N1c2FibGU9ImZhbHNlIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTcuNDEsMTUuNTFsNC41OS00LjU4LDQuNTksNC41OCwxLjQxLTEuNDEtNi02LTYsNiwxLjQxLDEuNDFaIj48L3BhdGg+PC9zdmc+");
@@ -15346,6 +15354,17 @@ details {
   border-bottom-color: var(--details-border-color);
   border-bottom-style: var(--details-border-style);
   border-bottom-width: var(--details-border-width);
+  overflow: hidden;
+}
+details::details-content {
+  block-size: 0;
+  transition: block-size 0.15s ease-in-out, content-visibility 0.15s ease-in-out;
+  transition-behavior: allow-discrete;
+  border-top: 1px solid transparent;
+  border-bottom: 1px solid transparent;
+}
+details:open::details-content {
+  block-size: auto;
 }
 details:last-child {
   border-bottom: 1px solid var(--details-border-color);
@@ -15394,6 +15413,7 @@ details summary::before {
   aspect-ratio: 1/1 !important;
   left: initial;
   right: var(--summary-padding-e);
+  transition: background 0.15s ease-in-out;
 }
 details summary::after {
   width: var(--caret-width);
