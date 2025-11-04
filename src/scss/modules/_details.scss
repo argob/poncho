@@ -1,4 +1,3 @@
-
 /**
  * DETAILS & SUMMARY
  *
@@ -182,10 +181,26 @@ $colorThemes: (
         &::before {
             background: $background;
         }
+        &:hover::before {
+             @include caretBackgroundHover(#{$background});
+        }
         &::after {
             background-color: $fill;
         }
     }
+}
+
+/**
+ * Oscurece el color de fondo
+ * @param {string} $fill Color para el caret.
+ */
+@mixin caretBackgroundHover($color){
+    //background-color: color-mix(in srgb, #{$color} 100%, black 15%);
+    //transition: .2s;
+}
+
+:root {
+  interpolate-size: allow-keywords;
 }
 
 #{$detailsScope} {
@@ -230,7 +245,21 @@ $colorThemes: (
             width: var(--details-border-width);
         }
     }
+ 
+    overflow: hidden;
 
+
+    &::details-content {
+        block-size: 0;
+        transition: block-size 0.15s ease-in-out, content-visibility 0.15s ease-in-out;
+        transition-behavior: allow-discrete;
+        // Fix temporal para que la transición sea fluida
+        border-top: 1px solid transparent;
+        border-bottom: 1px solid transparent;
+    }
+    &:open::details-content {
+      block-size: auto;
+    }
     &:last-child {
         border-bottom: 1px solid var(--details-border-color);
     }
@@ -276,6 +305,8 @@ $colorThemes: (
             );
         }
 
+        
+        
         &::-webkit-details-marker {
             display: none;
         }
@@ -291,6 +322,7 @@ $colorThemes: (
             aspect-ratio: 1 / 1 !important;
             left: initial;
             right: var(--summary-padding-e);
+            transition: background .15s ease-in-out;
         }
 
         &::after {
@@ -318,6 +350,10 @@ $colorThemes: (
                 ((var(--circle-size) - var(--caret-width)) / 2) +
                     var(--summary-padding-e)
             );
+        }
+        
+        &:hover::before {
+            @include caretBackgroundHover(#{var(--caret-background)});
         }
     }
 
@@ -381,8 +417,6 @@ $colorThemes: (
         }
         line-height: inherit;
     }
-    // @todo usar el pseudo elemento cuando esté habilitado
-    // &[open]::details-content { }
 
     // Pega el caret a la altura del padding.
     &.caret-fixed {
