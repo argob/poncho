@@ -14805,6 +14805,10 @@ ul.colores li:hover {
   display: inline-block;
 }
 
+.br {
+  display: block;
+}
+
 /* Extra small devices (phones, less than 576px) */
 @media (max-width: 575.98px) {
   .br-xs {
