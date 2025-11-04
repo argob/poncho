@@ -3,6 +3,9 @@
 // <p><span>Hello <span class="br-md"></span> world.</p>
 // <p><span>Hello <span class="br-lg"></span> world.</p>
 
+.br {
+    display: block;
+}
 
 /* Extra small devices (phones, less than 576px) */
 @media (max-width: 575.98px) {
@@ -38,3 +41,6 @@
         display: block;
     }
 }
+
+
+
