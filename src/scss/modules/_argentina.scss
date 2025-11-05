@@ -1,530 +1,678 @@
 /**
- * Poncho v0.2 (https://github.com/argob/poncho)
- * Copyright 2016
- * Subsecretaría de Tecnologías de la Información
- * Presidencia de la Nación Argentina
- * Licenciado bajo MIT (https://github.com/argob/poncho/LICENSE)
-  */
+ * DETAILS & SUMMARY
+ *
+ * @see https://github.com/argob/poncho/blob/master/src/scss/modules/_details.scss
+ * @demo en: https://codepen.io/agustinbouillet/pen/dyxZpNz?editors=0100
+ * @author Agustín Bouillet <bouilleta@jefatura.gob.ar>
+ * Copyright (c) 2025 Argentina.gob.ar
+ */
 
-@import "main";
+/**
+ * Variables SCSS
+ */
+$detailsScope: "details"; // define el alcance del componente, ej.: `details.ar-details`.
 
-/* Form-type
-   ======================================================================== 
+// details tag
+$detailsPaddingY: 9px;
+$detailsPaddingX: 0px;
+$detailsBorderColor: #cccccc;
+$detailsBorderStyle: solid;
+$detailsBorderWidth: 1px;
+
+// summary tag
+$summaryPaddingS: 1px; // Padding start
+$summaryPaddingE: 1px; // Padding end
+$summaryPaddingT: 10px; // Padding top
+$summaryPaddingB: 10px; // Padding bottom
+$summaryLineHeightSmall: 1.25em;
+$summaryLineHeightDefault: 1.35em;
+
+// caret
+$circleDefaultSize: 40px; // Tamaño del círculo
+$circleSmallSize: 32px; // Tamaño del círculo pequeño
+$circleMarginRight: 10px; // Margen entre el círuclo y el inicio de texto
+
+$caretDefaultSize: 26px; // Tamaño del caret, o flecha.
+$caretSmallSize: 22px; // Tamaño del caret cuando es pequeño.
+$caretColor: var(--arg-negro-600, #444444);
+$caretBackground: var(--arg-negro-100, #e9e9e9);
+$caretBackgroundHover: #ccc;
+
+// media queries
+$mediaBreakpoint: 768px;
+$containerBreakpoint: 350px;
+$containerBorderRadius: 3px; // Define el border-radius por defecto
+$containerBorderRound: 9px;
+$containerMarginT: 0px;
+$containerMarginB: 1em;
+
+$contentMarginT: 0.5rem; // margin-top contenido
+$contentMarginB: 1rem; // margin-bottom contenido
+
+/* Definiciones para el contenedor */
+// Default
+$containerSummaryPaddingS: 18px; // padding-left summary
+$containerSummaryPaddingE: 9px; // padding-right summary
+$containerContentPaddingS: 18px; // padding-left content
+$containerContentPaddingE: 18px; // padding-right content
+// Left
+$containerLeftSummaryPaddingS: 9px; // padding-left summary
+$containerLeftSummaryPaddingE: 9px; // padding-right summary
+$containerLeftContentPaddingS: 18px; // padding-left content
+$containerLeftContentPaddingE: 18px; // padding-right content
+
+/**
+ * Definición para los temas de color.
+ */
+$colorThemes: (
+    "warning": (
+        caretBackground: var(--arg-amarillo),
+        //caretBackgroundHover: var(--arg-ocre-500),
+        caretBackgroundHover: color-mix(in srgb, var(--arg-amarillo) 100%, var(--arg-ocre-500) 90%),
+        caret: black,
+        containerBackground: var(--arg-amarillo-50),
+        borderColor: var(--arg-amarillo-400)
+    ),
+    "success": (
+        caretBackground: var(--arg-verde),
+        caretBackgroundHover: var(--arg-verde-800),
+        caret: white,
+        containerBackground: var(--arg-verde-50),
+        borderColor: var(--arg-verde-300)
+    ),
+    "danger": (
+        caretBackground: var(--arg-rojo),
+        caretBackgroundHover: var(--arg-rojo-800),
+        caret: white,
+        containerBackground: var(--arg-rojo-50),
+        borderColor: var(--arg-rojo-200)
+    ),
+    "blanco": (
+        caretBackground: var(--arg-blanco),
+        caretBackgroundHover: #DDDDDD,
+        caret: black
+    ),
+    "palta": (
+        caretBackground: var(--arg-palta),
+        caretBackgroundHover: var(--arg-turquesa-500),
+        caret: black
+    ),
+    "primary": (
+        caretBackground: var(--arg-azul),
+        caretBackgroundHover: var(--arg-primary-600),
+        caret: white,
+        containerBackground: var(--arg-primary-50),
+        borderColor: var(--arg-primary-200)
+    ),
+    "azul-morado": (
+        caretBackground: var(--arg-azul-morado),
+        caretBackgroundHover: color-mix(in srgb, var(--arg-azul-morado) 100%, black 30%),
+        caret: white
+    ),
+    "negro": (
+        caretBackground: var(--arg-negro-600),
+        caretBackgroundHover: var(--arg-negro-900),
+        caret: white
+    ),
+    "dark": (
+        caretBackground: rgb(0 0 0 / 0.35),
+        caretBackgroundHover: rgb(0 0 0 / 0.25),
+        caret: white
+    ),
+    "light": (
+        caretBackground: rgb(255 255 255 / 0.75),
+        caretBackgroundHover: rgb(255 255 255 / 0.55),
+        caret: black
+    ),
+    "default": (
+        caretBackground: $caretBackground,
+        caretBackgroundHover: $caretBackgroundHover,
+        caret: black,
+        containerBackground: #f4f4f4,
+        borderColor: #ccc
+    ),
+    "transparent": (
+        caretBackground: transparent,
+        caretBackgroundHover: transparent,
+        caret: var(--arg-azul)
+    ),
+    "rosado": (
+        caretBackground: var(--arg-rosado),
+        caretBackgroundHover: var(--arg-fucsia-300),
+        caret: white
+    )
+);
+
+/**
+ * Definiciones para el cambio de tamaño del caret
+ */
+@mixin caretSmall() {
+    > summary {
+        --circle-size: #{$circleSmallSize};
+        --caret-width: #{$caretSmallSize};
+        --summary-line-height: #{$summaryLineHeightSmall};
+    }
+}
+
+/**
+ * Fija el caret a la altura definida por el tamaño del padding top
+ */
+@mixin caretFixed() {
+    > summary {
+        &::before {
+            top: var(--summary-padding-t);
+        }
+
+        &::after {
+            top: calc(
+                (
+                    ((var(--circle-size) / 2) - (var(--caret-width) / 2)) +
+                        var(--summary-padding-t)
+                )
+            );
+        }
+    }
+
+    &[open] {
+        > summary {
+            &::after {
+                top: calc(
+                    ((var(--circle-size) / 2) - (var(--caret-width) / 2)) +
+                        var(--summary-padding-t)
+                );
+            }
+        }
+    }
+}
+
+/**
+ * Color de los caret
+ *
+ * @param {string} $background Color de fondo para el contenedor del caret.
+ * @param {string} $fill Color para el caret.
+ * @param {string} $backgroundHover Color hover para el fonde del caret.
+ */
+@mixin caretColor($background, $fill, $backgroundHover) {
+    & > summary {
+        &::before {
+            background: $background;
+            transition: background .2s ease-in-out;
+        }
+        &:hover::before {
+            @include caretBackgroundHover($background, $backgroundHover);
+            //@include caretBackgroundHover(#{$background}, #{$backgroundHover});
+        }
+        &::after {
+            background-color: $fill;
+        }
+    }
+}
+
+/**
+ * Oscurece el color de fondo
+ * @param {string} $fill Color para el caret.
+ */
+@mixin caretBackgroundHover($color, $hover) {
+        //background-color: color-mix(in srgb, #{$color} 100%, black 20%);
+        background-color: #{$hover};
+        transition: background .2s ease-in-out;
+}
+
+:root {
+  interpolate-size: allow-keywords;
+}
+
+#{$detailsScope} {
+    --icon-close: url('data:image/svg+xml;base64,PHN2ZyBmb2N1c2FibGU9ImZhbHNlIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTE2LjU5LDkuNzlsLTQuNTksNC41OC00LjU5LTQuNTgtMS40MSwxLjQxLDYsNiw2LTYtMS40MS0xLjQxWiI+PC9wYXRoPjwvc3ZnPg==');
+    --icon-open: url('data:image/svg+xml;base64,PHN2ZyBmb2N1c2FibGU9ImZhbHNlIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTcuNDEsMTUuNTFsNC41OS00LjU4LDQuNTksNC41OCwxLjQxLTEuNDEtNi02LTYsNiwxLjQxLDEuNDFaIj48L3BhdGg+PC9zdmc+');
+
+    --details-border-color: #{$detailsBorderColor};
+    --details-border-style: #{$detailsBorderStyle};
+    --details-border-width: #{$detailsBorderWidth};
+
+    --details-padding-x: #{$detailsPaddingX};
+    --details-padding-y: #{$detailsPaddingY};
+
+    --summary-line-height: #{$summaryLineHeightDefault};
+
+    --summary-padding-s: #{$summaryPaddingS};
+    --summary-padding-e: #{$summaryPaddingE};
+    --summary-padding-t: #{$summaryPaddingT};
+    --summary-padding-b: #{$summaryPaddingB};
+
+    --content-padding-s: #{$summaryPaddingS};
+    --content-padding-e: #{$summaryPaddingE};
+    --content-margin-t: #{$contentMarginT};
+    --content-margin-b: #{$contentMarginB};
+
+    --circle-size: #{$circleDefaultSize};
+    --circle-margin-right: #{$circleMarginRight};
+    --caret-width: #{$caretDefaultSize};
+    --caret-color: #{$caretColor};
+    --caret-background: #{$caretBackground};
+    --caret-background-hover: #{$caretBackgroundHover};
+
+    /* Definitions */
+    container: {
+        type: inline-size;
+        name: detailsSize;
+    }
+    border-width: 0; // reset border-width
+    border: {
+        bottom: {
+            color: var(--details-border-color);
+            style: var(--details-border-style);
+            width: var(--details-border-width);
+        }
+    }
+
+    overflow: clip;
+
+    &::details-content {
+        block-size: 0;
+        transition: block-size 0.15s linear, content-visibility 0.15s linear;
+ 
+        // Mozilla aun no tiene soporte para algunas de estas propiedades
+        -moz-transition: none;
+        
+        transition-behavior: allow-discrete;
+        -webkit-transition-behavior: allow-discrete;
+        -moz-transition-behavior: allow-discrete;
+        
+        // Fix temporal para que la transición sea fluida
+        border: {
+            top: .01em solid transparent;
+            bottom: .01em solid transparent;
+        }
+    }
+    &:open::details-content {
+        block-size: auto;
+        content-visibility: visible;
+    }
+    &:last-child {
+        border-bottom: 1px solid var(--details-border-color);
+    }
+    &.details-borderless {
+        border: none !important;
+    }
+    &.details-border-top {
+        border-top: 1px solid var(--details-border-color);
+    }
+    &.details-border-light {
+        border-color: rgb(255 255 255 / 0.75) !important;
+    }
+    &.details-border-dark {
+        border-color: rgb(0 0 0 / 0.25) !important;
+    }
+
+    summary {
+        min-height: calc(
+            var(--circle-size) +
+                (var(--summary-padding-t) + var(--summary-padding-b))
+        );
+        line-height: var(--summary-line-height);
+        display: flex;
+        align-items: center;
+        position: relative;
+        list-style-type: none;
+        cursor: pointer;
+        transition: all 0.1s ease-in-out;
+
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+
+        font-weight: 600;
+        padding: {
+            top: var(--summary-padding-t);
+            bottom: var(--summary-padding-b);
+            left: var(--summary-padding-s);
+            right: calc(
+                var(--circle-size) + var(--details-padding-x) +
+                    var(--circle-margin-right) +
+                    (var(--summary-padding-s) + var(--summary-padding-e))
+            );
+        }
+
+        
+        
+        &::-webkit-details-marker {
+            display: none;
+        }
+
+        &::before {
+            content: " ";
+            position: absolute;
+            background: var(--caret-background);
+            height: var(--circle-size);
+            width: var(--circle-size);
+            border-radius: 50%;
+            text-align: center;
+            aspect-ratio: 1 / 1 !important;
+            left: initial;
+            right: var(--summary-padding-e);
+            transition: background .15s ease-in-out;
+        }
+
+        &::after {
+            width: var(--caret-width);
+            height: var(--caret-width);
+            margin: auto;
+            vertical-align: -15%;
+            -webkit-mask: {
+                image: var(--icon-close);
+                origin: fill-box;
+                repeat: no-repeat !important;
+                size: contain;
+            }
+            mask: {
+                image: var(--icon-close);
+                origin: fill-box;
+                repeat: no-repeat !important;
+                size: contain;
+            }
+            background-color: var(--caret-color);
+            content: "";
+            position: absolute;
+            left: initial;
+            right: calc(
+                ((var(--circle-size) - var(--caret-width)) / 2) +
+                    var(--summary-padding-e)
+            );
+        }
+        
+        &:hover::before {
+            @include caretBackgroundHover(#{var(--caret-background)}, #{var(--caret-background-hover)});
+        }
+    }
+
+    &.caret-left {
+        > summary {
+            padding: {
+                left: calc(
+                    var(--circle-size) + var(--details-padding-x) +
+                        var(--circle-margin-right) + var(--summary-padding-s)
+                );
+                right: var(--summary-padding-e);
+            }
+
+            &::before {
+                left: var(--summary-padding-s);
+            }
+
+            &::after {
+                right: initial;
+                left: calc(
+                    ((var(--circle-size) - var(--caret-width)) / 2) +
+                        var(--summary-padding-s)
+                );
+            }
+        }
+    }
+
+    &[open] {
+        > summary {
+            &::after {
+                -webkit-mask: {
+                    image: var(--icon-open);
+                }
+                mask: {
+                    image: var(--icon-open);
+                }
+            }
+        }
+    }
+
+    /* Creo los caret de color */
+    @each $theme-name, $theme-colors in $colorThemes {
+        &.caret-#{$theme-name} {
+            @include caretColor(
+                map-get($theme-colors, caretBackground),
+                map-get($theme-colors, caret),
+                map-get($theme-colors, caretBackgroundHover)
+            );
+        }
+    }
+
+    /* Define los atributos del contenedor para el contenido */
+    .ar-details__content {
+        background: transparent;
+        padding: {
+            left: var(--content-padding-s);
+            right: var(--content-padding-s);
+        }
+        margin: {
+            top: var(--content-margin-t);
+            bottom: var(--content-margin-b);
+        }
+        line-height: inherit;
+    }
+
+    // Pega el caret a la altura del padding.
+    &.caret-fixed {
+        @include caretFixed();
+    }
+
+    /* Caret small */
+    &.caret-small {
+        @include caretSmall();
+    }
+}
+
+/*
+Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
 */
-.form-type-date .form-inline {
-	margin: 0 -15px;
-	background: none;
-	border: none;
-	box-shadow: none;
-	padding: 0;
-	width: initial;
-}
-
-
-.form-type-date .form-inline:after {
-	content: '';
-	display: block;
-	clear: left;
-}
-
-.form-type-date .form-inline>div {
-	width: 33.33%;
-	padding: 0 15px;
-	display: block;
-	float: left;
-}
-
-.form-type-date .form-inline>div label {
-	display: block;
-}
-
-.form-type-date .form-inline>div input,
-.form-type-date .form-inline>div select {
-	width: 100%;
-	box-sizing: border-box;
-}
-
-
-.form-item input {
-	font-size: 16px;
-	line-height: 1;
-	padding: 15px;
-}
-
-.form-item input[type=hidden]+input {
-	border-radius: 4px 0 0 4px !important;
-}
-
-.form-item .input-group-btn .btn {
-	min-width: 200px;
-}
-
-.checkbox input[type=checkbox],
-.checkbox-inline input[type=checkbox],
-.radio input[type=radio],
-.radio-inline input[type=radio] {
-	padding: 0;
-}
-
-
-
-fieldset.panel.collapsible {
-	border: none;
-	background: none;
-	box-shadow: none;
-	padding: 0;
-	height: initial !important;
-}
-
-fieldset.panel.collapsible legend.panel-heading {
-	border: 0;
-	min-height: 0;
-	background: none;
-	padding: 0;
-	margin: 0;
-}
-
-fieldset.panel.collapsible legend.panel-heading a {
-	display: inline-block;
-	font-size: 16px;
-	font-weight: 500;
-	margin-bottom: 10px;
-	padding: 16px 25px;
-	border-radius: 4px;
-	text-transform: uppercase;
-	vertical-align: top;
-	color: #0072bc;
-	text-decoration: underline !important;
-	background-color: #e5e5e5 !important;
-}
-
-
-
-fieldset.panel.collapsible legend.panel-heading a span {
-	display: none;
-}
-
-fieldset.panel.collapsible legend.panel-heading a:hover,
-fieldset.panel.collapsible legend.panel-heading a:focus {
-	background-color: #ccc !important;
-	color: #0072bc;
-}
-
-fieldset.panel.collapsible .panel-body {
-	border: 1px solid #ccc;
-	border-radius: 4px;
-	padding: 30px 30px 0;
-}
-
-fieldset.panel.collapsible .panel-body .form-group>label.control-label {
-	font-weight: 400;
-}
-
-
-
-
-
-/* cd-login
-   @TODO verificar si se sigue utilizando
-   ======================================================================== */
-#cd-login {
-	display: inline-block;
-}
-
-@media (max-width:768px) {
-	#cd-login button {
-		width: 100%;
-		margin: 0 0 20px;
-	}
-}
-
-
-
-
-
-/* x
-   ======================================================================== */
-@media (min-width:768px) and (max-width:1200px) {
-	.navbar .navbar-brand img {
-		width: 254px;
-	}
-}
-
-@media print {
-
-	.pane-argentinagobar-bloques-reportes-formulario-reportes,
-	.book-navigation {
-		display: none;
-	}
-}
-
-/* Fix labels en input radios de formularios */
-.form-radios label {
-	font-weight: 400;
-}
-
-/* Fix para centrar iconos en Argentina.gob.ar */
-.icon-item {
-	text-align: center;
-}
-
-.icon-item i {
-	justify-content: center;
-}
-
-/* Fix para ajustar Breadcrumbs
-   ======================================================================== */
-.jumbotron .jumbotron_bar {
-	padding: 10px 0 5px 0;
-}
-
-.pane-page-breadcrumb .breadcrumb li,
-.jumbotron_bar .breadcrumb li {
-	display: inline;
-}
-
-.pane-page-breadcrumb .pane-content,
-.jumbotron_bar .col-md-12 {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	align-items: flex-start;
-}
-
-.pane-page-breadcrumb .pane-content .breadcrumb,
-.jumbotron_bar .col-md-12 .breadcrumb {
-	float: none !important;
-	margin-right: 10px;
-}
-
-.pane-page-breadcrumb .pane-content .list-inline.pull-right,
-.jumbotron_bar .col-md-12>.list-inline.pull-right {
-	float: none !important;
-	order: 2;
-	margin-top: 1px;
-}
-
-@media (max-width:768px) {
-	.jumbotron div.jumbotron_bar .col-md-12 .list-inline li {
-		display: inline-block !important;
-		margin-top: 0;
-	}
-
-}
-
-@media (max-width:530px) {
-	.jumbotron_bar .dropdown-menu-right {
-		right: auto;
-		left: 0;
-	}
-
-}
-
-/* x
-   ======================================================================== */
-footer ul.nav li a {
-	text-decoration: underline !important;
-}
-
-.icon-item {
-	text-align: center;
-	margin: 10px 0;
-}
-
-/* Generar mas contraste con este color al texto*/
-.h3.section-title {
-	color: $black;
-	/* archivo tipography.scss line 43 le agrega por defecto color: #707070 */
-}
-
-.m-l-m15 {
-	margin-left: -15px;
-}
-
-/* Las listas despegables que se corran a la izquierda */
-.dropdown-menu-right {
-	left: auto;
-	right: 0;
-}
-
-/* hover mas contraste   */
-.nav.nav-icons li a:hover i,
-.nav.nav-icons li a:focus i {
-	color: #0072bb !important;
-	background: #fff !important;
-	box-shadow: none;
-	border: solid 1px #ddd;
-}
-
-/* afecta tambien nav.scss line 369*/
-.nav.nav-icons.nav-icons-selected li:not(.active) a:hover i {
-	color: #0072bb !important;
-	background: #fff !important;
-	box-shadow: none;
-	border: solid 1px #ddd;
-}
-
-.nav.nav-icons li a span {
-	color: $black;
-}
-
-/* Mejorar contraste a etiqueta time en paneles noticias destacadas */
-.panel time {
-	opacity: 1;
-}
-
-/* modificar paneles sacar headings por parrafos o span */
-.panel .h3_title,
-.h3_title {
-	font-size: 1.3em !important;
-	font-weight: 500 !important;
-	line-height: 1.3 !important;
-	margin: .25em 0 !important;
-	/*color: red; cambiar color para visualizar mejor que se esta cambiando*/
-}
-
-/* modificar paneles sacar headings por parrafos o span */
-.icon-item .h3_title {
-	font-size: 1.6em !important;
-	/* global.scss line 90*/
-	margin-top: 0 !important;
-	/* global.scss line 85*/
-	margin-bottom: 0.2em;
-	font-weight: 600;
-	/*color: red; cambiar color para visualizar mejor que se esta cambiando*/
-}
-
-
-
-
-@media screen and (max-width:767px) {
-	.c_bajada {
-		display: none;
-	}
-
-}
-
-
-.pane-area-estructura .img-rounded {
-	margin-top: 10px !important;
-}
-
-
-
-
-
-
-/* Header
-   ======================================================================== */
-header nav .btn-link {
-	color: #0072bb !important;
-	margin-left: 20px !important;
-}
-
-header nav input#buscar {
-	opacity: 0.9;
-}
-
-header nav input#buscar:focus {
-	opacity: 1;
-}
-
-
-
-
-/* Panel
-   ======================================================================== */
-.panel h3,
-.panel .h3 {
-	color: $black;
-}
-
-
-
-@media (max-width:767px) {
-	.navbar .navbar-brand {
-		padding: 10px 15px 10px 0;
-	}
-
-	.navbar.navbar-top.state-search .navbar-nav.navbar-right>.btn {
-		margin-left: 0 !important;
-	}
-}
-
-.input-group .form-control:not(:first-child):not(:last-child),
-.input-group-addon:not(:first-child):not(:last-child),
-.input-group-btn:not(:first-child):not(:last-child) {
-	border-top-left-radius: 10px;
-	border-bottom-left-radius: 10px;
-	border: 1px solid $black !important;
-}
-
-footer section section {
-	padding: 0 0 30px 0 !important;
-}
-
-@media (max-width:490px) {
-	.navbar .btn {
-		margin-top: 10px;
-	}
-}
-
-@media (max-width:767px) {
-	.navbar .btn {
-		margin: 13px 0 8px 10px;
-	}
-
-	.jumbotron .jumbotron_bar .breadcrumb,
-	.pane-page-breadcrumb .breadcrumb {
-		margin-bottom: 5px !important;
-		min-width: 260px;
-	}
-	
-}
-
-@media (max-width:490px) {
-	.navbar.navbar-top .input-group {
-		margin: 9px 0 0 0;
-	}
-
-	.navbar-default {
-		min-height: 70px;
-	}
-}
-
-@media (max-width:768px) {
-	.jumbotron div.jumbotron_bar .col-md-12 .list-inline li {
-		display: inline-block !important;
-		margin-top: 0;
-	}
-
-	footer section section {
-		padding: 0 !important;
-	}
-
-	footer section section ul {
-		margin-bottom: 0 !important;
-		padding: 0;
-	}
-
-}
-
-.breadcrumb a:hover {
-	color: $black;
-}
-
-ul.dropdown-menu li a {
-	width: 350px;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-}
-
-.checkbox label,
-.radio label {
-	margin-top: 0 !important;
-}
-
-.main-footer {
-	margin-top: 0 !important;
-}
-
-footer .nav>li>a:focus,
-footer .nav>li>a:hover {
-	background-color: transparent;
-	opacity: .8;
-}
-
-.nav-pills>li>a {
-	border-radius: 30px;
-}
-
-.dropdown .list-inline li {
-	margin-bottom: 0 !important;
-}
-
-.panel-disabled,
-.panel-disabled .h3,
-.panel-disabled h3,
-.panel-disabled p {
-	color: $black !important;
-}
-
-.pane-area-estructura h2 {
-	margin-bottom: 10px !important;
-}
-
-.pane-area-estructura .img-rounded {
-	margin-bottom: 20px !important;
-}
-
-.well {
-	border-width: 2px !important;
-}
-
-.node-unpublished {
-	background-color: #fff !important;
-}
-
-.social-share a {
-	font-size: 20px;
-	margin-top: -6px;
-}
-
-/*  ESTILOS ETAPA 2 ARGENTINA.GOB.AR */
-.etapa2 .h3 {
-	color: $black !important;
-	font-size: 20px !important;
-	text-shadow: none !important;
-}
-
-.etapa2 p {
-	font-size: 16px !important;
-	line-height: 22px !important;
-	text-shadow: none !important;
-	font-weight: 500 !important;
-	color: #555 !important;
-}
-
-.etapa2 .text-muted {
-	text-shadow: none !important;
-}
-
-.mt-3 {
-	margin-top: 30px;
-}
-
-.input-search {
-	border: none !important
-}
-
-.input-search:hover,
-.input-search:focus {
-	box-shadow: none !important
-}
-
-.d-inline-block {
-	display: inline-block !important;
-}
-
-.btn-search-reset {
-	padding: 10px 11px !important;
-	border: 1px solid $black !important;
-	line-height: 1.38 !important;
-}
-
-
-/* Footer
-   ======================================================================== */
-
-.sub-footer {
-	background-color: $brand-primary;
-	padding: 20px 0 40px 0;
-}
-
-@media print {
-	.main-footer {
-		display: none;
-	}
+@container detailsSize (max-width: #{$containerBreakpoint}) {
+    #{$detailsScope} {
+        @include caretSmall();
+    }
+}
+
+@media all and (max-width: #{$mediaBreakpoint}) {
+    #{$detailsScope} {
+        @include caretSmall();
+    }
+}
+
+/**
+ * Contenedores
+ * Definición para los contenedores de los details
+ */
+.details-container {
+    --container-border-color: #{$detailsBorderColor};
+    --container-border-style: #{$detailsBorderStyle};
+    --container-border-width: #{$detailsBorderWidth};
+    --container-border-radius: #{$containerBorderRadius};
+    --container-margin-t: #{$containerMarginT};
+    --container-margin-b: #{$containerMarginB};
+
+    border-radius: var(--container-border-radius);
+    overflow: hidden;
+    position: relative;
+    border: {
+        color: var(--container-border-color);
+        style: var(--container-border-style);
+        width: var(--container-border-width);
+    }
+    margin: {
+        bottom: var(--container-margin-b);
+        top: var(--container-margin-t);
+    }
+
+    &.caret-fixed > details {
+        @include caretFixed();
+    }
+
+    &.details-container__borderless {
+        border: none;
+    }
+    
+    
+    &.details-container__round {
+        border-radius: $containerBorderRound;
+    }
+    
+
+    &.details-container__rounded {
+        border-radius: calc(#{$circleDefaultSize} / 2 + #{$detailsPaddingY});
+    }
+
+    &.details-container__rounded .details-container {
+        border-radius: calc(
+            #{$circleDefaultSize} / 2 + #{$detailsPaddingY} -
+                var(--content-padding-s)
+        );
+    }
+
+    &.details-container__rounded:has(details.caret-small) {
+        border-radius: calc(#{$circleSmallSize} / 2 + #{$detailsPaddingY});
+    }
+
+    &.details-container__rounded:has(details.caret-small)
+        .details-container:has(details.caret-small) {
+        border-radius: calc(
+            #{$circleSmallSize} / 2 + #{$detailsPaddingY} -
+                var(--content-padding-s)
+        );
+    }
+
+    &:not(:is(.details-container__borderless)) details:last-of-type {
+        border-bottom: none;
+    }
+    & > #{$detailsScope} {
+        --summary-padding-s: #{$containerSummaryPaddingS};
+        --summary-padding-e: #{$containerSummaryPaddingE};
+        --content-padding-s: #{$containerContentPaddingS};
+        --content-padding-e: #{$containerContentPaddingE};
+    }
+    & > #{$detailsScope}:is(.caret-left) {
+        --summary-padding-s: #{$containerLeftSummaryPaddingS};
+        --summary-padding-e: #{$containerLeftSummaryPaddingE};
+        --content-padding-s: #{$containerLeftContentPaddingS};
+        --content-padding-e: #{$containerLeftContentPaddingE};
+    }
+}
+
+@media all and (max-width: $mediaBreakpoint) {
+    .details-container {
+        &.details-container__rounded {
+            border-radius: calc(#{$circleSmallSize} / 2 + #{$detailsPaddingY});
+        }
+    }
+}
+
+/**/
+
+/* TEMAS DE COLOR */
+@each $theme-name, $theme-colors in $colorThemes {
+    @if map-get($theme-colors, containerBackground) {
+        .details-container.theme-#{$theme-name} {
+            background-color: #{map-get($theme-colors, containerBackground)};
+            border-color: #{map-get($theme-colors, borderColor)};
+
+            details {
+                border-bottom-color: #{map-get($theme-colors, borderColor)};
+
+                @include caretColor(
+                    map-get($theme-colors, caretBackground),
+                    map-get($theme-colors, caret),
+                    map-get($theme-colors, caretBackgroundHover)
+                );
+            }
+        }
+    }
+}
+
+/** 
+ *  LADNDING
+ *  @summary Estilos para las páginas langing de algunos productos o servicios.
+ *  @see www.argentina.gob.ar/vacaciones.
+ */
+
+/** 
+ *  Configuración de variables por defecto
+ */
+@mixin landingDefault() {
+    --figure-width: 1.15rem;
+    --figure-text-gap: 10px;
+    --figure-color: inherit;
+    --figure-font-size: 1.5em;
+    --summary-font-size: 1em;
+}
+
+.details-landing {
+    // Elimino/oculto las etiquetas de párrafo vacías y los br.
+    br,
+    p:empty {
+        display: none;
+        height: 0px;
+        overflow: hidden;
+    }
+    // Redefino details
+    // Vista default
+    details {
+        @include landingDefault();
+    }
+    // Vista media
+    &#{&}-md > details {
+        --figure-width: 1.5rem;
+        --figure-font-size: 1.75em;
+        --summary-font-size: 1.15rem;
+    }
+    // Vista grande
+    &#{&}-lg > details {
+        --figure-width: 1.75rem;
+        --figure-text-gap: 15px;
+        --figure-font-size: 2em;
+        --summary-font-size: 1.2rem;
+        /* Global componente */
+        --summary-padding-t: 15px;
+        --summary-padding-b: 15px;
+    }
+
+    // definición para los íconos
+    summary:has(i.fa-2x),
+    summary:has(.figure) {
+        font-size: var(--summary-font-size);
+        gap: var(--figure-text-gap);
+        color: var(--arg-secundario);
+    }
+
+    summary:has(i.fa-2x) i,
+    summary .figure {
+        flex: 0 0 calc(var(--figure-width) * 2 + var(--figure-text-gap));
+        text-align: center;
+        background: transparent;
+        font-size: var(--figure-font-size);
+        color: var(--figure-color);
+    }
+
+    summary .figure {
+        letter-spacing: -0.25pt;
+        font-weight: 700;
+        font-style: normal;
+        line-height: var(--summary-line-height);
+    }
+
+    &#{&}.figure-fixed summary:has(i.fa-2x) i,
+    &#{&}.figure-fixed summary .figure {
+        align-self: start;
+    }
+}
+
+@media (max-width: 768px) {
+    .details-landing {
+        &#{&}-md > details,
+        &#{&}-lg > details {
+            @include landingDefault();
+            /* Global componente */
+            --summary-padding-t: #{$summaryPaddingT};
+            --summary-padding-b: #{$summaryPaddingB};
+        }
+
+        &#{&}.figure-xs-fixed summary:has(i.fa-2x) i,
+        &#{&}.figure-xs-fixed summary .figure {
+            align-self: start;
+        }
+    }
 }
