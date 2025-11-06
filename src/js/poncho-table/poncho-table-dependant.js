@@ -1191,7 +1191,7 @@ const ponchoTableDependant = opt => {
 
         // Agregar botón al contenedor
         const infoContainer = info.parentElement;
-        infoContainer.classList.add("share");
+        infoContainer.classList.add("ponchotable-share");
         infoContainer.appendChild(resetBtn);
     }
 
