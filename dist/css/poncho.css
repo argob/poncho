@@ -16024,6 +16024,18 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
   padding-right: 0.2rem;
 }
 
+/**
+ * Styles for the copy and share functionality in Poncho Table.
+ */
+.ponchotable-share {
+  display: flex;
+  gap: 1.5em;
+  align-items: baseline;
+}
+.ponchotable-share .dropdown-menu {
+  min-width: 250px;
+}
+
 .poncho-loader {
   --pm-loader-background: var(--arg-gray-background, #FFFFFF);
   --pm-loader-spinner-color: var(--arg-azul-500, #0581C6);
