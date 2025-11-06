@@ -1114,6 +1114,7 @@ const ponchoTableDependant = opt => {
      * Permite restablecer los filtros de búsqueda y el input search.
      * @returns {undefined}
      */
+    /*
     function _resetFormButton(){
  
         if( !resetValues ){
@@ -1150,6 +1151,48 @@ const ponchoTableDependant = opt => {
                 _resetForm();
             });
         });
+    }
+    */
+
+    function _resetFormButton() {
+        // Verificación temprana
+        if (!resetValues) {
+            return;
+        }
+
+        // Remover botones existentes
+        try {
+            document
+                .querySelectorAll("#poncho-table-reset-form")
+                .forEach(e => e.remove());
+        } catch (error) {
+            console.error(error);
+        }
+
+        // Buscar contenedor de info
+        const info = document.querySelector("#ponchoTable_info");
+        if (!info) {
+            return;
+        }
+
+        // Crear y configurar botón de reset
+        const resetBtn = document.createElement("a");
+        resetBtn.id = "poncho-table-reset-form";
+        resetBtn.href = "#";
+        resetBtn.textContent = "Restablecer";
+        resetBtn.setAttribute("aria-label", "Restablecer resultados de la tabla");
+        resetBtn.classList.add("js-pt-reset-form");
+
+        // Agregar evento al botón
+        resetBtn.addEventListener("click", e => {
+            e.preventDefault();
+            _resetForm();
+        });
+
+        // Agregar botón al contenedor
+        const infoContainer = info.parentElement;
+        infoContainer.classList.add("share");
+        infoContainer.appendChild(resetBtn);
     }
 
     
@@ -1191,8 +1234,6 @@ const ponchoTableDependant = opt => {
             }
             return [];
         });
-
-
 
 
         if(!inputValuesConcat.some(s => s.length > 0)){
@@ -1701,7 +1742,6 @@ const ponchoTableDependant = opt => {
         _resetFormButton();
         _styleOnHead();
 
-
         setTimeout(() => {
             const ele = document.querySelectorAll(`[id^="dt-search-"], #ponchoTable_filter`);
             ele.forEach(elem => {
@@ -1751,7 +1791,7 @@ const ponchoTableDependant = opt => {
     if (opt.jsonData){
         const headers = Object.fromEntries(
             Object.keys(opt.jsonData[0]).map(e => [e,e])
-            );
+        );
 
         const data = {entries: opt.jsonData, headers};
         render(data);
