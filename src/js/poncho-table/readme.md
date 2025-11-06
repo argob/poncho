@@ -1,4 +1,4 @@
-****# PonchoTable con filtros dependientes
+# PonchoTable con filtros dependientes
 
 Se trata de una variación a PonchoTable incluida en la librería de *scripts* en `poncho.min.js`.
 
@@ -97,6 +97,9 @@ const options = {
 ```
 
 
+
+
+
 ### Opción para modo Wizard
 
 Para poder mostrar u ocultar elementos html en función de la visibilidad de la tabla, se puede utilizar el siguiente _dataset_ con su valor en `boolean`: `data-visible-as-table`.
@@ -127,9 +130,9 @@ El valor en `true`, hará que cuando la tabla **esté visible** el elemento con 
 
 ```html
 <!-- INCLUDE SCRIPTS -->
+<link href="/profiles/argentinagobar/themes/contrib/poncho/css/ponchoTable-1.1.css" rel="stylesheet">
 <script src="/profiles/argentinagobar/themes/contrib/poncho/js/datatables.min.js"></script>
 <script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
-<link href="/profiles/argentinagobar/themes/contrib/poncho/css/ponchoTable-1.1.css" rel="stylesheet">
 <!-- / INCLUDE SCRIPTS -->
 ```
 
@@ -147,40 +150,64 @@ El valor en `true`, hará que cuando la tabla **esté visible** el elemento con 
 ## Código HTML
 
 ```html
+ <!-- FILTERS -->
+<div class="" id="ponchoTableFiltroCont" style="display:none">
+    <form>
+        <div class="form-group">
+            <label for="ponchoTableFiltro" id="tituloFiltro">
+                Filtro
+            </label>
+            <select 
+                class="form-control" 
+                id="ponchoTableFiltro" 
+                name="ponchoTableFiltro">
+            </select>
+        </div>
+    </form>
+</div>
 <!-- FILTERS -->
-<div class="row">
-  <div class="col-sm-12 col-md-8" id="ponchoTableFiltroCont" style="display:none">
-    <div class="row" id="ponchoTableFiltro"></div>
-  </div>
-  <div class="col-sm-12 col-md-4" id="ponchoTableSearchCont" style="display: none">
-    <div class="form-group">
-      <label for="ponchoTableSearch">Buscá por palabra clave</label>
-      <input class="form-control" id="ponchoTableSearch" type="search">
-    </div>
-  </div>
-</div>
-<!-- / FILTERS -->
-<!-- TABLE -->
-<div class="row">
-  <div class="col-md-12 m-b-4">
-    <table class="table table-condensed table-striped" id="ponchoTable">
-      <caption></caption>
-      <thead></thead>
-      <tbody></tbody>
+
+<!-- SEARCH -->
+<search class="" id="ponchoTableSearchCont" style="display:none">
+    <form>
+        <div class="form-group">
+            <label 
+                for="ponchoTableSearch">
+                Buscá por palabra clave
+            </label>
+            <input 
+                class="form-control" 
+                id="ponchoTableSearch" 
+                type="search" />
+        </div>
+    </form>
+</search>
+<!-- / SEARCH -->
+
+<!-- / PONCHO MAP TABLE -->
+<div class="">
+    <table 
+        class="table tabla-condensed table-sm table-striped" 
+        id="ponchoTable">
+        <caption></caption>
+        <thead></thead>
+        <tbody></tbody>
     </table>
-  </div>
 </div>
-<!-- / TABLE -->
+<!-- / PONCHO MAP TABLE -->
 ```
 
 
-## Código JavaScript para llamar a PonchoTable
+## Ejemplo de código JavaScript para llamar a PonchoTable
 
 ```html
 <script>
-(function($) {
+(async () => {
+    // Herramientas de conexión a Google Sheets
     const gapi = new GapiSheetData();
+    // Retorna el endpoint JSON con los datos de Google Sheet
     const url = gapi.url("dataset", "1vVSk7...C2TKBw");
+
     var options = {
         jsonUrl: url,
         tituloTabla: "Listado de escuelas",
@@ -194,6 +221,6 @@ El valor en `true`, hará que cuando la tabla **esté visible** el elemento con 
         orderFilter: true, 
     };
     ponchoTableDependant(options);
-})(jQuery);
+})();
 </script>
 ```
