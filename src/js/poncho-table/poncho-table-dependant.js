@@ -618,6 +618,7 @@ const ponchoTableDependant = opt => {
      * @param {string} label value del filtro seleccionado.
      * @return {object} Listado de elementos únicos para el select.
      */
+    /*
     const _allFromParent = (parent, children, label) => {
         const filterList = gapi_data.entries.flatMap(e => {
             const evaluatedEntry = e[filtersList[_parentElement(children)]];
@@ -641,6 +642,59 @@ const ponchoTableDependant = opt => {
         );
         return uniqueList;
     };
+    */
+
+    /**
+     * Trae todos los elementos de un filtro en base a su parent.
+     *
+     * @param {integer} parent Indice de filtro seleccionado.
+     * @param {integer} children Indice del hijo del seleccionado.
+     * @param {string} label value del filtro seleccionado.
+     * @return {object} Listado de elementos únicos para el select.
+     */
+    const _allFromParent = (parent, children, label) => {
+        const parentIndex = _parentElement(parent);
+        const childIndex = _parentElement(children);
+        const isCustom = _isCustomFilter(children, filtro);
+        const isEmptyLabel = label === "";
+        
+        // Pre-calcular filtros custom si es necesario
+        let customFiltersLower;
+        if (isCustom) {
+            customFiltersLower = _customFilter(children, filtro)
+                .map(e => _toCompareString(e));
+        }
+        
+        // Usar Set para eliminar duplicados eficientemente
+        const uniqueItems = new Set();
+        
+        // Un solo bucle sin flatMap
+        for (const entry of gapi_data.entries) {
+            // Verificación temprana del parent
+            if (!isEmptyLabel && entry[filtersList[parentIndex]] !== label) {
+                continue;
+            }
+            
+            const evaluatedEntry = entry[filtersList[childIndex]];
+            if (!evaluatedEntry) continue;
+            
+            if (isCustom) {
+                const entryLower = _toCompareString(evaluatedEntry);
+                // Buscar coincidencias en filtros custom
+                for (const customFilter of customFiltersLower) {
+                    if (entryLower.includes(customFilter)) {
+                        uniqueItems.add(evaluatedEntry);
+                        break; // Evitar agregar múltiples veces
+                    }
+                }
+            } else {
+                uniqueItems.add(evaluatedEntry);
+            }
+        }
+        
+        // Convertir Set a Array y ordenar
+        return _sortAlphaNumeric(Array.from(uniqueItems), filtersList[children]);
+    };
 
 
     /**
@@ -660,6 +714,62 @@ const ponchoTableDependant = opt => {
      * @param {integer} children Indice del hijo del seleccionado.
      */
     const _filterOptionList = (parent, children, label) => {
+        const adjustedChildren = (children === filtersList.length ? 
+                children - 1 : children);
+        const values = _filterValues();
+        const parentIndex = _parentElement(adjustedChildren - 1);
+        const childIndex = _parentElement(adjustedChildren);
+        const isCustom = _isCustomFilter(adjustedChildren, filtro);
+        
+        // Pre-calcular filtros custom si es necesario
+        let customFiltersLower;
+        if (isCustom) {
+            customFiltersLower = _customFilter(adjustedChildren, filtro)
+                .map(e => _toCompareString(e));
+        }
+
+        const uniqueItems = new Set();
+
+        for (const entry of gapi_data.entries) {
+            // Verificaciones tempranas para evitar procesamiento innecesario
+            if (entry[filtersList[parentIndex]] !== label) continue;
+            if (!_validateSteps(parent, entry, label, values)) continue;
+            
+            const evaluatedEntry = entry[filtersList[childIndex]];
+            if (!evaluatedEntry) continue;
+            
+            if (isCustom) {
+                const entryLower = _toCompareString(evaluatedEntry);
+
+                // Buscar coincidencias en filtros custom
+                for (const customFilter of customFiltersLower) {
+                    if (entryLower.includes(customFilter)) {
+                        uniqueItems.add(evaluatedEntry);
+                        break; // Evitar agregar múltiples veces
+                    }
+                }
+
+            } else {
+                uniqueItems.add(evaluatedEntry);
+            }
+        }
+        
+        // Convertir Set a Array y ordenar
+        return _sortAlphaNumeric(
+            Array.from(uniqueItems), filtersList[adjustedChildren]
+        );
+    };
+
+
+    /**
+     * Lista los valores que deben ir en un filtro según su parent.
+     *
+     * @param {integer} parent Indice de filtro seleccionado.
+     * @param {string} label value del filtro seleccionado.
+     * @param {integer} children Indice del hijo del seleccionado.
+     */
+    /*
+    const ___filterOptionList = (parent, children, label) => {
         children = (children == filtersList.length ? children - 1 : children);
         const values = _filterValues();
 
@@ -689,7 +799,7 @@ const ponchoTableDependant = opt => {
             distinct(items), filtersList[children] 
         );
         return uniqueList;
-    };
+    };*/
 
 
     /**
@@ -1004,6 +1114,7 @@ const ponchoTableDependant = opt => {
      * Permite restablecer los filtros de búsqueda y el input search.
      * @returns {undefined}
      */
+    /*
     function _resetFormButton(){
  
         if( !resetValues ){
@@ -1040,6 +1151,48 @@ const ponchoTableDependant = opt => {
                 _resetForm();
             });
         });
+    }
+    */
+
+    function _resetFormButton() {
+        // Verificación temprana
+        if (!resetValues) {
+            return;
+        }
+
+        // Remover botones existentes
+        try {
+            document
+                .querySelectorAll("#poncho-table-reset-form")
+                .forEach(e => e.remove());
+        } catch (error) {
+            console.error(error);
+        }
+
+        // Buscar contenedor de info
+        const info = document.querySelector("#ponchoTable_info");
+        if (!info) {
+            return;
+        }
+
+        // Crear y configurar botón de reset
+        const resetBtn = document.createElement("a");
+        resetBtn.id = "poncho-table-reset-form";
+        resetBtn.href = "#";
+        resetBtn.textContent = "Restablecer";
+        resetBtn.setAttribute("aria-label", "Restablecer resultados de la tabla");
+        resetBtn.classList.add("js-pt-reset-form");
+
+        // Agregar evento al botón
+        resetBtn.addEventListener("click", e => {
+            e.preventDefault();
+            _resetForm();
+        });
+
+        // Agregar botón al contenedor
+        const infoContainer = info.parentElement;
+        infoContainer.classList.add("share");
+        infoContainer.appendChild(resetBtn);
     }
 
     
@@ -1081,8 +1234,6 @@ const ponchoTableDependant = opt => {
             }
             return [];
         });
-
-
 
 
         if(!inputValuesConcat.some(s => s.length > 0)){
@@ -1173,46 +1324,70 @@ const ponchoTableDependant = opt => {
             console.error("Error:", "No se encuentra el selector");
         }
 
-        const b = document.createElement('div');
-        b.id = "ponchoTableShareButton";
-        b.innerHTML = `<div class="dropdown">
-            <button 
-                class="btn btn-sm btn-default dropdown-toggle" 
-                type="button" 
-                id="share-table-data" 
-                data-toggle="dropdown" 
-                aria-haspopup="true" 
-                aria-expanded="false">
-            Compartir resultados
-            <span class="caret"></span>
-            </button>
-            <div 
-                class="dropdown-menu p-y-1 p-x-1" 
-                aria-labelledby="share-table-data">
-                <p class="js-sharelink-tag m-b-0 small" id="foo"></p>
-                <a 
-                    href="#" data-toclipboard="foo" 
-                    class="small btn btn-sm btn-default m-b-0 m-t-1">
-                    Copiar al portapapeles</a>
-            </div>
-        </div>`;
+        // 1. Crear el contenedor principal: <div class="dropdown">
+        const dropdownDiv = document.createElement('div');
+        dropdownDiv.classList.add('dropdown');
+        dropdownDiv.id = "ponchoTableShareButton";
+
+        // 2. Crear el botón: <button ...>
+        const button = document.createElement('button');
+        button.classList.add('btn', 'btn-sm', 'btn-default', 'dropdown-toggle');
+        button.setAttribute('type', 'button');
+        button.setAttribute('id', 'share-table-data');
+        button.setAttribute('data-toggle', 'dropdown');
+        button.setAttribute('aria-haspopup', 'true');
+        button.setAttribute('aria-expanded', 'false');
+
+        // Texto del botón
+        button.textContent = 'Compartir resultados';
+
+        // Span caret
+        const caretSpan = document.createElement('span');
+        caretSpan.classList.add('caret');
+        button.appendChild(document.createTextNode(' '));
+        button.appendChild(caretSpan);
+
+        // 3. Crear el menú desplegable: <div class="dropdown-menu ...">
+        const dropdownMenu = document.createElement('div');
+        dropdownMenu.classList.add('dropdown-menu', 'p-y-1', 'p-x-1');
+        dropdownMenu.setAttribute('aria-labelledby', 'share-table-data');
+
+        // 4. Crear el párrafo para el enlace: <p class="js-sharelink-tag ...">
+        const shareLinkP = document.createElement('p');
+        shareLinkP.classList.add('js-sharelink-tag', 'm-b-0', 'small');
+        shareLinkP.setAttribute('id', 'foo');
+
+        // 5. Crear el enlace para copiar: <a href="#" ...>
+        const copyLink = document.createElement('a');
+        copyLink.setAttribute('href', '#');
+        copyLink.setAttribute('data-toclipboard', 'foo');
+        copyLink.classList.add(
+            'small', 'btn', 'btn-sm', 'btn-default', 'm-b-0', 'm-t-1');
+        copyLink.textContent = 'Copiar al portapapeles';
+
+        // 6. Ensamblar la estructura
+        dropdownMenu.appendChild(shareLinkP);
+        dropdownMenu.appendChild(copyLink);
+
+        dropdownDiv.appendChild(button);
+        dropdownDiv.appendChild(dropdownMenu);
 
         const info = document.querySelector("#ponchoTable_info");
         const infoContainer = info.parentElement;
-        infoContainer.classList.add("share");
-        infoContainer.appendChild(b);
+        infoContainer.classList.add("ponchotable-share");
+        infoContainer.appendChild(dropdownDiv);
 
-        _styleOnHead();
+        // _styleOnHead();
         _copyToClipboard();
     }
 
 
-    function _styleOnHead(){
-        headStyle(
-            "ponchoTable-share", 
-            `.share{display:flex;gap:1.5em;align-items:baseline}`
-            +`.share .dropdown-menu{min-width:250px}`);
-    }
+    // function _styleOnHead(){
+    //     headStyle(
+    //         "ponchoTable-share", 
+    //         `.share{display:flex;gap:1.5em;align-items:baseline}`
+    //         +`.share .dropdown-menu{min-width:250px}`);
+    // }
 
 
     /**
@@ -1589,8 +1764,7 @@ const ponchoTableDependant = opt => {
         initDataTable();
         _shareLink();
         _resetFormButton();
-        _styleOnHead();
-
+        // _styleOnHead();
 
         setTimeout(() => {
             const ele = document.querySelectorAll(`[id^="dt-search-"], #ponchoTable_filter`);
@@ -1641,7 +1815,7 @@ const ponchoTableDependant = opt => {
     if (opt.jsonData){
         const headers = Object.fromEntries(
             Object.keys(opt.jsonData[0]).map(e => [e,e])
-            );
+        );
 
         const data = {entries: opt.jsonData, headers};
         render(data);
