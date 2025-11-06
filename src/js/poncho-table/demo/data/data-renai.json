@@ -1,0 +1,364 @@
+{
+    "sanciones": [
+        {
+            "entidad": "RICARDO NINI S.A.",
+            "cuit": "30-56557475-9",
+            "ley": "Ley 24.240",
+            "articulo": "Art. 5 Falta de Protección al consumidor",
+            "descripcion": "Se impuso una sanción por comercializar productos vencidos.",
+            "monto": "0.60",
+            "fecha": "02/07/2025"
+        },
+        {
+            "entidad": "VELAZQUEZ SONIA ROMINA",
+            "cuit": "27-28639812-5",
+            "ley": "Ley 24.240",
+            "articulo": "Art. 5 Falta de Protección al consumidor",
+            "descripcion": "Se impuso una sanción por comercializar productos vencidos.",
+            "monto": "0.80",
+            "fecha": "02/07/2025"
+        },
+        {
+            "entidad": "BANCO PATAGONIA SOCIEDAD ANONIMA",
+            "cuit": "30-50000661-3",
+            "ley": "Ley 24.240",
+            "articulo": "Art. 37 Cláusulas Abusivas",
+            "descripcion": "Aplicación de intereses no informados previamente en contrato de crédito.",
+            "monto": "15.50",
+            "fecha": "15/06/2025"
+        },
+        {
+            "entidad": "TELEFONICA ARGENTINA S.A.",
+            "cuit": "30-64670265-1",
+            "ley": "Ley 24.240",
+            "articulo": "Art. 10bis Incumplimiento de la Oferta o Contrato",
+            "descripcion": "Interrupción reiterada del servicio de internet sin resarcimiento ni aviso.",
+            "monto": "10.00",
+            "fecha": "01/08/2025"
+        },
+        {
+            "entidad": "SUPERMERCADOS COTO C.I.C.S.A.",
+            "cuit": "30-54705504-2",
+            "ley": "Ley 24.240",
+            "articulo": "Art. 8 Publicidad Engañosa",
+            "descripcion": "Publicidad de precios no respetados en línea de caja.",
+            "monto": "5.00",
+            "fecha": "20/05/2025"
+        },
+        {
+            "entidad": "FORD ARGENTINA SOCIEDAD EN COMANDITA POR ACCIONES",
+            "cuit": "30-67851968-1",
+            "ley": "Ley 24.240",
+            "articulo": "Art. 11 Garantía Legal",
+            "descripcion": "Negativa a reparar vehículo nuevo dentro del período de garantía.",
+            "monto": "40.00",
+            "fecha": "10/04/2025"
+        },
+        {
+            "entidad": "EDELAP S.A.",
+            "cuit": "30-65787766-9",
+            "ley": "Ley 24.240",
+            "articulo": "Art. 25 Prestación de Servicios Públicos Domiciliarios",
+            "descripcion": "Cobro de un servicio no prestado o brindado deficientemente.",
+            "monto": "7.50",
+            "fecha": "18/07/2025"
+        },
+        {
+            "entidad": "AGUAS DANONE DE ARGENTINA SOCIEDAD ANONIMA",
+            "cuit": "30-51705022-5",
+            "ley": "Ley 24.240",
+            "articulo": "Art. 4 Deber de Información",
+            "descripcion": "Información insuficiente o incompleta sobre ingredientes de un producto alimenticio.",
+            "monto": "2.20",
+            "fecha": "25/06/2025"
+        },
+        {
+            "entidad": "GARBARINO S.A.I.C.E.I.",
+            "cuit": "30-51111091-6",
+            "ley": "Ley 24.240",
+            "articulo": "Art. 10 Incumplimiento del Contrato",
+            "descripcion": "Demora excesiva en la entrega de un producto adquirido online.",
+            "monto": "8.10",
+            "fecha": "05/08/2025"
+        },
+        {
+            "entidad": "BANCO DE GALICIA Y BUENOS AIRES S. A.",
+            "cuit": "30-50000173-5",
+            "ley": "Ley 24.240",
+            "articulo": "Art. 36 Venta a Crédito",
+            "descripcion": "Aplicación unilateral de cargos no previstos en la financiación.",
+            "monto": "17.00",
+            "fecha": "12/07/2025"
+        },
+        {
+            "entidad": "YPF S.A.",
+            "cuit": "30-54668997-9",
+            "ley": "Ley 24.240",
+            "articulo": "Art. 6 Cosas y Servicios Peligrosos",
+            "descripcion": "Venta de combustible de baja calidad que causó daños mecánicos.",
+            "monto": "30.00",
+            "fecha": "29/05/2025"
+        },
+        {
+            "entidad": "SWISS MEDICAL S.A.",
+            "cuit": "30-62153205-1",
+            "ley": "Ley 24.240",
+            "articulo": "Art. 19 Modalidades de Prestación de Servicios",
+            "descripcion": "Rechazo injustificado de cobertura médica prometida en el plan.",
+            "monto": "25.00",
+            "fecha": "08/06/2025"
+        },
+        {
+            "entidad": "MUSIMUNDO S.A.",
+            "cuit": "30-66779344-7",
+            "ley": "Ley 24.240",
+            "articulo": "Art. 17 Reparación no Satisfactoria",
+            "descripcion": "Producto devuelto con la misma falla después de pasar por el servicio técnico.",
+            "monto": "12.00",
+            "fecha": "19/07/2025"
+        },
+        {
+            "entidad": "VOLKSWAGEN ARGENTINA S A",
+            "cuit": "30-50401884-5",
+            "ley": "Ley 24.240",
+            "articulo": "Art. 13 Responsabilidad Solidaria",
+            "descripcion": "Concesionaria y fabricante evaden responsabilidad por defecto de fábrica.",
+            "monto": "35.00",
+            "fecha": "04/04/2025"
+        },
+        {
+            "entidad": "METROGAS S.A.",
+            "cuit": "30-60840552-6",
+            "ley": "Ley 24.240",
+            "articulo": "Art. 30 Venta Domiciliaria",
+            "descripcion": "Activación no solicitada de un servicio adicional por medio telefónico.",
+            "monto": "3.50",
+            "fecha": "14/08/2025"
+        },
+        {
+            "entidad": "CLARO ARGENTINA",
+            "cuit": "30-66258055-0",
+            "ley": "Ley 24.240",
+            "articulo": "Art. 42 Trato Digno y Equitativo",
+            "descripcion": "Trato despectivo y negación de baja del servicio en sucursal.",
+            "monto": "11.00",
+            "fecha": "21/06/2025"
+        },
+        {
+            "entidad": "RIZOMA LIBROS S.R.L.",
+            "cuit": "30-71035855-5",
+            "ley": "Ley 24.240",
+            "articulo": "Art. 10bis Incumplimiento de la Oferta o Contrato",
+            "descripcion": "Cancelación unilateral de una compra online con precio promocional.",
+            "monto": "4.50",
+            "fecha": "07/07/2025"
+        },
+        {
+            "entidad": "AGRO DE LA PAMPA S.A.",
+            "cuit": "33-67941025-9",
+            "ley": "Ley 24.240",
+            "articulo": "Art. 5 Falta de Protección al consumidor",
+            "descripcion": "Sanción por no exhibir precios o condiciones de venta en el local.",
+            "monto": "1.50",
+            "fecha": "28/05/2025"
+        },
+        {
+            "entidad": "RENAULT ARGENTINA S.A.",
+            "cuit": "30-50331781-4",
+            "ley": "Ley 24.240",
+            "articulo": "Art. 12 Servicio Técnico y Repuestos",
+            "descripcion": "Falta de provisión de repuestos esenciales para la reparación de un vehículo.",
+            "monto": "22.00",
+            "fecha": "09/04/2025"
+        },
+        {
+            "entidad": "ALUAR ALUMINIO ARGENTINO SOCIEDAD ANONIMA INDUSTRIAL Y COMER",
+            "cuit": "30-52278060-6",
+            "ley": "Ley 24.240",
+            "articulo": "Art. 6 Cosas y Servicios Peligrosos",
+            "descripcion": "Comercialización de un producto con defectos que ponen en riesgo la seguridad.",
+            "monto": "18.80",
+            "fecha": "16/06/2025"
+        },
+        {
+            "entidad": "BANCO BBVA ARGENTINA S.A.",
+            "cuit": "30-50000319-3",
+            "ley": "Ley 24.240",
+            "articulo": "Art. 37 Cláusulas Abusivas",
+            "descripcion": "Renovación automática de un seguro sin consentimiento expreso del cliente.",
+            "monto": "13.00",
+            "fecha": "03/08/2025"
+        },
+        {
+            "entidad": "DESPEGAR.COM AR S.A.",
+            "cuit": "30-70130711-5",
+            "ley": "Ley 24.240",
+            "articulo": "Art. 10 Incumplimiento del Contrato",
+            "descripcion": "Cancelación de reserva de vuelo/hotel sin ofrecer alternativas o reembolso completo.",
+            "monto": "19.50",
+            "fecha": "22/07/2025"
+        },
+        {
+            "entidad": "COCA COLA FEMSA DE BUENOS AIRES S A",
+            "cuit": "30-52539008-6",
+            "ley": "Ley 24.240",
+            "articulo": "Art. 4 Deber de Información",
+            "descripcion": "Etiquetado incorrecto o confuso sobre el contenido neto del envase.",
+            "monto": "2.50",
+            "fecha": "11/05/2025"
+        },
+        {
+            "entidad": "GENERAL MOTORS DE ARGENTINA SOCIEDAD DE RESPONSABILIDAD LIMI",
+            "cuit": "30-66207168-0",
+            "ley": "Ley 24.240",
+            "articulo": "Art. 11 Garantía Legal",
+            "descripcion": "Demora injustificada en la entrega de repuestos para una reparación bajo garantía.",
+            "monto": "28.00",
+            "fecha": "26/04/2025"
+        },
+        {
+            "entidad": "COOPERATIVA OBRERA LIMITADA DE CONSUMO Y VIVIENDA",
+            "cuit": "30-52570593-1",
+            "ley": "Ley 24.240",
+            "articulo": "Art. 5 Falta de Protección al consumidor",
+            "descripcion": "Publicidad de promociones con stock muy limitado y no especificado.",
+            "monto": "6.20",
+            "fecha": "17/08/2025"
+        },
+        {
+            "entidad": "TOYOTA ARGENTINA S A",
+            "cuit": "33-67913936-9",
+            "ley": "Ley 24.240",
+            "articulo": "Art. 13 Responsabilidad Solidaria",
+            "descripcion": "Defecto de fabricación recurrente en el modelo del vehículo.",
+            "monto": "45.00",
+            "fecha": "05/04/2025"
+        },
+        {
+            "entidad": "SEGUROS GALICIA S. A.",
+            "cuit": "30-50000012-7",
+            "ley": "Ley 24.240",
+            "articulo": "Art. 19 Modalidades de Prestación de Servicios",
+            "descripcion": "Negativa de pago de siniestro sin causa justificada y documentada.",
+            "monto": "20.50",
+            "fecha": "13/06/2025"
+        },
+        {
+            "entidad": "FARMACIA CENTRAL S.R.L.",
+            "cuit": "30-69830503-3",
+            "ley": "Ley 24.240",
+            "articulo": "Art. 5 Falta de Protección al consumidor",
+            "descripcion": "Venta de medicamentos sin receta o con información de prospecto oculta.",
+            "monto": "3.00",
+            "fecha": "23/07/2025"
+        },
+        {
+            "entidad": "GRUPO CLARIN S.A.",
+            "cuit": "30-64670265-1",
+            "ley": "Ley 24.240",
+            "articulo": "Art. 10bis Incumplimiento de la Oferta o Contrato",
+            "descripcion": "Cambio de condiciones de suscripción sin previo aviso al consumidor.",
+            "monto": "9.20",
+            "fecha": "30/05/2025"
+        },
+        {
+            "entidad": "CLUB ATLETICO RIVER PLATE ASOC CIVIL",
+            "cuit": "30-52674844-8",
+            "ley": "Ley 24.240",
+            "articulo": "Art. 42 Trato Digno y Equitativo",
+            "descripcion": "Restricción de acceso a eventos a socios con cuota al día.",
+            "monto": "1.00",
+            "fecha": "06/07/2025"
+        },
+        {
+            "entidad": "HELADERIAS CHUNGO S.A.",
+            "cuit": "30-54567890-1",
+            "ley": "Ley 24.240",
+            "articulo": "Art. 5 Falta de Protección al consumidor",
+            "descripcion": "Sanción por no cumplir con las normas bromatológicas de higiene.",
+            "monto": "4.10",
+            "fecha": "02/08/2025"
+        },
+        {
+            "entidad": "DHL EXPRESS (ARGENTINA) S.A.",
+            "cuit": "30-58011131-5",
+            "ley": "Ley 24.240",
+            "articulo": "Art. 10 Incumplimiento del Contrato",
+            "descripcion": "Pérdida de un envío sin ofrecer el resarcimiento completo por el valor declarado.",
+            "monto": "14.00",
+            "fecha": "24/06/2025"
+        },
+        {
+            "entidad": "TELECOM ARGENTINA S.A.",
+            "cuit": "30-63945373-8",
+            "ley": "Ley 24.240",
+            "articulo": "Art. 10bis Incumplimiento de la Oferta o Contrato",
+            "descripcion": "Aumento de tarifa sin notificación fehaciente en el plazo legal.",
+            "monto": "7.00",
+            "fecha": "15/07/2025"
+        },
+        {
+            "entidad": "AGUILA BLANCA VIAJES S.A.",
+            "cuit": "30-60741325-4",
+            "ley": "Ley 24.240",
+            "articulo": "Art. 19 Modalidades de Prestación de Servicios",
+            "descripcion": "Overbooking de pasajes aéreos que dejó a pasajeros sin volar.",
+            "monto": "21.00",
+            "fecha": "01/05/2025"
+        },
+        {
+            "entidad": "MUSIMUNDO S.A. - Sucursal La Plata",
+            "cuit": "30-66779344-7",
+            "ley": "Ley 24.240",
+            "articulo": "Art. 16 Modos de Rescisión",
+            "descripcion": "Negativa a aceptar la revocación de la compra dentro de los 10 días (venta a distancia).",
+            "monto": "5.50",
+            "fecha": "10/08/2025"
+        },
+        {
+            "entidad": "AGRO DE LA PAMPA S.A. - Sucursal Olavarría",
+            "cuit": "33-67941025-9",
+            "ley": "Ley 24.240",
+            "articulo": "Art. 8 Publicidad Engañosa",
+            "descripcion": "Publicidad de producto con beneficios inexistentes o exagerados.",
+            "monto": "3.80",
+            "fecha": "20/06/2025"
+        },
+        {
+            "entidad": "BANCO SANTANDER ARGENTINA SOCIEDAD ANONIMA",
+            "cuit": "30-50000845-4",
+            "ley": "Ley 24.240",
+            "articulo": "Art. 37 Cláusulas Abusivas",
+            "descripcion": "Cobro de comisiones por servicios no solicitados o prestados efectivamente.",
+            "monto": "16.00",
+            "fecha": "27/07/2025"
+        },
+        {
+            "entidad": "COLCAR MERBUS S A",
+            "cuit": "30-69688775-2",
+            "ley": "Ley 24.240",
+            "articulo": "Art. 10 Incumplimiento del Contrato",
+            "descripcion": "Entrega de un vehículo con características y equipamiento inferiores a lo pactado.",
+            "monto": "32.00",
+            "fecha": "11/04/2025"
+        },
+        {
+            "entidad": "PECOM SERVICIOS ENERGIA S A",
+            "cuit": "30-65442469-8",
+            "ley": "Ley 24.240",
+            "articulo": "Art. 25 Prestación de Servicios Públicos Domiciliarios",
+            "descripcion": "Facturación con estimación de consumo incorrecta y excesiva.",
+            "monto": "9.50",
+            "fecha": "14/05/2025"
+        },
+        {
+            "entidad": "CLOROX ARGENTINA S A",
+            "cuit": "30-60520678-2",
+            "ley": "Ley 24.240",
+            "articulo": "Art. 6 Cosas y Servicios Peligrosos",
+            "descripcion": "Retiro tardío de producto del mercado por riesgo potencial de toxicidad.",
+            "monto": "10.50",
+            "fecha": "19/08/2025"
+        }
+    ]
+}
