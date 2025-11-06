@@ -1324,46 +1324,70 @@ const ponchoTableDependant = opt => {
             console.error("Error:", "No se encuentra el selector");
         }
 
-        const b = document.createElement('div');
-        b.id = "ponchoTableShareButton";
-        b.innerHTML = `<div class="dropdown">
-            <button 
-                class="btn btn-sm btn-default dropdown-toggle" 
-                type="button" 
-                id="share-table-data" 
-                data-toggle="dropdown" 
-                aria-haspopup="true" 
-                aria-expanded="false">
-            Compartir resultados
-            <span class="caret"></span>
-            </button>
-            <div 
-                class="dropdown-menu p-y-1 p-x-1" 
-                aria-labelledby="share-table-data">
-                <p class="js-sharelink-tag m-b-0 small" id="foo"></p>
-                <a 
-                    href="#" data-toclipboard="foo" 
-                    class="small btn btn-sm btn-default m-b-0 m-t-1">
-                    Copiar al portapapeles</a>
-            </div>
-        </div>`;
+        // 1. Crear el contenedor principal: <div class="dropdown">
+        const dropdownDiv = document.createElement('div');
+        dropdownDiv.classList.add('dropdown');
+        dropdownDiv.id = "ponchoTableShareButton";
+
+        // 2. Crear el botón: <button ...>
+        const button = document.createElement('button');
+        button.classList.add('btn', 'btn-sm', 'btn-default', 'dropdown-toggle');
+        button.setAttribute('type', 'button');
+        button.setAttribute('id', 'share-table-data');
+        button.setAttribute('data-toggle', 'dropdown');
+        button.setAttribute('aria-haspopup', 'true');
+        button.setAttribute('aria-expanded', 'false');
+
+        // Texto del botón
+        button.textContent = 'Compartir resultados';
+
+        // Span caret
+        const caretSpan = document.createElement('span');
+        caretSpan.classList.add('caret');
+        button.appendChild(document.createTextNode(' '));
+        button.appendChild(caretSpan);
+
+        // 3. Crear el menú desplegable: <div class="dropdown-menu ...">
+        const dropdownMenu = document.createElement('div');
+        dropdownMenu.classList.add('dropdown-menu', 'p-y-1', 'p-x-1');
+        dropdownMenu.setAttribute('aria-labelledby', 'share-table-data');
+
+        // 4. Crear el párrafo para el enlace: <p class="js-sharelink-tag ...">
+        const shareLinkP = document.createElement('p');
+        shareLinkP.classList.add('js-sharelink-tag', 'm-b-0', 'small');
+        shareLinkP.setAttribute('id', 'foo');
+
+        // 5. Crear el enlace para copiar: <a href="#" ...>
+        const copyLink = document.createElement('a');
+        copyLink.setAttribute('href', '#');
+        copyLink.setAttribute('data-toclipboard', 'foo');
+        copyLink.classList.add(
+            'small', 'btn', 'btn-sm', 'btn-default', 'm-b-0', 'm-t-1');
+        copyLink.textContent = 'Copiar al portapapeles';
+
+        // 6. Ensamblar la estructura
+        dropdownMenu.appendChild(shareLinkP);
+        dropdownMenu.appendChild(copyLink);
+
+        dropdownDiv.appendChild(button);
+        dropdownDiv.appendChild(dropdownMenu);
 
         const info = document.querySelector("#ponchoTable_info");
         const infoContainer = info.parentElement;
-        infoContainer.classList.add("share");
-        infoContainer.appendChild(b);
+        infoContainer.classList.add("ponchotable-share");
+        infoContainer.appendChild(dropdownDiv);
 
-        _styleOnHead();
+        // _styleOnHead();
         _copyToClipboard();
     }
 
 
-    function _styleOnHead(){
-        headStyle(
-            "ponchoTable-share", 
-            `.share{display:flex;gap:1.5em;align-items:baseline}`
-            +`.share .dropdown-menu{min-width:250px}`);
-    }
+    // function _styleOnHead(){
+    //     headStyle(
+    //         "ponchoTable-share", 
+    //         `.share{display:flex;gap:1.5em;align-items:baseline}`
+    //         +`.share .dropdown-menu{min-width:250px}`);
+    // }
 
 
     /**
@@ -1740,7 +1764,7 @@ const ponchoTableDependant = opt => {
         initDataTable();
         _shareLink();
         _resetFormButton();
-        _styleOnHead();
+        // _styleOnHead();
 
         setTimeout(() => {
             const ele = document.querySelectorAll(`[id^="dt-search-"], #ponchoTable_filter`);
