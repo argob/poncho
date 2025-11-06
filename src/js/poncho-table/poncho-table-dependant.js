@@ -660,6 +660,63 @@ const ponchoTableDependant = opt => {
      * @param {integer} children Indice del hijo del seleccionado.
      */
     const _filterOptionList = (parent, children, label) => {
+        const adjustedChildren = (children === filtersList.length ? 
+                children - 1 : children);
+        const values = _filterValues();
+        const parentIndex = _parentElement(adjustedChildren - 1);
+        const childIndex = _parentElement(adjustedChildren);
+        const isCustom = _isCustomFilter(adjustedChildren, filtro);
+        
+        // Pre-calcular filtros custom si es necesario
+        let customFiltersLower;
+        if (isCustom) {
+            customFiltersLower = _customFilter(adjustedChildren, filtro)
+                .map(e => _toCompareString(e));
+        }
+
+        const uniqueItems = new Set();
+
+        for (const entry of gapi_data.entries) {
+            // Verificaciones tempranas para evitar procesamiento innecesario
+            if (entry[filtersList[parentIndex]] !== label) continue;
+            if (!_validateSteps(parent, entry, label, values)) continue;
+            
+            const evaluatedEntry = entry[filtersList[childIndex]];
+            if (!evaluatedEntry) continue;
+            
+            if (isCustom) {
+                const entryLower = _toCompareString(evaluatedEntry);
+
+                // Buscar coincidencias en filtros custom
+                for (const customFilter of customFiltersLower) {
+                    if (entryLower.includes(customFilter)) {
+                        uniqueItems.add(evaluatedEntry);
+                        break; // Evitar agregar múltiples veces
+                    }
+                }
+
+            } else {
+                uniqueItems.add(evaluatedEntry);
+            }
+        }
+        
+        // Convertir Set a Array y ordenar
+        return _sortAlphaNumeric(
+            Array.from(uniqueItems), filtersList[adjustedChildren]
+        );
+    };
+
+
+
+    /**
+     * Lista los valores que deben ir en un filtro según su parent.
+     *
+     * @param {integer} parent Indice de filtro seleccionado.
+     * @param {string} label value del filtro seleccionado.
+     * @param {integer} children Indice del hijo del seleccionado.
+     */
+    /*
+    const ___filterOptionList = (parent, children, label) => {
         children = (children == filtersList.length ? children - 1 : children);
         const values = _filterValues();
 
@@ -690,7 +747,7 @@ const ponchoTableDependant = opt => {
         );
         return uniqueList;
     };
-
+*/
 
     /**
      * Tiene filtros personalizados
