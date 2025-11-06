@@ -5330,7 +5330,7 @@ class PonchoMap {
                         aria_label: false,
                         hreflang: false,
                         label: "Google maps",
-                        lang: "en",
+                        lang: "en-US",
                         link: "https://www.google.com/maps/search/?api=1&query={{latitude}},{{longitude}}",
                         rel: [
                             "alternate"
@@ -5662,6 +5662,7 @@ class PonchoMap {
      * Redefine los clusters
      * @returns 
      */
+    /*
     customClusters = () => {
         if(!L.hasOwnProperty("divIcon")){
             return;
@@ -5705,6 +5706,73 @@ class PonchoMap {
                 });
             }
         }
+    };
+*/
+    customClusters = () => {
+        // Early return with clear error handling
+        if (!L?.divIcon) {
+            console.warn('Leaflet divIcon is not available');
+            return null;
+        }
+
+        // Configuration constants
+        const CLUSTER_THRESHOLDS = {
+            SMALL: 10,
+            MEDIUM: 100
+        };
+
+        const ICON_SIZE = 40;
+
+        const BASE_CLASSES = [
+            'leaflet-marker-icon',
+            'marker-cluster',
+            'leaflet-zoom-animated',
+            'leaflet-interactive'
+        ];
+
+        // Helper function to determine cluster size
+        const getClusterSize = (count) => {
+            if (count < CLUSTER_THRESHOLDS.SMALL) return 'small';
+            if (count < CLUSTER_THRESHOLDS.MEDIUM) return 'medium';
+            return 'large';
+        };
+
+        // Helper function to build HTML content
+        const buildClusterHTML = (count, sizeClass) => {
+            const ariaLabel = this._t(`cluster_${sizeClass}`, { count });
+            const title = this._t('cluster_click');
+            
+            const clusterDiv = document.createElement("div");
+            clusterDiv.setAttribute("aria-label", ariaLabel);
+            clusterDiv.title = title;
+
+            const clusterNumber = document.createElement("span");
+            clusterNumber.textContent = count;
+
+            clusterDiv.appendChild(clusterNumber);
+
+            return clusterDiv;
+        };
+
+        return {
+            iconCreateFunction: (cluster) => {
+                const count = cluster.getChildCount();
+                const sizeClass = getClusterSize(count);
+                
+                // Build CSS classes
+                const classNames = [
+                    ...BASE_CLASSES,
+                    `marker-cluster-${sizeClass}`
+                ];
+
+                // Create and return the icon
+                return L.divIcon({
+                    html: buildClusterHTML(count, sizeClass),
+                    className: classNames.join(' '),
+                    iconSize: L.point(ICON_SIZE, ICON_SIZE)
+                });
+            }
+        };
     };
 
 
@@ -5995,7 +6063,8 @@ class PonchoMap {
      * para otros atributos personalizados.
      * @returns {HTMLAnchorElement}
      */
-    addAnchorElement = (options, output="object") => {
+    addAnchorElement = (options = {}, output = "object") => {
+        // Destructure with defaults
         const {
             id,
             title,
@@ -6011,71 +6080,107 @@ class PonchoMap {
             attributes = {}
         } = options;
 
-        const regexLang = /^[a-zA-Z]{2}$/;
-        const isValidLang = (this.isString(lang) &&
-                regexLang.test(lang));
-        const isValidHrefLang = (this.isString(hreflang) &&
-                regexLang.test(hreflang));
-        const isValidTarget = [
-                '_self', '_blank', '_parent', '_top'].includes(target);
+        // Constants
+        const LANG_REGEX = /^[a-z]{2}(-[A-Z]{2})?$/i;
+        const VALID_TARGETS = ['_self', '_blank', '_parent', '_top'];
+        const SECURITY_REL_VALUES = ['noopener', 'noreferrer'];
+        const NEW_TAB_TEXT = '(Abre en una nueva pestaña)';
 
-        // Anchor
-        const element = document.createElement("a");
+        // Validation helpers
+        const isValidLang = (value) => 
+            this.isString(value) && LANG_REGEX.test(value);
+        
+        const isValidTarget = (value) => 
+            VALID_TARGETS.includes(value);
+
+        // Create element
+        const element = document.createElement('a');
         element.href = link;
 
-        if(label && isValidTarget && target == "_blank"){
-            element.innerHTML = `${label} <span class="sr-only">`
-                    + `(Abre en una nueva pestaña)</span>`; 
-        } else if(label){
-            element.innerHTML = label;
+        // Set label/content
+        if (label) {
+            const isBlankTarget = isValidTarget(target) && target === '_blank';
+            element.innerHTML = isBlankTarget
+                ? `${label} <span class="sr-only">${NEW_TAB_TEXT}</span>`
+                : label;
         }
 
-        if (Array.isArray(rel)) {
-            const uniqueRel = [...new Set(rel)];
-            if (isValidTarget && target === "_blank") {
-                uniqueRel.push('noopener', 'noreferrer');
-            }
-            element.rel = uniqueRel.join(" ");
-        }
-
-        if(isValidLang){
-            element.lang = lang;
-        }
-        if(isValidHrefLang){
-            element.hreflang = hreflang;
-        }
-        if(isValidTarget){
+        // Handle target attribute
+        if (isValidTarget(target)) {
             element.target = target;
         }
-        if(aria_label){
-            element.setAttribute("aria-label", aria_label);
+
+        // Handle rel attribute with security best practices
+        if (Array.isArray(rel) && rel.length > 0) {
+            const uniqueRel = [...new Set(rel.filter(Boolean))];
+            
+            // Add security attributes for _blank target
+            if (target === '_blank') {
+                SECURITY_REL_VALUES.forEach(securityValue => {
+                    if (!uniqueRel.includes(securityValue)) {
+                        uniqueRel.push(securityValue);
+                    }
+                });
+            }
+            
+            element.rel = uniqueRel.join(' ');
+        } else if (target === '_blank') {
+            // Ensure security even without rel array
+            element.rel = SECURITY_REL_VALUES.join(' ');
         }
-        if(id){
+
+        // Set language attributes
+        if (isValidLang(lang)) {
+            element.lang = lang;
+        }
+
+        if (isValidLang(hreflang)) {
+            element.hreflang = hreflang;
+        }
+
+        // Set accessibility and identification attributes
+        if (aria_label) {
+            element.setAttribute('aria-label', aria_label);
+        }
+
+        if (id) {
             element.id = id;
         }
-        if(title){
+
+        if (title) {
             element.title = title;
         }
-        if(Array.isArray(css)){
-            element.classList.add(...css);
-        }
-        Object
-            .entries(attributes)
-            .forEach(([key, value]) => 
-                element.setAttribute(key, value));
-        Object
-            .entries(datasets)
-            .forEach(([key, value]) => 
-                element.setAttribute(`data-${key}`, value));
 
-        return output == "html" ? element.outerHTML : element;
+        // Add CSS classes
+        if (Array.isArray(css) && css.length > 0) {
+            const validClasses = css.filter(cls => cls && typeof cls === 'string');
+            if (validClasses.length > 0) {
+                element.classList.add(...validClasses);
+            }
+        }
+
+        // Add custom attributes
+        Object.entries(attributes).forEach(([key, value]) => {
+            if (key && value != null) {
+                element.setAttribute(key, String(value));
+            }
+        });
+
+        // Add data attributes
+        Object.entries(datasets).forEach(([key, value]) => {
+            if (key && value != null) {
+                element.setAttribute(`data-${key}`, String(value));
+            }
+        });
+
+        // Return based on output format
+        return output === 'html' ? element.outerHTML : element;
     };
 
 
     //
     // TEMA PARA EL MAPA
     //
-
     /**
      * Modifica la opacidad del mapa
      * @param {double|string} value Número _(double)_, o porcentaje de valor
