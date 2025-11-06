@@ -618,6 +618,7 @@ const ponchoTableDependant = opt => {
      * @param {string} label value del filtro seleccionado.
      * @return {object} Listado de elementos únicos para el select.
      */
+    /*
     const _allFromParent = (parent, children, label) => {
         const filterList = gapi_data.entries.flatMap(e => {
             const evaluatedEntry = e[filtersList[_parentElement(children)]];
@@ -640,6 +641,59 @@ const ponchoTableDependant = opt => {
             distinct(filterList), filtersList[children] 
         );
         return uniqueList;
+    };
+    */
+
+    /**
+     * Trae todos los elementos de un filtro en base a su parent.
+     *
+     * @param {integer} parent Indice de filtro seleccionado.
+     * @param {integer} children Indice del hijo del seleccionado.
+     * @param {string} label value del filtro seleccionado.
+     * @return {object} Listado de elementos únicos para el select.
+     */
+    const _allFromParent = (parent, children, label) => {
+        const parentIndex = _parentElement(parent);
+        const childIndex = _parentElement(children);
+        const isCustom = _isCustomFilter(children, filtro);
+        const isEmptyLabel = label === "";
+        
+        // Pre-calcular filtros custom si es necesario
+        let customFiltersLower;
+        if (isCustom) {
+            customFiltersLower = _customFilter(children, filtro)
+                .map(e => _toCompareString(e));
+        }
+        
+        // Usar Set para eliminar duplicados eficientemente
+        const uniqueItems = new Set();
+        
+        // Un solo bucle sin flatMap
+        for (const entry of gapi_data.entries) {
+            // Verificación temprana del parent
+            if (!isEmptyLabel && entry[filtersList[parentIndex]] !== label) {
+                continue;
+            }
+            
+            const evaluatedEntry = entry[filtersList[childIndex]];
+            if (!evaluatedEntry) continue;
+            
+            if (isCustom) {
+                const entryLower = _toCompareString(evaluatedEntry);
+                // Buscar coincidencias en filtros custom
+                for (const customFilter of customFiltersLower) {
+                    if (entryLower.includes(customFilter)) {
+                        uniqueItems.add(evaluatedEntry);
+                        break; // Evitar agregar múltiples veces
+                    }
+                }
+            } else {
+                uniqueItems.add(evaluatedEntry);
+            }
+        }
+        
+        // Convertir Set a Array y ordenar
+        return _sortAlphaNumeric(Array.from(uniqueItems), filtersList[children]);
     };
 
 
@@ -707,7 +761,6 @@ const ponchoTableDependant = opt => {
     };
 
 
-
     /**
      * Lista los valores que deben ir en un filtro según su parent.
      *
@@ -746,8 +799,8 @@ const ponchoTableDependant = opt => {
             distinct(items), filtersList[children] 
         );
         return uniqueList;
-    };
-*/
+    };*/
+
 
     /**
      * Tiene filtros personalizados
