@@ -237,7 +237,8 @@ class PonchoMap {
                         platform: "mac",
                         rel: [
                             "alternate"
-                        ]
+                        ],
+                        target: "_blank"
                     },
                     {
                         aria_label: false,
@@ -247,7 +248,8 @@ class PonchoMap {
                         link: "https://www.google.com/maps/search/?api=1&query={{latitude}},{{longitude}}",
                         rel: [
                             "alternate"
-                        ]
+                        ],
+                        target: "_blank"
                     },
                     {
                         aria_label: false,
@@ -257,7 +259,8 @@ class PonchoMap {
                         link: "https://mapa.ign.gob.ar/beta/?zoom=17&lat={{latitude}}&lng={{longitude}}&layers=argenmap&marker={{latitude}},{{longitude}}",
                         rel: [
                             "alternate"
-                        ]
+                        ],
+                        target: "_blank"
                     },
                     {
                         aria_label: false,
@@ -267,7 +270,8 @@ class PonchoMap {
                         link: "https://www.openstreetmap.org/?mlat={{latitude}}&mlon={{longitude}}#map=16/{{latitude}}/{{longitude}}",
                         rel: [
                             "alternate"
-                        ]
+                        ],
+                        target: "_blank"
                     }
                 ],
                 label: "openmap_label"
@@ -3926,7 +3930,8 @@ class PonchoMapLoader {
      * Método de conveniencia que carga el spinner, ejecuta un callback
      * después de un timeout, y remueve el loader.
      * @param {Function} callback - Función a ejecutar después del timeout
-     * @param {number} timeout - Tiempo en milisegundos antes de ejecutar el callback y remover el loader
+     * @param {number} timeout - Tiempo en milisegundos antes de ejecutar el 
+     * callback y remover el loader
      * @returns {undefined}
      */
     loader = (callback, timeout=500) => {

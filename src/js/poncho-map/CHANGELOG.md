@@ -16,6 +16,8 @@
   * **Modo debug**: Nueva opción `debug` en el constructor para habilitar logging condicional.
   * **Mejora de robustez**: Inicialización adecuada de propiedades de timeout y mejor manejo de casos edge.
 
+* **Defaults**:
+* Los enlaces para mapas alternativos abren en una nueva página.
 
 ## Release 2.1.4
 
