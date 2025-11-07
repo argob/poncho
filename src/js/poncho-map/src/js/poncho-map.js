@@ -795,18 +795,22 @@ class PonchoMap {
 
         const validSizes = ['large', 'default', 'medium'];
         if (!validSizes.includes(this.slider_size)) {
-            console.warn(`Invalid slider size: ${this.slider_size}. Defaulting to 'default'.`);
+            console.warn(
+                `Invalid slider size: ${this.slider_size}. Defaulting to 'default'.`);
             this.slider_size = 'default';
         }
 
         const sliderElement = document.querySelector(`.poncho-map${this.scope_selector}`);
         if (sliderElement) {
-            sliderElement.classList.remove(
-                'slider-large', 
-                'slider-default', 
-                'slider-medium'
-            );
-            sliderElement.classList.add(`slider-${this.slider_size}`);
+            const newClass = `slider-${this.slider_size}`;
+
+            // Solo modificar el DOM si la clase no está presente
+            if (!sliderElement.classList.contains(newClass)) {
+                sliderElement.classList.remove(
+                    'slider-large', 'slider-default', 'slider-medium'
+                );
+                sliderElement.classList.add(newClass);
+            }
         }
     };
 
@@ -1190,9 +1194,12 @@ class PonchoMap {
      * @returns {undefined}
      */
     _setOsmView = () => {
-        this.tileLayer.setUrl(this.osmURL);
-        this.map.attributionControl.removeAttribution(this.ersiAttribution);
-        this.map.attributionControl.addAttribution(this.osmAttribution);
+        const { tileLayer, map, osmURL, ersiAttribution, osmAttribution } = this;
+        const attributionControl = map.attributionControl;
+
+        tileLayer.setUrl(osmURL);
+        attributionControl.removeAttribution(ersiAttribution);
+        attributionControl.addAttribution(osmAttribution);
         this._setLayerTheme(["layer-satelital"], "layer-osm", false);
     };
     
@@ -1204,11 +1211,14 @@ class PonchoMap {
      */
     
     _setSatelitalView = () => {
-        this.tileLayer.setUrl(this.ersiURL);
-        this.map.attributionControl.removeAttribution(this.osmAttribution);
-        this.map.attributionControl.addAttribution(this.ersiAttribution);
+        const { tileLayer, map, ersiURL, osmAttribution, ersiAttribution } = this;
+        const attributionControl = map.attributionControl;
+
+        tileLayer.setUrl(ersiURL);
+        attributionControl.removeAttribution(osmAttribution);
+        attributionControl.addAttribution(ersiAttribution);
         this._setLayerTheme(
-            ["layer-osm","map-contrast", "map-dark", "ui-contrast", "ui-dark"], 
+            ["layer-osm","map-contrast", "map-dark", "ui-contrast", "ui-dark"],
             "layer-satelital", "disabled");
     };
 
@@ -1696,7 +1706,6 @@ class PonchoMap {
 
         // 1. Validación
         if(this.isEmptyObject(entry)){
-        // if(typeof entry === "object" && Object.keys(entry).length === 0){
             console.error("No se encontraron las claves: title o messages.");
             return;
         }
@@ -1705,32 +1714,31 @@ class PonchoMap {
             type = "danger";
         }
 
+        const { scope_sufix, scope_selector, error_reporting, throw_exceptions, map_selector } = this;
+        const logContainerId = `log-container${scope_sufix}`;
+
         // Contenedor de errores
-        let logContainer = document
-                .querySelector(`#log-container${this.scope_sufix}`);
+        let logContainer = document.getElementById(logContainerId);
         if(!logContainer){
             logContainer = document.createElement("div");
             logContainer.role = "alert";
-            logContainer.id = `log-container${this.scope_sufix}`;
+            logContainer.id = logContainerId;
 
-            // Ubico el contenedor de logs antes del
-            const node = document.querySelector(
-                `${this.scope_selector}.poncho-map`
-            );
-            node.parentNode.insertBefore(logContainer, node);
+            // Ubico el contenedor de logs antes del mapa
+            const node = document.querySelector(`${scope_selector}.poncho-map`);
+            if(node?.parentNode){
+                node.parentNode.insertBefore(logContainer, node);
+            }
         }
-        logContainer.innerHTML = "";
+        logContainer.textContent = ""; // Más rápido que innerHTML = ""
 
         // Contenedor de alerta
-        let container = document.createElement("div");
-        container.classList.add(
-            `js-error-message${this.scope_sufix}`, 
-            "poncho-map--message", 
-            type);
+        const container = document.createElement("div");
+        container.className = `js-error-message${scope_sufix} poncho-map--message ${type}`;
 
         // Título de la alerta
         const heading = document.createElement("h2");
-        heading.classList.add("pm-visually-hidden", "sr-only");
+        heading.className = "pm-visually-hidden sr-only";
         heading.textContent = "Registro de errores en el mapa";
 
         // Mensajes
@@ -1738,60 +1746,60 @@ class PonchoMap {
         if(!this.isEmptyString(title)){
             const messageLabel = document.createElement("p");
             messageLabel.innerHTML = title;
-            // Agrego el título al contenedor.
             container.appendChild(messageLabel);
         }
 
         if(Array.isArray(messages) && messages.length > 0){
             const contentList = document.createElement("ul");
-            for(let item of messages){
+            const fragment = document.createDocumentFragment();
+
+            for(const item of messages){
                 const contentListItem = document.createElement("li");
                 contentListItem.innerHTML = item;
-                contentList.appendChild(contentListItem);
+                fragment.appendChild(contentListItem);
             }
 
-            // Agrego listado de sugerencias al contenedor
+            contentList.appendChild(fragment);
             container.appendChild(contentList);
         }
 
         if(terminal){
             const detailsContainer = document.createElement("div");
-            detailsContainer.classList.add("console-message-container");
-            
+            detailsContainer.className = "console-message-container";
+
             const details = document.createElement("details");
-            details.classList.add("caret-small", "caret-dark");
-            
+            details.className = "caret-small caret-dark";
+
             const summary = document.createElement("summary");
             summary.textContent = "Mensaje";
 
             const consoleContainer = document.createElement("div");
-            consoleContainer.classList.add("console");
+            consoleContainer.className = "console";
 
             const showConsole = document.createElement("code");
-            showConsole.innerHTML = JSON.stringify(terminal);
+            showConsole.textContent = JSON.stringify(terminal);
 
             // APPEND
             consoleContainer.appendChild(showConsole);
             details.appendChild(summary);
             details.appendChild(consoleContainer);
             detailsContainer.appendChild(details);
-            // Agrego el mensaje terminal al contenedor
             container.appendChild(detailsContainer);
         }
 
         // Imprimo el error en la página
-        if(this.error_reporting || block) {
+        if(error_reporting || block) {
             logContainer.appendChild(heading);
             logContainer.appendChild(container);
 
-            if(this.throw_exceptions || block){
-                document.getElementById(this.map_selector).remove();
+            if(throw_exceptions || block){
+                document.getElementById(map_selector)?.remove();
                 throw new Error(JSON.stringify(entry));
             }
         }
 
         // Imprimo el error en la consola
-        console.error( JSON.stringify(entry) );
+        console.error(JSON.stringify(entry));
     };
 
 
