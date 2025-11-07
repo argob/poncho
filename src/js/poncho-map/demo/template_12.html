@@ -194,6 +194,15 @@ COPIAR DESDE ACÁ…
                     "css": "fa fa-globe text-arg-mandarina"
                 },
             ],
+            "_filters": [
+                {
+                "legend": "Ver",
+                "type": "checkbox",
+                "field": ["category", "checked"],
+                "fields": false,
+                "check_uncheck_all": true
+                }
+            ],
             "template_structure": {
                 "definition_classlist": ["m-b-1"],
                 "definition_list_tag": "dl",
@@ -209,6 +218,11 @@ COPIAR DESDE ACÁ…
                     "email",
                     "web",
                 ],
+                "lead": {
+                    "key": "category", 
+                    "css": "text-arg-default small",
+                    "style": "border-bottom: 1px solid #ddd"
+                },
                 "mixing": [
                     {
                         template: "{{address}}{% ', {{municipality}}' if municipality!='' else '' %}{% ', {{province}}' if province!='' else '' %}.",
