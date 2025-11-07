@@ -16,8 +16,12 @@
   * **Modo debug**: Nueva opción `debug` en el constructor para habilitar logging condicional.
   * **Mejora de robustez**: Inicialización adecuada de propiedades de timeout y mejor manejo de casos edge.
 
+* **Mejoras en PonchoMap**:
+  * Se realizó un bug fix en _mixing > template_ donde se mostraba el valor con el *template* cuando el value llegaba vacío.
+  * A _Mixing>template_ se le agregó la posibilidad de utilizar condicionales en linea. De este modo se puede controlar formato de salida.
+
 * **Defaults**:
-* Los enlaces para mapas alternativos abren en una nueva página.
+  * Los enlaces para mapas alternativos abren en una nueva página.
 
 ## Release 2.1.4
 
