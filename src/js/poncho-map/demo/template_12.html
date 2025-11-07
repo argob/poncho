@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head>
+    <link rel="profile" href="http://www.w3.org/1999/xhtml/vocab" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
+        </script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+        integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet"
+        href="https://capacita-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css?rfqjsh">
+    <link rel="stylesheet" href="../../../../dist/css/poncho.min.css" />
+
+    <!-- 
+        Script para debug 
+        Se reemplazan en producción por poncho.min.js
+    -->
+    <script src="../../utils/document.js"></script>
+
+    <script src="../../utils/color.js"></script>
+    <script src="../../utils/connect.js"></script>
+
+    <script src="../../utils/string.js"></script>
+    <script src="../../utils/html.js"></script>
+    <script src="../src/js/poncho-map.js"></script>
+    <script src="../src/js/poncho-map-filter.js"></script>
+    <script src="../src/js/poncho-map-search.js"></script>
+    <script src="../../gapi-sheet-data/gapi-sheet-data.js"></script>
+    <!-- / Script para debug -->
+    <link rel="stylesheet" href="./css/demo.css">
+    <title>Poncho Map — Puntos digitales</title>
+</head>
+<body>
+<div class="demo-nav container">
+    <ul class="demo-menu">
+        <li><a href="./">Inicio</a></li>
+    </ul>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="h3">Mapa Centros de Atención</h1>
+        </div>
+    </div>                          
+</div>
+<!-- 
+COPIAR DESDE ACÁ…
+-->
+
+<!-- INCLUDE SCRIPTS -->
+<script src="/sites/default/files/ponchotable/showdown.js"></script>
+<script src="/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/extensiones/showdown-extensions.js"></script>
+<script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.js"></script>
+<script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script> 
+<link href="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.css" rel="stylesheet">
+<link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.css" rel="stylesheet">
+<link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.Default.css" rel="stylesheet">
+<script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
+<script src="./js/template-punto-digital.js"></script>
+
+<!-- / INCLUDE SCRIPTS -->
+<div class="container">
+<div class="row">
+
+<div class="col-md-12 m-b-1">
+<!-- PONCHO SEARCH -->
+<search aria-label="Buscar puntos en el mapa">
+    <form>
+        <div data-scope="search-poncho-map">
+            <label class="sr-only" for="search">Buscar puntos</label>
+            <div class="input-group m-b-0 p-b-0 webform-component">
+                <input 
+                    class="js-poncho-map-search__input form-control" 
+                    id="search" 
+                    list="js-porcho-map-search__list" 
+                    name="search" 
+                    autocomplete="true"
+                    spellcheck="true" 
+                    type="search"> 
+                <datalist 
+                    class="js-porcho-map-search__list" 
+                    id="js-porcho-map-search__list">
+                </datalist> 
+                <span class="input-group-btn">
+                    <button 
+                        class="js-poncho-map-search__submit btn btn-primary" 
+                        type="submit">
+                        <i class="fa fa-search text-white"></i>
+                        <span class="sr-only">Buscar término</span>
+                    </button> 
+                </span>
+            </div>
+            <div data-scope="ponchomap">
+                <div class="js-poncho-map__help text-mutted small"></div>
+            </div>
+        </div>
+    </form>
+</search>
+<!-- / PONCHO SEARCH -->
+
+</div>
+<div class="col-md-12">
+<!-- PONCHO MAP -->
+<div class="poncho-map" data-scope="ponchomap">
+    <div 
+        class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab 
+            leaflet-touch-drag leaflet-touch-zoom" 
+        id="map" 
+        style="height:650px;width: 100%;" 
+        tabindex="0">
+    </div>
+</div>
+<!-- / PONCHO MAP -->
+</div>
+</div>
+</div>
+
+<!-- SHOW CODE -->
+<div class="container">
+    <div class="row m-y-2">
+        <div class="col-md-12">
+            <div data-code-from="code_map" data-title="Código para el mapa"></div>
+        </div>
+    </div>
+</div>
+<script src="../../mapa-argentina/demo/js/demo.js"></script>
+<!-- / SHOW CODE -->
+
+<!-- SCRIPTS -->
+<script id="code_map">
+    const loader = new PonchoMapLoader({scope: "ponchomap"});
+    loader.load();
+
+    var search, filter;
+    const url = './data/geodata-centros-lgbti.json';
+
+    (async() => {
+        const gapi = new GapiSheetData();
+        const googlesheet_data = await fetch_json( url ); 
+        const gdata = googlesheet_data.data;
+
+        // map options
+        const options = {
+            summary: {
+                hidden: false,
+                title: "Mapa Centros de Atención por motivo de toda forma de violencia y riesgo",
+                position: "top",
+                css: "m-y-05 p-y-05 h5 text-arg-enlace",
+                style: {
+                    borderTop: "1px solid #ddd",
+                },
+            },
+            error_reporting: 1,
+            throw_exceptions: 0,
+            template: template_punto_digital,
+            title: "name",
+            map_layers: true,
+            map_layers_default: 'satelital',
+            scope:"ponchomap",
+            allowed_tags: ["*"],
+            template_markdown: true,
+            map_opacity:1,
+            latitud: "lat",
+            longitud: "lng",
+            id: "id",
+            hash: true,
+            slider: true,
+            scroll: true,
+            "header_icons":[
+                {
+                    "key": "opening_time",
+                    "css": "fa fa-clock-o text-arg-mandarina"
+                },
+                {
+                    "key": "ubicacion",
+                    "css": "fa fa-map-marker text-arg-mandarina"
+                },
+                {
+                    "key": "email",
+                    "css": "fa fa-envelope-o text-arg-mandarina"
+                },
+                {
+                    "key": "phone",
+                    "css": "fa fa-phone text-arg-mandarina"
+                },
+            ],
+            "template_structure": {
+                "definition_classlist": ["m-b-1"],
+                "definition_list_tag": "dl",
+                "title_classlist": ["h4","m-t-0"],
+                "term_classlist": ["text-arg-enlace"],
+                "term_tag": "dt",
+                "definition_tag": "dd",
+                "values": [
+                    "observation",
+                    "ubicacion",
+                    "opening_time",
+                    "phone",
+                    "email",
+                    "web",
+                ],
+                "mixing": [
+                    {
+                        template: "{{address}}, {{municipality}}, {{province}}.",
+                        key: "ubicacion",
+                        header: "Ubicación",
+                        values: false,
+                        separator: ", "
+                    },
+                    {
+                        template: `<a href="{{web}}">{{web}}</web>`,
+                        key: "web",
+                        header: "Web",
+                        values: false,
+                        separator: ", "
+                    },
+                ]
+            },
+            "headers": {
+                "id": "ID",
+                "name": "Nombre",
+                "province": "Provincia",
+                "municipality": "Municipio",
+                "locality": "Localidad",
+                "category": "Categoría",
+                "address": "Dirección",
+                "phone": "Teléfonos",
+                "opening_time": "Horarios",
+                "observation": "Observaciones",
+                "lat": "Latitud",
+                "lng": "Longitud",
+                "web": "Web",
+                "email": "Email"
+            },
+            open_maps: true,
+            
+        };
+
+        // Render map
+        filter = new PonchoMapFilter(gdata, options);
+        filter.render();
+
+
+        // Buscador
+        const search_options = {
+            "scope": "search-poncho-map",
+            "text": "name",
+            "search_fields": [
+                "name",
+                "province",
+                "municipality",
+                "locality",
+                "category",
+                "observation"
+            ],
+            "id": "id_pd",
+            "placeholder": "Buscá un centro"
+        };
+        search = new PonchoMapSearch(filter, search_options);
+        search.render();
+
+        // Close loader and show map
+        loader.close();
+    })();
+</script>
+<!-- / SCRIPTS -->
+</body>
+</html>
