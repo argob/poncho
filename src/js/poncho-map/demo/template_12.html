@@ -189,6 +189,10 @@ COPIAR DESDE ACÁ…
                     "key": "phone",
                     "css": "fa fa-phone text-arg-mandarina"
                 },
+                {
+                    "key": "web",
+                    "css": "fa fa-globe text-arg-mandarina"
+                },
             ],
             "template_structure": {
                 "definition_classlist": ["m-b-1"],
@@ -207,14 +211,14 @@ COPIAR DESDE ACÁ…
                 ],
                 "mixing": [
                     {
-                        template: "{{address}}, {{municipality}}, {{province}}.",
+                        template: "{{address}}{% ', {{municipality}}' if municipality!='' else '' %}{% ', {{province}}' if province!='' else '' %}.",
                         key: "ubicacion",
                         header: "Ubicación",
                         values: false,
                         separator: ", "
                     },
                     {
-                        template: `<a href="{{web}}">{{web}}</web>`,
+                        template: `{% '<a href="{{web}}">{{web}}</web>' if web != "" else "" %}`,
                         key: "web",
                         header: "Web",
                         values: false,
