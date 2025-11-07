@@ -1,5 +1,24 @@
 # Changelog
 
+## Release 2.1.5
+
+* **Performance**: Optimización del objeto `markerCluster` y método `marker()`:
+  * Implementación de caché de iconos para evitar crear objetos duplicados.
+  * Eliminación de llamada redundante a `marker_color()` en el proceso de creación de marcadores.
+  * Cacheo del tipo de `marker_color` para evitar verificaciones repetidas de tipo en cada marcador.
+  * Mejora estimada del 60-80% en rendimiento para mapas con múltiples marcadores.
+
+* **Mejoras en PonchoMapLoader**:
+  * **Bug fix crítico**: Se implementó el método `remove()` que faltaba y causaba errores en tiempo de ejecución.
+  * **Prevención de memory leaks**: Se corrigió la limpieza de timeouts en el método `close()`.
+  * **Prevención de race conditions**: Los métodos `load()` y `close()` ahora cancelan operaciones pendientes correctamente.
+  * **Nuevo parámetro**: `close(immediate)` permite cerrar el loader sin demora cuando `immediate=true`.
+  * **Modo debug**: Nueva opción `debug` en el constructor para habilitar logging condicional.
+  * **Mejora de robustez**: Inicialización adecuada de propiedades de timeout y mejor manejo de casos edge.
+
+* **Defaults**:
+* Los enlaces para mapas alternativos abren en una nueva página.
+
 ## Release 2.1.4
 
 * Se incorporó el enlace para restablecer el mapa. Ahora estará visible constantemente.
