@@ -5878,6 +5878,108 @@ class PonchoMap {
 
 
     /**
+     * Procesa un match de expresión condicional y retorna el valor 
+     * correspondiente según la evaluación de la condición.
+     * 
+     * @param {RegExpExecArray} match - Objeto match retornado por 
+     * RegExp.exec() que contiene:
+     *   - groups.replaceStr: String a retornar si la condición es verdadera
+     *   - groups.key: Nombre de la propiedad a evaluar en el objeto row
+     *   - groups.compare: Valor con el cual comparar
+     *   - groups.elseReturn: String a retornar si la condición es falsa
+     *   - groups.operator: Operador de comparación ('==' o '!=')
+     * @param {Object} row - Objeto que contiene las propiedades a evaluar
+     * @returns {string} El valor de replaceStr si la condición se cumple, 
+     * elseReturn en caso contrario
+     * 
+     * @example
+     * const match = { 
+     *     groups: { 
+     *         replaceStr: 'SI', 
+     *         key: 'active', 
+     *         operator: '==', 
+     *         compare: 'true', 
+     *         elseReturn: 'NO' 
+     *     }
+     * };
+     * const row = { active: 'true' };
+     * processMatch(match, row); // Retorna 'SI'
+     * @see https://regex101.com/r/I0F0Xj/1
+     */
+    _processMatch = (match, row) => {
+        const {
+            replaceStr,
+            key,
+            compare,
+            elseReturn,
+            operator
+        } = match.groups;
+        
+        if (row.hasOwnProperty(key)) {
+            const rowValue = row[key];
+            const compareValue = compare;
+            let conditionMet = false;
+            
+            if (operator === "!=") {
+                conditionMet = String(rowValue) !== String(compareValue);
+            } else if (operator === "==") {
+                conditionMet = String(rowValue) === String(compareValue);
+            } else {
+                conditionMet = !!rowValue;
+            }
+            
+            if (conditionMet) {
+                return replaceStr;
+            } else {
+                return elseReturn;
+            }
+        }
+        return elseReturn;
+    }
+
+
+    /**
+     * Procesa un string que contiene expresiones condicionales tipo template
+     * y las reemplaza con valores evaluados según los datos del objeto row.
+     * 
+     * Formato de las expresiones: {% 'valorSi' if propiedad operator 
+     * 'comparacion' else 'valorNo' %}
+     * 
+     * @param {string} str - String que contiene las expresiones condicionales 
+     * a procesar
+     * @param {Object} row - Objeto con las propiedades cuyos valores serán 
+     * evaluados en las condiciones
+     * @returns {string} String resultante con todas las expresiones 
+     * condicionales reemplazadas
+     * 
+     * @example
+     * const template = 
+     *     `{% '<a href="{{web}}">Link</a>' if web=='' else 'Sin web' %}`;
+     * const data = { web: 'http://example.com' };
+     * refactorMixingTemplate(template, data); // Retorna 'Sin web'
+     * 
+     * @example
+     * const template = `{% 'Activo' if status=='active' else 'Inactivo' %}`;
+     * const data = { status: 'active' };
+     * refactorMixingTemplate(template, data); // Retorna 'Activo'
+     */
+    refactorMixingTemplate = (str, row) => {
+        const REGEX = /\{\%\s?('|`)(?<replaceStr>[^\1]*?)\1 if (?<key>[\w\-\.]+)\s?(?:(?<operator>\!\=|\=\=)\s?('|"|`)(?<compare>.*?)\5) else ('|"|`)(?<elseReturn>.*?)\7\s?\%\}/gm;
+        
+        let resultString = str;
+        let m;
+        while ((m = REGEX.exec(str)) !== null) {
+            if (m.index === REGEX.lastIndex) {
+                REGEX.lastIndex++;
+            }
+            const finalContent = this._processMatch(m, row);
+            resultString = resultString.replace(m[0], finalContent);
+        }
+        return resultString;
+    }
+
+
+    /**
      * Especifica el tamaño del slider
      * @returns {undefined}
      */
@@ -7850,7 +7952,8 @@ class PonchoMap {
                     }
 
                     if(!this.isEmptyString(template)){
-                        customRow[key] = this.tplParser(template, row);
+                        const refactorTemplate = this.refactorMixingTemplate(template, row);
+                        customRow[key] = this.tplParser(refactorTemplate, row);
                     } else {
                         customRow[key] = values
                             .map(i => (i in row ? row[i] : i.toString()))
