@@ -351,6 +351,8 @@ class PonchoMap {
         this.tooltip = opts.tooltip;
         this.marker_cluster_options = opts.marker_cluster_options;
         this.marker_color = opts.marker;
+        this._icon_cache = new Map();
+        this._marker_color_type = this._getMarkerColorType();
         this.id = opts.id;
         this.id_mixing = opts.id_mixing;
         this.title = opts.title;
@@ -2966,24 +2968,52 @@ class PonchoMap {
 
 
     /**
+     * Determina el tipo de marker_color configurado.
+     * @returns {string} Tipo de marker_color: 'none', 'string' o 'function'
+     */
+    _getMarkerColorType = () => {
+        if (!this.marker_color || typeof this.marker_color === "boolean") {
+            return 'none';
+        }
+        if (typeof this.marker_color === 'string') {
+            return 'string';
+        }
+        if (typeof this.marker_color === 'function') {
+            return 'function';
+        }
+        return 'none';
+    };
+
+
+    /**
      * Icono con color Poncho.
-     * 
+     *
      * @summary Retorna un marker SVG con color poncho. Por defecto se
      * utiliza el azul (primary), pero se puede cambiar el clor usando
      * el parámetro «color». Los colores están limitados a los cargados
-     * en Drupal. 
-     * @param {string} color Nombre del color según poncho colores. 
+     * en Drupal. Implementa caché para evitar crear iconos duplicados.
+     * @param {string} color Nombre del color según poncho colores.
      * @see https://leafletjs.com/examples/custom-icons/
      * @returns {object}
      */
     icon = (color="azul") => {
-        return new L.icon({
-            iconUrl: `https://www.argentina.gob.ar/sites/default/files/` 
+        // Verificar si el icono ya está en caché
+        if (this._icon_cache.has(color)) {
+            return this._icon_cache.get(color);
+        }
+
+        // Crear nuevo icono
+        const newIcon = new L.icon({
+            iconUrl: `https://www.argentina.gob.ar/sites/default/files/`
                     + `marcador-${color}.svg`,
             iconSize: [29, 40],
             iconAnchor: [14, 40],
             popupAnchor: [0, -37]
         });
+
+        // Guardar en caché
+        this._icon_cache.set(color, newIcon);
+        return newIcon;
     };
 
 
@@ -3046,22 +3076,23 @@ class PonchoMap {
 
     /**
      * Define el objeto icon.
-     * @param {object} row entrada de json 
+     * @param {object} row entrada de json
      * @returns {object} Instancia L.icon
      */
     marker = (row) => {
-        // Si marker_color no viene o es null usa el marker por defecto 
-        // de Open Street Map
-        if(!this.marker_color || typeof this.marker_color === "boolean"){
-            return null
-        }
-        if(this.isString(this.marker_color)){
-            return this.icon(this.marker_color);
-        } else if (this.isString(this.marker_color(this, row))){
-            const color = this.marker_color(this, row);
-            return this.icon(color);
-        } else if (typeof this.marker_color === "function"){
-            return this.marker_color(this, row);
+        // Usa el tipo de marker_color cacheado para evitar chequeos repetidos
+        switch(this._marker_color_type) {
+            case 'none':
+                return null;
+            case 'string':
+                return this.icon(this.marker_color);
+            case 'function':
+                // Ejecuta la función una sola vez y almacena el resultado
+                const result = this.marker_color(this, row);
+                // Si retorna un string, crea el icono; si retorna un objeto, úsalo directamente
+                return (typeof result === 'string') ? this.icon(result) : result;
+            default:
+                return null;
         }
     };
 
@@ -3737,11 +3768,13 @@ class PonchoMapLoader {
 
     constructor(options){
         const defaults = {
-            selector: ".poncho-map",
-            scope: "",
-            timeout: 50000,
+            close_delay: 500,
             cover_opacity: 1,
             cover_style: {},
+            debug: false,
+            scope: "",
+            selector: ".poncho-map",
+            timeout: 50000,
         };
         let opts = Object.assign({}, defaults, options);
         this.scope = opts.scope;
@@ -3750,59 +3783,151 @@ class PonchoMapLoader {
         this.timeout = opts.timeout;
         this.scope_sufix = `--${this.scope}`;
         this.scope_selector = `[data-scope="${this.scope}"]`;
-        this.ponchoLoaderTimeout;
+        this.ponchoLoaderTimeout = null;
+        this._closeTimeoutId = null;
         this.selector = opts.selector;
+        this.close_delay = opts.close_delay;
+        this.debug = opts.debug;
     }
 
 
     /**
-     * Cierra el spinner.
+     * Remueve el loader inmediatamente sin demora.
+     * Limpia los timeouts activos y remueve el elemento del DOM.
      * @returns {undefined}
      */
-    close = () => document
-            .querySelectorAll(`.js-poncho-map__loader${this.scope_sufix}`)
-            .forEach(e => e.remove());
+    remove = () => {
+        // Cancelar timeout de auto-remoción
+        if(this.ponchoLoaderTimeout){
+            clearTimeout(this.ponchoLoaderTimeout);
+            this.ponchoLoaderTimeout = null;
+        }
+
+        // Remover el elemento del DOM
+        const loader = document.querySelector(
+            `.js-poncho-map__loader${this.scope_sufix}`
+        );
+        if(loader){
+            loader.remove();
+            if(this.debug){
+                console.log(`[PonchoMapLoader:${this.scope}] Loader removed.`);
+            }
+        }
+    }
+
+
+    /**
+     * Cierra el spinner con una demora configurable.
+     * Cancela cualquier operación de cierre pendiente antes de programar una nueva.
+     * @param {boolean} immediate - Si es true, cierra inmediatamente sin demora
+     * @returns {undefined}
+     */
+    close = (immediate = false) => {
+        if(immediate){
+            this.remove();
+            return;
+        }
+
+        // Cancelar cualquier operación de cierre pendiente
+        if(this._closeTimeoutId){
+            clearTimeout(this._closeTimeoutId);
+        }
+
+        // Programar el cierre con demora
+        this._closeTimeoutId = setTimeout(() => {
+            const loader = document.querySelector(
+                `.js-poncho-map__loader${this.scope_sufix}`
+            );
+            if(loader){
+                loader.remove();
+            }
+
+            // Cancelar timeout de auto-remoción si existe
+            if(this.ponchoLoaderTimeout){
+                clearTimeout(this.ponchoLoaderTimeout);
+                this.ponchoLoaderTimeout = null;
+            }
+
+            this._closeTimeoutId = null;
+
+            if(this.debug){
+                console.log(`[PonchoMapLoader:${this.scope}] Loader closed.`);
+            }
+        }, this.close_delay);
+    }
 
 
     /**
      * Carga el spinner.
+     * Cancela operaciones pendientes y remueve cualquier loader existente
+     * antes de crear uno nuevo. Configura un timeout de auto-remoción.
      * @returns {undefined}
      */
     load = () => {
-        this.close();
-        clearTimeout(this.ponchoLoaderTimeout);
+        // Cancelar operaciones de cierre pendientes
+        if(this._closeTimeoutId){
+            clearTimeout(this._closeTimeoutId);
+            this._closeTimeoutId = null;
+        }
 
+        // Cancelar timeout de auto-remoción anterior
+        if(this.ponchoLoaderTimeout){
+            clearTimeout(this.ponchoLoaderTimeout);
+            this.ponchoLoaderTimeout = null;
+        }
+
+        // Remover loader existente de forma síncrona
+        const existingLoader = document.querySelector(
+            `.js-poncho-map__loader${this.scope_sufix}`
+        );
+        if(existingLoader){
+            existingLoader.remove();
+        }
+
+        // Crear nuevo loader
         const element = document.querySelector(
-                `${this.selector}${this.scope_selector}`);
+            `${this.selector}${this.scope_selector}`
+        );
         const loader = document.createElement("span");
         loader.className = "loader";
 
         const cover = document.createElement('div');
         cover.dataset.scope = this.selector;
         cover.classList.add(
-            "poncho-map__loader", 
+            "poncho-map__loader",
             `js-poncho-map__loader${this.scope_sufix}`
         );
+
         // Background opacity
         Object.assign(cover.style, this.cover_style);
         if(this.cover_opacity){
             cover.style.backgroundColor = `color-mix(`
-                + `in srgb, ` 
+                + `in srgb, `
                 + `transparent, `
                 + `var(--pm-loader-background) `
                 + `${this.cover_opacity.toString() * 100}%)`;
         }
 
         cover.appendChild(loader);
-        element.appendChild(cover);  
-        this.ponchoLoaderTimeout = setTimeout(this.remove, this.timeout);
+        element.appendChild(cover);
+
+        if(this.debug){
+            console.log(`[PonchoMapLoader:${this.scope}] Loader started.`);
+        }
+
+        // Configurar auto-remoción después del timeout
+        this.ponchoLoaderTimeout = setTimeout(() => {
+            this.remove();
+        }, this.timeout);
     };
 
 
     /**
-     * Loader
-     * @param {integer} timeout Tiempo máximo de ejecución del loader. 
-     * @returns {unde}
+     * Método de conveniencia que carga el spinner, ejecuta un callback
+     * después de un timeout, y remueve el loader.
+     * @param {Function} callback - Función a ejecutar después del timeout
+     * @param {number} timeout - Tiempo en milisegundos antes de ejecutar el callback y remover el loader
+     * @returns {undefined}
      */
     loader = (callback, timeout=500) => {
         this.load();
