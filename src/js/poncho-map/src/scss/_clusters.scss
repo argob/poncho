@@ -9,9 +9,8 @@
     background-repeat: repeat;
 }
 
-
-#{$scope} {
-// .poncho-map {
+// #{$scope} {
+.poncho-map {
     --pm-cluster-pattern-small: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMCcgaGVpZ2h0PScxMCc+CiAgPHJlY3Qgd2lkdGg9JzEwJyBoZWlnaHQ9JzEwJyBmaWxsPSd0cmFuc3BhcmVudCcgLz4KICA8cGF0aCBkPSdNLTEsMSBsMiwtMgogICAgICAgICAgIE0wLDEwIGwxMCwtMTAKICAgICAgICAgICBNOSwxMSBsMiwtMicgc3Ryb2tlPScjMDAwJyBzdHJva2Utd2lkdGg9JzMnIC8+Cjwvc3ZnPg==");
     --pm-cluster-pattern-medium: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc1JyBoZWlnaHQ9JzUnPgogIDxyZWN0IHdpZHRoPSc0JyBoZWlnaHQ9JzQnIGZpbGw9J3RyYW5zcGFyZW50JyAvPgogIDxyZWN0IHg9JzInIHk9JzInIHdpZHRoPScyJyBoZWlnaHQ9JzInIC8+Cjwvc3ZnPg==");
     --pm-cluster-pattern-large: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc4JyBoZWlnaHQ9JzgnPgogIDxyZWN0IHdpZHRoPSc4JyBoZWlnaHQ9JzgnIGZpbGw9J3RyYW5zcGFyZW50Jy8+CiAgPHBhdGggZD0nTTAgMEw4IDhaTTggMEwwIDhaJyBzdHJva2Utd2lkdGg9JzEnIHN0cm9rZT0nIzAwMCcvPgo8L3N2Zz4K");
@@ -32,7 +31,8 @@
                 background-image: var(--pm-cluster-pattern-small);
                 background-size: 5px;
                 background-position-x: -3px;
-                opacity: 0.2;
+                opacity: 0.25;
+                    border: 1px solid rgb(0 0 0 / .5) ;
             }
         }
     }
@@ -41,17 +41,19 @@
         background-color: var(--arg-maiz);
         background-color: color-mix(
             in srgb,
-            var(--arg-maiz) 50%,
+            var(--arg-maiz) 60%,
             transparent 100%
         );
         div {
             background-color: var(--arg-maiz);
+            box-shadow: 1px 1px 5px rgb(0 0 0 / .25);
 
             &:before {
                 @include clusterPattern();
                 background-image: var(--pm-cluster-pattern-medium);
                 background-size: 4px;
                 opacity: 0.3;
+             border: 1px solid rgb(0 0 0 / .5) ;
             }
         }
     }
@@ -71,7 +73,8 @@
                 background-image: var(--pm-cluster-pattern-large);
                 background-size: 6px;
                 background-position-x: -3px;
-                opacity: 0.15;
+                opacity: 0.2;
+                border: 1px solid rgb(0 0 0 / .5) ;
             }
         }
     }
@@ -109,9 +112,12 @@
             margin-top: 5px;
             position: relative;
             text-align: center;
+            font-weight: bold !important;
+            letter-spacing: -.25pt;
             border-radius: 15px;
             font: 500 12px "Roboto", "Helvetica Neue", Helvetica, "Noto Sans",
                 Arial, sans-serif;
+                text-shadow: 0 0 3px rgb(255 255 255 / .25);
 
             &:after {
                 content: " ";
