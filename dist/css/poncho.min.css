@@ -8203,10 +8203,15 @@ body.sticky-footer .main-footer > div {
 }
 
 .sub-footer {
-  background-color: #68C3EF;
-  padding: 20px 0 20px 0;
+  background-color: #232D4F;
+  padding: 20px 0 40px 0;
 }
 
+@media print {
+  .main-footer {
+    display: none;
+  }
+}
 @media (max-width: 768px) {
   .main-footer section {
     padding: 10px 0 0;
@@ -14282,18 +14287,6 @@ footer .nav > li > a:hover {
   line-height: 1.38 !important;
 }
 
-/* Footer
-   ======================================================================== */
-.sub-footer {
-  background-color: #232D4F;
-  padding: 20px 0 40px 0;
-}
-
-@media print {
-  .main-footer {
-    display: none;
-  }
-}
 .ql-indent-1 {
   padding-left: 1rem !important;
 }
