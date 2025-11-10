@@ -9211,6 +9211,9 @@ class PonchoMapFilter extends PonchoMap {
                 link: `#filtrar-busqueda${this.scope_sufix}`
             });
         }
+
+        // Cache para _fieldsToUse (mejora de rendimiento)
+        this._fieldsCache = new Map();
     }
 
     /**
@@ -9466,10 +9469,15 @@ class PonchoMapFilter extends PonchoMap {
      * o, si se desean todos los checkbox desmarcados.
      *   ["tipo", false]
      */
-    _fieldsToUse = (fieldsItems) => {
+    _fieldsToUse = (fieldsItems, groupIndex = null) => {
+        // Usar cache si tenemos un índice de grupo
+        if(groupIndex !== null && this._fieldsCache.has(groupIndex)){
+            return this._fieldsCache.get(groupIndex);
+        }
+
         const {
             type = "checkbox",
-            fields: optFields = false, 
+            fields: optFields = false,
             field: optField = false} = fieldsItems;
 
         if(!optFields && !optField){
@@ -9493,6 +9501,11 @@ class PonchoMapFilter extends PonchoMap {
             fieldsToUse = [
                 [fieldsToUse[0][0], "Todos", f, "checked"], ...fieldsToUse
             ];
+        }
+
+        // Cachear el resultado si tenemos un índice de grupo
+        if(groupIndex !== null){
+            this._fieldsCache.set(groupIndex, fieldsToUse);
         }
 
         return fieldsToUse;
@@ -9790,10 +9803,11 @@ class PonchoMapFilter extends PonchoMap {
     defaultFiltersConfiguration = () => {
         // Obtengo todos los filtros y los colecciono en un array.
         const filters = this.filters.map((g, gk) => {
-            const fields = this._fieldsToUse(g);
+            // Usar caché para _fieldsToUse
+            const fields = this._fieldsToUse(g, gk);
             const conf_fields = fields.map((f, fk) => {
                 return [
-                    gk, fk, f[0], 
+                    gk, fk, f[0],
                     (typeof f[3] !== "undefinded" && f[3] == "checked" ?
                         true : false)
                 ];
@@ -9875,7 +9889,8 @@ class PonchoMapFilter extends PonchoMap {
      */
     totals = () => {
         const results = this.formFilters().map(e => {
-            const item = this._fieldsToUse( this.filters[e[0]] )[e[1]];
+            // Usar caché para _fieldsToUse
+            const item = this._fieldsToUse( this.filters[e[0]], e[0] )[e[1]];
             return [
                 item[1],
                 this._countOccurrences(this.filtered_entries, item[2], item[0]),
@@ -9914,102 +9929,132 @@ class PonchoMapFilter extends PonchoMap {
 
     /**
      * Valida el campo de un grupo.
-     * 
+     *
      * @param {object} entry Entrada de datos
      * @param {integer} group Índice del grupo de filtros
      * @param {integer} index Índice del filtro dentro del grupo.
-     * @returns {object}
+     * @returns {boolean}
      */
     _search = (entry, group, index) => {
-        const filter = this._fieldsToUse(this.filters[group])[index];
+        // Usar caché al obtener los fields
+        const filter = this._fieldsToUse(this.filters[group], group)[index];
+        const filterKey = filter[0];
+
+        // Early return si la entrada no tiene la propiedad
+        if(!entry.hasOwnProperty(filterKey)){
+            return false;
+        }
+
         const search_for = filter[2];
-        const found = search_for.filter(Boolean).some(e => {
-            if(entry.hasOwnProperty(filter[0])){
-                return entry[filter[0]].includes(e)
+        const entryValue = entry[filterKey];
+
+        // Buscar con cortocircuito
+        for(const searchTerm of search_for){
+            if(searchTerm && entryValue.includes(searchTerm)){
+                return true;
             }
-        });
-        return found;
+        }
+
+        return false;
     };
 
 
     /**
      * Valida los fields del grupo.
-     * 
+     *
      * @param {object} entry Entrada de datos
-     * @param {object} fieldsGroup 
+     * @param {object} fieldsGroup
      * @return {boolean}
      */
     _validateGroup = (entry, fieldsGroup) => {
-        const result = fieldsGroup.map(e => this._search(entry, e[0], e[1]));
-        return result.some(e => e);
+        // Short-circuit: retornar true al encontrar el primer match
+        for(const field of fieldsGroup){
+            if(this._search(entry, field[0], field[1])){
+                return true;
+            }
+        }
+        return false;
     };
 
 
     /**
      * Valida una entrada
-     * 
+     *
      * @summary
      * 1. Obtengo la cantidad de grupos que tengo.
      * 2. Evaluo los fields de cada grupo y junto los resultados en un array
      * para retornar true los grupos tienen que dar true
+     * @param {object} entry - La entrada a validar
+     * @param {Map} groupedFilters - Filtros ya agrupados por grupo
+     * @param {number} totalGroups - Total de grupos de filtros
      * @returns {boolean}
      */
-    _validateEntry = (entry, formFilters) => {
-        const fieldsGroup = (group) => formFilters.filter(e => e[0] == group);
-        const totalGroups = this.filters.length;
-
+    _validateEntry = (entry, groupedFilters, totalGroups) => {
         if(totalGroups < 1){
             return true;
         }
 
-        const validations = Array.from( {length: totalGroups}, (_, i) => {
-            return this._validateGroup(entry, fieldsGroup(i));
-        }).reduce((acc, val) => acc && val, true);
+        // Validar cada grupo (cortocircuito)
+        for(let i = 0; i < totalGroups; i++){
+            const fieldsGroup = groupedFilters.get(i) || [];
+            if(!this._validateGroup(entry, fieldsGroup)){
+                return false;
+            }
+        }
 
-        return validations;
+        return true;
     };
 
 
     /**
      * Filtra los markers.
-     */ 
+     */
     _filterData = () => {
-        // 1. Obtengo los filtros del formulario acivos.
+        // 1. Obtengo los filtros del formulario activos.
         const availableFilters = this.formFilters();
-        const hasInputSearchValue = !this.isEmptyString(this.inputSearchValue);
-        const refactorSearchTerm = (hasInputSearchValue
-            ? replaceSpecialChars(this.inputSearchValue).toUpperCase()
-            : "");
+        const totalGroups = this.filters.length;
+        const inputValue = this.inputSearchValue;
+        const hasInputSearchValue = !this.isEmptyString(inputValue);
 
-        // 2. Filtro las entradas en en función de los filtros activos y el 
-        // criterio de búsqueda, si existiera. 
-        let activeFiltersEntries = this.entries.filter(entry => {
-                // Valido si la entrada se encuentra dentro de los criterios
-                // del grupo o filtros
-                let filteredEntry = this._validateEntry(
+        // Pre-calcular valores que son constantes durante el filtrado
+        const refactorSearchTerm = hasInputSearchValue
+            ? replaceSpecialChars(inputValue).toUpperCase()
+            : "";
+
+        // Pre-calcular searchFields fuera del loop (solo si hay búsqueda)
+        const searchFields = hasInputSearchValue
+            ? new Set([this.title, ...this.search_fields])
+            : null;
+
+        // Pre-agrupar los filtros UNA SOLA VEZ (antes era por cada entrada)
+        const groupedFilters = new Map();
+        for(const filter of availableFilters){
+            const group = filter[0];
+            if(!groupedFilters.has(group)){
+                groupedFilters.set(group, []);
+            }
+            groupedFilters.get(group).push(filter);
+        }
+
+        // 2. Filtro las entradas en función de los filtros activos y el
+        // criterio de búsqueda, si existiera.
+        const activeFiltersEntries = this.entries.filter(entry => {
+            // Valido si la entrada se encuentra dentro de los criterios
+            // del grupo o filtros
+            if(!this._validateEntry(entry.properties, groupedFilters, totalGroups)){
+                return false;
+            }
+
+            // Si hay término de búsqueda, filtrar también por eso
+            if(hasInputSearchValue){
+                return this.searchEntry(
+                    refactorSearchTerm,
                     entry.properties,
-                    availableFilters
+                    searchFields
                 );
+            }
 
-                // Si, en el input search se agregó un término, 
-                // filtro también por eso.
-                let filterSearchEntry = true;
-                if(this.inputSearchValue){
-                    const searchFields = new Set(
-                        [...[this.title], ...this.search_fields]
-                    );
-
-                    // Busco en la entrada si matchea con el término en el
-                    // search input
-                    let searchResult = this.searchEntry(
-                        refactorSearchTerm,
-                        entry.properties,
-                        searchFields
-                    );
-                    filterSearchEntry = searchResult || false;
-                }
-
-                return [filteredEntry, filterSearchEntry].every(Boolean);
+            return true;
         });
 
         this.filtered_entries = activeFiltersEntries;
@@ -10018,20 +10063,20 @@ class PonchoMapFilter extends PonchoMap {
 
 
     /**
-     * Render de funciones 
-     */ 
+     * Render de funciones
+     */
     _filteredData = (feed) => {
-        feed = (typeof feed !== "undefined" ? this.entries : 
-                this._filterData());
+        // Usar feed si está definido, de lo contrario filtrar datos
+        feed = (typeof feed !== "undefined") ? feed : this._filterData();
 
-        const clonedFeed = [...feed];
-        this.markersMap(clonedFeed); 
+        // Solo clonar si es necesario (verificar si markersMap lo requiere)
+        this.markersMap(feed);
 
         this._selectedMarker();
-        this._helpText(clonedFeed);
+        this._helpText(feed);
         // this._resetSearch();
         // this._clickToggleFilter();
-        
+
         if(this.slider){
             this._renderSlider();
             this._clickeableMarkers();
