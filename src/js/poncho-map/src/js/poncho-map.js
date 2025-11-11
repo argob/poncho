@@ -3223,95 +3223,116 @@ class PonchoMap {
      * Prepara las características del mapa y de cada uno de los markers.
      * @see https://leafletjs.com/reference.html#path
      */
-    markersMap = (entries) => { 
-
-        var _this = this;
+    markersMap = (entries) => {
         this._clearLayers();
-        this.geojson = new L.geoJson(entries, {
 
+        const useTooltip = this.tooltip;
+        const usePopup = !this.no_info && !this.slider;
+        const isTemplateFunction = typeof this.template === "function";
+        const titleKey = this.title;
+        const idKey = this.id;
+        const tooltipOptions = this.tooltip_options;
+        const featureStyle = this.featureStyle;
+
+        // Referencia a this para closures
+        const self = this;
+
+        // Helper para generar HTML del popup
+        const getPopupHtml = isTemplateFunction
+            ? (properties) => this.template(this, properties)
+            : (properties) => this.defaultTemplate(this, properties);
+
+        // Helper para setear propiedades de estilo
+        const getStyleProp = (properties, key, alternative = false) => {
+            if (properties.hasOwnProperty(key)) {
+                return properties[key];
+            }
+            return alternative || featureStyle[key];
+        };
+
+        this.geojson = new L.geoJson(entries, {
             pointToLayer: function(feature, latlng) {
                 const {properties} = feature;
-                const icon = _this.marker(properties);
-                
-                let marker_attr = {};
-                marker_attr.id = properties[_this.id];
-                if(icon){
+                const icon = self.marker(properties);
+                const title = properties[titleKey];
+
+                // atributos del marker de forma optimizada
+                const marker_attr = {
+                    id: properties[idKey]
+                };
+                if (icon) {
                     marker_attr.icon = icon;
                 }
-                if(_this.title){
-                    marker_attr.alt = properties[_this.title];
+                if (title) {
+                    marker_attr.alt = title;
                 }
-                
-                const marker = new L.marker(latlng, marker_attr);
-                _this.map.options.minZoom = _this.min_zoom;
-                _this.markers.addLayer(marker);
 
-                // Si el usuario eligió usar tooltip
-                if(_this.tooltip && properties[_this.title]){
-                    marker.bindTooltip(
-                        properties[_this.title], _this.tooltip_options
-                    );
+                const marker = new L.marker(latlng, marker_attr);
+                self.map.options.minZoom = self.min_zoom;
+                self.markers.addLayer(marker);
+
+                // Agregar tooltip si está habilitado
+                if (useTooltip && title) {
+                    marker.bindTooltip(title, tooltipOptions);
                 }
-                
-                // Si el usuario desea utilizar popUp en vez de slider.
-                if(!_this.no_info && !_this.slider){
-                    const html = (typeof _this.template == "function" ? 
-                            _this.template(_this, properties) : 
-                            _this.defaultTemplate(_this, properties));
-                    marker.bindPopup(html);
+
+                // Agregar popup si está habilitado
+                if (usePopup) {
+                    marker.bindPopup(getPopupHtml(properties));
                 }
-                
-                return _this.markers;
+
+                return self.markers;
             },
-            onEachFeature: function(feature, layer){
+
+            onEachFeature: function(feature, layer) {
                 const {properties, geometry} = feature;
-                layer.options.id = properties[_this.id];
-                feature.properties.name = properties[_this.title];
-                
-                if(properties.hasOwnProperty("pm-interactive") && 
-                    properties["pm-interactive"] === "n"){
+                const {type: geomType} = geometry;
+                const title = properties[titleKey];
+
+                layer.options.id = properties[idKey];
+                feature.properties.name = title;
+
+                // Verificar interactividad
+                if (properties["pm-interactive"] === "n") {
                     layer.options.interactive = false;
                 }
 
-                // Si el usuario eligió usar tooltip
-                if(_this.tooltip && properties[_this.title] && 
-                    geometry.type != "Point" && geometry.type != "MultiPoint"){
-                    layer.bindTooltip(
-                        properties[_this.title], _this.tooltip_options
-                    );
-                }
-                
-                if(!_this.no_info && !_this.slider && 
-                    geometry.type != "Point" && geometry.type != "MultiPoint"){
-                    const html = (typeof _this.template == "function" ? 
-                            _this.template(_this, properties) : 
-                            _this.defaultTemplate(_this, properties));
-                    layer.bindPopup(html);
+                // Para geometrías no puntuales
+                const isNonPoint = (geomType !== "Point" && geomType 
+                        !== "MultiPoint");
+
+                if (isNonPoint) {
+                    // Agregar tooltip
+                    if (useTooltip && title) {
+                        layer.bindTooltip(title, tooltipOptions);
+                    }
+
+                    // Agregar popup
+                    if (usePopup) {
+                        layer.bindPopup(getPopupHtml(properties));
+                    }
                 }
             },
+
             style: function(feature) {
                 const {properties} = feature;
-                const setProp = (key, alternative=false) => {
-                    if( properties.hasOwnProperty(key)) {
-                        return properties[key];
-                    } else if(alternative) {
-                        return alternative; 
-                    } else {
-                        return _this.featureStyle[key];
-                    }
-                };
+                const strokeColor = getStyleProp(
+                    properties, "stroke-color",
+                    getStyleProp(properties, "stroke")
+                );
+
                 return {
-                    color: setProp("stroke-color", setProp("stroke")), 
-                    strokeOpacity: setProp("stroke-opacity"), 
-                    weight: setProp("stroke-width"), 
-                    fillColor: setProp("stroke"), 
-                    opacity: setProp("stroke-opacity"), 
-                    fillOpacity: setProp("fill-opacity")
-                };  
-            }, 
-            
+                    color: strokeColor,
+                    strokeOpacity: getStyleProp(properties, "stroke-opacity"),
+                    weight: getStyleProp(properties, "stroke-width"),
+                    fillColor: getStyleProp(properties, "stroke"),
+                    opacity: getStyleProp(properties, "stroke-opacity"),
+                    fillOpacity: getStyleProp(properties, "fill-opacity")
+                };
+            }
         });
-        this.geojson.addTo(this.map);  
+
+        this.geojson.addTo(this.map);
     };
 
 
