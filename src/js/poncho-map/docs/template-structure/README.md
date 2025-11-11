@@ -48,7 +48,7 @@ const options = {
 
 ### Opciones para Lead
 
-![Mixing](./demo/img/lead.png)
+![Mixing](./img/lead.png)
 
 El lead (o volanta) es un texto breve que se ubica sobre el título principal. Al utilizar la lead dentro de template_structure, se puede modificar su estilo directamente mediante atributos style en línea, o bien, aplicar estilos a través de una definición CSS.
 
@@ -74,7 +74,7 @@ El lead (o volanta) es un texto breve que se ubica sobre el título principal. A
 
 ### Opciones para mixing
 
-![Mixing](./demo/img/mixing.png)
+![Mixing](./img/mixing.png)
 
 Los _mixings_ facilitan la creación de composiciones a partir de información fragmentada presente en una entrada JSON. Permiten combinar valores de diferentes claves para generar una nueva entrada con una clave unificada.
 
