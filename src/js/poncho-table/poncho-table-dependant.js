@@ -3,7 +3,7 @@
  *
  * @summary PonchoTable con filtros dependientes
  *
- * @author Agustín Bouillet <bouilleta@jefatura.gob.ar>
+ * @author Agustín Bouillet <abouillet@sicyt.gob.ar>
  * @requires jQuery
  * @see https://github.com/argob/poncho/blob/master/src/demo/poncho-maps/readme-poncho-maps.md
  * @see https://datatables.net
@@ -609,41 +609,6 @@ const ponchoTableDependant = opt => {
         return results.every(e => e);
     };
 
-
-    /**
-     * Trae todos los elementos de un filtro en base a su parent.
-     *
-     * @param {integer} parent Indice de filtro seleccionado.
-     * @param {integer} children Indice del hijo del seleccionado.
-     * @param {string} label value del filtro seleccionado.
-     * @return {object} Listado de elementos únicos para el select.
-     */
-    /*
-    const _allFromParent = (parent, children, label) => {
-        const filterList = gapi_data.entries.flatMap(e => {
-            const evaluatedEntry = e[filtersList[_parentElement(children)]];
-            if(e[filtersList[_parentElement(parent)]] == label || label == ""){
-                if(_isCustomFilter(children, filtro)){
-                    const customFilters = _customFilter(children, filtro)
-                        .filter(e => {
-                            return _toCompareString(evaluatedEntry)
-                                .includes(_toCompareString(e));
-                    });
-                    return customFilters;
-                }
-                return evaluatedEntry;
-            }
-            return false;
-
-        }).filter(f => f);
-
-        const uniqueList =  _sortAlphaNumeric( 
-            distinct(filterList), filtersList[children] 
-        );
-        return uniqueList;
-    };
-    */
-
     /**
      * Trae todos los elementos de un filtro en base a su parent.
      *
@@ -653,31 +618,45 @@ const ponchoTableDependant = opt => {
      * @return {object} Listado de elementos únicos para el select.
      */
     const _allFromParent = (parent, children, label) => {
+        // Early return si no hay datos
+        if (!gapi_data?.entries?.length) {
+            return [];
+        }
+
         const parentIndex = _parentElement(parent);
         const childIndex = _parentElement(children);
         const isCustom = _isCustomFilter(children, filtro);
         const isEmptyLabel = label === "";
-        
+
+        // Cachear las claves de filtersList para evitar accesos repetidos
+        const parentFilterKey = filtersList[parentIndex];
+        const childFilterKey = filtersList[childIndex];
+
         // Pre-calcular filtros custom si es necesario
         let customFiltersLower;
         if (isCustom) {
             customFiltersLower = _customFilter(children, filtro)
                 .map(e => _toCompareString(e));
+
+            // Si no hay filtros custom, retornar vacío
+            if (!customFiltersLower.length) {
+                return [];
+            }
         }
-        
+
         // Usar Set para eliminar duplicados eficientemente
         const uniqueItems = new Set();
-        
+
         // Un solo bucle sin flatMap
         for (const entry of gapi_data.entries) {
             // Verificación temprana del parent
-            if (!isEmptyLabel && entry[filtersList[parentIndex]] !== label) {
+            if (!isEmptyLabel && entry[parentFilterKey] !== label) {
                 continue;
             }
-            
-            const evaluatedEntry = entry[filtersList[childIndex]];
+
+            const evaluatedEntry = entry[childFilterKey];
             if (!evaluatedEntry) continue;
-            
+
             if (isCustom) {
                 const entryLower = _toCompareString(evaluatedEntry);
                 // Buscar coincidencias en filtros custom
@@ -691,9 +670,14 @@ const ponchoTableDependant = opt => {
                 uniqueItems.add(evaluatedEntry);
             }
         }
-        
+
+        // Early return si no hay items únicos
+        if (uniqueItems.size === 0) {
+            return [];
+        }
+
         // Convertir Set a Array y ordenar
-        return _sortAlphaNumeric(Array.from(uniqueItems), filtersList[children]);
+        return _sortAlphaNumeric(Array.from(uniqueItems), childFilterKey);
     };
 
 
@@ -714,30 +698,45 @@ const ponchoTableDependant = opt => {
      * @param {integer} children Indice del hijo del seleccionado.
      */
     const _filterOptionList = (parent, children, label) => {
-        const adjustedChildren = (children === filtersList.length ? 
+        // Early return si no hay datos
+        if (!gapi_data?.entries?.length) {
+            return [];
+        }
+
+        const adjustedChildren = (children === filtersList.length ?
                 children - 1 : children);
         const values = _filterValues();
         const parentIndex = _parentElement(adjustedChildren - 1);
         const childIndex = _parentElement(adjustedChildren);
         const isCustom = _isCustomFilter(adjustedChildren, filtro);
-        
+
+        // Cachear las claves de filtersList para evitar accesos repetidos
+        const parentFilterKey = filtersList[parentIndex];
+        const childFilterKey = filtersList[childIndex];
+        const adjustedChildrenFilterKey = filtersList[adjustedChildren];
+
         // Pre-calcular filtros custom si es necesario
         let customFiltersLower;
         if (isCustom) {
             customFiltersLower = _customFilter(adjustedChildren, filtro)
                 .map(e => _toCompareString(e));
+
+            // Si no hay filtros custom, retornar vacío
+            if (!customFiltersLower.length) {
+                return [];
+            }
         }
 
         const uniqueItems = new Set();
 
         for (const entry of gapi_data.entries) {
             // Verificaciones tempranas para evitar procesamiento innecesario
-            if (entry[filtersList[parentIndex]] !== label) continue;
+            if (entry[parentFilterKey] !== label) continue;
             if (!_validateSteps(parent, entry, label, values)) continue;
-            
-            const evaluatedEntry = entry[filtersList[childIndex]];
+
+            const evaluatedEntry = entry[childFilterKey];
             if (!evaluatedEntry) continue;
-            
+
             if (isCustom) {
                 const entryLower = _toCompareString(evaluatedEntry);
 
@@ -753,54 +752,44 @@ const ponchoTableDependant = opt => {
                 uniqueItems.add(evaluatedEntry);
             }
         }
-        
+
+        // Early return si no hay items únicos
+        if (uniqueItems.size === 0) {
+            return [];
+        }
+
         // Convertir Set a Array y ordenar
         return _sortAlphaNumeric(
-            Array.from(uniqueItems), filtersList[adjustedChildren]
+            Array.from(uniqueItems), adjustedChildrenFilterKey
         );
     };
 
+    /**
+     * Cache para las claves de filtros
+     * @type {Array|null}
+     */
+    let _filtersKeysCache = null;
 
     /**
-     * Lista los valores que deben ir en un filtro según su parent.
-     *
-     * @param {integer} parent Indice de filtro seleccionado.
-     * @param {string} label value del filtro seleccionado.
-     * @param {integer} children Indice del hijo del seleccionado.
+     * Obtiene las claves de filtros con cache
+     * @returns {Array}
      */
-    /*
-    const ___filterOptionList = (parent, children, label) => {
-        children = (children == filtersList.length ? children - 1 : children);
-        const values = _filterValues();
+    const _getFiltersKeys = () => {
+        if (_filtersKeysCache === null) {
+            _filtersKeysCache = Object.keys(filtro);
+        }
+        return _filtersKeysCache;
+    };
 
-        // Recorro todas las entradas del JSON
-        const items = gapi_data.entries.flatMap(entry => {
-            const range = _validateSteps(parent, entry, label, values);
-            if(
-                (entry[filtersList[_parentElement(children - 1)]] == label) &&
-                (range)){
-                    const evaluatedEntry = entry[filtersList[_parentElement(children)]];
-                    if(_isCustomFilter(children, filtro)){
-                        const customFilters = _customFilter(children, filtro)
-                            .filter(e => {
-                                return _toCompareString(evaluatedEntry)
-                                    .includes(_toCompareString(e));
-                            });
-                        return customFilters;
-                    } else {
-                        return evaluatedEntry;
-                    }
-
-            }
-            return;
-        }).filter(f => f);
-
-        const uniqueList = _sortAlphaNumeric( 
-            distinct(items), filtersList[children] 
-        );
-        return uniqueList;
-    };*/
-
+    /**
+     * Construye la clave de filtro custom
+     * @param {integer} key Indice de filtro
+     * @returns {string}
+     */
+    const _getCustomFilterKey = key => {
+        const filtersKeys = _getFiltersKeys();
+        return `filtro-${filtersKeys[key]}`;
+    };
 
     /**
      * Tiene filtros personalizados
@@ -808,13 +797,9 @@ const ponchoTableDependant = opt => {
      * @returns {boolean}
      */
     const _isCustomFilter = key => {
-        const filtersKeys = Object.keys(filtro);
-        if(asFilter.hasOwnProperty(`filtro-${filtersKeys[key]}`)){
-            return true
-        }
-        return false;
+        const filterKey = _getCustomFilterKey(key);
+        return asFilter.hasOwnProperty(filterKey);
     };
-
 
     /**
      * Listado de filtros personalizado
@@ -822,11 +807,8 @@ const ponchoTableDependant = opt => {
      * @returns {object}
      */
     const _customFilter = key => {
-        const filtersKeys = Object.keys(filtro);
-        if(asFilter.hasOwnProperty(`filtro-${filtersKeys[key]}`)){
-            return asFilter[`filtro-${filtersKeys[key]}`];
-        }
-        return [];
+        const filterKey = _getCustomFilterKey(key);
+        return asFilter.hasOwnProperty(filterKey) ? asFilter[filterKey] : [];
     };
 
 
@@ -838,58 +820,77 @@ const ponchoTableDependant = opt => {
      * @return {void}
      */
     const _dependantFilters = (filterIndex, label) => {
-        const filtros = Object.keys(filtro);
+        const filtros = _getFiltersKeys();
         const filterValues = _filterValues();
+        const filtrosLength = filtros.length;
+
         // Redibujo los _option_ por cada `select` (filtro).
         // Hago un `for()` iniciando en el hijo de filterIndex.
-        for(let i = filterIndex + 1; i <= filtros.length; i++){
-            if(filtros.length == i ){
-                break;
-            }
+        for(let i = filterIndex + 1; i < filtrosLength; i++){
             let itemList = _filterOptionList(filterIndex, i, label);
-            if(itemList.length == 0){
+            if(itemList.length === 0){
                 itemList = _allFromParent(filterIndex, i, label);
             }
-            const select = document.querySelector(`#${filtros[i]}`);
-            select.innerHTML = "";
 
-            select.appendChild(_optionSelect(i, emptyLabel, "", true));
+            const select = document.querySelector(`#${filtros[i]}`);
+            if (!select) continue;
+
+            // Usar DocumentFragment para mejor rendimiento DOM
+            const fragment = document.createDocumentFragment();
+            fragment.appendChild(_optionSelect(i, emptyLabel, "", true));
+
+            // Cachear el valor de filterValues[i] para evitar accesos repetidos
+            const currentFilterValue = filterValues[i];
+
             itemList.forEach(e => {
-                if(!e.trim()){
+                const trimmedValue = e.trim();
+                if(!trimmedValue){
                     return;
                 }
                 // Mantengo el filtro del hijo si existe en el
                 // listado filtrado.
-                let checked = (filterValues[i] == e ? true : false);
-                select.appendChild(_optionSelect(i, e, e, checked));
+                const checked = currentFilterValue === e;
+                fragment.appendChild(_optionSelect(i, e, e, checked));
             });
+
+            // Un solo reflow del DOM
+            select.innerHTML = "";
+            select.appendChild(fragment);
         }
     };
 
+
+    /**
+     * Asigna clases a un contenedor
+     * @param {string} elementId ID del elemento
+     * @param {Array|string} classList Clases a asignar
+     * @returns {undefined}
+     */
+    const _setContainerClassList = (elementId, classList) => {
+        if (!classList) return;
+
+        const element = document.getElementById(elementId);
+        if (!element) return;
+
+        element.removeAttribute("class");
+        const classes = Array.isArray(classList) ? classList : [classList];
+        element.classList.add(...classes);
+    };
 
     /**
      * Asigna selectores al contenedor de los filtros.
      * @returns {undefined}
      */
-    const _filtersContainerClassList = () =>{
-        if(opt.hasOwnProperty("filterContClassList") && opt.filterContClassList){
-            const fc = document.getElementById("ponchoTableFiltroCont");
-            fc.removeAttribute("class");
-            fc.classList.add(...opt.filterContClassList);
-        }
+    const _filtersContainerClassList = () => {
+        _setContainerClassList("ponchoTableFiltroCont", opt.filterContClassList);
     };
-
 
     /**
      * Asigna selectores al contenedor del buscador.
      * @returns {undefined}
      */
-    const _searchContainerClassList = () =>{
-        if(opt.hasOwnProperty("searchContClassList") && opt.searchContClassList){
-            const element = document.getElementById("ponchoTableSearchCont");
-            element.removeAttribute("class");
-            element.classList.add(...opt.searchContClassList)
-        }
+    const _searchContainerClassList = () => {
+        _setContainerClassList("ponchoTableSearchCont", opt.searchContClassList);
     };
 
 
