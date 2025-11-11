@@ -1,5 +1,11 @@
 # Marker
 
+- [Marker](#marker)
+  - [Opciones para marker](#opciones-para-marker)
+    - [Definiendo colores](#definiendo-colores)
+    - [Modificando el tipo de marker](#modificando-el-tipo-de-marker)
+
+
 ## Opciones para marker
 
 La configuración marker ofrece flexibilidad en la definición del marcador del mapa. Permite utilizar los marcadores predefinidos de la librería de argentina.gob.ar, los cuales disponen de una gran variedad de colores y patrones o alternativamente, es posible crear un marcador completamente personalizado mediante el uso directo de los objetos `L.icon` o `L.divIcon` de la librería [leaflet](https://leafletjs.com/).

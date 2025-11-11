@@ -1,6 +1,11 @@
 
 # Open maps
 
+- [Open maps](#open-maps)
+  - [open\_maps](#open_maps)
+  - [Opciones para open\_maps\_options](#opciones-para-open_maps_options)
+
+
 ## open_maps
 
 Open maps es la opción que permite crear un listado de enlaces o agregar enlaces alternativos para poder visualizar el punto geográfico seleccionado en mapas con distintas características y/o herramientas para el usuario.
