@@ -13023,6 +13023,10 @@ footer.pm-open-map ul > li > a:hover, footer.pm-open-map ul > li > a:focus {
   font-family: "Lora", serif;
 }
 
+.font-base {
+  font-family: "Lora", serif;
+}
+
 @media (max-width: 575.98px) {
   .text-xs-left {
     text-align: left !important;
