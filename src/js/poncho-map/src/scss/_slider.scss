@@ -17,12 +17,10 @@
         width: var(--pm-slider-width);
         height: calc(100% - var(--pm-slider-distance) - var(--pm-slider-distance));
 
-
-
         .pm-content-container {
             height: calc(100%);
-            padding-right: var(--pm-content-padding);
-            padding-left: var(--pm-content-padding);
+            // padding-right: var(--pm-content-padding);
+            // padding-left: var(--pm-content-padding);
             padding-top: calc(var(--pm-content-padding) * 3 + 5px);
             padding-bottom: calc(var(--pm-content-padding) * 2);
         }
@@ -35,6 +33,9 @@
             width: 100%;
             overflow-y: auto;
             overflow-x: hidden;
+            padding-right: var(--pm-content-padding);
+            padding-left: var(--pm-content-padding);
+
             box-shadow: 0 -10px 20px var(--pm-slider-background) inset;
             word-break: break-word;
 
