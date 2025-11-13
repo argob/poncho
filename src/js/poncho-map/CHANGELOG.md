@@ -38,8 +38,13 @@
   * Se realizó un bug fix en _mixing > template_ donde se mostraba el valor con el *template* cuando el value llegaba vacío.
   * A _Mixing>template_ se le agregó la posibilidad de utilizar condicionales en linea. De este modo se puede controlar formato de salida.
 
+* **Interface**:
+  * La barra de _scroll_ en la tarjeta no se pega a los contenidos.
+
+
 * **Defaults**:
   * Los enlaces para mapas alternativos abren en una nueva página.
+  * En open_maps el texto por defecto ahora es: «Abrir ubicación en:».
 
 ## Release 2.1.4
 
