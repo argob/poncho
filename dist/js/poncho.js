@@ -5220,7 +5220,7 @@ es: {
         map_goto_markers: "Ir a los marcadores del mapa",
         map_help_us: "Ayudá a mejorar el mapa",
         openmap_aria_label: "Abrir el punto geográfico en un mapa alternativo",
-        openmap_label: "Abrir en:",
+        openmap_label: "Abrir ubicación en:",
         search_data: "Hacer una búsqueda",
         search_placeholder: "Su búsqueda",
         theme_aria_label_panel: "Herramienta para cambiar de tema visual",
