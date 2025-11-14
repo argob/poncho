@@ -310,6 +310,7 @@ class PonchoMap {
             throw_exceptions: false,
             title: false,
             tooltip: false,
+            tooltip_label: {template: false, text: false},
             tooltip_options:{
                 className: "leaflet-tooltip-own",
                 direction: "auto",
@@ -352,6 +353,7 @@ class PonchoMap {
         this.min_zoom = opts.min_zoom;
         this.map_anchor_zoom = opts.map_anchor_zoom;
         this.tooltip_options = opts.tooltip_options;
+        this.tooltip_label = opts.tooltip_label;
         this.tooltip = opts.tooltip;
         this.marker_cluster_options = opts.marker_cluster_options;
         this.marker_color = opts.marker;
@@ -869,14 +871,14 @@ class PonchoMap {
      * const template = 
      *     `{% '<a href="{{web}}">Link</a>' if web=='' else 'Sin web' %}`;
      * const data = { web: 'http://example.com' };
-     * refactorMixingTemplate(template, data); // Retorna 'Sin web'
+     * conditionalTemplate(template, data); // Retorna 'Sin web'
      * 
      * @example
      * const template = `{% 'Activo' if status=='active' else 'Inactivo' %}`;
      * const data = { status: 'active' };
-     * refactorMixingTemplate(template, data); // Retorna 'Activo'
+     * conditionalTemplate(template, data); // Retorna 'Activo'
      */
-    refactorMixingTemplate = (str, row) => {
+    conditionalTemplate = (str, row) => {
         const REGEX = /\{\%\s?('|`)(?<replaceStr>[^\1]*?)\1 if (?<key>[\w\-\.]+)\s?(?:(?<operator>\!\=|\=\=)\s?('|"|`)(?<compare>.*?)\5) else ('|"|`)(?<elseReturn>.*?)\7\s?\%\}/gm;
         
         let resultString = str;
@@ -1987,6 +1989,40 @@ class PonchoMap {
 
 
     /**
+     * Procesa y retorna el label del tooltip
+     * 
+     * @param {string|function} entry - Template string, función o valor a procesar
+     * @param {object} row - Objeto con datos para reemplazar en el template
+     * @returns {string} Label procesado y listo para mostrar
+     */
+    _tooltipLabel = (entry, row) => {
+        if (typeof entry === 'function') {
+            try {
+                const result = entry(row);
+                return result != null ? String(result) : '';
+            } catch (error) {
+                console.warn('Error ejecutando función de tooltip:', error);
+                return '';
+            }
+        }
+
+        // Procesamiento de strings con templates
+        if (this.isString(entry) && !this.isEmptyString(entry)) {
+            try {
+                const template = this.conditionalTemplate(entry);
+                const parsed = this.tplParser(template, row);
+                return parsed != null ? parsed : entry;
+            } catch (error) {
+                console.warn('Error procesando template de tooltip:', error);
+                return entry;
+            }
+        }
+
+        return entry != null ? String(entry) : '';
+    };
+
+
+    /**
      * El indice id_mixing ¿Está siendo usado?
      * @returns {boolean}
      */
@@ -2865,7 +2901,7 @@ class PonchoMap {
                     }
 
                     if(!this.isEmptyString(template)){
-                        const refactorTemplate = this.refactorMixingTemplate(template, row);
+                        const refactorTemplate = this.conditionalTemplate(template, row);
                         customRow[key] = this.tplParser(refactorTemplate, row);
                     } else {
                         customRow[key] = values
@@ -3256,6 +3292,20 @@ class PonchoMap {
                 const icon = self.marker(properties);
                 const title = properties[titleKey];
 
+                // Determinar el label del tooltip según su tipo
+                let tooltipLabel = title;
+                if (typeof self.tooltip_label === 'function') {
+                    tooltipLabel = self.tooltip_label(self, properties);
+                } else if (self.isString(self.tooltip_label)) {
+                    tooltipLabel = self.tooltip_label;
+                }
+
+                // Procesar el label (aplicar templates, validaciones, etc.)
+                const processTooltipLabel = self._tooltipLabel(
+                    tooltipLabel,
+                    properties
+                );
+
                 // atributos del marker de forma optimizada
                 const marker_attr = {
                     id: properties[idKey]
@@ -3273,7 +3323,7 @@ class PonchoMap {
 
                 // Agregar tooltip si está habilitado
                 if (useTooltip && title) {
-                    marker.bindTooltip(title, tooltipOptions);
+                    marker.bindTooltip(processTooltipLabel, tooltipOptions);
                 }
 
                 // Agregar popup si está habilitado
