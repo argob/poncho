@@ -7628,7 +7628,6 @@ class PonchoMap {
         );
         closeButton.setAttribute("autofocus", "autofocus");
         closeButton.title = "Cerrar panel";
-        closeButton.role = "button";
         closeButton.tabIndex = 0;
         closeButton.ariaLabel = "Cerrar panel de información";
 
