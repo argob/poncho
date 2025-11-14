@@ -7642,7 +7642,6 @@ class PonchoMap {
         // Contenedor del contenido
         const contentContainer = document.createElement("article");
         contentContainer.classList.add("pm-content-container");
-        contentContainer.role = "article";
 
         // Contenido
         const content = document.createElement("div");
