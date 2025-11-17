@@ -12242,23 +12242,76 @@ footer.pm-open-map ul > li > a:hover, footer.pm-open-map ul > li > a:focus {
   transition: background 0.15s;
 }
 
+.poncho-map {
+  --pm-cluster-pattern-small: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMCcgaGVpZ2h0PScxMCc+CiAgPHJlY3Qgd2lkdGg9JzEwJyBoZWlnaHQ9JzEwJyBmaWxsPSd0cmFuc3BhcmVudCcgLz4KICA8cGF0aCBkPSdNLTEsMSBsMiwtMgogICAgICAgICAgIE0wLDEwIGwxMCwtMTAKICAgICAgICAgICBNOSwxMSBsMiwtMicgc3Ryb2tlPScjMDAwJyBzdHJva2Utd2lkdGg9JzMnIC8+Cjwvc3ZnPg==");
+  --pm-cluster-pattern-medium: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc1JyBoZWlnaHQ9JzUnPgogIDxyZWN0IHdpZHRoPSc0JyBoZWlnaHQ9JzQnIGZpbGw9J3RyYW5zcGFyZW50JyAvPgogIDxyZWN0IHg9JzInIHk9JzInIHdpZHRoPScyJyBoZWlnaHQ9JzInIC8+Cjwvc3ZnPg==");
+  --pm-cluster-pattern-large: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc4JyBoZWlnaHQ9JzgnPgogIDxyZWN0IHdpZHRoPSc4JyBoZWlnaHQ9JzgnIGZpbGw9J3RyYW5zcGFyZW50Jy8+CiAgPHBhdGggZD0nTTAgMEw4IDhaTTggMEwwIDhaJyBzdHJva2Utd2lkdGg9JzEnIHN0cm9rZT0nIzAwMCcvPgo8L3N2Zz4K");
+}
 .poncho-map .marker-cluster-small {
-  background-color: rgba(185, 206, 57, 0.4);
+  background-color: color-mix(in srgb, var(--arg-lima) 40%, transparent 100%);
 }
 .poncho-map .marker-cluster-small div {
-  background-color: rgb(185, 206, 57);
+  background-color: var(--arg-lima);
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.15);
+}
+.poncho-map .marker-cluster-small div:before {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  width: calc(100% - 2px);
+  height: calc(100% - 2px);
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  background-image: var(--pm-cluster-pattern-small);
+  background-repeat: repeat;
+  background-size: 5px;
+  background-position-x: -3px;
+  opacity: 0.22;
+  content: "";
 }
 .poncho-map .marker-cluster-medium {
-  background-color: rgba(255, 206, 28, 0.4);
+  background-color: color-mix(in srgb, var(--arg-maiz) 60%, transparent 100%);
 }
 .poncho-map .marker-cluster-medium div {
-  background-color: #ffce1c;
+  background-color: var(--arg-maiz);
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.15);
+}
+.poncho-map .marker-cluster-medium div:before {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  width: calc(100% - 2px);
+  height: calc(100% - 2px);
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  background-image: var(--pm-cluster-pattern-medium);
+  background-repeat: repeat;
+  background-size: 4px;
+  background-position-x: 0;
+  opacity: 0.3;
+  content: "";
 }
 .poncho-map .marker-cluster-large {
-  background-color: rgba(239, 108, 0, 0.4);
+  background-color: color-mix(in srgb, var(--arg-naranja) 70%, transparent 100%);
 }
 .poncho-map .marker-cluster-large div {
-  background-color: #f38500;
+  background-color: var(--arg-naranja);
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.15);
+}
+.poncho-map .marker-cluster-large div:before {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  width: calc(100% - 2px);
+  height: calc(100% - 2px);
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  background-image: var(--pm-cluster-pattern-large);
+  background-repeat: repeat;
+  background-size: 6px;
+  background-position-x: -3px;
+  opacity: 0.25;
+  content: "";
 }
 .poncho-map {
   /* IE 6-8 fallback colors */
@@ -12286,20 +12339,23 @@ footer.pm-open-map ul > li > a:hover, footer.pm-open-map ul > li > a:focus {
   border-radius: 20px;
 }
 .poncho-map .marker-cluster div {
+  position: relative;
   width: 30px;
   height: 30px;
-  margin-left: 5px;
-  margin-top: 5px;
-  position: relative;
-  text-align: center;
+  margin: 5px 0 0 5px;
   border-radius: 15px;
   font: 500 12px "Roboto", "Helvetica Neue", Helvetica, "Noto Sans", Arial, sans-serif;
+  font-weight: bold !important;
+  letter-spacing: -0.25pt;
+  text-align: center;
+  color: black;
+  text-shadow: 0 0 3px rgba(255, 255, 255, 0.25);
 }
 .poncho-map .marker-cluster div:after {
   content: " ";
   width: calc(100% + 2px);
   background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  border: none;
   height: calc(100% + 2px);
   position: absolute;
   border-radius: 50%;
