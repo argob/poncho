@@ -12266,7 +12266,7 @@ footer.pm-open-map ul > li > a:hover, footer.pm-open-map ul > li > a:focus {
   background-repeat: repeat;
   background-size: 5px;
   background-position-x: -3px;
-  opacity: 0.22;
+  opacity: 0.2;
   content: "";
 }
 .poncho-map .marker-cluster-medium {
