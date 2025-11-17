@@ -11431,7 +11431,9 @@ Las clases "dato-nro" y "dato-eje" corresponde a los formatos markdown definidos
 .poncho-map .pm-slider .pm-content-container {
   height: 100%;
   padding-top: calc(var(--pm-content-padding) * 3 + 5px);
-  padding-bottom: calc(var(--pm-content-padding) * 2);
+  padding-bottom: 0;
+  display: flex;
+  flex-direction: column;
 }
 .poncho-map .pm-slider .pm-content {
   inline-size: min-content;
@@ -12177,17 +12179,18 @@ input[type=search].js-poncho-map-search__input::-webkit-search-cancel-button {
 }
 
 footer.pm-open-map {
+  position: relative;
+  padding-top: 8px;
+  left: 4px;
+  width: calc(100% - 8px);
   padding: 0;
   margin: 0;
   border: none;
-  position: absolute;
   color: var(--pm-color-base);
-  bottom: calc(var(--pm-content-padding) / 2);
+  bottom: 4px;
   z-index: 999;
-  left: calc(var(--pm-content-padding) / 2);
   font-size: 0.75rem;
-  width: calc(100% - var(--pm-content-padding));
-  background: var(--pm-slider-background);
+  background: transparent;
 }
 footer.pm-open-map > details {
   --summary-padding-t: 4px;
@@ -12215,7 +12218,7 @@ footer.pm-open-map > details:focus-within {
 }
 footer.pm-open-map > details[open] {
   border: var(--pm-slider-border-width) solid var(--pm-slider-border-color) !important;
-  border-radius: max(var(--pm-slider-radius) / 2, var(--pm-slider-radius) - var(--pm-content-padding) - 2px) !important;
+  border-radius: max(var(--pm-slider-radius) / 2, var(--pm-slider-radius) - var(--pm-content-padding) + 8px) !important;
   box-shadow: 0 1px calc(var(--pm-content-padding) / 2) rgba(0, 0, 0, 0.3);
 }
 footer.pm-open-map > details > summary {

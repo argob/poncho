@@ -1686,7 +1686,7 @@ class PonchoMap {
         details.appendChild(summary);
         details.appendChild(ul);
         container.appendChild(details);
-        parentNode.appendChild(container);
+        parentNode.parentElement.appendChild(container);
     }
 
 
@@ -2493,7 +2493,10 @@ class PonchoMap {
 
         // Contenido
         const content = document.createElement("div");
-        content.classList.add("pm-content", `js-content${this.scope_sufix}`);
+        content.classList.add(
+            "pm-content", 
+            `js-content${this.scope_sufix}`
+        );
         content.tabIndex = 0;
         
         // 4. Append

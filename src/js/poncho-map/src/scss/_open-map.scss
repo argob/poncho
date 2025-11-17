@@ -1,15 +1,25 @@
 footer.pm-open-map {
+
+        position: relative;
+        padding-top:8px ;
+        left:4px;
+        width:calc(100% - 8px);
+
+
+
+
     padding: 0;
     margin: 0;
     border: none;
-    position: absolute;
+    // position: absolute;
     color: var(--pm-color-base);
-    bottom: calc(var(--pm-content-padding) / 2);
+    // bottom: calc(var(--pm-content-padding) / 2);
+    bottom: 4px;
     z-index: 999;
-    left: calc(var(--pm-content-padding) / 2);
+    // left: calc(var(--pm-content-padding) / 2);
     font-size: 0.75rem;
-    width: calc(100% - var(--pm-content-padding));
-    background: var(--pm-slider-background);
+    // width: calc(100% - var(--pm-content-padding));
+    background: transparent;
 
     > details {
         --summary-padding-t: 4px;
@@ -43,7 +53,7 @@ footer.pm-open-map {
             var(--pm-slider-border-color) !important;
         border-radius: max(
             calc(var(--pm-slider-radius) / 2),
-            calc(var(--pm-slider-radius) - var(--pm-content-padding) - 2px)
+            calc(var(--pm-slider-radius) - var(--pm-content-padding) + 8px)
         ) !important;
         
         box-shadow: 0 1px calc(var(--pm-content-padding) / 2) rgb(0 0 0 / 0.3);
