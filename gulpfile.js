@@ -91,6 +91,7 @@ gulp.task('compress', function () {
             './src/js/mapa-argentina/mapa-argentina.js',
             './src/js/device-breadcrumb/src/js/device-breadcrumb.js',
             './src/js/national-holidays/src/js/national-holidays.js',
+            './src/vendors/opening-hours-js/opening_hours.min.js',
             './src/js/device-panel-menu/device-panel-menu.js'
         ])
         .pipe(uglify(generalCompressOptions))
