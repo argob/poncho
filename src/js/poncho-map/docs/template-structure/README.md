@@ -1,10 +1,23 @@
 # Template structure
 
-## Opciones para template_structure
+- [Template structure](#template-structure)
+  - [Sintaxis](#sintaxis)
+  - [Parámetros](#parámetros)
+  - [Lead](#lead)
+    - [Sintaxis](#sintaxis-1)
+    - [Parámetros](#parámetros-1)
+  - [Mixing](#mixing)
+    - [Sintaxis](#sintaxis-2)
+    - [Parámetros](#parámetros-2)
+    - [Ejemplo](#ejemplo)
+      - [Uso de condicionales en Línea en template](#uso-de-condicionales-en-línea-en-template)
 
-Template structure permite controlar el formato de la información que se presenta en el panel desplegable (slider) o en modo popup. Dentro de las opciones que ofrece esta herramienta, se pueden gestionar elementos como: lead (volanta), nombrar o renombrar encabezados (headers), definir un título, agregar o excluir valores de la entrada JSON, especificar el tipo de etiquetas HTML y aplicar estilos. En esta sección, se detalla el uso y el tipo de valor esperado para cada índice, junto con ejemplos de uso.
 
-### Sintaxis
+Template structure permite controlar el formato de la información que se presenta en el _slider_ (panel desplegable o tarjeta), o en modo _popup_. Dentro de las opciones que ofrece esta herramienta, se pueden gestionar elementos como: _lead_ (volanta), nombrar o renombrar _headers_ (encabezados), definir un título, agregar o excluir valores de la entrada JSON, especificar el tipo de etiquetas HTML y aplicar estilos, entre otras cosas.
+
+En esta sección, se detalla el uso y el tipo de valor esperado para cada índice, junto con ejemplos de uso.
+
+## Sintaxis
 
 ```js
 const options = {
@@ -26,33 +39,110 @@ const options = {
     }
 }
 ```
-### Parámetros
+## Parámetros
 
-| Parámetro | Tipo | Default | Descripción |
-|:---|:---|:---|:---|
-| container_classlist | `Array()` | `["info-container"]` | Define la lista de clases CSS que pueden agregarse al contenedor del listado de términos y descripciones. | 
-| lead | `object` | `{}` | Volanta.<br><br>Ver opciones para [lead](#opciones-para-lead). |
-| mixing | `object` | `{}` | Permite crear una entrada uniendo cadenas de texto o valores de entrada.<br><br>Ver opciones para [mixing](#opciones-para-mixing). |
-| header | `function` | `false` | Permite modificar el header del template retornando un `string` desde una función. <br>`"header": (self, entry) => string` |
-| title | `string` | "" | Permite redefinir la clave que se utiliza para el panel de información teniendo precedencia sobre la opción general _`title`_. |
-| title_classlist | `Array()` | `["h4","title"]` | Listado de selectores CSS se que aplicarán en la etiqueta HTML asignada a título.| 
-| definition_list_classlist | `Array()` | `["definition-list"]` | Listado de selectores CSS se que aplicarán en la etiqueta HTML asignada contenedor del listado de términos y definiciones.| 
-| term_classlist | `Array()` | `["h6", "m-b-0"]` | Listado de selectores CSS se que aplicarán en la etiqueta HTML asignada al término.| 
-| definition_classlist | `Array()` | `[]` | Listado de selectores CSS se que aplicarán en la etiqueta HTML asignada a la definición.| 
-| definition_list_tag | `strng` | `dl` | Define la etiqueta HTML que contiene el listado de términos y descripciones.| 
-| term_tag | `strng` | `dt` | Define la etiqueta HTML para el término.| 
-| definition_tag | `strng` | `dd` | Define la etiqueta HTML para la descripción.| 
+<table>
+  <thead>
+    <tr>
+      <th>Parámetro</th>
+      <th>Tipo</th>
+      <th>Default</th>
+      <th>Descripción</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>container_classlist</td>
+      <td><code>Array()</code></td>
+      <td><code>["info-container"]</code></td>
+      <td><p>Define la lista de clases CSS que pueden agregarse al contenedor del listado de términos y descripciones.</p></td>
+    </tr>
+    <tr>
+      <td>lead</td>
+      <td><code>object</code></td>
+      <td><code>{}</code></td>
+      <td>
+        <p>Volanta.</p>
+        <p>Ver opciones para <a href="#lead">lead</a>.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>mixing</td>
+      <td><code>object</code></td>
+      <td><code>{}</code></td>
+      <td>
+        <p>Permite crear una entrada uniendo cadenas de texto o valores de entrada.</p>
+        <p>Ver opciones para <a href="#mixing">mixing</a>.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>header</td>
+      <td><code>function</code></td>
+      <td><code>false</code></td>
+      <td>
+        <p>Permite modificar el header del template retornando un <code>string</code> desde una función.</p>
+        <p><code>"header": (self, entry) => string</code></p>
+      </td>
+    </tr>
+    <tr>
+      <td>title</td>
+      <td><code>string</code></td>
+      <td><code>""</code></td>
+      <td><p>Permite redefinir la clave que se utiliza para el panel de información teniendo precedencia sobre la opción general <em><code>title</code></em>.</p></td>
+    </tr>
+    <tr>
+      <td>title_classlist</td>
+      <td><code>Array()</code></td>
+      <td><code>["h4","title"]</code></td>
+      <td><p>Listado de selectores CSS se que aplicarán en la etiqueta HTML asignada a título.</p></td>
+    </tr>
+    <tr>
+      <td>definition_list_classlist</td>
+      <td><code>Array()</code></td>
+      <td><code>["definition-list"]</code></td>
+      <td><p>Listado de selectores CSS se que aplicarán en la etiqueta HTML asignada contenedor del listado de términos y definiciones.</p></td>
+    </tr>
+    <tr>
+      <td>term_classlist</td>
+      <td><code>Array()</code></td>
+      <td><code>["h6", "m-b-0"]</code></td>
+      <td><p>Listado de selectores CSS se que aplicarán en la etiqueta HTML asignada al término.</p></td>
+    </tr>
+    <tr>
+      <td>definition_classlist</td>
+      <td><code>Array()</code></td>
+      <td><code>[]</code></td>
+      <td><p>Listado de selectores CSS se que aplicarán en la etiqueta HTML asignada a la definición.</p></td>
+    </tr>
+    <tr>
+      <td>definition_list_tag</td>
+      <td><code>strng</code></td>
+      <td><code>dl</code></td>
+      <td><p>Define la etiqueta HTML que contiene el listado de términos y descripciones.</p></td>
+    </tr>
+    <tr>
+      <td>term_tag</td>
+      <td><code>strng</code></td>
+      <td><code>dt</code></td>
+      <td><p>Define la etiqueta HTML para el término.</p></td>
+    </tr>
+    <tr>
+      <td>definition_tag</td>
+      <td><code>strng</code></td>
+      <td><code>dd</code></td>
+      <td><p>Define la etiqueta HTML para la descripción.</p></td>
+    </tr>
+  </tbody>
+</table>
 
 
-
-
-### Opciones para Lead
+## Lead
 
 ![Mixing](./img/lead.png)
 
 El lead (o volanta) es un texto breve que se ubica sobre el título principal. Al utilizar la lead dentro de template_structure, se puede modificar su estilo directamente mediante atributos style en línea, o bien, aplicar estilos a través de una definición CSS.
 
-#### Sintaxis
+### Sintaxis
 
 ```js
 "template_structure": {
@@ -64,25 +154,90 @@ El lead (o volanta) es un texto breve que se ubica sobre el título principal. A
 } 
 ```
 
-#### Parámetros
+### Parámetros
 
-| Parámetro | Tipo | Default | Descripción |
-|:---|:---|:---|:---|
-| key | `string` | "" | Clave de la entrada del JSON o del geoJSON _feature.properties_. | 
-| css | `string, function` | "" | **String**<br>Definición de css, ej: `"text-primary bg-warning"`.<br><br>**Función** <br>`css: (self, entry) => string;`<br>Dónde `self` el la instancia del objeto *PonchoMap* o *PonchoMapFilter* y `entry` corresponde a una entrada o feature del JSON. |
-| style | `string, function` | "" | **String**<br>Definición para _style_, ej:<br>`"color: orange; font-size:2em; margin: 2em auto;"`.<br><br>**Función** <br>`css: (self, entry) => string;`<br>Dónde `self` el la instancia del objeto *PonchoMap* o *PonchoMapFilter* y `entry` corresponde a una entrada o feature del JSON. |
+<table>
+  <thead>
+    <tr>
+      <th>Parámetro</th>
+      <th>Tipo</th>
+      <th>Default</th>
+      <th>Descripción</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>key</td>
+      <td><code>string</code></td>
+      <td><code>""</code></td>
+      <td><p>Clave de la entrada del JSON o del geoJSON <em>feature.properties</em>.</p></td>
+    </tr>
+    <tr>
+      <td>css</td>
+      <td><code>string, function</code></td>
+      <td><code>""</code></td>
+      <td>
+        <p><strong>String</strong></p>
+        <p>Definición de css, ej: <code>"text-primary bg-warning"</code>.</p>
+        <p><strong>Función</strong></p>
+        <p><code>css: (self, entry) => string;</code></p>
+        <p>Dónde <code>self</code> el la instancia del objeto <em>PonchoMap</em> o <em>PonchoMapFilter</em> y <code>entry</code> corresponde a una entrada o feature del JSON.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>style</td>
+      <td><code>string, function</code></td>
+      <td><code>""</code></td>
+      <td>
+        <p><strong>String</strong></p>
+        <p>Definición para <em>style</em>, ej:<br><code>"color: orange; font-size:2em; margin: 2em auto;"</code>.</p>
+        <p><strong>Función</strong></p>
+        <p><code>css: (self, entry) => string;</code></p>
+        <p>Dónde <code>self</code> el la instancia del objeto <em>PonchoMap</em> o <em><a href="../ponchomap-filter/">PonchoMapFilter</a></em> y <code>entry</code> corresponde a una entrada o feature del JSON.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-### Opciones para mixing
+## Mixing
 
 ![Mixing](./img/mixing.png)
 
 Los _mixings_ facilitan la creación de composiciones a partir de información fragmentada presente en una entrada JSON. Permiten combinar valores de diferentes claves para generar una nueva entrada con una clave unificada.
 
-Ejemplo:
+### Sintaxis
+
+```js
+"template_structure": {
+    "mixing":[
+        {
+            "template": [boolean|string],
+            "key": [string],
+            "header": [string],
+            "values": [Array],
+            "separator": [string]
+        },
+        ...
+    ]
+}
+```
+
+
+### Parámetros
+
+| Parámetro | Tipo | Default | Descripción |
+|:---|:---|:---|:---|
+| template | `string` | false | Permite componer una plantilla HTML con las claves encerradas en doble llave, por ejemplo: `"{{valor}} <strong>{{porcentaje}} %</strong>"`. `valor` y `porcentaje` son ejemplos de claves que corresponden a las propiedades del objeto de datos que se ingrese. | 
+| key | `string` | "" | Clave de la entrada del JSON o del geoJSON `feature.properties`. | 
+| header | `string` | "" | Nombre que va a tener el campo como título. |
+| values | `Array` | [] | Listado de claves ordenados según el orden de aparición. |
+| separator | `string` | "" | Carácter o cadena de caracteres con la que se van a concatenar los valores. |
+
+
+### Ejemplo
 
 Considerando una entrada JSON con información de ubicación distribuida en las claves: calle, numero, localidad y provincia. Mediante un _mixing_, podemos concatenar estos valores en una única clave.
 
-**Entrada de ejemplo**
 
 ```js
 {
@@ -213,14 +368,3 @@ Si categoria es otra cosa (ej. "educacion"): El [valor-si-falso] es una cadena v
 ```html
 Hospital Zubizarreta.
 ```
-
-
-#### Parámetros
-
-| Parámetro | Tipo | Default | Descripción |
-|:---|:---|:---|:---|
-| template | `string` | false | Permite componer una plantilla HTML con las claves encerradas en doble llave, por ejemplo: `"{{valor}} <strong>{{porcentaje}} %</strong>"`. `valor` y `porcentaje` son ejemplos de claves que corresponden a las propiedades del objeto de datos que se ingrese. | 
-| key | `string` | "" | Clave de la entrada del JSON o del geoJSON `feature.properties`. | 
-| header | `string` | "" | Nombre que va a tener el campo como título. |
-| values | `Array` | [] | Listado de claves ordenados según el orden de aparición. |
-| separator | `string` | "" | Carácter o cadena de caracteres con la que se van a concatenar los valores. |
