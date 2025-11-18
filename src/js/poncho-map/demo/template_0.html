@@ -32,6 +32,7 @@
     <script src="../../gapi-sheet-data/gapi-sheet-data.js"></script>
     <!-- / Script para debug -->
     <link rel="stylesheet" href="./css/demo.css">
+    <link rel="stylesheet" href="../dist/css/clusters.css">
     <title>Poncho Map — Puntos digitales</title>
 </head>
 <body>
@@ -166,6 +167,24 @@ COPIAR DESDE ACÁ…
         id: "id_pd",
         hash: true,
         slider: true,
+        tooltip: true,
+        tooltip_label: `<div style="padding:2px 0;display:flex; gap:5px; font-size:small">{{nombre}}   
+ <strong class="text-arg-negro bg-arg-lima badge">Abierto</strong></div>`,
+        tooltip_label: function( self, entry ){
+            const tooltipLabelContainer = document.createElement("div");
+            tooltipLabelContainer.style.padding = "2px 0";
+            tooltipLabelContainer.style.gap = "5px";
+            tooltipLabelContainer.style.display = "flex";
+            tooltipLabelContainer.style.fontSize = "small";
+            tooltipLabelContainer.textContent = entry.nombre;
+
+            const tooltipStatus = document.createElement("span");
+            tooltipStatus.classList.add("text-arg-negro", "bg-arg-lima", "badge");
+            tooltipStatus.textContent = "Abierto";
+            tooltipLabelContainer.appendChild(tooltipStatus);
+            
+            return tooltipLabelContainer.outerHTML;
+        },
         scroll: true,
         marker: (self, ele) => (ele.estado_funcionamiento == "3" ? 
                 "mandarina" : "azul"),

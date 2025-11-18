@@ -40,6 +40,7 @@
   * La barra de _scroll_ en la tarjeta no se pega a los contenidos.
   * En cumplimiento con la pauta de accesibilidad WCAG 2 (1.4.1 - Uso del color, Nivel A), hemos añadido un patrón visual (trama) a los clusters 
 
+
 * **Defaults**:
   * Los enlaces para mapas alternativos abren en una nueva página.
   * En open_maps el texto por defecto ahora es: «Abrir ubicación en:».

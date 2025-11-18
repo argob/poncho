@@ -68,7 +68,7 @@ es: {
         map_goto_markers: "Ir a los marcadores del mapa",
         map_help_us: "Ayudá a mejorar el mapa",
         openmap_aria_label: "Abrir el punto geográfico en un mapa alternativo",
-        openmap_label: "Abrir en:",
+        openmap_label: "Abrir ubicación en:",
         search_data: "Hacer una búsqueda",
         search_placeholder: "Su búsqueda",
         theme_aria_label_panel: "Herramienta para cambiar de tema visual",
@@ -310,6 +310,7 @@ class PonchoMap {
             throw_exceptions: false,
             title: false,
             tooltip: false,
+            tooltip_label: {template: false, text: false},
             tooltip_options:{
                 className: "leaflet-tooltip-own",
                 direction: "auto",
@@ -352,6 +353,7 @@ class PonchoMap {
         this.min_zoom = opts.min_zoom;
         this.map_anchor_zoom = opts.map_anchor_zoom;
         this.tooltip_options = opts.tooltip_options;
+        this.tooltip_label = opts.tooltip_label;
         this.tooltip = opts.tooltip;
         this.marker_cluster_options = opts.marker_cluster_options;
         this.marker_color = opts.marker;
@@ -869,14 +871,14 @@ class PonchoMap {
      * const template = 
      *     `{% '<a href="{{web}}">Link</a>' if web=='' else 'Sin web' %}`;
      * const data = { web: 'http://example.com' };
-     * refactorMixingTemplate(template, data); // Retorna 'Sin web'
+     * conditionalTemplate(template, data); // Retorna 'Sin web'
      * 
      * @example
      * const template = `{% 'Activo' if status=='active' else 'Inactivo' %}`;
      * const data = { status: 'active' };
-     * refactorMixingTemplate(template, data); // Retorna 'Activo'
+     * conditionalTemplate(template, data); // Retorna 'Activo'
      */
-    refactorMixingTemplate = (str, row) => {
+    conditionalTemplate = (str, row) => {
         const REGEX = /\{\%\s?('|`)(?<replaceStr>[^\1]*?)\1 if (?<key>[\w\-\.]+)\s?(?:(?<operator>\!\=|\=\=)\s?('|"|`)(?<compare>.*?)\5) else ('|"|`)(?<elseReturn>.*?)\7\s?\%\}/gm;
         
         let resultString = str;
@@ -1987,6 +1989,40 @@ class PonchoMap {
 
 
     /**
+     * Procesa y retorna el label del tooltip
+     * 
+     * @param {string|function} entry - Template string, función o valor a procesar
+     * @param {object} row - Objeto con datos para reemplazar en el template
+     * @returns {string} Label procesado y listo para mostrar
+     */
+    _tooltipLabel = (entry, row) => {
+        if (typeof entry === 'function') {
+            try {
+                const result = entry(row);
+                return result != null ? String(result) : '';
+            } catch (error) {
+                console.warn('Error ejecutando función de tooltip:', error);
+                return '';
+            }
+        }
+
+        // Procesamiento de strings con templates
+        if (this.isString(entry) && !this.isEmptyString(entry)) {
+            try {
+                const template = this.conditionalTemplate(entry);
+                const parsed = this.tplParser(template, row);
+                return parsed != null ? parsed : entry;
+            } catch (error) {
+                console.warn('Error procesando template de tooltip:', error);
+                return entry;
+            }
+        }
+
+        return entry != null ? String(entry) : '';
+    };
+
+
+    /**
      * El indice id_mixing ¿Está siendo usado?
      * @returns {boolean}
      */
@@ -2440,7 +2476,6 @@ class PonchoMap {
         );
         closeButton.setAttribute("autofocus", "autofocus");
         closeButton.title = "Cerrar panel";
-        closeButton.role = "button";
         closeButton.tabIndex = 0;
         closeButton.ariaLabel = "Cerrar panel de información";
 
@@ -2455,7 +2490,6 @@ class PonchoMap {
         // Contenedor del contenido
         const contentContainer = document.createElement("article");
         contentContainer.classList.add("pm-content-container");
-        contentContainer.role = "article";
 
         // Contenido
         const content = document.createElement("div");
@@ -2865,7 +2899,7 @@ class PonchoMap {
                     }
 
                     if(!this.isEmptyString(template)){
-                        const refactorTemplate = this.refactorMixingTemplate(template, row);
+                        const refactorTemplate = this.conditionalTemplate(template, row);
                         customRow[key] = this.tplParser(refactorTemplate, row);
                     } else {
                         customRow[key] = values
@@ -3223,95 +3257,130 @@ class PonchoMap {
      * Prepara las características del mapa y de cada uno de los markers.
      * @see https://leafletjs.com/reference.html#path
      */
-    markersMap = (entries) => { 
-
-        var _this = this;
+    markersMap = (entries) => {
         this._clearLayers();
-        this.geojson = new L.geoJson(entries, {
 
+        const useTooltip = this.tooltip;
+        const usePopup = !this.no_info && !this.slider;
+        const isTemplateFunction = typeof this.template === "function";
+        const titleKey = this.title;
+        const idKey = this.id;
+        const tooltipOptions = this.tooltip_options;
+        const featureStyle = this.featureStyle;
+
+        // Referencia a this para closures
+        const self = this;
+
+        // Helper para generar HTML del popup
+        const getPopupHtml = isTemplateFunction
+            ? (properties) => this.template(this, properties)
+            : (properties) => this.defaultTemplate(this, properties);
+
+        // Helper para setear propiedades de estilo
+        const getStyleProp = (properties, key, alternative = false) => {
+            if (properties.hasOwnProperty(key)) {
+                return properties[key];
+            }
+            return alternative || featureStyle[key];
+        };
+
+        this.geojson = new L.geoJson(entries, {
             pointToLayer: function(feature, latlng) {
                 const {properties} = feature;
-                const icon = _this.marker(properties);
-                
-                let marker_attr = {};
-                marker_attr.id = properties[_this.id];
-                if(icon){
+                const icon = self.marker(properties);
+                const title = properties[titleKey];
+
+                // Determinar el label del tooltip según su tipo
+                let tooltipLabel = title;
+                if (typeof self.tooltip_label === 'function') {
+                    tooltipLabel = self.tooltip_label(self, properties);
+                } else if (self.isString(self.tooltip_label)) {
+                    tooltipLabel = self.tooltip_label;
+                }
+
+                // Procesar el label (aplicar templates, validaciones, etc.)
+                const processTooltipLabel = self._tooltipLabel(
+                    tooltipLabel,
+                    properties
+                );
+
+                // atributos del marker de forma optimizada
+                const marker_attr = {
+                    id: properties[idKey]
+                };
+                if (icon) {
                     marker_attr.icon = icon;
                 }
-                if(_this.title){
-                    marker_attr.alt = properties[_this.title];
+                if (title) {
+                    marker_attr.alt = title;
                 }
-                
-                const marker = new L.marker(latlng, marker_attr);
-                _this.map.options.minZoom = _this.min_zoom;
-                _this.markers.addLayer(marker);
 
-                // Si el usuario eligió usar tooltip
-                if(_this.tooltip && properties[_this.title]){
-                    marker.bindTooltip(
-                        properties[_this.title], _this.tooltip_options
-                    );
+                const marker = new L.marker(latlng, marker_attr);
+                self.map.options.minZoom = self.min_zoom;
+                self.markers.addLayer(marker);
+
+                // Agregar tooltip si está habilitado
+                if (useTooltip && title) {
+                    marker.bindTooltip(processTooltipLabel, tooltipOptions);
                 }
-                
-                // Si el usuario desea utilizar popUp en vez de slider.
-                if(!_this.no_info && !_this.slider){
-                    const html = (typeof _this.template == "function" ? 
-                            _this.template(_this, properties) : 
-                            _this.defaultTemplate(_this, properties));
-                    marker.bindPopup(html);
+
+                // Agregar popup si está habilitado
+                if (usePopup) {
+                    marker.bindPopup(getPopupHtml(properties));
                 }
-                
-                return _this.markers;
+
+                return self.markers;
             },
-            onEachFeature: function(feature, layer){
+
+            onEachFeature: function(feature, layer) {
                 const {properties, geometry} = feature;
-                layer.options.id = properties[_this.id];
-                feature.properties.name = properties[_this.title];
-                
-                if(properties.hasOwnProperty("pm-interactive") && 
-                    properties["pm-interactive"] === "n"){
+                const {type: geomType} = geometry;
+                const title = properties[titleKey];
+
+                layer.options.id = properties[idKey];
+                feature.properties.name = title;
+
+                // Verificar interactividad
+                if (properties["pm-interactive"] === "n") {
                     layer.options.interactive = false;
                 }
 
-                // Si el usuario eligió usar tooltip
-                if(_this.tooltip && properties[_this.title] && 
-                    geometry.type != "Point" && geometry.type != "MultiPoint"){
-                    layer.bindTooltip(
-                        properties[_this.title], _this.tooltip_options
-                    );
-                }
-                
-                if(!_this.no_info && !_this.slider && 
-                    geometry.type != "Point" && geometry.type != "MultiPoint"){
-                    const html = (typeof _this.template == "function" ? 
-                            _this.template(_this, properties) : 
-                            _this.defaultTemplate(_this, properties));
-                    layer.bindPopup(html);
+                // Para geometrías no puntuales
+                const isNonPoint = (geomType !== "Point" && geomType 
+                        !== "MultiPoint");
+
+                if (isNonPoint) {
+                    // Agregar tooltip
+                    if (useTooltip && title) {
+                        layer.bindTooltip(title, tooltipOptions);
+                    }
+
+                    // Agregar popup
+                    if (usePopup) {
+                        layer.bindPopup(getPopupHtml(properties));
+                    }
                 }
             },
+
             style: function(feature) {
                 const {properties} = feature;
-                const setProp = (key, alternative=false) => {
-                    if( properties.hasOwnProperty(key)) {
-                        return properties[key];
-                    } else if(alternative) {
-                        return alternative; 
-                    } else {
-                        return _this.featureStyle[key];
-                    }
-                };
+                const strokeColor = getStyleProp(
+                    properties, "stroke-color",
+                    getStyleProp(properties, "stroke")
+                );
+
                 return {
-                    color: setProp("stroke-color", setProp("stroke")), 
-                    strokeOpacity: setProp("stroke-opacity"), 
-                    weight: setProp("stroke-width"), 
-                    fillColor: setProp("stroke"), 
-                    opacity: setProp("stroke-opacity"), 
-                    fillOpacity: setProp("fill-opacity")
-                };  
-            }, 
-            
+                    color: strokeColor,
+                    strokeOpacity: getStyleProp(properties, "stroke-opacity"),
+                    weight: getStyleProp(properties, "stroke-width"),
+                    fillColor: getStyleProp(properties, "stroke"),
+                    opacity: getStyleProp(properties, "stroke-opacity"),
+                    fillOpacity: getStyleProp(properties, "fill-opacity")
+                };
+            }
         });
-        this.geojson.addTo(this.map);  
+
+        this.geojson.addTo(this.map);
     };
 
 
