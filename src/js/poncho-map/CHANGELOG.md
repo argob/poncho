@@ -1,8 +1,8 @@
 # Changelog
 
-## Release 2.1.6
+## Release 2.2
 
-* **Performance - Optimización crítica del sistema de filtrado**:
+* **Optimización del sistema de filtrado**:
   * **Pre-agrupamiento de filtros**: Los filtros ahora se agrupan una sola vez antes del procesamiento en lugar de reagruparse por cada entrada (mejora de ~99% en overhead de agrupamiento).
   * **Sistema de caché para `_fieldsToUse()`**: Implementación de Map cache para evitar recálculos repetidos de configuración de campos (reducción estimada del 99% en llamadas redundantes).
   * **Optimización de `_validateEntry()`**: Refactorizado para recibir filtros pre-agrupados, eliminando operaciones O(n×m) dentro del loop principal.
@@ -18,13 +18,11 @@
   * **Optimización de `_filteredData()`**: Eliminación de clonación innecesaria de array con spread operator (reducción ~50% en uso de memoria por render).
   * **Resultado global**: Mejora estimada de 5-10x en velocidad de filtrado para datasets grandes (1000+ entradas), reducción del 40-50% en uso de memoria durante el filtrado.
 
-## Release 2.1.5
 
 * **Performance**: Optimización del objeto `markerCluster` y método `marker()`:
   * Implementación de caché de iconos para evitar crear objetos duplicados.
   * Eliminación de llamada redundante a `marker_color()` en el proceso de creación de marcadores.
   * Cacheo del tipo de `marker_color` para evitar verificaciones repetidas de tipo en cada marcador.
-  * Mejora estimada del 60-80% en rendimiento para mapas con múltiples marcadores.
 
 * **Mejoras en PonchoMapLoader**:
   * **Bug fix crítico**: Se implementó el método `remove()` que faltaba y causaba errores en tiempo de ejecución.
@@ -40,6 +38,7 @@
 
 * **Interface**:
   * La barra de _scroll_ en la tarjeta no se pega a los contenidos.
+  * En cumplimiento con la pauta de accesibilidad WCAG 2 (1.4.1 - Uso del color, Nivel A), hemos añadido un patrón visual (trama) a los clusters 
 
 
 * **Defaults**:
