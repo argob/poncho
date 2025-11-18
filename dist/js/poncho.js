@@ -10516,12 +10516,19 @@ class PonchoMapSearch {
      * @returns {undefined}
      */
     _triggerSearch = () => {
-
         const inputSelector = `${this.search_scope_selector} `
                 + `.js-poncho-map-search__input`;
         const input = document.querySelector(inputSelector);
+
         if(input){
-            input.id = `id-poncho-map-search${this.scope_sufix}`;
+            const refactoredSelector = `id-poncho-map-search${this.scope_sufix}`;
+            const inputLabel = document.querySelector(`[for="${input.id}"]`)
+            if(inputLabel){
+                inputLabel.setAttribute(
+                    "for", `id-poncho-map-search${this.scope_sufix}`
+                );
+            }
+            input.id = refactoredSelector;
         }
 
         const submitSelector = `${this.search_scope_selector} `
@@ -10531,7 +10538,6 @@ class PonchoMapSearch {
         if(submit){
             submit.addEventListener("click", (event) => {
                 event.preventDefault();
-        
                 const eleSelector = `#js-search-input${this.instance.scope_sufix}`;
                 const element = document.querySelector(eleSelector);
 
@@ -10701,6 +10707,7 @@ class PonchoMapSearch {
         });
     };
 
+
     /**
      * Agrega el aria role y aria label al grupo de buscador.
      * @accesibility
@@ -10711,6 +10718,7 @@ class PonchoMapSearch {
         element.setAttribute("role", "region");
         element.setAttribute("aria-label", "Buscador");
     };
+
 
     /**
      * Prepara el componente de búsqueda
