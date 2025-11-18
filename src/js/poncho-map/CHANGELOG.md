@@ -45,6 +45,30 @@
   * Los enlaces para mapas alternativos abren en una nueva página.
   * En open_maps el texto por defecto ahora es: «Abrir ubicación en:».
 
+
+
+Issue #17228: PonchoMapFilter — Corrección de margenes en el desplegable
+~ Issue #17231: PonchoMapFilter — Mejorar el display de filtros
+Issue #17325: PonchoMapFilter — Incorporación de manejo de cache para los filtros
+
+Issue #17230: PonchoMap — Alineación del mapa y tamaño de slider
+~ Issue #17281: PonchoMap — Rediseño de markers y generación de colores
+Issue #17291: PonchoMap — Convertir SVG de íconos a base64
+Issue #17292: PonchoMap — Los clusters deben tener un patrón o elemento que los diferencie
+Issue #17300: PonchoMap — Ocultar zoom con la tarjeta abierta en mobile
+Issue #17323: PonchoMap — optimizar objeto markerCluster y addAnchorElement
+Issue #17324: PonchoMap — bugfix mixing tamplates aparece con contenido vacío
+Issue #17331: PonchoMap — Separar la barra de scroll del contenido
+Issue #17334: PonchoMap — Refactor marker unir asignaciones duplicadas
+Issue #17338: PonchoMap — Incorporar la opción customización del label para el tooltip
+Issue #17341: PonchoMap — Accesibilidad, button role es innecesario en un boton
+Issue #17342: PonchoMap — Accesibilidad, El role article es innecesario en un article
+Issue #17345: PonchoMap — Accesibilidad, bajo contraste en leyenda totales
+Issue #17346: PonchoMap — Accesibilidad, el label del input search no está asociado por id
+
+Issue #17255: PonchoMapProvincias — Cuando se remueven entradas del sheet no funciona el mapa
+
+
 ## Release 2.1.4
 
 * Se incorporó el enlace para restablecer el mapa. Ahora estará visible constantemente.
