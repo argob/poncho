@@ -15369,6 +15369,7 @@ DEGRADÉ: .bg-mix-azul-info .bg-mix-info-azul .bg-mix-palta-azul .bg-mix-azul-pa
  *
  * @param {string} $background Color de fondo para el contenedor del caret.
  * @param {string} $fill Color para el caret.
+ * @param {string} $backgroundHover Color hover para el fonde del caret.
  */
 /**
  * Oscurece el color de fondo
@@ -15400,6 +15401,7 @@ details {
   --caret-width: 26px;
   --caret-color: var(--arg-negro-600, #444444);
   --caret-background: var(--arg-negro-100, #e9e9e9);
+  --caret-background-hover: #ccc;
   /* Definitions */
   container-type: inline-size;
   container-name: detailsSize;
@@ -15407,17 +15409,21 @@ details {
   border-bottom-color: var(--details-border-color);
   border-bottom-style: var(--details-border-style);
   border-bottom-width: var(--details-border-width);
-  overflow: hidden;
+  overflow: clip;
 }
 details::details-content {
   block-size: 0;
-  transition: block-size 0.15s ease-in-out, content-visibility 0.15s ease-in-out;
+  transition: block-size 0.15s linear, content-visibility 0.15s linear;
+  -moz-transition: none;
   transition-behavior: allow-discrete;
-  border-top: 1px solid transparent;
-  border-bottom: 1px solid transparent;
+  -webkit-transition-behavior: allow-discrete;
+  -moz-transition-behavior: allow-discrete;
+  border-top: 0.01em solid transparent;
+  border-bottom: 0.01em solid transparent;
 }
 details:open::details-content {
   block-size: auto;
+  content-visibility: visible;
 }
 details:last-child {
   border-bottom: 1px solid var(--details-border-color);
@@ -15507,78 +15513,91 @@ details {
 }
 details.caret-warning > summary::before {
   background: var(--arg-amarillo);
+  transition: background 0.2s ease-in-out;
 }
 details.caret-warning > summary::after {
   background-color: black;
 }
 details.caret-success > summary::before {
   background: var(--arg-verde);
+  transition: background 0.2s ease-in-out;
 }
 details.caret-success > summary::after {
   background-color: white;
 }
 details.caret-danger > summary::before {
   background: var(--arg-rojo);
+  transition: background 0.2s ease-in-out;
 }
 details.caret-danger > summary::after {
   background-color: white;
 }
 details.caret-blanco > summary::before {
   background: var(--arg-blanco);
+  transition: background 0.2s ease-in-out;
 }
 details.caret-blanco > summary::after {
   background-color: black;
 }
 details.caret-palta > summary::before {
   background: var(--arg-palta);
+  transition: background 0.2s ease-in-out;
 }
 details.caret-palta > summary::after {
   background-color: black;
 }
 details.caret-primary > summary::before {
   background: var(--arg-azul);
+  transition: background 0.2s ease-in-out;
 }
 details.caret-primary > summary::after {
   background-color: white;
 }
 details.caret-azul-morado > summary::before {
   background: var(--arg-azul-morado);
+  transition: background 0.2s ease-in-out;
 }
 details.caret-azul-morado > summary::after {
   background-color: white;
 }
 details.caret-negro > summary::before {
   background: var(--arg-negro-600);
+  transition: background 0.2s ease-in-out;
 }
 details.caret-negro > summary::after {
   background-color: white;
 }
 details.caret-dark > summary::before {
   background: rgba(0, 0, 0, 0.35);
+  transition: background 0.2s ease-in-out;
 }
 details.caret-dark > summary::after {
   background-color: white;
 }
 details.caret-light > summary::before {
   background: rgba(255, 255, 255, 0.75);
+  transition: background 0.2s ease-in-out;
 }
 details.caret-light > summary::after {
   background-color: black;
 }
 details.caret-default > summary::before {
-  background: #ddd;
+  background: var(--arg-negro-100, #e9e9e9);
+  transition: background 0.2s ease-in-out;
 }
 details.caret-default > summary::after {
   background-color: black;
 }
 details.caret-transparent > summary::before {
   background: transparent;
+  transition: background 0.2s ease-in-out;
 }
 details.caret-transparent > summary::after {
   background-color: var(--arg-azul);
 }
 details.caret-rosado > summary::before {
   background: var(--arg-rosado);
+  transition: background 0.2s ease-in-out;
 }
 details.caret-rosado > summary::after {
   background-color: white;
@@ -15640,6 +15659,12 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
   --container-border-radius: 3px;
   --container-margin-t: 0px;
   --container-margin-b: 1em;
+}
+.details-container br,
+.details-container p:empty {
+  display: none;
+}
+.details-container {
   border-radius: var(--container-border-radius);
   overflow: hidden;
   position: relative;
@@ -15708,6 +15733,7 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
 }
 .details-container.theme-warning details > summary::before {
   background: var(--arg-amarillo);
+  transition: background 0.2s ease-in-out;
 }
 .details-container.theme-warning details > summary::after {
   background-color: black;
@@ -15722,6 +15748,7 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
 }
 .details-container.theme-success details > summary::before {
   background: var(--arg-verde);
+  transition: background 0.2s ease-in-out;
 }
 .details-container.theme-success details > summary::after {
   background-color: white;
@@ -15736,6 +15763,7 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
 }
 .details-container.theme-danger details > summary::before {
   background: var(--arg-rojo);
+  transition: background 0.2s ease-in-out;
 }
 .details-container.theme-danger details > summary::after {
   background-color: white;
@@ -15750,6 +15778,7 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
 }
 .details-container.theme-primary details > summary::before {
   background: var(--arg-azul);
+  transition: background 0.2s ease-in-out;
 }
 .details-container.theme-primary details > summary::after {
   background-color: white;
@@ -15763,7 +15792,8 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
   border-bottom-color: #ccc;
 }
 .details-container.theme-default details > summary::before {
-  background: #ddd;
+  background: var(--arg-negro-100, #e9e9e9);
+  transition: background 0.2s ease-in-out;
 }
 .details-container.theme-default details > summary::after {
   background-color: black;
@@ -15777,25 +15807,23 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
 /** 
  *  Configuración de variables por defecto
  */
-.details-landing br,
-.details-landing p:empty {
+.details-display br,
+.details-display p:empty {
   display: none;
-  height: 0px;
-  overflow: hidden;
 }
-.details-landing details {
+.details-display details {
   --figure-width: 1.15rem;
   --figure-text-gap: 10px;
   --figure-color: inherit;
   --figure-font-size: 1.5em;
   --summary-font-size: 1em;
 }
-.details-landing.details-landing-md > details {
+.details-display.details-display-md > details {
   --figure-width: 1.5rem;
   --figure-font-size: 1.75em;
   --summary-font-size: 1.15rem;
 }
-.details-landing.details-landing-lg > details {
+.details-display.details-display-lg > details {
   --figure-width: 1.75rem;
   --figure-text-gap: 15px;
   --figure-font-size: 2em;
@@ -15804,32 +15832,32 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
   --summary-padding-t: 15px;
   --summary-padding-b: 15px;
 }
-.details-landing summary:has(i.fa-2x),
-.details-landing summary:has(.figure) {
+.details-display summary:has(i.fa-2x),
+.details-display summary:has(.figure) {
   font-size: var(--summary-font-size);
   gap: var(--figure-text-gap);
   color: var(--arg-secundario);
 }
-.details-landing summary:has(i.fa-2x) i,
-.details-landing summary .figure {
+.details-display summary:has(i.fa-2x) i,
+.details-display summary .figure {
   flex: 0 0 calc(var(--figure-width) * 2 + var(--figure-text-gap));
   text-align: center;
   background: transparent;
   font-size: var(--figure-font-size);
   color: var(--figure-color);
 }
-.details-landing summary .figure {
+.details-display summary .figure {
   letter-spacing: -0.25pt;
   font-weight: 700;
   font-style: normal;
   line-height: var(--summary-line-height);
 }
-.details-landing.details-landing.figure-fixed summary:has(i.fa-2x) i, .details-landing.details-landing.figure-fixed summary .figure {
+.details-display.details-display.figure-fixed summary:has(i.fa-2x) i, .details-display.details-display.figure-fixed summary .figure {
   align-self: start;
 }
 
 @media (max-width: 768px) {
-  .details-landing.details-landing-md > details, .details-landing.details-landing-lg > details {
+  .details-display.details-display-md > details, .details-display.details-display-lg > details {
     --figure-width: 1.15rem;
     --figure-text-gap: 10px;
     --figure-color: inherit;
@@ -15839,7 +15867,7 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
     --summary-padding-t: 10px;
     --summary-padding-b: 10px;
   }
-  .details-landing.details-landing.figure-xs-fixed summary:has(i.fa-2x) i, .details-landing.details-landing.figure-xs-fixed summary .figure {
+  .details-display.details-display.figure-xs-fixed summary:has(i.fa-2x) i, .details-display.details-display.figure-xs-fixed summary .figure {
     align-self: start;
   }
 }
