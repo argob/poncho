@@ -36,6 +36,7 @@ $caretDefaultSize: 26px; // Tamaño del caret, o flecha.
 $caretSmallSize: 22px; // Tamaño del caret cuando es pequeño.
 $caretColor: var(--arg-negro-600, #444444);
 $caretBackground: var(--arg-negro-100, #e9e9e9);
+$caretBackgroundHover: #ccc;
 
 // media queries
 $mediaBreakpoint: 768px;
@@ -66,64 +67,84 @@ $containerLeftContentPaddingE: 18px; // padding-right content
 $colorThemes: (
     "warning": (
         caretBackground: var(--arg-amarillo),
+        //caretBackgroundHover: var(--arg-ocre-500),
+        caretBackgroundHover:
+            color-mix(
+                in srgb,
+                var(--arg-amarillo) 100%,
+                var(--arg-ocre-500) 90%
+            ),
         caret: black,
         containerBackground: var(--arg-amarillo-50),
         borderColor: var(--arg-amarillo-400)
     ),
     "success": (
         caretBackground: var(--arg-verde),
+        caretBackgroundHover: var(--arg-verde-800),
         caret: white,
         containerBackground: var(--arg-verde-50),
         borderColor: var(--arg-verde-300)
     ),
     "danger": (
         caretBackground: var(--arg-rojo),
+        caretBackgroundHover: var(--arg-rojo-800),
         caret: white,
         containerBackground: var(--arg-rojo-50),
         borderColor: var(--arg-rojo-200)
     ),
     "blanco": (
         caretBackground: var(--arg-blanco),
+        caretBackgroundHover: #dddddd,
         caret: black
     ),
     "palta": (
         caretBackground: var(--arg-palta),
+        caretBackgroundHover: var(--arg-turquesa-500),
         caret: black
     ),
     "primary": (
         caretBackground: var(--arg-azul),
+        caretBackgroundHover: var(--arg-primary-600),
         caret: white,
         containerBackground: var(--arg-primary-50),
         borderColor: var(--arg-primary-200)
     ),
     "azul-morado": (
         caretBackground: var(--arg-azul-morado),
+        caretBackgroundHover:
+            color-mix(in srgb, var(--arg-azul-morado) 100%, black 30%),
         caret: white
     ),
     "negro": (
         caretBackground: var(--arg-negro-600),
+        caretBackgroundHover: var(--arg-negro-900),
         caret: white
     ),
     "dark": (
         caretBackground: rgb(0 0 0 / 0.35),
+        caretBackgroundHover: rgb(0 0 0 / 0.25),
         caret: white
     ),
     "light": (
         caretBackground: rgb(255 255 255 / 0.75),
+        caretBackgroundHover: rgb(255 255 255 / 0.55),
         caret: black
     ),
     "default": (
-        caretBackground: #ddd,
+        caretBackground: $caretBackground,
+        caretBackgroundHover: $caretBackgroundHover,
         caret: black,
         containerBackground: #f4f4f4,
         borderColor: #ccc
     ),
     "transparent": (
         caretBackground: transparent,
+        caretBackgroundHover: transparent,
         caret: var(--arg-azul)
     ),
     "rosado": (
         caretBackground: var(--arg-rosado),
+        caretBackgroundHover: var(--arg-fucsia-300),
         caret: white
     )
 );
@@ -175,14 +196,17 @@ $colorThemes: (
  *
  * @param {string} $background Color de fondo para el contenedor del caret.
  * @param {string} $fill Color para el caret.
+ * @param {string} $backgroundHover Color hover para el fonde del caret.
  */
-@mixin caretColor($background, $fill) {
+@mixin caretColor($background, $fill, $backgroundHover) {
     & > summary {
         &::before {
             background: $background;
+            transition: background 0.2s ease-in-out;
         }
         &:hover::before {
-             @include caretBackgroundHover(#{$background});
+            @include caretBackgroundHover($background, $backgroundHover);
+            //@include caretBackgroundHover(#{$background}, #{$backgroundHover});
         }
         &::after {
             background-color: $fill;
@@ -194,18 +218,19 @@ $colorThemes: (
  * Oscurece el color de fondo
  * @param {string} $fill Color para el caret.
  */
-@mixin caretBackgroundHover($color){
-    //background-color: color-mix(in srgb, #{$color} 100%, black 15%);
-    //transition: .2s;
+@mixin caretBackgroundHover($color, $hover) {
+    //background-color: color-mix(in srgb, #{$color} 100%, black 20%);
+    //background-color: #{$hover};
+    //transition: background .2s ease-in-out;
 }
 
 :root {
-  interpolate-size: allow-keywords;
+    interpolate-size: allow-keywords;
 }
 
 #{$detailsScope} {
-    --icon-close: url('data:image/svg+xml;base64,PHN2ZyBmb2N1c2FibGU9ImZhbHNlIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTE2LjU5LDkuNzlsLTQuNTksNC41OC00LjU5LTQuNTgtMS40MSwxLjQxLDYsNiw2LTYtMS40MS0xLjQxWiI+PC9wYXRoPjwvc3ZnPg==');
-    --icon-open: url('data:image/svg+xml;base64,PHN2ZyBmb2N1c2FibGU9ImZhbHNlIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTcuNDEsMTUuNTFsNC41OS00LjU4LDQuNTksNC41OCwxLjQxLTEuNDEtNi02LTYsNiwxLjQxLDEuNDFaIj48L3BhdGg+PC9zdmc+');
+    --icon-close: url("data:image/svg+xml;base64,PHN2ZyBmb2N1c2FibGU9ImZhbHNlIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTE2LjU5LDkuNzlsLTQuNTksNC41OC00LjU5LTQuNTgtMS40MSwxLjQxLDYsNiw2LTYtMS40MS0xLjQxWiI+PC9wYXRoPjwvc3ZnPg==");
+    --icon-open: url("data:image/svg+xml;base64,PHN2ZyBmb2N1c2FibGU9ImZhbHNlIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTcuNDEsMTUuNTFsNC41OS00LjU4LDQuNTksNC41OCwxLjQxLTEuNDEtNi02LTYsNiwxLjQxLDEuNDFaIj48L3BhdGg+PC9zdmc+");
 
     --details-border-color: #{$detailsBorderColor};
     --details-border-style: #{$detailsBorderStyle};
@@ -231,6 +256,7 @@ $colorThemes: (
     --caret-width: #{$caretDefaultSize};
     --caret-color: #{$caretColor};
     --caret-background: #{$caretBackground};
+    --caret-background-hover: #{$caretBackgroundHover};
 
     /* Definitions */
     container: {
@@ -245,20 +271,29 @@ $colorThemes: (
             width: var(--details-border-width);
         }
     }
- 
-    overflow: hidden;
 
+    overflow: clip;
 
     &::details-content {
         block-size: 0;
-        transition: block-size 0.15s ease-in-out, content-visibility 0.15s ease-in-out;
+        transition: block-size 0.15s linear, content-visibility 0.15s linear;
+
+        // Mozilla aun no tiene soporte para algunas de estas propiedades
+        -moz-transition: none;
+
         transition-behavior: allow-discrete;
+        -webkit-transition-behavior: allow-discrete;
+        -moz-transition-behavior: allow-discrete;
+
         // Fix temporal para que la transición sea fluida
-        border-top: 1px solid transparent;
-        border-bottom: 1px solid transparent;
+        border: {
+            top: 0.01em solid transparent;
+            bottom: 0.01em solid transparent;
+        }
     }
     &:open::details-content {
-      block-size: auto;
+        block-size: auto;
+        content-visibility: visible;
     }
     &:last-child {
         border-bottom: 1px solid var(--details-border-color);
@@ -305,8 +340,6 @@ $colorThemes: (
             );
         }
 
-        
-        
         &::-webkit-details-marker {
             display: none;
         }
@@ -322,7 +355,7 @@ $colorThemes: (
             aspect-ratio: 1 / 1 !important;
             left: initial;
             right: var(--summary-padding-e);
-            transition: background .15s ease-in-out;
+            transition: background 0.15s ease-in-out;
         }
 
         &::after {
@@ -351,9 +384,12 @@ $colorThemes: (
                     var(--summary-padding-e)
             );
         }
-        
+
         &:hover::before {
-            @include caretBackgroundHover(#{var(--caret-background)});
+            @include caretBackgroundHover(
+                #{var(--caret-background)},
+                #{var(--caret-background-hover)}
+            );
         }
     }
 
@@ -399,7 +435,8 @@ $colorThemes: (
         &.caret-#{$theme-name} {
             @include caretColor(
                 map-get($theme-colors, caretBackground),
-                map-get($theme-colors, caret)
+                map-get($theme-colors, caret),
+                map-get($theme-colors, caretBackgroundHover)
             );
         }
     }
@@ -456,6 +493,11 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
     --container-margin-t: #{$containerMarginT};
     --container-margin-b: #{$containerMarginB};
 
+    br,
+    p:empty {
+        display: none;
+    }
+
     border-radius: var(--container-border-radius);
     overflow: hidden;
     position: relative;
@@ -476,12 +518,10 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
     &.details-container__borderless {
         border: none;
     }
-    
-    
+
     &.details-container__round {
         border-radius: $containerBorderRound;
     }
-    
 
     &.details-container__rounded {
         border-radius: calc(#{$circleDefaultSize} / 2 + #{$detailsPaddingY});
@@ -545,7 +585,8 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
 
                 @include caretColor(
                     map-get($theme-colors, caretBackground),
-                    map-get($theme-colors, caret)
+                    map-get($theme-colors, caret),
+                    map-get($theme-colors, caretBackgroundHover)
                 );
             }
         }
@@ -569,13 +610,11 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
     --summary-font-size: 1em;
 }
 
-.details-landing {
+.details-display {
     // Elimino/oculto las etiquetas de párrafo vacías y los br.
     br,
     p:empty {
         display: none;
-        height: 0px;
-        overflow: hidden;
     }
     // Redefino details
     // Vista default
@@ -630,7 +669,7 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
 }
 
 @media (max-width: 768px) {
-    .details-landing {
+    .details-display {
         &#{&}-md > details,
         &#{&}-lg > details {
             @include landingDefault();
