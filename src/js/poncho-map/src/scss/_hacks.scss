@@ -1,0 +1,6 @@
+// Corrección de contraste bajo en texto de ayuda 
+// @see 17345-ponchomap-accesibilidad-bajo-contraste-en-leyenda-totales
+.js-poncho-map__help:is(.text-mutted),
+.js-poncho-map__help:is(.text-default) {
+    color: inherit;
+}
