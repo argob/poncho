@@ -515,30 +515,30 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
         @include caretFixed();
     }
 
-    &.details-container__borderless {
+    &.details-container-borderless {
         border: none;
     }
 
-    &.details-container__round {
+    &.details-container-round {
         border-radius: $containerBorderRound;
     }
 
-    &.details-container__rounded {
+    &.details-container-rounded {
         border-radius: calc(#{$circleDefaultSize} / 2 + #{$detailsPaddingY});
     }
 
-    &.details-container__rounded .details-container {
+    &.details-container-rounded .details-container {
         border-radius: calc(
             #{$circleDefaultSize} / 2 + #{$detailsPaddingY} -
                 var(--content-padding-s)
         );
     }
 
-    &.details-container__rounded:has(details.caret-small) {
+    &.details-container-rounded:has(details.caret-small) {
         border-radius: calc(#{$circleSmallSize} / 2 + #{$detailsPaddingY});
     }
 
-    &.details-container__rounded:has(details.caret-small)
+    &.details-container-rounded:has(details.caret-small)
         .details-container:has(details.caret-small) {
         border-radius: calc(
             #{$circleSmallSize} / 2 + #{$detailsPaddingY} -
@@ -546,7 +546,7 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
         );
     }
 
-    &:not(:is(.details-container__borderless)) details:last-of-type {
+    &:not(:is(.details-container-borderless)) details:last-of-type {
         border-bottom: none;
     }
     & > #{$detailsScope} {
@@ -565,7 +565,7 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
 
 @media all and (max-width: $mediaBreakpoint) {
     .details-container {
-        &.details-container__rounded {
+        &.details-container-rounded {
             border-radius: calc(#{$circleSmallSize} / 2 + #{$detailsPaddingY});
         }
     }
