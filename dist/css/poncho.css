@@ -15683,25 +15683,25 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
 .details-container.caret-fixed > details[open] > summary::after {
   top: calc(var(--circle-size) / 2 - var(--caret-width) / 2 + var(--summary-padding-t));
 }
-.details-container.details-container__borderless {
+.details-container.details-container-borderless {
   border: none;
 }
-.details-container.details-container__round {
+.details-container.details-container-round {
   border-radius: 9px;
 }
-.details-container.details-container__rounded {
+.details-container.details-container-rounded {
   border-radius: calc(40px / 2 + 9px);
 }
-.details-container.details-container__rounded .details-container {
+.details-container.details-container-rounded .details-container {
   border-radius: calc(40px / 2 + 9px - var(--content-padding-s));
 }
-.details-container.details-container__rounded:has(details.caret-small) {
+.details-container.details-container-rounded:has(details.caret-small) {
   border-radius: calc(32px / 2 + 9px);
 }
-.details-container.details-container__rounded:has(details.caret-small) .details-container:has(details.caret-small) {
+.details-container.details-container-rounded:has(details.caret-small) .details-container:has(details.caret-small) {
   border-radius: calc(32px / 2 + 9px - var(--content-padding-s));
 }
-.details-container:not(:is(.details-container__borderless)) details:last-of-type {
+.details-container:not(:is(.details-container-borderless)) details:last-of-type {
   border-bottom: none;
 }
 .details-container > details {
@@ -15718,7 +15718,7 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
 }
 
 @media all and (max-width: 768px) {
-  .details-container.details-container__rounded {
+  .details-container.details-container-rounded {
     border-radius: calc(32px / 2 + 9px);
   }
 }
