@@ -416,7 +416,7 @@ Si se desea utilizar el buscador debe incluirse el siguiente código. El código
                 </span>
             </div>
             <div data-scope="ponchomap">
-                <div class="js-poncho-map__help text-mutted small"></div>
+                <div class="js-poncho-map__help small"></div>
             </div>
         </div>
     </form>
