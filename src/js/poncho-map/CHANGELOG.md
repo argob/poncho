@@ -2,71 +2,65 @@
 
 ## Release 2.2
 
-* **Optimización del sistema de filtrado**:
-  * **Pre-agrupamiento de filtros**: Los filtros ahora se agrupan una sola vez antes del procesamiento en lugar de reagruparse por cada entrada (mejora de ~99% en overhead de agrupamiento).
-  * **Sistema de caché para `_fieldsToUse()`**: Implementación de Map cache para evitar recálculos repetidos de configuración de campos (reducción estimada del 99% en llamadas redundantes).
-  * **Optimización de `_validateEntry()`**: Refactorizado para recibir filtros pre-agrupados, eliminando operaciones O(n×m) dentro del loop principal.
-  * **Optimización de `_validateGroup()`**: Implementación de short-circuit evaluation para retornar inmediatamente al encontrar el primer match, eliminando arrays temporales.
-  * **Optimización de `_search()`**:
+### PonchoMapFilter
+
+#### Optimizaciones
+
+  * Los filtros ahora se agrupan una sola vez antes del procesamiento en lugar de reagruparse por cada entrada.
+  * `_fieldsToUse()`: Implementación de Map cache para evitar recálculos repetidos en la configuración de campos del form.
+  * `_validateEntry()`: Refactorizado para recibir filtros pre-agrupados, eliminando operaciones dentro del loop principal.
+  * `_validateGroup()`: Implementación de _short-circuit evaluation_ para retornar inmediatamente al encontrar el primer match, eliminando arrays temporales.
+  
+  * `_search()`:
     * Early return cuando la entrada no tiene la propiedad buscada.
     * Reemplazo de `filter(Boolean).some()` por loop directo con cortocircuito.
     * Uso de caché para `_fieldsToUse()`.
-  * **Optimización de `_filterData()`**:
+  * `_filterData()`:
     * Pre-cálculo de `searchFields` fuera del loop de filtrado.
     * Eliminación de creación repetida de Sets en cada iteración.
     * Short-circuit directo en lugar de `every(Boolean)`.
-  * **Optimización de `_filteredData()`**: Eliminación de clonación innecesaria de array con spread operator (reducción ~50% en uso de memoria por render).
-  * **Resultado global**: Mejora estimada de 5-10x en velocidad de filtrado para datasets grandes (1000+ entradas), reducción del 40-50% en uso de memoria durante el filtrado.
+  * `_filteredData()`: Eliminación de clonación innecesaria de array con spread operator.
 
+### PonchoMapLoader
+  * Se implementó el método `remove()` que faltaba y causaba errores en tiempo de ejecución.
+  * Se corrigió la limpieza de timeouts en el método `close()`.
+  * Los métodos `load()` y `close()` ahora cancelan operaciones pendientes correctamente.
+  * El Nuevo parámetro `close(immediate)` permite cerrar el loader sin demora cuando `immediate=true`.
+  * Se agregó el modo debug. Nueva opción `debug` en el constructor para habilitar _logging condicional_.
+  * Mejora en la inicialización adecuada de propiedades de timeout.
 
-* **Performance**: Optimización del objeto `markerCluster` y método `marker()`:
+### PonchoMap
+
+#### Optimizaciones
+
+  * Optimización del objeto `markerCluster` y método `marker()`:
   * Implementación de caché de iconos para evitar crear objetos duplicados.
   * Eliminación de llamada redundante a `marker_color()` en el proceso de creación de marcadores.
   * Cacheo del tipo de `marker_color` para evitar verificaciones repetidas de tipo en cada marcador.
 
-* **Mejoras en PonchoMapLoader**:
-  * **Bug fix crítico**: Se implementó el método `remove()` que faltaba y causaba errores en tiempo de ejecución.
-  * **Prevención de memory leaks**: Se corrigió la limpieza de timeouts en el método `close()`.
-  * **Prevención de race conditions**: Los métodos `load()` y `close()` ahora cancelan operaciones pendientes correctamente.
-  * **Nuevo parámetro**: `close(immediate)` permite cerrar el loader sin demora cuando `immediate=true`.
-  * **Modo debug**: Nueva opción `debug` en el constructor para habilitar logging condicional.
-  * **Mejora de robustez**: Inicialización adecuada de propiedades de timeout y mejor manejo de casos edge.
+#### Mejoras
 
-* **Mejoras en PonchoMap**:
-  * Se realizó un bug fix en _mixing > template_ donde se mostraba el valor con el *template* cuando el value llegaba vacío.
-  * A _Mixing>template_ se le agregó la posibilidad de utilizar condicionales en linea. De este modo se puede controlar formato de salida.
-
-* **Interface**:
+  * A `mixing['template']` se le agregó la posibilidad de utilizar condicionales en linea. De este modo se puede controlar formato de salida.
+  * Los íconos SVG se codificaron a base64 para evitar problemas de encoding.
+  * En cumplimiento con la pauta de accesibilidad WCAG 2 (1.4.1 - Uso del color, Nivel A), hemos añadido un patrón visual (trama) a los clusters.
   * La barra de _scroll_ en la tarjeta no se pega a los contenidos.
-  * En cumplimiento con la pauta de accesibilidad WCAG 2 (1.4.1 - Uso del color, Nivel A), hemos añadido un patrón visual (trama) a los clusters 
+  * Se incorporó la opción customización del texto para los tooltips.
+  * Corrección de margenes en el desplegable de filtros.
 
+#### Fixes
 
-* **Defaults**:
+  * Se realizó un bug fix en `mixing['template']` donde se mostraba el valor con el *template* cuando el value llegaba vacío.
+  * Remoción del atributo `role="button"` innecesario en el botón para cerrar el _slider_.
+  * Remoción del atributo `role="article"` es innecesario en un article
+  * Corrección del bajo contraste en leyenda totales.
+  * El label del input search no está asociado por id.
+  * Solución del problema con la herramienta de zoom cuando el slider está abierto en mobile.
+  * Se corrigió el bug en el que una etiqueta de párrafo se imprimia vacía cuando no se asignaba un summary.
+
+#### Defaults
+
   * Los enlaces para mapas alternativos abren en una nueva página.
   * En open_maps el texto por defecto ahora es: «Abrir ubicación en:».
-
-
-
-Issue #17228: PonchoMapFilter — Corrección de margenes en el desplegable
-~ Issue #17231: PonchoMapFilter — Mejorar el display de filtros
-Issue #17325: PonchoMapFilter — Incorporación de manejo de cache para los filtros
-
-Issue #17230: PonchoMap — Alineación del mapa y tamaño de slider
-~ Issue #17281: PonchoMap — Rediseño de markers y generación de colores
-Issue #17291: PonchoMap — Convertir SVG de íconos a base64
-Issue #17292: PonchoMap — Los clusters deben tener un patrón o elemento que los diferencie
-Issue #17300: PonchoMap — Ocultar zoom con la tarjeta abierta en mobile
-Issue #17323: PonchoMap — optimizar objeto markerCluster y addAnchorElement
-Issue #17324: PonchoMap — bugfix mixing tamplates aparece con contenido vacío
-Issue #17331: PonchoMap — Separar la barra de scroll del contenido
-Issue #17334: PonchoMap — Refactor marker unir asignaciones duplicadas
-Issue #17338: PonchoMap — Incorporar la opción customización del label para el tooltip
-Issue #17341: PonchoMap — Accesibilidad, button role es innecesario en un boton
-Issue #17342: PonchoMap — Accesibilidad, El role article es innecesario en un article
-Issue #17345: PonchoMap — Accesibilidad, bajo contraste en leyenda totales
-Issue #17346: PonchoMap — Accesibilidad, el label del input search no está asociado por id
-
-Issue #17255: PonchoMapProvincias — Cuando se remueven entradas del sheet no funciona el mapa
 
 
 ## Release 2.1.4
