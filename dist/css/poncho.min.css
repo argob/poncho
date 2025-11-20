@@ -12310,7 +12310,7 @@ footer.pm-open-map ul > li > a:hover, footer.pm-open-map ul > li > a:focus {
   background-repeat: repeat;
   background-size: 6px;
   background-position-x: -3px;
-  opacity: 0.25;
+  opacity: 0.2;
   content: "";
 }
 .poncho-map {
@@ -12398,6 +12398,11 @@ footer.pm-open-map ul > li > a:hover, footer.pm-open-map ul > li > a:focus {
     --pm-slider-width: inherit;
   }
 }
+.js-poncho-map__help:is(.text-mutted),
+.js-poncho-map__help:is(.text-default) {
+  color: inherit;
+}
+
 /* Poncho agenda */
 .agenda-item {
   border-bottom: 1px dashed #ddd;
