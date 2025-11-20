@@ -8924,6 +8924,10 @@ class PonchoMap {
      * agregando summary se vincula el id del summary con el mapa.
      */
     _addSummary = () => {
+        if(typeof this.summary === "boolean"){
+            return;
+        }
+
         if(
             this.isEmptyObject(this.summary) || 
             this.isEmptyString(this.summary)){
