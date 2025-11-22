@@ -2778,10 +2778,12 @@ class PonchoMap {
         else if(!structure_title && !optons_title){
             return false;
         }
+
         // Defino el title que voy a usar.
         // template_structure.title tiene precedencia
         const use_title = (structure_title ? structure_title : optons_title);
         let title;
+
         if(structure?.header){
             const wrapper = document.createElement("div");
             wrapper.innerHTML = this._mdToHtml(structure.header(this, row));
@@ -2983,7 +2985,9 @@ class PonchoMap {
         }
 
         const {
-            key, css="small", style=false
+            key, 
+            css="small", 
+            style=false
         } = this.template_structure.lead;
 
         if(!entry.hasOwnProperty(key)){
@@ -3096,7 +3100,8 @@ class PonchoMap {
 
         const tpl_lead = this._lead(row);
         if(tpl_lead){
-            container.appendChild(tpl_lead);
+            tpl_title.prepend(tpl_lead);
+            // container.appendChild(tpl_lead);
         }
 
         if(tpl_title){
