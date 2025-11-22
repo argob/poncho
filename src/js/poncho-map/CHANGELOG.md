@@ -46,6 +46,7 @@
   * La barra de _scroll_ en la tarjeta no se pega a los contenidos.
   * Se incorporó la opción customización del texto para los tooltips.
   * Corrección de margenes en el desplegable de filtros.
+  * En el slider, se agregó `lead` dentro de la etiqueta `<header/>`.
 
 #### Fixes
 

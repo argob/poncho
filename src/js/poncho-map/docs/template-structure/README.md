@@ -17,6 +17,13 @@ Template structure permite controlar el formato de la información que se presen
 
 En esta sección, se detalla el uso y el tipo de valor esperado para cada índice, junto con ejemplos de uso.
 
+
+
+<div style="border:1px solid #68C3EF; border-radius:8px; overflow:clip">
+<img src="./img/template-structure-header.png" style="display:block" />
+</div>
+
+
 ## Sintaxis
 
 ```js
@@ -51,6 +58,18 @@ const options = {
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <td>values</td>
+      <td><code>Array()</code></td>
+      <td><code>[]</code></td>
+      <td><p>Permite defini cuales son las claves que deben imprimirse en el slider.</p></td>
+    </tr>
+    <tr>
+      <td>exclude</td>
+      <td><code>Array()</code></td>
+      <td><code>[]</code></td>
+      <td><p>Permite definir cuales son las claves que <b>no</b> deben imprimirse en el slider.</p></td>
+    </tr>
     <tr>
       <td>container_classlist</td>
       <td><code>Array()</code></td>
