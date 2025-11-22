@@ -20,7 +20,7 @@ En esta sección, se detalla el uso y el tipo de valor esperado para cada índic
 
 
 <div style="border:1px solid #68C3EF; border-radius:8px; overflow:clip">
-<img src="./img/template-structure-header.png" style="display:block" />
+<img src="img/template-structure-header.png" style="display:block" />
 </div>
 
 
