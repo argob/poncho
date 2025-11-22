@@ -18,11 +18,7 @@ Template structure permite controlar el formato de la información que se presen
 En esta sección, se detalla el uso y el tipo de valor esperado para cada índice, junto con ejemplos de uso.
 
 
-
-<div style="border:1px solid #68C3EF; border-radius:8px; overflow:clip">
-<img src="img/template-structure-header.png" style="display:block" />
-</div>
-![template structure](./img/template-structure-header.png)
+![template](./img/template-structure-header.png)
 
 
 ## Sintaxis
