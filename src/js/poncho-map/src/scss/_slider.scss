@@ -20,12 +20,15 @@
         );
 
         .pm-content-container {
-            height: calc(100%);
+            height: calc(100% - var(--pm-slider-radius));
             padding-top: calc(var(--pm-content-padding) * 3 + 5px);
             // padding-bottom: calc(var(--pm-content-padding) * 2);
             padding-bottom: 0;
             display: flex;
             flex-direction: column;
+        }
+        .pm-content-container:has(.pm-open-map) {
+            height: calc(100%);
         }
 
         .pm-content {
