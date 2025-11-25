@@ -7660,8 +7660,6 @@ class PonchoMap {
             "pm-footer", 
             `js-footer${this.scope_sufix}`
         );
-        footer.tabIndex = 0;
-
 
         // 4. Append
         contentContainer.appendChild(content);
