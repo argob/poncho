@@ -11429,9 +11429,14 @@ Las clases "dato-nro" y "dato-eje" corresponde a los formatos markdown definidos
   height: calc(100% - var(--pm-slider-distance) - var(--pm-slider-distance));
 }
 .poncho-map .pm-slider .pm-content-container {
-  height: 100%;
+  height: calc(100% - var(--pm-slider-radius));
   padding-top: calc(var(--pm-content-padding) * 3 + 5px);
-  padding-bottom: calc(var(--pm-content-padding) * 2);
+  padding-bottom: 0;
+  display: flex;
+  flex-direction: column;
+}
+.poncho-map .pm-slider .pm-content-container:has(.pm-open-map) {
+  height: 100%;
 }
 .poncho-map .pm-slider .pm-content {
   inline-size: min-content;
@@ -12176,24 +12181,46 @@ input[type=search].js-poncho-map-search__input::-webkit-search-cancel-button {
   transition: 0.2s;
 }
 
-footer.pm-open-map {
+.poncho-map footer {
+  box-sizing: border-box;
+  margin: 0;
   padding: 0;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font-size: 1rem;
+  line-height: normal;
+  text-align: left;
+  text-decoration: none;
+  display: block;
+  min-width: 0;
+  min-height: 0;
+}
+.poncho-map .pm-open-map {
+  min-height: auto;
+  position: relative;
+  padding: 4px;
+  left: 1px;
+  width: calc(100% - 2px);
   margin: 0;
   border: none;
-  position: absolute;
   color: var(--pm-color-base);
-  bottom: calc(var(--pm-content-padding) / 2);
+  bottom: 1px;
   z-index: 999;
-  left: calc(var(--pm-content-padding) / 2);
   font-size: 0.75rem;
-  width: calc(100% - var(--pm-content-padding));
   background: var(--pm-slider-background);
+  border-radius: 0;
+  border-bottom-left-radius: max(var(--pm-slider-radius) / 2, var(--pm-slider-radius) - var(--pm-content-padding) + 13px) !important;
+  border-bottom-right-radius: max(var(--pm-slider-radius) / 2, var(--pm-slider-radius) - var(--pm-content-padding) + 13px) !important;
 }
-footer.pm-open-map > details {
+.poncho-map .pm-open-map > details > summary:focus-within,
+.poncho-map .pm-open-map > details > summary:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+.poncho-map .pm-open-map > details {
   --summary-padding-t: 4px;
   --summary-padding-b: 4px;
-}
-footer.pm-open-map > details {
   border-color: var(--pm-slider-border-color) transparent transparent !important;
   border-style: solid;
   border-width: var(--pm-slider-border-width);
@@ -12201,11 +12228,11 @@ footer.pm-open-map > details {
   padding-top: 0;
   padding-bottom: 0;
 }
-footer.pm-open-map > details > summary:before {
+.poncho-map .pm-open-map > details > summary:before {
   background-color: transparent;
 }
-footer.pm-open-map > details > summary:focus,
-footer.pm-open-map > details:focus-within {
+.poncho-map .pm-open-map > details:focus,
+.poncho-map .pm-open-map > details:focus-within {
   -webkit-border-radius: max(var(--pm-slider-radius) / 2, var(--pm-slider-radius) - var(--pm-content-padding) - 2px) !important;
   -moz-border-radius: max(var(--pm-slider-radius) / 2, var(--pm-slider-radius) - var(--pm-content-padding) - 2px) !important;
   border-radius: max(var(--pm-slider-radius) / 2, var(--pm-slider-radius) - var(--pm-content-padding) - 2px) !important;
@@ -12213,21 +12240,21 @@ footer.pm-open-map > details:focus-within {
   outline: 2px solid var(--cielo, #039be5);
   outline-style: solid;
 }
-footer.pm-open-map > details[open] {
+.poncho-map .pm-open-map > details[open] {
   border: var(--pm-slider-border-width) solid var(--pm-slider-border-color) !important;
-  border-radius: max(var(--pm-slider-radius) / 2, var(--pm-slider-radius) - var(--pm-content-padding) - 2px) !important;
+  border-radius: max(var(--pm-slider-radius) / 2, var(--pm-slider-radius) - var(--pm-content-padding) + 8px) !important;
   box-shadow: 0 1px calc(var(--pm-content-padding) / 2) rgba(0, 0, 0, 0.3);
 }
-footer.pm-open-map > details > summary {
+.poncho-map .pm-open-map > details > summary {
   color: var(--pm-color-base) !important;
   font-weight: 600;
   padding-left: var(--pm-content-padding);
   padding-right: var(--pm-content-padding);
 }
-footer.pm-open-map details[open] summary ~ * {
+.poncho-map .pm-open-map details[open] summary ~ * {
   padding: 0 calc(var(--pm-content-padding) / 2);
 }
-footer.pm-open-map ul > li > a {
+.poncho-map .pm-open-map ul > li > a {
   margin-bottom: 2px;
   border-radius: calc(var(--pm-slider-radius) - var(--pm-slider-distance));
   display: block;
@@ -12236,7 +12263,7 @@ footer.pm-open-map ul > li > a {
   color: var(--pm-color-base);
   text-decoration: none;
 }
-footer.pm-open-map ul > li > a:hover, footer.pm-open-map ul > li > a:focus {
+.poncho-map .pm-open-map ul > li > a:hover, .poncho-map .pm-open-map ul > li > a:focus {
   background-color: var(--pm-hover-background);
   color: var(--pm-hover-color);
   transition: background 0.15s;

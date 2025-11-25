@@ -6698,6 +6698,7 @@ class PonchoMap {
                 ele.classList.remove(...this._setThemeStyles(th, prefix));
             });
         });
+
         // Aria-current false
         const themeMenuItems = document.querySelectorAll(
             `${this.scope_selector} .js-set-theme`);
@@ -6829,16 +6830,18 @@ class PonchoMap {
         const details = document.createElement("details");
         details.classList.add("blank");
 
-        const container = document.createElement("footer");
-        container.className = "pm-open-map";
         
-        const parentSelector = `.js-content${this.scope_sufix}`;
-        const parentNode = document.querySelector(parentSelector);
-
+        const footerSelector = `.js-footer${this.scope_sufix}`;
+        
+        const footer = document.querySelector(footerSelector);
+        footer.classList.add("pm-open-map");
+        if(footer){
+            footer.innerHTML = "";
+        }
         details.appendChild(summary);
         details.appendChild(ul);
-        container.appendChild(details);
-        parentNode.appendChild(container);
+        footer.appendChild(details);
+
     }
 
 
@@ -7645,11 +7648,25 @@ class PonchoMap {
 
         // Contenido
         const content = document.createElement("div");
-        content.classList.add("pm-content", `js-content${this.scope_sufix}`);
+        content.classList.add(
+            "pm-content", 
+            `js-content${this.scope_sufix}`
+        );
         content.tabIndex = 0;
         
+
+        const footer = document.createElement("footer");
+        footer.classList.add(
+            "pm-footer", 
+            `js-footer${this.scope_sufix}`
+        );
+        footer.tabIndex = 0;
+
+
         // 4. Append
         contentContainer.appendChild(content);
+        contentContainer.appendChild(footer);
+
         closeButton.appendChild(icon);
         container.appendChild(closeButton);
         // container.appendChild(anchor);
