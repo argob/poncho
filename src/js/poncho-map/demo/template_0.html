@@ -15,6 +15,7 @@
     <link rel="stylesheet"
         href="https://capacita-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css?rfqjsh">
     <link rel="stylesheet" href="../../../../dist/css/poncho.min.css" />
+    
 
     <!-- 
         Script para debug 
@@ -168,9 +169,9 @@ COPIAR DESDE ACÁ…
         hash: true,
         slider: true,
         tooltip: true,
-        tooltip_label: `<div style="padding:2px 0;display:flex; gap:5px; font-size:small">{{nombre}}   
- <strong class="text-arg-negro bg-arg-lima badge">Abierto</strong></div>`,
-        tooltip_label: function( self, entry ){
+        tooltip_label: `<div style="padding:2px 0;display:flex; gap:5px; font-size:small">{{nombre}}
+ <span class="br"></span><strong class="text-arg-negro bg-arg-lima badge">Prueba</strong></div>`,
+        _tooltip_label: function( self, entry ){
             const tooltipLabelContainer = document.createElement("div");
             tooltipLabelContainer.style.padding = "2px 0";
             tooltipLabelContainer.style.gap = "5px";
