@@ -65,6 +65,7 @@
         "title": "Coca",
         "type": "Polygon",
         "id_pd": 42,
+        "pm-interactive": "n",
         "nombre": "Carmen de Patagones",
         "calle": "Calle Ramón Ocampo 665",
         "institucion": "Edificio Municipal",

@@ -8,7 +8,7 @@
         border: 2.5px solid #eaeaea;
         background: #111;
         padding: var(--pm-slider-distance);
-        border-radius: var(--pm-slider-radius);
+        @include borderRadius( var(--pm-slider-radius));
         box-shadow: var(--pm-slider-shadow);
 
         &.top:focus-within {

@@ -42,6 +42,10 @@
             <li><a href="./">Inicio</a></li>
         </ul>
     </div>
+
+<div class="container">
+    <div class="row">
+
 <h1>Template 5</h1>
 <!-- 
 MAPA CON BUSCADOR FILTRO  
@@ -85,7 +89,12 @@ COPIAR DESDE ACÁ…
     </div>
 </div>
 <!-- / PONCHO MAP -->
+ 
+<div data-code-from="example" class="m-y-2"></div>
 </div>
+</div>
+</div>
+
 <!-- INCLUDE SCRIPTS -->
 <script src="https://www.argentina.gob.ar/sites/default/files/ponchotable/showdown.js"></script>
 <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/extensiones/showdown-extensions.js"></script>
@@ -98,9 +107,8 @@ COPIAR DESDE ACÁ…
 <!-- / INCLUDE SCRIPTS -->
 
 
-
 <!-- SCRIPTS -->
-<script>
+<script id="example">
     /**
      * Marker HTML con iconos Poncho, FontAwesome o similares.
      * 
@@ -158,26 +166,20 @@ COPIAR DESDE ACÁ…
         });
     };
 
-
     // init
-    var map;
-    var search;
     (async() => {
     // GApi helpers
-    // Caso GoogleSheet
     // Obtengo el JSON desde GoogleSheet
     const gapi = new GapiSheetData();
-    const googlesheet_data = await fetch_json(gapi.url("dataset", "13fMXLCN-aqeAVo6YH9eNP1ojljFWB0ocRR3sWNMYaIg")); 
+    const googlesheet_data = await fetch_json("./data/test-data.json");
     const gapi_data = gapi.json_data(googlesheet_data);
     let {headers={}, entries={}} = gapi_data;
-    // Caso 2
-    // Levanto datos desde un geoJSON
-    entries = await fetch_json("./data/test-data.geojson");
 
     // map options
     const options = {
         "scope": "poncho-map",
-        "id": "ID",
+        "id": "id",
+        headers: headers,
         "filters_info": false,
         "title": "nombre",
         "template_innerhtml": true,
@@ -206,8 +208,8 @@ COPIAR DESDE ACÁ…
                 style: "background-color:gold; border-radius:6px;"
                     + " padding:.25em .75em !important;"
             },  
-            "title": "direccion",
-            "values": [
+            "title": "nombre",
+            "_values": [
                 "title", 
                 "id",
                 "direccion",
@@ -222,13 +224,14 @@ COPIAR DESDE ACÁ…
                         "key": "direccion",
                         "header": "Cannabis",
                         "values": ["id", "title",],
-                        "separator": ", "
+                        "separator": ", ",
+
                     },
                     {
                         "key": "ubicacion",
                         "header": "Ubicación",
                         "values": ["municipio_nombre", "provincia"],
-                        "separator": ", "
+                        "separator": ", ", 
                     },
                 ],
         },
@@ -250,13 +253,6 @@ COPIAR DESDE ACÁ…
                 "style": "margin-bottom:3em"
             }
         ],
-        "headers": {
-            "title": "Nombre",
-            "id": "Identificador",
-            "description": "Descripción",
-            "email": "Email"
-        },
-        "marker": "tomate",
         "marker": (self, ele) => {
             const icon_color = (ele.hasOwnProperty("icon_color")) ? ele.icon_color : "azul";
             const img_url = "https://cdn0.iconfinder.com/data/icons/maps-and-navigation-2-1/52/86-512.png";
@@ -277,29 +273,29 @@ COPIAR DESDE ACÁ…
             return iconImg(img_url);
         },
         "no_info": false,
-        "slider": false,
+        "slider": true,
         "hash": true,
         "scroll": true,
+        filters_info: true,
         "filters": [
             {
             "legend" : "Filtrar por título",
-            "field": ["type", "checked"],
-            "fields": false
+            "field": ["tipo", "checked"],
+            "fields": false,
+            check_uncheck_all: true,
             },
             {
             "legend" : "Filtrar por provincia",
-            "field": ["provincia", "checked"],
-            "fields": false
+            "field": ["filtro-provincia", "checked"],
+            "fields": false,
+            check_uncheck_all: true,
             },
-            {
-            "legend":"institución",
-            "field": ["institucion"]
-            }
         ],
         "check_uncheck_all": true
     };
-    map = new PonchoMapFilter(entries, options);
+    const map = new PonchoMapFilter(entries, options);
     map.render();
+
 
     const search_options = {
         "scope": "poncho-map-search", 
@@ -307,10 +303,13 @@ COPIAR DESDE ACÁ…
         "datalist": true,
         "search_fields": ["provincia", "ID", "id", "title"] 
     };
-    search = new PonchoMapSearch(map, search_options);
+    const search = new PonchoMapSearch(map, search_options);
     search.render();
 })();
 </script>
+
+<script src="../../mapa-argentina/demo/js/demo.js"></script>
+
 <!-- / SCRIPTS -->
 </body>
 </html>

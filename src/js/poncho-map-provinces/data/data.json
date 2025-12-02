@@ -1,0 +1,162 @@
+{
+  "range": "ign!A1:AA1000",
+  "majorDimension": "ROWS",
+  "values": [
+    [
+      "filtro-provincia",
+      "color",
+      "volanta",
+      "subtitulos--ignore"
+    ],
+    [
+      "Provincia",
+      "Color",
+      "Antetítulo",
+      "subtítulos"
+    ],
+    [
+      "Provincia de Buenos Aires",
+      "escarapela",
+      "Atlántica",
+      "### Registro Central de Adopción\nSuprema Corte de Justicia\n\nCalle 13 N° 690 entre 45 y 46, La Plata (CP 1900)\n\nConmutador (0221) 410-4400 | Internos: 56030/ 56031 / 56037 / 56036 / 56035\n\nCorreo electrónico: \n\n\u003cregcentraladopcion@scba.gov.ar\u003e\n\nWeb: [www.scba.gov.ar/servicios/adopciones.asp](blank:#http://www.scba.gov.ar/servicios/adopciones.asp)"
+    ],
+    [
+      "Ciudad Autónoma de Buenos Aires",
+      "primary",
+      "Litoral Centro",
+      "### RUAGA\nAv. Martín Garcia 464. 1 Piso\n\nTeléfono: (011) 5030-9884 Internos: 1064 o 1067\n\nCorreo electrónico: \u003cadopcion@buenosaires.gob.ar\u003e\n\nWeb: [www.buenosaires.gob.ar/tramites/registro-unico-de-aspirantes-guarda-con-fines-adoptivos-ruaga](blank:#https://www.buenosaires.gob.ar/tramites/registro-unico-de-aspirantes-guarda-con-fines-adoptivos-ruaga)"
+    ],
+    [
+      "Catamarca",
+      "mandarina",
+      "NOA",
+      "### Registro Único de aspirantes a Guarda con Fines Adoptivos\n\nCoordinadora: Dra. Daniela Valeria de la Colina\n\nDomicilio: Maipú N° 354\n\nPoder Judicial de Catamarca, Corte de Justicia\n\nTeléfono: (0383) 437667/68/69 - int. 252\n\nCorreo electrónico: \u003cruacatamarca@juscatamarca.gob.ar\u003e\n\nWeb: [https://juscatamarca.gob.ar/adopcion.html](blank:#http://juscatamarca.gob.ar/adopcion)"
+    ],
+    [
+      "Chaco",
+      "fucsia",
+      "NEA",
+      "### Registro Centralizado de Adoptantes\nBrown 251. Planta baja- Resistencia (CP 3500)\n\nTeléfono 0362- 4453870/73, Int. 166-167\n\nCorreo electrónico: \u003cregistroadoptantes@justiciachaco.gov.ar\u003e\n\nWeb: [www.justiciachaco.gov.ar/index.php?action=registro_adoptantes](blank:#https://www.justiciachaco.gov.ar/index.php?action=registro_adoptantes)"
+    ],
+    [
+      "Chubut",
+      "uva",
+      "Patagónica",
+      "Hipólito Yrigoyen 937, Trelew (CP U9102BGE)\n\nTeléfono: 0280- 4425256\n\nCorreo electrónico: \u003cadopcionestrelew@hotmail.com\u003e\n\nCorreos electrónicos oficiales: \u003cdgadop@chubut.gov.ar\u003e, "
+    ],
+    [
+      "Córdoba",
+      "primary",
+      "Litoral Centro",
+      "### Registro Único de Adopciones\nSan Jerónimo 258 - 3er Piso (CP 5000)\n\nTeléfono: 0351- 4481000. int. 13181 (Registro) y 13182/3 (equipo técnico)\n\nCorreo electrónico: \u003cregistroadopcion@justiciacordoba.gob.ar\u003e\n\n\nWeb: [www.justiciacordoba.gob.ar/justiciacordoba/OficinasJudiciales/adopcion](blank:#https://www.justiciacordoba.gob.ar/justiciacordoba/OficinasJudiciales/adopcion)"
+    ],
+    [
+      "Corrientes",
+      "fucsia",
+      "NEA",
+      "### Registro Único de Aspirantes a la Adopción\nCarlos Pellegrini 917, entrepiso (CP 3400)\n\nTeléfono: 0379-4104298 \n\nHorario de atención: de 7 a 13\n\nCorreo electrónico: \u003cregistroadopcion@juscorrientes.gov.ar\u003e\n\nWeb: [www.juscorrientes.gov.ar/rua-ctes/](blank:#http://www.juscorrientes.gov.ar/rua-ctes/)"
+    ],
+    [
+      "Entre Ríos",
+      "primary",
+      "Litoral Centro",
+      "### Registro Único de Aspirantes a Guarda con Fines Adoptivos\nSanta Fe 278, Paraná (CP 3100)\n\nTeléfono: (0343)4209575 - 4209576\n\nCorreo electrónico: \u003cruaer@jusentrerios.gov.ar\u003e\n\nWeb: [mpd.jusentrerios.gov.ar/registro-unico-aspirantes-a-adoptacion/](blank:#http://mpd.jusentrerios.gov.ar/registro-unico-aspirantes-a-adoptacion/)"
+    ],
+    [
+      "Formosa",
+      "fucsia",
+      "NEA",
+      "### Registro Único de Aspirantes a Guardadores con Fines de Adopción\nJuan José Silva 856, Formosa (CP 3660)\n\nTeléfono: (03704) 435-225\n\nCorreo electrónico: \u003cregistroadop@jusformosa.gob.ar\u003e\n\nWeb: [www.jusformosa.gob.ar/de-interes-para-el-ciudadano/servicios-tramites/registro-unico-de-adopciones](blank:#http://www.jusformosa.gob.ar/de-interes-para-el-ciudadano/servicios-tramites/registro-unico-de-adopciones)"
+    ],
+    [
+      "Jujuy",
+      "mandarina",
+      "NOA",
+      "### Registro Único de Postulantes para Adopción\nSan Martín Nº 1158  Oficina: 31- San Salvador de Jujuy (4600)\nTeléfono:: 0388-4231888 ( Internos 833 - 882 )\n\nCorreo electrónico: \u003cadopcionjujuy@justiciajujuy.gov.ar\u003e\n\nWeb: [www.justiciajujuy.gov.ar/dep-judicial06-registro-de-postulantes-para-la-adopcion/](blank:#https://www.justiciajujuy.gov.ar/dep-judicial06-registro-de-postulantes-para-la-adopcion/)"
+    ],
+    [
+      "La Pampa",
+      "uva",
+      "La Pampa",
+      "### Registro Único Provincial de Aspirantes a la Adopción\nH. Yrigoyen 654, Santa Rosa (CP 6300)\n\nTeléfono: 02954-246247\n\nCorreo electrónico: \u003crualapampa@hotmail.com\u003e                                                                                                   Web: [https://mds.lapampa.gob.ar/registro-unico-de-adoptantes-todos.html](blank:#https://mds.lapampa.gob.ar/registro-unico-de-adoptantes-todos.html)"
+    ],
+    [
+      "La Rioja",
+      "lavanda",
+      "Nuevo Cuyo",
+      "### Registro Único Provincial de Aspirantes a la Adopción\nCalle San Martín 217 2 Piso, La Rioja (CP 5300)\nWeb: [https://justicialarioja.gob.ar/](blank:#https://justicialarioja.gob.ar/index.php/features/ruaga)\nCorreo electrónico: \u003cregistrodeadopcionlarioja@gmail.com\u003e"
+    ],
+    [
+      "Mendoza",
+      "lavanda",
+      "Nuevo Cuyo",
+      "### Registro Único de Adopción \n### Primera Circunscripción \nDirección: Belgrano y Virgen del Carmen de Cuyo. Ciudad Mendoza\nHorario de funcionamiento: lunes a viernes de 7:30 a 13:30\nTeléfonos de contacto: (0261) 4495476/4498638/4495512\nCorreo electrónico: \u003crpamendoza@jus.mendoza.gov.ar\u003e\n### 2da Circunscripción \nDirección: Emilio Civit 257 San Rafael Mendoza\nHorario de funcionamiento: lunes a viernes de 7:30 a 13:30\nTeléfonos de contacto: (0260) 444 9155\nCorreo electrónico: \u003crpamendoza_c2@jus.mendoza.gov.ar\u003e\n### Tercera Circunscripción \nDirección: 9 de Julio 850 San Martín Mendoza. 4° piso. Centro\nHorario de funcionamiento: lunes a viernes de 7:30 a 13:30\nTeléfonos de contacto: (0260) 444 9155\nCorreo electrónico: \u003crpamendozac3@jus.mendoza.gov.ar\u003e\n\n\n Web: [https://jusmendoza.gob.ar/registro-provincial-de-adopcion/](blank:#https://jusmendoza.gob.ar/registro-provincial-de-adopcion)"
+    ],
+    [
+      "Misiones",
+      "fucsia",
+      "NEA",
+      "### Registro Único de Aspirantes a la Adopción\nAv. Santa Catalina N° 2529 Piso 1, Posadas (CP 3300)\n\nTeléfono: (0376) 440-8693\n\nCorreo electrónico: \u003cadopcion@jusmisiones.gov.ar\u003e\n\nWeb: [https://ruaam.jusmisiones.gov.ar/](blank:#https://ruaam.jusmisiones.gov.ar/)"
+    ],
+    [
+      "Neuquén",
+      "uva",
+      "Patagónica",
+      "Web: [rua.jusneuquen.gov.ar/](blank:#http://rua.jusneuquen.gov.ar/) Correo electrónico: \u003cregistrounicodeadoptantes@jusneuquen.gov.ar\u003e Rivadavia 205 Piso 7 (8300) Neuquén (0299) 5691110"
+    ],
+    [
+      "Río Negro",
+      "uva",
+      "Patagónica",
+      "### Viedma Central - Registro \nTITULAR R.U.A.G.F.A.:\nDra. Silvana Mucci\n\u003csmucci@jusrionegro.gov.ar\u003e\nLaprida 292 6°nivel C.P.: 8500 Viedma\nTeléfonos: (02920) 441000 int. 1219\n\nCOORDINADORA R.U.A.G.F.A.:\nDra. Virginia Franco\n\u003cvfranco@jusrionegro.gov.ar\u003e\nLaprida 292 9°nivel C.P.: 8500 Viedma\nTeléfonos: (02920) 441000 int. 1404\n\nRegistros Circunscripcionales\nPrimera Circunscripción Judicial - Viedma\n\u003cruagfa1@jusrionegro.gov.ar\u003e\nResponsable: Estela Zanardi\nDirección: Laprida 292 – Nivel 4\nTeléfono: (02920) 441000 int. 1494\n\nSegunda Circunscripción Judicial – General Roca\n\u003cruagfa2@jusrionegro.gov.ar\u003e\nResponsable: Gabriel Mozzoni\nDirección: San Luis 853 - 1er. piso\nTeléfono: (0298) 4292050 int. 665\n\nTercera Circunscripción - San Carlos de Bariloche\n\u003cruagfa3@jusrionegro.gov.ar\u003e\nResponsable: Graciela Domingo\nDirección: Pasaje Juramento 190 6to. piso\nTeléfonos: (0294) 154801799\n\nCuarta Circunscripción Judicial - Cipolletti\n\u003cruagfa4@jusrionegro.gov.ar\u003e\nResponsable: Marta Bordon\nDirección: Yrigoyen N° 387 2do. piso\nTeléfono: (0299) 5678300 int. 247\n\nPor consultas, contáctese con el correo \u003cruagfarn@jusrionegro.gov.ar\u003e\n\nEl Registro continúa trabajando de modo presencial y remoto\n\nEl Registro Único de Aspirantes a Guardias con Fines Adoptivo (RUAGFA) informa que continúa a disposición el formulario de solicitud de inscripción, el cual tiene carácter de declaración jurada.\n\nQuienes tengan interés deben enviar la solicitud al correo electrónico del Registro Circunscripcional correspondiente a su domicilio.\n\nLaprida 292 -  9° Nivel (CP 8500)\n\nLunes a viernes de 7.30 a 13.30\n\nTeléfono: (02920) 441000 int. 1404\n\nCorreo electrónico: \u003cruagfarn@jusrionegro.gov.ar\u003e\n\nWeb: [servicios.jusrionegro.gov.ar/inicio/web/acceso-a-justicia/adopcion/](blank:#https://servicios.jusrionegro.gov.ar/inicio/web/acceso-a-justicia/adopcion/)"
+    ],
+    [
+      "Salta",
+      "mandarina",
+      "NOA",
+      "### Registro Único de Aspirantes a Guardas con Fines Adoptivos\nSecretaría de Derechos Humanos\n\nCorte de Justicia\n\nAv. Bolivia 4671, Ciudad Judicial, Anexo I, Planta Baja; Salta (CP A4408FVH)\n\nTeléfono: 0387-4258026\n\nCorreos electrónicos: \u003csddhhsec1@justiciasalta.gov.ar\u003e - \u003cregadop1@justiciasalta.gov.ar\u003e\n\nAspirantes a Guarda: [www.justiciasalta.gov.ar/es/aspirantes-a-guarda](blank:#https://www.justiciasalta.gov.ar/es/aspirantes-a-guarda)"
+    ],
+    [
+      "San Juan",
+      "lavanda",
+      "Nuevo Cuyo",
+      "### Registro Único de Adoptantes\nCaseros 390 Sur, esquina Santa Fe 1er Piso, San Juan (CP 5400)\n\nTeléfono: (0264)   580-7079\n\nCorreo electrónico: \u003cregistroadopcion-sjn@jussanjuan.gov.ar\u003e\n\nWeb: [www.jussanjuan.gov.ar/rua/presentacion/](blank:#https://www.jussanjuan.gov.ar/rua/presentacion/)"
+    ],
+    [
+      "San Luis",
+      "lavanda",
+      "Nuevo Cuyo",
+      "### Registro Único de Postulantes para la Adopción\n### Primera Circunscripción – San Luis   Dirección: Palacio de Justicia – 9 de Julio N° 934 – P.B. – CP. 5700\nTeléfono: (0266) 442-2948\nCorreo electrónico: \u003cregadopsl@justiciasanluis.gov.ar\u003e\n### Segunda Circunscripción – Villa Mercedes\nDirección: Edificio Dr. José Ramiro Podetti – Lavalle S/Nº Extremo Sur- Parque Costanera Rio V- C.P: 5730\nTeléfono: 2657-15520449 de 8 a 14 hs.\nE-mail: \u003cregadopvm@justiciasanluis.gov.ar\u003e \n### Tercera Circunscripción – Concarán\nTeléfono: 266-4570118 de 8 a 14 hs.\nE-mail: \u003cmfgasparro@justiciasanluis.gov.ar\u003e – \u003cregadopcon@justiciasanluis.gov.ar\u003e\n### Santa Rosa (Juzgado Multifuero)\nDirección: Autopista 55 – Serranías Puntanas – Santa Rosa – CP. 5777\nTeléfono: 2656-482040 – int. 512 –  266-4570118 de 8 a 14 hs\nE-mail: \u003cmfgasparro@justiciasanluis.gov.ar\u003e –  \u003cregadopcon@justiciasanluis.gov.ar\u003e\n\nSitio web: [https://mpd.justiciasanluis.gov.ar/registro-unico-de-adoptantes/](blank:#https://mpd.justiciasanluis.gov.ar/registro-unico-de-adoptantes/)"
+    ],
+    [
+      "Santa Cruz",
+      "uva",
+      "Patagónica",
+      "### Registro Provincial de Aspirantes a Guardas con Fines Adoptivos\nEdificio de Registros Públicos - Mariano Moreno 123, Río Gallegos (CP 9400)\n\nTeléfono: (02966) 432812\n\nCorreo electrónico: \u003cguardaconfinesadoptivos@santacruz.gob.ar\u003e"
+    ],
+    [
+      "Santa Fe",
+      "primary",
+      "Litoral Centro",
+      "### Registro Único de Aspirantes a Guarda con Fines Adoptivos                \n      Santa Fe: 9 de julio 1411 (CP 3000) 0342-4619956 \n      Reconquista: Hipolito Yrigoyen 1500 (CP 3560) (03482) 449362\n      Rosario: Balcarce 1514 (CP 2000) 0341-4721825\nCorreos electrónicos: \u003cregistros@santafe.gov.ar\u003e, \u003cregistrosrosario@santafe.gov.ar\u003e\n\nWeb: [www.santafe.gov.ar/index.php/tramites/modul1/index?m=descripcion&id=114065](blank:#https://www.santafe.gov.ar/index.php/tramites/modul1/index?m=descripcion&id=114065)"
+    ],
+    [
+      "Santiago del Estero",
+      "mandarina",
+      "NOA",
+      "### Registro Único de Aspirantes a la Adopción\nPalacio de Tribunales. Registro Único de Aspirantes a la Adopción, Alvear e Irigoyen\n(1º Piso - Edificio Antiguo).\nSantiago del Estero (CP 4200)\n\nTeléfono: 0385-4507634\n\nCorreo electrónico: \u003cregistroadopcionsgo@gmail.com\u003e\n\nWeb: [www.jussantiago.gov.ar/web/#/organizacion/organismos/rua](blank:#http://www.jussantiago.gov.ar/web/#/organizacion/organismos/rua)"
+    ],
+    [
+      "Tierra del Fuego, Antártida e Islas del Atlántico Sur",
+      "uva",
+      "Patagónica",
+      "### Registro Único de Adopción de la Provincia de Tierra del Fuego Antártida e Islas del Atlántico Sur\nSede: DIRECCIÓN: 60 VIVIENDAS TIRA 2 CASA N° 8 (USHUAIA).\n\nTeléfono/Fax:02901-433865- INTERNO N° 2251 \nCorreo electrónico: \u003cregistrounicoadoptantestdf@gmail.com\u003e\n\n**Delegación Río Grande**: Estrada N° 770, CP 9420, Río Grande (CP 9420)\n\nCorreo electrónico: \u003cregistrounicoadoptantestdf@gmail.com\u003e"
+    ],
+    [
+      "Tucumán",
+      "mandarina",
+      "NOA",
+      "### Registro Único de Postulantes a la Adopción de Tucumán\nCrisóstomo Álvarez 525 PB, San Miguel de Tucumán (CP 4000)\n\nTeléfono: WhatsApp: (0381) 3463577 interno 101\n\nCorreo electrónico: \u003cadopcion@justucuman.gov.ar\u003e, \u003cradopcion@gmail.com\u003e\n\nWeb: [www.rupattucuman.wixsite.com/rupat](blank:#https://rupattucuman.wixsite.com/rupat)"
+    ]
+  ]
+}

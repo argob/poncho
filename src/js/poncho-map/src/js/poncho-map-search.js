@@ -43,7 +43,7 @@ class PonchoMapSearch {
     constructor(instance, options){
         const defaults = {
             "scope": false,
-            "placeholder": "Su búsqueda",
+            "placeholder": "search_placeholder",
             "search_fields": instance.search_fields,
             "sort": true,
             "sort_reverse": false,
@@ -66,7 +66,7 @@ class PonchoMapSearch {
 
         if(this.isSearch()){
             this.instance.accesible_menu_search.push({
-                label: "Hacer una búsqueda",
+                label: "search_data",
                 link: `#id-poncho-map-search${this.scope_sufix}`
             });
         }
@@ -112,25 +112,31 @@ class PonchoMapSearch {
      * @returns {undefined}
      */
     _triggerSearch = () => {
-        const input = document.querySelector(
-            `${this.search_scope_selector} .js-poncho-map-search__input`);
-        input.id = `id-poncho-map-search${this.scope_sufix}`;
-        
-        const submit = document.querySelectorAll(
-                `${this.search_scope_selector} .js-poncho-map-search__submit`);
-                
-        submit.forEach(e => {
-            e.onclick = (event => {
+
+        const inputSelector = `${this.search_scope_selector} `
+                + `.js-poncho-map-search__input`;
+        const input = document.querySelector(inputSelector);
+        if(input){
+            input.id = `id-poncho-map-search${this.scope_sufix}`;
+        }
+
+        const submitSelector = `${this.search_scope_selector} `
+                + `.js-poncho-map-search__submit`;
+        const submit = document.querySelector(submitSelector);
+
+        if(submit){
+            submit.addEventListener("click", (event) => {
                 event.preventDefault();
         
-                const element = document.querySelector(
-                    `#js-search-input${this.instance.scope_sufix}`);
-                element.value = input.value;
-                const term = input.value;
-
-                this._renderSearch(term);
+                const eleSelector = `#js-search-input${this.instance.scope_sufix}`;
+                const element = document.querySelector(eleSelector);
+                if(element){
+                    element.value = input.value;
+                    const term = input.value;
+                    this._renderSearch(term);
+                }
             });
-        });
+        }
     };
 
 
@@ -193,7 +199,7 @@ class PonchoMapSearch {
         }
         document.querySelectorAll(
             `${this.search_scope_selector} .js-poncho-map-search__input`)
-            .forEach(element => element.placeholder = this.placeholder.toString());
+            .forEach(element => element.placeholder = this.instance._t(this.placeholder));
     };
 
     /**

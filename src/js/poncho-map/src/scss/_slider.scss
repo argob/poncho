@@ -1,6 +1,6 @@
 #{$scope} {
-    .slider {
-        &.slider--in {
+    .pm-slider {
+        &.pm-slider--in {
             right: var(--pm-slider-distance);
             animation-duration: 0.3s;
             animation-name: pm-slidein;

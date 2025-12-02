@@ -1,0 +1,8 @@
+/**
+ * Definiciones para el cambio de tamaño del caret
+ */
+@mixin borderRadius($value) {
+    -webkit-border-radius: #{$value};
+    -moz-border-radius: #{$value};
+    border-radius: #{$value};
+}
