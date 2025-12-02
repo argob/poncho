@@ -5289,28 +5289,36 @@ class PonchoMap {
     }
 
 
-
     /* VALIDATORS */
     /**
-     * Valid string
-     * @param {*} str 
-     * @returns {boolean}
+     * Comprueba si un valor es un string.
+     * @param {*} value El valor a comprobar.
+     * @returns {boolean} Retorna `true` si el valor es un string; de 
+     * lo contrario, `false`.
      */
     isString(value) {
         return typeof value === 'string';
     }
 
-    isEmtpyString(str) {
+    /**
+     * Comprueba si un valor es un string vacío o que solo contiene 
+     * espacios en blanco.
+     * @param {*} str El string a comprobar.
+     * @returns {boolean} Retorna `true` si el string está vacío o es nulo; 
+     * de lo contrario, `false`.
+     */
+    isEmptyString(str) {
         return typeof str === 'string' && str.trim().length === 0;
     }
 
     /**
-     * Valid number
-     * @param {*} num 
-     * @returns {boolean}
+     * Comprueba si un valor es un número finito.
+     * @param {*} num El valor a comprobar.
+     * @returns {boolean} Retorna `true` si el valor es un número y es 
+     * finito; de lo contrario, `false`.
      */
-    isNumber(num){
-        return typeof num === "number"  && isFinite(num);
+    isNumber(num) {
+        return typeof num === "number" && isFinite(num);
     }
 
     /**
@@ -5319,21 +5327,15 @@ class PonchoMap {
      * @returns {boolean}
      */
     isObject(obj) {
-        if (typeof obj !== 'object' || obj === null) {
-            console.warn("El valor no es un objeto válido.");
-            return false;
-        }
-        if (Array.isArray(obj)) {
-            console.warn("El valor es un array, no un objeto.");
-            return false;
-        }
-        return true;
+        return typeof obj === 'object' && obj !== null && !Array.isArray(obj);
     }
 
     /**
-     * Valida si un valor es un objeto y está vacío.
-     * @param {*} obj El valor a validar.
-     * @returns {boolean} Retorna `true` si es un objeto válido y vacío; de lo contrario, `false`.
+     * Comprueba si un valor es un objeto vacío.
+     * Excluye arrays y valores nulos.
+     * @param {*} obj El valor a comprobar.
+     * @returns {boolean} Retorna `true` si el valor es un objeto válido y 
+     * está vacío; de lo contrario, `false`.
      */
     isEmptyObject(obj) {
         if (typeof obj !== 'object' || obj === null || Array.isArray(obj)) {
@@ -5358,7 +5360,7 @@ class PonchoMap {
             return;
         }
 
-        if (this.isEmtpyString(value)) {
+        if (this.isEmptyString(value)) {
             console.warn(
                 "El primer parámetro debe ser una cadena de texto no vacía."
             );
@@ -5427,13 +5429,13 @@ class PonchoMap {
     _setFraction = (mediaSize) => {
         let fraction = '1:1';
 
-        if(!this.isNumber(mediaSize)){
+        const mSize = (mediaSize ? mediaSize : 
+            document.getElementById(this.map_selector).offsetWidth);
+
+        if(!this.isNumber(mSize)){
             return fraction;
         }
 
-        const mSize = (mediaSize ? mediaSize : 
-            document.getElementById(this.map_selector).offsetWidth);
-        
         let breakpointEntries = Object.entries(this.breakpoint);
         breakpointEntries.sort((a, b) => b[1] - a[1]);
 
@@ -5649,12 +5651,10 @@ class PonchoMap {
      */
     _disabledEnableThemes = (themes, attr="disabled") => {
         for(let item of themes){
-            document
-                .querySelectorAll(
-                    `${this.scope_selector} [data-theme="${item}"]`)
-                .forEach(function(ele){
-                if(attr=="disabled"){
-                    ele.setAttribute("aria-hidden", "true");
+            const selector = `${this.scope_selector} [data-theme="${item}"]`;
+            document.querySelectorAll(selector).forEach(function(ele){
+                if(attr == "disabled"){
+                    ele.ariaHidden = "true";
                     ele.parentElement.style.display = "none";
                 } else {
                     ele.removeAttribute("aria-hidden");
@@ -5676,19 +5676,19 @@ class PonchoMap {
      */
     _setLayerTheme = (removeList, addLayer, disabled) => {
         const selector = document.querySelectorAll(this.scope_selector);
-        selector.forEach(element => {
-            element.classList.remove(...removeList);
-            element.classList.add(addLayer);
+        selector.forEach(function(ele){
+            ele.classList.remove(...removeList);
+            ele.classList.add(addLayer);
         });
         this._disabledEnableThemes(["contrast", "dark"], disabled);
 
-        const menuitemLayerTheme = document.querySelectorAll(
-                `${this.scope_selector} [data-theme^="layer-"]`);
-        menuitemLayerTheme.forEach(ele => {
+        const menuItemSelector = `${this.scope_selector} [data-theme^="layer-"]`;
+        const menuitemLayerTheme = document.querySelectorAll(menuItemSelector);
+        menuitemLayerTheme.forEach(function(ele){
             if(ele.dataset.theme == addLayer){
-                ele.setAttribute("aria-current", "true");
+                ele.ariaCurrent = "true";
             } else {
-                ele.setAttribute("aria-current", "false");
+                ele.ariaCurrent = "false";
             }
         });
     }
@@ -5751,12 +5751,12 @@ class PonchoMap {
 
         // contenedor enlaces
         const item = document.createElement("div");
-        item.setAttribute("tabindex", "-1");
+        item.tabindex = "-1";
         item.dataset.toggle="true";
 
         // icono del menú
         const icon = document.createElement("i");
-        icon.setAttribute("aria-hidden", "true");
+        icon.ariaHidden = "true";
         icon.classList.add("pmi", "pmi-adjust");
 
         // Botón para abrir el menú.
@@ -5774,9 +5774,7 @@ class PonchoMap {
         const list = document.createElement("ul");
         list.id = `list-themes-tool-button${this.scope_sufix}`;
         list.role = "menu";
-        list.setAttribute(
-            "aria-labelledby", 
-            `themes-tool-button${this.scope_sufix}`);
+        list.ariaLabelledby = `themes-tool-button${this.scope_sufix}`;
         list.classList.add(
             "pm-container", "pm-list", "pm-list-unstyled", 
             "pm-p-1", "pm-caret", "pm-caret-b", "pm-toggle", 
@@ -5785,7 +5783,7 @@ class PonchoMap {
         // Botón para restablecer el mapa
         const restartLinkOptions = {
             label: "Restablecer",
-            attributes: {role: "menuitem"},
+            attributes: {role: "menuitem", tabindex:0},
             aria_label: "Restablece los valores originales",
             css: ["pm-item-link", "js-reset-theme"]
         };
@@ -5802,12 +5800,10 @@ class PonchoMap {
         const totalItems = this.default_themes.length;
         for(let i = 0; i <= totalItems - 1; i++){
             const {code, name, aria_label, description} = this.default_themes[i];
-            
-
             const buttonThemeOptions = {
                 aria_label,
                 css: ["js-set-theme", "pm-item-link"],
-                attributes: {role: "menuitem"},
+                attributes: {role: "menuitem",tabindex: 0},
                 datasets: {theme: code}
             };
 
@@ -5843,17 +5839,20 @@ class PonchoMap {
             list.appendChild(li);
         }	
 
-
         // Si no se setea multilayer, oculto los items del menú.
         if(this.map_layers){
             for(let item of Object.keys(this.layerViewSettings)){
                 const {label} = this.layerViewSettings[item];
+                const layersOptions = {
+                    label,
+                    css: ["pm-item-link", `js-${item}-layer`],
+                    attributes: {role: "menuitem", tabindex: 0},
+                    datasets: {theme: `layer-${item}`},
+                };
+                const sateliteButton = this.addAnchorElement(layersOptions);
 
-                const sateliteButton = document.createElement("button");
-                sateliteButton.textContent = label;
-                sateliteButton.dataset.theme = `layer-${item}`;
-                sateliteButton.classList.add("pm-item-link", `js-${item}-layer`);
                 const li = document.createElement("li");
+                li.role = "presentation";
                 li.appendChild(sateliteButton);
                 list.appendChild(li);
             }
@@ -6041,7 +6040,7 @@ class PonchoMap {
         const {items=[], label} = this.open_maps_options;
 
         for(const item of items){
-            const {link:templateLink, platform="all"} = item;
+            const {link: templateLink, platform = "all"} = item;
             const regex = /(?=.*\{\{latitude\}\})(?=.*\{\{longitude\}\}).*/gm;
 
             if (platform === 'mac' && !navigator.userAgent.includes('Mac')) {
@@ -6053,11 +6052,7 @@ class PonchoMap {
             }
 
             const link = this.tplParser(templateLink, {latitude, longitude});
-            const anchorOptions = {
-                ...item, 
-                link,
-                attributes: {tabindex: 0}
-            };
+            const anchorOptions = {...item, link, attributes: {tabindex: 0}};
 
             const a = this.addAnchorElement(anchorOptions);
             const li = document.createElement("li");
@@ -6068,20 +6063,20 @@ class PonchoMap {
         const summary = document.createElement("summary");
         summary.textContent = label;
         summary.tabIndex = 0;
-        summary.setAttribute(
-            "aria-label", "Abrir el punto geográfico en un mapa alternativo");
+        summary.ariaLabel = "Abrir el punto geográfico en un mapa alternativo";
 
         const details = document.createElement("details");
         details.classList.add("blank");
-        details.appendChild(summary);
-        details.appendChild(ul);
 
         const container = document.createElement("footer");
         container.className = "pm-open-map";
-        container.appendChild(details);
-
+        
         const parentSelector = `.js-content${this.scope_sufix}`;
         const parentNode = document.querySelector(parentSelector);
+
+        details.appendChild(summary);
+        details.appendChild(ul);
+        container.appendChild(details);
         parentNode.appendChild(container);
     }
 
@@ -6095,9 +6090,9 @@ class PonchoMap {
      */
     validateCoordinates(latitude, longitude) {
         // Convertir a números en caso de que se pasen como strings
-        const lat = (typeof latitude === 'string' ? 
+        const lat = (this.isString(latitude) ? 
             parseFloat(latitude) : latitude);
-        const lng = (typeof longitude === 'string' ? 
+        const lng = (this.isString(longitude) ? 
             parseFloat(longitude) : longitude);
         
         // Verificar que sean números válidos (no NaN)
@@ -6250,8 +6245,7 @@ class PonchoMap {
 
         // Mensajes
         const {title, messages=[], terminal=false} = entry;
-        // if(typeof title === "string" && title.trim() != ""){
-        if(!this.isEmtpyString(title)){
+        if(!this.isEmptyString(title)){
             const messageLabel = document.createElement("p");
             messageLabel.innerHTML = title;
             // Agrego el título al contenedor.
@@ -6468,7 +6462,7 @@ class PonchoMap {
      * @return {undefined}
      */
     addHash = (value) => {
-        if (this.isEmtpyString(value)) {
+        if (this.isEmptyString(value)) {
             console.error('Invalid value provided to update hash');
             return;
         }
@@ -6506,7 +6500,7 @@ class PonchoMap {
      */
     searchEntries = (term, dataset) => {
         dataset = (typeof dataset === "undefined" ? this.geoJSON: dataset);
-        if(this.isEmtpyString(term)){
+        if(this.isEmptyString(term)){
             console.info("searchEntries", "Término vacío.");
             return dataset;
         }
@@ -6571,6 +6565,7 @@ class PonchoMap {
         const rect = pos.getBoundingClientRect();
         const pos_center_horizontal = (pos.offsetLeft + pos.offsetWidth) / 2;
         const pos_center_vertical =  rect.top + window.scrollY;
+        
         window.scrollTo({
             top: pos_center_vertical,
             left: pos_center_horizontal,
@@ -6702,31 +6697,63 @@ class PonchoMap {
      * *keypress* sobre un marker. La idea es que un usuario con lector 
      * de pantalla mueva el foto a la información.
      */
+    // __focusOnSlider = () => {
+    //     if(this.no_info){
+    //         return;
+    //     }
+    //     const animationSelector = `.js-slider${this.scope_sufix}`;
+    //     const sliderElement = document.querySelector(animationSelector);
+
+    //     if(this.isSliderOpen()){
+    //         sliderElement.focus();
+    //     } else {
+    //         const animation = document.querySelector(`div${animationSelector}`);
+    //         if(animation){
+    //             animation.addEventListener("animationend", (event) => {
+    //                 if(event.animationName == "open"){
+    //                     // pach para detectar el movimiento de <details>
+    //                     // @TODO enontrar un método distinto
+    //                     return;
+    //                 }
+
+    //                 animation.focus();
+    //             }, { once: true });
+    //         }
+    //     }
+
+    // };
+
+
     _focusOnSlider = () => {
         if(this.no_info){
             return;
         }
-        if(this.isSliderOpen()){
-            document.querySelector(`.js-slider${this.scope_sufix}`)
-                    .focus();
-        } else {
-                const animation = document.querySelector(
-                    `div.js-slider${this.scope_sufix}`
-                );
-                if(animation){
-                    animation.addEventListener("animationend", (event) => {
-                        if(event.animationName == "open"){
-                            // pach para detectar el movimiento de <details>
-                            // @TODO enontrar un método distinto
-                            return;
-                        }
-                        document
-                            .querySelector(`.js-slider${this.scope_sufix}`)
-                            .focus();
-                    });
-                }
 
+        const animationSelector = `.js-slider${this.scope_sufix}`;
+        const sliderElement = document.querySelector(animationSelector);
+
+        if (!sliderElement) {
+            console.warn(`No se encontró el elemento con el selector: ${sliderSelector}`);
+            return;
         }
+
+        if(this.isSliderOpen()){
+            sliderElement.focus();
+            return;
+        }
+
+        // const animation = document.querySelector(`div${animationSelector}`);
+        // if(!animation){
+        //     return;
+        // }
+        sliderElement.addEventListener("animationend", (event) => {
+            if (event.animationName === "open") {
+                // pach para detectar el movimiento de <details>
+                // @TODO enontrar un método distinto
+                return;
+            }
+            sliderElement.focus();
+        }, { once: true });
     };
 
 
@@ -6740,19 +6767,18 @@ class PonchoMap {
      * en los mixings.
      */
     setHeaders = (headers) => {
-        if(![
-                this.template_structure, 
-                this.template_structure.mixing].every(e => e)){
-            return headers;
-        }
+        const mixing = this.template_structure?.mixing ?? [];
 
-        const new_headers = this.template_structure.mixing.reduce((i, e) => {
-            if(![e.key].every(i => i)){
-                return;
+        const additionalHeaders = mixing.reduce((accumulator, item) => {
+            const key = item.key;
+            
+            if (key) {
+                accumulator[key] = item.header ?? "";
             }
-            return ({ ...i, ...({[e.key]: (e.header ? e.header : "")})});
+            return accumulator;
         }, {});
-        return {...headers, ...new_headers};
+        
+        return { ...headers, ...additionalHeaders };
     };
 
 
@@ -6789,9 +6815,9 @@ class PonchoMap {
         );
         container.style.display = "none";
         container.tabIndex = "0";
-        container.setAttribute("role", "region");
-        container.setAttribute("aria-live", "polite");
-        container.setAttribute("aria-label", "Panel de información");
+        container.role = "region";
+        container.ariaLive = "polite";
+        container.ariaLabel = "Panel de información";
 
         // Icono para el botón 
         const icon = document.createElement("i");
@@ -6804,8 +6830,9 @@ class PonchoMap {
                 "btn", "pm-btn-xs", "btn-secondary", "btn-close", 
                 `js-close-slider${this.scope_sufix}`);
         closeButton.title = "Cerrar panel";
-        closeButton.setAttribute("role", "button");
-        closeButton.setAttribute("aria-label", "Cerrar panel de información");
+        closeButton.role = "button";
+        closeButton.tabIndex = 0;
+        closeButton.ariaLabel = "Cerrar panel de información";
 
         // Enlace anchor.
         const anchorOptions = {
@@ -6953,26 +6980,33 @@ class PonchoMap {
      * que evaluar el tipo de objeto geoJSON.
      * @param {object} layer 
      */
-    _setClickeable = layer => {
+    _setClickeable = (layer) => {
         layer.on("keypress click", (e) => {
-            document
-                .querySelectorAll(".marker--active")
-                .forEach(e => e.classList.remove("marker--active"));
-                
-            
-                ["_icon", "_path"].forEach(ele => {
-                if(!e.sourceTarget.hasOwnProperty(ele)){
-                    return;
-                }
-                e.sourceTarget[ele].classList.add("marker--active");
+            // Borro la clase activa de los markers.
+            document.querySelectorAll(".marker--active").forEach((el) => {
+                el.classList.remove("marker--active");
             });
 
-            const content = this.entries.find(e => {
-                return (e?.properties && e.properties[this.id]===layer.options.id);
-            });
-            this.setContent(content.properties);
+            // Le agrego la clase activa al marker.
+            const target = e.sourceTarget;
+            if (target._icon) {
+                target._icon.classList.add("marker--active");
+            }
+            if (target._path) {
+                target._path.classList.add("marker--active");
+            }
+
+            // Busco el contenido correspondiente para actualizar.
+            const content = this.entries.find(
+                (entry) => entry?.properties?.[this.id] === layer.options.id
+            );
+
+            if (content) {
+                this.setContent(content.properties);
+            }
         });
     };
+
 
 
     /**
@@ -7219,7 +7253,7 @@ class PonchoMap {
                     }
                     
                     // if(typeof template === "string" && template.trim() !== ""){
-                    if(!this.isEmtpyString(template)){
+                    if(!this.isEmptyString(template)){
                         customRow[key] = this.tplParser(template, row);
                     } else {
                         customRow[key] = values
@@ -7260,7 +7294,7 @@ class PonchoMap {
     _setClassList = (value) => {
         const spliter = str => String(str).split(/\s+/).filter(Boolean);
         
-        if (typeof value === "string") {
+        if (this.isString(value)) {
             return spliter(value);
         } else if(Array.isArray(value) && value.length > 0 ){
             return value.flatMap(m => spliter(m));
@@ -7481,12 +7515,12 @@ class PonchoMap {
 
             const icon = document.createElement("i");
             icon.classList.add("pmi", "pmi-expand");
-            icon.setAttribute("aria-hidden","true");
+            icon.ariaHidden = "true";
 
             const buttonOptions = {
                 link: "#",
                 title: "Ver mapa completo",
-                attributes: {role: "button"},
+                attributes: {role: "button", tabindex: 0},
                 aria_label: "Ver mapa completo",
                 css: [
                     `js-reset-view${this.scope_sufix}`, 
@@ -7511,9 +7545,9 @@ class PonchoMap {
         if(!this.marker_color || typeof this.marker_color === "boolean"){
             return null
         }
-        if(typeof this.marker_color === "string"){
+        if(this.isString(this.marker_color)){
             return this.icon(this.marker_color);
-        } else if (typeof this.marker_color(this, row) === "string"){
+        } else if (this.isString(this.marker_color(this, row))){
             const color = this.marker_color(this, row);
             return this.icon(color);
         } else if (typeof this.marker_color === "function"){
@@ -7688,19 +7722,18 @@ class PonchoMap {
             if(!ele.hasOwnProperty(key)){
                 return;
             }
-            ele[key].setAttribute(
-                "aria-label", ele?.feature?.properties?.[this.title]
-            );
-            
-            ele[key].setAttribute("tabindex", 0);
+
+            ele[key].ariaLabel = ele?.feature?.properties?.[this.title];
+            ele[key].tabindex = 0;
             ele[key].dataset.entryId = ele?.feature?.properties?.[this.id];
             
             if(ele?.feature?.properties?.["pm-interactive"] == "n"){
                 ele[key].dataset.interactive = "n";
-                ele[key].setAttribute("role", "graphics-symbol");
+                ele[key].role = "graphics-symbol";
             } else {
-                ele[key].setAttribute("role", "button");
+                ele[key].role = "button";
             }
+
             ele[key].dataset.leafletId = ele._leaflet_id;
         };
 
@@ -7839,13 +7872,13 @@ class PonchoMap {
             "pmi-universal-access", 
             "accesible-nav__icon"
         );
-        icon.setAttribute("aria-hidden", "true");
+        icon.ariaHidden = "true";
 
         const nav = document.createElement("div");
         nav.classList.add("pm-accesible-nav", "top", "pm-list");
         nav.id = `pm-accesible-nav${this.scope_sufix}`;
-        nav.setAttribute("aria-label", "Menú para el mapa");
-        nav.setAttribute("role", "navigation");
+        nav.ariaLabel = "Menú para el mapa";
+        nav.role = "navigation";
         nav.tabIndex=0;
 
         const ul = document.createElement("ul");
@@ -7880,6 +7913,7 @@ class PonchoMap {
             link: `#pm-accesible-nav${this.scope_sufix}`,
             id: `accesible-return-nav${this.scope_sufix}`,
             css: ["pm-item-link", "pm-accesible"],
+            attributes: {tabindex: 0}
         };
         const backToNav = this.addAnchorElement(anchorOptions);
         const returnNav = document.createElement("div");
@@ -7986,7 +8020,7 @@ class PonchoMap {
     _accesibleExtras = () => {
         document
             .querySelectorAll(".js-poncho-map__help")
-            .forEach(e => e.setAttribute("aria-live", "polite"));
+            .forEach(e => e.ariaLive = "polite");
     }
 
 
@@ -8087,7 +8121,8 @@ class PonchoMapLoader {
         const cover = document.createElement('div');
         cover.dataset.scope = this.selector;
         cover.classList.add(
-            "poncho-map__loader", `js-poncho-map__loader${this.scope_sufix}`
+            "poncho-map__loader", 
+            `js-poncho-map__loader${this.scope_sufix}`
         );
         // Background opacity
         Object.assign(cover.style, this.cover_style);
@@ -8353,7 +8388,7 @@ class PonchoMapFilter extends PonchoMap {
         pos.style.maxHeight = `${filters_height}px`;
 
         // Valor tomado de la hoja de estilos
-        const inner_padding = 45;
+        const inner_padding = 55;
         const height = pos.offsetHeight - inner_padding;
         const filters = document.querySelector(`.js-filters${this.scope_sufix}`);
         filters.style.height = `${height}px`;
@@ -9253,8 +9288,7 @@ class PonchoMapSearch {
      * @returns {undefined}
      */
     searchTerm = (term) => {
-        // if(typeof term !== "string" || term.trim() == ""){
-        if(this.instance.isEmtpyString(term)){
+        if(this.instance.isEmptyString(term)){
             console.error(
                 "searchTerm", 
                 "El término de búsqueda no puede estar vacío.");
@@ -9315,7 +9349,7 @@ class PonchoMapSearch {
      * @returns {undefined}
      */
     _renderSearch = (term) => {
-        if(typeof term !== "string" || term.trim() == ""){
+        if(this.instance.isEmptyString(term)){
             console.error(
                 "_renderSearch", 
                 "El término de búsqueda no puede estar vacío.");
