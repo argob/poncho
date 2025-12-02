@@ -10706,20 +10706,20 @@ input[type=text]:-ms-input-placeholder {
 .alert {
   --main-theme: #555;
   --main-shadow-spread-size: 8px;
-  --main-box-shadow: 4px 4px calc(var(--main-shadow-spread-size) + 1px) -1px
+  --main-box-shadow: 4px 4px calc(var(--main-shadow-spread-size) + 1px)
       rgba(0, 0, 0, 0.175);
   --main-color: inherit;
   --main-border-left-weight: 6px;
   --main-padding: 15px;
   --media-col-gap: 10px;
   --media-row-gap: calc(var(--media-col-gap) / 2);
-  --icon-size: 2rem;
 }
 
 /**
  * ALERTAS 
  */
 .alert {
+  --icon-size: 3rem;
   border-radius: 2px;
   width: calc(100% - var(--main-shadow-spread-size));
   position: relative;
@@ -11080,6 +11080,7 @@ input[type=text]:-ms-input-placeholder {
  * Definición para los temas de color.
  */
 .highlight-box {
+  --icon-size: 2rem;
   width: calc(100% - var(--main-shadow-spread-size));
   position: relative;
   background: white;

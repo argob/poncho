@@ -2,6 +2,9 @@
  * ALERTAS 
  */
 #{$scopeAlert} {
+    --icon-size: 3rem;
+
+    
     border-radius: 2px;
     width: calc(100% - var(--main-shadow-spread-size));
     position: relative;
