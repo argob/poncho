@@ -57,7 +57,7 @@ const options = {
       <td>values</td>
       <td><code>Array()</code></td>
       <td><code>[]</code></td>
-      <td><p>Permite defini cuales son las claves que deben imprimirse en el slider.</p></td>
+      <td><p>Permite definir cuales son las claves que deben imprimirse en el slider.</p></td>
     </tr>
     <tr>
       <td>exclude</td>
