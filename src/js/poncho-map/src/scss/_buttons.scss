@@ -1,6 +1,6 @@
 #{$scope} {
-    .btn-close {
-        border-radius: 50%;
+    .pm-btn-close {
+        @include borderRadius(50%);
         aspect-ratio: 1 / 1;
         position: absolute;
         background-image: none;
@@ -18,7 +18,7 @@
         aspect-ratio: 1 / 1;
         width: 40px;
         height: 40px;
-        border-radius: 50%;
+        @include borderRadius(50%);
     }
 
     .pm-btn-xs {
@@ -38,7 +38,7 @@
   word-break: initial;
   text-decoration: none;
   letter-spacing: inherit;
-  border-radius: 30px;
+  @include borderRadius(30px);
   line-height: 1.42857143;
  }
 
@@ -54,7 +54,7 @@
         text-align: center;
         
         &:focus {
-            border-radius: 50%;
+            @include borderRadius(50%);
         }
     }
 
@@ -72,21 +72,21 @@
 
         &__button {
             font-size: 0.75rem;
-            border-radius: 9px;
+            @include borderRadius(9px);
             padding: 1px 0.75em;
             margin: 0 2px;
             background-color: var(--pm-active-background);
             color: var(--pm-active-color);
             transition: 0.15s;
-            border: var(--pm-slider-border-width) solid var(--pm-slider-border-color);
+            border:none
+            // border: var(--pm-slider-border-width) solid var(--pm-slider-border-color);
         }
 
         &__button:hover {
             background-color: var(--pm-hover-background);
             color: var(--pm-hover-color);
             transition: 0.15s;
-            box-shadow: 0 0 3px rgb(0 0 0 / 0.15);
-
+     
         }
 
         &__button:first-of-type {

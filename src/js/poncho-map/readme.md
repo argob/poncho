@@ -12,14 +12,16 @@
 - [PonchoMap](#ponchomap)
   - [Tabla de contenidos](#tabla-de-contenidos)
   - [Opciones generales](#opciones-generales)
+    - [Opciones para `summary`](#opciones-para-summary)
+      - [Parámetros](#parámetros)
     - [Opciones para `template_structure`](#opciones-para-template_structure)
       - [Sintaxis](#sintaxis)
-      - [Parámetros](#parámetros)
+      - [Parámetros](#parámetros-1)
       - [Opciones para Lead](#opciones-para-lead)
         - [Sintaxis](#sintaxis-1)
-        - [Parámetros](#parámetros-1)
-      - [Opciones para `mixing`](#opciones-para-mixing)
         - [Parámetros](#parámetros-2)
+      - [Opciones para `mixing`](#opciones-para-mixing)
+        - [Parámetros](#parámetros-3)
     - [Opciones para `header_icons`](#opciones-para-header_icons)
     - [Opciones para `marker`](#opciones-para-marker)
       - [Definiendo colores](#definiendo-colores)
@@ -50,6 +52,11 @@
 
 
 ---
+
+
+
+
+
 
 ## Opciones generales
 
@@ -97,8 +104,42 @@
 | map_align | `string` | `center` | Permite alinear el mapa a la izquierda o a la derecha de su contenedor. Opciones: _«left»_ o _«right»_. |
 | breakpoint | `Array object`|  | Definición para tamaño de dispositivos. ```breakpoint: {lg: 992,xl: 1200,sm: 576,md: 768}``` |
 | breakpoint_fraction | `Array object`| | Alineación del mapa según el tamaño del dispositivo. ```breakpoint_fraction: {sm: "1:4",md: "1:4",lg: "1:3",xl: "2:7"}``` |
+| summary | `string\|object`| | <p>Agrega una descripción o propósito del mapa. El sumario puede estar oculto, pero «visible» para lectores de pantalla o se le puede dar formato usando las opciones: css o style.</p> <div>```summary: "cadena de texto"```</div> o <div>```summary:{title:"Cadena de texto", hidden:"boolean",css:"object\|string", style: "object\|string", position: "top\|bottom" }```</div> <p>Ver, opciones para <em>summary</em>.</p> |
 
 
+### Opciones para `summary`
+
+Asignar una descripción o propósito al mapa usando un id es de mucha importancia. Con frecuencia, los mapas se presentan con títulos muy generales que no explican su función. Al vincular el mapa con un texto descriptivo, no solo se clarifica su contenido, sino que también se mejora significativamente la accesibilidad y la experiencia del usuario, asegurando que todos puedan entender y aprovechar la información que ofrece.
+
+**Ejemplo 1**
+
+```js
+const options = {
+    summary: "Cadena de texto",
+}
+```
+
+**Ejemplo 2**
+
+```js
+const options = {
+    summary: {
+        title: "Cadena de texto",
+        position: "top|bottom",
+        css: "text-color-orange bg-color-blue", 
+        style: "border-bottom: 1px solid blue;",
+        hidden: "boolean"
+    }
+}
+```
+
+#### Parámetros
+
+| Parámetro | Tipo | Default | Descripción |
+|:---|:---|:---|:---|
+| title | `string` | `null` | Texto descriptivo, descripción o propósito del mapa. |
+| position | `string` | `top` | <p>Posiciona el summary antes o después del mapa.</p><p>Opciones:</p> <ul><li>`top`</li><li>`bottom`</li></ul> |
+| hidden | `boolean` | `false` | Si es `true`, oculta el summary, pero admite que pueda ser leido por lectores de pantalla. `false` (por defecto), lo muestra. |
 
 ### Opciones para `template_structure`
 
@@ -682,48 +723,76 @@ search.render();
 Lo conveniente es tener la asignación de documentos CSS dentro de la etiqueta `<head>` y la llamada a los documentos JavaScript inmediatamente antes del cierre del body (`</body>`).
 
 ```html
-<!-- CSS FILES -->
 <link href="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.css" rel="stylesheet"/>
-<link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.css" rel="stylesheet"/>
-<link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.Default.css" rel="stylesheet"/>
-<!-- / CSS FILES -->
 ```
 
 ```html
-<!-- JAVASCRIPT FILES -->
-<script src="https://www.argentina.gob.ar/sites/default/files/ponchotable/showdown.js"></script>
-<script  src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/extensiones/showdown-extensions.js"></script>
+<!-- PONCHO MAP SCRIPTS -->
 <script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.js"></script>
 <script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script>
-<script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
-<!-- / JAVASCRIPT FILES -->
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
+<!-- / PONCHO MAP SCRIPTS -->
 ```
+
+*CLUSTERS*
+
+**JS**
+
+```html
+<script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script>
+```
+
+**CSS**
+
+```html
+<link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.css" rel="stylesheet"/>
+<link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.Default.css" rel="stylesheet"/>
+```
+
+*SHOWDOWN*
+
+```html
+<script src="https://www.argentina.gob.ar/sites/default/files/ponchotable/showdown.js"></script>
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/extensiones/showdown-extensions.js"></script>
+```
+
 
 Si se desea utilizar el buscador debe incluirse el siguiente código. El código puede ubicarse en el lugar de la página donde sea más conveniente. 
 
 ```html
 <!-- PONCHO MAP SEARCH -->
-<form>
-  <div data-scope="poncho-map-search-scope">
-      <div class="input-group">
-          <input 
-              type="search" 
-              name="search" 
-              autocomplete="off"
-              class="js-poncho-map-search__input form-control" 
-              list="list">
-              <datalist id="list" class="js-porcho-map-search__list"></datalist>
-          <span class="input-group-btn">
-            <button class="js-poncho-map-search__submit btn btn-primary">
-              <i class="fa fa-search text-white">&nbsp;</i>
-            </button>
-          </span>
-      </div>
-      <div data-scope="poncho-map-scope" class="m-b-1">
-          <div class="js-poncho-map__help small text-default"></div>
-      </div>
-  </div>
-</form>
+<search>
+    <form>
+        <div data-scope="search-poncho-map">
+            <label class="sr-only" for="search">Buscar puntos</label>
+            <div class="input-group m-b-0 p-b-0 webform-component">
+                <input 
+                    class="js-poncho-map-search__input form-control" 
+                    id="search" 
+                    list="js-porcho-map-search__list" 
+                    name="search" 
+                    autocomplete="true"
+                    spellcheck="true" 
+                    type="search"> 
+                <datalist 
+                    class="js-porcho-map-search__list" 
+                    id="js-porcho-map-search__list">
+                </datalist> 
+                <span class="input-group-btn">
+                    <button 
+                        class="js-poncho-map-search__submit btn btn-primary" 
+                        type="submit">
+                        <i class="fa fa-search text-white"></i>
+                        <span class="sr-only">Buscar término</span>
+                    </button> 
+                </span>
+            </div>
+            <div data-scope="ponchomap">
+                <div class="js-poncho-map__help text-mutted small"></div>
+            </div>
+        </div>
+    </form>
+</search>
 <!-- / PONCHO MAP SEARCH -->
 ```
 
