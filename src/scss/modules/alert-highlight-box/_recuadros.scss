@@ -5,24 +5,19 @@
  * Definición para los temas de color.
  */
 $colorThemesRecuadro: (
-    "azul": (
-        themeColor: $brand-arg-azul,
+    "azul": (themeColor: $brand-arg-azul,
         buttonColor: white,
     ),
-    "secundario": (
-        themeColor: $brand-arg-secundario,
+    "secundario": (themeColor: $brand-arg-secundario,
         buttonColor: white,
     ),
-    "palta": (
-        themeColor:$brand-arg-palta,
+    "palta": (themeColor:$brand-arg-palta,
         buttonColor: palta,
     ),
-    "uva": (
-        themeColor: $brand-arg-uva,
+    "uva": (themeColor: $brand-arg-uva,
         buttonColor: white,
     ),
-    "rosado": (
-        themeColor:$brand-arg-rosado,
+    "rosado": (themeColor:$brand-arg-rosado,
         buttonColor: black,
     ),
 );
@@ -30,6 +25,9 @@ $colorThemesRecuadro: (
 
 
 #{$recuadrosScope} {
+    --icon-size: 2rem;
+
+
     width: calc(100% - var(--main-shadow-spread-size));
     position: relative;
     background: white;
@@ -43,10 +41,12 @@ $colorThemesRecuadro: (
     color: #555;
     background-color: white;
     box-shadow: var(--main-box-shadow);
+
     // Si el componente no tiene icono
     &:not(:has(.media-left)) {
         padding: var(--main-padding);
     }
+
     // REDEFINIMOS MEDIA
     .media {
         grid-template-columns: calc(var(--icon-size) + 1.5em) 1fr;
@@ -56,6 +56,7 @@ $colorThemesRecuadro: (
         &:not(:has(.media-left)) {
             grid-template-columns: 1fr;
         }
+
         .media-left {
             padding: {
                 left: 0;
@@ -63,8 +64,10 @@ $colorThemesRecuadro: (
                 top: 0;
                 bottom: 0;
             }
+
             text-align: center;
         }
+
         .media-body {
             width: auto;
             align-self: center;
@@ -135,11 +138,10 @@ $colorThemesRecuadro: (
     #{$recuadrosScope}.arg-#{$themeName} {
         --main-theme: #{map-get($themeValues, themeColor)};
     }
+
     #{$recuadrosScope}.arg-#{$themeName} .btn {
-        @include button-variant(
-            map-get($themeValues, buttonColor),
+        @include button-variant(map-get($themeValues, buttonColor),
             map-get($themeValues, themeColor),
-            map-get($themeValues, themeColor)
-        );
+            map-get($themeValues, themeColor));
     }
 }

@@ -640,7 +640,7 @@ html {
   -moz-transform: translateZ(-1px) rotate(180.1deg); /*Fix en el rotate*/
 }
 
-
+.poncho-map .pm-slider.pm-slider--in {
   right: var(--pm-slider-distance);
   animation-duration: 0.3s;
   animation-name: pm-slidein;
@@ -648,7 +648,15 @@ html {
 .poncho-map .pm-slider img {
   max-width: 100%;
 }
-
+.poncho-map .pm-slider {
+  z-index: 1000;
+  position: absolute;
+  top: var(--pm-slider-distance);
+  right: calc(-1 * var(--pm-slider-width));
+  width: var(--pm-slider-width);
+  height: calc(100% - var(--pm-slider-distance) - var(--pm-slider-distance));
+}
+.poncho-map .pm-slider .pm-content-container {
   height: 100%;
   padding-right: var(--pm-content-padding);
   padding-left: var(--pm-content-padding);
@@ -738,7 +746,9 @@ html {
   color: var(--pm-color-base) !important;
 }
 
-
+.poncho-map .pm-btn-close {
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
   border-radius: 50%;
   aspect-ratio: 1/1;
   position: absolute;
@@ -1462,9 +1472,6 @@ footer.pm-open-map ul > li > a:hover, footer.pm-open-map ul > li > a:focus {
   transition: background 0.15s;
 }
 
-.poncho-map {
-  /* IE 6-8 fallback colors */
-}
 .poncho-map .marker-cluster-small {
   background-color: rgba(185, 206, 57, 0.4);
 }
@@ -1482,6 +1489,9 @@ footer.pm-open-map ul > li > a:hover, footer.pm-open-map ul > li > a:focus {
 }
 .poncho-map .marker-cluster-large div {
   background-color: #f38500;
+}
+.poncho-map {
+  /* IE 6-8 fallback colors */
 }
 .poncho-map .leaflet-oldie .marker-cluster-small {
   background-color: rgb(181, 226, 140);
