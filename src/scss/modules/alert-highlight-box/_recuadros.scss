@@ -1,7 +1,6 @@
 /**
  * RECUADROS
  */
-$recuadrosScope: ".recuadro-destacado";
 /**
  * Definición para los temas de color.
  */
@@ -31,15 +30,6 @@ $colorThemesRecuadro: (
 
 
 #{$recuadrosScope} {
-    --main-theme:#555;
-    --main-shadow-spread-size: 9px;
-    --main-color: #555;
-    --main-border-left-weight:6px;
-    --main-padding: #{$grid-gutter-width / 2};
-    --media-col-gap: #{$grid-gutter-width / 3};
-    --media-row-gap: calc(var(--media-col-gap) / 2);
-    --icon-size: 2rem;
-
     width: calc(100% - var(--main-shadow-spread-size));
     position: relative;
     background: white;
@@ -52,7 +42,7 @@ $colorThemesRecuadro: (
     margin-bottom: $grid-gutter-width;
     color: #555;
     background-color: white;
-    box-shadow: 4px 6px calc(var(--main-shadow-spread-size) + 1px) rgba(0, 0, 0, 0.15);
+    box-shadow: var(--main-box-shadow);
     // Si el componente no tiene icono
     &:not(:has(.media-left)) {
         padding: var(--main-padding);
