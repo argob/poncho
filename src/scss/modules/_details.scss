@@ -291,7 +291,7 @@ $colorThemes: (
             bottom: 0.01em solid transparent;
         }
     }
-    &:open::details-content {
+    &[open]::details-content {
         block-size: auto;
         content-visibility: visible;
     }
