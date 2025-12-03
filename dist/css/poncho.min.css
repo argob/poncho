@@ -15453,7 +15453,7 @@ details::details-content {
   border-top: 0.01em solid transparent;
   border-bottom: 0.01em solid transparent;
 }
-details:open::details-content {
+details[open]::details-content {
   block-size: auto;
   content-visibility: visible;
 }
