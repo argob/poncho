@@ -1,3 +1,4 @@
+
 /**
  * DETAILS & SUMMARY
  *
@@ -228,6 +229,13 @@ $colorThemes: (
     interpolate-size: allow-keywords;
 }
 
+/* Soporte para Safari que no tiene ::details-content */
+@supports not (interpolate-size: allow-keywords) {
+    :root {
+        interpolate-size: unset;
+    }
+}
+
 #{$detailsScope} {
     --icon-close: url("data:image/svg+xml;base64,PHN2ZyBmb2N1c2FibGU9ImZhbHNlIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTE2LjU5LDkuNzlsLTQuNTksNC41OC00LjU5LTQuNTgtMS40MSwxLjQxLDYsNiw2LTYtMS40MS0xLjQxWiI+PC9wYXRoPjwvc3ZnPg==");
     --icon-open: url("data:image/svg+xml;base64,PHN2ZyBmb2N1c2FibGU9ImZhbHNlIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTcuNDEsMTUuNTFsNC41OS00LjU4LDQuNTksNC41OCwxLjQxLTEuNDEtNi02LTYsNiwxLjQxLDEuNDFaIj48L3BhdGg+PC9zdmc+");
@@ -272,7 +280,7 @@ $colorThemes: (
         }
     }
 
-    overflow: clip;
+    overflow: hidden;
 
     &::details-content {
         block-size: 0;
@@ -492,7 +500,28 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
     --container-border-radius: #{$containerBorderRadius};
     --container-margin-t: #{$containerMarginT};
     --container-margin-b: #{$containerMarginB};
-
+    --summary-padding-x: #{$containerSummaryPaddingS};
+    --summary-padding-t: #{$summaryPaddingT};
+    --summary-padding-b: #{$summaryPaddingB};
+    --circle-size: #{$circleDefaultSize};
+    
+    .details-container-heading {
+        display: inline-flex;
+        align-items:center;
+        min-height: calc(
+            var(--circle-size) +
+                (var(--summary-padding-t) + var(--summary-padding-b))
+        );
+        padding:{
+            left: var(--summary-padding-x);
+            right: var(--summary-padding-x);
+        };
+        margin: 0;
+        font-size: inherit;
+        font-weight: bold;
+        line-height: inherit;
+    }
+    
     br,
     p:empty {
         display: none;
@@ -563,13 +592,30 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
     }
 }
 
-@media all and (max-width: $mediaBreakpoint) {
+
+/*
+Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
+*/
+@container detailsSize (max-width: #{$containerBreakpoint}) {
     .details-container {
+        --circle-size: #{$circleSmallSize};
+
         &.details-container-rounded {
             border-radius: calc(#{$circleSmallSize} / 2 + #{$detailsPaddingY});
         }
     }
 }
+
+@media all and (max-width: #{$mediaBreakpoint}) {
+    .details-container {
+        --circle-size: #{$circleSmallSize};
+
+        &.details-container-rounded {
+            border-radius: calc(#{$circleSmallSize} / 2 + #{$detailsPaddingY});
+        }
+    }
+}
+
 
 /**/
 
