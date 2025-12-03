@@ -15704,6 +15704,9 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
 }
 .details-container .details-container-heading {
   display: inline-flex;
+  width: 100%;
+  flex-shrink: 0;
+  background: transparent;
   align-items: center;
   min-height: calc(var(--circle-size) + var(--summary-padding-t) + var(--summary-padding-b));
   padding-left: var(--summary-padding-x);
@@ -15712,6 +15715,10 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
   font-size: inherit;
   font-weight: bold;
   line-height: inherit;
+  border-bottom: 1px solid var(--container-border-color);
+}
+.details-container .details-container-heading.details-container-heading-borderless {
+  border-bottom: none;
 }
 .details-container br,
 .details-container p:empty {
