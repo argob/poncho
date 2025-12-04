@@ -27,7 +27,7 @@
   * Los métodos `load()` y `close()` ahora cancelan operaciones pendientes correctamente.
   * El Nuevo parámetro `close(immediate)` permite cerrar el loader sin demora cuando `immediate=true`.
   * Se agregó el modo debug. Nueva opción `debug` en el constructor para habilitar _logging condicional_.
-  * Mejora en la inicialización adecuada de propiedades de timeout.
+  * Mejora en la inicialización adecuada de propiedades de _timeout_.
 
 ### PonchoMap
 
@@ -40,10 +40,10 @@
 
 #### Mejoras
 
-  * A `mixing['template']` se le agregó la posibilidad de utilizar condicionales en linea. De este modo se puede controlar formato de salida.
+  * A `mixing['template']` se le agregó la posibilidad de utilizar condicionales en línea. De este modo se puede controlar formato de salida.
   * Los íconos SVG se codificaron a base64 para evitar problemas de encoding.
   * En cumplimiento con la pauta de accesibilidad WCAG 2 (1.4.1 - Uso del color, Nivel A), hemos añadido un patrón visual (trama) a los clusters.
-  * La barra de _scroll_ en la tarjeta no se pega a los contenidos.
+  * La barra de _scroll_ del _slider_ no se pega a los contenidos.
   * Se incorporó la opción customización del texto para los tooltips.
   * Corrección de margenes en el desplegable de filtros.
   * En el slider, se agregó `lead` dentro de la etiqueta `<header/>`.
@@ -57,6 +57,8 @@
   * El label del input search no está asociado por id.
   * Solución del problema con la herramienta de zoom cuando el slider está abierto en mobile.
   * Se corrigió el bug en el que una etiqueta de párrafo se imprimia vacía cuando no se asignaba un summary.
+  * Se modificó la URL para ArgenMap. Se usaba una para la versión beta y ésta se dió de baja.
+  * La barra de _scroll_ ya no queda parcialmente oculta cuando se abre el panel de url.
 
 #### Defaults
 
