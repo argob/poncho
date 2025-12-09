@@ -57,8 +57,11 @@
   * El label del input search no está asociado por id.
   * Solución del problema con la herramienta de zoom cuando el slider está abierto en mobile.
   * Se corrigió el bug en el que una etiqueta de párrafo se imprimia vacía cuando no se asignaba un summary.
+  * Corrección del bug en el validador de Corrdenadas donde el string `"null"` daba un falso positivo.
+  * Corrección en `_addSummary()` cuando se borra el mapa con `map.remove()` y la etiqueta queda impresa en el HTML cuando debería borrarse. 
   * Se modificó la URL para ArgenMap. Se usaba una para la versión beta y ésta se dió de baja.
   * La barra de _scroll_ ya no queda parcialmente oculta cuando se abre el panel de url.
+>>>>>>> 35ae6662c2af38d414a1205c072610a3fed7d636
 
 #### Defaults
 
