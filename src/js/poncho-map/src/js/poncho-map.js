@@ -1695,34 +1695,38 @@ class PonchoMap {
 
     /**
      * Valida si las coordenadas de latitud y longitud son válidas
+     * 
      * @param {number|string} latitude - Latitud a validar (-90 a 90)
      * @param {number|string} longitude - Longitud a validar (-180 a 180)
      * @returns {boolean} - Verdadero si ambas coordenadas son válidas, 
      * falso en caso contrario.
      */
     validateCoordinates(latitude, longitude) {
+        // Validar que los parámetros no sean null, undefined, o strings vacíos
+        if (latitude == null || longitude == null ||
+            latitude === '' || longitude === '') {
+            return false;
+        }
+
         // Convertir a números en caso de que se pasen como strings
-        const lat = (this.isString(latitude) ? 
+        const lat = (this.isString(latitude) ?
             parseFloat(latitude) : latitude);
-        const lng = (this.isString(longitude) ? 
+        const lng = (this.isString(longitude) ?
             parseFloat(longitude) : longitude);
-        
-        // Verificar que sean números válidos (no NaN)
-        if (isNaN(lat) || isNaN(lng)) {
+
+        // Verificar que sean números válidos (no NaN ni Infinity)
+        if (!Number.isFinite(lat) || !Number.isFinite(lng)) {
             return false;
         }
-        
+
         // Validar rango de latitud: -90 a 90 grados
-        if (lat < -90 || lat > 90) {
-            return false;
-        }
-        
+        const isValidLatitude = (lat >= -90 && lat <= 90);
+
         // Validar rango de longitud: -180 a 180 grados
-        if (lng < -180 || lng > 180) {
-            return false;
-        }
-        
-        return true;
+        const isValidLongitude = (lng >= -180 && lng <= 180);
+
+        // Retornar true solo si ambas coordenadas son válidas
+        return isValidLatitude && isValidLongitude;
     }
 
 
