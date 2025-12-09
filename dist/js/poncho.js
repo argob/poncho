@@ -9029,8 +9029,9 @@ class PonchoMap {
             element.setAttribute("aria-labelledby", id);
         }
 
-        // Creo el elemento
-        const p = document.createElement("p");
+        // Si existe el elemento lo uso. De otro modo lo creo.
+        const p = (document.querySelector(`#${id}`) || 
+                document.createElement("p"));
         p.textContent = summary;
         p.id = id;
         p.classList.add("pm-summary");
