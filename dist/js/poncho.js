@@ -5804,52 +5804,6 @@ class PonchoMap {
      * Redefine los clusters
      * @returns 
      */
-    /*
-    customClusters = () => {
-        if(!L.hasOwnProperty("divIcon")){
-            return;
-        }
-
-        return {
-            iconCreateFunction: (cluster) => {
-                const count = cluster.getChildCount();
-                let sizeClass;
-                let ariaLabelText;
-
-                if (count < 10) {
-                    sizeClass = 'small';
-                } else if (count < 100) {
-                    sizeClass = 'medium';
-                } else {
-                    sizeClass = 'large';
-                }
-
-                const ariaLabels = {
-                    small: this._t("cluster_small", {count}),
-                    medium: this._t("cluster_medium", {count}),
-                    large: this._t("cluster_large", {count}),
-                };
-                ariaLabelText = ariaLabels[sizeClass];
-                const classNames = [
-                    "leaflet-marker-icon",
-                    "marker-cluster",
-                    `marker-cluster-${sizeClass}`,
-                    "leaflet-zoom-animated",
-                    "leaflet-interactive",
-                ];
-                const htmlContent = `<div title="${this._t("cluster_click")}"`
-                    + ` aria-label="${ariaLabelText}">`
-                    + `<span>${count}</span></div>`;
-
-                return L.divIcon({
-                    html: htmlContent,
-                    className: classNames.join(" "),
-                    iconSize: L.point(40, 40),
-                });
-            }
-        }
-    };
-*/
     customClusters = () => {
         // Early return with clear error handling
         if (!L?.divIcon) {
