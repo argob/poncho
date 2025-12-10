@@ -131,6 +131,7 @@ class PonchoMap {
                 xxl: 1400
             },
             content_selector: false,
+            debug: false,
             default_themes: [
                 {
                     aria_label: false,
@@ -336,6 +337,7 @@ class PonchoMap {
             ...defaults.template_structure,
             ...options.template_structure
         };
+        this.debug = opts.debug;
         this.template_innerhtml = opts.template_innerhtml;
         this.template_markdown = opts.template_markdown;
         this.markdown_options = opts.markdown_options;
@@ -553,6 +555,28 @@ class PonchoMap {
         return "2.2.0";
     }
 
+    /**
+     * Logger condicional que solo muestra mensajes en modo desarrollo
+     */
+    logger = {
+        log: (...args) => {
+            if (this.debug === true) {
+                console.log(...args);
+            }
+        },
+        error: (...args) => {
+            if (this.debug === true) {
+                console.error(...args);
+            }
+        },
+        warn: (...args) => {
+            if (this.debug === true) {
+                console.warn(...args);
+            }
+        }
+    };
+
+
 
     /**
      * Dicionario de términos según el lenguaje.
@@ -563,12 +587,12 @@ class PonchoMap {
      */
     _t = (definition, tpl={}) => {
         if(this.isEmptyString(definition)){
-            console.warn("_t", "Está recibiendo una definición vacía.");
+            this.logger.warn("_t", "Está recibiendo una definición vacía.");
             return definition;
         }
 
         if(!this.isObject(tpl)) {
-            console.warn("_t", "tpl requiere un objeto clave/valor.");
+            this.logger.warn("_t", "tpl requiere un objeto clave/valor.");
             return;
         }
 
@@ -632,7 +656,7 @@ class PonchoMap {
     customClusters = () => {
         // Early return with clear error handling
         if (!L?.divIcon) {
-            console.warn('Leaflet divIcon is not available');
+            this.logger.warn('Leaflet divIcon is not available');
             return null;
         }
 
@@ -905,7 +929,7 @@ class PonchoMap {
 
         const validSizes = ['large', 'default', 'medium'];
         if (!validSizes.includes(this.slider_size)) {
-            console.warn(
+            this.logger.warn(
                 `Invalid slider size: ${this.slider_size}. Defaulting to 'default'.`);
             this.slider_size = 'default';
         }
@@ -1010,8 +1034,8 @@ class PonchoMap {
 
             if(elementSize >= value){
                 fraction = definedFraction;
-                console.table(sortedEntries)
-                console.log(breakpoint, value, fraction, elementSize)
+                this.logger.table(sortedEntries)
+                this.logger.log(breakpoint, value, fraction, elementSize)
                 break;
             }
         }
@@ -1038,7 +1062,7 @@ class PonchoMap {
 
         fraction = (!fraction ? this._setFraction() : fraction);
         if(!/^[0-9]{1,2}\:[0-9]{1,2}$/.test(fraction)){
-            console.error(
+            this.logger.error(
                 "La fracción para posicionar el mapa tiene errores sintácticos.");
             return;
         }
@@ -1641,7 +1665,7 @@ class PonchoMap {
         }
 
         if(!this.validateCoordinates(latitude, longitude)){
-            console.warn(
+            this.logger.warn(
                 `Coordenadas inválidas: lat=${latitude}, lng=${longitude}`);
             return;
         }
@@ -1817,13 +1841,13 @@ class PonchoMap {
      */
     showAlert = (entry, type, block=false) => {
         if(!this.isObject(entry)){
-            console.error("showAlert", "Espera un objeto de tipo clave/valor.");
+            this.logger.error("showAlert", "Espera un objeto de tipo clave/valor.");
             return;
         }
 
         // 1. Validación
         if(this.isEmptyObject(entry)){
-            console.error("No se encontraron las claves: title o messages.");
+            this.logger.error("No se encontraron las claves: title o messages.");
             return;
         }
 
@@ -1916,7 +1940,7 @@ class PonchoMap {
         }
 
         // Imprimo el error en la consola
-        console.error(JSON.stringify(entry));
+        this.logger.error(JSON.stringify(entry));
     };
 
 
@@ -2008,7 +2032,7 @@ class PonchoMap {
                 const result = entry(row);
                 return result != null ? String(result) : '';
             } catch (error) {
-                console.warn('Error ejecutando función de tooltip:', error);
+                this.logger.warn('Error ejecutando función de tooltip:', error);
                 return '';
             }
         }
@@ -2020,7 +2044,7 @@ class PonchoMap {
                 const parsed = this.tplParser(template, row);
                 return parsed != null ? parsed : entry;
             } catch (error) {
-                console.warn('Error procesando template de tooltip:', error);
+                this.logger.warn('Error procesando template de tooltip:', error);
                 return entry;
             }
         }
@@ -2123,7 +2147,7 @@ class PonchoMap {
      */
     addHash = (value) => {
         if (this.isEmptyString(value)) {
-            console.error('Invalid value provided to update hash');
+            this.logger.error('Invalid value provided to update hash');
             return;
         }
 
@@ -2156,7 +2180,7 @@ class PonchoMap {
         const dataToSearch = dataset || this.geoJSON;
 
         if(this.isEmptyString(searchTerm)){
-            console.info("searchEntries", "Término vacío.");
+            this.logger.info("searchEntries", "Término vacío.");
             return dataToSearch;
         }
 
@@ -3196,7 +3220,7 @@ class PonchoMap {
         try {
             this.map.fitBounds(this.geojson.getBounds().pad(padding));
         } catch (error) {
-            // console.error("fitBounds", error);
+            // this.logger.error("fitBounds", error);
         }
     };
 
@@ -3447,7 +3471,7 @@ class PonchoMap {
                 .querySelector(`${this.scope_selector}.poncho-map`);
         
         if (!container) {
-            console.error(
+            this.logger.error(
                 `Contenedor no encontrado: ${this.scope_selector}.poncho-map`);
             return;
         }
@@ -4015,7 +4039,7 @@ class PonchoMapLoader {
         if(loader){
             loader.remove();
             if(this.debug){
-                console.log(`[PonchoMapLoader:${this.scope}] Loader removed.`);
+                this.logger.log(`[PonchoMapLoader:${this.scope}] Loader removed.`);
             }
         }
     }
@@ -4056,7 +4080,7 @@ class PonchoMapLoader {
             this._closeTimeoutId = null;
 
             if(this.debug){
-                console.log(`[PonchoMapLoader:${this.scope}] Loader closed.`);
+                this.logger.log(`[PonchoMapLoader:${this.scope}] Loader closed.`);
             }
         }, this.close_delay);
     }
@@ -4117,7 +4141,7 @@ class PonchoMapLoader {
         element.appendChild(cover);
 
         if(this.debug){
-            console.log(`[PonchoMapLoader:${this.scope}] Loader started.`);
+            this.logger.log(`[PonchoMapLoader:${this.scope}] Loader started.`);
         }
 
         // Configurar auto-remoción después del timeout

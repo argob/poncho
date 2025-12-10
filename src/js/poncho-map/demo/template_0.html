@@ -143,6 +143,7 @@ COPIAR DESDE ACÁ…
     const gdata = Object.keys(sheet_data.aPDs).map(e => sheet_data.aPDs[e]).flat();
     // map options
     const options = {
+        debug: true,
         summary: {
             hidden: false,
             title: "Mapa de Puntos Digitales en Argentina",
@@ -153,7 +154,7 @@ COPIAR DESDE ACÁ…
                 borderTop: "1px solid #ddd",
             },
         },
-        error_reporting: 1,
+        error_reporting: 0,
         throw_exceptions: 0,
         template: template_punto_digital,
         title:"nombre",
