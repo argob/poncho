@@ -1000,28 +1000,28 @@ class PonchoMapFilter extends PonchoMap {
                         searchInput.value = "";
                     }
                 } catch (error) {
-                    console.error(error);
+                    this.logger.error(error);
                 }
 
                 try {
                     this._resetFormFilters();
                 } catch (error) {
-                    console.error(error);
+                    this.logger.error(error);
                 }
                 try {
                     this._filteredData(this.entries);
                 } catch (error) {
-                    console.error(error);
+                    this.logger.error(error);
                 }
                 try {
                     this._clearSearchInput();
                 } catch (error) {
-                    console.error(error);
+                    this.logger.error(error);
                 }
                 try {
                     this.resetView();
                 } catch (error) {
-                    console.error(error);
+                    this.logger.error(error);
                 }
             }
         });
@@ -1039,7 +1039,7 @@ class PonchoMapFilter extends PonchoMap {
     filterChange(callback) {
         // Asegura que callback es una función antes de proceder
         if (typeof callback !== 'function') {
-            console.error('filterChange requiere una función de callback.');
+            this.logger.error('filterChange requiere una función de callback.');
             return;
         }
 
