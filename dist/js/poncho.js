@@ -7488,12 +7488,7 @@ class PonchoMap {
             .querySelectorAll(`.js-slider${this.scope_sufix}`)
             .forEach(e => {
                 e.classList.toggle(`${this.slider_selector}--in`);
-            });
-
-        document
-            .querySelectorAll(`.js-slider${this.scope_sufix}`)
-            .forEach(panel => {
-                panel.style.display = (this.isSliderOpen() ? "block" : "none");  
+                e.style.display = (this.isSliderOpen() ? "block" : "none");  
             });
     };
 
