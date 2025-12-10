@@ -556,25 +556,25 @@ class PonchoMap {
     }
 
     /**
-     * Logger condicional que solo muestra mensajes en modo desarrollo
+     * Logger condicional que solo muestra mensajes en modo desarrollo.
      */
-    logger = {
-        log: (...args) => {
-            if (this.debug === true) {
-                console.log(...args);
-            }
-        },
-        error: (...args) => {
-            if (this.debug === true) {
-                console.error(...args);
-            }
-        },
-        warn: (...args) => {
-            if (this.debug === true) {
-                console.warn(...args);
-            }
+    get logger() {
+        if (this.debug !== true) {
+            return {
+                log: () => {},
+                error: () => {},
+                warn: () => {},
+                table: () => {}
+            };
         }
-    };
+
+        return {
+            log: console.log.bind(console),
+            error: console.error.bind(console),
+            warn: console.warn.bind(console),
+            table: console.table.bind(console)
+        };
+    }
 
 
 
