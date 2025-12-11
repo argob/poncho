@@ -11430,7 +11430,7 @@ Las clases "dato-nro" y "dato-eje" corresponde a los formatos markdown definidos
 }
 .poncho-map .pm-slider .pm-content-container {
   height: calc(100% - var(--pm-slider-radius));
-  padding-top: calc(var(--pm-content-padding) * 3 + 5px);
+  padding-top: calc(var(--pm-content-padding) * 2 + 10px);
   padding-bottom: 0;
   display: flex;
   flex-direction: column;
@@ -11486,7 +11486,7 @@ Las clases "dato-nro" y "dato-eje" corresponde a los formatos markdown definidos
   width: var(--pm-tools-width);
   padding-right: var(--pm-content-padding);
   padding-left: var(--pm-content-padding);
-  padding-top: calc(var(--pm-content-padding) * 3);
+  padding-top: calc(var(--pm-content-padding) * 2 + 10px);
   padding-bottom: var(--pm-content-padding);
   box-shadow: var(--pm-slider-shadow);
   color: var(--pm-color-base);
@@ -11532,8 +11532,8 @@ Las clases "dato-nro" y "dato-eje" corresponde a los formatos markdown definidos
   background-image: none;
   width: auto;
   height: auto;
-  top: var(--pm-slider-distance);
-  right: var(--pm-slider-distance);
+  top: 7px;
+  right: 7px;
   background-color: rgba(0, 0, 0, 0.1);
   color: var(--pm-color-base);
 }
