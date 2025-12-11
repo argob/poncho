@@ -21,7 +21,8 @@
 
         .pm-content-container {
             height: calc(100% - var(--pm-slider-radius));
-            padding-top: calc(var(--pm-content-padding) * 3 + 5px);
+            // padding-top: calc(var(--pm-content-padding) * 3 + 5px);
+            padding-top: calc(var(--pm-content-padding) * 2 + 10px);
             // padding-bottom: calc(var(--pm-content-padding) * 2);
             padding-bottom: 0;
             display: flex;

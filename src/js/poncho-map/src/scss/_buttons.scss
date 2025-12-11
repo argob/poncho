@@ -6,8 +6,10 @@
         background-image: none;
         width: auto;
         height: auto;
-        top: var(--pm-slider-distance);
-        right: var(--pm-slider-distance);
+        // top: var(--pm-slider-distance);
+        // right: var(--pm-slider-distance);
+        top: 7px;
+        right: 7px;
         background-color: rgb(0 0 0 / 0.1);
         color: var(--pm-color-base);
     }
