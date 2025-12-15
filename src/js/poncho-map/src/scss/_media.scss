@@ -5,7 +5,9 @@
     #{$scope} {
         &:has(.pm-slider:is(.pm-slider--in)) {
             position: relative;
-            @include borderRadius(calc(var(--pm-slider-radius) + var(--pm-slider-distance)));
+            @include borderRadius(
+                calc(var(--pm-slider-radius) + var(--pm-slider-distance))
+            );
             transition: 0.4s;
 
             .leaflet-control-attribution {
@@ -13,22 +15,24 @@
                 display: none;
             }
 
-            &::before {
-                content: "";
-                width: 100%;
+            .pm-backdrop {
+                position: absolute;
+                background: rgb(0 0 0 / 0.75);
                 height: 100%;
+                width: 100%;
                 left: 0;
                 top: 0;
-                position: absolute;
                 z-index: 1000;
-                background: var(--pm-slider-modal-color);
-                opacity: 0.75;
-                transition: 0.5s;
+                backdrop-filter: blur(5px);
+                transition: 0.25s ease-in-out;
             }
         }
 
         .pm-slider {
-            height: calc(var(--pm-slider-media-mobile-height) - var(--pm-slider-distance) * 2);
+            height: calc(
+                var(--pm-slider-media-mobile-height) - var(--pm-slider-distance) *
+                    2
+            );
             top: auto;
             bottom: calc(-1 * var(--pm-slider-media-mobile-height));
             right: var(--pm-slider-distance);

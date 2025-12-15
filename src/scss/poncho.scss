@@ -72,6 +72,10 @@
 @import "modules/details";
 @import "modules/aabe/aabe"; // AABE
 
+// Poncho Table
+@import "../js/poncho-table/src/scss/share";
+
+
 
 @import "../js/loader/src/scss/loader.scss";
 @import "../js/device-breadcrumb/src/scss/device-breadcrumb";

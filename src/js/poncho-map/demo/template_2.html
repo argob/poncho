@@ -95,6 +95,9 @@ COPIAR DESDE ACÁ…
 <!-- SCRIPTS -->
 <script id="code_map">
     var map;
+    const loader = new PonchoMapLoader({scope: "poncho-map"});
+    loader.load();
+
     // init
 
     (async() => {
@@ -142,10 +145,9 @@ COPIAR DESDE ACÁ…
         ],
         };
         // render map
-        const loader = new PonchoMapLoader({scope: options.scope});
-        loader.load()
         map = new PonchoMapFilter(gapi_data.entries, options);
         map.render();
+
         loader.close();
     })();
 </script>

@@ -15,6 +15,7 @@
     <link rel="stylesheet"
         href="https://capacita-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css?rfqjsh">
     <link rel="stylesheet" href="../../../../dist/css/poncho.min.css" />
+    
 
     <!-- 
         Script para debug 
@@ -32,6 +33,7 @@
     <script src="../../gapi-sheet-data/gapi-sheet-data.js"></script>
     <!-- / Script para debug -->
     <link rel="stylesheet" href="./css/demo.css">
+    <link rel="stylesheet" href="../dist/css/clusters.css">
     <title>Poncho Map — Puntos digitales</title>
 </head>
 <body>
@@ -72,7 +74,7 @@ COPIAR DESDE ACÁ…
 <search aria-label="Buscar puntos en el mapa">
     <form>
         <div data-scope="search-poncho-map">
-            <label class="sr-only" for="search">Buscar puntos</label>
+            <label class="sr-only" for="search">Buscar ubicación</label>
             <div class="input-group m-b-0 p-b-0 webform-component">
                 <input 
                     class="js-poncho-map-search__input form-control" 
@@ -96,7 +98,7 @@ COPIAR DESDE ACÁ…
                 </span>
             </div>
             <div data-scope="ponchomap">
-                <div class="js-poncho-map__help text-mutted small"></div>
+                <div class="js-poncho-map__help small"></div>
             </div>
         </div>
     </form>
@@ -141,6 +143,7 @@ COPIAR DESDE ACÁ…
     const gdata = Object.keys(sheet_data.aPDs).map(e => sheet_data.aPDs[e]).flat();
     // map options
     const options = {
+        debug: true,
         summary: {
             hidden: false,
             title: "Mapa de Puntos Digitales en Argentina",
@@ -151,7 +154,7 @@ COPIAR DESDE ACÁ…
                 borderTop: "1px solid #ddd",
             },
         },
-        error_reporting: 1,
+        error_reporting: 0,
         throw_exceptions: 0,
         template: template_punto_digital,
         title:"nombre",
@@ -166,6 +169,24 @@ COPIAR DESDE ACÁ…
         id: "id_pd",
         hash: true,
         slider: true,
+        tooltip: true,
+        tooltip_label: `<div style="padding:2px 0;display:flex; gap:5px; font-size:small">{{nombre}}
+ <span class="br"></span><strong class="text-arg-negro bg-arg-lima badge">Prueba</strong></div>`,
+        _tooltip_label: function( self, entry ){
+            const tooltipLabelContainer = document.createElement("div");
+            tooltipLabelContainer.style.padding = "2px 0";
+            tooltipLabelContainer.style.gap = "5px";
+            tooltipLabelContainer.style.display = "flex";
+            tooltipLabelContainer.style.fontSize = "small";
+            tooltipLabelContainer.textContent = entry.nombre;
+
+            const tooltipStatus = document.createElement("span");
+            tooltipStatus.classList.add("text-arg-negro", "bg-arg-lima", "badge");
+            tooltipStatus.textContent = "Abierto";
+            tooltipLabelContainer.appendChild(tooltipStatus);
+            
+            return tooltipLabelContainer.outerHTML;
+        },
         scroll: true,
         marker: (self, ele) => (ele.estado_funcionamiento == "3" ? 
                 "mandarina" : "azul"),

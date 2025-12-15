@@ -1,5 +1,74 @@
 # Changelog
 
+## Release 2.2
+
+### PonchoMapFilter
+
+#### Optimizaciones
+
+  * Los filtros ahora se agrupan una sola vez antes del procesamiento en lugar de reagruparse por cada entrada.
+  * `_fieldsToUse()`: Implementación de Map cache para evitar recálculos repetidos en la configuración de campos del form.
+  * `_validateEntry()`: Refactorizado para recibir filtros pre-agrupados, eliminando operaciones dentro del loop principal.
+  * `_validateGroup()`: Implementación de _short-circuit evaluation_ para retornar inmediatamente al encontrar el primer match, eliminando arrays temporales.
+  
+  * `_search()`:
+    * Early return cuando la entrada no tiene la propiedad buscada.
+    * Reemplazo de `filter(Boolean).some()` por loop directo con cortocircuito.
+    * Uso de caché para `_fieldsToUse()`.
+  * `_filterData()`:
+    * Pre-cálculo de `searchFields` fuera del loop de filtrado.
+    * Eliminación de creación repetida de Sets en cada iteración.
+    * Short-circuit directo en lugar de `every(Boolean)`.
+  * `_filteredData()`: Eliminación de clonación innecesaria de array con spread operator.
+
+### PonchoMapLoader
+  * Se implementó el método `remove()` que faltaba y causaba errores en tiempo de ejecución.
+  * Se corrigió la limpieza de timeouts en el método `close()`.
+  * Los métodos `load()` y `close()` ahora cancelan operaciones pendientes correctamente.
+  * El Nuevo parámetro `close(immediate)` permite cerrar el loader sin demora cuando `immediate=true`.
+  * Se agregó el modo debug. Nueva opción `debug` en el constructor para habilitar _logging condicional_.
+  * Mejora en la inicialización adecuada de propiedades de _timeout_.
+
+### PonchoMap
+
+#### Optimizaciones
+
+  * Optimización del objeto `markerCluster` y método `marker()`:
+  * Implementación de caché de iconos para evitar crear objetos duplicados.
+  * Eliminación de llamada redundante a `marker_color()` en el proceso de creación de marcadores.
+  * Cacheo del tipo de `marker_color` para evitar verificaciones repetidas de tipo en cada marcador.
+
+#### Mejoras
+
+  * A `mixing['template']` se le agregó la posibilidad de utilizar condicionales en línea. De este modo se puede controlar formato de salida.
+  * Los íconos SVG se codificaron a base64 para evitar problemas de encoding.
+  * En cumplimiento con la pauta de accesibilidad WCAG 2 (1.4.1 - Uso del color, Nivel A), hemos añadido un patrón visual (trama) a los clusters.
+  * La barra de _scroll_ del _slider_ no se pega a los contenidos.
+  * Se incorporó la opción customización del texto para los tooltips.
+  * Corrección de margenes en el desplegable de filtros.
+  * En el slider, se agregó `lead` dentro de la etiqueta `<header/>`.
+
+#### Fixes
+
+  * Se realizó un bug fix en `mixing['template']` donde se mostraba el valor con el *template* cuando el value llegaba vacío.
+  * Remoción del atributo `role="button"` innecesario en el botón para cerrar el _slider_.
+  * Remoción del atributo `role="article"` es innecesario en un article
+  * Corrección del bajo contraste en leyenda totales.
+  * El label del input search no está asociado por id.
+  * Solución del problema con la herramienta de zoom cuando el slider está abierto en mobile.
+  * Se corrigió el bug en el que una etiqueta de párrafo se imprimia vacía cuando no se asignaba un summary.
+  * Corrección del bug en el validador de Corrdenadas donde el string `"null"` daba un falso positivo.
+  * Corrección en `_addSummary()` cuando se borra el mapa con `map.remove()` y la etiqueta queda impresa en el HTML cuando debería borrarse. 
+  * Se modificó la URL para ArgenMap. Se usaba una para la versión beta y ésta se dió de baja.
+  * La barra de _scroll_ ya no queda parcialmente oculta cuando se abre el panel de url.
+>>>>>>> 35ae6662c2af38d414a1205c072610a3fed7d636
+
+#### Defaults
+
+  * Los enlaces para mapas alternativos abren en una nueva página.
+  * En open_maps el texto por defecto ahora es: «Abrir ubicación en:».
+
+
 ## Release 2.1.4
 
 * Se incorporó el enlace para restablecer el mapa. Ahora estará visible constantemente.

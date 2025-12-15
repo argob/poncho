@@ -1,114 +1,116 @@
 .main-footer {
-  background: $brand-arg-arena-light;
-  padding-bottom: 0px;
-  padding-top: 10px!important;
-  border-top: solid 1px $gray-light;
+    background: $brand-arg-arena-light;
+    padding-bottom: 0px;
+    padding-top: 10px !important;
+    border-top: solid 1px $gray-light;
 
-  .row > div {
-    &:first-child {
-      padding-right: 30px;
+    .row > div {
+        &:first-child {
+            padding-right: 30px;
+        }
     }
-  }
-
-  a {
-      text-decoration: underline;
-    &:hover,
-    &:focus {
-      text-decoration: underline;
-    }
-    &.btn {
-      text-decoration: none;
-    }    
-  }    
-
-  ul {
-    margin-bottom: 10px;
-    padding: 0;
-	
-	&.nav>li>a {
-      text-decoration: none !important;
-    }  
-	  
-    &.nav>li>a:hover {
-      background: none;
-    }
-  }
-
-  li {
-    list-style: none;
 
     a {
-      display: block;
-      font-size: 16px;
-      padding: 6px 0;
-		text-decoration: none!important;
-		color:$black ;
-
-      &:hover,
-      &:focus {
         text-decoration: underline;
-      }
+        &:hover,
+        &:focus {
+            text-decoration: underline;
+        }
+        &.btn {
+            text-decoration: none;
+        }
     }
-  }
-section {
-    padding: 30px 0;
-  }
-	
-	
-  h2{
-    font-size: 1.25em!important
-  }
-	
-  h4 {
-    color: $gray;
-  }
 
-  img {
-    &.image-responsive {
-      margin-bottom: 20px;
-      max-width: 300px;
-      display: block;
+    ul {
+        margin-bottom: 10px;
+        padding: 0;
+
+        &.nav > li > a {
+            text-decoration: none !important;
+        }
+
+        &.nav > li > a:hover {
+            background: none;
+        }
     }
-  }
+
+    li {
+        list-style: none;
+
+        a {
+            display: block;
+            font-size: 16px;
+            padding: 6px 0;
+            text-decoration: none !important;
+            color: $black;
+
+            &:hover,
+            &:focus {
+                text-decoration: underline;
+            }
+        }
+    }
+    section {
+        padding: 30px 0;
+    }
+
+    h2 {
+        font-size: 1.25em !important;
+    }
+
+    h4 {
+        color: $gray;
+    }
+
+    img {
+        &.image-responsive {
+            margin-bottom: 20px;
+            max-width: 300px;
+            display: block;
+        }
+    }
 }
 
 .brand-footer {
-  padding: 0;
-  width: 100%;
+    padding: 0;
+    width: 100%;
 
-  img {
-    float: none;
-    margin: 0 auto;
-  }
+    img {
+        float: none;
+        margin: 0 auto;
+    }
 }
 
 body.sticky-footer {
-  height: 100%;
-  display: table;
+    height: 100%;
+    display: table;
 
-  .main-footer {
-    display: table-row;
-    height: 1px;
+    .main-footer {
+        display: table-row;
+        height: 1px;
 
-    > div {
-      padding-bottom: 30px;
-      padding-top: 60px;
+        > div {
+            padding-bottom: 30px;
+            padding-top: 60px;
+        }
     }
-  }
 }
 
-.sub-footer{
- background-color: $brand-celeste-argentina;
- padding: 20px 0 20px 0;
+.sub-footer {
+    background-color: $brand-primary;
+    padding: 20px 0 40px 0;
+}
+
+@media print {
+    .main-footer {
+        display: none;
+    }
 }
 
 @media (max-width: 768px) {
-	.main-footer {
-		section {
-    padding: 10px 0 0;
-  }
-		}
-	
-	
+    .main-footer {
+        section {
+            padding: 10px 0 0;
+        }
+    }
 }
-

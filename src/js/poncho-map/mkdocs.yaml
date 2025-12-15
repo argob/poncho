@@ -1,0 +1,16 @@
+site_name: Documentación para PonchoMap
+nav:
+    - PonchoMap:
+        - Headers: docs/headers/README.md
+        - Header icons: docs/header-icons/README.md
+        - Inicio: README.md
+        - Markdwon options: docs/markdown-options/README.md
+        - Marker: docs/marker/README.md
+        - Marker cluster: docs/marker-cluster/README.md
+        - Open maps: docs/open-maps/README.md
+        - Summary: docs/summary/README.md
+        - Template structure: docs/template-structure/README.md
+    - PonchoMap Filter:
+        - PonchoMap Filter: docs/ponchomap-filter/README.md
+    - PonchoMap Search:
+        - PonchoMap Search: docs/ponchomap-search/README.md

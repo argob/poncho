@@ -1,0 +1,12 @@
+/**
+ * Styles for the copy and share functionality in Poncho Table.
+ */
+.ponchotable-share {
+    display: flex;
+    gap: 1.5em;
+    align-items: baseline;
+
+    .dropdown-menu {
+        min-width: 250px;
+    }
+}

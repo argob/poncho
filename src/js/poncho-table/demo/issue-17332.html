@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+
+<head>
+    <link rel="profile" href="http://www.w3.org/1999/xhtml/vocab" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script
+        src="https://www.argentina.gob.ar/profiles/argentinagobar/libraries/jquery.jquery-371/jquery-3.7.1.min.js?v=3.7.1">
+        </script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+        integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet"
+        href="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css">
+    <!-- /Base -->
+    <link rel="stylesheet"
+        href="https://qa2-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/poncho.min.css" />
+    <link rel="stylesheet" href="../src/" />
+    <title>Tabla vialidad</title>
+    <style>
+        body {
+            padding: 2em;
+        }
+    </style>
+    <script src="../../utils/color.js"></script>
+    <script src="../../utils/connect.js"></script>
+    <script src="../../utils/string.js"></script>
+    <script src="../../utils/html.js"></script>
+    <script src="../poncho-table.js"></script>
+    <script src="../poncho-table-dependant.js"></script>
+    <script src="../../gapi-sheet-data/gapi-sheet-data.js"></script>
+</head>
+
+<body class="p-t-3">
+    <h1>Buscador de Centros de Atención para Mujeres y LGBTI+</h1>
+
+    <!-- 
+COPIAR DESDE ACÁ…
+-->
+    <!-- INCLUDE SCRIPTS -->
+    <link href="/profiles/argentinagobar/themes/contrib/poncho/css/ponchoTable-1.1.css" rel="stylesheet">
+    <script
+        src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/datatables.min.js"></script>
+    <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/intl.min.js"></script>
+    <script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
+    <!-- / INCLUDE SCRIPTS -->
+
+    <div class="row">
+        <div class="col-sm-4" id="ponchoTableFiltroCont" style="display:none">
+            <div class="form-group">
+                <label for="ponchoTableFiltro" id="tituloFiltro">Filtro</label>
+                <select class="form-control" id="ponchoTableFiltro" name="ponchoTableFiltro">
+                    <option value="">Todos</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-8" id="ponchoTableSearchCont" style="display:none">
+            <div class="form-group">
+                <label for="ponchoTableSearch">Buscá por palabra clave</label>
+                <input class="form-control" id="ponchoTableSearch" type="search" />
+            </div>
+        </div>
+        <div class="col-md-12 m-b-4">
+            <table class="table tabla-condensed _table-striped" id="ponchoTable">
+                <caption></caption>
+                <thead>
+                    <tr></tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+
+<script>
+    // loading
+    document.querySelector("#ponchoTable").classList.add("state-loading");
+    // Render table
+    (async () => {
+        const gapi = new GapiSheetData();
+        const _googlesheet_data = await fetch_json(
+            '../../poncho-map/demo/data/geodata-centros-lgbti.json'
+        );
+        const googlesheet_data = await fetch_json("https://144.argentina.gob.ar/api/v1/places"); 
+
+        /**
+         * Refactoriza el documento JSON
+         * @summary Rearma el documento asignando filtros y columnas
+         * especiales.
+         * @param {Array} data - Array de objetos con datos de centros
+         * @returns {Array<object>} Array de objetos formateados para ponchoTable
+         */
+        const transformDataForTable = (data) => {
+            if (!Array.isArray(data) || data.length === 0) {
+                console.warn('No data available to transform');
+                return [];
+            }
+
+            // Botón ver más.
+            const createMapButton = (id, name) => {
+                if (!id){
+                    return ''
+                };
+                const escapedId = String(id).replace(/[^0-9]/g, '');
+                const baseUrl = "./centros-de-atencion-para-mujeres-y-lgbti";
+
+                return `<a href="${baseUrl}#${escapedId}" `
+                    + `class="btn btn-sm btn-primary" `
+                    + `aria-label="Ver la ubicación de: ${name} en el mapa">`
+                    + `Ver mapa</a>`;
+            };
+
+            return data.map(obj => {
+                const {
+                    name = "",
+                    province = "",
+                    municipality = "",
+                    locality = "",
+                    category = "",
+                    address = "",
+                    observation = "",
+                    id
+                } = obj;
+
+                return {
+                    "filtro-provincia": province,
+                    "municipality": municipality,
+                    "filtro-localidad": locality,
+                    "filtro-tipo": category,
+                    "name": name,
+                    "address": address,
+                    "observation": observation,
+                    "mapa": createMapButton(id, name)
+                };
+            });
+        };
+
+        const entries = transformDataForTable(googlesheet_data.data);
+
+        // Opciones ponchoTable
+        var options = {
+            jsonData: entries,
+            headers: {
+                "filtro-provincia": "Provincia",
+                "municipality": "Municipio",
+                "filtro-localidad": "Localidad",
+                "filtro-tipo": "Tipo",
+                "name": "Institución",
+                "address": "Dirección",
+                "observation": "Más info.",
+                "mapa": "Ubicación y contacto"
+            },
+            tituloTabla: "Centros de atención para mujeres",
+            ordenColumna: 1,
+            ordenTipo: "asc",
+            ocultarColumnas: [],
+            cantidadItems: 20,
+            filterContClassList: ["col-md-8"],
+            searchContClassList: ["col-md-4"],
+            allowedTags: ["*"],
+            orderFilter: true
+        };
+        ponchoTable(options);
+    })();
+</script>
+<!-- / COPIAR HASTA ACA -->
+</body>
+
+</html>

@@ -168,6 +168,10 @@ $configSpaces: (
     font-family: $font-family-serif;
 }
 
+.font-base {
+    font-family: $font-family-base;
+}
+
 @media (max-width: 575.98px) {
     .text-xs-left {
         text-align: left !important;
