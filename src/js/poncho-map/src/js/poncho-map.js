@@ -2027,17 +2027,28 @@ class PonchoMap {
         }
 
         if(!this.isObject(entry) || this.isEmptyObject(entry)){
-            this.logger.log(
+            this.logger.error(
                 "[_tooltipLabel]",
                 "El primer parámetro debe ser un objeto y no puede estar vacío"
             );
+            return;
         }
 
-        if(!this.isString(defaultLabel) || this.isEmptyString(defaultLabel)){
-            this.logger.log(
+        if( !this.isNumber(defaultLabel) && !this.isString(defaultLabel) ){
+            this.logger.error(
                 "[_tooltipLabel]",
-                "Debe proveer un valor por defecto en el segundo parámetro"
+                "El segundo parámetro solo puede ser una cadena de texto "
+                + "o un número"
             );
+            return;
+        }
+
+        if(this.isEmptyString(defaultLabel)){
+            this.logger.error(
+                "[_tooltipLabel]",
+                "El segundo parametro no puede estar vacío"
+            );
+            return;
         }
 
         if (typeof this.tooltip_label === 'function') {
