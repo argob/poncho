@@ -5508,7 +5508,7 @@ class PonchoMap {
             throw_exceptions: false,
             title: false,
             tooltip: false,
-            tooltip_label: {template: false, text: false},
+            tooltip_label: false,
             tooltip_options:{
                 className: "leaflet-tooltip-own",
                 direction: "auto",
@@ -5775,6 +5775,11 @@ class PonchoMap {
         table: (...args) => {
             if (this.debug === true) {
                 console.table(...args);
+            }
+        },
+        info: (...args) => {
+            if (this.debug === true) {
+                console.info(...args);
             }
         }
     };
@@ -6071,6 +6076,37 @@ class PonchoMap {
             resultString = resultString.replace(m[0], finalContent);
         }
         return resultString;
+    }
+
+
+    tpl = (value, entry) => {
+        if( !this.isObject(entry) ){
+            this.logger.error(
+                "[tpl]", 
+                "El segundo parámetro debe ser un objeto");
+        }
+
+        if( this.isEmptyObject(entry) ){
+            this.logger.error(
+                "[tpl]", 
+                "El segundo parámetro no puede ser un objeto vacío");
+        }
+
+        if ( !this.isString(value) ) {
+            this.logger.error(
+                "[tpl]", 
+                "El primer parámetro debe ser un string");
+            return secureHTML( String(value) );
+        }
+
+        if( this.isEmptyString(value) ){
+            this.logger.info("[tpl]", "Llegó una cadena de texto vacía");
+            return "";
+        }
+
+        const template = this.conditionalTemplate(value, entry);
+        const parsed = this.tplParser(template, entry);
+        return parsed != null ? parsed : value;
     }
 
 
@@ -7178,34 +7214,59 @@ class PonchoMap {
     /**
      * Procesa y retorna el label del tooltip
      * 
-     * @param {string|function} entry - Template string, función o valor a procesar
-     * @param {object} row - Objeto con datos para reemplazar en el template
+     * @param {object} entry - Objeto con datos para reemplazar en el template
+     * @returns {string} defaultLabel - Texto por defecto title.
      * @returns {string} Label procesado y listo para mostrar
      */
-    _tooltipLabel = (entry, row) => {
-        if (typeof entry === 'function') {
+    _tooltipLabel = (entry, defaultLabel) => {
+        if(!this.tooltip){
+            return;
+        }
+
+        if(!this.isObject(entry) || this.isEmptyObject(entry)){
+            this.logger.error(
+                "[_tooltipLabel]",
+                "El primer parámetro debe ser un objeto y no puede estar vacío"
+            );
+            return;
+        }
+
+        if( !this.isNumber(defaultLabel) && !this.isString(defaultLabel) ){
+            this.logger.error(
+                "[_tooltipLabel]",
+                "El segundo parámetro solo puede ser una cadena de texto "
+                + "o un número"
+            );
+            return;
+        }
+
+        if(this.isEmptyString(defaultLabel)){
+            this.logger.error(
+                "[_tooltipLabel]",
+                "El segundo parametro no puede estar vacío"
+            );
+            return;
+        }
+
+        if (typeof this.tooltip_label === 'function') {
             try {
-                const result = entry(row);
+                const result = this.tooltip_label(self, entry);
                 return result != null ? String(result) : '';
             } catch (error) {
-                this.logger.warn('Error ejecutando función de tooltip:', error);
+                this.logger.warn(
+                    'Error ejecutando función de tooltip:', 
+                    error
+                );
                 return '';
             }
         }
 
-        // Procesamiento de strings con templates
-        if (this.isString(entry) && !this.isEmptyString(entry)) {
-            try {
-                const template = this.conditionalTemplate(entry);
-                const parsed = this.tplParser(template, row);
-                return parsed != null ? parsed : entry;
-            } catch (error) {
-                this.logger.warn('Error procesando template de tooltip:', error);
-                return entry;
-            }
+        if( this.isString(this.tooltip_label) && 
+            !this.isEmptyString( this.tooltip_label) ){
+            return this.tpl(this.tooltip_label, entry);
         }
 
-        return entry != null ? String(entry) : '';
+        return defaultLabel;
     };
 
 
@@ -8429,7 +8490,8 @@ class PonchoMap {
             case 'function':
                 // Ejecuta la función una sola vez y almacena el resultado
                 const result = this.marker_color(this, row);
-                // Si retorna un string, crea el icono; si retorna un objeto, úsalo directamente
+                // Si retorna un string, crea el icono; si retorna un objeto, 
+                // lo usa directamente
                 return (typeof result === 'string') ? this.icon(result) : result;
             default:
                 return null;
@@ -8489,18 +8551,9 @@ class PonchoMap {
                 const icon = self.marker(properties);
                 const title = properties[titleKey];
 
-                // Determinar el label del tooltip según su tipo
-                let tooltipLabel = title;
-                if (typeof self.tooltip_label === 'function') {
-                    tooltipLabel = self.tooltip_label(self, properties);
-                } else if (self.isString(self.tooltip_label)) {
-                    tooltipLabel = self.tooltip_label;
-                }
-
-                // Procesar el label (aplicar templates, validaciones, etc.)
                 const processTooltipLabel = self._tooltipLabel(
-                    tooltipLabel,
-                    properties
+                    properties,
+                    title // Default value
                 );
 
                 // atributos del marker de forma optimizada
