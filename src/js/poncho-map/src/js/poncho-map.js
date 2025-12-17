@@ -2026,6 +2026,20 @@ class PonchoMap {
             return;
         }
 
+        if(!this.isObject(entry) || this.isEmptyObject(entry)){
+            this.logger.log(
+                "[_tooltipLabel]",
+                "El primer parámetro debe ser un objeto y no puede estar vacío"
+            );
+        }
+
+        if(!this.isString(defaultLabel) || this.isEmptyString(defaultLabel)){
+            this.logger.log(
+                "[_tooltipLabel]",
+                "Debe proveer un valor por defecto en el segundo parámetro"
+            );
+        }
+
         if (typeof this.tooltip_label === 'function') {
             try {
                 const result = this.tooltip_label(self, entry);
