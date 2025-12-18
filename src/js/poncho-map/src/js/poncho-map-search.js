@@ -49,14 +49,14 @@ class PonchoMapSearch {
             sort_reverse: false,
             sort_key: "text",
             datalist: true,
-            search_combobox: false,
+            combobox: false,
             combobox_options: false
         };
         this.instance = instance;
         let opts = Object.assign({}, defaults, options);
         this.text = (instance.title ? instance.title : false);
         this.datalist = opts.datalist;
-        this.search_combobox = opts.search_combobox;
+        this.combobox = opts.combobox;
         this.combobox_options = opts.combobox_options;
         this.placeholder = opts.placeholder;
         this.scope = opts.scope;
@@ -132,7 +132,7 @@ class PonchoMapSearch {
      * @returns {undefined}
      */
     _cacheDataEntries = () => {
-        if(!this.search_combobox){
+        if(!this.combobox){
             return;
         }
 
@@ -504,7 +504,7 @@ class PonchoMapSearch {
      * @returns {undefined}
      */
     searcher = () => {
-        if(!this.search_combobox){
+        if(!this.combobox){
             return;
         }
 
