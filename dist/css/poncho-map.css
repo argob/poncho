@@ -1657,3 +1657,49 @@ input[type=search].js-poncho-map-search__input::-webkit-search-cancel-button {
 .js-poncho-map__help:is(.text-default) {
   color: inherit;
 }
+
+.pm-search__results {
+  position: absolute;
+  top: 45px;
+  max-width: calc(100% - 30px);
+  min-width: 150px;
+  padding: 15px 0;
+  border: 1px solid #ddd;
+  border-radius: 9px;
+  background: white;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+  box-sizing: border-box;
+  z-index: 9999;
+}
+.pm-search__results ul {
+  margin: 0;
+  padding: 0 10px;
+  list-style: none;
+  display: block;
+  max-height: 400px;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+.pm-search__results ul li {
+  padding: 2px 0;
+  border-bottom: 1px solid #eee;
+}
+.pm-search__results ul li:last-of-type {
+  border-bottom: 1px solid transparent;
+}
+.pm-search__results ul li a {
+  display: block;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: smaller;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: 0.15s ease-in-out;
+}
+.pm-search__results ul li a:focus {
+  background: #eee;
+}
+.pm-search__results ul li a:hover {
+  background: #eee;
+  border: 1px solid #ddd;
+}
