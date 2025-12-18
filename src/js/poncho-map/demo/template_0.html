@@ -16,6 +16,48 @@
         href="https://capacita-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css?rfqjsh">
     <link rel="stylesheet" href="../../../../dist/css/poncho.min.css" />
     
+<style>
+        .pm-search__results {
+        position: absolute;
+        border: 1px solid #ddd;
+        top: 45px;
+        width: auto;
+        min-width: 250px;
+        border-radius: 9px;
+        background: white;
+        z-index: 9999;
+        box-sizing: border-box;
+        box-shadow: 0 0 12px rgb(0 0 0 / .2);
+        padding: 1em 0;
+    }
+
+    .pm-search__results ul {
+        margin: 0;
+        padding: 0px;
+        list-style: none;
+        display: block;
+        max-height: 400px;
+        overflow-x: auto;
+    }
+
+    .pm-search__results ul li {
+        margin: 2px;
+    }
+
+    .pm-search__results ul li a {
+        padding: 6px 8px;
+        display: block;
+        margin-bottom: 1px;
+        font-size: smaller;
+        border-radius: 6px;
+        text-decoration: none;
+    }
+    .pm-search__results ul li a:hover {
+        background: #eee;
+    }
+</style>
+
+
 
     <!-- 
         Script para debug 
@@ -81,13 +123,13 @@ COPIAR DESDE ACÁ…
                     id="search" 
                     list="js-porcho-map-search__list" 
                     name="search" 
-                    autocomplete="true"
+                    autocomplete="on"
                     spellcheck="true" 
                     type="search"> 
                 <datalist 
                     class="js-porcho-map-search__list" 
                     id="js-porcho-map-search__list">
-                </datalist> 
+                </datalist>
                 <span class="input-group-btn">
                     <button 
                         class="js-poncho-map-search__submit btn btn-primary" 
@@ -133,9 +175,10 @@ COPIAR DESDE ACÁ…
 <script src="../../mapa-argentina/demo/js/demo.js"></script>
 <!-- / SHOW CODE -->
 
+
+
 <!-- SCRIPTS -->
 <script id="code_map">
-    
     var search, filter;
     const url = './data/response.json';
     jQuery.getJSON(url, function(sheet_data) {
@@ -248,16 +291,34 @@ COPIAR DESDE ACÁ…
 
     // Buscador
     const search_options = {
-        "scope": "search-poncho-map",
-        "text": "nombre",
-        "search_fields": ["foo","nombre", "institucion", "calle","localidad", "provincia", "municipio_nombre"],
-        "id": "id_pd",
-        "placeholder": "Buscá tu Punto Digital"
+        scope: "search-poncho-map",
+        search_combobox: true,
+        combobox_options: {
+            key: false,
+            template: `<p class="m-y-0 small fw-semibold text-arg-arandano">{{name}}</p>
+                <p class="m-y-0 small text-arg-gris-intermedio">
+                    {{localidad}}<span class="thin-space"></span>/<span class="thin-space"></span>{{provincia}}
+                </p>`,
+        },
+        text: "nombre",
+        search_fields: [
+            "nombre", 
+            "institucion", 
+            "calle",
+            "localidad", 
+            "provincia", 
+            "municipio_nombre"
+        ],
+        id: "id_pd",
+        placeholder: "Buscá tu Punto Digital"
     };
     search = new PonchoMapSearch(filter, search_options);
     search.render();
 });
 </script>
+
+
+
 <!-- / SCRIPTS -->
 </body>
 </html>
