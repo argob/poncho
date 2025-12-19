@@ -12435,6 +12435,7 @@ input[type=search].js-poncho-map-search__input::-webkit-search-cancel-button {
   top: 45px;
   max-width: calc(100% - 30px);
   min-width: 150px;
+  width: max-content;
   padding: 15px 0;
   border: 1px solid #ddd;
   border-radius: 9px;
