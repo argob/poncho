@@ -10673,12 +10673,12 @@ class PonchoMapSearch {
                     .map(value => String(value).trim());
 
                 const results = slugify(valuesToSearchIn.join(" "));
-                const pmtpl = this._comboboxLabel(properties);
+                const pm_search_option_template = this._comboboxLabel(properties);
 
                 return {
                     ...properties,
                     results, 
-                    pmtpl
+                    pm_search_option_template
                 };
             })
             .filter(entry => entry !== null);
@@ -10977,7 +10977,7 @@ class PonchoMapSearch {
     _creatSearchItem = (entry) => {
 
         // const template = this._comboboxLabel(entry);
-        const template = entry.pmtpl;
+        const template = entry.pm_search_option_template;
 
         var searchItem = document.createElement("li");
         searchItem.setAttribute("role", "option");
