@@ -12430,7 +12430,7 @@ input[type=search].js-poncho-map-search__input::-webkit-search-cancel-button {
   color: inherit;
 }
 
-.pm-search__results {
+.pm-search-results {
   position: absolute;
   top: 45px;
   max-width: calc(100% - 30px);
@@ -12444,7 +12444,7 @@ input[type=search].js-poncho-map-search__input::-webkit-search-cancel-button {
   box-sizing: border-box;
   z-index: 9999;
 }
-.pm-search__results ul {
+.pm-search-results__listbox {
   margin: 0;
   padding: 0 10px;
   list-style: none;
@@ -12453,14 +12453,14 @@ input[type=search].js-poncho-map-search__input::-webkit-search-cancel-button {
   overflow-x: auto;
   scrollbar-width: thin;
 }
-.pm-search__results ul li {
+.pm-search-results__option {
   padding: 2px 0;
   border-bottom: 1px solid #eee;
 }
-.pm-search__results ul li:last-of-type {
+.pm-search-results__option:last-of-type {
   border-bottom: 1px solid transparent;
 }
-.pm-search__results ul li a {
+.pm-search-results__action {
   display: block;
   padding: 6px 10px;
   border-radius: 6px;
@@ -12469,12 +12469,13 @@ input[type=search].js-poncho-map-search__input::-webkit-search-cancel-button {
   border: 1px solid transparent;
   transition: 0.15s ease-in-out;
 }
-.pm-search__results ul li a:focus {
+.pm-search-results__action:focus {
   background: #eee;
 }
-.pm-search__results ul li a:hover {
+.pm-search-results__action:hover {
   background: #eee;
-  border: 1px solid #ddd;
+  border: 1px solid #555;
+  text-decoration: none;
 }
 
 /* Poncho agenda */
