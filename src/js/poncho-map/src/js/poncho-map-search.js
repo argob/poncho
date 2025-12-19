@@ -101,6 +101,11 @@ class PonchoMapSearch {
     };
 
 
+    /**
+     * Crea el render para el template
+     * @param {object} entry Entrada de datos json. 
+     * @returns {boolean|string}
+     */
     _comboboxLabel = (entry) => {
         if(!this.instance.isObject(this.combobox_options) || 
             this.instance.isEmptyObject(!this.combobox_options)){
@@ -109,14 +114,16 @@ class PonchoMapSearch {
         const template = this.combobox_options?.template;
         if(!this.instance.isEmptyString){
             this.instance.logger.error(
-                "_comboboxLabel", "Requiere una cadena de texto en template"
+                "_comboboxLabel", 
+                "Requiere una cadena de texto en template"
             );
             return false;
         }
 
         if(this.instance.isEmptyString(template)){
             this.instance.logger.error(
-                "_comboboxLabel", "template no puede estar vacío."
+                "_comboboxLabel", 
+                "template no puede estar vacío."
             );
             return false;
         }
@@ -158,10 +165,12 @@ class PonchoMapSearch {
                     .map(value => String(value).trim());
 
                 const results = slugify(valuesToSearchIn.join(" "));
+                const pmtpl = this._comboboxLabel(properties);
 
                 return {
                     ...properties,
-                    results
+                    results, 
+                    pmtpl
                 };
             })
             .filter(entry => entry !== null);
@@ -265,7 +274,7 @@ class PonchoMapSearch {
     searchTerm = (term) => {
 
         if(this.instance.isEmptyString(term)){
-            this.logger.error(
+            this.logger.warn(
                 "searchTerm", 
                 "El término de búsqueda no puede estar vacío.");
             return;
@@ -459,22 +468,27 @@ class PonchoMapSearch {
      */
     _creatSearchItem = (entry) => {
 
-        const template = this._comboboxLabel(entry);
+        // const template = this._comboboxLabel(entry);
+        const template = entry.pmtpl;
 
         var searchItem = document.createElement("li");
         searchItem.setAttribute("role", "option");
-        searchItem.classList.add("m-y-0");
+        searchItem.classList.add("m-y-0", "pm-search-results__option");
+
+        const defaultLabel = entry[ this.text ];
+        const url = `${window.location.pathname}#${entry[this.instance.id]}`;
 
         var a = document.createElement("a");
-        a.href = "#";
-        a.dataset.name = entry.name;
-        a.classList.add("js-pm-search-result-item");
+        a.href = url;
+        a.tabIndex = 0;
+        a.dataset.name = defaultLabel;
+        a.classList.add("js-pm-search-result-item", "pm-search-results__action");
         a.setAttribute("data-entry-id", entry[this.instance.id]);
 
         if(template){
             a.innerHTML = template;
         } else {
-            a.textContent = entry.name;
+            a.textContent = defaultLabel;
         }
 
         searchItem.appendChild(a);
@@ -491,7 +505,7 @@ class PonchoMapSearch {
         const searchContainer = this._cachedElements.searchContainer ||
                                 document.querySelector(this.selectors.searchResultContainer);
         if (searchContainer) {
-            searchContainer.classList.remove("pm-search__results");
+            searchContainer.classList.remove("pm-search-results");
             searchContainer.replaceChildren();
         }
     }
@@ -529,7 +543,6 @@ class PonchoMapSearch {
 
         // Crear y cachear el contenedor de búsqueda
         const searchContainer = document.createElement("div");
-        searchContainer.tabIndex = 0;
         searchContainer.classList.add("js-pm-search");
         searchContainer.setAttribute("aria-live", "polite");
         this._cachedElements.searchContainer = searchContainer;
@@ -545,7 +558,7 @@ class PonchoMapSearch {
             clearTimeout(debounceTimer.current);
 
             debounceTimer.current = setTimeout(() => {
-                searchContainer.classList.remove("pm-search__results");
+                searchContainer.classList.remove("pm-search-results");
                 searchContainer.replaceChildren();
 
                 const value = String(searchElement.value);
@@ -560,6 +573,8 @@ class PonchoMapSearch {
                 }
 
                 const ul = document.createElement("ul");
+                ul.tabIndex = 0;
+                ul.classList.add("pm-search-results__listbox");
                 ul.setAttribute("role", "listbox");
                 const fragment = document.createDocumentFragment();
 
@@ -568,7 +583,7 @@ class PonchoMapSearch {
                 }
 
                 ul.appendChild(fragment);
-                searchContainer.classList.add("pm-search__results");
+                searchContainer.classList.add("pm-search-results");
                 searchContainer.appendChild(ul);
 
             }, DEBOUNCE_DELAY);
