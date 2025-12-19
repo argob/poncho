@@ -268,6 +268,17 @@ COPIAR DESDE ACÁ…
         // Buscador
         const search_options = {
             "scope": "search-poncho-map",
+            combobox: true,
+            combobox_options: {
+                key: false,
+                template: `<p class="m-y-0 small fw-semibold">{{name}}</p>`
+                    + `<p class="m-y-0 small text-arg-gris-intermedio">`
+                    + `{{observation}}`
+                    + `</p>`
+                    + `<p class="m-b-0 m-t-05 small text-arg-negro">`
+                    + `{{locality}}, {{province}}`
+                    + `</p>`,
+            },
             "text": "name",
             "search_fields": [
                 "name",

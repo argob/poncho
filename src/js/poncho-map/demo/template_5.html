@@ -53,29 +53,44 @@ MAPA CON BUSCADOR FILTRO
 COPIAR DESDE ACÁ…
 -->
 <div class="col-md-12">
-<!-- PONCHO MAP SEARCH -->
-<form action="">
-  <div data-scope="poncho-map-search">
-      <div class="input-group">
-          <input 
-              type="search" 
-              name="search" 
-              autocomplete="off"
-              class="js-poncho-map-search__input form-control" 
-              list="list">
-              <datalist id="list" class="js-porcho-map-search__list"></datalist>
-          <span class="input-group-btn">
-            <button class="js-poncho-map-search__submit btn btn-primary" aria-label="Buscar puntos">
-              <i class="fa fa-search text-white"> </i>
-            </button>
-          </span>
-      </div>
-      <div data-scope="poncho-map" class="m-b-1">
-          <div class="js-poncho-map__help small text-default"></div>
-      </div>
-  </div>
-</form>
-<!-- / PONCHO MAP SEARCH -->
+
+<!-- PONCHO SEARCH -->
+<search aria-label="Buscar puntos en el mapa">
+    <form>
+        <div data-scope="poncho-map-search-2">
+            <label class="sr-only" for="search">Buscar ubicación</label>
+            <div class="input-group m-b-0 p-b-0 webform-component">
+                <input 
+                    class="js-poncho-map-search__input form-control" 
+                    id="search" 
+                    list="js-porcho-map-search__list" 
+                    name="search" 
+                    autocomplete="on"
+                    spellcheck="true" 
+                    type="search"> 
+                <datalist 
+                    class="js-porcho-map-search__list" 
+                    id="js-porcho-map-search__list">
+                </datalist>
+                <span class="input-group-btn">
+                    <button 
+                        class="js-poncho-map-search__submit btn btn-primary" 
+                        type="submit">
+                        <i class="fa fa-search text-white"></i>
+                        <span class="sr-only">Buscar término</span>
+                    </button> 
+                </span>
+            </div>
+            <div data-scope="ponchomap">
+                <div class="js-poncho-map__help small"></div>
+            </div>
+        </div>
+    </form>
+</search>
+<!-- / PONCHO SEARCH -->
+
+
+
 </div>
 <div class="col-md-12">
 <!-- PONCHO MAP -->
@@ -103,7 +118,6 @@ COPIAR DESDE ACÁ…
 <link href="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.css" rel="stylesheet"/> 
 <link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.css" rel="stylesheet"/> 
 <link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.Default.css" rel="stylesheet"/> 
-<script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
 <!-- / INCLUDE SCRIPTS -->
 
 
@@ -296,15 +310,38 @@ COPIAR DESDE ACÁ…
     const map = new PonchoMapFilter(entries, options);
     map.render();
 
-
     const search_options = {
-        "scope": "poncho-map-search", 
+        combobox: true,
+        text: "title",
+        "scope": "poncho-map-search-2", 
         "placeholder": "Buscar en el geoJSON",
-        "datalist": true,
-        "search_fields": ["provincia", "ID", "id", "title"] 
+        "search_fields": [
+            "name",
+            "nombre",
+            "tipo",
+            "color",
+            "uri_imagen",
+            "descripcion_test",
+            "direccion",
+            "telefono",
+            "email",
+            "filtro-provincia",
+            "localidad",
+            "latitud",
+            "longitud",
+            "btn-Ver",
+            "id",
+            "ubicacion",
+            "imagen",
+            "boton"
+        ]
     };
+
+
+    
     const search = new PonchoMapSearch(map, search_options);
     search.render();
+
 })();
 </script>
 
