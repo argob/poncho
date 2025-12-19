@@ -8,7 +8,7 @@ $search-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
 $search-transition: 0.15s ease-in-out;
 
 // Search results container
-.pm-search__results {
+.pm-search-results {
     position: absolute;
     top: 45px;
     max-width: calc(100% - 30px);
@@ -22,7 +22,7 @@ $search-transition: 0.15s ease-in-out;
     box-sizing: border-box;
     z-index: 9999;
 
-    ul {
+    &__listbox {
         margin: 0;
         padding: 0 10px;
         list-style: none;
@@ -30,33 +30,35 @@ $search-transition: 0.15s ease-in-out;
         max-height: 400px;
         overflow-x: auto;
         scrollbar-width: thin;
+    }
 
-        li {
-            padding: 2px 0;
-            border-bottom: 1px solid $search-hover-bg;
+    &__option {
+        padding: 2px 0;
+        border-bottom: 1px solid $search-hover-bg;
 
-            &:last-of-type {
-                border-bottom: 1px solid transparent;
-            }
-
-            a {
-                display: block;
-                padding: 6px 10px;
-                border-radius: $search-item-radius;
-                font-size: smaller;
-                text-decoration: none;
-                border: 1px solid transparent;
-                transition: $search-transition;
-
-                &:focus {
-                    background: $search-hover-bg;
-                }
-
-                &:hover {
-                    background: $search-hover-bg;
-                    border: 1px solid $search-border-color;
-                }
-            }
+        &:last-of-type {
+            border-bottom: 1px solid transparent;
         }
     }
+
+    &__action {
+        display: block;
+        padding: 6px 10px;
+        border-radius: $search-item-radius;
+        font-size: smaller;
+        text-decoration: none;
+        border: 1px solid transparent;
+        transition: $search-transition;
+
+        &:focus {
+            background: $search-hover-bg;
+        }
+
+        &:hover {
+            background: $search-hover-bg;
+            border: 1px solid #555;
+            text-decoration: none;
+        }
+    }
+
 }
