@@ -45,57 +45,58 @@
 <!-- 
 COPIAR DESDE ACÁ…
 -->
-<div class="col-md-12">
-<!-- PONCHO MAP SEARCH -->
-<search>
-<form>
-    <div data-scope="poncho-map-search">
-        <div class="input-group">
-            <input 
-                type="search" 
-                name="search" 
-                autocomplete="off"
-                class="js-poncho-map-search__input form-control" 
-                list="list">
-                <datalist id="list" class="js-porcho-map-search__list"></datalist>
-            <span class="input-group-btn">
-                <button class="js-poncho-map-search__submit btn btn-primary">
-                <i class="fa fa-search text-white"> </i>
-                </button>
-            </span>
-        </div>
-        <div data-scope="poncho-map" class="m-b-1">
-            <div class="js-poncho-map__help small text-default"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+        <!-- PONCHO MAP SEARCH -->
+        <search>
+        <form>
+            <div data-scope="poncho-map-search">
+                <div class="input-group">
+                    <input 
+                        type="search" 
+                        name="search" 
+                        autocomplete="off"
+                        class="js-poncho-map-search__input form-control" 
+                        list="list">
+                        <datalist id="list" class="js-porcho-map-search__list"></datalist>
+                    <span class="input-group-btn">
+                        <button class="js-poncho-map-search__submit btn btn-primary">
+                        <i class="fa fa-search text-white"> </i>
+                        </button>
+                    </span>
+                </div>
+                <div data-scope="poncho-map" class="m-b-1">
+                    <div class="js-poncho-map__help small text-default"></div>
+                </div>
+            </div>
+        </form>
+        </search>
+        <!-- / PONCHO MAP SEARCH -->
         </div>
     </div>
-</form>
-</search>
-<!-- / PONCHO MAP SEARCH -->
 </div>
 
 <div class="container">
-    <div class="col-md-12">
-        <div id="width" class="badge bg-arg-maiz text-arg-negro p-x-05 p-y-xs"></div>
-    <!-- PONCHO MAP -->
-    <div class="poncho-map" data-scope="poncho-map">
-        <div
-            class="leaflet-container leaflet-touch leaflet-fade-anim 
-                leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
-            id="map"
-            style="height: 650px;">
+    <div class="row">
+        <div class="col-md-12">
+            <div id="width" class="badge bg-arg-maiz text-arg-negro m-b-05 p-x-05 p-y-xs"></div>
+            <!-- PONCHO MAP -->
+            <div class="poncho-map" data-scope="poncho-map">
+                <div
+                    class="leaflet-container leaflet-touch leaflet-fade-anim 
+                        leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
+                    id="map"
+                    style="height: 650px;">
+                </div>
+            </div>
+            <!-- / PONCHO MAP -->
+            <div data-code-from="code_map" class="m-y-2" data-title="Código para el mapa"></div>
         </div>
     </div>
-    <!-- / PONCHO MAP -->
+</div>
 
-
-
-
-<div data-code-from="code_map" class="m-y-2" data-title="Código para el mapa"></div>
 <script src="../../mapa-argentina/demo/js/demo.js"></script>
-
-
-</div>
-</div>
 
 
 <!-- INCLUDE SCRIPTS -->
@@ -112,8 +113,39 @@ COPIAR DESDE ACÁ…
 
 <!-- SCRIPTS -->
 <script id="code_map">
+    const styles = `.opt {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-template-areas: "a b";
+        column-gap: 10px;
+        row-gap: 1px;
+    }
+
+    .opt-img {
+        grid-area: a;
+        width: 110px;
+        aspect-ratio: 16/10;
+        object-fit: cover;
+        border: 3px solid white;
+        border-radius: 3px;
+        display: inline-block;
+        box-shadow: 0px 1px 3px rgb(0 0 0 / .15);
+        margin-left: -3px
+    }
+
+    .opt-col {
+        grid-area: b;
+    }
+
+
+    .opt:not(:has(.opt-img)) {
+        grid-template-columns: 1fr;
+        grid-template-areas: "b";
+        column-gap: 0;
+    }`;
+    headStyle('a', styles);
     // init
-    var map;
+    var map, search;
 
     (async() => {
         const loader = new PonchoMapLoader({scope: "poncho-map"});
@@ -262,15 +294,27 @@ COPIAR DESDE ACÁ…
 
         const searchOptions = {
             combobox: true,
-            "scope": "poncho-map-search", 
-            "placeholder": "Buscar en el geoJSON",
-            "datalist": false,
-            "search_fields": ["provincia", "title", "localidad", "descripcion"] 
+            combobox_options: {
+                template: 
+                `<div class="opt">`
+                + `{% '<img src="{{foto}}" width="90" alt="" class="opt-img" />' if foto != '' else '' %}`
+                + `<div class="opt-col"><p class="m-y-0 small fw-semibold opt-name">`
+                + `{{name}}`
+                + `</p>`
+                + `<p class="m-y-0 small text-arg-gris-intermedio opt-location">`
+                + `{{localidad}}, {{provincia}}`
+                + `</p></div>`
+                + `</div>`
+            },
+            scope: "poncho-map-search", 
+            placeholder: "Buscar en el geoJSON",
+            datalist: false,
+            search_fields: ["provincia", "title", "localidad", "descripcion"] 
         };
 
         map = new PonchoMapFilter(entries, mapOptions);
         map.render();
-        const search = new PonchoMapSearch(map, searchOptions);
+        search = new PonchoMapSearch(map, searchOptions);
         search.render();
             
         loader.close();
