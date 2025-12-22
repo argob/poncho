@@ -96,3 +96,33 @@ test('Secure HTML - Link attributes without quotes', () => {
     expect(secureHTML('<a href=/page id=link>Click</a>', ["a"]))
         .toBe('<a href=/page id=link>Click</a>');
 });
+
+test('Secure HTML - Additional safe tags', () => {
+    // Tablas
+    expect(secureHTML('<table><tr><td>Cell</td></tr></table>', ["table", "tr", "td"]))
+        .toBe('<table><tr><td>Cell</td></tr></table>');
+
+    // Texto con formato
+    expect(secureHTML('<code>const x = 1;</code>', ["code"]))
+        .toBe('<code>const x = 1;</code>');
+
+    // Blockquote
+    expect(secureHTML('<blockquote cite="source">Quote</blockquote>', ["blockquote"]))
+        .toBe('<blockquote cite="source">Quote</blockquote>');
+
+    // Elementos multimedia seguros
+    expect(secureHTML('<figure><figcaption>Caption</figcaption></figure>', ["figure", "figcaption"]))
+        .toBe('<figure><figcaption>Caption</figcaption></figure>');
+
+    // Listas de descripción
+    expect(secureHTML('<dl><dt>Term</dt><dd>Definition</dd></dl>', ["dl", "dt", "dd"]))
+        .toBe('<dl><dt>Term</dt><dd>Definition</dd></dl>');
+
+    // Elementos de tiempo y marcado
+    expect(secureHTML('<time datetime="2024-01-01">January 1, 2024</time>', ["time"]))
+        .toBe('<time datetime="2024-01-01">January 1, 2024</time>');
+
+    // Uso del comodín * debe incluir todas las etiquetas seguras
+    expect(secureHTML('<article><h2>Title</h2><p>Text</p></article>', ["*"]))
+        .toBe('<article><h2>Title</h2><p>Text</p></article>');
+});
