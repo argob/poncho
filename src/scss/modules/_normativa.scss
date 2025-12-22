@@ -1,0 +1,25 @@
+.bloque-leyes {
+  i {
+    color: var(--arg-azul-600);
+    vertical-align: middle;
+    line-height: 2em;
+    padding: 3px;
+  }
+
+  li.active a {
+    font-weight: 700;
+  }
+
+  padding: 1.5rem .2rem;
+  margin: 0px;
+  background:var(--arg-gris-niebla);
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+@media (max-width: 991px) {
+  .bloque-leyes-mobile {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+}

@@ -80,7 +80,6 @@ COPIAR DESDE ACÁ…
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <div id="width" class="badge bg-arg-maiz text-arg-negro m-b-05 p-x-05 p-y-xs"></div>
             <!-- PONCHO MAP -->
             <div class="poncho-map" data-scope="poncho-map">
                 <div
@@ -295,6 +294,7 @@ COPIAR DESDE ACÁ…
         const searchOptions = {
             combobox: true,
             combobox_options: {
+                display: "expanded",
                 template: 
                 `<div class="opt">`
                 + `{% '<img src="{{foto}}" width="90" alt="" class="opt-img" />' if foto != '' else '' %}`

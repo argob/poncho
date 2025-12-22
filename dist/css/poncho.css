@@ -12444,6 +12444,10 @@ input[type=search].js-poncho-map-search__input::-webkit-search-cancel-button {
   box-sizing: border-box;
   z-index: 9999;
 }
+.pm-search-results.pm-search-results__expanded {
+  /* 30 son los margenes mientras que 64 es el ancho del botón de búsqueda */
+  width: calc(100% - 30px - 64px);
+}
 .pm-search-results__listbox {
   margin: 0;
   padding: 0 10px;
@@ -12478,6 +12482,11 @@ input[type=search].js-poncho-map-search__input::-webkit-search-cancel-button {
   text-decoration: none;
 }
 
+@media (max-width: 575.98px) {
+  .pm-search-results.pm-search-results__expanded {
+    width: calc(100% - 30px);
+  }
+}
 /* Poncho agenda */
 .agenda-item {
   border-bottom: 1px dashed #ddd;
@@ -14654,6 +14663,29 @@ footer .nav > li > a:hover {
   }
   .menu_org .expanded {
     width: 100% !important;
+  }
+}
+.bloque-leyes i {
+  color: var(--arg-azul-600);
+  vertical-align: middle;
+  line-height: 2em;
+  padding: 3px;
+}
+.bloque-leyes li.active a {
+  font-weight: 700;
+}
+.bloque-leyes {
+  padding: 1.5rem 0.2rem;
+  margin: 0px;
+  background: var(--arg-gris-niebla);
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+@media (max-width: 991px) {
+  .bloque-leyes-mobile {
+    display: flex;
+    flex-direction: column-reverse;
   }
 }
 /* CONTENIDO DE LA PAGINA TRAMITAR V1.1 */
