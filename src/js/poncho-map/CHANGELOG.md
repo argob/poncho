@@ -2,9 +2,14 @@
 
 ## Release 2.2
 
-### PonchoMapFilter
+### PonchoMapSearch
 
-#### Optimizaciones
+ * Desplegable de buscador mejorado. Ahora se puede agregar un template para mejorar la visualización de resultados.
+ * Se creo un cache para almacenar los strings de búsqueda evitando sobrecargas innecesarias en la DOM.
+ * Se incorporó la opción para visualizar los resultados de manera expandida o adaptada a los resultados.
+
+
+### PonchoMapFilter
 
   * Los filtros ahora se agrupan una sola vez antes del procesamiento en lugar de reagruparse por cada entrada.
   * `_fieldsToUse()`: Implementación de Map cache para evitar recálculos repetidos en la configuración de campos del form.
@@ -22,6 +27,7 @@
   * `_filteredData()`: Eliminación de clonación innecesaria de array con spread operator.
 
 ### PonchoMapLoader
+
   * Se implementó el método `remove()` que faltaba y causaba errores en tiempo de ejecución.
   * Se corrigió la limpieza de timeouts en el método `close()`.
   * Los métodos `load()` y `close()` ahora cancelan operaciones pendientes correctamente.
@@ -31,15 +37,10 @@
 
 ### PonchoMap
 
-#### Optimizaciones
-
   * Optimización del objeto `markerCluster` y método `marker()`:
   * Implementación de caché de iconos para evitar crear objetos duplicados.
   * Eliminación de llamada redundante a `marker_color()` en el proceso de creación de marcadores.
   * Cacheo del tipo de `marker_color` para evitar verificaciones repetidas de tipo en cada marcador.
-
-#### Mejoras
-
   * A `mixing['template']` se le agregó la posibilidad de utilizar condicionales en línea. De este modo se puede controlar formato de salida.
   * Los íconos SVG se codificaron a base64 para evitar problemas de encoding.
   * En cumplimiento con la pauta de accesibilidad WCAG 2 (1.4.1 - Uso del color, Nivel A), hemos añadido un patrón visual (trama) a los clusters.
@@ -47,9 +48,6 @@
   * Se incorporó la opción customización del texto para los tooltips.
   * Corrección de margenes en el desplegable de filtros.
   * En el slider, se agregó `lead` dentro de la etiqueta `<header/>`.
-
-#### Fixes
-
   * Se realizó un bug fix en `mixing['template']` donde se mostraba el valor con el *template* cuando el value llegaba vacío.
   * Remoción del atributo `role="button"` innecesario en el botón para cerrar el _slider_.
   * Remoción del atributo `role="article"` es innecesario en un article
@@ -61,10 +59,6 @@
   * Corrección en `_addSummary()` cuando se borra el mapa con `map.remove()` y la etiqueta queda impresa en el HTML cuando debería borrarse. 
   * Se modificó la URL para ArgenMap. Se usaba una para la versión beta y ésta se dió de baja.
   * La barra de _scroll_ ya no queda parcialmente oculta cuando se abre el panel de url.
->>>>>>> 35ae6662c2af38d414a1205c072610a3fed7d636
-
-#### Defaults
-
   * Los enlaces para mapas alternativos abren en una nueva página.
   * En open_maps el texto por defecto ahora es: «Abrir ubicación en:».
 
