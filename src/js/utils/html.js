@@ -1,28 +1,28 @@
 /**
  * HTML utilities
- * 
+ *
  * @summary Validadores y herramientas para manipulación de código HTML.
- * 
+ *
  * ADVERTENCIA
- * 
- * Estas funciones JavaScript no fueron realizadas con el propósito de 
- * proporcionar seguridad contra ataques externos en aplicaciones. Para 
- * proteger aplicaciones web construidas con JavaScript, es crucial 
- * implementar medidas de seguridad adicionales como validación de datos en 
- * el lado del servidor, protección contra inyección de código (XSS) y el 
- * uso de bibliotecas y frameworks que promuevan prácticas de 
+ *
+ * Estas funciones JavaScript no fueron realizadas con el propósito de
+ * proporcionar seguridad contra ataques externos en aplicaciones. Para
+ * proteger aplicaciones web construidas con JavaScript, es crucial
+ * implementar medidas de seguridad adicionales como validación de datos en
+ * el lado del servidor, protección contra inyección de código (XSS) y el
+ * uso de bibliotecas y frameworks que promuevan prácticas de
  * seguridad sólidas.
- * 
- * Si no está seguro de cómo utilizarla y los posibles riesgos que corre al 
- * exponerla en su sitio web, tome el recaudo de asesorarse con 
+ *
+ * Si no está seguro de cómo utilizarla y los posibles riesgos que corre al
+ * exponerla en su sitio web, tome el recaudo de asesorarse con
  * un especialista.
- * 
- * 
- * 
+ *
+ *
+ *
  * MIT License
- * 
+ *
  * Copyright (c) 2024 Argentina.gob.ar
- * 
+ *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
  * files (the "Software"), to deal in the Software without restriction,
@@ -30,10 +30,10 @@
  * publish, distribute, sublicense, and/or sell copies of the Software,
  * and to permit persons to whom the Software is furnished to do so,
  * subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be
  * included in all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
  * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -73,7 +73,8 @@ const secureHTML = (str, exclude=[]) => {
     const secureList = [
         "div", "a", "strong", "li", "ul", "ol", "em", "i", "article",
         "section", "header", "h1", "h2", "h3", "h4", "h5", "h6", "p",
-        "span", "nav", "footer", "main", "button"
+        "span", "nav", "footer", "main", "button", "img", "figure", "details",
+        "summary"
     ]
 
     // Lista de etiquetas peligrosas que SIEMPRE deben bloquearse
@@ -112,8 +113,35 @@ const secureHTML = (str, exclude=[]) => {
         exclude = secureList;
     }
 
+    // NUEVO: Sanitizar imágenes ANTES de escapar si 'img' está en exclude
+    let preprocessedStr = str;
+    if(exclude.includes('img') || (exclude.includes('*') && secureList.includes('img'))){
+        // Sanitizar atributos src peligrosos en imágenes ANTES del escape
+        preprocessedStr = preprocessedStr
+            // Bloquear javascript: en src (con comillas)
+            .replace(
+                /(<img\s[^>]*?src\s*=\s*["'])javascript:[^"']*["']/gi,
+                '$1"'
+            )
+            // Bloquear javascript: en src (sin comillas)
+            .replace(
+                /(<img\s[^>]*?src\s*=\s*)javascript:[^\s>]*/gi,
+                '$1""'
+            )
+            // Bloquear data: URIs que NO son image/* (con comillas)
+            .replace(
+                /(<img\s[^>]*?src\s*=\s*["'])data:(?!image\/)[^"']*["']/gi,
+                '$1"'
+            )
+            // Bloquear data: URIs que NO son image/* (sin comillas)
+            .replace(
+                /(<img\s[^>]*?src\s*=\s*)data:(?!image\/)[^\s>]*/gi,
+                '$1""'
+            );
+    }
+
     // Escapar todos los < y >
-    let replaceString = str.toString()
+    let replaceString = preprocessedStr.toString()
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;");
 
@@ -135,21 +163,40 @@ const secureHTML = (str, exclude=[]) => {
                 // Limpiar atributos peligrosos
                 let cleanAttrs = attrs;
                 dangerousAttrs.forEach(attr => {
-                    const attrRegex = new RegExp(
+                    // Eliminar atributos con comillas
+                    const attrRegexQuoted = new RegExp(
                         `\\s${attr}\\s*=\\s*["'][^"']*["']`, 'gi'
                     );
-                    cleanAttrs = cleanAttrs.replace(attrRegex, '');
+                    cleanAttrs = cleanAttrs.replace(attrRegexQuoted, '');
+
+                    // Eliminar atributos sin comillas
+                    const attrRegexUnquoted = new RegExp(
+                        `\\s${attr}\\s*=\\s*[^\\s"'>]+`, 'gi'
+                    );
+                    cleanAttrs = cleanAttrs.replace(attrRegexUnquoted, '');
                 });
 
-                // Validar hrefs javascript:
+                // Validar hrefs javascript: (con comillas)
                 cleanAttrs = cleanAttrs.replace(
                     /href\s*=\s*["']javascript:[^"']*["']/gi,
                     'href="#"'
                 );
 
-                // Validar data: URIs (pueden ejecutar JavaScript)
+                // Validar hrefs javascript: (sin comillas)
+                cleanAttrs = cleanAttrs.replace(
+                    /href\s*=\s*javascript:[^\s>]*/gi,
+                    'href="#"'
+                );
+
+                // Validar data: URIs (pueden ejecutar JavaScript) - con comillas
                 cleanAttrs = cleanAttrs.replace(
                     /href\s*=\s*["']data:[^"']*["']/gi,
+                    'href="#"'
+                );
+
+                // Validar data: URIs (pueden ejecutar JavaScript) - sin comillas
+                cleanAttrs = cleanAttrs.replace(
+                    /href\s*=\s*data:[^\s>]*/gi,
                     'href="#"'
                 );
 
