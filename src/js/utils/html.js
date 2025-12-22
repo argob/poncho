@@ -46,17 +46,17 @@
 
 
 /**
- * Impide que se impriman etiquetas HTML.
- * 
- * @summary Impide que se impriman etiquetas HTML exceptuando aquellas
- * asignadas en el parámetro exclude.
- * @param {string} str Cadena de texto a remplazar.
- * @param {object} exclude Etiquetas que deben preservarse.
+ * Impide que se impriman etiquetas HTML peligrosas.
+ *
+ * @summary Sanitiza HTML bloqueando etiquetas peligrosas y atributos de eventos.
+ * Permite opcionalmente excluir ciertas etiquetas seguras de la sanitización.
+ * @param {string} str Cadena de texto a sanitizar.
+ * @param {object} exclude Etiquetas seguras que deben preservarse.
  * @example
  * // returns &lt;h1&gt;Hello world!&lt;/h1&gt; <a href="#">Link</a>
  * secureHTML('<h1>Hello world!</h1> <a href="#">Link</a>', ["a"])
- * 
- * @returns {string} Texto remplazado.
+ *
+ * @returns {string} Texto sanitizado.
  */
 const secureHTML = (str, exclude=[]) => {
     if(typeof str !== "string" || str.trim().length === 0){
@@ -70,24 +70,94 @@ const secureHTML = (str, exclude=[]) => {
         return;
     }
 
-    if(exclude.some(e => e === "*")){
-        return str;
+    const secureList = [
+        "div", "a", "strong", "li", "ul", "ol", "em", "i", "article",
+        "section", "header", "h1", "h2", "h3", "h4", "h5", "h6", "p",
+        "span", "nav", "footer", "main", "button"
+    ]
+
+    // Lista de etiquetas peligrosas que SIEMPRE deben bloquearse
+    const dangerousTags = [
+        'script', 'iframe', 'object', 'embed', 'applet',
+        'meta', 'link', 'style', 'base', 'form'
+    ];
+
+    // Lista de atributos peligrosos que ejecutan JavaScript
+    const dangerousAttrs = [
+        'on\\w+', // onclick, onerror, onload, etc.
+        'formaction',
+        'action',
+        'srcdoc',
+        'eval'
+    ];
+
+    // Validar que no se intente excluir etiquetas peligrosas
+    const hasDangerousExclusion = exclude.some(tag =>
+        dangerousTags.includes(tag.toLowerCase())
+    );
+
+    if(hasDangerousExclusion){
+        console.error(
+            "[secureHTML]",
+            "No se puede incluir etiquetas peligrosas:",
+            dangerousTags.join(", ")
+        );
+        // Filtrar las etiquetas peligrosas del exclude
+        exclude = exclude.filter(tag =>
+            !dangerousTags.includes(tag.toLowerCase())
+        );
     }
 
+    if(exclude.some(e => e === "*")){
+        exclude = secureList;
+    }
+
+    // Escapar todos los < y >
     let replaceString = str.toString()
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;");
 
     if(exclude.length > 0){
+        // Restaurar las etiquetas permitidas
+        const tagPattern = exclude.map(tag => tag.toLowerCase()).join("|");
         const regexStart = new RegExp(
-            "&lt;(" + exclude.join("|") + ")(.*?)&gt;", "g");
+            "&lt;(" + tagPattern + ")(\\s[^>]*?)?&gt;", "gi");
         const regexEnd = new RegExp(
-            "&lt;\/(" + exclude.join("|") + ")(.*?)&gt;", "g");
+            "&lt;\/(" + tagPattern + ")&gt;", "gi");
 
-        return replaceString
-            .replace(regexStart, "<$1$2>")
+        replaceString = replaceString
+            .replace(regexStart, (_match, tag, attrs) => {
+                // Si no hay atributos, retornar la etiqueta limpia
+                if(!attrs){
+                    return `<${tag}>`;
+                }
+
+                // Limpiar atributos peligrosos
+                let cleanAttrs = attrs;
+                dangerousAttrs.forEach(attr => {
+                    const attrRegex = new RegExp(
+                        `\\s${attr}\\s*=\\s*["'][^"']*["']`, 'gi'
+                    );
+                    cleanAttrs = cleanAttrs.replace(attrRegex, '');
+                });
+
+                // Validar hrefs javascript:
+                cleanAttrs = cleanAttrs.replace(
+                    /href\s*=\s*["']javascript:[^"']*["']/gi,
+                    'href="#"'
+                );
+
+                // Validar data: URIs (pueden ejecutar JavaScript)
+                cleanAttrs = cleanAttrs.replace(
+                    /href\s*=\s*["']data:[^"']*["']/gi,
+                    'href="#"'
+                );
+
+                return `<${tag}${cleanAttrs}>`;
+            })
             .replace(regexEnd, "</$1>");
     }
+
     return replaceString;
 };
 
