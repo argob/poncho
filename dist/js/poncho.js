@@ -10990,7 +10990,10 @@ class PonchoMapSearch {
         a.href = url;
         a.tabIndex = 0;
         a.dataset.name = defaultLabel;
-        a.classList.add("js-pm-search-result-item", "pm-search-results__action");
+        a.classList.add(
+            "js-pm-search-result-item", 
+            "pm-search-results__action"
+        );
         a.setAttribute("data-entry-id", entry[this.instance.id]);
 
         if(template){
@@ -11005,13 +11008,36 @@ class PonchoMapSearch {
 
 
     /**
+     * Define el tañamo del desplegable para las búsquedas
+     * @returns {boolean|string}
+     */
+    _comboboxWidth = () => {
+        if(!this.combobox_options?.display){
+            return false;
+        }
+
+        const stylesAvaiable = ["expanded", "fit-content"];
+        const styleToApply = this.combobox_options?.display;
+
+        if(!stylesAvaiable.includes(styleToApply)){
+            return this.instance.logger(
+                "_comboboxWidth", 
+                "El estilo asignado al ancho del desplegable no existe."
+            );
+        }
+
+        return `pm-search-results__${styleToApply}`;
+    };
+
+
+    /**
      * Cierra el contenedor de resultados de búsqueda.
      * @returns {undefined}
      */
     _closeSearchResults = () => {
         // Usar el elemento cacheado si existe
         const searchContainer = this._cachedElements.searchContainer ||
-                                document.querySelector(this.selectors.searchResultContainer);
+                document.querySelector(this.selectors.searchResultContainer);
         if (searchContainer) {
             searchContainer.classList.remove("pm-search-results");
             searchContainer.replaceChildren();
@@ -11030,12 +11056,13 @@ class PonchoMapSearch {
             return;
         }
 
+        const comboboxWidth = this._comboboxWidth();
         const dataList = document.querySelectorAll(this.selectors.datalist);
         dataList.forEach(ele => ele.remove());
 
         // Usar elemento cacheado o buscarlo
         const searchElement = this._cachedElements.input ||
-                              document.querySelector(this.selectors.searchInput);
+                            document.querySelector(this.selectors.searchInput);
 
         if (!searchElement) {
             return;
@@ -11067,6 +11094,9 @@ class PonchoMapSearch {
 
             debounceTimer.current = setTimeout(() => {
                 searchContainer.classList.remove("pm-search-results");
+                if(comboboxWidth){
+                    searchContainer.classList.remove(comboboxWidth);
+                }
                 searchContainer.replaceChildren();
 
                 const value = String(searchElement.value);
@@ -11081,7 +11111,7 @@ class PonchoMapSearch {
                 }
 
                 const ul = document.createElement("ul");
-                ul.tabIndex = 0;
+                // ul.tabIndex = 0;
                 ul.classList.add("pm-search-results__listbox");
                 ul.setAttribute("role", "listbox");
                 const fragment = document.createDocumentFragment();
@@ -11092,8 +11122,11 @@ class PonchoMapSearch {
 
                 ul.appendChild(fragment);
                 searchContainer.classList.add("pm-search-results");
-                searchContainer.appendChild(ul);
+                if(comboboxWidth){
+                    searchContainer.classList.add(comboboxWidth);
+                }
 
+                searchContainer.appendChild(ul);
             }, DEBOUNCE_DELAY);
         });
 
@@ -11147,6 +11180,18 @@ class PonchoMapSearch {
                 }
             }
 
+            if(e.key == "Tab"){
+                if(target.matches(this.selectors.resultItem)){
+                    const currentLi = target.closest("li");
+                    const nextLi = currentLi.nextElementSibling;
+
+                    // Si no hay siguiente elemento y se presiona Tab (sin Shift)
+                    if(!nextLi && !e.shiftKey){
+                        this._closeSearchResults();
+                    }
+                }
+            }
+
             if(e.key == "Escape"){
                 this._closeSearchResults();
                 searchElement.value = "";
@@ -11167,6 +11212,9 @@ class PonchoMapSearch {
                 searchElement.value = name;
                 this._closeSearchResults();
                 this.instance.gotoEntry(id);
+            } else if (!searchElement.contains(e.target) && !searchContainer.contains(e.target)) {
+                // Cerrar si se hace click fuera del input y del contenedor de resultados
+                this._closeSearchResults();
             }
         });
     }
