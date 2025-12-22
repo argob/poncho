@@ -71,10 +71,32 @@ const secureHTML = (str, exclude=[]) => {
     }
 
     const secureList = [
-        "div", "a", "strong", "li", "ul", "ol", "em", "i", "article",
-        "section", "header", "h1", "h2", "h3", "h4", "h5", "h6", "p",
-        "span", "nav", "footer", "main", "button", "img", "figure", "details",
-        "summary"
+        // Contenedores y estructura
+        "div", "section", "article", "aside", "header", "footer", "main", "nav",
+        "figure", "figcaption", "details", "summary", "dialog",
+
+        // Texto y formato
+        "p", "span", /*"br",*/ "hr", "pre", "code", "kbd", "samp", "var",
+        "blockquote", "cite", "q", "abbr", "address", "time", "mark", "small",
+        "s", "del", "ins", "sub", "sup", "wbr",
+
+        // Énfasis y estilos
+        "strong", "b", "em", "i", "u", "dfn",
+
+        // Títulos
+        "h1", "h2", "h3", "h4", "h5", "h6",
+
+        // Listas
+        "ul", "ol", "li", "dl", "dt", "dd",
+
+        // Tablas
+        "table", "thead", "tbody", "tfoot", "tr", "th", "td", "caption", "col", "colgroup",
+
+        // Enlaces y multimedia
+        "a", "img", "picture", "source", "audio", "video", "track",
+
+        // Interactivos
+        "button", "progress", "meter"
     ]
 
     // Lista de etiquetas peligrosas que SIEMPRE deben bloquearse
