@@ -22,6 +22,11 @@ $search-transition: 0.15s ease-in-out;
     box-sizing: border-box;
     z-index: 9999;
 
+    &.pm-search-results__expanded {
+        /* 30 son los margenes mientras que 64 es el ancho del botón de búsqueda */
+        width: calc(100% - 30px - 64px);
+    }
+
     &__listbox {
         margin: 0;
         padding: 0 10px;
@@ -60,5 +65,12 @@ $search-transition: 0.15s ease-in-out;
             text-decoration: none;
         }
     }
+}
 
+@media (max-width: 575.98px) {
+    .pm-search-results {
+        &.pm-search-results__expanded {
+            width: calc(100% - 30px);
+        }
+    }
 }
