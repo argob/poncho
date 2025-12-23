@@ -8296,15 +8296,20 @@ class PonchoMap {
                             },
                             "warning"
                         );
+                        return;
                     }
 
-                    if(!this.isEmptyString(template)){
+                    if(this.isString(template) && !this.isEmptyString(template)){
                         customRow[key] = this.tpl(template, row);
-                    } else {
+
+                    } else if(Array.isArray(values) && values.length > 0) {
                         customRow[key] = values
-                            .map(i => (i in row ? row[i] : i.toString()))
+                            .map(i => {
+                                return row.hasOwnProperty(i) ? row[i] : '';
+                            })
                             .filter(Boolean)
                             .join(separator);
+
                     }
 
                 });
