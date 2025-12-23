@@ -907,9 +907,10 @@ class PonchoMap {
             return "";
         }
 
-        const template = this.conditionalTemplate(value, entry);
+        const cleanedValue = secureHTML(value, this.allowed_tags);
+        const template = this.conditionalTemplate(cleanedValue, entry);
         const parsed = this.tplParser(template, entry);
-        return parsed != null ? parsed : value;
+        return parsed != null ? parsed : cleanedValue;
     }
 
 
@@ -2959,8 +2960,7 @@ class PonchoMap {
                     }
 
                     if(!this.isEmptyString(template)){
-                        const refactorTemplate = this.conditionalTemplate(template, row);
-                        customRow[key] = this.tplParser(refactorTemplate, row);
+                        customRow[key] = this.tpl(template, row);
                     } else {
                         customRow[key] = values
                             .map(i => (i in row ? row[i] : i.toString()))
@@ -3235,7 +3235,7 @@ class PonchoMap {
         try {
             this.map.fitBounds(this.geojson.getBounds().pad(padding));
         } catch (error) {
-            // this.logger.error("fitBounds", error);
+            this.logger.error("fitBounds", error);
         }
     };
 
@@ -3392,6 +3392,11 @@ class PonchoMap {
                 const {type: geomType} = geometry;
                 const title = properties[titleKey];
 
+                const processTooltipLabel = self._tooltipLabel(
+                    properties,
+                    title // Default value
+                );
+
                 layer.options.id = properties[idKey];
                 feature.properties.name = title;
 
@@ -3407,7 +3412,7 @@ class PonchoMap {
                 if (isNonPoint) {
                     // Agregar tooltip
                     if (useTooltip && title) {
-                        layer.bindTooltip(title, tooltipOptions);
+                        layer.bindTooltip(processTooltipLabel, tooltipOptions);
                     }
 
                     // Agregar popup
