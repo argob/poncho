@@ -6218,7 +6218,7 @@ class PonchoMap {
     }
 
 
-    tpl = (value, entry) => {
+    tpl = (value, entry, allowed_tags=false) => {
         if( !this.isObject(entry) ){
             this.logger.error(
                 "[tpl]", 
@@ -6243,7 +6243,10 @@ class PonchoMap {
             return "";
         }
 
-        const cleanedValue = secureHTML(value, this.allowed_tags);
+        const tags = (Array.isArray(allowed_tags) && 
+            allowed_tags.length > 0 ? allowed_tags : this.allowed_tags);
+
+        const cleanedValue = secureHTML(value, tags);
         const template = this.conditionalTemplate(cleanedValue, entry);
         const parsed = this.tplParser(template, entry);
         return parsed != null ? parsed : cleanedValue;
@@ -7403,7 +7406,7 @@ class PonchoMap {
 
         if( this.isString(this.tooltip_label) && 
             !this.isEmptyString( this.tooltip_label) ){
-            return this.tpl(this.tooltip_label, entry);
+            return this.tpl(this.tooltip_label, entry, ["*"]);
         }
 
         return defaultLabel;
@@ -10781,7 +10784,7 @@ class PonchoMapSearch {
         }
 
         
-        return this.instance.tpl(template, entry);
+        return this.instance.tpl(template, entry, ["*"]);
     }
 
 
