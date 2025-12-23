@@ -129,7 +129,7 @@ class PonchoMapSearch {
         }
 
         
-        return this.instance.tpl(template, entry);
+        return this.instance.tpl(template, entry, ["*"]);
     }
 
 
