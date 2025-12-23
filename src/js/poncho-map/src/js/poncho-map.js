@@ -882,7 +882,7 @@ class PonchoMap {
     }
 
 
-    tpl = (value, entry) => {
+    tpl = (value, entry, allowed_tags=false) => {
         if( !this.isObject(entry) ){
             this.logger.error(
                 "[tpl]", 
@@ -907,9 +907,13 @@ class PonchoMap {
             return "";
         }
 
-        const template = this.conditionalTemplate(value, entry);
+        const tags = (Array.isArray(allowed_tags) && 
+            allowed_tags.length > 0 ? allowed_tags : this.allowed_tags);
+
+        const cleanedValue = secureHTML(value, tags);
+        const template = this.conditionalTemplate(cleanedValue, entry);
         const parsed = this.tplParser(template, entry);
-        return parsed != null ? parsed : value;
+        return parsed != null ? parsed : cleanedValue;
     }
 
 
@@ -2066,7 +2070,7 @@ class PonchoMap {
 
         if( this.isString(this.tooltip_label) && 
             !this.isEmptyString( this.tooltip_label) ){
-            return this.tpl(this.tooltip_label, entry);
+            return this.tpl(this.tooltip_label, entry, ["*"]);
         }
 
         return defaultLabel;
@@ -2956,16 +2960,20 @@ class PonchoMap {
                             },
                             "warning"
                         );
+                        return;
                     }
 
-                    if(!this.isEmptyString(template)){
-                        const refactorTemplate = this.conditionalTemplate(template, row);
-                        customRow[key] = this.tplParser(refactorTemplate, row);
-                    } else {
+                    if(this.isString(template) && !this.isEmptyString(template)){
+                        customRow[key] = this.tpl(template, row);
+
+                    } else if(Array.isArray(values) && values.length > 0) {
                         customRow[key] = values
-                            .map(i => (i in row ? row[i] : i.toString()))
+                            .map(i => {
+                                return row.hasOwnProperty(i) ? row[i] : '';
+                            })
                             .filter(Boolean)
                             .join(separator);
+
                     }
 
                 });
@@ -3235,7 +3243,7 @@ class PonchoMap {
         try {
             this.map.fitBounds(this.geojson.getBounds().pad(padding));
         } catch (error) {
-            // this.logger.error("fitBounds", error);
+            this.logger.error("fitBounds", error);
         }
     };
 
@@ -3392,6 +3400,11 @@ class PonchoMap {
                 const {type: geomType} = geometry;
                 const title = properties[titleKey];
 
+                const processTooltipLabel = self._tooltipLabel(
+                    properties,
+                    title // Default value
+                );
+
                 layer.options.id = properties[idKey];
                 feature.properties.name = title;
 
@@ -3407,7 +3420,7 @@ class PonchoMap {
                 if (isNonPoint) {
                     // Agregar tooltip
                     if (useTooltip && title) {
-                        layer.bindTooltip(title, tooltipOptions);
+                        layer.bindTooltip(processTooltipLabel, tooltipOptions);
                     }
 
                     // Agregar popup
