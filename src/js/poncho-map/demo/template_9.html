@@ -173,9 +173,9 @@ COPIAR DESDE ACÁ…
             "scope": "poncho-map",
             "filters_info": false,
             "title": "nombre",
-            "template_innerhtml": true,
+            // "template_innerhtml": true,
             "template_markdown": true,
-            "allowed_tags": ["a", "sup", "img"],
+            "allowed_tags": ["*"],
             "marker_cluster_options": {
                         "spiderfyOnMaxZoom": true,
                         "showCoverageOnHover": false,
@@ -190,6 +190,10 @@ COPIAR DESDE ACÁ…
                         }
                     },
             "template_structure" : {
+                header: (self, row) => {
+                    return `<img src="x" onclick="alert(1)"> {{name}} <-- \n * hello`
+                    console.log("entra")
+                },
                 "title_classlist":["h4", "text-cielo", "m-t-1"],
                 "lead": {
                     key: "tipo", 
@@ -201,6 +205,7 @@ COPIAR DESDE ACÁ…
                     "foto_html",
                     "descripcion",
                     "ubicacion", 
+                    "localidad", "provincia",
                     "boton_html"
                 ],
                 "mixing":

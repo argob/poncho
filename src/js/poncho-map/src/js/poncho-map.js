@@ -2460,7 +2460,7 @@ class PonchoMap {
             }
             return accumulator;
         }, {});
-        
+
         return { ...headers, ...additionalHeaders };
     };
 
@@ -2827,12 +2827,14 @@ class PonchoMap {
         const structure_title = (structure.hasOwnProperty("title") ? 
             structure.title : false);
         const optons_title = (this.title ? this.title : false);
+        
         // si intencionalmente no se quiere usar el titulo y se 
         // agrega la opción `false` en `template_structure.title`. 
         if(structure.hasOwnProperty("title") && 
             typeof structure.title == "boolean"){
             return false;
         } 
+
         // Si los dos son false, retorno false
         else if(!structure_title && !optons_title){
             return false;
@@ -2844,17 +2846,39 @@ class PonchoMap {
         let title;
 
         if(structure?.header){
-            const wrapper = document.createElement("div");
-            wrapper.innerHTML = this._mdToHtml(structure.header(this, row));
-            if(this.template_innerhtml){
-                wrapper.innerHTML = structure.header(this, row);
+            let headerContent = structure.header;
+
+            if(typeof structure.header === "function"){
+                headerContent = structure.header(this, row);
             }
+
+            if(
+                !this.isString(headerContent) || 
+                this.isEmptyString(headerContent))
+            {
+                this.logger.warn(
+                    "template_Structure['header'] debe ser una "
+                    + "cadena de texto no vacía");
+                return;
+            }
+
+            const cleanedHeaderToTpl = this.tpl(headerContent, row);
+            const wrapper = document.createElement("div");
+
+            if(this.template_innerhtml){
+                wrapper.innerHTML = cleanedHeaderToTpl;
+            } else {
+                wrapper.innerHTML = this._mdToHtml(cleanedHeaderToTpl);
+            }
+            
             title = wrapper;
+
         } else {
             title = document.createElement("h2");
             title.classList.add(...structure.title_classlist);
             title.textContent = row[use_title];
         }
+
 
         const header = document.createElement("header");
         header.className = "pm-header";
@@ -3115,13 +3139,17 @@ class PonchoMap {
      * @param {object} row Entrada para dibujar un marker.
      */  
     defaultTemplate = (self, row) => {
+
         row = this._templateMixing(row);
         const {template_structure:structure} = this;
+
+
         const tpl_list = this._templateList(row);
         const tpl_title = this._templateTitle(row);
 
         const container = document.createElement("div");
         container.classList.add(... structure.container_classlist);
+
         const definitions = document.createElement(structure.definition_list_tag);
         definitions.classList.add(...structure.definition_list_classlist);
         definitions.style.fontSize = "1rem";
@@ -3167,7 +3195,7 @@ class PonchoMap {
         }
 
         container.appendChild(definitions);
-        return container.outerHTML;
+        return secureHTML(container.outerHTML, this.allowed_tags);
     };
 
 
