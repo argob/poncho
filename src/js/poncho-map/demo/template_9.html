@@ -166,6 +166,7 @@ COPIAR DESDE ACÁ…
                 entry.foto_html = (entry.foto ? `<img class="img-in" alt="${entry.name}" src="${entry.foto}" style="border-radius:6px; border:1px solid #eee" />` : ""); 
                 entry.boton_html = (entry.boton ? 
                     `<a href="${entry.boton}">Conocer más sobre ${entry.nombre}</a>` : "");
+                entry.test = `<img src="x" onclick=alert(1)>Esta es mi <strong>{{localidad}}</strong> {% '{{provincia}}' if provincia != '' else '-' %}`;
                 return self.defaultTemplate(self, entry);
             },
             theme_ui: 'default',
@@ -173,8 +174,8 @@ COPIAR DESDE ACÁ…
             "scope": "poncho-map",
             "filters_info": false,
             "title": "nombre",
-            // "template_innerhtml": true,
-            "template_markdown": true,
+            "template_innerhtml": true,
+            // "template_markdown": true,
             "allowed_tags": ["*"],
             "marker_cluster_options": {
                         "spiderfyOnMaxZoom": true,
@@ -206,7 +207,7 @@ COPIAR DESDE ACÁ…
                     "descripcion",
                     "ubicacion", 
                     "localidad", "provincia",
-                    "boton_html"
+                    "boton_html", "test"
                 ],
                 "mixing":
                     [

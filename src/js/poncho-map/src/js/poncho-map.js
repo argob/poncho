@@ -897,9 +897,9 @@ class PonchoMap {
 
         if ( !this.isString(value) ) {
             this.logger.error(
-                "[tpl]", 
+                "[tpl]",
                 "El primer parámetro debe ser un string");
-            return secureHTML( String(value) );
+            return String(value);
         }
 
         if( this.isEmptyString(value) ){
@@ -907,10 +907,9 @@ class PonchoMap {
             return "";
         }
 
-        const cleanedValue = secureHTML(value, this.allowed_tags);
-        const template = this.conditionalTemplate(cleanedValue, entry);
+        const template = this.conditionalTemplate(value, entry);
         const parsed = this.tplParser(template, entry);
-        return parsed != null ? parsed : cleanedValue;
+        return parsed != null ? parsed : value;
     }
 
 
@@ -2065,12 +2064,12 @@ class PonchoMap {
             }
         }
 
-        if( this.isString(this.tooltip_label) && 
+        if( this.isString(this.tooltip_label) &&
             !this.isEmptyString( this.tooltip_label) ){
-            return this.tpl(this.tooltip_label, entry);
+            return secureHTML(this.tpl(this.tooltip_label, entry), this.allowed_tags);
         }
 
-        return defaultLabel;
+        return secureHTML(defaultLabel, this.allowed_tags);
     };
 
 
@@ -2457,7 +2456,7 @@ class PonchoMap {
             const key = item.key;
 
             if (key) {
-                accumulator[key] = secureHTML(item.header ?? "");
+                accumulator[key] = item.header ?? "";
             }
             return accumulator;
         }, {});
@@ -2472,6 +2471,10 @@ class PonchoMap {
      * @return {string} key Key del item.
      */
     header = (key) => {
+        if(this.isEmptyString(key)){
+            this.logger.error("header() debe recibir una clave");
+            return;
+        }
         return (this.headers.hasOwnProperty(key) ? this.headers[key] : key);
     };
 
@@ -2867,9 +2870,10 @@ class PonchoMap {
             const wrapper = document.createElement("div");
 
             if(this.template_innerhtml){
-                wrapper.innerHTML = cleanedHeaderToTpl;
+                wrapper.innerHTML = secureHTML(cleanedHeaderToTpl, this.allowed_tags);
             } else {
-                wrapper.innerHTML = this._mdToHtml(cleanedHeaderToTpl);
+                wrapper.innerHTML = secureHTML(
+                    this._mdToHtml(cleanedHeaderToTpl), this.allowed_tags);
             }
             
             title = wrapper;
@@ -2934,8 +2938,7 @@ class PonchoMap {
         }
 
         const converter = new showdown.Converter(this.markdown_options);
-        const cleanedText = secureHTML(text, this.allowed_tags);
-        return converter.makeHtml( String(cleanedText).trim() );
+        return converter.makeHtml( String(text).trim() );
     };
 
 
@@ -2991,8 +2994,7 @@ class PonchoMap {
                     } else if(Array.isArray(values) && values.length > 0) {
                         customRow[key] = values
                             .map(i => {
-                                const secureItem = secureHTML(i);
-                                return row.hasOwnProperty(secureItem) ? row[secureItem] : '';
+                                return row.hasOwnProperty(i) ? row[i] : '';
                             })
                             .filter(Boolean)
                             .join(separator);
@@ -3176,13 +3178,17 @@ class PonchoMap {
             term.insertAdjacentText("beforeend", this.header(key));
             
             const definition = document.createElement(structure.definition_tag);
-            definition.classList.add(...structure.definition_classlist)
-            definition.textContent = row[key];
+            definition.classList.add(...structure.definition_classlist);
+
+            const content = this.tpl(row[key], row);
 
             if(this.template_markdown){
-                definition.innerHTML = this._mdToHtml(row[key]);
+                definition.innerHTML = secureHTML(
+                    this._mdToHtml(content), this.allowed_tags);
             } else if(this.template_innerhtml){
-                definition.innerHTML = secureHTML(row[key], this.allowed_tags);
+                definition.innerHTML = secureHTML(content, this.allowed_tags);
+            } else {
+                definition.textContent = content;
             }
 
             if(this.header(key) != ""){
@@ -3194,7 +3200,6 @@ class PonchoMap {
         const tpl_lead = this._lead(row);
         if(tpl_lead){
             tpl_title.prepend(tpl_lead);
-            // container.appendChild(tpl_lead);
         }
 
         if(tpl_title){
