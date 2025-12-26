@@ -300,7 +300,7 @@ class PonchoMap {
                 definition_list_classlist:["definition-list"],
                 definition_list_tag: "dl",
                 definition_tag: "dd",
-                term_classlist: ["h6", "m-b-0"],
+                term_classlist: ["h6", "fw-bold", "m-b-0", "font-sans-serif"],
                 term_tag: "dt",
                 title_classlist: ["h4","pm-color-primary","m-t-0"]
             },
@@ -2066,10 +2066,10 @@ class PonchoMap {
 
         if( this.isString(this.tooltip_label) &&
             !this.isEmptyString( this.tooltip_label) ){
-            return secureHTML(this.tpl(this.tooltip_label, entry), this.allowed_tags);
+            return this.tpl(this.tooltip_label, entry);
         }
 
-        return secureHTML(defaultLabel, this.allowed_tags);
+        return defaultLabel;
     };
 
 
@@ -2083,26 +2083,52 @@ class PonchoMap {
 
     /**
      * Array con valores a concatenar en el id.
-     * 
+     *
      * @summary Dependiendo de la opción que haya elegido el usario, retorna
      * una array de valors pasado por funcion o _array object_.
      * @param {object} entry Objeto con una entrada del geoJson
-     * @returns {object} Array con los valores a concatenar.
+     * @returns {string|undefined} String con los valores concatenados o undefined.
      */
     _idMixing = entry => {
         if(!this._isIdMixing()){
             return;
         }
 
+        if(
+            !entry || typeof entry !== "object" || !entry.properties || 
+            typeof entry.properties !== "object")
+        {
+            this.logger.warn("_idMixing: entry inválido o sin properties");
+            return;
+        }
+
         if(typeof this.id_mixing === "function"){
-            return this.id_mixing(this, entry).join('');
-        } 
-        
+            try {
+                const result = this.id_mixing(this, entry);
+                if(!Array.isArray(result)){
+                    this.logger.warn(
+                        "_idMixing: la función debe retornar un array"
+                    );
+                    return;
+                }
+                return result.join('');
+            } catch(error) {
+                this.logger.error(
+                    "_idMixing: error ejecutando función personalizada",
+                    error
+                );
+                return;
+            }
+        }
+
         const values = this.id_mixing.map(val => {
-            if(entry.properties.hasOwnProperty(val)){
-                return entry.properties[val].toString();
-            } 
-            return val;
+            if(Object.prototype.hasOwnProperty.call(entry.properties, val)){
+                const value = entry.properties[val];
+                return (value !== null && value !== undefined) ? 
+                        String(value) : '';
+            }
+            // Sanitizar el valor estático también
+            return (val !== null && val !== undefined) ? String(val) : '';
         });
 
         return this._slugify(values.join("-"));
@@ -2488,12 +2514,10 @@ class PonchoMap {
             return;
         }
 
-        // 2. Limpieza (eliminando sliders existentes)
         document
             .querySelectorAll(`.js-slider${this.scope_sufix}`)
             .forEach(e => e.remove());
 
-        // 3. Creación y configuración de elementos
         // Backdrop
         const backdrop = document.createElement("div");
         backdrop.className = "pm-backdrop";
@@ -2567,7 +2591,9 @@ class PonchoMap {
         container.appendChild(contentContainer);
 
         // 5. Inserción en el DOM
-        const ponchoMapElement = document.querySelector(`${this.scope_selector}.poncho-map`);
+        const ponchoMapElement = document.querySelector(
+            `${this.scope_selector}.poncho-map`
+        );
         if(ponchoMapElement){
             ponchoMapElement.appendChild(backdrop);
             ponchoMapElement.appendChild(container);
@@ -2870,10 +2896,11 @@ class PonchoMap {
             const wrapper = document.createElement("div");
 
             if(this.template_innerhtml){
-                wrapper.innerHTML = secureHTML(cleanedHeaderToTpl, this.allowed_tags);
-            } else {
                 wrapper.innerHTML = secureHTML(
-                    this._mdToHtml(cleanedHeaderToTpl), this.allowed_tags);
+                    cleanedHeaderToTpl, this.allowed_tags
+                );
+            } else {
+                wrapper.innerHTML = this._mdToHtml(cleanedHeaderToTpl);
             }
             
             title = wrapper;
@@ -3009,17 +3036,20 @@ class PonchoMap {
 
 
     /**
-     * Prepara un objeto según su tipo
-     * 
-     * @param {object} ele 
-     * @param {object} entry 
-     * @param {*} value 
-     * @returns {*} De acuerdo a la entrada.
+     * Evalúa y procesa un elemento según su tipo. Si el elemento es una función,
+     * la ejecuta pasando el contexto actual, la entrada y el valor. Si no es una
+     * función, devuelve el elemento tal como está.
+     *
+     * @param {object|function} ele - Elemento a procesar. Puede ser un objeto o una función.
+     * @param {object} [entry=false] - Objeto de entrada que se pasará a la función si `ele` es una función.
+     * @param {*} [value=false] - Valor adicional que se pasará a la función si `ele` es una función.
+     * @returns {*} Si `ele` es una función, retorna el resultado de su ejecución.
+     *              De lo contrario, retorna `ele` sin modificaciones.
      */
-    _setType = (ele, entry=false, value=false) => {
+    _resolveValue = (ele, entry=false, value=false) => {
         if(typeof(ele) === "function"){
             return ele(this, entry, value);
-        } 
+        }
         return ele;
     };
 
@@ -3088,13 +3118,13 @@ class PonchoMap {
         const p = document.createElement("p");
         p.textContent = entry[key];
         // Style definitions
-        const setStyle = this._setType(style, entry);
+        const setStyle = this._resolveValue(style, entry);
 
         if(setStyle){
             this._setStyle(p, setStyle);
         }
         // CSS Class
-        const setClasslist = this._setClassList(this._setType(css, entry));
+        const setClasslist = this._setClassList(this._resolveValue(css, entry));
         if(setClasslist){
             p.classList.add(...setClasslist);
         }
@@ -3111,16 +3141,16 @@ class PonchoMap {
      * element de otro modo un boolean `false`.
      */
     _termIcon = (entry, key) => {
-        const item = this.header_icons.find(e => e.key == key);
+        const item = this.header_icons.find(e => e.key === key);
 
         if(item){
             const {css=false, style=false, html=false} = item;
-            const setHtml = this._setType(html, entry, key);
-            const setStyle = this._setType(style, entry, key);
+            const setHtml = this._resolveValue(html, entry, key);
+            const setStyle = this._resolveValue(style, entry, key);
             const setClasslist = this._setClassList(
-                this._setType(css, entry, key));
+                this._resolveValue(css, entry, key));
 
-            if(setClasslist){
+            if(Array.isArray(setClasslist) && setClasslist.length > 0){
                 const icon = document.createElement("i");
                 icon.setAttribute("aria-hidden","true");
                 icon.classList.add(...setClasslist);
@@ -3132,7 +3162,7 @@ class PonchoMap {
 
             } else if (setHtml){
                 const ic = document.createElement("template");
-                ic.innerHTML = setHtml;
+                ic.innerHTML = secureHTML(setHtml, this.allowed_tags);
                 return ic.content;
             }
         }
@@ -3180,15 +3210,15 @@ class PonchoMap {
             const definition = document.createElement(structure.definition_tag);
             definition.classList.add(...structure.definition_classlist);
 
-            const content = this.tpl(row[key], row);
-
             if(this.template_markdown){
-                definition.innerHTML = secureHTML(
-                    this._mdToHtml(content), this.allowed_tags);
+                const securedMd = secureHTML(row[key], ["*"]);
+                const mdContent = this._mdToHtml(this.tpl(securedMd, row));
+                definition.innerHTML = mdContent;
             } else if(this.template_innerhtml){
-                definition.innerHTML = secureHTML(content, this.allowed_tags);
+                const securedContent = secureHTML(row[key], this.allowed_tags);
+                definition.innerHTML = this.tpl(securedContent, row);
             } else {
-                definition.textContent = content;
+                definition.textContent = row[key];
             }
 
             if(this.header(key) != ""){
@@ -3207,7 +3237,7 @@ class PonchoMap {
         }
 
         container.appendChild(definitions);
-        return secureHTML(container.outerHTML, this.allowed_tags);
+        return container.outerHTML;
     };
 
 
@@ -3935,9 +3965,9 @@ class PonchoMap {
 
 
     /**
-     * Asigna definciones de estilo a un objeto.
-     * 
-     * @param {*} values 
+     * Asigna definiciones de estilo a un objeto.
+     *
+     * @param {*} values
      * @returns {object}
      */
     _setStyle = (obj, values) => {
@@ -3945,7 +3975,7 @@ class PonchoMap {
             return;
         }
 
-        if(!this.isObject(obj) || !obj instanceof HTMLElement){
+        if(!this.isObject(obj) || !(obj instanceof HTMLElement)){
             this.showAlert({
                 title: "La función <code>_setStyle</code>, debe recibir un "
                     + "objeto <code>HTMLElement</code>.",
@@ -3955,8 +3985,9 @@ class PonchoMap {
         }
 
         const regex = /([^;:]+)\s*\:\s*([^;:]+)/;
+
         if(
-            this.isString(values) && 
+            this.isString(values) &&
             !(this.isEmptyString(values) || values.match(regex))){
 
             this.showAlert({
@@ -3979,7 +4010,7 @@ class PonchoMap {
         }
 
         // Si values es un string lo parseo
-        var styles = {};
+        const styles = {};
         for(let entry of values.split(";")){
             const m = regex.exec(entry);
             if(!m){
