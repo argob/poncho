@@ -76,7 +76,7 @@ const secureHTML = (str, exclude=[]) => {
         "figure", "figcaption", "details", "summary", "dialog",
 
         // Texto y formato
-        "p", "span", /*"br",*/ "hr", "pre", "code", "kbd", "samp", "var",
+        "p", "span", "br", "hr", "pre", "code", "kbd", "samp", "var",
         "blockquote", "cite", "q", "abbr", "address", "time", "mark", "small",
         "s", "del", "ins", "sub", "sup", "wbr",
 
