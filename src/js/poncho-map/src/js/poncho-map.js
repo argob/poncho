@@ -3985,7 +3985,6 @@ class PonchoMap {
         }
 
         const regex = /([^;:]+)\s*\:\s*([^;:]+)/;
-
         if(
             this.isString(values) &&
             !(this.isEmptyString(values) || values.match(regex))){
