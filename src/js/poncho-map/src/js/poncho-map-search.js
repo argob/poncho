@@ -165,12 +165,12 @@ class PonchoMapSearch {
                     .map(value => String(value).trim());
 
                 const results = slugify(valuesToSearchIn.join(" "));
-                const searchOptionTemplate = this._comboboxLabel(properties);
+                const pm_search_option_template = this._comboboxLabel(properties);
 
                 return {
                     ...properties,
                     results, 
-                    searchOptionTemplate
+                    pm_search_option_template
                 };
             })
             .filter(entry => entry !== null);
@@ -548,6 +548,13 @@ class PonchoMapSearch {
             return;
         }
 
+        const maxResults = Math.min(
+            Math.max(
+                parseInt(this.combobox_options?.max_results,
+                10
+            ) || 20, 5), 
+        50);
+
         const comboboxWidth = this._comboboxWidth();
         const dataList = document.querySelectorAll(this.selectors.datalist);
         dataList.forEach(ele => ele.remove());
@@ -608,7 +615,7 @@ class PonchoMapSearch {
                 ul.setAttribute("role", "listbox");
                 const fragment = document.createDocumentFragment();
 
-                for (let i of searchResult.slice(0, 20)) {
+                for (let i of searchResult.slice(0, maxResults)) {
                     fragment.appendChild(this._creatSearchItem(i));
                 }
 
