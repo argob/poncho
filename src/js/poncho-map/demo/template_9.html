@@ -309,17 +309,18 @@ COPIAR DESDE ACÁ…
         const searchOptions = {
             combobox: true,
             combobox_options: {
+                max_results: 10,
                 display: "expanded",
                 template: 
-                `<div class="opt">`
-                + `{% '<img src="{{foto}}" width="90" alt="" class="opt-img" />' if foto != '' else '' %}`
-                + `<div class="opt-col"><p class="m-y-0 fw-semibold opt-name">`
-                + `{{name}}`
-                + `</p>`
-                + `<p class="m-y-0 small text-arg-gris-intermedio opt-location">`
-                + `{{localidad}}, {{provincia}}`
-                + `</p></div>`
-                + `</div>`
+                    `<div class="opt">`
+                    + `{% '<img src="{{foto}}" width="90" alt="" class="opt-img" />' if foto != '' else '' %}`
+                    + `<div class="opt-col"><p class="m-y-0 fw-semibold opt-name">`
+                    + `{{name}}`
+                    + `</p>`
+                    + `<p class="m-y-0 small text-arg-gris-intermedio opt-location">`
+                    + `{{localidad}}, {{provincia}}`
+                    + `</p></div>`
+                    + `</div>`
             },
             scope: "poncho-map-search", 
             placeholder: "Buscar en el geoJSON",
@@ -335,16 +336,6 @@ COPIAR DESDE ACÁ…
         loader.close();
     })();
 
-
-
-function setWidth(){
-    const mapSize = document.querySelector(".poncho-map");
-    document.querySelector("#width").textContent = mapSize.offsetWidth + "px";
-}
-setWidth()
-window.addEventListener("resize", () => {
-    setWidth()
-})
 </script>
 <!-- / SCRIPTS -->
 </body>
