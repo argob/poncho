@@ -2,14 +2,6 @@
 
 ## Release 2.2
 
-### PonchoMapSearch
-
-* Desplegable de buscador mejorado. Ahora se puede agregar un template para mejorar la visualización de resultados.
-* Se creó un caché para almacenar los strings de búsqueda, evitando sobrecargas innecesarias en el DOM.
-* Se incorporó la opción para visualizar los resultados de manera expandida o adaptada.
-* Se agregó la posibilidad de asignar la cantidad de resultados en el menú desplegable.
-
-
 ### PonchoMapFilter
 
 * Los filtros ahora se agrupan una sola vez antes del procesamiento, en lugar de reagruparse por cada entrada.
@@ -62,6 +54,14 @@
 * La barra de _scroll_ ya no queda parcialmente oculta cuando se abre el panel de URL.
 * Los enlaces para mapas alternativos abren en una nueva página.
 * En open_maps el texto por defecto ahora es: «Abrir ubicación en:».
+* Se implementaron medidas de seguridad contra posibles ataques XSS en los métodos que facilitan la inclusión de marcado HTML y Markdown.
+
+### PonchoMapSearch
+
+* Desplegable de buscador mejorado. Ahora se puede agregar un template para mejorar la visualización de resultados.
+* Se creó un caché para almacenar los strings de búsqueda, evitando sobrecargas innecesarias en el DOM.
+* Se incorporó la opción para visualizar los resultados de manera expandida o adaptada.
+* Se agregó la posibilidad de asignar la cantidad de resultados en el menú desplegable.
 
 
 ## Release 2.1.4
@@ -80,7 +80,6 @@
 * Se corrigió un bug en el botón de abrir y cerrar filtros.
 * Seleccionar y deseleccionar todos los filtros no representaba los marcadores nuevamente cuando se volvía a seleccionar todos.
 * Se cambiaron los colores de los clusters a los de PonchoColors.
-* Se implementaron medidas de seguridad contra posibles ataques XSS en los métodos que facilitan la inclusión de marcado HTML y Markdown.
 
 
 ## Release 2.1.2
