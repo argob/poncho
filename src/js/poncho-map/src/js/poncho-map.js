@@ -882,7 +882,7 @@ class PonchoMap {
     }
 
 
-    tpl = (value, entry) => {
+    tpl = (value, entry, allowed_tags=false) => {
         if( !this.isObject(entry) ){
             this.logger.error(
                 "[tpl]", 
@@ -2066,7 +2066,7 @@ class PonchoMap {
 
         if( this.isString(this.tooltip_label) &&
             !this.isEmptyString( this.tooltip_label) ){
-            return this.tpl(this.tooltip_label, entry);
+            return this.tpl(this.tooltip_label, entry, ["*"]);
         }
 
         return defaultLabel;
