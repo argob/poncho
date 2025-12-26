@@ -165,12 +165,12 @@ class PonchoMapSearch {
                     .map(value => String(value).trim());
 
                 const results = slugify(valuesToSearchIn.join(" "));
-                const pm_search_option_template = this._comboboxLabel(properties);
+                const searchOptionTemplate = this._comboboxLabel(properties);
 
                 return {
                     ...properties,
                     results, 
-                    pm_search_option_template
+                    searchOptionTemplate
                 };
             })
             .filter(entry => entry !== null);

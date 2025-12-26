@@ -7,13 +7,13 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
         </script>
-
+<link rel="shortcut icon" href="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/favicon.ico" type="image/vnd.microsoft.icon" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
         integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet"
-        href="https://capacita-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css?rfqjsh">
+        href="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css">
     <link rel="stylesheet" href="../../../../dist/css/poncho.min.css" />
 
     <!-- 
@@ -157,103 +157,118 @@ COPIAR DESDE ACÁ…
 
         const mapOptions = {
             debug: true,
-            // id_mixing: ['id','descripcion'],
-            "template": (a, b) => "<h2>" + b.nombre + "</h2><ul><li>" 
-                + Object.values(b).filter(e => e).join("</li><li>") 
-                + "</li></ul>",
-            "error_reporting": 0,
-            "template": (self, entry) => {
+            id_mixing: ['id','descripcion'],
+            error_reporting: 1,
+            template: (self, entry) => {
                 entry.foto_html = (entry.foto ? `<img class="img-in" alt="${entry.name}" src="${entry.foto}" style="border-radius:6px; border:1px solid #eee" />` : ""); 
-                entry.boton_html = (entry.boton ? 
-                    `<a href="${entry.boton}">Conocer más sobre ${entry.nombre}</a>` : "");
+                entry.boton_html = (entry.boton ? `<a href="${entry.boton}">Conocer más sobre ${entry.nombre}</a>` : "");
+                entry.test = `<img src="x" onclick=alert(1)>Esta es mi <strong>{{localidad}}</strong> {% '{{provincia}}' if provincia != '' else '-' %}`;
+                entry.direccion = "Prueba XXS <img src='x' onclick=alert(1)> (<strong>{{localidad}}</strong>)";
+                
                 return self.defaultTemplate(self, entry);
             },
             theme_ui: 'default',
             theme_map: 'relax',
-            "scope": "poncho-map",
-            "filters_info": false,
-            "title": "nombre",
-            "template_innerhtml": true,
-            "template_markdown": true,
-            "allowed_tags": ["a", "sup", "img"],
-            "marker_cluster_options": {
-                        "spiderfyOnMaxZoom": true,
-                        "showCoverageOnHover": false,
-                        "zoomToBoundsOnClick": true,
-                        "maxClusterRadius": 30,
-                        "spiderfyDistanceMultiplier": .5,
-                        "spiderLegPolylineOptions": {
-                            "weight": 1,
-                            "color": "#666",
-                            "opacity": 0.5,
-                            "fill-opacity": 0.5
-                        }
-                    },
-            "template_structure" : {
-                "title_classlist":["h4", "text-cielo", "m-t-1"],
-                "lead": {
+            scope: "poncho-map",
+            filters_info: false,
+            title: "nombre",
+            // template_innerhtml: true,
+            template_markdown: true,
+            allowed_tags: ["img", "i", "div"],
+            marker_cluster_options: {
+                spiderfyOnMaxZoom: true,
+                showCoverageOnHover: false,
+                zoomToBoundsOnClick: true,
+                maxClusterRadius: 30,
+                spiderfyDistanceMultiplier: .5,
+                spiderLegPolylineOptions: {
+                    weight: 1,
+                    color: "#666",
+                    opacity: 0.5,
+                    "fill-opacity": 0.5
+                }
+            },
+            template_structure : {
+                _header: (self, row) => {
+                    return `<img src="x" onclick="alert(1)"> {{name}} <-- \n * hello`
+                    console.log("entra")
+                },
+                term_classlist: ["font-sans-serif"],
+                title_classlist:["h4", "text-cielo", "m-t-1"],
+                lead: {
                     key: "tipo", 
-                    css: ["text-arg-default", "p-b-xs","fw-600", "small", "text-uppercase"],
+                    css: [
+                        "text-arg-default", 
+                        "p-b-xs","fw-600", 
+                        "small", 
+                        "text-uppercase"
+                    ],
                     style: "border-bottom: 1px solid var(--arg-negro-200);"
                 },  
-                "values": [
+                values: [
                     "estado",
                     "foto_html",
                     "descripcion",
                     "ubicacion", 
-                    "boton_html"
+                    "direccion",
+                    "localidad", 
+                    "provincia",
+                    "boton_html", 
+                    "test"
                 ],
-                "mixing":
-                    [
-                        {
-                            "key": "ubicacion",
-                            "header": "Ubicación",
-                            "values": ["localidad", "provincia"],
-                            "separator": ", "
-                        }
-                    ],
+                mixing:[
+                    {
+                        // template: `{{provincia}}/{{localidad}}`,
+                        key: "ubicacion",
+                        header: "Ubicación",
+                        values: ["localidad", "provincia"],
+                        separator: ", "
+                    }
+                ],
             },
-            "header_icons": [
+            header_icons: [
                 {
-                    "key":"estado",
-                    "css": (self, e) => `fa fa-cog fa-1x text-cielo`
+                    key: "estado",
+                    css: (self, e) => `fa fa-cog fa-1x text-cielo`
                 },
                 {
-                    "key":"boton_html",
-                    "css": (self, e) => `fa fa-info-circle fa-1x text-cielo`
+                    key: "boton_html",
+                    css: (self, e) => `fa fa-info-circle fa-1x text-cielo`
                 },
                 {
-                    "key":"ubicacion",
-                    "css": (self, e) => `fa fa-map-marker fa-1x text-cielo`, 
+                    key: "ubicacion",
+                    css: (self, e) => `fa fa-map-marker fa-1x text-cielo`, 
                 },
                 {
-                    "key":"direccion",
-                    "html": (self, entry, value) => {
+                    key:"direccion",
+                    html: (self, entry, value) => {
                         if(entry.id == "4-olivia-bouillet"){
                             return `<div>
-                                <hr>
+                                <hr><img src="x" onclick="alert(1)">
                                 <i
                                     aria-hidden="true"
-                                    class="icono-arg-cannabis-medicinal-1 text-verdin 
-                                            fa-3x text-center m-b-1"
-                                    style="display:block">
+                                    class="fa icono-arg-cannabis-medicinal-1 
+                                           text-verdin fa-3x text-center 
+                                           m-b-1"
+                                    style="display:inline-block">
                                 </i>
                             </div>`;
                         } else {
-                            return `<i
+                            return `<img src="x" onclick="alert(1)"><i
                                 aria-hidden="true"
-                                class="icono-arg-cannabis-medicinal-1 text-verdin">
+                                class="fa icono-arg-cannabis-medicinal-1 
+                                       text-verdin">
                             </i>`;
                         }
                     }
                 },
                 {
-                    "key": "id",
-                    "css": "icono-arg-sitios-accesibles text-arandano",
-                    "style": "margin-bottom:3em"
+                    key: "id",
+                    css: "icono-arg-sitios-accesibles text-arandano",
+                    style: "margin-bottom:3em"
                 }
             ],
-            "headers": {
+            headers: {
                 ...headers, 
                 ...{
                     "foto_html": "", 
@@ -261,29 +276,29 @@ COPIAR DESDE ACÁ…
                     "descripcion": ""
                 }
             },
-            "marker": (self, ele) => {
+            marker: (self, ele) => {
                 const icon_color = (ele.hasOwnProperty("color") ? 
                     ele.color : "azul");
                 return icon_color;
             },
-            "tooltip": true,
-            "no_info": false,
-            "slider": true,
-            "hash": false,
-            "scroll": true,
+            tooltip: true,
+            no_info: false,
+            slider: true,
+            hash: false,
+            scroll: true,
             reset_zoom: true,
             filters_info:true,
-            "filters": [
+            filters: [
                 {
-                    "legend" : "Filtrar por tipo",
-                    "field": ["tipo"],
-                    "fields": false,
+                    legend: "Filtrar por tipo",
+                    field: ["tipo"],
+                    fields: false,
                     check_uncheck_all: true,
                 },
                 {
-                    "legend" : "Filtrar por estado",
-                    "field": ["estado", "checked"],
-                    "fields": false,
+                    legend: "Filtrar por estado",
+                    field: ["estado", "checked"],
+                    fields: false,
                     check_uncheck_all: true
                 },
             ],
@@ -298,7 +313,7 @@ COPIAR DESDE ACÁ…
                 template: 
                 `<div class="opt">`
                 + `{% '<img src="{{foto}}" width="90" alt="" class="opt-img" />' if foto != '' else '' %}`
-                + `<div class="opt-col"><p class="m-y-0 small fw-semibold opt-name">`
+                + `<div class="opt-col"><p class="m-y-0 fw-semibold opt-name">`
                 + `{{name}}`
                 + `</p>`
                 + `<p class="m-y-0 small text-arg-gris-intermedio opt-location">`

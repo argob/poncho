@@ -92,13 +92,20 @@
     // MAP INIT
     const latitud = -34.60759, longitud = -58.37393;
     const mapOptions = {
+        summary: {
+            title: "Ubicación del Ministerio de Seguridad",
+            hidden: true
+        },
+        title: "name",
         scope: "poncho-map",
-        theme_tool: false,
+        theme_tool: true,
+        tooltip: true,
         no_info: true,
         map_zoom: 17, 
         map_view: [latitud, longitud]
     };
-    const filter = new PonchoMap([{latitud, longitud}], mapOptions);
+    const entry = {latitud, longitud, name:"Ministerio de Seguridad"};
+    const filter = new PonchoMap([entry], mapOptions);
     filter.render();
 </script>
 <!-- / SCRIPTS -->
