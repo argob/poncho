@@ -2,37 +2,29 @@
 
 ## Release 2.3.0
 
-### Optimización de `_allFromParent()` y `_filterOptionList()`
+* Optimización de `_allFromParent()` y `_filterOptionList()`
 
- * **Mejora**: Se evita el procesamiento y ordenamiento innecesario con "early returns" para datos o resultados vacíos.
+   * Implementación de retornos anticipados (_early returns_) para evitar procesamiento y ordenamiento innecesarios cuando los datos o resultados están vacíos.
 
- * **Mejora**: Se accede a las claves de filtros mediante caché para mayor rapidez dentro de los bucles.
+   * Acceso a las claves de filtros mediante caché para acelerar operaciones dentro de los bucles.
 
-### Implementación de caché para filtros
+* Implementación de caché para filtros
 
- * **Mejora**: Se usa una caché global (_filtersKeysCache) para almacenar las claves de los objetos de filtro, evitando el recálculo repetido en funciones como `_isCustomFilter` y `_customFilter` que se llaman frecuentemente.
+   * Uso de caché global (`_filtersKeysCache`) para almacenar las claves de los objetos de filtro, evitando recálculos repetidos en funciones invocadas frecuentemente como `_isCustomFilter` y `_customFilter`.
+   * Creación de las funciones `_getFiltersKeys()` y `_getCustomFilterKey()` para gestionar el caché.
 
- * **Funciones nuevas**: Se crearon `_getFiltersKeys()` y `_getCustomFilterKey()` para gestionar el caché.
+* Optimización de `_dependantFilters()`
 
-### Optimización de `_dependantFilters()`
+  * Uso de `DocumentFragment` para agrupar operaciones DOM y ejecutar un solo _reflow_ (redibujado de la página), mejorando la velocidad de actualización.
+  * Reemplazo de comparaciones sueltas (`==`) por comparaciones estrictas (`===`) para un código más rápido y predecible.
+  * Uso del caché de claves de filtros en arrays.
 
- * **Rendimiento DOM**: Uso de *DocumentFragment* para agrupar las operaciones DOM y realizar un solo "reflow" (redibujado de la página), mejorando la velocidad de actualización.
+* Refactorización de asignación de clases
 
- * **Estrictez**: Se reemplazaron comparaciones sueltas (\=\=) por comparaciones estrictas (\=\=\=) para un código más rápido y predecible.
+    * Unificación de la lógica para asignar clases a contenedores (`_filtersContainerClassList` y `_searchContainerClassList`) en una única función reutilizable (`_setContainerClassList()`).
 
- * **Eficiencia**: Se usa el caché de claves de filtros en arrays.
+    * Adición de validaciones para verificar la existencia de elementos DOM antes de manipularlos, evitando errores.
 
-### Refactorización de asignación de clases
-
- * **Simplificación**: Se unificó la lógica para asignar clases a contenedores (_filtersContainerClassList y _searchContainerClassList) en una única función reutilizable (_setContainerClassList()).
-
- * **Robustez**: Se agregaron validaciones para asegurar que los elementos DOM existan antes de manipularlos, evitando errores.
-
-### Beneficios
-
- * **Mayor rendimiento**: uso de caché, optimización del DOM con DocumentFragment, y "early returns" que reducen el trabajo innecesario.
-
- * **Código más limpio**: Eliminación de código duplicado y uso de lógica simplificada.
 
 ## Release 2.2.2
 
