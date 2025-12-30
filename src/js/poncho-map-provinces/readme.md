@@ -9,7 +9,7 @@
 
 
 
-Módulo para implementar _ponchoMap_ utilizando un GeoJSON con polígonos por provincia.
+Módulo que implementa _ponchoMap_ mediante un GeoJSON con polígonos por provincia.
 
 
 
@@ -29,19 +29,19 @@ Módulo para implementar _ponchoMap_ utilizando un GeoJSON con polígonos por pr
 <td style="text-align:left">initial_entry</td>
 <td style="text-align:left"><code>string</code></td>
 <td style="text-align:left"><em>empty</em></td>
-<td style="text-align:left">Permite asignar una provincia para que se muestre cuando se carga la página. (Ver órdenes de precedencia).</td>
+<td style="text-align:left">Asigna una provincia para visualizarla al cargar la página (consultar órdenes de precedencia).</td>
 </tr>
 <tr>
 <td style="text-align:left">random_entry</td>
 <td style="text-align:left"><code>boolean</code></td>
 <td style="text-align:left"><code>false</code></td>
-<td style="text-align:left">Permite que se asigne <em>aleatoriamente</em> una provincia cuando se carga la página. (Ver órdenes de precedencia).</td>
+<td style="text-align:left">Asigna <em>aleatoriamente</em> una provincia al cargar la página (consultar órdenes de precedencia).</td>
 </tr>
 <tr>
 <td style="text-align:left">overlay_image</td>
 <td style="text-align:left"><code>boolean</code></td>
 <td style="text-align:left"><em><code>true</code></em></td>
-<td style="text-align:left">Si es <em>true</em>, permite que se visualice la imagen sobrepuesta al mapa de OpenStreetMap (OSM).</td>
+<td style="text-align:left">Si es <em>true</em>, visualiza la imagen sobrepuesta al mapa de OpenStreetMap (OSM).</td>
 </tr>
 <tr>
 <td style="text-align:left">overlay_image_bounds</td>
@@ -55,45 +55,45 @@ Módulo para implementar _ponchoMap_ utilizando un GeoJSON con polígonos por pr
       -74.4619171280653
     ]
 ]</code></pre></td>
-<td style="text-align:left">Geo-localización de las cuatro coordenadas que definen el cuadro visible del mapa.</td>
+<td style="text-align:left">Coordenadas geográficas que definen el área visible del mapa.</td>
 </tr>
 <tr>
 <td style="text-align:left">overlay_image_url</td>
 <td style="text-align:left"><code>string</code></td>
 <td style="text-align:left">/profiles/argentinagobar/themes/contrib/poncho/img/map-shadow-antartida.png</td>
-<td style="text-align:left">Permite sobreponer una imagen en el mapa OSM.</td>
+<td style="text-align:left">Ruta de la imagen sobrepuesta al mapa OSM.</td>
 </tr>
 <tr>
 <td style="text-align:left">overlay_image_opacity</td>
 <td style="text-align:left"><code>float</code></td>
 <td style="text-align:left">0.8</td>
-<td style="text-align:left">Define la opcidad de la imagen sobrepuesta al mapa.</td>
+<td style="text-align:left">Define la opacidad de la imagen sobrepuesta al mapa.</td>
 </tr>
 <tr>
 <td style="text-align:left">province_index</td>
 <td style="text-align:left"><code>string</code></td>
 <td style="text-align:left">provincia</td>
-<td style="text-align:left">Permite definir cual es el nombre de la columna, o índice del objeto; dónde se debe obtener el nombre de la provincia.</td>
+<td style="text-align:left">Define el nombre de la columna o índice del objeto desde donde se obtiene el nombre de la provincia.</td>
 </tr>
 <tr>
 <td style="text-align:left">toggle_select</td>
 <td style="text-align:left"><code>boolean</code></td>
 <td style="text-align:left">true</td>
-<td style="text-align:left"><dl><dt><code>true</code></dt><dd>Cuando la opción sea verdadera y  el <em>viewport</em> o tamaño del display sea inferior a los 992 píxeles de ancho, el componente html, select, con el listado de provincias se mostrará, mientras que el mapa permanecerá oculto.</dd>
-<dt><code>false</code></dt><dd>Cuando la opción sea falsa, tanto el componente html, select, como el mapa estarán visibles en todo momento.</dd></dl>
-<p>* Es importante tenes en cuenta que cuando se utilice el mapa completo —mapa con slider o popup—, true ocultará el mapa. Esta opción es aconsejable en modo: mapa con descripción fuera del mapa.</p></td>
+<td style="text-align:left"><dl><dt><code>true</code></dt><dd>Si el <em>viewport</em> es inferior a 992 píxeles de ancho, muestra el componente select con el listado de provincias y oculta el mapa.</dd>
+<dt><code>false</code></dt><dd>Mantiene visibles tanto el componente select como el mapa en todo momento.</dd></dl>
+<p>* Cuando se utiliza el mapa completo (mapa con slider o popup), <code>true</code> oculta el mapa. Se recomienda esta opción para el modo de mapa con descripción externa.</p></td>
 </tr>
 <tr>
 <td style="text-align:left">hide_select</td>
 <td style="text-align:left"><code>boolean</code></td>
 <td style="text-align:left">false</td>
-<td style="text-align:left">Si la opción es <em>true</em>, el componente html, select, se muestra unicamente en modo mobile.</td>
+<td style="text-align:left">Si es <em>true</em>, el componente select se muestra únicamente en modo móvil.</td>
 </tr>
 <tr>
 <td style="text-align:left">fit_bounds</td>
 <td style="text-align:left"><code>boolean</code></td>
 <td style="text-align:left">true</td>
-<td style="text-align:left">Si es <em>true</em>, el mapa se ajusta al conetenido del mapa cuando se carga por primera vez.</td>
+<td style="text-align:left">Si es <em>true</em>, el mapa se ajusta al contenido al cargarse por primera vez.</td>
 </tr>
 
 <tr>
@@ -122,7 +122,7 @@ Módulo para implementar _ponchoMap_ utilizando un GeoJSON con polígonos por pr
   <td>map_align</td>
   <td><code>string</code></td>
   <td><code>left</code></td>
-  <td><p>Permite alinear el mapa a la izquierda o a la derecha de su contenedor.</p><p>Opciones:</p>
+  <td><p>Alinea el mapa dentro de su contenedor.</p><p>Opciones:</p>
   <ul>
   <li>left</li>
   <li>center</li>
@@ -136,7 +136,7 @@ Módulo para implementar _ponchoMap_ utilizando un GeoJSON con polígonos por pr
 
 ### Orden de precedencia para entradas iniciales
 
-La opción _**hash**_ tiene precedencia sobre: _**initial_entry**_ y _**random_entry**_. Mientras que _**initial_entry**_ tiene precedencia solo sobre _**random_entry**_.
+La opción _**hash**_ tiene precedencia sobre _**initial_entry**_ y _**random_entry**_. Por su parte, _**initial_entry**_ tiene precedencia únicamente sobre _**random_entry**_.
 
 ----
 
