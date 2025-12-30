@@ -373,7 +373,7 @@ class PonchoMapSearch {
         // Si hay más de una entrada muestro los markers y hago 
         // zoom abarcando el límite de todos ellos.
         if(entries.length == 1){
-            this.instance.gotoEntry(entries[0].properties[this.instance.id]);
+            this.instance.gotoEntry(entries[0].properties[this.instance.id], true, true);
         } else if(term.trim() != "") {
             this.instance.removeHash();
             setTimeout(this.instance.fitBounds, this.instance.anchor_delay);
@@ -708,11 +708,14 @@ class PonchoMapSearch {
                 const id = target.dataset.entryId;
                 const name = target.dataset.name;
 
+                this.instance._setSearchInputValue(name);
                 searchElement.value = name;
+
                 this._closeSearchResults();
-                this.instance.gotoEntry(id);
-            } else if (!searchElement.contains(e.target) && !searchContainer.contains(e.target)) {
-                // Cerrar si se hace click fuera del input y del contenedor de resultados
+                this.instance.gotoEntry(id, true, true);
+            } else if (!searchElement.contains(e.target) && 
+                    !searchContainer.contains(e.target)) 
+            {
                 this._closeSearchResults();
             }
         });
