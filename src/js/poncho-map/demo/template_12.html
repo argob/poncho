@@ -150,18 +150,19 @@ COPIAR DESDE ACÁ…
             summary: {
                 hidden: false,
                 title: "Mapa Centros de Atención por motivo de toda forma de violencia y riesgo",
-                position: "top",
-                css: "m-y-05 p-y-05 h5 text-arg-enlace",
+                position: "bottom",
+                css: "small, p-y-05",
                 style: {
-                    borderTop: "1px solid #ddd",
+                    borderBottom: "1px solid #ddd",
                 },
             },
+            debug: true,
             error_reporting: 1,
             throw_exceptions: 0,
             template: template_punto_digital,
             title: "name",
             map_layers: true,
-            map_layers_default: 'satelital',
+            // map_layers_default: 'satelital',
             scope:"ponchomap",
             allowed_tags: ["*"],
             template_markdown: true,
@@ -172,26 +173,30 @@ COPIAR DESDE ACÁ…
             hash: true,
             slider: true,
             scroll: true,
-            "header_icons":[
+            _header_icons:[
+                {
+                    "key": "observation",
+                    "css": "fa fa-info-circle text-arg-info"
+                },
                 {
                     "key": "opening_time",
-                    "css": "fa fa-clock-o text-arg-mandarina"
+                    "css": "fa fa-clock-o text-arg-info"
                 },
                 {
                     "key": "ubicacion",
-                    "css": "fa fa-map-marker text-arg-mandarina"
+                    "css": "fa fa-map-marker text-arg-info"
                 },
                 {
                     "key": "email",
-                    "css": "fa fa-envelope-o text-arg-mandarina"
+                    "css": "fa fa-envelope text-arg-info"
                 },
                 {
                     "key": "phone",
-                    "css": "fa fa-phone text-arg-mandarina"
+                    "css": "fa fa-phone text-arg-info"
                 },
                 {
                     "key": "web",
-                    "css": "fa fa-globe text-arg-mandarina"
+                    "css": "fa fa-globe text-arg-info"
                 },
             ],
             "filters": [
@@ -206,7 +211,7 @@ COPIAR DESDE ACÁ…
             "template_structure": {
                 "definition_classlist": ["m-b-1"],
                 "title_classlist": ["h4","m-t-0"],
-                "term_classlist": ["text-arg-enlace"],
+                "term_classlist": ["text-primary"],
                 "definition_list_tag": "dl",
                 "term_tag": "dt",
                 "definition_tag": "dd",
@@ -220,19 +225,18 @@ COPIAR DESDE ACÁ…
                 ],
                 "lead": {
                     "key": "category", 
-                    "css": "text-arg-default small",
+                    "css": "small, p-b-xs",
                     "style": "border-bottom: 1px solid #ddd"
                 },
                 "mixing": [
                     {
-                        template: "{{address}}{% ', {{municipality}}' if municipality!='' else '' %}{% ', {{province}}' if province!='' else '' %}.",
                         key: "ubicacion",
                         header: "Ubicación",
-                        values: false,
+                        values: ["address", "municipality", "province"],
                         separator: ", "
                     },
                     {
-                        template: `{% '<a href="{{web}}">{{web}}</web>' if web != "" else "" %}`,
+                        template: `{% '<a href="{{web}}">{{web}}</a>' if web != "" else "" %}`,
                         key: "web",
                         header: "Web",
                         values: false,
@@ -272,15 +276,16 @@ COPIAR DESDE ACÁ…
             combobox_options: {
                 key: false,
                 template: `<p class="m-y-0 fw-semibold">{{name}}</p>`
-                    + `<p class="m-y-0 small text-arg-negro">`
+                    + `<p class="m-y-0 small fw-medium text-arg-default">`
                     + `{{observation}}`
                     + `</p>`
-                    + `<p class="m-b-0 m-t-05 small text-arg-negro">`
+                    + `<p class="m-b-0 m-t-05 small text-arg-default">`
                     + `{{locality}}, {{province}}`
                     + `</p>`,
             },
             "text": "name",
             "search_fields": [
+                "id",
                 "name",
                 "province",
                 "municipality",
@@ -288,7 +293,7 @@ COPIAR DESDE ACÁ…
                 "category",
                 "observation"
             ],
-            "id": "id_pd",
+            "id": "id",
             "placeholder": "Buscá un centro"
         };
         search = new PonchoMapSearch(filter, search_options);

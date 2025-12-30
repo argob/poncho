@@ -2212,8 +2212,15 @@ class PonchoMap {
      * @return {object}
      */
     entry = (id) => {
+        if(!this.isNumber(id)){
+            this.logger.error("entry requiere un número.")
+        }
+
+        const entryId = parseInt(id);
+
         return this.entries.find(e => {
-            if(e?.properties && e.properties[this.id] === id && 
+            const propertieId = parseInt(e.properties[this.id]);
+            if(e?.properties && propertieId === entryId && 
                 e.properties?.["pm-interactive"] !== "n"){
                 return true;
             }
@@ -2673,23 +2680,33 @@ class PonchoMap {
 
     /**
      * Muestra un marker
-     * 
-     * @param {string|integer} id Valor identificador del marker. 
+     *
+     * @param {string|integer} id Valor identificador del marker.
+     * @param {boolean} forceVisible Si es true, hace pan/zoom al marker aunque no esté visible en el mapa.
      * @returns {undefined}
      */
-    gotoEntry = id => {
+    gotoEntry = (id, forceVisible = false, addIfNotExists = false) => {
         const entry = this.entry(id);
-        const setAction = (layer, id, entry) => {
+        let found = false;
+        const setAction = (layer, id, entry, forceVisible) => {
 
             if(!layer.options.hasOwnProperty("id")){
                 return;
             }
 
             if(layer.options.id == id){
+                found = true;
                 this._setSelectedMarker(id, layer);
 
                 if(this.hash){
                     this.addHash(id);
+                }
+
+                // Si forceVisible es true, navega al marker
+                if(forceVisible && layer.hasOwnProperty("_latlng")){
+                    this.map.setView(layer._latlng, this.map_anchor_zoom);
+                } else if(forceVisible && layer.getBounds){
+                    this.map.fitBounds(layer.getBounds().pad(0.005));
                 }
 
                 if(this.slider){
@@ -2697,16 +2714,56 @@ class PonchoMap {
                 } else {
                     this._showPopup(layer);
                 }
+
+                return;
             }
         };
 
-        this.markers.eachLayer(layer => setAction(layer, id, entry));
+        this.markers.eachLayer(layer => setAction(layer, id, entry, forceVisible));
         this.map.eachLayer(layer => {
-            if(layer.hasOwnProperty("feature") && 
+            if(layer.hasOwnProperty("feature") &&
                 layer.feature.geometry.type != "Point"){
-                setAction(layer, id, entry);
+                setAction(layer, id, entry, forceVisible);
             }
         });
+
+        // Si no se encontró el marcador y se debe agregar, hacerlo una sola vez
+        // después de revisar todos los layers, evitando recursión y ejecución múltiple
+        if(!found && addIfNotExists){
+            this.markersMap([this.entry(id)]);
+
+            this._renderSlider();
+            this._clickeableFeatures();
+            this._clickeableMarkers();
+            this._clickToggleSlider();
+            this._listeners();
+
+            // Buscar el layer recién agregado y mostrarlo directamente
+            // sin llamada recursiva que podría causar loops infinitos
+            const newLayer = Array.from(this.markers.getLayers()).find(
+                layer => layer.options && layer.options.id == id
+            );
+
+            if(newLayer){
+                this._setSelectedMarker(id, newLayer);
+
+                if(this.hash){
+                    this.addHash(id);
+                }
+
+                if(forceVisible && newLayer.hasOwnProperty("_latlng")){
+                    this.map.setView(newLayer._latlng, this.map_anchor_zoom);
+                } else if(forceVisible && newLayer.getBounds){
+                    this.map.fitBounds(newLayer.getBounds().pad(0.005));
+                }
+
+                if(this.slider){
+                    this._showSlider(newLayer, entry);
+                } else {
+                    this._showPopup(newLayer);
+                }
+            }
+        }
     };
 
 

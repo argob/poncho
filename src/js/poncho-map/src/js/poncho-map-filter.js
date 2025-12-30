@@ -956,6 +956,24 @@ class PonchoMapFilter extends PonchoMap {
 
 
     /**
+     * Establece el valor del search _input hidden_ en el
+     * campo de filtros.
+     * @param {string} name - El valor a asignar al input de búsqueda.
+     * @returns {undefined}
+     */
+    _setSearchInputValue = (name) => {
+        const hiddenInputSelector = `#js-search-input${this.scope_sufix}`;
+
+        if(!hiddenInputSelector){
+            this.logger.warn("No se encuentra el input search");
+            return;
+        }
+        const hiddenElement = document.querySelector(hiddenInputSelector);
+        hiddenElement.value = name;
+    }
+
+
+    /**
      * Borra los valores del search _input hidden_ en el 
      * campo de filtros.
      * @returns {undefined}
