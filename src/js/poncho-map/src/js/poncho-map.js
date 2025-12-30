@@ -2212,15 +2212,33 @@ class PonchoMap {
      * @return {object}
      */
     entry = (id) => {
-        if(![this.isNumber(id),this.isString(id)].some(Boolean)){
+        // Validar que id sea un número o string válido
+        if(!this.isNumber(id) && !this.isString(id)){
             this.logger.error(
-                "entry requiere un número o una cadena de texto."
-            );
+                "entry requiere un número o una cadena de texto.");
+            return undefined;
+        }
+
+        // Si es string, validar que no esté vacío
+        if(this.isString(id) && this.isEmptyString(id)){
+            this.logger.error(
+                "entry requiere un id no vacío.");
+            return undefined;
+        }
+
+        // Normalizar id a número para comparación
+        const normalizedId = this.isNumber(id) ? id : parseInt(id, 10);
+
+        // Validar que la conversión a número sea válida
+        if(!this.isNumber(normalizedId)){
+            this.logger.error(
+                `El id "${id}" no es un número válido.`);
+            return undefined;
         }
 
         return this.entries.find(e => {
-            const propertieId = parseInt(e.properties[this.id]);
-            if(e?.properties && propertieId === id && 
+            const propertieId = parseInt(e.properties[this.id], 10);
+            if(e?.properties && propertieId === normalizedId &&
                 e.properties?.["pm-interactive"] !== "n"){
                 return true;
             }
