@@ -7562,19 +7562,8 @@ class PonchoMap {
             return undefined;
         }
 
-        // Normalizar id a número para comparación
-        const normalizedId = this.isNumber(id) ? id : parseInt(id, 10);
-
-        // Validar que la conversión a número sea válida
-        if(!this.isNumber(normalizedId)){
-            this.logger.error(
-                `El id "${id}" no es un número válido.`);
-            return undefined;
-        }
-
         return this.entries.find(e => {
-            const propertieId = parseInt(e.properties[this.id], 10);
-            if(e?.properties && propertieId === normalizedId &&
+            if(e?.properties && id === id && 
                 e.properties?.["pm-interactive"] !== "n"){
                 return true;
             }
@@ -7583,6 +7572,30 @@ class PonchoMap {
     }
 
 
+    /**
+     * Busca entradas que coincidan con un término de búsqueda.
+     *
+     * @param {string} searchTerm - Término a buscar en las entradas.
+     * @param {Array} [dataset] - Dataset opcional donde buscar. Si no se provee,
+     *                            se usa this.geoJSON por defecto.
+     * @returns {Array} Array de entradas que coinciden con el término de búsqueda.
+     *                  Si el término está vacío, retorna el dataset completo.
+     *
+     * @description
+     * Filtra las entradas del dataset buscando el término en los campos
+     * especificados. La búsqueda es case-insensitive y normaliza caracteres
+     * especiales y acentos.
+     *
+     * @example
+     * // Buscar "Buenos Aires" en el dataset por defecto
+     * const results = this.searchEntries("Buenos Aires");
+     *
+     * @example
+     * // Buscar en un dataset personalizado
+     * const results = this.searchEntries("hospital", customDataset);
+     *
+     * @see searchEntry
+     */
     searchEntries = (searchTerm, dataset) => {
         const dataToSearch = dataset || this.geoJSON;
 
@@ -7593,7 +7606,7 @@ class PonchoMap {
 
         // Término de búsqueda sanitizado
         // Sin acéntos o caracteres especiales.
-        const sanitizedSearchTerm = 
+        const sanitizedSearchTerm =
                 replaceSpecialChars(searchTerm).toUpperCase();
 
         // Armo un array con los índices de búsqueda
@@ -7601,7 +7614,7 @@ class PonchoMap {
 
         const entries = dataToSearch.filter(entry => {
             return this.searchEntry(
-                sanitizedSearchTerm, 
+                sanitizedSearchTerm,
                 entry.properties,
                 searchFields
             );
@@ -7783,11 +7796,17 @@ class PonchoMap {
             .querySelectorAll(`.js-close-slider${this.scope_sufix}`)
             .forEach(e => {
                 e.dataset.entryId = data[this.id];
-            });      
+            });
 
 
-        const [latitude, longitude] = this.entry(data[this.id]).geometry.coordinates
-        this._openOnMaps(longitude, latitude);
+        const entry = this.entry(data[this.id]);
+        if(entry?.geometry?.coordinates){
+            const [latitude, longitude] = entry.geometry.coordinates;
+            this._openOnMaps(longitude, latitude);
+        } else {
+            this.logger.warn(
+                `No se pudo obtener las coordenadas para el id "${data[this.id]}".`);
+        }
     };
 
 
