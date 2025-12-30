@@ -7548,15 +7548,13 @@ class PonchoMap {
      * @return {object}
      */
     entry = (id) => {
-        if(!this.isNumber(id)){
-            this.logger.error("entry requiere un número.")
+        if(!this.isNumber(id) || !this.isString(id)){
+            this.logger.error("entry requiere un número o una cadena de texto.");
         }
-
-        const entryId = parseInt(id);
 
         return this.entries.find(e => {
             const propertieId = parseInt(e.properties[this.id]);
-            if(e?.properties && propertieId === entryId && 
+            if(e?.properties && propertieId === id && 
                 e.properties?.["pm-interactive"] !== "n"){
                 return true;
             }
