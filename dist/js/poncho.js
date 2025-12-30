@@ -7548,8 +7548,10 @@ class PonchoMap {
      * @return {object}
      */
     entry = (id) => {
-        if(!this.isNumber(id) || !this.isString(id)){
-            this.logger.error("entry requiere un número o una cadena de texto.");
+        if(![this.isNumber(id),this.isString(id)].some(Boolean)){
+            this.logger.error(
+                "entry requiere un número o una cadena de texto."
+            );
         }
 
         return this.entries.find(e => {
