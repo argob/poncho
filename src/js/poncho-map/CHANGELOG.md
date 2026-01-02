@@ -8,6 +8,10 @@
 * `_fieldsToUse()`: Implementación de caché Map para evitar recálculos repetidos en la configuración de campos del formulario.
 * `_validateEntry()`: Refactorizado para recibir filtros pre-agrupados, eliminando operaciones dentro del bucle principal.
 * `_validateGroup()`: Implementación de evaluación con cortocircuito (_short-circuit evaluation_) que retorna inmediatamente al encontrar la primera coincidencia, eliminando arrays temporales.
+* Mejora en el filtro del tipo select. 
+  * Se hizo un refactor del método que arma el formulario de acuerdo a la opción del usuario.
+  * Ahora se puede editar el label y el texto de opción por defecto.
+  * Se mejoró la visualización en el panel de filtros.
 
 * `_search()`:
   * Retorno anticipado (_early return_) cuando la entrada carece de la propiedad buscada.
