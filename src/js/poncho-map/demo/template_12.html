@@ -201,12 +201,20 @@ COPIAR DESDE ACÁ…
             ],
             "filters": [
                 {
-                "legend": "Ver",
-                "type": "checkbox",
-                "field": ["category", "checked"],
-                "fields": false,
-                "check_uncheck_all": true
+                    "legend": "Filtrar por provincia",
+                    "type": "select",
+                    "field": ["province", "checked"],
+                    "fields": false,
+                    "check_uncheck_all": false
+                },
+                {
+                    "legend": "Filtrar por categoría",
+                    "type": "select",
+                    "field": ["category", "checked"],
+                    "fields": false,
+                    "check_uncheck_all": true
                 }
+
             ],
             "template_structure": {
                 "definition_classlist": ["m-b-1"],
