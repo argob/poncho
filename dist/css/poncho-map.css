@@ -533,6 +533,18 @@ html {
   margin: 0;
   padding: 0;
 }
+.poncho-map .pm-form-control {
+  color: var(--pm-color-base);
+  font-size: 0.88em;
+  height: 38px;
+  padding: 6px 12px;
+  border: solid var(--pm-slider-border-width) var(--pm-slider-border-color);
+  border-radius: 6px;
+  box-shadow: none;
+  background: var(--pm-slider-background);
+  width: calc(100% - var(--pm-slider-border-width) * 2);
+  box-sizing: border-box;
+}
 .poncho-map .pm-tools {
   position: absolute;
   bottom: var(--pm-slider-distance);
@@ -712,8 +724,8 @@ html {
   position: relative;
   z-index: 998;
   width: var(--pm-tools-width);
-  padding-right: var(--pm-content-padding);
-  padding-left: var(--pm-content-padding);
+  padding-right: 0;
+  padding-left: 0;
   padding-top: calc(var(--pm-content-padding) * 2 + 10px);
   padding-bottom: var(--pm-content-padding);
   box-shadow: var(--pm-slider-shadow);
@@ -721,6 +733,11 @@ html {
 }
 .poncho-map .filter-container .poncho-map-filters.filter--in {
   display: block;
+}
+.poncho-map .filter-container .poncho-map-filters .pm-filters-content {
+  padding-right: var(--pm-content-padding);
+  padding-left: var(--pm-content-padding);
+  box-sizing: border-box;
 }
 .poncho-map .filter-container .poncho-map-filters .field-list {
   min-height: 40px;
