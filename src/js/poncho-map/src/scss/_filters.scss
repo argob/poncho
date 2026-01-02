@@ -18,8 +18,10 @@
             position: relative;
             z-index: 998;
             width: var(--pm-tools-width);
-            padding-right: var(--pm-content-padding);
-            padding-left: var(--pm-content-padding);
+            // padding-right: var(--pm-content-padding);
+            // padding-left: var(--pm-content-padding);
+            padding-right: 0;
+            padding-left: 0;
             padding-top: calc(var(--pm-content-padding) * 2 + 10px);
             padding-bottom: var(--pm-content-padding);
             box-shadow: var(--pm-slider-shadow);
@@ -28,6 +30,12 @@
             // Define el estado abierto del panel de filtro.
             &.filter--in {
                 display: block;
+            }
+
+            .pm-filters-content {
+                padding-right: var(--pm-content-padding);
+                padding-left: var(--pm-content-padding);
+                box-sizing: border-box;
             }
 
             // Contenedor de fieldsets
