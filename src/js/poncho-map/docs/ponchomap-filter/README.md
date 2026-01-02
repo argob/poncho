@@ -55,7 +55,7 @@ const options = {
 | Parámetro | Tipo | Default | Descripción |
 |:---|:---|:---|:---|
 | legend | `string` | `false` | Establece un nombre para el legend en el fieldset de opciones. |
-| type | `string` | checkbox | Define el tipo de input del filtro. Opciones disponibles: checkbox, radio y select. |
+| type | `string` | checkbox | Define el tipo de input del filtro. Opciones disponibles: `checkbox`, `radio` y `select`. |
 | field | `Object` | `false` | Crea un filtro basado en una de las claves de la entrada de datos.<br><br>Ver opciones para [field](#opciones-para-field) |
 | fields | `Object` | `false` | A diferencia de *field*, compone un filtro basado en criterios definidos por el usuario utilizando datos existentes en las entradas.<br><br>Ver opciones para [fields](#opciones-para-fields) |
 | check_uncheck_all | `boolean` | `false` | Si se habilita, visualiza dentro de cada fieldset (debajo del legend) los botones _marcar todos_ y _desmarcar todos_ para los checkbox de ese filtro. |
