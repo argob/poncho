@@ -13,7 +13,7 @@
         integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet"
-        href="https://capacita-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css?rfqjsh">
+        href="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css?rfqjsh">
     <link rel="stylesheet" href="../../../../dist/css/poncho.min.css" />
 
     <!-- 
@@ -67,6 +67,24 @@ COPIAR DESDE ACÁ…
 <!-- / INCLUDE SCRIPTS -->
 <div class="container">
 <div class="row">
+
+<style>
+    /* .pm-term-icon-helper {
+  display: flex;
+  width: 100%;
+}
+
+.pm-term-icon {
+  /* Esto asegura que siempre mida 300px */
+  flex-basis: 300px;
+  flex-shrink: 0;
+  
+  background-color: #f4f4f4; /* Solo para visualización */
+} */
+
+
+</style>
+
 
 <div class="col-md-12 m-b-1">
 <!-- PONCHO SEARCH -->
@@ -144,7 +162,7 @@ COPIAR DESDE ACÁ…
         const gapi = new GapiSheetData();
         const googlesheet_data = await fetch_json( url ); 
         const gdata = googlesheet_data.data;
-
+        const iconColor = "text-arg-cielo";
         // map options
         const options = {
             summary: {
@@ -175,55 +193,81 @@ COPIAR DESDE ACÁ…
             scroll: true,
             header_icons:[
                 {
-                    "key": "observation",
-                    "css": "fa fa-info-circle text-arg-mandarina"
+                    key: "observation",
+                    css: [
+                        "fa",
+                        "fa-info-circle",
+                        iconColor
+                    ]
                 },
                 {
-                    "key": "opening_time",
-                    "css": "fa fa-clock-o text-arg-mandarina"
+                    key: "opening_time",
+                    css: [
+                        "fa",
+                        "fa-clock-o",
+                        iconColor
+                    ]
                 },
                 {
-                    "key": "ubicacion",
-                    "css": "fa fa-map-marker text-arg-mandarina"
+                    key: "ubicacion",
+                    css: [
+                        "icono-arg-marcador-ubicacion-2",
+                        iconColor
+                    ]
                 },
                 {
-                    "key": "email",
-                    "css": "fa fa-envelope text-arg-mandarina"
+                    key: "email",
+                    css: [
+                        "fa",
+                        "fa-envelope",
+                        iconColor
+                    ]
                 },
                 {
-                    "key": "phone",
-                    "css": "fa fa-phone text-arg-mandarina"
+                    key: "phone",
+                    css:[
+                        "icono-arg-telefono-neg",
+                        iconColor
+                    ]
                 },
                 {
-                    "key": "web",
-                    "css": "fa fa-globe text-arg-mandarina"
+                    key: "web",
+                    css: [
+                        "fa",
+                        "fa-globe",
+                        iconColor
+                    ]
                 },
             ],
-            "filters": [
+            filters: [
                 {
-                    "legend": "Filtrar por provincia",
-                    "type": "select",
-                    "field": ["province", "checked"],
-                    "fields": false,
-                    "check_uncheck_all": false
+                    legend: "Filtrar por provincia",
+                    label: "Seleccionar provincia",
+                    type: "select",
+                    field: ["province", "checked"],
+                    fields: false,
+                    check_uncheck_all: false,
+                    all_options_text: "Todas las provincias"
                 },
                 {
-                    "legend": "Filtrar por categoría",
-                    "type": "select",
-                    "field": ["category", "checked"],
-                    "fields": false,
-                    "check_uncheck_all": true
+                    legend: "Filtrar por categoría",
+                    label: "Filtrar por categoría",
+                    // type: "select",
+                    field: ["category", "checked"],
+                    fields: false,
+                    check_uncheck_all: true,
+                    all_options_text: "Todas las categorías"
                 }
 
             ],
             "template_structure": {
-                "definition_classlist": ["m-b-1"],
-                "title_classlist": ["h4","m-t-0", "text-primary"],
-                "term_classlist": ["text-primary"],
-                "definition_list_tag": "dl",
-                "term_tag": "dt",
-                "definition_tag": "dd",
-                "values": [
+                definition_classlist: ["m-b-1"],
+                title_classlist: ["h4","m-t-0", "text-primary"],
+                term_classlist: ["text-primary"],
+                definition_list_tag: "dl",
+                term_tag: "dt",
+                definition_tag: "dd",
+                values: [
                     "observation",
                     "ubicacion",
                     "opening_time",
@@ -231,12 +275,18 @@ COPIAR DESDE ACÁ…
                     "email",
                     "web",
                 ],
-                "lead": {
-                    "key": "category", 
-                    "css": "small, p-b-xs",
-                    "style": "border-bottom: 1px solid #ddd"
+                lead: {
+                    key: "category", 
+                    css: [
+                        "small",
+                        "p-b-xs",
+                        "text-uppercase",
+                        "fw-medium",
+                        "text-arg-gris-intermedio"
+                    ],
+                    style: "border-bottom: 1px solid var(--arg-negro-200);"
                 },
-                "mixing": [
+                mixing: [
                     {
                         key: "ubicacion",
                         header: "Ubicación",
@@ -279,7 +329,7 @@ COPIAR DESDE ACÁ…
 
         // Buscador
         const search_options = {
-            "scope": "search-poncho-map",
+            scope: "search-poncho-map",
             combobox: true,
             combobox_options: {
                 key: false,
@@ -288,21 +338,22 @@ COPIAR DESDE ACÁ…
                     + `{{observation}}`
                     + `</p>`
                     + `<p class="m-b-0 m-t-05 small text-arg-default">`
-                    + `{{locality}}, {{province}}`
+                    + `{% '{{municipality}}, ' if municipality != '' else '' %}{{locality}}, {{province}}`
                     + `</p>`,
             },
-            "text": "name",
-            "search_fields": [
+            text: "name",
+            search_fields: [
                 "id",
                 "name",
                 "province",
                 "municipality",
                 "locality",
                 "category",
-                "observation"
+                "observation",
+                "address"
             ],
-            "id": "id",
-            "placeholder": "Buscá un centro"
+            id: "id",
+            placeholder: "Buscá un centro"
         };
         search = new PonchoMapSearch(filter, search_options);
         search.render();

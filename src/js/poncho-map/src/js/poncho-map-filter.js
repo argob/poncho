@@ -462,8 +462,9 @@ class PonchoMapFilter extends PonchoMap {
             label = filterData.label;
         } else {
             label = `Seleccione ${entryKey}`;
-            labelElement.className = "pm-visually-hidden";
+            labelElement.classList.add("pm-visually-hidden");
         }
+        labelElement.classList.add("m-b-xs");
         labelElement.textContent = label;
 
 
@@ -471,7 +472,7 @@ class PonchoMapFilter extends PonchoMap {
         formGroup.classList.add("pm-form-group");
 
         const fieldset = document.createElement("div");
-        fieldset.classList.add("m-b-2");
+        fieldset.classList.add("m-b-2", "m-t-xs");
 
         fieldset.appendChild(labelElement);
         fieldset.appendChild(selectElement);
@@ -728,26 +729,29 @@ class PonchoMapFilter extends PonchoMap {
      * Crea los checkbox para los filtros.
      */
     _createFilters = (data) => {
-        const form_filters = document
-            .querySelector(`.js-filters${this.scope_sufix}`);
+        const form_filters = document.querySelector(`.js-filters${this.scope_sufix}`);
 
         data.forEach((item, group) => {
-            let legend = document.createElement("legend");
-            legend.textContent = item.legend;
-            legend.classList.add(
-                "m-t-0",
-                "m-b-05",
-                "color-primary",
-                "h6",
-                "font-sans-serif"
-            );
-
             const fieldset = document.createElement("fieldset");
-            fieldset.appendChild(legend);
-            const hasCheckUncheckAll = item.hasOwnProperty("check_uncheck_all") &&
-                                    item.check_uncheck_all &&
-                                    item?.type !== "radio" &&
-                                    item?.type !== "select";
+
+            if (this.isString(item.legend) && !this.isEmptyString(item.legend)) {
+                let legend = document.createElement("legend");
+                legend.textContent = item.legend;
+                legend.classList.add(
+                    "m-t-0",
+                    "m-b-05",
+                    "color-primary",
+                    "h6",
+                    "font-sans-serif"
+                );
+                fieldset.appendChild(legend);
+            }
+
+            const hasCheckUncheckAll =
+                item.hasOwnProperty("check_uncheck_all") &&
+                item.check_uncheck_all &&
+                item?.type !== "radio" &&
+                item?.type !== "select";
 
             if (hasCheckUncheckAll) {
                 fieldset.appendChild(this._checkUncheckButtons(item));
