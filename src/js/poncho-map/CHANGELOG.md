@@ -22,6 +22,9 @@
   * Eliminación de creación repetida de Sets en cada iteración.
   * Cortocircuito directo en lugar de `every(Boolean)`.
 * `_filteredData()`: Eliminación de clonación innecesaria de array mediante operador spread.
+* Mejora en la visualización del fitro tipo select. Se agregó la posibilidad de cambiar el texto de la etiqueta option y la etiqueta label.
+* La etiqueta legend no se muestra vacía si no se le asignó un texto.
+* Los botones de _marcar todos_ y _desmarcar todos_ se reemplazaron por un checkbox con los estados: _checked_, _intermediate_ y _unchecked_.
 
 ### PonchoMapLoader
 
@@ -60,6 +63,7 @@
 * En `open_maps`, el texto predeterminado es: «Abrir ubicación en:».
 * Implementación de medidas de seguridad contra posibles ataques XSS en métodos que facilitan la inclusión de marcado HTML y Markdown.
 * Cambio de la fuente tipográfica de los subtítulos a sans-serif para mejorar el rendimiento en línea y el contraste entre término y definición.
+* Se hizo un ajuste de la relación ícono subtítulo para que se aline el texto verticalmente con los otros subtítulos y los iconos con el texto centrado verticalmente.
 
 ### PonchoMapSearch
 
