@@ -61,7 +61,6 @@ es: {
         filters_close_panel_text: "Cerrar panel",
         filters_has: "Se están usando filtros.",
         filters_reset: "Restablecer mapa",
-        filters_uncheck_all: "Desmarcar todos",
         map_exit: "Salir del mapa",
         map_fit_bounds: "Ajustar marcadores al mapa",
         map_full_view: "Ver mapa completo",
@@ -2767,7 +2766,14 @@ class PonchoMap {
         // Si no se encontró el marcador y se debe agregar, hacerlo una sola vez
         // después de revisar todos los layers, evitando recursión y ejecución múltiple
         if(!found && addIfNotExists){
-            this.markersMap([this.entry(id)]);
+            const foundEntry = this.entries.find(f => f.properties[this.id] == id);
+
+            if(!foundEntry){
+                return;
+            }
+
+            // this.markersMap([this.entry(id)]);
+            this.markersMap([foundEntry]);
 
             this._renderSlider();
             this._clickeableFeatures();
@@ -3293,7 +3299,10 @@ class PonchoMap {
                 continue;
             }
             const term = document.createElement(structure.term_tag);
-            term.classList.add(...structure.term_classlist)
+            term.classList.add(
+                "pm-term-icon-helper", 
+                ...structure.term_classlist
+            );
             const header_icon = this._termIcon(row, key);
             if(header_icon){
                 term.appendChild(header_icon);

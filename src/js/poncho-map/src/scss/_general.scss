@@ -54,7 +54,17 @@
         }
     }
 
-
+    .pm-term-icon-helper {
+        display: flex;
+        width: 100%;
+        gap: .1rem;
+        align-items:center
+    }
+    .pm-term-icon-helper > :nth-child(1) {
+        flex-basis: 1.3em;
+        flex-shrink: 0;
+        text-align:center;
+    }
     .pm-form-control {
         color: var(--pm-color-base);
         font-size: 0.88em;

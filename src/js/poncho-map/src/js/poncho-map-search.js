@@ -50,10 +50,12 @@ class PonchoMapSearch {
             sort_key: "text",
             datalist: true,
             combobox: false,
-            combobox_options: false
+            combobox_options: false,
+            debounce_delay: 300
         };
         this.instance = instance;
         let opts = Object.assign({}, defaults, options);
+        this.debounce_delay = opts.debounce_delay;
         this.text = (instance.title ? instance.title : false);
         this.datalist = opts.datalist;
         this.combobox = opts.combobox;
@@ -582,12 +584,11 @@ class PonchoMapSearch {
         this._cachedElements.searchContainer = searchContainer;
 
         const debounceTimer = { current: null };
-        const DEBOUNCE_DELAY = 150;
+        const DEBOUNCE_DELAY = this.debounce_delay;
 
         const parentNode = searchElement.parentElement;
         parentNode.after(searchContainer);
 
-        // Event listener para keyup con debounce
         searchElement.addEventListener("keyup", () => {
             clearTimeout(debounceTimer.current);
 

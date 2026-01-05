@@ -63,10 +63,17 @@
                 accent-color: var(--pm-link) !important;
             }
 
+            // Estilo para el estado indeterminate del checkbox "marcar todos"
+            input[type="checkbox"]:indeterminate {
+                opacity: 0.7;
+            }
+
             // parche fix hasta que se use bootstrap > 4
             .form-check {
                 display: flex;
                 align-items: baseline;
+                gap: .5rem;
+                padding-left: 1px;
             }
 
             .form-check .form-check-label {
