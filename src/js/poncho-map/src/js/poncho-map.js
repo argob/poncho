@@ -61,7 +61,6 @@ es: {
         filters_close_panel_text: "Cerrar panel",
         filters_has: "Se están usando filtros.",
         filters_reset: "Restablecer mapa",
-        filters_uncheck_all: "Desmarcar todos",
         map_exit: "Salir del mapa",
         map_fit_bounds: "Ajustar marcadores al mapa",
         map_full_view: "Ver mapa completo",
