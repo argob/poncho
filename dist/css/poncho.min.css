@@ -10543,6 +10543,93 @@ input[type=text]:-ms-input-placeholder {
   text-align: right;
 }
 
+.alert {
+  border-width: 2px;
+  font-weight: 500;
+}
+.alert .btn i {
+  color: #FFFFFF;
+}
+
+.alert-warning,
+.alert-success,
+.alert-info,
+.alert-danger {
+  color: #444444;
+}
+
+.alert-warning {
+  background: rgb(252.5208791209, 247.8725274725, 238.6791208791);
+  border-color: #E7BA61;
+}
+.alert-warning i {
+  color: #E7BA61;
+}
+
+.alert-success {
+  background: rgb(242.0614035088, 250.2385964912, 242.5789473684);
+  border-color: #2E7D33;
+}
+.alert-success i {
+  color: #2E7D33;
+}
+
+.alert-info {
+  background: rgb(245.2153846154, 246.8461538462, 248.8846153846);
+  border-color: #5A7290;
+}
+.alert-info i {
+  color: #5A7290;
+}
+
+.alert-danger {
+  background: rgb(253, 245.1, 245.1);
+  border-color: #C62828;
+}
+.alert-danger i {
+  color: #C62828;
+}
+
+a.alert:hover {
+  text-decoration: none;
+  color: #141414;
+}
+a.alert.alert-warning:hover {
+  background: white;
+}
+a.alert.alert-warning i {
+  color: #E7BA61;
+}
+a.alert.alert-success:hover {
+  background: rgb(242.0614035088, 250.2385964912, 242.5789473684);
+}
+a.alert.alert-success i {
+  color: #2E7D33;
+}
+a.alert.alert-info:hover {
+  background: rgb(196.1657894737, 203.6131578947, 228.9342105263);
+}
+a.alert.alert-info i {
+  color: #5A7290;
+}
+a.alert.alert-danger:hover {
+  background: rgb(253, 245.1, 245.1);
+}
+a.alert.alert-danger i {
+  color: #C62828;
+}
+
+.alert h2 {
+  font-size: 1.3em !important;
+  margin-top: 0px !important;
+  margin-bottom: 8px !important;
+  font-weight: 700 !important;
+}
+
+.alert {
+  border-radius: 10px;
+}
+
 .table th {
   line-height: 1.2;
 }
@@ -11054,6 +11141,47 @@ input[type=text]:-ms-input-placeholder {
 .highlight-box.arg-rosado .btn .badge {
   color: #F48EAB;
   background-color: black;
+}
+
+.highlight-box.arg-arandano {
+  --main-theme: #C2185B;
+}
+
+.highlight-box.arg-arandano .btn {
+  color: white;
+  background-color: #C2185B;
+  border-color: #C2185B;
+}
+.highlight-box.arg-arandano .btn:focus, .highlight-box.arg-arandano .btn.focus {
+  color: white;
+  background-color: rgb(148.6146788991, 18.3853211009, 69.7110091743);
+  border-color: rgb(80.5366972477, 9.9633027523, 37.7775229358);
+}
+.highlight-box.arg-arandano .btn:hover {
+  color: white;
+  background-color: rgb(148.6146788991, 18.3853211009, 69.7110091743);
+  border-color: rgb(139.5376146789, 17.2623853211, 65.4532110092);
+}
+.highlight-box.arg-arandano .btn:active, .highlight-box.arg-arandano .btn.active, .open > .highlight-box.arg-arandano .btn.dropdown-toggle {
+  color: white;
+  background-color: rgb(148.6146788991, 18.3853211009, 69.7110091743);
+  border-color: rgb(139.5376146789, 17.2623853211, 65.4532110092);
+}
+.highlight-box.arg-arandano .btn:active:hover, .highlight-box.arg-arandano .btn:active:focus, .highlight-box.arg-arandano .btn:active.focus, .highlight-box.arg-arandano .btn.active:hover, .highlight-box.arg-arandano .btn.active:focus, .highlight-box.arg-arandano .btn.active.focus, .open > .highlight-box.arg-arandano .btn.dropdown-toggle:hover, .open > .highlight-box.arg-arandano .btn.dropdown-toggle:focus, .open > .highlight-box.arg-arandano .btn.dropdown-toggle.focus {
+  color: white;
+  background-color: rgb(116.8449541284, 14.4550458716, 54.8087155963);
+  border-color: rgb(80.5366972477, 9.9633027523, 37.7775229358);
+}
+.highlight-box.arg-arandano .btn:active, .highlight-box.arg-arandano .btn.active, .open > .highlight-box.arg-arandano .btn.dropdown-toggle {
+  background-image: none;
+}
+.highlight-box.arg-arandano .btn.disabled:hover, .highlight-box.arg-arandano .btn.disabled:focus, .highlight-box.arg-arandano .btn.disabled.focus, .highlight-box.arg-arandano .btn[disabled]:hover, .highlight-box.arg-arandano .btn[disabled]:focus, .highlight-box.arg-arandano .btn[disabled].focus, fieldset[disabled] .highlight-box.arg-arandano .btn:hover, fieldset[disabled] .highlight-box.arg-arandano .btn:focus, fieldset[disabled] .highlight-box.arg-arandano .btn.focus {
+  background-color: #C2185B;
+  border-color: #C2185B;
+}
+.highlight-box.arg-arandano .btn .badge {
+  color: #C2185B;
+  background-color: white;
 }
 
 .embed-responsive-1by1 {
