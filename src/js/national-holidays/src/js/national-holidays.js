@@ -471,7 +471,7 @@ const calendar = {
         // Agrego el nombre del mes.
         const tplMonth = tpl.querySelector(".js-tpl-month");
         tplMonth.textContent = monthName;
-        tplMonth.id = `month-${monthName}`
+        tplMonth.id = `month-${monthName.toLowerCase()}`
 
         // Creo los días de la semana.
         const tplWeekdays = tpl.querySelector(".js-tpl-weekdays");
@@ -792,8 +792,7 @@ const calendar = {
 
             // Nombre el feriado
             const anchorDetalle = document.createElement("a");
-            // anchorDetalle.href = `#feriado-cal-${day}-${date.getMonth() + 1}`;
-            anchorDetalle.href = `#month-${month}`;
+            anchorDetalle.href = `#month-${month.toLowerCase()}`;
             anchorDetalle.textContent = markerLabel;
             detalle.forEach(detail => {
                 if(detail){
@@ -819,11 +818,7 @@ const calendar = {
             });
 
             const anchorDetalleHoy = document.createElement("a");
-            // anchorDetalleHoy.href = `#feriado-cal-${parseDate.markerDayInt}`
-            //         + `-${parseDate.markerMonthInt}`;
-
-
-            anchorDetalleHoy.href =`#month-${month}`;
+            anchorDetalleHoy.href =`#month-${month.toLowerCase()}`;
             anchorDetalleHoy.textContent = markerLabel;
             detalle.forEach(elem => {
                 if(elem){
