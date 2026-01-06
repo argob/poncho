@@ -969,7 +969,7 @@ const secureHTML = (str, exclude=[]) => {
         "figure", "figcaption", "details", "summary", "dialog",
 
         // Texto y formato
-        "p", "span", /*"br",*/ "hr", "pre", "code", "kbd", "samp", "var",
+        "p", "span", "br", "hr", "pre", "code", "kbd", "samp", "var",
         "blockquote", "cite", "q", "abbr", "address", "time", "mark", "small",
         "s", "del", "ins", "sub", "sup", "wbr",
 
@@ -5373,7 +5373,7 @@ if (typeof exports !== "undefined") {
  * SOFTWARE.
  */
 const PM_TRANSLATE = {
-es: {
+    es: {
         cluster_click: "Clic para expandir grupo",
         cluster_large: "Grupo grande de {{count}} ubicaciones",
         cluster_medium: "Grupo mediano de {{count}} ubicaciones",
@@ -5383,6 +5383,9 @@ es: {
                         + `aria-label="Restablecer valores del mapa">`
                         + "Restablecer mapa</a>",
         filter_no_results: "No se encontraron entradas.",
+        filter_select_label: "Seleccione {{header}}",
+        filter_select_legend: "Filtrar por {{header}}",
+        filter_select_all_option_text: "Todos",
         filter_no_results_by_term: "No encontramos resultados para tu búsqueda.",
         filter_one_result: "{{total_results}} resultado coincide con tu búsqueda.",
         filter_reset_values_link: ` <a href="#" class="{{reset_search}}"`
@@ -5397,7 +5400,6 @@ es: {
         filters_close_panel_text: "Cerrar panel",
         filters_has: "Se están usando filtros.",
         filters_reset: "Restablecer mapa",
-        filters_uncheck_all: "Desmarcar todos",
         map_exit: "Salir del mapa",
         map_fit_bounds: "Ajustar marcadores al mapa",
         map_full_view: "Ver mapa completo",
@@ -5636,7 +5638,7 @@ class PonchoMap {
                 definition_list_classlist:["definition-list"],
                 definition_list_tag: "dl",
                 definition_tag: "dd",
-                term_classlist: ["h6", "m-b-0"],
+                term_classlist: ["h6", "fw-bold", "m-b-0", "font-sans-serif"],
                 term_tag: "dt",
                 title_classlist: ["h4","pm-color-primary","m-t-0"]
             },
@@ -5663,7 +5665,9 @@ class PonchoMap {
 
         // Set variables
         this.lang = opts.lang;
-        this.dictionary = PM_TRANSLATE[this.lang];
+        this.dictionary = ((opts?.dictionary && opts.dictionary[this.lang])
+            ? opts.dictionary[this.lang]
+            : PM_TRANSLATE[this.lang]);
         this.error_reporting = opts.error_reporting;
         this.throw_exceptions = opts.throw_exceptions;
         this.scope = opts.scope;
@@ -6233,9 +6237,9 @@ class PonchoMap {
 
         if ( !this.isString(value) ) {
             this.logger.error(
-                "[tpl]", 
+                "[tpl]",
                 "El primer parámetro debe ser un string");
-            return secureHTML( String(value) );
+            return String(value);
         }
 
         if( this.isEmptyString(value) ){
@@ -6243,13 +6247,9 @@ class PonchoMap {
             return "";
         }
 
-        const tags = (Array.isArray(allowed_tags) && 
-            allowed_tags.length > 0 ? allowed_tags : this.allowed_tags);
-
-        const cleanedValue = secureHTML(value, tags);
-        const template = this.conditionalTemplate(cleanedValue, entry);
+        const template = this.conditionalTemplate(value, entry);
         const parsed = this.tplParser(template, entry);
-        return parsed != null ? parsed : cleanedValue;
+        return parsed != null ? parsed : value;
     }
 
 
@@ -7404,7 +7404,7 @@ class PonchoMap {
             }
         }
 
-        if( this.isString(this.tooltip_label) && 
+        if( this.isString(this.tooltip_label) &&
             !this.isEmptyString( this.tooltip_label) ){
             return this.tpl(this.tooltip_label, entry, ["*"]);
         }
@@ -7423,26 +7423,52 @@ class PonchoMap {
 
     /**
      * Array con valores a concatenar en el id.
-     * 
+     *
      * @summary Dependiendo de la opción que haya elegido el usario, retorna
      * una array de valors pasado por funcion o _array object_.
      * @param {object} entry Objeto con una entrada del geoJson
-     * @returns {object} Array con los valores a concatenar.
+     * @returns {string|undefined} String con los valores concatenados o undefined.
      */
     _idMixing = entry => {
         if(!this._isIdMixing()){
             return;
         }
 
+        if(
+            !entry || typeof entry !== "object" || !entry.properties || 
+            typeof entry.properties !== "object")
+        {
+            this.logger.warn("_idMixing: entry inválido o sin properties");
+            return;
+        }
+
         if(typeof this.id_mixing === "function"){
-            return this.id_mixing(this, entry).join('');
-        } 
-        
+            try {
+                const result = this.id_mixing(this, entry);
+                if(!Array.isArray(result)){
+                    this.logger.warn(
+                        "_idMixing: la función debe retornar un array"
+                    );
+                    return;
+                }
+                return result.join('');
+            } catch(error) {
+                this.logger.error(
+                    "_idMixing: error ejecutando función personalizada",
+                    error
+                );
+                return;
+            }
+        }
+
         const values = this.id_mixing.map(val => {
-            if(entry.properties.hasOwnProperty(val)){
-                return entry.properties[val].toString();
-            } 
-            return val;
+            if(Object.prototype.hasOwnProperty.call(entry.properties, val)){
+                const value = entry.properties[val];
+                return (value !== null && value !== undefined) ? 
+                        String(value) : '';
+            }
+            // Sanitizar el valor estático también
+            return (val !== null && val !== undefined) ? String(val) : '';
         });
 
         return this._slugify(values.join("-"));
@@ -7526,8 +7552,22 @@ class PonchoMap {
      * @return {object}
      */
     entry = (id) => {
+        // Validar que id sea un número o string válido
+        if(!this.isNumber(id) && !this.isString(id)){
+            this.logger.error(
+                "entry requiere un número o una cadena de texto.");
+            return undefined;
+        }
+
+        // Si es string, validar que no esté vacío
+        if(this.isString(id) && this.isEmptyString(id)){
+            this.logger.error(
+                "entry requiere un id no vacío.");
+            return undefined;
+        }
+
         return this.entries.find(e => {
-            if(e?.properties && e.properties[this.id] === id && 
+            if(e?.properties && id === id && 
                 e.properties?.["pm-interactive"] !== "n"){
                 return true;
             }
@@ -7536,6 +7576,30 @@ class PonchoMap {
     }
 
 
+    /**
+     * Busca entradas que coincidan con un término de búsqueda.
+     *
+     * @param {string} searchTerm - Término a buscar en las entradas.
+     * @param {Array} [dataset] - Dataset opcional donde buscar. Si no se provee,
+     *                            se usa this.geoJSON por defecto.
+     * @returns {Array} Array de entradas que coinciden con el término de búsqueda.
+     *                  Si el término está vacío, retorna el dataset completo.
+     *
+     * @description
+     * Filtra las entradas del dataset buscando el término en los campos
+     * especificados. La búsqueda es case-insensitive y normaliza caracteres
+     * especiales y acentos.
+     *
+     * @example
+     * // Buscar "Buenos Aires" en el dataset por defecto
+     * const results = this.searchEntries("Buenos Aires");
+     *
+     * @example
+     * // Buscar en un dataset personalizado
+     * const results = this.searchEntries("hospital", customDataset);
+     *
+     * @see searchEntry
+     */
     searchEntries = (searchTerm, dataset) => {
         const dataToSearch = dataset || this.geoJSON;
 
@@ -7546,7 +7610,7 @@ class PonchoMap {
 
         // Término de búsqueda sanitizado
         // Sin acéntos o caracteres especiales.
-        const sanitizedSearchTerm = 
+        const sanitizedSearchTerm =
                 replaceSpecialChars(searchTerm).toUpperCase();
 
         // Armo un array con los índices de búsqueda
@@ -7554,7 +7618,7 @@ class PonchoMap {
 
         const entries = dataToSearch.filter(entry => {
             return this.searchEntry(
-                sanitizedSearchTerm, 
+                sanitizedSearchTerm,
                 entry.properties,
                 searchFields
             );
@@ -7736,11 +7800,17 @@ class PonchoMap {
             .querySelectorAll(`.js-close-slider${this.scope_sufix}`)
             .forEach(e => {
                 e.dataset.entryId = data[this.id];
-            });      
+            });
 
 
-        const [latitude, longitude] = this.entry(data[this.id]).geometry.coordinates
-        this._openOnMaps(longitude, latitude);
+        const entry = this.entry(data[this.id]);
+        if(entry?.geometry?.coordinates){
+            const [latitude, longitude] = entry.geometry.coordinates;
+            this._openOnMaps(longitude, latitude);
+        } else {
+            this.logger.warn(
+                `No se pudo obtener las coordenadas para el id "${data[this.id]}".`);
+        }
     };
 
 
@@ -7789,17 +7859,18 @@ class PonchoMap {
      * en los mixings.
      */
     setHeaders = (headers) => {
+
         const mixing = this.template_structure?.mixing ?? [];
 
         const additionalHeaders = mixing.reduce((accumulator, item) => {
             const key = item.key;
-            
+
             if (key) {
                 accumulator[key] = item.header ?? "";
             }
             return accumulator;
         }, {});
-        
+
         return { ...headers, ...additionalHeaders };
     };
 
@@ -7809,8 +7880,21 @@ class PonchoMap {
      * 
      * @return {string} key Key del item.
      */
-    header = (key) => {
-        return (this.headers.hasOwnProperty(key) ? this.headers[key] : key);
+    header = (key, output=false) => {
+        if(this.isEmptyString(key)){
+            this.logger.error("header() debe recibir una clave");
+            return;
+        }
+        const headerToUse = (this.headers.hasOwnProperty(key) ? 
+                this.headers[key] : key);
+
+        if(output === "upper"){
+            return headerToUse.toUpperCase();
+        } else if( output === "lower"){
+            return headerToUse.toLowerCase();
+        }
+
+        return headerToUse;
     };
 
 
@@ -7823,12 +7907,10 @@ class PonchoMap {
             return;
         }
 
-        // 2. Limpieza (eliminando sliders existentes)
         document
             .querySelectorAll(`.js-slider${this.scope_sufix}`)
             .forEach(e => e.remove());
 
-        // 3. Creación y configuración de elementos
         // Backdrop
         const backdrop = document.createElement("div");
         backdrop.className = "pm-backdrop";
@@ -7902,7 +7984,9 @@ class PonchoMap {
         container.appendChild(contentContainer);
 
         // 5. Inserción en el DOM
-        const ponchoMapElement = document.querySelector(`${this.scope_selector}.poncho-map`);
+        const ponchoMapElement = document.querySelector(
+            `${this.scope_selector}.poncho-map`
+        );
         if(ponchoMapElement){
             ponchoMapElement.appendChild(backdrop);
             ponchoMapElement.appendChild(container);
@@ -7982,23 +8066,33 @@ class PonchoMap {
 
     /**
      * Muestra un marker
-     * 
-     * @param {string|integer} id Valor identificador del marker. 
+     *
+     * @param {string|integer} id Valor identificador del marker.
+     * @param {boolean} forceVisible Si es true, hace pan/zoom al marker aunque no esté visible en el mapa.
      * @returns {undefined}
      */
-    gotoEntry = id => {
+    gotoEntry = (id, forceVisible = false, addIfNotExists = false) => {
         const entry = this.entry(id);
-        const setAction = (layer, id, entry) => {
+        let found = false;
+        const setAction = (layer, id, entry, forceVisible) => {
 
             if(!layer.options.hasOwnProperty("id")){
                 return;
             }
 
             if(layer.options.id == id){
+                found = true;
                 this._setSelectedMarker(id, layer);
 
                 if(this.hash){
                     this.addHash(id);
+                }
+
+                // Si forceVisible es true, navega al marker
+                if(forceVisible && layer.hasOwnProperty("_latlng")){
+                    this.map.setView(layer._latlng, this.map_anchor_zoom);
+                } else if(forceVisible && layer.getBounds){
+                    this.map.fitBounds(layer.getBounds().pad(0.005));
                 }
 
                 if(this.slider){
@@ -8006,16 +8100,63 @@ class PonchoMap {
                 } else {
                     this._showPopup(layer);
                 }
+
+                return;
             }
         };
 
-        this.markers.eachLayer(layer => setAction(layer, id, entry));
+        this.markers.eachLayer(layer => setAction(layer, id, entry, forceVisible));
         this.map.eachLayer(layer => {
-            if(layer.hasOwnProperty("feature") && 
+            if(layer.hasOwnProperty("feature") &&
                 layer.feature.geometry.type != "Point"){
-                setAction(layer, id, entry);
+                setAction(layer, id, entry, forceVisible);
             }
         });
+
+        // Si no se encontró el marcador y se debe agregar, hacerlo una sola vez
+        // después de revisar todos los layers, evitando recursión y ejecución múltiple
+        if(!found && addIfNotExists){
+            const foundEntry = this.entries.find(f => f.properties[this.id] == id);
+
+            if(!foundEntry){
+                return;
+            }
+
+            // this.markersMap([this.entry(id)]);
+            this.markersMap([foundEntry]);
+
+            this._renderSlider();
+            this._clickeableFeatures();
+            this._clickeableMarkers();
+            this._clickToggleSlider();
+            this._listeners();
+
+            // Buscar el layer recién agregado y mostrarlo directamente
+            // sin llamada recursiva que podría causar loops infinitos
+            const newLayer = Array.from(this.markers.getLayers()).find(
+                layer => layer.options && layer.options.id == id
+            );
+
+            if(newLayer){
+                this._setSelectedMarker(id, newLayer);
+
+                if(this.hash){
+                    this.addHash(id);
+                }
+
+                if(forceVisible && newLayer.hasOwnProperty("_latlng")){
+                    this.map.setView(newLayer._latlng, this.map_anchor_zoom);
+                } else if(forceVisible && newLayer.getBounds){
+                    this.map.fitBounds(newLayer.getBounds().pad(0.005));
+                }
+
+                if(this.slider){
+                    this._showSlider(newLayer, entry);
+                } else {
+                    this._showPopup(newLayer);
+                }
+            }
+        }
     };
 
 
@@ -8166,12 +8307,14 @@ class PonchoMap {
         const structure_title = (structure.hasOwnProperty("title") ? 
             structure.title : false);
         const optons_title = (this.title ? this.title : false);
+        
         // si intencionalmente no se quiere usar el titulo y se 
         // agrega la opción `false` en `template_structure.title`. 
         if(structure.hasOwnProperty("title") && 
             typeof structure.title == "boolean"){
             return false;
         } 
+
         // Si los dos son false, retorno false
         else if(!structure_title && !optons_title){
             return false;
@@ -8183,17 +8326,41 @@ class PonchoMap {
         let title;
 
         if(structure?.header){
-            const wrapper = document.createElement("div");
-            wrapper.innerHTML = this._mdToHtml(structure.header(this, row));
-            if(this.template_innerhtml){
-                wrapper.innerHTML = structure.header(this, row);
+            let headerContent = structure.header;
+
+            if(typeof structure.header === "function"){
+                headerContent = structure.header(this, row);
             }
+
+            if(
+                !this.isString(headerContent) || 
+                this.isEmptyString(headerContent))
+            {
+                this.logger.warn(
+                    "template_Structure['header'] debe ser una "
+                    + "cadena de texto no vacía");
+                return;
+            }
+
+            const cleanedHeaderToTpl = this.tpl(headerContent, row);
+            const wrapper = document.createElement("div");
+
+            if(this.template_innerhtml){
+                wrapper.innerHTML = secureHTML(
+                    cleanedHeaderToTpl, this.allowed_tags
+                );
+            } else {
+                wrapper.innerHTML = this._mdToHtml(cleanedHeaderToTpl);
+            }
+            
             title = wrapper;
+
         } else {
             title = document.createElement("h2");
             title.classList.add(...structure.title_classlist);
             title.textContent = row[use_title];
         }
+
 
         const header = document.createElement("header");
         header.className = "pm-header";
@@ -8248,8 +8415,7 @@ class PonchoMap {
         }
 
         const converter = new showdown.Converter(this.markdown_options);
-        const cleanedText = secureHTML(text, this.allowed_tags);
-        return converter.makeHtml( String(cleanedText).trim() );
+        return converter.makeHtml( String(text).trim() );
     };
 
 
@@ -8320,17 +8486,20 @@ class PonchoMap {
 
 
     /**
-     * Prepara un objeto según su tipo
-     * 
-     * @param {object} ele 
-     * @param {object} entry 
-     * @param {*} value 
-     * @returns {*} De acuerdo a la entrada.
+     * Evalúa y procesa un elemento según su tipo. Si el elemento es una función,
+     * la ejecuta pasando el contexto actual, la entrada y el valor. Si no es una
+     * función, devuelve el elemento tal como está.
+     *
+     * @param {object|function} ele - Elemento a procesar. Puede ser un objeto o una función.
+     * @param {object} [entry=false] - Objeto de entrada que se pasará a la función si `ele` es una función.
+     * @param {*} [value=false] - Valor adicional que se pasará a la función si `ele` es una función.
+     * @returns {*} Si `ele` es una función, retorna el resultado de su ejecución.
+     *              De lo contrario, retorna `ele` sin modificaciones.
      */
-    _setType = (ele, entry=false, value=false) => {
+    _resolveValue = (ele, entry=false, value=false) => {
         if(typeof(ele) === "function"){
             return ele(this, entry, value);
-        } 
+        }
         return ele;
     };
 
@@ -8399,13 +8568,13 @@ class PonchoMap {
         const p = document.createElement("p");
         p.textContent = entry[key];
         // Style definitions
-        const setStyle = this._setType(style, entry);
+        const setStyle = this._resolveValue(style, entry);
 
         if(setStyle){
             this._setStyle(p, setStyle);
         }
         // CSS Class
-        const setClasslist = this._setClassList(this._setType(css, entry));
+        const setClasslist = this._setClassList(this._resolveValue(css, entry));
         if(setClasslist){
             p.classList.add(...setClasslist);
         }
@@ -8422,16 +8591,16 @@ class PonchoMap {
      * element de otro modo un boolean `false`.
      */
     _termIcon = (entry, key) => {
-        const item = this.header_icons.find(e => e.key == key);
+        const item = this.header_icons.find(e => e.key === key);
 
         if(item){
             const {css=false, style=false, html=false} = item;
-            const setHtml = this._setType(html, entry, key);
-            const setStyle = this._setType(style, entry, key);
+            const setHtml = this._resolveValue(html, entry, key);
+            const setStyle = this._resolveValue(style, entry, key);
             const setClasslist = this._setClassList(
-                this._setType(css, entry, key));
+                this._resolveValue(css, entry, key));
 
-            if(setClasslist){
+            if(Array.isArray(setClasslist) && setClasslist.length > 0){
                 const icon = document.createElement("i");
                 icon.setAttribute("aria-hidden","true");
                 icon.classList.add(...setClasslist);
@@ -8443,7 +8612,7 @@ class PonchoMap {
 
             } else if (setHtml){
                 const ic = document.createElement("template");
-                ic.innerHTML = setHtml;
+                ic.innerHTML = secureHTML(setHtml, this.allowed_tags);
                 return ic.content;
             }
         }
@@ -8459,13 +8628,17 @@ class PonchoMap {
      * @param {object} row Entrada para dibujar un marker.
      */  
     defaultTemplate = (self, row) => {
+
         row = this._templateMixing(row);
         const {template_structure:structure} = this;
+
+
         const tpl_list = this._templateList(row);
         const tpl_title = this._templateTitle(row);
 
         const container = document.createElement("div");
         container.classList.add(... structure.container_classlist);
+
         const definitions = document.createElement(structure.definition_list_tag);
         definitions.classList.add(...structure.definition_list_classlist);
         definitions.style.fontSize = "1rem";
@@ -8476,7 +8649,10 @@ class PonchoMap {
                 continue;
             }
             const term = document.createElement(structure.term_tag);
-            term.classList.add(...structure.term_classlist)
+            term.classList.add(
+                "pm-term-icon-helper", 
+                ...structure.term_classlist
+            );
             const header_icon = this._termIcon(row, key);
             if(header_icon){
                 term.appendChild(header_icon);
@@ -8485,13 +8661,17 @@ class PonchoMap {
             term.insertAdjacentText("beforeend", this.header(key));
             
             const definition = document.createElement(structure.definition_tag);
-            definition.classList.add(...structure.definition_classlist)
-            definition.textContent = row[key];
+            definition.classList.add(...structure.definition_classlist);
 
             if(this.template_markdown){
-                definition.innerHTML = this._mdToHtml(row[key]);
+                const securedMd = secureHTML(row[key], ["*"]);
+                const mdContent = this._mdToHtml(this.tpl(securedMd, row));
+                definition.innerHTML = mdContent;
             } else if(this.template_innerhtml){
-                definition.innerHTML = secureHTML(row[key], this.allowed_tags);
+                const securedContent = secureHTML(row[key], this.allowed_tags);
+                definition.innerHTML = this.tpl(securedContent, row);
+            } else {
+                definition.textContent = row[key];
             }
 
             if(this.header(key) != ""){
@@ -8503,7 +8683,6 @@ class PonchoMap {
         const tpl_lead = this._lead(row);
         if(tpl_lead){
             tpl_title.prepend(tpl_lead);
-            // container.appendChild(tpl_lead);
         }
 
         if(tpl_title){
@@ -9239,9 +9418,9 @@ class PonchoMap {
 
 
     /**
-     * Asigna definciones de estilo a un objeto.
-     * 
-     * @param {*} values 
+     * Asigna definiciones de estilo a un objeto.
+     *
+     * @param {*} values
      * @returns {object}
      */
     _setStyle = (obj, values) => {
@@ -9249,7 +9428,7 @@ class PonchoMap {
             return;
         }
 
-        if(!this.isObject(obj) || !obj instanceof HTMLElement){
+        if(!this.isObject(obj) || !(obj instanceof HTMLElement)){
             this.showAlert({
                 title: "La función <code>_setStyle</code>, debe recibir un "
                     + "objeto <code>HTMLElement</code>.",
@@ -9260,7 +9439,7 @@ class PonchoMap {
 
         const regex = /([^;:]+)\s*\:\s*([^;:]+)/;
         if(
-            this.isString(values) && 
+            this.isString(values) &&
             !(this.isEmptyString(values) || values.match(regex))){
 
             this.showAlert({
@@ -9283,7 +9462,7 @@ class PonchoMap {
         }
 
         // Si values es un string lo parseo
-        var styles = {};
+        const styles = {};
         for(let entry of values.split(";")){
             const m = regex.exec(entry);
             if(!m){
@@ -9583,7 +9762,7 @@ class PonchoMapFilter extends PonchoMap {
         this.filters = opts.filters;
         this.filters_info = opts.filters_info;
         this.filters_visible = opts.filters_visible;
-        this.valid_fields = ["checkbox", "radio"];
+        this.valid_fields = ["checkbox", "radio", "select"];
         this.search_fields = opts.search_fields;
         this.messages = opts.messages;
         this.accesible_menu_filter = [
@@ -9904,53 +10083,177 @@ class PonchoMapFilter extends PonchoMap {
 
 
     /**
-     * Arma un grupo de inputs
+     * Crea los elementos de formulario para un grupo de filtros
      *
-     * @param {object} fields_items Listado de opciones para los fields.
+     * @param {object} fields_items - Configuración de los campos del filtro
+     * @param {number} group - Índice del grupo de filtros
+     * @returns {HTMLElement} Elemento fieldset conteniendo los inputs
      */
     _fields = (fields_items, group) => {
-        const fields_container = document.createElement("div");
-        fields_container.classList.add("field-list", "m-b-05");
+        const SEPARATOR = "__";
+        const fieldsData = this._fieldsToUse(fields_items);
+        const inputType = this.valid_fields.includes(fields_items.type)
+            ? fields_items.type
+            : "checkbox";
+        const isSelectType = inputType === "select";
 
-        const fields_to_use = this._fieldsToUse(fields_items);
-
-        for(const key in fields_to_use){
-            const field = fields_to_use[key];
-            const input = document.createElement("input");
-            input.type = (this.valid_fields.includes(fields_items.type) ?
-                fields_items.type : "checkbox");
-            input.id = `id__${field[0]}__${group}__${key}`;
-
-            if(fields_items.type == "radio"){
-                input.name = `${field[0]}__${group}`;
-            } else {
-                input.name = `${field[0]}__${group}__${key}`;
-            }
-
-            input.className = "form-check-input";
-            input.value = key;
-            if(typeof field[3] !== "undefined" && field[3]=="checked"){
-                input.setAttribute("checked", "checked");
-            }
-
-            const label = document.createElement("label");
-            label.style.marginLeft = ".33rem";
-            label.textContent=field[1];
-            label.className = "form-check-label";
-            label.setAttribute("for", `id__${field[0]}__${group}__${key}`);
-            const info = document.createElement("span");
-            info.dataset.info = `${field[0]}__${group}__${key}`;
-            label.appendChild(info);
-
-            const field_container = document.createElement("div");
-            field_container.className = "form-check";
-            field_container.appendChild(input);
-            field_container.appendChild(label);
-            fields_container.appendChild(field_container);
+        // Crear el contenedor apropiado según el tipo
+        if(isSelectType){
+            return this._createSelectField(fieldsData, group, SEPARATOR);
         }
 
+        return this._createCheckableFields(
+            fieldsData,
+            group,
+            inputType,
+            fields_items.type,
+            SEPARATOR
+        );
+    };
+
+    /**
+     * Crea un campo select con sus opciones
+     *
+     * @private
+     * @param {Array} fieldsData - Datos de los campos
+     * @param {number} group - Índice del grupo
+     * @param {string} separator - Separador para los IDs
+     * @returns {HTMLElement} Fieldset con el select
+     */
+    _createSelectField = (fieldsData, group, separator) => {
+        const selectElement = document.createElement("select");
+        selectElement.className = "pm-form-control";
+        const filterData = this.filters[group];
+        let allOptionsText, label;
+
+        // Obtener el entryKey del primer elemento para el name
+        const entryKey = fieldsData.length > 0 ? fieldsData[0][0] : "";
+        const selectId = ["select", entryKey, group].join(separator);
+        selectElement.name = [entryKey, group].join(separator);
+        selectElement.id = selectId;
+
+        // Agregar opción "Todos" por defecto
+        if( filterData?.all_options_text &&
+            this.isString(filterData.all_options_text) &&
+            !this.isEmptyString(filterData.all_options_text) ){
+            allOptionsText = filterData.all_options_text;
+        } else {
+            allOptionsText = this._t("filter_select_all_option_text");
+        }
+
+        const defaultOption = document.createElement("option");
+        defaultOption.textContent = allOptionsText;
+        defaultOption.value = "";
+        selectElement.appendChild(defaultOption);
+
+        // Crear opciones del select
+        fieldsData.forEach((fieldItem, index) => {
+            const [entryKey, entryName] = fieldItem;
+            const optionElement = document.createElement("option");
+            const optionId = ["id", entryKey, group, index].join(separator);
+
+            optionElement.textContent = entryName;
+            optionElement.id = optionId;
+            optionElement.value = index;
+
+            selectElement.appendChild(optionElement);
+        });
+
+        // Crear label
+        const labelElement = document.createElement("label");
+        labelElement.setAttribute("for", selectId);
+
+        if( filterData?.label &&
+            this.isString(filterData.label) &&
+            !this.isEmptyString(filterData.label) ){
+            label = filterData.label;
+        } else {
+            label = this._t(
+                "filter_select_label", 
+                {header: this.header(entryKey, "lower")}
+            );
+        }
+        
+        if( filterData.show_label === false ){
+            labelElement.classList.add("pm-visually-hidden");
+        }
+        
+        labelElement.classList.add("m-b-xs");
+        labelElement.textContent = label;
+
+
+        const formGroup = document.createElement("div");
+        formGroup.classList.add("pm-form-group");
+
         const fieldset = document.createElement("div");
-        fieldset.appendChild(fields_container);
+        fieldset.classList.add("m-b-2", "m-t-xs");
+
+        fieldset.appendChild(labelElement);
+        fieldset.appendChild(selectElement);
+
+        return fieldset;
+    };
+
+
+    /**
+     * Crea campos de tipo checkbox o radio
+     *
+     * @private
+     * @param {Array} fieldsData - Datos de los campos
+     * @param {number} group - Índice del grupo
+     * @param {string} inputType - Tipo de input (checkbox o radio)
+     * @param {string} originalType - Tipo original del campo
+     * @param {string} separator - Separador para los IDs
+     * @returns {HTMLElement} Fieldset con los checkboxes/radios
+     */
+    _createCheckableFields = (fieldsData, group, inputType, originalType, separator) => {
+        const container = document.createElement("div");
+        container.classList.add("field-list", "m-b-05");
+
+        fieldsData.forEach((fieldItem, index) => {
+            const [entryKey, entryName, , isChecked] = fieldItem;
+            const fieldId = ["id", entryKey, group, index].join(separator);
+
+            // Crear input
+            const inputElement = document.createElement("input");
+            inputElement.type = inputType;
+            inputElement.id = fieldId;
+            inputElement.className = "form-check-input";
+            inputElement.value = index;
+
+            // Asignar name según el tipo
+            inputElement.name = originalType === "radio"
+                ? [entryKey, group].join(separator)
+                : [entryKey, group, index].join(separator);
+
+            // Marcar como checked si corresponde
+            if(isChecked === "checked"){
+                inputElement.checked = true;
+            }
+
+            // Crear span para información de totales
+            const infoSpan = document.createElement("span");
+            infoSpan.dataset.info = [entryKey, group, index].join(separator);
+
+            // Crear label
+            const labelElement = document.createElement("label");
+            labelElement.textContent = entryName;
+            labelElement.className = "form-check-label";
+            labelElement.htmlFor = fieldId;
+            labelElement.appendChild(infoSpan);
+
+            // Contenedor del field
+            const fieldContainer = document.createElement("div");
+            fieldContainer.className = "form-check";
+            fieldContainer.appendChild(inputElement);
+            fieldContainer.appendChild(labelElement);
+
+            container.appendChild(fieldContainer);
+        });
+
+        const fieldset = document.createElement("div");
+        fieldset.appendChild(container);
+
         return fieldset;
     };
 
@@ -10049,7 +10352,9 @@ class PonchoMapFilter extends PonchoMap {
 
         // Contenedor de los filtros
         const fields_container = document.createElement("div");
-        fields_container.className = `js-filters${this.scope_sufix}`;
+        fields_container.classList.add(
+            `js-filters${this.scope_sufix}`, "pm-filters-content"
+        );
 
         // Formulario
         const form = document.createElement("form");
@@ -10103,31 +10408,25 @@ class PonchoMapFilter extends PonchoMap {
     _checkUncheckButtons = (item) => {
         // container
         const checkAllItems = document.createElement("div");
+        checkAllItems.classList.add("select-items", "form-check");
 
-        // Botón check all
-        const checkAllButton = document.createElement("button");
-        checkAllButton.classList.add(
-            "js-select-items",
-            "select-items__button"
-        );
-        checkAllButton.textContent = this._t("filters_check_all");
-        checkAllButton.dataset.field = item.field[0];
-        checkAllButton.dataset.value = "1";
+        // Checkbox marcar todos
+        const checkAllCheckbox = document.createElement("input");
+        checkAllCheckbox.type = "checkbox";
+        checkAllCheckbox.id = `check-all-${item.field[0]}`;
+        checkAllCheckbox.classList.add("js-select-all-checkbox", "form-check-input");
+        checkAllCheckbox.dataset.field = item.field[0];
+        checkAllCheckbox.checked = true;
 
-        // Botón uncheck all
-        const uncheckAllButton = document.createElement("button");
-        uncheckAllButton.classList.add(
-            "js-select-items",
-            "select-items__button"
-        );
-        uncheckAllButton.textContent = this._t("filters_uncheck_all");
-        uncheckAllButton.dataset.field = item.field[0];
-        uncheckAllButton.dataset.value = "0";
+        // Label marcar todos
+        const checkAllLabel = document.createElement("label");
+        checkAllLabel.classList.add("form-check-label");
+        checkAllLabel.htmlFor = `check-all-${item.field[0]}`;
+        checkAllLabel.textContent = this._t("filters_check_all");
 
         // Append
-        checkAllItems.classList.add("select-items");
-        checkAllItems.appendChild(checkAllButton);
-        checkAllItems.appendChild(uncheckAllButton);
+        checkAllItems.appendChild(checkAllCheckbox);
+        checkAllItems.appendChild(checkAllLabel);
 
         return checkAllItems;
     }
@@ -10137,37 +10436,93 @@ class PonchoMapFilter extends PonchoMap {
      * Crea los checkbox para los filtros.
      */
     _createFilters = (data) => {
-        const form_filters = document
-            .querySelector(`.js-filters${this.scope_sufix}`);
+        const formFilters = document.querySelector(`.js-filters${this.scope_sufix}`);
 
-        data.forEach((item, group) => {
-            let legend = document.createElement("legend");
-            legend.textContent = item.legend;
+        data.forEach((filterItem, groupIndex) => {
+            const fieldset = this._createFilterFieldset(filterItem, groupIndex);
+            formFilters.appendChild(fieldset);
+        });
+    };
+
+    /**
+     * Crea un fieldset completo para un grupo de filtros
+     *
+     * @param {object} filterItem - Configuración del filtro
+     * @param {number} groupIndex - Índice del grupo de filtros
+     * @returns {HTMLElement} Elemento fieldset
+     */
+    _createFilterFieldset = (filterItem, groupIndex) => {
+        const fieldset = document.createElement("fieldset");
+
+        const legend = this._createFilterLegend(filterItem, groupIndex);
+        fieldset.appendChild(legend);
+
+        if (this._shouldShowCheckUncheckButtons(filterItem)) {
+            const checkUncheckButtons = this._checkUncheckButtons(filterItem);
+            fieldset.appendChild(checkUncheckButtons);
+        }
+
+        const fields = this._fields(filterItem, groupIndex);
+        fieldset.appendChild(fields);
+
+        return fieldset;
+    };
+
+    /**
+     * Crea el elemento legend para un grupo de filtros
+     *
+     * @param {object} filterItem - Configuración del filtro
+     * @param {number} groupIndex - Índice del grupo de filtros
+     * @returns {HTMLElement} Elemento legend
+     */
+    _createFilterLegend = (filterItem, groupIndex) => {
+        const legend = document.createElement("legend");
+
+
+
+        const hasCustomLegend = this.isString(filterItem.legend) &&
+                               !this.isEmptyString(filterItem.legend);
+
+        legend.textContent = hasCustomLegend
+            ? filterItem.legend
+            : this._t(
+                "filter_select_legend", 
+                {header: this.header(this._typeByGroup(groupIndex), "lower")}
+            );
+
+        if (filterItem.show_legend === false) {
+            legend.classList.add("pm-visually-hidden");
+        } else {
             legend.classList.add(
                 "m-t-0",
                 "m-b-05",
                 "color-primary",
-                "h6"
+                "h6",
+                "font-sans-serif"
             );
+        }
 
-            const fieldset = document.createElement("fieldset");
-            fieldset.appendChild(legend);
-            const hasCheckUncheckAll = item.hasOwnProperty("check_uncheck_all") &&
-                                    item.check_uncheck_all &&
-                                    item?.type !== "radio";
+        return legend;
+    };
 
-            if (hasCheckUncheckAll) {
-                fieldset.appendChild(this._checkUncheckButtons(item));
-            }
+    /**
+     * Determina si se deben mostrar los botones marcar/desmarcar todos
+     *
+     * @param {object} filterItem - Configuración del filtro
+     * @returns {boolean} true si se deben mostrar los botones
+     */
+    _shouldShowCheckUncheckButtons = (filterItem) => {
+        const hasCheckUncheckAll = filterItem.hasOwnProperty("check_uncheck_all") &&
+                                   filterItem.check_uncheck_all;
+        const isMultipleChoiceType = filterItem?.type !== "radio" &&
+                                    filterItem?.type !== "select";
 
-            fieldset.appendChild(this._fields(item, group));
-            form_filters.appendChild(fieldset);
-        });
+        return hasCheckUncheckAll && isMultipleChoiceType;
     };
 
 
     /**
-     * Obtengo los checkbox marcados.
+     * Obtengo los checkbox marcados y selects.
      */
     formFilters = () => {
         if(this.filters.length < 1){
@@ -10178,20 +10533,39 @@ class PonchoMapFilter extends PonchoMap {
             .querySelector(`.js-formulario${this.scope_sufix}`);
         const form_data = new FormData(form_filters);
 
-        return Array.from(form_data).map(ele => {
-            let val = [];
-            const pos = this._filterPosition(ele[0]);
-            val = [parseInt(pos[1]), parseInt(ele[1]), pos[0]];
-            return val;
-        });
+        return Array.from(form_data)
+            .filter(ele => ele[1] !== "") // Filtrar valores vacíos (opción "Todos" de selects)
+            .map(ele => {
+                let val = [];
+                const pos = this._filterPosition(ele[0]);
+                val = [parseInt(pos[1]), parseInt(ele[1]), pos[0]];
+                return val;
+            });
     };
+
+
+    /**
+     * Retorna la clave type del filtro
+     * 
+     * @param {number} group Número de grupo 
+     * @returns {string} type
+     */
+    _typeByGroup = (group) => {
+        if(typeof group !== "number"){
+            return;
+        }
+        const data = this._defaultFiltersConfiguration()
+                .find(f => f[0] === group);
+
+        return data ? data[2] : undefined;
+    }
 
 
     /**
      * Configuración de estado de los filtros seteados por el usuario.
      * @returns {object}
      */
-    defaultFiltersConfiguration = () => {
+    _defaultFiltersConfiguration = () => {
         // Obtengo todos los filtros y los colecciono en un array.
         const filters = this.filters.map((g, gk) => {
             // Usar caché para _fieldsToUse
@@ -10214,13 +10588,25 @@ class PonchoMapFilter extends PonchoMap {
      * @return {boolean}
      */
     usingFilters = () => {
-        const result = this.defaultFiltersConfiguration().every(
+        // Verificar checkboxes y radios
+        const checkboxRadioResult = this._defaultFiltersConfiguration().every(
             (e) => {
-                return document
-                    .querySelector(`#id__${e[2]}__${e[0]}__${e[1]}`)
-                    .checked;
+                const field = document.querySelector(`#id__${e[2]}__${e[0]}__${e[1]}`);
+                return field ? field.checked : true;
         });
-        return result;
+
+        // Verificar selects (todos deben estar en "Todos" - índice 0)
+        const selectResult = this.filters.every((filter, groupIndex) => {
+            if(filter.type === "select"){
+                const entryKey = filter.field ? filter.field[0] :
+                                 (filter.fields && filter.fields[0] ? filter.fields[0][0] : "");
+                const selectElement = document.querySelector(`#select__${entryKey}__${groupIndex}`);
+                return selectElement ? selectElement.selectedIndex === 0 : true;
+            }
+            return true;
+        });
+
+        return checkboxRadioResult && selectResult;
     };
 
 
@@ -10229,9 +10615,32 @@ class PonchoMapFilter extends PonchoMap {
      * @return {undefined}
      */
     _resetFormFilters = () => {
-        this.defaultFiltersConfiguration().forEach(e => {
+        // Resetear checkboxes y radios
+        this._defaultFiltersConfiguration().forEach(e => {
             const field = document.querySelector(`#id__${e[2]}__${e[0]}__${e[1]}`);
-            field.checked = e[3];
+            if(field){
+                field.checked = e[3];
+            }
+        });
+
+        // Resetear selects a la opción "Todos" (índice 0)
+        this.filters.forEach((filter, groupIndex) => {
+            if(filter.type === "select"){
+                const entryKey = filter.field ? filter.field[0] :
+                                 (filter.fields && filter.fields[0] ? filter.fields[0][0] : "");
+                const selectElement = document.querySelector(`#select__${entryKey}__${groupIndex}`);
+                if(selectElement){
+                    selectElement.selectedIndex = 0;
+                }
+            }
+        });
+
+        // Actualizar el estado de los checkboxes "marcar todos" después del reset
+        const checkboxesSelector = `${this.scope_selector} .js-select-all-checkbox`;
+        const checkboxes = document.querySelectorAll(checkboxesSelector);
+        checkboxes.forEach((checkbox) => {
+            const field = checkbox.dataset.field;
+            this._updateCheckAllState(field);
         });
     };
 
@@ -10355,9 +10764,21 @@ class PonchoMapFilter extends PonchoMap {
      *
      * @param {object} entry Entrada de datos
      * @param {object} fieldsGroup
+     * @param {number} groupIndex Índice del grupo
      * @return {boolean}
      */
-    _validateGroup = (entry, fieldsGroup) => {
+    _validateGroup = (entry, fieldsGroup, groupIndex) => {
+        // Si el grupo está vacío
+        if(fieldsGroup.length === 0){
+            // Para selects, si está vacío significa "Todos" seleccionado
+            if(this.filters[groupIndex]?.type === "select"){
+                return true;
+            }
+            // Para checkboxes/radios, si está vacío significa que nada está seleccionado
+            // por lo tanto NO debe mostrar ningún marker
+            return false;
+        }
+
         // Short-circuit: retornar true al encontrar el primer match
         for(const field of fieldsGroup){
             if(this._search(entry, field[0], field[1])){
@@ -10388,7 +10809,7 @@ class PonchoMapFilter extends PonchoMap {
         // Validar cada grupo (cortocircuito)
         for(let i = 0; i < totalGroups; i++){
             const fieldsGroup = groupedFilters.get(i) || [];
-            if(!this._validateGroup(entry, fieldsGroup)){
+            if(!this._validateGroup(entry, fieldsGroup, i)){
                 return false;
             }
         }
@@ -10479,6 +10900,24 @@ class PonchoMapFilter extends PonchoMap {
         this._setFetureAttributes();
         this._accesibleMenu();
     };
+
+
+    /**
+     * Establece el valor del search _input hidden_ en el
+     * campo de filtros.
+     * @param {string} name - El valor a asignar al input de búsqueda.
+     * @returns {undefined}
+     */
+    _setSearchInputValue = (name) => {
+        const hiddenInputSelector = `#js-search-input${this.scope_sufix}`;
+
+        if(!hiddenInputSelector){
+            this.logger.warn("No se encuentra el input search");
+            return;
+        }
+        const hiddenElement = document.querySelector(hiddenInputSelector);
+        hiddenElement.value = name;
+    }
 
 
     /**
@@ -10578,30 +11017,78 @@ class PonchoMapFilter extends PonchoMap {
 
 
     /**
+     * Actualiza el estado del checkbox "marcar todos" basado en los checkboxes individuales
+     *
+     * @param {string} field - El campo del filtro
+     * @returns {undefined}
+     */
+    _updateCheckAllState = (field) => {
+        const checkAllCheckbox = document.querySelector(
+            `${this.scope_selector} #check-all-${field}`
+        );
+
+        if(!checkAllCheckbox) return;
+
+        const inputsSelector = `${this.scope_selector} [id^=id__${field}]`;
+        const inputs = Array.from(document.querySelectorAll(inputsSelector));
+
+        if(inputs.length === 0) return;
+
+        const checkedInputs = inputs.filter(input => input.checked);
+        const allChecked = checkedInputs.length === inputs.length;
+        const noneChecked = checkedInputs.length === 0;
+
+        checkAllCheckbox.checked = allChecked;
+        checkAllCheckbox.indeterminate = !allChecked && !noneChecked;
+    };
+
+
+    /**
      * Marca o desmarca todos los filtros
-     * 
+     *
      * @returns {undefined}
      */
     checkUncheckFilters = () => {
-        const buttonsSelector = `${this.scope_selector} .js-select-items`;
-        const buttons = document.querySelectorAll(buttonsSelector);
+        const checkboxesSelector = `${this.scope_selector} .js-select-all-checkbox`;
+        const checkboxes = document.querySelectorAll(checkboxesSelector);
 
-        buttons.forEach((element) => {
-            element.addEventListener("click", (event) => {
-                event.preventDefault();
-
-                const field = element.dataset.field;
-                const value = element.dataset.value;
+        checkboxes.forEach((checkbox) => {
+            checkbox.addEventListener("change", () => {
+                const field = checkbox.dataset.field;
+                const isChecked = checkbox.checked;
 
                 const inputsSelector = `${this.scope_selector} [id^=id__${field}]`;
                 const inputs = document.querySelectorAll(inputsSelector);
-                
-                const elementValue = parseInt(value, 10);
-                inputs.forEach(input => input.checked = (elementValue === 1));
-                
+
+                inputs.forEach(input => input.checked = isChecked);
+
+                // Remover el estado indeterminate después de cambiar
+                checkbox.indeterminate = false;
+
                 this._filteredData();
-                
             });
+        });
+
+        // Agregar listeners a los checkboxes individuales para actualizar el estado del "marcar todos"
+        const allInputsSelector = `${this.scope_selector} [id^=id__]`;
+        const allInputs = document.querySelectorAll(allInputsSelector);
+
+        allInputs.forEach(input => {
+            input.addEventListener("change", () => {
+                // Extraer el field del id del input (formato: id__field__group__index)
+                const idParts = input.id.split("__");
+                if(idParts.length >= 2){
+                    const field = idParts[1];
+                    this._updateCheckAllState(field);
+                }
+                this._filteredData();
+            });
+        });
+
+        // Inicializar el estado de todos los checkboxes "marcar todos"
+        checkboxes.forEach((checkbox) => {
+            const field = checkbox.dataset.field;
+            this._updateCheckAllState(field);
         });
     };
 
@@ -10710,10 +11197,12 @@ class PonchoMapSearch {
             sort_key: "text",
             datalist: true,
             combobox: false,
-            combobox_options: false
+            combobox_options: false,
+            debounce_delay: 300
         };
         this.instance = instance;
         let opts = Object.assign({}, defaults, options);
+        this.debounce_delay = opts.debounce_delay;
         this.text = (instance.title ? instance.title : false);
         this.datalist = opts.datalist;
         this.combobox = opts.combobox;
@@ -11033,7 +11522,7 @@ class PonchoMapSearch {
         // Si hay más de una entrada muestro los markers y hago 
         // zoom abarcando el límite de todos ellos.
         if(entries.length == 1){
-            this.instance.gotoEntry(entries[0].properties[this.instance.id]);
+            this.instance.gotoEntry(entries[0].properties[this.instance.id], true, true);
         } else if(term.trim() != "") {
             this.instance.removeHash();
             setTimeout(this.instance.fitBounds, this.instance.anchor_delay);
@@ -11208,6 +11697,13 @@ class PonchoMapSearch {
             return;
         }
 
+        const maxResults = Math.min(
+            Math.max(
+                parseInt(this.combobox_options?.max_results,
+                10
+            ) || 20, 5), 
+        50);
+
         const comboboxWidth = this._comboboxWidth();
         const dataList = document.querySelectorAll(this.selectors.datalist);
         dataList.forEach(ele => ele.remove());
@@ -11235,12 +11731,11 @@ class PonchoMapSearch {
         this._cachedElements.searchContainer = searchContainer;
 
         const debounceTimer = { current: null };
-        const DEBOUNCE_DELAY = 150;
+        const DEBOUNCE_DELAY = this.debounce_delay;
 
         const parentNode = searchElement.parentElement;
         parentNode.after(searchContainer);
 
-        // Event listener para keyup con debounce
         searchElement.addEventListener("keyup", () => {
             clearTimeout(debounceTimer.current);
 
@@ -11268,7 +11763,7 @@ class PonchoMapSearch {
                 ul.setAttribute("role", "listbox");
                 const fragment = document.createDocumentFragment();
 
-                for (let i of searchResult.slice(0, 20)) {
+                for (let i of searchResult.slice(0, maxResults)) {
                     fragment.appendChild(this._creatSearchItem(i));
                 }
 
@@ -11361,11 +11856,14 @@ class PonchoMapSearch {
                 const id = target.dataset.entryId;
                 const name = target.dataset.name;
 
+                this.instance._setSearchInputValue(name);
                 searchElement.value = name;
+
                 this._closeSearchResults();
-                this.instance.gotoEntry(id);
-            } else if (!searchElement.contains(e.target) && !searchContainer.contains(e.target)) {
-                // Cerrar si se hace click fuera del input y del contenedor de resultados
+                this.instance.gotoEntry(id, true, true);
+            } else if (!searchElement.contains(e.target) && 
+                    !searchContainer.contains(e.target)) 
+            {
                 this._closeSearchResults();
             }
         });
@@ -12067,90 +12565,4 @@ class TranslateHTML {
         });
     };
 }
-
-
-
-/**
- * PONCHO MAP LOADER
- * 
- * @summary Permite incorporar a un mapa un spinner. 
- */
-class Loader {
-
-    constructor(options){
-        const defaults = {
-            selector: "",
-            scope: "poncho-loader",
-            timeout: 50000,
-            cover_opacity: 1,
-            cover_style: {},
-        };
-        let opts = Object.assign({}, defaults, options);
-        this.scope = opts.scope;
-        this.cover_opacity = opts.cover_opacity;
-        this.cover_style = opts.cover_style;
-        this.timeout = opts.timeout;
-        this.scope_sufix = `--${this.scope}`;
-        this.scope_selector = `[data-scope="${this.scope}"]`;
-        this.ponchoLoaderTimeout;
-        this.selector = opts.selector;
-    }
-
-
-    /**
-     * Cierra el spinner.
-     * @returns {undefined}
-     */
-    close = () => document
-            .querySelectorAll(`.js-poncho-map__loader${this.scope_sufix}`)
-            .forEach(e => e.remove());
-
-
-    /**
-     * Carga el spinner.
-     * @returns {undefined}
-     */
-    load = () => {
-        this.close();
-        clearTimeout(this.ponchoLoaderTimeout);
-        const selector = `${this.selector}${this.scope_selector}`;
-        const element = document.querySelector(selector);
-;
-        const loader = document.createElement("span");
-        loader.className = "load";
-
-        const cover = document.createElement('div');
-        cover.dataset.scope = this.selector
-        cover.classList.add(
-            "loader", 
-            `js-poncho-map__loader${this.scope_sufix}`
-        );
-        // Background opacity
-        Object.assign(cover.style, this.cover_style);
-        if(this.cover_opacity){
-            cover.style.backgroundColor = `color-mix(in srgb, transparent, `
-                + `var(--pm-loader-background) ` 
-                + `${this.cover_opacity.toString() * 100}%)`;
-        }
-
-        cover.appendChild(loader);
-        element.appendChild(cover);  
-        this.ponchoLoaderTimeout = setTimeout(this.remove, this.timeout);
-    };
-
-
-    /**
-     * Loader
-     * @param {integer} timeout Tiempo máximo de ejecución del loader. 
-     * @returns {unde}
-     */
-    loader = (callback, timeout=500) => {
-        this.load();
-        setTimeout(() => {
-            callback();
-            this.close();
-        }, timeout);
-    };
-}
-
 

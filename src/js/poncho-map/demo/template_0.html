@@ -256,6 +256,9 @@ COPIAR DESDE ACÁ…
             "definition_list_tag": "div",
             "term_tag": "h3",
             "definition_tag": "div",
+            _header: (self, row) => {
+                return "fofofofofo"
+            },
             "values": [
                 "estado_funcionamiento_custom",
                 "institucion",
@@ -295,7 +298,7 @@ COPIAR DESDE ACÁ…
         combobox: true,
         combobox_options: {
             key: false,
-            template: `<p class="m-y-0 small fw-semibold text-arg-arandano">{{name}}</p>
+            template: `<p class="m-y-0 fw-semibold">{{name}}</p>
                 <p class="m-y-0 small text-arg-gris-intermedio">
                     {{localidad}}<span class="thin-space"></span>/<span class="thin-space"></span>{{provincia}}
                 </p>`,

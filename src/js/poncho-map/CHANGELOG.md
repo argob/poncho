@@ -2,82 +2,92 @@
 
 ## Release 2.2
 
-### PonchoMapSearch
-
- * Desplegable de buscador mejorado. Ahora se puede agregar un template para mejorar la visualización de resultados.
- * Se creo un cache para almacenar los strings de búsqueda evitando sobrecargas innecesarias en la DOM.
- * Se incorporó la opción para visualizar los resultados de manera expandida o adaptada a los resultados.
-
-
 ### PonchoMapFilter
 
-  * Los filtros ahora se agrupan una sola vez antes del procesamiento en lugar de reagruparse por cada entrada.
-  * `_fieldsToUse()`: Implementación de Map cache para evitar recálculos repetidos en la configuración de campos del form.
-  * `_validateEntry()`: Refactorizado para recibir filtros pre-agrupados, eliminando operaciones dentro del loop principal.
-  * `_validateGroup()`: Implementación de _short-circuit evaluation_ para retornar inmediatamente al encontrar el primer match, eliminando arrays temporales.
-  
-  * `_search()`:
-    * Early return cuando la entrada no tiene la propiedad buscada.
-    * Reemplazo de `filter(Boolean).some()` por loop directo con cortocircuito.
-    * Uso de caché para `_fieldsToUse()`.
-  * `_filterData()`:
-    * Pre-cálculo de `searchFields` fuera del loop de filtrado.
-    * Eliminación de creación repetida de Sets en cada iteración.
-    * Short-circuit directo en lugar de `every(Boolean)`.
-  * `_filteredData()`: Eliminación de clonación innecesaria de array con spread operator.
+* Los filtros se agrupan una sola vez antes del procesamiento, eliminando reagrupaciones redundantes por entrada.
+* `_fieldsToUse()`: Implementación de caché Map para evitar recálculos repetidos en la configuración de campos del formulario.
+* `_validateEntry()`: Refactorizado para recibir filtros pre-agrupados, eliminando operaciones dentro del bucle principal.
+* `_validateGroup()`: Implementación de evaluación con cortocircuito (_short-circuit evaluation_) que retorna inmediatamente al encontrar la primera coincidencia, eliminando arrays temporales.
+* Mejora en el filtro del tipo select. 
+  * Se hizo un refactor del método que arma el formulario de acuerdo a la opción del usuario.
+  * Ahora se puede editar el label y el texto de opción por defecto.
+  * Se mejoró la visualización en el panel de filtros.
+
+* `_search()`:
+  * Retorno anticipado (_early return_) cuando la entrada carece de la propiedad buscada.
+  * Reemplazo de `filter(Boolean).some()` por bucle directo con cortocircuito.
+  * Uso de caché para `_fieldsToUse()`.
+* `_filterData()`:
+  * Pre-cálculo de `searchFields` fuera del bucle de filtrado.
+  * Eliminación de creación repetida de Sets en cada iteración.
+  * Cortocircuito directo en lugar de `every(Boolean)`.
+* `_filteredData()`: Eliminación de clonación innecesaria de array mediante operador spread.
+* Mejora en la visualización del fitro tipo select. Se agregó la posibilidad de cambiar el texto de la etiqueta option y la etiqueta label.
+* La etiqueta legend no se muestra vacía si no se le asignó un texto.
+* Los botones de _marcar todos_ y _desmarcar todos_ se reemplazaron por un checkbox con los estados: _checked_, _intermediate_ y _unchecked_.
 
 ### PonchoMapLoader
 
-  * Se implementó el método `remove()` que faltaba y causaba errores en tiempo de ejecución.
-  * Se corrigió la limpieza de timeouts en el método `close()`.
-  * Los métodos `load()` y `close()` ahora cancelan operaciones pendientes correctamente.
-  * El Nuevo parámetro `close(immediate)` permite cerrar el loader sin demora cuando `immediate=true`.
-  * Se agregó el modo debug. Nueva opción `debug` en el constructor para habilitar _logging condicional_.
-  * Mejora en la inicialización adecuada de propiedades de _timeout_.
+* Implementación del método `remove()` que faltaba y generaba errores en tiempo de ejecución.
+* Corrección de la limpieza de timeouts en el método `close()`.
+* Los métodos `load()` y `close()` cancelan operaciones pendientes correctamente.
+* Nuevo parámetro `close(immediate)` permite cerrar el loader sin demora cuando `immediate=true`.
+* Modo de depuración agregado mediante la opción `debug` en el constructor, habilitando _logging_ condicional.
+* Mejora en la inicialización de propiedades de timeout.
 
 ### PonchoMap
 
-  * Optimización del objeto `markerCluster` y método `marker()`:
-  * Implementación de caché de iconos para evitar crear objetos duplicados.
-  * Eliminación de llamada redundante a `marker_color()` en el proceso de creación de marcadores.
-  * Cacheo del tipo de `marker_color` para evitar verificaciones repetidas de tipo en cada marcador.
-  * A `mixing['template']` se le agregó la posibilidad de utilizar condicionales en línea. De este modo se puede controlar formato de salida.
-  * Los íconos SVG se codificaron a base64 para evitar problemas de encoding.
-  * En cumplimiento con la pauta de accesibilidad WCAG 2 (1.4.1 - Uso del color, Nivel A), hemos añadido un patrón visual (trama) a los clusters.
-  * La barra de _scroll_ del _slider_ no se pega a los contenidos.
-  * Se incorporó la opción customización del texto para los tooltips.
-  * Corrección de margenes en el desplegable de filtros.
-  * En el slider, se agregó `lead` dentro de la etiqueta `<header/>`.
-  * Se realizó un bug fix en `mixing['template']` donde se mostraba el valor con el *template* cuando el value llegaba vacío.
-  * Remoción del atributo `role="button"` innecesario en el botón para cerrar el _slider_.
-  * Remoción del atributo `role="article"` es innecesario en un article
-  * Corrección del bajo contraste en leyenda totales.
-  * El label del input search no está asociado por id.
-  * Solución del problema con la herramienta de zoom cuando el slider está abierto en mobile.
-  * Se corrigió el bug en el que una etiqueta de párrafo se imprimia vacía cuando no se asignaba un summary.
-  * Corrección del bug en el validador de Corrdenadas donde el string `"null"` daba un falso positivo.
-  * Corrección en `_addSummary()` cuando se borra el mapa con `map.remove()` y la etiqueta queda impresa en el HTML cuando debería borrarse. 
-  * Se modificó la URL para ArgenMap. Se usaba una para la versión beta y ésta se dió de baja.
-  * La barra de _scroll_ ya no queda parcialmente oculta cuando se abre el panel de url.
-  * Los enlaces para mapas alternativos abren en una nueva página.
-  * En open_maps el texto por defecto ahora es: «Abrir ubicación en:».
+* Optimización del objeto `markerCluster` y método `marker()`:
+  * Implementación de caché de iconos para evitar la creación de objetos duplicados.
+  * Eliminación de llamada redundante a `marker_color()` durante la creación de marcadores.
+  * Cacheo del tipo de `marker_color` para evitar verificaciones repetidas en cada marcador.
+* `mixing['template']` admite condicionales en línea, permitiendo controlar el formato de salida.
+* Codificación de iconos SVG en base64 para prevenir problemas de encoding.
+* Adición de patrones visuales (tramas) a los clusters en cumplimiento con la pauta de accesibilidad WCAG 2.0 (1.4.1 - Uso del color, Nivel A).
+* La barra de desplazamiento del slider no se adhiere a los contenidos.
+* Incorporación de la opción para personalizar el texto de los tooltips.
+* Corrección de márgenes en el desplegable de filtros.
+* Adición de `lead` dentro de la etiqueta `<header/>` en el slider.
+* Corrección del error en `mixing['template']` que mostraba el template cuando el valor llegaba vacío.
+* Remoción del atributo `role="button"` innecesario en el botón de cierre del slider.
+* Remoción del atributo `role="article"` innecesario.
+* Corrección del bajo contraste en la leyenda de totales.
+* El label del input de búsqueda se asocia correctamente por id.
+* Corrección del problema con la herramienta de zoom cuando el slider está abierto en dispositivos móviles.
+* Corrección del error que imprimía una etiqueta de párrafo vacía cuando no se asignaba un summary.
+* Corrección del validador de coordenadas donde el string `"null"` generaba un falso positivo.
+* Corrección en `_addSummary()`: la etiqueta se elimina correctamente del HTML al borrar el mapa con `map.remove()`.
+* Actualización de la URL para ArgenMap tras la baja de la versión beta.
+* La barra de desplazamiento no queda parcialmente oculta al abrir el panel de URL.
+* Los enlaces para mapas alternativos se abren en una nueva página.
+* En `open_maps`, el texto predeterminado es: «Abrir ubicación en:».
+* Implementación de medidas de seguridad contra posibles ataques XSS en métodos que facilitan la inclusión de marcado HTML y Markdown.
+* Cambio de la fuente tipográfica de los subtítulos a sans-serif para mejorar el rendimiento en línea y el contraste entre término y definición.
+* Se hizo un ajuste de la relación ícono subtítulo para que se aline el texto verticalmente con los otros subtítulos y los iconos con el texto centrado verticalmente.
+
+### PonchoMapSearch
+
+* Mejora del desplegable de buscador con la posibilidad de agregar un template para optimizar la visualización de resultados.
+* Creación de caché para almacenar strings de búsqueda, evitando sobrecargas innecesarias en el DOM.
+* Incorporación de la opción para visualizar resultados de manera expandida o compacta.
+* Posibilidad de asignar la cantidad de resultados mostrados en el menú desplegable.
 
 
 ## Release 2.1.4
 
 * Se incorporó el enlace para restablecer el mapa. Ahora estará visible constantemente.
-* Se corrigieron problemas con el módulo de búsqueda de puntos. 
+* Se corrigieron problemas con el módulo de búsqueda de puntos.
 
 ## Release 2.1.3
 
 * Se incorporó la posibilidad de agregar un sumario o descripción breve del mapa utilizando la opción `summary`.
 * Alineación del mapa a derecha, centro o izquierda.
 * breakpoint. Se incorporaron las medidas de media device para controlar elementos según el media size.
-* breakpoint_fraction, permite encontrar la posición de alineación segun el tamaño del contendedor.
+* breakpoint_fraction, permite encontrar la posición de alineación según el tamaño del contenedor.
 * El _slider_ tiene una configuración para visualizarlo al 50% del tamaño del contenedor del mapa utilizando la opción `slider_size`, con valores: `large` o `default`.
 * Se mejoró la performance en el filtrado de datos.
 * Se corrigió un bug en el botón de abrir y cerrar filtros.
-* Seleccionar y des-seleccionar todos los filtros se no representaba los markadores nuevamente cuando se volviá a seleccionar todos.
+* Seleccionar y deseleccionar todos los filtros no representaba los marcadores nuevamente cuando se volvía a seleccionar todos.
 * Se cambiaron los colores de los clusters a los de PonchoColors.
 
 

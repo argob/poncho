@@ -31,9 +31,11 @@
 @import "modules/forms";
 @import "modules/social";
 @import "modules/tables";
-@import "modules/alerts";
-// @import "modules/alertas";
-// @import "modules/recuadros";
+
+@import "modules/alert-highlight-box/variables-alert-highlight-box";
+//@import "modules/alert-highlight-box/alertas";
+@import "modules/alert-highlight-box/recuadros";
+
 @import "modules/responsive-embed";
 @import "modules/calendar";
 @import "modules/switch";
@@ -79,7 +81,7 @@
 
 
 
-@import "../js/loader/src/scss/loader.scss";
+// @import "../js/loader/src/scss/loader.scss";
 @import "../js/device-breadcrumb/src/scss/device-breadcrumb";
 
 @import "../js/national-holidays/src/scss/national-holidays";

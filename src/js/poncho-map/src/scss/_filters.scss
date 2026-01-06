@@ -18,8 +18,10 @@
             position: relative;
             z-index: 998;
             width: var(--pm-tools-width);
-            padding-right: var(--pm-content-padding);
-            padding-left: var(--pm-content-padding);
+            // padding-right: var(--pm-content-padding);
+            // padding-left: var(--pm-content-padding);
+            padding-right: 0;
+            padding-left: 0;
             padding-top: calc(var(--pm-content-padding) * 2 + 10px);
             padding-bottom: var(--pm-content-padding);
             box-shadow: var(--pm-slider-shadow);
@@ -28,6 +30,12 @@
             // Define el estado abierto del panel de filtro.
             &.filter--in {
                 display: block;
+            }
+
+            .pm-filters-content {
+                padding-right: var(--pm-content-padding);
+                padding-left: var(--pm-content-padding);
+                box-sizing: border-box;
             }
 
             // Contenedor de fieldsets
@@ -55,10 +63,17 @@
                 accent-color: var(--pm-link) !important;
             }
 
+            // Estilo para el estado indeterminate del checkbox "marcar todos"
+            input[type="checkbox"]:indeterminate {
+                opacity: 0.7;
+            }
+
             // parche fix hasta que se use bootstrap > 4
             .form-check {
                 display: flex;
                 align-items: baseline;
+                gap: .5rem;
+                padding-left: 1px;
             }
 
             .form-check .form-check-label {

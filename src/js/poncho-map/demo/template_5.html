@@ -191,40 +191,40 @@ COPIAR DESDE ACÁ…
 
     // map options
     const options = {
-        "scope": "poncho-map",
-        "id": "id",
+        scope: "poncho-map",
+        id: "id",
         headers: headers,
-        "filters_info": false,
-        "title": "nombre",
-        "template_innerhtml": true,
-        "template_markdown": true,
-        "allowed_tags": ["a", "h1", "p", "strong"],
-        "template_structure" : {
-            "title_classlist": ["h4","text-cereza","m-t-0"],
-            "definition_list_classlist": ["definition-list"],
-            "term_classlist": ["h6", "m-b-0", "text-cereza"],
-            "_definition_classlist": ["text-default", "prueba", "table"],
-            "definition_list_tag": "div",
-            "term_tag": "h3",
-            "definition_tag": "div",
-            "lead": {
-                "key": "type", 
-                "css": (self, entry, value) => {
+        filters_info: false,
+        title: "nombre",
+        template_innerhtml: true,
+        template_markdown: true,
+        allowed_tags: ["a", "h1", "p", "strong", "i", "img"],
+        template_structure: {
+            title_classlist: ["h4","text-arandano","m-t-0"],
+            definition_list_classlist: ["definition-list"],
+            term_classlist: ["h6", "m-b-0", "text-arandano"],
+            _definition_classlist: ["text-default", "prueba", "table"],
+            definition_list_tag: "div",
+            term_tag: "h3",
+            definition_tag: "div",
+            lead: {
+                key: "type",
+                css: (self, entry, value) => {
                     if(entry.type == "Polygon"){
-                        return "badge bg-verdin text-white"; 
+                        return "badge bg-verdin text-white";
                     } else if(entry.type == "Point"){
-                        return "badge bg-cereza text-white"; 
+                        return "badge bg-arandano text-white";
                     } else if(entry.type == "LineString"){
-                        return "badge bg-cielo text-white"; 
+                        return "badge bg-cielo text-white";
                     }
-                    return false; 
+                    return false;
                 },
                 style: "background-color:gold; border-radius:6px;"
                     + " padding:.25em .75em !important;"
-            },  
-            "title": "nombre",
-            "_values": [
-                "title", 
+            },
+            title: "nombre",
+            _values: [
+                "title",
                 "id",
                 "direccion",
                 "test",
@@ -232,42 +232,42 @@ COPIAR DESDE ACÁ…
                 "email",
                 "ubicacion"
             ],
-            "mixing":
+            mixing:
                 [
                     {
-                        "key": "direccion",
-                        "header": "Cannabis",
-                        "values": ["id", "title",],
-                        "separator": ", ",
+                        key: "direccion",
+                        header: "Cannabis",
+                        values: ["id", "title",],
+                        separator: ", ",
 
                     },
                     {
-                        "key": "ubicacion",
-                        "header": "Ubicación",
-                        "values": ["municipio_nombre", "provincia"],
-                        "separator": ", ", 
+                        key: "ubicacion",
+                        header: "Ubicación",
+                        values: ["municipio_nombre", "provincia"],
+                        separator: ", ",
                     },
                 ],
         },
-        "header_icons": [
+        header_icons: [
             {
-                "key": "title",
-                "css": "icono-arg-cannabis-medicinal-1 text-primary"
+                key: "title",
+                css: "icono-arg-cannabis-medicinal-1 text-primary"
             },
             {
-                "key": "direccion",
-                "html": `<i aria-hidden="true"
+                key: "direccion",
+                html: `<i aria-hidden="true"
                             class="icono-arg-cannabis-medicinal-1 text-verdin">
                         </i>`
 
             },
             {
-                "key": "id",
-                "css": "icono-arg-sitios-accesibles text-arandano",
-                "style": "margin-bottom:3em"
+                key: "id",
+                css: "icono-arg-sitios-accesibles text-arandano",
+                style: "margin-bottom:3em"
             }
         ],
-        "marker": (self, ele) => {
+        marker: (self, ele) => {
             const icon_color = (ele.hasOwnProperty("icon_color")) ? ele.icon_color : "azul";
             const img_url = "https://cdn0.iconfinder.com/data/icons/maps-and-navigation-2-1/52/86-512.png";
             const id = (ele.hasOwnProperty("ID")) ? ele.ID : false;
@@ -286,26 +286,26 @@ COPIAR DESDE ACÁ…
             }
             return iconImg(img_url);
         },
-        "no_info": false,
-        "slider": true,
-        "hash": true,
-        "scroll": true,
+        no_info: false,
+        slider: true,
+        hash: true,
+        scroll: true,
         filters_info: true,
-        "filters": [
+        filters: [
             {
-            "legend" : "Filtrar por título",
-            "field": ["tipo", "checked"],
-            "fields": false,
-            check_uncheck_all: true,
+                legend: "Filtrar por título",
+                field: ["tipo", "checked"],
+                fields: false,
+                check_uncheck_all: true,
             },
             {
-            "legend" : "Filtrar por provincia",
-            "field": ["filtro-provincia", "checked"],
-            "fields": false,
-            check_uncheck_all: true,
+                legend: "Filtrar por provincia",
+                field: ["filtro-provincia", "checked"],
+                fields: false,
+                check_uncheck_all: true,
             },
         ],
-        "check_uncheck_all": true
+        check_uncheck_all: true
     };
     const map = new PonchoMapFilter(entries, options);
     map.render();

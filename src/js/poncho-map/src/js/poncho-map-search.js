@@ -50,10 +50,12 @@ class PonchoMapSearch {
             sort_key: "text",
             datalist: true,
             combobox: false,
-            combobox_options: false
+            combobox_options: false,
+            debounce_delay: 300
         };
         this.instance = instance;
         let opts = Object.assign({}, defaults, options);
+        this.debounce_delay = opts.debounce_delay;
         this.text = (instance.title ? instance.title : false);
         this.datalist = opts.datalist;
         this.combobox = opts.combobox;
@@ -373,7 +375,7 @@ class PonchoMapSearch {
         // Si hay más de una entrada muestro los markers y hago 
         // zoom abarcando el límite de todos ellos.
         if(entries.length == 1){
-            this.instance.gotoEntry(entries[0].properties[this.instance.id]);
+            this.instance.gotoEntry(entries[0].properties[this.instance.id], true, true);
         } else if(term.trim() != "") {
             this.instance.removeHash();
             setTimeout(this.instance.fitBounds, this.instance.anchor_delay);
@@ -548,6 +550,13 @@ class PonchoMapSearch {
             return;
         }
 
+        const maxResults = Math.min(
+            Math.max(
+                parseInt(this.combobox_options?.max_results,
+                10
+            ) || 20, 5), 
+        50);
+
         const comboboxWidth = this._comboboxWidth();
         const dataList = document.querySelectorAll(this.selectors.datalist);
         dataList.forEach(ele => ele.remove());
@@ -575,12 +584,11 @@ class PonchoMapSearch {
         this._cachedElements.searchContainer = searchContainer;
 
         const debounceTimer = { current: null };
-        const DEBOUNCE_DELAY = 150;
+        const DEBOUNCE_DELAY = this.debounce_delay;
 
         const parentNode = searchElement.parentElement;
         parentNode.after(searchContainer);
 
-        // Event listener para keyup con debounce
         searchElement.addEventListener("keyup", () => {
             clearTimeout(debounceTimer.current);
 
@@ -608,7 +616,7 @@ class PonchoMapSearch {
                 ul.setAttribute("role", "listbox");
                 const fragment = document.createDocumentFragment();
 
-                for (let i of searchResult.slice(0, 20)) {
+                for (let i of searchResult.slice(0, maxResults)) {
                     fragment.appendChild(this._creatSearchItem(i));
                 }
 
@@ -701,11 +709,14 @@ class PonchoMapSearch {
                 const id = target.dataset.entryId;
                 const name = target.dataset.name;
 
+                this.instance._setSearchInputValue(name);
                 searchElement.value = name;
+
                 this._closeSearchResults();
-                this.instance.gotoEntry(id);
-            } else if (!searchElement.contains(e.target) && !searchContainer.contains(e.target)) {
-                // Cerrar si se hace click fuera del input y del contenedor de resultados
+                this.instance.gotoEntry(id, true, true);
+            } else if (!searchElement.contains(e.target) && 
+                    !searchContainer.contains(e.target)) 
+            {
                 this._closeSearchResults();
             }
         });

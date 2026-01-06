@@ -2847,6 +2847,11 @@
       },
     
       {
+        "nombre": "marca-pais",
+        "clase": "icono-arg-marca-pais"
+      },
+    
+      {
         "nombre": "marcador-centro-de-salud-1",
         "clase": "icono-arg-marcador-centro-de-salud-1"
       },

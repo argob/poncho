@@ -10,7 +10,9 @@ nav:
         - Open maps: docs/open-maps/README.md
         - Summary: docs/summary/README.md
         - Template structure: docs/template-structure/README.md
+        - Métodos PonchoMap: docs/ponchomap-metodos/README.md
     - PonchoMap Filter:
         - PonchoMap Filter: docs/ponchomap-filter/README.md
+        - Métodos PonchoMap Filter: docs/ponchomap-filter-metodos/README.md
     - PonchoMap Search:
         - PonchoMap Search: docs/ponchomap-search/README.md

@@ -1,30 +1,6 @@
 function abDebuggerStyle(){
     const style = `.ab-debugger pre {
         position: relative;
-    }
-    .ab-debugger pre:before {
-        content: " ";
-        height: 100%;
-        position: absolute;
-        width: 12ch;
-        top: 0;
-        border-left: 4ch solid var(--arg-escarapela);
-        border-right: 4ch solid var(--arg-escarapela);
-        left: 9.5px;
-        font-family: courier;
-        opacity:.15;
-    }
-    .ab-debugger pre:after {
-        content: " ";
-        height: 100%;
-        position: absolute;
-        width: 20ch;
-        background: rgb(104 195 239 / .1);
-        top: 0;
-        border-left: 1px dotted var(--arg-maiz);
-        border-right: 2px dotted var(--arg-rojo-500);
-        left: 80ch;
-        font-family: courier;
     }`;
 
     if(typeof headStyle !== "function"){
