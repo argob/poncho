@@ -5373,7 +5373,7 @@ if (typeof exports !== "undefined") {
  * SOFTWARE.
  */
 const PM_TRANSLATE = {
-es: {
+    es: {
         cluster_click: "Clic para expandir grupo",
         cluster_large: "Grupo grande de {{count}} ubicaciones",
         cluster_medium: "Grupo mediano de {{count}} ubicaciones",
@@ -5383,6 +5383,9 @@ es: {
                         + `aria-label="Restablecer valores del mapa">`
                         + "Restablecer mapa</a>",
         filter_no_results: "No se encontraron entradas.",
+        filter_select_label: "Seleccione {{header}}",
+        filter_select_legend: "Filtrar por {{header}}",
+        filter_select_all_option_text: "Todos",
         filter_no_results_by_term: "No encontramos resultados para tu búsqueda.",
         filter_one_result: "{{total_results}} resultado coincide con tu búsqueda.",
         filter_reset_values_link: ` <a href="#" class="{{reset_search}}"`
@@ -5662,7 +5665,9 @@ class PonchoMap {
 
         // Set variables
         this.lang = opts.lang;
-        this.dictionary = PM_TRANSLATE[this.lang];
+        this.dictionary = ((opts?.dictionary && opts.dictionary[this.lang])
+            ? opts.dictionary[this.lang]
+            : PM_TRANSLATE[this.lang]);
         this.error_reporting = opts.error_reporting;
         this.throw_exceptions = opts.throw_exceptions;
         this.scope = opts.scope;
@@ -7875,12 +7880,21 @@ class PonchoMap {
      * 
      * @return {string} key Key del item.
      */
-    header = (key) => {
+    header = (key, output=false) => {
         if(this.isEmptyString(key)){
             this.logger.error("header() debe recibir una clave");
             return;
         }
-        return (this.headers.hasOwnProperty(key) ? this.headers[key] : key);
+        const headerToUse = (this.headers.hasOwnProperty(key) ? 
+                this.headers[key] : key);
+
+        if(output === "upper"){
+            return headerToUse.toUpperCase();
+        } else if( output === "lower"){
+            return headerToUse.toLowerCase();
+        }
+
+        return headerToUse;
     };
 
 
@@ -10114,8 +10128,9 @@ class PonchoMapFilter extends PonchoMap {
 
         // Obtener el entryKey del primer elemento para el name
         const entryKey = fieldsData.length > 0 ? fieldsData[0][0] : "";
+        const selectId = ["select", entryKey, group].join(separator);
         selectElement.name = [entryKey, group].join(separator);
-        selectElement.id = ["select", entryKey, group].join(separator);
+        selectElement.id = selectId;
 
         // Agregar opción "Todos" por defecto
         if( filterData?.all_options_text &&
@@ -10123,7 +10138,7 @@ class PonchoMapFilter extends PonchoMap {
             !this.isEmptyString(filterData.all_options_text) ){
             allOptionsText = filterData.all_options_text;
         } else {
-            allOptionsText = "Todos";
+            allOptionsText = this._t("filter_select_all_option_text");
         }
 
         const defaultOption = document.createElement("option");
@@ -10146,15 +10161,23 @@ class PonchoMapFilter extends PonchoMap {
 
         // Crear label
         const labelElement = document.createElement("label");
+        labelElement.setAttribute("for", selectId);
 
         if( filterData?.label &&
             this.isString(filterData.label) &&
             !this.isEmptyString(filterData.label) ){
             label = filterData.label;
         } else {
-            label = `Seleccione ${entryKey}`;
+            label = this._t(
+                "filter_select_label", 
+                {header: this.header(entryKey, "lower")}
+            );
+        }
+        
+        if( filterData.show_label === false ){
             labelElement.classList.add("pm-visually-hidden");
         }
+        
         labelElement.classList.add("m-b-xs");
         labelElement.textContent = label;
 
@@ -10413,37 +10436,88 @@ class PonchoMapFilter extends PonchoMap {
      * Crea los checkbox para los filtros.
      */
     _createFilters = (data) => {
-        const form_filters = document.querySelector(`.js-filters${this.scope_sufix}`);
+        const formFilters = document.querySelector(`.js-filters${this.scope_sufix}`);
 
-        data.forEach((item, group) => {
-            const fieldset = document.createElement("fieldset");
-
-            if (this.isString(item.legend) && !this.isEmptyString(item.legend)) {
-                let legend = document.createElement("legend");
-                legend.textContent = item.legend;
-                legend.classList.add(
-                    "m-t-0",
-                    "m-b-05",
-                    "color-primary",
-                    "h6",
-                    "font-sans-serif"
-                );
-                fieldset.appendChild(legend);
-            }
-
-            const hasCheckUncheckAll =
-                item.hasOwnProperty("check_uncheck_all") &&
-                item.check_uncheck_all &&
-                item?.type !== "radio" &&
-                item?.type !== "select";
-
-            if (hasCheckUncheckAll) {
-                fieldset.appendChild(this._checkUncheckButtons(item));
-            }
-
-            fieldset.appendChild(this._fields(item, group));
-            form_filters.appendChild(fieldset);
+        data.forEach((filterItem, groupIndex) => {
+            const fieldset = this._createFilterFieldset(filterItem, groupIndex);
+            formFilters.appendChild(fieldset);
         });
+    };
+
+    /**
+     * Crea un fieldset completo para un grupo de filtros
+     *
+     * @param {object} filterItem - Configuración del filtro
+     * @param {number} groupIndex - Índice del grupo de filtros
+     * @returns {HTMLElement} Elemento fieldset
+     */
+    _createFilterFieldset = (filterItem, groupIndex) => {
+        const fieldset = document.createElement("fieldset");
+
+        const legend = this._createFilterLegend(filterItem, groupIndex);
+        fieldset.appendChild(legend);
+
+        if (this._shouldShowCheckUncheckButtons(filterItem)) {
+            const checkUncheckButtons = this._checkUncheckButtons(filterItem);
+            fieldset.appendChild(checkUncheckButtons);
+        }
+
+        const fields = this._fields(filterItem, groupIndex);
+        fieldset.appendChild(fields);
+
+        return fieldset;
+    };
+
+    /**
+     * Crea el elemento legend para un grupo de filtros
+     *
+     * @param {object} filterItem - Configuración del filtro
+     * @param {number} groupIndex - Índice del grupo de filtros
+     * @returns {HTMLElement} Elemento legend
+     */
+    _createFilterLegend = (filterItem, groupIndex) => {
+        const legend = document.createElement("legend");
+
+
+
+        const hasCustomLegend = this.isString(filterItem.legend) &&
+                               !this.isEmptyString(filterItem.legend);
+
+        legend.textContent = hasCustomLegend
+            ? filterItem.legend
+            : this._t(
+                "filter_select_legend", 
+                {header: this.header(this._typeByGroup(groupIndex), "lower")}
+            );
+
+        if (filterItem.show_legend === false) {
+            legend.classList.add("pm-visually-hidden");
+        } else {
+            legend.classList.add(
+                "m-t-0",
+                "m-b-05",
+                "color-primary",
+                "h6",
+                "font-sans-serif"
+            );
+        }
+
+        return legend;
+    };
+
+    /**
+     * Determina si se deben mostrar los botones marcar/desmarcar todos
+     *
+     * @param {object} filterItem - Configuración del filtro
+     * @returns {boolean} true si se deben mostrar los botones
+     */
+    _shouldShowCheckUncheckButtons = (filterItem) => {
+        const hasCheckUncheckAll = filterItem.hasOwnProperty("check_uncheck_all") &&
+                                   filterItem.check_uncheck_all;
+        const isMultipleChoiceType = filterItem?.type !== "radio" &&
+                                    filterItem?.type !== "select";
+
+        return hasCheckUncheckAll && isMultipleChoiceType;
     };
 
 
@@ -10468,6 +10542,23 @@ class PonchoMapFilter extends PonchoMap {
                 return val;
             });
     };
+
+
+    /**
+     * Retorna la clave type del filtro
+     * 
+     * @param {number} group Número de grupo 
+     * @returns {string} type
+     */
+    _typeByGroup = (group) => {
+        if(typeof group !== "number"){
+            return;
+        }
+        const data = this._defaultFiltersConfiguration()
+                .find(f => f[0] === group);
+
+        return data ? data[2] : undefined;
+    }
 
 
     /**
