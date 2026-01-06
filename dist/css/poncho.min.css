@@ -10868,15 +10868,8 @@ a.alert.alert-danger i {
 .highlight-box .fa-5x {
   font-size: var(--icon-size) !important;
 }
-.highlight-box .fa.fa-warning,
-.highlight-box .fa.fa-times-circle,
-.highlight-box .fa.fa-info-circle,
-.highlight-box .fa.fa-check-circle {
-  font-size: calc(var(--icon-size) + 0.15em) !important;
-  margin: 0;
-}
 .highlight-box i {
-  color: currentColor;
+  color: var(--main-theme);
 }
 .highlight-box p {
   margin-bottom: 1em;
