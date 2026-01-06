@@ -120,7 +120,7 @@ $colorThemesRecuadro: (
 
 @media (max-width: 768px) {
     #{$recuadrosScope} {
-        padding: var(--main-padding);
+        padding: var(--main-padding);rosado
 
         .media {
             grid-template-columns: none;
