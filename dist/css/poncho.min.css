@@ -11308,7 +11308,7 @@ Las clases "dato-nro" y "dato-eje" corresponde a los formatos markdown definidos
 .poncho-map .pm-term-icon-helper {
   display: flex;
   width: 100%;
-  gap: 0.1rem;
+  gap: 4px;
   align-items: center;
 }
 .poncho-map .pm-term-icon-helper > :nth-child(1) {
