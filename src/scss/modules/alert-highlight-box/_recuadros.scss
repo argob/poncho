@@ -20,6 +20,9 @@ $colorThemesRecuadro: (
     "rosado": (themeColor:$brand-arg-rosado,
         buttonColor: black,
     ),
+    "arandano": (themeColor: $brand-arg-arandano,
+        buttonColor: white,
+    ),
 );
 
 
@@ -120,7 +123,7 @@ $colorThemesRecuadro: (
 
 @media (max-width: 768px) {
     #{$recuadrosScope} {
-        padding: var(--main-padding);rosado
+        padding: var(--main-padding);
 
         .media {
             grid-template-columns: none;
