@@ -37,7 +37,7 @@
  * SOFTWARE.
  */
 const PM_TRANSLATE = {
-es: {
+    es: {
         cluster_click: "Clic para expandir grupo",
         cluster_large: "Grupo grande de {{count}} ubicaciones",
         cluster_medium: "Grupo mediano de {{count}} ubicaciones",
@@ -47,6 +47,9 @@ es: {
                         + `aria-label="Restablecer valores del mapa">`
                         + "Restablecer mapa</a>",
         filter_no_results: "No se encontraron entradas.",
+        filter_select_label: "Seleccione {{header}}",
+        filter_select_legend: "Filtrar por {{header}}",
+        filter_select_all_option_text: "Todos",
         filter_no_results_by_term: "No encontramos resultados para tu búsqueda.",
         filter_one_result: "{{total_results}} resultado coincide con tu búsqueda.",
         filter_reset_values_link: ` <a href="#" class="{{reset_search}}"`
@@ -326,7 +329,9 @@ class PonchoMap {
 
         // Set variables
         this.lang = opts.lang;
-        this.dictionary = PM_TRANSLATE[this.lang];
+        this.dictionary = ((opts?.dictionary && opts.dictionary[this.lang])
+            ? opts.dictionary[this.lang]
+            : PM_TRANSLATE[this.lang]);
         this.error_reporting = opts.error_reporting;
         this.throw_exceptions = opts.throw_exceptions;
         this.scope = opts.scope;
@@ -2539,12 +2544,21 @@ class PonchoMap {
      * 
      * @return {string} key Key del item.
      */
-    header = (key) => {
+    header = (key, output=false) => {
         if(this.isEmptyString(key)){
             this.logger.error("header() debe recibir una clave");
             return;
         }
-        return (this.headers.hasOwnProperty(key) ? this.headers[key] : key);
+        const headerToUse = (this.headers.hasOwnProperty(key) ? 
+                this.headers[key] : key);
+
+        if(output === "upper"){
+            return headerToUse.toUpperCase();
+        } else if( output === "lower"){
+            return headerToUse.toLowerCase();
+        }
+
+        return headerToUse;
     };
 
 
