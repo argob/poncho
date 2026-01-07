@@ -2231,7 +2231,7 @@ class PonchoMap {
         }
 
         return this.entries.find(e => {
-            if(e?.properties && id === id && 
+            if(e?.properties && e.properties[this.id] === id && 
                 e.properties?.["pm-interactive"] !== "n"){
                 return true;
             }
@@ -2468,6 +2468,7 @@ class PonchoMap {
 
 
         const entry = this.entry(data[this.id]);
+        debugger
         if(entry?.geometry?.coordinates){
             const [latitude, longitude] = entry.geometry.coordinates;
             this._openOnMaps(longitude, latitude);
