@@ -13024,6 +13024,12 @@ input[type=search].js-poncho-map-search__input::-webkit-search-cancel-button {
   height: 12px;
 }
 
+.border {
+  border-style: solid;
+  border-width: 1px;
+  border-color: var(--arg-gray-border);
+}
+
 .border-top {
   border-bottom-style: solid;
   border-bottom-width: 1px;
