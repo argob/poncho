@@ -5,14 +5,14 @@
 }
 
 .border-top {
-    border-bottom-style: solid;
-    border-bottom-width: 1px;
-    border-bottom-color: var(--arg-gray-light);
-}
-.border-bottom {
     border-top-style: solid;
     border-top-width: 1px;
     border-top-color: var(--arg-gray-light);
+}
+.border-bottom {
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: var(--arg-gray-light);
 }
 .border-right {
     border-right-style: solid;
