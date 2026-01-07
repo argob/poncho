@@ -997,28 +997,84 @@ class PonchoMapFilter extends PonchoMap {
 
 
     /**
-     * **¡EXPERIMENTAL!** Agrega un title con el total de elementos en 
-     * el panel de filtros.
+     * ¡EXPERIMENTAL!
+     * Agrega un title con el total de elementos en el panel de filtros.
+     * @private
+     * @returns {undefined}
      */
     _totalsInfo = () => {
-        if(!this.filters_info){
-            return "";
+        if (!this.filters_info) {
+            return;
         }
+
         this.totals().forEach(field => {
-            const selector = `${this.scope_selector}`
-                    + ` [data-info="${field[4]}__${field[2]}__${field[3]}"]`;
-            const element = document.querySelector(selector);
-            const plurals = (field[1] < 2 ? "" : "s");
+            const [, count, groupIndex, filterIndex, filterName] = field;
+            //field = [ "Plan 50 Destinos", 147, 1, 0, "tipo" ]
+            const targetElement = this._getFilterInfoElement(
+                filterName, groupIndex, filterIndex
+            );
 
-            const span = document.createElement("small");
-            span.classList.add("badge", "m-l-05", "fw-medium", "bg-arg-enlace")
-            span.innerHTML = `${field[1]}<span class="pm-visually-hidden"> `
-                + `elemento${plurals}</span>`;
+            if (!targetElement) {
+                return;
+            }
 
-            const info_container = document.createElement("small");
-            info_container.appendChild(span);
-            element.appendChild(info_container);
+            const badge = this._createCountBadge(count);
+            badge.appendChild(document.createTextNode(' '));
+            targetElement.appendChild(document.createTextNode(' '));
+            targetElement.appendChild(badge);
         });
+    };
+
+    /**
+     * Obtiene el elemento del DOM donde se mostrará la información del filtro.
+     * @private
+     * @param {string} filterName - Nombre del filtro
+     * @param {number} groupIndex - Índice del grupo
+     * @param {number} filterIndex - Índice del filtro
+     * @returns {HTMLElement|null}
+     */
+    _getFilterInfoElement = (filterName, groupIndex, filterIndex) => {
+        const selector = `${this.scope_selector} `
+            + `[data-info="${filterName}__${groupIndex}__${filterIndex}"]`;
+        return document.querySelector(selector);
+    };
+
+
+    /**
+     * Crea un badge con el contador de elementos.
+     * @private
+     * @param {number} count - Cantidad de elementos
+     * @returns {HTMLElement}
+     */
+    _createCountBadge = (count) => {
+        const badge = document.createElement("small");
+        badge.classList.add(
+            "badge",
+            // "m-l-xs",
+            "fw-medium",
+            "bg-arg-gris-intermedio"
+        );
+        badge.textContent = count;
+
+        const accessibleText = this._createAccessibleText(count);
+        badge.appendChild(accessibleText);
+
+        return badge;
+    };
+
+
+    /**
+     * Crea el texto accesible para el badge.
+     * @private
+     * @param {number} count - Cantidad de elementos
+     * @returns {HTMLElement}
+     */
+    _createAccessibleText = (count) => {
+        const text = document.createElement("span");
+        const pluralSuffix = count === 1 ? "" : "s";
+        text.textContent = ` elemento${pluralSuffix}`;
+        text.className = "pm-visually-hidden";
+        return text;
     };
 
 
