@@ -1,3 +1,55 @@
+.border {
+    border-style: solid;
+    border-width: 1px;
+    border-color: var(--arg-gray-border);
+}
+
+.border-top {
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: var(--arg-gray-border);
+}
+.border-bottom {
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-top-color: var(--arg-gray-border);
+}
+.border-right {
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-right-color: var(--arg-gray-border);
+}
+.border-left {
+    border-left-style: solid;
+    border-left-width: 1px;
+    border-left-color: var(--arg-gray-border);
+}
+
+border-0 {
+    border: 0 !important
+}
+border-top-0 {
+    border-top: 0 !important
+}
+border-right-0 {
+    border-right: 0 !important
+}
+border-bottom-0 {
+    border-bottom: 0 !important
+}
+border-left-0 {
+    border-left: 0 !important
+}
+
+.border-medium {
+    border-width: 2px
+}
+
+.border-thick {
+    border-width: 3px
+}
+
+
 /**
  * Generador de variables tipográficas 
  * ([nombre], [valor]) 
