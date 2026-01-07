@@ -105,32 +105,22 @@ class PonchoMapSearch {
 
     /**
      * Crea el render para el template
-     * @param {object} entry Entrada de datos json. 
-     * @returns {boolean|string}
+     * @param {object} entry Entrada de datos json.
+     * @returns {string|null} Template renderizado o null si no es válido
      */
     _comboboxLabel = (entry) => {
-        if(!this.instance.isObject(this.combobox_options) || 
-            this.instance.isEmptyObject(!this.combobox_options)){
-            return false;
+        if (!this.instance.isObject(this.combobox_options) ||
+            this.instance.isEmptyObject(this.combobox_options)) {
+            return null;
         }
+
         const template = this.combobox_options?.template;
-        if(!this.instance.isEmptyString){
-            this.instance.logger.error(
-                "_comboboxLabel", 
-                "Requiere una cadena de texto en template"
-            );
-            return false;
+
+        if (!this.combobox_options.hasOwnProperty("template") ||
+            this.instance.isEmptyString(template)) {
+            return entry[this.text] || null;
         }
 
-        if(this.instance.isEmptyString(template)){
-            this.instance.logger.error(
-                "_comboboxLabel", 
-                "template no puede estar vacío."
-            );
-            return false;
-        }
-
-        
         return this.instance.tpl(template, entry, ["*"]);
     }
 
@@ -469,8 +459,6 @@ class PonchoMapSearch {
      * @returns {HTMLElement} Elemento <li> con el enlace del resultado de búsqueda.
      */
     _creatSearchItem = (entry) => {
-
-        // const template = this._comboboxLabel(entry);
         const template = entry.pm_search_option_template;
 
         var searchItem = document.createElement("li");
@@ -502,22 +490,26 @@ class PonchoMapSearch {
 
 
     /**
-     * Define el tañamo del desplegable para las búsquedas
-     * @returns {boolean|string}
+     * Define el tamaño del desplegable para las búsquedas.
+     * @returns {boolean|string} Clase CSS para el ancho o false si no está configurado
      */
     _comboboxWidth = () => {
-        if(!this.combobox_options?.display){
+        if (!this.combobox_options?.display) {
             return false;
         }
 
-        const stylesAvaiable = ["expanded", "fit-content"];
-        const styleToApply = this.combobox_options?.display;
+        const AVAILABLE_STYLES = new Set(["expanded", "fit-content"]);
+        const DEFAULT_STYLE = "fit-content";
+        const styleToApply = this.combobox_options.display;
 
-        if(!stylesAvaiable.includes(styleToApply)){
-            return this.instance.logger(
-                "_comboboxWidth", 
-                "El estilo asignado al ancho del desplegable no existe."
+        if (!AVAILABLE_STYLES.has(styleToApply)) {
+            this.instance.logger.warn(
+                "_comboboxWidth",
+                `El estilo "${styleToApply}" no es válido. Opciones `
+                + `disponibles: ${Array.from(AVAILABLE_STYLES).join(", ")}. `
+                + `Usando "${DEFAULT_STYLE}" por defecto.`
             );
+            return `pm-search-results__${DEFAULT_STYLE}`;
         }
 
         return `pm-search-results__${styleToApply}`;
