@@ -28,6 +28,7 @@
     <script src="../src/js/poncho-map.js"></script>
     <script src="../src/js/poncho-map-filter.js"></script>
     <script src="../src/js/poncho-map-search.js"></script>
+    <script src="../src/js/poncho-map-helpers.js"></script>
     <script src="../../gapi-sheet-data/gapi-sheet-data.js"></script>
     <link rel="stylesheet" href="./css/demo.css">
     <!-- <link rel="stylesheet" href="./css/containers.css"> -->
@@ -109,95 +110,8 @@ COPIAR DESDE ACÁ…
 <!-- <script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script> -->
 <!-- / INCLUDE SCRIPTS -->
 
-<script>
-    const dict = {en: {
-        cluster_click: "Click to expand group",
-        cluster_large: "Large group of {{count}} locations",
-        cluster_medium: "Medium group of {{count}} locations",
-        cluster_small: "Small group of {{count}} locations",
-        filter_initial: "There are {{total_results}} points on the map."
-                        + ` <a href="#" class="{{reset_search}}"`
-                        + `aria-label="Reset map values">`
-                        + "Reset map</a>",
-        filter_no_results: "No entries found.",
-        filter_select_label: "Select {{header}}",
-        filter_select_all_option_text: "All",
-        filter_no_results_by_term: "No results found for your search.",
-        filter_one_result: "{{total_results}} result matches your search.",
-        filter_reset_values_link: ` <a href="#" class="{{reset_search}}"`
-                        + `aria-label="Reset map values">`
-                        + "Reset map</a>",
-        filter_results: "{{total_results}} results match your search.",
-        filters_aria_label_close_panel: "Close filter panel",
-        filters_aria_label_open_close_panel: "Open or close the filter panel",
-        filters_aria_label_panel: "Filter panel",
-        filters_aria_label_reset: "Reset map values",
-        filters_check_all: "Check all",
-        filters_close_panel_text: "Close panel",
-        filters_has: "Filters are in use.",
-        filters_reset: "Reset map",
-        map_exit: "Exit map",
-        map_fit_bounds: "Fit markers to map",
-        map_full_view: "View full map",
-        map_goto_markers: "Go to map markers",
-        map_help_us: "Help improve the map",
-        openmap_aria_label: "Open geographic point in an alternative map",
-        openmap_label: "Open location in:",
-        search_data: "Search",
-        search_placeholder: "Your search",
-        theme_aria_label_panel: "Tool to change visual theme",
-        theme_change: "Change map theme",
-        theme_description_contrast: "Dark background with white borders.",
-        theme_description_dark: "Dark background with medium contrast white borders.",
-        theme_description_default: "Map provider's default colors.",
-        theme_description_grayscale: "Map and interface in shades of gray.",
-        theme_description_relax: "Soft color palette.",
-        theme_name_contrast: "High contrast",
-        theme_name_dark: "Dark",
-        theme_name_default: "Original",
-        theme_name_grayscale: "Grayscale",
-        theme_name_relax: "Relax",
-        theme_open_panel: "Opens the theme panel",
-        theme_reset: "Resets the map theme to its original setting",
-        zoom_aria_label_panel: "Zoom tools",
-        zoom_goto_panel: "Go to zoom tool",
-        zoom_in: "Zoom in",
-        zoom_out: "Zoom out"
-    }};
-</script>
 <!-- SCRIPTS -->
 <script id="code_map">
-    const styles = `.opt {
-        display: grid;
-        grid-template-columns: auto 1fr;
-        grid-template-areas: "a b";
-        column-gap: 10px;
-        row-gap: 1px;
-    }
-
-    .opt-img {
-        grid-area: a;
-        width: 110px;
-        aspect-ratio: 16/10;
-        object-fit: cover;
-        border: 3px solid white;
-        border-radius: 3px;
-        display: inline-block;
-        box-shadow: 0px 1px 3px rgb(0 0 0 / .15);
-        margin-left: -3px
-    }
-
-    .opt-col {
-        grid-area: b;
-    }
-
-
-    .opt:not(:has(.opt-img)) {
-        grid-template-columns: 1fr;
-        grid-template-areas: "b";
-        column-gap: 0;
-    }`;
-    headStyle('a', styles);
     // init
     var map, search;
 
@@ -340,19 +254,30 @@ COPIAR DESDE ACÁ…
             tooltip: true,
             no_info: false,
             slider: true,
-            hash: false,
+            hash: true,
             scroll: true,
             reset_zoom: true,
-            filters_info:true,
+            filters_info:false,
             filters: [
                 {
-                    // legend: "Filtrar por tipo",
+                    legend: "Filtre por tipo",
+                    field: ["provincia"],
+                    fields: false,
+                    check_uncheck_all: false,
+                    type: "select",
+                    label: "Tipo",
+                    show_label: false,
+                    show_legend: true,
+                    all_options_text: "--------"
+                },
+                {
+                    legend: "Filtre por tipo",
                     field: ["tipo"],
                     fields: false,
-                    check_uncheck_all: true,
-                    type: "select",
-                    label: "Seleccione un tipo",
-                    show_label: true,
+                    check_uncheck_all: false,
+                    type: "checkbox",
+                    label: "Tipo",
+                    show_label: false,
                     show_legend: true,
                     all_options_text: "--------"
                 },
@@ -372,17 +297,13 @@ COPIAR DESDE ACÁ…
             combobox: true,
             combobox_options: {
                 max_results: 10,
-                display: "expanded",
-                template: 
-                    `<div class="opt">`
-                    + `{% '<img src="{{foto}}" width="90" alt="" class="opt-img" />' if foto != '' else '' %}`
-                    + `<div class="opt-col"><p class="m-y-0 fw-semibold opt-name">`
-                    + `{{name}}`
-                    + `</p>`
-                    + `<p class="m-y-0 small text-arg-gris-intermedio opt-location">`
-                    + `{{localidad}}, {{provincia}}`
-                    + `</p></div>`
-                    + `</div>`
+                display: "fit-content",
+                template: ponchoMapTplSearch({
+                    figure: "foto", 
+                    title: "name", 
+                    text: ["localidad", "provincia"], 
+                    separator: " / "
+                })
             },
             scope: "poncho-map-search", 
             placeholder: "Buscar en el geoJSON",
