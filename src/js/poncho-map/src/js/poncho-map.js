@@ -2466,9 +2466,8 @@ class PonchoMap {
                 e.dataset.entryId = data[this.id];
             });
 
-
         const entry = this.entry(data[this.id]);
-        debugger
+
         if(entry?.geometry?.coordinates){
             const [latitude, longitude] = entry.geometry.coordinates;
             this._openOnMaps(longitude, latitude);
