@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head>
+    <link rel="profile" href="http://www.w3.org/1999/xhtml/vocab" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
+        </script>
+<link rel="shortcut icon" href="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/favicon.ico" type="image/vnd.microsoft.icon" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+        integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet"
+        href="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css">
+    <link rel="stylesheet" href="../../../../dist/css/poncho.min.css" />
+
+    <!-- 
+        Script para debug 
+        Se reemplazan en producción por poncho.min.js
+    -->
+    <script src="../../color/src/js/color.js"></script>
+    <script src="../../utils/connect.js"></script>
+    <script src="../../utils/string.js"></script>
+    <script src="../../utils/document.js"></script>
+    <script src="../../utils/html.js"></script>
+    <script src="../src/js/poncho-map.js"></script>
+    <script src="../src/js/poncho-map-filter.js"></script>
+    <script src="../src/js/poncho-map-search.js"></script>
+    <script src="../src/js/poncho-map-helpers.js"></script>
+    <script src="../../gapi-sheet-data/gapi-sheet-data.js"></script>
+    <link rel="stylesheet" href="./css/demo.css">
+    <!-- <link rel="stylesheet" href="./css/containers.css"> -->
+    <!-- / Script para debug -->
+    <title>Poncho Map — Template 9</title>
+</head>
+<body>
+
+    <div class="demo-nav container">
+        <ul class="demo-menu">
+            <li><a href="./">Inicio</a></li>
+        </ul>
+    </div>
+    <h1>Template 9</h1>
+<!-- 
+COPIAR DESDE ACÁ…
+-->
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+        <!-- PONCHO MAP SEARCH -->
+        <search>
+        <form>
+            <div data-scope="poncho-map-search">
+                <div class="input-group">
+                    <input 
+                        type="search" 
+                        name="search" 
+                        autocomplete="off"
+                        class="js-poncho-map-search__input form-control" 
+                        list="list">
+                        <datalist id="list" class="js-porcho-map-search__list"></datalist>
+                    <span class="input-group-btn">
+                        <button class="js-poncho-map-search__submit btn btn-primary">
+                        <i class="fa fa-search text-white"> </i>
+                        </button>
+                    </span>
+                </div>
+                <div data-scope="poncho-map" class="m-b-1">
+                    <div class="js-poncho-map__help small text-default"></div>
+                </div>
+            </div>
+        </form>
+        </search>
+        <!-- / PONCHO MAP SEARCH -->
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <!-- PONCHO MAP -->
+            <div class="poncho-map" data-scope="poncho-map">
+                <div
+                    class="leaflet-container leaflet-touch leaflet-fade-anim 
+                        leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
+                    id="map"
+                    style="height: 650px;">
+                </div>
+            </div>
+            <!-- / PONCHO MAP -->
+            <div data-code-from="code_map" class="m-y-2" data-title="Código para el mapa"></div>
+        </div>
+    </div>
+</div>
+
+<script src="../../mapa-argentina/demo/js/demo.js"></script>
+
+
+<!-- INCLUDE SCRIPTS -->
+<script src="https://www.argentina.gob.ar/sites/default/files/ponchotable/showdown.js"></script>
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/extensiones/showdown-extensions.js"></script>
+<script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.js"></script>
+<script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script>
+<link href="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.css" rel="stylesheet"/> 
+<link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.css" rel="stylesheet"/> 
+<link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.Default.css" rel="stylesheet"/> 
+<!-- <script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script> -->
+<!-- / INCLUDE SCRIPTS -->
+
+<!-- SCRIPTS -->
+<script id="code_map">
+    const styles = ``;
+    headStyle('a', styles);
+    // init
+    var map, search;
+
+    // init
+    (async () => {
+        const gapi = new GapiSheetData();
+        const googlesheet_data = await fetch_json(gapi.url("Hoja 1", "1KfjAVNVvvAbwyaO6SRe35XW6avUrw19iD_zGIUWIAT4"));
+        const gapi_data = gapi.json_data(googlesheet_data);
+
+        const options = {
+            debug: true,
+            scope: "poncho-map",
+            marker_cluster_options: {
+                spiderfyOnMaxZoom: true,
+                showCoverageOnHover: false,
+                zoomToBoundsOnClick: true,
+                maxClusterRadius: 30,
+                spiderfyDistanceMultiplier: 0.5,
+                spiderLegPolylineOptions: {
+                    weight: 1,
+                    color: "#666",
+                    opacity: 0.5,
+                    "fill-opacity": 0.5
+                }
+            },
+            title: "nombre",
+            template_markdown: true,
+            markdown_options: {
+                extensions: ["button", "target"]
+            },
+            template_structure: {
+                values: ["foto", "tipo", "descripcion", "lugar", "provincia", "contacto", "boton"],
+                mixing: [
+                    {
+                        key: "lugar",
+                        header: "Dirección",
+                        values: ["direccion", "localidad"],
+                        separator: ", "
+                    },
+                    {
+                        key: "contacto",
+                        header: "Contacto",
+                        values: ["telefono", "mail"],
+                        separator: ", "
+                    }
+                ]
+            },
+            headers: gapi_data.headers,
+            marker: (self, ele) => (typeof ele.color !== "undefined" && ele.color != "" ? ele.color : "azul"),
+            slider: true,
+            hash: true,
+            scroll: true
+        };
+
+        const poncho_filter = new PonchoMapFilter(gapi_data.entries, options);
+        poncho_filter.render();
+
+        const search_options = {
+            scope: "poncho-map-search",
+            placeholder: "Buscá por localidad",
+            datalist: false,
+            search_fields: ["localidad", "provincia", "nombre", "tipo", "direccion", "descripcion"],
+            combobox: true,
+            combobox_options: {
+                max_results: 20,
+                display: "fit-cosdfntent",
+                template: ponchoMapTplSearch({
+                    figure: "linkfoto", 
+                    title: "name", 
+                    text: ["localidad", "provincia"], 
+                    separator: " / "
+                })
+            },
+        };
+        const search = new PonchoMapSearch(poncho_filter, search_options);
+        search.render();
+    })();
+</script>
+<!-- / SCRIPTS -->
+</body>
+</html>

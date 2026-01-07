@@ -41,7 +41,7 @@ const calendar = {
      * @param {array} array Array con las entradas 
      * @returns {array}
      */
-    oerderByDate(array) {
+    orderByDate(array) {
         return array.sort((a, b) => {
             const fechaA = this.parseDate(a.date).dateObject;
             const fechaB = this.parseDate(b.date).dateObject;
@@ -88,7 +88,7 @@ const calendar = {
      * @returns {undefined}
      */
     toggleText: function(scope, ln){
-        if(typeof scope !== "string" && !scope.trim()){
+        if(typeof scope !== "string" || !scope.trim()){
             return;
         }
 
@@ -96,19 +96,17 @@ const calendar = {
             return slug.toLowerCase()
                 .replace(/-([a-z])/g, (_, letter) => letter.toUpperCase());
         }
-        
+
         document.querySelectorAll(`[data-${scope}-${ln}]`).forEach(i => {
             const key = toCamelCase(`${scope}-${ln}`);
-            console.log(key)
             const value = i.dataset[key];
-            console.log(value)
             i.textContent = value;
             i.lang = ln;
-        }); 
+        });
     },
     /**
      * Fuerza un objeto Date a un timezone.
-     * 
+     *
      * @param {Date} date Objeto Date
      * @param {string} timeZone Time zone ej. America/Argentina/Buenos_Aires.
      * @returns {Date}
@@ -117,16 +115,31 @@ const calendar = {
         if (!(date instanceof Date)) {
             throw new TypeError("Se espera un objeto Date()");
         }
-        const options = {
+
+        // Extraer componentes en el timezone deseado
+        const formatter = new Intl.DateTimeFormat('en-US', {
             timeZone: timeZone,
-            year: "numeric",
-            month: "2-digit",
-            day: "2-digit",
-            hour: "2-digit",
-            minute: "2-digit",
-            second: "2-digit",
-        };
-        return new Date(date.toLocaleString("en-US", options));
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: false
+        });
+
+        const parts = formatter.formatToParts(date);
+        const get = (type) => parts.find(p => p.type === type).value;
+
+        // Crear fecha explícitamente en UTC con los valores del timezone
+        return new Date(Date.UTC(
+            parseInt(get('year')),
+            parseInt(get('month')) - 1,
+            parseInt(get('day')),
+            parseInt(get('hour')),
+            parseInt(get('minute')),
+            parseInt(get('second'))
+        ));
     },
     timeZone: "America/Argentina/Buenos_Aires",
     dictionary:{
@@ -323,7 +336,7 @@ const calendar = {
         const defaults = {
             containerId: "#calendar-container",
             templateId: "#month-tpl",
-            allowHTML:false,
+            allowHTML: false,
             lang: "es",
             holidays_type: {
                 inamovible: "primary",
@@ -333,41 +346,40 @@ const calendar = {
             }
         };
 
-        let opts = Object.assign({}, defaults, options);
+        const opts = Object.assign({}, defaults, options);
 
+        // Inicialización de propiedades del objeto
         this.availableLanguages = Object.keys(this.dictionary);
+        this.ln = this.availableLanguages.includes(opts.lang)
+            ? opts.lang
+            : defaults.lang;
         this.allowHTML = opts.allowHTML;
         this.holidayType = opts.holidays_type;
         this.calendarYear = opts.calendarYear;
-        this.ln = (this.availableLanguages.includes(opts.lang) ? 
-            opts.lang : defaults.lang);
-
-        // Defino el objecto Container
-        this.container = document.querySelector(opts.containerId);
-        this.container.innerHTML = "";
-        if(!this.container){
-            throw new Error(`No se encuentra la etiqueta con ` 
-                + `el id: ${opts.containerId}`);
-        }
-
-        this.template = document.querySelector(opts.templateId);
-        if(!this.template){
-            throw new Error(`No se encuentra la plantilla con `
-                + `id: ${opts.templateId}`);
-        }
-
-        // Valido y preparolos markers.
-        this.validateMarkers(opts);  
-
-        // Defino los markers.
-        this.inputMarkers = (this.isMultiLang(opts.markers) ? 
-                opts.markers[this.ln] : opts.markers[0]);
-        this.inputMarkers.forEach(entry => this.isValidEntry(entry));
-        this.markers = this.oerderByDate(this.inputMarkers);
-
         this.dict = this.dictionary[this.ln];
 
-        // RENDER CALENDAR
+        // Validación y obtención del contenedor
+        this.container = document.querySelector(opts.containerId);
+        if(!this.container){
+            throw new Error(`No se encuentra la etiqueta con el id: ${opts.containerId}`);
+        }
+        this.container.innerHTML = "";
+
+        // Validación y obtención del template
+        this.template = document.querySelector(opts.templateId);
+        if(!this.template){
+            throw new Error(`No se encuentra la plantilla con id: ${opts.templateId}`);
+        }
+
+        // Validación y preparación de markers
+        this.validateMarkers(opts);
+        this.inputMarkers = this.isMultiLang(opts.markers)
+            ? opts.markers[this.ln]
+            : opts.markers[0];
+        this.inputMarkers.forEach(entry => this.isValidEntry(entry));
+        this.markers = this.orderByDate(this.inputMarkers);
+
+        // Renderizado del calendario
         this.daysLeft();
         this.renderCalendar();
     },
@@ -459,6 +471,7 @@ const calendar = {
         // Agrego el nombre del mes.
         const tplMonth = tpl.querySelector(".js-tpl-month");
         tplMonth.textContent = monthName;
+        tplMonth.id = `mes-${monthName.toLowerCase()}`
 
         // Creo los días de la semana.
         const tplWeekdays = tpl.querySelector(".js-tpl-weekdays");
@@ -708,9 +721,9 @@ const calendar = {
         return dayCount;
     },
     /**
-     * Agrega la información para el bloque que informa sobre si 
-     * es o no un día feriado y cuanto falta para el próixmo.
-     * 
+     * Agrega la información para el bloque que informa sobre si
+     * es o no un día feriado y cuanto falta para el próximo.
+     *
      * @returns {undefined}
      */
     daysLeft: function(){
@@ -735,8 +748,8 @@ const calendar = {
         const todayIsHoliday = this.markers.find(entry => {
             const {date, type} = entry;
             const {dateObject} = this.parseDate(date);
-            return (today.getDate() == dateObject.getDate() &&
-                today.getMonth() == dateObject.getMonth() &&
+            return (today.getDate() === dateObject.getDate() &&
+                today.getMonth() === dateObject.getMonth() &&
                 type !== "no_laborable");
         });
 
@@ -747,7 +760,7 @@ const calendar = {
             return (today < dateObject && type !== "no_laborable");
         });
 
-        // Opciones para el próixmo feriado
+        // Opciones para el próximo feriado
         if(nextHoliday && Object.keys(nextHoliday).length > 0 && !todayIsHoliday){
             const {
                 date:markerDate, 
@@ -779,15 +792,20 @@ const calendar = {
 
             // Nombre el feriado
             const anchorDetalle = document.createElement("a");
-            anchorDetalle.href = `#feriado-cal-${day}-${date.getMonth() + 1}`;
+            anchorDetalle.href = `#mes-${month.toLowerCase()}`;
             anchorDetalle.textContent = markerLabel;
-            detalle.forEach(detail => detail.innerHTML = anchorDetalle.outerHTML);
+            detalle.forEach(detail => {
+                if(detail){
+                    detail.innerHTML = anchorDetalle.outerHTML
+                }
+            });
         }
 
         // Opciones para cuando el día es feriado.
         if(todayIsHoliday && Object.keys(todayIsHoliday).length > 0 ){
             const {label:markerLabel} = todayIsHoliday;
-            const parseDate = a = this.parseDate(todayIsHoliday.date);
+            const parseDate = this.parseDate(todayIsHoliday.date);
+            const month = this.dict.months[ parseDate.markerMonthInt ];
 
             hoyes.forEach(elem => {
                 elem.classList.remove("hidden");
@@ -800,14 +818,17 @@ const calendar = {
             });
 
             const anchorDetalleHoy = document.createElement("a");
-            anchorDetalleHoy.href = `#feriado-cal-${parseDate.markerDayInt}`
-                    + `-${parseDate.markerMonthInt}`;
+            anchorDetalleHoy.href =`#mes-${month.toLowerCase()}`;
             anchorDetalleHoy.textContent = markerLabel;
-            detalle.forEach(elem => elem.appendChild(anchorDetalleHoy));
+            detalle.forEach(elem => {
+                if(elem){
+                    elem.innerHTML = anchorDetalleHoy.outerHTML
+                }
+            });
         };
 
         // Opciones para un día o más de uno.
-        if(dayCount == 1){
+        if(dayCount === 1){
             this.toggleText("text-singular", this.ln);
         } else {
             this.toggleText("text-plural", this.ln);

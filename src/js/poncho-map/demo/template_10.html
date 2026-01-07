@@ -221,7 +221,8 @@ loader.load();
         "title": "Nombre",
         "headers": {
             "Equivalen": "Equivalencia",
-            "Nombre":"Nombre"
+            "Nombre":"Nombre",
+            "label-equivalencia":"Equivalencia"
         },
         "template_structure":{
             "title": "Provincia",
@@ -233,13 +234,15 @@ loader.load();
         "filters_info": true,
         "filters": [
             {
-                "legend": "Provincia",
-                "field": ["Provincia"],
+                // "legend": "Provincia",
+                field: ["Provincia"],
                 type: "select",
-                "check_uncheck_all": true,
+                label: "Seleccione una provincia",
+                show_label: false
+                // "check_uncheck_all": true,
             },
             {
-                "legend":"Equivalencia",
+                // "legend":"Equivalencia",
                 "field": ["label-equivalencia"],
                 "check_uncheck_all": true,
             }
