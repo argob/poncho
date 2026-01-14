@@ -504,8 +504,7 @@ html {
   -moz-border-radius: 3px;
   border-radius: 3px;
   box-sizing: border-box;
-  box-shadow: 0 0 8px var(--cielo, #039be5) !important;
-  outline: 3px solid var(--cielo, #039be5) !important;
+  outline: 3px solid var(--cielo, #039be5);
 }
 .poncho-map .pm-color-primary {
   color: var(--pm-color-primary);
