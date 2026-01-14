@@ -112,19 +112,26 @@ COPIAR DESDE ACÁ…
 
 <!-- SCRIPTS -->
 <script id="code_map">
-    const styles = ``;
-    headStyle('a', styles);
-    // init
-    var map, search;
+    const loader = new PonchoMapLoader({scope: "poncho-map"});
+    loader.load();
+
+    // Custom styles
+    headStyle("parques", `.definition-list dd img {border-radius:4px;}`);
 
     // init
     (async () => {
         const gapi = new GapiSheetData();
-        const googlesheet_data = await fetch_json(gapi.url("Hoja 1", "1KfjAVNVvvAbwyaO6SRe35XW6avUrw19iD_zGIUWIAT4"));
-        const gapi_data = gapi.json_data(googlesheet_data);
-
+        const sheetData = await fetch_json(
+            gapi.url("Hoja 1", "1KfjAVNVvvAbwyaO6SRe35XW6avUrw19iD_zGIUWIAT4")
+        );
+        const gapiData = gapi.json_data(sheetData);
         const options = {
             debug: true,
+            summary: {
+                hidden: true,
+                title: "Mapa de parques nacionales argentinos",
+                position: "top"
+            },
             scope: "poncho-map",
             marker_cluster_options: {
                 spiderfyOnMaxZoom: true,
@@ -139,13 +146,50 @@ COPIAR DESDE ACÁ…
                     "fill-opacity": 0.5
                 }
             },
+            filters: [
+                {
+                    // legend: "Provincias",
+                    field: ["provincia"],
+                    fields: false,
+                    check_uncheck_all: false,
+                    type: "select",
+                    label: "Seleccione una provincia",
+                    show_label: false,
+                    show_legend: true,
+                    all_options_text: "Todas"
+                },
+                {
+                    legend: "Filtre por tipo",
+                    field: ["tipo"],
+                    fields: false,
+                    check_uncheck_all: true,
+                    type: "checkbox"
+                }
+            ],
             title: "nombre",
             template_markdown: true,
             markdown_options: {
                 extensions: ["button", "target"]
             },
             template_structure: {
-                values: ["foto", "tipo", "descripcion", "lugar", "provincia", "contacto", "boton"],
+                lead: {
+                    key:"tipo",
+                    css: [
+                        "border-bottom", 
+                        "border-medium", 
+                        "small",
+                        "m-b-1", 
+                        "p-b-xs",
+                    ]
+                },
+                values: [
+                    "foto", 
+                    // "tipo", 
+                    "descripcion", 
+                    "lugar", 
+                    "provincia", 
+                    "contacto", 
+                    "boton"],
                 mixing: [
                     {
                         key: "lugar",
@@ -161,21 +205,28 @@ COPIAR DESDE ACÁ…
                     }
                 ]
             },
-            headers: gapi_data.headers,
-            marker: (self, ele) => (typeof ele.color !== "undefined" && ele.color != "" ? ele.color : "azul"),
+            headers: gapiData.headers,
+            marker: (self, ele) => (ele?.color || "azul"),
             slider: true,
             hash: true,
             scroll: true
         };
 
-        const poncho_filter = new PonchoMapFilter(gapi_data.entries, options);
-        poncho_filter.render();
+        const pm = new PonchoMapFilter(gapiData.entries, options);
+        pm.render();
 
-        const search_options = {
+        const searchOptions = {
             scope: "poncho-map-search",
             placeholder: "Buscá por localidad",
             datalist: false,
-            search_fields: ["localidad", "provincia", "nombre", "tipo", "direccion", "descripcion"],
+            search_fields: [
+                "localidad", 
+                "provincia", 
+                "nombre", 
+                "tipo", 
+                "direccion", 
+                "descripcion"
+            ],
             combobox: true,
             combobox_options: {
                 max_results: 20,
@@ -188,8 +239,10 @@ COPIAR DESDE ACÁ…
                 })
             },
         };
-        const search = new PonchoMapSearch(poncho_filter, search_options);
-        search.render();
+        const pmSearch = new PonchoMapSearch(pm, searchOptions);
+        pmSearch.render();
+
+        loader.close();
     })();
 </script>
 <!-- / SCRIPTS -->
