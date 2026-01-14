@@ -162,7 +162,7 @@ COPIAR DESDE ACÁ…
         const gapi = new GapiSheetData();
         const googlesheet_data = await fetch_json( url ); 
         const gdata = googlesheet_data.data;
-        const iconColor = "text-arg-cielo";
+        const iconColor = "text-arg-azul";
         // map options
         const options = {
             summary: {
@@ -191,7 +191,7 @@ COPIAR DESDE ACÁ…
             hash: true,
             slider: true,
             scroll: true,
-            header_icons:[
+            _header_icons:[
                 {
                     key: "observation",
                     css: [
@@ -280,11 +280,13 @@ COPIAR DESDE ACÁ…
                     css: [
                         "small",
                         "p-b-xs",
+                        "m-b-1",
                         "text-uppercase",
                         "fw-medium",
-                        "text-arg-gris-intermedio"
-                    ],
-                    style: "border-bottom: 1px solid var(--arg-negro-200);"
+                        "border-bottom", 
+                        "border-medium",
+                        // "text-arg-gris-intermedio"
+                    ]
                 },
                 mixing: [
                     {
@@ -332,13 +334,13 @@ COPIAR DESDE ACÁ…
             scope: "search-poncho-map",
             combobox: true,
             combobox_options: {
-                key: false,
+                display: "expanded",
                 template: `<p class="m-y-0 fw-semibold">{{name}}</p>`
-                    + `<p class="m-y-0 small fw-medium text-arg-default">`
+                    + `<p class="m-y-0 small fw-medium _text-arg-default">`
                     + `{{observation}}`
                     + `</p>`
-                    + `<p class="m-b-0 m-t-05 small text-arg-default">`
-                    + `{% '{{municipality}}, ' if municipality != '' else '' %}{{locality}}, {{province}}`
+                    + `<p class="m-b-0 m-t-05 small text-arg-negro">`
+                    + `{% '{{municipality}}, ' if municipality != '' else '' %}{{province}}`
                     + `</p>`,
             },
             text: "name",
