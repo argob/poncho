@@ -19,8 +19,8 @@
     }
 
     /* FUCUSABLE */
-    *:focus,
-    .focus-element:focus {
+    *:focus-visible,
+    .focus-element:focus-visible {
         @include borderRadius(3px);
         box-sizing: border-box;
         outline: 3px solid var(--cielo, #039be5);
