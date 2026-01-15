@@ -16018,13 +16018,13 @@ details {
   border-bottom-width: var(--details-border-width);
   overflow: hidden;
 }
-details.text-right > summary {
+details.summary-text-right > summary {
   justify-content: right;
 }
-details.text-center > summary {
+details.summary-text-center > summary {
   justify-content: center;
 }
-details.text-left > summary {
+details.summary-text-left > summary {
   justify-content: left;
 }
 details::details-content {
