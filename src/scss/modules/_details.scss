@@ -282,6 +282,7 @@ $colorThemes: (
 
     overflow: hidden;
 
+    // Alineación para el summary
     &.text-right > summary {
         justify-content: right;
     }
