@@ -16018,6 +16018,15 @@ details {
   border-bottom-width: var(--details-border-width);
   overflow: hidden;
 }
+details.text-right > summary {
+  justify-content: right;
+}
+details.text-center > summary {
+  justify-content: center;
+}
+details.text-left > summary {
+  justify-content: left;
+}
 details::details-content {
   block-size: 0;
   transition: block-size 0.15s linear, content-visibility 0.15s linear;
