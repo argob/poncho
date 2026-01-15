@@ -283,13 +283,13 @@ $colorThemes: (
     overflow: hidden;
 
     // Alineación para el summary
-    &.text-right > summary {
+    &.summary-text-right > summary {
         justify-content: right;
     }
-    &.text-center > summary {
+    &.summary-text-center > summary {
         justify-content: center;
     }
-    &.text-left > summary {
+    &.summary-text-left > summary {
         justify-content: left;
     }
 
