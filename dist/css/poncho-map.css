@@ -498,8 +498,8 @@ html {
 .poncho-map {
   /* FUCUSABLE */
 }
-.poncho-map *:focus,
-.poncho-map .focus-element:focus {
+.poncho-map *:focus-visible,
+.poncho-map .focus-element:focus-visible {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
