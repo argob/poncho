@@ -282,6 +282,17 @@ $colorThemes: (
 
     overflow: hidden;
 
+    // Alineación para el summary
+    &.text-right > summary {
+        justify-content: right;
+    }
+    &.text-center > summary {
+        justify-content: center;
+    }
+    &.text-left > summary {
+        justify-content: left;
+    }
+
     &::details-content {
         block-size: 0;
         transition: block-size 0.15s linear, content-visibility 0.15s linear;
