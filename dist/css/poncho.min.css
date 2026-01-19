@@ -15177,6 +15177,22 @@ footer .nav > li > a:hover {
     flex-direction: column-reverse;
   }
 }
+/* Fecha de publicación y nro de boletín clickeable */
+.normativa {
+  margin: 20px 0;
+}
+.normativa dt,
+.normativa dd {
+  display: inline;
+}
+.normativa dd {
+  white-space: nowrap;
+}
+.normativa .border-bottom {
+  padding-bottom: 7px;
+  margin-bottom: 7px;
+}
+
 /* CONTENIDO DE LA PAGINA TRAMITAR V1.1 */
 .desplegable-tramitar {
   /**
