@@ -13081,6 +13081,50 @@ input[type=search].js-poncho-map-search__input::-webkit-search-cancel-button {
   border-width: 3px;
 }
 
+.border-heavy {
+  border-width: 6px;
+}
+
+.border-arg-default {
+  border-color: var(--arg-default) !important;
+}
+
+.border-arg-info {
+  border-color: var(--arg-info) !important;
+}
+
+.border-arg-secundario {
+  border-color: var(--arg-secundario) !important;
+}
+
+.border-arg-azul {
+  border-color: var(--arg-azul) !important;
+}
+
+.border-arg-arandano {
+  border-color: var(--arg-arandano) !important;
+}
+
+.border-arg-arena {
+  border-color: var(--arg-arena);
+}
+
+.border-arg-rojo {
+  border-color: var(--arg-rojo) !important;
+}
+
+.border-arg-palta {
+  border-color: var(--arg-palta) !important;
+}
+
+.border-arg-mandarina {
+  border-color: var(--arg-mandarina) !important;
+}
+
+.border-arg-rosado {
+  border-color: var(--arg-rosado) !important;
+}
+
 /**
  * Generador de variables tipográficas 
  * ([nombre], [valor]) 
