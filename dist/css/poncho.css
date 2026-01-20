@@ -11649,14 +11649,13 @@ Las clases "dato-nro" y "dato-eje" corresponde a los formatos markdown definidos
 .poncho-map {
   /* FUCUSABLE */
 }
-.poncho-map *:focus,
-.poncho-map .focus-element:focus {
+.poncho-map *:focus-visible,
+.poncho-map .focus-element:focus-visible {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
   box-sizing: border-box;
-  box-shadow: 0 0 8px var(--cielo, #039be5) !important;
-  outline: 3px solid var(--cielo, #039be5) !important;
+  outline: 3px solid var(--cielo, #039be5);
 }
 .poncho-map .pm-color-primary {
   color: var(--pm-color-primary);
@@ -15178,6 +15177,22 @@ footer .nav > li > a:hover {
     flex-direction: column-reverse;
   }
 }
+/* Fecha de publicación y nro de boletín clickeable */
+.normativa {
+  margin: 20px 0;
+}
+.normativa dt,
+.normativa dd {
+  display: inline;
+}
+.normativa dd {
+  white-space: nowrap;
+}
+.normativa .border-bottom {
+  padding-bottom: 7px;
+  margin-bottom: 7px;
+}
+
 /* CONTENIDO DE LA PAGINA TRAMITAR V1.1 */
 .desplegable-tramitar {
   /**
@@ -16018,6 +16033,15 @@ details {
   border-bottom-style: var(--details-border-style);
   border-bottom-width: var(--details-border-width);
   overflow: hidden;
+}
+details.summary-text-right > summary {
+  justify-content: right;
+}
+details.summary-text-center > summary {
+  justify-content: center;
+}
+details.summary-text-left > summary {
+  justify-content: left;
 }
 details::details-content {
   block-size: 0;
