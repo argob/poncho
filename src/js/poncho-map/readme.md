@@ -396,7 +396,7 @@ Si se desea utilizar el buscador debe incluirse el siguiente código. El código
                     type="search"> 
                 <datalist 
                     class="js-porcho-map-search__list" 
-                    id="js-porcho-map-search__list">
+                    id="js-poncho-map-search__list">
                 </datalist> 
                 <span class="input-group-btn">
                     <button 
@@ -408,7 +408,9 @@ Si se desea utilizar el buscador debe incluirse el siguiente código. El código
                 </span>
             </div>
             <div data-scope="ponchomap">
-                <div class="js-poncho-map__help small"></div>
+                <div 
+                    class="js-poncho-map__help small" 
+                    aria-live="polite"></div>
             </div>
         </div>
     </form>
@@ -423,9 +425,9 @@ Para que se imprima el mapa con todas las opciones de PonchoMap se debe incluir 
 <div class="poncho-map" data-scope="poncho-map-scope">
     <div
         class="leaflet-container leaflet-touch leaflet-fade-anim 
-              leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
+               leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
         id="map"
-        style="height: 600px; width: 100%;">
+        style="height: 650px;">
     </div>
 </div>
 <!-- / PONCHO MAP -->
@@ -435,19 +437,18 @@ Por último agregamos la llamada al mapa.
 
 ```js
 <script>
-  // init
-  (async() => {
-      // fetch data
-      const url = "[URL endpoint]";
-      const sheet_data = await fetch_json(url); 
-      // render map
-      const options = {
-          "template": template,
-          "scope": "poncho-map"
-      };
-      const mapa = new PonchoMapFilter(sheet_data, options);
-      mapa.render();
-  })();
+    // init
+    (async() => {
+        // fetch data
+        const url = "[URL endpoint]";
+        const sheetData = await fetch_json(url); 
+        // render map
+        const options = {
+            "scope": "poncho-map"
+        };
+        const mapa = new PonchoMapFilter(sheetData, options);
+        mapa.render();
+    })();
 </script>
 ```
 
