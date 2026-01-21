@@ -21,7 +21,7 @@
 <!-- SCRIPTS -->
 <script id="code_map">
     const latitud = -34.60759, longitud = -58.37393;
-    const pmOptions = {
+    const mapOptions = {
         summary: {
             title: "Ubicación del Ministerio de Seguridad",
             hidden: true
@@ -31,12 +31,12 @@
         theme_tool: false,
         tooltip: true,
         no_info: true,
-        map_zoom: 17, 
+        map_zoom: 17,
         map_view: [latitud, longitud]
     };
     const entry = {latitud, longitud, name: "Ministerio de Seguridad"};
-    const pm = new PonchoMap([entry], pmOptions);
-    pm.render();
+    const map = new PonchoMap([entry], mapOptions);
+    map.render();
 </script>
 <!-- / SCRIPTS -->
 ```
