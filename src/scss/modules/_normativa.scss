@@ -44,3 +44,15 @@
   }
 }
 
+/* ajuste buscador texto predictivo */
+
+#argobar-consulta-infoleg-consulta-avanzada {
+  .select2 {
+    border: solid 1px var(--arg-negro-500) !important;
+    background: var(--arg-blanco);
+  }
+
+  .select2-container--default .select2-selection--single .select2-selection__placeholder {
+    color: var(--arg-negro-900);
+  }
+}
