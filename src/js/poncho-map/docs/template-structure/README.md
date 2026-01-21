@@ -1,16 +1,16 @@
+<!-- omit in toc -->
 # Template structure
 
-- [Template structure](#template-structure)
-  - [Sintaxis](#sintaxis)
-  - [Parámetros](#parámetros)
-  - [Lead](#lead)
-    - [Sintaxis](#sintaxis-1)
-    - [Parámetros](#parámetros-1)
-  - [Mixing](#mixing)
-    - [Sintaxis](#sintaxis-2)
-    - [Parámetros](#parámetros-2)
-    - [Ejemplo](#ejemplo)
-      - [Uso de condicionales en Línea en template](#uso-de-condicionales-en-línea-en-template)
+- [Sintaxis](#sintaxis)
+- [Parámetros](#parámetros)
+- [Lead](#lead)
+  - [Sintaxis](#sintaxis-1)
+  - [Parámetros](#parámetros-1)
+- [Mixing](#mixing)
+  - [Sintaxis](#sintaxis-2)
+  - [Parámetros](#parámetros-2)
+  - [Ejemplo](#ejemplo)
+    - [Uso de condicionales en Línea en template](#uso-de-condicionales-en-línea-en-template)
 
 
 Template structure permite controlar el formato de la información que se presenta en el _slider_ (panel desplegable o tarjeta), o en modo _popup_. Dentro de las opciones que ofrece esta herramienta, se pueden gestionar elementos como: _lead_ (volanta), nombrar o renombrar _headers_ (encabezados), definir un título, agregar o excluir valores de la entrada JSON, especificar el tipo de etiquetas HTML y aplicar estilos, entre otras cosas.

@@ -1,15 +1,15 @@
+<!-- omit in toc -->
 # Modo de uso
 
-- [Modo de uso](#modo-de-uso)
-  - [Estructura HTML](#estructura-html)
-    - [Estilos base de Leaflet](#estilos-base-de-leaflet)
-    - [Scripts principales](#scripts-principales)
-    - [Dependencias opcionales](#dependencias-opcionales)
-      - [Clusters de marcadores](#clusters-de-marcadores)
-      - [Showdown (Markdown)](#showdown-markdown)
-  - [Buscador (opcional)](#buscador-opcional)
-  - [Contenedor del mapa](#contenedor-del-mapa)
-  - [Inicialización](#inicialización)
+- [Estructura HTML](#estructura-html)
+  - [Estilos base de Leaflet](#estilos-base-de-leaflet)
+  - [Scripts principales](#scripts-principales)
+  - [Dependencias opcionales](#dependencias-opcionales)
+    - [Clusters de marcadores](#clusters-de-marcadores)
+    - [Showdown (Markdown)](#showdown-markdown)
+- [Buscador (opcional)](#buscador-opcional)
+- [Contenedor del mapa](#contenedor-del-mapa)
+- [Inicialización](#inicialización)
 - [Referencias](#referencias)
 
 
@@ -132,5 +132,5 @@ Por último, agregue el código JavaScript para inicializar el mapa con los dato
 </script>
 ```
 
-# Referencias
+## Referencias
 1. Leaftlet <[https://leafletjs.com/](https://leafletjs.com/)>

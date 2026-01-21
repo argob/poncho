@@ -1,9 +1,8 @@
-
+<!-- omit in toc -->
 # Open maps
 
-- [Open maps](#open-maps)
-  - [open\_maps](#open_maps)
-  - [Opciones para open\_maps\_options](#opciones-para-open_maps_options)
+- [open\_maps](#open_maps)
+- [Opciones para open\_maps\_options](#opciones-para-open_maps_options)
 
 
 ## open_maps

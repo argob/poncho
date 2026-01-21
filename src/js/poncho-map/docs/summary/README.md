@@ -1,4 +1,9 @@
+<!-- omit in toc -->
 # Summary
+
+- [Opciones para summary](#opciones-para-summary)
+  - [Parámetros](#parámetros)
+
 
 ## Opciones para summary
 
