@@ -1,5 +1,10 @@
 # Mapa multipunto
 
+- [Mapa multipunto](#mapa-multipunto)
+  - [Datos de prueba](#datos-de-prueba)
+  - [Ejemplo](#ejemplo)
+
+
 ## Datos de prueba
 
 ```js
