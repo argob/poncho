@@ -44,3 +44,12 @@
   }
 }
 
+/* ajuste buscador texto predictivo */
+
+.argobar-consulta-infoleg-consulta-avanzada, .select2 {
+  background: var(--arg-blanco);
+}
+
+.argobar-consulta-infoleg-consulta-avanzada, .select2-container--default .select2-selection--single .select2-selection__placeholder {
+  color: var(--arg-negro-900);
+}
