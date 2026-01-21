@@ -1,8 +1,10 @@
+<!-- omit in toc -->
 # PonchoMapSearch
 
-- [PonchoMapSearch](#ponchomapsearch)
-  - [Ejemplo de uso para el buscador](#ejemplo-de-uso-para-el-buscador)
+- [Parámetros](#parámetros)
+- [Ejemplo de uso para el buscador](#ejemplo-de-uso-para-el-buscador)
 
+## Parámetros
 
 | Parámetro | Tipo | Default | Descripción | Tipo de uso |
 |:---|:---|:---|:---|:---|

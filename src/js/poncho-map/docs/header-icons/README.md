@@ -1,7 +1,5 @@
-
-### Opciones para header_icons
-
-- [Opciones para header\_icons](#opciones-para-header_icons)
+<!-- omit in toc -->
+# Header icons
 
 
 ![Header icons](./img/header-icons.png)

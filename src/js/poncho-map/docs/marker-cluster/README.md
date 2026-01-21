@@ -1,7 +1,7 @@
+<!-- omit in toc -->
 # Marker cluster
 
-- [Marker cluster](#marker-cluster)
-      - [Valores por defecto](#valores-por-defecto)
+- [Valores por defecto](#valores-por-defecto)
 
 
 Se puede obtener el extenso listado de opciones y su documentación en [Leaflet Clusters](https://github.com/Leaflet/Leaflet.markercluster). 

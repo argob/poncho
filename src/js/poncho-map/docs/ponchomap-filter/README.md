@@ -1,10 +1,9 @@
-
+<!-- omit in toc -->
 # PonchoMapFilter
 
-- [PonchoMapFilter](#ponchomapfilter)
-  - [Opciones para filters](#opciones-para-filters)
-    - [Opciones para field](#opciones-para-field)
-    - [Opciones para fields](#opciones-para-fields)
+- [Opciones para filters](#opciones-para-filters)
+  - [Opciones para field](#opciones-para-field)
+  - [Opciones para fields](#opciones-para-fields)
 
 
 
