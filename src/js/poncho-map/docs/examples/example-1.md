@@ -1,3 +1,5 @@
+# Mapa con un punto
+
 ```html
 <!-- PONCHO MAP -->
 <div class="poncho-map" data-scope="poncho-map">
