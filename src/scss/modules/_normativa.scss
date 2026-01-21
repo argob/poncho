@@ -23,3 +23,24 @@
     flex-direction: column-reverse;
   }
 }
+
+/* Fecha de publicación y nro de boletín clickeable */
+
+.normativa {
+  margin: 20px 0;
+
+  dt,
+  dd {
+    display: inline;
+  }
+
+  dd {
+    white-space: nowrap;
+  }
+
+  .border-bottom {
+    padding-bottom: 7px;
+    margin-bottom: 7px;
+  }
+}
+

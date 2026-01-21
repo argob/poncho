@@ -19,12 +19,11 @@
     }
 
     /* FUCUSABLE */
-    *:focus,
-    .focus-element:focus {
+    *:focus-visible,
+    .focus-element:focus-visible {
         @include borderRadius(3px);
         box-sizing: border-box;
-        box-shadow: 0 0 8px var(--cielo, #039be5) !important;
-        outline: 3px solid var(--cielo, #039be5) !important;
+        outline: 3px solid var(--cielo, #039be5);
     }
 
     .pm-color-primary {

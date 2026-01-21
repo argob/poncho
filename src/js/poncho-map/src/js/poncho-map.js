@@ -2466,9 +2466,8 @@ class PonchoMap {
                 e.dataset.entryId = data[this.id];
             });
 
-
         const entry = this.entry(data[this.id]);
-        debugger
+
         if(entry?.geometry?.coordinates){
             const [latitude, longitude] = entry.geometry.coordinates;
             this._openOnMaps(longitude, latitude);
@@ -3313,11 +3312,18 @@ class PonchoMap {
             if(!row.hasOwnProperty(key) || !row[key]){
                 continue;
             }
+
+            // Defino la etiqueta del término
             const term = document.createElement(structure.term_tag);
-            term.classList.add(
-                "pm-term-icon-helper", 
-                ...structure.term_classlist
-            );
+
+            // -- Si la clave usa iconos agrego el helper css
+            if(this.header_icons.find(({key:k}) => k === key)){
+                term.classList.add("pm-term-icon-helper");
+            }
+            // -- Agrego los estilos asignados por el usuario.
+            term.classList.add(...structure.term_classlist);
+
+            // -- Agrego el icono antes del texto.
             const header_icon = this._termIcon(row, key);
             if(header_icon){
                 term.appendChild(header_icon);
@@ -3325,6 +3331,7 @@ class PonchoMap {
             }
             term.insertAdjacentText("beforeend", this.header(key));
             
+            // Deino la etiqueta para la definición.
             const definition = document.createElement(structure.definition_tag);
             definition.classList.add(...structure.definition_classlist);
 

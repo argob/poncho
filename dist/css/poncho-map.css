@@ -498,14 +498,13 @@ html {
 .poncho-map {
   /* FUCUSABLE */
 }
-.poncho-map *:focus,
-.poncho-map .focus-element:focus {
+.poncho-map *:focus-visible,
+.poncho-map .focus-element:focus-visible {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
   box-sizing: border-box;
-  box-shadow: 0 0 8px var(--cielo, #039be5) !important;
-  outline: 3px solid var(--cielo, #039be5) !important;
+  outline: 3px solid var(--cielo, #039be5);
 }
 .poncho-map .pm-color-primary {
   color: var(--pm-color-primary);
@@ -1714,6 +1713,12 @@ input[type=search].js-poncho-map-search__input::-webkit-search-cancel-button {
   text-decoration: none;
   border: 1px solid transparent;
   transition: 0.15s ease-in-out;
+}
+.pm-search-results__action a:hover, .pm-search-results__action a:focus, .pm-search-results__action a:focus-visible {
+  text-decoration: none;
+}
+.pm-search-results__action:hover {
+  text-decoration: none;
 }
 .pm-search-results__action:focus {
   background: #eee;

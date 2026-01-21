@@ -11649,14 +11649,13 @@ Las clases "dato-nro" y "dato-eje" corresponde a los formatos markdown definidos
 .poncho-map {
   /* FUCUSABLE */
 }
-.poncho-map *:focus,
-.poncho-map .focus-element:focus {
+.poncho-map *:focus-visible,
+.poncho-map .focus-element:focus-visible {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
   box-sizing: border-box;
-  box-shadow: 0 0 8px var(--cielo, #039be5) !important;
-  outline: 3px solid var(--cielo, #039be5) !important;
+  outline: 3px solid var(--cielo, #039be5);
 }
 .poncho-map .pm-color-primary {
   color: var(--pm-color-primary);
@@ -12866,6 +12865,12 @@ input[type=search].js-poncho-map-search__input::-webkit-search-cancel-button {
   border: 1px solid transparent;
   transition: 0.15s ease-in-out;
 }
+.pm-search-results__action a:hover, .pm-search-results__action a:focus, .pm-search-results__action a:focus-visible {
+  text-decoration: none;
+}
+.pm-search-results__action:hover {
+  text-decoration: none;
+}
 .pm-search-results__action:focus {
   background: #eee;
 }
@@ -13080,6 +13085,50 @@ input[type=search].js-poncho-map-search__input::-webkit-search-cancel-button {
 
 .border-thick {
   border-width: 3px;
+}
+
+.border-heavy {
+  border-width: 6px;
+}
+
+.border-arg-default {
+  border-color: var(--arg-default) !important;
+}
+
+.border-arg-info {
+  border-color: var(--arg-info) !important;
+}
+
+.border-arg-secundario {
+  border-color: var(--arg-secundario) !important;
+}
+
+.border-arg-azul {
+  border-color: var(--arg-azul) !important;
+}
+
+.border-arg-arandano {
+  border-color: var(--arg-arandano) !important;
+}
+
+.border-arg-arena {
+  border-color: var(--arg-arena);
+}
+
+.border-arg-rojo {
+  border-color: var(--arg-rojo) !important;
+}
+
+.border-arg-palta {
+  border-color: var(--arg-palta) !important;
+}
+
+.border-arg-mandarina {
+  border-color: var(--arg-mandarina) !important;
+}
+
+.border-arg-rosado {
+  border-color: var(--arg-rosado) !important;
 }
 
 /**
@@ -15178,6 +15227,22 @@ footer .nav > li > a:hover {
     flex-direction: column-reverse;
   }
 }
+/* Fecha de publicación y nro de boletín clickeable */
+.normativa {
+  margin: 20px 0;
+}
+.normativa dt,
+.normativa dd {
+  display: inline;
+}
+.normativa dd {
+  white-space: nowrap;
+}
+.normativa .border-bottom {
+  padding-bottom: 7px;
+  margin-bottom: 7px;
+}
+
 /* CONTENIDO DE LA PAGINA TRAMITAR V1.1 */
 .desplegable-tramitar {
   /**
@@ -16018,6 +16083,15 @@ details {
   border-bottom-style: var(--details-border-style);
   border-bottom-width: var(--details-border-width);
   overflow: hidden;
+}
+details.summary-text-right > summary {
+  justify-content: right;
+}
+details.summary-text-center > summary {
+  justify-content: center;
+}
+details.summary-text-left > summary {
+  justify-content: left;
 }
 details::details-content {
   block-size: 0;

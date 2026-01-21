@@ -55,6 +55,19 @@ $search-transition: 0.15s ease-in-out;
         border: 1px solid transparent;
         transition: $search-transition;
 
+
+        a {
+            &:hover,
+            &:focus,
+            &:focus-visible {
+                text-decoration: none;
+            }
+        }
+
+        &:hover {
+            text-decoration: none;
+        }
+
         &:focus {
             background: $search-hover-bg;
         }
