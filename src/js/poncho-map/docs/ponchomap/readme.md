@@ -2,14 +2,13 @@
 
 ---
 
+<!-- omit in toc -->
 # PonchoMap
 
-
+<!-- omit in toc -->
 ## Tabla de contenidos
 
-- [PonchoMap](#ponchomap)
-  - [Tabla de contenidos](#tabla-de-contenidos)
-  - [Opciones generales](#opciones-generales)
+- [Opciones generales](#opciones-generales)
 
 
 ---
