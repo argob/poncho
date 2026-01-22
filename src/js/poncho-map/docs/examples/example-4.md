@@ -77,7 +77,8 @@ const FIELD_LABELS = {
     reference: "Referencia"
 };
 
-const SHEET_ID = "1KfjAVNVvviD_zGIUWIAT4...";
+const SPREADSHEET_KEY = "1KfjAVNVvviD_zGIUWIAT4...";
+const SHEET_NAME = "dataset";
 
 (async () => {
     // Inicializa el loading
@@ -85,7 +86,7 @@ const SHEET_ID = "1KfjAVNVvviD_zGIUWIAT4...";
     loader.load();
 
     const sheetService = new GapiSheetData();
-    const sheetUrl = sheetService.url("dataset", SHEET_ID);
+    const sheetUrl = sheetService.url(SHEET_NAME, SPREADSHEET_KEY);
     const sheetResponse = await fetch_json(sheetUrl);
     const sheetData = sheetService.json_data(sheetResponse);
     const {headers, entries} = sheetData;
