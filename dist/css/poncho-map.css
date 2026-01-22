@@ -1714,16 +1714,10 @@ input[type=search].js-poncho-map-search__input::-webkit-search-cancel-button {
   border: 1px solid transparent;
   transition: 0.15s ease-in-out;
 }
-.pm-search-results__action a:hover, .pm-search-results__action a:focus, .pm-search-results__action a:focus-visible {
-  text-decoration: none;
-}
-.pm-search-results__action:hover {
-  text-decoration: none;
-}
 .pm-search-results__action:focus {
-  background: #eee;
+  outline: 2px solid var(--arg-cielo);
 }
-.pm-search-results__action:hover {
+.pm-search-results__action:hover, .pm-search-results__action:focus {
   background: #eee;
   border: 1px solid #555;
   text-decoration: none;
