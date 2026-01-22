@@ -1,3 +1,7 @@
+[Volver al inicio ⏎](../readme.md)
+
+---
+
 # Mapa multipunto con datos de Google Sheets
 
 ## Ejemplo

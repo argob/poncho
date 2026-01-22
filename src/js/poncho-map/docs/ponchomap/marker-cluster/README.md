@@ -1,3 +1,7 @@
+[Volver al inicio ⏎](../../../readme.md)
+
+---
+
 <!-- omit in toc -->
 # Marker cluster
 
@@ -18,6 +22,6 @@ Se puede obtener el extenso listado de opciones y su documentación en [Leaflet 
         ‘weight’: 1,  
         ‘color’: “#666”,  
         ‘opacity’: 0.5,  
-    }  
+    }
 }
 ```
