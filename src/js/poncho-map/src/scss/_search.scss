@@ -24,7 +24,7 @@ $search-transition: 0.15s ease-in-out;
 
     &.pm-search-results__expanded {
         /* 30 son los margenes mientras que 64 es el ancho del botón de búsqueda */
-        width: calc(100% - 30px - 64px);
+        width: calc(100% - 64px);
     }
 
     &__listbox {
@@ -66,6 +66,11 @@ $search-transition: 0.15s ease-in-out;
         }
     }
 }
+
+.pm-search-combobox {
+    position: relative;
+}
+
 
 @media (max-width: 575.98px) {
     .pm-search-results {
