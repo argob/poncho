@@ -11772,6 +11772,9 @@ class PonchoMapSearch {
             return;
         }
 
+        const searchContainerElement = document.querySelector(this.search_scope_selector);
+        searchContainerElement.classList.add("pm-search-combobox");
+
         // Batch DOM writes para mejorar rendimiento
         searchElement.setAttribute("autocomplete", "off");
         searchElement.setAttribute("aria-autocomplete", "list");
@@ -11784,6 +11787,7 @@ class PonchoMapSearch {
         const searchContainer = document.createElement("div");
         searchContainer.classList.add("js-pm-search");
         searchContainer.setAttribute("aria-live", "polite");
+
         this._cachedElements.searchContainer = searchContainer;
 
         const debounceTimer = { current: null };
