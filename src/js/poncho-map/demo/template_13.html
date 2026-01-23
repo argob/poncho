@@ -105,9 +105,8 @@ COPIAR DESDE ACÁ…
 <script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.js"></script>
 <script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script>
 <link href="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.css" rel="stylesheet"/> 
-<link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.css" rel="stylesheet"/> 
 <link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.Default.css" rel="stylesheet"/> 
-<!-- <script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script> -->
+<script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
 <!-- / INCLUDE SCRIPTS -->
 
 <!-- SCRIPTS -->
@@ -116,7 +115,7 @@ COPIAR DESDE ACÁ…
     loader.load();
 
     // Custom styles
-    headStyle("parques", `.definition-list dd img {border-radius:4px;}`);
+    headStyle("parques", `.definition-list dd img {border-radius:4px;}.pm-search-results>.pm-search-result-option__image{height:100%;}`);
 
     // init
     (async () => {
@@ -127,6 +126,7 @@ COPIAR DESDE ACÁ…
         const gapiData = gapi.json_data(sheetData);
         const options = {
             debug: true,
+            map_anchor_zoom: 11,
             summary: {
                 hidden: true,
                 title: "Mapa de parques nacionales argentinos",
@@ -148,7 +148,7 @@ COPIAR DESDE ACÁ…
             },
             filters: [
                 {
-                    // legend: "Provincias",
+                    legend: "Filtrar por provincia",
                     field: ["provincia"],
                     fields: false,
                     check_uncheck_all: false,
@@ -176,7 +176,6 @@ COPIAR DESDE ACÁ…
                     key:"tipo",
                     css: [
                         "border-bottom", 
-                        "border-medium", 
                         "small",
                         "m-b-1", 
                         "p-b-xs",
@@ -217,7 +216,7 @@ COPIAR DESDE ACÁ…
 
         const searchOptions = {
             scope: "poncho-map-search",
-            placeholder: "Buscá por localidad",
+            placeholder: "Buscá por nombre del parque, provincia o localidad",
             datalist: false,
             search_fields: [
                 "localidad", 
@@ -230,7 +229,8 @@ COPIAR DESDE ACÁ…
             combobox: true,
             combobox_options: {
                 max_results: 20,
-                _template: ponchoMapTplSearch({
+                display: "fit-content",
+                template: ponchoMapTplSearch({
                     figure: "linkfoto", 
                     title: "name", 
                     text: ["localidad", "provincia"], 
