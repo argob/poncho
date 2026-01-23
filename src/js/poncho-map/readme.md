@@ -13,6 +13,7 @@
 - [PonchoMapFilter](#ponchomapfilter)
   - [Métodos](#métodos-1)
 - [PonchoMapSearch](#ponchomapsearch)
+  - [Configuración](#configuración-1)
 - [Ejemplos](#ejemplos)
 
 
@@ -31,6 +32,8 @@
 - [Summary](docs/ponchomap/summary/README.md)
 - [Template](docs/ponchomap/template/README.md)
 - [Template structure](docs/ponchomap/template-structure/README.md)
+- [Tooltip](docs/ponchomap/tooltip/readme.md)
+- [Tooltip options](docs/ponchomap/tooltip-options/readme.md)
 
 ### Métodos
 
@@ -49,6 +52,10 @@
 ## PonchoMapSearch
 
 - [Opciones generales](docs/ponchomap-search/README.md)
+
+### Configuración
+
+- [Combobox](docs/ponchomap-search/combobox/readme.md)
 
 
 ## Ejemplos

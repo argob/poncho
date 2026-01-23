@@ -24,7 +24,7 @@ Por cada enlace externo que se agrega al listado debe incorporarse según la doc
 
 | Parámetro | Tipo | Default | Descripción |
 |:---|:---|:---|:---|
-| label |`string`| Abrir en: | Texto para la etiqueta `summary` o enlace para abrir o cerrar el desplegable. |
+| label |`string`| Abrir ubicación en: | Texto para la etiqueta `summary` o enlace para abrir o cerrar el desplegable. |
 | items | `object` |  | Permite definir la cantidad de entradas, o enlaces. |
 
 **Definiciones para items**
