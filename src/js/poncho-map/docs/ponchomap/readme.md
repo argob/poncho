@@ -320,13 +320,13 @@
       <td style="text-align:left">tooltip_label</td>
       <td style="text-align:left"><code>string</code></td>
       <td style="text-align:left"><code>false</code></td>
-      <td style="text-align:left"><p>Define el texto y el formato de presentación de la información del tooltip.</p><p><a href="template/README.md">Ver opciones para tooltip_label</a></p></td>
+      <td style="text-align:left"><p>Define el texto y el formato de presentación de la información del tooltip.</p><p><a href="tooltip/readme.md">Ver opciones para tooltip_label</a></p></td>
     </tr>
     <tr>
       <td style="text-align:left">tooltip_options</td>
       <td style="text-align:left"><code>object</code></td>
       <td style="text-align:left"><code>false</code></td>
-      <td style="text-align:left">Configura las opciones del componente tooltip según las especificaciones de Leaflet.</td>
+      <td style="text-align:left"><p>Configura las opciones del componente tooltip según las especificaciones de Leaflet.</p><p><a href="tooltip-options/readme.md">Ver opciones para tooltip_options</a></p></td>
     </tr>
   </tbody>
 </table>
