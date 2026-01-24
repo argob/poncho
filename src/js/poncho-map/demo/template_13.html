@@ -36,13 +36,13 @@
     <title>Poncho Map — Template 9</title>
 </head>
 <body>
-
     <div class="demo-nav container">
         <ul class="demo-menu">
             <li><a href="./">Inicio</a></li>
         </ul>
     </div>
     <h1>Template 9</h1>
+
 <!-- 
 COPIAR DESDE ACÁ…
 -->
@@ -110,23 +110,27 @@ COPIAR DESDE ACÁ…
 <!-- / INCLUDE SCRIPTS -->
 
 <!-- SCRIPTS -->
+
 <script id="code_map">
     const loader = new PonchoMapLoader({scope: "poncho-map"});
     loader.load();
 
     // Custom styles
-    headStyle("parques", `.definition-list dd img {border-radius:4px;}.pm-search-results>.pm-search-result-option__image{height:100%;}`);
+    headStyle("parques", `.definition-list dd img {border-radius:4px;}`);
+
+    const gapi = new GapiSheetData();
 
     // init
     (async () => {
-        const gapi = new GapiSheetData();
         const sheetData = await fetch_json(
             gapi.url("Hoja 1", "1KfjAVNVvvAbwyaO6SRe35XW6avUrw19iD_zGIUWIAT4")
         );
+
         const gapiData = gapi.json_data(sheetData);
         const options = {
             debug: true,
-            map_anchor_zoom: 11,
+            map_layers_default:"satelital",
+            map_anchor_zoom: 10,
             summary: {
                 hidden: true,
                 title: "Mapa de parques nacionales argentinos",
@@ -183,7 +187,6 @@ COPIAR DESDE ACÁ…
                 },
                 values: [
                     "foto", 
-                    // "tipo", 
                     "descripcion", 
                     "lugar", 
                     "provincia", 
@@ -208,7 +211,33 @@ COPIAR DESDE ACÁ…
             marker: (self, ele) => (ele?.color || "azul"),
             slider: true,
             hash: true,
-            scroll: true
+            scroll: true,
+            allowed_tags: ["*"],
+            tooltip: true,
+            tooltip_label: `<figure class="tooltip-figure">
+                <div 
+                    style="background-image:url('{{linkfoto}}')" 
+                    class="tooltip-figure__image">
+                </div>
+                <figcaption class="tooltip-figure__caption font-sans-serif">
+                    <span class="fw-bold">
+                        {{nombre}} 
+                    </span> 
+                    <span class="br" aria-hidden="true"></span>
+                    <span>
+                        {{provincia}}
+                    </span>
+                </figcaption>
+                </figure>`,
+            tooltip_options:{
+                className: "leaflet-tooltip-own",
+                direction: "auto",
+                offset: [16,-18],
+                opacity: 1,
+                permanent: false,
+                sticky: false
+            },
+            open_maps: true,
         };
 
         const pm = new PonchoMapFilter(gapiData.entries, options);
@@ -244,6 +273,11 @@ COPIAR DESDE ACÁ…
         loader.close();
     })();
 </script>
+<noscript>
+No se puede mostrar el mapa de Parques nacionales.
+ <a href="https://sheets.googleapis.com/v4/spreadsheets/1KfjAVNVvvAbwyaO6SRe35XW6avUrw19iD_zGIUWIAT4/values/Hoja 1?key=AIzaSyCq2wEEKL9-6RmX-TkW23qJsrmnFHFf5tY&alt=json">Descargue el documento JSON</a>
+</noscript>
 <!-- / SCRIPTS -->
+
 </body>
 </html>
