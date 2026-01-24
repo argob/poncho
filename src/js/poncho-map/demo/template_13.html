@@ -15,7 +15,7 @@
     <link rel="stylesheet"
         href="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css">
     <link rel="stylesheet" href="../../../../dist/css/poncho.min.css" />
-
+    <script src="../../mapa-argentina/demo/js/demo.js"></script>    
     <!-- 
         Script para debug 
         Se reemplazan en producción por poncho.min.js
@@ -34,6 +34,15 @@
     <!-- <link rel="stylesheet" href="./css/containers.css"> -->
     <!-- / Script para debug -->
     <title>Poncho Map — Template 9</title>
+    <script>
+    // Este script se ejecuta antes de que se pinte la página
+    document.documentElement.className = "js";
+    </script>
+    <style>
+    .js-only { display: none; }
+    .js .js-only { display: block; }
+    </style>
+
 </head>
 <body>
     <div class="demo-nav container">
@@ -46,7 +55,7 @@
 <!-- 
 COPIAR DESDE ACÁ…
 -->
-<div class="container">
+<div class="container js-only">
     <div class="row">
         <div class="col-md-12">
         <!-- PONCHO MAP SEARCH -->
@@ -78,9 +87,32 @@ COPIAR DESDE ACÁ…
     </div>
 </div>
 
-<div class="container">
+
+
+
+<div class="container _js-only">
     <div class="row">
         <div class="col-md-12">
+
+            <!-- NOSCRIPT -->
+            <noscript>
+                <div class="highlight-box" role="complementary">
+                    <div class="media">
+                        <div class="media-left">
+                            <i class="fa fa-map fa-2x" aria-hidden="true"></i>
+                        </div>
+                        <div class="media-body">
+                            <p>No se puede mostrar el mapa</p>
+                            <!-- 
+                            Agruegue un enlace a un contenido alternativo sin
+                            uso de javascript.
+                            -->
+                        </div>
+                    </div>
+                </div>
+            </noscript>
+            <!-- NOSCRIPT -->
+
             <!-- PONCHO MAP -->
             <div class="poncho-map" data-scope="poncho-map">
                 <div
@@ -91,13 +123,17 @@ COPIAR DESDE ACÁ…
                 </div>
             </div>
             <!-- / PONCHO MAP -->
-            <div data-code-from="code_map" class="m-y-2" data-title="Código para el mapa"></div>
+
+            <!-- DEBUGGER -->
+            <div 
+                data-code-from="code_map" 
+                class="m-y-2" 
+                data-title="Código para el mapa">
+            </div>
+            <!-- / DEBUGGER -->
         </div>
     </div>
 </div>
-
-<script src="../../mapa-argentina/demo/js/demo.js"></script>
-
 
 <!-- INCLUDE SCRIPTS -->
 <script src="https://www.argentina.gob.ar/sites/default/files/ponchotable/showdown.js"></script>
@@ -106,37 +142,110 @@ COPIAR DESDE ACÁ…
 <script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script>
 <link href="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.css" rel="stylesheet"/> 
 <link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.Default.css" rel="stylesheet"/> 
+<script src="https://cdn.jsdelivr.net/npm/telefono-argentino/dist/telefono-argentino.min.js"></script>
 <script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
 <!-- / INCLUDE SCRIPTS -->
 
 <!-- SCRIPTS -->
 
 <script id="code_map">
+    // Custom styles
+    headStyle(
+        "parques-nacionales-style", 
+        `.definition-list dd img {border-radius:4px;}.poncho-map .leaflet-tooltip-own{--pm-tooltip:var(--arg-gris-niebla, white);--pm-tooltip-color:var(--arg-gray-dark);padding:6px;font-size:.8rem}.tooltip-figure,.tooltip-figure figcaption{padding:0;margin:0;border:none}.tooltip-figure .tooltip-figure__caption{display:block;max-width:120px;line-height:1.35;color:var(--arg-gray-dark);margin-bottom:2px;overflow-wrap:break-word!important;white-space:normal}.tooltip-figure .tooltip-figure__image{aspect-ratio:16/10;width:120px;background:no-repeat 0 0 / cover gray;margin-bottom:6px;border-radius:2px}`
+    );
+
+    // HELPERS
+    /**
+     * Genera el contenido HTML para el tooltip de un marcador.
+     *
+     * @param {PonchoMap} self - Instancia de PonchoMap.
+     * @param {Object} entry - Objeto con los datos del marcador.
+     * @returns {string} HTML del tooltip.
+     */
+    const pmCustomLabel = (self, entry) => {
+        const figure = document.createElement("figure");
+        figure.className = "tooltip-figure";
+
+        const imageDiv = document.createElement("div");
+        imageDiv.className = "tooltip-figure__image";
+        imageDiv.style.backgroundImage = `url('${entry.linkfoto}')`;
+
+        const figcaption = document.createElement("figcaption");
+        figcaption.className = "tooltip-figure__caption font-sans-serif";
+
+        const nombreSpan = document.createElement("span");
+        nombreSpan.className = "fw-bold";
+        nombreSpan.textContent = entry.nombre;
+
+        const brSpan = document.createElement("span");
+        brSpan.className = "br";
+        brSpan.setAttribute("aria-hidden", "true");
+
+        const provinciaSpan = document.createElement("span");
+        provinciaSpan.textContent = entry.provincia;
+
+        figcaption.append(nombreSpan, brSpan, provinciaSpan);
+        figure.append(imageDiv, figcaption);
+
+        return figure.outerHTML;
+    };
+
+    /**
+     * Formatea un número de teléfono argentino como enlace clicable.
+     *
+     * @param {string} telefono - Número de teléfono a formatear.
+     * @returns {string} Enlace HTML o el teléfono original si no es válido.
+     */
+    const formatearTelefono = (telefono) => {
+        if (!telefono) {
+            return "";
+        }
+        try {
+            const tel = new TelefonoArgentino(telefono);
+            if (tel.isValid()) {
+                return `<a href="tel:${tel.data.filter_input}">${tel.data.format}</a>`;
+            }
+            return telefono;
+        } catch (error) {
+            console.error("Error al formatear teléfono:", error);
+            return telefono;
+        }
+    };
+
+    // MAP
+    const SPREADSHEET_KEY = "1KfjAVNVvvAbwyaO6SRe35XW6avUrw19iD_zGIUWIAT4";
+    const SHEET_NAME = "Hoja 1";
+
     const loader = new PonchoMapLoader({scope: "poncho-map"});
     loader.load();
 
-    // Custom styles
-    headStyle("parques", `.definition-list dd img {border-radius:4px;}`);
-
     const gapi = new GapiSheetData();
-
+    
     // init
     (async () => {
         const sheetData = await fetch_json(
-            gapi.url("Hoja 1", "1KfjAVNVvvAbwyaO6SRe35XW6avUrw19iD_zGIUWIAT4")
+            gapi.url(SHEET_NAME, SPREADSHEET_KEY)
         );
 
         const gapiData = gapi.json_data(sheetData);
+        const {entries, headers} = gapiData;
+
         const options = {
-            debug: true,
-            map_layers_default:"satelital",
+            debug: false,
+            scope: "poncho-map",
+            title: "nombre",
+            map_layers_default: "satelital",
             map_anchor_zoom: 10,
             summary: {
                 hidden: true,
                 title: "Mapa de parques nacionales argentinos",
                 position: "top"
             },
-            scope: "poncho-map",
+            template: (self, entry) => {
+                entry.tel = formatearTelefono(entry.telefono);
+                return self.defaultTemplate(self, entry);
+            },
             marker_cluster_options: {
                 spiderfyOnMaxZoom: true,
                 showCoverageOnHover: false,
@@ -160,17 +269,9 @@ COPIAR DESDE ACÁ…
                     label: "Seleccione una provincia",
                     show_label: false,
                     show_legend: true,
-                    all_options_text: "Todas"
-                },
-                {
-                    legend: "Filtre por tipo",
-                    field: ["tipo"],
-                    fields: false,
-                    check_uncheck_all: true,
-                    type: "checkbox"
+                    all_options_text: "Todas las provincias"
                 }
             ],
-            title: "nombre",
             template_markdown: true,
             markdown_options: {
                 extensions: ["button", "target"]
@@ -202,47 +303,32 @@ COPIAR DESDE ACÁ…
                     {
                         key: "contacto",
                         header: "Contacto",
-                        values: ["telefono", "mail"],
-                        separator: ", "
+                        template: `{% '{{tel}}<br>' if tel != '' else '' %}`
+                            + `{% '{{mail}}' if mail != '' else '' %}`
                     }
                 ]
             },
-            headers: gapiData.headers,
+            headers: headers,
             marker: (self, ele) => (ele?.color || "azul"),
             slider: true,
             hash: true,
             scroll: true,
-            allowed_tags: ["*"],
             tooltip: true,
-            tooltip_label: `<figure class="tooltip-figure">
-                <div 
-                    style="background-image:url('{{linkfoto}}')" 
-                    class="tooltip-figure__image">
-                </div>
-                <figcaption class="tooltip-figure__caption font-sans-serif">
-                    <span class="fw-bold">
-                        {{nombre}} 
-                    </span> 
-                    <span class="br" aria-hidden="true"></span>
-                    <span>
-                        {{provincia}}
-                    </span>
-                </figcaption>
-                </figure>`,
+            tooltip_label: pmCustomLabel,
             tooltip_options:{
                 className: "leaflet-tooltip-own",
                 direction: "auto",
-                offset: [16,-18],
+                offset: [16, -18],
                 opacity: 1,
                 permanent: false,
                 sticky: false
             },
             open_maps: true,
+            allowed_tags: ["*"]
         };
 
-        const pm = new PonchoMapFilter(gapiData.entries, options);
-        pm.render();
-
+        const map = new PonchoMapFilter(entries, options);
+        
         const searchOptions = {
             scope: "poncho-map-search",
             placeholder: "Buscá por nombre del parque, provincia o localidad",
@@ -267,16 +353,17 @@ COPIAR DESDE ACÁ…
                 })
             },
         };
-        const pmSearch = new PonchoMapSearch(pm, searchOptions);
-        pmSearch.render();
+        const search = new PonchoMapSearch(map, searchOptions);
+        
+        // init
+        map.render();
+        search.render();
 
+        // End loading
         loader.close();
     })();
 </script>
-<noscript>
-No se puede mostrar el mapa de Parques nacionales.
- <a href="https://sheets.googleapis.com/v4/spreadsheets/1KfjAVNVvvAbwyaO6SRe35XW6avUrw19iD_zGIUWIAT4/values/Hoja 1?key=AIzaSyCq2wEEKL9-6RmX-TkW23qJsrmnFHFf5tY&alt=json">Descargue el documento JSON</a>
-</noscript>
+
 <!-- / SCRIPTS -->
 
 </body>
