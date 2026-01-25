@@ -9755,6 +9755,7 @@ class PonchoMapFilter extends PonchoMap {
             filters: [],
             filters_info: false,
             filters_visible: false,
+            fit_bounds_after_filter: false,
             messages: {
                 has_filters: "filters_has",
                 initial: "filter_initial",
@@ -9768,8 +9769,9 @@ class PonchoMapFilter extends PonchoMap {
         };
         let opts = Object.assign({}, defaults, options);
         this.filters = opts.filters;
-        this.filters_info = opts.filters_info;
-        this.filters_visible = opts.filters_visible;
+        this.fit_bounds_after_filter = Boolean(opts.fit_bounds_after_filter);
+        this.filters_info = Boolean(opts.filters_info);
+        this.filters_visible = Boolean(opts.filters_visible);
         this.valid_fields = ["checkbox", "radio", "select"];
         this.search_fields = opts.search_fields;
         this.messages = opts.messages;
@@ -10963,6 +10965,10 @@ class PonchoMapFilter extends PonchoMap {
         this._urlHash();
         this._setFetureAttributes();
         this._accesibleMenu();
+
+        if(this.fit_bounds_after_filter){
+            this.fitBounds();
+        }
     };
 
 
@@ -11144,8 +11150,10 @@ class PonchoMapFilter extends PonchoMap {
                 if(idParts.length >= 2){
                     const field = idParts[1];
                     this._updateCheckAllState(field);
+
                 }
                 this._filteredData();
+
             });
         });
 
