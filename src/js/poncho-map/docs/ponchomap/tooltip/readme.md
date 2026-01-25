@@ -35,7 +35,5 @@ Define el contenido y formato del texto que aparece al posicionar el cursor sobr
 
 ----
 
-
-> [!Notas]  
+> [!NOTE]  
 > [Ver opciones de presentación para tooltip](../tooltip-options/readme.md).
-

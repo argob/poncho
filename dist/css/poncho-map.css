@@ -1671,6 +1671,10 @@ input[type=search].js-poncho-map-search__input::-webkit-search-cancel-button {
   color: inherit;
 }
 
+.pm-search-combobox {
+  position: relative;
+}
+
 .pm-search-results {
   position: absolute;
   top: 45px;
@@ -1686,10 +1690,9 @@ input[type=search].js-poncho-map-search__input::-webkit-search-cancel-button {
   z-index: 9999;
 }
 .pm-search-results.pm-search-results__expanded {
-  /* 30 son los margenes mientras que 64 es el ancho del botón de búsqueda */
   width: calc(100% - 64px);
 }
-.pm-search-results__listbox {
+.pm-search-results .pm-search-results__listbox {
   margin: 0;
   padding: 0 10px;
   list-style: none;
@@ -1698,14 +1701,14 @@ input[type=search].js-poncho-map-search__input::-webkit-search-cancel-button {
   overflow-x: auto;
   scrollbar-width: thin;
 }
-.pm-search-results__option {
+.pm-search-results .pm-search-results__option {
   padding: 2px 0;
   border-bottom: 1px solid #eee;
 }
-.pm-search-results__option:last-of-type {
+.pm-search-results .pm-search-results__option:last-of-type {
   border-bottom: 1px solid transparent;
 }
-.pm-search-results__action {
+.pm-search-results .pm-search-results__action {
   display: block;
   padding: 6px 10px;
   border-radius: 6px;
@@ -1714,24 +1717,15 @@ input[type=search].js-poncho-map-search__input::-webkit-search-cancel-button {
   border: 1px solid transparent;
   transition: 0.15s ease-in-out;
 }
-.pm-search-results__action:focus {
+.pm-search-results .pm-search-results__action:focus {
   outline: 2px solid var(--arg-cielo);
 }
-.pm-search-results__action:hover, .pm-search-results__action:focus {
+.pm-search-results .pm-search-results__action:hover, .pm-search-results .pm-search-results__action:focus {
   background: #eee;
   border: 1px solid #555;
   text-decoration: none;
 }
 
-.pm-search-combobox {
-  position: relative;
-}
-
-@media (max-width: 575.98px) {
-  .pm-search-results.pm-search-results__expanded {
-    width: calc(100% - 30px);
-  }
-}
 .pm-search-result-option {
   display: grid;
   grid-template-columns: auto 1fr;
@@ -1739,8 +1733,7 @@ input[type=search].js-poncho-map-search__input::-webkit-search-cancel-button {
   column-gap: 10px;
   row-gap: 1px;
 }
-
-.pm-search-result-option__figure {
+.pm-search-result-option .pm-search-result-option__figure {
   margin: 0;
   padding: 0;
   overflow: hidden;
@@ -1752,21 +1745,24 @@ input[type=search].js-poncho-map-search__input::-webkit-search-cancel-button {
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.15);
   margin-left: -3px;
 }
-
-.pm-search-result-option__image {
+.pm-search-result-option .pm-search-result-option__image {
   border-radius: 0;
   margin: 0;
   width: 100%;
-  height: 100%;
+  height: 100% !important;
   object-fit: cover;
 }
-
-.pm-search-result-option__text {
+.pm-search-result-option .pm-search-result-option__text {
   grid-area: b;
 }
-
-.pm-search-result-option:not(:has(.pm-search-result-option__figure)) {
+.pm-search-result-option .pm-search-result-option:not(:has(.pm-search-result-option__figure)) {
   grid-template-columns: 1fr;
   grid-template-areas: "b";
   column-gap: 0;
+}
+
+@media (max-width: 575.98px) {
+  .pm-search-results.pm-search-results__expanded {
+    width: calc(100% - 30px);
+  }
 }
