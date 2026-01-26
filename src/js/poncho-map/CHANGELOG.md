@@ -1,5 +1,16 @@
 # Changelog
 
+## Release 2.2.1
+
+### PonchoMap
+
+ * Se agregó la posibilidad de cambiar las opciones de visualización cuando se ejecuta fitBounds().
+
+### PonchoMapFilter
+
+ * Se incorporó la opción para ajustar los markers o polígonos a los bordes del mapa cuando el usuario cambia un filtro.
+
+
 ## Release 2.2
 
 ### PonchoMapFilter
