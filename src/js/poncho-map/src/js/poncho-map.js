@@ -168,6 +168,12 @@ class PonchoMap {
             ],
             error_reporting: false,
             fit_bounds_onevent: true,
+            fit_bounds_options: {
+                padding: 0.005,
+                maxZoom: 10,
+                animate: true,
+                duration: 0.25
+            },
             hash: false,
             header_icons: [],
             headers: {},
@@ -352,6 +358,7 @@ class PonchoMap {
         this.hash = opts.hash;
         this.scroll = opts.scroll;
         this.fit_bounds_onevent = opts.fit_bounds_onevent;
+        this.fit_bounds_options = opts.fit_bounds_options;
         this.map_view = opts.map_view;
         this.map_init_options = opts.map_init_options;
         this.anchor_delay = opts.anchor_delay;
@@ -3424,13 +3431,58 @@ class PonchoMap {
 
     /**
      * Hace zoom hasta los límites de los markers
-     * @return {undefined}
+     * @param {number} [userPadding] - Padding opcional para retrocompatibilidad
+     * @return {boolean} true si se ajustó, false si no
      */
-    fitBounds = (padding=0.005) => {
+    fitBounds = (userPadding) => {
+        let options = (this.isObject(this.fit_bounds_options) ? 
+                this.fit_bounds_options : {});
+
+        // si se pasa un número, se usa como padding
+        if (typeof userPadding === "number") {
+            options.padding = userPadding;
+        }
+
+        let {
+            padding = 0.005,
+            maxZoom = 22,
+            animate = true,
+            duration = 0.25
+        } = options;
+
         try {
-            this.map.fitBounds(this.geojson.getBounds().pad(padding));
+            if (!this.geojson) {
+                this.logger.warn(
+                    "fitBounds", 
+                    "No hay geojson disponible"
+                );
+                return false;
+            }
+
+            const bounds = this.geojson.getBounds();
+
+            if (!bounds.isValid()) {
+                this.logger.warn(
+                    "fitBounds", 
+                    "No hay bounds válidos para ajustar"
+                );
+                return false;
+            }
+
+            if (this.map_layers_default === "satelital" && maxZoom > 17) {
+                maxZoom = 17;
+            }
+
+            this.map.fitBounds(bounds.pad(padding), {
+                maxZoom,
+                animate,
+                duration
+            });
+
+            return true;
         } catch (error) {
             this.logger.error("fitBounds", error);
+            return false;
         }
     };
 
