@@ -68,6 +68,26 @@
       <td style="text-align:left">Realiza un ajuste automático del zoom sobre el polígono, línea o marcador cuando se utiliza el selector o se especifica por URL.</td>
     </tr>
     <tr>
+      <td style="text-align:left">fit_bounds_after_filter</td>
+      <td style="text-align:left"><code>boolean</code></td>
+      <td style="text-align:left"><code>false</code></td>
+      <td style="text-align:left">Ajusta los markers o los polígonos a los bordes del mapa una vez que se modifica un filtro.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">fit_bounds_options</td>
+      <td style="text-align:left"><code>object</code></td>
+      <td style="text-align:left"><code>true</code></td>
+      <td style="text-align:left">Opciones para <em>fitBounds()</em>:<pre>
+{
+  fit_bounds_options: {
+      padding: 0,
+      maxZoom: 22,
+      animate: true,
+      duration: 0.25
+  }
+}</pre></td>
+    </tr>
+    <tr>
       <td style="text-align:left">hash</td>
       <td style="text-align:left"><code>boolean</code></td>
       <td style="text-align:left"><code>false</code></td>
