@@ -5506,7 +5506,7 @@ class PonchoMap {
             fit_bounds_onevent: true,
             fit_bounds_options: {
                 padding: 0.005,
-                maxZoom: 10,
+                maxZoom: 22,
                 animate: true,
                 duration: 0.25
             },
