@@ -1,9 +1,13 @@
+[Volver al inicio ⏎](../../../readme.md)
+
+---
+
+<!-- omit in toc -->
 # Marker
 
-- [Marker](#marker)
-  - [Opciones para marker](#opciones-para-marker)
-    - [Definiendo colores](#definiendo-colores)
-    - [Modificando el tipo de marker](#modificando-el-tipo-de-marker)
+- [Opciones para marker](#opciones-para-marker)
+  - [Definiendo colores](#definiendo-colores)
+  - [Modificando el tipo de marker](#modificando-el-tipo-de-marker)
 
 
 ## Opciones para marker

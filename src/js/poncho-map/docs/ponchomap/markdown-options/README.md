@@ -1,7 +1,11 @@
+[Volver al inicio ⏎](../../../readme.md)
+
+---
+
+<!-- omit in toc -->
 # Markdown options
 
-- [Markdown options](#markdown-options)
-	- [Valores por defecto](#valores-por-defecto)
+- [Valores por defecto](#valores-por-defecto)
 
 
 ## Valores por defecto

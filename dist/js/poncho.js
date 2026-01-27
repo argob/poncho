@@ -5504,6 +5504,12 @@ class PonchoMap {
             ],
             error_reporting: false,
             fit_bounds_onevent: true,
+            fit_bounds_options: {
+                padding: 0.005,
+                maxZoom: 22,
+                animate: true,
+                duration: 0.25
+            },
             hash: false,
             header_icons: [],
             headers: {},
@@ -5688,6 +5694,7 @@ class PonchoMap {
         this.hash = opts.hash;
         this.scroll = opts.scroll;
         this.fit_bounds_onevent = opts.fit_bounds_onevent;
+        this.fit_bounds_options = opts.fit_bounds_options;
         this.map_view = opts.map_view;
         this.map_init_options = opts.map_init_options;
         this.anchor_delay = opts.anchor_delay;
@@ -5892,7 +5899,7 @@ class PonchoMap {
      * Versión poncho
      */
     get version(){
-        return "2.2.0";
+        return "2.2.1";
     }
 
 
@@ -8760,13 +8767,58 @@ class PonchoMap {
 
     /**
      * Hace zoom hasta los límites de los markers
-     * @return {undefined}
+     * @param {number} [userPadding] - Padding opcional para retrocompatibilidad
+     * @return {boolean} true si se ajustó, false si no
      */
-    fitBounds = (padding=0.005) => {
+    fitBounds = (userPadding) => {
+        let options = (this.isObject(this.fit_bounds_options) ? 
+                this.fit_bounds_options : {});
+
+        // si se pasa un número, se usa como padding
+        if (typeof userPadding === "number") {
+            options.padding = userPadding;
+        }
+
+        let {
+            padding = 0.005,
+            maxZoom = 22,
+            animate = true,
+            duration = 0.25
+        } = options;
+
         try {
-            this.map.fitBounds(this.geojson.getBounds().pad(padding));
+            if (!this.geojson) {
+                this.logger.warn(
+                    "fitBounds", 
+                    "No hay geojson disponible"
+                );
+                return false;
+            }
+
+            const bounds = this.geojson.getBounds();
+
+            if (!bounds.isValid()) {
+                this.logger.warn(
+                    "fitBounds", 
+                    "No hay bounds válidos para ajustar"
+                );
+                return false;
+            }
+
+            if (this.map_layers_default === "satelital" && maxZoom > 17) {
+                maxZoom = 17;
+            }
+
+            this.map.fitBounds(bounds.pad(padding), {
+                maxZoom,
+                animate,
+                duration
+            });
+
+            return true;
         } catch (error) {
             this.logger.error("fitBounds", error);
+            return false;
         }
     };
 
@@ -9755,6 +9807,7 @@ class PonchoMapFilter extends PonchoMap {
             filters: [],
             filters_info: false,
             filters_visible: false,
+            fit_bounds_after_filter: false,
             messages: {
                 has_filters: "filters_has",
                 initial: "filter_initial",
@@ -9768,8 +9821,9 @@ class PonchoMapFilter extends PonchoMap {
         };
         let opts = Object.assign({}, defaults, options);
         this.filters = opts.filters;
-        this.filters_info = opts.filters_info;
-        this.filters_visible = opts.filters_visible;
+        this.fit_bounds_after_filter = Boolean(opts.fit_bounds_after_filter);
+        this.filters_info = Boolean(opts.filters_info);
+        this.filters_visible = Boolean(opts.filters_visible);
         this.valid_fields = ["checkbox", "radio", "select"];
         this.search_fields = opts.search_fields;
         this.messages = opts.messages;
@@ -10963,6 +11017,10 @@ class PonchoMapFilter extends PonchoMap {
         this._urlHash();
         this._setFetureAttributes();
         this._accesibleMenu();
+
+        if(this.fit_bounds_after_filter){
+            this.fitBounds();
+        }
     };
 
 
@@ -11144,8 +11202,10 @@ class PonchoMapFilter extends PonchoMap {
                 if(idParts.length >= 2){
                     const field = idParts[1];
                     this._updateCheckAllState(field);
+
                 }
                 this._filteredData();
+
             });
         });
 
@@ -11772,6 +11832,9 @@ class PonchoMapSearch {
             return;
         }
 
+        const searchContainerElement = document.querySelector(this.search_scope_selector);
+        searchContainerElement.classList.add("pm-search-combobox");
+
         // Batch DOM writes para mejorar rendimiento
         searchElement.setAttribute("autocomplete", "off");
         searchElement.setAttribute("aria-autocomplete", "list");
@@ -11784,6 +11847,7 @@ class PonchoMapSearch {
         const searchContainer = document.createElement("div");
         searchContainer.classList.add("js-pm-search");
         searchContainer.setAttribute("aria-live", "polite");
+
         this._cachedElements.searchContainer = searchContainer;
 
         const debounceTimer = { current: null };

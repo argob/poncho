@@ -1,10 +1,13 @@
+[Volver al inicio ⏎](../../readme.md)
 
+---
+
+<!-- omit in toc -->
 # PonchoMapFilter
 
-- [PonchoMapFilter](#ponchomapfilter)
-  - [Opciones para filters](#opciones-para-filters)
-    - [Opciones para field](#opciones-para-field)
-    - [Opciones para fields](#opciones-para-fields)
+- [Opciones para filters](#opciones-para-filters)
+  - [Opciones para field](#opciones-para-field)
+  - [Opciones para fields](#opciones-para-fields)
 
 
 
@@ -13,20 +16,22 @@
 | filters | `object` | `false` | Consultar opciones para [filters](#opciones-para-filters) |
 | filters_visible | `boolean` | `false` | Define el estado inicial del panel de filtros. |
 | filters_info | `boolean` | `false` | Muestra un icono con _tooltip_ que indica el total de resultados por filtro. |
+| fit_bounds_after_filter | `boolean` | `false` | Permite ajustar los markes o polígonos del mapa a sus border cuando cambian los filtros. |
 
 ## Opciones para filters
 
 ```js
 const options = {
-  "filters": [
-    {
-      "legend": "Ver",
-      "type": "checkbox",
-      "field": ["provincia", "checked"],
-      "fields": false,
-      "check_uncheck_all": false
-    }
-  ]
+    "filters": [
+        {
+            legend: "Ver",
+            type: "checkbox",
+            field: ["provincia", "checked"],
+            fields: false,
+            check_uncheck_all: false
+            fit_bounds_after_filter: false
+        }
+    ]
 };
 ```
 
@@ -34,21 +39,21 @@ Alternativamente, es posible configurar filtros de forma manual:
 
 ```js
 const options = {
-  "filters": [
-    {
-      "legend": "Ver",
-      "type": "checkbox",
-      "field": false,
-      "fields": [
-          ["provincia", "Buenos Aires", ["Buenos Aires", "Ciudad Autónoma de Buenos Aires"], "checked"],
-          ["provincia", "Noreste Argentino", ["Chaco", "Corrientes", "Formosa", "Misiones"], "checked"],
-          ["provincia", "Noroeste Argentino", ["Catamarca", "Jujuy", "La Rioja", "Salta", "Santiago del Estero", "Tucumán"]],
-          ["provincia", "Región Centro", ["Córdoba", "Entre Ríos", "Santa Fe"]],
-          ["provincia", "Región Cuyo", ["La Pampa", "Mendoza", "San Juan", "San Luis"]],
-          ["provincia", "Región Patagonia", ["Chubut", "Neuquén", "Río Negro", "Santa Cruz", "Tierra del Fuego"]],
-      ]
-    }
-  ]
+    "filters": [
+        {
+            "legend": "Ver",
+            "type": "checkbox",
+            "field": false,
+            "fields": [
+                ["provincia", "Buenos Aires", ["Buenos Aires", "Ciudad Autónoma de Buenos Aires"], "checked"],
+                ["provincia", "Noreste Argentino", ["Chaco", "Corrientes", "Formosa", "Misiones"], "checked"],
+                ["provincia", "Noroeste Argentino", ["Catamarca", "Jujuy", "La Rioja", "Salta", "Santiago del Estero", "Tucumán"]],
+                ["provincia", "Región Centro", ["Córdoba", "Entre Ríos", "Santa Fe"]],
+                ["provincia", "Región Cuyo", ["La Pampa", "Mendoza", "San Juan", "San Luis"]],
+                ["provincia", "Región Patagonia", ["Chubut", "Neuquén", "Río Negro", "Santa Cruz", "Tierra del Fuego"]],
+            ]
+        }
+    ]
 };
 ```
 

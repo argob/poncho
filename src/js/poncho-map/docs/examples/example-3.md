@@ -1,3 +1,7 @@
+[Volver al inicio ⏎](../../readme.md)
+
+---
+
 # Mapa multipunto con carga asíncrona
 
 ## Ejemplo
@@ -7,7 +11,7 @@
 <search>
     <form>
         <div data-scope="search-poncho-map">
-            <label class="sr-only" for="search">Buscar puntos</label>
+            <label class="sr-only" for="search">Buscar ubicaciones</label>
             <div class="input-group m-b-0 p-b-0 webform-component">
                 <input 
                     class="js-poncho-map-search__input form-control" 

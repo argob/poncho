@@ -1,3 +1,7 @@
+[Volver al inicio ⏎](../../readme.md)
+
+---
+
 # Mapa con un punto
 
 ```html

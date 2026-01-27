@@ -1,4 +1,13 @@
+[Volver al inicio ⏎](../../readme.md)
+
+---
+
+<!-- omit in toc -->
 # Mapa multipunto
+
+- [Datos de prueba](#datos-de-prueba)
+- [Ejemplo](#ejemplo)
+
 
 ## Datos de prueba
 

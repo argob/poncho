@@ -1,5 +1,21 @@
 # Changelog
 
+## Release 2.2.1
+
+### PonchoMap
+
+ * Se agregó la posibilidad de cambiar las opciones de visualización cuando se ejecuta fitBounds().
+ * Se removieron asignaciones de estilo redundantes.
+
+### PonchoMapFilter
+
+ * Se incorporó la opción para ajustar los markers o polígonos a los bordes del mapa cuando el usuario cambia un filtro.
+
+### PonchoMapSearch
+
+ * Se corrigió el bug que tenía el desplegable cuando se quitaba la asignación de columnas bootstrap.
+
+
 ## Release 2.2
 
 ### PonchoMapFilter

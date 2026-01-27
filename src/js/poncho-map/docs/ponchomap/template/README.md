@@ -1,11 +1,20 @@
+[Volver al inicio ⏎](../../../readme.md)
 
-### Template
+---
+
+<!-- omit in toc -->
+# Template
+
+- [Ejemplos](#ejemplos)
+  - [Función dentro y fuera del grupo de opciones](#función-dentro-y-fuera-del-grupo-de-opciones)
+      - [Modificando la entrada y retornando el template por defecto](#modificando-la-entrada-y-retornando-el-template-por-defecto)
+
 
 La opción `template` debe recibir un string de retorno. Para ello, es posible definir el atributo como una función o asignar un string directamente.
 
-#### Ejemplos
+## Ejemplos
 
-##### Función dentro y fuera del grupo de opciones
+### Función dentro y fuera del grupo de opciones
 
 ```js
 const opciones = {

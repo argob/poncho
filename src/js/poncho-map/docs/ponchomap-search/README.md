@@ -1,8 +1,14 @@
+[Volver al inicio ⏎](../../readme.md)
+
+---
+
+<!-- omit in toc -->
 # PonchoMapSearch
 
-- [PonchoMapSearch](#ponchomapsearch)
-  - [Ejemplo de uso para el buscador](#ejemplo-de-uso-para-el-buscador)
+- [Parámetros](#parámetros)
+- [Ejemplo de uso para el buscador](#ejemplo-de-uso-para-el-buscador)
 
+## Parámetros
 
 | Parámetro | Tipo | Default | Descripción | Tipo de uso |
 |:---|:---|:---|:---|:---|
@@ -10,8 +16,8 @@
 | placeholder | `string` | Su búsqueda | Texto de ayuda que aparece en un tono medio en el selector de items, complementa al label de un formulario. | *Opcional* |
 | search_fields | `object` | [] | Define los índices que se utilizan para realizar la búsqueda. Ej. `["provincia", "localidad", "nombre"]` | *Opcional* |
 | datalist | `boolean` | `false` | Despliega un HTML datalis para el _input_ | *Opcional* |
-| combobox | `boolean` | `false` | Despliega el componente combobox para obtener resultados de búsqueda mejorados y con una visualización de resultados a medida del requerimiento del mapa. | Ver combobox_options |
-| combobox_options | `object` | `false` | Permite modificar la visualización de los resultados de búsqueda y cómo se muestra el menú desplegable | *Opcional* |
+| combobox | `boolean` | `false` | Despliega el componente combobox para obtener resultados de búsqueda mejorados y con una visualización de resultados a medida del requerimiento del mapa. | *Opcional* |
+| combobox_options | `object` | `false` | Permite modificar la visualización de los resultados de búsqueda y cómo se muestra el menú desplegable [Ver combobox_options](./combobox/readme.md) | *Opcional* |
 
 
 ## Ejemplo de uso para el buscador
