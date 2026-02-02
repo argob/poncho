@@ -53,8 +53,6 @@
 </div>
 <h1>Template 13</h1>
 
-
-
 <!-- 
 COPIAR DESDE ACÁ…
 -->
@@ -119,7 +117,7 @@ COPIAR DESDE ACÁ…
                     class="leaflet-container leaflet-touch leaflet-fade-anim 
                         leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
                     id="map"
-                    style="height: 650px;">
+                    style="height: 700px;">
                 </div>
             </div>
             <!-- / PONCHO MAP -->
@@ -273,6 +271,12 @@ COPIAR DESDE ACÁ…
                 }
             ],
             fit_bounds_after_filter: true,
+            fit_bounds_options: {
+                padding: 0,
+                maxZoom: 12,
+                animate: true,
+                duration: 0.25
+            },
             template_markdown: true,
             markdown_options: {
                 extensions: ["button", "target"]
@@ -366,4 +370,4 @@ COPIAR DESDE ACÁ…
 </script>
 <!-- / SCRIPTS -->
 </body>
-</html>
+</html> 
