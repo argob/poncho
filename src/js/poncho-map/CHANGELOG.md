@@ -4,16 +4,17 @@
 
 ### PonchoMap
 
- * Se agregó la posibilidad de cambiar las opciones de visualización cuando se ejecuta fitBounds().
- * Se removieron asignaciones de estilo redundantes.
+ * Se incorporó la opción `pan_by` habilitada por defecto. Esta funcionalidad desplaza el marcador hacia la izquierda del mapa cuando su posición coincide con el área que ocupará el slider.
+ * Se agregó la posibilidad de personalizar las opciones de visualización del método `fitBounds()`.
+ * Se eliminaron asignaciones de estilo redundantes.
 
 ### PonchoMapFilter
 
- * Se incorporó la opción para ajustar los markers o polígonos a los bordes del mapa cuando el usuario cambia un filtro.
+ * Se incorporó la opción para ajustar marcadores o polígonos a los límites visibles del mapa cuando el usuario modifica un filtro.
 
 ### PonchoMapSearch
 
- * Se corrigió el bug que tenía el desplegable cuando se quitaba la asignación de columnas bootstrap.
+ * Se corrigió un error en el menú desplegable que se producía al eliminar la asignación de columnas de Bootstrap.
 
 
 ## Release 2.2

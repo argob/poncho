@@ -193,13 +193,13 @@
       <td style="text-align:left">marker_cluster_options</td>
       <td style="text-align:left"><code>Object</code></td>
       <td style="text-align:left"><code>"marker_cluster_options": {}</code></td>
-      <td style="text-align:left"> <a href="marker-cluster/README.md">Ver opciones para marker_cluster_options</a></td>
+      <td style="text-align:left"><p>Configura el comportamiento de agrupación de marcadores cercanos.</p><p><a href="marker-cluster/README.md">Ver opciones para marker_cluster_options</a>.</p></td>
     </tr>
     <tr>
       <td style="text-align:left">markdown_options</td>
       <td style="text-align:left"><code>object</code></td>
       <td style="text-align:left"></td>
-      <td style="text-align:left"><p>Configura las opciones del plugin showdown.js.</p><p><a href="markdown-options/README.md">Ver opciones para markdown_options</a></p></td>
+      <td style="text-align:left"><p>Configura las opciones del plugin showdown.js.</p><p><a href="markdown-options/README.md">Ver opciones para markdown_options</a>.</p></td>
     </tr>
     <tr>
       <td style="text-align:left">no_info</td>
@@ -211,13 +211,13 @@
       <td style="text-align:left">open_maps</td>
       <td style="text-align:left"><code>boolean</code></td>
       <td style="text-align:left"><code>false</code></td>
-      <td style="text-align:left"><p>Habilita el menú de enlaces alternativos.</p><p><a href="open-maps/README.md">Ver open maps</a></p></td>
+      <td style="text-align:left"><p>Habilita el menú de enlaces alternativos.</p><p><a href="open-maps/README.md">Ver opciones para open_maps</a>.</p></td>
     </tr>
     <tr>
       <td style="text-align:left">open_maps_options</td>
       <td style="text-align:left"><code>object</code></td>
       <td style="text-align:left"></td>
-      <td style="text-align:left"><p>Permite redefinir el nombre del desplegable y los enlaces a mapas externos.</p><p><a href="open-maps/README.md">Ver opciones para open_maps_options</a></p></td>
+      <td style="text-align:left"><p>Permite redefinir el nombre del desplegable y los enlaces a mapas externos.</p><p><a href="open-maps/README.md">Ver opciones para open_maps_options</a>.</p></td>
     </tr>
     <tr>
       <td style="text-align:left">render_slider</td>
@@ -340,13 +340,19 @@
       <td style="text-align:left">tooltip_label</td>
       <td style="text-align:left"><code>string</code></td>
       <td style="text-align:left"><code>false</code></td>
-      <td style="text-align:left"><p>Define el texto y el formato de presentación de la información del tooltip.</p><p><a href="tooltip/readme.md">Ver opciones para tooltip_label</a></p></td>
+      <td style="text-align:left"><p>Define el texto y el formato de presentación de la información del tooltip.</p><p><a href="tooltip/readme.md">Ver opciones para tooltip_label</a>.</p></td>
     </tr>
     <tr>
       <td style="text-align:left">tooltip_options</td>
       <td style="text-align:left"><code>object</code></td>
       <td style="text-align:left"><code>false</code></td>
-      <td style="text-align:left"><p>Configura las opciones del componente tooltip según las especificaciones de Leaflet.</p><p><a href="tooltip-options/readme.md">Ver opciones para tooltip_options</a></p></td>
+      <td style="text-align:left"><p>Configura las opciones del componente tooltip según las especificaciones de Leaflet.</p><p><a href="tooltip-options/readme.md">Ver opciones para tooltip_options</a>.</p></td>
+    </tr>
+    <tr>
+      <td style="text-align:left">pan_by</td>
+      <td style="text-align:left"><code>boolean</code></td>
+      <td style="text-align:left"><code>true</code></td>
+      <td style="text-align:left">Desplaza automáticamente el marcador hacia la izquierda del mapa cuando su posición coincide con el área que ocupará el slider, manteniendo así su visibilidad.</td>
     </tr>
   </tbody>
 </table>
