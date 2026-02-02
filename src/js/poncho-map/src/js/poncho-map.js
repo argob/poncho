@@ -97,6 +97,7 @@ const PM_TRANSLATE = {
 class PonchoMap {
     constructor(data, options){
         const defaults = {
+            pan_by: true,
             accesible_menu_extras: [
                 {
                     label: "map_help_us",
@@ -332,7 +333,7 @@ class PonchoMap {
 
         // Assign options
         let opts = Object.assign({}, defaults, options);
-
+        this.pan_by = Boolean(opts.pan_by);
         // Set variables
         this.lang = opts.lang;
         this.dictionary = ((opts?.dictionary && opts.dictionary[this.lang])
@@ -955,6 +956,10 @@ class PonchoMap {
     };
 
 
+    // Obtiene el ancho del mapa
+    _mapWidth = () => this.map.getSize().x;
+
+
     /**
      * Define la fracción en la que puede alinearse el mapa.
      * 
@@ -970,7 +975,7 @@ class PonchoMap {
         // Tamaño del contenedor del mapa.
         // Si se especifica tamaño, lo usa. De otro modo accede al tamaño
         // del ancho del mapa.
-        const elementSize = (this.isNumber(mediaSize) ? mediaSize : 
+        const elementSize = (this.isNumber(mediaSize) ? mediaSize :
             document.getElementById(this.map_selector).offsetWidth);
 
         // obtengo el listado de breakpoints válidos.
@@ -1085,7 +1090,8 @@ class PonchoMap {
 
         let currentCenterPoint = this.map.latLngToContainerPoint(currentCenter);
         const fractionPos = (align == "left" ? denominator - numerator : numerator);
-        let newX = ((document.querySelector(".poncho-map").offsetWidth / 
+
+        let newX = ((document.querySelector(`.poncho-map${this.scope_selector}`).offsetWidth / 
                 denominator) * fractionPos);
 
         let newY = currentCenterPoint.y;
@@ -1719,7 +1725,6 @@ class PonchoMap {
         details.appendChild(summary);
         details.appendChild(ul);
         footer.appendChild(details);
-
     }
 
 
@@ -2661,6 +2666,7 @@ class PonchoMap {
         if(ponchoMapElement){
             ponchoMapElement.appendChild(backdrop);
             ponchoMapElement.appendChild(container);
+            this._sliderElement = container;
         }
     };
 
@@ -2832,6 +2838,38 @@ class PonchoMap {
 
 
     /**
+     * Calcula el desplazamiento horizontal necesario para que el marker
+     * no quede oculto detrás del slider.
+     * @param {object} event - Evento del marker (click/hover)
+     * @returns {number} Píxeles a desplazar (0 si no es necesario)
+     */
+    _calcPanOffset = (event) => {
+        if (!this._sliderElement) {
+            return 0;
+        }
+        const SLIDER_WIDTH = this._sliderElement.offsetWidth;
+        const SLIDER_MARGIN = 15;
+        const MARKER_PADDING = 80;
+        const SLIDER_FULL_WIDTH = SLIDER_WIDTH + SLIDER_MARGIN + (MARKER_PADDING / 2);
+
+        const mapWidth = this._mapWidth();
+        if (mapWidth < this.media_breakpoint.sm) {
+            return 0;
+        }
+
+        const latlng = event.latlng || event.target.getLatLng();
+        const { x: markerX } = this.map.latLngToContainerPoint(latlng);
+        const visibleZone = mapWidth - SLIDER_FULL_WIDTH;
+
+        if (markerX > visibleZone) {
+            return Math.round(markerX - visibleZone + MARKER_PADDING);
+        }
+
+        return 0;
+    }
+
+
+    /**
      * Asigna un evento en el onclick a un layer.
      * @todo Buscar un método más eficiente para lograr esto sin tener
      * que evaluar el tipo de objeto geoJSON.
@@ -2859,6 +2897,19 @@ class PonchoMap {
 
             if (content) {
                 this.setContent(content.properties);
+            }
+
+            // Mueje el marker segun la posicíon
+            const panOffset = this._calcPanOffset(event);
+            if (panOffset && this.pan_by) {
+                event.target._map.panBy(
+                    [panOffset, 0],
+                    {
+                        animate: true,
+                        duration: .5, 
+                        easeLinearity: 0.25
+                    }
+                );
             }
         });
     };
