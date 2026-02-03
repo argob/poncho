@@ -2849,8 +2849,10 @@ class PonchoMap {
         }
         const SLIDER_WIDTH = this._sliderElement.offsetWidth;
         const SLIDER_MARGIN = 15;
-        const MARKER_PADDING = 80;
-        const SLIDER_FULL_WIDTH = SLIDER_WIDTH + SLIDER_MARGIN + (MARKER_PADDING / 2);
+        const MARKER_BUFFER_ZONE = 80;
+        const sliderOccupiedWidth = SLIDER_WIDTH + SLIDER_MARGIN;
+        const sliderOverlapZone = SLIDER_WIDTH + SLIDER_MARGIN 
+                + (MARKER_BUFFER_ZONE / 2);
 
         const mapWidth = this._mapWidth();
         if (mapWidth < this.media_breakpoint.sm) {
@@ -2859,10 +2861,11 @@ class PonchoMap {
 
         const latlng = event.latlng || event.target.getLatLng();
         const { x: markerX } = this.map.latLngToContainerPoint(latlng);
-        const visibleZone = mapWidth - SLIDER_FULL_WIDTH;
+        const visibleZone = mapWidth - sliderOverlapZone;
 
         if (markerX > visibleZone) {
-            return Math.round(markerX - visibleZone + MARKER_PADDING);
+            return Math.round(markerX - (mapWidth - sliderOccupiedWidth) 
+                    + MARKER_BUFFER_ZONE);
         }
 
         return 0;
