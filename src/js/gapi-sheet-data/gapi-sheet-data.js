@@ -39,9 +39,19 @@ class GapiSheetData {
 
 
     /**
-     * Retorna los elemento del json
+     * Retorna los elementos del json estructurados en feed,
+     * entries y headers.
+     *
+     * @param {object} json Respuesta JSON de la API de Google Sheets.
+     * @returns {{feed: object[], entries: object[], headers: object}}
      */
     json_data = (json) => {
+        if(!json || !json.values || !json.values.length){
+            throw new Error(
+                "El parámetro 'json' debe contener una propiedad 'values'"
+                + " con al menos una fila."
+            );
+        }
         const feed = this.feed(json);
         return {
             "feed": feed,
