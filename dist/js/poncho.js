@@ -12109,11 +12109,17 @@ function ponchoMapTplSearch(data){
 
     // Agregar imagen si existe
     if (figure && typeof figure === 'string') {
-        const figureTemplate = `{% '<figure class="pm-search-result-option__figure">`
-            + `<img src="{{${figure}}}" width="90" `
-            + `alt="" class="pm-search-result-option__image" />`
-            + `</figure>' if foto != '' else '' %}`;
-        container.insertAdjacentHTML('beforeend', figureTemplate);
+        const figureEl = document.createElement('figure');
+        figureEl.classList.add('pm-search-result-option__figure');
+        const img = document.createElement('img');
+        img.src = `{{${figure}}}`;
+        img.width = 90;
+        img.alt = '';
+        img.loading = "lazy";
+        img.classList.add('pm-search-result-option__image');
+        
+        figureEl.appendChild(img);
+        container.appendChild(figureEl);
     }
 
     // Columna de contenido
