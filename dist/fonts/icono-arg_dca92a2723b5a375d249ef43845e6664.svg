@@ -1,11 +1,11 @@
 <?xml version="1.0" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
 <!--
-2026-2-2: Created with FontForge (http://fontforge.org)
+2026-2-3: Created with FontForge (http://fontforge.org)
 -->
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
 <metadata>
-Created by FontForge 20230101 at Mon Feb  2 12:47:24 2026
+Created by FontForge 20230101 at Tue Feb  3 19:48:44 2026
  By 
 
 </metadata>
@@ -22,7 +22,7 @@ Created by FontForge 20230101 at Mon Feb  2 12:47:24 2026
     bbox="-0.656854 -64 512 448"
     underline-thickness="38.4"
     underline-position="-76.8"
-    unicode-range="U+0020-F78E"
+    unicode-range="U+0020-F78F"
   />
     <missing-glyph />
     <glyph glyph-name="space" unicode=" " horiz-adv-x="200" 
@@ -5967,6 +5967,10 @@ c0 1 -2 2 -3 2zM358 52h-317c-22 0 -41 18 -41 40v200c0 22 19 40 41 40h317c22 0 40
     <glyph glyph-name="tarjeta-alimentar-negativo" unicode="&#xf5f9;" horiz-adv-x="398" 
 d="M358 332c22 0 40 -18 40 -40v-200c0 -22 -18 -40 -40 -40h-317c-22 0 -41 18 -41 40v200c0 22 19 40 41 40h317zM198 284c-25 0 -46 -21 -46 -46s21 -45 46 -45s45 20 45 45s-20 46 -45 46zM311 208c0 1 0 3 1 4c0 6 -2 12 -6 17c-5 4 -11 7 -17 7v0c-7 0 -14 -5 -17 -12
 c-12 -33 -40 -55 -71 -55h-1v0c-30 1 -59 23 -71 55c-2 7 -9 12 -17 12c-7 0 -14 -2 -18 -7c-4 -4 -7 -11 -6 -17v-4c8 -62 56 -107 112 -107s102 45 111 107z" />
+    <glyph glyph-name="tasas-municipales" unicode="&#xf78f;" horiz-adv-x="365" 
+d="M251 208v0c63 0 114 -52 114 -115v0v0c0 -63 -51 -114 -114 -114s-115 51 -115 114s52 115 115 115zM213 42c4 0 7 1 9 4l77 76c2 2 3 6 3 10c0 8 -5 13 -13 13c-4 0 -8 -1 -10 -3l-76 -77c-3 -2 -4 -5 -4 -9s1 -8 4 -10c2 -3 5 -4 9 -4h1zM234 129c0 9 -8 17 -17 17
+s-17 -8 -17 -17s8 -17 17 -17s17 8 17 17zM305 58v0c0 9 -8 17 -17 17s-17 -8 -17 -17s8 -17 17 -17s17 8 17 17zM57 329c-12 0 -12 -19 0 -19h166c12 0 12 19 0 19h-166zM57 284c-12 0 -12 -18 0 -18h166c12 0 12 18 0 18h-166zM57 241c-12 0 -12 -18 0 -18h121
+c12 0 12 18 0 18h-121zM36 69h87c1 -6 3 -12 5 -18h-92c-20 0 -36 16 -36 36v266c0 20 16 36 36 36h208c20 0 36 -16 36 -36v-134l-18 3v131c0 10 -8 18 -18 18h-208c-10 0 -17 -8 -17 -18v-266c0 -10 7 -18 17 -18z" />
     <glyph glyph-name="teatro" unicode="&#xf3c9;" horiz-adv-x="360" 
 d="M308 170c-2 -8 -8 -10 -20 -7s-18 5 -18 13s8 20 25 12c7 -3 13 -10 13 -18zM0 279c0 27 13 26 37 25c34 2 67 11 96 24c20 12 31 19 44 -5s41 -111 13 -162c-21 -39 -48 -52 -51 -53s-27 -10 -75 22s-64 122 -64 149zM130 268h1c-8 -3 -14 -10 -14 -19v-4
 c4 -10 14 -6 25 -1s19 10 16 17c-4 6 -10 9 -18 9c-3 0 -7 -1 -10 -2zM120 171v-1c-2 0 -29 -5 -42 0c0 0 -7 5 -3 -4c9 -12 23 -20 39 -20c4 0 7 1 10 2c19 4 34 19 37 38c0 10 6 10 -5 2s-23 -14 -36 -17zM69 251v0c-12 0 -23 -9 -23 -17s10 -9 22 -9s23 -1 22 10
