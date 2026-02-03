@@ -5433,6 +5433,7 @@ const PM_TRANSLATE = {
 class PonchoMap {
     constructor(data, options){
         const defaults = {
+            pan_by: true,
             accesible_menu_extras: [
                 {
                     label: "map_help_us",
@@ -5668,7 +5669,7 @@ class PonchoMap {
 
         // Assign options
         let opts = Object.assign({}, defaults, options);
-
+        this.pan_by = Boolean(opts.pan_by);
         // Set variables
         this.lang = opts.lang;
         this.dictionary = ((opts?.dictionary && opts.dictionary[this.lang])
@@ -6291,6 +6292,10 @@ class PonchoMap {
     };
 
 
+    // Obtiene el ancho del mapa
+    _mapWidth = () => this.map.getSize().x;
+
+
     /**
      * Define la fracción en la que puede alinearse el mapa.
      * 
@@ -6306,7 +6311,7 @@ class PonchoMap {
         // Tamaño del contenedor del mapa.
         // Si se especifica tamaño, lo usa. De otro modo accede al tamaño
         // del ancho del mapa.
-        const elementSize = (this.isNumber(mediaSize) ? mediaSize : 
+        const elementSize = (this.isNumber(mediaSize) ? mediaSize :
             document.getElementById(this.map_selector).offsetWidth);
 
         // obtengo el listado de breakpoints válidos.
@@ -6421,7 +6426,8 @@ class PonchoMap {
 
         let currentCenterPoint = this.map.latLngToContainerPoint(currentCenter);
         const fractionPos = (align == "left" ? denominator - numerator : numerator);
-        let newX = ((document.querySelector(".poncho-map").offsetWidth / 
+
+        let newX = ((document.querySelector(`.poncho-map${this.scope_selector}`).offsetWidth / 
                 denominator) * fractionPos);
 
         let newY = currentCenterPoint.y;
@@ -7055,7 +7061,6 @@ class PonchoMap {
         details.appendChild(summary);
         details.appendChild(ul);
         footer.appendChild(details);
-
     }
 
 
@@ -7997,6 +8002,7 @@ class PonchoMap {
         if(ponchoMapElement){
             ponchoMapElement.appendChild(backdrop);
             ponchoMapElement.appendChild(container);
+            this._sliderElement = container;
         }
     };
 
@@ -8168,6 +8174,41 @@ class PonchoMap {
 
 
     /**
+     * Calcula el desplazamiento horizontal necesario para que el marker
+     * no quede oculto detrás del slider.
+     * @param {object} event - Evento del marker (click/hover)
+     * @returns {number} Píxeles a desplazar (0 si no es necesario)
+     */
+    _calcPanOffset = (event) => {
+        if (!this._sliderElement) {
+            return 0;
+        }
+        const SLIDER_WIDTH = this._sliderElement.offsetWidth;
+        const SLIDER_MARGIN = 15;
+        const MARKER_BUFFER_ZONE = 80;
+        const sliderOccupiedWidth = SLIDER_WIDTH + SLIDER_MARGIN;
+        const sliderOverlapZone = SLIDER_WIDTH + SLIDER_MARGIN 
+                + (MARKER_BUFFER_ZONE / 2);
+
+        const mapWidth = this._mapWidth();
+        if (mapWidth < this.media_breakpoint.sm) {
+            return 0;
+        }
+
+        const latlng = event.latlng || event.target.getLatLng();
+        const { x: markerX } = this.map.latLngToContainerPoint(latlng);
+        const visibleZone = mapWidth - sliderOverlapZone;
+
+        if (markerX > visibleZone) {
+            return Math.round(markerX - (mapWidth - sliderOccupiedWidth) 
+                    + MARKER_BUFFER_ZONE);
+        }
+
+        return 0;
+    }
+
+
+    /**
      * Asigna un evento en el onclick a un layer.
      * @todo Buscar un método más eficiente para lograr esto sin tener
      * que evaluar el tipo de objeto geoJSON.
@@ -8195,6 +8236,19 @@ class PonchoMap {
 
             if (content) {
                 this.setContent(content.properties);
+            }
+
+            // Mueje el marker segun la posicíon
+            const panOffset = this._calcPanOffset(event);
+            if (panOffset && this.pan_by) {
+                event.target._map.panBy(
+                    [panOffset, 0],
+                    {
+                        animate: true,
+                        duration: .5, 
+                        easeLinearity: 0.25
+                    }
+                );
             }
         });
     };
@@ -12522,13 +12576,14 @@ class PonchoMapProvinces extends PonchoMapFilter {
 class GapiSheetData {
     constructor(options){
         const defaults = {
-            "gapi_key": "AIzaSyCq2wEEKL9-6RmX-TkW23qJsrmnFHFf5tY",
-            "gapi_uri": "https://sheets.googleapis.com/v4/spreadsheets/"
+            gapi_key: "AIzaSyCq2wEEKL9-6RmX-TkW23qJsrmnFHFf5tY",
+            gapi_uri: "https://sheets.googleapis.com/v4/spreadsheets/"
         };
         let opts = Object.assign({}, defaults, options);
         this.gapi_key = opts.gapi_key;
         this.gapi_uri = opts.gapi_uri;
     }
+
 
     /**
      * URI para obtener el json de google sheet.
@@ -12539,17 +12594,34 @@ class GapiSheetData {
      * @returns {string} URL
      */
     url = (page, spreadsheet, api_key) => {
-        const key = (typeof api_key !== "undefined" ? api_key : this.gapi_key);
+        if(!page || typeof page !== "string"){
+            throw new Error("El parámetro 'page' es requerido.");
+        }
+        if(!spreadsheet || typeof spreadsheet !== "string"){
+            throw new Error("El parámetro 'spreadsheet' es requerido.");
+        }
+        const key = api_key || this.gapi_key;
         return [
-            "https://sheets.googleapis.com/v4/spreadsheets/",
-            spreadsheet, "/values/", page, "?key=", key, "&alt=json"
+            this.gapi_uri, spreadsheet, "/values/",
+            encodeURIComponent(page), "?key=", key, "&alt=json"
         ].join("");
     };
 
+
     /**
-     * Retorna los elemento del json
+     * Retorna los elementos del json estructurados en feed,
+     * entries y headers.
+     *
+     * @param {object} json Respuesta JSON de la API de Google Sheets.
+     * @returns {{feed: object[], entries: object[], headers: object}}
      */
     json_data = (json) => {
+        if(!json || !json.values || !json.values.length){
+            throw new Error(
+                "El parámetro 'json' debe contener una propiedad 'values'"
+                + " con al menos una fila."
+            );
+        }
         const feed = this.feed(json);
         return {
             "feed": feed,
@@ -12558,33 +12630,37 @@ class GapiSheetData {
         };
     };
 
+
     /**
      * Retorna con una estructura más cómoda para usar
      * @param {object} response Feed Json 
      * @returns {object}
      */
     feed = (response, lowercase = true) => {
-        const keys = response.values[0];
+        const rawKeys = response.values[0];
         const regex = / |\/|_/ig;
-        let entry = [];
+        const keyCount = rawKeys.length;
+        const processedKeys = new Array(keyCount);
+        for(let i = 0; i < keyCount; i++){
+            processedKeys[i] = lowercase
+                ? rawKeys[i].toLowerCase().replace(regex, "")
+                : rawKeys[i].replace(regex, "");
+        }
 
-        response.values.forEach((v, k) => {
-            if(k > 0){
-
-            let zip = {};
-            for(var i in keys){
-                var d = (v.hasOwnProperty(i))? v[i].trim() : "";
-                if(lowercase){
-                    zip[`${ keys[i].toLowerCase().replace(regex, "") }`] = d;
-                } else {
-                    zip[`${ keys[i].replace(regex, "") }`] = d;
-                }
+        const rows = response.values;
+        const len = rows.length;
+        const entry = new Array(len - 1);
+        for(let k = 1; k < len; k++){
+            const v = rows[k];
+            const zip = {};
+            for(let i = 0; i < keyCount; i++){
+                zip[processedKeys[i]] = i < v.length ? v[i].trim() : "";
             }
-            entry.push(zip);
-            }
-        });
+            entry[k - 1] = zip;
+        }
         return entry;
     };
+
 
     /**
      * Variables.
@@ -12607,7 +12683,7 @@ class GapiSheetData {
      * @returns {object}
      */
     entries = (feed) => {
-        return  feed.filter((v,k) => k > 0);
+        return feed.slice(1);
     };
 
     /**
@@ -12616,7 +12692,7 @@ class GapiSheetData {
      * @returns 
      */
     headers = (feed) => {
-        return feed.find((v,k) => k == 0);
+        return feed[0];
     };
 };
 

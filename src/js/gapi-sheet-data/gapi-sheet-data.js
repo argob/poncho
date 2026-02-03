@@ -6,13 +6,14 @@
 class GapiSheetData {
     constructor(options){
         const defaults = {
-            "gapi_key": "AIzaSyCq2wEEKL9-6RmX-TkW23qJsrmnFHFf5tY",
-            "gapi_uri": "https://sheets.googleapis.com/v4/spreadsheets/"
+            gapi_key: "AIzaSyCq2wEEKL9-6RmX-TkW23qJsrmnFHFf5tY",
+            gapi_uri: "https://sheets.googleapis.com/v4/spreadsheets/"
         };
         let opts = Object.assign({}, defaults, options);
         this.gapi_key = opts.gapi_key;
         this.gapi_uri = opts.gapi_uri;
     }
+
 
     /**
      * URI para obtener el json de google sheet.
@@ -23,17 +24,34 @@ class GapiSheetData {
      * @returns {string} URL
      */
     url = (page, spreadsheet, api_key) => {
-        const key = (typeof api_key !== "undefined" ? api_key : this.gapi_key);
+        if(!page || typeof page !== "string"){
+            throw new Error("El parámetro 'page' es requerido.");
+        }
+        if(!spreadsheet || typeof spreadsheet !== "string"){
+            throw new Error("El parámetro 'spreadsheet' es requerido.");
+        }
+        const key = api_key || this.gapi_key;
         return [
-            "https://sheets.googleapis.com/v4/spreadsheets/",
-            spreadsheet, "/values/", page, "?key=", key, "&alt=json"
+            this.gapi_uri, spreadsheet, "/values/",
+            encodeURIComponent(page), "?key=", key, "&alt=json"
         ].join("");
     };
 
+
     /**
-     * Retorna los elemento del json
+     * Retorna los elementos del json estructurados en feed,
+     * entries y headers.
+     *
+     * @param {object} json Respuesta JSON de la API de Google Sheets.
+     * @returns {{feed: object[], entries: object[], headers: object}}
      */
     json_data = (json) => {
+        if(!json || !json.values || !json.values.length){
+            throw new Error(
+                "El parámetro 'json' debe contener una propiedad 'values'"
+                + " con al menos una fila."
+            );
+        }
         const feed = this.feed(json);
         return {
             "feed": feed,
@@ -42,33 +60,37 @@ class GapiSheetData {
         };
     };
 
+
     /**
      * Retorna con una estructura más cómoda para usar
      * @param {object} response Feed Json 
      * @returns {object}
      */
     feed = (response, lowercase = true) => {
-        const keys = response.values[0];
+        const rawKeys = response.values[0];
         const regex = / |\/|_/ig;
-        let entry = [];
+        const keyCount = rawKeys.length;
+        const processedKeys = new Array(keyCount);
+        for(let i = 0; i < keyCount; i++){
+            processedKeys[i] = lowercase
+                ? rawKeys[i].toLowerCase().replace(regex, "")
+                : rawKeys[i].replace(regex, "");
+        }
 
-        response.values.forEach((v, k) => {
-            if(k > 0){
-
-            let zip = {};
-            for(var i in keys){
-                var d = (v.hasOwnProperty(i))? v[i].trim() : "";
-                if(lowercase){
-                    zip[`${ keys[i].toLowerCase().replace(regex, "") }`] = d;
-                } else {
-                    zip[`${ keys[i].replace(regex, "") }`] = d;
-                }
+        const rows = response.values;
+        const len = rows.length;
+        const entry = new Array(len - 1);
+        for(let k = 1; k < len; k++){
+            const v = rows[k];
+            const zip = {};
+            for(let i = 0; i < keyCount; i++){
+                zip[processedKeys[i]] = i < v.length ? v[i].trim() : "";
             }
-            entry.push(zip);
-            }
-        });
+            entry[k - 1] = zip;
+        }
         return entry;
     };
+
 
     /**
      * Variables.
@@ -91,7 +113,7 @@ class GapiSheetData {
      * @returns {object}
      */
     entries = (feed) => {
-        return  feed.filter((v,k) => k > 0);
+        return feed.slice(1);
     };
 
     /**
@@ -100,7 +122,7 @@ class GapiSheetData {
      * @returns 
      */
     headers = (feed) => {
-        return feed.find((v,k) => k == 0);
+        return feed[0];
     };
 };
 

@@ -492,6 +492,11 @@
       },
     
       {
+        "nombre": "biblioteca-2",
+        "clase": "icono-arg-biblioteca-2"
+      },
+    
+      {
         "nombre": "bicicleta",
         "clase": "icono-arg-bicicleta"
       },
@@ -2692,6 +2697,11 @@
       },
     
       {
+        "nombre": "litio",
+        "clase": "icono-arg-litio"
+      },
+    
+      {
         "nombre": "lluvias",
         "clase": "icono-arg-lluvias"
       },
@@ -3079,6 +3089,11 @@
       {
         "nombre": "museo",
         "clase": "icono-arg-museo"
+      },
+    
+      {
+        "nombre": "museo-geologico",
+        "clase": "icono-arg-museo-geologico"
       },
     
       {
@@ -4004,6 +4019,16 @@
       {
         "nombre": "satelite",
         "clase": "icono-arg-satelite"
+      },
+    
+      {
+        "nombre": "segemar",
+        "clase": "icono-arg-segemar"
+      },
+    
+      {
+        "nombre": "segemar-120",
+        "clase": "icono-arg-segemar-120"
       },
     
       {
