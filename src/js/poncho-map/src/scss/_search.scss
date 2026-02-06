@@ -47,6 +47,10 @@ $search-transition: 0.15s ease-in-out;
         &:last-of-type {
             border-bottom: 1px solid transparent;
         }
+
+
+
+
     }
 
     #{&}__action {
@@ -106,7 +110,7 @@ $search-transition: 0.15s ease-in-out;
         grid-area: b;
     }
 
-    #{&}:not(:has(#{&}__figure)) {
+    &:not(:has(#{&}__figure)) {
         grid-template-columns: 1fr;
         grid-template-areas: "b";
         column-gap: 0;
