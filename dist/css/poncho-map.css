@@ -537,6 +537,7 @@ html {
   width: 100%;
   gap: 4px;
   align-items: center;
+  line-height: inherit;
 }
 .poncho-map .pm-term-icon-helper > :nth-child(1) {
   flex-basis: 1.3em;
