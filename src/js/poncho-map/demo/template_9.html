@@ -43,6 +43,11 @@
         </ul>
     </div>
     <h1>Template 9</h1>
+
+
+
+
+
 <!-- 
 COPIAR DESDE ACÁ…
 -->
@@ -90,11 +95,16 @@ COPIAR DESDE ACÁ…
                     style="height: 650px;">
                 </div>
             </div>
+            <p class="m-y-1">
+                Descargar la <a id="download-csv" download>
+                    información del mapa en formato CSV</a>
+            </p>
             <!-- / PONCHO MAP -->
             <div data-code-from="code_map" class="m-y-2" data-title="Código para el mapa"></div>
         </div>
     </div>
 </div>
+
 
 <script src="../../mapa-argentina/demo/js/demo.js"></script>
 
@@ -109,7 +119,7 @@ COPIAR DESDE ACÁ…
 <link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.Default.css" rel="stylesheet"/> 
 <!-- <script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script> -->
 <!-- / INCLUDE SCRIPTS -->
-
+<script src="./js/export-csv-alpha.js"></script>
 <!-- SCRIPTS -->
 <script id="code_map">
     // init
@@ -319,7 +329,22 @@ COPIAR DESDE ACÁ…
         search.render();
             
         loader.close();
+
     })();
+
+    const keyList = [
+        'provincia',
+        'localidad',
+        'tipo',
+        'estado',
+        'nombre',
+        'descripcion',
+        'foto',
+    ];
+    document.getElementById("download-csv").addEventListener("click", function(){
+        const geoJsonToCsv = convertGeoJsonToCsv(map.entries, keyList, map.headers);
+        exportarCSV("poncho-map-data.csv", geoJsonToCsv, {separador: ";"});
+    });
 
 </script>
 <!-- / SCRIPTS -->
