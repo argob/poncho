@@ -12089,7 +12089,7 @@ function ponchoMapTplSearch(data){
         return null;
     }
 
-    const {figure, title, text, separator = ", "} = data;
+    const {figure="", title, text, separator = ", "} = data;
 
     if (!title || typeof title !== 'string') {
         console.error('tplSearch: title es requerido y debe ser un string');
@@ -12119,7 +12119,9 @@ function ponchoMapTplSearch(data){
         img.classList.add('pm-search-result-option__image');
         
         figureEl.appendChild(img);
-        container.appendChild(figureEl);
+
+        const textCondition = `{% '${figureEl.outerHTML}' if ${figure} != '' else '' %}`;
+        container.insertAdjacentHTML('beforeend', textCondition);
     }
 
     // Columna de contenido
