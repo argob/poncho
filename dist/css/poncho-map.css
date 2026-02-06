@@ -1755,7 +1755,7 @@ input[type=search].js-poncho-map-search__input::-webkit-search-cancel-button {
 .pm-search-result-option .pm-search-result-option__text {
   grid-area: b;
 }
-.pm-search-result-option .pm-search-result-option:not(:has(.pm-search-result-option__figure)) {
+.pm-search-result-option:not(:has(.pm-search-result-option__figure)) {
   grid-template-columns: 1fr;
   grid-template-areas: "b";
   column-gap: 0;
