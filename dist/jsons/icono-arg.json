@@ -132,6 +132,11 @@
       },
     
       {
+        "nombre": "amanecer",
+        "clase": "icono-arg-amanecer"
+      },
+    
+      {
         "nombre": "ambiente",
         "clase": "icono-arg-ambiente"
       },
@@ -344,6 +349,11 @@
       {
         "nombre": "astroturismo",
         "clase": "icono-arg-astroturismo"
+      },
+    
+      {
+        "nombre": "atardecer",
+        "clase": "icono-arg-atardecer"
       },
     
       {
