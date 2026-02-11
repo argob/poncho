@@ -16834,6 +16834,156 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
   padding-right: 0.2rem;
 }
 
+.missingperson__layout-container {
+  display: grid;
+  width: 100%;
+  column-gap: 30px;
+  padding: 15px;
+  grid-template-columns: 33.3333333333% 66.6666666667%;
+  grid-template-columns: 1fr 2fr;
+  grid-template-areas: "imagen descripcion" "contacto descripcion";
+}
+.missingperson__layout-container > .item-titulo {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+.missingperson__layout-container .item-imagen img {
+  width: 100%;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.missingperson__layout-container .item-contacto {
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+.missingperson__layout-container .item-titulo {
+  grid-area: titulo;
+}
+.missingperson__layout-container .item-imagen {
+  grid-area: imagen;
+}
+.missingperson__layout-container .item-descripcion {
+  grid-area: descripcion;
+}
+.missingperson__layout-container .item-contacto {
+  grid-area: contacto;
+}
+.missingperson__layout-container .item-contacto .section-actions.col-md-6 {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+.missingperson__layout-container .item-contacto .section-actions ul {
+  float: none;
+}
+.missingperson__layout-container .item-contacto .section-actions ul li {
+  margin: 0;
+}
+
+/* MÓVIL */
+@media (max-width: 767px) {
+  .missingperson__layout-container {
+    grid-template-areas: "titulo" "imagen" "descripcion" "contacto";
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  .missingperson__layout-container > .item-titulo {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+  .missingperson__layout-container .item-titulo-fake {
+    display: none;
+  }
+  .missingperson__layout-container .item-contacto {
+    border-radius: 8px;
+  }
+}
+.missingperson__img-container {
+  aspect-ratio: 1;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--arg-azul);
+  border-radius: 0;
+}
+.missingperson__img-container .img-visible {
+  position: absolute;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transform: scale(1.025);
+}
+.missingperson__img-container .img-blur {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-position: center;
+  background-size: cover;
+  filter: blur(25px) grayscale(100%);
+  mix-blend-mode: overlay;
+  transform: scale(1.2);
+}
+
+.missingperson__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  padding: 1px;
+}
+
+.missingperson__entry {
+  border: 1px solid #ddd;
+  overflow: clip;
+  border-radius: 3px;
+  padding: 0px;
+  transition: 0.2s;
+}
+.missingperson__entry .content > * {
+  text-decoration: none;
+}
+.missingperson__entry > a,
+.missingperson__entry > a:hover,
+.missingperson__entry > a:focus {
+  text-decoration: none;
+}
+.missingperson__entry > a {
+  display: block;
+  color: var(--arg-negro);
+}
+.missingperson__entry:hover {
+  background-color: var(--arg-primary-light);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* MÓVIL */
+@media (max-width: 991px) {
+  .missingperson__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 767px) {
+  .missingperson__grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
 /**
  * Styles for the copy and share functionality in Poncho Table.
  */
