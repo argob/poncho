@@ -169,4 +169,8 @@
     .missingperson__grid {
         grid-template-columns: repeat(1, 1fr);
     }
+
+    .missingperson__grid.missingperson-404 .missingperson__entry:nth-child(n + 2) {
+        display: none
+    }
 }
