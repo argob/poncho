@@ -1,14 +1,12 @@
 # PonchoTable con filtros dependientes
 
-Se trata de una variación a PonchoTable incluida en la librería de *scripts* en `poncho.min.js`.
+PonchoTable con filtros dependientes es una variante del componente PonchoTable, incluida en la librería `poncho.min.js`. En esta versión, los filtros operan de forma encadenada: la selección en un filtro condiciona las opciones disponibles en los filtros subsiguientes.
 
-Para esta versión se **programó** que los filtros sean dependientes uno del otro utilizando el mismo criterio de nombre de columna en GoogleSheet.
-
-Para que los filtros funcionen en las tablas de Google, se debe usar el prefijo **filtro-**[nombre]. Entonces, una columna para un filtro de provincias quedaría: **filtro-provincia**.
+Para que los filtros se reconozcan en las tablas de Google Sheets, cada columna destinada a filtro debe utilizar el prefijo **filtro-** seguido del nombre identificador. Por ejemplo, una columna para filtrar por provincia se denominaría: **filtro-provincia**.
 
 <figure>
-<img src="./demo/img/screenshoot-google-sheet.jpg" alt="Captura de pantalla Google Sheet">
-<figcaption style="font-size:small; color:gray">Captura de pantalla Google Sheet con filtros para PonchoTable</figcaption>
+<img src="./demo/img/screenshoot-google-sheet.jpg" alt="Captura de pantalla de Google Sheets con columnas de filtros para PonchoTable">
+<figcaption style="font-size:small; color:gray">Captura de pantalla de Google Sheets con filtros configurados para PonchoTable.</figcaption>
 </figure>
 
 ****
@@ -17,46 +15,45 @@ Para que los filtros funcionen en las tablas de Google, se debe usar el prefijo 
 
 | Parámetro | Tipo | Descripción |
 |:---|:---|:---|
-| hojaNombre | `string` | Nombre de la pestaña en [Google Sheet](https://workspace.google.com/products/sheets/) | 
-| idSpread | `string` | ID del documento. Se puede copiar de la URL del documento abierto. | 
-| tituloTabla | `string` | Título para la etiqueta `caption` de la tabla | 
-| ordenColumna | `string` | Asigna la columna por la cual debe ordenarse la información de la tabla. |
-| ordenTipo | `string` | Modo de orden ascendente (asc) o descendente (desc). |
-| ocultarColumnas | `Array` | Lista de columnas que se desea ocultar |
-| cantidadItems | `integer` | Cantidad de registros por página |
-| jsonUrl | `string` | URL del documento o servicio JSON |
-| hash | `boolean` | <p style="color:red" color>⚠ Obsoleto en nuevas versiones</p><p>Permite hacer una búsqueda pasándo un _hash_ por URL. Ej: <br>`www.argentina.gob.ar#mi-busqueda`</p> |
-| filterClassList | `object` | Listado de selectores css para asignar en cada columna de filtros. Ej: <br>`filterClassList:["col-sm-6", "col-md-4"],` |
-| filterContClassList | `object` | Listado de selectores css para asignar al contenedor de filtros. Ej: <br>`filterContClassList:["col-sm-6", "col-md-4"],` |
-| searchContClassList | `object` | Listado de selectores css para asignar al contenedor del input de búsqueda. Ej: <br>`searchContClassList:["col-sm-6", "col-md-4"],` |
-| asFilter | `object` | Permite definir un listado de items asignados a un filtro. <br>`"asFilter":  (row) => row,` |
-| customEntry | `object` | Permite modificar la entrada que se mostrará en la tabla manteniendo la entrada original para el uso global de los datos.<br>`"customEntry": (row) => row,` |
-| refactorEntries | `object` | Permite modificar el documento JSON en su totalidad.<br>`"refactorEntries": (row) => row,` |
-| allowedTags | `object` | <p>Permite configurar un listado de etiquetas HTML que se imprimirán como parte del DOM (del inglés, *Document Object Model*), y no como un texto. Para habilitar todas las etiquetas se utiliza `["*"]`. Si se quiere especificar cuales deben usarse, ej.: `["a", "strong"]`.</p><p>Para evitar etiquetas HTML: `[]`</p> |
-| jsonData | `json object` | Permite utilizar un documento JSON local o de una ubicación no asociada a Google API. |
-| headers | `object` | Permite definir o redefinir los headers por cada clave. Ejemplo `{"key": "value"}`|
-| orderFilter | `boolean\|object` | <p>Permite ordenar alfanuméricamente el listado de items en en cada filtro.</p><p>Utilizando el valor `true`, ordena alfanuméricamente, en forma ascendente,  todos los filtros configurados para la tabla; mientras que usando un _array object_, se puede especificar qué filtro debe ordenarse y si es en modo ascendente o descendente. Si no se utiliza la opción o, se usa con el valor `false`, los elementos del filtro tendrán el orden establecido en el documento JSON.</p><p>**Ejemplo de uso para la opción con _array object_**</p><div><p>Si no se especifica que el orden sea descendente (**desc**), se lo considera ascendente (**asc**).</p><p>`[["filtro-ubicacion", "asc"], ["filtro-estado", "desc"], ["filtro-categoria"]]`</p><p>Para declarar un filtro ascendente no hace falta agregar un _array_ dentro de otro. Usando el nombre del filtro directamente lo establece con ese orden.</p><p>`["filtro-ubicacion", ["filtro-estado", "desc"], "filtro-categoria", "filtro-genero"]`</p></div> |
-| emptyLabel | `string` | Permite cambiar el _label_ en la opción vacía del desplegable. `Todos` por defecto. |
-| wizard | `boolean` | Muestra los _select_ y sus opciones una vez seleccionado el filtro padre. `false` por defecto. |
-| urlParams | `true` | Habilita hacer consultas desde la url, pasando parámetros para filtros e input de búsqueda. |
-| pushState | `false` | Si es verdadero (true), cada vez que el usuario modifica filtros o hace búsquedas en la tabla, la dirección (url) del navegador, cambiará. |
-| copyResults | `false` | Si es verdadero se activa el botón para copiar la url de resultados. |
+| hojaNombre | `string` | Nombre de la pestaña en [Google Sheets](https://workspace.google.com/products/sheets/). |
+| idSpread | `string` | Identificador del documento. Se obtiene de la URL del documento abierto en Google Sheets. |
+| tituloTabla | `string` | Texto para la etiqueta `<caption>` de la tabla. |
+| ordenColumna | `string` | Índice o nombre de la columna utilizada para ordenar los registros de la tabla. |
+| ordenTipo | `string` | Dirección de ordenamiento: ascendente (`asc`) o descendente (`desc`). |
+| ocultarColumnas | `Array` | Lista de columnas que se excluirán de la visualización. |
+| cantidadItems | `integer` | Número de registros mostrados por página. |
+| jsonUrl | `string` | URL del documento o servicio que provee los datos en formato JSON. |
+| hash | `boolean` | **Obsoleto en versiones recientes.** Habilita la búsqueda mediante un fragmento (_hash_) en la URL. Ejemplo: `www.argentina.gob.ar#mi-busqueda`. |
+| filterClassList | `Array` | Clases CSS aplicadas a cada columna de filtro. Ejemplo: `["col-sm-6", "col-md-4"]`. |
+| filterContClassList | `Array` | Clases CSS aplicadas al contenedor general de filtros. Ejemplo: `["col-sm-6", "col-md-4"]`. |
+| searchContClassList | `Array` | Clases CSS aplicadas al contenedor del campo de búsqueda. Ejemplo: `["col-sm-6", "col-md-4"]`. |
+| asFilter | `function` | Define un listado personalizado de opciones para un filtro. Firma: `(row) => row`. |
+| customEntry | `function` | Transforma la entrada visible en la tabla sin alterar los datos originales utilizados internamente. Firma: `(row) => row`. |
+| refactorEntries | `function` | Transforma el documento JSON completo antes de su procesamiento. Firma: `(row) => row`. |
+| allowedTags | `Array` | Etiquetas HTML que se interpretarán como elementos del DOM en lugar de texto plano. Usar `["*"]` para habilitar todas las etiquetas o especificar las permitidas, por ejemplo: `["a", "strong"]`. Para desactivar la interpretación de HTML: `[]`. |
+| jsonData | `Object` | Datos en formato JSON provenientes de una fuente local o ajena a la API de Google. |
+| headers | `Object` | Redefine los encabezados de columna mediante pares clave-valor. Ejemplo: `{"key": "Nuevo encabezado"}`. |
+| orderFilter | `boolean\|Array` | Ordena alfabéticamente las opciones de los filtros desplegables. Con el valor `true`, aplica orden ascendente a todos los filtros. Con un `Array`, se especifica el orden por filtro individual. Si no se define o se establece en `false`, las opciones conservan el orden del documento JSON. **Ejemplo con Array:** si no se indica dirección, se asume ascendente (`asc`). `[["filtro-ubicacion", "asc"], ["filtro-estado", "desc"], ["filtro-categoria"]]`. También se puede usar la forma abreviada para filtros ascendentes: `["filtro-ubicacion", ["filtro-estado", "desc"], "filtro-categoria", "filtro-genero"]`. |
+| emptyLabel | `string` | Texto de la opción predeterminada (vacía) en los desplegables. Valor por defecto: `Todos`. |
+| wizard | `boolean` | Muestra cada filtro únicamente cuando se ha seleccionado una opción en el filtro anterior. Valor por defecto: `false`. |
+| urlParams | `boolean` | Habilita la lectura de parámetros desde la URL para filtrar datos y realizar búsquedas en la tabla. |
+| pushState | `boolean` | Actualiza la URL del navegador cada vez que el usuario modifica un filtro o realiza una búsqueda. Valor por defecto: `false`. |
+| copyResults | `boolean` | Muestra un botón para copiar al portapapeles la URL con los parámetros de la consulta actual. Valor por defecto: `false`. |
+| resetValues | `boolean` | Habilita la acción para restablecer la tabla y los filtros a su estado inicial. |
 
-### Query en dirección url
+### Parámetros de URL
 
 #### urlParams
 
-![Tabla con busqueda](./img/tabla-con-parametros.jpg)
+![Tabla con parámetros de búsqueda en la URL](./img/tabla-con-parametros.jpg)
 
+Al incorporar parámetros a la URL, es posible filtrar y buscar datos de forma precisa dentro de la tabla. Esta funcionalidad permite:
 
-Al incorporar parámetros a la URL, es posible filtrar y buscar datos de manera precisa dentro de la tabla. Esto permite:
+* **Acceder directamente a registros individuales**: localizar un registro específico indicando su valor en el filtro correspondiente.
+* **Agrupar datos por categoría**: visualizar únicamente los registros que pertenecen a una categoría determinada.
+* **Realizar búsquedas globales**: buscar en todo el contenido de la tabla.
 
-* **Acceder directamente a registros individuales**: Busca un registro en particular especificando su valor en el filtro.
-* **Agrupar datos por categorías**: Visualiza solo los datos que pertenecen a una categoría específica, facilitando el análisis.
-* **Hacer una búsqueda global**: Permite buscar en todo el contenido de la tabla.
-
-
-**Cómo habilitar esta opción.**
+**Configuración**
 
 ```js
 const options = {
@@ -67,11 +64,11 @@ const options = {
 
 #### pushState
 
-![Tabla con busqueda](./img/tabla-con-parametros-pushstate.jpg)
+![Tabla con pushState activo](./img/tabla-con-parametros-pushstate.jpg)
 
-Usando esta opción la URL se actualiza incorporando parámetros asociados a las opciones que se vayan usando en los filtros desplegables o en el campo de búsqueda. 
+Con esta opción habilitada, la URL se actualiza dinámicamente incorporando los parámetros que reflejan las selecciones realizadas en los filtros y en el campo de búsqueda.
 
-**Cómo habilitar esta opción.**
+**Configuración**
 
 ```js
 const options = {
@@ -80,14 +77,13 @@ const options = {
 }
 ```
 
-
 #### copyResults
 
-![Tabla con busqueda](./img/tabla-con-parametros-portapapeles.jpg)
+![Tabla con botón para copiar URL](./img/tabla-con-parametros-portapapeles.jpg)
 
-Esta opción incorpora un botón desplegable que permite copiar la URL generada por las opciones de usuario en el portapapeles. 
+Incorpora un botón que permite copiar al portapapeles la URL generada a partir de las selecciones del usuario.
 
-**Cómo habilitar esta opción.**
+**Configuración**
 
 ```js
 const options = {
@@ -96,24 +92,19 @@ const options = {
 }
 ```
 
+### Modo Wizard
 
-
-
-
-### Opción para modo Wizard
-
-Para poder mostrar u ocultar elementos html en función de la visibilidad de la tabla, se puede utilizar el siguiente _dataset_ con su valor en `boolean`: `data-visible-as-table`.
+Para mostrar u ocultar elementos HTML en función de la visibilidad de la tabla, se utiliza el atributo `data-visible-as-table` con un valor booleano.
 
 #### Uso
 
 ```html
 <div class="alert alert-info" data-visible-as-table="false">
-  <p>Para acceder al formulario, elegí tipo de documento, provincia y motivo.</p>
+  <p>Para acceder al formulario, seleccione tipo de documento, provincia y motivo.</p>
 </div>
 ```
 
-El valor en `false`, hará que cuando la tabla **no esté visible** el elemento con el dataset, se visualice.
-
+Con el valor `false`, el elemento se muestra únicamente cuando la tabla **no está visible**.
 
 ```html
 <div class="alert alert-info" data-visible-as-table="true">
@@ -121,7 +112,7 @@ El valor en `false`, hará que cuando la tabla **no esté visible** el elemento 
 </div>
 ```
 
-El valor en `true`, hará que cuando la tabla **esté visible** el elemento con el dataset, se visualize.
+Con el valor `true`, el elemento se muestra únicamente cuando la tabla **está visible**.
 
 
 ## Scripts
@@ -137,7 +128,6 @@ El valor en `true`, hará que cuando la tabla **esté visible** el elemento con 
 ```
 
 ### Scripts complementarios
-
 
 ```html
 <!-- INCLUDE COMPLEMENTARY SCRIPTS -->
@@ -157,9 +147,9 @@ El valor en `true`, hará que cuando la tabla **esté visible** el elemento con 
             <label for="ponchoTableFiltro" id="tituloFiltro">
                 Filtro
             </label>
-            <select 
-                class="form-control" 
-                id="ponchoTableFiltro" 
+            <select
+                class="form-control"
+                id="ponchoTableFiltro"
                 name="ponchoTableFiltro">
             </select>
         </div>
@@ -171,13 +161,13 @@ El valor en `true`, hará que cuando la tabla **esté visible** el elemento con 
 <search class="" id="ponchoTableSearchCont" style="display:none">
     <form>
         <div class="form-group">
-            <label 
+            <label
                 for="ponchoTableSearch">
                 Buscá por palabra clave
             </label>
-            <input 
-                class="form-control" 
-                id="ponchoTableSearch" 
+            <input
+                class="form-control"
+                id="ponchoTableSearch"
                 type="search" />
         </div>
     </form>
@@ -186,8 +176,8 @@ El valor en `true`, hará que cuando la tabla **esté visible** el elemento con 
 
 <!-- / PONCHO MAP TABLE -->
 <div class="">
-    <table 
-        class="table tabla-condensed table-sm table-striped" 
+    <table
+        class="table tabla-condensed table-sm table-striped"
         id="ponchoTable">
         <caption></caption>
         <thead></thead>
@@ -214,11 +204,11 @@ El valor en `true`, hará que cuando la tabla **esté visible** el elemento con 
         ordenColumna: 1,
         ordenTipo: "asc",
         ocultarColumnas: [],
-        cantidadItems: 15, 
+        cantidadItems: 15,
         hash: true,
         filterClassList: ["col-sm-12", "col-md-6"],
         allowedTags: ["*"],
-        orderFilter: true, 
+        orderFilter: true,
     };
     ponchoTableDependant(options);
 })();

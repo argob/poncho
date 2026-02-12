@@ -132,6 +132,11 @@
       },
     
       {
+        "nombre": "amanecer",
+        "clase": "icono-arg-amanecer"
+      },
+    
+      {
         "nombre": "ambiente",
         "clase": "icono-arg-ambiente"
       },
@@ -344,6 +349,11 @@
       {
         "nombre": "astroturismo",
         "clase": "icono-arg-astroturismo"
+      },
+    
+      {
+        "nombre": "atardecer",
+        "clase": "icono-arg-atardecer"
       },
     
       {
@@ -2192,6 +2202,11 @@
       },
     
       {
+        "nombre": "gato",
+        "clase": "icono-arg-gato"
+      },
+    
+      {
         "nombre": "genero",
         "clase": "icono-arg-genero"
       },
@@ -3432,6 +3447,11 @@
       },
     
       {
+        "nombre": "perro",
+        "clase": "icono-arg-perro"
+      },
+    
+      {
         "nombre": "perro-asistencia",
         "clase": "icono-arg-perro-asistencia"
       },
@@ -4469,6 +4489,11 @@
       {
         "nombre": "transplante-negativo",
         "clase": "icono-arg-transplante-negativo"
+      },
+    
+      {
+        "nombre": "transportadora-mascota",
+        "clase": "icono-arg-transportadora-mascota"
       },
     
       {
