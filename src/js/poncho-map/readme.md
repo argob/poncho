@@ -4,25 +4,9 @@
 ![Poncho Map](./demo/img/map.png)
 
 
-<!-- omit in toc -->
-## Contenidos
-
-- [PonchoMap](#ponchomap)
-  - [Configuración](#configuración)
-  - [Métodos](#métodos)
-- [PonchoMapFilter](#ponchomapfilter)
-  - [Métodos](#métodos-1)
-- [PonchoMapSearch](#ponchomapsearch)
-  - [Configuración](#configuración-1)
-- [Ejemplos](#ejemplos)
-
-
-## PonchoMap
+## Mapa
 
 - [Opciones generales](docs/ponchomap/readme.md)
-
-### Configuración
-
 - [Headers](docs/ponchomap/headers/README.md)
 - [Header icons](docs/ponchomap/header-icons/README.md)
 - [Marker](docs/ponchomap/marker/README.md)
@@ -34,27 +18,19 @@
 - [Template structure](docs/ponchomap/template-structure/README.md)
 - [Tooltip](docs/ponchomap/tooltip/readme.md)
 - [Tooltip options](docs/ponchomap/tooltip-options/readme.md)
-
-### Métodos
-
+- [Condicional en línea](docs/ponchomap/condicional-en-linea/readme.md)
 - [Métodos PonchoMap](docs/ponchomap/ponchomap-metodos/readme.md)
 
 
-## PonchoMapFilter
+## Filtrar
 
 - [Opciones generales](docs/ponchomap-filter/README.md)
-
-### Métodos
-
 - [Métodos PonchoMapFilter](docs/ponchomap-filter/metodos/readme.md)
 
 
-## PonchoMapSearch
+## Buscador
 
 - [Opciones generales](docs/ponchomap-search/README.md)
-
-### Configuración
-
 - [Combobox](docs/ponchomap-search/combobox/readme.md)
 
 
