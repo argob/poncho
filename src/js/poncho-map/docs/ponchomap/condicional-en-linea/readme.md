@@ -45,7 +45,7 @@ Donde:
 
 Consideremos una entrada de datos en formato JSON y el requisito de asociar un icono visual específico solo a las entidades que pertenecen a una categoría determinada.
 
-### Entrada de datos
+### Entrada de datos
 
 ```json
 {
@@ -55,7 +55,7 @@ Consideremos una entrada de datos en formato JSON y el requisito de asociar un i
 }
 ```
 
-### Implementación en la estructura de plantilla
+### Implementación en la estructura de plantilla
 
 Para que solo se muestre el icono (`<i class="icon-salud"></i>`) cuando la clave categoria sea estrictamente igual a 'salud', el condicional en línea se inserta directamente en la propiedad template de la siguiente manera:
 
