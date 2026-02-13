@@ -1,3 +1,7 @@
+[Volver al inicio ⏎](../../../readme.md)
+
+---
+
 <!-- omit in toc -->
 # Condicional en línea
 
