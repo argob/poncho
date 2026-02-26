@@ -1,0 +1,22 @@
+	.panel-body:not(:last-child) .bloque-periodo {
+		border-bottom: 1px solid #ccc;
+	}
+
+	.bloque-periodo .col-icon {
+		min-height: 2.2em;
+	}
+	.bloque-periodo .col-icon {
+		display: flex;
+		
+		justify-content: center;
+	}
+	.bloque-periodo {
+		display: flex;
+		align-items: center;
+	}
+	@media (max-width:767px) {
+		.pronostico-ext .bloque-periodo {
+			display: block;
+			text-align: left!important
+		}
+	}
