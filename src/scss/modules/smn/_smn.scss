@@ -3,75 +3,95 @@
 .bloque-periodo {
 	display: flex;
 	align-items: center;
-	border-bottom: 1px solid #ccc;
+	border-bottom: 0.0625rem solid #ccc;
 	&:last-child {
 		border-bottom: none;
 	}
 	.col-icon {
 		display: flex;
 		justify-content: center;
-		min-height: 2.2em;
+		min-height: 2.2rem;
 	}
 }
 .panel-body {
 	&:not(:last-child) {
 		.bloque-periodo {
-			border-bottom: 1px solid #ccc;
+			border-bottom: 0.0625rem solid #ccc;
 		}
 	}
 	.bloque-periodo {
 		p {
-			padding: 10px 0;
+			padding: 0.625rem 0;
 		}
 	}
 }
-.col-icon {
-	i {
-		margin-top: -0.2em;
-		font-size: 1.33em;
-	}
-}
-.header-weather {
-	align-items: center;
-	gap: 10px;
-}
-.weather-inline {
-	display: inline-flex;
-	align-items: center;
-	gap: 6px;
-}
-.parent {
-	display: grid;
-	grid-template-columns: 2.75em 2fr;
-	.weather__info-item {
-		margin-bottom: 0.75em;
-	}
-}
-.parent .weather__info-item dt,
-.parent .weather__info-item dd {
-	display: inline;
-}
-#accordion {
-	a {
-		.fa-chevron-up {
-			display: none;
+.clima-pasos {
+	.col-icon {
+		i {
+			margin-top: -0.2rem;
+			font-size: 1.2rem;
 		}
-		&:not(.collapsed) {
-			.fa-chevron-down {
+	}
+	.header-weather {
+		align-items: center;
+		gap: 0.625rem;
+	}
+	.weather-inline {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.375rem;
+	}
+	.parent {
+		display: grid;
+		grid-template-columns: 2.75rem 2fr;
+		.weather__info-item {
+			margin-bottom: 0.75rem;
+		}
+	}
+	#accordion {
+		a {
+			.fa-chevron-up {
 				display: none;
 			}
-			.fa-chevron-up {
-				display: inline;
+			&:not(.collapsed) {
+				.fa-chevron-down {
+					display: none;
+				}
+				.fa-chevron-up {
+					display: inline;
+				}
 			}
 		}
+		hr {
+			top: inherit;
+		}
 	}
+	.row {
+		&.small {
+			padding-left: 1.875rem;
+		}
+	}
+	hr {
+		&:nth-of-type(1) {
+			top: 2.4rem;
+		}
+		&:nth-of-type(2) {
+			top: 10.2rem;
+		}
+	}
+}
+.clima-pasos .parent .weather__info-item dt,
+.clima-pasos .parent .weather__info-item dd {
+	display: inline;
 }
 @media {
 	(max-width {
-		&:767px) {
-			.pronostico-ext .bloque-periodo {
+		&:47 {
+			&.9375rem) {
+				.pronostico-ext .bloque-periodo {
     display: block;
-			border-bottom: 1px solid #ccc;
+				border-bottom: 0.0625rem solid #ccc;
+			}
 		}
 	}
 }
@@ -94,13 +114,15 @@
 }
 section {
 	&:has(.pronostico-ext) {
-		padding: 10px!important;
+		padding: 0.625rem !important;
 	}
 }
-.clima-pasos {
-	.row {
-		&.small {
-			padding-left: 30px;
+} {
+	.clima-pasos {
+		hr {
+			position: absolute;
+			left: 0.875rem;
+			width: 100%;
 		}
 	}
 }
