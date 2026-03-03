@@ -8195,8 +8195,18 @@ class PonchoMap {
             return 0;
         }
 
-        const latlng = event.latlng || event.target.getLatLng();
-        const { x: markerX } = this.map.latLngToContainerPoint(latlng);
+        const latlng = event.latlng
+            || (event.target?.getLatLng && event.target.getLatLng());
+
+        if(!latlng){
+            this.logger.warn(
+                "_calcPanOffset", 
+                "No se puede acceder a latlng"
+            );
+            return 0; 
+        }
+
+        const { x: markerX } = this.map.latLngToContainerPoint( latlng );
         const visibleZone = mapWidth - sliderOverlapZone;
 
         if (markerX > visibleZone) {
