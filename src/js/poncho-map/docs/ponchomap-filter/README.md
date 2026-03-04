@@ -66,6 +66,10 @@ const options = {
 | check_uncheck_all | `boolean` | `false` | Al habilitarse, muestra dentro de cada fieldset (debajo del legend) los botones _marcar todos_ y _desmarcar todos_ para los checkbox de ese filtro. |
 | label | `boolean` | `false` | Define el texto del label del input. Se aplica únicamente a formularios tipo `select`. |
 | all_options_text | `string` | `null` | Define el texto de la opción que selecciona todos los items. Se aplica únicamente a formularios tipo `select`. |
+| show_label | `boolean` | `true` | Muestra u oculta la etiqueta `label`, en un campo de formulario tipo `select`. |
+| show_legend | `boolean` | `true` | Muestra u oculta la etiqueta `label`, en un campo de formulario tipo `select`. |
+
+
 
 
 ### Opciones para field
