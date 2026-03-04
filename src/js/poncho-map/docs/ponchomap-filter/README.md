@@ -13,10 +13,10 @@
 
 | Parámetro | Tipo | Default | Descripción |
 |:---|:---|:---|:---|
-| filters | `object` | `false` | Consultar opciones para [filters](#opciones-para-filters) |
-| filters_visible | `boolean` | `false` | Define el estado inicial del panel de filtros. |
+| filters | `object` | `false` | Consultar opciones para [filters](#opciones-para-filters). |
+| filters_visible | `boolean` | `false` | Determina el estado inicial del panel de filtros. |
 | filters_info | `boolean` | `false` | Muestra un icono con _tooltip_ que indica el total de resultados por filtro. |
-| fit_bounds_after_filter | `boolean` | `false` | Permite ajustar los markes o polígonos del mapa a sus border cuando cambian los filtros. |
+| fit_bounds_after_filter | `boolean` | `false` | Ajusta los marcadores o polígonos del mapa a sus límites cada vez que cambian los filtros. |
 
 ## Opciones para filters
 
@@ -28,14 +28,14 @@ const options = {
             type: "checkbox",
             field: ["provincia", "checked"],
             fields: false,
-            check_uncheck_all: false
+            check_uncheck_all: false,
             fit_bounds_after_filter: false
         }
     ]
 };
 ```
 
-Alternativamente, es posible configurar filtros de forma manual:
+También es posible configurar los filtros de forma manual, definiendo los grupos y valores explícitamente:
 
 ```js
 const options = {
@@ -59,15 +59,15 @@ const options = {
 
 | Parámetro | Tipo | Default | Descripción |
 |:---|:---|:---|:---|
-| legend | `string` | `false` | Establece el nombre del legend en el fieldset de opciones. |
-| type | `string` | checkbox | Define el tipo de input del filtro. Opciones disponibles: `checkbox`, `radio` y `select`. |
-| field | `Object` | `false` | Crea un filtro basado en una clave de la entrada de datos. Consultar opciones para [field](#opciones-para-field). |
-| fields | `Object` | `false` | A diferencia de *field*, genera un filtro basado en criterios definidos por el usuario utilizando datos existentes en las entradas. Consultar opciones para [fields](#opciones-para-fields). |
-| check_uncheck_all | `boolean` | `false` | Al habilitarse, muestra dentro de cada fieldset (debajo del legend) los botones _marcar todos_ y _desmarcar todos_ para los checkbox de ese filtro. |
-| label | `boolean` | `false` | Define el texto del label del input. Se aplica únicamente a formularios tipo `select`. |
-| all_options_text | `string` | `null` | Define el texto de la opción que selecciona todos los items. Se aplica únicamente a formularios tipo `select`. |
-| show_label | `boolean` | `true` | Muestra u oculta la etiqueta `label`, en un campo de formulario tipo `select`. |
-| show_legend | `boolean` | `true` | Muestra u oculta la etiqueta `label`, en un campo de formulario tipo `select`. |
+| legend | `string` | `false` | Texto del `<legend>` dentro del `<fieldset>` de opciones. |
+| type | `string` | `checkbox` | Tipo de input del filtro. Valores posibles: `checkbox`, `radio` y `select`. |
+| field | `Object` | `false` | Genera un filtro a partir de una clave de la entrada de datos. Consultar [opciones para field](#opciones-para-field). |
+| fields | `Object` | `false` | A diferencia de `field`, permite definir manualmente los grupos y criterios de filtrado. Consultar [opciones para fields](#opciones-para-fields). |
+| check_uncheck_all | `boolean` | `false` | Muestra los botones _Marcar todos_ y _Desmarcar todos_ dentro de cada fieldset, debajo del legend. Solo aplica a filtros de tipo `checkbox`. |
+| label | `boolean` | `false` | Texto del `<label>` del input. Solo aplica a filtros de tipo `select`. |
+| all_options_text | `string` | `null` | Texto de la opción que selecciona todos los items. Solo aplica a filtros de tipo `select`. |
+| show_label | `boolean` | `true` | Muestra u oculta el `<label>` del campo. Solo aplica a filtros de tipo `select`. |
+| show_legend | `boolean` | `true` | Muestra u oculta el `<legend>` del fieldset. Solo aplica a filtros de tipo `select`. |
 
 
 
@@ -89,8 +89,8 @@ const options = {
 
 | Posición | Tipo | Descripción |
 |:---|:---|:---|
-| 0 | `string` | Clave que se utilizará como criterio de filtrado. |
-| 1 | `string` o `boolean` | Establece el estado inicial de los checkbox. Valores posibles: "checked" o `false`. |
+| 0 | `string` | Clave del dato que se usará como criterio de filtrado. |
+| 1 | `string` o `boolean` | Estado inicial de los checkboxes. Valores posibles: `"checked"` o `false`. |
 
 
 ### Opciones para fields
@@ -117,7 +117,7 @@ const options = {
 
 | Posición | Tipo | Descripción |
 |:---|:---|:---|
-| 0 | `string` | Clave que se utilizará como criterio de filtrado. |
-| 1 | `string` | Nombre que se mostrará en el `<label>` del checkbox. |
-| 2 | `object` | Listado de valores que se buscarán en cada iteración. |
-| 3 | `string` o `boolean` | Establece el estado inicial del checkbox. Valores posibles: "checked" o `false`. |
+| 0 | `string` | Clave del dato que se usará como criterio de filtrado. |
+| 1 | `string` | Texto que se mostrará en el `<label>` del checkbox. |
+| 2 | `object` | Lista de valores que se evaluarán en cada iteración. |
+| 3 | `string` o `boolean` | Estado inicial del checkbox. Valores posibles: `"checked"` o `false`. |
