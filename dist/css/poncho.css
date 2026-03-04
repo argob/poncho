@@ -16987,6 +16987,51 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
     display: none;
   }
 }
+/* SMN | Actualización: Pasos internacionales y bloque de clima */
+.bloque-periodo {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+}
+.bloque-periodo:last-child {
+  border-bottom: none;
+}
+.bloque-periodo .col-icon {
+  min-height: 2.2em;
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 767px) {
+  .pronostico-ext .bloque-periodo {
+    display: block;
+    border-bottom: 1px solid #ccc;
+  }
+  .pronostico-ext dl {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .pronostico-ext .col-icon {
+    justify-content: flex-start;
+    min-height: auto;
+  }
+  .pronostico-ext dd {
+    margin-bottom: 0;
+  }
+  .pronostico-ext hr {
+    display: none;
+  }
+  section:has(.pronostico-ext) {
+    padding: 10px !important;
+  }
+  .panel-body .bloque-periodo p {
+    padding: 10px 0;
+  }
+  .clima-pasos .row.small {
+    padding: 0 0 0 30px;
+  }
+}
 /**
  * Styles for the copy and share functionality in Poncho Table.
  */

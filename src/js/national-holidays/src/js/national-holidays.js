@@ -778,8 +778,8 @@ const calendar = {
             faltanHTML.forEach(elem => elem.innerHTML = dayCount);
 
             // Cuándo es el próximo feriado
-            const day = date.getDate();
-            const month = this.dict.months[date.getMonth()];
+            const day = date.getUTCDate();
+            const month = this.dict.months[date.getUTCMonth()];
             const proximoText = this.dict.nextHoliday
                 .replace("{day}", day)
                 .replace("{month}", month)

@@ -261,8 +261,6 @@ fetch_json(geoJSON, { headers: {"Accept": "application/json"}}).then(geoProvince
         const map = new ponchoMapProvincesCustom(geoProvinces, entries, options);
         map.renderProvinceMap();
         loader.close();
-
-        containerSize();
     });
 });
 </script>
