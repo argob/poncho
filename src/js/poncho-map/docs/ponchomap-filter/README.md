@@ -13,10 +13,10 @@
 
 | Parámetro | Tipo | Default | Descripción |
 |:---|:---|:---|:---|
-| filters | `object` | `false` | Consultar opciones para [filters](#opciones-para-filters) |
-| filters_visible | `boolean` | `false` | Define el estado inicial del panel de filtros. |
+| filters | `object` | `false` | Consultar opciones para [filters](#opciones-para-filters). |
+| filters_visible | `boolean` | `false` | Determina el estado inicial del panel de filtros. |
 | filters_info | `boolean` | `false` | Muestra un icono con _tooltip_ que indica el total de resultados por filtro. |
-| fit_bounds_after_filter | `boolean` | `false` | Permite ajustar los markes o polígonos del mapa a sus border cuando cambian los filtros. |
+| fit_bounds_after_filter | `boolean` | `false` | Ajusta los marcadores o polígonos del mapa a sus límites cada vez que cambian los filtros. |
 
 ## Opciones para filters
 
@@ -28,14 +28,14 @@ const options = {
             type: "checkbox",
             field: ["provincia", "checked"],
             fields: false,
-            check_uncheck_all: false
+            check_uncheck_all: false,
             fit_bounds_after_filter: false
         }
     ]
 };
 ```
 
-Alternativamente, es posible configurar filtros de forma manual:
+También es posible configurar los filtros de forma manual, definiendo los grupos y valores explícitamente:
 
 ```js
 const options = {
@@ -89,8 +89,8 @@ const options = {
 
 | Posición | Tipo | Descripción |
 |:---|:---|:---|
-| 0 | `string` | Clave que se utilizará como criterio de filtrado. |
-| 1 | `string` o `boolean` | Establece el estado inicial de los checkbox. Valores posibles: "checked" o `false`. |
+| 0 | `string` | Clave del dato que se usará como criterio de filtrado. |
+| 1 | `string` o `boolean` | Estado inicial de los checkboxes. Valores posibles: `"checked"` o `false`. |
 
 
 ### Opciones para fields
@@ -117,7 +117,7 @@ const options = {
 
 | Posición | Tipo | Descripción |
 |:---|:---|:---|
-| 0 | `string` | Clave que se utilizará como criterio de filtrado. |
-| 1 | `string` | Nombre que se mostrará en el `<label>` del checkbox. |
-| 2 | `object` | Listado de valores que se buscarán en cada iteración. |
-| 3 | `string` o `boolean` | Establece el estado inicial del checkbox. Valores posibles: "checked" o `false`. |
+| 0 | `string` | Clave del dato que se usará como criterio de filtrado. |
+| 1 | `string` | Texto que se mostrará en el `<label>` del checkbox. |
+| 2 | `object` | Lista de valores que se evaluarán en cada iteración. |
+| 3 | `string` o `boolean` | Estado inicial del checkbox. Valores posibles: `"checked"` o `false`. |
