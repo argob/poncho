@@ -31,7 +31,7 @@ Define el contenido y formato del texto que aparece al posicionar el cursor sobr
 
 | Parámetro | Tipo | Default | Descripción | Tipo de uso |
 |:---|:---|:---|:---|:---|
-| tooltip_label | `boolean\|string\|function` | `false` | Acepta tres tipos de valores: una función que recibe la entrada como parámetro y retorna el texto formateado; una plantilla HTML con claves entre dobles llaves (por ejemplo: `"{{valor}} <strong>{{porcentaje}} %</strong>"`); o un valor booleano. Las claves corresponden a propiedades del objeto de datos. | *Opcional* |
+| tooltip_label | `boolean\|string\|function` | `false` | Acepta tres tipos de valores: una función que recibe la entrada como parámetro y retorna el texto formateado; una plantilla HTML con claves entre dobles llaves (por ejemplo: `"{{valor}} <strong>{{porcentaje}} %</strong>"`); o un valor booleano. Las claves corresponden a propiedades del objeto de datos. Ver [condicional en línea](../condicional-en-linea/readme.md) | *Opcional* |
 
 ----
 
