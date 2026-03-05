@@ -16,7 +16,7 @@
   - [Opciones para fields](#opciones-para-fields)
     - [Parámetros para entradas en fields](#parámetros-para-entradas-en-fields)
     - [Sintaxis](#sintaxis-1)
-  - [Opciones para field](#opciones-para-field-1)
+    - [Ejemplo](#ejemplo)
 
 ## Parámetros
 
@@ -98,22 +98,7 @@ const options = {
 };
 ```
 
-| Parámetro | Tipo | Default | Descripción |
-|:---|:---|:---|:---|
-| legend | `string` | `false` | Establece el nombre del legend en el fieldset de opciones. |
-| type | `string` | checkbox | Define el tipo de input del filtro. Opciones disponibles: `checkbox`, `radio` y `select`. |
-| field | `Object` | `false` | Crea un filtro basado en una clave de la entrada de datos. Consultar opciones para [field](#opciones-para-field). |
-| fields | `Object` | `false` | A diferencia de *field*, genera un filtro basado en criterios definidos por el usuario utilizando datos existentes en las entradas. Consultar opciones para [fields](#opciones-para-fields). |
-| check_uncheck_all | `boolean` | `false` | Al habilitarse, muestra dentro de cada fieldset (debajo del legend) los botones _marcar todos_ y _desmarcar todos_ para los checkbox de ese filtro. |
-| label | `boolean` | `false` | Define el texto del label del input. Se aplica únicamente a formularios tipo `select`. |
-| all_options_text | `string` | `null` | Define el texto de la opción que selecciona todos los items. Se aplica únicamente a formularios tipo `select`. |
-| show_label | `boolean` | `true` | Muestra u oculta la etiqueta `label`, en un campo de formulario tipo `select`. |
-| show_legend | `boolean` | `true` | Muestra u oculta la etiqueta `label`, en un campo de formulario tipo `select`. |
-
-
-
-
-### Opciones para field
+#### Ejemplo
 
 ```js
 const options = {
