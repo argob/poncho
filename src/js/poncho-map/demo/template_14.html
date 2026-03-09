@@ -84,7 +84,7 @@ COPIAR DESDE ACÁ…
                 class="leaflet-container leaflet-touch leaflet-fade-anim 
                     leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
                 id="map"
-                style="height: 600px; width: 100%;"
+                style="height: 650px; width: 100%;"
                 tabindex="0">
             </div>
         </div>
@@ -116,18 +116,32 @@ COPIAR DESDE ACÁ…
 
 <!-- SCRIPTS -->
 <script id="code_map">
-// URL WFS (GeoJSON)
-var obrasWFS = "https://sigvial.vialidad.gob.ar/geoserver/dnv/ows?" +
-    "service=WFS" +
-    "&version=1.0.0" +
-    "&request=GetFeature" +
-    "&typeName=dnv:Obras_Ejecución2026" +
-    "&outputFormat=application/json";
+const _ENV = "develop";
+
+const conf = {
+    production: {
+        strokeColor: "var(--arg-cielo)",
+        strokeActiveColor: "var(--arg-escarapela)",
+        service: "https://sigvial.vialidad.gob.ar/geoserver/dnv/ows?" +
+            "service=WFS" +
+            "&version=1.0.0" +
+            "&request=GetFeature" +
+            "&typeName=dnv:Obras_Ejecución2026" +
+            "&outputFormat=application/json",
+    },
+    develop : {
+        strokeColor: "var(--arg-cielo)",
+        strokeActiveColor: "var(--arg-escarapela)",
+        service: "./data/17581-vialidad.json"
+    }
+};
+
+const {strokeColor, strokeActiveColor, service} = conf[_ENV];
 
 // Modifica el color del active
 headStyle(
     "vialidad", 
-    `.poncho-map path.marker--active {stroke:var(--arg-escarapela);`
+    `.poncho-map path.marker--active {stroke:${strokeActiveColor};`
     + `filter: none !important;opacity:1 !important;}`
 );
 
@@ -137,14 +151,12 @@ loader.load();
 
  // init
 (async() => {
-    // const gdata = await fetch_json( obrasWFS ); 
-    const gdata = await fetch_json( "./data/17581-vialidad.json" );
+    const gdata = await fetch_json( service ); 
 
     // Propiedades de polígono
     gdata.features.forEach((entry, i) => {
-        const color = "var(--arg-cielo)";
-        entry.properties.color = color;
-        entry.properties["stroke-color"] = color;
+        entry.properties.color = strokeColor;
+        entry.properties["stroke-color"] = strokeColor;
         entry.properties["stroke-opacity"] = 1;
         entry.properties["stroke-width"] = 3;
     });
