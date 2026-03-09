@@ -68,10 +68,10 @@ const mapOptions = {
             <i class="icon-location" aria-hidden="true"></i>
             ${entry.address},<br>${entry.locality}, ${entry.province}.
         </div>`;
-        // Paso las nuevas clave/valor a default_template(). Método 
+        // Paso las nuevas clave/valor a defaultTemplate(). Método 
         // responsable de procesar todas las entradas asignadas en
         // template_structure.values.
-        return self.default_template(self, entry);
+        return self.defaultTemplate(self, entry);
     },
     template_structure:{
         values: [
