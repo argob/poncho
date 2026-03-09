@@ -130,13 +130,13 @@ const conf = {
             "&outputFormat=application/json",
     },
     develop : {
-        strokeColor: "var(--arg-cielo)",
-        strokeActiveColor: "var(--arg-escarapela)",
+        strokeColor: "var(--arg-maiz)",
+        strokeActiveColor: "var(--arg-mandarina)",
         service: "./data/17581-vialidad.json"
     }
 };
 
-const {strokeColor, strokeActiveColor, service} = conf[_ENV];
+const {strokeColor, strokeActiveColor, service} = conf[ _ENV ];
 
 // Modifica el color del active
 headStyle(
