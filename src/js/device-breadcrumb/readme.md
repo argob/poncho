@@ -1,39 +1,57 @@
-# 📦 Device breadcrumb
+# Device Breadcrumb
 
-## 🧰 Opciones y métodos
+Componente JavaScript que adapta la visualización de las _migas de pan_ según el dispositivo. En pantallas móviles, colapsa los ítems intermedios y expone un botón para expandirlos; en pantallas de escritorio, los muestra completos.
 
-### Opciones iniciales
+El componente agrega clases CSS al DOM y requiere que los estilos de `device-breadcrumb.scss` estén compilados e incluidos en la página.
 
-| Parámetro | Tipo | Default | Descripción |
-|:---|:---|:---|:---|
-| breakPoint | `integer` | 991| Representa el punto en el que el objeto modifica la visualización de los elementos que conforman las _migas de pan_.<br><br>El _breakpoint_ tiene una relación directa con los estilos CSS utilizados en éste módulo.  | 
-| selector | `string` | `.breadcrumb` | Selector asociado para implementar el objeto. |
-| domain | `object` | `["^/$",  location.host + "/?$"]` | _Array object_ con las opciones para definir la página de inicio del sitio dónde se implementa el objeto. |
+---
 
+## Opciones
 
-### Métodos
+| Parámetro | Tipo | Por defecto | Descripción |
+| :--- | :--- | :--- | :--- |
+| `breakPoint` | `integer` | `991` | Ancho máximo en píxeles (inclusive) por debajo del cual el breadcrumb se muestra en modo colapsado. Debe coincidir con el breakpoint definido en `device-breadcrumb.scss`. |
+| `selector` | `string` | `".breadcrumb"` | Selector CSS del elemento que contiene las migas de pan. |
+| `domain` | `string[]` | `["^/$", "<host>/?$"]` | Array de expresiones regulares que identifican la URL de inicio del sitio. El valor por defecto usa `location.host` en tiempo de ejecución. |
 
+## Métodos
 
-| Nombre | Descripción |
-|:---|:---|
-| render | Genera el _breadcrum_ y en función del tamaño de pantalla, lo minifica o lo deja expandido removiendo la página de inicio y la página actual. |
+| Nombre | Firma | Descripción |
+| :--- | :--- | :--- |
+| `render` | `render(innerWidth?: number)` | Evalúa el ancho de pantalla y aplica el layout correspondiente. Elimina y recrea los botones de expandir/contraer en cada llamada. Si se omite `innerWidth`, usa `window.innerWidth`. |
 
+---
 
+## Uso
 
-# 🚀 Uso
-
+### Inicialización básica
 
 ```js
-const options = {
-    domain: ["^/$",`${location.host}/?$`]
-}
 document.addEventListener("DOMContentLoaded", () => {
-    const deviceBreadcrumb = new DeviceBreadcrumb(options);
-    deviceBreadcrumb.render();
+    const breadcrumb = new DeviceBreadcrumb();
+    breadcrumb.render();
 });
-window.addEventListener("resize", () =>  {
-    const deviceBreadcrumb = new DeviceBreadcrumb(options);
-    deviceBreadcrumb.render();
+
+window.addEventListener("resize", () => {
+    const breadcrumb = new DeviceBreadcrumb();
+    breadcrumb.render();
 });
 ```
 
+### Con opciones personalizadas
+
+```js
+const options = {
+    domain: ["^/$", "example\\.com/?$"]
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+    const breadcrumb = new DeviceBreadcrumb(options);
+    breadcrumb.render();
+});
+
+window.addEventListener("resize", () => {
+    const breadcrumb = new DeviceBreadcrumb(options);
+    breadcrumb.render();
+});
+```
