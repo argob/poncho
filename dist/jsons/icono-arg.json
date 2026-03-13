@@ -132,6 +132,11 @@
       },
     
       {
+        "nombre": "amanecer",
+        "clase": "icono-arg-amanecer"
+      },
+    
+      {
         "nombre": "ambiente",
         "clase": "icono-arg-ambiente"
       },
@@ -347,6 +352,11 @@
       },
     
       {
+        "nombre": "atardecer",
+        "clase": "icono-arg-atardecer"
+      },
+    
+      {
         "nombre": "audicion-accesible",
         "clase": "icono-arg-audicion-accesible"
       },
@@ -489,6 +499,11 @@
       {
         "nombre": "biblioteca",
         "clase": "icono-arg-biblioteca"
+      },
+    
+      {
+        "nombre": "biblioteca-2",
+        "clase": "icono-arg-biblioteca-2"
       },
     
       {
@@ -1792,6 +1807,21 @@
       },
     
       {
+        "nombre": "energia-nuclear-chip",
+        "clase": "icono-arg-energia-nuclear-chip"
+      },
+    
+      {
+        "nombre": "energia-nuclear-ia",
+        "clase": "icono-arg-energia-nuclear-ia"
+      },
+    
+      {
+        "nombre": "energia-nuclear-rayo",
+        "clase": "icono-arg-energia-nuclear-rayo"
+      },
+    
+      {
         "nombre": "energia-solar",
         "clase": "icono-arg-energia-solar"
       },
@@ -2172,6 +2202,11 @@
       },
     
       {
+        "nombre": "gato",
+        "clase": "icono-arg-gato"
+      },
+    
+      {
         "nombre": "genero",
         "clase": "icono-arg-genero"
       },
@@ -2512,6 +2547,11 @@
       },
     
       {
+        "nombre": "inteligencia-artificial",
+        "clase": "icono-arg-inteligencia-artificial"
+      },
+    
+      {
         "nombre": "interes-cultural",
         "clase": "icono-arg-interes-cultural"
       },
@@ -2672,6 +2712,11 @@
       },
     
       {
+        "nombre": "litio",
+        "clase": "icono-arg-litio"
+      },
+    
+      {
         "nombre": "lluvias",
         "clase": "icono-arg-lluvias"
       },
@@ -2824,6 +2869,11 @@
       {
         "nombre": "maquinaria-G3",
         "clase": "icono-arg-maquinaria-G3"
+      },
+    
+      {
+        "nombre": "marca-pais",
+        "clase": "icono-arg-marca-pais"
       },
     
       {
@@ -3054,6 +3104,11 @@
       {
         "nombre": "museo",
         "clase": "icono-arg-museo"
+      },
+    
+      {
+        "nombre": "museo-geologico",
+        "clase": "icono-arg-museo-geologico"
       },
     
       {
@@ -3389,6 +3444,11 @@
       {
         "nombre": "pera",
         "clase": "icono-arg-pera"
+      },
+    
+      {
+        "nombre": "perro",
+        "clase": "icono-arg-perro"
       },
     
       {
@@ -3752,6 +3812,11 @@
       },
     
       {
+        "nombre": "radiacion-nuclear",
+        "clase": "icono-arg-radiacion-nuclear"
+      },
+    
+      {
         "nombre": "radiocirugia",
         "clase": "icono-arg-radiocirugia"
       },
@@ -3974,6 +4039,16 @@
       {
         "nombre": "satelite",
         "clase": "icono-arg-satelite"
+      },
+    
+      {
+        "nombre": "segemar",
+        "clase": "icono-arg-segemar"
+      },
+    
+      {
+        "nombre": "segemar-120",
+        "clase": "icono-arg-segemar-120"
       },
     
       {
@@ -4202,6 +4277,11 @@
       },
     
       {
+        "nombre": "tasas-municipales",
+        "clase": "icono-arg-tasas-municipales"
+      },
+    
+      {
         "nombre": "teatro",
         "clase": "icono-arg-teatro"
       },
@@ -4409,6 +4489,11 @@
       {
         "nombre": "transplante-negativo",
         "clase": "icono-arg-transplante-negativo"
+      },
+    
+      {
+        "nombre": "transportadora-mascota",
+        "clase": "icono-arg-transportadora-mascota"
       },
     
       {

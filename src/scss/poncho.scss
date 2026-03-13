@@ -30,12 +30,11 @@
 @import "select2/core";
 @import "modules/forms";
 @import "modules/social";
+@import "modules/alerts";
 @import "modules/tables";
 
-// @import "modules/alerts";
-
 @import "modules/alert-highlight-box/variables-alert-highlight-box";
-@import "modules/alert-highlight-box/alertas";
+//@import "modules/alert-highlight-box/alertas";
 @import "modules/alert-highlight-box/recuadros";
 
 @import "modules/responsive-embed";
@@ -64,6 +63,8 @@
 @import "modules/campanias.scss";
 @import "modules/menu-org.scss";
 
+@import "modules/normativa.scss"; // navegación normativa 
+
 @import "modules/tramitar/tramitar";
 @import "modules/home-new";
 @import "modules/identidad";
@@ -75,9 +76,15 @@
 @import "modules/tramitar/tramites"; // Trámites 
 @import "modules/details";
 @import "modules/aabe/aabe"; // AABE
+@import "modules/404-chicos-extraviados/main"; // 404 Chicos extraviados
+@import "modules/smn/smn"; // SMN
+
+// Poncho Table
+@import "../js/poncho-table/src/scss/share";
 
 
-@import "../js/loader/src/scss/loader.scss";
+
+// @import "../js/loader/src/scss/loader.scss";
 @import "../js/device-breadcrumb/src/scss/device-breadcrumb";
 
 @import "../js/national-holidays/src/scss/national-holidays";

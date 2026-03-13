@@ -79,38 +79,82 @@ if(showdown){ // IF showdown
      * Números
      *
      * @see https://www.argentina.gob.ar/contenidosdigitales/markdown/numeros
-     * @regexp https://regex101.com/r/mrmNik/1
+     * @regexp https://regex101.com/r/E01SPC/1
      */
     showdown.extension("numbers", function() {
         "use strict";
         return [{
             type: "lang",
             filter: function(text, converter, options) {
-                const regex = /((?:\[\[)?col([2-4])(?:-\{|<<))[\s\S]\[\[numeros-\{([^\{\}-]*?)-([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}\]\][\s\S](>>|\}-\]\])/;
-                const main_regex = new RegExp(regex, "gmi");
+                const regex = /(?:(?:\[\[)?col([1-4])(?:-\{|<<))[\s\S]\[\[numeros-\{([^\{\}-]*?)-([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}-\{([^\{\}]*?)\}\]\][\s\S](>>|\}-\]\])/;
+                const mainRegex = new RegExp(regex, "gmi");
 
-                text = text.replace(main_regex, function(e){
+                const processText = text.replace(mainRegex, (
+                    match,
+                    col,
+                    number,
+                    smallText,
+                    lead,
+                    textConent,
+                    color
+                ) => {
+                    try {
+                        const cols = {
+                            "1": "12",
+                            "2": "6",
+                            "3": "4",
+                            "4": "3",
+                        };
+                        const setCols = cols[col];
 
-                const main_regex = new RegExp(regex, "gmi");
-                var rgx = main_regex.exec(e);
-                var cols = {
-                    "2": "6",
-                    "3": "4",
-                    "4": "3",
-                    "1": "12"
-                };
+                        const tplContainer = document.createElement("div");
+                        tplContainer.classList.add("dato-nro");
 
-                var html = `<div class="col-xs-12 col-sm-${cols[rgx[2]]} col-md-${cols[rgx[2]]}">
-                        <p class="h2 ${rgx[7]}">${rgx[3]} 
-                            <small>${rgx[4]}</small>
-                        </p>
-                        <p class="lead">${rgx[5]}</p>
-                        <p class="text-muted">${rgx[6]}</p>
-                    </div>`;
-                    return html;
+                        const tplCol = document.createElement("div");
+                        tplCol.classList.add(
+                            "col-xs-12", `col-sm-${setCols}`, `col-md-${setCols}`
+                        );
+
+                        const tplSmallText = document.createElement("small");
+                        tplSmallText.textContent = smallText.trim();
+
+                        const space = document.createElement("span");
+                        space.classList.add("sixth-space");
+                        space.innerHTML = "&nbsp;";
+
+                        const tplNumber = document.createElement("p");
+                        tplNumber.classList.add("m-y-0", "h2", color);
+                        tplNumber.textContent = number;
+
+                        const tplLead = document.createElement("p");
+                        tplLead.classList.add("lead");
+                        tplLead.textContent = lead;
+
+                        const tplText = document.createElement("p");
+                        tplText.classList.add("text-muted");
+                        tplText.textContent = textConent;
+
+                        // Si el símbolo o texto existe lo agrego.
+                        if(smallText){
+                            tplNumber.appendChild(space);
+                            tplNumber.appendChild(tplSmallText);
+                        }
+                        tplContainer.appendChild(tplNumber);
+                        if(lead){
+                            tplContainer.appendChild(tplLead);
+                        }
+                        if(textConent){
+                            tplContainer.appendChild(tplText);
+                        }
+
+                        tplCol.appendChild(tplContainer);
+                        return tplCol.outerHTML;
+                    } catch (error) {
+                        return match;
+                    }
                 });
 
-                return text;
+                return processText;
             }
         }];
     });

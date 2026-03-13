@@ -68,7 +68,7 @@ const __setHeaders = (options) => {
  * @returns {object}
  */
 const __templateStructure = (headers) => {
-    return { // Asigno estilos contentido
+    return {
         values: (function(){
             return Object.keys(headers).filter(key => {
                 const blacklist = [
@@ -86,13 +86,13 @@ const __templateStructure = (headers) => {
             });
         })(),
         // map_align: "left",
-        title_classlist: ["h3", "m-b-1", "m-t-0"],
-        term_classlist: ["h5", "m-b-05"], 
         lead: {
             key: "volanta", 
             css: "text-default small text-uppercase p-b-xs m-b-1",
             style: "border-bottom: 1px solid var(--gray-border, #ccc);" 
         },  
+        term_classlist: ["h5", "m-b-05"], 
+        title_classlist: ["h3", "m-b-1", "m-t-0"]
     };
 };
 
@@ -108,31 +108,28 @@ class ponchoMapProvincesCustom extends PonchoMapProvinces {
         options.template_structure = templateStructure;
 
         const defaultOptions = {
-            id_mixing: ["in1", "nam"],
-            scope: "poncho-map", 
-            title: "filttro-provincia",
-            template_markdown: true,
             allowed_tags: ['*'],
-            // headers: headers,
-            template_structure: templateStructure,
-            tooltip: true,
-            hash: true,
-            province_index: "filttro-provincia",
+            fit_bounds: false,
             fit_bounds_onevent: true,
-            // theme: "relax"
-            theme_ui: "default",
-            theme_map: "transparent",
-            // map_opacity: 1,
-            // map_background: "white",
-            // initial_entry: "42-la-pampa",
+            hash: true,
             hide_select: true,
+            // headers: headers,
+            id_mixing: ["in1", "nam"],
+            // initial_entry: "42-la-pampa",
+            // map_background: "white",
+            // map_opacity: 1,
             overlay_image: true,
             overlay_image_opacity: 0.75,
-            fit_bounds: false,
-            
+            province_index: "filttro-provincia",
+            scope: "poncho-map",
+            // theme: "relax"
+            theme_map: "transparent",
+            theme_ui: "default",
+            template_markdown: true,
+            template_structure: templateStructure,
+            title: "filttro-provincia",
+            tooltip: true,
         };
-
-
 
         let opts = Object.assign({}, defaultOptions, options);
         super(geoProvinces, entries, opts);

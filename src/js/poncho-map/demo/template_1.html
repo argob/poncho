@@ -191,6 +191,27 @@
 </script>
 
 <script id="code_map_2">
+
+function _divMarker(imageUrl, text) {
+    if ([imageUrl, text].every(e => typeof e !== "string" || e.trim() === "")){
+        return;
+    }
+
+    const img = document.createElement("img");
+    img.src = imageUrl;
+    img.alt = "";
+    img.setAttribute("width", 34);
+    img.setAttribute("height", 34);
+
+
+    return new L.icon({
+        iconUrl: imageUrl,
+        iconSize: [34, 44],
+        iconAnchor: [17, 40],
+        popupAnchor: [0, -30]
+    });
+}
+
 // SEGUNDO MAPA
 (async () => {
     const loaderMap2 = new PonchoMapLoader({scope: "dos"});
@@ -224,7 +245,12 @@
                 "field": ["institucion"]
             }
         ],
-        open_maps:true
+        open_maps:true,
+        marker: function(self, ele){
+            const marker = ele.color ? ele.color : "verdin";
+            const iconTypeURL = `http://127.0.0.1:5502/src/js/poncho-map/demo/markers-v2/marcador-arg-${marker}.svg`;
+            return _divMarker(iconTypeURL, `a, b`);
+        },
     };
 
     const filter2 = new PonchoMapFilter(geoJSON, mapOptions2);

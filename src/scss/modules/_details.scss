@@ -1,3 +1,4 @@
+
 /**
  * DETAILS & SUMMARY
  *
@@ -36,11 +37,13 @@ $caretDefaultSize: 26px; // Tamaño del caret, o flecha.
 $caretSmallSize: 22px; // Tamaño del caret cuando es pequeño.
 $caretColor: var(--arg-negro-600, #444444);
 $caretBackground: var(--arg-negro-100, #e9e9e9);
+$caretBackgroundHover: #ccc;
 
 // media queries
 $mediaBreakpoint: 768px;
 $containerBreakpoint: 350px;
 $containerBorderRadius: 3px; // Define el border-radius por defecto
+$containerBorderRound: 9px;
 $containerMarginT: 0px;
 $containerMarginB: 1em;
 
@@ -63,66 +66,86 @@ $containerLeftContentPaddingE: 18px; // padding-right content
  * Definición para los temas de color.
  */
 $colorThemes: (
-    'warning': (
+    "warning": (
         caretBackground: var(--arg-amarillo),
+        //caretBackgroundHover: var(--arg-ocre-500),
+        caretBackgroundHover:
+            color-mix(
+                in srgb,
+                var(--arg-amarillo) 100%,
+                var(--arg-ocre-500) 90%
+            ),
         caret: black,
         containerBackground: var(--arg-amarillo-50),
         borderColor: var(--arg-amarillo-400)
     ),
-    'success': (
+    "success": (
         caretBackground: var(--arg-verde),
+        caretBackgroundHover: var(--arg-verde-800),
         caret: white,
         containerBackground: var(--arg-verde-50),
         borderColor: var(--arg-verde-300)
     ),
-    'danger': (
+    "danger": (
         caretBackground: var(--arg-rojo),
+        caretBackgroundHover: var(--arg-rojo-800),
         caret: white,
         containerBackground: var(--arg-rojo-50),
         borderColor: var(--arg-rojo-200)
     ),
-    'blanco': (
+    "blanco": (
         caretBackground: var(--arg-blanco),
+        caretBackgroundHover: #dddddd,
         caret: black
     ),
-    'palta': (
+    "palta": (
         caretBackground: var(--arg-palta),
+        caretBackgroundHover: var(--arg-turquesa-500),
         caret: black
     ),
-    'primary': (
+    "primary": (
         caretBackground: var(--arg-azul),
+        caretBackgroundHover: var(--arg-primary-600),
         caret: white,
         containerBackground: var(--arg-primary-50),
         borderColor: var(--arg-primary-200)
     ),
-    'azul-morado': (
+    "azul-morado": (
         caretBackground: var(--arg-azul-morado),
+        caretBackgroundHover:
+            color-mix(in srgb, var(--arg-azul-morado) 100%, black 30%),
         caret: white
     ),
-    'negro': (
+    "negro": (
         caretBackground: var(--arg-negro-600),
+        caretBackgroundHover: var(--arg-negro-900),
         caret: white
     ),
-    'dark': (
+    "dark": (
         caretBackground: rgb(0 0 0 / 0.35),
+        caretBackgroundHover: rgb(0 0 0 / 0.25),
         caret: white
     ),
-    'light': (
+    "light": (
         caretBackground: rgb(255 255 255 / 0.75),
+        caretBackgroundHover: rgb(255 255 255 / 0.55),
         caret: black
     ),
-    'default': (
-        caretBackground: #ddd,
+    "default": (
+        caretBackground: $caretBackground,
+        caretBackgroundHover: $caretBackgroundHover,
         caret: black,
         containerBackground: #f4f4f4,
         borderColor: #ccc
     ),
-    'transparent': (
+    "transparent": (
         caretBackground: transparent,
+        caretBackgroundHover: transparent,
         caret: var(--arg-azul)
     ),
-    'rosado': (
+    "rosado": (
         caretBackground: var(--arg-rosado),
+        caretBackgroundHover: var(--arg-fucsia-300),
         caret: white
     )
 );
@@ -174,11 +197,17 @@ $colorThemes: (
  *
  * @param {string} $background Color de fondo para el contenedor del caret.
  * @param {string} $fill Color para el caret.
+ * @param {string} $backgroundHover Color hover para el fonde del caret.
  */
-@mixin caretColor($background, $fill) {
+@mixin caretColor($background, $fill, $backgroundHover) {
     & > summary {
         &::before {
             background: $background;
+            transition: background 0.2s ease-in-out;
+        }
+        &:hover::before {
+            @include caretBackgroundHover($background, $backgroundHover);
+            //@include caretBackgroundHover(#{$background}, #{$backgroundHover});
         }
         &::after {
             background-color: $fill;
@@ -186,9 +215,30 @@ $colorThemes: (
     }
 }
 
+/**
+ * Oscurece el color de fondo
+ * @param {string} $fill Color para el caret.
+ */
+@mixin caretBackgroundHover($color, $hover) {
+    //background-color: color-mix(in srgb, #{$color} 100%, black 20%);
+    //background-color: #{$hover};
+    //transition: background .2s ease-in-out;
+}
+
+:root {
+    interpolate-size: allow-keywords;
+}
+
+/* Soporte para Safari que no tiene ::details-content */
+@supports not (interpolate-size: allow-keywords) {
+    :root {
+        interpolate-size: unset;
+    }
+}
+
 #{$detailsScope} {
-    --icon-close: url('data:image/svg+xml;utf8,<svg focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16.59,9.79l-4.59,4.58-4.59-4.58-1.41,1.41,6,6,6-6-1.41-1.41Z"></path></svg>');
-    --icon-open: url('data:image/svg+xml;utf8,<svg focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7.41,15.51l4.59-4.58,4.59,4.58,1.41-1.41-6-6-6,6,1.41,1.41Z"></path></svg>');
+    --icon-close: url("data:image/svg+xml;base64,PHN2ZyBmb2N1c2FibGU9ImZhbHNlIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTE2LjU5LDkuNzlsLTQuNTksNC41OC00LjU5LTQuNTgtMS40MSwxLjQxLDYsNiw2LTYtMS40MS0xLjQxWiI+PC9wYXRoPjwvc3ZnPg==");
+    --icon-open: url("data:image/svg+xml;base64,PHN2ZyBmb2N1c2FibGU9ImZhbHNlIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTcuNDEsMTUuNTFsNC41OS00LjU4LDQuNTksNC41OCwxLjQxLTEuNDEtNi02LTYsNiwxLjQxLDEuNDFaIj48L3BhdGg+PC9zdmc+");
 
     --details-border-color: #{$detailsBorderColor};
     --details-border-style: #{$detailsBorderStyle};
@@ -214,6 +264,7 @@ $colorThemes: (
     --caret-width: #{$caretDefaultSize};
     --caret-color: #{$caretColor};
     --caret-background: #{$caretBackground};
+    --caret-background-hover: #{$caretBackgroundHover};
 
     /* Definitions */
     container: {
@@ -229,6 +280,40 @@ $colorThemes: (
         }
     }
 
+    overflow: hidden;
+
+    // Alineación para el summary
+    &.summary-text-right > summary {
+        justify-content: right;
+    }
+    &.summary-text-center > summary {
+        justify-content: center;
+    }
+    &.summary-text-left > summary {
+        justify-content: left;
+    }
+
+    &::details-content {
+        block-size: 0;
+        transition: block-size 0.15s linear, content-visibility 0.15s linear;
+
+        // Mozilla aun no tiene soporte para algunas de estas propiedades
+        -moz-transition: none;
+
+        transition-behavior: allow-discrete;
+        -webkit-transition-behavior: allow-discrete;
+        -moz-transition-behavior: allow-discrete;
+
+        // Fix temporal para que la transición sea fluida
+        border: {
+            top: 0.01em solid transparent;
+            bottom: 0.01em solid transparent;
+        }
+    }
+    &[open]::details-content {
+        block-size: auto;
+        content-visibility: visible;
+    }
     &:last-child {
         border-bottom: 1px solid var(--details-border-color);
     }
@@ -289,6 +374,7 @@ $colorThemes: (
             aspect-ratio: 1 / 1 !important;
             left: initial;
             right: var(--summary-padding-e);
+            transition: background 0.15s ease-in-out;
         }
 
         &::after {
@@ -315,6 +401,13 @@ $colorThemes: (
             right: calc(
                 ((var(--circle-size) - var(--caret-width)) / 2) +
                     var(--summary-padding-e)
+            );
+        }
+
+        &:hover::before {
+            @include caretBackgroundHover(
+                #{var(--caret-background)},
+                #{var(--caret-background-hover)}
             );
         }
     }
@@ -361,7 +454,8 @@ $colorThemes: (
         &.caret-#{$theme-name} {
             @include caretColor(
                 map-get($theme-colors, caretBackground),
-                map-get($theme-colors, caret)
+                map-get($theme-colors, caret),
+                map-get($theme-colors, caretBackgroundHover)
             );
         }
     }
@@ -379,8 +473,6 @@ $colorThemes: (
         }
         line-height: inherit;
     }
-    // @todo usar el pseudo elemento cuando esté habilitado
-    // &[open]::details-content { }
 
     // Pega el caret a la altura del padding.
     &.caret-fixed {
@@ -419,6 +511,40 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
     --container-border-radius: #{$containerBorderRadius};
     --container-margin-t: #{$containerMarginT};
     --container-margin-b: #{$containerMarginB};
+    --summary-padding-x: #{$containerSummaryPaddingS};
+    --summary-padding-t: #{$summaryPaddingT};
+    --summary-padding-b: #{$summaryPaddingB};
+    --circle-size: #{$circleDefaultSize};
+    
+    .details-container-heading {
+        display: inline-flex;
+        width: 100%;
+        flex-shrink: 0;
+        background: transparent;
+        align-items:center;
+        min-height: calc(
+            var(--circle-size) +
+                (var(--summary-padding-t) + var(--summary-padding-b))
+        );
+        padding:{
+            left: var(--summary-padding-x);
+            right: var(--summary-padding-x);
+        };
+        margin: 0;
+        font-size: inherit;
+        font-weight: bold;
+        line-height: inherit;
+        border-bottom: 1px solid var(--container-border-color);
+        
+        &.details-container-heading-borderless {
+            border-bottom: none;
+        }
+    }
+    
+    br,
+    p:empty {
+        display: none;
+    }
 
     border-radius: var(--container-border-radius);
     overflow: hidden;
@@ -437,26 +563,30 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
         @include caretFixed();
     }
 
-    &.details-container__borderless {
+    &.details-container-borderless {
         border: none;
     }
 
-    &.details-container__rounded {
+    &.details-container-round {
+        border-radius: $containerBorderRound;
+    }
+
+    &.details-container-rounded {
         border-radius: calc(#{$circleDefaultSize} / 2 + #{$detailsPaddingY});
     }
 
-    &.details-container__rounded .details-container {
+    &.details-container-rounded .details-container {
         border-radius: calc(
             #{$circleDefaultSize} / 2 + #{$detailsPaddingY} -
                 var(--content-padding-s)
         );
     }
 
-    &.details-container__rounded:has(details.caret-small) {
+    &.details-container-rounded:has(details.caret-small) {
         border-radius: calc(#{$circleSmallSize} / 2 + #{$detailsPaddingY});
     }
 
-    &.details-container__rounded:has(details.caret-small)
+    &.details-container-rounded:has(details.caret-small)
         .details-container:has(details.caret-small) {
         border-radius: calc(
             #{$circleSmallSize} / 2 + #{$detailsPaddingY} -
@@ -464,7 +594,7 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
         );
     }
 
-    &:not(:is(.details-container__borderless)) details:last-of-type {
+    &:not(:is(.details-container-borderless)) details:last-of-type {
         border-bottom: none;
     }
     & > #{$detailsScope} {
@@ -481,13 +611,30 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
     }
 }
 
-@media all and (max-width: $mediaBreakpoint) {
+
+/*
+Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
+*/
+@container detailsSize (max-width: #{$containerBreakpoint}) {
     .details-container {
-        &.details-container__rounded {
+        --circle-size: #{$circleSmallSize};
+
+        &.details-container-rounded {
             border-radius: calc(#{$circleSmallSize} / 2 + #{$detailsPaddingY});
         }
     }
 }
+
+@media all and (max-width: #{$mediaBreakpoint}) {
+    .details-container {
+        --circle-size: #{$circleSmallSize};
+
+        &.details-container-rounded {
+            border-radius: calc(#{$circleSmallSize} / 2 + #{$detailsPaddingY});
+        }
+    }
+}
+
 
 /**/
 
@@ -503,13 +650,13 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
 
                 @include caretColor(
                     map-get($theme-colors, caretBackground),
-                    map-get($theme-colors, caret)
+                    map-get($theme-colors, caret),
+                    map-get($theme-colors, caretBackgroundHover)
                 );
             }
         }
     }
 }
-
 
 /** 
  *  LADNDING
@@ -528,13 +675,11 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
     --summary-font-size: 1em;
 }
 
-.details-landing {
+.details-display {
     // Elimino/oculto las etiquetas de párrafo vacías y los br.
     br,
     p:empty {
         display: none;
-        height: 0px;
-        overflow: hidden;
     }
     // Redefino details
     // Vista default
@@ -581,16 +726,26 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
         font-style: normal;
         line-height: var(--summary-line-height);
     }
+
+    &#{&}.figure-fixed summary:has(i.fa-2x) i,
+    &#{&}.figure-fixed summary .figure {
+        align-self: start;
+    }
 }
 
 @media (max-width: 768px) {
-    .details-landing {
+    .details-display {
         &#{&}-md > details,
         &#{&}-lg > details {
             @include landingDefault();
             /* Global componente */
             --summary-padding-t: #{$summaryPaddingT};
             --summary-padding-b: #{$summaryPaddingB};
+        }
+
+        &#{&}.figure-xs-fixed summary:has(i.fa-2x) i,
+        &#{&}.figure-xs-fixed summary .figure {
+            align-self: start;
         }
     }
 }

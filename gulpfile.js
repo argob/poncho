@@ -11,7 +11,7 @@ const gulpIF = require('gulp-if');
 
 var generalCompressOptions = {
     compress: {
-        drop_console: true
+        drop_console: true,
     }
 };
 
@@ -34,11 +34,12 @@ const ponchoMinList = [
     './src/js/poncho-map/src/js/poncho-map.js',
     './src/js/poncho-map/src/js/poncho-map-filter.js',
     './src/js/poncho-map/src/js/poncho-map-search.js',
+    './src/js/poncho-map/src/js/poncho-map-helpers.js',
     './src/js/poncho-map-provinces/src/js/poncho-map-provinces.js',
     // './src/js/poncho-map-provinces/src/js/poncho-map-provinces-contenidos.js',
     './src/js/gapi-sheet-data/gapi-sheet-data.js',
     './src/js/translate-html/translate-html.js',
-    './src/js/loader/src/js/loader.js',
+    // './src/js/loader/src/js/loader.js',
 ];
 
 
@@ -91,6 +92,7 @@ gulp.task('compress', function () {
             './src/js/mapa-argentina/mapa-argentina.js',
             './src/js/device-breadcrumb/src/js/device-breadcrumb.js',
             './src/js/national-holidays/src/js/national-holidays.js',
+            './src/vendors/opening-hours-js/opening_hours+deps.min.js',
             './src/js/device-panel-menu/device-panel-menu.js'
         ])
         .pipe(uglify(generalCompressOptions))
@@ -202,10 +204,10 @@ gulp.task('compress-geojson-provincias', function () {
  * Copia imágenes al directorio dist/img {encoding: false}
  */
 gulp.task('copy-images', function () {
-    return gulp.src(
-            './src/js/poncho-map-provinces/src/img/*.*',
-            {encoding: false}
-        )
+    return gulp.src([
+            './src/img/*.*',
+            './src/js/poncho-map-provinces/src/img/*.*'
+        ], {encoding: false})
         .pipe(gulp.dest('./dist/img/'));
 });
 

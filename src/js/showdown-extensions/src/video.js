@@ -81,65 +81,60 @@ if(showdown){ // IF showdown
      * @see https://www.argentina.gob.ar/contenidosdigitales/markdown/video
      * @regexp https://regex101.com/r/99J0oH/3/
      */
-    showdown.extension("video", function() {
+    showdown.extension("video", () => {
         "use strict";
         return [
-        {
-            type: "lang",
-            filter: function(text, converter, options) {
-            const regex = /\[\[(youtube|vimeo)-\{(16by9|4by3)\}-\{([a-zA-Z0-9]+)\}\]\]/;
+            {
+                type: "lang",
+                filter: function(text, converter, options) {
+                    // Grupo 0: match completo
+                    // Grupo 1: brand (youtube o vimeo)
+                    // Grupo 2: videoRatio (16by9 o 4by3)
+                    // Grupo 3: videoCode (caracteres alfanuméricos)
+                    const mainRegex = /\[\[(youtube|vimeo)-\{(16by9|4by3)\}-\{([a-zA-Z0-9]+)\}\]\]/gmi;
 
-            var main_regex = new RegExp(regex,"gm");
-            text = text.replace(main_regex, function(e){
+                    text = text.replace(mainRegex, (
+                        match,
+                        brand,
+                        videoRatio,
+                        videoCode
+                    ) => {
+                        const videoContainer = document.createElement("div");
+                        videoContainer.classList.add(
+                            "embed-responsive",
+                            `embed-responsive-${videoRatio}`
+                        );
 
-            var main_regex = new RegExp(regex,"gm");
+                        const videoPlayer = document.createElement("iframe");
+                        videoPlayer.allowFullscreen = "";
+                        videoPlayer.id = `id__${brand}__${videoCode}`;
+                        videoPlayer.setAttribute("data-gtm-yt-inspected-1807370_332", "true");
+                        videoPlayer.setAttribute("data-gtm-yt-inspected-1807370_380", "true");
+                        videoPlayer.setAttribute("data-gtm-yt-inspected-1807370_518", "true");
+                        videoPlayer.setAttribute("data-gtm-yt-inspected-1807370_611", "true");
+                        videoPlayer.setAttribute("data-gtm-yt-inspected-1807370_618", "true");
 
-            var rgx_data = main_regex.exec(e);
-            if(rgx_data){
-                var video_ratio = rgx_data[2];
-                var video_code  = rgx_data[3];
-                var video_html  = "";
-                if(rgx_data[1] == "vimeo"){
-                        video_html = `<div 
-                            class="embed-responsive embed-responsive-${video_ratio}">
-                        <iframe
-                            width=""
-                            height=""
-                            src="https://player.vimeo.com/video/${video_code}"
-                            frameborder="0"
-                            webkitallowfullscreen=""
-                            mozallowfullscreen=""
-                            allowfullscreen=""
-                            data-gtm-yt-inspected-1807370_332="true" 
-                            data-gtm-yt-inspected-1807370_380="true" 
-                            data-gtm-yt-inspected-1807370_518="true" 
-                            data-gtm-yt-inspected-1807370_611="true" 
-                            data-gtm-yt-inspected-1807370_618="true">
-                        </iframe>
-                        </div>`;
-                    } else if(rgx_data[1] == "youtube"){
-                        video_html = `<div 
-                            class="embed-responsive embed-responsive-${video_ratio}">
-                        <iframe
-                            src="https://www.youtube.com/embed/${video_code}?enablejsapi=1&amp;origin=https%3A%2F%2Fwww.argentina.gob.ar" 
-                            allowfullscreen="" 
-                            data-gtm-yt-inspected-1807370_332="true" 
-                            id="957974559" 
-                            data-gtm-yt-inspected-1807370_380="true" 
-                            data-gtm-yt-inspected-1807370_518="true" 
-                            data-gtm-yt-inspected-1807370_611="true" 
-                            data-gtm-yt-inspected-1807370_618="true">
-                        </iframe>
-                        </div>`;
-                    }
+                        if(brand === "vimeo"){
+                            videoPlayer.src = `https://player.vimeo.com/video/${videoCode}`;
+                            videoPlayer.width = "";
+                            videoPlayer.height = "";
+                            videoPlayer.frameborder = "0";
+                            videoPlayer.setAttribute("webkitallowfullscreen", "");
+                            videoPlayer.setAttribute("mozallowfullscreen", "");
+                        } else if(brand === "youtube"){
+                            const originEncoded = encodeURIComponent('https://www.argentina.gob.ar');
+                            videoPlayer.src = `https://www.youtube.com/embed/${videoCode}?enablejsapi=1&origin=${originEncoded}`;
+                        } else {
+                            return match; 
+                        }
+
+                        videoContainer.appendChild(videoPlayer);
+                        return videoContainer.outerHTML;
+                    });
+
+                    return text;
                 }
-                return video_html;
-
-            });
-            return text;
             }
-        }
-        ]
+        ];
     });
-
 }

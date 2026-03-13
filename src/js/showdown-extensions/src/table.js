@@ -73,38 +73,55 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-if(showdown){ // IF showdown
-
-    /**
-     * Hace un wrapper en una tabla markdown y le agrega los estilos para
-     * presentar una tabla bootstrap
-     * 
-     * @return {string}    Objeto html <table>
-     */
-    showdown.extension("bootstrap-tables", function () {
+if(showdown){
+    showdown.extension('bootstrap-tables', function() {
         return [{
-            type: "output",
-            filter: function (html, converter, options) {
-
+        type: 'output',
+        filter: function(html, converter, options) {
+            try {
                 const parser = new DOMParser();
                 const doc = parser.parseFromString(html, 'text/html');
 
                 const tables = doc.querySelectorAll('table');
 
+                if (tables.length === 0) {
+                    return html;
+                }
+
                 tables.forEach(table => {
                     const wrapper = doc.createElement('div');
                     wrapper.classList.add('table-responsive');
-                    table.classList.add("table", "table-bordered");
-                    table.parentNode.replaceChild(wrapper, table);
-                    wrapper.appendChild(table); 
+                    
+                    const tableClasses = options.tableClass || 'table table-bordered';
+                    tableClasses.split(' ').forEach(cls => {
+                    if (cls.trim()) {
+                        table.classList.add(cls.trim());
+                    }
+                    });
+                    
+                    if (options.tableWrapperClass) {
+                        options.tableWrapperClass.split(' ').forEach(cls => {
+                            if (cls.trim()) {
+                                wrapper.classList.add(cls.trim());
+                            }
+                        });
+                    }
+
+                    const parent = table.parentNode;
+                    if (parent) {
+                        parent.replaceChild(wrapper, table);
+                        wrapper.appendChild(table);
+                    }
                 });
-
-                const serializer = new XMLSerializer();
-                const modifiedHtml = serializer.serializeToString(doc);
-
+                
+                const modifiedHtml = doc.body.innerHTML;
+                
                 return modifiedHtml;
+                
+            } catch (error) {
+                return html;
             }
+        }
         }];
     });
-
-} // END IF showdown
+}

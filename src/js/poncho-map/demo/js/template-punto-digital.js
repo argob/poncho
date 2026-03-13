@@ -31,27 +31,46 @@ const template_punto_digital = (self, row) => {
    *     'martes':['08:00:00','12:00:00']
    * }
    */
-  const days_avaiable = (data) => {
-    if(!data){
+  const days_available = (data) => {
+    // Validación mejorada: tipo y contenido
+    if (!data || typeof data !== 'string') {
         return [];
     }
+
+    const trimmedData = data.trim();
+    if (trimmedData === '') {
+        return [];
+    }
+
     const horarios_map = new Map();
-    for(const i of data.split(' <>')){
-        const split_horarios = i.split(','); 
-        const horario = [
-              days[split_horarios[0]],
-              [split_horarios[1], split_horarios[2]]
-        ];
-        if(horarios_map.has(horario[0])){
-            horarios_map.set(
-                  horario[0],
-                  [horario[1], ...horarios_map.get(horario[0])]
-            );
+
+    for (const entry of trimmedData.split(' <>')) {
+        const split_horarios = entry.split(',');
+
+        // Validar formato correcto (debe tener día, hora inicio, hora fin)
+        if (split_horarios.length < 3) {
+            continue;
+        }
+
+        const dayIndex = parseInt(split_horarios[0], 10);
+
+        // Validar índice del día
+        if (isNaN(dayIndex) || dayIndex < 0 || dayIndex >= days.length) {
+            continue;
+        }
+
+        const dayName = days[dayIndex];
+        const timeRange = [split_horarios[1], split_horarios[2]];
+
+        if (horarios_map.has(dayName)) {
+            horarios_map.get(dayName).push(timeRange);
         } else {
-            horarios_map.set(horario[0], [horario[1]]);
+            horarios_map.set(dayName, [timeRange]);
         }
     }
-    return Array.from(horarios_map).map(e => [e[0], e[1].reverse()]);
+
+    // Reverse una sola vez al final por cada día
+    return Array.from(horarios_map, ([day, times]) => [day, times.reverse()]);
   };
 
   /** 
@@ -75,56 +94,87 @@ const template_punto_digital = (self, row) => {
     return day.map(e => `de ${e.map(i => time_format(i)).join(' a ')}`).join(' y '); 
   };
 
-  // Preparo la información horaria según el formato de 
-  // salida en HTML.
-  const day_week = new Date().getDay();
-  const time_list = days_avaiable(row.horario); 
-  const today = time_list.find(e => e[0] ==  days[day_week]);
-  let horarios = time_list.map(day => {
-      const style = day[0] == days[day_week] ? 'text-arandano' : '';
-      let datos = time_tostring(day[1]);
-      return `<li class="${style}"><strong>${day[0]}</strong>: ${datos} h.</li>`;
-  }).join('');
-
-  let horarios_list = "";
-
-  if(horarios){
-
-    let today_text = false;
-    if(today){
-        today_text = "<dd class=\"text-arandano\" style=\"font-weight:bold; margin-bottom:0\">"
-            + "<i class=\"fa fa-clock-o text-arandano\"></i> "
-            + "Hoy abierto"
-            + "</dd>" 
-            + "<dd class=\"text-arandano\">" 
-            + time_tostring(today[1]) + "h."
-            + "</dd>";
+  /**
+   * Genera el HTML para mostrar que hoy está abierto
+   */
+  const buildTodayOpenHTML = (todaySchedule) => {
+    if (!todaySchedule || !todaySchedule[1]) {
+      return '';
     }
 
-    horarios_list = "<dl><dt class=\"sr-only\">"
-        + "<i class=\"fa fa-clock-o text-primary\"></i>"
-        + "Horarios"
-        + "</dt>"
-        + (today_text ? today_text : '')
-        + "<dd>"
-        + "<details class=\"js-details ar-details\">"
-        + "<summary class=\"ar-details__title\">Horarios de atención</summary>"
-        + "<ul class=\"ar-details__content list-unstyled small\">"
-        + horarios
-        + "</ul>"
-        + "</details>"
-        + "</dd></dl>";
-  }
+    return `
+      <dd class="pm-term-icon-helper text-arg-arandano" style="font-weight:bold; margin-bottom:0">
+        <i class="fa fa-clock-o text-arg-arandano"></i> Hoy abierto
+      </dd>
+      <dd class="text-arg-arandano m-b-0">${time_tostring(todaySchedule[1])}<span class="thin-space">&nbsp;</span>h.</dd>
+    `;
+  };
 
-  const sin_funcionamiento = "<div class=\"alert alert-warning\" style=\"padding:.5em .75em;\">"
-      + "<p class=\"text-mandarina\">"
-      + "<strong>Próximamente</strong>"
-      + "</p>"
-      + "</div>";
+  /**
+   * Genera el HTML completo de horarios
+   */
+  const buildScheduleHTML = (scheduleList, currentDay, todayHTML) => {
+    if (!scheduleList || scheduleList.length === 0) {
+      return '';
+    }
 
-  row.estado_funcionamiento_custom = (row.estado_funcionamiento == '3' ? 
-        sin_funcionamiento : '');
+    const scheduleItems = scheduleList.map(day => {
+      const isToday = day[0] === days[currentDay];
+      const styleClass = isToday ? 'text-arg-arandano' : '';
+      const timeString = time_tostring(day[1]);
+      return `<li class="${styleClass}"><strong>${day[0]}</strong>: ${timeString}<span class="thin-space">&nbsp;</span>h.</li>`;
+    }).join('');
+
+    if (!scheduleItems) {
+      return '';
+    }
+
+    return `
+      <dl>
+        <dt class="sr-only">
+          <i class="pm-term-icon-helperfa fa-clock-o text-primary"></i>Horarios
+        </dt>
+        ${todayHTML}
+        <dd>
+          <details class="js-details ar-details caret-transparent">
+            <summary class="ar-details__title">Horarios de atención</summary>
+            <ul class="ar-details__content list-unstyled small m-t-0">
+              ${scheduleItems}
+            </ul>
+          </details>
+        </dd>
+      </dl>
+    `;
+  };
+
+  // Preparo la información horaria según el formato de salida en HTML
+  const day_week = new Date().getDay();
+  const time_list = days_available(row.horario);
+  const today = time_list.find(day => day[0] === days[day_week]);
+
+  const today_html = buildTodayOpenHTML(today);
+  const horarios_list = buildScheduleHTML(time_list, day_week, today_html);
+
+  // puntos digitales sin funcionamiento
+  const sin_funcionamiento = `
+    <div class="border border-left-0 border-arg-mandarina m-b-2">
+      <p class="border-left border-heavy border-arg-mandarina p-05 m-0">
+        <strong>Próximamente</strong>
+      </p>
+    </div>
+  `;
+
+
+  row.estado_funcionamiento_custom = (row.estado_funcionamiento === '3')
+    ? sin_funcionamiento
+    : '';
   row.horarios_custom = horarios_list;
+
+
+  if (typeof self.defaultTemplate !== 'function') {
+    console.error('defaultTemplate no es una función');
+    return '';
+  }
 
   return self.defaultTemplate(self, row);
 };

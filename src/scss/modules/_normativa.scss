@@ -1,0 +1,71 @@
+.bloque-leyes {
+  i {
+    color: var(--arg-azul-600);
+    vertical-align: middle;
+    line-height: 2em;
+    padding: 3px;
+  }
+
+  li.active a {
+    font-weight: 700;
+  }
+
+  padding: 1.5rem .2rem;
+  margin: 0px;
+  background:var(--arg-gris-niebla);
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+@media (max-width: 991px) {
+  .bloque-leyes-mobile {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+}
+
+/* Fecha de publicación y nro de boletín clickeable */
+
+.normativa {
+  margin: 20px 0;
+
+  dt,
+  dd {
+    display: inline;
+  }
+
+  dd {
+    white-space: nowrap;
+  }
+
+  .border-bottom {
+    padding-bottom: 7px;
+    margin-bottom: 7px;
+  }
+}
+
+/* ajuste buscador texto predictivo */
+
+#argobar-consulta-infoleg-consulta-avanzada {
+  .select2 {
+    border:solid 1px var(--arg-negro-500)!important;
+    background:var(--arg-blanco);
+  }
+  .select2-container--default {
+    .select2-selection--single {
+      .select2-selection__placeholder {
+        color:var(--arg-negro-900);
+      }
+    }
+  }
+  .select2-container--disabled {
+    background:var(--arg-negro-75);
+    cursor:not-allowed;
+  }
+  .select2-container--default.select2-container--disabled {
+    .select2-selection--single {
+      background:var(--arg-negro-75);
+      cursor:not-allowed;
+    }
+  }
+}

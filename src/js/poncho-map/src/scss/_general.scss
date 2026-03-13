@@ -19,12 +19,11 @@
     }
 
     /* FUCUSABLE */
-    *:focus,
-    .focus-element:focus {
+    *:focus-visible,
+    .focus-element:focus-visible {
         @include borderRadius(3px);
         box-sizing: border-box;
-        box-shadow: 0 0 8px var(--cielo, #039be5) !important;
-        outline: 3px solid var(--cielo, #039be5) !important;
+        outline: 3px solid var(--cielo, #039be5);
     }
 
     .pm-color-primary {
@@ -53,6 +52,32 @@
             padding: 0;
         }
     }
+
+    .pm-term-icon-helper {
+        display: flex;
+        width: 100%;
+        gap: 4px;
+        align-items:center;
+        line-height: inherit;
+    }
+    .pm-term-icon-helper > :nth-child(1) {
+        flex-basis: 1.3em;
+        flex-shrink: 0;
+        text-align:center;
+    }
+    .pm-form-control {
+        color: var(--pm-color-base);
+        font-size: 0.88em;
+        height: 38px;
+        padding: 6px 12px;
+        border: solid var(--pm-slider-border-width) var(--pm-slider-border-color);
+        border-radius: 6px;
+        box-shadow: none;
+        background:var(--pm-slider-background);
+        width: calc(100% - var(--pm-slider-border-width) * 2);
+        box-sizing: border-box;
+    }
+
 
     .pm-tools {
         position: absolute;

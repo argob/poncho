@@ -90,28 +90,29 @@ if(showdown){ // IF showdown
             {
                 type: "lang",
                 filter: function(text, converter, options) {
+    
+                const regex = /(\[([^\[\]]+)\]\((blank:#)?([a-zA-Z0-9\_\.\-\~\!\*\'\(\)\;\:\@\&\=\+\$\,\/\?\%\#]+)\)\{([\w_\-.]+?)\})/;
+                const main_regex = new RegExp(regex, "gmi");
 
-                const regex = /(\[([^\[\]]+)\]\((blank:#)?([a-zA-Z0-9\_\.\-\~\!\*\'\(\)\;\:\@\&\=\+\$\,\/\?\%\#]+)\)\{([\w_\-.]+?)\})/gm;
+                text = text.replace(main_regex, (
+                    match,
+                    fragment,
+                    anchorText,
+                    targetBlank,
+                    url,
+                    css) => {
 
-                var main_regex = new RegExp(regex, "gmi");
-
-                text = text.replace(main_regex, function(e){
-                    // Proceso la expresion regular para sacarle el gurpo de estilos
-                    // y dibujar el resulttado
-                    var main_regex = new RegExp(regex, "gm");
-                    var rgx  = main_regex.exec(e);
-
-                    var a = document.createElement("a");
-                    a.href = rgx[4];
-                    if(rgx[3]){
+                    const a = document.createElement("a");
+                    a.href = url;
+                    a.textContent = anchorText;
+                    a.dataset.created = "true";
+                    if(targetBlank){
                         a.target = "_blank";
                     }
-                    if(rgx[5] != undefined){
-                        a.className = classlist(rgx, 5);
-                    }
-                    a.textContent = rgx[2];
-                    a.dataset.created = "true";
 
+                    if(css){
+                        a.classList.add(...classlist(css));
+                    }
                     return a.outerHTML;
                 });
 

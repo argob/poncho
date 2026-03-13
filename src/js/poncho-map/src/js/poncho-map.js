@@ -37,13 +37,19 @@
  * SOFTWARE.
  */
 const PM_TRANSLATE = {
-es: {
+    es: {
         cluster_click: "Clic para expandir grupo",
         cluster_large: "Grupo grande de {{count}} ubicaciones",
         cluster_medium: "Grupo mediano de {{count}} ubicaciones",
         cluster_small: "Grupo chico de {{count}} ubicaciones",
-        filter_initial: "Hay {{total_results}} puntos en el mapa.",
+        filter_initial: "Hay {{total_results}} puntos en el mapa."
+                        + ` <a href="#" class="{{reset_search}}"`
+                        + `aria-label="Restablecer valores del mapa">`
+                        + "Restablecer mapa</a>",
         filter_no_results: "No se encontraron entradas.",
+        filter_select_label: "Seleccione {{header}}",
+        filter_select_legend: "Filtrar por {{header}}",
+        filter_select_all_option_text: "Todos",
         filter_no_results_by_term: "No encontramos resultados para tu búsqueda.",
         filter_one_result: "{{total_results}} resultado coincide con tu búsqueda.",
         filter_reset_values_link: ` <a href="#" class="{{reset_search}}"`
@@ -58,14 +64,13 @@ es: {
         filters_close_panel_text: "Cerrar panel",
         filters_has: "Se están usando filtros.",
         filters_reset: "Restablecer mapa",
-        filters_uncheck_all: "Desmarcar todos",
         map_exit: "Salir del mapa",
         map_fit_bounds: "Ajustar marcadores al mapa",
         map_full_view: "Ver mapa completo",
         map_goto_markers: "Ir a los marcadores del mapa",
         map_help_us: "Ayudá a mejorar el mapa",
         openmap_aria_label: "Abrir el punto geográfico en un mapa alternativo",
-        openmap_label: "Abrir en:",
+        openmap_label: "Abrir ubicación en:",
         search_data: "Hacer una búsqueda",
         search_placeholder: "Su búsqueda",
         theme_aria_label_panel: "Herramienta para cambiar de tema visual",
@@ -92,6 +97,7 @@ es: {
 class PonchoMap {
     constructor(data, options){
         const defaults = {
+            pan_by: true,
             accesible_menu_extras: [
                 {
                     label: "map_help_us",
@@ -102,12 +108,22 @@ class PonchoMap {
             allowed_tags: [],
             anchor_delay: 0,
             map_breakpoint: {
-                lg: {fraction: "1:4", value: 992},
-                md: {fraction: "2:7", value: 768},
-                sm: {fraction: "1:4", value: 576},
-                xl: {fraction: "2:7", value: 1200},
-                xs: {fraction: "1:1", value: 0},
-                xxl: {fraction: "2:7", value: 1400}
+                large: {
+                    lg: {fraction: "3:10", value: 992},
+                    md: {fraction: "2:7", value: 768},
+                    sm: {fraction: "1:4", value: 576},
+                    xl: {fraction: "2:7", value: 1200},
+                    xs: {fraction: "1:1", value: 0},
+                    xxl: {fraction: "2:7", value: 1400}
+                },
+                default: {
+                    lg: {fraction: "4:10", value: 992},
+                    md: {fraction: "2:6", value: 768},
+                    sm: {fraction: "1:4", value: 576},
+                    xl: {fraction: "2:7", value: 1200},
+                    xs: {fraction: "1:1", value: 0},
+                    xxl: {fraction: "2:7", value: 1400}
+                }
             },
             media_breakpoint: {
                 lg: 992,
@@ -118,6 +134,7 @@ class PonchoMap {
                 xxl: 1400
             },
             content_selector: false,
+            debug: false,
             default_themes: [
                 {
                     aria_label: false,
@@ -152,6 +169,12 @@ class PonchoMap {
             ],
             error_reporting: false,
             fit_bounds_onevent: true,
+            fit_bounds_options: {
+                padding: 0.005,
+                maxZoom: 22,
+                animate: true,
+                duration: 0.25
+            },
             hash: false,
             header_icons: [],
             headers: {},
@@ -224,27 +247,30 @@ class PonchoMap {
                         platform: "mac",
                         rel: [
                             "alternate"
-                        ]
+                        ],
+                        target: "_blank"
                     },
                     {
                         aria_label: false,
                         hreflang: false,
                         label: "Google maps",
-                        lang: "en",
+                        lang: "en-US",
                         link: "https://www.google.com/maps/search/?api=1&query={{latitude}},{{longitude}}",
                         rel: [
                             "alternate"
-                        ]
+                        ],
+                        target: "_blank"
                     },
                     {
                         aria_label: false,
                         hreflang: "es",
                         label: `<abbr lang="es" title="Instituto Geográfico Nacional">IGN</abbr> – ArgenMap`,
                         lang: "es",
-                        link: "https://mapa.ign.gob.ar/beta/?zoom=17&lat={{latitude}}&lng={{longitude}}&layers=argenmap&marker={{latitude}},{{longitude}}",
+                        link: "https://mapa.ign.gob.ar/?zoom=17&lat={{latitude}}&lng={{longitude}}&layers=argenmap&marker={{latitude}},{{longitude}}",
                         rel: [
                             "alternate"
-                        ]
+                        ],
+                        target: "_blank"
                     },
                     {
                         aria_label: false,
@@ -254,7 +280,8 @@ class PonchoMap {
                         link: "https://www.openstreetmap.org/?mlat={{latitude}}&mlon={{longitude}}#map=16/{{latitude}}/{{longitude}}",
                         rel: [
                             "alternate"
-                        ]
+                        ],
+                        target: "_blank"
                     }
                 ],
                 label: "openmap_label"
@@ -265,6 +292,7 @@ class PonchoMap {
             scroll: false,
             slider: false,
             slider_selector: ".pm-slider",
+            slider_size: false, // large | default
             summary: false,
             template: false,
             template_innerhtml: false,
@@ -281,7 +309,7 @@ class PonchoMap {
                 definition_list_classlist:["definition-list"],
                 definition_list_tag: "dl",
                 definition_tag: "dd",
-                term_classlist: ["h6", "m-b-0"],
+                term_classlist: ["h6", "fw-bold", "m-b-0", "font-sans-serif"],
                 term_tag: "dt",
                 title_classlist: ["h4","pm-color-primary","m-t-0"]
             },
@@ -292,6 +320,7 @@ class PonchoMap {
             throw_exceptions: false,
             title: false,
             tooltip: false,
+            tooltip_label: false,
             tooltip_options:{
                 className: "leaflet-tooltip-own",
                 direction: "auto",
@@ -304,10 +333,12 @@ class PonchoMap {
 
         // Assign options
         let opts = Object.assign({}, defaults, options);
-
+        this.pan_by = Boolean(opts.pan_by);
         // Set variables
         this.lang = opts.lang;
-        this.dictionary = PM_TRANSLATE[this.lang];
+        this.dictionary = ((opts?.dictionary && opts.dictionary[this.lang])
+            ? opts.dictionary[this.lang]
+            : PM_TRANSLATE[this.lang]);
         this.error_reporting = opts.error_reporting;
         this.throw_exceptions = opts.throw_exceptions;
         this.scope = opts.scope;
@@ -317,6 +348,7 @@ class PonchoMap {
             ...defaults.template_structure,
             ...options.template_structure
         };
+        this.debug = opts.debug;
         this.template_innerhtml = opts.template_innerhtml;
         this.template_markdown = opts.template_markdown;
         this.markdown_options = opts.markdown_options;
@@ -327,6 +359,7 @@ class PonchoMap {
         this.hash = opts.hash;
         this.scroll = opts.scroll;
         this.fit_bounds_onevent = opts.fit_bounds_onevent;
+        this.fit_bounds_options = opts.fit_bounds_options;
         this.map_view = opts.map_view;
         this.map_init_options = opts.map_init_options;
         this.anchor_delay = opts.anchor_delay;
@@ -334,9 +367,12 @@ class PonchoMap {
         this.min_zoom = opts.min_zoom;
         this.map_anchor_zoom = opts.map_anchor_zoom;
         this.tooltip_options = opts.tooltip_options;
+        this.tooltip_label = opts.tooltip_label;
         this.tooltip = opts.tooltip;
         this.marker_cluster_options = opts.marker_cluster_options;
         this.marker_color = opts.marker;
+        this._icon_cache = new Map();
+        this._marker_color_type = this._getMarkerColorType();
         this.id = opts.id;
         this.id_mixing = opts.id_mixing;
         this.title = opts.title;
@@ -351,6 +387,7 @@ class PonchoMap {
         this.latitude = opts.latitud;
         this.longitude = opts.longitud;
         this.slider = opts.slider;
+        this.slider_size = opts.slider_size;
         this.no_info = opts.no_info;
         this.reset_zoom = opts.reset_zoom;
         this.slider_selector=this._selectorName(opts.slider_selector);
@@ -387,6 +424,7 @@ class PonchoMap {
         );
         this.media_breakpoint = opts.media_breakpoint;
         this.map_breakpoint = opts.map_breakpoint;
+        this.map_breakpoint_fractions = opts.map_breakpoint_fractions;
         this.map_align = opts.map_align;
         this.map_style = opts.map_style;
         this.accesible_menu_extras = opts.accesible_menu_extras;
@@ -523,6 +561,46 @@ class PonchoMap {
 
 
     /**
+     * Versión poncho
+     */
+    get version(){
+        return "2.2.2";
+    }
+
+
+    /**
+     * Logger condicional que solo muestra mensajes en modo desarrollo.
+     */
+    logger = {
+        log: (...args) => {
+            if (this.debug === true) {
+                console.log(...args);
+            }
+        },
+        error: (...args) => {
+            if (this.debug === true) {
+                console.error(...args);
+            }
+        },
+        warn: (...args) => {
+            if (this.debug === true) {
+                console.warn(...args);
+            }
+        },
+        table: (...args) => {
+            if (this.debug === true) {
+                console.table(...args);
+            }
+        },
+        info: (...args) => {
+            if (this.debug === true) {
+                console.info(...args);
+            }
+        }
+    };
+
+
+    /**
      * Dicionario de términos según el lenguaje.
      * 
      * @param {string} definition Clave de diccionario
@@ -531,12 +609,12 @@ class PonchoMap {
      */
     _t = (definition, tpl={}) => {
         if(this.isEmptyString(definition)){
-            console.warn("_t", "Está recibiendo una definición vacía.");
+            this.logger.warn("_t", "Está recibiendo una definición vacía.");
             return definition;
         }
 
         if(!this.isObject(tpl)) {
-            console.warn("_t", "tpl requiere un objeto clave/valor.");
+            this.logger.warn("_t", "tpl requiere un objeto clave/valor.");
             return;
         }
 
@@ -552,48 +630,70 @@ class PonchoMap {
      * @returns 
      */
     customClusters = () => {
-        if(!L.hasOwnProperty("divIcon")){
-            return;
+        // Early return with clear error handling
+        if (!L?.divIcon) {
+            this.logger.warn('Leaflet divIcon is not available');
+            return null;
         }
+
+        // Configuration constants
+        const CLUSTER_THRESHOLDS = {
+            SMALL: 10,
+            MEDIUM: 100
+        };
+
+        const ICON_SIZE = 40;
+
+        const BASE_CLASSES = [
+            'leaflet-marker-icon',
+            'marker-cluster',
+            'leaflet-zoom-animated',
+            'leaflet-interactive'
+        ];
+
+        // Helper function to determine cluster size
+        const getClusterSize = (count) => {
+            if (count < CLUSTER_THRESHOLDS.SMALL) return 'small';
+            if (count < CLUSTER_THRESHOLDS.MEDIUM) return 'medium';
+            return 'large';
+        };
+
+        // Helper function to build HTML content
+        const buildClusterHTML = (count, sizeClass) => {
+            const ariaLabel = this._t(`cluster_${sizeClass}`, { count });
+            const title = this._t('cluster_click');
+            
+            const clusterDiv = document.createElement("div");
+            clusterDiv.setAttribute("aria-label", ariaLabel);
+            clusterDiv.title = title;
+
+            const clusterNumber = document.createElement("span");
+            clusterNumber.textContent = count;
+
+            clusterDiv.appendChild(clusterNumber);
+
+            return clusterDiv;
+        };
 
         return {
             iconCreateFunction: (cluster) => {
                 const count = cluster.getChildCount();
-                let sizeClass;
-                let ariaLabelText;
-
-                if (count < 10) {
-                    sizeClass = 'small';
-                } else if (count < 100) {
-                    sizeClass = 'medium';
-                } else {
-                    sizeClass = 'large';
-                }
-
-                const ariaLabels = {
-                    small: this._t("cluster_small", {count}),
-                    medium: this._t("cluster_medium", {count}),
-                    large: this._t("cluster_large", {count}),
-                };
-                ariaLabelText = ariaLabels[sizeClass];
+                const sizeClass = getClusterSize(count);
+                
+                // Build CSS classes
                 const classNames = [
-                    "leaflet-marker-icon",
-                    "marker-cluster",
-                    `marker-cluster-${sizeClass}`,
-                    "leaflet-zoom-animated",
-                    "leaflet-interactive",
+                    ...BASE_CLASSES,
+                    `marker-cluster-${sizeClass}`
                 ];
-                const htmlContent = `<div title="${this._t("cluster_click")}"`
-                    + ` aria-label="${ariaLabelText}">`
-                    + `<span>${count}</span></div>`;
 
+                // Create and return the icon
                 return L.divIcon({
-                    html: htmlContent,
-                    className: classNames.join(" "),
-                    iconSize: L.point(40, 40),
+                    html: buildClusterHTML(count, sizeClass),
+                    className: classNames.join(' '),
+                    iconSize: L.point(ICON_SIZE, ICON_SIZE)
                 });
             }
-        }
+        };
     };
 
 
@@ -669,23 +769,14 @@ class PonchoMap {
         }
 
         if (this.isEmptyString(value)) {
-            // console.warn(
-            //     "El primer parámetro debe ser una cadena de texto no vacía."
-            // );
             return value;
         }
-                
+
         if (!this.isObject(kwargs)) {
-            // console.warn(
-            //     "El segundo parámetro debe ser un objeto de tipo clave/valor."
-            // );
             return;
         }
         
         if (this.isEmptyObject(kwargs)) {
-            // console.warn(
-            //     "El segundo parámetro (kwargs) no debe ser un objeto vacío."
-            // );
             return value;
         }
 
@@ -700,29 +791,173 @@ class PonchoMap {
         }, value);
     };
 
+
     /**
-     * Setea definiciones de estilo
+     * Procesa un match de expresión condicional y retorna el valor 
+     * correspondiente según la evaluación de la condición.
+     * 
+     * @param {RegExpExecArray} match - Objeto match retornado por 
+     * RegExp.exec() que contiene:
+     *   - groups.replaceStr: String a retornar si la condición es verdadera
+     *   - groups.key: Nombre de la propiedad a evaluar en el objeto row
+     *   - groups.compare: Valor con el cual comparar
+     *   - groups.elseReturn: String a retornar si la condición es falsa
+     *   - groups.operator: Operador de comparación ('==' o '!=')
+     * @param {Object} row - Objeto que contiene las propiedades a evaluar
+     * @returns {string} El valor de replaceStr si la condición se cumple, 
+     * elseReturn en caso contrario
+     * 
+     * @example
+     * const match = { 
+     *     groups: { 
+     *         replaceStr: 'SI', 
+     *         key: 'active', 
+     *         operator: '==', 
+     *         compare: 'true', 
+     *         elseReturn: 'NO' 
+     *     }
+     * };
+     * const row = { active: 'true' };
+     * processMatch(match, row); // Retorna 'SI'
+     * @see https://regex101.com/r/I0F0Xj/1
+     */
+    _processMatch = (match, row) => {
+        const {
+            replaceStr,
+            key,
+            compare,
+            elseReturn,
+            operator
+        } = match.groups;
+        
+        if (row.hasOwnProperty(key)) {
+            const rowValue = row[key];
+            const compareValue = compare;
+            let conditionMet = false;
+            
+            if (operator === "!=") {
+                conditionMet = String(rowValue) !== String(compareValue);
+            } else if (operator === "==") {
+                conditionMet = String(rowValue) === String(compareValue);
+            } else {
+                conditionMet = !!rowValue;
+            }
+            
+            if (conditionMet) {
+                return replaceStr;
+            } else {
+                return elseReturn;
+            }
+        }
+        return elseReturn;
+    }
+
+
+    /**
+     * Procesa un string que contiene expresiones condicionales tipo template
+     * y las reemplaza con valores evaluados según los datos del objeto row.
+     * 
+     * Formato de las expresiones: {% 'valorSi' if propiedad operator 
+     * 'comparacion' else 'valorNo' %}
+     * 
+     * @param {string} str - String que contiene las expresiones condicionales 
+     * a procesar
+     * @param {Object} row - Objeto con las propiedades cuyos valores serán 
+     * evaluados en las condiciones
+     * @returns {string} String resultante con todas las expresiones 
+     * condicionales reemplazadas
+     * 
+     * @example
+     * const template = 
+     *     `{% '<a href="{{web}}">Link</a>' if web=='' else 'Sin web' %}`;
+     * const data = { web: 'http://example.com' };
+     * conditionalTemplate(template, data); // Retorna 'Sin web'
+     * 
+     * @example
+     * const template = `{% 'Activo' if status=='active' else 'Inactivo' %}`;
+     * const data = { status: 'active' };
+     * conditionalTemplate(template, data); // Retorna 'Activo'
+     */
+    conditionalTemplate = (str, row) => {
+        const REGEX = /\{\%\s?('|`)(?<replaceStr>[^\1]*?)\1 if (?<key>[\w\-\.]+)\s?(?:(?<operator>\!\=|\=\=)\s?('|"|`)(?<compare>.*?)\5) else ('|"|`)(?<elseReturn>.*?)\7\s?\%\}/gm;
+        
+        let resultString = str;
+        let m;
+        while ((m = REGEX.exec(str)) !== null) {
+            if (m.index === REGEX.lastIndex) {
+                REGEX.lastIndex++;
+            }
+            const finalContent = this._processMatch(m, row);
+            resultString = resultString.replace(m[0], finalContent);
+        }
+        return resultString;
+    }
+
+
+    tpl = (value, entry, allowed_tags=false) => {
+        if( !this.isObject(entry) ){
+            this.logger.error(
+                "[tpl]", 
+                "El segundo parámetro debe ser un objeto");
+        }
+
+        if( this.isEmptyObject(entry) ){
+            this.logger.error(
+                "[tpl]", 
+                "El segundo parámetro no puede ser un objeto vacío");
+        }
+
+        if ( !this.isString(value) ) {
+            this.logger.error(
+                "[tpl]",
+                "El primer parámetro debe ser un string");
+            return String(value);
+        }
+
+        if( this.isEmptyString(value) ){
+            this.logger.info("[tpl]", "Llegó una cadena de texto vacía");
+            return "";
+        }
+
+        const template = this.conditionalTemplate(value, entry);
+        const parsed = this.tplParser(template, entry);
+        return parsed != null ? parsed : value;
+    }
+
+
+    /**
+     * Especifica el tamaño del slider
      * @returns {undefined}
      */
-    _setCssVariables = () => {
-        if (typeof headStyle !== 'function') {
+    _setSliderSize = () => {
+        if(!this.isString(this.slider_size)){
             return;
         }
 
-        const entries = Object.entries(this.map_style);
-        if(entries.length < 1){
-            return;
+        const validSizes = ['large', 'default', 'medium'];
+        if (!validSizes.includes(this.slider_size)) {
+            this.logger.warn(
+                `Invalid slider size: ${this.slider_size}. Defaulting to 'default'.`);
+            this.slider_size = 'default';
         }
-        var acc = [];
-        for(let entry of entries){
-            let [key, value] = entry;
-            acc.push(`--pm-${key}: ${value};`);
+
+        const sliderElement = document.querySelector(`.poncho-map${this.scope_selector}`);
+        if (sliderElement) {
+            const newClass = `slider-${this.slider_size}`;
+
+            // Solo modificar el DOM si la clase no está presente
+            if (!sliderElement.classList.contains(newClass)) {
+                sliderElement.classList.remove(
+                    'slider-large', 'slider-default', 'slider-medium'
+                );
+                sliderElement.classList.add(newClass);
+            }
         }
-        headStyle(
-            `ponchomap__${this.map_selector}`, 
-            `.poncho-map${this.scope_selector} {${acc.join("")}}`
-        );
-    }
+    };
+
+
+    // Obtiene el ancho del mapa
+    _mapWidth = () => this.map.getSize().x;
 
 
     /**
@@ -740,15 +975,20 @@ class PonchoMap {
         // Tamaño del contenedor del mapa.
         // Si se especifica tamaño, lo usa. De otro modo accede al tamaño
         // del ancho del mapa.
-        const elementSize = (this.isNumber(mediaSize) ? mediaSize : 
+        const elementSize = (this.isNumber(mediaSize) ? mediaSize :
             document.getElementById(this.map_selector).offsetWidth);
 
         // obtengo el listado de breakpoints válidos.
         const validMediaBreakpoints = Object.keys(this.media_breakpoint);
 
+        // Defino el tamaño del slider
+        const sliderSize = (["large", "default"].includes(
+                this.slider_size) ? this.slider_size : "default");
+        const mapBrekpoint = this.map_breakpoint[sliderSize];
+
         // Las claves existen
         const hasValidKeys = Object
-                .keys(this.map_breakpoint)
+                .keys(mapBrekpoint)
                 .every(entry => validMediaBreakpoints.includes(entry));
 
         // Si las claves están mal, muestro un error y corto la ejecución. 
@@ -763,7 +1003,7 @@ class PonchoMap {
                     + `${validMediaBreakpoints.join(", ")}.`,
                     
                 ],
-                terminal: this.map_breakpoint
+                terminal: mapBrekpoint
             }, "danger", true);
 
             return;
@@ -771,7 +1011,7 @@ class PonchoMap {
 
         // Valido las definiciones por cada breakpoint
         const hasValidDefinitions = Object
-                .values(this.map_breakpoint)
+                .values(mapBrekpoint)
                 .every(function(entry){
                     return (typeof entry === "object" && entry !== null && 
                         'value' in entry && 'fraction' in entry);
@@ -785,7 +1025,7 @@ class PonchoMap {
                 messages: [
                     "Verifique que para cada entrada existan las claves: "
                     + "`value` y `fraction`."],
-                terminal: this.map_breakpoint
+                terminal: mapBrekpoint
             }, "warning");
 
             return; 
@@ -793,7 +1033,7 @@ class PonchoMap {
 
         // Ordeno los valores de mayor a menor. 
         const sortedEntries = Object
-            .entries(this.map_breakpoint)
+            .entries(mapBrekpoint)
             .sort(([, a], [, b]) => b.value - a.value);
 
         // Verifico cual de los MAP breakpoints es el adecuado.
@@ -805,8 +1045,8 @@ class PonchoMap {
 
             if(elementSize >= value){
                 fraction = definedFraction;
-                console.table(sortedEntries)
-                console.log(breakpoint, value, fraction, elementSize)
+                this.logger.table(sortedEntries)
+                this.logger.log(breakpoint, value, fraction, elementSize)
                 break;
             }
         }
@@ -833,7 +1073,7 @@ class PonchoMap {
 
         fraction = (!fraction ? this._setFraction() : fraction);
         if(!/^[0-9]{1,2}\:[0-9]{1,2}$/.test(fraction)){
-            console.error(
+            this.logger.error(
                 "La fracción para posicionar el mapa tiene errores sintácticos.");
             return;
         }
@@ -850,7 +1090,8 @@ class PonchoMap {
 
         let currentCenterPoint = this.map.latLngToContainerPoint(currentCenter);
         const fractionPos = (align == "left" ? denominator - numerator : numerator);
-        let newX = ((document.querySelector(".poncho-map").offsetWidth / 
+
+        let newX = ((document.querySelector(`.poncho-map${this.scope_selector}`).offsetWidth / 
                 denominator) * fractionPos);
 
         let newY = currentCenterPoint.y;
@@ -885,7 +1126,8 @@ class PonchoMap {
      * para otros atributos personalizados.
      * @returns {HTMLAnchorElement}
      */
-    addAnchorElement = (options, output="object") => {
+    addAnchorElement = (options = {}, output = "object") => {
+        // Destructure with defaults
         const {
             id,
             title,
@@ -901,71 +1143,107 @@ class PonchoMap {
             attributes = {}
         } = options;
 
-        const regexLang = /^[a-zA-Z]{2}$/;
-        const isValidLang = (this.isString(lang) &&
-                regexLang.test(lang));
-        const isValidHrefLang = (this.isString(hreflang) &&
-                regexLang.test(hreflang));
-        const isValidTarget = [
-                '_self', '_blank', '_parent', '_top'].includes(target);
+        // Constants
+        const LANG_REGEX = /^[a-z]{2}(-[A-Z]{2})?$/i;
+        const VALID_TARGETS = ['_self', '_blank', '_parent', '_top'];
+        const SECURITY_REL_VALUES = ['noopener', 'noreferrer'];
+        const NEW_TAB_TEXT = '(Abre en una nueva pestaña)';
 
-        // Anchor
-        const element = document.createElement("a");
+        // Validation helpers
+        const isValidLang = (value) => 
+            this.isString(value) && LANG_REGEX.test(value);
+        
+        const isValidTarget = (value) => 
+            VALID_TARGETS.includes(value);
+
+        // Create element
+        const element = document.createElement('a');
         element.href = link;
 
-        if(label && isValidTarget && target == "_blank"){
-            element.innerHTML = `${label} <span class="sr-only">`
-                    + `(Abre en una nueva pestaña)</span>`; 
-        } else if(label){
-            element.innerHTML = label;
+        // Set label/content
+        if (label) {
+            const isBlankTarget = isValidTarget(target) && target === '_blank';
+            element.innerHTML = isBlankTarget
+                ? `${label} <span class="sr-only">${NEW_TAB_TEXT}</span>`
+                : label;
         }
 
-        if (Array.isArray(rel)) {
-            const uniqueRel = [...new Set(rel)];
-            if (isValidTarget && target === "_blank") {
-                uniqueRel.push('noopener', 'noreferrer');
-            }
-            element.rel = uniqueRel.join(" ");
-        }
-
-        if(isValidLang){
-            element.lang = lang;
-        }
-        if(isValidHrefLang){
-            element.hreflang = hreflang;
-        }
-        if(isValidTarget){
+        // Handle target attribute
+        if (isValidTarget(target)) {
             element.target = target;
         }
-        if(aria_label){
-            element.setAttribute("aria-label", aria_label);
+
+        // Handle rel attribute with security best practices
+        if (Array.isArray(rel) && rel.length > 0) {
+            const uniqueRel = [...new Set(rel.filter(Boolean))];
+            
+            // Add security attributes for _blank target
+            if (target === '_blank') {
+                SECURITY_REL_VALUES.forEach(securityValue => {
+                    if (!uniqueRel.includes(securityValue)) {
+                        uniqueRel.push(securityValue);
+                    }
+                });
+            }
+            
+            element.rel = uniqueRel.join(' ');
+        } else if (target === '_blank') {
+            // Ensure security even without rel array
+            element.rel = SECURITY_REL_VALUES.join(' ');
         }
-        if(id){
+
+        // Set language attributes
+        if (isValidLang(lang)) {
+            element.lang = lang;
+        }
+
+        if (isValidLang(hreflang)) {
+            element.hreflang = hreflang;
+        }
+
+        // Set accessibility and identification attributes
+        if (aria_label) {
+            element.setAttribute('aria-label', aria_label);
+        }
+
+        if (id) {
             element.id = id;
         }
-        if(title){
+
+        if (title) {
             element.title = title;
         }
-        if(Array.isArray(css)){
-            element.classList.add(...css);
-        }
-        Object
-            .entries(attributes)
-            .forEach(([key, value]) => 
-                element.setAttribute(key, value));
-        Object
-            .entries(datasets)
-            .forEach(([key, value]) => 
-                element.setAttribute(`data-${key}`, value));
 
-        return output == "html" ? element.outerHTML : element;
+        // Add CSS classes
+        if (Array.isArray(css) && css.length > 0) {
+            const validClasses = css.filter(cls => cls && typeof cls === 'string');
+            if (validClasses.length > 0) {
+                element.classList.add(...validClasses);
+            }
+        }
+
+        // Add custom attributes
+        Object.entries(attributes).forEach(([key, value]) => {
+            if (key && value != null) {
+                element.setAttribute(key, String(value));
+            }
+        });
+
+        // Add data attributes
+        Object.entries(datasets).forEach(([key, value]) => {
+            if (key && value != null) {
+                element.setAttribute(`data-${key}`, String(value));
+            }
+        });
+
+        // Return based on output format
+        return output === 'html' ? element.outerHTML : element;
     };
 
 
     //
     // TEMA PARA EL MAPA
     //
-
     /**
      * Modifica la opacidad del mapa
      * @param {double|string} value Número _(double)_, o porcentaje de valor
@@ -998,7 +1276,7 @@ class PonchoMap {
         const mapBackgroundColor = document.querySelector(selector);
 
         if(mapBackgroundColor){
-            mapBackgroundColor.style.backgroundColor = color;
+            mapBackgroundColor.style.background = color;
         }
 
         return;
@@ -1062,9 +1340,12 @@ class PonchoMap {
      * @returns {undefined}
      */
     _setOsmView = () => {
-        this.tileLayer.setUrl(this.osmURL);
-        this.map.attributionControl.removeAttribution(this.ersiAttribution);
-        this.map.attributionControl.addAttribution(this.osmAttribution);
+        const { tileLayer, map, osmURL, ersiAttribution, osmAttribution } = this;
+        const attributionControl = map.attributionControl;
+
+        tileLayer.setUrl(osmURL);
+        attributionControl.removeAttribution(ersiAttribution);
+        attributionControl.addAttribution(osmAttribution);
         this._setLayerTheme(["layer-satelital"], "layer-osm", false);
     };
     
@@ -1076,11 +1357,14 @@ class PonchoMap {
      */
     
     _setSatelitalView = () => {
-        this.tileLayer.setUrl(this.ersiURL);
-        this.map.attributionControl.removeAttribution(this.osmAttribution);
-        this.map.attributionControl.addAttribution(this.ersiAttribution);
+        const { tileLayer, map, ersiURL, osmAttribution, ersiAttribution } = this;
+        const attributionControl = map.attributionControl;
+
+        tileLayer.setUrl(ersiURL);
+        attributionControl.removeAttribution(osmAttribution);
+        attributionControl.addAttribution(ersiAttribution);
         this._setLayerTheme(
-            ["layer-osm","map-contrast", "map-dark", "ui-contrast", "ui-dark"], 
+            ["layer-osm","map-contrast", "map-dark", "ui-contrast", "ui-dark"],
             "layer-satelital", "disabled");
     };
 
@@ -1298,6 +1582,7 @@ class PonchoMap {
                 ele.classList.remove(...this._setThemeStyles(th, prefix));
             });
         });
+
         // Aria-current false
         const themeMenuItems = document.querySelectorAll(
             `${this.scope_selector} .js-set-theme`);
@@ -1392,7 +1677,7 @@ class PonchoMap {
         }
 
         if(!this.validateCoordinates(latitude, longitude)){
-            console.warn(
+            this.logger.warn(
                 `Coordenadas inválidas: lat=${latitude}, lng=${longitude}`);
             return;
         }
@@ -1429,49 +1714,54 @@ class PonchoMap {
         const details = document.createElement("details");
         details.classList.add("blank");
 
-        const container = document.createElement("footer");
-        container.className = "pm-open-map";
         
-        const parentSelector = `.js-content${this.scope_sufix}`;
-        const parentNode = document.querySelector(parentSelector);
-
+        const footerSelector = `.js-footer${this.scope_sufix}`;
+        
+        const footer = document.querySelector(footerSelector);
+        footer.classList.add("pm-open-map");
+        if(footer){
+            footer.innerHTML = "";
+        }
         details.appendChild(summary);
         details.appendChild(ul);
-        container.appendChild(details);
-        parentNode.appendChild(container);
+        footer.appendChild(details);
     }
 
 
     /**
      * Valida si las coordenadas de latitud y longitud son válidas
+     * 
      * @param {number|string} latitude - Latitud a validar (-90 a 90)
      * @param {number|string} longitude - Longitud a validar (-180 a 180)
      * @returns {boolean} - Verdadero si ambas coordenadas son válidas, 
      * falso en caso contrario.
      */
     validateCoordinates(latitude, longitude) {
+        // Validar que los parámetros no sean null, undefined, o strings vacíos
+        if (latitude == null || longitude == null ||
+            latitude === '' || longitude === '') {
+            return false;
+        }
+
         // Convertir a números en caso de que se pasen como strings
-        const lat = (this.isString(latitude) ? 
+        const lat = (this.isString(latitude) ?
             parseFloat(latitude) : latitude);
-        const lng = (this.isString(longitude) ? 
+        const lng = (this.isString(longitude) ?
             parseFloat(longitude) : longitude);
-        
-        // Verificar que sean números válidos (no NaN)
-        if (isNaN(lat) || isNaN(lng)) {
+
+        // Verificar que sean números válidos (no NaN ni Infinity)
+        if (!Number.isFinite(lat) || !Number.isFinite(lng)) {
             return false;
         }
-        
+
         // Validar rango de latitud: -90 a 90 grados
-        if (lat < -90 || lat > 90) {
-            return false;
-        }
-        
+        const isValidLatitude = (lat >= -90 && lat <= 90);
+
         // Validar rango de longitud: -180 a 180 grados
-        if (lng < -180 || lng > 180) {
-            return false;
-        }
-        
-        return true;
+        const isValidLongitude = (lng >= -180 && lng <= 180);
+
+        // Retornar true solo si ambas coordenadas son válidas
+        return isValidLatitude && isValidLongitude;
     }
 
 
@@ -1562,14 +1852,13 @@ class PonchoMap {
      */
     showAlert = (entry, type, block=false) => {
         if(!this.isObject(entry)){
-            console.error("showAlert", "Espera un objeto de tipo clave/valor.");
+            this.logger.error("showAlert", "Espera un objeto de tipo clave/valor.");
             return;
         }
 
         // 1. Validación
         if(this.isEmptyObject(entry)){
-        // if(typeof entry === "object" && Object.keys(entry).length === 0){
-            console.error("No se encontraron las claves: title o messages.");
+            this.logger.error("No se encontraron las claves: title o messages.");
             return;
         }
 
@@ -1577,32 +1866,31 @@ class PonchoMap {
             type = "danger";
         }
 
+        const { scope_sufix, scope_selector, error_reporting, throw_exceptions, map_selector } = this;
+        const logContainerId = `log-container${scope_sufix}`;
+
         // Contenedor de errores
-        let logContainer = document
-                .querySelector(`#log-container${this.scope_sufix}`);
+        let logContainer = document.getElementById(logContainerId);
         if(!logContainer){
             logContainer = document.createElement("div");
             logContainer.role = "alert";
-            logContainer.id = `log-container${this.scope_sufix}`;
+            logContainer.id = logContainerId;
 
-            // Ubico el contenedor de logs antes del
-            const node = document.querySelector(
-                `${this.scope_selector}.poncho-map`
-            );
-            node.parentNode.insertBefore(logContainer, node);
+            // Ubico el contenedor de logs antes del mapa
+            const node = document.querySelector(`${scope_selector}.poncho-map`);
+            if(node?.parentNode){
+                node.parentNode.insertBefore(logContainer, node);
+            }
         }
-        logContainer.innerHTML = "";
+        logContainer.textContent = ""; // Más rápido que innerHTML = ""
 
         // Contenedor de alerta
-        let container = document.createElement("div");
-        container.classList.add(
-            `js-error-message${this.scope_sufix}`, 
-            "poncho-map--message", 
-            type);
+        const container = document.createElement("div");
+        container.className = `js-error-message${scope_sufix} poncho-map--message ${type}`;
 
         // Título de la alerta
         const heading = document.createElement("h2");
-        heading.classList.add("pm-visually-hidden", "sr-only");
+        heading.className = "pm-visually-hidden sr-only";
         heading.textContent = "Registro de errores en el mapa";
 
         // Mensajes
@@ -1610,60 +1898,60 @@ class PonchoMap {
         if(!this.isEmptyString(title)){
             const messageLabel = document.createElement("p");
             messageLabel.innerHTML = title;
-            // Agrego el título al contenedor.
             container.appendChild(messageLabel);
         }
 
         if(Array.isArray(messages) && messages.length > 0){
             const contentList = document.createElement("ul");
-            for(let item of messages){
+            const fragment = document.createDocumentFragment();
+
+            for(const item of messages){
                 const contentListItem = document.createElement("li");
                 contentListItem.innerHTML = item;
-                contentList.appendChild(contentListItem);
+                fragment.appendChild(contentListItem);
             }
 
-            // Agrego listado de sugerencias al contenedor
+            contentList.appendChild(fragment);
             container.appendChild(contentList);
         }
 
         if(terminal){
             const detailsContainer = document.createElement("div");
-            detailsContainer.classList.add("console-message-container");
-            
+            detailsContainer.className = "console-message-container";
+
             const details = document.createElement("details");
-            details.classList.add("caret-small", "caret-dark");
-            
+            details.className = "caret-small caret-dark";
+
             const summary = document.createElement("summary");
             summary.textContent = "Mensaje";
 
             const consoleContainer = document.createElement("div");
-            consoleContainer.classList.add("console");
+            consoleContainer.className = "console";
 
             const showConsole = document.createElement("code");
-            showConsole.innerHTML = JSON.stringify(terminal);
+            showConsole.textContent = JSON.stringify(terminal);
 
             // APPEND
             consoleContainer.appendChild(showConsole);
             details.appendChild(summary);
             details.appendChild(consoleContainer);
             detailsContainer.appendChild(details);
-            // Agrego el mensaje terminal al contenedor
             container.appendChild(detailsContainer);
         }
 
         // Imprimo el error en la página
-        if(this.error_reporting || block) {
+        if(error_reporting || block) {
             logContainer.appendChild(heading);
             logContainer.appendChild(container);
 
-            if(this.throw_exceptions || block){
-                document.getElementById(this.map_selector).remove();
+            if(throw_exceptions || block){
+                document.getElementById(map_selector)?.remove();
                 throw new Error(JSON.stringify(entry));
             }
         }
 
         // Imprimo el error en la consola
-        console.error( JSON.stringify(entry) );
+        this.logger.error(JSON.stringify(entry));
     };
 
 
@@ -1743,35 +2031,120 @@ class PonchoMap {
 
 
     /**
+     * Procesa y retorna el label del tooltip
+     * 
+     * @param {object} entry - Objeto con datos para reemplazar en el template
+     * @returns {string} defaultLabel - Texto por defecto title.
+     * @returns {string} Label procesado y listo para mostrar
+     */
+    _tooltipLabel = (entry, defaultLabel) => {
+        if(!this.tooltip){
+            return;
+        }
+
+        if(!this.isObject(entry) || this.isEmptyObject(entry)){
+            this.logger.error(
+                "[_tooltipLabel]",
+                "El primer parámetro debe ser un objeto y no puede estar vacío"
+            );
+            return;
+        }
+
+        if( !this.isNumber(defaultLabel) && !this.isString(defaultLabel) ){
+            this.logger.error(
+                "[_tooltipLabel]",
+                "El segundo parámetro solo puede ser una cadena de texto "
+                + "o un número"
+            );
+            return;
+        }
+
+        if(this.isEmptyString(defaultLabel)){
+            this.logger.error(
+                "[_tooltipLabel]",
+                "El segundo parametro no puede estar vacío"
+            );
+            return;
+        }
+
+        if (typeof this.tooltip_label === 'function') {
+            try {
+                const result = this.tooltip_label(self, entry);
+                return result != null ? String(result) : '';
+            } catch (error) {
+                this.logger.warn(
+                    'Error ejecutando función de tooltip:', 
+                    error
+                );
+                return '';
+            }
+        }
+
+        if( this.isString(this.tooltip_label) &&
+            !this.isEmptyString( this.tooltip_label) ){
+            return this.tpl(this.tooltip_label, entry, ["*"]);
+        }
+
+        return defaultLabel;
+    };
+
+
+    /**
      * El indice id_mixing ¿Está siendo usado?
      * @returns {boolean}
      */
     _isIdMixing = () => (Array.isArray(this.id_mixing) && 
-            this.id_mixing > 0 || typeof this.id_mixing === 'function');
+            this.id_mixing.length > 0 || typeof this.id_mixing === 'function');
 
 
     /**
      * Array con valores a concatenar en el id.
-     * 
+     *
      * @summary Dependiendo de la opción que haya elegido el usario, retorna
      * una array de valors pasado por funcion o _array object_.
      * @param {object} entry Objeto con una entrada del geoJson
-     * @returns {object} Array con los valores a concatenar.
+     * @returns {string|undefined} String con los valores concatenados o undefined.
      */
     _idMixing = entry => {
         if(!this._isIdMixing()){
             return;
         }
 
+        if(
+            !entry || typeof entry !== "object" || !entry.properties || 
+            typeof entry.properties !== "object")
+        {
+            this.logger.warn("_idMixing: entry inválido o sin properties");
+            return;
+        }
+
         if(typeof this.id_mixing === "function"){
-            return this.id_mixing(this, entry).join('');
-        } 
-        
+            try {
+                const result = this.id_mixing(this, entry);
+                if(!Array.isArray(result)){
+                    this.logger.warn(
+                        "_idMixing: la función debe retornar un array"
+                    );
+                    return;
+                }
+                return result.join('');
+            } catch(error) {
+                this.logger.error(
+                    "_idMixing: error ejecutando función personalizada",
+                    error
+                );
+                return;
+            }
+        }
+
         const values = this.id_mixing.map(val => {
-            if(entry.properties[val]){
-                return entry.properties[val].toString();
-            } 
-            return val;
+            if(Object.prototype.hasOwnProperty.call(entry.properties, val)){
+                const value = entry.properties[val];
+                return (value !== null && value !== undefined) ? 
+                        String(value) : '';
+            }
+            // Sanitizar el valor estático también
+            return (val !== null && val !== undefined) ? String(val) : '';
         });
 
         return this._slugify(values.join("-"));
@@ -1789,27 +2162,37 @@ class PonchoMap {
      * @return {object}
      */
     _setIdIfNotExists = (entries) => {
+        if (!entries || !Array.isArray(entries.features)) {
+            return entries;
+        }
+
         const firstEntry = entries.features[0];
         const hasId = firstEntry?.properties.hasOwnProperty("id");
 
+
+        const isIdMixingEnabled = this._isIdMixing();
+
         // Si no se configuró id_mixing y el json tiene id.
-        if(!this._isIdMixing() && hasId){
+        if(!isIdMixingEnabled && hasId){
             return entries;
         }
 
         for (let i = 0; i < entries.features.length; i++) {
-            const entry = entries.features[i];
+            const entry = entries?.features[i];
+            if(!entry){
+                continue;
+            }
+
             const {properties} = entry;
 
-            if (this._isIdMixing()) {
+            if (isIdMixingEnabled) {
                 // Procesa la opción de id_mixing
                 properties.id = this._idMixing(entry);
             } else {
                 // Genera un ID automático
                 const autoId = i + 1;
                 const useTitle = properties[this.title] ?
-                    this._slugify(properties[this.title]) :
-                    "";
+                    this._slugify(properties[this.title]) : "";
                 properties.id = [autoId, useTitle].filter(Boolean).join('-');
             }
         }
@@ -1826,7 +2209,7 @@ class PonchoMap {
      */
     addHash = (value) => {
         if (this.isEmptyString(value)) {
-            console.error('Invalid value provided to update hash');
+            this.logger.error('Invalid value provided to update hash');
             return;
         }
 
@@ -1845,6 +2228,20 @@ class PonchoMap {
      * @return {object}
      */
     entry = (id) => {
+        // Validar que id sea un número o string válido
+        if(!this.isNumber(id) && !this.isString(id)){
+            this.logger.error(
+                "entry requiere un número o una cadena de texto.");
+            return undefined;
+        }
+
+        // Si es string, validar que no esté vacío
+        if(this.isString(id) && this.isEmptyString(id)){
+            this.logger.error(
+                "entry requiere un id no vacío.");
+            return undefined;
+        }
+
         return this.entries.find(e => {
             if(e?.properties && e.properties[this.id] === id && 
                 e.properties?.["pm-interactive"] !== "n"){
@@ -1855,17 +2252,41 @@ class PonchoMap {
     }
 
 
+    /**
+     * Busca entradas que coincidan con un término de búsqueda.
+     *
+     * @param {string} searchTerm - Término a buscar en las entradas.
+     * @param {Array} [dataset] - Dataset opcional donde buscar. Si no se provee,
+     *                            se usa this.geoJSON por defecto.
+     * @returns {Array} Array de entradas que coinciden con el término de búsqueda.
+     *                  Si el término está vacío, retorna el dataset completo.
+     *
+     * @description
+     * Filtra las entradas del dataset buscando el término en los campos
+     * especificados. La búsqueda es case-insensitive y normaliza caracteres
+     * especiales y acentos.
+     *
+     * @example
+     * // Buscar "Buenos Aires" en el dataset por defecto
+     * const results = this.searchEntries("Buenos Aires");
+     *
+     * @example
+     * // Buscar en un dataset personalizado
+     * const results = this.searchEntries("hospital", customDataset);
+     *
+     * @see searchEntry
+     */
     searchEntries = (searchTerm, dataset) => {
         const dataToSearch = dataset || this.geoJSON;
 
         if(this.isEmptyString(searchTerm)){
-            console.info("searchEntries", "Término vacío.");
+            this.logger.info("searchEntries", "Término vacío.");
             return dataToSearch;
         }
 
         // Término de búsqueda sanitizado
         // Sin acéntos o caracteres especiales.
-        const sanitizedSearchTerm = 
+        const sanitizedSearchTerm =
                 replaceSpecialChars(searchTerm).toUpperCase();
 
         // Armo un array con los índices de búsqueda
@@ -1873,7 +2294,7 @@ class PonchoMap {
 
         const entries = dataToSearch.filter(entry => {
             return this.searchEntry(
-                sanitizedSearchTerm, 
+                sanitizedSearchTerm,
                 entry.properties,
                 searchFields
             );
@@ -1893,6 +2314,10 @@ class PonchoMap {
      */
     searchEntry = (sanitizedSearchTerm, entry, searchFields=[]) => {
         if (!sanitizedSearchTerm) {
+            return entry;
+        }
+
+        if(searchFields.length < 1){
             return entry;
         }
 
@@ -1966,12 +2391,7 @@ class PonchoMap {
             .querySelectorAll(`.js-slider${this.scope_sufix}`)
             .forEach(e => {
                 e.classList.toggle(`${this.slider_selector}--in`);
-            });
-
-        document
-            .querySelectorAll(`.js-slider${this.scope_sufix}`)
-            .forEach(panel => {
-                panel.style.display = (this.isSliderOpen() ? "block" : "none");  
+                e.style.display = (this.isSliderOpen() ? "block" : "none");  
             });
     };
 
@@ -2056,11 +2476,17 @@ class PonchoMap {
             .querySelectorAll(`.js-close-slider${this.scope_sufix}`)
             .forEach(e => {
                 e.dataset.entryId = data[this.id];
-            });      
+            });
 
+        const entry = this.entry(data[this.id]);
 
-        const [latitude, longitude] = this.entry(data[this.id]).geometry.coordinates
-        this._openOnMaps(longitude, latitude);
+        if(entry?.geometry?.coordinates){
+            const [latitude, longitude] = entry.geometry.coordinates;
+            this._openOnMaps(longitude, latitude);
+        } else {
+            this.logger.warn(
+                `No se pudo obtener las coordenadas para el id "${data[this.id]}".`);
+        }
     };
 
 
@@ -2109,17 +2535,18 @@ class PonchoMap {
      * en los mixings.
      */
     setHeaders = (headers) => {
+
         const mixing = this.template_structure?.mixing ?? [];
 
         const additionalHeaders = mixing.reduce((accumulator, item) => {
             const key = item.key;
-            
+
             if (key) {
                 accumulator[key] = item.header ?? "";
             }
             return accumulator;
         }, {});
-        
+
         return { ...headers, ...additionalHeaders };
     };
 
@@ -2129,8 +2556,21 @@ class PonchoMap {
      * 
      * @return {string} key Key del item.
      */
-    header = (key) => {
-        return (this.headers.hasOwnProperty(key) ? this.headers[key] : key);
+    header = (key, output=false) => {
+        if(this.isEmptyString(key)){
+            this.logger.error("header() debe recibir una clave");
+            return;
+        }
+        const headerToUse = (this.headers.hasOwnProperty(key) ? 
+                this.headers[key] : key);
+
+        if(output === "upper"){
+            return headerToUse.toUpperCase();
+        } else if( output === "lower"){
+            return headerToUse.toLowerCase();
+        }
+
+        return headerToUse;
     };
 
 
@@ -2143,12 +2583,14 @@ class PonchoMap {
             return;
         }
 
-        // 2. Limpieza (eliminando sliders existentes)
         document
             .querySelectorAll(`.js-slider${this.scope_sufix}`)
             .forEach(e => e.remove());
 
-        // 3. Creación y configuración de elementos
+        // Backdrop
+        const backdrop = document.createElement("div");
+        backdrop.className = "pm-backdrop";
+        
         // Contenedor principal del slider
         const container = document.createElement("dialog");
         container.id = `slider${this.scope_sufix}`;
@@ -2178,7 +2620,6 @@ class PonchoMap {
         );
         closeButton.setAttribute("autofocus", "autofocus");
         closeButton.title = "Cerrar panel";
-        closeButton.role = "button";
         closeButton.tabIndex = 0;
         closeButton.ariaLabel = "Cerrar panel de información";
 
@@ -2193,24 +2634,40 @@ class PonchoMap {
         // Contenedor del contenido
         const contentContainer = document.createElement("article");
         contentContainer.classList.add("pm-content-container");
-        contentContainer.role = "article";
 
         // Contenido
         const content = document.createElement("div");
-        content.classList.add("pm-content", `js-content${this.scope_sufix}`);
+        content.classList.add(
+            "pm-content", 
+            `js-content${this.scope_sufix}`
+        );
         content.tabIndex = 0;
         
+
+        const footer = document.createElement("footer");
+        footer.classList.add(
+            "pm-footer", 
+            `js-footer${this.scope_sufix}`
+        );
+
         // 4. Append
         contentContainer.appendChild(content);
+        contentContainer.appendChild(footer);
+
         closeButton.appendChild(icon);
         container.appendChild(closeButton);
         // container.appendChild(anchor);
         container.appendChild(contentContainer);
 
         // 5. Inserción en el DOM
-        document
-            .querySelector(`${this.scope_selector}.poncho-map`)
-            .appendChild(container);
+        const ponchoMapElement = document.querySelector(
+            `${this.scope_selector}.poncho-map`
+        );
+        if(ponchoMapElement){
+            ponchoMapElement.appendChild(backdrop);
+            ponchoMapElement.appendChild(container);
+            this._sliderElement = container;
+        }
     };
 
 
@@ -2286,23 +2743,33 @@ class PonchoMap {
 
     /**
      * Muestra un marker
-     * 
-     * @param {string|integer} id Valor identificador del marker. 
+     *
+     * @param {string|integer} id Valor identificador del marker.
+     * @param {boolean} forceVisible Si es true, hace pan/zoom al marker aunque no esté visible en el mapa.
      * @returns {undefined}
      */
-    gotoEntry = id => {
+    gotoEntry = (id, forceVisible = false, addIfNotExists = false) => {
         const entry = this.entry(id);
-        const setAction = (layer, id, entry) => {
+        let found = false;
+        const setAction = (layer, id, entry, forceVisible) => {
 
             if(!layer.options.hasOwnProperty("id")){
                 return;
             }
 
             if(layer.options.id == id){
+                found = true;
                 this._setSelectedMarker(id, layer);
 
                 if(this.hash){
                     this.addHash(id);
+                }
+
+                // Si forceVisible es true, navega al marker
+                if(forceVisible && layer.hasOwnProperty("_latlng")){
+                    this.map.setView(layer._latlng, this.map_anchor_zoom);
+                } else if(forceVisible && layer.getBounds){
+                    this.map.fitBounds(layer.getBounds().pad(0.005));
                 }
 
                 if(this.slider){
@@ -2310,17 +2777,109 @@ class PonchoMap {
                 } else {
                     this._showPopup(layer);
                 }
+
+                return;
             }
         };
 
-        this.markers.eachLayer(layer => setAction(layer, id, entry));
+        this.markers.eachLayer(layer => setAction(layer, id, entry, forceVisible));
         this.map.eachLayer(layer => {
-            if(layer.hasOwnProperty("feature") && 
+            if(layer.hasOwnProperty("feature") &&
                 layer.feature.geometry.type != "Point"){
-                setAction(layer, id, entry);
+                setAction(layer, id, entry, forceVisible);
             }
         });
+
+        // Si no se encontró el marcador y se debe agregar, hacerlo una sola vez
+        // después de revisar todos los layers, evitando recursión y ejecución múltiple
+        if(!found && addIfNotExists){
+            const foundEntry = this.entries.find(f => f.properties[this.id] == id);
+
+            if(!foundEntry){
+                return;
+            }
+
+            // this.markersMap([this.entry(id)]);
+            this.markersMap([foundEntry]);
+
+            this._renderSlider();
+            this._clickeableFeatures();
+            this._clickeableMarkers();
+            this._clickToggleSlider();
+            this._listeners();
+
+            // Buscar el layer recién agregado y mostrarlo directamente
+            // sin llamada recursiva que podría causar loops infinitos
+            const newLayer = Array.from(this.markers.getLayers()).find(
+                layer => layer.options && layer.options.id == id
+            );
+
+            if(newLayer){
+                this._setSelectedMarker(id, newLayer);
+
+                if(this.hash){
+                    this.addHash(id);
+                }
+
+                if(forceVisible && newLayer.hasOwnProperty("_latlng")){
+                    this.map.setView(newLayer._latlng, this.map_anchor_zoom);
+                } else if(forceVisible && newLayer.getBounds){
+                    this.map.fitBounds(newLayer.getBounds().pad(0.005));
+                }
+
+                if(this.slider){
+                    this._showSlider(newLayer, entry);
+                } else {
+                    this._showPopup(newLayer);
+                }
+            }
+        }
     };
+
+
+    /**
+     * Calcula el desplazamiento horizontal necesario para que el marker
+     * no quede oculto detrás del slider.
+     * @param {object} event - Evento del marker (click/hover)
+     * @returns {number} Píxeles a desplazar (0 si no es necesario)
+     */
+    _calcPanOffset = (event) => {
+        if (!this._sliderElement) {
+            return 0;
+        }
+        const SLIDER_WIDTH = this._sliderElement.offsetWidth;
+        const SLIDER_MARGIN = 15;
+        const MARKER_BUFFER_ZONE = 80;
+        const sliderOccupiedWidth = SLIDER_WIDTH + SLIDER_MARGIN;
+        const sliderOverlapZone = SLIDER_WIDTH + SLIDER_MARGIN 
+                + (MARKER_BUFFER_ZONE / 2);
+
+        const mapWidth = this._mapWidth();
+        if (mapWidth < this.media_breakpoint.sm) {
+            return 0;
+        }
+
+        const latlng = event.latlng
+            || (event.target?.getLatLng && event.target.getLatLng());
+
+        if(!latlng){
+            this.logger.warn(
+                "_calcPanOffset", 
+                "No se puede acceder a latlng"
+            );
+            return 0; 
+        }
+
+        const { x: markerX } = this.map.latLngToContainerPoint( latlng );
+        const visibleZone = mapWidth - sliderOverlapZone;
+
+        if (markerX > visibleZone) {
+            return Math.round(markerX - (mapWidth - sliderOccupiedWidth) 
+                    + MARKER_BUFFER_ZONE);
+        }
+
+        return 0;
+    }
 
 
     /**
@@ -2351,6 +2910,19 @@ class PonchoMap {
 
             if (content) {
                 this.setContent(content.properties);
+            }
+
+            // Mueje el marker segun la posicíon
+            const panOffset = this._calcPanOffset(event);
+            if (panOffset && this.pan_by) {
+                event.target._map.panBy(
+                    [panOffset, 0],
+                    {
+                        animate: true,
+                        duration: .5, 
+                        easeLinearity: 0.25
+                    }
+                );
             }
         });
     };
@@ -2470,32 +3042,60 @@ class PonchoMap {
         const structure_title = (structure.hasOwnProperty("title") ? 
             structure.title : false);
         const optons_title = (this.title ? this.title : false);
+        
         // si intencionalmente no se quiere usar el titulo y se 
         // agrega la opción `false` en `template_structure.title`. 
         if(structure.hasOwnProperty("title") && 
             typeof structure.title == "boolean"){
             return false;
         } 
+
         // Si los dos son false, retorno false
         else if(!structure_title && !optons_title){
             return false;
         }
+
         // Defino el title que voy a usar.
         // template_structure.title tiene precedencia
         const use_title = (structure_title ? structure_title : optons_title);
         let title;
+
         if(structure?.header){
-            const wrapper = document.createElement("div");
-            wrapper.innerHTML = this._mdToHtml(structure.header(this, row));
-            if(this.template_innerhtml){
-                wrapper.innerHTML = structure.header(this, row);
+            let headerContent = structure.header;
+
+            if(typeof structure.header === "function"){
+                headerContent = structure.header(this, row);
             }
+
+            if(
+                !this.isString(headerContent) || 
+                this.isEmptyString(headerContent))
+            {
+                this.logger.warn(
+                    "template_Structure['header'] debe ser una "
+                    + "cadena de texto no vacía");
+                return;
+            }
+
+            const cleanedHeaderToTpl = this.tpl(headerContent, row);
+            const wrapper = document.createElement("div");
+
+            if(this.template_innerhtml){
+                wrapper.innerHTML = secureHTML(
+                    cleanedHeaderToTpl, this.allowed_tags
+                );
+            } else {
+                wrapper.innerHTML = this._mdToHtml(cleanedHeaderToTpl);
+            }
+            
             title = wrapper;
+
         } else {
             title = document.createElement("h2");
             title.classList.add(...structure.title_classlist);
             title.textContent = row[use_title];
         }
+
 
         const header = document.createElement("header");
         header.className = "pm-header";
@@ -2550,8 +3150,7 @@ class PonchoMap {
         }
 
         const converter = new showdown.Converter(this.markdown_options);
-        const cleanedText = secureHTML(text, this.allowed_tags);
-        return converter.makeHtml( String(cleanedText).trim() );
+        return converter.makeHtml( String(text).trim() );
     };
 
 
@@ -2598,15 +3197,20 @@ class PonchoMap {
                             },
                             "warning"
                         );
+                        return;
                     }
 
-                    if(!this.isEmptyString(template)){
-                        customRow[key] = this.tplParser(template, row);
-                    } else {
+                    if(this.isString(template) && !this.isEmptyString(template)){
+                        customRow[key] = this.tpl(template, row);
+
+                    } else if(Array.isArray(values) && values.length > 0) {
                         customRow[key] = values
-                            .map(i => (i in row ? row[i] : i.toString()))
+                            .map(i => {
+                                return row.hasOwnProperty(i) ? row[i] : '';
+                            })
                             .filter(Boolean)
                             .join(separator);
+
                     }
 
                 });
@@ -2617,17 +3221,20 @@ class PonchoMap {
 
 
     /**
-     * Prepara un objeto según su tipo
-     * 
-     * @param {object} ele 
-     * @param {object} entry 
-     * @param {*} value 
-     * @returns {*} De acuerdo a la entrada.
+     * Evalúa y procesa un elemento según su tipo. Si el elemento es una función,
+     * la ejecuta pasando el contexto actual, la entrada y el valor. Si no es una
+     * función, devuelve el elemento tal como está.
+     *
+     * @param {object|function} ele - Elemento a procesar. Puede ser un objeto o una función.
+     * @param {object} [entry=false] - Objeto de entrada que se pasará a la función si `ele` es una función.
+     * @param {*} [value=false] - Valor adicional que se pasará a la función si `ele` es una función.
+     * @returns {*} Si `ele` es una función, retorna el resultado de su ejecución.
+     *              De lo contrario, retorna `ele` sin modificaciones.
      */
-    _setType = (ele, entry=false, value=false) => {
+    _resolveValue = (ele, entry=false, value=false) => {
         if(typeof(ele) === "function"){
             return ele(this, entry, value);
-        } 
+        }
         return ele;
     };
 
@@ -2684,7 +3291,9 @@ class PonchoMap {
         }
 
         const {
-            key, css="small", style=false
+            key, 
+            css="small", 
+            style=false
         } = this.template_structure.lead;
 
         if(!entry.hasOwnProperty(key)){
@@ -2694,13 +3303,13 @@ class PonchoMap {
         const p = document.createElement("p");
         p.textContent = entry[key];
         // Style definitions
-        const setStyle = this._setType(style, entry);
+        const setStyle = this._resolveValue(style, entry);
 
         if(setStyle){
             this._setStyle(p, setStyle);
         }
         // CSS Class
-        const setClasslist = this._setClassList(this._setType(css, entry));
+        const setClasslist = this._setClassList(this._resolveValue(css, entry));
         if(setClasslist){
             p.classList.add(...setClasslist);
         }
@@ -2717,16 +3326,16 @@ class PonchoMap {
      * element de otro modo un boolean `false`.
      */
     _termIcon = (entry, key) => {
-        const item = this.header_icons.find(e => e.key == key);
+        const item = this.header_icons.find(e => e.key === key);
 
         if(item){
             const {css=false, style=false, html=false} = item;
-            const setHtml = this._setType(html, entry, key);
-            const setStyle = this._setType(style, entry, key);
+            const setHtml = this._resolveValue(html, entry, key);
+            const setStyle = this._resolveValue(style, entry, key);
             const setClasslist = this._setClassList(
-                this._setType(css, entry, key));
+                this._resolveValue(css, entry, key));
 
-            if(setClasslist){
+            if(Array.isArray(setClasslist) && setClasslist.length > 0){
                 const icon = document.createElement("i");
                 icon.setAttribute("aria-hidden","true");
                 icon.classList.add(...setClasslist);
@@ -2738,7 +3347,7 @@ class PonchoMap {
 
             } else if (setHtml){
                 const ic = document.createElement("template");
-                ic.innerHTML = setHtml;
+                ic.innerHTML = secureHTML(setHtml, this.allowed_tags);
                 return ic.content;
             }
         }
@@ -2754,13 +3363,17 @@ class PonchoMap {
      * @param {object} row Entrada para dibujar un marker.
      */  
     defaultTemplate = (self, row) => {
+
         row = this._templateMixing(row);
         const {template_structure:structure} = this;
+
+
         const tpl_list = this._templateList(row);
         const tpl_title = this._templateTitle(row);
 
         const container = document.createElement("div");
         container.classList.add(... structure.container_classlist);
+
         const definitions = document.createElement(structure.definition_list_tag);
         definitions.classList.add(...structure.definition_list_classlist);
         definitions.style.fontSize = "1rem";
@@ -2770,8 +3383,18 @@ class PonchoMap {
             if(!row.hasOwnProperty(key) || !row[key]){
                 continue;
             }
+
+            // Defino la etiqueta del término
             const term = document.createElement(structure.term_tag);
-            term.classList.add(...structure.term_classlist)
+
+            // -- Si la clave usa iconos agrego el helper css
+            if(this.header_icons.find(({key:k}) => k === key)){
+                term.classList.add("pm-term-icon-helper");
+            }
+            // -- Agrego los estilos asignados por el usuario.
+            term.classList.add(...structure.term_classlist);
+
+            // -- Agrego el icono antes del texto.
             const header_icon = this._termIcon(row, key);
             if(header_icon){
                 term.appendChild(header_icon);
@@ -2779,14 +3402,19 @@ class PonchoMap {
             }
             term.insertAdjacentText("beforeend", this.header(key));
             
+            // Deino la etiqueta para la definición.
             const definition = document.createElement(structure.definition_tag);
-            definition.classList.add(...structure.definition_classlist)
-            definition.textContent = row[key];
+            definition.classList.add(...structure.definition_classlist);
 
             if(this.template_markdown){
-                definition.innerHTML = this._mdToHtml(row[key]);
+                const securedMd = secureHTML(row[key], ["*"]);
+                const mdContent = this._mdToHtml(this.tpl(securedMd, row));
+                definition.innerHTML = mdContent;
             } else if(this.template_innerhtml){
-                definition.innerHTML = secureHTML(row[key], this.allowed_tags);
+                const securedContent = secureHTML(row[key], this.allowed_tags);
+                definition.innerHTML = this.tpl(securedContent, row);
+            } else {
+                definition.textContent = row[key];
             }
 
             if(this.header(key) != ""){
@@ -2797,7 +3425,7 @@ class PonchoMap {
 
         const tpl_lead = this._lead(row);
         if(tpl_lead){
-            container.appendChild(tpl_lead);
+            tpl_title.prepend(tpl_lead);
         }
 
         if(tpl_title){
@@ -2810,24 +3438,52 @@ class PonchoMap {
 
 
     /**
+     * Determina el tipo de marker_color configurado.
+     * @returns {string} Tipo de marker_color: 'none', 'string' o 'function'
+     */
+    _getMarkerColorType = () => {
+        if (!this.marker_color || typeof this.marker_color === "boolean") {
+            return 'none';
+        }
+        if (typeof this.marker_color === 'string') {
+            return 'string';
+        }
+        if (typeof this.marker_color === 'function') {
+            return 'function';
+        }
+        return 'none';
+    };
+
+
+    /**
      * Icono con color Poncho.
-     * 
+     *
      * @summary Retorna un marker SVG con color poncho. Por defecto se
      * utiliza el azul (primary), pero se puede cambiar el clor usando
      * el parámetro «color». Los colores están limitados a los cargados
-     * en Drupal. 
-     * @param {string} color Nombre del color según poncho colores. 
+     * en Drupal. Implementa caché para evitar crear iconos duplicados.
+     * @param {string} color Nombre del color según poncho colores.
      * @see https://leafletjs.com/examples/custom-icons/
      * @returns {object}
      */
     icon = (color="azul") => {
-        return new L.icon({
-            iconUrl: `https://www.argentina.gob.ar/sites/default/files/` 
+        // Verificar si el icono ya está en caché
+        if (this._icon_cache.has(color)) {
+            return this._icon_cache.get(color);
+        }
+
+        // Crear nuevo icono
+        const newIcon = new L.icon({
+            iconUrl: `https://www.argentina.gob.ar/sites/default/files/`
                     + `marcador-${color}.svg`,
             iconSize: [29, 40],
             iconAnchor: [14, 40],
             popupAnchor: [0, -37]
         });
+
+        // Guardar en caché
+        this._icon_cache.set(color, newIcon);
+        return newIcon;
     };
 
 
@@ -2839,13 +3495,58 @@ class PonchoMap {
 
     /**
      * Hace zoom hasta los límites de los markers
-     * @return {undefined}
+     * @param {number} [userPadding] - Padding opcional para retrocompatibilidad
+     * @return {boolean} true si se ajustó, false si no
      */
-    fitBounds = (padding=0.005) => {
+    fitBounds = (userPadding) => {
+        let options = (this.isObject(this.fit_bounds_options) ? 
+                this.fit_bounds_options : {});
+
+        // si se pasa un número, se usa como padding
+        if (typeof userPadding === "number") {
+            options.padding = userPadding;
+        }
+
+        let {
+            padding = 0.005,
+            maxZoom = 22,
+            animate = true,
+            duration = 0.25
+        } = options;
+
         try {
-            this.map.fitBounds(this.geojson.getBounds().pad(padding));
+            if (!this.geojson) {
+                this.logger.warn(
+                    "fitBounds", 
+                    "No hay geojson disponible"
+                );
+                return false;
+            }
+
+            const bounds = this.geojson.getBounds();
+
+            if (!bounds.isValid()) {
+                this.logger.warn(
+                    "fitBounds", 
+                    "No hay bounds válidos para ajustar"
+                );
+                return false;
+            }
+
+            if (this.map_layers_default === "satelital" && maxZoom > 17) {
+                maxZoom = 17;
+            }
+
+            this.map.fitBounds(bounds.pad(padding), {
+                maxZoom,
+                animate,
+                duration
+            });
+
+            return true;
         } catch (error) {
-            console.error("fitBounds", error);
+            this.logger.error("fitBounds", error);
+            return false;
         }
     };
 
@@ -2890,22 +3591,24 @@ class PonchoMap {
 
     /**
      * Define el objeto icon.
-     * @param {object} row entrada de json 
+     * @param {object} row entrada de json
      * @returns {object} Instancia L.icon
      */
     marker = (row) => {
-        // Si marker_color no viene o es null usa el marker por defecto 
-        // de Open Street Map
-        if(!this.marker_color || typeof this.marker_color === "boolean"){
-            return null
-        }
-        if(this.isString(this.marker_color)){
-            return this.icon(this.marker_color);
-        } else if (this.isString(this.marker_color(this, row))){
-            const color = this.marker_color(this, row);
-            return this.icon(color);
-        } else if (typeof this.marker_color === "function"){
-            return this.marker_color(this, row);
+        // Usa el tipo de marker_color cacheado para evitar chequeos repetidos
+        switch(this._marker_color_type) {
+            case 'none':
+                return null;
+            case 'string':
+                return this.icon(this.marker_color);
+            case 'function':
+                // Ejecuta la función una sola vez y almacena el resultado
+                const result = this.marker_color(this, row);
+                // Si retorna un string, crea el icono; si retorna un objeto, 
+                // lo usa directamente
+                return (typeof result === 'string') ? this.icon(result) : result;
+            default:
+                return null;
         }
     };
 
@@ -2929,95 +3632,126 @@ class PonchoMap {
      * Prepara las características del mapa y de cada uno de los markers.
      * @see https://leafletjs.com/reference.html#path
      */
-    markersMap = (entries) => { 
-
-        var _this = this;
+    markersMap = (entries) => {
         this._clearLayers();
-        this.geojson = new L.geoJson(entries, {
 
+        const useTooltip = this.tooltip;
+        const usePopup = !this.no_info && !this.slider;
+        const isTemplateFunction = typeof this.template === "function";
+        const titleKey = this.title;
+        const idKey = this.id;
+        const tooltipOptions = this.tooltip_options;
+        const featureStyle = this.featureStyle;
+
+        // Referencia a this para closures
+        const self = this;
+
+        // Helper para generar HTML del popup
+        const getPopupHtml = isTemplateFunction
+            ? (properties) => this.template(this, properties)
+            : (properties) => this.defaultTemplate(this, properties);
+
+        // Helper para setear propiedades de estilo
+        const getStyleProp = (properties, key, alternative = false) => {
+            if (properties.hasOwnProperty(key)) {
+                return properties[key];
+            }
+            return alternative || featureStyle[key];
+        };
+
+        this.geojson = new L.geoJson(entries, {
             pointToLayer: function(feature, latlng) {
                 const {properties} = feature;
-                const icon = _this.marker(properties);
-                
-                let marker_attr = {};
-                marker_attr.id = properties[_this.id];
-                if(icon){
+                const icon = self.marker(properties);
+                const title = properties[titleKey];
+
+                const processTooltipLabel = self._tooltipLabel(
+                    properties,
+                    title // Default value
+                );
+
+                // atributos del marker de forma optimizada
+                const marker_attr = {
+                    id: properties[idKey]
+                };
+                if (icon) {
                     marker_attr.icon = icon;
                 }
-                if(_this.title){
-                    marker_attr.alt = properties[_this.title];
+                if (title) {
+                    marker_attr.alt = title;
                 }
-                
-                const marker = new L.marker(latlng, marker_attr);
-                _this.map.options.minZoom = _this.min_zoom;
-                _this.markers.addLayer(marker);
 
-                // Si el usuario eligió usar tooltip
-                if(_this.tooltip && properties[_this.title]){
-                    marker.bindTooltip(
-                        properties[_this.title], _this.tooltip_options
-                    );
+                const marker = new L.marker(latlng, marker_attr);
+                self.map.options.minZoom = self.min_zoom;
+                self.markers.addLayer(marker);
+
+                // Agregar tooltip si está habilitado
+                if (useTooltip && title) {
+                    marker.bindTooltip(processTooltipLabel, tooltipOptions);
                 }
-                
-                // Si el usuario desea utilizar popUp en vez de slider.
-                if(!_this.no_info && !_this.slider){
-                    const html = (typeof _this.template == "function" ? 
-                            _this.template(_this, properties) : 
-                            _this.defaultTemplate(_this, properties));
-                    marker.bindPopup(html);
+
+                // Agregar popup si está habilitado
+                if (usePopup) {
+                    marker.bindPopup(getPopupHtml(properties));
                 }
-                
-                return _this.markers;
+
+                return self.markers;
             },
-            onEachFeature: function(feature, layer){
+
+            onEachFeature: function(feature, layer) {
                 const {properties, geometry} = feature;
-                layer.options.id = properties[_this.id];
-                feature.properties.name = properties[_this.title];
-                
-                if(properties.hasOwnProperty("pm-interactive") && 
-                    properties["pm-interactive"] === "n"){
+                const {type: geomType} = geometry;
+                const title = properties[titleKey];
+
+                const processTooltipLabel = self._tooltipLabel(
+                    properties,
+                    title // Default value
+                );
+
+                layer.options.id = properties[idKey];
+                feature.properties.name = title;
+
+                // Verificar interactividad
+                if (properties["pm-interactive"] === "n") {
                     layer.options.interactive = false;
                 }
 
-                // Si el usuario eligió usar tooltip
-                if(_this.tooltip && properties[_this.title] && 
-                    geometry.type != "Point" && geometry.type != "MultiPoint"){
-                    layer.bindTooltip(
-                        properties[_this.title], _this.tooltip_options
-                    );
-                }
-                
-                if(!_this.no_info && !_this.slider && 
-                    geometry.type != "Point" && geometry.type != "MultiPoint"){
-                    const html = (typeof _this.template == "function" ? 
-                            _this.template(_this, properties) : 
-                            _this.defaultTemplate(_this, properties));
-                    layer.bindPopup(html);
+                // Para geometrías no puntuales
+                const isNonPoint = (geomType !== "Point" && geomType 
+                        !== "MultiPoint");
+
+                if (isNonPoint) {
+                    // Agregar tooltip
+                    if (useTooltip && title) {
+                        layer.bindTooltip(processTooltipLabel, tooltipOptions);
+                    }
+
+                    // Agregar popup
+                    if (usePopup) {
+                        layer.bindPopup(getPopupHtml(properties));
+                    }
                 }
             },
+
             style: function(feature) {
                 const {properties} = feature;
-                const setProp = (key, alternative=false) => {
-                    if( properties.hasOwnProperty(key)) {
-                        return properties[key];
-                    } else if(alternative) {
-                        return alternative; 
-                    } else {
-                        return _this.featureStyle[key];
-                    }
-                };
+                const strokeColor = getStyleProp(
+                    properties, "stroke-color",
+                    getStyleProp(properties, "stroke")
+                );
+
                 return {
-                    color: setProp("stroke-color", setProp("stroke")), 
-                    strokeOpacity: setProp("stroke-opacity"), 
-                    weight: setProp("stroke-width"), 
-                    fillColor: setProp("stroke"), 
-                    opacity: setProp("stroke-opacity"), 
-                    fillOpacity: setProp("fill-opacity")
-                };  
-            }, 
-            
+                    color: strokeColor,
+                    strokeOpacity: getStyleProp(properties, "stroke-opacity"),
+                    weight: getStyleProp(properties, "stroke-width"),
+                    fillColor: getStyleProp(properties, "stroke"),
+                    opacity: getStyleProp(properties, "stroke-opacity"),
+                    fillOpacity: getStyleProp(properties, "fill-opacity")
+                };
+            }
         });
-        this.geojson.addTo(this.map);  
+
+        this.geojson.addTo(this.map);
     };
 
 
@@ -3060,7 +3794,7 @@ class PonchoMap {
                 .querySelector(`${this.scope_selector}.poncho-map`);
         
         if (!container) {
-            console.error(
+            this.logger.error(
                 `Contenedor no encontrado: ${this.scope_selector}.poncho-map`);
             return;
         }
@@ -3409,6 +4143,10 @@ class PonchoMap {
      * agregando summary se vincula el id del summary con el mapa.
      */
     _addSummary = () => {
+        if(typeof this.summary === "boolean"){
+            return;
+        }
+
         if(
             this.isEmptyObject(this.summary) || 
             this.isEmptyString(this.summary)){
@@ -3441,8 +4179,9 @@ class PonchoMap {
             element.setAttribute("aria-labelledby", id);
         }
 
-        // Creo el elemento
-        const p = document.createElement("p");
+        // Si existe el elemento lo uso. De otro modo lo creo.
+        const p = (document.querySelector(`#${id}`) || 
+                document.createElement("p"));
         p.textContent = summary;
         p.id = id;
         p.classList.add("pm-summary");
@@ -3467,9 +4206,9 @@ class PonchoMap {
 
 
     /**
-     * Asigna definciones de estilo a un objeto.
-     * 
-     * @param {*} values 
+     * Asigna definiciones de estilo a un objeto.
+     *
+     * @param {*} values
      * @returns {object}
      */
     _setStyle = (obj, values) => {
@@ -3477,7 +4216,7 @@ class PonchoMap {
             return;
         }
 
-        if(!this.isObject(obj) || !obj instanceof HTMLElement){
+        if(!this.isObject(obj) || !(obj instanceof HTMLElement)){
             this.showAlert({
                 title: "La función <code>_setStyle</code>, debe recibir un "
                     + "objeto <code>HTMLElement</code>.",
@@ -3488,7 +4227,7 @@ class PonchoMap {
 
         const regex = /([^;:]+)\s*\:\s*([^;:]+)/;
         if(
-            this.isString(values) && 
+            this.isString(values) &&
             !(this.isEmptyString(values) || values.match(regex))){
 
             this.showAlert({
@@ -3511,7 +4250,7 @@ class PonchoMap {
         }
 
         // Si values es un string lo parseo
-        var styles = {};
+        const styles = {};
         for(let entry of values.split(";")){
             const m = regex.exec(entry);
             if(!m){
@@ -3560,13 +4299,13 @@ class PonchoMap {
         this._accesibleMenu();
         this._accesibleExtras();
 
+        this._setSliderSize();
         this.mapOpacity();
         this.mapBackgroundColor();
 
         this._listeners();
         this.layerViewConf.setVisuals();
         this.setMapAlignment(this.map_align);
-        this._setCssVariables();
     };
 };
 // end class
@@ -3581,11 +4320,13 @@ class PonchoMapLoader {
 
     constructor(options){
         const defaults = {
-            selector: ".poncho-map",
-            scope: "",
-            timeout: 50000,
+            close_delay: 500,
             cover_opacity: 1,
             cover_style: {},
+            debug: false,
+            scope: "",
+            selector: ".poncho-map",
+            timeout: 50000,
         };
         let opts = Object.assign({}, defaults, options);
         this.scope = opts.scope;
@@ -3594,59 +4335,152 @@ class PonchoMapLoader {
         this.timeout = opts.timeout;
         this.scope_sufix = `--${this.scope}`;
         this.scope_selector = `[data-scope="${this.scope}"]`;
-        this.ponchoLoaderTimeout;
+        this.ponchoLoaderTimeout = null;
+        this._closeTimeoutId = null;
         this.selector = opts.selector;
+        this.close_delay = opts.close_delay;
+        this.debug = opts.debug;
     }
 
 
     /**
-     * Cierra el spinner.
+     * Remueve el loader inmediatamente sin demora.
+     * Limpia los timeouts activos y remueve el elemento del DOM.
      * @returns {undefined}
      */
-    close = () => document
-            .querySelectorAll(`.js-poncho-map__loader${this.scope_sufix}`)
-            .forEach(e => e.remove());
+    remove = () => {
+        // Cancelar timeout de auto-remoción
+        if(this.ponchoLoaderTimeout){
+            clearTimeout(this.ponchoLoaderTimeout);
+            this.ponchoLoaderTimeout = null;
+        }
+
+        // Remover el elemento del DOM
+        const loader = document.querySelector(
+            `.js-poncho-map__loader${this.scope_sufix}`
+        );
+        if(loader){
+            loader.remove();
+            if(this.debug){
+                this.logger.log(`[PonchoMapLoader:${this.scope}] Loader removed.`);
+            }
+        }
+    }
+
+
+    /**
+     * Cierra el spinner con una demora configurable.
+     * Cancela cualquier operación de cierre pendiente antes de programar una nueva.
+     * @param {boolean} immediate - Si es true, cierra inmediatamente sin demora
+     * @returns {undefined}
+     */
+    close = (immediate = false) => {
+        if(immediate){
+            this.remove();
+            return;
+        }
+
+        // Cancelar cualquier operación de cierre pendiente
+        if(this._closeTimeoutId){
+            clearTimeout(this._closeTimeoutId);
+        }
+
+        // Programar el cierre con demora
+        this._closeTimeoutId = setTimeout(() => {
+            const loader = document.querySelector(
+                `.js-poncho-map__loader${this.scope_sufix}`
+            );
+            if(loader){
+                loader.remove();
+            }
+
+            // Cancelar timeout de auto-remoción si existe
+            if(this.ponchoLoaderTimeout){
+                clearTimeout(this.ponchoLoaderTimeout);
+                this.ponchoLoaderTimeout = null;
+            }
+
+            this._closeTimeoutId = null;
+
+            if(this.debug){
+                this.logger.log(`[PonchoMapLoader:${this.scope}] Loader closed.`);
+            }
+        }, this.close_delay);
+    }
 
 
     /**
      * Carga el spinner.
+     * Cancela operaciones pendientes y remueve cualquier loader existente
+     * antes de crear uno nuevo. Configura un timeout de auto-remoción.
      * @returns {undefined}
      */
     load = () => {
-        this.close();
-        clearTimeout(this.ponchoLoaderTimeout);
+        // Cancelar operaciones de cierre pendientes
+        if(this._closeTimeoutId){
+            clearTimeout(this._closeTimeoutId);
+            this._closeTimeoutId = null;
+        }
 
+        // Cancelar timeout de auto-remoción anterior
+        if(this.ponchoLoaderTimeout){
+            clearTimeout(this.ponchoLoaderTimeout);
+            this.ponchoLoaderTimeout = null;
+        }
+
+        // Remover loader existente de forma síncrona
+        const existingLoader = document.querySelector(
+            `.js-poncho-map__loader${this.scope_sufix}`
+        );
+        if(existingLoader){
+            existingLoader.remove();
+        }
+
+        // Crear nuevo loader
         const element = document.querySelector(
-                `${this.selector}${this.scope_selector}`);
+            `${this.selector}${this.scope_selector}`
+        );
         const loader = document.createElement("span");
         loader.className = "loader";
 
         const cover = document.createElement('div');
         cover.dataset.scope = this.selector;
         cover.classList.add(
-            "poncho-map__loader", 
+            "poncho-map__loader",
             `js-poncho-map__loader${this.scope_sufix}`
         );
+
         // Background opacity
         Object.assign(cover.style, this.cover_style);
         if(this.cover_opacity){
             cover.style.backgroundColor = `color-mix(`
-                + `in srgb, ` 
+                + `in srgb, `
                 + `transparent, `
                 + `var(--pm-loader-background) `
                 + `${this.cover_opacity.toString() * 100}%)`;
         }
 
         cover.appendChild(loader);
-        element.appendChild(cover);  
-        this.ponchoLoaderTimeout = setTimeout(this.remove, this.timeout);
+        element.appendChild(cover);
+
+        if(this.debug){
+            this.logger.log(`[PonchoMapLoader:${this.scope}] Loader started.`);
+        }
+
+        // Configurar auto-remoción después del timeout
+        this.ponchoLoaderTimeout = setTimeout(() => {
+            this.remove();
+        }, this.timeout);
     };
 
 
     /**
-     * Loader
-     * @param {integer} timeout Tiempo máximo de ejecución del loader. 
-     * @returns {unde}
+     * Método de conveniencia que carga el spinner, ejecuta un callback
+     * después de un timeout, y remueve el loader.
+     * @param {Function} callback - Función a ejecutar después del timeout
+     * @param {number} timeout - Tiempo en milisegundos antes de ejecutar el 
+     * callback y remover el loader
+     * @returns {undefined}
      */
     loader = (callback, timeout=500) => {
         this.load();

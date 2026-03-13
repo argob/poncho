@@ -1,3 +1,100 @@
+.border {
+    border-style: solid;
+    border-width: 1px;
+    border-color: var(--arg-gray-light);
+}
+
+.border-top {
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-top-color: var(--arg-gray-light);
+}
+.border-bottom {
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: var(--arg-gray-light);
+}
+.border-right {
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-right-color: var(--arg-gray-light);
+}
+.border-left {
+    border-left-style: solid;
+    border-left-width: 1px;
+    border-left-color: var(--arg-gray-light);
+}
+
+.border-0 {
+    border: 0 !important;
+}
+
+.border-top-0 {
+    border-top: 0 !important;
+}
+
+.border-right-0 {
+    border-right: 0 !important;
+}
+
+.border-bottom-0 {
+    border-bottom: 0 !important;
+}
+
+.border-left-0 {
+    border-left: 0 !important;
+}
+
+.border-medium {
+    border-width: 2px;
+}
+
+.border-thick {
+    border-width: 3px;
+}
+
+// .border-extra-thick {
+//     border-width:6px
+// }
+
+.border-heavy {
+    border-width:6px
+}
+
+.border-arg-default {
+    border-color: var(--arg-default) !important
+}
+.border-arg-info {
+    border-color: var(--arg-info) !important
+}
+.border-arg-secundario {
+    border-color: var(--arg-secundario) !important
+}
+.border-arg-azul {
+    border-color: var(--arg-azul) !important
+}
+.border-arg-arandano {
+    border-color: var(--arg-arandano) !important
+}
+.border-arg-arena {
+    border-color: var(--arg-arena) 
+}
+.border-arg-rojo {
+    border-color: var(--arg-rojo) !important
+}
+.border-arg-palta {
+    border-color: var(--arg-palta) !important
+}
+.border-arg-mandarina {
+    border-color: var(--arg-mandarina) !important
+}
+.border-arg-rosado {
+    border-color: var(--arg-rosado) !important
+}
+
+
+
+
 /**
  * Generador de variables tipográficas 
  * ([nombre], [valor]) 
@@ -19,6 +116,29 @@ $configTypeWeights: (
         font-weight: #{$value} !important;
     }
 }
+
+
+/**
+ * Generador de espacios gap
+ * ([nombre], [valor]) 
+ */
+$gapSpacer : 1;
+$configGap: (
+    (0, 0),
+    (1, $gapSpacer * .25),
+    (2, $gapSpacer * .5),
+    (3, $gapSpacer),
+    (4, $gapSpacer * 1.5),
+    (5, $gapSpacer * 3),
+);
+
+
+@each $name, $value in $configGap {
+    .gap-#{$name} {
+        gap: #{$value}rem;
+    }
+}
+
 
 /**
  * Generador de espacios 
@@ -143,6 +263,10 @@ $configSpaces: (
 
 .font-serif {
     font-family: $font-family-serif;
+}
+
+.font-base {
+    font-family: $font-family-base;
 }
 
 @media (max-width: 575.98px) {

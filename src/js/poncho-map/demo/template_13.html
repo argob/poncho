@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head>
+    <link rel="profile" href="http://www.w3.org/1999/xhtml/vocab" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
+        </script>
+<link rel="shortcut icon" href="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/favicon.ico" type="image/vnd.microsoft.icon" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+        integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet"
+        href="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css">
+    <link rel="stylesheet" href="../../../../dist/css/poncho.min.css" />
+    <script src="../../mapa-argentina/demo/js/demo.js"></script>    
+    <!-- 
+        Script para debug 
+        Se reemplazan en producción por poncho.min.js
+    -->
+    <script src="../../color/src/js/color.js"></script>
+    <script src="../../utils/connect.js"></script>
+    <script src="../../utils/string.js"></script>
+    <script src="../../utils/document.js"></script>
+    <script src="../../utils/html.js"></script>
+    <script src="../src/js/poncho-map.js"></script>
+    <script src="../src/js/poncho-map-filter.js"></script>
+    <script src="../src/js/poncho-map-search.js"></script>
+    <script src="../src/js/poncho-map-helpers.js"></script>
+    <script src="../../gapi-sheet-data/gapi-sheet-data.js"></script>
+    <link rel="stylesheet" href="./css/demo.css">
+    <!-- <link rel="stylesheet" href="./css/containers.css"> -->
+
+
+    <!-- / Script para debug -->
+    <title>Poncho Map — Template 13</title>
+    <script>
+    // Este script se ejecuta antes de que se pinte la página
+    document.documentElement.className = "js";
+    </script>
+    <style>
+    .js-only { display: none; }
+    .js .js-only { display: block; }
+    </style>
+</head>
+<body>
+<div class="demo-nav container">
+    <ul class="demo-menu">
+        <li><a href="./">Inicio</a></li>
+    </ul>
+</div>
+<h1>Template 13</h1>
+
+<!-- 
+COPIAR DESDE ACÁ…
+-->
+<div class="container js-only">
+    <div class="row">
+        <div class="col-md-12">
+        <!-- PONCHO MAP SEARCH -->
+        <search>
+        <form>
+            <div data-scope="poncho-map-search">
+                <div class="input-group">
+                    <input 
+                        type="search" 
+                        name="search" 
+                        autocomplete="off"
+                        class="js-poncho-map-search__input form-control" 
+                        list="list">
+                        <datalist id="list" class="js-porcho-map-search__list"></datalist>
+                    <span class="input-group-btn">
+                        <button class="js-poncho-map-search__submit btn btn-primary">
+                        <i class="fa fa-search text-white"> </i>
+                        </button>
+                    </span>
+                </div>
+                <div data-scope="poncho-map" class="m-b-1">
+                    <div class="js-poncho-map__help small text-default"></div>
+                </div>
+            </div>
+        </form>
+        </search>
+        <!-- / PONCHO MAP SEARCH -->
+        </div>
+    </div>
+</div>
+
+<div class="container _js-only">
+    <div class="row">
+        <div class="col-md-12">
+
+            <!-- NOSCRIPT -->
+            <noscript>
+                <div class="highlight-box" role="complementary">
+                    <div class="media">
+                        <div class="media-left">
+                            <i class="fa fa-map fa-2x" aria-hidden="true"></i>
+                        </div>
+                        <div class="media-body">
+                            <p>No se puede mostrar el mapa</p>
+                            <!-- 
+                            Agruegue un enlace a un contenido alternativo sin
+                            uso de javascript.
+                            -->
+                        </div>
+                    </div>
+                </div>
+            </noscript>
+            <!-- NOSCRIPT -->
+
+            <!-- PONCHO MAP -->
+            <div class="poncho-map" data-scope="poncho-map">
+                <div
+                    class="leaflet-container leaflet-touch leaflet-fade-anim 
+                        leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
+                    id="map"
+                    style="height: 700px;">
+                </div>
+            </div>
+            <!-- / PONCHO MAP -->
+
+            <!-- DEBUGGER -->
+            <div 
+                data-code-from="code_map" 
+                class="m-y-2" 
+                data-title="Código para el mapa">
+            </div>
+            <!-- / DEBUGGER -->
+        </div>
+    </div>
+</div>
+
+<!-- INCLUDE SCRIPTS -->
+<script src="https://www.argentina.gob.ar/sites/default/files/ponchotable/showdown.js"></script>
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/extensiones/showdown-extensions.js"></script>
+<script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.js"></script>
+<script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script>
+<link href="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.css" rel="stylesheet"/> 
+<link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.Default.css" rel="stylesheet"/> 
+<script src="https://cdn.jsdelivr.net/npm/telefono-argentino/dist/telefono-argentino.min.js"></script>
+<script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
+<!-- / INCLUDE SCRIPTS -->
+
+<!-- SCRIPTS -->
+
+<script id="code_map">
+    // Custom styles
+    headStyle(
+        "parques-nacionales-style", 
+        `.definition-list dd img {border-radius:4px;}.poncho-map .leaflet-tooltip-own{--pm-tooltip:var(--arg-gris-niebla, white);--pm-tooltip-color:var(--arg-gray-dark);padding:6px;font-size:.8rem}.tooltip-figure,.tooltip-figure figcaption{padding:0;margin:0;border:none}.tooltip-figure .tooltip-figure__caption{display:block;max-width:120px;line-height:1.35;color:var(--arg-gray-dark);margin-bottom:2px;overflow-wrap:break-word!important;white-space:normal}.tooltip-figure .tooltip-figure__image{aspect-ratio:16/10;width:120px;background:no-repeat 0 0 / cover gray;margin-bottom:6px;border-radius:2px}`
+    );
+
+    // HELPERS
+    /**
+     * Genera el contenido HTML para el tooltip de un marcador.
+     *
+     * @param {PonchoMap} self - Instancia de PonchoMap.
+     * @param {Object} entry - Objeto con los datos del marcador.
+     * @returns {string} HTML del tooltip.
+     */
+    const pmCustomLabel = (self, entry) => {
+        const figure = document.createElement("figure");
+        figure.className = "tooltip-figure";
+
+        const imageDiv = document.createElement("div");
+        imageDiv.className = "tooltip-figure__image";
+        imageDiv.style.backgroundImage = `url('${entry.linkfoto}')`;
+
+        const figcaption = document.createElement("figcaption");
+        figcaption.className = "tooltip-figure__caption font-sans-serif";
+
+        const nombreSpan = document.createElement("span");
+        nombreSpan.className = "fw-bold";
+        nombreSpan.textContent = entry.nombre;
+
+        const brSpan = document.createElement("span");
+        brSpan.className = "br";
+        brSpan.setAttribute("aria-hidden", "true");
+
+        const provinciaSpan = document.createElement("span");
+        provinciaSpan.textContent = entry.provincia;
+
+        figcaption.append(nombreSpan, brSpan, provinciaSpan);
+        figure.append(imageDiv, figcaption);
+
+        return figure.outerHTML;
+    };
+
+    /**
+     * Formatea un número de teléfono argentino como enlace clicable.
+     *
+     * @param {string} telefono - Número de teléfono a formatear.
+     * @returns {string} Enlace HTML o el teléfono original si no es válido.
+     */
+    const formatearTelefono = (telefono) => {
+        if (!telefono) {
+            return "";
+        }
+        try {
+            const tel = new TelefonoArgentino(telefono);
+            if (tel.isValid()) {
+                return `<a href="tel:${tel.data.filter_input}">${tel.data.format}</a>`;
+            }
+            return telefono;
+        } catch (error) {
+            console.error("Error al formatear teléfono:", error);
+            return telefono;
+        }
+    };
+
+    // MAP
+    const SPREADSHEET_KEY = "1KfjAVNVvvAbwyaO6SRe35XW6avUrw19iD_zGIUWIAT4";
+    const SHEET_NAME = "Hoja 1";
+
+    const loader = new PonchoMapLoader({scope: "poncho-map"});
+    loader.load();
+
+    const gapi = new GapiSheetData();
+    
+    // init
+    (async () => {
+        const sheetData = await fetch_json(
+            gapi.url(SHEET_NAME, SPREADSHEET_KEY)
+        );
+
+        const gapiData = gapi.json_data(sheetData);
+        const {entries, headers} = gapiData;
+
+        const options = {
+            debug: true,
+            scope: "poncho-map",
+            title: "nombre",
+            map_layers_default: "satelital",
+            map_anchor_zoom: 15,
+            summary: {
+                hidden: true,
+                title: "Mapa de parques nacionales argentinos",
+                position: "top"
+            },
+            template: (self, entry) => {
+                entry.tel = formatearTelefono(entry.telefono);
+                return self.defaultTemplate(self, entry);
+            },
+            marker_cluster_options: {
+                spiderfyOnMaxZoom: true,
+                showCoverageOnHover: false,
+                zoomToBoundsOnClick: true,
+                maxClusterRadius: 30,
+                spiderfyDistanceMultiplier: 0.5,
+                spiderLegPolylineOptions: {
+                    weight: 1,
+                    color: "#666",
+                    opacity: 0.5,
+                    "fill-opacity": 0.5
+                }
+            },
+            filters: [
+                {
+                    legend: "Filtrar por provincia",
+                    field: ["provincia"],
+                    fields: false,
+                    check_uncheck_all: false,
+                    type: "select",
+                    label: "Seleccione una provincia",
+                    show_label: false,
+                    show_legend: true,
+                    all_options_text: "Todas las provincias"
+                }
+            ],
+            fit_bounds_after_filter: true,
+            fit_bounds_options: {
+                padding: 0,
+                maxZoom: 12,
+                animate: true,
+                duration: 0.25
+            },
+            template_markdown: true,
+            markdown_options: {
+                extensions: ["button", "target"]
+            },
+            template_structure: {
+                lead: {
+                    key:"tipo",
+                    css: [
+                        "border-bottom", 
+                        "small",
+                        "m-b-1", 
+                        "p-b-xs",
+                    ]
+                },
+                values: [
+                    "foto", 
+                    "descripcion", 
+                    "lugar", 
+                    "provincia", 
+                    "contacto", 
+                    "boton"],
+                mixing: [
+                    {
+                        key: "lugar",
+                        header: "Dirección",
+                        values: ["direccion", "localidad"],
+                        separator: ", "
+                    },
+                    {
+                        key: "contacto",
+                        header: "Contacto",
+                        template: `{% '{{tel}}<br>' if tel != '' else '' %}`
+                            + `{% '{{mail}}' if mail != '' else '' %}`
+                    }
+                ]
+            },
+            headers: headers,
+            marker: (self, ele) => (ele?.color || "azul"),
+            slider: true,
+            hash: true,
+            scroll: true,
+            tooltip: true,
+            tooltip_label: pmCustomLabel,
+            tooltip_options:{
+                className: "leaflet-tooltip-own",
+                direction: "auto",
+                offset: [16, -18],
+                opacity: 1,
+                permanent: false,
+                sticky: false
+            },
+            open_maps: true,
+            allowed_tags: ["*"]
+        };
+
+        const map = new PonchoMapFilter(entries, options);
+        
+        const searchOptions = {
+            scope: "poncho-map-search",
+            placeholder: "Buscá por nombre del parque, provincia o localidad",
+            datalist: false,
+            search_fields: [
+                "localidad", 
+                "provincia", 
+                "nombre", 
+                "tipo", 
+                "direccion", 
+                "descripcion"
+            ],
+            combobox: true,
+            combobox_options: {
+                max_results: 20,
+                display: "fit-content",
+                template: ponchoMapTplSearch({
+                    figure: "linkfoto", 
+                    title: "name", 
+                    text: ["localidad", "provincia"], 
+                    separator: " / "
+                })
+            },
+        };
+        const search = new PonchoMapSearch(map, searchOptions);
+        
+        // init
+        map.render();
+        search.render();
+
+        // End loading
+        loader.close();
+    })();
+</script>
+<!-- / SCRIPTS -->
+</body>
+</html> 

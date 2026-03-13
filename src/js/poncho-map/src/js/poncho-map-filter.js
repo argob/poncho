@@ -42,6 +42,7 @@ class PonchoMapFilter extends PonchoMap {
             filters: [],
             filters_info: false,
             filters_visible: false,
+            fit_bounds_after_filter: false,
             messages: {
                 has_filters: "filters_has",
                 initial: "filter_initial",
@@ -55,9 +56,10 @@ class PonchoMapFilter extends PonchoMap {
         };
         let opts = Object.assign({}, defaults, options);
         this.filters = opts.filters;
-        this.filters_info = opts.filters_info;
-        this.filters_visible = opts.filters_visible;
-        this.valid_fields = ["checkbox", "radio"];
+        this.fit_bounds_after_filter = Boolean(opts.fit_bounds_after_filter);
+        this.filters_info = Boolean(opts.filters_info);
+        this.filters_visible = Boolean(opts.filters_visible);
+        this.valid_fields = ["checkbox", "radio", "select"];
         this.search_fields = opts.search_fields;
         this.messages = opts.messages;
         this.accesible_menu_filter = [
@@ -76,6 +78,9 @@ class PonchoMapFilter extends PonchoMap {
                 link: `#filtrar-busqueda${this.scope_sufix}`
             });
         }
+
+        // Cache para _fieldsToUse (mejora de rendimiento)
+        this._fieldsCache = new Map();
     }
 
     /**
@@ -331,10 +336,15 @@ class PonchoMapFilter extends PonchoMap {
      * o, si se desean todos los checkbox desmarcados.
      *   ["tipo", false]
      */
-    _fieldsToUse = (fieldsItems) => {
+    _fieldsToUse = (fieldsItems, groupIndex = null) => {
+        // Usar cache si tenemos un índice de grupo
+        if(groupIndex !== null && this._fieldsCache.has(groupIndex)){
+            return this._fieldsCache.get(groupIndex);
+        }
+
         const {
             type = "checkbox",
-            fields: optFields = false, 
+            fields: optFields = false,
             field: optField = false} = fieldsItems;
 
         if(!optFields && !optField){
@@ -360,58 +370,187 @@ class PonchoMapFilter extends PonchoMap {
             ];
         }
 
+        // Cachear el resultado si tenemos un índice de grupo
+        if(groupIndex !== null){
+            this._fieldsCache.set(groupIndex, fieldsToUse);
+        }
+
         return fieldsToUse;
     };
 
 
     /**
-     * Arma un grupo de inputs
+     * Crea los elementos de formulario para un grupo de filtros
      *
-     * @param {object} fields_items Listado de opciones para los fields.
+     * @param {object} fields_items - Configuración de los campos del filtro
+     * @param {number} group - Índice del grupo de filtros
+     * @returns {HTMLElement} Elemento fieldset conteniendo los inputs
      */
     _fields = (fields_items, group) => {
-        const fields_container = document.createElement("div");
-        fields_container.classList.add("field-list", "m-b-05");
+        const SEPARATOR = "__";
+        const fieldsData = this._fieldsToUse(fields_items);
+        const inputType = this.valid_fields.includes(fields_items.type)
+            ? fields_items.type
+            : "checkbox";
+        const isSelectType = inputType === "select";
 
-        const fields_to_use = this._fieldsToUse(fields_items);
-
-        for(const key in fields_to_use){
-            const field = fields_to_use[key];
-            const input = document.createElement("input");
-            input.type = (this.valid_fields.includes(fields_items.type) ?
-                fields_items.type : "checkbox");
-            input.id = `id__${field[0]}__${group}__${key}`;
-
-            if(fields_items.type == "radio"){
-                input.name = `${field[0]}__${group}`;
-            } else {
-                input.name = `${field[0]}__${group}__${key}`;
-            }
-
-            input.className = "form-check-input";
-            input.value = key;
-            if(typeof field[3] !== "undefined" && field[3]=="checked"){
-                input.setAttribute("checked", "checked");
-            }
-
-            const label = document.createElement("label");
-            label.style.marginLeft = ".33rem";
-            label.textContent=field[1];
-            label.className = "form-check-label";
-            label.setAttribute("for", `id__${field[0]}__${group}__${key}`);
-            const info = document.createElement("span");
-            info.dataset.info = `${field[0]}__${group}__${key}`;
-            label.appendChild(info);
-
-            const field_container = document.createElement("div");
-            field_container.className = "form-check";
-            field_container.appendChild(input);
-            field_container.appendChild(label);
-            fields_container.appendChild(field_container);
+        // Crear el contenedor apropiado según el tipo
+        if(isSelectType){
+            return this._createSelectField(fieldsData, group, SEPARATOR);
         }
 
+        return this._createCheckableFields(
+            fieldsData,
+            group,
+            inputType,
+            fields_items.type,
+            SEPARATOR
+        );
+    };
+
+    /**
+     * Crea un campo select con sus opciones
+     *
+     * @private
+     * @param {Array} fieldsData - Datos de los campos
+     * @param {number} group - Índice del grupo
+     * @param {string} separator - Separador para los IDs
+     * @returns {HTMLElement} Fieldset con el select
+     */
+    _createSelectField = (fieldsData, group, separator) => {
+        const selectElement = document.createElement("select");
+        selectElement.className = "pm-form-control";
+        const filterData = this.filters[group];
+        let allOptionsText, label;
+
+        // Obtener el entryKey del primer elemento para el name
+        const entryKey = fieldsData.length > 0 ? fieldsData[0][0] : "";
+        const selectId = ["select", entryKey, group].join(separator);
+        selectElement.name = [entryKey, group].join(separator);
+        selectElement.id = selectId;
+
+        // Agregar opción "Todos" por defecto
+        if( filterData?.all_options_text &&
+            this.isString(filterData.all_options_text) &&
+            !this.isEmptyString(filterData.all_options_text) ){
+            allOptionsText = filterData.all_options_text;
+        } else {
+            allOptionsText = this._t("filter_select_all_option_text");
+        }
+
+        const defaultOption = document.createElement("option");
+        defaultOption.textContent = allOptionsText;
+        defaultOption.value = "";
+        selectElement.appendChild(defaultOption);
+
+        // Crear opciones del select
+        fieldsData.forEach((fieldItem, index) => {
+            const [entryKey, entryName] = fieldItem;
+            const optionElement = document.createElement("option");
+            const optionId = ["id", entryKey, group, index].join(separator);
+
+            optionElement.textContent = entryName;
+            optionElement.id = optionId;
+            optionElement.value = index;
+
+            selectElement.appendChild(optionElement);
+        });
+
+        // Crear label
+        const labelElement = document.createElement("label");
+        labelElement.setAttribute("for", selectId);
+
+        if( filterData?.label &&
+            this.isString(filterData.label) &&
+            !this.isEmptyString(filterData.label) ){
+            label = filterData.label;
+        } else {
+            label = this._t(
+                "filter_select_label", 
+                {header: this.header(entryKey, "lower")}
+            );
+        }
+        
+        if( filterData.show_label === false ){
+            labelElement.classList.add("pm-visually-hidden");
+        }
+        
+        labelElement.classList.add("m-b-xs");
+        labelElement.textContent = label;
+
+
+        const formGroup = document.createElement("div");
+        formGroup.classList.add("pm-form-group");
+
         const fieldset = document.createElement("div");
-        fieldset.appendChild(fields_container);
+        fieldset.classList.add("m-b-2", "m-t-xs");
+
+        fieldset.appendChild(labelElement);
+        fieldset.appendChild(selectElement);
+
+        return fieldset;
+    };
+
+
+    /**
+     * Crea campos de tipo checkbox o radio
+     *
+     * @private
+     * @param {Array} fieldsData - Datos de los campos
+     * @param {number} group - Índice del grupo
+     * @param {string} inputType - Tipo de input (checkbox o radio)
+     * @param {string} originalType - Tipo original del campo
+     * @param {string} separator - Separador para los IDs
+     * @returns {HTMLElement} Fieldset con los checkboxes/radios
+     */
+    _createCheckableFields = (fieldsData, group, inputType, originalType, separator) => {
+        const container = document.createElement("div");
+        container.classList.add("field-list", "m-b-05");
+
+        fieldsData.forEach((fieldItem, index) => {
+            const [entryKey, entryName, , isChecked] = fieldItem;
+            const fieldId = ["id", entryKey, group, index].join(separator);
+
+            // Crear input
+            const inputElement = document.createElement("input");
+            inputElement.type = inputType;
+            inputElement.id = fieldId;
+            inputElement.className = "form-check-input";
+            inputElement.value = index;
+
+            // Asignar name según el tipo
+            inputElement.name = originalType === "radio"
+                ? [entryKey, group].join(separator)
+                : [entryKey, group, index].join(separator);
+
+            // Marcar como checked si corresponde
+            if(isChecked === "checked"){
+                inputElement.checked = true;
+            }
+
+            // Crear span para información de totales
+            const infoSpan = document.createElement("span");
+            infoSpan.dataset.info = [entryKey, group, index].join(separator);
+
+            // Crear label
+            const labelElement = document.createElement("label");
+            labelElement.textContent = entryName;
+            labelElement.className = "form-check-label";
+            labelElement.htmlFor = fieldId;
+            labelElement.appendChild(infoSpan);
+
+            // Contenedor del field
+            const fieldContainer = document.createElement("div");
+            fieldContainer.className = "form-check";
+            fieldContainer.appendChild(inputElement);
+            fieldContainer.appendChild(labelElement);
+
+            container.appendChild(fieldContainer);
+        });
+
+        const fieldset = document.createElement("div");
+        fieldset.appendChild(container);
+
         return fieldset;
     };
 
@@ -510,7 +649,9 @@ class PonchoMapFilter extends PonchoMap {
 
         // Contenedor de los filtros
         const fields_container = document.createElement("div");
-        fields_container.className = `js-filters${this.scope_sufix}`;
+        fields_container.classList.add(
+            `js-filters${this.scope_sufix}`, "pm-filters-content"
+        );
 
         // Formulario
         const form = document.createElement("form");
@@ -564,31 +705,25 @@ class PonchoMapFilter extends PonchoMap {
     _checkUncheckButtons = (item) => {
         // container
         const checkAllItems = document.createElement("div");
+        checkAllItems.classList.add("select-items", "form-check");
 
-        // Botón check all
-        const checkAllButton = document.createElement("button");
-        checkAllButton.classList.add(
-            "js-select-items",
-            "select-items__button"
-        );
-        checkAllButton.textContent = this._t("filters_check_all");
-        checkAllButton.dataset.field = item.field[0];
-        checkAllButton.dataset.value = 1;
+        // Checkbox marcar todos
+        const checkAllCheckbox = document.createElement("input");
+        checkAllCheckbox.type = "checkbox";
+        checkAllCheckbox.id = `check-all-${item.field[0]}`;
+        checkAllCheckbox.classList.add("js-select-all-checkbox", "form-check-input");
+        checkAllCheckbox.dataset.field = item.field[0];
+        checkAllCheckbox.checked = true;
 
-        // Botón uncheck all
-        const uncheckAllButton = document.createElement("button");
-        uncheckAllButton.classList.add(
-            "js-select-items",
-            "select-items__button"
-        );
-        uncheckAllButton.textContent = this._t("filters_uncheck_all");
-        uncheckAllButton.dataset.field = item.field[0];
-        uncheckAllButton.dataset.value = 0;
+        // Label marcar todos
+        const checkAllLabel = document.createElement("label");
+        checkAllLabel.classList.add("form-check-label");
+        checkAllLabel.htmlFor = `check-all-${item.field[0]}`;
+        checkAllLabel.textContent = this._t("filters_check_all");
 
         // Append
-        checkAllItems.classList.add("select-items");
-        checkAllItems.appendChild(checkAllButton);
-        checkAllItems.appendChild(uncheckAllButton);
+        checkAllItems.appendChild(checkAllCheckbox);
+        checkAllItems.appendChild(checkAllLabel);
 
         return checkAllItems;
     }
@@ -598,36 +733,93 @@ class PonchoMapFilter extends PonchoMap {
      * Crea los checkbox para los filtros.
      */
     _createFilters = (data) => {
-        const form_filters = document
-            .querySelector(`.js-filters${this.scope_sufix}`);
+        const formFilters = document.querySelector(`.js-filters${this.scope_sufix}`);
 
-        data.forEach((item, group) => {
-            let legend = document.createElement("legend");
-            legend.textContent = item.legend;
-            legend.classList.add(
-                "m-b-05",
-                "color-primary",
-                "h6"
+        data.forEach((filterItem, groupIndex) => {
+            const fieldset = this._createFilterFieldset(filterItem, groupIndex);
+            formFilters.appendChild(fieldset);
+        });
+    };
+
+    /**
+     * Crea un fieldset completo para un grupo de filtros
+     *
+     * @param {object} filterItem - Configuración del filtro
+     * @param {number} groupIndex - Índice del grupo de filtros
+     * @returns {HTMLElement} Elemento fieldset
+     */
+    _createFilterFieldset = (filterItem, groupIndex) => {
+        const fieldset = document.createElement("fieldset");
+
+        const legend = this._createFilterLegend(filterItem, groupIndex);
+        fieldset.appendChild(legend);
+
+        if (this._shouldShowCheckUncheckButtons(filterItem)) {
+            const checkUncheckButtons = this._checkUncheckButtons(filterItem);
+            fieldset.appendChild(checkUncheckButtons);
+        }
+
+        const fields = this._fields(filterItem, groupIndex);
+        fieldset.appendChild(fields);
+
+        return fieldset;
+    };
+
+    /**
+     * Crea el elemento legend para un grupo de filtros
+     *
+     * @param {object} filterItem - Configuración del filtro
+     * @param {number} groupIndex - Índice del grupo de filtros
+     * @returns {HTMLElement} Elemento legend
+     */
+    _createFilterLegend = (filterItem, groupIndex) => {
+        const legend = document.createElement("legend");
+
+
+
+        const hasCustomLegend = this.isString(filterItem.legend) &&
+                               !this.isEmptyString(filterItem.legend);
+
+        legend.textContent = hasCustomLegend
+            ? filterItem.legend
+            : this._t(
+                "filter_select_legend", 
+                {header: this.header(this._typeByGroup(groupIndex), "lower")}
             );
 
-            const fieldset = document.createElement("fieldset");
-            fieldset.appendChild(legend);
-            const hasCheckUncheckAll = item.hasOwnProperty("check_uncheck_all") &&
-                                    item.check_uncheck_all &&
-                                    item?.type !== "radio";
+        if (filterItem.show_legend === false) {
+            legend.classList.add("pm-visually-hidden");
+        } else {
+            legend.classList.add(
+                "m-t-0",
+                "m-b-05",
+                "color-primary",
+                "h6",
+                "font-sans-serif"
+            );
+        }
 
-            if (hasCheckUncheckAll) {
-                fieldset.appendChild(this._checkUncheckButtons(item));
-            }
+        return legend;
+    };
 
-            fieldset.appendChild(this._fields(item, group));
-            form_filters.appendChild(fieldset);
-        });
+    /**
+     * Determina si se deben mostrar los botones marcar/desmarcar todos
+     *
+     * @param {object} filterItem - Configuración del filtro
+     * @returns {boolean} true si se deben mostrar los botones
+     */
+    _shouldShowCheckUncheckButtons = (filterItem) => {
+        const hasCheckUncheckAll = filterItem.hasOwnProperty("check_uncheck_all") &&
+                                   filterItem.check_uncheck_all;
+        const isMultipleChoiceType = filterItem?.type !== "radio" &&
+                                    filterItem?.type !== "select";
+
+        return hasCheckUncheckAll && isMultipleChoiceType;
     };
 
 
     /**
-     * Obtengo los checkbox marcados.
+     * Obtengo los checkbox marcados y selects.
      */
     formFilters = () => {
         if(this.filters.length < 1){
@@ -638,26 +830,46 @@ class PonchoMapFilter extends PonchoMap {
             .querySelector(`.js-formulario${this.scope_sufix}`);
         const form_data = new FormData(form_filters);
 
-        return Array.from(form_data).map(ele => {
-            let val = [];
-            const pos = this._filterPosition(ele[0]);
-            val = [parseInt(pos[1]), parseInt(ele[1]), pos[0]];
-            return val;
-        });
+        return Array.from(form_data)
+            .filter(ele => ele[1] !== "") // Filtrar valores vacíos (opción "Todos" de selects)
+            .map(ele => {
+                let val = [];
+                const pos = this._filterPosition(ele[0]);
+                val = [parseInt(pos[1]), parseInt(ele[1]), pos[0]];
+                return val;
+            });
     };
+
+
+    /**
+     * Retorna la clave type del filtro
+     * 
+     * @param {number} group Número de grupo 
+     * @returns {string} type
+     */
+    _typeByGroup = (group) => {
+        if(typeof group !== "number"){
+            return;
+        }
+        const data = this._defaultFiltersConfiguration()
+                .find(f => f[0] === group);
+
+        return data ? data[2] : undefined;
+    }
 
 
     /**
      * Configuración de estado de los filtros seteados por el usuario.
      * @returns {object}
      */
-    defaultFiltersConfiguration = () => {
+    _defaultFiltersConfiguration = () => {
         // Obtengo todos los filtros y los colecciono en un array.
         const filters = this.filters.map((g, gk) => {
-            const fields = this._fieldsToUse(g);
+            // Usar caché para _fieldsToUse
+            const fields = this._fieldsToUse(g, gk);
             const conf_fields = fields.map((f, fk) => {
                 return [
-                    gk, fk, f[0], 
+                    gk, fk, f[0],
                     (typeof f[3] !== "undefinded" && f[3] == "checked" ?
                         true : false)
                 ];
@@ -673,13 +885,25 @@ class PonchoMapFilter extends PonchoMap {
      * @return {boolean}
      */
     usingFilters = () => {
-        const result = this.defaultFiltersConfiguration().every(
+        // Verificar checkboxes y radios
+        const checkboxRadioResult = this._defaultFiltersConfiguration().every(
             (e) => {
-                return document
-                    .querySelector(`#id__${e[2]}__${e[0]}__${e[1]}`)
-                    .checked;
+                const field = document.querySelector(`#id__${e[2]}__${e[0]}__${e[1]}`);
+                return field ? field.checked : true;
         });
-        return result;
+
+        // Verificar selects (todos deben estar en "Todos" - índice 0)
+        const selectResult = this.filters.every((filter, groupIndex) => {
+            if(filter.type === "select"){
+                const entryKey = filter.field ? filter.field[0] :
+                                 (filter.fields && filter.fields[0] ? filter.fields[0][0] : "");
+                const selectElement = document.querySelector(`#select__${entryKey}__${groupIndex}`);
+                return selectElement ? selectElement.selectedIndex === 0 : true;
+            }
+            return true;
+        });
+
+        return checkboxRadioResult && selectResult;
     };
 
 
@@ -688,9 +912,32 @@ class PonchoMapFilter extends PonchoMap {
      * @return {undefined}
      */
     _resetFormFilters = () => {
-        this.defaultFiltersConfiguration().forEach(e => {
+        // Resetear checkboxes y radios
+        this._defaultFiltersConfiguration().forEach(e => {
             const field = document.querySelector(`#id__${e[2]}__${e[0]}__${e[1]}`);
-            field.checked = e[3];
+            if(field){
+                field.checked = e[3];
+            }
+        });
+
+        // Resetear selects a la opción "Todos" (índice 0)
+        this.filters.forEach((filter, groupIndex) => {
+            if(filter.type === "select"){
+                const entryKey = filter.field ? filter.field[0] :
+                                 (filter.fields && filter.fields[0] ? filter.fields[0][0] : "");
+                const selectElement = document.querySelector(`#select__${entryKey}__${groupIndex}`);
+                if(selectElement){
+                    selectElement.selectedIndex = 0;
+                }
+            }
+        });
+
+        // Actualizar el estado de los checkboxes "marcar todos" después del reset
+        const checkboxesSelector = `${this.scope_selector} .js-select-all-checkbox`;
+        const checkboxes = document.querySelectorAll(checkboxesSelector);
+        checkboxes.forEach((checkbox) => {
+            const field = checkbox.dataset.field;
+            this._updateCheckAllState(field);
         });
     };
 
@@ -739,7 +986,8 @@ class PonchoMapFilter extends PonchoMap {
      */
     totals = () => {
         const results = this.formFilters().map(e => {
-            const item = this._fieldsToUse( this.filters[e[0]] )[e[1]];
+            // Usar caché para _fieldsToUse
+            const item = this._fieldsToUse( this.filters[e[0]], e[0] )[e[1]];
             return [
                 item[1],
                 this._countOccurrences(this.filtered_entries, item[2], item[0]),
@@ -751,145 +999,249 @@ class PonchoMapFilter extends PonchoMap {
 
 
     /**
-     * **¡EXPERIMENTAL!** Agrega un title con el total de elementos en 
-     * el panel de filtros.
+     * ¡EXPERIMENTAL!
+     * Agrega un title con el total de elementos en el panel de filtros.
+     * @private
+     * @returns {undefined}
      */
     _totalsInfo = () => {
-        if(!this.filters_info){
-            return "";
+        if (!this.filters_info) {
+            return;
         }
+
         this.totals().forEach(field => {
-            const selector = `${this.scope_selector}`
-                    + ` [data-info="${field[4]}__${field[2]}__${field[3]}"]`;
-            const element = document.querySelector(selector);
-            const plurals = (field[1] < 2 ? "" : "s");
+            const [, count, groupIndex, filterIndex, filterName] = field;
+            //field = [ "Plan 50 Destinos", 147, 1, 0, "tipo" ]
+            const targetElement = this._getFilterInfoElement(
+                filterName, groupIndex, filterIndex
+            );
 
-            const span = document.createElement("small");
-            span.classList.add("badge", "m-l-05", "fw-medium", "bg-arg-enlace")
-            span.innerHTML = `${field[1]}<span class="pm-visually-hidden"> elemento${plurals}</span>`;
+            if (!targetElement) {
+                return;
+            }
 
-            const info_container = document.createElement("small");
-            info_container.appendChild(span);
-            element.appendChild(info_container);
+            const badge = this._createCountBadge(count);
+            badge.appendChild(document.createTextNode(' '));
+            targetElement.appendChild(document.createTextNode(' '));
+            targetElement.appendChild(badge);
         });
+    };
+
+    /**
+     * Obtiene el elemento del DOM donde se mostrará la información del filtro.
+     * @private
+     * @param {string} filterName - Nombre del filtro
+     * @param {number} groupIndex - Índice del grupo
+     * @param {number} filterIndex - Índice del filtro
+     * @returns {HTMLElement|null}
+     */
+    _getFilterInfoElement = (filterName, groupIndex, filterIndex) => {
+        const selector = `${this.scope_selector} `
+            + `[data-info="${filterName}__${groupIndex}__${filterIndex}"]`;
+        return document.querySelector(selector);
+    };
+
+
+    /**
+     * Crea un badge con el contador de elementos.
+     * @private
+     * @param {number} count - Cantidad de elementos
+     * @returns {HTMLElement}
+     */
+    _createCountBadge = (count) => {
+        const badge = document.createElement("small");
+        badge.classList.add(
+            "badge",
+            // "m-l-xs",
+            "fw-medium",
+            "bg-arg-gris-intermedio"
+        );
+        badge.textContent = count;
+
+        const accessibleText = this._createAccessibleText(count);
+        badge.appendChild(accessibleText);
+
+        return badge;
+    };
+
+
+    /**
+     * Crea el texto accesible para el badge.
+     * @private
+     * @param {number} count - Cantidad de elementos
+     * @returns {HTMLElement}
+     */
+    _createAccessibleText = (count) => {
+        const text = document.createElement("span");
+        const pluralSuffix = count === 1 ? "" : "s";
+        text.textContent = ` elemento${pluralSuffix}`;
+        text.className = "pm-visually-hidden";
+        return text;
     };
 
 
     /**
      * Valida el campo de un grupo.
-     * 
+     *
      * @param {object} entry Entrada de datos
      * @param {integer} group Índice del grupo de filtros
      * @param {integer} index Índice del filtro dentro del grupo.
-     * @returns {object}
+     * @returns {boolean}
      */
     _search = (entry, group, index) => {
-        const filter = this._fieldsToUse(this.filters[group])[index];
+        // Usar caché al obtener los fields
+        const filter = this._fieldsToUse(this.filters[group], group)[index];
+        const filterKey = filter[0];
+
+        // Early return si la entrada no tiene la propiedad
+        if(!entry.hasOwnProperty(filterKey)){
+            return false;
+        }
+
         const search_for = filter[2];
-        const found = search_for.filter(Boolean).some(e => {
-            if(entry.hasOwnProperty(filter[0])){
-                return entry[filter[0]].includes(e)
+        const entryValue = entry[filterKey];
+
+        // Buscar con cortocircuito
+        for(const searchTerm of search_for){
+            if(searchTerm && entryValue.includes(searchTerm)){
+                return true;
             }
-        });
-        return found;
+        }
+
+        return false;
     };
 
 
     /**
      * Valida los fields del grupo.
-     * 
+     *
      * @param {object} entry Entrada de datos
-     * @param {object} fields_group 
+     * @param {object} fieldsGroup
+     * @param {number} groupIndex Índice del grupo
      * @return {boolean}
      */
-    _validateGroup = (entry, fields_group) => {
-        const result = fields_group.map(e => this._search(entry, e[0], e[1]));
-        return result.some(e => e);
+    _validateGroup = (entry, fieldsGroup, groupIndex) => {
+        // Si el grupo está vacío
+        if(fieldsGroup.length === 0){
+            // Para selects, si está vacío significa "Todos" seleccionado
+            if(this.filters[groupIndex]?.type === "select"){
+                return true;
+            }
+            // Para checkboxes/radios, si está vacío significa que nada está seleccionado
+            // por lo tanto NO debe mostrar ningún marker
+            return false;
+        }
+
+        // Short-circuit: retornar true al encontrar el primer match
+        for(const field of fieldsGroup){
+            if(this._search(entry, field[0], field[1])){
+                return true;
+            }
+        }
+        return false;
     };
 
 
     /**
      * Valida una entrada
+     *
      * @summary
      * 1. Obtengo la cantidad de grupos que tengo.
      * 2. Evaluo los fields de cada grupo y junto los resultados en un array
      * para retornar true los grupos tienen que dar true
+     * @param {object} entry - La entrada a validar
+     * @param {Map} groupedFilters - Filtros ya agrupados por grupo
+     * @param {number} totalGroups - Total de grupos de filtros
      * @returns {boolean}
      */
-    _validateEntry = (entry, form_filters) => {
-        const fields_group = (group) => form_filters.filter(e => e[0] == group);
-        const total_groups = this.filters.length;
+    _validateEntry = (entry, groupedFilters, totalGroups) => {
+        if(totalGroups < 1){
+            return true;
+        }
 
-        const validations = Array.from( {length: total_groups}, (_, i) => {
-            return this._validateGroup(entry, fields_group(i));
-        }).reduce((acc, val) => acc && val, true);
+        // Validar cada grupo (cortocircuito)
+        for(let i = 0; i < totalGroups; i++){
+            const fieldsGroup = groupedFilters.get(i) || [];
+            if(!this._validateGroup(entry, fieldsGroup, i)){
+                return false;
+            }
+        }
 
-        return validations;
+        return true;
     };
 
 
     /**
      * Filtra los markers.
-     */ 
+     */
     _filterData = () => {
-        // Obtiene los filtros del formulario.
-        const formFilters = this.formFilters();
-        const hasSearchTerm = !!this.inputSearchValue;
-        const hasFormFilters = formFilters.length > 0;
+        // 1. Obtengo los filtros del formulario activos.
+        const availableFilters = this.formFilters();
+        const totalGroups = this.filters.length;
+        const inputValue = this.inputSearchValue;
+        const hasInputSearchValue = !this.isEmptyString(inputValue);
 
-        // 2. Maneja el caso trivial de no tener filtros ni búsqueda.
-        if (!hasSearchTerm && !hasFormFilters) {
-            this.filtered_entries = this.entries;
-            return this.entries;
+        // Pre-calcular valores que son constantes durante el filtrado
+        const refactorSearchTerm = hasInputSearchValue
+            ? replaceSpecialChars(inputValue).toUpperCase()
+            : "";
+
+        // Pre-calcular searchFields fuera del loop (solo si hay búsqueda)
+        const searchFields = hasInputSearchValue
+            ? new Set([this.title, ...this.search_fields])
+            : null;
+
+        // Pre-agrupar los filtros UNA SOLA VEZ (antes era por cada entrada)
+        const groupedFilters = new Map();
+        for(const filter of availableFilters){
+            const group = filter[0];
+            if(!groupedFilters.has(group)){
+                groupedFilters.set(group, []);
+            }
+            groupedFilters.get(group).push(filter);
         }
 
-        //Sanitiza el término de búsqueda.
-        const sanitizedSearchTerm = hasSearchTerm 
-            ? replaceSpecialChars(this.inputSearchValue).toUpperCase()
-            : '';
-        
-        // Define los campos a buscar, si hay un término de búsqueda.
-        const searchFields = new Set([this.title, ...this.search_fields]);
-
-        // 5. Filtra la lista.
-        const filteredEntries = this.entries.filter(entry => {
-            const entryProperties = entry.properties;
-            
-            // Aplica el filtro del formulario si existen.
-            const passesFormFilter = !hasFormFilters || 
-                    this._validateEntry(entryProperties, formFilters);
-            if (!passesFormFilter) {
+        // 2. Filtro las entradas en función de los filtros activos y el
+        // criterio de búsqueda, si existiera.
+        const activeFiltersEntries = this.entries.filter(entry => {
+            // Valido si la entrada se encuentra dentro de los criterios
+            // del grupo o filtros
+            if(!this._validateEntry(entry.properties, groupedFilters, totalGroups)){
                 return false;
             }
 
-            // Aplica la búsqueda si existe.
-            const passesSearch = !hasSearchTerm || 
-                    this.searchEntry(
-                        sanitizedSearchTerm, entryProperties, searchFields
-                    );
+            // Si hay término de búsqueda, filtrar también por eso
+            if(hasInputSearchValue){
+                return this.searchEntry(
+                    refactorSearchTerm,
+                    entry.properties,
+                    searchFields
+                );
+            }
 
-                        
-            return passesSearch;
+            return true;
         });
-        
-        this.filtered_entries = filteredEntries;
-        return filteredEntries;
+
+        this.filtered_entries = activeFiltersEntries;
+        return activeFiltersEntries;
     };
 
 
     /**
-     * Render de funciones 
-     */ 
+     * Render de funciones
+     */
     _filteredData = (feed) => {
-        feed = (typeof feed !== "undefined" ? this.entries : 
-                this._filterData());
-        
-        this.markersMap(feed); 
+        // Usar feed si está definido, de lo contrario filtrar datos
+        feed = (typeof feed !== "undefined") ? feed : this._filterData();
+
+        // Solo clonar si es necesario (verificar si markersMap lo requiere)
+        this.markersMap(feed);
+
         this._selectedMarker();
         this._helpText(feed);
         // this._resetSearch();
         // this._clickToggleFilter();
-        
+
         if(this.slider){
             this._renderSlider();
             this._clickeableMarkers();
@@ -900,7 +1252,29 @@ class PonchoMapFilter extends PonchoMap {
         this._urlHash();
         this._setFetureAttributes();
         this._accesibleMenu();
+
+        if(this.fit_bounds_after_filter){
+            this.fitBounds();
+        }
     };
+
+
+    /**
+     * Establece el valor del search _input hidden_ en el
+     * campo de filtros.
+     * @param {string} name - El valor a asignar al input de búsqueda.
+     * @returns {undefined}
+     */
+    _setSearchInputValue = (name) => {
+        const hiddenInputSelector = `#js-search-input${this.scope_sufix}`;
+
+        if(!hiddenInputSelector){
+            this.logger.warn("No se encuentra el input search");
+            return;
+        }
+        const hiddenElement = document.querySelector(hiddenInputSelector);
+        hiddenElement.value = name;
+    }
 
 
     /**
@@ -920,36 +1294,56 @@ class PonchoMapFilter extends PonchoMap {
      * @returns {undefined}
      */
     _resetSearch = () => {  
-        var _this = this;
-
-        document.addEventListener("click", function(event){
+        document.addEventListener("click", (event) => {
             const target = event.target;
-    
-            if(target.matches(`.js-poncho-map-reset${_this.scope_sufix}`)){
+
+            if(target.matches(`.js-poncho-map-reset${this.scope_sufix}`)){
                 event.preventDefault();
                 event.stopPropagation();
-                
-                _this.removeHash();
+
+                this.removeHash();
 
                 try {
-                    _this._resetFormFilters();
+                    // Obtengo el elemento text hidden con el valor de la 
+                    // búsqueda. En este está impreso el dataset scope de
+                    // ponchoSearch.
+                    const searchHiddenInputSelector = `#js-search-input${this.scope_sufix}`;
+                    const searchHiddenInput = document.querySelector(
+                        searchHiddenInputSelector);
+                    if(!searchHiddenInput){
+                        return;
+                    }
+
+                    // Obtengo el input de búsqueda y borro el value.
+                    const searchScope = searchHiddenInput.dataset.searchScope;
+                    const searchSelector = `#id-poncho-map-search--${searchScope}`;
+                    const searchInput = document.querySelector(searchSelector);
+                    if(searchInput){
+                        searchInput.value = "";
+                    }
                 } catch (error) {
-                    console.error(error);
+                    this.logger.error(error);
+                }
+
+                try {
+                    this._resetFormFilters();
+                } catch (error) {
+                    this.logger.error(error);
                 }
                 try {
-                    _this._filteredData(_this.entries);
+                    this._filteredData(this.entries);
                 } catch (error) {
-                    console.error(error);
+                    this.logger.error(error);
                 }
                 try {
-                    _this._clearSearchInput();
+                    this._clearSearchInput();
                 } catch (error) {
-                    console.error(error);
+                    this.logger.error(error);
                 }
                 try {
-                    _this.resetView();
+                    this.resetView();
                 } catch (error) {
-                    console.error(error);
+                    this.logger.error(error);
                 }
             }
         });
@@ -960,42 +1354,100 @@ class PonchoMapFilter extends PonchoMap {
      * Cambia la lista de markers en función de la selección de 
      * los filtros en PonchoMapFilter.
      * @TODO Ver el modo de hacer focus sobre el scope
+     * @param {Function} callback - La función a ejecutar cuando el valor 
+     * del filtro cambie.
      * @returns {undefined}
      */
-    filterChange = (callback) => {
-        const selector = `.js-filters${this.scope_sufix}`;
-        const filterSelect = document.querySelector(selector);
-        if(filterSelect){
-            filterSelect.onchange = (callback);
+    filterChange(callback) {
+        // Asegura que callback es una función antes de proceder
+        if (typeof callback !== 'function') {
+            this.logger.error('filterChange requiere una función de callback.');
+            return;
         }
-        return;
+
+        const selector = `.js-filters${this.scope_sufix || ''}`;
+        const filterSelects = document.querySelectorAll(selector);
+        filterSelects.forEach(element => {
+            element.onchange = callback;
+        });
     }
 
 
     /**
+     * Actualiza el estado del checkbox "marcar todos" basado en los checkboxes individuales
+     *
+     * @param {string} field - El campo del filtro
+     * @returns {undefined}
+     */
+    _updateCheckAllState = (field) => {
+        const checkAllCheckbox = document.querySelector(
+            `${this.scope_selector} #check-all-${field}`
+        );
+
+        if(!checkAllCheckbox) return;
+
+        const inputsSelector = `${this.scope_selector} [id^=id__${field}]`;
+        const inputs = Array.from(document.querySelectorAll(inputsSelector));
+
+        if(inputs.length === 0) return;
+
+        const checkedInputs = inputs.filter(input => input.checked);
+        const allChecked = checkedInputs.length === inputs.length;
+        const noneChecked = checkedInputs.length === 0;
+
+        checkAllCheckbox.checked = allChecked;
+        checkAllCheckbox.indeterminate = !allChecked && !noneChecked;
+    };
+
+
+    /**
      * Marca o desmarca todos los filtros
-     * 
+     *
      * @returns {undefined}
      */
     checkUncheckFilters = () => {
-        const buttonsSelector = `${this.scope_selector} .js-select-items`;
-        const buttons = document.querySelectorAll(buttonsSelector);
+        const checkboxesSelector = `${this.scope_selector} .js-select-all-checkbox`;
+        const checkboxes = document.querySelectorAll(checkboxesSelector);
 
-        buttons.forEach((element) => {
-            element.addEventListener("click", (event) => {
-                event.preventDefault();
-
-                const field = element.dataset.field;
-                const value = element.dataset.value;
+        checkboxes.forEach((checkbox) => {
+            checkbox.addEventListener("change", () => {
+                const field = checkbox.dataset.field;
+                const isChecked = checkbox.checked;
 
                 const inputsSelector = `${this.scope_selector} [id^=id__${field}]`;
                 const inputs = document.querySelectorAll(inputsSelector);
 
-                const elementValue = parseInt(value);
-                inputs.forEach(input => input.checked = elementValue);
+                inputs.forEach(input => input.checked = isChecked);
+
+                // Remover el estado indeterminate después de cambiar
+                checkbox.indeterminate = false;
 
                 this._filteredData();
             });
+        });
+
+        // Agregar listeners a los checkboxes individuales para actualizar el estado del "marcar todos"
+        const allInputsSelector = `${this.scope_selector} [id^=id__]`;
+        const allInputs = document.querySelectorAll(allInputsSelector);
+
+        allInputs.forEach(input => {
+            input.addEventListener("change", () => {
+                // Extraer el field del id del input (formato: id__field__group__index)
+                const idParts = input.id.split("__");
+                if(idParts.length >= 2){
+                    const field = idParts[1];
+                    this._updateCheckAllState(field);
+
+                }
+                this._filteredData();
+
+            });
+        });
+
+        // Inicializar el estado de todos los checkboxes "marcar todos"
+        checkboxes.forEach((checkbox) => {
+            const field = checkbox.dataset.field;
+            this._updateCheckAllState(field);
         });
     };
 
@@ -1021,21 +1473,23 @@ class PonchoMapFilter extends PonchoMap {
         this.tileLayer.addTo(this.map);
 
         this._filteredData();
-        this._clickToggleFilter();
-        this._totalsInfo();
-        if(this.scroll && this.hasHash()){
-            this.scrollCenter();
-        }
-        this.checkUncheckFilters();
         this.filterChange((event) => {
             event.preventDefault();
             this._filteredData();
         });
+        this.checkUncheckFilters();
 
+        this._totalsInfo();
+        if(this.scroll && this.hasHash()){
+            this.scrollCenter();
+        }
+        
         setTimeout(this.gotoHashedEntry, this.anchor_delay);
         if(this.filters_visible){
             this._filterContainerHeight();
         }
+        
+        this._setSliderSize();
         this.mapOpacity();
         this.mapBackgroundColor();
 
@@ -1045,7 +1499,7 @@ class PonchoMapFilter extends PonchoMap {
         this.layerViewConf.setVisuals();
         this.setMapAlignment(this.map_align);
         this._resetSearch();
-        this._setCssVariables();
+        this._clickToggleFilter();
     };
 };
 // end of class

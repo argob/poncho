@@ -35,6 +35,7 @@ const PONCHOMAP_GEOJSON_PROVINCES = "/profiles/argentinagobar/"
         + "themes/contrib/poncho/resources/jsons/"
         + "geo-provincias-argentinas.json";
 
+
 /**
  * Junta el geoJSON con el JSON de Google Sheet
  *
@@ -45,45 +46,72 @@ const PONCHOMAP_GEOJSON_PROVINCES = "/profiles/argentinagobar/"
  * @param {object} entries JSON con entradas por provincia.
  * @returns {object}
  */
-const ponchoMapProvinceMergeData = (geoProvinces={}, entries={},
+const ponchoMapProvinceMergeData = (geoProvinces={}, entries=[],
                                     provinceIndex="provincia") => {
 
-    if(!geoProvinces.hasOwnProperty("features")){
-        throw new Error("Invalid data format");
+    if (!geoProvinces || !geoProvinces.hasOwnProperty("features")) {
+        throw new Error(
+            "Formato de datos inválido."
+        );
     }
 
-    geoProvinces.features.forEach((feature, key) => {
-        const jsonEntry = entries.find(function(entry){
-            const entryTerm = slugify( entry[provinceIndex] );
-            const fnaTerm = slugify( feature.properties.fna );
-            const namTerm = slugify( feature.properties.nam );
+    const entriesMap = new Map();
+    entries.forEach(entry => {
+        if (entry && entry[provinceIndex]) {
+            const entryTerm = slugify(entry[provinceIndex]);
+            entriesMap.set(entryTerm, entry);
+        }
+    });
 
-            if(entryTerm == fnaTerm || entryTerm == namTerm){
-                return true;
-            }
-            return false;
-        });
+    const newFeatures = [];
 
-        // Si no existe la provincia en el JSON, borra el feature.
-        if(!jsonEntry && feature.properties.fna){
-            delete geoProvinces.features[key];
+    geoProvinces.features.forEach(feature => {
+        if (!feature.properties || 
+            (!feature.properties.fna && !feature.properties.nam)) {
             return;
         }
-        // Si hay definido un key _color_, usa el color en el fill.
-        if(jsonEntry?.color && !feature.properties["pm-type"]){
-            geoProvinces
-                .features[key]
-                .properties.stroke = ponchoColor(jsonEntry.color);
-        }
-        // Remuevo la propiedad interactive del json para que no se interponga
-        // con el valor del geoJSON.
-        if(feature.properties["pm-interactive"] === "n" && 
-                    jsonEntry?.["pm-interactive"] !== "n"){
-            delete jsonEntry["pm-interactive"];
+
+        // Nombre de provincia antecedidos por: "Provincia de", 
+        // ej. "Provincia de Buenos Aires" 
+        const fnaTerm = (feature.properties.fna ? 
+                slugify(feature.properties.fna) : null);
+        // Nombre de provincia, ej. "Buenos Aires" 
+        const namTerm = (feature.properties.nam ? 
+                slugify(feature.properties.nam) : null);
+
+        // Búsqueda en el Mapa
+        let jsonEntry = null;
+        if (fnaTerm && entriesMap.has(fnaTerm)) {
+            jsonEntry = entriesMap.get(fnaTerm);
+        } else if (namTerm && entriesMap.has(namTerm)) {
+            jsonEntry = entriesMap.get(namTerm);
         }
 
-        Object.assign(geoProvinces.features[key].properties, jsonEntry);
+        // Si no existe la provincia en el JSON, y tiene un nombre, lo descartamos
+        if (!jsonEntry && (feature.properties.fna || feature.properties.nam)) {
+            return;
+        }
+
+        if (jsonEntry) {
+            // definido un key _color_, usa el color en el fill.
+            if (jsonEntry.color && !feature.properties["pm-type"]) {
+                feature.properties.stroke = ponchoColor(jsonEntry.color);
+            }
+            
+            // Remuevo la propiedad interactive del json para que no se interponga
+            const entryToMerge = {...jsonEntry};
+            if (feature.properties["pm-interactive"] === "n" && 
+                entryToMerge["pm-interactive"] !== "n") {
+                delete entryToMerge["pm-interactive"];
+            }
+            Object.assign(feature.properties, entryToMerge);
+        }
+
+        newFeatures.push(feature);
     });
+
+    geoProvinces.features = newFeatures;
+    
     return geoProvinces;
 };
 
@@ -113,15 +141,14 @@ const ponchoMapProvinceCssStyles = flag => {
         return;
     }
     
-    const s = document.querySelectorAll(
-        ".poncho-map-province__toggle-map,"
-        + ".poncho-map-province__toggle-element"
-    );
-    s.forEach(element => {
-        element.classList.remove(
-            "poncho-map-province__toggle-map",
-            "poncho-map-province__toggle-element"
-        ); 
+    const classToRemove = [
+        "poncho-map-province__toggle-map",
+        "poncho-map-province__toggle-element"
+    ];
+
+    const selector = classToRemove.map(cls => `.${cls}`).join(",");
+    document.querySelectorAll(selector).forEach(ele => {
+        ele.classList.remove(...classToRemove);
     });
 };
 
@@ -130,41 +157,42 @@ class PonchoMapProvinces extends PonchoMapFilter {
     constructor(geoProvinces, entries, options){
 
         const defaultOptions = {
+            map_align: "left",
+            slider_size: "default",
+            fit_bounds: true,
+            hide_select: false,
             initial_entry: false,
-            random_entry: false,
+            map_init_options: {
+                boxZoom: false,
+                doubleClickZoom: false,
+                scrollWheelZoom: false,
+                zoomControl: true,
+                zoomSnap: 0.1,
+            },
+            map_layers: false,
+            map_view:[-40.47815508388363, -62.802101128049806],
+            map_zoom: 4.4,
             overlay_image: true,
             overlay_image_bounds: [
                 [ -20.70565857951651, -24.50543849552044 ],
                 [ -88.20759652502107, -74.4619171280653 ]
             ],
             overlay_image_opacity: 0.8,
-            map_layers: false,
             overlay_image_url: 
                 "/profiles/argentinagobar/themes/contrib/poncho/img/map-shadow-antartida.png",
-            hide_select: false,
-            toggle_select: true,
             province_index: "provincia",
-            fit_bounds: true,
-            // Sobreescribo opciones de PonchoMap
-            map_view:[-40.47815508388363, -62.802101128049806],
-            map_init_options: {
-                zoomSnap: 0.1,
-                zoomControl: true,
-                doubleClickZoom: false,
-                scrollWheelZoom: false,
-                boxZoom: false
-            },
-            map_zoom: 4.4,
+            random_entry: false,
+            slider: true,
+            toggle_select: true,
+            tooltip: true,
             tooltip_options: {
-                permanent: false,
                 className: "leaflet-tooltip-own",
                 direction: "auto",
                 offset: [0, -3],
-                sticky: true,
                 opacity: 1,
+                permanent: false,
+                sticky: true,
             },
-            tooltip: true,
-            slider: true
         };
         // Merge options
         let opts = Object.assign({}, defaultOptions, options);
@@ -255,7 +283,7 @@ class PonchoMapProvinces extends PonchoMapFilter {
                 return false;
             }
             prov[p.properties[idKey]] = name;
-        }).filter(f => f);
+        }).filter(Boolean);
 
         let provincesToList = this.sortObject( Object.entries(prov), 1);
         return provincesToList;
