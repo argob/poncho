@@ -30,8 +30,8 @@ $colorThemesRecuadro: (
 #{$recuadrosScope} {
     --icon-size: 2rem;
 
-
-    width: calc(100% - var(--main-shadow-spread-size));
+    // width: calc(100% - var(--main-shadow-spread-size));
+    width: 100%;
     position: relative;
     background: white;
     border-top: none;
@@ -93,15 +93,6 @@ $colorThemesRecuadro: (
         font-size: var(--icon-size) !important;
     }
 
-    // Tamaños para iconos específicos.
-    // .fa.fa-warning,
-    // .fa.fa-times-circle,
-    // .fa.fa-info-circle,
-    // .fa.fa-check-circle {
-    //     font-size: calc(var(--icon-size) + .15em) !important;
-    //     margin: 0;
-    // }
-
     i {
         color: var(--main-theme)
     }
@@ -116,8 +107,6 @@ $colorThemesRecuadro: (
 
     .btn {
         @include button-variant(#fff, #555, #555);
-        margin-bottom: #{$grid-gutter-width / 2};
-        margin-top: #{$grid-gutter-width / 2};
     }
 }
 
@@ -147,4 +136,17 @@ $colorThemesRecuadro: (
             map-get($themeValues, themeColor),
             map-get($themeValues, themeColor));
     }
+}
+
+
+/* 
+Fix para evitar el overflow hidden 
+.media tiene un overflow hidden y la hoja de estilos se llama después que 
+poncho.min.css. 
+No se puede modificar el orden de las hojas de estilos, por lo que se hace 
+esta corrección para evitar que el recuadro se corte.
+*/
+.media:has(> .highlight-box) .highlight-box {
+    width:calc(100% - (var(--main-shadow-spread-size) + 2px));
+    margin-top: 4px;
 }

@@ -15,6 +15,7 @@
     <link rel="stylesheet"
         href="https://capacita-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css?rfqjsh">
     <link rel="stylesheet" href="../../../../dist/css/poncho.min.css" />
+    <script src="../../mapa-argentina/demo/js/demo.js"></script>    
 
     <!-- 
         Script para debug 
@@ -45,48 +46,62 @@ MAPA CON BUSCADOR FILTRO
 
 COPIAR DESDE ACÁ…
 -->
-<div class="col-md-12">
-<!-- PONCHO MAP SEARCH -->
-<form action="" id="poncho-map-search">
-    <div data-scope="poncho-map-search">
-        <div class="input-group">
-            <input 
-                type="search" 
-                id="search"
-                name="search" 
-                autocomplete="off"
-                class="js-poncho-map-search__input form-control" 
-                list="js-porcho-map-search__list">
-            <datalist id="js-porcho-map-search__list"></datalist>
-            <span class="input-group-btn">
-                <button class="js-poncho-map-search__submit btn btn-primary">
-                    <i class="fa fa-search text-white"></i>
-                </button>
-            </span>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+        <!-- PONCHO MAP SEARCH -->
+        <form action="" id="poncho-map-search">
+            <div data-scope="poncho-map-search">
+                <div class="input-group">
+                    <input 
+                        type="search" 
+                        id="search"
+                        name="search" 
+                        autocomplete="off"
+                        class="js-poncho-map-search__input form-control" 
+                        list="js-porcho-map-search__list">
+                    <datalist id="js-porcho-map-search__list"></datalist>
+                    <span class="input-group-btn">
+                        <button class="js-poncho-map-search__submit btn btn-primary">
+                            <i class="fa fa-search text-white"></i>
+                        </button>
+                    </span>
+                </div>
+                <div data-scope="poncho-map" class="m-b-1">
+                    <div 
+                        class="js-poncho-map__help small text-default" 
+                        style="position: relative;">
+                    </div>
+                </div>
+            </div>
+        </form>
+        <!-- / PONCHO MAP SEARCH -->
         </div>
-        <div data-scope="poncho-map" class="m-b-1">
-            <div 
-                class="js-poncho-map__help small text-default" 
-                style="position: relative;">
+        <div class="col-md-12">
+        <!-- PONCHO MAP -->
+        <div class="poncho-map" data-scope="poncho-map">
+            <div
+                class="leaflet-container leaflet-touch leaflet-fade-anim 
+                    leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
+                id="map"
+                style="height: 650px; width: 100%;"
+                tabindex="0">
             </div>
         </div>
-    </div>
-</form>
-<!-- / PONCHO MAP SEARCH -->
-</div>
-<div class="col-md-12">
-<!-- PONCHO MAP -->
-<div class="poncho-map" data-scope="poncho-map">
-    <div
-        class="leaflet-container leaflet-touch leaflet-fade-anim 
-               leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
-        id="map"
-        style="height: 600px; width: 100%;"
-        tabindex="0">
+        <!-- / PONCHO MAP -->
+
+        <!-- DEBUGGER -->
+        <div 
+            data-code-from="code_map" 
+            class="m-y-2" 
+            data-title="Código para el mapa">
+        </div>
+        <!-- / DEBUGGER -->
+
+        </div>
     </div>
 </div>
-<!-- / PONCHO MAP -->
-</div>
+
 
 <!-- INCLUDE SCRIPTS -->
 <script src="https://www.argentina.gob.ar/sites/default/files/ponchotable/showdown.js"></script>
@@ -100,20 +115,33 @@ COPIAR DESDE ACÁ…
 <!-- / INCLUDE SCRIPTS -->
 
 <!-- SCRIPTS -->
-<script>
-// URL WFS (GeoJSON)
-var obrasWFS = "https://sigvial.vialidad.gob.ar/geoserver/dnv/ows?" +
-    "service=WFS" +
-    "&version=1.0.0" +
-    "&request=GetFeature" +
-    "&typeName=dnv:Obras_Ejecución2026" +
-    "&outputFormat=application/json";
+<script id="code_map">
+const _ENV = "develop";
 
+const conf = {
+    production: {
+        strokeColor: "var(--arg-cielo)",
+        strokeActiveColor: "var(--arg-escarapela)",
+        service: "https://sigvial.vialidad.gob.ar/geoserver/dnv/ows?" +
+            "service=WFS" +
+            "&version=1.0.0" +
+            "&request=GetFeature" +
+            "&typeName=dnv:Obras_Ejecución2026" +
+            "&outputFormat=application/json",
+    },
+    develop : {
+        strokeColor: "var(--arg-maiz)",
+        strokeActiveColor: "var(--arg-mandarina)",
+        service: "./data/17581-vialidad.json"
+    }
+};
+
+const {strokeColor, strokeActiveColor, service} = conf[ _ENV ];
 
 // Modifica el color del active
 headStyle(
     "vialidad", 
-    `.poncho-map path.marker--active {stroke:var(--arg-escarapela);`
+    `.poncho-map path.marker--active {stroke:${strokeActiveColor};`
     + `filter: none !important;opacity:1 !important;}`
 );
 
@@ -123,14 +151,12 @@ loader.load();
 
  // init
 (async() => {
-    // const gdata = await fetch_json( obrasWFS ); 
-    const gdata = await fetch_json( "./data/17581-vialidad.json" );
+    const gdata = await fetch_json( service ); 
 
     // Propiedades de polígono
     gdata.features.forEach((entry, i) => {
-        const color = "var(--arg-cielo)";
-        entry.properties.color = color;
-        entry.properties["stroke-color"] = color;
+        entry.properties.color = strokeColor;
+        entry.properties["stroke-color"] = strokeColor;
         entry.properties["stroke-opacity"] = 1;
         entry.properties["stroke-width"] = 3;
     });
@@ -218,6 +244,7 @@ loader.load();
     const searchOptions = {
         scope: "poncho-map-search", 
         combobox: true,
+        text: "tramo",
         placeholder: "Buscar por nombre de obra, ruta, id SIGO o provincia",
         search_fields: [
             "tramo", 

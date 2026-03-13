@@ -5900,7 +5900,7 @@ class PonchoMap {
      * Versión poncho
      */
     get version(){
-        return "2.2.1";
+        return "2.2.2";
     }
 
 
@@ -11391,7 +11391,7 @@ class PonchoMapSearch {
         this.instance = instance;
         let opts = Object.assign({}, defaults, options);
         this.debounce_delay = opts.debounce_delay;
-        this.text = (instance.title ? instance.title : false);
+        this.text = instance.headers.hasOwnProperty(opts.text) ? opts.text : instance.title;
         this.datalist = opts.datalist;
         this.combobox = opts.combobox;
         this.combobox_options = opts.combobox_options;

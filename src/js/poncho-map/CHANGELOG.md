@@ -1,5 +1,13 @@
 # Changelog
 
+## Release 2.2.2
+
+### PonchoMap
+
+ * Se corrigió el error que se producía cuando el objeto event no tiene definida la función getLatLng().
+ * Se solucionó el problema que se producía cuando se asignaba una clave en particular usando la opción _text_ y en cambio se usaba la clave global _title_.
+
+
 ## Release 2.2.1
 
 ### PonchoMap
