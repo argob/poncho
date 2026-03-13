@@ -11182,6 +11182,7 @@ esta corrección para evitar que el recuadro se corte.
 */
 .media:has(> .highlight-box) .highlight-box {
   width: calc(100% - (var(--main-shadow-spread-size) + 2px));
+  margin-top: 4px;
 }
 
 .embed-responsive-1by1 {
