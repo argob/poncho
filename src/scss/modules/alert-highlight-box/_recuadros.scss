@@ -116,8 +116,6 @@ $colorThemesRecuadro: (
 
     .btn {
         @include button-variant(#fff, #555, #555);
-        margin-bottom: #{$grid-gutter-width / 2};
-        margin-top: #{$grid-gutter-width / 2};
     }
 }
 
