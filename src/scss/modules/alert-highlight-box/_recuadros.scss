@@ -30,8 +30,8 @@ $colorThemesRecuadro: (
 #{$recuadrosScope} {
     --icon-size: 2rem;
 
-
-    width: calc(100% - var(--main-shadow-spread-size));
+    // width: calc(100% - var(--main-shadow-spread-size));
+    width: 100%;
     position: relative;
     background: white;
     border-top: none;
@@ -136,4 +136,16 @@ $colorThemesRecuadro: (
             map-get($themeValues, themeColor),
             map-get($themeValues, themeColor));
     }
+}
+
+
+/* 
+Fix para evitar el overflow hidden 
+.media tiene un overflow hidden y la hoja de estilos se llama después que 
+poncho.min.css. 
+No se puede modificar el orden de las hojas de estilos, por lo que se hace 
+esta corrección para evitar que el recuadro se corte.
+*/
+.media:has(> .highlight-box) .highlight-box {
+    width:calc(100% - (var(--main-shadow-spread-size) + 2px));
 }
