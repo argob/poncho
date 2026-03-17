@@ -50,6 +50,14 @@ $colorThemesRecuadro: (
         padding: var(--main-padding);
     }
 
+    .media-body {
+        max-width: 728px
+    }
+
+    &:has(.media-left) .media-body {
+        max-width: 660px
+    }
+
     // REDEFINIMOS MEDIA
     .media {
         grid-template-columns: calc(var(--icon-size) + 1.5em) 1fr;
