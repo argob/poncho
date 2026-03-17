@@ -23,6 +23,9 @@ $colorThemesRecuadro: (
     "arandano": (themeColor: $brand-arg-arandano,
         buttonColor: white,
     ),
+    "info": (themeColor: $brand-arg-info,
+        buttonColor: white,
+    ),
 );
 
 
@@ -48,6 +51,14 @@ $colorThemesRecuadro: (
     // Si el componente no tiene icono
     &:not(:has(.media-left)) {
         padding: var(--main-padding);
+    }
+
+    .media-body {
+        max-width: 728px
+    }
+
+    &:has(.media-left) .media-body {
+        max-width: 660px
     }
 
     // REDEFINIMOS MEDIA
