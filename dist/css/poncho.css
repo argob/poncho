@@ -10819,6 +10819,7 @@ a.alert.alert-danger i {
  */
 .highlight-box {
   --icon-size: 2rem;
+  clear: both;
   width: 100%;
   position: relative;
   background: white;
