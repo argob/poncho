@@ -33,7 +33,7 @@ $colorThemesRecuadro: (
 #{$recuadrosScope} {
     --icon-size: 2rem;
 
-    // width: calc(100% - var(--main-shadow-spread-size));
+    clear: both; // Para evitar que el recuadro se superponga con otros elementos flotantes.
     width: 100%;
     position: relative;
     background: white;
