@@ -82,6 +82,11 @@
       },
     
       {
+        "nombre": "aguas-subterraneas",
+        "clase": "icono-arg-aguas-subterraneas"
+      },
+    
+      {
         "nombre": "ahora12",
         "clase": "icono-arg-ahora12"
       },
@@ -4142,6 +4147,11 @@
       },
     
       {
+        "nombre": "sinarame",
+        "clase": "icono-arg-sinarame"
+      },
+    
+      {
         "nombre": "sintra",
         "clase": "icono-arg-sintra"
       },
@@ -4164,6 +4174,11 @@
       {
         "nombre": "sitios-accesibles",
         "clase": "icono-arg-sitios-accesibles"
+      },
+    
+      {
+        "nombre": "snih",
+        "clase": "icono-arg-snih"
       },
     
       {

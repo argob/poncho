@@ -23,6 +23,9 @@ $colorThemesRecuadro: (
     "arandano": (themeColor: $brand-arg-arandano,
         buttonColor: white,
     ),
+    "info": (themeColor: $brand-arg-info,
+        buttonColor: white,
+    ),
 );
 
 
@@ -30,7 +33,7 @@ $colorThemesRecuadro: (
 #{$recuadrosScope} {
     --icon-size: 2rem;
 
-    // width: calc(100% - var(--main-shadow-spread-size));
+    clear: both; // Para evitar que el recuadro se superponga con otros elementos flotantes.
     width: 100%;
     position: relative;
     background: white;
@@ -48,6 +51,14 @@ $colorThemesRecuadro: (
     // Si el componente no tiene icono
     &:not(:has(.media-left)) {
         padding: var(--main-padding);
+    }
+
+    .media-body {
+        max-width: 728px
+    }
+
+    &:has(.media-left) .media-body {
+        max-width: 660px
     }
 
     // REDEFINIMOS MEDIA
