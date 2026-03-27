@@ -2117,6 +2117,11 @@
       },
     
       {
+        "nombre": "formando-capital-humano",
+        "clase": "icono-arg-formando-capital-humano"
+      },
+    
+      {
         "nombre": "fotografia",
         "clase": "icono-arg-fotografia"
       },
