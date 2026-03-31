@@ -10837,12 +10837,6 @@ a.alert.alert-danger i {
 .highlight-box:not(:has(.media-left)) {
   padding: var(--main-padding);
 }
-.highlight-box .media-body {
-  max-width: 728px;
-}
-.highlight-box:has(.media-left) .media-body {
-  max-width: 660px;
-}
 .highlight-box .media {
   grid-template-columns: calc(var(--icon-size) + 1.5em) 1fr;
   display: grid;
