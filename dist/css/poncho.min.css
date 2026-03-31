@@ -11233,6 +11233,27 @@ esta corrección para evitar que el recuadro se corte.
   margin-top: 4px;
 }
 
+/* 
+    Container para el recuadro destacado. 
+    Evita que el ancho supere un col-md-8 
+*/
+.highlight-wrapper {
+  container: sidebar/inline-size;
+  padding: 0 15px;
+  clear: both;
+}
+
+.highlight-wrapper.container-fluid > .highlight-box {
+  width: 100%;
+}
+
+@container sidebar (width > 780px) {
+  .highlight-box {
+    box-sizing: border-box;
+    width: 66.6666666667%;
+    margin: auto;
+  }
+}
 .embed-responsive-1by1 {
   padding-bottom: 100%;
 }
