@@ -53,13 +53,6 @@ $colorThemesRecuadro: (
         padding: var(--main-padding);
     }
 
-    .media-body {
-        max-width: 728px
-    }
-
-    &:has(.media-left) .media-body {
-        max-width: 660px
-    }
 
     // REDEFINIMOS MEDIA
     .media {
