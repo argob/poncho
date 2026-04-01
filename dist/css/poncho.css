@@ -15009,7 +15009,7 @@ footer .nav > li > a:hover {
     width: 100% !important;
   }
 }
-.bdl-right-sticky {
+.blq-right-sticky {
   position: -webkit-sticky;
   position: sticky;
   top: 20px;
@@ -15018,7 +15018,7 @@ footer .nav > li > a:hover {
   height: auto;
 }
 @media (max-width: 991px) {
-  .bdl-right-sticky {
+  .blq-right-sticky {
     position: static;
     min-height: auto;
     align-self: stretch;
@@ -15032,6 +15032,9 @@ footer .nav > li > a:hover {
   }
   .blq-right-mobile .border-left {
     border-left-width: 0;
+  }
+  .blq-right-mobile .blq-right-subtit {
+    padding-left: 1em;
   }
 }
 .blq-right ul {
