@@ -110,7 +110,7 @@ $colorThemesRecuadro: (
     }
 
     .btn {
-        @include button-variant(#fff, #555, #555);
+        @include button-variant($brand-arg-primary, #fff, $brand-arg-gray-light);
     }
 }
 
@@ -130,17 +130,18 @@ $colorThemesRecuadro: (
     }
 }
 
-@each $themeName, $themeValues in $colorThemesRecuadro {
-    #{$recuadrosScope}.arg-#{$themeName} {
-        --main-theme: #{map-get($themeValues, themeColor)};
-    }
+//button-variant($color, $background, $border)
+// #{$recuadrosScope} .btn {
+//     @include button-variant(
+//         "#ccc",
+//         "#555",
+//         "#ff0000");
+// }
 
-    #{$recuadrosScope}.arg-#{$themeName} .btn {
-        @include button-variant(map-get($themeValues, buttonColor),
-            map-get($themeValues, themeColor),
-            map-get($themeValues, themeColor));
-    }
-}
+
+
+
+
 
 
 /* 
