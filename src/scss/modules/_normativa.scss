@@ -1,6 +1,6 @@
 
 // Sticky bloque right  - 
-.bdl-right-sticky {
+.blq-right-sticky {
   position: -webkit-sticky;
   position: sticky;
   top: 20px;
@@ -25,6 +25,10 @@
     .border-left {
       border-left-width: 0;
     }
+    .blq-right-subtit {
+      padding-left: 1em;
+    }
+      
   }
 }
 
