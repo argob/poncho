@@ -10974,7 +10974,6 @@ esta corrección para evitar que el recuadro se corte.
 */
 .highlight-wrapper {
   container: sidebar/inline-size;
-  padding: 0 15px;
   clear: both;
 }
 
