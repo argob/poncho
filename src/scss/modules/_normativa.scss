@@ -1,3 +1,57 @@
+
+// Sticky bloque right  - 
+.bdl-right-sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 20px;
+  z-index: 10;
+  align-self: flex-start;
+  height: auto;
+
+  // Sticky mobile
+  @media (max-width: 991px) {
+    position: static;     
+    min-height: auto;    
+    align-self: stretch;  
+  }
+}
+
+// Bloque mobile
+@media (max-width: 991px) {
+  .blq-right-mobile {
+    display: flex;
+    flex-direction: column-reverse;
+
+    .border-left {
+      border-left-width: 0;
+    }
+  }
+}
+
+
+.blq-right {
+  // Lista 
+  ul {
+    padding: 1.5rem 0.2rem;
+    margin: 0; 
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+
+  i {
+    color: var(--arg-azul-600);
+    vertical-align: middle;
+    line-height: 2em;
+    padding: 3px;
+  }
+  li.active a {
+      font-weight: 700;
+    }
+}
+
+// IMPORTANTE: Luego del cambio en drupal eliminar la clase bloque-leyes y bloque-leyes-mobile 
+
+
 .bloque-leyes {
   i {
     color: var(--arg-azul-600);
