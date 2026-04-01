@@ -138,6 +138,11 @@ $colorThemesRecuadro: (
 //         "#ff0000");
 // }
 
+@each $themeName, $themeValues in $colorThemesRecuadro {
+    #{$recuadrosScope}.arg-#{$themeName} {
+        --main-theme: #{map-get($themeValues, themeColor)};
+    }
+}
 
 
 
