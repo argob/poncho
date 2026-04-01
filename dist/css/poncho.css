@@ -10928,6 +10928,34 @@ a.alert.alert-danger i {
     text-align: left;
   }
 }
+.highlight-box.arg-azul {
+  --main-theme: #232D4F;
+}
+
+.highlight-box.arg-secundario {
+  --main-theme: #3E5A7E;
+}
+
+.highlight-box.arg-palta {
+  --main-theme: #50B7B2;
+}
+
+.highlight-box.arg-uva {
+  --main-theme: #6A1B99;
+}
+
+.highlight-box.arg-rosado {
+  --main-theme: #F48EAB;
+}
+
+.highlight-box.arg-arandano {
+  --main-theme: #C2185B;
+}
+
+.highlight-box.arg-info {
+  --main-theme: #5A7290;
+}
+
 /* 
 Fix para evitar el overflow hidden 
 .media tiene un overflow hidden y la hoja de estilos se llama después que 
