@@ -12,7 +12,7 @@ $colorThemesRecuadro: (
         buttonColor: white,
     ),
     "palta": (themeColor:$brand-arg-palta,
-        buttonColor: palta,
+        buttonColor: $brand-arg-palta,
     ),
     "uva": (themeColor: $brand-arg-uva,
         buttonColor: white,
@@ -98,7 +98,7 @@ $colorThemesRecuadro: (
     }
 
     i {
-        color: var(--main-theme)
+        color: var(--main-theme);
     }
 
     p {
@@ -110,7 +110,11 @@ $colorThemesRecuadro: (
     }
 
     .btn {
-        @include button-variant($brand-arg-primary, #fff, $brand-arg-gray-light);
+        @include button-variant(
+            $brand-arg-primary, 
+            #fff, 
+            $brand-arg-gray-light
+        );
     }
 }
 
@@ -130,22 +134,12 @@ $colorThemesRecuadro: (
     }
 }
 
-//button-variant($color, $background, $border)
-// #{$recuadrosScope} .btn {
-//     @include button-variant(
-//         "#ccc",
-//         "#555",
-//         "#ff0000");
-// }
 
 @each $themeName, $themeValues in $colorThemesRecuadro {
     #{$recuadrosScope}.arg-#{$themeName} {
         --main-theme: #{map-get($themeValues, themeColor)};
     }
 }
-
-
-
 
 
 
@@ -168,7 +162,6 @@ esta corrección para evitar que el recuadro se corte.
 */
 .highlight-wrapper {
     container: sidebar / inline-size;
-    padding:0 15px;
     clear:both;
     
 }
