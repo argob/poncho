@@ -2827,6 +2827,11 @@
       },
     
       {
+        "nombre": "mano-tablet",
+        "clase": "icono-arg-mano-tablet"
+      },
+    
+      {
         "nombre": "manzana",
         "clase": "icono-arg-manzana"
       },

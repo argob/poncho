@@ -12,7 +12,7 @@ $colorThemesRecuadro: (
         buttonColor: white,
     ),
     "palta": (themeColor:$brand-arg-palta,
-        buttonColor: palta,
+        buttonColor: $brand-arg-palta,
     ),
     "uva": (themeColor: $brand-arg-uva,
         buttonColor: white,
@@ -53,13 +53,6 @@ $colorThemesRecuadro: (
         padding: var(--main-padding);
     }
 
-    .media-body {
-        max-width: 728px
-    }
-
-    &:has(.media-left) .media-body {
-        max-width: 660px
-    }
 
     // REDEFINIMOS MEDIA
     .media {
@@ -105,7 +98,7 @@ $colorThemesRecuadro: (
     }
 
     i {
-        color: var(--main-theme)
+        color: var(--main-theme);
     }
 
     p {
@@ -117,7 +110,11 @@ $colorThemesRecuadro: (
     }
 
     .btn {
-        @include button-variant(#fff, #555, #555);
+        @include button-variant(
+            $brand-arg-primary, 
+            #fff, 
+            $brand-arg-gray-light
+        );
     }
 }
 
@@ -137,17 +134,13 @@ $colorThemesRecuadro: (
     }
 }
 
+
 @each $themeName, $themeValues in $colorThemesRecuadro {
     #{$recuadrosScope}.arg-#{$themeName} {
         --main-theme: #{map-get($themeValues, themeColor)};
     }
-
-    #{$recuadrosScope}.arg-#{$themeName} .btn {
-        @include button-variant(map-get($themeValues, buttonColor),
-            map-get($themeValues, themeColor),
-            map-get($themeValues, themeColor));
-    }
 }
+
 
 
 /* 
@@ -157,7 +150,31 @@ poncho.min.css.
 No se puede modificar el orden de las hojas de estilos, por lo que se hace 
 esta corrección para evitar que el recuadro se corte.
 */
-.media:has(> .highlight-box) .highlight-box {
+.media:has(> #{$recuadrosScope}) #{$recuadrosScope} {
     width:calc(100% - (var(--main-shadow-spread-size) + 2px));
     margin-top: 4px;
+}
+
+
+/* 
+    Container para el recuadro destacado. 
+    Evita que el ancho supere un col-md-8 
+*/
+.highlight-wrapper {
+    container: sidebar / inline-size;
+    clear:both;
+    
+}
+
+.highlight-wrapper.container-fluid > #{$recuadrosScope} {
+    width: 100%;
+}
+
+@container sidebar (width > 780px) {
+    #{$recuadrosScope} {
+        box-sizing: border-box;
+        //width: 66.66666667%;
+        width: calc( (100% / 3) * 2);
+        margin: auto;
+    }
 }
