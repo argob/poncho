@@ -16398,7 +16398,7 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
 .details-display details {
   --figure-width: 1.15rem;
   --figure-text-gap: 10px;
-  --figure-color: inherit;
+  --figure-color: var(--arg-secundario);
   --figure-font-size: 1.5em;
   --summary-font-size: 1em;
 }
@@ -16420,7 +16420,6 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
 .details-display summary:has(.figure) {
   font-size: var(--summary-font-size);
   gap: var(--figure-text-gap);
-  color: var(--arg-secundario);
 }
 .details-display summary:has(i.fa-2x) i,
 .details-display summary .figure {
@@ -16444,7 +16443,7 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
   .details-display.details-display-md > details, .details-display.details-display-lg > details {
     --figure-width: 1.15rem;
     --figure-text-gap: 10px;
-    --figure-color: inherit;
+    --figure-color: var(--arg-secundario);
     --figure-font-size: 1.5em;
     --summary-font-size: 1em;
     /* Global componente */
