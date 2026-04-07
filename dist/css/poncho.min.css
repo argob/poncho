@@ -16455,6 +16455,14 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
     align-self: start;
   }
 }
+/* 
+    Ajusta el icono cuando se utiliza details-display con un icono dentro 
+    de un container 
+*/
+.details-container.details-display:has(i) summary {
+  padding-left: 9px;
+}
+
 /* FORMULARIOS Y SELECT2 */
 /* Oculta selección previa de meses */
 #filter-cuando + .select2-container .select2-selection__choice {
