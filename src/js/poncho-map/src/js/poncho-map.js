@@ -98,6 +98,7 @@ class PonchoMap {
     constructor(data, options){
         const defaults = {
             pan_by: true,
+            render_schema: true,
             accesible_menu_extras: [
                 {
                     label: "map_help_us",
@@ -349,6 +350,7 @@ class PonchoMap {
             ...options.template_structure
         };
         this.debug = opts.debug;
+        this.render_schema = Boolean(opts.render_schema);
         this.template_innerhtml = opts.template_innerhtml;
         this.template_markdown = opts.template_markdown;
         this.markdown_options = opts.markdown_options;
@@ -557,6 +559,8 @@ class PonchoMap {
         }
 
         this.ponchoLoaderTimeout;
+
+
     }
 
 
@@ -564,7 +568,7 @@ class PonchoMap {
      * Versión poncho
      */
     get version(){
-        return "2.2.2";
+        return "2.2.3";
     }
 
 
@@ -4137,6 +4141,29 @@ class PonchoMap {
 
 
     /**
+     * Retorna el texto del summary
+     * 
+     * @returns {string}
+     * @todo Unificar la condición con _addSummary
+     */
+    _summaryText = () => {
+        if(typeof this.summary === "boolean"){
+            return "";
+        }
+        if(this.isEmptyObject(this.summary) || this.isEmptyString(this.summary)){
+            return "";
+        }
+        if(this.isString(this.summary)){
+            return this.summary;
+        }
+        if(this.isObject(this.summary) && Object.hasOwn(this.summary, "title")){
+            return this.summary.title;
+        }
+        return "";
+    }
+
+
+    /**
      * Agrega un summary para identificar el propósito del mapa
      * 
      * @summary Si el mapa no tiene un título que define su propósito, 
@@ -4306,6 +4333,18 @@ class PonchoMap {
         this._listeners();
         this.layerViewConf.setVisuals();
         this.setMapAlignment(this.map_align);
+
+        try {
+            if(this.render_schema){
+                const sch = new PonchoMapSchema(
+                    this.entries, 
+                    {scope:this.scope}
+                );
+                sch.render();
+            }
+        } catch (error) {
+            this.logger.warn("No se puede crear Schema/JSON-LD");
+        }
     };
 };
 // end class

@@ -35,11 +35,10 @@ const ponchoMinList = [
     './src/js/poncho-map/src/js/poncho-map-filter.js',
     './src/js/poncho-map/src/js/poncho-map-search.js',
     './src/js/poncho-map/src/js/poncho-map-helpers.js',
+    './src/js/poncho-map/src/js/poncho-map-schema.js',
     './src/js/poncho-map-provinces/src/js/poncho-map-provinces.js',
-    // './src/js/poncho-map-provinces/src/js/poncho-map-provinces-contenidos.js',
     './src/js/gapi-sheet-data/gapi-sheet-data.js',
-    './src/js/translate-html/translate-html.js',
-    // './src/js/loader/src/js/loader.js',
+    './src/js/translate-html/translate-html.js'
 ];
 
 
