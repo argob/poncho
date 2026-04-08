@@ -49,11 +49,13 @@ class PonchoMapSchema {
 
         const defaults = { 
             summary: "Mapa de ubicaciones",
-            scope: "pmSchema" 
+            scope: "pmSchema",
+            id_key: "id"
         };
         const opts = Object.assign({}, defaults, options);
         this.summary = String(opts.summary || defaults.summary);
         this.scope = String(opts.scope);
+        this.id_key = opts.id_key;
         this.data = data;
     }
 
@@ -92,7 +94,9 @@ class PonchoMapSchema {
             return;
         }
         const [latitude, longitude] = entry.geometry.coordinates;
-        const { name, id } = entry.properties;
+        const { name } = entry.properties;
+        const id = entry.properties[this.id_key];
+
         if (!name || !id) {
             console.warn(
                 "La entrada no tiene 'name' o 'id' en properties.",

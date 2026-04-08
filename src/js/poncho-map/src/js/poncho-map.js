@@ -4338,7 +4338,7 @@ class PonchoMap {
             if(this.render_schema){
                 const sch = new PonchoMapSchema(
                     this.entries, 
-                    {scope:this.scope}
+                    {scope:this.scope,id_key: this.id}
                 );
                 sch.render();
             }

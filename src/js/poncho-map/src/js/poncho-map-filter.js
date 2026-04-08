@@ -1508,7 +1508,8 @@ class PonchoMapFilter extends PonchoMap {
                     this.entries, 
                     {
                         scope: this.scope, 
-                        summary: this._summaryText() 
+                        summary: this._summaryText(),
+                        id_key: this.id
                     }
                 );
                 sch.render();
