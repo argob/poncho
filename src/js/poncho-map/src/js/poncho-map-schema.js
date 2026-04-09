@@ -4,7 +4,7 @@
  * @summary Genera un schema JSON-LD (schema.org/ItemList) con los
  * marcadores del mapa para mejorar el SEO.
  *
- * @author Agustín Bouillet <bouilleta@jefatura.gob.ar>
+ * @author Agustín Bouillet <abouillet@sicyt.gob.ar>
  * @requires leaflet.js, leaflet.markercluster.js, leaflet.css,
  * MarkerCluster.Default.css, MarkerCluster.css, PonchoMap,
  * PonchoMapFilter
@@ -65,12 +65,18 @@ class PonchoMapSchema {
      * @param {Array} [items=[]] - Lista de elementos ListItem.
      * @returns {Object} Objeto schema.org/ItemList.
      */
-    header = (items = []) => ({
-        "@context": "https://schema.org",
-        "@type": "ItemList",
-        "name": this.summary,
-        "itemListElement": items
-    });
+    header = (items = []) => {
+        if(items.length < 1){
+            return false;
+        }
+        return {
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            "name": this.summary,
+            "itemListElement": items
+        }
+    };
+
 
     /**
      * Crea un elemento ListItem a partir de un feature GeoJSON.
@@ -88,9 +94,6 @@ class PonchoMapSchema {
             return;
         }
         if (entry.geometry.type !== "Point") {
-            console.warn(
-                "El geoJson debe ser un punto, no un polígono."
-            );
             return;
         }
         const [latitude, longitude] = entry.geometry.coordinates;
@@ -130,6 +133,7 @@ class PonchoMapSchema {
      */
     schema = () => this.header(this.createItems(this.data));
 
+
     /**
      * Recorre el array de datos y genera los ListItem válidos.
      *
@@ -165,12 +169,19 @@ class PonchoMapSchema {
             );
             return;
         }
-        const json = JSON.stringify(this.schema());
+
+        const schema = this.schema();
+        if (!schema) {
+            return;
+        }
+
+        const json = JSON.stringify(schema);
         const existing = document.getElementById("pmSchema");
         if (existing) {
             existing.text = json;
             return;
         }
+
         const script = document.createElement("script");
         script.type = "application/ld+json";
         script.id = `pmschema__${this.scope}`;

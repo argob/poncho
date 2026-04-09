@@ -1501,22 +1501,8 @@ class PonchoMapFilter extends PonchoMap {
         this._resetSearch();
         this._clickToggleFilter();
 
-
-        try {
-            if(this.render_schema){
-                const sch = new PonchoMapSchema(
-                    this.entries, 
-                    {
-                        scope: this.scope, 
-                        summary: this._summaryText(),
-                        id_key: this.id
-                    }
-                );
-                sch.render();
-            }
-        } catch (error) {
-            this.logger.warn("No se puede crear Schema/JSON-LD");
-        }
+        this._renderSchema();
     };
+
 };
 // end of class
