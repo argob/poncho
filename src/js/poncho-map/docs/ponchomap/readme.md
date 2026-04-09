@@ -354,5 +354,11 @@
       <td style="text-align:left"><code>true</code></td>
       <td style="text-align:left">Desplaza automáticamente el marcador hacia la izquierda del mapa cuando su posición coincide con el área que ocupará el slider, manteniendo así su visibilidad.</td>
     </tr>
+    <tr>
+      <td style="text-align:left">render_schema</td>
+      <td style="text-align:left"><code>boolean</code></td>
+      <td style="text-align:left"><code>true</code></td>
+      <td style="text-align:left">Crea automáticamente un objeto <a href="https://en.wikipedia.org/wiki/JSON-LD" lang="en">JSON-LD</a> (<a href="https://schema.org/">schema.org</a>) en el <em>head</em>, cuando los <em>markers</em> no superen los 1000.</td>
+    </tr>
   </tbody>
 </table>

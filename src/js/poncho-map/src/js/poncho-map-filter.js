@@ -1500,6 +1500,9 @@ class PonchoMapFilter extends PonchoMap {
         this.setMapAlignment(this.map_align);
         this._resetSearch();
         this._clickToggleFilter();
+
+        this._renderSchema();
     };
+
 };
 // end of class

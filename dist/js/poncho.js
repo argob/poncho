@@ -5434,6 +5434,7 @@ class PonchoMap {
     constructor(data, options){
         const defaults = {
             pan_by: true,
+            render_schema: true,
             accesible_menu_extras: [
                 {
                     label: "map_help_us",
@@ -5685,6 +5686,7 @@ class PonchoMap {
             ...options.template_structure
         };
         this.debug = opts.debug;
+        this.render_schema = Boolean(opts.render_schema);
         this.template_innerhtml = opts.template_innerhtml;
         this.template_markdown = opts.template_markdown;
         this.markdown_options = opts.markdown_options;
@@ -5893,6 +5895,8 @@ class PonchoMap {
         }
 
         this.ponchoLoaderTimeout;
+
+
     }
 
 
@@ -5900,7 +5904,7 @@ class PonchoMap {
      * Versión poncho
      */
     get version(){
-        return "2.2.2";
+        return "2.2.3";
     }
 
 
@@ -9473,6 +9477,29 @@ class PonchoMap {
 
 
     /**
+     * Retorna el texto del summary
+     * 
+     * @returns {string}
+     * @todo Unificar la condición con _addSummary
+     */
+    _summaryText = () => {
+        if(typeof this.summary === "boolean"){
+            return "";
+        }
+        if(this.isEmptyObject(this.summary) || this.isEmptyString(this.summary)){
+            return "";
+        }
+        if(this.isString(this.summary)){
+            return this.summary;
+        }
+        if(this.isObject(this.summary) && Object.hasOwn(this.summary, "title")){
+            return this.summary.title;
+        }
+        return "";
+    }
+
+
+    /**
      * Agrega un summary para identificar el propósito del mapa
      * 
      * @summary Si el mapa no tiene un título que define su propósito, 
@@ -9601,6 +9628,31 @@ class PonchoMap {
 
 
     /**
+     * Genera e inserta el schema JSON-LD en el `<head>` del documento.
+     *
+     * @returns {undefined}
+     */
+    _renderSchema = () => {
+        if(!this.render_schema){
+            return;
+        }
+        try {
+            const sch = new PonchoMapSchema(
+                this.entries,
+                {
+                    scope: this.scope,
+                    summary: this._summaryText(),
+                    id_key: this.id
+                }
+            );
+            sch.render();
+        } catch (error) {
+            this.logger.warn("No se puede crear Schema/JSON-LD");
+        }
+    };
+
+
+    /**
      * Hace el render del mapa.
      */
     render = () => {
@@ -9642,6 +9694,8 @@ class PonchoMap {
         this._listeners();
         this.layerViewConf.setVisuals();
         this.setMapAlignment(this.map_align);
+
+        this._renderSchema();
     };
 };
 // end class
@@ -11329,7 +11383,10 @@ class PonchoMapFilter extends PonchoMap {
         this.setMapAlignment(this.map_align);
         this._resetSearch();
         this._clickToggleFilter();
+
+        this._renderSchema();
     };
+
 };
 // end of class
 
@@ -12167,6 +12224,202 @@ function ponchoMapTplSearch(data){
 
     return container.outerHTML;
 }
+
+/**
+ * PONCHO MAP SCHEMA
+ *
+ * @summary Genera un schema JSON-LD (schema.org/ItemList) con los
+ * marcadores del mapa para mejorar el SEO.
+ *
+ * @author Agustín Bouillet <abouillet@sicyt.gob.ar>
+ * @requires leaflet.js, leaflet.markercluster.js, leaflet.css,
+ * MarkerCluster.Default.css, MarkerCluster.css, PonchoMap,
+ * PonchoMapFilter
+ * @see https://github.com/argob/poncho/blob/master/src/demo/poncho-maps/readme-poncho-maps.md
+ *
+ *
+ * MIT License
+ *
+ * Copyright (c) 2026 Argentina.gob.ar
+ *
+ * Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation
+ * files (the "Software"), to deal in the Software without
+ * restriction, including without limitation the rights to use,
+ * copy, modify, merge, publish, distribute, sublicense, and/or
+ * sell copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following
+ * conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+ * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+ * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+ * OTHER DEALINGS IN THE SOFTWARE.
+ */
+class PonchoMapSchema {
+    /**
+     * @param {Array} data - Array de features GeoJSON tipo Point.
+     * @param {Object} [options={}] - Opciones de configuración.
+     * @param {string} [options.summary="Mapa de ubicaciones"] -
+     *   Nombre descriptivo del listado para el schema.
+     */
+    constructor(data, options = {}) {
+        const { origin = "", pathname = "" } = location ?? {};
+        this.location = `${origin}${pathname}`;
+
+        const defaults = { 
+            summary: "Mapa de ubicaciones",
+            scope: "pmSchema",
+            id_key: "id"
+        };
+        const opts = Object.assign({}, defaults, options);
+        this.summary = String(opts.summary || defaults.summary);
+        this.scope = String(opts.scope);
+        this.id_key = opts.id_key;
+        this.data = data;
+    }
+
+    /**
+     * Genera el objeto raíz del schema JSON-LD (ItemList).
+     *
+     * @param {Array} [items=[]] - Lista de elementos ListItem.
+     * @returns {Object} Objeto schema.org/ItemList.
+     */
+    header = (items = []) => {
+        if(items.length < 1){
+            return false;
+        }
+        return {
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            "name": this.summary,
+            "itemListElement": items
+        }
+    };
+
+
+    /**
+     * Crea un elemento ListItem a partir de un feature GeoJSON.
+     *
+     * Valida que el feature tenga geometría de tipo Point y que
+     * sus propiedades incluyan `name` e `id`.
+     *
+     * @param {number} position - Posición del elemento en la lista.
+     * @param {Object} entry - Feature GeoJSON.
+     * @returns {Object|undefined} Objeto schema.org/ListItem, o
+     *   undefined si el feature no es válido.
+     */
+    item = (position, entry) => {
+        if (!entry?.geometry || !entry?.properties) {
+            return;
+        }
+        if (entry.geometry.type !== "Point") {
+            return;
+        }
+        const [latitude, longitude] = entry.geometry.coordinates;
+        const { name } = entry.properties;
+        const id = entry.properties[this.id_key];
+
+        if (!name || !id) {
+            console.warn(
+                "La entrada no tiene 'name' o 'id' en properties.",
+                entry
+            );
+            return;
+        }
+
+        const safeId = encodeURIComponent(id);
+        return {
+            "@type": "ListItem",
+            position,
+            "item": {
+                "@type": "Place",
+                name,
+                "geo": {
+                    "@type": "GeoCoordinates",
+                    latitude,
+                    longitude
+                },
+                "url": `${this.location}#${safeId}`
+            }
+        };
+    };
+
+
+    /**
+     * Construye el schema completo como objeto JSON-LD.
+     *
+     * @returns {Object} Schema JSON-LD listo para serializar.
+     */
+    schema = () => this.header(this.createItems(this.data));
+
+
+    /**
+     * Recorre el array de datos y genera los ListItem válidos.
+     *
+     * @param {Array} data - Array de features GeoJSON.
+     * @returns {Array} Array de objetos ListItem.
+     */
+    createItems = (data) =>
+        data.reduce((collector, entry, index) => {
+            const schemaItem = this.item(index + 1, entry);
+            if (schemaItem) {
+                collector.push(schemaItem);
+            }
+            return collector;
+        }, []);
+
+
+    /**
+     * Inserta o actualiza el elemento
+     * `<script type="application/ld+json">` en el `<head>`.
+     *
+     * Si ya existe un elemento con id `pmSchema`, actualiza su
+     * contenido en lugar de crear uno nuevo.
+     *
+     * No se ejecuta si la cantidad de features supera
+     * `PonchoMapSchema.MAX_FEATURES` (500).
+     */
+    render = () => {
+        if (this.data.length > PonchoMapSchema.MAX_FEATURES) {
+            console.warn(
+                `PonchoMapSchema: se omite el schema porque el ` +
+                `número de features (${this.data.length}) supera ` +
+                `el límite de ${PonchoMapSchema.MAX_FEATURES}.`
+            );
+            return;
+        }
+
+        const schema = this.schema();
+        if (!schema) {
+            return;
+        }
+
+        const json = JSON.stringify(schema);
+        const existing = document.getElementById("pmSchema");
+        if (existing) {
+            existing.text = json;
+            return;
+        }
+
+        const script = document.createElement("script");
+        script.type = "application/ld+json";
+        script.id = `pmschema__${this.scope}`;
+        script.text = json;
+        document.head.appendChild(script);
+    };
+}
+
+/** Máximo de features permitidos para generar el schema. */
+PonchoMapSchema.MAX_FEATURES = 1000;
+
 
 /**
  * PONCHO MAP FILTRO POR PROVINCIAS
