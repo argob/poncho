@@ -4292,6 +4292,31 @@ class PonchoMap {
 
 
     /**
+     * Genera e inserta el schema JSON-LD en el `<head>` del documento.
+     *
+     * @returns {undefined}
+     */
+    _renderSchema = () => {
+        if(!this.render_schema){
+            return;
+        }
+        try {
+            const sch = new PonchoMapSchema(
+                this.entries,
+                {
+                    scope: this.scope,
+                    summary: this._summaryText(),
+                    id_key: this.id
+                }
+            );
+            sch.render();
+        } catch (error) {
+            this.logger.warn("No se puede crear Schema/JSON-LD");
+        }
+    };
+
+
+    /**
      * Hace el render del mapa.
      */
     render = () => {
@@ -4334,17 +4359,7 @@ class PonchoMap {
         this.layerViewConf.setVisuals();
         this.setMapAlignment(this.map_align);
 
-        try {
-            if(this.render_schema){
-                const sch = new PonchoMapSchema(
-                    this.entries, 
-                    {scope:this.scope,id_key: this.id}
-                );
-                sch.render();
-            }
-        } catch (error) {
-            this.logger.warn("No se puede crear Schema/JSON-LD");
-        }
+        this._renderSchema();
     };
 };
 // end class

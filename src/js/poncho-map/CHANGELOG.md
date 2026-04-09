@@ -4,7 +4,7 @@
 
 ### PonchoMap
 
- * Se creo el módulo para generar objeto schema.org JSON-LD automáticamente cuando el mapa tenga menos de 100 _markers_. A su vez se permite mediante una opción anular la creación del objeto dentro del head.
+ * Se creo el módulo para generar objeto schema.org JSON-LD automáticamente cuando el mapa tenga menos de 1000 _markers_. A su vez se permite mediante una opción anular la creación del objeto dentro del head.
 
 
 ## Release 2.2.2
