@@ -57,7 +57,7 @@
 /* SMN | Home */
 /* === Widget === */
 .weather-widget {
-  background-color: #F2F2F2 !important;
+  background-color: $gray-lighter !important;
   padding-top: 2rem !important;
   border-radius: .5rem;
 
@@ -87,6 +87,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
+
     @media (max-width: 450px) {
       flex-direction: column !important;
       align-items: center !important;
@@ -107,12 +108,19 @@
   #locality-search {
     border-radius: 8px;
     height: 70px;
-    border: 1px solid #ccc;
-    @media (max-width: 767px) { width: 100% !important; margin-bottom: 12px !important; }
+    border: 1px solid $gray-light;
+
+    @media (max-width: 767px) {
+      width: 100% !important;
+      margin-bottom: 12px !important;
+    }
   }
 
   #weather-description {
-    @media (max-width: 767px) { font-size: 14px !important; color: #555; }
+    @media (max-width: 767px) {
+      font-size: 14px !important;
+      color: $gray;
+    }
   }
 
   #weather-icon {
@@ -134,12 +142,24 @@
       display: inline-flex;
       align-items: center;
       line-height: 1;
+
       i { font-size: 14px; }
-      &::marker, &::-webkit-details-marker { display: none; }
-      &::before, &::after { content: none !important; display: none !important; }
+
+      &::marker,
+      &::-webkit-details-marker {
+        display: none;
+      }
+
+      &::before,
+      &::after {
+        content: none !important;
+        display: none !important;
+      }
     }
 
-    &:not([open]) .pi-tooltip-content { display: none; }
+    &:not([open]) .pi-tooltip-content {
+      display: none;
+    }
   }
 
   .pi-tooltip-content {
@@ -147,13 +167,15 @@
     top: 50%;
     left: 32px;
     transform: translateY(-50%);
-    background: #333;
-    color: #fff;
+    background: $gray-dark;
+    color: $white;
     padding: 6px 10px;
     border-radius: 6px;
     width: 220px;
     z-index: 10;
-    a { color: #fff; }
+
+    a { color: $white; }
+
     &::after {
       content: "";
       position: absolute;
@@ -162,7 +184,7 @@
       transform: translateY(-50%);
       border-style: solid;
       border-width: 6px 6px 6px 0;
-      border-color: transparent #333 transparent transparent;
+      border-color: transparent $gray-dark transparent transparent;
     }
   }
 
@@ -174,17 +196,26 @@
     grid-template-columns: 1fr 2fr 1fr 1fr 1fr 1fr;
     align-items: center;
     padding: .75em 0;
-    border-bottom: 1px solid #dee2e6;
+    border-bottom: 1px solid $gray-border;
     font-size: .9em;
     gap: 0 8px;
+
     &:last-child { border-bottom: none; }
 
-    .fc-day { font-weight: 700; color: #333; }
-    .fc-estado, .fc-min, .fc-max, .fc-lluvia, .fc-humedad {
+    .fc-day {
+      font-weight: 700;
+      color: $gray-dark;
+    }
+
+    .fc-estado,
+    .fc-min,
+    .fc-max,
+    .fc-lluvia,
+    .fc-humedad {
       display: flex;
       align-items: center;
       gap: 5px;
-      color: #333;
+      color: $gray-dark;
       white-space: nowrap;
     }
   }
@@ -196,39 +227,60 @@
 
     @media (max-width: 767px) {
       margin: 0 !important;
-      > .col-md-12 { padding: 0 !important; }
+
+      > .col-md-12 {
+        padding: 0 !important;
+      }
     }
   }
 
   /* === Search container === */
   .search-container {
     &.p-b-0.p-l-3 {
-      @media (max-width: 767px) { padding: 0 1rem !important; }
+      @media (max-width: 767px) {
+        padding: 0 1rem !important;
+      }
     }
+
     .row {
-      @media (max-width: 767px) { display: flex; flex-direction: column; gap: 10px; }
+      @media (max-width: 767px) {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
     }
-    .col-xs-6, .col-xs-3 {
-      @media (max-width: 767px) { width: 100%; max-width: 100%; }
+
+    .col-xs-6,
+    .col-xs-3 {
+      @media (max-width: 767px) {
+        width: 100%;
+        max-width: 100%;
+      }
     }
+
     .form-group {
-      @media (max-width: 767px) { margin-bottom: 0; }
+      @media (max-width: 767px) {
+        margin-bottom: 0;
+      }
     }
   }
 
   /* === Mobile === */
   @media (max-width: 767px) {
+
     .panel.bg-gray.p-x-3.p-b-3.p-t-0,
-    .panel.bg-gray.p-x-3.p-b-0.m-b-05.p-t-0.loaded { padding: 1rem !important; }
+    .panel.bg-gray.p-x-3.p-b-0.m-b-05.p-t-0.loaded {
+      padding: 1rem !important;
+    }
 
     /* Hero card */
     .principal {
       margin: 0 !important;
 
       .col-md-8 {
-        background: #fff;
+        background: $white;
         border-radius: 14px;
-        border: 1px solid #e5e5e5;
+        border: 1px solid $gray-hover;
         padding: 14px 16px;
         margin-bottom: 10px;
         width: 100%;
@@ -241,20 +293,24 @@
           > .d-flex.gap-4 {
             flex-direction: column !important;
             padding-left: 12px !important;
-            border-left: 1px solid #e0e0e0;
+            border-left: 1px solid $gray-light;
             gap: 8px !important;
 
-            > .d-flex { font-size: 13px !important; gap: 6px !important; }
+            > .d-flex {
+              font-size: 13px !important;
+              gap: 6px !important;
+            }
           }
         }
       }
     }
 
     /* Datos + Solares */
-    .datos, .solares {
-      background: #fff;
+    .datos,
+    .solares {
+      background: $white;
       border-radius: 14px;
-      border: 1px solid #e5e5e5 !important;
+      border: 1px solid $gray-hover !important;
       margin: 0 0 10px !important;
       padding: 12px 0 !important;
     }
@@ -264,21 +320,40 @@
       align-items: center !important;
       gap: 10px !important;
       padding: 6px 16px !important;
-      i { font-size: 1.4em !important; width: 32px; text-align: center; }
-      span { margin-left: auto; font-weight: 600; }
+
+      i {
+        font-size: 1.4em !important;
+        width: 32px;
+        text-align: center;
+      }
+
+      span {
+        margin-left: auto;
+        font-weight: 600;
+      }
     }
 
-    .col-xs-12:not(:last-child) .weather-col { border-bottom: 1px solid #f0f0f0; }
+    .col-xs-12:not(:last-child) .weather-col {
+      border-bottom: 1px solid $gray-hover-light;
+    }
 
     /* Forecast cards */
-    .forecast-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
-    .forecast-row:nth-child(n+5) { display: none; }
+    .forecast-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 6px;
+    }
+
+    .forecast-row:nth-child(n+5) {
+      display: none;
+    }
+
     .forecast-row {
       transition: all .2s ease;
       border-radius: 14px;
-      border: 1px solid #e5e5e5;
-      background: #fff;
-      box-shadow: 0 1px 2px #0000000d;
+      border: 1px solid $gray-hover;
+      background: $white;
+      box-shadow: 0 1px 2px rgba(68,68,68,.08);
     }
 
     /* Card Hoy */
@@ -290,11 +365,33 @@
       padding: 12px 17px;
       margin-bottom: 6px;
       border-bottom: none;
-      .fc-day { font-size: 12px; font-weight: 700; text-transform: uppercase; color: #888; }
+
+      .fc-day {
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: $brand-default;
+      }
+
       .fc-estado { font-size: 16px; }
-      .fc-max { font-size: 22px; font-weight: 700; text-align: right; }
-      .fc-min, .fc-lluvia { font-size: 13px; color: #777; }
-      .fc-humedad, .fc-max i, .fc-min i { display: none; }
+
+      .fc-max {
+        font-size: 22px;
+        font-weight: 700;
+        text-align: right;
+      }
+
+      .fc-min,
+      .fc-lluvia {
+        font-size: 13px;
+        color: $brand-default;
+      }
+
+      .fc-humedad,
+      .fc-max i,
+      .fc-min i {
+        display: none;
+      }
     }
 
     /* Cards futuras */
@@ -304,11 +401,39 @@
       padding: 12px 6px;
       text-align: center;
       gap: 3px;
-      .fc-day { font-size: 12px; color: #666; }
-      .fc-estado { flex-direction: column; i { font-size: 22px; margin: 4px 0; } span { display: none; } }
-      .fc-max { font-size: 16px; font-weight: 700; }
-      .fc-min { font-size: 12px; color: #888; }
-      .fc-max i, .fc-min i, .fc-lluvia, .fc-humedad { display: none; }
+
+      .fc-day {
+        font-size: 12px;
+        color: $gray;
+      }
+
+      .fc-estado {
+        flex-direction: column;
+
+        i {
+          font-size: 22px;
+          margin: 4px 0;
+        }
+
+        span { display: none; }
+      }
+
+      .fc-max {
+        font-size: 16px;
+        font-weight: 700;
+      }
+
+      .fc-min {
+        font-size: 12px;
+        color: $brand-default;
+      }
+
+      .fc-max i,
+      .fc-min i,
+      .fc-lluvia,
+      .fc-humedad {
+        display: none;
+      }
     }
   }
 
@@ -326,7 +451,11 @@
         padding-left: 0 !important;
         gap: 20px !important;
         width: 100%;
-        > .d-flex { justify-content: center; font-size: 13px; }
+
+        > .d-flex {
+          justify-content: center;
+          font-size: 13px;
+        }
       }
     }
   }
