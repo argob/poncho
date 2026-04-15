@@ -4272,6 +4272,11 @@
       },
     
       {
+        "nombre": "tableau",
+        "clase": "icono-arg-tableau"
+      },
+    
+      {
         "nombre": "tablero-gestion",
         "clase": "icono-arg-tablero-gestion"
       },
