@@ -53,3 +53,410 @@
 		}
 	}
 }
+
+/* SMN | Home */
+/* === Widget === */
+.weather-widget {
+  background-color: $gray-lighter !important;
+  padding-top: 2rem !important;
+  border-radius: .5rem;
+
+  #weather-content {
+    padding-bottom: 1rem;
+
+    .bg-gray {
+      > div:not(:first-child) {
+        opacity: .8;
+        filter: blur(8px);
+        transform: translateY(10px);
+        transition: all .5s ease;
+      }
+      &.loaded > div:not(:first-child) {
+        opacity: 1;
+        filter: blur(0);
+        transform: translateY(0);
+      }
+    }
+
+    .header-weather .h1 {
+      @media (max-width: 767px) { font-size: 34px !important; font-weight: 700 !important; }
+    }
+  }
+
+  .header-weather {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    @media (max-width: 450px) {
+      flex-direction: column !important;
+      align-items: center !important;
+      text-align: center !important;
+      gap: 6px !important;
+    }
+  }
+
+  .col-md-8 > .d-flex > div { white-space: nowrap; }
+
+  #location-name { display: contents; }
+
+  .location-header {
+    display: block;
+    h2 { margin: 0; }
+  }
+
+  #locality-search {
+    border-radius: 8px;
+    height: 70px;
+    border: 1px solid $gray-light;
+
+    @media (max-width: 767px) {
+      width: 100% !important;
+      margin-bottom: 12px !important;
+    }
+  }
+
+  #weather-description {
+    @media (max-width: 767px) {
+      font-size: 14px !important;
+      color: $gray;
+    }
+  }
+
+  #weather-icon {
+    @media (max-width: 767px) { font-size: 3rem !important; }
+    @media (max-width: 450px) { font-size: 2.5rem !important; }
+  }
+
+  /* === Tooltip === */
+  .pi-tooltip {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    top: 1px;
+    overflow: visible;
+
+    summary {
+      all: unset;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      line-height: 1;
+
+      i { font-size: 14px; }
+
+      &::marker,
+      &::-webkit-details-marker {
+        display: none;
+      }
+
+      &::before,
+      &::after {
+        content: none !important;
+        display: none !important;
+      }
+    }
+
+    &:not([open]) .pi-tooltip-content {
+      display: none;
+    }
+  }
+
+  .pi-tooltip-content {
+    position: absolute;
+    top: 50%;
+    left: 32px;
+    transform: translateY(-50%);
+    background: $gray-dark;
+    color: $white;
+    padding: 6px 10px;
+    border-radius: 6px;
+    width: 220px;
+    z-index: 10;
+
+    a { color: $white; }
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: -6px;
+      transform: translateY(-50%);
+      border-style: solid;
+      border-width: 6px 6px 6px 0;
+      border-color: transparent $gray-dark transparent transparent;
+    }
+  }
+
+  /* === Forecast desktop === */
+  .forecast-grid { width: 100%; }
+
+  .forecast-row {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr 1fr 1fr 1fr;
+    align-items: center;
+    padding: .75em 0;
+    border-bottom: 1px solid $gray-border;
+    font-size: .9em;
+    gap: 0 8px;
+
+    &:last-child { border-bottom: none; }
+
+    .fc-day {
+      font-weight: 700;
+      color: $gray-dark;
+    }
+
+    .fc-estado,
+    .fc-min,
+    .fc-max,
+    .fc-lluvia,
+    .fc-humedad {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      color: $gray-dark;
+      white-space: nowrap;
+    }
+  }
+
+  /* === Pronóstico header === */
+  .pronostico {
+    .d-flex.align-items-center.gap-1 { display: block; }
+    .h4.font-sans-serif.m-0 { display: contents; }
+
+    @media (max-width: 767px) {
+      margin: 0 !important;
+
+      > .col-md-12 {
+        padding: 0 !important;
+      }
+    }
+  }
+
+  /* === Search container === */
+  .search-container {
+    &.p-b-0.p-l-3 {
+      @media (max-width: 767px) {
+        padding: 0 1rem !important;
+      }
+    }
+
+    .row {
+      @media (max-width: 767px) {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+
+    .col-xs-6,
+    .col-xs-3 {
+      @media (max-width: 767px) {
+        width: 100%;
+        max-width: 100%;
+      }
+    }
+
+    .form-group {
+      @media (max-width: 767px) {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  /* === Mobile === */
+  @media (max-width: 767px) {
+
+    .panel.bg-gray.p-x-3.p-b-3.p-t-0,
+    .panel.bg-gray.p-x-3.p-b-0.m-b-05.p-t-0.loaded {
+      padding: 1rem !important;
+    }
+
+    /* Hero card */
+    .principal {
+      margin: 0 !important;
+
+      .col-md-8 {
+        background: $white;
+        border-radius: 14px;
+        border: 1px solid $gray-hover;
+        padding: 14px 16px;
+        margin-bottom: 10px;
+        width: 100%;
+
+        > .d-flex.justify-content-center {
+          flex-direction: row !important;
+          justify-content: space-between !important;
+          width: 100% !important;
+
+          > .d-flex.gap-4 {
+            flex-direction: column !important;
+            padding-left: 12px !important;
+            border-left: 1px solid $gray-light;
+            gap: 8px !important;
+
+            > .d-flex {
+              font-size: 13px !important;
+              gap: 6px !important;
+            }
+          }
+        }
+      }
+    }
+
+    /* Datos + Solares */
+    .datos,
+    .solares {
+      background: $white;
+      border-radius: 14px;
+      border: 1px solid $gray-hover !important;
+      margin: 0 0 10px !important;
+      padding: 12px 0 !important;
+    }
+
+    .weather-col {
+      display: flex !important;
+      align-items: center !important;
+      gap: 10px !important;
+      padding: 6px 16px !important;
+
+      i {
+        font-size: 1.4em !important;
+        width: 32px;
+        text-align: center;
+      }
+
+      span {
+        margin-left: auto;
+        font-weight: 600;
+      }
+    }
+
+    .col-xs-12:not(:last-child) .weather-col {
+      border-bottom: 1px solid $gray-hover-light;
+    }
+
+    /* Forecast cards */
+    .forecast-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 6px;
+    }
+
+    .forecast-row:nth-child(n+5) {
+      display: none;
+    }
+
+    .forecast-row {
+      transition: all .2s ease;
+      border-radius: 14px;
+      border: 1px solid $gray-hover;
+      background: $white;
+      box-shadow: 0 1px 2px rgba(68,68,68,.08);
+    }
+
+    /* Card Hoy */
+    .forecast-row[data-today="true"] {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 6px 12px;
+      padding: 12px 17px;
+      margin-bottom: 6px;
+      border-bottom: none;
+
+      .fc-day {
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: $brand-default;
+      }
+
+      .fc-estado { font-size: 16px; }
+
+      .fc-max {
+        font-size: 22px;
+        font-weight: 700;
+        text-align: right;
+      }
+
+      .fc-min,
+      .fc-lluvia {
+        font-size: 13px;
+        color: $brand-default;
+      }
+
+      .fc-humedad,
+      .fc-max i,
+      .fc-min i {
+        display: none;
+      }
+    }
+
+    /* Cards futuras */
+    .forecast-row:not([data-today="true"]) {
+      display: flex;
+      flex-direction: column;
+      padding: 12px 6px;
+      text-align: center;
+      gap: 3px;
+
+      .fc-day {
+        font-size: 12px;
+        color: $gray;
+      }
+
+      .fc-estado {
+        flex-direction: column;
+
+        i {
+          font-size: 22px;
+          margin: 4px 0;
+        }
+
+        span { display: none; }
+      }
+
+      .fc-max {
+        font-size: 16px;
+        font-weight: 700;
+      }
+
+      .fc-min {
+        font-size: 12px;
+        color: $brand-default;
+      }
+
+      .fc-max i,
+      .fc-min i,
+      .fc-lluvia,
+      .fc-humedad {
+        display: none;
+      }
+    }
+  }
+
+  /* === Mobile XS (≤450px) === */
+  @media (max-width: 450px) {
+    .principal .col-md-8 > .d-flex.justify-content-center {
+      flex-direction: column !important;
+      align-items: center !important;
+      gap: 12px !important;
+
+      > .d-flex.gap-4 {
+        flex-direction: row !important;
+        justify-content: center !important;
+        border-left: none !important;
+        padding-left: 0 !important;
+        gap: 20px !important;
+        width: 100%;
+
+        > .d-flex {
+          justify-content: center;
+          font-size: 13px;
+        }
+      }
+    }
+  }
+}
