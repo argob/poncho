@@ -10852,6 +10852,9 @@ a.alert.alert-danger i {
   padding-bottom: 0;
   text-align: center;
 }
+.highlight-box .media .media-left i {
+  color: var(--main-theme);
+}
 .highlight-box .media .media-body {
   width: auto;
   align-self: center;
@@ -10868,9 +10871,6 @@ a.alert.alert-danger i {
 .highlight-box .fa-3x,
 .highlight-box .fa-5x {
   font-size: var(--icon-size) !important;
-}
-.highlight-box i {
-  color: var(--main-theme);
 }
 .highlight-box p {
   margin-bottom: 1em;
