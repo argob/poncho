@@ -73,6 +73,10 @@ $colorThemesRecuadro: (
             }
 
             text-align: center;
+
+            i {
+                color: var(--main-theme);
+            }
         }
 
         .media-body {
@@ -97,9 +101,7 @@ $colorThemesRecuadro: (
         font-size: var(--icon-size) !important;
     }
 
-    i {
-        color: var(--main-theme);
-    }
+
 
     p {
         margin-bottom: 1em;
