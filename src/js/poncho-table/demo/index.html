@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poncho Table — Ejemplos</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            color: #333;
+        }
+        h1 { border-bottom: 2px solid #eee; padding-bottom: .5rem; }
+        ul { list-style: none; padding: 0; }
+        li {
+            padding: .75rem 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        li:last-child { border-bottom: none; }
+        a { font-weight: bold; text-decoration: none; color: #0066cc; }
+        a:hover { text-decoration: underline; }
+        p.description { margin: .25rem 0 0; color: #666; font-size: .9rem; }
+    </style>
+</head>
+<body>
+    <h1>Poncho Table — Ejemplos</h1>
+    <ul id="examples-list"></ul>
+
+    <script>
+        fetch("./examples.json")
+            .then(r => r.json())
+            .then(items => {
+                const list = document.getElementById("examples-list");
+                list.innerHTML = items.map(({ title, description, url }) => `
+                    <li>
+                        <a href="${url}">${title}</a>
+                        ${description ? `<p class="description">${description}</p>` : ""}
+                    </li>
+                `).join("");
+            })
+            .catch(err => {
+                document.getElementById("examples-list").innerHTML =
+                    `<li>Error al cargar examples.json: ${err.message}</li>`;
+            });
+    </script>
+</body>
+</html>
