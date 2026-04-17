@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head>
+  <link rel="profile" href="http://www.w3.org/1999/xhtml/vocab" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <script 
+      src="https://www.argentina.gob.ar/profiles/argentinagobar/libraries/jquery.jquery-371/jquery-3.7.1.min.js?v=3.7.1" >
+    </script>
+  <link 
+      rel="stylesheet" 
+      href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+  <link 
+      rel="stylesheet" 
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" 
+      integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+      crossorigin="anonymous" 
+      referrerpolicy="no-referrer" />  
+  <link 
+      rel="stylesheet" 
+      href="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css">
+  <!-- /Base -->
+  <link rel="stylesheet" href="https://qa2-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/poncho.min.css" />
+  <title>PonchoTable | issue-17704</title>
+  <style>
+    body {
+        padding: 2em;
+    }
+  </style>
+</head>
+<body class="p-t-3">
+    <h1>Wizard</h1>
+
+<div class="m-b-2 clearfix">
+  <p><strong>Creando un enlace html con un texto custom</strong></p>
+  <p class="js-sharelink-tag" data-label="Compartir enlace"></p>
+</div>
+
+<hr>
+<!-- 
+COPIAR DESDE ACÁ…
+-->
+<!-- SHOWDOWN -->
+<script src="https://www.argentina.gob.ar/sites/default/files/ponchotable/showdown.js"></script>
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/extensiones/showdown-extensions.js"></script>
+<!-- / SHOWDOWN -->
+
+<!-- INCLUDE SCRIPTS -->
+<link href="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/ponchoTable-1.1.css" rel="stylesheet">
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/datatables.min.js"></script>
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/intl.min.js"></script>
+<!-- <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script> -->
+
+<script src="../../utils/color.js"></script>
+<script src="../../utils/connect.js"></script>
+<script src="../../utils/string.js"></script>
+<script src="../../utils/html.js"></script>
+<script src="../poncho-table.js"></script>
+<script src="../poncho-table-dependant.js"></script>
+<script src="../../gapi-sheet-data/gapi-sheet-data.js"></script>
+<!-- / INCLUDE SCRIPTS -->
+
+<!-- FILTERS -->
+<div class="row">
+  <div class="col-sm-12 col-md-12" id="ponchoTableFiltroCont" style="display:none">
+    <div class="row" id="ponchoTableFiltro"></div>
+  </div>
+  <div class="col-sm-12 col-md-12" id="ponchoTableSearchCont" style="display: none">
+    <div class="form-group">
+      <label for="ponchoTableSearch">Buscá por nombre del trámite</label>
+      <input class="form-control" id="ponchoTableSearch" type="search">
+    </div>
+  </div>
+</div>
+<!-- / FILTERS -->
+<!-- TABLE -->
+<div class="row">
+    <div class="col-md-12 m-b-4">
+        <table class="table table-condensed table-striped" id="ponchoTable">
+        <colgroup>
+            <col>
+            <col>
+            <col style="min-width:110px">
+        </colgroup>
+        <caption></caption>
+        <thead></thead>
+        <tbody></tbody>
+        </table>
+    </div>
+</div>
+<!-- / TABLE -->
+
+<!-- FILTERS & SEARCH INPUT -->
+<div class="row">
+    <div class="col-sm-12 col-md-4" id="ponchoTableFiltroCont" style="display:none">
+        <div class="row" id="ponchoTableFiltro"></div>
+    </div>
+    <div class="col-sm-12 col-md-8" id="ponchoTableSearchCont" style="display: none">
+        <div class="form-group">
+            <label for="ponchoTableSearch">Buscá por palabra clave</label>
+            <input class="form-control" id="ponchoTableSearch" type="search">
+        </div>
+    </div>
+</div>
+<!-- / FILTERS & SEARCH INPUT -->
+
+<!-- TABLE -->
+<div class="row">
+    <div class="col-md-12 m-b-4">
+        <table class="table table-condensed table-striped" id="ponchoTable">
+            <caption></caption>
+            <thead></thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
+<!-- / TABLE -->
+
+<!-- CONFIGURACIÓN DE LA TABLA MARZO 2023 -->
+<script id="example-code">
+(async () => {
+    const ponchoTableOpciones = {
+        // idSpread: "19i_5DetFn3AuZPtTB7-XkitHW45owAfkIfl9ZCF_0Io",
+        idSpread: "1SYkIOKUm6koNa0UNPcrGgqaJa8O-6HAUy3RXJE2U1uo",
+        hojaNombre: "Carga de Kits",
+        tituloTabla: "Kits de soluciones digitales",
+        ordenColumna: 1,
+        ordenTipo: "asc",
+        ocultarColumnas: [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18],
+        cantidadItems: 10,
+        // filterClassList: ["col-sm-12", "col-md-6"],
+        // filterContClassList: ["col-md-4"],
+        // searchContClassList: ["col-md-8"],
+        hash: true,
+        allowedTags: [],
+        orderFilter: false,
+        // orderFilter: [["filtro-kit", "asc"]],
+        markdownOptions: {
+            // tables: true,
+            simpleLineBreaks: true,
+            extensions: [
+                // "details",
+                // "images",
+                // "alerts",
+                // "numbers",
+                // "ejes",
+                // "bootstrap-tables",
+                // "video"
+                "button",
+                "target"
+            ]
+        },
+        asFilter: (row) => {
+            return {
+                "filtro-kit": [
+                    "Básico-1",
+                    "Básico-2",
+                    "Básico-3",
+                    "Básico-4",
+                    "Básico-5",
+                    "Gestión-1",
+                    "Avanzado-1",
+                    "Avanzado-2",
+                    "Avanzado-3",
+                    "Avanzado-4",
+                    "Avanzado-5",
+                    "Avanzado-6"
+                ]
+            };
+        },
+        urlParams: true,
+        pushState: true,
+    };
+    ponchoTable(ponchoTableOpciones);
+})();
+</script>
+<!-- / PONCHOTABLE -->
+
+
+<!-- SHOW CODE -->
+<div class="container">
+    <div class="row m-y-2">
+        <div class="col-md-12">
+            <div data-code-from="example-code" data-title="Código del ejemplo"></div>
+        </div>
+    </div>
+</div>
+<script src="../../mapa-argentina/demo/js/demo.js"></script>
+<!-- / SHOW CODE -->
+</body>
+</html>
