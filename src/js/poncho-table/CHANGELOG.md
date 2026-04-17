@@ -1,4 +1,18 @@
+<!-- omit in toc -->
 # Changelog
+
+<!-- omit in toc -->
+## En esta página
+- [Release 2.3.1](#release-231)
+- [Release 2.3.0](#release-230)
+- [Release 2.2.2](#release-222)
+
+
+## Release 2.3.1
+
+* Corrección del bug que se producía cuando el filtro personalizado se pierde tras la actualización de un filtro precedente al utilizar la opción asFilter.
+* Los filtros customizados ahora se muestran completos cuando se elije la opción "Todos".
+* La función `_toCompareString` ahora utiliza `slugify` para limipiar una cadena de texto.
 
 ## Release 2.3.0
 

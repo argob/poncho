@@ -4,8 +4,8 @@
  * @summary PonchoTable con filtros dependientes
  *
  * @author Agustín Bouillet <abouillet@sicyt.gob.ar>
- * @requires jQuery
- * @see https://github.com/argob/poncho/blob/master/src/demo/poncho-maps/readme-poncho-maps.md
+ * @requires jQuery, slugify
+ * @see https://github.com/argob/poncho/blob/master/src/js/poncho-table/readme.md
  * @see https://datatables.net
  *
  *
@@ -332,17 +332,20 @@ const ponchoTableDependant = opt => {
      */
     const button = (label, value, ariaLabel=false) => {
 
-        let refactorAriaLabel = (ariaLabel ? `: ${ariaLabel}` : "");
-        refactorAriaLabel = refactorAriaLabel.replaceAll("*", "");
+        const srText = (ariaLabel ? `: ${ariaLabel}` : "")
+            .replaceAll("*", "") + " (Abre en una nueva ventana)";
+
+        const sr = document.createElement("span");
+        sr.className = "sr-only";
+        sr.textContent = srText;
 
         const btn = document.createElement("a");
-        btn.classList.add(
-            "btn", "btn-primary", "btn-sm", "margin-btn");
+        btn.classList.add("btn", "btn-primary", "btn-sm", "margin-btn");
         btn.href = value;
         btn.target = "_blank";
-        btn.innerHTML = `${label}<span class="sr-only">${refactorAriaLabel} (Abre en una nueva ventana)</span>`;
-        // btn.setAttribute("aria-label", `${refactorAriaLabel} (Abre en una nueva ventana)`);
         btn.setAttribute("rel", "noopener noreferrer");
+        btn.textContent = label;
+        btn.appendChild(sr);
 
         return btn.outerHTML;
     };
@@ -423,6 +426,7 @@ const ponchoTableDependant = opt => {
             select.dataset.filter = 1;
             select.name = f;
             select.id = f;
+
             select.appendChild(_optionSelect(columna, emptyLabel, "", true));
             list_filter.forEach(item => {
                 if(!item){
@@ -631,15 +635,18 @@ const ponchoTableDependant = opt => {
         // Cachear las claves de filtersList para evitar accesos repetidos
         const parentFilterKey = filtersList[parentIndex];
         const childFilterKey = filtersList[childIndex];
+        const childKey = _getFilterKey(childFilterKey);
 
         // Pre-calcular filtros custom si es necesario
-        let customFiltersLower;
+        let refactorFilter;
         if (isCustom) {
-            customFiltersLower = _customFilter(children, filtro)
-                .map(e => _toCompareString(e));
+            refactorFilter = filtro[childKey].map(({columna, value}) => {
+                const toCompare = _toCompareString(value);
+                return {columna, value, toCompare}
+            });
 
             // Si no hay filtros custom, retornar vacío
-            if (!customFiltersLower.length) {
+            if (!refactorFilter.length) {
                 return [];
             }
         }
@@ -658,14 +665,20 @@ const ponchoTableDependant = opt => {
             if (!evaluatedEntry) continue;
 
             if (isCustom) {
-                const entryLower = _toCompareString(evaluatedEntry);
+                // const entryLower = _toCompareString(evaluatedEntry);
                 // Buscar coincidencias en filtros custom
-                for (const customFilter of customFiltersLower) {
-                    if (entryLower.includes(customFilter)) {
-                        uniqueItems.add(evaluatedEntry);
-                        break; // Evitar agregar múltiples veces
-                    }
+                // for (const item of refactorFilter) {
+                //     const {value, toCompare} = item;
+                //     if (entryLower.includes( toCompare )) {
+                //         uniqueItems.add( value );
+                //     }
+                // }
+
+                for (const item of refactorFilter) {
+                    const {value} = item;
+                    uniqueItems.add(value);
                 }
+
             } else {
                 uniqueItems.add(evaluatedEntry);
             }
@@ -677,7 +690,8 @@ const ponchoTableDependant = opt => {
         }
 
         // Convertir Set a Array y ordenar
-        return _sortAlphaNumeric(Array.from(uniqueItems), childFilterKey);
+        return uniqueItems;
+        return _sortAlphaNumeric( Array.from(uniqueItems), childFilterKey );
     };
 
 
@@ -687,7 +701,8 @@ const ponchoTableDependant = opt => {
      * @param {string} value Valor a comparar.
      * @returns {boolean}
      */
-    const _toCompareString = value => replaceSpecialChars(value.toLowerCase());
+    // const _toCompareString = value => replaceSpecialChars(value.toLowerCase());
+    const _toCompareString = value => slugify(value);
 
 
     /**
@@ -713,16 +728,19 @@ const ponchoTableDependant = opt => {
         // Cachear las claves de filtersList para evitar accesos repetidos
         const parentFilterKey = filtersList[parentIndex];
         const childFilterKey = filtersList[childIndex];
+        const childKey = _getFilterKey(childFilterKey);
         const adjustedChildrenFilterKey = filtersList[adjustedChildren];
 
         // Pre-calcular filtros custom si es necesario
-        let customFiltersLower;
+        let refactorFilter;
         if (isCustom) {
-            customFiltersLower = _customFilter(adjustedChildren, filtro)
-                .map(e => _toCompareString(e));
+            refactorFilter = filtro[childKey].map(({columna, value}) => {
+                const toCompare = _toCompareString(value);
+                return {columna, value, toCompare}
+            });
 
             // Si no hay filtros custom, retornar vacío
-            if (!customFiltersLower.length) {
+            if (!refactorFilter.length) {
                 return [];
             }
         }
@@ -731,20 +749,27 @@ const ponchoTableDependant = opt => {
 
         for (const entry of gapi_data.entries) {
             // Verificaciones tempranas para evitar procesamiento innecesario
-            if (entry[parentFilterKey] !== label) continue;
-            if (!_validateSteps(parent, entry, label, values)) continue;
+
+            if (entry[parentFilterKey] !== label){
+                continue;
+            }
+            if (!_validateSteps(parent, entry, label, values)){
+                continue;
+            }
 
             const evaluatedEntry = entry[childFilterKey];
-            if (!evaluatedEntry) continue;
+            if (!evaluatedEntry){
+                continue;
+            }
 
             if (isCustom) {
                 const entryLower = _toCompareString(evaluatedEntry);
 
                 // Buscar coincidencias en filtros custom
-                for (const customFilter of customFiltersLower) {
-                    if (entryLower.includes(customFilter)) {
-                        uniqueItems.add(evaluatedEntry);
-                        break; // Evitar agregar múltiples veces
+                for (const item of refactorFilter) {
+                    const {toCompare, value} = item;
+                    if (entryLower.includes( toCompare )) {
+                        uniqueItems.add( value );
                     }
                 }
 
@@ -792,6 +817,13 @@ const ponchoTableDependant = opt => {
     };
 
     /**
+     * Remueve el prefijo `filtro-`
+     * @param {string} value 
+     * @returns {string}
+     */
+    const _getFilterKey = value => String(value).replace("filtro-", "");
+ 
+    /**
      * Tiene filtros personalizados
      * @param {integer} key Indice de filtro
      * @returns {boolean}
@@ -828,6 +860,7 @@ const ponchoTableDependant = opt => {
         // Hago un `for()` iniciando en el hijo de filterIndex.
         for(let i = filterIndex + 1; i < filtrosLength; i++){
             let itemList = _filterOptionList(filterIndex, i, label);
+
             if(itemList.length === 0){
                 itemList = _allFromParent(filterIndex, i, label);
             }
@@ -1091,7 +1124,7 @@ const ponchoTableDependant = opt => {
      * 
      */
     function _resetForm(){
-        const filters = filtersList.map(m => m.replace("filtro-", ""));
+        const filters = filtersList.map(m => _getFilterKey(m));
 
         document
             .querySelectorAll(`#ponchoTableSearch`)
@@ -1115,46 +1148,6 @@ const ponchoTableDependant = opt => {
      * Permite restablecer los filtros de búsqueda y el input search.
      * @returns {undefined}
      */
-    /*
-    function _resetFormButton(){
- 
-        if( !resetValues ){
-            return;
-        }
-
-        try {
-            document
-                .querySelectorAll("#poncho-table-reset-form")
-                .forEach(e => e.remove());
-        } catch (error) {
-            console.error(error);
-        }
-        
-        const resetBtn = document.createElement("a");
-        resetBtn.setAttribute(
-            "aria-label", "Restablecer resultados de la tabla");
-        resetBtn.id = "poncho-table-reset-form";
-        resetBtn.href = "#";
-        resetBtn.textContent = "Restablecer";
-        resetBtn.classList.add("js-pt-reset-form");
-        
-        const info = document.querySelector("#ponchoTable_info");
-        if(info){
-            const infoContainer = info.parentElement;
-            infoContainer.classList.add("share");
-            infoContainer.appendChild(resetBtn);
-        }
-
-        const element = document.querySelectorAll(".js-pt-reset-form");
-        element.forEach(function(event){
-            event.addEventListener("click", e => {
-                e.preventDefault();
-                _resetForm();
-            });
-        });
-    }
-    */
-
     function _resetFormButton() {
         // Verificación temprana
         if (!resetValues) {
@@ -1226,7 +1219,7 @@ const ponchoTableDependant = opt => {
         // let searchValues = Object.entries(Object.fromEntries(searchUrl));
         const url = new URL(window.location.pathname, window.location.origin);
 
-        const filters = filtersList.map(m => m.replace("filtro-", ""));
+        const filters = filtersList.map(m => _getFilterKey(m));
         const inputs = [ ...filters, "ponchoTableSearch" ];
         const inputValuesConcat = inputs.map(function(input){
             const v = document.getElementById(input);
@@ -1381,14 +1374,6 @@ const ponchoTableDependant = opt => {
         // _styleOnHead();
         _copyToClipboard();
     }
-
-
-    // function _styleOnHead(){
-    //     headStyle(
-    //         "ponchoTable-share", 
-    //         `.share{display:flex;gap:1.5em;align-items:baseline}`
-    //         +`.share .dropdown-menu{min-width:250px}`);
-    // }
 
 
     /**
@@ -1628,7 +1613,8 @@ const ponchoTableDependant = opt => {
                 const columnIndex = filterIndex(filters[k]);
                 const term = _searchTerm(filterValues[k]);
                 const cleanTerm = _searchTerm(
-                    replaceSpecialChars(filterValues[k]));
+                    replaceSpecialChars(filterValues[k])
+                );
 
                 if(_isCustomFilter(k, filtro)){
                     tabla.columns(columnIndex)
@@ -1644,9 +1630,6 @@ const ponchoTableDependant = opt => {
             });
 
             tabla.draw();
-            window.addEventListener("popstate", (event) => {
-
-            });
             if(wizard){
                 _wizardFilters(filters, column, valFilter);
             }
@@ -1730,6 +1713,7 @@ const ponchoTableDependant = opt => {
      * @param {object} data JSON data
      */
     const render = data => {
+
         // Defino la variable global
         gapi_data = data;
         // Defino las entradas
@@ -1748,8 +1732,9 @@ const ponchoTableDependant = opt => {
         filtersList = Object
                 .keys(gapi_data.headers)
                 .filter(e => e.startsWith("filtro-"));
-
+        // Filtro custom
         asFilter = (opt.asFilter ? opt.asFilter(gapi_data.entries) : {});
+        // Filtro custom
         filtro = flterMatrix(gapi_data, filtersList);
 
         _filtersContainerClassList();
@@ -1758,17 +1743,18 @@ const ponchoTableDependant = opt => {
         _createFilters(gapi_data);
 
         document.querySelector("#ponchoTableSearchCont")
-            .style.display = "block";
+                .style.display = "block";
         document.querySelector("#ponchoTable")
-            .classList.remove("state-loading");
+                .classList.remove("state-loading");
 
         initDataTable();
         _shareLink();
         _resetFormButton();
-        // _styleOnHead();
 
         setTimeout(() => {
-            const ele = document.querySelectorAll(`[id^="dt-search-"], #ponchoTable_filter`);
+            const ele = document.querySelectorAll(
+                `[id^="dt-search-"], #ponchoTable_filter`
+            );
             ele.forEach(elem => {
                 elem.closest(".row").remove();
             });
@@ -1800,10 +1786,11 @@ const ponchoTableDependant = opt => {
      */
     const getSheetName = sheetNumber => {
         const gapi = new GapiSheetData();
-        const uriApi = [
-            "https://sheets.googleapis.com/v4/spreadsheets/",
-            opt.idSpread, "/?alt=json&key=",
-            gapi.gapi_key].join("");
+        const uriApi = new URL(
+            `https://sheets.googleapis.com/v4/spreadsheets/${opt.idSpread}/`
+        );
+        uriApi.searchParams.set("alt", "json");
+        uriApi.searchParams.set("key", gapi.gapi_key);
 
         jQuery.getJSON(uriApi, function function_name(response) {
             var sheetName = response.sheets[sheetNumber - 1].properties.title;
