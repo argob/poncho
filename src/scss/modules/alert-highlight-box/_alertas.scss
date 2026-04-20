@@ -140,17 +140,16 @@ $colorThemesAlerts: (
 );
 
 @each $themeName, $themeValues in $colorThemesAlerts {
-    #{$scopeAlert}-#{$themeName} {
+    #{$scopeAlert}#{$scopeAlert}-#{$themeName} {
         background-color: #{map-get($themeValues, backgroundColor)};
         border-left: 0.333rem solid #{map-get($themeValues, themeColor)};
     }
-    #{$scopeAlert}-#{$themeName} .media-left i {
+    #{$scopeAlert}#{$scopeAlert}-#{$themeName} .media-left i {
         color: #{map-get($themeValues, themeColor)};
     }
-    #{$scopeAlert}-#{$themeName} .btn {
+    #{$scopeAlert}#{$scopeAlert}-#{$themeName} .btn {
 
-
-                @include button-variant(
+        @include button-variant(
             map-get($themeValues, buttonColor),
             map-get($themeValues, themeColor),
             map-get($themeValues, themeColor)
