@@ -5,6 +5,7 @@ $scopeAlert: ".alert-highlight-box";
 #{$recuadrosScope},
 #{$scopeAlert} {
     --main-theme: #555;
+    --main-background: white;
     --main-shadow-spread-size: 8px;
     --main-box-shadow: 4px 4px calc(var(--main-shadow-spread-size) + 1px) 
         rgba(0, 0, 0, 0.175);
