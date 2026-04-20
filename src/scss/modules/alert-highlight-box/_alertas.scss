@@ -2,7 +2,6 @@
  * ALERTAS 
  */
 
-
 /**
  * Definición para los temas de color.
  */
@@ -18,7 +17,7 @@ $colorThemesAlerts: (
         buttonColor: white,
     ),
     "danger": (
-        themeColor:$brand-arg-rojo,
+        themeColor: $brand-arg-rojo,
         backgroundColor: lighten($brand-arg-rojo, 50%),
         buttonColor: white,
     ),
@@ -34,8 +33,6 @@ $colorThemesAlerts: (
     ),
 );
 
-
-
 #{$scopeAlert} {
     --icon-size: 2rem;
 
@@ -47,10 +44,11 @@ $colorThemesAlerts: (
     border-bottom: none;
     border-left: var(--main-border-left-weight) solid var(--main-theme);
     border-radius: 2px;
-    padding: var(--main-padding) var(--main-padding) var(--main-padding) var(--media-col-gap);
+    padding: var(--main-padding) var(--main-padding) var(--main-padding)
+        var(--media-col-gap);
     margin-bottom: $grid-gutter-width;
     color: #555;
-    background-color:  var(--main-background);
+    background-color: var(--main-background);
     // box-shadow: var(--main-box-shadow);
 
     // Si el componente no tiene icono
@@ -115,13 +113,12 @@ $colorThemesAlerts: (
 
     .btn {
         @include button-variant(
-            $brand-arg-primary, 
-            #fff, 
+            $brand-arg-primary,
+            #fff,
             $brand-arg-gray-light
         );
     }
 }
-
 
 @media (max-width: 768px) {
     #{$scopeAlert} {
@@ -139,15 +136,19 @@ $colorThemesAlerts: (
     }
 }
 
-
 @each $themeName, $themeValues in $colorThemesAlerts {
     #{$scopeAlert}.#{$themeName} {
         --main-theme: #{map-get($themeValues, themeColor)};
         --main-background: #{map-get($themeValues, backgroundColor)};
-
+    }
+    #{$scopeAlert}.#{$themeName} .btn {
+        @include button-variant(
+            map-get($themeValues, buttonColor),
+            map-get($themeValues, themeColor),
+            map-get($themeValues, themeColor)
+        );
     }
 }
-
 
 /* 
 Fix para evitar el overflow hidden 
@@ -157,10 +158,9 @@ No se puede modificar el orden de las hojas de estilos, por lo que se hace
 esta corrección para evitar que el recuadro se corte.
 */
 .media:has(> #{$scopeAlert}) #{$scopeAlert} {
-    width:calc(100% - (var(--main-shadow-spread-size) + 2px));
+    width: calc(100% - (var(--main-shadow-spread-size) + 2px));
     margin-top: 4px;
 }
-
 
 /* 
     Container para el recuadro destacado. 
@@ -168,8 +168,7 @@ esta corrección para evitar que el recuadro se corte.
 */
 .highlight-wrapper {
     container: sidebar / inline-size;
-    clear:both;
-    
+    clear: both;
 }
 
 .highlight-wrapper.container-fluid > #{$scopeAlert} {
@@ -180,7 +179,7 @@ esta corrección para evitar que el recuadro se corte.
     #{$scopeAlert} {
         box-sizing: border-box;
         //width: 66.66666667%;
-        width: calc( (100% / 3) * 2);
+        width: calc((100% / 3) * 2);
         margin: auto;
     }
 }
