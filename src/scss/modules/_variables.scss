@@ -46,6 +46,7 @@ $font-family-serif: 'Lora',serif !default;
 $font-base-weight: 18px !default;
 $font-family-base: $font-family-sans-serif;
 
+
 @mixin family-sans-serif-attributes {
     letter-spacing:-.15pt;
     font-size: $font-base-weight;
@@ -62,25 +63,35 @@ $font-family-base: $font-family-sans-serif;
 /***
  * Variables de espacios
  */
-$space-auto: auto;
-$space-0: 0px;
-$space-xs: 0.25rem;
-$space-05: 0.5rem;
-$space-1: 1rem;
-$space-2: 1.5rem;
-$space-3: 3rem;
-$space-4: 4rem;
+$space-auto: auto !default;
+$space-0: 0px !default;
+$space-xs: 0.25rem !default;
+$space-05: 0.5rem !default;
+$space-1: 1rem !default;
+$space-2: 1.5rem !default;
+$space-3: 3rem !default;
+$space-4: 4rem !default;
 
 
 /**
  * Variables de peso tipográfico
  */
-$fw-thin: 100;
-$fw-extra-light: 200;
-$fw-light: 300;
-$fw-normal: 400;                   
-$fw-medium: 500;
-$fw-semibold: 600;
-$fw-bold: 700;
-$fw-extra-bold: 800;
-$fw-black: 900;
+$fw-thin: 100 !default;
+$fw-extra-light: 200 !default;
+$fw-light: 300 !default;
+$fw-normal: 400 !default;                   
+$fw-medium: 500 !default;
+$fw-semibold: 600 !default;
+$fw-bold: 700 !default;
+$fw-extra-bold: 800 !default;
+$fw-black: 900 !default;
+
+
+/**
+ * Generador de clases de bordes de colores
+ * ([nombre], [valor])
+ */
+$border-heavy: 6px !default;
+$border-thick: 3px !default;
+$border-medium: 2px !default;
+$border-light: 1px !default;   
