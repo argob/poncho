@@ -16108,7 +16108,6 @@ ul.list-accion {
   row-gap: 30px;
   align-items: start;
 }
-
 ul.list-accion > li {
   padding: 0px;
   background-color: transparent;
@@ -16119,27 +16118,21 @@ ul.list-accion > li {
   list-style: none;
   align-items: start;
 }
-
-.list-accion a.btn {
+ul.list-accion > li > a.btn {
   margin-bottom: 0;
+  display: table;
 }
 
 @media (max-width: 1180px) {
   ul.list-accion {
     grid-template-columns: repeat(1, 1fr);
   }
-  .list-accion li > a {
-    margin-bottom: 0;
-    display: table;
-  }
-  #descargas {
-    margin: 40px 0;
-  }
 }
 #descargas {
   margin: 40px 0;
 }
 
+/*  / ASIDE  */
 @media (max-width: 992px) {
   .tramite-accion p {
     font-size: 0.9rem;
@@ -16149,7 +16142,6 @@ ul.list-accion > li {
     margin-top: 20px;
   }
 }
-/*  / ASIDE  */
 /*lista ordenada*/
 .servicio-timeline {
   list-style: none;
