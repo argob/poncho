@@ -57,7 +57,6 @@
 /* / NAV */
 
 /*  ASIDE A */
-
 .accion-pasos {
     border-top: #{$border-medium} solid #{$brand-arg-info};
     font-weight: #{$fw-semibold};
@@ -71,41 +70,36 @@ ul.list-accion {
     column-gap: #{$grid-gutter-width};
     row-gap: #{$grid-gutter-width};
     align-items: start;
-}
 
-ul.list-accion > li {
-    padding: 0px;
-    background-color: transparent;
-    font-size: 0.9rem;
-    width: auto !important;
-    margin: 0px;
-    vertical-align: text-top;
-    list-style: none;
-    align-items: start;
-}
+    > li {
+        padding: 0px;
+        background-color: transparent;
+        font-size: 0.9rem;
+        width: auto !important;
+        margin: 0px;
+        vertical-align: text-top;
+        list-style: none;
+        align-items: start;
 
-.list-accion a.btn {
-    margin-bottom: 0;
+        > a.btn {
+            margin-bottom: 0;
+            display: table;
+        }
+    }
 }
 
 @media (max-width: 1180px) {
     ul.list-accion {
         grid-template-columns: repeat(1, 1fr);
     }
-
-    .list-accion li > a {
-        margin-bottom: 0;
-        display: table;
-    }
-
-    #descargas {
-        margin: 40px 0;
-    }
 }
 
 #descargas {
     margin: 40px 0;
 }
+
+/*  / ASIDE  */
+
 
 @media (max-width: 992px) {
     .tramite-accion p {
@@ -116,7 +110,7 @@ ul.list-accion > li {
         margin-top: 20px;
     }
 }
-/*  / ASIDE  */
+
 
 /*lista ordenada*/
 .servicio-timeline {
