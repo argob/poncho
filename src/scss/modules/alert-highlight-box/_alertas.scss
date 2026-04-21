@@ -137,7 +137,7 @@ $colorThemesAlerts: (
 }
 
 @each $themeName, $themeValues in $colorThemesAlerts {
-    #{$scopeAlert}.#{$themeName} {
+    #{$scopeAlert}.alert-#{$themeName} {
         --main-theme: #{map-get($themeValues, themeColor)};
         --main-background: #{map-get($themeValues, backgroundColor)};
     }
