@@ -16128,7 +16128,7 @@ ul.list-accion > li {
   ul.list-accion {
     grid-template-columns: repeat(1, 1fr);
   }
-  .list-accion > a {
+  .list-accion li > a {
     margin-bottom: 0;
     display: table;
   }
@@ -16136,7 +16136,6 @@ ul.list-accion > li {
     margin: 40px 0;
   }
 }
-/*******/
 #descargas {
   margin: 40px 0;
 }
