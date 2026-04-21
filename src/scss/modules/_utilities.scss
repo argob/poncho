@@ -98,15 +98,15 @@
  * ([nombre], [valor]) 
  */
 $configTypeWeights: (
-    ("thin", $fw-100),
-    ("extra-light", $fw-200),
-    ("light", $fw-300),
-    ("normal", $fw-400),
-    ("medium", $fw-500),
-    ("semibold", $fw-600),
-    ("bold", $fw-700),
-    ("extra-bold", $fw-800),
-    ("black", $fw-900)
+    ("thin", $fw-thin),
+    ("extra-light", $fw-extra-light),
+    ("light", $fw-light),
+    ("normal", $fw-normal),
+    ("medium", $fw-medium),
+    ("semibold", $fw-semibold),
+    ("bold", $fw-bold),
+    ("extra-bold", $fw-extra-bold),
+    ("black", $fw-black)
 );
 
 @each $name, $value in $configTypeWeights {
