@@ -340,6 +340,12 @@ html {
   --white:#FFFFFF;
 }
 
+/***
+ * Variables de espacios
+ */
+/**
+ * Variables de peso tipográfico
+ */
 /*
 Se agrega: letter-spacing
 Se cambia el width de la funete
@@ -10829,7 +10835,7 @@ a.alert.alert-danger i {
   border-left: var(--main-border-left-weight) solid var(--main-theme);
   border-radius: 2px;
   padding: var(--main-padding) var(--main-padding) var(--main-padding) var(--media-col-gap);
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   color: #555;
   background-color: var(--main-background);
 }
@@ -11187,7 +11193,7 @@ esta corrección para evitar que el recuadro se corte.
   border-left: var(--main-border-left-weight) solid var(--main-theme);
   border-radius: 2px;
   padding: var(--main-padding) var(--main-padding) var(--main-padding) var(--media-col-gap);
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   color: #555;
   background-color: white;
   box-shadow: var(--main-box-shadow);

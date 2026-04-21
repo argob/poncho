@@ -338,6 +338,12 @@ html {
   --white:#FFFFFF;
 }
 
+/***
+ * Variables de espacios
+ */
+/**
+ * Variables de peso tipográfico
+ */
 html,
 body {
   font-size: 16px;
