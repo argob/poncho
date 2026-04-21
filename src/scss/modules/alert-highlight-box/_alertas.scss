@@ -141,7 +141,7 @@ $colorThemesAlerts: (
         --main-theme: #{map-get($themeValues, themeColor)};
         --main-background: #{map-get($themeValues, backgroundColor)};
     }
-    #{$scopeAlert}.#{$themeName} .btn {
+    #{$scopeAlert}.alert-#{$themeName} .btn {
         @include button-variant(
             map-get($themeValues, buttonColor),
             map-get($themeValues, themeColor),
