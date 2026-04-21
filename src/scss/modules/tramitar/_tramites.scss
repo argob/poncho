@@ -89,7 +89,7 @@
     .accion-pasos {
         border-top: #{$border-medium} solid #{$brand-arg-info};
         font-weight: #{$fw-semibold};
-        padding-top: #{$space-05};
+        // padding-top: #{$space-xs}; @todo hay que revisar la columna aside.
         @include family-sans-serif-attributes;
     }
 
@@ -125,6 +125,7 @@
 
         .list-accion > a {
             margin-bottom: 0;
+            display: table;
         }
 
         #descargas {
