@@ -10927,7 +10927,7 @@ a.alert.alert-danger i {
     text-align: left;
   }
 }
-.alert-highlight-box.default {
+.alert-highlight-box.alert-default {
   --main-theme: #555;
   --main-background: white;
 }
@@ -10969,7 +10969,7 @@ a.alert.alert-danger i {
   background-color: white;
 }
 
-.alert-highlight-box.info {
+.alert-highlight-box.alert-info {
   --main-theme: #039BE5;
   --main-background: rgb(232.2974137931, 247.3663793103, 254.7025862069);
 }
@@ -11011,7 +11011,7 @@ a.alert.alert-danger i {
   background-color: white;
 }
 
-.alert-highlight-box.danger {
+.alert-highlight-box.alert-danger {
   --main-theme: #C62828;
   --main-background: rgb(252.1428571429, 240.8571428571, 240.8571428571);
 }
@@ -11053,7 +11053,7 @@ a.alert.alert-danger i {
   background-color: white;
 }
 
-.alert-highlight-box.success {
+.alert-highlight-box.alert-success {
   --main-theme: #2E7D33;
   --main-background: rgb(238.3333333333, 248.8666666667, 239);
 }
@@ -11095,7 +11095,7 @@ a.alert.alert-danger i {
   background-color: white;
 }
 
-.alert-highlight-box.warning {
+.alert-highlight-box.alert-warning {
   --main-theme: #FCBF49;
   --main-background: rgb(254.6464864865, 247.4583783784, 233.5535135135);
 }
