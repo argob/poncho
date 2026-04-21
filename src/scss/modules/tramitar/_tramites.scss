@@ -57,47 +57,126 @@
 }
 /* / NAV */
 
-/*  ASIDE  */
-.accion-pasos {
-    border-top: 2px solid #5a7290;
-    font-weight: 600;
-    font-family: "Montserrat", sans-serif;
-    font-size: 18px;
-}
+// .accion-pasos {
+//     border-top: 2px solid $brand-info;
+//     font-weight: 600;
+// }
 
-.list-accion {
-    ul {
-        width: 100%;
-        padding: 0px;
+// .list-accion {
+//     ul {
+//         width: 100%;
+//         padding: 0px;
+//     }
+
+//     > li {
+//         padding: 0px;
+//         font-size: 0.9rem;
+//         display: inline-grid;
+//         width: 31%;
+//         margin: 10px 16px 40px 0px;
+//         vertical-align: text-top;
+//     }
+
+//     a {
+//         display: table;
+//         margin-bottom: 12px;
+//     }
+// }
+
+
+/*  ASIDE A */
+
+    .accion-pasos {
+        border-top: #{$border-medium} solid #{$brand-arg-info};
+        font-weight: #{$fw-semibold};
+        padding-top: #{$space-05};
+        @include family-sans-serif-attributes;
     }
 
-    > li {
+
+    ul.list-accion {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        column-gap: #{$grid-gutter-width};
+        row-gap: #{$grid-gutter-width};
+        align-items: start;
+    }
+
+    ul.list-accion > li {
         padding: 0px;
+        background-color: transparent;
         font-size: 0.9rem;
-        width: 30%;
-        margin: 10px 16px 40px 0px;
+        width: auto !important;
+        margin: 0px;
         vertical-align: text-top;
         list-style: none;
-    }
-}
-
-@media (max-width: 1180px) {
-    .list-accion {
-        > li {
-            width: 98%;
-            margin: 1%;
-            display: block;
-        }
-        a {
-            display: table;
-            margin-bottom: 12px;
-        }
+        align-items: start;
     }
 
-    #descargas {
-        margin: 40px 0;
+    .list-accion a.btn {
+        margin-bottom: 0
     }
+
+
+    @media (max-width: 1180px) {
+        ul.list-accion {
+            grid-template-columns: repeat(1, 1fr);
+        }
+
+        .list-accion > a {
+            margin-bottom: 0;
+        }
+
+        #descargas {
+            margin: 40px 0;
+        }
+    }
+
+
+/*******/
+// .accion-pasos {
+//     border-top: #{$border-medium} solid #{$brand-arg-info};
+//     font-weight: #{$fw-bold};
+//     @include family-sans-serif-attributes;
+// }
+
+// .list-accion {
+//     ul {
+//         width: 100%;
+//         padding: 0px;
+//     }
+
+//     > li {
+//         padding: 0px;
+//         font-size: 0.9rem;
+//         // width: 30%;
+//         margin: 10px 16px 40px 0px;
+//         vertical-align: text-top;
+//         list-style: none;
+//     }
+// }
+
+#descargas {
+    margin: 40px 0;
 }
+
+// @media (max-width: 1180px) {
+//     .list-accion {
+//         > li {
+//             width: 98%;
+//             margin: 1%;
+//             display: block;
+//         }
+//         a {
+//             display: table;
+//             margin-bottom: 12px;
+//         }
+//     }
+
+//     #descargas {
+//         margin: 40px 0;
+//     }
+// }
 
 @media (max-width: 992px) {
     .tramite-accion p {
@@ -159,6 +238,12 @@
         padding-left: 0.4em;
     }
 }
+
+
+
+
+
+
 
 /* Trámites (iconos)
    ======================================================================== */
