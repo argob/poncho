@@ -4,6 +4,7 @@ $scopeAlert: ".alert-highlight-box";
 
 #{$recuadrosScope},
 #{$scopeAlert} {
+    --icon-size: 2rem;
     --main-theme: #555;
     --main-background: white;
     --main-shadow-spread-size: 8px;
@@ -14,4 +15,6 @@ $scopeAlert: ".alert-highlight-box";
     --main-padding: #{$grid-gutter-width / 2};
     --media-col-gap: #{$grid-gutter-width / 3};
     --media-row-gap: calc(var(--media-col-gap) / 2);
+
+    --media-grid-template-columns: calc(var(--icon-size) + 1.5em) 1fr;
 }

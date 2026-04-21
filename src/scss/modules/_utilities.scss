@@ -1,27 +1,27 @@
 .border {
     border-style: solid !important;
-    border-width: 1px !important;
+    border-width: $border-light !important;
     border-color: var(--arg-gray-light) !important;
 }
 
 .border-top {
     border-top-style: solid !important;
-    border-top-width: 1px !important;
+    border-top-width: $border-light !important;
     border-top-color: var(--arg-gray-light) !important;
 }
 .border-bottom {
     border-bottom-style: solid !important;
-    border-bottom-width: 1px !important;
+    border-bottom-width: $border-light !important;
     border-bottom-color: var(--arg-gray-light) !important;
 }
 .border-right {
     border-right-style: solid !important; 
-    border-right-width: 1px !important;
+    border-right-width: $border-light !important;
     border-right-color: var(--arg-gray-light) !important;
 }
 .border-left {
     border-left-style: solid !important;
-    border-left-width: 1px !important;
+    border-left-width: $border-light !important;
     border-left-color: var(--arg-gray-light) !important;
 }
 
@@ -46,21 +46,18 @@
 }
 
 .border-medium {
-    border-width: 2px !important;
+    border-width: $border-medium !important;
 }
 
 .border-thick {
-    border-width: 3px !important;
+    border-width: $border-thick !important;
 }
-
-// .border-extra-thick {
-//     border-width:6px
-// }
 
 .border-heavy {
-    border-width:6px !important;
+    border-width: $border-heavy !important;
 }
 
+// Color para los bordes
 .border-arg-default {
     border-color: var(--arg-default) !important
 }
