@@ -93,22 +93,20 @@
 }
 
 
-
-
 /**
  * Generador de variables tipográficas 
  * ([nombre], [valor]) 
  */
 $configTypeWeights: (
-    ("thin", 100),
-    ("extra-light", 200),
-    ("light", 300),
-    ("normal", 400),
-    ("medium", 500),
-    ("semibold", 600),
-    ("bold", 700),
-    ("extra-bold", 800),
-    ("black", 900)
+    ("thin", $fw-100),
+    ("extra-light", $fw-200),
+    ("light", $fw-300),
+    ("normal", $fw-400),
+    ("medium", $fw-500),
+    ("semibold", $fw-600),
+    ("bold", $fw-700),
+    ("extra-bold", $fw-800),
+    ("black", $fw-900)
 );
 
 @each $name, $value in $configTypeWeights {
@@ -116,7 +114,6 @@ $configTypeWeights: (
         font-weight: #{$value} !important;
     }
 }
-
 
 /**
  * Generador de espacios gap
@@ -145,15 +142,18 @@ $configGap: (
  * ([nombre], [valor]) 
  */
 $configSpaces: (
-    (auto, auto),
-    (0, 0px),
-    ("xs", 0.25rem),
-    ("05", 0.5rem),
-    (1, 1rem),
-    (2, 1.5rem),
-    (3, 3rem),
-    (4, 4rem)
+    (auto, $space-auto),
+    (0, $space-0),
+    ("xs", $space-xs),
+    ("05", $space-05),
+    (1, $space-1),
+    (2, $space-2),
+    (3, $space-3),
+    (4, $space-4)
 );
+
+
+
 
 @each $name, $value in $configSpaces {
     @if $name !=auto {
