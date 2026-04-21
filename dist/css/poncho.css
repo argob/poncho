@@ -346,6 +346,10 @@ html {
 /**
  * Variables de peso tipográfico
  */
+/**
+ * Generador de clases de bordes de colores
+ * ([nombre], [valor])
+ */
 /*
 Se agrega: letter-spacing
 Se cambia el width de la funete
@@ -10806,6 +10810,7 @@ a.alert.alert-danger i {
 
 .highlight-box,
 .alert-highlight-box {
+  --icon-size: 2rem;
   --main-theme: #555;
   --main-background: white;
   --main-shadow-spread-size: 8px;
@@ -10816,6 +10821,7 @@ a.alert.alert-danger i {
   --main-padding: 15px;
   --media-col-gap: 10px;
   --media-row-gap: calc(var(--media-col-gap) / 2);
+  --media-grid-template-columns: calc(var(--icon-size) + 1.5em) 1fr;
 }
 
 /**
@@ -10825,7 +10831,6 @@ a.alert.alert-danger i {
  * Definición para los temas de color.
  */
 .alert-highlight-box {
-  --icon-size: 2rem;
   clear: both;
   width: 100%;
   position: relative;
@@ -10843,7 +10848,7 @@ a.alert.alert-danger i {
   padding: var(--main-padding);
 }
 .alert-highlight-box .media {
-  grid-template-columns: calc(var(--icon-size) + 1.5em) 1fr;
+  grid-template-columns: var(--media-grid-template-columns);
   display: grid;
   gap: var(--media-col-gap);
 }
@@ -11182,7 +11187,6 @@ esta corrección para evitar que el recuadro se corte.
  * Definición para los temas de color.
  */
 .highlight-box {
-  --icon-size: 2rem;
   clear: both;
   width: 100%;
   position: relative;
@@ -11202,7 +11206,7 @@ esta corrección para evitar que el recuadro se corte.
   padding: var(--main-padding);
 }
 .highlight-box .media {
-  grid-template-columns: calc(var(--icon-size) + 1.5em) 1fr;
+  grid-template-columns: var(--media-grid-template-columns);
   display: grid;
   gap: var(--media-col-gap);
 }
