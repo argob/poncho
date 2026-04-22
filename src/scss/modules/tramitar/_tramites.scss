@@ -57,10 +57,13 @@
 /* / NAV */
 
 /*  ASIDE A */
+h3.accion-pasos {
+    padding-top: #{$space-xs};
+}
+
 .accion-pasos {
     border-top: #{$border-medium} solid #{$brand-arg-info};
     font-weight: #{$fw-semibold};
-    // padding-top: #{$space-xs}; @todo hay que revisar la columna aside.
     @include family-sans-serif-attributes;
 }
 
