@@ -16122,7 +16122,7 @@ ul.list-accion > li {
   list-style: none;
   align-items: start;
 }
-ul.list-accion > li > a.btn {
+ul.list-accion > li a.btn {
   margin-bottom: 0;
   display: table;
 }
