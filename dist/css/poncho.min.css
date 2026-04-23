@@ -16132,6 +16132,10 @@ ul.list-accion > li a.btn {
     grid-template-columns: repeat(1, 1fr);
   }
 }
+#descargas {
+  margin-top: 40px;
+}
+
 /*  / ASIDE  */
 @media (max-width: 992px) {
   .tramite-accion p {
