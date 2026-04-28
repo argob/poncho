@@ -1,5 +1,4 @@
 /* Estilos para la navegación sidebar en trámites */
-
 .sticky {
     padding-bottom: 1em;
     position: sticky;
@@ -18,7 +17,8 @@
     font-weight: normal;
 }
 
-/* -----NAV */
+
+/* NAV */
 .tramite-accion {
     padding-top: 10px;
     text-align: left;
@@ -56,7 +56,8 @@
 }
 /* / NAV */
 
-/*  ASIDE A */
+
+/* Enlaces y archivos de descarga */
 h3.accion-pasos {
     padding-top: #{$space-xs};
 }
@@ -100,8 +101,7 @@ ul.list-accion {
 #descargas {
     margin-top: 40px;
 }
-
-/*  / ASIDE  */
+/* / Enlaces y archivos de descarga */
 
 
 @media (max-width: 992px) {
@@ -165,8 +165,10 @@ ul.list-accion {
     }
 }
 
-/* Trámites (iconos)
-   ======================================================================== */
+
+/** 
+ * Trámites (iconos)
+ */
 .tramites-iconos .panel-default {
     border: none !important;
     margin-bottom: 5px !important;
