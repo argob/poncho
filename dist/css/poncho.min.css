@@ -16060,7 +16060,7 @@ DEGRADÉ: .bg-mix-azul-info .bg-mix-info-azul .bg-mix-palta-azul .bg-mix-azul-pa
   font-weight: normal;
 }
 
-/* -----NAV */
+/* NAV */
 .tramite-accion {
   padding-top: 10px;
   text-align: left;
@@ -16092,7 +16092,7 @@ DEGRADÉ: .bg-mix-azul-info .bg-mix-info-azul .bg-mix-palta-azul .bg-mix-azul-pa
 }
 
 /* / NAV */
-/*  ASIDE A */
+/* Enlaces y archivos de descarga */
 h3.accion-pasos {
   padding-top: 0.25rem;
 }
@@ -16136,7 +16136,7 @@ ul.list-accion > li a.btn {
   margin-top: 40px;
 }
 
-/*  / ASIDE  */
+/* / Enlaces y archivos de descarga */
 @media (max-width: 992px) {
   .tramite-accion p {
     font-size: 0.9rem;
@@ -16191,8 +16191,9 @@ ul.list-accion > li a.btn {
     padding-left: 0.4em;
   }
 }
-/* Trámites (iconos)
-   ======================================================================== */
+/** 
+ * Trámites (iconos)
+ */
 .tramites-iconos .panel-default {
   border: none !important;
   margin-bottom: 5px !important;
