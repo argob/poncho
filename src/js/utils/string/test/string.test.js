@@ -1,4 +1,4 @@
-const {slugify, replaceSpecialChars, toTitleCase} = require('../src/js/utils/string.js');
+const {slugify, replaceSpecialChars, toTitleCase} = require('../string.js');
 
 
 test('Slugify', () => {
