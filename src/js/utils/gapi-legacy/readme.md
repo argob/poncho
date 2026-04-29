@@ -102,4 +102,3 @@ La función lanza `TypeError` en los siguientes casos:
 
 ## Licencia
 
-MIT © Agustín Bouillet
