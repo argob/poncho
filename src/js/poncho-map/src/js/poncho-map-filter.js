@@ -643,7 +643,7 @@ class PonchoMapFilter extends PonchoMap {
             "pm-btn-close",
             `js-close-filter${this.scope_sufix}`
         );
-        closeButton.title = "Cerrar panel";
+        closeButton.title = this._t("close_aria_panel");
         closeButton.role = "button";
         closeButton.ariaLabel = this._t("filters_aria_label_close_panel");
 
