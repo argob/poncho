@@ -31,7 +31,6 @@ $colorThemesRecuadro: (
 
 
 #{$recuadrosScope} {
-    --icon-size: 2rem;
 
     clear: both; // Para evitar que el recuadro se superponga con otros elementos flotantes.
     width: 100%;
@@ -43,7 +42,7 @@ $colorThemesRecuadro: (
     border-left: var(--main-border-left-weight) solid var(--main-theme);
     border-radius: 2px;
     padding: var(--main-padding) var(--main-padding) var(--main-padding) var(--media-col-gap);
-    margin-bottom: $grid-gutter-width;
+    margin-bottom: 20px;
     color: #555;
     background-color: white;
     box-shadow: var(--main-box-shadow);
@@ -56,7 +55,7 @@ $colorThemesRecuadro: (
 
     // REDEFINIMOS MEDIA
     .media {
-        grid-template-columns: calc(var(--icon-size) + 1.5em) 1fr;
+        grid-template-columns:  var(--media-grid-template-columns);
         display: grid;
         gap: var(--media-col-gap);
 

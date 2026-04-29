@@ -1,5 +1,4 @@
 /* Estilos para la navegación sidebar en trámites */
-
 .sticky {
     padding-bottom: 1em;
     position: sticky;
@@ -11,7 +10,6 @@
     margin-bottom: 1rem;
 }
 
-
 .accionmodal {
     font-size: 0.8rem;
     line-height: 2.5;
@@ -19,7 +17,8 @@
     font-weight: normal;
 }
 
-/* -----NAV */
+
+/* NAV */
 .tramite-accion {
     padding-top: 10px;
     text-align: left;
@@ -57,47 +56,53 @@
 }
 /* / NAV */
 
-/*  ASIDE  */
-.accion-pasos {
-    border-top: 2px solid #5a7290;
-    font-weight: 600;
-    font-family: "Montserrat", sans-serif;
-    font-size: 18px;
+
+/* Enlaces y archivos de descarga */
+h3.accion-pasos {
+    padding-top: #{$space-xs};
 }
 
-.list-accion {
-    ul {
-        width: 100%;
-        padding: 0px;
-    }
+.accion-pasos {
+    border-top: #{$border-medium} solid #{$brand-arg-info};
+    font-weight: #{$fw-semibold};
+    @include family-sans-serif-attributes;
+}
+
+ul.list-accion {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: #{$grid-gutter-width};
+    row-gap: #{$grid-gutter-width};
+    align-items: start;
 
     > li {
         padding: 0px;
+        background-color: transparent;
         font-size: 0.9rem;
-        width: 30%;
-        margin: 10px 16px 40px 0px;
+        width: auto !important;
+        margin: 0px;
         vertical-align: text-top;
         list-style: none;
+        align-items: start;
+
+        a.btn {
+            margin-bottom: 0;
+            display: table;
+        }
     }
 }
 
 @media (max-width: 1180px) {
-    .list-accion {
-        > li {
-            width: 98%;
-            margin: 1%;
-            display: block;
-        }
-        a {
-            display: table;
-            margin-bottom: 12px;
-        }
-    }
-
-    #descargas {
-        margin: 40px 0;
+    ul.list-accion {
+        grid-template-columns: repeat(1, 1fr);
     }
 }
+
+#descargas {
+    margin-top: 40px;
+}
+/* / Enlaces y archivos de descarga */
+
 
 @media (max-width: 992px) {
     .tramite-accion p {
@@ -108,7 +113,7 @@
         margin-top: 20px;
     }
 }
-/*  / ASIDE  */
+
 
 /*lista ordenada*/
 .servicio-timeline {
@@ -160,8 +165,10 @@
     }
 }
 
-/* Trámites (iconos)
-   ======================================================================== */
+
+/** 
+ * Trámites (iconos)
+ */
 .tramites-iconos .panel-default {
     border: none !important;
     margin-bottom: 5px !important;

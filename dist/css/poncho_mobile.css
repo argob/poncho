@@ -338,6 +338,16 @@ html {
   --white:#FFFFFF;
 }
 
+/***
+ * Variables de espacios
+ */
+/**
+ * Variables de peso tipográfico
+ */
+/**
+ * Generador de clases de bordes de colores
+ * ([nombre], [valor])
+ */
 html,
 body {
   font-size: 16px;

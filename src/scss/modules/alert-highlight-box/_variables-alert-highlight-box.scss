@@ -1,10 +1,12 @@
 // $recuadrosScope: ".recuadro-destacado";
 $recuadrosScope: ".highlight-box";
-$scopeAlert: ".alert";
+$scopeAlert: ".alert-highlight-box";
 
 #{$recuadrosScope},
 #{$scopeAlert} {
+    --icon-size: 2rem;
     --main-theme: #555;
+    --main-background: white;
     --main-shadow-spread-size: 8px;
     --main-box-shadow: 4px 4px calc(var(--main-shadow-spread-size) + 1px) 
         rgba(0, 0, 0, 0.175);
@@ -14,4 +16,5 @@ $scopeAlert: ".alert";
     --media-col-gap: #{$grid-gutter-width / 3};
     --media-row-gap: calc(var(--media-col-gap) / 2);
 
+    --media-grid-template-columns: calc(var(--icon-size) + 1.5em) 1fr;
 }

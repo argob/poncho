@@ -435,7 +435,7 @@ class PonchoMapSearch {
     _searchRegion = () => {
         const element = document.querySelector(this.search_scope_selector);
         element.setAttribute("role", "region");
-        element.setAttribute("aria-label", "Buscador");
+        element.setAttribute("aria-label", this.instance._t("search_aria_label"));
     };
 
 

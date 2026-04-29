@@ -52,8 +52,17 @@
         <li><a href="./">Inicio</a></li>
     </ul>
 </div>
-<h1>Template 13</h1>
-
+<h1>Template 13</h1> 
+<div class="container">
+    <div class="row">
+    <div class="col-md-12">
+        <p>
+            <a href="./template_13.html?lang=en">🇺🇸 Inglés</a> | 
+            <a href="./template_13.html?lang=es">🇦🇷 Español</a>
+        </p>
+    </div>
+</div>
+</div>
 <!-- 
 COPIAR DESDE ACÁ…
 -->
@@ -190,6 +199,7 @@ COPIAR DESDE ACÁ…
         return figure.outerHTML;
     };
 
+    
     /**
      * Formatea un número de teléfono argentino como enlace clicable.
      *
@@ -212,15 +222,88 @@ COPIAR DESDE ACÁ…
         }
     };
 
+    /**
+     * Obtiene el valor del parámetro land de una url.
+     */ 
+    const getLang = (allowed = ['es', 'en']) => {
+        const lang = new URLSearchParams(window.location.search).get('lang') ?? 'es';
+        return allowed.includes(lang) ? lang : 'es';
+    };
+    
+    // Define el idioma del documento
+    const LANG = getLang();
+
     // MAP
-    const SPREADSHEET_KEY = "1KfjAVNVvvAbwyaO6SRe35XW6avUrw19iD_zGIUWIAT4";
-    const SHEET_NAME = "Hoja 1";
+    // const SPREADSHEET_KEY = "1KfjAVNVvvAbwyaO6SRe35XW6avUrw19iD_zGIUWIAT4";
+    // const SHEET_NAME = "Hoja 1";
+    const SPREADSHEET_KEY = "1Xjnm5K38MoggcqGqqk2jAacrCoc-SB002K6Xf8v9z68";
+    const SHEET_NAME = `dataset-${LANG}`;
 
     const loader = new PonchoMapLoader({scope: "poncho-map"});
     loader.load();
 
+    // Diccionario de términos de configuración
+    const DICTIONARY = {
+        es: {
+            search_placeholder: "Buscá por nombre del parque, provincia o localidad",
+            mixing_header_lugar: "Dirección",
+            mixing_header_contacto: "Contacto",
+            summary_title: "Mapa de parques nacionales argentinos",
+            filter_0_label: "Seleccione una provincia",
+            filter_0_all_options_text: "Todas las provincias",
+            headers: {
+                boton: "",
+                color: "",
+                descripcion: "",
+                direccion: "",
+                email: "",
+                foto: "",
+                latitud: "",
+                linkboton: "",
+                linkfoto: "",
+                localidad: "",
+                longitud: "",
+                mail: "",
+                nombre: "",
+                provincia: "Provincia",
+                telefono: "",
+                tipo: ""
+            }
+        },
+        en: {
+            search_placeholder: "Search by park name, province, or town",
+            mixing_header_lugar: "Address",
+            mixing_header_contacto: "Contact",
+            summary_title: "Map of Argentine National Parks",
+            filter_0_label: "Select a province",
+            filter_0_all_options_text: "All provinces",
+            headers: {
+                boton: "",
+                color: "",
+                descripcion: "",
+                direccion: "",
+                email: "",
+                foto: "",
+                latitud: "",
+                linkboton: "",
+                linkfoto: "",
+                localidad: "",
+                longitud: "",
+                mail: "",
+                nombre: "",
+                provincia: "Province",
+                telefono: "",
+                tipo: ""
+            }
+        }
+    };
+
+    // Diccionario según el idioma
+    const _d = DICTIONARY[LANG];
+
+    // GAPI SHEET
     const gapi = new GapiSheetData();
-    
+
     // init
     (async () => {
         const sheetData = await fetch_json(
@@ -230,7 +313,9 @@ COPIAR DESDE ACÁ…
         const gapiData = gapi.json_data(sheetData);
         const {entries, headers} = gapiData;
 
+
         const options = {
+            lang: LANG,
             debug: true,
             scope: "poncho-map",
             title: "nombre",
@@ -238,7 +323,7 @@ COPIAR DESDE ACÁ…
             map_anchor_zoom: 15,
             summary: {
                 hidden: true,
-                title: "Mapa de parques nacionales argentinos",
+                title: _d.summary,
                 position: "top"
             },
             template: (self, entry) => {
@@ -260,15 +345,15 @@ COPIAR DESDE ACÁ…
             },
             filters: [
                 {
-                    legend: "Filtrar por provincia",
+                    // legend: "Filtrar por provincia",
                     field: ["provincia"],
                     fields: false,
                     check_uncheck_all: false,
                     type: "select",
-                    label: "Seleccione una provincia",
+                    label: _d.filter_0_label,
                     show_label: false,
                     show_legend: true,
-                    all_options_text: "Todas las provincias"
+                    all_options_text: _d.filter_0_all_options_text
                 }
             ],
             fit_bounds_after_filter: true,
@@ -302,19 +387,19 @@ COPIAR DESDE ACÁ…
                 mixing: [
                     {
                         key: "lugar",
-                        header: "Dirección",
+                        header: _d.mixing_header_lugar,
                         values: ["direccion", "localidad"],
                         separator: ", "
                     },
                     {
                         key: "contacto",
-                        header: "Contacto",
+                        header: _d.mixing_header_contacto,
                         template: `{% '{{tel}}<br>' if tel != '' else '' %}`
                             + `{% '{{mail}}' if mail != '' else '' %}`
                     }
                 ]
             },
-            headers: headers,
+            headers: _d.headers,
             marker: (self, ele) => (ele?.color || "azul"),
             slider: true,
             hash: true,
@@ -337,7 +422,7 @@ COPIAR DESDE ACÁ…
         
         const searchOptions = {
             scope: "poncho-map-search",
-            placeholder: "Buscá por nombre del parque, provincia o localidad",
+            placeholder: _d.search_placeholder,
             datalist: false,
             search_fields: [
                 "localidad", 

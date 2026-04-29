@@ -1,14 +1,42 @@
 /**
  * ALERTAS 
  */
-#{$scopeAlert} {
-    --icon-size: 3rem;
 
-    
-    border-radius: 2px;
-    width: calc(100% - var(--main-shadow-spread-size));
+/**
+ * Definición para los temas de color.
+ */
+$colorThemesAlerts: (
+    "default": (
+        themeColor: #555,
+        backgroundColor: white,
+        buttonColor: white,
+    ),
+    "info": (
+        themeColor: $brand-arg-cielo,
+        backgroundColor: lighten($brand-arg-cielo, 50%),
+        buttonColor: white,
+    ),
+    "danger": (
+        themeColor: $brand-arg-rojo,
+        backgroundColor: lighten($brand-arg-rojo, 50%),
+        buttonColor: white,
+    ),
+    "success": (
+        themeColor: $brand-arg-verde,
+        backgroundColor: lighten($brand-arg-verde, 62%),
+        buttonColor: white,
+    ),
+    "warning": (
+        themeColor: $brand-bandera-amarillo,
+        backgroundColor: lighten($brand-bandera-amarillo, 32%),
+        buttonColor: black,
+    ),
+);
+
+#{$scopeAlert} {
+    clear: both; // Para evitar que el recuadro se superponga con otros elementos flotantes.
+    width: 100%;
     position: relative;
-    background: white;
     border-top: none;
     border-right: none;
     border-bottom: none;
@@ -16,10 +44,11 @@
     border-radius: 2px;
     padding: var(--main-padding) var(--main-padding) var(--main-padding)
         var(--media-col-gap);
-    margin-bottom: $grid-gutter-width;
+    margin-bottom: 20px;
     color: #555;
-    background-color: white;
-    box-shadow: var(--main-box-shadow);
+    background-color: var(--main-background);
+    // box-shadow: var(--main-box-shadow);
+
     // Si el componente no tiene icono
     &:not(:has(.media-left)) {
         padding: var(--main-padding);
@@ -27,13 +56,14 @@
 
     // REDEFINIMOS MEDIA
     .media {
-        grid-template-columns: calc(var(--icon-size) + 1.5em) 1fr;
+        grid-template-columns: var(--media-grid-template-columns);
         display: grid;
         gap: var(--media-col-gap);
 
         &:not(:has(.media-left)) {
             grid-template-columns: 1fr;
         }
+
         .media-left {
             padding: {
                 left: 0;
@@ -41,8 +71,14 @@
                 top: 0;
                 bottom: 0;
             }
+
             text-align: center;
+
+            i {
+                color: var(--main-theme);
+            }
         }
+
         .media-body {
             width: auto;
             align-self: center;
@@ -65,19 +101,6 @@
         font-size: var(--icon-size) !important;
     }
 
-    // Tamaños para iconos específicos.
-    .fa.fa-warning,
-    .fa.fa-times-circle,
-    .fa.fa-info-circle,
-    .fa.fa-check-circle {
-        font-size: calc(var(--icon-size) + 0.15em) !important;
-        margin: 0;
-    }
-
-    i {
-        color: currentColor;
-    }
-
     p {
         margin-bottom: 1em;
 
@@ -87,18 +110,22 @@
     }
 
     .btn {
-        @include button-variant(#fff, #555, #555);
+        @include button-variant(
+            $brand-arg-primary,
+            #fff,
+            $brand-arg-gray-light
+        );
     }
 }
 
 @media (max-width: 768px) {
     #{$scopeAlert} {
-        padding: 15px;
+        padding: var(--main-padding);
 
         .media {
             grid-template-columns: none;
             grid-template-rows: auto;
-            row-gap: 5px;
+            row-gap: var(--media-row-gap);
 
             .media-left {
                 text-align: left;
@@ -107,53 +134,50 @@
     }
 }
 
-/**
- * Definición para los temas de color.
- */
-
-$colorThemesAlerts: (
-    "default": (
-        themeColor: #555,
-        backgroundColor: white,
-        buttonColor: white,
-    ),
-    "info": (
-        themeColor: #039BE5,
-        backgroundColor: lighten(#039BE5, 50%),
-        buttonColor: white,
-    ),
-    "danger": (
-        themeColor:#C62828,
-        backgroundColor: lighten(#C62828, 50%),
-        buttonColor: white,
-    ),
-    "success": (
-        themeColor: #2E7D33,
-        backgroundColor: lighten(#2E7D33, 62%),
-        buttonColor: white,
-    ),
-    "warning": (
-        themeColor: #FCBF49,
-        backgroundColor: lighten(#FCBF49, 32%),
-        buttonColor: black,
-    ),
-);
-
 @each $themeName, $themeValues in $colorThemesAlerts {
-    #{$scopeAlert}-#{$themeName} {
-        background-color: #{map-get($themeValues, backgroundColor)};
-        border-left: 0.333rem solid #{map-get($themeValues, themeColor)};
+    #{$scopeAlert}#{$scopeAlert}-#{$themeName} {
+        --main-theme: #{map-get($themeValues, themeColor)};
+        --main-background: #{map-get($themeValues, backgroundColor)};
     }
-    #{$scopeAlert}-#{$themeName} .media-left i {
-        color: #{map-get($themeValues, themeColor)};
-    }
-    #{$scopeAlert}-#{$themeName} .btn {
-
-
-                @include button-variant(
+    #{$scopeAlert}#{$scopeAlert}-#{$themeName} .btn {
+        @include button-variant(
             map-get($themeValues, buttonColor),
             map-get($themeValues, themeColor),
             map-get($themeValues, themeColor)
         );
+    }
+}
+
+/* 
+Fix para evitar el overflow hidden 
+.media tiene un overflow hidden y la hoja de estilos se llama después que 
+poncho.min.css. 
+No se puede modificar el orden de las hojas de estilos, por lo que se hace 
+esta corrección para evitar que el recuadro se corte.
+*/
+.media:has(> #{$scopeAlert}) #{$scopeAlert} {
+    width: calc(100% - (var(--main-shadow-spread-size) + 2px));
+    margin-top: 4px;
+}
+
+/* 
+    Container para el recuadro destacado. 
+    Evita que el ancho supere un col-md-8 
+*/
+.highlight-wrapper {
+    container: sidebar / inline-size;
+    clear: both;
+}
+
+.highlight-wrapper.container-fluid > #{$scopeAlert} {
+    width: 100%;
+}
+
+@container sidebar (width > 780px) {
+    #{$scopeAlert} {
+        box-sizing: border-box;
+        //width: 66.66666667%;
+        width: calc((100% / 3) * 2);
+        margin: auto;
     }
 }

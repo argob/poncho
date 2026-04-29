@@ -1,27 +1,27 @@
 .border {
     border-style: solid !important;
-    border-width: 1px !important;
+    border-width: $border-light !important;
     border-color: var(--arg-gray-light) !important;
 }
 
 .border-top {
     border-top-style: solid !important;
-    border-top-width: 1px !important;
+    border-top-width: $border-light !important;
     border-top-color: var(--arg-gray-light) !important;
 }
 .border-bottom {
     border-bottom-style: solid !important;
-    border-bottom-width: 1px !important;
+    border-bottom-width: $border-light !important;
     border-bottom-color: var(--arg-gray-light) !important;
 }
 .border-right {
     border-right-style: solid !important; 
-    border-right-width: 1px !important;
+    border-right-width: $border-light !important;
     border-right-color: var(--arg-gray-light) !important;
 }
 .border-left {
     border-left-style: solid !important;
-    border-left-width: 1px !important;
+    border-left-width: $border-light !important;
     border-left-color: var(--arg-gray-light) !important;
 }
 
@@ -46,21 +46,18 @@
 }
 
 .border-medium {
-    border-width: 2px !important;
+    border-width: $border-medium !important;
 }
 
 .border-thick {
-    border-width: 3px !important;
+    border-width: $border-thick !important;
 }
-
-// .border-extra-thick {
-//     border-width:6px
-// }
 
 .border-heavy {
-    border-width:6px !important;
+    border-width: $border-heavy !important;
 }
 
+// Color para los bordes
 .border-arg-default {
     border-color: var(--arg-default) !important
 }
@@ -93,22 +90,20 @@
 }
 
 
-
-
 /**
  * Generador de variables tipográficas 
  * ([nombre], [valor]) 
  */
 $configTypeWeights: (
-    ("thin", 100),
-    ("extra-light", 200),
-    ("light", 300),
-    ("normal", 400),
-    ("medium", 500),
-    ("semibold", 600),
-    ("bold", 700),
-    ("extra-bold", 800),
-    ("black", 900)
+    ("thin", $fw-thin),
+    ("extra-light", $fw-extra-light),
+    ("light", $fw-light),
+    ("normal", $fw-normal),
+    ("medium", $fw-medium),
+    ("semibold", $fw-semibold),
+    ("bold", $fw-bold),
+    ("extra-bold", $fw-extra-bold),
+    ("black", $fw-black)
 );
 
 @each $name, $value in $configTypeWeights {
@@ -116,7 +111,6 @@ $configTypeWeights: (
         font-weight: #{$value} !important;
     }
 }
-
 
 /**
  * Generador de espacios gap
@@ -145,15 +139,18 @@ $configGap: (
  * ([nombre], [valor]) 
  */
 $configSpaces: (
-    (auto, auto),
-    (0, 0px),
-    ("xs", 0.25rem),
-    ("05", 0.5rem),
-    (1, 1rem),
-    (2, 1.5rem),
-    (3, 3rem),
-    (4, 4rem)
+    (auto, $space-auto),
+    (0, $space-0),
+    ("xs", $space-xs),
+    ("05", $space-05),
+    (1, $space-1),
+    (2, $space-2),
+    (3, $space-3),
+    (4, $space-4)
 );
+
+
+
 
 @each $name, $value in $configSpaces {
     @if $name !=auto {
