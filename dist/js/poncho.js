@@ -5983,7 +5983,7 @@ class PonchoMap {
      * Versión poncho
      */
     get version(){
-        return "2.2.3";
+        return "2.2.4";
     }
 
 
