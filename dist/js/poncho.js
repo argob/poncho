@@ -5376,6 +5376,8 @@ if (typeof exports !== "undefined") {
  */
 const PM_TRANSLATE = {
     es: {
+        panel_aria_label: "Panel de información",
+        reset_theme: "Restablecer",
         cluster_click: "Clic para expandir grupo",
         cluster_large: "Grupo grande de {{count}} ubicaciones",
         cluster_medium: "Grupo mediano de {{count}} ubicaciones",
@@ -5402,17 +5404,22 @@ const PM_TRANSLATE = {
         filters_close_panel_text: "Cerrar panel",
         filters_has: "Se están usando filtros.",
         filters_reset: "Restablecer mapa",
+        map_goto_menu: "Ir al menú del mapa",
+        map_aria_label: "Menú para el mapa",
         map_exit: "Salir del mapa",
         map_fit_bounds: "Ajustar marcadores al mapa",
         map_full_view: "Ver mapa completo",
         map_goto_markers: "Ir a los marcadores del mapa",
-        map_help_us: "Ayudá a mejorar el mapa",
+        map_help_us: "Sugerencias para el mapa",
+        map_type_default: "Mapa",
+        map_type_satelital: "Mapa satelital",
         openmap_aria_label: "Abrir el punto geográfico en un mapa alternativo",
         openmap_label: "Abrir ubicación en:",
         search_data: "Hacer una búsqueda",
-        search_placeholder: "Su búsqueda",
+        search_placeholder: "Tu búsqueda",
+        search_aria_label: "Buscador",
         theme_aria_label_panel: "Herramienta para cambiar de tema visual",
-        theme_change: "Cambiar tema del mapa",
+        theme_change: "Sugerir cambios en el mapa",
         theme_description_contrast: "Fondo oscuro con bordes blancos.",
         theme_description_dark: "Fondo oscuro con bordes blancos de contraste medio.",
         theme_description_default: "Colores predeterminados del proveedor del mapa.",
@@ -5428,8 +5435,78 @@ const PM_TRANSLATE = {
         zoom_aria_label_panel: "Herramientas de zoom",
         zoom_goto_panel: "Ir a la herramienta de zoom",
         zoom_in: "Acercar",
-        zoom_out: "Alejar"
-    }
+        zoom_out: "Alejar",
+        close_panel: "Cerrar panel",
+        close_aria_panel:  "Cerrar panel de información",
+        open_in_new_window: "(Abre en una nueva ventana)",
+        contributors: "Colaboradores"
+    },
+    en: {
+        panel_aria_label: "Information panel",
+        reset_theme: "Reset",
+        cluster_click: "Click to expand group",
+        cluster_large: "Large group of {{count}} locations",
+        cluster_medium: "Medium group of {{count}} locations",
+        cluster_small: "Small group of {{count}} locations",
+        filter_initial: "There are {{total_results}} points on the map."
+                        + ` <a href="#" class="{{reset_search}}"`
+                        + `aria-label="Reset map values">`
+                        + "Reset map</a>",
+        filter_no_results: "No entries found.",
+        filter_select_label: "Select {{header}}",
+        filter_select_legend: "Filter by {{header}}",
+        filter_select_all_option_text: "All",
+        filter_no_results_by_term: "No results found for your search.",
+        filter_one_result: "{{total_results}} result matches your search.",
+        filter_reset_values_link: ` <a href="#" class="{{reset_search}}"`
+                        + `aria-label="Reset map values">`
+                        + "Reset map</a>",
+        filter_results: "{{total_results}} results match your search.",
+        filters_aria_label_close_panel: "Close filters panel",
+        filters_aria_label_open_close_panel: "Open or close the filters panel",
+        filters_aria_label_panel: "Filters panel",
+        filters_aria_label_reset: "Reset map values",
+        filters_check_all: "Check all",
+        filters_close_panel_text: "Close panel",
+        filters_has: "Filters are in use.",
+        filters_reset: "Reset map",
+        map_goto_menu: "Jump to map menu",
+        map_aria_label: "Map menu",
+        map_exit: "Exit map",
+        map_fit_bounds: "Fit markers to map",
+        map_full_view: "Full map view",
+        map_goto_markers: "Go to map markers",
+        map_help_us: "Map suggestions",
+        map_type_default: "Map",
+        map_type_satelital: "Satellite map",
+        openmap_aria_label: "Open geographic point in an alternative map",
+        openmap_label: "Open location in:",
+        search_data: "Perform a search",
+        search_placeholder: "Your search",
+        search_aria_label: "Search",
+        theme_aria_label_panel: "Tool to change visual theme",
+        theme_change: "Suggest map changes",
+        theme_description_contrast: "Dark background with white borders.",
+        theme_description_dark: "Dark background with medium contrast white borders.",
+        theme_description_default: "Default map provider colors.",
+        theme_description_grayscale: "Map and interface in grayscale.",
+        theme_description_relax: "Soft color palette.",
+        theme_name_contrast: "High contrast",
+        theme_name_dark: "Dark",
+        theme_name_default: "Original",
+        theme_name_grayscale: "Grayscale",
+        theme_name_relax: "Relax",
+        theme_open_panel: "Open the themes panel",
+        theme_reset: "Resets the map theme to its original configuration",
+        zoom_aria_label_panel: "Zoom tools",
+        zoom_goto_panel: "Go to zoom tool",
+        zoom_in: "Zoom in",
+        zoom_out: "Zoom out",
+        close_panel: "Close panel",
+        close_aria_panel:  "Close information panel",
+        open_in_new_window: "(Opens in a new window)",
+        contributors: "Contributors"
+    },
 };
 
 class PonchoMap {
@@ -5812,9 +5889,9 @@ class PonchoMap {
         // Attribution links
         const {leaflet, ersi, ign, osm} = attributions;
         this.prefix = this.addAnchorElement(leaflet, "html");
-        this.ersiAttribution = `Contribuidores: `
+        this.ersiAttribution = `${this._t("contributors")}: `
                 + `${this.addAnchorElement(ersi, "html")}`;
-        this.osmAttribution = `Contribuidores: `
+        this.osmAttribution = `${this._t("contributors")}: `
                 + `${this.addAnchorElement(ign, "html")}, `
                 + `${this.addAnchorElement(osm, "html")}`;
 
@@ -5822,13 +5899,13 @@ class PonchoMap {
         this.layerViewSettings = {
             satelital:{
                 attribution: this.ersiAttribution,
-                label: "Mapa satelital",
+                label: this._t("map_type_satelital"),
                 tilesUrl: this.ersiURL,
                 setVisuals: this._setSatelitalView,
             },
             osm:{
                 attribution: this.osmAttribution,
-                label: "Mapa",
+                label: this._t("map_type_default"),
                 setVisuals: this._setOsmView,
                 tilesUrl: this.osmURL,
             }
@@ -6489,7 +6566,7 @@ class PonchoMap {
         const LANG_REGEX = /^[a-z]{2}(-[A-Z]{2})?$/i;
         const VALID_TARGETS = ['_self', '_blank', '_parent', '_top'];
         const SECURITY_REL_VALUES = ['noopener', 'noreferrer'];
-        const NEW_TAB_TEXT = '(Abre en una nueva pestaña)';
+        const NEW_TAB_TEXT = this._t("open_in_new_window");
 
         // Validation helpers
         const isValidLang = (value) => 
@@ -6771,7 +6848,7 @@ class PonchoMap {
 
         // Botón para restablecer el mapa
         const restartLinkOptions = {
-            label: "Restablecer",
+            label: this._t("reset_theme"),
             attributes: {role: "menuitem", tabIndex: 0},
             aria_label: this._t("theme_reset"),
             css: ["pm-item-link", "js-reset-theme"]
@@ -7944,7 +8021,7 @@ class PonchoMap {
         container.style.display = "none";
         container.role = "region";
         container.ariaLive = "polite";
-        container.ariaLabel = "Panel de información";
+        container.ariaLabel = this._t("panel_aria_label");
 
         // Icono para el botón 
         const icon = document.createElement("i");
@@ -7961,9 +8038,9 @@ class PonchoMap {
             `js-close-slider${this.scope_sufix}`
         );
         closeButton.setAttribute("autofocus", "autofocus");
-        closeButton.title = "Cerrar panel";
+        closeButton.title = this._t("close_panel");
         closeButton.tabIndex = 0;
-        closeButton.ariaLabel = "Cerrar panel de información";
+        closeButton.ariaLabel = this._t("close_aria_panel");
 
         // Enlace anchor.
         const anchorOptions = {
@@ -9329,7 +9406,7 @@ class PonchoMap {
         const nav = document.createElement("div");
         nav.classList.add("pm-accesible-nav", "top", "pm-list");
         nav.id = `pm-accesible-nav${this.scope_sufix}`;
-        nav.ariaLabel = "Menú para el mapa";
+        nav.ariaLabel = this._t("map_aria_label");
         nav.role = "navigation";
         nav.tabIndex=0;
 
@@ -9363,7 +9440,7 @@ class PonchoMap {
 
         // enlace de retorno
         const anchorOptions = {
-            label: "Ir al menú del mapa",
+            label: this._t("map_goto_menu"),
             link: `#pm-accesible-nav${this.scope_sufix}`,
             id: `accesible-return-nav${this.scope_sufix}`,
             css: ["pm-item-link", "pm-accesible"],
@@ -10528,7 +10605,7 @@ class PonchoMapFilter extends PonchoMap {
             "pm-btn-close",
             `js-close-filter${this.scope_sufix}`
         );
-        closeButton.title = "Cerrar panel";
+        closeButton.title = this._t("close_aria_panel");
         closeButton.role = "button";
         closeButton.ariaLabel = this._t("filters_aria_label_close_panel");
 
@@ -11829,7 +11906,7 @@ class PonchoMapSearch {
     _searchRegion = () => {
         const element = document.querySelector(this.search_scope_selector);
         element.setAttribute("role", "region");
-        element.setAttribute("aria-label", "Buscador");
+        element.setAttribute("aria-label", this.instance._t("search_aria_label"));
     };
 
 
