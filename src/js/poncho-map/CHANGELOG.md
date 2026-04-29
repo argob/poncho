@@ -1,5 +1,18 @@
 # Changelog
 
+## Release 2.2.4
+
+### PonchoMap
+
+**Internacionalización (i18n)**: Se generaron las claves necesarias para el diccionario de términos.
+
+**Traducciones**: Se incorporó la versión en inglés del diccionario de términos.
+
+### PonchoMap, PonchoMapFilter y PonchoMapSearch
+
+**Accesibilidad y UI**: Se completó la implementación de claves en `textContent`, así como en los atributos `title` y `aria-label`.
+
+
 ## Release 2.2.3
 
 ### PonchoMap
