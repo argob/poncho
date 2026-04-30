@@ -1,17 +1,43 @@
-# connect
+
+<!-- omit in toc -->
+# Connect
 
 Fetch con manejo automático de errores CORS mediante un proxy configurable.
 
-## Función
+<!-- omit in toc -->
+## En ésta página
 
-### `fetch_json(uri, options?)`
+
+<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+
+<!-- code_chunk_output -->
+
+- [Connect](#connect)
+  - [En ésta página](#en-ésta-página)
+  - [fetch_json](#fetch_json)
+  - [Ejemplos](#ejemplos)
+    - [Uso básico](#uso-básico)
+    - [Sin proxy CORS](#sin-proxy-cors)
+    - [Con credenciales y proxy personalizado](#con-credenciales-y-proxy-personalizado)
+    - [Manejo de errores](#manejo-de-errores)
+  - [Comportamiento del proxy CORS](#comportamiento-del-proxy-cors)
+
+<!-- /code_chunk_output -->
+
+
+
+## fetch_json
 
 Realiza una petición HTTP y devuelve la respuesta parseada como JSON.
 
-Intenta la petición directamente contra `uri`. Si falla con un error de red
-o CORS y `useCorsProxy` es `true`, reintenta a través de `corsProxyUrl` sin
-credenciales. Si el segundo intento también falla, lanza un error con el
-mensaje de ambos fallos.
+Intenta la petición directamente contra `uri`. Si falla con un error de red o CORS y `useCorsProxy` es `true`, reintenta a través de `corsProxyUrl` sin credenciales. Si el segundo intento también falla, lanza un error con el mensaje de ambos fallos.
+
+**Sintaxis**
+
+```js
+fetch_json(uri, options?);
+```
+
 
 **Parámetros**
 
@@ -23,13 +49,11 @@ mensaje de ambos fallos.
 | `options.credentials` | `string` | `"same-origin"` | Política de credenciales: `"include"`, `"same-origin"` u `"omit"`. |
 | `...fetchOptions` | `*` | — | Cualquier otra opción válida para la API `fetch` nativa (`method`, `headers`, `body`…). |
 
-**Retorna:** `Promise<*>` — Objeto o array resultante de parsear el cuerpo de
-la respuesta como JSON.
+**Retorna:** `Promise<*>` — Objeto o array resultante de parsear el cuerpo de la respuesta como JSON.
 
-**Lanza:** `Error` — Si la respuesta HTTP no es satisfactoria o si fallan
-tanto la petición directa como la del proxy.
+**Lanza:** `Error` — Si la respuesta HTTP no es satisfactoria o si fallan tanto la petición directa como la del proxy.
 
----
+
 
 ## Ejemplos
 
@@ -73,7 +97,7 @@ try {
 }
 ```
 
----
+
 
 ## Comportamiento del proxy CORS
 
@@ -87,7 +111,3 @@ la función:
 
 Si el reintento también falla, se lanza un `Error` que incluye el mensaje
 del fallo original.
-
-## Licencia
-
-MIT © Secretaría de Innovación Pública

@@ -1,18 +1,35 @@
-# string
+<!-- omit in toc -->
+# String
 
-Utilidades para manipulación de cadenas de texto en JavaScript.
-Incluye funciones para normalizar acentos, generar slugs y aplicar
-formato title case.
+Utilidades para manipulación de cadenas de texto en JavaScript. Incluye funciones para normalizar acentos, generar slugs y aplicar formato title case.
 
----
+<!-- omit in toc -->
+## En ésta página
+
+
+<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+
+<!-- code_chunk_output -->
+
+- [String](#string)
+  - [En ésta página](#en-ésta-página)
+  - [Funciones](#funciones)
+    - [`replaceSpecialChars(data)`](#replacespecialcharsdata)
+    - [`slugify(str)`](#slugifystr)
+    - [`toTitleCase(str, allWords)`](#totitlecasestr-allwords)
+  - [Uso](#uso)
+    - [En el navegador](#en-el-navegador)
+    - [En Node.js](#en-nodejs)
+
+<!-- /code_chunk_output -->
+
+
 
 ## Funciones
 
 ### `replaceSpecialChars(data)`
 
-Reemplaza caracteres con acento o tilde por su equivalente ASCII.
-Los caracteres que no figuran en el mapa interno se conservan sin
-modificar.
+Reemplaza caracteres con acento o tilde por su equivalente ASCII. Los caracteres que no figuran en el mapa interno se conservan sin modificar.
 
 | Parámetro | Tipo     | Descripción              |
 |-----------|----------|--------------------------|
@@ -26,12 +43,10 @@ replaceSpecialChars("Acción Murciélago árbol niño");
 // → "Accion Murcielago arbol nino"
 ```
 
----
 
 ### `slugify(str)`
 
-Convierte una cadena de texto a formato slug: minúsculas, palabras
-separadas por guiones, sin caracteres especiales.
+Convierte una cadena de texto a formato slug: minúsculas, palabras separadas por guiones, sin caracteres especiales.
 
 | Parámetro | Tipo     | Descripción                   |
 |-----------|----------|-------------------------------|
@@ -48,7 +63,6 @@ slugify("Arroz & Porotos: una receta sencilla");
 // → "arroz-and-porotos-una-receta-sencilla"
 ```
 
----
 
 ### `toTitleCase(str, allWords)`
 
@@ -59,8 +73,7 @@ Convierte una cadena de texto a formato title case.
 | `str`       | `string`  | —           | Cadena a transformar                         |
 | `allWords`  | `boolean` | `true`      | `true` capitaliza todas las palabras; `false` solo la primera letra de la cadena |
 
-**Retorna:** `string` — cadena en title case. El argumento original
-si no es un string válido.
+**Retorna:** `string` — cadena en title case. El argumento original si no es un string válido.
 
 ```js
 toTitleCase("hola mundo cruel");
@@ -70,7 +83,6 @@ toTitleCase("hola mundo cruel", false);
 // → "Hola mundo cruel"
 ```
 
----
 
 ## Uso
 
@@ -89,13 +101,7 @@ toTitleCase("hola mundo cruel", false);
 ```js
 const { slugify, replaceSpecialChars, toTitleCase } = require("./string");
 
-slugify("Canción de cuna");           // → "cancion-de-cuna"
-replaceSpecialChars("niño");          // → "nino"
-toTitleCase("buenos aires");          // → "Buenos Aires"
+slugify("Canción de cuna");  // → "cancion-de-cuna"
+replaceSpecialChars("niño"); // → "nino"
+toTitleCase("buenos aires"); // → "Buenos Aires"
 ```
-
----
-
-## Licencia
-
-MIT — ver encabezado de [string.js](string.js).
