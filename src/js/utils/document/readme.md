@@ -1,12 +1,42 @@
-# document
+<!-- omit in toc -->
+# Document
 
 Colección de utilidades JavaScript para manipulación del DOM.
 
+<!-- omit in toc -->
+En ésta página
+
+
+<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+
+<!-- code_chunk_output -->
+
+- [Document](#document)
+  - [Funciones](#funciones)
+    - [headStyle](#headstyle)
+      - [Parámetros](#parámetros)
+      - [Comportamiento](#comportamiento)
+      - [Ejemplos](#ejemplos)
+    - [copyToClipboard](#copytoclipboard)
+      - [Parámetros](#parámetros-1)
+      - [Comportamiento](#comportamiento-1)
+      - [Ejemplos](#ejemplos-1)
+
+<!-- /code_chunk_output -->
+
+
+
 ## Funciones
 
-### `headStyle(id, styleDefinitions, [mediaType])`
+### headStyle
 
 Inserta un bloque de estilos CSS en el elemento `<head>` del documento.
+
+**Sintaxis**
+
+```js
+headStyle(id, styleDefinitions, [mediaType]);
+```
 
 #### Parámetros
 
@@ -40,10 +70,16 @@ headStyle(
 
 ---
 
-### `copyToClipboard(selector, [callback])`
+### copyToClipboard
 
 Copia el contenido de texto de un elemento HTML al portapapeles
 usando la API `Clipboard`.
+
+**Sintaxis**
+
+```js
+copyToClipboard(selector, [callback]);
+```
 
 #### Parámetros
 
@@ -78,8 +114,3 @@ const el = document.querySelector(".resultado");
 copyToClipboard(el, () => alert("¡Copiado!"));
 ```
 
----
-
-## Licencia
-
-MIT License — Copyright (c) 2023 Argentina.gob.ar

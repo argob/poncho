@@ -1,16 +1,43 @@
+<!-- omit in toc -->
 # secure-html
 
 Utilidad JavaScript para sanitizar cadenas de texto que contienen HTML, bloqueando etiquetas y atributos peligrosos sin afectar el contenido de texto.
 
----
+<!-- omit in toc -->
+## En ésta página
+
+<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+
+<!-- code_chunk_output -->
+
+- [secure-html](#secure-html)
+  - [En ésta página](#en-ésta-página)
+  - [Advertencia](#advertencia)
+  - [Instalación](#instalación)
+  - [Uso básico](#uso-básico)
+  - [API](#api)
+    - [`secureHTML(str, [exclude])`](#securehtmlstr-exclude)
+      - [Comportamiento](#comportamiento)
+      - [Etiquetas siempre bloqueadas](#etiquetas-siempre-bloqueadas)
+  - [Etiquetas seguras predeterminadas](#etiquetas-seguras-predeterminadas)
+  - [Ejemplos adicionales](#ejemplos-adicionales)
+    - [Bloquear event handlers](#bloquear-event-handlers)
+    - [Bloquear `javascript:` en href](#bloquear-javascript-en-href)
+    - [Bloquear `data:` URI en `src` de imagen](#bloquear-data-uri-en-src-de-imagen)
+    - [Intentar incluir una etiqueta peligrosa en exclude](#intentar-incluir-una-etiqueta-peligrosa-en-exclude)
+
+<!-- /code_chunk_output -->
+
+
+
 
 ## Advertencia
 
-Esta función **no reemplaza** medidas de seguridad del lado del servidor. Para proteger una aplicación web es crucial implementar validación en el servidor, protección contra XSS y usar bibliotecas y frameworks que promuevan prácticas de seguridad sólidas.
+> [!CAUTION]
+> Esta función **no reemplaza** medidas de seguridad del lado del servidor. Para proteger una aplicación web es crucial implementar validación en el servidor, protección contra XSS y usar bibliotecas y frameworks que promuevan prácticas de seguridad sólidas.
+>
+>Si no está seguro de los riesgos que implica exponer esta función en su sitio web, asesórese con un especialista antes de usarla.
 
-Si no está seguro de los riesgos que implica exponer esta función en su sitio web, asesórese con un especialista antes de usarla.
-
----
 
 ## Instalación
 
@@ -22,7 +49,6 @@ const { secureHTML } = require('./secure-html');
 import { secureHTML } from './secure-html.js';
 ```
 
----
 
 ## Uso básico
 
@@ -40,7 +66,6 @@ secureHTML('<p>Texto</p><script>alert(1)</script>', ["*"]);
 // → "<p>Texto</p>&lt;script&gt;alert(1)&lt;/script&gt;"
 ```
 
----
 
 ## API
 
@@ -67,7 +92,7 @@ Independientemente de lo que se pase en `exclude`, las siguientes etiquetas **nu
 `script` · `iframe` · `object` · `embed` · `applet` · `meta` · `link` ·
 `style` · `base` · `form`
 
----
+
 
 ## Etiquetas seguras predeterminadas
 
@@ -116,4 +141,3 @@ secureHTML('<script>alert(1)</script>', ["script"]);
 // [secureHTML] No se puede incluir etiquetas peligrosas: script, ...
 // → "&lt;script&gt;alert(1)&lt;/script&gt;"
 ```
-

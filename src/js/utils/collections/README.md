@@ -1,12 +1,40 @@
-# collections
+<!-- omit in toc -->
+# Collections
 
 Utilidades para aplanar objetos y colecciones con estructura anidada.
 
+<!-- omit in toc -->
+## En ésta página
+
+<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+
+<!-- code_chunk_output -->
+
+- [Collections](#collections)
+  - [En ésta página](#en-ésta-página)
+  - [Funciones](#funciones)
+    - [flattenObject](#flattenobject)
+    - [flattenNestedObjects](#flattennestedobjects)
+  - [Uso en Node.js](#uso-en-nodejs)
+  - [Uso en el navegador](#uso-en-el-navegador)
+
+<!-- /code_chunk_output -->
+
+
+
+
 ## Funciones
 
-### `flattenObject(obj, prefix)`
+### flattenObject
 
 Aplana un objeto anidado en un objeto plano. Cada clave del resultado representa la ruta completa al valor original, con los niveles separados por `__` (doble guión bajo).
+
+**Sintaxis**
+
+```js
+flattenObject(obj, prefix);
+```
+
 
 **Parámetros**
 
@@ -27,11 +55,17 @@ flattenObject({ nombre: "Juan", direccion: { ciudad: "Mendoza", cp: "5500" } }, 
 // => { nombre: "Juan", "direccion__ciudad": "Mendoza", "direccion__cp": "5500" }
 ```
 
----
 
-### `flattenNestedObjects(entries)`
+
+### flattenNestedObjects
 
 Aplana un array de objetos anidados aplicando `flattenObject` a cada elemento. Útil para normalizar colecciones de registros antes de procesarlos o mostrarlos en una tabla plana.
+
+**Sintaxis**
+
+```js
+flattenNestedObjects(entries)
+```
 
 **Parámetros**
 
@@ -68,6 +102,3 @@ Incluir el script directamente y las funciones estarán disponibles en el scope 
 <script src="collections.js"></script>
 ```
 
-## Licencia
-
-MIT © Secretaría de Innovación Pública
