@@ -1,0 +1,11 @@
+title: Poncho Map — Demo
+baseurl: ""
+url: ""
+
+# Todos los .html usan el layout "demo" por defecto
+defaults:
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: demo

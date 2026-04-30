@@ -1,76 +1,34 @@
-<!DOCTYPE html>
-<html lang="es" dir="ltr">
-<head>
-    <link rel="profile" href="http://www.w3.org/1999/xhtml/vocab" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
-        </script>
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
-        integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet"
-        href="https://capacita-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css?rfqjsh">
-    <link rel="stylesheet" href="../../../../dist/css/poncho.min.css" />
-    
-<style>
-@import url("https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css?t9wpy2");
-</style>
-
-    <!-- 
-        Script para debug 
-        Se reemplazan en producción por poncho.min.js
-    -->
-    <script src="../../utils/connect/connect.js"></script>
-    <script src="../../utils/document/copy-to-clipboard.js"></script>
-    <script src="../../utils/document/head-style.js"></script>
-    <script src="../../utils/string/string.js"></script>
-    <script src="../../utils/secure-html/secure-html.js"></script>
-    <script src="../src/js/poncho-map.js"></script>
-    <script src="../src/js/poncho-map-filter.js"></script>
-    <script src="../src/js/poncho-map-search.js"></script>
-    <script src="../src/js/poncho-map-helpers.js"></script>
-    <script src="../src/js/poncho-map-schema.js"></script>
-    <script src="../../gapi-sheet-data/gapi-sheet-data.js"></script>
-    <!-- / Script para debug -->
-
-    <link rel="stylesheet" href="./css/demo.css">
+---
+layout: demo
+title: "Poncho Map — Puntos digitales"
+extra_head: |
+    <style>
+    @import url("https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css?t9wpy2");
+    </style>
     <link rel="stylesheet" href="../dist/css/clusters.css">
-    <title>Poncho Map — Puntos digitales</title>
-</head>
-<body>
-<div class="demo-nav container">
-    <ul class="demo-menu">
-        <li><a href="./">Inicio</a></li>
-    </ul>
-</div>
+---
 
 <div class="container">
     <div class="row">
         <div class="col-md-12">
             <h1 class="h3">Punto Digital</h1>
         </div>
-    </div>                          
+    </div>
 </div>
-<!-- 
+
+<!--
 COPIAR DESDE ACÁ…
 -->
 
 <!-- INCLUDE SCRIPTS -->
-<!-- <script src="/sites/default/files/ponchotable/showdown.js"></script> -->
-<!-- <script src="/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/extensiones/showdown-extensions.js"></script> -->
 <script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.js"></script>
-<script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script> 
+<script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script>
 <link href="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.css" rel="stylesheet">
 <link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.css" rel="stylesheet">
 <link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.Default.css" rel="stylesheet">
-<!-- <script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script> -->
 <script src="./js/template-punto-digital.js"></script>
-
 <!-- / INCLUDE SCRIPTS -->
+
 <div class="container">
 <div class="row">
 
@@ -81,25 +39,25 @@ COPIAR DESDE ACÁ…
         <div data-scope="search-poncho-map">
             <label class="sr-only" for="search">Buscar ubicación</label>
             <div class="input-group m-b-0 p-b-0 webform-component">
-                <input 
-                    class="js-poncho-map-search__input form-control" 
-                    id="search" 
-                    list="js-porcho-map-search__list" 
-                    name="search" 
+                <input
+                    class="js-poncho-map-search__input form-control"
+                    id="search"
+                    list="js-porcho-map-search__list"
+                    name="search"
                     autocomplete="on"
-                    spellcheck="true" 
-                    type="search"> 
-                <datalist 
-                    class="js-porcho-map-search__list" 
+                    spellcheck="true"
+                    type="search">
+                <datalist
+                    class="js-porcho-map-search__list"
                     id="js-porcho-map-search__list">
                 </datalist>
                 <span class="input-group-btn">
-                    <button 
-                        class="js-poncho-map-search__submit btn btn-primary" 
+                    <button
+                        class="js-poncho-map-search__submit btn btn-primary"
                         type="submit">
                         <i class="fa fa-search text-white"></i>
                         <span class="sr-only">Buscar término</span>
-                    </button> 
+                    </button>
                 </span>
             </div>
             <div data-scope="ponchomap">
@@ -114,11 +72,11 @@ COPIAR DESDE ACÁ…
 <div class="col-md-12">
 <!-- PONCHO MAP -->
 <div class="poncho-map" data-scope="ponchomap">
-    <div 
-        class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab 
-            leaflet-touch-drag leaflet-touch-zoom" 
-        id="map" 
-        style="height:650px;width: 100%;" 
+    <div
+        class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab
+            leaflet-touch-drag leaflet-touch-zoom"
+        id="map"
+        style="height:650px;width: 100%;"
         tabindex="0">
     </div>
 </div>
@@ -135,7 +93,6 @@ COPIAR DESDE ACÁ…
         </div>
     </div>
 </div>
-<script src="../../mapa-argentina/demo/js/demo.js"></script>
 <!-- / SHOW CODE -->
 
 
@@ -148,7 +105,7 @@ COPIAR DESDE ACÁ…
     loader.load();
 
     const url = './data/response.json';
-    const jsonData = await fetch_json(url); 
+    const jsonData = await fetch_json(url);
     const gdata = Object.values(jsonData.aPDs).flat();
     const iconColor = "text-arg-azul";
     // map options
@@ -177,7 +134,7 @@ COPIAR DESDE ACÁ…
         slider: true,
         tooltip: true,
         scroll: true,
-        marker: (self, ele) => (ele.estado_funcionamiento == "3" ? 
+        marker: (self, ele) => (ele.estado_funcionamiento == "3" ?
                 "mandarina" : "azul"),
         header_icons:[
             {
@@ -256,11 +213,11 @@ COPIAR DESDE ACÁ…
         },
         text: "nombre",
         search_fields: [
-            "nombre", 
-            "institucion", 
+            "nombre",
+            "institucion",
             "calle",
-            "localidad", 
-            "provincia", 
+            "localidad",
+            "provincia",
             "municipio_nombre"
         ],
         id: "id_pd",
@@ -278,5 +235,3 @@ COPIAR DESDE ACÁ…
 
 
 <!-- / SCRIPTS -->
-</body>
-</html>
