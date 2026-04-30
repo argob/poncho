@@ -22,6 +22,22 @@
   <!-- /Base -->
   <link rel="stylesheet" href="https://qa2-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/poncho.min.css" />
   <link rel="stylesheet" href="../src/" />
+    <!-- 
+        Script para debug 
+        Se reemplazan en producción por poncho.min.js
+    -->
+    <script src="../../utils/connect/connect.js"></script>
+    <script src="../../utils/document/copy-to-clipboard.js"></script>
+    <script src="../../utils/document/head-style.js"></script>
+    <script src="../../utils/string/string.js"></script>
+    <script src="../../utils/secure-html/secure-html.js"></script>
+    <script src="../src/js/poncho-map.js"></script>
+    <script src="../src/js/poncho-map-filter.js"></script>
+    <script src="../src/js/poncho-map-search.js"></script>
+    <script src="../src/js/poncho-map-helpers.js"></script>
+    <script src="../src/js/poncho-map-schema.js"></script>
+    <script src="../../gapi-sheet-data/gapi-sheet-data.js"></script>
+    <!-- / Script para debug -->
   <title>Tabla vialidad</title>
   <style>
     body {
@@ -29,13 +45,10 @@
     }
   </style>
 
-<script src="../../utils/color.js"></script>
-<script src="../../utils/connect.js"></script>
-<script src="../../utils/string.js"></script>
-<script src="../../utils/html.js"></script>
+
 <script src="../poncho-table.js"></script>
 <script src="../poncho-table-dependant.js"></script>
-<script src="../../gapi-sheet-data/gapi-sheet-data.js"></script>
+
 </head>
 <body class="p-t-3">
   <h1>PonchoTable legacy un solo filtro</h1>

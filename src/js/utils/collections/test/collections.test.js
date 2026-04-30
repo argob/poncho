@@ -1,4 +1,4 @@
-const {flattenObject, flattenNestedObjects} = require('../src/js/utils/collections');
+const {flattenObject, flattenNestedObjects} = require('../collections.js');
 
 const DATA = {
     "id": 91,

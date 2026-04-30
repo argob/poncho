@@ -27,6 +27,25 @@
         padding: 2em;
     }
   </style>
+    <!-- 
+        Script para debug 
+        Se reemplazan en producción por poncho.min.js
+    -->
+    <script src="../../utils/connect/connect.js"></script>
+    <script src="../../utils/document/copy-to-clipboard.js"></script>
+    <script src="../../utils/document/head-style.js"></script>
+    <script src="../../utils/string/string.js"></script>
+    <script src="../../utils/secure-html/secure-html.js"></script>
+    <script src="../src/js/poncho-map.js"></script>
+    <script src="../src/js/poncho-map-filter.js"></script>
+    <script src="../src/js/poncho-map-search.js"></script>
+    <script src="../src/js/poncho-map-helpers.js"></script>
+    <script src="../src/js/poncho-map-schema.js"></script>
+    <script src="../../gapi-sheet-data/gapi-sheet-data.js"></script>
+    
+    <script src="../poncho-table.js"></script>
+    <script src="../poncho-table-dependant.js"></script>
+    <!-- / Script para debug -->
 </head>
 <body class="p-t-3">
   <h1>PonchoTable legacy un solo filtro</h1>
@@ -34,60 +53,7 @@
     <p><strong>Creando un enlace html con un texto custom</strong></p>
     <p class="js-sharelink-tag" data-label="Compartir enlace"></p>
   </div>
-  <!-- 
 
-      "headers":{
-          // "id": "ID",
-          "nombre": "Nombre",
-          // "area": "Área",
-          // "categoria": "Categoría",
-          "filtro-organismo": "Organismo",
-          // "excepcional": "Excepcional",
-          // "idCat": "ID Categoría",
-          // "miArgentina": "miArgentina",
-          // "wizard": "Wizard",
-          // "enlace": "Enlace",
-          // "especial": "Especial",
-          // "pago": "Pago",
-          // "descripcionAdicional": "Descripción adicional",
-          // "tratamientoBorradoTemporalEspecial": "Tratamiento borrado temporal/Especial",
-          // "redirect": "Redirect",
-          // "validacionRenaper": "Validación RENAPER",
-          // "nivel": "Nivel",
-          // "descripcion": "Descripción",
-          "descripcionCustom": "Descripción",
-          "btn-ver": "Más info."
-          // "etiquetas": "Etiquetas"
-      },
-
-
-            entry = {
-              // "id": String(a.id),
-              "nombre": a.nombre,
-              // "area": a.area,
-              // "categoria": a.Categoria,
-              "filtro-organismo": a.organismo,
-              // "excepcional": a.excepcional,
-              // "idCat": String(a.idCat),
-              // "miArgentina": a.miArgentina,
-              // "wizard": a.wizard,
-              // "enlace": `<a href="${a.enlace}" class="btn btn-sm btn-primary">Enlace</a>`,
-              // "especial": a.especial,
-              // "pago": a.pago,
-              // "descripcionAdicional": a.descripcionAdicional,
-              // "tratamientoBorradoTemporalEspecial": a.tratamientoBorradoTemporalEspecial,
-              // "redirect": a.redirect,
-              // "validacionRenaper": a.validacionRenaper,
-              // "nivel": a.nivel,
-              // "descripcion": a.descripcion,
-              "btn-ver": `https://turnos.argentina.gob.ar/turnos/seleccionTurno/${a.id}`,
-              "descripcionCustom": [
-                      `<strong>${ a.descripcion ? a.descripcion : "" }</strong>`,
-                      `${ a.descripcionAdicional ? a.descripcionAdicional : ""}`
-                  ].filter(f => f).join("<br>"),
-              // "etiquetas": a.etiquetas
-        };
-   -->
 <!-- 
 COPIAR DESDE ACÁ…
 -->
@@ -102,12 +68,6 @@ COPIAR DESDE ACÁ…
 <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/intl.min.js"></script>
 <!-- / INCLUDE SCRIPTS -->
 
-<script src="../../utils/connect.js"></script>
-<script src="../../utils/html.js"></script>
-<script src="../../utils/string.js"></script>
-<script src="../../utils/gapi-sheet-data.js"></script>
-<script src="../../poncho-table/poncho-table-dependant.js"></script>
-<script src="../../poncho-table/poncho-table.js"></script>
 
 <!-- FILTERS -->
 <div class="row">

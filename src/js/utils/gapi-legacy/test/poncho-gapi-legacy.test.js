@@ -1,6 +1,6 @@
 process.env['NODE_DEV'] = 'TEST';
 
-const gapi_legacy = require('../src/js/utils/gapi-legacy');
+const gapi_legacy = require('../gapi-legacy');
 const jsonData = require('./resources/response');
 
 test('GApi legacy', () => {
