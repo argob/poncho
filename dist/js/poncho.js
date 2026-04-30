@@ -670,32 +670,80 @@ if (typeof exports !== "undefined") {
 }
 
 /**
- * Fetch data con manejo de CORS
+ * @file connect.js
+ * @description Fetch con manejo automático de errores CORS mediante
+ * un proxy configurable.
  *
- * @param {string} uri - URL del recurso
- * @param {Object} options - Opciones de configuración
- * @param {boolean} options.useCorsProxy - Usar proxy CORS en caso de error 
- * (default: true)
- * @param {string} options.corsProxyUrl - URL del proxy CORS personalizado
- * @param {boolean} options.credentials - Incluir credenciales ('include', 
- * 'same-origin', 'omit')
+ * MIT License
+ *
+ * Copyright (c) 2024 Agustin Bouillet / Secretaría de Innovación Pública
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+ * BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+ * ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+ * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
+
+/**
+ * Realiza una petición HTTP y devuelve la respuesta como JSON.
+ *
+ * Intenta la petición directamente contra `uri`. Si falla con un
+ * error de red o CORS y `useCorsProxy` es `true`, reintenta a través
+ * de `corsProxyUrl` sin credenciales. Si el segundo intento también
+ * falla, lanza un error con el mensaje de ambos fallos.
+ *
+ * @async
+ * @param {string} uri - URL del recurso a consultar.
+ * @param {Object} [options={}] - Opciones de configuración.
+ * @param {boolean} [options.useCorsProxy=true] - Habilita el
+ *   fallback al proxy CORS cuando la petición directa falla.
+ * @param {string} [options.corsProxyUrl=""] - URL base del proxy
+ *   CORS. La URI del recurso se añade codificada al final.
+ * @param {string} [options.credentials="same-origin"] - Política
+ *   de credenciales: `"include"`, `"same-origin"` u `"omit"`.
+ * @param {...*} [options.fetchOptions] - Cualquier otra opción
+ *   válida para la API `fetch` nativa (method, headers, body…).
+ * @returns {Promise<*>} Objeto o array resultante de parsear el
+ *   cuerpo de la respuesta como JSON.
+ * @throws {Error} Si la respuesta HTTP no es satisfactoria o si
+ *   fallan tanto la petición directa como la del proxy.
  *
  * @example
- * ```js
- * (async() => {
- *     // Uso básico con fallback a proxy CORS
- *     const data = await fetch_json("https://arg.gob.ar");
+ * // Uso básico — fallback a proxy CORS activado por defecto
+ * const data = await fetch_json("https://arg.gob.ar/data.json");
  *
- *     // Sin proxy CORS
- *     const data2 = await fetch_json(
- *         "https://arg.gob.ar", { useCorsProxy: false }
- *     );
+ * @example
+ * // Sin proxy CORS
+ * const data = await fetch_json(
+ *     "https://arg.gob.ar/data.json",
+ *     { useCorsProxy: false }
+ * );
  *
- *     // Con credenciales
- *     const data3 = await fetch_json(
- *         "https://arg.gob.ar", { credentials: "include" };
- *     );
- * ```
+ * @example
+ * // Con credenciales y proxy personalizado
+ * const data = await fetch_json(
+ *     "https://arg.gob.ar/data.json",
+ *     {
+ *         credentials: "include",
+ *         corsProxyUrl: "https://mi-proxy.example.com/?url="
+ *     }
+ * );
  */
 async function fetch_json(uri, options={}) {
     const {
@@ -705,7 +753,7 @@ async function fetch_json(uri, options={}) {
         ...fetchOptions
     } = options;
 
-    let defaultOptions = {
+    const defaultOptions = {
         method: "GET",
         headers: {
             "Accept": "application/json",
@@ -715,29 +763,33 @@ async function fetch_json(uri, options={}) {
         redirect: "follow"
     };
 
-    let opts = Object.assign({}, defaultOptions, fetchOptions);
+    const opts = Object.assign({}, defaultOptions, fetchOptions);
 
     try {
         const response = await fetch(uri, opts);
         if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            throw new Error(
+                `HTTP error! status: ${response.status}`
+            );
         }
         return await response.json();
 
     } catch (error) {
-        // Si falla y está habilitado el proxy CORS, intentar con proxy
-        if (useCorsProxy && (
-            error.message.includes('CORS') ||
-            error.message.includes('Network') ||
-            error.name === 'TypeError'
-        )) {
+        const isCorsOrNetwork = (
+            error.message.includes("CORS") ||
+            error.message.includes("Network") ||
+            error.name === "TypeError"
+        );
+
+        if (useCorsProxy && isCorsOrNetwork) {
             try {
-                const proxyUri = `${corsProxyUrl}${encodeURIComponent(uri)}`;
+                const proxyUri =
+                    `${corsProxyUrl}${encodeURIComponent(uri)}`;
                 console.warn(
-                    `CORS error detectado. Intentando con proxy: ${proxyUri}`
+                    "CORS error detectado. "
+                    + `Intentando con proxy: ${proxyUri}`
                 );
 
-                // Remover credenciales para el proxy
                 const proxyOpts = { ...opts, credentials: "omit" };
                 const proxyResponse = await fetch(proxyUri, proxyOpts);
 
@@ -751,26 +803,48 @@ async function fetch_json(uri, options={}) {
             } catch (proxyError) {
                 console.error("Error con proxy CORS:", proxyError);
                 throw new Error(
-                    `Fetch fallido directo y con proxy. `
+                    "Fetch fallido directo y con proxy. "
                     + `Error original: ${error.message}`
                 );
             }
         }
 
-        // Re-lanzar el error original si no se usa proxy
         throw error;
     }
-};
+}
+
 
 /**
- * Remueve acentos y caracteres especiales.
- * 
- * @param {string} data Cadena de texto a limpiar. 
- * @example
- * // returns Accion Murcielago arbol nino
- * removeAccents("Acción Murciélago árbol niño")
- * @returns {string} Cadena de texto sin acentos.
+ * @license MIT
+ *
+ * Copyright (c) 2026
+ * Dirección Nacional de Servicios Digitales,
+ * Subsecretaría de Tecnologías de la Información
+ * y las Comunicaciones.
+ *
+ * Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation
+ * files (the "Software"), to deal in the Software without
+ * restriction, including without limitation the rights to use,
+ * copy, modify, merge, publish, distribute, sublicense, and/or
+ * sell copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following
+ * conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+ * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+ * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+ * OTHER DEALINGS IN THE SOFTWARE.
  */
+
+
 const charMap = new Map([
     ['à', 'a'], ['á', 'a'], ['â', 'a'], ['ä', 'a'], ['æ', 'a'], ['ã', 'a'],
     ['å', 'a'], ['ā', 'a'], ['ă', 'a'], ['ą', 'a'],
@@ -823,30 +897,60 @@ const charMap = new Map([
     ['Ž', 'Z'], ['Ź', 'Z'], ['Ż', 'Z']
 ]);
 
+
+/**
+ * Remueve acentos y caracteres especiales.
+ *
+ * Reemplaza caracteres Unicode fuera del rango ASCII básico por sus
+ * equivalentes sin tilde o acento usando un mapa de caracteres
+ * predefinido. Los caracteres que no figuran en el mapa se conservan
+ * sin modificar.
+ *
+ * @param {string} data Cadena de texto a limpiar.
+ * @returns {string} Cadena sin acentos ni caracteres especiales.
+ *   Retorna una cadena vacía si el argumento no es un string válido.
+ * @example
+ * replaceSpecialChars("Acción Murciélago árbol niño");
+ * // → "Accion Murcielago arbol nino"
+ */
 const replaceSpecialChars = (data) => {
     if (typeof data !== "string" || data.trim().length === 0) {
-        console.warn("replaceSpecialChars: Debe pasar una cadena de texto.");
+        console.warn(
+            "replaceSpecialChars: Debe pasar una cadena de texto."
+        );
         return "";
     }
 
-    return data.replace(/[^\u0000-\u007F]/g, char => charMap.get(char) || char);
+    return data.replace(
+        /[^\u0000-\u007F]/g,
+        char => charMap.get(char) || char
+    );
 };
 
 
-/**
- * Slugify
- *
- * @param {string} string Cadena de texto a convertir.
- * @example
- * // returns el-murcielago-remolon-parece-un-nino
- * slugify("El murciélago remolón parece un niño")
- * @returns {string} Cadena de texto en formato slug.
- */
 const slugifyMap = new Map([
     ...Array.from(charMap.entries()),
     ['·', '-'], ['/', '-'], ['_', '-'], [',', '-'], [':', '-'], [';', '-']
 ]);
 
+
+/**
+ * Convierte una cadena de texto a formato slug.
+ *
+ * Transforma el texto a minúsculas, reemplaza espacios y caracteres
+ * especiales por guiones, elimina caracteres no alfanuméricos y
+ * colapsa los guiones consecutivos.
+ *
+ * @param {string} str Cadena de texto a convertir.
+ * @returns {string} Cadena en formato slug.
+ *   Retorna el argumento original si no es un string válido.
+ * @example
+ * slugify("El murciélago remolón parece un niño");
+ * // → "el-murcielago-remolon-parece-un-nino"
+ * @example
+ * slugify("Arroz & Porotos: una receta sencilla");
+ * // → "arroz-and-porotos-una-receta-sencilla"
+ */
 const slugify = (str) => {
     if (typeof str !== "string" || str.trim().length === 0) {
         console.warn("slugify: Debe pasar una cadena de texto.");
@@ -855,7 +959,10 @@ const slugify = (str) => {
 
     return str.toLowerCase()
         .replace(/\s+/g, "-")
-        .replace(/[^\u0000-\u007F]/g, char => slugifyMap.get(char) || char)
+        .replace(
+            /[^\u0000-\u007F]/g,
+            char => slugifyMap.get(char) || char
+        )
         .replace(/&/g, "-and-")
         .replace(/[^\w\-]+/g, "")
         .replace(/-+/g, "-")
@@ -864,10 +971,20 @@ const slugify = (str) => {
 
 
 /**
- * Palabras en title-case.
- * @param {string} str Cadena a transformar
- * @param {boolean} allWords True title-case a todas las palabras
- * @returns {string}
+ * Convierte una cadena de texto a formato title case.
+ *
+ * @param {string} str Cadena a transformar.
+ * @param {boolean} [allWords=true] Si es `true`, aplica title case a
+ *   todas las palabras. Si es `false`, solo capitaliza la primera
+ *   letra de la cadena y pone el resto en minúsculas.
+ * @returns {string} Cadena en formato title case.
+ *   Retorna el argumento original si no es un string válido.
+ * @example
+ * toTitleCase("hola mundo cruel");
+ * // → "Hola Mundo Cruel"
+ * @example
+ * toTitleCase("hola mundo cruel", false);
+ * // → "Hola mundo cruel"
  */
 const toTitleCase = (str, allWords = true) => {
     if (typeof str !== "string" || str.trim().length === 0) {
@@ -888,13 +1005,15 @@ const toTitleCase = (str, allWords = true) => {
 
 
 if (typeof exports !== "undefined") {
-    module.exports = {slugify, replaceSpecialChars, toTitleCase};
+    module.exports = { slugify, replaceSpecialChars, toTitleCase };
 }
+
 
 /**
  * HTML utilities
  *
- * @summary Validadores y herramientas para manipulación de código HTML.
+ * @summary Validadores y herramientas para manipulación de
+ * código HTML.
  *
  * ADVERTENCIA
  *
@@ -919,7 +1038,7 @@ if (typeof exports !== "undefined") {
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
  * files (the "Software"), to deal in the Software without restriction,
- * including without limitation the rightsto use, copy, modify, merge,
+ * including without limitation the rights to use, copy, modify, merge,
  * publish, distribute, sublicense, and/or sell copies of the Software,
  * and to permit persons to whom the Software is furnished to do so,
  * subject to the following conditions:
@@ -941,15 +1060,45 @@ if (typeof exports !== "undefined") {
 /**
  * Impide que se impriman etiquetas HTML peligrosas.
  *
- * @summary Sanitiza HTML bloqueando etiquetas peligrosas y atributos de eventos.
- * Permite opcionalmente excluir ciertas etiquetas seguras de la sanitización.
- * @param {string} str Cadena de texto a sanitizar.
- * @param {object} exclude Etiquetas seguras que deben preservarse.
- * @example
- * // returns &lt;h1&gt;Hello world!&lt;/h1&gt; <a href="#">Link</a>
- * secureHTML('<h1>Hello world!</h1> <a href="#">Link</a>', ["a"])
+ * @summary Sanitiza HTML bloqueando etiquetas peligrosas y atributos
+ * de eventos. Permite opcionalmente excluir ciertas etiquetas seguras
+ * de la sanitización.
  *
- * @returns {string} Texto sanitizado.
+ * @description
+ * Recorre la cadena recibida y escapa los caracteres `<` y `>`.
+ * Si se indican etiquetas en `exclude`, éstas son restauradas luego
+ * del escape, pero con sus atributos peligrosos eliminados: event
+ * handlers (`onclick`, `onerror`, etc.), `javascript:` en `href` y
+ * en `src`, y `data:` URIs no-imagen en `src`.
+ *
+ * Las siguientes etiquetas siempre permanecen bloqueadas,
+ * independientemente de lo que se pase en `exclude`:
+ * `script`, `iframe`, `object`, `embed`, `applet`, `meta`,
+ * `link`, `style`, `base`, `form`.
+ *
+ * @param {string}   str           Cadena de texto a sanitizar.
+ * @param {string[]} [exclude=[]]  Lista de nombres de etiquetas HTML
+ *   que deben preservarse en el resultado. Pasar `["*"]` para
+ *   permitir todas las etiquetas de la lista segura predeterminada.
+ *
+ * @returns {string} Cadena con el HTML sanitizado. Las etiquetas no
+ *   incluidas en `exclude` quedan escapadas como entidades HTML.
+ *
+ * @example <caption>Escapar todo el HTML</caption>
+ * secureHTML('<h1>Hola</h1>');
+ * // "&lt;h1&gt;Hola&lt;/h1&gt;"
+ *
+ * @example <caption>Preservar etiquetas seguras</caption>
+ * secureHTML('<h1>Hello world!</h1> <a href="#">Link</a>', ["a"]);
+ * // '&lt;h1&gt;Hello world!&lt;/h1&gt; <a href="#">Link</a>'
+ *
+ * @example <caption>Bloquear event handlers en atributos</caption>
+ * secureHTML('<a onclick="alert(1)" href="#">X</a>', ["a"]);
+ * // '<a href="#">X</a>'
+ *
+ * @example <caption>Permitir todas las etiquetas seguras</caption>
+ * secureHTML('<p>Texto</p><script>alert(1)</script>', ["*"]);
+ * // '<p>Texto</p>&lt;script&gt;alert(1)&lt;/script&gt;'
  */
 const secureHTML = (str, exclude=[]) => {
     if(typeof str !== "string" || str.trim().length === 0){
@@ -965,7 +1114,8 @@ const secureHTML = (str, exclude=[]) => {
 
     const secureList = [
         // Contenedores y estructura
-        "div", "section", "article", "aside", "header", "footer", "main", "nav",
+        "div", "section", "article", "aside", "header",
+        "footer", "main", "nav",
         "figure", "figcaption", "details", "summary", "dialog",
 
         // Texto y formato
@@ -983,7 +1133,8 @@ const secureHTML = (str, exclude=[]) => {
         "ul", "ol", "li", "dl", "dt", "dd",
 
         // Tablas
-        "table", "thead", "tbody", "tfoot", "tr", "th", "td", "caption", "col", "colgroup",
+        "table", "thead", "tbody", "tfoot",
+        "tr", "th", "td", "caption", "col", "colgroup",
 
         // Enlaces y multimedia
         "a", "img", "picture", "source", "audio", "video", "track",
@@ -1028,10 +1179,12 @@ const secureHTML = (str, exclude=[]) => {
         exclude = secureList;
     }
 
-    // NUEVO: Sanitizar imágenes ANTES de escapar si 'img' está en exclude
+    // Sanitizar imágenes ANTES de escapar si 'img' está en exclude
     let preprocessedStr = str;
-    if(exclude.includes('img') || (exclude.includes('*') && secureList.includes('img'))){
-        // Sanitizar atributos src peligrosos en imágenes ANTES del escape
+    const imgAllowed = exclude.includes('img') ||
+        (exclude.includes('*') && secureList.includes('img'));
+
+    if(imgAllowed){
         preprocessedStr = preprocessedStr
             // Bloquear javascript: en src (con comillas)
             .replace(
@@ -1103,13 +1256,13 @@ const secureHTML = (str, exclude=[]) => {
                     'href="#"'
                 );
 
-                // Validar data: URIs (pueden ejecutar JavaScript) - con comillas
+                // Bloquear data: URIs en href (con comillas)
                 cleanAttrs = cleanAttrs.replace(
                     /href\s*=\s*["']data:[^"']*["']/gi,
                     'href="#"'
                 );
 
-                // Validar data: URIs (pueden ejecutar JavaScript) - sin comillas
+                // Bloquear data: URIs en href (sin comillas)
                 cleanAttrs = cleanAttrs.replace(
                     /href\s*=\s*data:[^\s>]*/gi,
                     'href="#"'
@@ -1130,51 +1283,165 @@ if (typeof exports !== "undefined") {
 
 
 /**
- * HEAD STYLE
- * 
- * @summary Permite agregar definiciones css dentro del head.
- * 
- * @author Agustín Bouillet <bouilleta@jefatura.gob.ar>
- * @param {string} id Nombre único para identificar las asignaciones css
- * @param {string} styleDefinitions Definiciones CSS
- * @param {string} mediaType Definición para media query
- * @example
- * //<style id="custom-id">div {border: 2px solid red}</div>
- * headStyle("custom-id", `div { border: 2px solid red}`);
- * 
- * //<style id="custom-id" media="all and (max-width: 500px)">
- * //    div {border: 2px solid red}
- * //</div>
- * headStyle(
- *     "custom-id", 
- *     `div { border: 2px solid red}`,
- *     "all and (max-width: 500px)"
- * );
- * @returns {undefined}
- * 
  * MIT License
- * 
+ *
  * Copyright (c) 2023 Argentina.gob.ar
- * 
+ *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
- * files (the "Software"), to deal in the Software without restriction,
- * including without limitation the rightsto use, copy, modify, merge,
- * publish, distribute, sublicense, and/or sell copies of the Software,
- * and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
- * 
+ * files (the "Software"), to deal in the Software without
+ * restriction, including without limitation the rights to use,
+ * copy, modify, merge, publish, distribute, sublicense, and/or
+ * sell copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following
+ * conditions:
+ *
  * The above copyright notice and this permission notice shall be
  * included in all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
- * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
- * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
- * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
- * BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
- * ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+ * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+ * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+ * OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+/**
+ * COPY TO CLIPBOARD
+ *
+ * @summary Copia el contenido de texto de un elemento HTML al
+ * portapapeles del sistema usando la API Clipboard.
+ *
+ * @description Acepta un selector CSS o directamente un elemento
+ * HTMLElement. Si el selector no coincide con ningún elemento o
+ * el elemento no es válido, la función retorna sin efecto. Al
+ * copiar con éxito, ejecuta el callback opcional pasando el
+ * elemento como argumento.
+ *
+ * @author Agustín Bouillet <bouilleta@jefatura.gob.ar>
+ *
+ * @param {string|HTMLElement} selector Selector CSS (ej: ".clase",
+ *     "#id") o referencia directa a un elemento HTMLElement cuyo
+ *     texto se desea copiar.
+ * @param {function} [callback] Función opcional que se ejecuta
+ *     tras copiar el texto con éxito. Recibe el elemento copiado
+ *     como primer argumento.
+ * @returns {void}
+ *
+ * @example
+ * // Copiar el contenido de un elemento por selector
+ * copyToClipboard("#mi-elemento");
+ *
+ * @example
+ * // Copiar con callback de confirmación
+ * copyToClipboard(".codigo", (el) => {
+ *     el.classList.add("copiado");
+ * });
+ *
+ * @example
+ * // Pasar directamente un elemento HTMLElement
+ * const el = document.querySelector(".resultado");
+ * copyToClipboard(el, () => alert("¡Copiado!"));
+ */
+function copyToClipboard(selector, callback) {
+    const element = (typeof selector === "string" ?
+            document.querySelector(selector) : selector);
+
+    if (!element || !(element instanceof HTMLElement)) {
+        return;
+    }
+
+    const copyText = element;
+    if (!copyText) {
+        console.error(
+            "[copyToClipboard] No se puede encontrar el elemento."
+        );
+        return;
+    }
+    const str = copyText.textContent;
+    navigator.clipboard.writeText(str)
+        .then(function () {
+            if (typeof callback === "function") {
+                callback(copyText);
+            }
+        }, function () {
+            console.error(
+                "[copyToClipboard] No se puede copiar el texto."
+            );
+        });
+}
+
+
+/**
+ * MIT License
+ *
+ * Copyright (c) 2023 Argentina.gob.ar
+ *
+ * Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation
+ * files (the "Software"), to deal in the Software without
+ * restriction, including without limitation the rights to use,
+ * copy, modify, merge, publish, distribute, sublicense, and/or
+ * sell copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following
+ * conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+ * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+ * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+ * OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+/**
+ * HEAD STYLE
+ *
+ * @summary Inserta un bloque de estilos CSS en el elemento <head>
+ * del documento.
+ *
+ * @description Crea un elemento <style> con el id indicado y lo
+ * agrega al <head>. Si ya existe un elemento con el mismo id y
+ * las mismas definiciones, la función no hace nada. Si existe el
+ * id pero con definiciones distintas, reemplaza el bloque
+ * existente. El parámetro mediaType permite limitar los estilos
+ * a un media query específico.
+ *
+ * @author Agustín Bouillet <bouilleta@jefatura.gob.ar>
+ *
+ * @param {string} id Nombre único para identificar el bloque de
+ *     estilos en el DOM. Si se omite o no es válido, se usa el
+ *     valor por defecto "argob-custom-css".
+ * @param {string} styleDefinitions Cadena con las definiciones
+ *     CSS a insertar dentro del elemento <style>.
+ * @param {string} [mediaType] Valor del atributo media del
+ *     elemento <style>. Permite aplicar estilos condicionalmente
+ *     según el media query indicado.
+ * @returns {undefined}
+ *
+ * @example
+ * // Insertar estilos simples
+ * // <style id="custom-id">div { border: 2px solid red }</style>
+ * headStyle("custom-id", `div { border: 2px solid red }`);
+ *
+ * @example
+ * // Insertar estilos con media query
+ * // <style id="custom-id" media="all and (max-width: 500px)">
+ * //     div { border: 2px solid red }
+ * // </style>
+ * headStyle(
+ *     "custom-id",
+ *     `div { border: 2px solid red }`,
+ *     "all and (max-width: 500px)"
+ * );
  */
 const headStyle = (id, styleDefinitions, mediaType) => {
     if (typeof id !== "string" || id.trim() === "") {
@@ -1183,7 +1450,8 @@ const headStyle = (id, styleDefinitions, mediaType) => {
         id = "argob-custom-css";
     }
 
-    if (typeof styleDefinitions !== "string" || styleDefinitions.trim() == ""){
+    if (typeof styleDefinitions !== "string"
+            || styleDefinitions.trim() === "") {
         console.warn("No se ha provisto definición de estilos. "
             + "Se pasa por alto la petición.");
         return;
@@ -1191,15 +1459,17 @@ const headStyle = (id, styleDefinitions, mediaType) => {
 
     const styleExists = document.getElementById(id);
     if (styleExists !== null) {
-        if (styleExists.textContent.trim() === styleDefinitions.trim()) {
+        const sameContent = styleExists.textContent.trim()
+            === styleDefinitions.trim();
+        if (sameContent) {
             console.warn("[addHeadStyle] Una definición de estilos "
                 + "con las mismas definiciones ya existe.");
             return;
-            
         } else {
             styleExists.remove();
-            console.warn("[addHeadStyle] Un estilo con el mismo _id_ "
-                + "existe, pero tiene definiciones distintas. Se pisa.");
+            console.warn("[addHeadStyle] Un estilo con el mismo "
+                + "_id_ existe, pero tiene definiciones distintas."
+                + " Se pisa.");
         }
     }
 
@@ -1207,7 +1477,7 @@ const headStyle = (id, styleDefinitions, mediaType) => {
         const tag = document.createElement("style");
         tag.setAttribute("rel", "stylesheet");
         tag.id = id;
-        if(typeof mediaType === "string" && mediaType.trim() !== ""){
+        if (typeof mediaType === "string" && mediaType.trim() !== "") {
             tag.setAttribute("media", mediaType);
         }
 
@@ -1219,42 +1489,61 @@ const headStyle = (id, styleDefinitions, mediaType) => {
 
 
 /**
- * Copia texto en el portapapeles (clipboard)
- * 
- * @param {string} selector Selector html, ej: .class o #id
- * @param {function} callback Función de retorno.
- * @returns {void}
+ * @file collections.js
+ * @description Utility functions for flattening nested objects and arrays.
+ *
+ * MIT License
+ *
+ * Copyright (c) 2024 Agustin Bouillet / Secretaría de Innovación Pública
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+ * BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+ * ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+ * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  */
-function copyToClipboard(selector, callback) {
-    const element = (typeof selector === 'string' ? 
-            document.querySelector(selector) : selector);
 
-    if (!element || !(element instanceof HTMLElement)) {
-        return; 
-    }
 
-    const copyText = element;
-    if(!copyText){
-        console.error("[copyToClipboard] No se puede encontrar el elemento.");
-        return;
-    }
-    const str = copyText.textContent;
-    navigator.clipboard.writeText(str)
-        .then(function(){
-            if(typeof callback === "function"){
-                callback(copyText);
-            }
-        }, function(){
-            console.error("[copyToClipboard] No se puede copiar el texto.");
-        });
-}
-
-function flattenNestedObjects(entries) {
-    return entries.map(entry => {
-        return flattenObject(entry, "");
-    });
-}
-
+/**
+ * Aplana un objeto anidado en un objeto plano usando `__` como
+ * separador de claves.
+ *
+ * Las claves del objeto resultante representan la ruta completa al
+ * valor original, concatenando cada nivel con doble guión bajo (`__`).
+ *
+ * @param {Object} obj - El objeto a aplanar. Puede tener cualquier
+ *   nivel de anidamiento.
+ * @param {string} prefix - Prefijo acumulado para las claves. Usar
+ *   cadena vacía `""` en la llamada inicial.
+ * @returns {Object} Un nuevo objeto plano sin propiedades anidadas.
+ *
+ * @example
+ * flattenObject({ a: { b: { c: 1 } } }, "")
+ * // => { "a__b__c": 1 }
+ *
+ * @example
+ * const direccion = { ciudad: "Mendoza", cp: "5500" };
+ * flattenObject({ nombre: "Juan", direccion }, "")
+ * // => {
+ * //   nombre: "Juan",
+ * //   "direccion__ciudad": "Mendoza",
+ * //   "direccion__cp": "5500"
+ * // }
+ */
 function flattenObject(obj, prefix) {
     const flattened = {};
     for (const key in obj) {
@@ -1271,9 +1560,40 @@ function flattenObject(obj, prefix) {
 }
 
 
+/**
+ * Aplana un array de objetos anidados, transformando cada elemento
+ * con {@link flattenObject}.
+ *
+ * Útil para normalizar colecciones de registros con estructura
+ * jerárquica antes de procesarlos, filtrarlos o renderizarlos
+ * en una tabla plana.
+ *
+ * @param {Object[]} entries - Array de objetos que pueden tener
+ *   propiedades anidadas.
+ * @returns {Object[]} Nuevo array donde cada objeto está
+ *   completamente aplanado.
+ *
+ * @example
+ * flattenNestedObjects([
+ *   { id: 1, info: { nombre: "Ana", cargo: "Dev" } },
+ *   { id: 2, info: { nombre: "Luis", cargo: "QA" } }
+ * ])
+ * // => [
+ * //   { id: 1, "info__nombre": "Ana", "info__cargo": "Dev" },
+ * //   { id: 2, "info__nombre": "Luis", "info__cargo": "QA" }
+ * // ]
+ */
+function flattenNestedObjects(entries) {
+    return entries.map(entry => {
+        return flattenObject(entry, "");
+    });
+}
+
+
 if (typeof exports !== "undefined") {
     module.exports = {flattenObject, flattenNestedObjects};
 }
+
 
 /**
  * 
@@ -5285,32 +5605,97 @@ function ponchoChart(opt) {
 
 
 /**
+ * MIT License
+ *
+ * Copyright (c) 2024 Agustín Bouillet
+ *
+ * Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation
+ * files (the "Software"), to deal in the Software without
+ * restriction, including without limitation the rights to use,
+ * copy, modify, merge, publish, distribute, sublicense, and/or
+ * sell copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following
+ * conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+ * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+ * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+ * OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+/**
  * GAPI LEGACY
- * Retorna la estructura de la versión 3 de la API GoogleSheets.
- * 
+ *
+ * Converts a Google Sheets API v4 response into the legacy v3
+ * structure expected by older integrations.
+ *
+ * The Google Sheets API v4 returns a flat `values` array of arrays.
+ * This function transforms that into the feed/entry format used by
+ * the deprecated v3 API, where each column is keyed as
+ * `gsx$<columnName>` and its value is stored under `$t`.
+ *
+ * Column names are normalized: spaces, slashes, and underscores are
+ * removed and the name is lowercased.
+ *
  * @author Agustín Bouillet <bouilleta@jefatura.gob.ar>
- * @summary La estructura del objeto que retorna es de este modo:
+ *
  * @example
- * // Estructura de retorno
- *  .
- *  \--feed
- *      \-- entry
- *          |-- gsx$[nombre columna]
- *          |   \-- $t
- *          |-- gsx$[nombre columna]
- *          |   \-- $t
- * 
- * @param  {object} response Response JSON.
- * @return {object} JSON con la estructura V3 de la api de google sheet
+ * // Input (Google Sheets API v4 response)
+ * const response = {
+ *   values: [
+ *     ["name", "age"],
+ *     ["Alice", "30"],
+ *     ["Bob",   "25"]
+ *   ]
+ * };
+ *
+ * gapi_legacy(response);
+ * // Returns:
+ * // {
+ * //   feed: {
+ * //     entry: [
+ * //       { "gsx$name": { "$t": "Alice" },
+ * //         "gsx$age":  { "$t": "30" } },
+ * //       { "gsx$name": { "$t": "Bob" },
+ * //         "gsx$age":  { "$t": "25" } }
+ * //     ]
+ * //   }
+ * // }
+ *
+ * @param  {object} response
+ *   Google Sheets API v4 response object.
+ * @param  {Array<Array<string>>} response.values
+ *   2D array where the first row contains column headers and
+ *   subsequent rows contain data values.
+ * @throws {TypeError} If `response` is falsy, has no `values`
+ *   property, or `values` is not a 2D array.
+ * @return {object} Object matching the v3 feed/entry structure.
  */
 const gapi_legacy = (response) => {
 
-  if (!response || !response.values || response.values.length === 0) {
+  if (
+    !response ||
+    !response.values ||
+    response.values.length === 0
+  ) {
     throw new TypeError("Invalid response format");
   }
 
-  if (!Array.isArray(response.values) || !Array.isArray(response.values[0])) {
-    throw new TypeError("Invalid response format: values should be arrays");
+  if (
+    !Array.isArray(response.values) ||
+    !Array.isArray(response.values[0])
+  ) {
+    throw new TypeError(
+      "Invalid response format: values should be arrays"
+    );
   }
 
   const keys = response.values[0];
@@ -5318,13 +5703,14 @@ const gapi_legacy = (response) => {
   let entry = [];
 
   response.values.forEach((v, k) => {
-    if(k > 0){
-        let zip = {};
-        for(const i in keys){
-            const d = (v.hasOwnProperty(i))? v[i].trim() : "";
-            zip[`gsx$${keys[i].toLowerCase().replace(regex, "")}`] = {"$t": d};
-        }
-        entry.push(zip);
+    if (k > 0) {
+      let zip = {};
+      for (const i in keys) {
+        const d = v.hasOwnProperty(i) ? v[i].trim() : "";
+        const key = keys[i].toLowerCase().replace(regex, "");
+        zip[`gsx$${key}`] = {"$t": d};
+      }
+      entry.push(zip);
     }
   });
 
@@ -5335,6 +5721,7 @@ const gapi_legacy = (response) => {
 if (typeof exports !== "undefined") {
   module.exports = gapi_legacy;
 }
+
 
 /**
  * PONCHO MAP
