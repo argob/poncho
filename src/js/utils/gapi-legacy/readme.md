@@ -6,22 +6,14 @@ Convierte una respuesta de la Google Sheets API v4 a la estructura legacy de la 
 <!-- omit in toc -->
 # En ésta página
 
+- [Problema que resuelve](#problema-que-resuelve)
+- [Uso](#uso)
+  - [Parámetros](#parámetros)
+  - [Retorna](#retorna)
+  - [Normalización de nombres de columna](#normalización-de-nombres-de-columna)
+- [Ejemplo](#ejemplo)
+- [Errores](#errores)
 
-<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
-
-<!-- code_chunk_output -->
-
-- [gapi-legacy](#gapi-legacy)
-- [En ésta página](#en-ésta-página)
-  - [Problema que resuelve](#problema-que-resuelve)
-  - [Uso](#uso)
-    - [Parámetros](#parámetros)
-    - [Retorna](#retorna)
-    - [Normalización de nombres de columna](#normalización-de-nombres-de-columna)
-  - [Ejemplo](#ejemplo)
-  - [Errores](#errores)
-
-<!-- /code_chunk_output -->
 
 
 
