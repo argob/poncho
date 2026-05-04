@@ -1,4 +1,7 @@
 /**
+ * headStyle
+ * Inserta un bloque de estilos CSS en el elemento <head> del documento.
+ * 
  * MIT License
  *
  * Copyright (c) 2023 Argentina.gob.ar

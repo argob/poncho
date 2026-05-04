@@ -1,4 +1,8 @@
 /**
+ * copyToClipboard
+ * 
+ * Copia el contenido de texto de un elemento HTML al portapapeles usando la API `Clipboard`.
+ * 
  * MIT License
  *
  * Copyright (c) 2023 Argentina.gob.ar

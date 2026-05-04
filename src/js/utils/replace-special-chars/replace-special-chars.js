@@ -1,6 +1,4 @@
 /**
- * POPOVER
- * 
  * @license MIT
  *
  * Copyright (c) 2026
@@ -29,18 +27,37 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
  * OTHER DEALINGS IN THE SOFTWARE.
  */
-var content_popover = document.getElementById("content-popover");
-
-function popshow(){
-    if (!content_popover){
-        return;
+/**
+ * Remueve acentos y caracteres especiales.
+ *
+ * Reemplaza caracteres Unicode fuera del rango ASCII básico por sus
+ * equivalentes sin tilde o acento usando un mapa de caracteres
+ * predefinido. Los caracteres que no figuran en el mapa se conservan
+ * sin modificar.
+ *
+ * @param {string} data Cadena de texto a limpiar.
+ * @returns {string} Cadena sin acentos ni caracteres especiales.
+ *   Retorna una cadena vacía si el argumento no es un string válido.
+ * @example
+ * replaceSpecialChars("Acción Murciélago árbol niño");
+ * // → "Accion Murcielago arbol nino"
+ */
+const replaceSpecialChars = (data) => {
+    if (typeof data !== "string" || data.trim().length === 0) {
+        console.warn(
+            "replaceSpecialChars: Debe pasar una cadena de texto."
+        );
+        return "";
     }
-    content_popover.classList.toggle("hidden");
-}
 
-function pophidde(){
-    if (!content_popover){
-        return;
-    }
-    content_popover.classList.add("hidden");
+    return data.replace(
+        /[^\u0000-\u007F]/g,
+        char => charMap.get(char) || char
+    );
+};
+
+
+
+if (typeof exports !== "undefined") {
+    module.exports = { replaceSpecialChars };
 }
