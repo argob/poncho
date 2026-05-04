@@ -1,4 +1,8 @@
 /**
+ * charMap
+ * 
+ * @requires charMap
+ * 
  * @license MIT
  *
  * Copyright (c) 2026
@@ -27,8 +31,6 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
  * OTHER DEALINGS IN THE SOFTWARE.
  */
-
-
 const charMap = new Map([
     ['à', 'a'], ['á', 'a'], ['â', 'a'], ['ä', 'a'], ['æ', 'a'], ['ã', 'a'],
     ['å', 'a'], ['ā', 'a'], ['ă', 'a'], ['ą', 'a'],
@@ -82,112 +84,6 @@ const charMap = new Map([
 ]);
 
 
-/**
- * Remueve acentos y caracteres especiales.
- *
- * Reemplaza caracteres Unicode fuera del rango ASCII básico por sus
- * equivalentes sin tilde o acento usando un mapa de caracteres
- * predefinido. Los caracteres que no figuran en el mapa se conservan
- * sin modificar.
- *
- * @param {string} data Cadena de texto a limpiar.
- * @returns {string} Cadena sin acentos ni caracteres especiales.
- *   Retorna una cadena vacía si el argumento no es un string válido.
- * @example
- * replaceSpecialChars("Acción Murciélago árbol niño");
- * // → "Accion Murcielago arbol nino"
- */
-const replaceSpecialChars = (data) => {
-    if (typeof data !== "string" || data.trim().length === 0) {
-        console.warn(
-            "replaceSpecialChars: Debe pasar una cadena de texto."
-        );
-        return "";
-    }
-
-    return data.replace(
-        /[^\u0000-\u007F]/g,
-        char => charMap.get(char) || char
-    );
-};
-
-
-const slugifyMap = new Map([
-    ...Array.from(charMap.entries()),
-    ['·', '-'], ['/', '-'], ['_', '-'], [',', '-'], [':', '-'], [';', '-']
-]);
-
-
-/**
- * Convierte una cadena de texto a formato slug.
- *
- * Transforma el texto a minúsculas, reemplaza espacios y caracteres
- * especiales por guiones, elimina caracteres no alfanuméricos y
- * colapsa los guiones consecutivos.
- *
- * @param {string} str Cadena de texto a convertir.
- * @returns {string} Cadena en formato slug.
- *   Retorna el argumento original si no es un string válido.
- * @example
- * slugify("El murciélago remolón parece un niño");
- * // → "el-murcielago-remolon-parece-un-nino"
- * @example
- * slugify("Arroz & Porotos: una receta sencilla");
- * // → "arroz-and-porotos-una-receta-sencilla"
- */
-const slugify = (str) => {
-    if (typeof str !== "string" || str.trim().length === 0) {
-        console.warn("slugify: Debe pasar una cadena de texto.");
-        return str;
-    }
-
-    return str.toLowerCase()
-        .replace(/\s+/g, "-")
-        .replace(
-            /[^\u0000-\u007F]/g,
-            char => slugifyMap.get(char) || char
-        )
-        .replace(/&/g, "-and-")
-        .replace(/[^\w\-]+/g, "")
-        .replace(/-+/g, "-")
-        .replace(/^-+|-+$/g, "");
-};
-
-
-/**
- * Convierte una cadena de texto a formato title case.
- *
- * @param {string} str Cadena a transformar.
- * @param {boolean} [allWords=true] Si es `true`, aplica title case a
- *   todas las palabras. Si es `false`, solo capitaliza la primera
- *   letra de la cadena y pone el resto en minúsculas.
- * @returns {string} Cadena en formato title case.
- *   Retorna el argumento original si no es un string válido.
- * @example
- * toTitleCase("hola mundo cruel");
- * // → "Hola Mundo Cruel"
- * @example
- * toTitleCase("hola mundo cruel", false);
- * // → "Hola mundo cruel"
- */
-const toTitleCase = (str, allWords = true) => {
-    if (typeof str !== "string" || str.trim().length === 0) {
-        console.warn("[toTitleCase] Debe ingresar una cadena de texto.");
-        return str;
-    }
-
-    const trimmed = str.trim();
-
-    if (!allWords) {
-        return trimmed[0].toUpperCase() + trimmed.slice(1).toLowerCase();
-    }
-
-    return trimmed.replace(/\S+/g, word =>
-        word[0].toUpperCase() + word.slice(1).toLowerCase()
-    );
-};
-
-
 if (typeof exports !== "undefined") {
-    module.exports = { slugify, replaceSpecialChars, toTitleCase };
+    module.exports = { charMap };
 }

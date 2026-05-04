@@ -6,28 +6,19 @@ Utilidad JavaScript para sanitizar cadenas de texto que contienen HTML, bloquean
 <!-- omit in toc -->
 ## En ésta página
 
-<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
-
-<!-- code_chunk_output -->
-
-- [secure-html](#secure-html)
-  - [En ésta página](#en-ésta-página)
-  - [Advertencia](#advertencia)
-  - [Instalación](#instalación)
-  - [Uso básico](#uso-básico)
-  - [API](#api)
-    - [`secureHTML(str, [exclude])`](#securehtmlstr-exclude)
-      - [Comportamiento](#comportamiento)
-      - [Etiquetas siempre bloqueadas](#etiquetas-siempre-bloqueadas)
-  - [Etiquetas seguras predeterminadas](#etiquetas-seguras-predeterminadas)
-  - [Ejemplos adicionales](#ejemplos-adicionales)
-    - [Bloquear event handlers](#bloquear-event-handlers)
-    - [Bloquear `javascript:` en href](#bloquear-javascript-en-href)
-    - [Bloquear `data:` URI en `src` de imagen](#bloquear-data-uri-en-src-de-imagen)
-    - [Intentar incluir una etiqueta peligrosa en exclude](#intentar-incluir-una-etiqueta-peligrosa-en-exclude)
-
-<!-- /code_chunk_output -->
-
+- [Advertencia](#advertencia)
+- [Instalación](#instalación)
+- [Uso básico](#uso-básico)
+- [API](#api)
+  - [`secureHTML(str, [exclude])`](#securehtmlstr-exclude)
+    - [Comportamiento](#comportamiento)
+    - [Etiquetas siempre bloqueadas](#etiquetas-siempre-bloqueadas)
+- [Etiquetas seguras predeterminadas](#etiquetas-seguras-predeterminadas)
+- [Ejemplos adicionales](#ejemplos-adicionales)
+  - [Bloquear event handlers](#bloquear-event-handlers)
+  - [Bloquear `javascript:` en href](#bloquear-javascript-en-href)
+  - [Bloquear `data:` URI en `src` de imagen](#bloquear-data-uri-en-src-de-imagen)
+  - [Intentar incluir una etiqueta peligrosa en exclude](#intentar-incluir-una-etiqueta-peligrosa-en-exclude)
 
 
 

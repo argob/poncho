@@ -19,37 +19,50 @@
   <link 
       rel="stylesheet" 
       href="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css">
-  <!-- /Base -->
-  <link rel="stylesheet" href="https://qa2-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/poncho.min.css" />
+  <link 
+      rel="stylesheet" 
+      href="https://qa2-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/poncho.min.css" />
 
   <title>PonchoTable | Búscar y compartir</title>
+
     <!-- 
-        Script para debug 
+        SCRIPT PARA DEBUG
         Se reemplazan en producción por poncho.min.js
     -->
+    <!-- Color -->
+    <script src="../../color/src/js/color.js"></script>
+    <script src="../../color/src/js/color-definitions.js"></script>
+    <script src="../../color/src/js/color-variations.js"></script>
+    <!-- Utils -->
+    <script src="../../utils/char-map.js"></script>
     <script src="../../utils/connect/connect.js"></script>
-    <script src="../../utils/document/copy-to-clipboard.js"></script>
-    <script src="../../utils/document/head-style.js"></script>
-    <script src="../../utils/string/string.js"></script>
+    <script src="../../utils/copy-to-clipboard/copy-to-clipboard.js"></script>
+    <script src="../../utils/head-style/head-style.js"></script>
+    <script src="../../utils/replace-special-chars/replace-special-chars.js"></script>
+    <script src="../../utils/slugify/slugify.js"></script>
+    <script src="../../utils/to-title-case/to-title-case.js"></script>
     <script src="../../utils/secure-html/secure-html.js"></script>
-    <script src="../src/js/poncho-map.js"></script>
-    <script src="../src/js/poncho-map-filter.js"></script>
-    <script src="../src/js/poncho-map-search.js"></script>
-    <script src="../src/js/poncho-map-helpers.js"></script>
-    <script src="../src/js/poncho-map-schema.js"></script>
+    <!-- PonchoMap -->
+    <script src="../../poncho-map/src/js/poncho-map.js"></script>
+    <script src="../../poncho-map/src/js/poncho-map-filter.js"></script>
+    <script src="../../poncho-map/src/js/poncho-map-search.js"></script>
+    <script src="../../poncho-map/src/js/poncho-map-helpers.js"></script>
+    <script src="../../poncho-map/src/js/poncho-map-schema.js"></script>
+    <script src="../../poncho-map-provinces/src/js/poncho-map-provinces.js"></script>
+    <script src="../../poncho-map-provinces/src/js/poncho-map-provinces-contenidos.js"></script>
+    <!-- GoogleAPI helper -->
     <script src="../../gapi-sheet-data/gapi-sheet-data.js"></script>
-    <!-- / Script para debug -->
-
+    <!-- PonchoTable -->
     <script src="../poncho-table.js"></script>
     <script src="../poncho-table-dependant.js"></script>
+    <!-- / SCRIPT PARA DEBUG -->
+
     <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/vendor/bootstrap/js/bootstrap.min.js?sl43rm"></script>
   <style>
     body {
         padding: 2em;
     }
-
   </style>
-
 
 </head>
 <body class="p-t-3">
@@ -60,13 +73,11 @@ COPIAR DESDE ACÁ…
 -->
 <!-- INCLUDE SCRIPTS -->
 <link href="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/ponchoTable-1.1.css" rel="stylesheet">
-<link href="../dist/css/ponchoRable-1.1.css" rel="stylesheet">
 <script src="https://www.argentina.gob.ar/sites/default/files/ponchotable/showdown.js"></script>
 <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/extensiones/showdown-extensions.js"></script>
 
 <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/datatables.min.js"></script> 
 <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/intl.min.js"></script>
-<script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
 <!-- / INCLUDE SCRIPTS -->
 
 
