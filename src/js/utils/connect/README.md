@@ -6,23 +6,13 @@ Fetch con manejo automático de errores CORS mediante un proxy configurable.
 
 <!-- omit in toc -->
 ## En ésta página
-
-
-<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
-
-<!-- code_chunk_output -->
-
-- [Connect](#connect)
-  - [En ésta página](#en-ésta-página)
-  - [fetch_json](#fetch_json)
-  - [Ejemplos](#ejemplos)
-    - [Uso básico](#uso-básico)
-    - [Sin proxy CORS](#sin-proxy-cors)
-    - [Con credenciales y proxy personalizado](#con-credenciales-y-proxy-personalizado)
-    - [Manejo de errores](#manejo-de-errores)
-  - [Comportamiento del proxy CORS](#comportamiento-del-proxy-cors)
-
-<!-- /code_chunk_output -->
+- [fetch\_json](#fetch_json)
+- [Ejemplos](#ejemplos)
+  - [Uso básico](#uso-básico)
+  - [Sin proxy CORS](#sin-proxy-cors)
+  - [Con credenciales y proxy personalizado](#con-credenciales-y-proxy-personalizado)
+  - [Manejo de errores](#manejo-de-errores)
+- [Comportamiento del proxy CORS](#comportamiento-del-proxy-cors)
 
 
 

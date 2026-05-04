@@ -6,20 +6,11 @@ Utilidades para aplanar objetos y colecciones con estructura anidada.
 <!-- omit in toc -->
 ## En ésta página
 
-<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
-
-<!-- code_chunk_output -->
-
-- [Collections](#collections)
-  - [En ésta página](#en-ésta-página)
-  - [Funciones](#funciones)
-    - [flattenObject](#flattenobject)
-    - [flattenNestedObjects](#flattennestedobjects)
-  - [Uso en Node.js](#uso-en-nodejs)
-  - [Uso en el navegador](#uso-en-el-navegador)
-
-<!-- /code_chunk_output -->
-
+- [Funciones](#funciones)
+  - [flattenObject](#flattenobject)
+  - [flattenNestedObjects](#flattennestedobjects)
+- [Uso en Node.js](#uso-en-nodejs)
+- [Uso en el navegador](#uso-en-el-navegador)
 
 
 
