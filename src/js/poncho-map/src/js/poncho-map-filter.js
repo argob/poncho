@@ -113,9 +113,7 @@ class PonchoMapFilter extends PonchoMap {
             ul.classList.add("m-b-0", "list-unstyled");
             const li = content => {
                 const item = document.createElement("li");
-                item.ariaLive = "polite";
                 item.innerHTML = content;
-                item.tabIndex = 0;
                 return item;
             };
 
