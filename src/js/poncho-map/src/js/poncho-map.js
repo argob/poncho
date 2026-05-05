@@ -81,7 +81,7 @@ const PM_TRANSLATE = {
         search_placeholder: "Tu búsqueda",
         search_aria_label: "Buscador",
         theme_aria_label_panel: "Herramienta para cambiar de tema visual",
-        theme_change: "Sugerir cambios en el mapa",
+        theme_change: "Cambiar tema visual",
         theme_description_contrast: "Fondo oscuro con bordes blancos.",
         theme_description_dark: "Fondo oscuro con bordes blancos de contraste medio.",
         theme_description_default: "Colores predeterminados del proveedor del mapa.",
@@ -147,7 +147,7 @@ const PM_TRANSLATE = {
         search_placeholder: "Your search",
         search_aria_label: "Search",
         theme_aria_label_panel: "Tool to change visual theme",
-        theme_change: "Suggest map changes",
+        theme_change: "Change visual theme",
         theme_description_contrast: "Dark background with white borders.",
         theme_description_dark: "Dark background with medium contrast white borders.",
         theme_description_default: "Default map provider colors.",
@@ -1779,7 +1779,7 @@ class PonchoMap {
             }
 
             const link = this.tplParser(templateLink, {latitude, longitude});
-            const anchorOptions = {...item, link, attributes: {tabIndex: 0}};
+            const anchorOptions = {...item, link };
 
             const a = this.addAnchorElement(anchorOptions);
             const li = document.createElement("li");
@@ -1789,7 +1789,6 @@ class PonchoMap {
 
         const summary = document.createElement("summary");
         summary.textContent = this._t(label);
-        summary.tabIndex = 0;
         summary.ariaLabel = this._t(aria_label);
 
         const details = document.createElement("details");
@@ -2473,6 +2472,8 @@ class PonchoMap {
             .forEach(e => {
                 e.classList.toggle(`${this.slider_selector}--in`);
                 e.style.display = (this.isSliderOpen() ? "block" : "none");  
+                e.setAttribute("aria-modal", (this.isSliderOpen() ? true : false));  
+
             });
     };
 
@@ -2552,6 +2553,11 @@ class PonchoMap {
                     left: 0,
                     behavior: "auto"
                 }); 
+            });
+        document
+            .querySelectorAll(`#slider${this.scope_sufix}`)
+            .forEach(e => {
+                e.setAttribute("aria-label", data[this.title]);
             });
         document
             .querySelectorAll(`.js-close-slider${this.scope_sufix}`)
@@ -2681,8 +2687,7 @@ class PonchoMap {
             `js-slider${this.scope_sufix}`
         );
         container.style.display = "none";
-        container.role = "region";
-        container.ariaLive = "polite";
+        container.setAttribute("aria-modal", false);
         container.ariaLabel = this._t("panel_aria_label");
 
         // Icono para el botón 
@@ -2699,9 +2704,7 @@ class PonchoMap {
             "pm-btn-close", 
             `js-close-slider${this.scope_sufix}`
         );
-        closeButton.setAttribute("autofocus", "autofocus");
         closeButton.title = this._t("close_panel");
-        closeButton.tabIndex = 0;
         closeButton.ariaLabel = this._t("close_aria_panel");
 
         // Enlace anchor.
@@ -2715,15 +2718,15 @@ class PonchoMap {
         // Contenedor del contenido
         const contentContainer = document.createElement("article");
         contentContainer.classList.add("pm-content-container");
-
+        contentContainer.tabIndex = -1;  
+        contentContainer.setAttribute("autofocus", "autofocus");
+        
         // Contenido
         const content = document.createElement("div");
         content.classList.add(
             "pm-content", 
             `js-content${this.scope_sufix}`
         );
-        content.tabIndex = 0;
-        
 
         const footer = document.createElement("footer");
         footer.classList.add(
@@ -4065,15 +4068,13 @@ class PonchoMap {
         );
         icon.ariaHidden = "true";
 
-        const nav = document.createElement("div");
+        const nav = document.createElement("nav");
+        nav.tabIndex = "0";
         nav.classList.add("pm-accesible-nav", "top", "pm-list");
         nav.id = `pm-accesible-nav${this.scope_sufix}`;
         nav.ariaLabel = this._t("map_aria_label");
-        nav.role = "navigation";
-        nav.tabIndex=0;
 
         const ul = document.createElement("ul");
-        ul.role = "menu";
         ul.classList.add("pm-list-unstyled");
 
         values.forEach((links) => {
@@ -4083,16 +4084,12 @@ class PonchoMap {
                 ...links,
                 label: this._t(label),
                 aria_label: this._t(aria_label),
-                css:[...css, ...["pm-item-link", "pm-accesible"]], 
-                attributes: {
-                    role: "menuitem",
-                    tabIndex: 0
-                }
+                css:[...css, ...["pm-item-link", "pm-accesible"]]
             };
             const a = this.addAnchorElement(anchorOpts);
 
             const li = document.createElement("li");
-            li.role = "presentation";
+            // li.role = "presentation";
             li.appendChild(a);
             ul.appendChild(li);
         });
@@ -4105,8 +4102,7 @@ class PonchoMap {
             label: this._t("map_goto_menu"),
             link: `#pm-accesible-nav${this.scope_sufix}`,
             id: `accesible-return-nav${this.scope_sufix}`,
-            css: ["pm-item-link", "pm-accesible"],
-            attributes: {tabIndex: 0}
+            css: ["pm-item-link", "pm-accesible"]
         };
         const backToNav = this.addAnchorElement(anchorOptions);
         const returnNav = document.createElement("div");
