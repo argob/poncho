@@ -53,33 +53,45 @@ COPIAR DESDE ACÁ…
 <div class="container">
     <div class="row">
         <div class="col-md-12">
+
         <!-- PONCHO MAP SEARCH -->
-        <form action="" id="poncho-map-search">
-            <div data-scope="poncho-map-search">
-                <div class="input-group">
-                    <input 
-                        type="search" 
-                        id="search"
-                        name="search" 
-                        autocomplete="off"
-                        class="js-poncho-map-search__input form-control" 
-                        list="js-porcho-map-search__list">
-                    <datalist id="js-porcho-map-search__list"></datalist>
-                    <span class="input-group-btn">
-                        <button class="js-poncho-map-search__submit btn btn-primary">
-                            <i class="fa fa-search text-white"></i>
-                        </button>
-                    </span>
-                </div>
-                <div data-scope="poncho-map" class="m-b-1">
-                    <div 
-                        class="js-poncho-map__help small text-default" 
-                        style="position: relative;">
+        <search class="m-b-1">
+            <form>
+                <div data-scope="poncho-map-search">
+                    <label class="sr-only" for="search">Buscar ubicaciones</label>
+                    <div class="input-group m-b-0 p-b-0 webform-component">
+                        <input 
+                            class="js-poncho-map-search__input form-control" 
+                            id="search" 
+                            list="js-poncho-map-search__list" 
+                            name="search" 
+                            autocomplete="true"
+                            spellcheck="true" 
+                            type="search"> 
+                        <datalist 
+                            class="js-poncho-map-search__list" 
+                            id="js-poncho-map-search__list">
+                        </datalist> 
+                        <span class="input-group-btn">
+                            <button 
+                                class="js-poncho-map-search__submit btn btn-primary" 
+                                type="submit">
+                                <i class="fa fa-search text-white"></i>
+                                <span class="sr-only">Buscar término</span>
+                            </button> 
+                        </span>
+                    </div>
+                    <div data-scope="poncho-map">
+                        <div 
+                            class="js-poncho-map__help small" 
+                            aria-live="polite"></div>
                     </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </search>
         <!-- / PONCHO MAP SEARCH -->
+
+        
         </div>
         <div class="col-md-12">
         <!-- PONCHO MAP -->
