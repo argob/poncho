@@ -10962,9 +10962,7 @@ class PonchoMapFilter extends PonchoMap {
             ul.classList.add("m-b-0", "list-unstyled");
             const li = content => {
                 const item = document.createElement("li");
-                item.ariaLive = "polite";
                 item.innerHTML = content;
-                item.tabIndex = 0;
                 return item;
             };
 
@@ -12792,6 +12790,9 @@ class PonchoMapSearch {
      */
     _searchRegion = () => {
         const element = document.querySelector(this.search_scope_selector);
+        if(!element){
+            return;
+        }
         element.setAttribute("role", "search");
         element.setAttribute("aria-label", this.instance._t("search_aria_label"));
     };
@@ -12932,13 +12933,14 @@ class PonchoMapSearch {
         searchElement.setAttribute("aria-autocomplete", "list");
         searchElement.setAttribute("aria-expanded", "false" );
         searchElement.setAttribute("aria-haspopup", "listbox");
-        searchElement.setAttribute("aria-controls", "results-list");
+        searchElement.setAttribute("aria-controls", "js-poncho-results-list");
         searchElement.setAttribute("role", "combobox");
 
         // Crear y cachear el contenedor de búsqueda
         const searchContainer = document.createElement("div");
         searchContainer.classList.add("js-pm-search");
         searchContainer.setAttribute("aria-live", "polite");
+        searchContainer.id = "js-poncho-results-list";
 
         this._cachedElements.searchContainer = searchContainer;
 
