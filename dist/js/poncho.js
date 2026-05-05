@@ -6313,7 +6313,7 @@ const PM_TRANSLATE = {
         theme_name_default: "Original",
         theme_name_grayscale: "Gris",
         theme_name_relax: "Relax",
-        theme_open_panel: "Abre el panel de temas",
+        theme_open_panel: "Seleccionar tema visual del mapa",
         theme_reset: "Restablece el tema del mapa a su configuración original",
         zoom_aria_label_panel: "Herramientas de zoom",
         zoom_goto_panel: "Ir a la herramienta de zoom",
@@ -7700,7 +7700,6 @@ class PonchoMap {
 
         // contenedor enlaces
         const item = document.createElement("div");
-        item.tabIndex = "-1";
         item.dataset.toggle="true";
 
         // icono del menú
@@ -7708,26 +7707,35 @@ class PonchoMap {
         icon.ariaHidden = "true";
         icon.classList.add("pmi", "pmi-adjust");
 
+        const controlId = `list-themes-tool-button${this.scope_sufix}`;
+        const buttonId = `themes-tool-button${this.scope_sufix}`;
+
         // Botón para abrir el menú.
         const button = document.createElement("button");
         button.title = this._t("theme_change");
-        button.id = `themes-tool-button${this.scope_sufix}`;
-        button.tabIndex = "0";
+        button.id = buttonId; 
         button.classList.add("pm-btn", "pm-btn-rounded-circle");
-        button.ariaHasPopup = "true";
-        button.ariaControls = "menu";
+        button.setAttribute("aria-expanded", false);
+        button.setAttribute("aria-haspopup", true);
+        button.setAttribute("aria-controls", controlId);
         button.role = "button";
         button.ariaLabel = this._t("theme_open_panel");
         button.appendChild(icon);
 
         const list = document.createElement("ul");
-        list.id = `list-themes-tool-button${this.scope_sufix}`;
+        list.id = controlId;
         list.role = "menu";
-        list.ariaLabelledby = `themes-tool-button${this.scope_sufix}`;
+        list.ariaLabelledby = buttonId;
         list.classList.add(
-            "pm-container", "pm-list", "pm-list-unstyled", 
-            "pm-p-1", "pm-caret", "pm-caret-b", "pm-toggle", 
-            "pm-accesible-menu");
+            "pm-container", 
+            "pm-list",
+            "pm-list-unstyled", 
+            "pm-p-1", 
+            "pm-caret", 
+            "pm-caret-b", 
+            "pm-toggle", 
+            "pm-accesible-menu"
+        );
 
         // Botón para restablecer el mapa
         const restartLinkOptions = {
