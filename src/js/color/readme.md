@@ -1,29 +1,32 @@
+<!-- omit in toc -->
 # Poncho Colors
 
 Módulo JavaScript para consultar y resolver la paleta de colores del sistema de diseño Poncho. Permite obtener valores en distintos formatos (HEX, RGB, HSL) a partir de nombres semánticos, buscar colores por código hexadecimal y acceder a la estructura completa de espacios y grupos de color.
 
-- [Poncho Colors](#poncho-colors)
-  - [Uso](#uso)
-  - [Conceptos clave](#conceptos-clave)
-  - [Propiedades](#propiedades)
-    - [spaces](#spaces)
-    - [list](#list)
-    - [variables](#variables)
-    - [colors](#colors)
-  - [Métodos](#métodos)
-    - [groupsBySpace()](#groupsbyspace)
-    - [colorGroup()](#colorgroup)
-    - [colorSpace()](#colorspace)
-    - [colorDefinitions()](#colordefinitions)
-    - [colorByHex()](#colorbyhex)
-    - [findColor()](#findcolor)
-    - [ponchoColor()](#ponchocolor)
-    - [colorName()](#colorname)
-  - [Utilidades](#utilidades)
-    - [hexToRgb()](#hextorgb)
-    - [rgbToHsl()](#rgbtohsl)
-    - [isValidHex()](#isvalidhex)
-    - [cleanHex()](#cleanhex)
+<!-- omit in toc -->
+## En ésta página
+
+- [Uso](#uso)
+- [Conceptos clave](#conceptos-clave)
+- [Propiedades](#propiedades)
+  - [spaces](#spaces)
+  - [list](#list)
+  - [variables](#variables)
+  - [colors](#colors)
+- [Métodos](#métodos)
+  - [groupsBySpace()](#groupsbyspace)
+  - [colorGroup()](#colorgroup)
+  - [colorSpace()](#colorspace)
+  - [colorDefinitions()](#colordefinitions)
+  - [colorByHex()](#colorbyhex)
+  - [findColor()](#findcolor)
+  - [ponchoColor()](#ponchocolor)
+  - [colorName()](#colorname)
+- [Utilidades](#utilidades)
+  - [hexToRgb()](#hextorgb)
+  - [rgbToHsl()](#rgbtohsl)
+  - [isValidHex()](#isvalidhex)
+  - [cleanHex()](#cleanhex)
 
 ---
 
