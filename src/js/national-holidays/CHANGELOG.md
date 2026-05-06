@@ -1,4 +1,22 @@
+<!-- omit in toc -->
 # Changelog
+
+<!-- omit in toc -->
+## En ésta página
+
+- [Release 2.0.1](#release-201)
+- [Release 2.0.0](#release-200)
+  - [Core](#core)
+- [Accesibilidad](#accesibilidad)
+  - [CSS](#css)
+- [version 1.x](#version-1x)
+
+
+## Release 2.0.1
+
+Se corrigió un error en el cálculo de **feriados nacionales** que causaba un desfase de un día en zonas horarias como **UTC-3**, asegurando que las fechas generadas por `tZone` se lean mediante `getUTCDate()` y `getUTCMonth()` en lugar de los métodos locales; esto garantiza que el sistema interprete correctamente el formato **UTC** original y evite mostrar fechas atrasadas debido a la configuración regional del dispositivo del usuario.
+
+
 
 ## Release 2.0.0
 
