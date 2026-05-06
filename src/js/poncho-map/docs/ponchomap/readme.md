@@ -360,5 +360,11 @@
       <td style="text-align:left"><code>true</code></td>
       <td style="text-align:left">Crea automáticamente un objeto <a href="https://en.wikipedia.org/wiki/JSON-LD" lang="en">JSON-LD</a> (<a href="https://schema.org/">schema.org</a>) en el <em>head</em>, cuando los <em>markers</em> no superen los 1000.</td>
     </tr>
+    <tr>
+      <td style="text-align:left">pm-interactive</td>
+      <td style="text-align:left"><code>string</code></td>
+      <td style="text-align:left"><code>s | <em>empty</em></code></td>
+      <td style="text-align:left">Determina la interactividad de los elementos (polígonos, líneas, etc.), dentro del mapa. Cuando se define con el valor <code>n</code>, el objeto queda configurado como <b>no interactivo</b>; por el contrario, si el parámetro se omite o contiene un valor distinto a n, el elemento conservará su funcionalidad interactiva de forma predeterminada.</td>
+    </tr>
   </tbody>
 </table>
