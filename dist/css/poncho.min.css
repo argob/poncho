@@ -15377,6 +15377,12 @@ footer .nav > li > a:hover {
     width: 100% !important;
   }
 }
+.dato-bora {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2px 5px;
+}
+
 .blq-right-sticky {
   position: -webkit-sticky;
   position: sticky;
