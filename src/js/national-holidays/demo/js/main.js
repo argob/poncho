@@ -58,8 +58,17 @@ function legalInfo(data, lang="es"){
 
     const converter = new showdown.Converter(this.markdown_options);
 
+    const sorted = [...data].sort((a, b) => {
+        const aHasOrder = "order" in a;
+        const bHasOrder = "order" in b;
+        if (aHasOrder && bHasOrder) return a.order - b.order;
+        if (aHasOrder) return -1;
+        if (bHasOrder) return 1;
+        return 0;
+    });
+
     const fragment = document.createDocumentFragment();
-    for(const {name, description} of data){
+    for(const {name, description} of sorted){
         const heading = document.createElement("h2");
         heading.classList.add("h4");
         heading.textContent = name;
