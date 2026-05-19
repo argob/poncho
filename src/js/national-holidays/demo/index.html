@@ -16,20 +16,38 @@
     <link 
         rel="stylesheet"
         href="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css">
-    <!-- /Base -->
-
+    <script src="https://www.argentina.gob.ar/profiles/argentinagobar/libraries/jquery.jquery-371/jquery-3.7.1.min.js?v=3.7.1"></script>
+    <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/vendor/bootstrap/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../../../../dist/css/poncho.min.css">
     <link rel="stylesheet" href="../dist/css/national-holidays.css">
-    <script src="https://qa2-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
+    <script src="https://qa3-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
     <style>
         body {
             padding: 2em;
         }
-
     </style>
     <title>develop | Feriados nacionales</title>
 </head>
 <body class="p-t-3">
+
+
+<div class="dropdown">
+    <button 
+        class="btn-secondary btn dropdown-toggle" 
+        type="button" 
+        id="share-table-data" 
+        data-toggle="dropdown" 
+        aria-haspopup="true" 
+        aria-expanded="false">
+        Ver calendarios históricos
+        <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu js-dropdown-years-menu" aria-labelledby="share-table-data">
+        <!-- OPCIONES -->
+    </ul>
+</div>
+
+<div class="border-bottom border-thick border-arg-amarillo p-b-1 m-b-2"></div>
 
 <h1>
     <span
@@ -37,14 +55,17 @@
         data-text-es="Feriados nacionales">
         Feriados nacionales
     </span>
-    <span class="js-current-year"></span>
+    <span class="js-current-year js-view-switcher"></span>
 </h1>
 
+<!-- No se encuentra el calendario -->
 <div class="not-found-message"></div> 
-
+<!-- / No se encuentra el calendario -->
 
 <!-- Calendar -->
-<section class="national-holidays">
+<section
+    class="national-holidays js-view-switcher col-md-12" 
+    style="display: none;">
     <!-- Bloque dinámico -->
     <!-- days countdown -->
     <div class="row m-b-4 clearfix" id="js-hoynoes">
@@ -172,6 +193,18 @@
 </section>
 <!-- / Calendar -->
 
+<!-- Información legal -->
+<div 
+    class="container js-view-switcher" 
+    style="display: none;">
+    <div class="row">
+        <div class="border-bottom border-medium m-y-2"></div>
+        <div class="js-legal-info-container col-md-8 col-md-offset-2 m-b-2">
+        </div>
+    </div>
+</div>
+<!-- / Información legal -->
+
 <!-- Template -->
 <template id="month-tpl">
     <article class="month js-tpl-id">
@@ -190,22 +223,39 @@
 
 <!-- Template -->
 <template id="calendar-not-found">
-    <p>No se encontró el calendario de <span class="tpl-year"></span></p>
-</template>
-<!-- / Template -->
-
-
-
-<div class="container">
-    <div class="row">
-        <div class="js-legal-info-container col-md-8 col-md-offset-2">
+    <div class="container-highlight-box">
+        <div class="highlight-wrapper">
+            <div 
+                class="alert-highlight-box alert-highlight-box-warning" 
+                role="complementary">
+                <div class="media">
+                    <div class="media-left">
+                        <i class="fa fa-warning fa-2x"></i>
+                    </div>
+                    <div class="media-body">
+                        <p  class="tpl-message"><p>
+                            <a href="./" class="btn btn-warning btn-sm">
+                                Ver calendario actual
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-
+</template>
+<!-- / Template -->
+<script>
+const HOLIDAY_CALENDAR_SETTINGS = {
+    service_url: "./data/holidays-{{year}}-{{lang}}.json", // endpoint url con parámetros.
+    years_limit: 3, // Cantidad de años regresivamente desde el año actual
+    dropdown_label: "Ver calendario {{year}}" // Texto para cada uno de los años en el menú histórico
+};
+</script>
 <script src="https://www.argentina.gob.ar/sites/default/files/ponchotable/showdown.js"></script>
 <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/extensiones/showdown-extensions.js"></script>
 <script src="../src/js/national-holidays.js"></script>
 <script src="./js/main.js"></script>
+
 </body>
 </html>
