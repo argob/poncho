@@ -434,7 +434,10 @@ class PonchoMapSearch {
      */
     _searchRegion = () => {
         const element = document.querySelector(this.search_scope_selector);
-        element.setAttribute("role", "region");
+        if(!element){
+            return;
+        }
+        element.setAttribute("role", "search");
         element.setAttribute("aria-label", this.instance._t("search_aria_label"));
     };
 
@@ -528,6 +531,11 @@ class PonchoMapSearch {
             searchContainer.classList.remove("pm-search-results");
             searchContainer.replaceChildren();
         }
+        const searchElement = this._cachedElements.input ||
+                document.querySelector(this.selectors.searchInput);
+        if (searchElement) {
+            searchElement.setAttribute("aria-expanded", "false");
+        }
     }
 
 
@@ -567,15 +575,16 @@ class PonchoMapSearch {
         // Batch DOM writes para mejorar rendimiento
         searchElement.setAttribute("autocomplete", "off");
         searchElement.setAttribute("aria-autocomplete", "list");
-        searchElement.setAttribute("aria-expanded", "true" );
+        searchElement.setAttribute("aria-expanded", "false" );
         searchElement.setAttribute("aria-haspopup", "listbox");
-        searchElement.setAttribute("aria-controls", "results-list");
+        searchElement.setAttribute("aria-controls", "js-poncho-results-list");
         searchElement.setAttribute("role", "combobox");
 
         // Crear y cachear el contenedor de búsqueda
         const searchContainer = document.createElement("div");
         searchContainer.classList.add("js-pm-search");
         searchContainer.setAttribute("aria-live", "polite");
+        searchContainer.id = "js-poncho-results-list";
 
         this._cachedElements.searchContainer = searchContainer;
 
@@ -594,6 +603,7 @@ class PonchoMapSearch {
                     searchContainer.classList.remove(comboboxWidth);
                 }
                 searchContainer.replaceChildren();
+                searchElement.setAttribute("aria-expanded", "false");
 
                 const value = String(searchElement.value);
 
@@ -623,6 +633,7 @@ class PonchoMapSearch {
                 }
 
                 searchContainer.appendChild(ul);
+                searchElement.setAttribute("aria-expanded", "true");
             }, DEBOUNCE_DELAY);
         });
 

@@ -1,4 +1,4 @@
-const {secureHTML} = require('../src/js/utils/html');
+const {secureHTML} = require('../secure-html');
 
 test('Secure HTML', () => {
     expect(secureHTML('<h1>Hello world!</h1> <a href="#">Link</a>', ["a"]))

@@ -1,7 +1,8 @@
 /**
  * HTML utilities
  *
- * @summary Validadores y herramientas para manipulación de código HTML.
+ * @summary Validadores y herramientas para manipulación de
+ * código HTML.
  *
  * ADVERTENCIA
  *
@@ -26,7 +27,7 @@
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
  * files (the "Software"), to deal in the Software without restriction,
- * including without limitation the rightsto use, copy, modify, merge,
+ * including without limitation the rights to use, copy, modify, merge,
  * publish, distribute, sublicense, and/or sell copies of the Software,
  * and to permit persons to whom the Software is furnished to do so,
  * subject to the following conditions:
@@ -48,15 +49,45 @@
 /**
  * Impide que se impriman etiquetas HTML peligrosas.
  *
- * @summary Sanitiza HTML bloqueando etiquetas peligrosas y atributos de eventos.
- * Permite opcionalmente excluir ciertas etiquetas seguras de la sanitización.
- * @param {string} str Cadena de texto a sanitizar.
- * @param {object} exclude Etiquetas seguras que deben preservarse.
- * @example
- * // returns &lt;h1&gt;Hello world!&lt;/h1&gt; <a href="#">Link</a>
- * secureHTML('<h1>Hello world!</h1> <a href="#">Link</a>', ["a"])
+ * @summary Sanitiza HTML bloqueando etiquetas peligrosas y atributos
+ * de eventos. Permite opcionalmente excluir ciertas etiquetas seguras
+ * de la sanitización.
  *
- * @returns {string} Texto sanitizado.
+ * @description
+ * Recorre la cadena recibida y escapa los caracteres `<` y `>`.
+ * Si se indican etiquetas en `exclude`, éstas son restauradas luego
+ * del escape, pero con sus atributos peligrosos eliminados: event
+ * handlers (`onclick`, `onerror`, etc.), `javascript:` en `href` y
+ * en `src`, y `data:` URIs no-imagen en `src`.
+ *
+ * Las siguientes etiquetas siempre permanecen bloqueadas,
+ * independientemente de lo que se pase en `exclude`:
+ * `script`, `iframe`, `object`, `embed`, `applet`, `meta`,
+ * `link`, `style`, `base`, `form`.
+ *
+ * @param {string}   str           Cadena de texto a sanitizar.
+ * @param {string[]} [exclude=[]]  Lista de nombres de etiquetas HTML
+ *   que deben preservarse en el resultado. Pasar `["*"]` para
+ *   permitir todas las etiquetas de la lista segura predeterminada.
+ *
+ * @returns {string} Cadena con el HTML sanitizado. Las etiquetas no
+ *   incluidas en `exclude` quedan escapadas como entidades HTML.
+ *
+ * @example <caption>Escapar todo el HTML</caption>
+ * secureHTML('<h1>Hola</h1>');
+ * // "&lt;h1&gt;Hola&lt;/h1&gt;"
+ *
+ * @example <caption>Preservar etiquetas seguras</caption>
+ * secureHTML('<h1>Hello world!</h1> <a href="#">Link</a>', ["a"]);
+ * // '&lt;h1&gt;Hello world!&lt;/h1&gt; <a href="#">Link</a>'
+ *
+ * @example <caption>Bloquear event handlers en atributos</caption>
+ * secureHTML('<a onclick="alert(1)" href="#">X</a>', ["a"]);
+ * // '<a href="#">X</a>'
+ *
+ * @example <caption>Permitir todas las etiquetas seguras</caption>
+ * secureHTML('<p>Texto</p><script>alert(1)</script>', ["*"]);
+ * // '<p>Texto</p>&lt;script&gt;alert(1)&lt;/script&gt;'
  */
 const secureHTML = (str, exclude=[]) => {
     if(typeof str !== "string" || str.trim().length === 0){
@@ -72,7 +103,8 @@ const secureHTML = (str, exclude=[]) => {
 
     const secureList = [
         // Contenedores y estructura
-        "div", "section", "article", "aside", "header", "footer", "main", "nav",
+        "div", "section", "article", "aside", "header",
+        "footer", "main", "nav",
         "figure", "figcaption", "details", "summary", "dialog",
 
         // Texto y formato
@@ -90,7 +122,8 @@ const secureHTML = (str, exclude=[]) => {
         "ul", "ol", "li", "dl", "dt", "dd",
 
         // Tablas
-        "table", "thead", "tbody", "tfoot", "tr", "th", "td", "caption", "col", "colgroup",
+        "table", "thead", "tbody", "tfoot",
+        "tr", "th", "td", "caption", "col", "colgroup",
 
         // Enlaces y multimedia
         "a", "img", "picture", "source", "audio", "video", "track",
@@ -135,10 +168,12 @@ const secureHTML = (str, exclude=[]) => {
         exclude = secureList;
     }
 
-    // NUEVO: Sanitizar imágenes ANTES de escapar si 'img' está en exclude
+    // Sanitizar imágenes ANTES de escapar si 'img' está en exclude
     let preprocessedStr = str;
-    if(exclude.includes('img') || (exclude.includes('*') && secureList.includes('img'))){
-        // Sanitizar atributos src peligrosos en imágenes ANTES del escape
+    const imgAllowed = exclude.includes('img') ||
+        (exclude.includes('*') && secureList.includes('img'));
+
+    if(imgAllowed){
         preprocessedStr = preprocessedStr
             // Bloquear javascript: en src (con comillas)
             .replace(
@@ -210,13 +245,13 @@ const secureHTML = (str, exclude=[]) => {
                     'href="#"'
                 );
 
-                // Validar data: URIs (pueden ejecutar JavaScript) - con comillas
+                // Bloquear data: URIs en href (con comillas)
                 cleanAttrs = cleanAttrs.replace(
                     /href\s*=\s*["']data:[^"']*["']/gi,
                     'href="#"'
                 );
 
-                // Validar data: URIs (pueden ejecutar JavaScript) - sin comillas
+                // Bloquear data: URIs en href (sin comillas)
                 cleanAttrs = cleanAttrs.replace(
                     /href\s*=\s*data:[^\s>]*/gi,
                     'href="#"'

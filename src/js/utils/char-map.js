@@ -1,11 +1,35 @@
 /**
- * Remueve acentos y caracteres especiales.
+ * charMap
  * 
- * @param {string} data Cadena de texto a limpiar. 
- * @example
- * // returns Accion Murcielago arbol nino
- * removeAccents("Acción Murciélago árbol niño")
- * @returns {string} Cadena de texto sin acentos.
+ * @requires charMap
+ * 
+ * @license MIT
+ *
+ * Copyright (c) 2026
+ * Dirección Nacional de Servicios Digitales,
+ * Subsecretaría de Tecnologías de la Información
+ * y las Comunicaciones.
+ *
+ * Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation
+ * files (the "Software"), to deal in the Software without
+ * restriction, including without limitation the rights to use,
+ * copy, modify, merge, publish, distribute, sublicense, and/or
+ * sell copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following
+ * conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+ * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+ * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+ * OTHER DEALINGS IN THE SOFTWARE.
  */
 const charMap = new Map([
     ['à', 'a'], ['á', 'a'], ['â', 'a'], ['ä', 'a'], ['æ', 'a'], ['ã', 'a'],
@@ -59,70 +83,7 @@ const charMap = new Map([
     ['Ž', 'Z'], ['Ź', 'Z'], ['Ż', 'Z']
 ]);
 
-const replaceSpecialChars = (data) => {
-    if (typeof data !== "string" || data.trim().length === 0) {
-        console.warn("replaceSpecialChars: Debe pasar una cadena de texto.");
-        return "";
-    }
-
-    return data.replace(/[^\u0000-\u007F]/g, char => charMap.get(char) || char);
-};
-
-
-/**
- * Slugify
- *
- * @param {string} string Cadena de texto a convertir.
- * @example
- * // returns el-murcielago-remolon-parece-un-nino
- * slugify("El murciélago remolón parece un niño")
- * @returns {string} Cadena de texto en formato slug.
- */
-const slugifyMap = new Map([
-    ...Array.from(charMap.entries()),
-    ['·', '-'], ['/', '-'], ['_', '-'], [',', '-'], [':', '-'], [';', '-']
-]);
-
-const slugify = (str) => {
-    if (typeof str !== "string" || str.trim().length === 0) {
-        console.warn("slugify: Debe pasar una cadena de texto.");
-        return str;
-    }
-
-    return str.toLowerCase()
-        .replace(/\s+/g, "-")
-        .replace(/[^\u0000-\u007F]/g, char => slugifyMap.get(char) || char)
-        .replace(/&/g, "-and-")
-        .replace(/[^\w\-]+/g, "")
-        .replace(/-+/g, "-")
-        .replace(/^-+|-+$/g, "");
-};
-
-
-/**
- * Palabras en title-case.
- * @param {string} str Cadena a transformar
- * @param {boolean} allWords True title-case a todas las palabras
- * @returns {string}
- */
-const toTitleCase = (str, allWords = true) => {
-    if (typeof str !== "string" || str.trim().length === 0) {
-        console.warn("[toTitleCase] Debe ingresar una cadena de texto.");
-        return str;
-    }
-
-    const trimmed = str.trim();
-
-    if (!allWords) {
-        return trimmed[0].toUpperCase() + trimmed.slice(1).toLowerCase();
-    }
-
-    return trimmed.replace(/\S+/g, word =>
-        word[0].toUpperCase() + word.slice(1).toLowerCase()
-    );
-};
-
 
 if (typeof exports !== "undefined") {
-    module.exports = {slugify, replaceSpecialChars, toTitleCase};
+    module.exports = { charMap };
 }

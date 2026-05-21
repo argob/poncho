@@ -1,8 +1,49 @@
+<!-- omit in toc -->
 # Changelog
+
+<!-- omit in toc -->
+## En ésta página
+
+- [Release 2.2.5](#release-225)
+  - [Accesibilidad WAI-ARIA](#accesibilidad-wai-aria)
+- [Release 2.2.4](#release-224)
+  - [PonchoMap](#ponchomap)
+  - [PonchoMap, PonchoMapFilter y PonchoMapSearch](#ponchomap-ponchomapfilter-y-ponchomapsearch)
+- [Release 2.2.3](#release-223)
+  - [PonchoMap](#ponchomap-1)
+- [Release 2.2.2](#release-222)
+  - [PonchoMap](#ponchomap-2)
+- [Release 2.2.1](#release-221)
+  - [PonchoMap](#ponchomap-3)
+  - [PonchoMapFilter](#ponchomapfilter)
+  - [PonchoMapSearch](#ponchomapsearch)
+- [Release 2.2](#release-22)
+  - [PonchoMapFilter](#ponchomapfilter-1)
+  - [PonchoMapLoader](#ponchomaploader)
+  - [PonchoMap](#ponchomap-4)
+  - [PonchoMapSearch](#ponchomapsearch-1)
+- [Release 2.1.4](#release-214)
+- [Release 2.1.3](#release-213)
+- [Release 2.1.2](#release-212)
+- [Release 2.1.1](#release-211)
+
+
+## Release 2.2.5
+
+### Accesibilidad WAI-ARIA
+
+Se realizaron correcciones y mejoras en los atributos de accesibilidad.
+
+- Se actualizó `aria-expanded` de forma dinámica según el estado del componente.
+- Se reemplazó el rol `region` por `search` en el buscador.
+- Se eliminaron atributos innecesarios o redundantes en el menú accesible.
+- Se eliminaron atributos innecesarios o redundantes en el menú de temas.
+- Se mejoraron los atributos `aria` en el módulo de búsqueda.
+
 
 ## Release 2.2.4
 
-### PonchoMap
+### PonchoMap
 
 **Internacionalización (i18n)**: Se generaron las claves necesarias para el diccionario de términos.
 

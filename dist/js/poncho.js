@@ -670,106 +670,37 @@ if (typeof exports !== "undefined") {
 }
 
 /**
- * Fetch data con manejo de CORS
- *
- * @param {string} uri - URL del recurso
- * @param {Object} options - Opciones de configuración
- * @param {boolean} options.useCorsProxy - Usar proxy CORS en caso de error 
- * (default: true)
- * @param {string} options.corsProxyUrl - URL del proxy CORS personalizado
- * @param {boolean} options.credentials - Incluir credenciales ('include', 
- * 'same-origin', 'omit')
- *
- * @example
- * ```js
- * (async() => {
- *     // Uso básico con fallback a proxy CORS
- *     const data = await fetch_json("https://arg.gob.ar");
- *
- *     // Sin proxy CORS
- *     const data2 = await fetch_json(
- *         "https://arg.gob.ar", { useCorsProxy: false }
- *     );
- *
- *     // Con credenciales
- *     const data3 = await fetch_json(
- *         "https://arg.gob.ar", { credentials: "include" };
- *     );
- * ```
- */
-async function fetch_json(uri, options={}) {
-    const {
-        useCorsProxy = true,
-        corsProxyUrl = "",
-        credentials = "same-origin",
-        ...fetchOptions
-    } = options;
-
-    let defaultOptions = {
-        method: "GET",
-        headers: {
-            "Accept": "application/json",
-            "Content-Type": "application/json"
-        },
-        credentials: credentials,
-        redirect: "follow"
-    };
-
-    let opts = Object.assign({}, defaultOptions, fetchOptions);
-
-    try {
-        const response = await fetch(uri, opts);
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        return await response.json();
-
-    } catch (error) {
-        // Si falla y está habilitado el proxy CORS, intentar con proxy
-        if (useCorsProxy && (
-            error.message.includes('CORS') ||
-            error.message.includes('Network') ||
-            error.name === 'TypeError'
-        )) {
-            try {
-                const proxyUri = `${corsProxyUrl}${encodeURIComponent(uri)}`;
-                console.warn(
-                    `CORS error detectado. Intentando con proxy: ${proxyUri}`
-                );
-
-                // Remover credenciales para el proxy
-                const proxyOpts = { ...opts, credentials: "omit" };
-                const proxyResponse = await fetch(proxyUri, proxyOpts);
-
-                if (!proxyResponse.ok) {
-                    throw new Error(
-                        `HTTP error! status: ${proxyResponse.status}`
-                    );
-                }
-                return await proxyResponse.json();
-
-            } catch (proxyError) {
-                console.error("Error con proxy CORS:", proxyError);
-                throw new Error(
-                    `Fetch fallido directo y con proxy. `
-                    + `Error original: ${error.message}`
-                );
-            }
-        }
-
-        // Re-lanzar el error original si no se usa proxy
-        throw error;
-    }
-};
-
-/**
- * Remueve acentos y caracteres especiales.
+ * charMap
  * 
- * @param {string} data Cadena de texto a limpiar. 
- * @example
- * // returns Accion Murcielago arbol nino
- * removeAccents("Acción Murciélago árbol niño")
- * @returns {string} Cadena de texto sin acentos.
+ * @requires charMap
+ * 
+ * @license MIT
+ *
+ * Copyright (c) 2026
+ * Dirección Nacional de Servicios Digitales,
+ * Subsecretaría de Tecnologías de la Información
+ * y las Comunicaciones.
+ *
+ * Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation
+ * files (the "Software"), to deal in the Software without
+ * restriction, including without limitation the rights to use,
+ * copy, modify, merge, publish, distribute, sublicense, and/or
+ * sell copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following
+ * conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+ * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+ * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+ * OTHER DEALINGS IN THE SOFTWARE.
  */
 const charMap = new Map([
     ['à', 'a'], ['á', 'a'], ['â', 'a'], ['ä', 'a'], ['æ', 'a'], ['ã', 'a'],
@@ -823,78 +754,712 @@ const charMap = new Map([
     ['Ž', 'Z'], ['Ź', 'Z'], ['Ż', 'Z']
 ]);
 
-const replaceSpecialChars = (data) => {
-    if (typeof data !== "string" || data.trim().length === 0) {
-        console.warn("replaceSpecialChars: Debe pasar una cadena de texto.");
-        return "";
-    }
 
-    return data.replace(/[^\u0000-\u007F]/g, char => charMap.get(char) || char);
-};
+if (typeof exports !== "undefined") {
+    module.exports = { charMap };
+}
 
 
 /**
- * Slugify
+ * POPOVER
+ * 
+ * @license MIT
  *
- * @param {string} string Cadena de texto a convertir.
- * @example
- * // returns el-murcielago-remolon-parece-un-nino
- * slugify("El murciélago remolón parece un niño")
- * @returns {string} Cadena de texto en formato slug.
+ * Copyright (c) 2026
+ * Dirección Nacional de Servicios Digitales,
+ * Subsecretaría de Tecnologías de la Información
+ * y las Comunicaciones.
+ *
+ * Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation
+ * files (the "Software"), to deal in the Software without
+ * restriction, including without limitation the rights to use,
+ * copy, modify, merge, publish, distribute, sublicense, and/or
+ * sell copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following
+ * conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+ * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+ * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+ * OTHER DEALINGS IN THE SOFTWARE.
  */
-const slugifyMap = new Map([
-    ...Array.from(charMap.entries()),
-    ['·', '-'], ['/', '-'], ['_', '-'], [',', '-'], [':', '-'], [';', '-']
-]);
+var content_popover = document.getElementById("content-popover");
 
-const slugify = (str) => {
-    if (typeof str !== "string" || str.trim().length === 0) {
-        console.warn("slugify: Debe pasar una cadena de texto.");
-        return str;
+function popshow(){
+    if (!content_popover){
+        return;
     }
+    content_popover.classList.toggle("hidden");
+}
 
-    return str.toLowerCase()
-        .replace(/\s+/g, "-")
-        .replace(/[^\u0000-\u007F]/g, char => slugifyMap.get(char) || char)
-        .replace(/&/g, "-and-")
-        .replace(/[^\w\-]+/g, "")
-        .replace(/-+/g, "-")
-        .replace(/^-+|-+$/g, "");
-};
+function pophidde(){
+    if (!content_popover){
+        return;
+    }
+    content_popover.classList.add("hidden");
+}
+
+/**
+ * @file collections.js
+ * @description Utility functions for flattening nested objects and arrays.
+ *
+ * MIT License
+ *
+ * Copyright (c) 2024 Agustin Bouillet / Secretaría de Innovación Pública
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+ * BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+ * ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+ * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
 
 
 /**
- * Palabras en title-case.
- * @param {string} str Cadena a transformar
- * @param {boolean} allWords True title-case a todas las palabras
- * @returns {string}
+ * Aplana un objeto anidado en un objeto plano usando `__` como
+ * separador de claves.
+ *
+ * Las claves del objeto resultante representan la ruta completa al
+ * valor original, concatenando cada nivel con doble guión bajo (`__`).
+ *
+ * @param {Object} obj - El objeto a aplanar. Puede tener cualquier
+ *   nivel de anidamiento.
+ * @param {string} prefix - Prefijo acumulado para las claves. Usar
+ *   cadena vacía `""` en la llamada inicial.
+ * @returns {Object} Un nuevo objeto plano sin propiedades anidadas.
+ *
+ * @example
+ * flattenObject({ a: { b: { c: 1 } } }, "")
+ * // => { "a__b__c": 1 }
+ *
+ * @example
+ * const direccion = { ciudad: "Mendoza", cp: "5500" };
+ * flattenObject({ nombre: "Juan", direccion }, "")
+ * // => {
+ * //   nombre: "Juan",
+ * //   "direccion__ciudad": "Mendoza",
+ * //   "direccion__cp": "5500"
+ * // }
  */
-const toTitleCase = (str, allWords = true) => {
-    if (typeof str !== "string" || str.trim().length === 0) {
-        console.warn("[toTitleCase] Debe ingresar una cadena de texto.");
-        return str;
+function flattenObject(obj, prefix) {
+    const flattened = {};
+    for (const key in obj) {
+        const value = obj[key];
+        const newKey = (prefix ? `${prefix}__${key}` : key);
+
+        if (typeof value === "object" && value !== null) {
+            Object.assign(flattened, flattenObject(value, newKey));
+        } else {
+            flattened[newKey] = value;
+        }
+    }
+    return flattened;
+}
+
+
+/**
+ * Aplana un array de objetos anidados, transformando cada elemento
+ * con {@link flattenObject}.
+ *
+ * Útil para normalizar colecciones de registros con estructura
+ * jerárquica antes de procesarlos, filtrarlos o renderizarlos
+ * en una tabla plana.
+ *
+ * @param {Object[]} entries - Array de objetos que pueden tener
+ *   propiedades anidadas.
+ * @returns {Object[]} Nuevo array donde cada objeto está
+ *   completamente aplanado.
+ *
+ * @example
+ * flattenNestedObjects([
+ *   { id: 1, info: { nombre: "Ana", cargo: "Dev" } },
+ *   { id: 2, info: { nombre: "Luis", cargo: "QA" } }
+ * ])
+ * // => [
+ * //   { id: 1, "info__nombre": "Ana", "info__cargo": "Dev" },
+ * //   { id: 2, "info__nombre": "Luis", "info__cargo": "QA" }
+ * // ]
+ */
+function flattenNestedObjects(entries) {
+    return entries.map(entry => {
+        return flattenObject(entry, "");
+    });
+}
+
+
+if (typeof exports !== "undefined") {
+    module.exports = {flattenObject, flattenNestedObjects};
+}
+
+
+/**
+ * @file connect.js
+ * @description Fetch con manejo automático de errores CORS mediante
+ * un proxy configurable.
+ *
+ * MIT License
+ *
+ * Copyright (c) 2024 Agustin Bouillet / Secretaría de Innovación Pública
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+ * BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+ * ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+ * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
+
+/**
+ * Realiza una petición HTTP y devuelve la respuesta como JSON.
+ *
+ * Intenta la petición directamente contra `uri`. Si falla con un
+ * error de red o CORS y `useCorsProxy` es `true`, reintenta a través
+ * de `corsProxyUrl` sin credenciales. Si el segundo intento también
+ * falla, lanza un error con el mensaje de ambos fallos.
+ *
+ * @async
+ * @param {string} uri - URL del recurso a consultar.
+ * @param {Object} [options={}] - Opciones de configuración.
+ * @param {boolean} [options.useCorsProxy=true] - Habilita el
+ *   fallback al proxy CORS cuando la petición directa falla.
+ * @param {string} [options.corsProxyUrl=""] - URL base del proxy
+ *   CORS. La URI del recurso se añade codificada al final.
+ * @param {string} [options.credentials="same-origin"] - Política
+ *   de credenciales: `"include"`, `"same-origin"` u `"omit"`.
+ * @param {...*} [options.fetchOptions] - Cualquier otra opción
+ *   válida para la API `fetch` nativa (method, headers, body…).
+ * @returns {Promise<*>} Objeto o array resultante de parsear el
+ *   cuerpo de la respuesta como JSON.
+ * @throws {Error} Si la respuesta HTTP no es satisfactoria o si
+ *   fallan tanto la petición directa como la del proxy.
+ *
+ * @example
+ * // Uso básico — fallback a proxy CORS activado por defecto
+ * const data = await fetch_json("https://arg.gob.ar/data.json");
+ *
+ * @example
+ * // Sin proxy CORS
+ * const data = await fetch_json(
+ *     "https://arg.gob.ar/data.json",
+ *     { useCorsProxy: false }
+ * );
+ *
+ * @example
+ * // Con credenciales y proxy personalizado
+ * const data = await fetch_json(
+ *     "https://arg.gob.ar/data.json",
+ *     {
+ *         credentials: "include",
+ *         corsProxyUrl: "https://mi-proxy.example.com/?url="
+ *     }
+ * );
+ */
+async function fetch_json(uri, options={}) {
+    const {
+        useCorsProxy = true,
+        corsProxyUrl = "",
+        credentials = "same-origin",
+        ...fetchOptions
+    } = options;
+
+    const defaultOptions = {
+        method: "GET",
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        },
+        credentials: credentials,
+        redirect: "follow"
+    };
+
+    const opts = Object.assign({}, defaultOptions, fetchOptions);
+
+    try {
+        const response = await fetch(uri, opts);
+        if (!response.ok) {
+            throw new Error(
+                `HTTP error! status: ${response.status}`
+            );
+        }
+        return await response.json();
+
+    } catch (error) {
+        const isCorsOrNetwork = (
+            error.message.includes("CORS") ||
+            error.message.includes("Network") ||
+            error.name === "TypeError"
+        );
+
+        if (useCorsProxy && isCorsOrNetwork) {
+            try {
+                const proxyUri =
+                    `${corsProxyUrl}${encodeURIComponent(uri)}`;
+                console.warn(
+                    "CORS error detectado. "
+                    + `Intentando con proxy: ${proxyUri}`
+                );
+
+                const proxyOpts = { ...opts, credentials: "omit" };
+                const proxyResponse = await fetch(proxyUri, proxyOpts);
+
+                if (!proxyResponse.ok) {
+                    throw new Error(
+                        `HTTP error! status: ${proxyResponse.status}`
+                    );
+                }
+                return await proxyResponse.json();
+
+            } catch (proxyError) {
+                console.error("Error con proxy CORS:", proxyError);
+                throw new Error(
+                    "Fetch fallido directo y con proxy. "
+                    + `Error original: ${error.message}`
+                );
+            }
+        }
+
+        throw error;
+    }
+}
+
+
+/**
+ * copyToClipboard
+ * 
+ * Copia el contenido de texto de un elemento HTML al portapapeles usando la API `Clipboard`.
+ * 
+ * MIT License
+ *
+ * Copyright (c) 2023 Argentina.gob.ar
+ *
+ * Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation
+ * files (the "Software"), to deal in the Software without
+ * restriction, including without limitation the rights to use,
+ * copy, modify, merge, publish, distribute, sublicense, and/or
+ * sell copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following
+ * conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+ * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+ * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+ * OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+/**
+ * COPY TO CLIPBOARD
+ *
+ * @summary Copia el contenido de texto de un elemento HTML al
+ * portapapeles del sistema usando la API Clipboard.
+ *
+ * @description Acepta un selector CSS o directamente un elemento
+ * HTMLElement. Si el selector no coincide con ningún elemento o
+ * el elemento no es válido, la función retorna sin efecto. Al
+ * copiar con éxito, ejecuta el callback opcional pasando el
+ * elemento como argumento.
+ *
+ * @author Agustín Bouillet <bouilleta@jefatura.gob.ar>
+ *
+ * @param {string|HTMLElement} selector Selector CSS (ej: ".clase",
+ *     "#id") o referencia directa a un elemento HTMLElement cuyo
+ *     texto se desea copiar.
+ * @param {function} [callback] Función opcional que se ejecuta
+ *     tras copiar el texto con éxito. Recibe el elemento copiado
+ *     como primer argumento.
+ * @returns {void}
+ *
+ * @example
+ * // Copiar el contenido de un elemento por selector
+ * copyToClipboard("#mi-elemento");
+ *
+ * @example
+ * // Copiar con callback de confirmación
+ * copyToClipboard(".codigo", (el) => {
+ *     el.classList.add("copiado");
+ * });
+ *
+ * @example
+ * // Pasar directamente un elemento HTMLElement
+ * const el = document.querySelector(".resultado");
+ * copyToClipboard(el, () => alert("¡Copiado!"));
+ */
+function copyToClipboard(selector, callback) {
+    const element = (typeof selector === "string" ?
+            document.querySelector(selector) : selector);
+
+    if (!element || !(element instanceof HTMLElement)) {
+        return;
     }
 
-    const trimmed = str.trim();
-
-    if (!allWords) {
-        return trimmed[0].toUpperCase() + trimmed.slice(1).toLowerCase();
+    const copyText = element;
+    if (!copyText) {
+        console.error(
+            "[copyToClipboard] No se puede encontrar el elemento."
+        );
+        return;
     }
+    const str = copyText.textContent;
+    navigator.clipboard.writeText(str)
+        .then(function () {
+            if (typeof callback === "function") {
+                callback(copyText);
+            }
+        }, function () {
+            console.error(
+                "[copyToClipboard] No se puede copiar el texto."
+            );
+        });
+}
 
-    return trimmed.replace(/\S+/g, word =>
-        word[0].toUpperCase() + word.slice(1).toLowerCase()
+
+/**
+ * MIT License
+ *
+ * Copyright (c) 2024 Agustín Bouillet
+ *
+ * Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation
+ * files (the "Software"), to deal in the Software without
+ * restriction, including without limitation the rights to use,
+ * copy, modify, merge, publish, distribute, sublicense, and/or
+ * sell copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following
+ * conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+ * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+ * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+ * OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+/**
+ * GAPI LEGACY
+ *
+ * Converts a Google Sheets API v4 response into the legacy v3
+ * structure expected by older integrations.
+ *
+ * The Google Sheets API v4 returns a flat `values` array of arrays.
+ * This function transforms that into the feed/entry format used by
+ * the deprecated v3 API, where each column is keyed as
+ * `gsx$<columnName>` and its value is stored under `$t`.
+ *
+ * Column names are normalized: spaces, slashes, and underscores are
+ * removed and the name is lowercased.
+ *
+ * @author Agustín Bouillet <bouilleta@jefatura.gob.ar>
+ *
+ * @example
+ * // Input (Google Sheets API v4 response)
+ * const response = {
+ *   values: [
+ *     ["name", "age"],
+ *     ["Alice", "30"],
+ *     ["Bob",   "25"]
+ *   ]
+ * };
+ *
+ * gapi_legacy(response);
+ * // Returns:
+ * // {
+ * //   feed: {
+ * //     entry: [
+ * //       { "gsx$name": { "$t": "Alice" },
+ * //         "gsx$age":  { "$t": "30" } },
+ * //       { "gsx$name": { "$t": "Bob" },
+ * //         "gsx$age":  { "$t": "25" } }
+ * //     ]
+ * //   }
+ * // }
+ *
+ * @param  {object} response
+ *   Google Sheets API v4 response object.
+ * @param  {Array<Array<string>>} response.values
+ *   2D array where the first row contains column headers and
+ *   subsequent rows contain data values.
+ * @throws {TypeError} If `response` is falsy, has no `values`
+ *   property, or `values` is not a 2D array.
+ * @return {object} Object matching the v3 feed/entry structure.
+ */
+const gapi_legacy = (response) => {
+
+  if (
+    !response ||
+    !response.values ||
+    response.values.length === 0
+  ) {
+    throw new TypeError("Invalid response format");
+  }
+
+  if (
+    !Array.isArray(response.values) ||
+    !Array.isArray(response.values[0])
+  ) {
+    throw new TypeError(
+      "Invalid response format: values should be arrays"
     );
+  }
+
+  const keys = response.values[0];
+  const regex = / |\/|_/ig;
+  let entry = [];
+
+  response.values.forEach((v, k) => {
+    if (k > 0) {
+      let zip = {};
+      for (const i in keys) {
+        const d = v.hasOwnProperty(i) ? v[i].trim() : "";
+        const key = keys[i].toLowerCase().replace(regex, "");
+        zip[`gsx$${key}`] = {"$t": d};
+      }
+      entry.push(zip);
+    }
+  });
+
+  return {"feed": {"entry": entry}};
 };
 
 
 if (typeof exports !== "undefined") {
-    module.exports = {slugify, replaceSpecialChars, toTitleCase};
+  module.exports = gapi_legacy;
+}
+
+
+/**
+ * headStyle
+ * Inserta un bloque de estilos CSS en el elemento <head> del documento.
+ * 
+ * MIT License
+ *
+ * Copyright (c) 2023 Argentina.gob.ar
+ *
+ * Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation
+ * files (the "Software"), to deal in the Software without
+ * restriction, including without limitation the rights to use,
+ * copy, modify, merge, publish, distribute, sublicense, and/or
+ * sell copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following
+ * conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+ * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+ * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+ * OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+/**
+ * HEAD STYLE
+ *
+ * @summary Inserta un bloque de estilos CSS en el elemento <head>
+ * del documento.
+ *
+ * @description Crea un elemento <style> con el id indicado y lo
+ * agrega al <head>. Si ya existe un elemento con el mismo id y
+ * las mismas definiciones, la función no hace nada. Si existe el
+ * id pero con definiciones distintas, reemplaza el bloque
+ * existente. El parámetro mediaType permite limitar los estilos
+ * a un media query específico.
+ *
+ * @author Agustín Bouillet <bouilleta@jefatura.gob.ar>
+ *
+ * @param {string} id Nombre único para identificar el bloque de
+ *     estilos en el DOM. Si se omite o no es válido, se usa el
+ *     valor por defecto "argob-custom-css".
+ * @param {string} styleDefinitions Cadena con las definiciones
+ *     CSS a insertar dentro del elemento <style>.
+ * @param {string} [mediaType] Valor del atributo media del
+ *     elemento <style>. Permite aplicar estilos condicionalmente
+ *     según el media query indicado.
+ * @returns {undefined}
+ *
+ * @example
+ * // Insertar estilos simples
+ * // <style id="custom-id">div { border: 2px solid red }</style>
+ * headStyle("custom-id", `div { border: 2px solid red }`);
+ *
+ * @example
+ * // Insertar estilos con media query
+ * // <style id="custom-id" media="all and (max-width: 500px)">
+ * //     div { border: 2px solid red }
+ * // </style>
+ * headStyle(
+ *     "custom-id",
+ *     `div { border: 2px solid red }`,
+ *     "all and (max-width: 500px)"
+ * );
+ */
+const headStyle = (id, styleDefinitions, mediaType) => {
+    if (typeof id !== "string" || id.trim() === "") {
+        console.warn("No se ha provisto un _id_ válido. Se usará: "
+            + "'argob-custom-css'.");
+        id = "argob-custom-css";
+    }
+
+    if (typeof styleDefinitions !== "string"
+            || styleDefinitions.trim() === "") {
+        console.warn("No se ha provisto definición de estilos. "
+            + "Se pasa por alto la petición.");
+        return;
+    }
+
+    const styleExists = document.getElementById(id);
+    if (styleExists !== null) {
+        const sameContent = styleExists.textContent.trim()
+            === styleDefinitions.trim();
+        if (sameContent) {
+            console.warn("[addHeadStyle] Una definición de estilos "
+                + "con las mismas definiciones ya existe.");
+            return;
+        } else {
+            styleExists.remove();
+            console.warn("[addHeadStyle] Un estilo con el mismo "
+                + "_id_ existe, pero tiene definiciones distintas."
+                + " Se pisa.");
+        }
+    }
+
+    document.querySelectorAll("head").forEach(h => {
+        const tag = document.createElement("style");
+        tag.setAttribute("rel", "stylesheet");
+        tag.id = id;
+        if (typeof mediaType === "string" && mediaType.trim() !== "") {
+            tag.setAttribute("media", mediaType);
+        }
+
+        tag.textContent = styleDefinitions;
+
+        h.appendChild(tag);
+    });
+};
+
+
+/**
+ * @license MIT
+ *
+ * Copyright (c) 2026
+ * Dirección Nacional de Servicios Digitales,
+ * Subsecretaría de Tecnologías de la Información
+ * y las Comunicaciones.
+ *
+ * Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation
+ * files (the "Software"), to deal in the Software without
+ * restriction, including without limitation the rights to use,
+ * copy, modify, merge, publish, distribute, sublicense, and/or
+ * sell copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following
+ * conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+ * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+ * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+ * OTHER DEALINGS IN THE SOFTWARE.
+ */
+/**
+ * Remueve acentos y caracteres especiales.
+ *
+ * Reemplaza caracteres Unicode fuera del rango ASCII básico por sus
+ * equivalentes sin tilde o acento usando un mapa de caracteres
+ * predefinido. Los caracteres que no figuran en el mapa se conservan
+ * sin modificar.
+ *
+ * @param {string} data Cadena de texto a limpiar.
+ * @returns {string} Cadena sin acentos ni caracteres especiales.
+ *   Retorna una cadena vacía si el argumento no es un string válido.
+ * @example
+ * replaceSpecialChars("Acción Murciélago árbol niño");
+ * // → "Accion Murcielago arbol nino"
+ */
+const replaceSpecialChars = (data) => {
+    if (typeof data !== "string" || data.trim().length === 0) {
+        console.warn(
+            "replaceSpecialChars: Debe pasar una cadena de texto."
+        );
+        return "";
+    }
+
+    return data.replace(
+        /[^\u0000-\u007F]/g,
+        char => charMap.get(char) || char
+    );
+};
+
+
+
+if (typeof exports !== "undefined") {
+    module.exports = { replaceSpecialChars };
 }
 
 /**
  * HTML utilities
  *
- * @summary Validadores y herramientas para manipulación de código HTML.
+ * @summary Validadores y herramientas para manipulación de
+ * código HTML.
  *
  * ADVERTENCIA
  *
@@ -919,7 +1484,7 @@ if (typeof exports !== "undefined") {
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
  * files (the "Software"), to deal in the Software without restriction,
- * including without limitation the rightsto use, copy, modify, merge,
+ * including without limitation the rights to use, copy, modify, merge,
  * publish, distribute, sublicense, and/or sell copies of the Software,
  * and to permit persons to whom the Software is furnished to do so,
  * subject to the following conditions:
@@ -941,15 +1506,45 @@ if (typeof exports !== "undefined") {
 /**
  * Impide que se impriman etiquetas HTML peligrosas.
  *
- * @summary Sanitiza HTML bloqueando etiquetas peligrosas y atributos de eventos.
- * Permite opcionalmente excluir ciertas etiquetas seguras de la sanitización.
- * @param {string} str Cadena de texto a sanitizar.
- * @param {object} exclude Etiquetas seguras que deben preservarse.
- * @example
- * // returns &lt;h1&gt;Hello world!&lt;/h1&gt; <a href="#">Link</a>
- * secureHTML('<h1>Hello world!</h1> <a href="#">Link</a>', ["a"])
+ * @summary Sanitiza HTML bloqueando etiquetas peligrosas y atributos
+ * de eventos. Permite opcionalmente excluir ciertas etiquetas seguras
+ * de la sanitización.
  *
- * @returns {string} Texto sanitizado.
+ * @description
+ * Recorre la cadena recibida y escapa los caracteres `<` y `>`.
+ * Si se indican etiquetas en `exclude`, éstas son restauradas luego
+ * del escape, pero con sus atributos peligrosos eliminados: event
+ * handlers (`onclick`, `onerror`, etc.), `javascript:` en `href` y
+ * en `src`, y `data:` URIs no-imagen en `src`.
+ *
+ * Las siguientes etiquetas siempre permanecen bloqueadas,
+ * independientemente de lo que se pase en `exclude`:
+ * `script`, `iframe`, `object`, `embed`, `applet`, `meta`,
+ * `link`, `style`, `base`, `form`.
+ *
+ * @param {string}   str           Cadena de texto a sanitizar.
+ * @param {string[]} [exclude=[]]  Lista de nombres de etiquetas HTML
+ *   que deben preservarse en el resultado. Pasar `["*"]` para
+ *   permitir todas las etiquetas de la lista segura predeterminada.
+ *
+ * @returns {string} Cadena con el HTML sanitizado. Las etiquetas no
+ *   incluidas en `exclude` quedan escapadas como entidades HTML.
+ *
+ * @example <caption>Escapar todo el HTML</caption>
+ * secureHTML('<h1>Hola</h1>');
+ * // "&lt;h1&gt;Hola&lt;/h1&gt;"
+ *
+ * @example <caption>Preservar etiquetas seguras</caption>
+ * secureHTML('<h1>Hello world!</h1> <a href="#">Link</a>', ["a"]);
+ * // '&lt;h1&gt;Hello world!&lt;/h1&gt; <a href="#">Link</a>'
+ *
+ * @example <caption>Bloquear event handlers en atributos</caption>
+ * secureHTML('<a onclick="alert(1)" href="#">X</a>', ["a"]);
+ * // '<a href="#">X</a>'
+ *
+ * @example <caption>Permitir todas las etiquetas seguras</caption>
+ * secureHTML('<p>Texto</p><script>alert(1)</script>', ["*"]);
+ * // '<p>Texto</p>&lt;script&gt;alert(1)&lt;/script&gt;'
  */
 const secureHTML = (str, exclude=[]) => {
     if(typeof str !== "string" || str.trim().length === 0){
@@ -965,7 +1560,8 @@ const secureHTML = (str, exclude=[]) => {
 
     const secureList = [
         // Contenedores y estructura
-        "div", "section", "article", "aside", "header", "footer", "main", "nav",
+        "div", "section", "article", "aside", "header",
+        "footer", "main", "nav",
         "figure", "figcaption", "details", "summary", "dialog",
 
         // Texto y formato
@@ -983,7 +1579,8 @@ const secureHTML = (str, exclude=[]) => {
         "ul", "ol", "li", "dl", "dt", "dd",
 
         // Tablas
-        "table", "thead", "tbody", "tfoot", "tr", "th", "td", "caption", "col", "colgroup",
+        "table", "thead", "tbody", "tfoot",
+        "tr", "th", "td", "caption", "col", "colgroup",
 
         // Enlaces y multimedia
         "a", "img", "picture", "source", "audio", "video", "track",
@@ -1028,10 +1625,12 @@ const secureHTML = (str, exclude=[]) => {
         exclude = secureList;
     }
 
-    // NUEVO: Sanitizar imágenes ANTES de escapar si 'img' está en exclude
+    // Sanitizar imágenes ANTES de escapar si 'img' está en exclude
     let preprocessedStr = str;
-    if(exclude.includes('img') || (exclude.includes('*') && secureList.includes('img'))){
-        // Sanitizar atributos src peligrosos en imágenes ANTES del escape
+    const imgAllowed = exclude.includes('img') ||
+        (exclude.includes('*') && secureList.includes('img'));
+
+    if(imgAllowed){
         preprocessedStr = preprocessedStr
             // Bloquear javascript: en src (con comillas)
             .replace(
@@ -1103,13 +1702,13 @@ const secureHTML = (str, exclude=[]) => {
                     'href="#"'
                 );
 
-                // Validar data: URIs (pueden ejecutar JavaScript) - con comillas
+                // Bloquear data: URIs en href (con comillas)
                 cleanAttrs = cleanAttrs.replace(
                     /href\s*=\s*["']data:[^"']*["']/gi,
                     'href="#"'
                 );
 
-                // Validar data: URIs (pueden ejecutar JavaScript) - sin comillas
+                // Bloquear data: URIs en href (sin comillas)
                 cleanAttrs = cleanAttrs.replace(
                     /href\s*=\s*data:[^\s>]*/gi,
                     'href="#"'
@@ -1130,149 +1729,307 @@ if (typeof exports !== "undefined") {
 
 
 /**
- * HEAD STYLE
+ * Slugify
  * 
- * @summary Permite agregar definiciones css dentro del head.
+ * @requires charMap
  * 
- * @author Agustín Bouillet <bouilleta@jefatura.gob.ar>
- * @param {string} id Nombre único para identificar las asignaciones css
- * @param {string} styleDefinitions Definiciones CSS
- * @param {string} mediaType Definición para media query
- * @example
- * //<style id="custom-id">div {border: 2px solid red}</div>
- * headStyle("custom-id", `div { border: 2px solid red}`);
- * 
- * //<style id="custom-id" media="all and (max-width: 500px)">
- * //    div {border: 2px solid red}
- * //</div>
- * headStyle(
- *     "custom-id", 
- *     `div { border: 2px solid red}`,
- *     "all and (max-width: 500px)"
- * );
- * @returns {undefined}
- * 
- * MIT License
- * 
- * Copyright (c) 2023 Argentina.gob.ar
- * 
+ * @license MIT
+ *
+ * Copyright (c) 2026
+ * Dirección Nacional de Servicios Digitales,
+ * Subsecretaría de Tecnologías de la Información
+ * y las Comunicaciones.
+ *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
- * files (the "Software"), to deal in the Software without restriction,
- * including without limitation the rightsto use, copy, modify, merge,
- * publish, distribute, sublicense, and/or sell copies of the Software,
- * and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
- * 
+ * files (the "Software"), to deal in the Software without
+ * restriction, including without limitation the rights to use,
+ * copy, modify, merge, publish, distribute, sublicense, and/or
+ * sell copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following
+ * conditions:
+ *
  * The above copyright notice and this permission notice shall be
  * included in all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
- * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
- * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
- * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
- * BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
- * ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+ * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+ * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+ * OTHER DEALINGS IN THE SOFTWARE.
  */
-const headStyle = (id, styleDefinitions, mediaType) => {
-    if (typeof id !== "string" || id.trim() === "") {
-        console.warn("No se ha provisto un _id_ válido. Se usará: "
-            + "'argob-custom-css'.");
-        id = "argob-custom-css";
-    }
-
-    if (typeof styleDefinitions !== "string" || styleDefinitions.trim() == ""){
-        console.warn("No se ha provisto definición de estilos. "
-            + "Se pasa por alto la petición.");
-        return;
-    }
-
-    const styleExists = document.getElementById(id);
-    if (styleExists !== null) {
-        if (styleExists.textContent.trim() === styleDefinitions.trim()) {
-            console.warn("[addHeadStyle] Una definición de estilos "
-                + "con las mismas definiciones ya existe.");
-            return;
-            
-        } else {
-            styleExists.remove();
-            console.warn("[addHeadStyle] Un estilo con el mismo _id_ "
-                + "existe, pero tiene definiciones distintas. Se pisa.");
-        }
-    }
-
-    document.querySelectorAll("head").forEach(h => {
-        const tag = document.createElement("style");
-        tag.setAttribute("rel", "stylesheet");
-        tag.id = id;
-        if(typeof mediaType === "string" && mediaType.trim() !== ""){
-            tag.setAttribute("media", mediaType);
-        }
-
-        tag.textContent = styleDefinitions;
-
-        h.appendChild(tag);
-    });
-};
+const slugifyMap = new Map([
+    ...Array.from(charMap.entries()),
+    ['·', '-'], ['/', '-'], ['_', '-'], [',', '-'], [':', '-'], [';', '-']
+]);
 
 
 /**
- * Copia texto en el portapapeles (clipboard)
- * 
- * @param {string} selector Selector html, ej: .class o #id
- * @param {function} callback Función de retorno.
- * @returns {void}
+ * Convierte una cadena de texto a formato slug.
+ *
+ * Transforma el texto a minúsculas, reemplaza espacios y caracteres
+ * especiales por guiones, elimina caracteres no alfanuméricos y
+ * colapsa los guiones consecutivos.
+ *
+ * @param {string} str Cadena de texto a convertir.
+ * @returns {string} Cadena en formato slug.
+ *   Retorna el argumento original si no es un string válido.
+ * @example
+ * slugify("El murciélago remolón parece un niño");
+ * // → "el-murcielago-remolon-parece-un-nino"
+ * @example
+ * slugify("Arroz & Porotos: una receta sencilla");
+ * // → "arroz-and-porotos-una-receta-sencilla"
  */
-function copyToClipboard(selector, callback) {
-    const element = (typeof selector === 'string' ? 
-            document.querySelector(selector) : selector);
 
-    if (!element || !(element instanceof HTMLElement)) {
-        return; 
+const slugify = (str) => {
+    if (typeof str !== "string" || str.trim().length === 0) {
+        console.warn("slugify: Debe pasar una cadena de texto.");
+        return str;
     }
 
-    const copyText = element;
-    if(!copyText){
-        console.error("[copyToClipboard] No se puede encontrar el elemento.");
-        return;
+    return str.toLowerCase()
+        .replace(/\s+/g, "-")
+        .replace(
+            /[^\u0000-\u007F]/g,
+            char => slugifyMap.get(char) || char
+        )
+        .replace(/&/g, "-and-")
+        .replace(/[^\w\-]+/g, "")
+        .replace(/-+/g, "-")
+        .replace(/^-+|-+$/g, "");
+};
+
+if (typeof exports !== "undefined") {
+    module.exports = { slugify, charMap };
+}
+
+/**
+ * MIT License
+ *
+ * Copyright (c) 2026
+ *
+ * Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation
+ * files (the "Software"), to deal in the Software without
+ * restriction, including without limitation the rights to use,
+ * copy, modify, merge, publish, distribute, sublicense, and/or
+ * sell copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following
+ * conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+ * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+ * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+ * OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+
+/**
+ * Convierte una cadena de texto a formato title case.
+ *
+ * Cuando `allWords` es `true` (comportamiento por defecto), cada
+ * palabra de la cadena comienza con mayúscula y el resto de sus
+ * letras se convierten a minúsculas. Cuando `allWords` es `false`,
+ * solo la primera letra de toda la cadena se capitaliza y el resto
+ * se convierte a minúsculas, equivalente a sentence case.
+ *
+ * La función ignora espacios al inicio y al final de la cadena
+ * mediante `trim()` antes de procesar el texto.
+ *
+ * @param {string} str - Cadena a transformar.
+ * @param {boolean} [allWords=true] - Si es `true`, aplica title
+ *   case a todas las palabras. Si es `false`, solo capitaliza la
+ *   primera letra de la cadena (sentence case).
+ * @returns {string} Cadena transformada. Retorna el argumento
+ *   original sin modificar si no es un string válido o está vacío.
+ *
+ * @example
+ * toTitleCase("hola mundo cruel");
+ * // → "Hola Mundo Cruel"
+ *
+ * @example
+ * toTitleCase("hola mundo cruel", false);
+ * // → "Hola mundo cruel"
+ *
+ * @example <caption>Cadena con espacios al inicio/fin</caption>
+ * toTitleCase("  hola mundo  ");
+ * // → "Hola Mundo"
+ *
+ * @example <caption>Valor no válido</caption>
+ * toTitleCase(null);
+ * // → null  (con advertencia en consola)
+ */
+const toTitleCase = (str, allWords = true) => {
+    if (typeof str !== "string" || str.trim().length === 0) {
+        console.warn(
+            "[toTitleCase] Debe ingresar una cadena de texto."
+        );
+        return str;
     }
-    const str = copyText.textContent;
-    navigator.clipboard.writeText(str)
-        .then(function(){
-            if(typeof callback === "function"){
-                callback(copyText);
-            }
-        }, function(){
-            console.error("[copyToClipboard] No se puede copiar el texto.");
-        });
-}
 
-function flattenNestedObjects(entries) {
-    return entries.map(entry => {
-        return flattenObject(entry, "");
-    });
-}
+    const trimmed = str.trim();
 
-function flattenObject(obj, prefix) {
-    const flattened = {};
-    for (const key in obj) {
-        const value = obj[key];
-        const newKey = (prefix ? `${prefix}__${key}` : key);
-
-        if (typeof value === "object" && value !== null) {
-            Object.assign(flattened, flattenObject(value, newKey));
-        } else {
-            flattened[newKey] = value;
-        }
+    if (!allWords) {
+        return (
+            trimmed[0].toUpperCase() + trimmed.slice(1).toLowerCase()
+        );
     }
-    return flattened;
-}
+
+    return trimmed.replace(
+        /\S+/g,
+        word => word[0].toUpperCase() + word.slice(1).toLowerCase()
+    );
+};
 
 
 if (typeof exports !== "undefined") {
-    module.exports = {flattenObject, flattenNestedObjects};
+    module.exports = { toTitleCase };
+}
+
+
+/**
+ * Helpers para manejar los json provenientes de Google Sheets.
+ * 
+ * @author Agustín Bouillet <bouilleta@jefatura.gob.ar>
+ */
+class GapiSheetData {
+    constructor(options){
+        const defaults = {
+            gapi_key: "AIzaSyCq2wEEKL9-6RmX-TkW23qJsrmnFHFf5tY",
+            gapi_uri: "https://sheets.googleapis.com/v4/spreadsheets/"
+        };
+        let opts = Object.assign({}, defaults, options);
+        this.gapi_key = opts.gapi_key;
+        this.gapi_uri = opts.gapi_uri;
+    }
+
+
+    /**
+     * URI para obtener el json de google sheet.
+     * 
+     * @param {string} page Nombre de la página a obtener.
+     * @param {string} spreadsheet Id del documento Google Sheet.
+     * @param {string} api_key Google API Key.
+     * @returns {string} URL
+     */
+    url = (page, spreadsheet, api_key) => {
+        if(!page || typeof page !== "string"){
+            throw new Error("El parámetro 'page' es requerido.");
+        }
+        if(!spreadsheet || typeof spreadsheet !== "string"){
+            throw new Error("El parámetro 'spreadsheet' es requerido.");
+        }
+        const key = api_key || this.gapi_key;
+        return [
+            this.gapi_uri, spreadsheet, "/values/",
+            encodeURIComponent(page), "?key=", key, "&alt=json"
+        ].join("");
+    };
+
+
+    /**
+     * Retorna los elementos del json estructurados en feed,
+     * entries y headers.
+     *
+     * @param {object} json Respuesta JSON de la API de Google Sheets.
+     * @returns {{feed: object[], entries: object[], headers: object}}
+     */
+    json_data = (json) => {
+        if(!json || !json.values || !json.values.length){
+            throw new Error(
+                "El parámetro 'json' debe contener una propiedad 'values'"
+                + " con al menos una fila."
+            );
+        }
+        const feed = this.feed(json);
+        return {
+            "feed": feed,
+            "entries": this.entries(feed),
+            "headers": this.headers(feed)
+        };
+    };
+
+
+    /**
+     * Retorna con una estructura más cómoda para usar
+     * @param {object} response Feed Json 
+     * @returns {object}
+     */
+    feed = (response, lowercase = true) => {
+        const rawKeys = response.values[0];
+        const regex = / |\/|_/ig;
+        const keyCount = rawKeys.length;
+        const processedKeys = new Array(keyCount);
+        for(let i = 0; i < keyCount; i++){
+            processedKeys[i] = lowercase
+                ? rawKeys[i].toLowerCase().replace(regex, "")
+                : rawKeys[i].replace(regex, "");
+        }
+
+        const rows = response.values;
+        const len = rows.length;
+        const entry = new Array(len - 1);
+        for(let k = 1; k < len; k++){
+            const v = rows[k];
+            const zip = {};
+            for(let i = 0; i < keyCount; i++){
+                zip[processedKeys[i]] = i < v.length ? v[i].trim() : "";
+            }
+            entry[k - 1] = zip;
+        }
+        return entry;
+    };
+
+
+    /**
+     * Variables.
+     */
+    gapi_feed_row = (data, separator="-", filter_prefix=true) => {
+        const prefix = filter_prefix ? "filtro-" : "";
+        const feed_keys = Object.entries(data);
+        const clean = k => k.replace("gsx$", "")
+                            .replace(prefix, "").replace(/-/g, separator);
+        let list = {};
+        feed_keys.map(v => list[clean(v[0])] = v[1]["$t"]);
+        return list;
+    };
+
+    /**
+     * Retrona las entradas excluyendo el primer row, ya que 
+     * pertenece a los headers.
+     * 
+     * @param {object} feed 
+     * @returns {object}
+     */
+    entries = (feed) => {
+        return feed.slice(1);
+    };
+
+    /**
+     * Obtiene el primer row que es igual a los headers.
+     * @param {*} feed 
+     * @returns 
+     */
+    headers = (feed) => {
+        return feed[0];
+    };
+};
+
+
+
+if (typeof exports !== "undefined") {
+    module.exports = GapiSheetData;
 }
 
 /**
@@ -1313,578 +2070,6 @@ function ponchoTable(opt) {
     return ponchoTableDependant(opt);
 }
 
-
-/**
- * Agenda
- *
- * @summary Agenda de eventos basada en PonchoTable donde se agrupan las
- * entradas por fecha de inicio, fecha de fin, y categoría.
- * @author Agustín Bouillet <bouilleta@jefatura.gob.ar>
- * @requires jQuery, dataTables
- * @see https://github.com/argob/poncho/tree/master/src/js/poncho-table
- *
- *
- * MIT License
- *
- * Copyright (c) 2024 Argentina.gob.ar
- *
- * Permission is hereby granted, free of charge, to any person
- * obtaining a copy of this software and associated documentation
- * files (the "Software"), to deal in the Software without restriction,
- * including without limitation the rightsto use, copy, modify, merge,
- * publish, distribute, sublicense, and/or sell copies of the Software,
- * and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be
- * included in all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
- * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
- * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
- * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
- * BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
- * ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- */
-class PonchoAgenda {
-
-    DATE_REGEX = /^([1-9]|0[1-9]|[1-2][0-9]|3[0-1])\/([1-9]|0[1-9]|1[0-2])\/([1-9][0-9]{3})$/;
-
-    constructor(options={}){
-        options.headers = this._refactorHeaders(options);
-        options.headersOrder = this._refactorHeadersOrder(options);
-
-        // Global Options
-        this.opts = Object.assign({}, this.defaults, options);
-
-        this.categoryTitleClassList = this.opts.categoryTitleClassList;
-        this.itemContClassList = this.opts.itemContClassList;
-        this.itemClassList = this.opts.itemClassList;
-        this.groupCategory = this.opts.groupCategory;
-        this.dateSeparator = this.opts.dateSeparator;
-        this.startDateId = this.opts.startDateId;
-        this.endDateId = this.opts.endDateId;
-        this.timeId = this.opts.timeId;
-
-        this.descriptionId = this.opts.descriptionId;
-        this.criteriaOneId = this.opts.criteriaOneId;
-        this.criteriaTwoId = this.opts.criteriaTwoId;
-        this.criteriaThreeId = this.opts.criteriaThreeId;
-    }
-
-
-    /**
-     * Opciones por defecto
-     */
-    defaults = {
-        allowedTags: [
-            "strong","span", "dl", "dt", "dd", "img", "em","button", "button",
-            "p", "div", "h3", "ul", "li", "time", "a", "h1"],
-
-        criteriaOneId: "destinatarios",
-        criteriaThreeId: "destacado",
-        criteriaTwoId: "url",
-        descriptionId: "descripcion",
-        categoryTitleClassList: ["h6", "text-secondary"],
-        itemContClassList: ["list-unstyled"],
-        itemClassList: ["m-b-2"],
-        dateSeparator: "/",
-        filterStatus: {
-            header: "Estado",
-            nextDates: "Próximas",
-            pastDates: "Anteriores",
-        },
-        endDateId: "hasta",
-        groupCategory: "filtro-ministerio",
-        rangeLabel: "Fechas",
-        startDateId: "desde",
-        timeId: "horario",
-    };
-
-
-    /**
-     * Agrega los indices range y filtro-status al al array si no existieran.
-     *
-     * @param {object} options Opciones para ponchoTabla y Agenda
-     * @returns {object}
-     */
-    _refactorHeadersOrder = options => {
-        if(options.hasOwnProperty("headersOrder") &&
-                options.headersOrder.length > 0){
-            let order = options.headersOrder;
-            for(const i of ["range", "filtro-status"]){
-                if(!options.headersOrder.includes(i)){
-                    options.headersOrder.push(i);
-                }
-            }
-            return order;
-        }
-        return [];
-    };
-
-    /**
-     * Mapea los headers.
-     *
-     * @return {string} key Key del item.
-     */
-    _header = (key) => {
-        return (this.opts.headers.hasOwnProperty(key) ?
-                this.opts.headers[key] : key);
-    };
-
-    /**
-     * Refactor de headers
-     *
-     * @summary Agrega los headers de range y filterheader a los
-     * asignados en el JSON.
-     * @param {object} options Opciones para ponchoTabla y Agenda
-     * @returns {object}
-     */
-    _refactorHeaders = options => {
-        let labelStatus = this.defaults.filterStatus.header;
-        if(options?.filterStatus?.header){
-            labelStatus = options.filterStatus.header;
-        }
-
-        let rangeLabel = this.defaults.rangeLabel;
-        if(options?.rangeLabel){
-            rangeLabel = options.rangeLabel;
-        }
-
-        const headers = {
-            ...{ "range": rangeLabel},
-            ...options.headers,
-            ...{"filtro-status": labelStatus}
-        };
-
-        return headers;
-    }
-
-
-    /**
-     * Showdown habilitado.
-     *
-     * Verifica si la librería _showdown_ está disponible.
-     * @returns {boolean}
-     */
-    _isMarkdownEnable = () => {
-        if(typeof showdown !== "undefined" &&
-            showdown.hasOwnProperty("Converter")){
-                return true;
-        }
-        return false;
-    };
-
-
-    /**
-     * Opciones para markdown
-     * @returns {object}
-     */
-    _markdownOptions = () => {
-        if(this._isMarkdownEnable()){
-            if(this.opts.hasOwnProperty("markdownOptions") &&
-                typeof this.opts.markdownOptions === "object"){
-                return this.opts.markdownOptions;
-            }
-        }
-        return {};
-    };
-
-
-    /**
-     * Convierte un string a markdown
-     *
-     * @param {string} str Cadena de texto a convertir
-     * @returns {string}
-     */
-    _markdownConverter = str => {
-        if(this._isMarkdownEnable()){
-            const converter = new showdown.Converter(this._markdownOptions());
-            return converter.makeHtml(str);
-        }
-        return str;
-    };
-
-
-    /**
-     * Fecha pasada
-     *
-     * @param {string} fecha Fecha a evaluar
-     * @returns {boolean}
-     */
-    _isPastDate = fecha => {
-        if(!this._isValidDateFormat(fecha)){
-            console.error(`La fecha no tiene un formato válido: ${fecha}`);
-            return false;
-        }
-
-        const dateToEvaluate = this._dateParser(fecha).date.getTime();
-        const current = this._currentDate().date.getTime();
-        return current > dateToEvaluate;
-    }
-
-
-    /**
-     * Formato para fecha y hora
-     *
-     * @param {objecct} date Fecha como objeto {day, month, year}
-     * @param {object} time Tiempo como objeto {hours, minutes, seconds}
-     * @returns {string}
-     */
-    _dateTimeFormat = (date, time=false) => {
-        const {day, month, year} = date;
-        const dateFormat = [day, month, year].join(this.dateSeparator);
-        let timeFormat = "";
-        if(time){
-            timeFormat = [hours, minutes].join(":");
-        }
-        return dateFormat + timeFormat;
-    };
-
-
-    /**
-     * Fecha al momento de ejecutarse el script.
-     *
-     * @returns {object} Retorna un objeto con: el día, mes, año y el
-     * objeto Date en fecha.
-     */
-    _currentDate = () => {
-        const today = new Date();
-        const year = today.getFullYear();
-        const month = today.getMonth() + 1;
-        const day = today.getDate();
-        const format = [
-            this._pad(day),
-            this._pad(month),
-            year].join(this.dateSeparator);
-
-        return {...this._dateParser(format), ...{format}};
-    }
-
-    /**
-     * Rellena con ceros a la izquierda
-     *
-     * @param {string|int} num Numero a rellenar con ceros.
-     * @param {int} counter Cantidad total de caracteres.
-     * @returns {string}
-     */
-    _pad = (num, counter=2) => num.toString().padStart(counter, "0");
-
-
-    /**
-     * Parsea una fecha.
-     *
-     * @param {string} date Fecha en formato dd/mm/yyyy.
-     * @param {string} time Tiempo en formato hh:mm:ss
-     * @example
-     * // {
-     * //     day: '09',
-     * //     month: '05',
-     * //     year: '2012',
-     * //     hours: '00',
-     * //     minutes: '00',
-     * //     date: Wed May 09 2012 00:00:00 GMT-0300...
-     * // }
-     * this._dateParser("09/05/2012")
-     * @returns {object|boolean}
-     */
-    _dateParser = (date, time="00:00:00") => {
-        if(!this._isValidDateFormat(date)){
-            console.error(`Formato de fecha incorrecto: ${date}`);
-            return;
-        }
-        const regex = this.DATE_REGEX;
-        const result = regex.exec(date);
-        const [, day, month, year] = result;
-        const objectDate = new Date(`${year}-${month}-${day} ${time}`);
-
-        return {
-            day: this._pad(day),
-            month: this._pad(month),
-            year,
-            hours: this._pad(objectDate.getHours()),
-            minutes: this._pad(objectDate.getMinutes()),
-            "date": objectDate
-        }
-    }
-
-
-    /**
-     * Valida el formato de la fecha.
-     * @summary El formato de fecha aceptado es: dd/mm/yyyy.
-     * Al momento de escribir este documento, no hay otro habilitado.
-     * @example
-     * // true
-     * this._isValidDateFormat("09/05/2012")
-     *
-     * // false
-     * this._isValidDateFormat("09/10/15")
-     * @param {string} str Fecha en formato dd/mm/yyyy.
-     * @returns {boolean}
-     */
-    _isValidDateFormat = str => {
-        const regex = this.DATE_REGEX;
-        const result = regex.exec(str);
-
-        return (result !== null ? true : false);
-    }
-
-
-    /**
-     * Agrupa contenidos por fecha y la categoría asignada.
-     *
-     * @param {object} datos JSON a procesar
-     * @returns {object}
-     */
-    _groupByFingerprintAndCategory = (datos) => {
-        const agrupados = {};
-
-        for (const dato of datos) {
-            const categoria = dato[this.groupCategory];
-            const {fingerprint} = dato;
-            if (!agrupados[fingerprint]) {
-                agrupados[fingerprint] = {};
-            }
-            if (!agrupados[fingerprint][categoria]) {
-                agrupados[fingerprint][categoria] = [];
-            }
-            agrupados[fingerprint][categoria].push(dato);
-        }
-
-        return agrupados;
-    }
-
-
-    /**
-     * Rearmo el JSON para agregar filtros.
-     *
-     * @param {object} jsonData
-     * @returns {object}
-     */
-    _refactorEntries = jsonData => {
-        if(!jsonData){
-            console.error("No se puede recorrer el script")
-        }
-
-        let entries = [];
-        jsonData.forEach(element => {
-            let desde = element[this.startDateId];
-            let hasta = element[this.endDateId];
-            // Si la columna `hasta` viene vacía le copio los datos de `desde`.
-            hasta = (hasta.trim() === "" ? desde : hasta);
-
-            const {pastDates, nextDates} = this.opts.filterStatus;
-            const estado = (this._isPastDate(hasta) ? pastDates : nextDates);
-            // dates
-            const startDate = this._dateParser(desde);
-            const endDate = this._dateParser(hasta);
-            const startDateTime = startDate.date.getTime();
-            const endDateTime = endDate.date.getTime();
-            const fingerprint = [startDateTime, endDateTime].join("_");
-
-            let range = this._dateTimeFormat(startDate);
-            if(startDateTime != endDateTime){
-                range = `Del ${this._dateTimeFormat(startDate)} al `
-                    + `${this._dateTimeFormat(endDate)}`;
-            }
-
-            // refactor entry
-            const entry = {
-                ...element,
-                ...{
-                    "range": range,
-                    "filtro-status": estado,
-                    fingerprint,
-                    desde,
-                    hasta,
-                }
-            };
-            entries.push(entry);
-        });
-
-        return entries;
-    };
-
-
-    /**
-     * Compone el template para el item de la agenda
-     *
-     * @param {string} description Descriptión del item de la agenda.
-     * @param {string} date Fecha formato dd/mm/yyyy
-     * @param {string} time Horario en formato hh:mm:ss
-     * @returns {object}
-     */
-    itemTemplate = (description, destinatarios, url,
-            destacados, date, time) => {
-        const itemContainer = document.createElement("dl");
-                
-        // time
-        let timeElement;
-        if(time){
-            const datetime = this._dateParser(date, time);
-            timeElement = document.createElement("time");
-            timeElement.setAttribute("datetime", datetime.date.toISOString());
-            timeElement.textContent = `${datetime.hours}:`
-                + `${datetime.minutes}hs.`;
-        } else {
-            timeElement = document.createElement("span");
-            timeElement.textContent = "--:--";
-        }
-
-        const data = [
-            // Térm, definition, screenreader, dtoff, className
-            [
-                "Descripción",
-                this._markdownConverter(description),
-                true, true, "description"],
-            [
-                this._header(this.criteriaOneId),
-                this._markdownConverter(destinatarios),
-                false, true, "criteria-one"],
-            [
-                this._header(this.criteriaThreeId),
-                this._markdownConverter(destacados),
-                false, true, "criteria-three"],
-            [
-                this._header(this.criteriaTwoId),
-                this._markdownConverter(url),
-                false, true, "criteria-two"],
-            [
-                this._header(this.timeId),
-                timeElement.outerHTML,
-                false, true, "time"],
-        ];
-
-        data.forEach( elem => {
-            const [term, definition, srOnly, dtOff, className] = elem;
-            if(!definition){
-                return;
-            }
-
-            const dt = document.createElement("dt");
-            dt.textContent = term;
-            dt.classList.add("agenda-item__dt", `agenda-item__dt-${className}`);
-            if(srOnly){
-                dt.classList.add("sr-only");
-            }
-            
-            const dd = document.createElement("dd");
-            dd.textContent = definition;
-            dd.classList.add("agenda-item__dd", `agenda-item__dd-${className}`);
-
-            if(dtOff){
-                itemContainer.appendChild(dt);
-            }
-            itemContainer.appendChild(dd);
-        });
-
-        if(this.itemClassList.some(f=>f)){
-            itemContainer.classList.add("agenda-item", ...this.itemClassList);
-        }
-
-        return itemContainer;
-    };
-
-
-    /**
-     * Reagrupa las entradas dejando, por fecha, las entradas de la categoría.
-     *
-     * @param {object} entries
-     * @returns {object}
-     */
-    _groupedEntries = entries => {
-        let collect = [];
-            // Nivel mismas fechas
-            Object.values(entries).forEach(ele => {
-            var entry;
-
-            // Nivel ministerio
-            // Cada iteración es un ministerio.
-            Object.values(ele).forEach((element) => {
-                var block = "";
-                var title = "";
-
-                const itemsContainer = document.createElement("div");
-                if(this.itemContClassList.some(f=>f)){
-                    itemsContainer.classList.add(...this.itemContClassList);
-                }
-
-                // Nivel items por ministerio
-                element.forEach(a => {
-                    entry = a;
-                    if(title != entry[this.groupCategory]){
-                        title = entry[this.groupCategory];
-
-                        const titleElement = document.createElement("p");
-                        if(this.categoryTitleClassList.some(f=>f)){
-                            titleElement.classList.add(
-                                ...this.categoryTitleClassList);
-                            titleElement.textContent = title;
-                            itemsContainer.appendChild(titleElement);
-                        }
-                    }
-
-                    const item = this.itemTemplate(
-                        a.descripcion, a.destinatarios, a.url,
-                        a.destacados, a.desde, a.horario);
-                    itemsContainer.appendChild(item);
-                });
-
-                block += itemsContainer.outerHTML;
-                delete entry.fingerprint;
-                let customData={};
-
-                customData[this.descriptionId] = block;
-                collect.push( {...entry, ...customData} );
-            });
-        });
-
-        return collect;
-    };
-
-
-    /**
-     * Valida si poncho tabla está importado
-     * @returns {boolean}
-     */
-    _ponchoTableExists = () => {
-        if(typeof ponchoTable !== "undefined"){
-            return true;
-        }
-        return false;
-    };
-
-
-    /**
-     * Imprime la tabla ponchoTable
-     *
-     * @returns {undefined}
-     */
-    render = () => {
-        if(!this.opts.hasOwnProperty("jsonData")){
-            console.error(
-                "¡Hay un error en los datos pasados "
-                + "a la función `PonchoAgenda`!");
-            return;
-        }
-
-        const refactorEntries = this._refactorEntries(this.opts.jsonData);
-        const groupedByDateAndCategory = 
-                this._groupByFingerprintAndCategory(refactorEntries);
-        this.opts.jsonData = this._groupedEntries(groupedByDateAndCategory);
-
-        if(this._ponchoTableExists()){
-            ponchoTable( this.opts );
-        }
-    };
-};
-
-
-if (typeof exports !== "undefined") {
-    module.exports = PonchoAgenda;
-}
 
 /**
  * PONCHO TABLE
@@ -3710,16 +3895,575 @@ const ponchoTableDependant = opt => {
 
 
 /**
- * POPOVER
+ * Agenda
+ *
+ * @summary Agenda de eventos basada en PonchoTable donde se agrupan las
+ * entradas por fecha de inicio, fecha de fin, y categoría.
+ * @author Agustín Bouillet <bouilleta@jefatura.gob.ar>
+ * @requires jQuery, dataTables
+ * @see https://github.com/argob/poncho/tree/master/src/js/poncho-table
+ *
+ *
+ * MIT License
+ *
+ * Copyright (c) 2024 Argentina.gob.ar
+ *
+ * Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation
+ * files (the "Software"), to deal in the Software without restriction,
+ * including without limitation the rightsto use, copy, modify, merge,
+ * publish, distribute, sublicense, and/or sell copies of the Software,
+ * and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+ * BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+ * ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+ * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  */
-var content_popover = document.getElementById("content-popover");
+class PonchoAgenda {
 
-function popshow(){
-    content_popover.classList.toggle("hidden");
-}
+    DATE_REGEX = /^([1-9]|0[1-9]|[1-2][0-9]|3[0-1])\/([1-9]|0[1-9]|1[0-2])\/([1-9][0-9]{3})$/;
 
-function pophidde(){
-    content_popover.classList.add("hidden");
+    constructor(options={}){
+        options.headers = this._refactorHeaders(options);
+        options.headersOrder = this._refactorHeadersOrder(options);
+
+        // Global Options
+        this.opts = Object.assign({}, this.defaults, options);
+
+        this.categoryTitleClassList = this.opts.categoryTitleClassList;
+        this.itemContClassList = this.opts.itemContClassList;
+        this.itemClassList = this.opts.itemClassList;
+        this.groupCategory = this.opts.groupCategory;
+        this.dateSeparator = this.opts.dateSeparator;
+        this.startDateId = this.opts.startDateId;
+        this.endDateId = this.opts.endDateId;
+        this.timeId = this.opts.timeId;
+
+        this.descriptionId = this.opts.descriptionId;
+        this.criteriaOneId = this.opts.criteriaOneId;
+        this.criteriaTwoId = this.opts.criteriaTwoId;
+        this.criteriaThreeId = this.opts.criteriaThreeId;
+    }
+
+
+    /**
+     * Opciones por defecto
+     */
+    defaults = {
+        allowedTags: [
+            "strong","span", "dl", "dt", "dd", "img", "em","button", "button",
+            "p", "div", "h3", "ul", "li", "time", "a", "h1"],
+
+        criteriaOneId: "destinatarios",
+        criteriaThreeId: "destacado",
+        criteriaTwoId: "url",
+        descriptionId: "descripcion",
+        categoryTitleClassList: ["h6", "text-secondary"],
+        itemContClassList: ["list-unstyled"],
+        itemClassList: ["m-b-2"],
+        dateSeparator: "/",
+        filterStatus: {
+            header: "Estado",
+            nextDates: "Próximas",
+            pastDates: "Anteriores",
+        },
+        endDateId: "hasta",
+        groupCategory: "filtro-ministerio",
+        rangeLabel: "Fechas",
+        startDateId: "desde",
+        timeId: "horario",
+    };
+
+
+    /**
+     * Agrega los indices range y filtro-status al al array si no existieran.
+     *
+     * @param {object} options Opciones para ponchoTabla y Agenda
+     * @returns {object}
+     */
+    _refactorHeadersOrder = options => {
+        if(options.hasOwnProperty("headersOrder") &&
+                options.headersOrder.length > 0){
+            let order = options.headersOrder;
+            for(const i of ["range", "filtro-status"]){
+                if(!options.headersOrder.includes(i)){
+                    options.headersOrder.push(i);
+                }
+            }
+            return order;
+        }
+        return [];
+    };
+
+    /**
+     * Mapea los headers.
+     *
+     * @return {string} key Key del item.
+     */
+    _header = (key) => {
+        return (this.opts.headers.hasOwnProperty(key) ?
+                this.opts.headers[key] : key);
+    };
+
+    /**
+     * Refactor de headers
+     *
+     * @summary Agrega los headers de range y filterheader a los
+     * asignados en el JSON.
+     * @param {object} options Opciones para ponchoTabla y Agenda
+     * @returns {object}
+     */
+    _refactorHeaders = options => {
+        let labelStatus = this.defaults.filterStatus.header;
+        if(options?.filterStatus?.header){
+            labelStatus = options.filterStatus.header;
+        }
+
+        let rangeLabel = this.defaults.rangeLabel;
+        if(options?.rangeLabel){
+            rangeLabel = options.rangeLabel;
+        }
+
+        const headers = {
+            ...{ "range": rangeLabel},
+            ...options.headers,
+            ...{"filtro-status": labelStatus}
+        };
+
+        return headers;
+    }
+
+
+    /**
+     * Showdown habilitado.
+     *
+     * Verifica si la librería _showdown_ está disponible.
+     * @returns {boolean}
+     */
+    _isMarkdownEnable = () => {
+        if(typeof showdown !== "undefined" &&
+            showdown.hasOwnProperty("Converter")){
+                return true;
+        }
+        return false;
+    };
+
+
+    /**
+     * Opciones para markdown
+     * @returns {object}
+     */
+    _markdownOptions = () => {
+        if(this._isMarkdownEnable()){
+            if(this.opts.hasOwnProperty("markdownOptions") &&
+                typeof this.opts.markdownOptions === "object"){
+                return this.opts.markdownOptions;
+            }
+        }
+        return {};
+    };
+
+
+    /**
+     * Convierte un string a markdown
+     *
+     * @param {string} str Cadena de texto a convertir
+     * @returns {string}
+     */
+    _markdownConverter = str => {
+        if(this._isMarkdownEnable()){
+            const converter = new showdown.Converter(this._markdownOptions());
+            return converter.makeHtml(str);
+        }
+        return str;
+    };
+
+
+    /**
+     * Fecha pasada
+     *
+     * @param {string} fecha Fecha a evaluar
+     * @returns {boolean}
+     */
+    _isPastDate = fecha => {
+        if(!this._isValidDateFormat(fecha)){
+            console.error(`La fecha no tiene un formato válido: ${fecha}`);
+            return false;
+        }
+
+        const dateToEvaluate = this._dateParser(fecha).date.getTime();
+        const current = this._currentDate().date.getTime();
+        return current > dateToEvaluate;
+    }
+
+
+    /**
+     * Formato para fecha y hora
+     *
+     * @param {objecct} date Fecha como objeto {day, month, year}
+     * @param {object} time Tiempo como objeto {hours, minutes, seconds}
+     * @returns {string}
+     */
+    _dateTimeFormat = (date, time=false) => {
+        const {day, month, year} = date;
+        const dateFormat = [day, month, year].join(this.dateSeparator);
+        let timeFormat = "";
+        if(time){
+            timeFormat = [hours, minutes].join(":");
+        }
+        return dateFormat + timeFormat;
+    };
+
+
+    /**
+     * Fecha al momento de ejecutarse el script.
+     *
+     * @returns {object} Retorna un objeto con: el día, mes, año y el
+     * objeto Date en fecha.
+     */
+    _currentDate = () => {
+        const today = new Date();
+        const year = today.getFullYear();
+        const month = today.getMonth() + 1;
+        const day = today.getDate();
+        const format = [
+            this._pad(day),
+            this._pad(month),
+            year].join(this.dateSeparator);
+
+        return {...this._dateParser(format), ...{format}};
+    }
+
+    /**
+     * Rellena con ceros a la izquierda
+     *
+     * @param {string|int} num Numero a rellenar con ceros.
+     * @param {int} counter Cantidad total de caracteres.
+     * @returns {string}
+     */
+    _pad = (num, counter=2) => num.toString().padStart(counter, "0");
+
+
+    /**
+     * Parsea una fecha.
+     *
+     * @param {string} date Fecha en formato dd/mm/yyyy.
+     * @param {string} time Tiempo en formato hh:mm:ss
+     * @example
+     * // {
+     * //     day: '09',
+     * //     month: '05',
+     * //     year: '2012',
+     * //     hours: '00',
+     * //     minutes: '00',
+     * //     date: Wed May 09 2012 00:00:00 GMT-0300...
+     * // }
+     * this._dateParser("09/05/2012")
+     * @returns {object|boolean}
+     */
+    _dateParser = (date, time="00:00:00") => {
+        if(!this._isValidDateFormat(date)){
+            console.error(`Formato de fecha incorrecto: ${date}`);
+            return;
+        }
+        const regex = this.DATE_REGEX;
+        const result = regex.exec(date);
+        const [, day, month, year] = result;
+        const objectDate = new Date(`${year}-${month}-${day} ${time}`);
+
+        return {
+            day: this._pad(day),
+            month: this._pad(month),
+            year,
+            hours: this._pad(objectDate.getHours()),
+            minutes: this._pad(objectDate.getMinutes()),
+            "date": objectDate
+        }
+    }
+
+
+    /**
+     * Valida el formato de la fecha.
+     * @summary El formato de fecha aceptado es: dd/mm/yyyy.
+     * Al momento de escribir este documento, no hay otro habilitado.
+     * @example
+     * // true
+     * this._isValidDateFormat("09/05/2012")
+     *
+     * // false
+     * this._isValidDateFormat("09/10/15")
+     * @param {string} str Fecha en formato dd/mm/yyyy.
+     * @returns {boolean}
+     */
+    _isValidDateFormat = str => {
+        const regex = this.DATE_REGEX;
+        const result = regex.exec(str);
+
+        return (result !== null ? true : false);
+    }
+
+
+    /**
+     * Agrupa contenidos por fecha y la categoría asignada.
+     *
+     * @param {object} datos JSON a procesar
+     * @returns {object}
+     */
+    _groupByFingerprintAndCategory = (datos) => {
+        const agrupados = {};
+
+        for (const dato of datos) {
+            const categoria = dato[this.groupCategory];
+            const {fingerprint} = dato;
+            if (!agrupados[fingerprint]) {
+                agrupados[fingerprint] = {};
+            }
+            if (!agrupados[fingerprint][categoria]) {
+                agrupados[fingerprint][categoria] = [];
+            }
+            agrupados[fingerprint][categoria].push(dato);
+        }
+
+        return agrupados;
+    }
+
+
+    /**
+     * Rearmo el JSON para agregar filtros.
+     *
+     * @param {object} jsonData
+     * @returns {object}
+     */
+    _refactorEntries = jsonData => {
+        if(!jsonData){
+            console.error("No se puede recorrer el script")
+        }
+
+        let entries = [];
+        jsonData.forEach(element => {
+            let desde = element[this.startDateId];
+            let hasta = element[this.endDateId];
+            // Si la columna `hasta` viene vacía le copio los datos de `desde`.
+            hasta = (hasta.trim() === "" ? desde : hasta);
+
+            const {pastDates, nextDates} = this.opts.filterStatus;
+            const estado = (this._isPastDate(hasta) ? pastDates : nextDates);
+            // dates
+            const startDate = this._dateParser(desde);
+            const endDate = this._dateParser(hasta);
+            const startDateTime = startDate.date.getTime();
+            const endDateTime = endDate.date.getTime();
+            const fingerprint = [startDateTime, endDateTime].join("_");
+
+            let range = this._dateTimeFormat(startDate);
+            if(startDateTime != endDateTime){
+                range = `Del ${this._dateTimeFormat(startDate)} al `
+                    + `${this._dateTimeFormat(endDate)}`;
+            }
+
+            // refactor entry
+            const entry = {
+                ...element,
+                ...{
+                    "range": range,
+                    "filtro-status": estado,
+                    fingerprint,
+                    desde,
+                    hasta,
+                }
+            };
+            entries.push(entry);
+        });
+
+        return entries;
+    };
+
+
+    /**
+     * Compone el template para el item de la agenda
+     *
+     * @param {string} description Descriptión del item de la agenda.
+     * @param {string} date Fecha formato dd/mm/yyyy
+     * @param {string} time Horario en formato hh:mm:ss
+     * @returns {object}
+     */
+    itemTemplate = (description, destinatarios, url,
+            destacados, date, time) => {
+        const itemContainer = document.createElement("dl");
+                
+        // time
+        let timeElement;
+        if(time){
+            const datetime = this._dateParser(date, time);
+            timeElement = document.createElement("time");
+            timeElement.setAttribute("datetime", datetime.date.toISOString());
+            timeElement.textContent = `${datetime.hours}:`
+                + `${datetime.minutes}hs.`;
+        } else {
+            timeElement = document.createElement("span");
+            timeElement.textContent = "--:--";
+        }
+
+        const data = [
+            // Térm, definition, screenreader, dtoff, className
+            [
+                "Descripción",
+                this._markdownConverter(description),
+                true, true, "description"],
+            [
+                this._header(this.criteriaOneId),
+                this._markdownConverter(destinatarios),
+                false, true, "criteria-one"],
+            [
+                this._header(this.criteriaThreeId),
+                this._markdownConverter(destacados),
+                false, true, "criteria-three"],
+            [
+                this._header(this.criteriaTwoId),
+                this._markdownConverter(url),
+                false, true, "criteria-two"],
+            [
+                this._header(this.timeId),
+                timeElement.outerHTML,
+                false, true, "time"],
+        ];
+
+        data.forEach( elem => {
+            const [term, definition, srOnly, dtOff, className] = elem;
+            if(!definition){
+                return;
+            }
+
+            const dt = document.createElement("dt");
+            dt.textContent = term;
+            dt.classList.add("agenda-item__dt", `agenda-item__dt-${className}`);
+            if(srOnly){
+                dt.classList.add("sr-only");
+            }
+            
+            const dd = document.createElement("dd");
+            dd.textContent = definition;
+            dd.classList.add("agenda-item__dd", `agenda-item__dd-${className}`);
+
+            if(dtOff){
+                itemContainer.appendChild(dt);
+            }
+            itemContainer.appendChild(dd);
+        });
+
+        if(this.itemClassList.some(f=>f)){
+            itemContainer.classList.add("agenda-item", ...this.itemClassList);
+        }
+
+        return itemContainer;
+    };
+
+
+    /**
+     * Reagrupa las entradas dejando, por fecha, las entradas de la categoría.
+     *
+     * @param {object} entries
+     * @returns {object}
+     */
+    _groupedEntries = entries => {
+        let collect = [];
+            // Nivel mismas fechas
+            Object.values(entries).forEach(ele => {
+            var entry;
+
+            // Nivel ministerio
+            // Cada iteración es un ministerio.
+            Object.values(ele).forEach((element) => {
+                var block = "";
+                var title = "";
+
+                const itemsContainer = document.createElement("div");
+                if(this.itemContClassList.some(f=>f)){
+                    itemsContainer.classList.add(...this.itemContClassList);
+                }
+
+                // Nivel items por ministerio
+                element.forEach(a => {
+                    entry = a;
+                    if(title != entry[this.groupCategory]){
+                        title = entry[this.groupCategory];
+
+                        const titleElement = document.createElement("p");
+                        if(this.categoryTitleClassList.some(f=>f)){
+                            titleElement.classList.add(
+                                ...this.categoryTitleClassList);
+                            titleElement.textContent = title;
+                            itemsContainer.appendChild(titleElement);
+                        }
+                    }
+
+                    const item = this.itemTemplate(
+                        a.descripcion, a.destinatarios, a.url,
+                        a.destacados, a.desde, a.horario);
+                    itemsContainer.appendChild(item);
+                });
+
+                block += itemsContainer.outerHTML;
+                delete entry.fingerprint;
+                let customData={};
+
+                customData[this.descriptionId] = block;
+                collect.push( {...entry, ...customData} );
+            });
+        });
+
+        return collect;
+    };
+
+
+    /**
+     * Valida si poncho tabla está importado
+     * @returns {boolean}
+     */
+    _ponchoTableExists = () => {
+        if(typeof ponchoTable !== "undefined"){
+            return true;
+        }
+        return false;
+    };
+
+
+    /**
+     * Imprime la tabla ponchoTable
+     *
+     * @returns {undefined}
+     */
+    render = () => {
+        if(!this.opts.hasOwnProperty("jsonData")){
+            console.error(
+                "¡Hay un error en los datos pasados "
+                + "a la función `PonchoAgenda`!");
+            return;
+        }
+
+        const refactorEntries = this._refactorEntries(this.opts.jsonData);
+        const groupedByDateAndCategory = 
+                this._groupByFingerprintAndCategory(refactorEntries);
+        this.opts.jsonData = this._groupedEntries(groupedByDateAndCategory);
+
+        if(this._ponchoTableExists()){
+            ponchoTable( this.opts );
+        }
+    };
+};
+
+
+if (typeof exports !== "undefined") {
+    module.exports = PonchoAgenda;
 }
 
 /**
@@ -4043,9 +4787,54 @@ var ponchoUbicacion = function(options) {
 
 
 /**
- * PONCHO CHART
+ * PonchoCharts
  * 
- * @param {object} opt Objeto con configuraciones. 
+ * The MIT License (MIT)
+ *
+ * Copyright (c) 2016 Presidencia de la Nación Argentina
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+ * BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+ * ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+ * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
+
+/**
+ * PONCHO CHART
+ *
+ * Punto de entrada principal. Valida las opciones obligatorias y
+ * decide si los datos se obtienen de un JSON inline, una URL
+ * personalizada o la API de Google Sheets.
+ *
+ * @param {object} opt                    Configuración del gráfico.
+ * @param {string} [opt.idSpread]         ID del spreadsheet de Google.
+ * @param {string} [opt.hojaNombre]       Nombre de la hoja del spread.
+ * @param {string} [opt.jsonUrl]          URL alternativa con datos JSON.
+ * @param {string} [opt.jsonInput]        JSON inline (string).
+ * @param {string} opt.tipoGrafico        Tipo de gráfico a renderizar.
+ * @param {string} opt.idComponenteGrafico ID del elemento canvas/div.
+ * @param {string} [opt.posicionLeyendas] Posición de la leyenda.
+ * @param {boolean} [opt.mostrarLeyendas] Muestra u oculta la leyenda.
+ * @param {boolean} [opt.porcentajes]     Muestra valores con "%".
+ * @param {boolean} [opt.ejeYenCero]      Eje Y comienza en cero.
+ * @param {string}  [opt.tituloGrafico]   Título visible del gráfico.
+ * @param {string}  [opt.idTagTituloGrafico] ID del elemento de título.
  */
 function ponchoChart(opt) {
     "use strict";
@@ -4055,44 +4844,60 @@ function ponchoChart(opt) {
             console.log(opt.jsonInput);
             drawChart(jQuery.parseJSON(opt.jsonInput), opt);
         } else {
-            var url = opt.jsonUrl ? opt.jsonUrl : 
-                "https://sheets.googleapis.com/v4/spreadsheets/" 
-                + opt.idSpread 
+            var url = opt.jsonUrl ? opt.jsonUrl :
+                "https://sheets.googleapis.com/v4/spreadsheets/"
+                + opt.idSpread
                 + "/values/"
                 + opt.hojaNombre
                 + "?alt=json&key=AIzaSyCq2wEEKL9-6RmX-TkW23qJsrmnFHFf5tY";
             jQuery.getJSON(url, function(data) {
-                drawChart(data, opt)
+                drawChart(data, opt);
             });
         }
     } else {
-        //informo por consola el faltante
         if (typeof opt.idSpread == "undefined" || opt.idSpread == "") {
-            console.warn("Completar valor para la opción de Configuración idSpread");
+            console.warn(
+                "Completar valor para la opción idSpread"
+            );
         }
-        if (typeof opt.hojaNombre == "undefined" || opt.hojaNombre == "") {
-            console.warn("Completar valor para la opción de Configuración hojaNombre");
+        if (
+            typeof opt.hojaNombre == "undefined" ||
+            opt.hojaNombre == ""
+        ) {
+            console.warn(
+                "Completar valor para la opción hojaNombre"
+            );
         }
-        if (typeof opt.tipoGrafico == "undefined" || opt.tipoGrafico == "") {
-            console.warn("Completar valor para la opción de Configuración tipoGrafico");
+        if (
+            typeof opt.tipoGrafico == "undefined" ||
+            opt.tipoGrafico == ""
+        ) {
+            console.warn(
+                "Completar valor para la opción tipoGrafico"
+            );
         }
-        if (typeof opt.idComponenteGrafico == "undefined" || opt.idComponenteGrafico == "") {
-            console.warn("Completar valor para la opción de Configuración idComponenteGrafico");
+        if (
+            typeof opt.idComponenteGrafico == "undefined" ||
+            opt.idComponenteGrafico == ""
+        ) {
+            console.warn(
+                "Completar valor para la opción idComponenteGrafico"
+            );
         }
         if (getTipoGrafico(opt.tipoGrafico) == "") {
-            console.warn("Ingrese un tipo de gafico válido");
+            console.warn("Ingrese un tipo de gráfico válido");
         }
     }
 
 
     /**
-     * Retrona el código de gráfico según la elección del usuario.
-     * 
-     * @param {string} tipo Tipo de gráfico 
-     * @returns {string}
+     * Retorna el identificador de tipo de gráfico según la elección.
+     *
+     * @param {string} tipo Nombre legible del tipo de gráfico.
+     * @returns {string} Clave interna del tipo, o "" si no es válido.
      */
     function getTipoGrafico(tipo) {
-        const options = {    
+        const options = {
             Line: "line",
             Bar: "bar",
             Pie: "pie",
@@ -4108,19 +4913,21 @@ function ponchoChart(opt) {
 
 
     /**
-     * Gráfico de torta
-     * 
-     * @param {*} etiquetas 
-     * @param {*} datos 
-     * @param {*} tipoGrafico 
-     * @param {*} colores 
-     * @param {*} idGrafico 
-     * @param {*} posicionLeyendas 
-     * @param {*} toltips 
-     * @param {*} mostrarLeyendas 
+     * Renderiza un gráfico de torta (pie) con Chart.js.
+     *
+     * @param {Array}   etiquetas        Etiquetas de cada sector.
+     * @param {Array}   datos            Valores numéricos de cada sector.
+     * @param {string}  tipoGrafico      Tipo interno ("pie" o "doughnut").
+     * @param {Array}   colores          Códigos de color para los sectores.
+     * @param {string}  idGrafico        ID del elemento canvas.
+     * @param {string}  posicionLeyendas Posición de la leyenda.
+     * @param {object}  toltips          Configuración de tooltips.
+     * @param {boolean} mostrarLeyendas  Muestra u oculta la leyenda.
      */
-    function graficoTorta(etiquetas, datos, tipoGrafico, colores, idGrafico, 
-                posicionLeyendas, toltips, mostrarLeyendas) {
+    function graficoTorta(
+        etiquetas, datos, tipoGrafico, colores, idGrafico,
+        posicionLeyendas, toltips, mostrarLeyendas
+    ) {
         const $grafica = document.getElementById(idGrafico);
         const dataset = {
             data: datos,
@@ -4132,9 +4939,7 @@ function ponchoChart(opt) {
             type: tipoGrafico,
             data: {
                 labels: etiquetas,
-                datasets: [
-                    dataset,
-                ]
+                datasets: [dataset]
             },
             options: {
                 legend: {
@@ -4149,22 +4954,24 @@ function ponchoChart(opt) {
 
 
     /**
-     * Gráfico de línea (simple)
-     * 
-     * @param {*} etiquetas 
-     * @param {*} datos 
-     * @param {*} tipoGrafico 
-     * @param {*} color 
-     * @param {*} label 
-     * @param {*} empiezaYenCero 
-     * @param {*} idGrafico 
-     * @param {*} posicionLeyendas 
-     * @param {*} toltips 
-     * @param {*} mostrarLeyendas 
+     * Renderiza un gráfico de línea con un único dataset.
+     *
+     * @param {Array}   etiquetas        Etiquetas del eje X.
+     * @param {Array}   datos            Valores numéricos.
+     * @param {string}  tipoGrafico      Tipo interno ("line").
+     * @param {string}  color            Código de color de la línea.
+     * @param {string}  label            Nombre del dataset en la leyenda.
+     * @param {boolean} empiezaYenCero   Eje Y comienza en cero.
+     * @param {string}  idGrafico        ID del elemento canvas.
+     * @param {string}  posicionLeyendas Posición de la leyenda.
+     * @param {object}  toltips          Configuración de tooltips.
+     * @param {boolean} mostrarLeyendas  Muestra u oculta la leyenda.
      */
-    function graficoLineaSimple(etiquetas, datos, tipoGrafico, color, label, 
-                empiezaYenCero, idGrafico, posicionLeyendas, toltips, 
-                mostrarLeyendas) {
+    function graficoLineaSimple(
+        etiquetas, datos, tipoGrafico, color, label,
+        empiezaYenCero, idGrafico, posicionLeyendas, toltips,
+        mostrarLeyendas
+    ) {
         const $grafica = document.getElementById(idGrafico);
         const dataset = {
             data: datos,
@@ -4179,72 +4986,18 @@ function ponchoChart(opt) {
             type: tipoGrafico,
             data: {
                 labels: etiquetas,
-                datasets: [
-                    dataset,
-                ]
-            },
-            options: {
-                legend: { display: mostrarLeyendas, position: posicionLeyendas },
-                tooltips: toltips,
-                responsive: true,
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: empiezaYenCero,
-                        }
-                    }]
-                }
-            }
-        });
-    }
-
-
-    /**
-     * Gráfico de barra (simple)
-     * 
-     * @param {*} etiquetas 
-     * @param {*} datos 
-     * @param {*} tipoGrafico 
-     * @param {*} color 
-     * @param {*} label 
-     * @param {*} empiezaYenCero 
-     * @param {*} idGrafico 
-     * @param {*} posicionLeyendas 
-     * @param {*} toltips 
-     * @param {*} mostrarLeyendas 
-     */
-    function graficoAreaBarraSimple(etiquetas, datos, tipoGrafico, color, 
-                label, empiezaYenCero, idGrafico, posicionLeyendas, 
-                toltips, mostrarLeyendas) {
-        const $grafica = document.getElementById(idGrafico);
-        const dataset = {
-            data: datos,
-            borderColor: color,
-            backgroundColor: color,
-            borderWidth: 2,
-            lineTension: 0,
-            label: label,
-        };
-        new Chart($grafica, {
-            type: tipoGrafico,
-            data: {
-                labels: etiquetas,
-                datasets: [
-                    dataset,
-                ]
+                datasets: [dataset]
             },
             options: {
                 legend: {
-                    display: mostrarLeyendas, 
+                    display: mostrarLeyendas,
                     position: posicionLeyendas
                 },
                 tooltips: toltips,
                 responsive: true,
                 scales: {
                     yAxes: [{
-                        ticks: {
-                            beginAtZero: empiezaYenCero,
-                        }
+                        ticks: { beginAtZero: empiezaYenCero }
                     }]
                 }
             }
@@ -4253,22 +5006,24 @@ function ponchoChart(opt) {
 
 
     /**
-     * Gráfico de barra horizontal (simple)
-     * 
-     * @param {*} etiquetas 
-     * @param {*} datos 
-     * @param {*} tipoGrafico 
-     * @param {*} color 
-     * @param {*} label 
-     * @param {*} empiezaYenCero 
-     * @param {*} idGrafico 
-     * @param {*} posicionLeyendas 
-     * @param {*} toltips 
-     * @param {*} mostrarLeyendas 
+     * Renderiza un gráfico de barra o área con un único dataset.
+     *
+     * @param {Array}   etiquetas        Etiquetas del eje X.
+     * @param {Array}   datos            Valores numéricos.
+     * @param {string}  tipoGrafico      Tipo interno ("bar" o "line").
+     * @param {string}  color            Código de color.
+     * @param {string}  label            Nombre del dataset en la leyenda.
+     * @param {boolean} empiezaYenCero   Eje Y comienza en cero.
+     * @param {string}  idGrafico        ID del elemento canvas.
+     * @param {string}  posicionLeyendas Posición de la leyenda.
+     * @param {object}  toltips          Configuración de tooltips.
+     * @param {boolean} mostrarLeyendas  Muestra u oculta la leyenda.
      */
-    function graficoBarraHorizontalSimple(etiquetas, datos, tipoGrafico, color, 
-                label, empiezaYenCero, idGrafico, posicionLeyendas, 
-                toltips, mostrarLeyendas) {
+    function graficoAreaBarraSimple(
+        etiquetas, datos, tipoGrafico, color,
+        label, empiezaYenCero, idGrafico, posicionLeyendas,
+        toltips, mostrarLeyendas
+    ) {
         const $grafica = document.getElementById(idGrafico);
         const dataset = {
             data: datos,
@@ -4282,22 +5037,69 @@ function ponchoChart(opt) {
             type: tipoGrafico,
             data: {
                 labels: etiquetas,
-                datasets: [
-                    dataset,
-                ]
+                datasets: [dataset]
             },
             options: {
                 legend: {
-                    display: mostrarLeyendas, 
+                    display: mostrarLeyendas,
+                    position: posicionLeyendas
+                },
+                tooltips: toltips,
+                responsive: true,
+                scales: {
+                    yAxes: [{
+                        ticks: { beginAtZero: empiezaYenCero }
+                    }]
+                }
+            }
+        });
+    }
+
+
+    /**
+     * Renderiza un gráfico de barra horizontal con un único dataset.
+     *
+     * @param {Array}   etiquetas        Etiquetas del eje Y (categorías).
+     * @param {Array}   datos            Valores numéricos.
+     * @param {string}  tipoGrafico      Tipo interno ("horizontalBar").
+     * @param {string}  color            Código de color.
+     * @param {string}  label            Nombre del dataset en la leyenda.
+     * @param {boolean} empiezaYenCero   Eje X comienza en cero.
+     * @param {string}  idGrafico        ID del elemento canvas.
+     * @param {string}  posicionLeyendas Posición de la leyenda.
+     * @param {object}  toltips          Configuración de tooltips.
+     * @param {boolean} mostrarLeyendas  Muestra u oculta la leyenda.
+     */
+    function graficoBarraHorizontalSimple(
+        etiquetas, datos, tipoGrafico, color,
+        label, empiezaYenCero, idGrafico, posicionLeyendas,
+        toltips, mostrarLeyendas
+    ) {
+        const $grafica = document.getElementById(idGrafico);
+        const dataset = {
+            data: datos,
+            borderColor: color,
+            backgroundColor: color,
+            borderWidth: 2,
+            lineTension: 0,
+            label: label,
+        };
+        new Chart($grafica, {
+            type: tipoGrafico,
+            data: {
+                labels: etiquetas,
+                datasets: [dataset]
+            },
+            options: {
+                legend: {
+                    display: mostrarLeyendas,
                     position: posicionLeyendas
                 },
                 tooltips: toltips,
                 responsive: true,
                 scales: {
                     xAxes: [{
-                        ticks: {
-                            beginAtZero: empiezaYenCero,
-                        }
+                        ticks: { beginAtZero: empiezaYenCero }
                     }]
                 }
             }
@@ -4306,19 +5108,21 @@ function ponchoChart(opt) {
 
 
     /**
-     * Gráfico complejo
-     * 
-     * @param {*} etiquetas 
-     * @param {*} tipoGrafico 
-     * @param {*} datos 
-     * @param {*} idGrafico 
-     * @param {*} empiezaYenCero 
-     * @param {*} posicionLeyendas 
-     * @param {*} toltips 
-     * @param {*} mostrarLeyendas 
+     * Renderiza un gráfico con múltiples datasets (línea, barra, área).
+     *
+     * @param {Array}   etiquetas        Etiquetas del eje X.
+     * @param {string}  tipoGrafico      Tipo interno del gráfico.
+     * @param {Array}   datos            Array de objetos dataset de Chart.js.
+     * @param {string}  idGrafico        ID del elemento canvas.
+     * @param {boolean} empiezaYenCero   Eje Y comienza en cero.
+     * @param {string}  posicionLeyendas Posición de la leyenda.
+     * @param {object}  toltips          Configuración de tooltips.
+     * @param {boolean} mostrarLeyendas  Muestra u oculta la leyenda.
      */
-    function graficoComplejo(etiquetas, tipoGrafico, datos, idGrafico, 
-                empiezaYenCero, posicionLeyendas, toltips, mostrarLeyendas) {
+    function graficoComplejo(
+        etiquetas, tipoGrafico, datos, idGrafico,
+        empiezaYenCero, posicionLeyendas, toltips, mostrarLeyendas
+    ) {
         const $grafica = document.getElementById(idGrafico);
         new Chart($grafica, {
             type: tipoGrafico,
@@ -4328,20 +5132,16 @@ function ponchoChart(opt) {
             },
             options: {
                 legend: {
-                    display: mostrarLeyendas, 
+                    display: mostrarLeyendas,
                     position: posicionLeyendas,
-                    labels: { 
-                        textAlign: "center"
-                    }
+                    labels: { textAlign: "center" }
                 },
                 tooltips: toltips,
                 responsive: true,
                 maintainAspectRatio: true,
                 scales: {
                     yAxes: [{
-                        ticks: {
-                            beginAtZero: empiezaYenCero,
-                        }
+                        ticks: { beginAtZero: empiezaYenCero }
                     }],
                 },
             }
@@ -4350,20 +5150,22 @@ function ponchoChart(opt) {
 
 
     /**
-     * Gráfico complejo horizontal
-     * 
-     * @param {*} etiquetas 
-     * @param {*} tipoGrafico 
-     * @param {*} datos 
-     * @param {*} idGrafico 
-     * @param {*} empiezaYenCero 
-     * @param {*} posicionLeyendas 
-     * @param {*} toltips 
-     * @param {*} mostrarLeyendas 
+     * Renderiza un gráfico horizontal con múltiples datasets.
+     *
+     * @param {Array}   etiquetas        Etiquetas del eje Y (categorías).
+     * @param {string}  tipoGrafico      Tipo interno ("horizontalBar").
+     * @param {Array}   datos            Array de objetos dataset de Chart.js.
+     * @param {string}  idGrafico        ID del elemento canvas.
+     * @param {boolean} empiezaYenCero   Eje X comienza en cero.
+     * @param {string}  posicionLeyendas Posición de la leyenda.
+     * @param {object}  toltips          Configuración de tooltips.
+     * @param {boolean} mostrarLeyendas  Muestra u oculta la leyenda.
      */
-    function graficoComplejoHorizontal(etiquetas, tipoGrafico, datos, 
-                idGrafico, empiezaYenCero, posicionLeyendas, 
-                toltips, mostrarLeyendas) {
+    function graficoComplejoHorizontal(
+        etiquetas, tipoGrafico, datos,
+        idGrafico, empiezaYenCero, posicionLeyendas,
+        toltips, mostrarLeyendas
+    ) {
         const $grafica = document.getElementById(idGrafico);
         new Chart($grafica, {
             type: tipoGrafico,
@@ -4373,20 +5175,16 @@ function ponchoChart(opt) {
             },
             options: {
                 legend: {
-                    display: mostrarLeyendas, 
-                    position: posicionLeyendas, 
-                    labels: {
-                        textAlign: "center"
-                    }
+                    display: mostrarLeyendas,
+                    position: posicionLeyendas,
+                    labels: { textAlign: "center" }
                 },
                 tooltips: toltips,
                 responsive: true,
                 maintainAspectRatio: true,
                 scales: {
                     xAxes: [{
-                        ticks: {
-                            beginAtZero: empiezaYenCero,
-                        }
+                        ticks: { beginAtZero: empiezaYenCero }
                     }],
                 },
             }
@@ -4395,19 +5193,21 @@ function ponchoChart(opt) {
 
 
     /**
-     * Gráfico complejo (stacked)
-     * 
-     * @param {*} etiquetas 
-     * @param {*} tipoGrafico 
-     * @param {*} datos 
-     * @param {*} idGrafico 
-     * @param {*} empiezaYenCero 
-     * @param {*} posicionLeyendas 
-     * @param {*} toltips 
-     * @param {*} mostrarLeyendas 
+     * Renderiza un gráfico de barras apiladas (stacked bar).
+     *
+     * @param {Array}   etiquetas        Etiquetas del eje X.
+     * @param {string}  tipoGrafico      Tipo interno ("bar").
+     * @param {Array}   datos            Array de objetos dataset de Chart.js.
+     * @param {string}  idGrafico        ID del elemento canvas.
+     * @param {boolean} empiezaYenCero   Eje Y comienza en cero.
+     * @param {string}  posicionLeyendas Posición de la leyenda.
+     * @param {object}  toltips          Configuración de tooltips.
+     * @param {boolean} mostrarLeyendas  Muestra u oculta la leyenda.
      */
-    function graficoComplejoStacked(etiquetas, tipoGrafico, datos, idGrafico,
-                empiezaYenCero, posicionLeyendas, toltips, mostrarLeyendas) {
+    function graficoComplejoStacked(
+        etiquetas, tipoGrafico, datos, idGrafico,
+        empiezaYenCero, posicionLeyendas, toltips, mostrarLeyendas
+    ) {
         const $grafica = document.getElementById(idGrafico);
         new Chart($grafica, {
             type: tipoGrafico,
@@ -4417,17 +5217,15 @@ function ponchoChart(opt) {
             },
             options: {
                 legend: {
-                    display: mostrarLeyendas, 
-                    position: posicionLeyendas, 
+                    display: mostrarLeyendas,
+                    position: posicionLeyendas,
                     labels: { textAlign: "center" }
                 },
                 tooltips: toltips,
                 responsive: true,
                 scales: {
                     yAxes: [{
-                        ticks: {
-                            beginAtZero: empiezaYenCero,
-                        },
+                        ticks: { beginAtZero: empiezaYenCero },
                         stacked: true,
                     }],
                     xAxes: [{ stacked: true }],
@@ -4438,21 +5236,25 @@ function ponchoChart(opt) {
 
 
     /**
-     * 
-     * @param {*} etiquetas 
-     * @param {*} tipoGrafico 
-     * @param {*} datos 
-     * @param {*} idGrafico 
-     * @param {*} empiezaYenCero 
-     * @param {*} posicionLeyendas 
-     * @param {*} indice 
-     * @param {*} label1 
-     * @param {*} label2 
-     * @param {*} mostrarLeyendas 
+     * Renderiza un gráfico mixto (barra + línea) con doble eje Y.
+     *
+     * @param {Array}   etiquetas          Etiquetas del eje X.
+     * @param {string}  tipoGrafico        Tipo base ("bar").
+     * @param {Array}   datos              Datasets de Chart.js con yAxisID.
+     * @param {string}  idGrafico          ID del elemento canvas.
+     * @param {boolean} empiezaYenCero     Ejes Y comienzan en cero.
+     * @param {string}  posicionLeyendas   Posición de la leyenda.
+     * @param {number}  indice             Eje con escala "%": 0=izq,
+     *                                     1=der, 2=ambos, 3=ninguno.
+     * @param {string}  label1             Etiqueta del eje Y derecho.
+     * @param {string}  label2             Etiqueta del eje Y izquierdo.
+     * @param {boolean} mostrarLeyendas    Muestra u oculta la leyenda.
      */
-    function graficoComplejoMixed(etiquetas, tipoGrafico, datos, idGrafico, 
-                empiezaYenCero, posicionLeyendas, indice, label1, label2, 
-                mostrarLeyendas) {
+    function graficoComplejoMixed(
+        etiquetas, tipoGrafico, datos, idGrafico,
+        empiezaYenCero, posicionLeyendas, indice, label1, label2,
+        mostrarLeyendas
+    ) {
         const $grafica = document.getElementById(idGrafico);
         new Chart($grafica, {
             type: tipoGrafico,
@@ -4460,30 +5262,33 @@ function ponchoChart(opt) {
                 labels: etiquetas,
                 datasets: datos
             },
-            options: { 
+            options: {
                 legend: {
                     display: mostrarLeyendas,
                     position: posicionLeyendas,
-                    labels: {
-                        textAlign: "center"
-                    }
+                    labels: { textAlign: "center" }
                 },
                 tooltips: {
-                enabled: true,
-                mode: "single",
-                callbacks: {
-                    label: function(tooltipItems, data) {
-                        var text = "";
-                        if (indice == 2){
-                            text = "%";
-                        } else if (tooltipItems.datasetIndex == indice){
-                            text = "%";
+                    enabled: true,
+                    mode: "single",
+                    callbacks: {
+                        label: function(tooltipItems, data) {
+                            var text = "";
+                            if (indice == 2) {
+                                text = "%";
+                            } else if (
+                                tooltipItems.datasetIndex == indice
+                            ) {
+                                text = "%";
+                            }
+                            var value = numeroFormateado(
+                                tooltipItems.yLabel
+                            );
+                            return data.datasets[
+                                tooltipItems.datasetIndex
+                            ].label + ": " + value + " " + text;
                         }
-                        var value = numeroFormateado(tooltipItems.yLabel);
-                        return data.datasets[tooltipItems.datasetIndex].label 
-                            + ": " + value + " " + text;
                     }
-                }
                 },
                 responsive: true,
                 scales: {
@@ -4496,7 +5301,7 @@ function ponchoChart(opt) {
                                 beginAtZero: empiezaYenCero,
                                 callback: function(value) {
                                     var text = "";
-                                    if (indice == 1 || indice == 2){
+                                    if (indice == 1 || indice == 2) {
                                         text = "%";
                                     }
                                     return value + text;
@@ -4507,7 +5312,7 @@ function ponchoChart(opt) {
                                 labelString: label2,
                                 fontColor: "black"
                             }
-                        }, 
+                        },
                         {
                             id: "right-y-axis",
                             type: "linear",
@@ -4516,7 +5321,7 @@ function ponchoChart(opt) {
                                 beginAtZero: empiezaYenCero,
                                 callback: function(value) {
                                     var text = "";
-                                    if (indice == 0 || indice == 2){
+                                    if (indice == 0 || indice == 2) {
                                         text = "%";
                                     }
                                     return value + text;
@@ -4536,24 +5341,26 @@ function ponchoChart(opt) {
 
 
     /**
-     * 
-     * @param {*} etiquetas 
-     * @param {*} datos 
-     * @param {*} idGrafico 
-     * @param {*} labelsY 
-     * @param {*} rango 
-     * @param {*} labelX 
-     * @param {*} labelY 
-     * @param {*} labelValor 
-     * @param {*} titulo 
-     * @param {*} mostrarYaxis 
-     * @param {*} posicionLeyendas 
-     * @param {*} mostrarLeyendas 
+     * Renderiza un mapa de calor (heatmap) con ApexCharts.
+     *
+     * @param {Array}   etiquetas        Etiquetas del eje X.
+     * @param {Array}   datos            Series de ApexCharts.
+     * @param {string}  idGrafico        ID del elemento contenedor.
+     * @param {Array}   labelsY          Etiquetas del eje Y (filas).
+     * @param {Array}   rango            Rangos de color para la escala.
+     * @param {string}  labelX           Texto del tooltip para la fila.
+     * @param {string}  labelY           Texto del tooltip para la columna.
+     * @param {string}  labelValor       Texto del tooltip para el valor.
+     * @param {string}  titulo           Título del gráfico.
+     * @param {boolean} mostrarYaxis     Muestra u oculta el eje Y.
+     * @param {string}  posicionLeyendas Posición de la leyenda.
+     * @param {boolean} mostrarLeyendas  Muestra u oculta la leyenda.
      */
-    function graficoHeatMap(etiquetas, datos, idGrafico, labelsY, rango, 
-                labelX, labelY, labelValor, titulo, mostrarYaxis, 
-                posicionLeyendas, mostrarLeyendas) {
-
+    function graficoHeatMap(
+        etiquetas, datos, idGrafico, labelsY, rango,
+        labelX, labelY, labelValor, titulo, mostrarYaxis,
+        posicionLeyendas, mostrarLeyendas
+    ) {
         const $grafica = document.getElementById(idGrafico);
 
         var options = {
@@ -4562,21 +5369,24 @@ function ponchoChart(opt) {
                 height: 650,
                 type: "heatmap",
             },
-            dataLabels: {
-                enabled: false
-            },
-            title: {
-                text: titulo
-            },
+            dataLabels: { enabled: false },
+            title: { text: titulo },
             tooltip: {
-                custom: function({series, seriesIndex, dataPointIndex, w}) {
-                var value = series[seriesIndex][dataPointIndex];
-                value = numeroFormateado(value);
-                return "<div class=\"arrow_box\">" +
-                    "<span>" + labelX + ": " + labelsY[seriesIndex] + "<br>" +
-                    labelY + ": " + w.globals.labels[dataPointIndex] + "<br>" +
-                    labelValor + ": " + value + "</span>" +
-                    "</div>"
+                custom: function({
+                    series, seriesIndex, dataPointIndex, w
+                }) {
+                    var value = series[seriesIndex][dataPointIndex];
+                    value = numeroFormateado(value);
+                    return "<div class=\"arrow_box\">" +
+                        "<span>" +
+                        labelX + ": " + labelsY[seriesIndex] +
+                        "<br>" +
+                        labelY + ": " +
+                        w.globals.labels[dataPointIndex] +
+                        "<br>" +
+                        labelValor + ": " + value +
+                        "</span>" +
+                        "</div>";
                 }
             },
             plotOptions: {
@@ -4584,14 +5394,10 @@ function ponchoChart(opt) {
                     shadeIntensity: 0.5,
                     radius: 0,
                     useFillColorAsStroke: false,
-                    colorScale: {
-                        ranges: rango
-                    }
+                    colorScale: { ranges: rango }
                 }
             },
-            yaxis: {
-                show: mostrarYaxis,
-            },
+            yaxis: { show: mostrarYaxis },
             legend: {
                 show: mostrarLeyendas,
                 position: posicionLeyendas,
@@ -4599,9 +5405,7 @@ function ponchoChart(opt) {
             responsive: [{
                 breakpoint: 1000,
                 options: {
-                    yaxis: {
-                        show: false,
-                    },
+                    yaxis: { show: false },
                     legend: {
                         show: mostrarLeyendas,
                         position: "top",
@@ -4611,19 +5415,22 @@ function ponchoChart(opt) {
         };
 
         var chart = new ApexCharts($grafica, options);
-        chart.render(); 
+        chart.render();
 
-        const collection = document.getElementsByClassName("apexcharts-toolbar");
+        const collection = document.getElementsByClassName(
+            "apexcharts-toolbar"
+        );
         for (let i = 0; i < collection.length; i++) {
             collection[i].style.display = "none";
-        } 
+        }
     }
 
 
     /**
-     * 
-     * @param {*} idTag 
-     * @param {*} titulo 
+     * Inserta el título del gráfico en el elemento indicado.
+     *
+     * @param {string} idTag  ID del elemento HTML donde se escribe el título.
+     * @param {string} titulo Texto del título a insertar.
      */
     function graficaTitulo(idTag, titulo) {
         if (document.getElementById(idTag)) {
@@ -4633,16 +5440,33 @@ function ponchoChart(opt) {
 
 
     /**
-     * 
-     * @param {*} opt 
-     * @returns 
+     * Verifica que las opciones mínimas requeridas estén presentes.
+     *
+     * Requiere al menos una fuente de datos (idSpread+hojaNombre,
+     * jsonUrl o jsonInput), un tipoGrafico válido y un
+     * idComponenteGrafico.
+     *
+     * @param {object} opt Objeto de configuración del gráfico.
+     * @returns {boolean} true si todas las opciones obligatorias existen.
      */
     function chequeoOpcionesObligatorias(opt) {
         var chequeo = false;
-        if (((opt.idSpread  && opt.hojaNombre) || opt.jsonUrl || opt.jsonInput) && 
-            (typeof opt.tipoGrafico != "undefined" && opt.tipoGrafico != "") && 
-            (typeof opt.idComponenteGrafico != "undefined" && opt.idComponenteGrafico != "") && 
-            (getTipoGrafico(opt.tipoGrafico) != "")){
+        if (
+            (
+                (opt.idSpread && opt.hojaNombre) ||
+                opt.jsonUrl ||
+                opt.jsonInput
+            ) &&
+            (
+                typeof opt.tipoGrafico != "undefined" &&
+                opt.tipoGrafico != ""
+            ) &&
+            (
+                typeof opt.idComponenteGrafico != "undefined" &&
+                opt.idComponenteGrafico != ""
+            ) &&
+            (getTipoGrafico(opt.tipoGrafico) != "")
+        ) {
             chequeo = true;
         }
         return chequeo;
@@ -4650,16 +5474,20 @@ function ponchoChart(opt) {
 
 
     /**
-     * 
-     * @param {*} numero 
-     * @returns 
+     * Formatea un número con separadores de miles y coma decimal (es-AR).
+     *
+     * @param {number|string} numero Valor a formatear.
+     * @returns {string} Número formateado, p. ej. "1.234,56".
      */
     function numeroFormateado(numero) {
-        var value = numero.toString().replace(".",",");
+        var value = numero.toString().replace(".", ",");
         var array = value.split(",");
-        var result1 = new Intl.NumberFormat("es-AR", {maximumFractionDigits:2 }).format(array[0]);
-        if (array.length > 1){
-            value = result1.concat(",",array[1].substr(0,2));
+        var result1 = new Intl.NumberFormat(
+            "es-AR",
+            { maximumFractionDigits: 2 }
+        ).format(array[0]);
+        if (array.length > 1) {
+            value = result1.concat(",", array[1].substr(0, 2));
         } else {
             value = result1;
         }
@@ -4668,9 +5496,15 @@ function ponchoChart(opt) {
 
 
     /**
-     * 
-     * @param {*} data 
-     * @param {*} opt 
+     * Procesa los datos crudos de la fuente y llama al constructor
+     * del gráfico correspondiente según el tipo configurado en opt.
+     *
+     * La primera fila del listado define los ejes (eje-x, eje-y1, …),
+     * la segunda fila contiene las columnas/labels, y las filas
+     * siguientes contienen los valores.
+     *
+     * @param {object} data Respuesta JSON con la propiedad "values".
+     * @param {object} opt  Objeto de configuración del gráfico.
      */
     function drawChart(data, opt) {
         var etiquetas = [];
@@ -4683,24 +5517,25 @@ function ponchoChart(opt) {
         var valores = [];
         var datos = [];
         var cantDatos = 0;
-        var urlOrigen = "";
         var toltips = "";
         var tipoGraficosMixed = [];
         var indicePorcentajeMixed = 0;
         var porcentajesMixed = [];
         var labelsYCortos = [];
         var indiceNombreCorto = 0;
-        var posicionLeyendas = opt.posicionLeyendas ? opt.posicionLeyendas : "top";
+        var posicionLeyendas = opt.posicionLeyendas
+            ? opt.posicionLeyendas
+            : "top";
 
         var mostrarLeyendas = "";
-        if (typeof opt.mostrarLeyendas == "undefined"){
+        if (typeof opt.mostrarLeyendas == "undefined") {
             mostrarLeyendas = true;
         } else {
             mostrarLeyendas = opt.mostrarLeyendas;
         }
 
         var mostrarTotal = "";
-        if (typeof opt.mostrarTotalStacked == "undefined"){
+        if (typeof opt.mostrarTotalStacked == "undefined") {
             mostrarTotal = true;
         } else {
             mostrarTotal = opt.mostrarTotalStacked;
@@ -4709,15 +5544,14 @@ function ponchoChart(opt) {
         var tipoGrafico = getTipoGrafico(opt.tipoGrafico);
         var listado = data["values"];
 
-        //TITULOS
         jQuery.each(Object.keys(listado[0]), function(index, key) {
             if (listado[0][index].substr(0, 5) == "eje-y") {
                 var split = listado[0][index].split("-");
                 var pos = split[0] + split[1];
                 filteredTitleName.push(pos);
                 filteredTitlePos.push(index);
-            } else if (listado[0][index] == "nombre-corto"){
-                if (tipoGrafico == "heatmap"){
+            } else if (listado[0][index] == "nombre-corto") {
+                if (tipoGrafico == "heatmap") {
                     indiceNombreCorto = index;
                 }
             }
@@ -4725,43 +5559,46 @@ function ponchoChart(opt) {
 
 
         jQuery.each(listado, function(row, value) {
-            if (row == 0) { //construyo arrays para los dataset, recupero colores y labels
+            if (row == 0) {
                 jQuery.each(filteredTitlePos, function(index, title) {
-                    const regex = /(?<axis>eje-(x|y(?:[1-9]|[1-9][0-9])))-(?<color>[\w-]*?)(?:-(?<type>linea|barra))?$/;
-                    const result = regex.exec(listado[row][filteredTitlePos[index]]);
-                    if(!result){
+                    const regex = new RegExp(
+                        "(?<axis>eje-(x|y(?:[1-9]|[1-9][0-9])))" +
+                        "-(?<color>[\\w-]*?)" +
+                        "(?:-(?<type>linea|barra))?$"
+                    );
+                    const result = regex.exec(
+                        listado[row][filteredTitlePos[index]]
+                    );
+                    if (!result) {
                         return;
                     }
-                    
-                    const graphType = result.groups.type;
-                    const pos = result.groups.axis.replace('-', '');
 
-                    valores[pos] = []; //construyo los array para los dataset
-                    colores.push( result.groups.color ); //recupero colores
+                    const graphType = result.groups.type;
+                    const pos = result.groups.axis.replace("-", "");
+
+                    valores[pos] = [];
+                    colores.push(result.groups.color);
 
                     if (tipoGrafico == "mixed") {
-                        if (graphType){ //ingresaron un tipo de grafico
-                            //verifico que sea un tipo de grafico valido
-                            if (graphType == "barra" || graphType == "linea") {
-                                //recupero tipo de grafico para cada dataset   
+                        if (graphType) {
+                            if (
+                                graphType == "barra" ||
+                                graphType == "linea"
+                            ) {
                                 tipoGraficosMixed.push(graphType);
-                            } else { //seteo graficos por defecto
+                            } else {
                                 if (index == 0) {
-                                    //por defecto seteo barra
                                     tipoGraficosMixed.push("barra");
                                 }
                                 if (index == 1) {
-                                    //por defecto seteo linea
                                     tipoGraficosMixed.push("linea");
                                 }
                             }
-                        } else { //seteo graficos por defecto
+                        } else {
                             if (index == 0) {
-                                // por defecto seteo barra
                                 tipoGraficosMixed.push("barra");
                             }
                             if (index == 1) {
-                                // por defecto seteo linea
                                 tipoGraficosMixed.push("linea");
                             }
                         }
@@ -4774,61 +5611,70 @@ function ponchoChart(opt) {
                 jQuery.each(filteredTitlePos, function(index, title) {
                     if (tipoGrafico != "pie") {
                         if (tipoGrafico == "heatmap") {
-                            //recupero etiquetas (eje x)
-                            etiquetas.push(listado[row][filteredTitlePos[index]]); 
+                            etiquetas.push(
+                                listado[row][filteredTitlePos[index]]
+                            );
                         } else {
-                            //recupero columnas para label
-                            columnas.push(listado[row][filteredTitlePos[index]]); 
+                            columnas.push(
+                                listado[row][filteredTitlePos[index]]
+                            );
                             cantDatos = cantDatos + 1;
                         }
                     } else {
-                        //recupero las etiquetas de la torta
-                        etiquetas.push(listado[row][filteredTitlePos[index]]); 
+                        etiquetas.push(
+                            listado[row][filteredTitlePos[index]]
+                        );
                     }
                 });
             }
 
-            if (row > 1) { //recupero los datos para los dataset y los colores para torta
+            if (row > 1) {
                 var label = false;
                 jQuery.each(filteredTitlePos, function(index, title) {
-                    //Detectar si es etiqueta x
-                    var split = listado[0][filteredTitlePos[index]].split("-");
+                    var split = listado[0][
+                        filteredTitlePos[index]
+                    ].split("-");
                     var pos = split[0] + split[1];
 
-                    if (tipoGrafico == "pie") { //recupero datos para la torta
-                        valores[pos].push(listado[row][filteredTitlePos[index]]);
+                    if (tipoGrafico == "pie") {
+                        valores[pos].push(
+                            listado[row][filteredTitlePos[index]]
+                        );
                     } else {
                         if (tipoGrafico == "heatmap") {
 
                             if (label == false) {
-                                //recupero las columnas (eje y)
-                                columnas.push(listado[row][0]); 
+                                columnas.push(listado[row][0]);
                                 label = true;
                                 cantDatos = cantDatos + 1;
                             }
                             if (index != indiceNombreCorto) {
-                                //recupero datos
-                                valores[pos].push(listado[row][filteredTitlePos[index]]);
+                                valores[pos].push(
+                                    listado[row][filteredTitlePos[index]]
+                                );
                             }
                             if (index + 2 == indiceNombreCorto) {
-                                if (typeof listado[row][index + 2] == "undefined"){
-                                    //en caso que no completen nombre-corto
+                                if (
+                                    typeof listado[row][index + 2] ==
+                                    "undefined"
+                                ) {
                                     labelsYCortos.push("*");
                                 } else {
-                                    //recupero labels Y cortos
-                                    labelsYCortos.push(listado[row][index + 2]); 
+                                    labelsYCortos.push(
+                                        listado[row][index + 2]
+                                    );
                                 }
                             }
 
                         } else {
 
                             if (label == false) {
-                                //recupero las etiquetas
-                                etiquetas.push(listado[row][0]); 
+                                etiquetas.push(listado[row][0]);
                                 label = true;
                             }
-                            //recupero datos
-                            valores[pos].push(listado[row][filteredTitlePos[index]]); 
+                            valores[pos].push(
+                                listado[row][filteredTitlePos[index]]
+                            );
                         }
                     }
                 });
@@ -4836,82 +5682,100 @@ function ponchoChart(opt) {
         });
 
 
-
         if (tipoGrafico == "pie") {
             var datosTorta = [];
 
-            jQuery.each(Object.keys(filteredTitleName), function(index, key) {
-                var pos = filteredTitleName[index];
-
-                if (valores.hasOwnProperty(pos)) {
-                    datosTorta.push(valores[pos]);
+            jQuery.each(
+                Object.keys(filteredTitleName),
+                function(index, key) {
+                    var pos = filteredTitleName[index];
+                    if (valores.hasOwnProperty(pos)) {
+                        datosTorta.push(valores[pos]);
+                    }
                 }
-            });
+            );
             datos = datosTorta;
 
-        } else if (cantDatos == 1) { //es un solo juego de datos
+        } else if (cantDatos == 1) {
 
-            jQuery.each(Object.keys(filteredTitleName), function(index, key) {
-                var pos = filteredTitleName[index];
-
-                if (valores.hasOwnProperty(pos)) {
-                    datos = valores[pos];
+            jQuery.each(
+                Object.keys(filteredTitleName),
+                function(index, key) {
+                    var pos = filteredTitleName[index];
+                    if (valores.hasOwnProperty(pos)) {
+                        datos = valores[pos];
+                    }
                 }
-            });
+            );
         }
 
         if (tipoGrafico == "mixed") {
-            var cadena = opt.porcentajesMixed ? opt.porcentajesMixed : "";
+            var cadena = opt.porcentajesMixed
+                ? opt.porcentajesMixed
+                : "";
             if (cadena.length > 0) {
                 porcentajesMixed = cadena.split(",");
             }
         }
 
-        //seteo toltips para mostrar porcentaje o no
         if (opt.porcentajes == true) {
-        
-            if (tipoGrafico == "line" && cantDatos > 1){
-                //seteo tooltips
+
+            if (tipoGrafico == "line" && cantDatos > 1) {
                 toltips = {
                     enabled: true,
                     callbacks: {
                         label: function(tooltipItem, data) {
-                            var value = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+                            var value = data.datasets[
+                                tooltipItem.datasetIndex
+                            ].data[tooltipItem.index];
                             value = numeroFormateado(value);
-                            return data.datasets[tooltipItem.datasetIndex].label + ": " + value + "%";
+                            return data.datasets[
+                                tooltipItem.datasetIndex
+                            ].label + ": " + value + "%";
                         }
                     },
                     mode: "index",
                     intersect: false,
                 };
-            } else if  (tipoGrafico == "pie"){
-                //seteo tooltips
+            } else if (tipoGrafico == "pie") {
                 toltips = {
                     enabled: true,
                     callbacks: {
                         label: function(tooltipItem, data) {
-                            var value = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+                            var value = data.datasets[
+                                tooltipItem.datasetIndex
+                            ].data[tooltipItem.index];
                             value = numeroFormateado(value);
-                            return data["labels"][tooltipItem.index] + ": " +  value + "%";
+                            return data["labels"][tooltipItem.index] +
+                                ": " + value + "%";
                         }
                     }
                 };
 
-            } else if  (opt.tipoGrafico == "Stacked Bar"){
-                //seteo tooltips
+            } else if (opt.tipoGrafico == "Stacked Bar") {
                 if (mostrarTotal == true) {
                     toltips = {
                         enabled: true,
                         mode: "index",
                         callbacks: {
                             label: function(tooltipItem, data) {
-                                var value = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+                                var value = data.datasets[
+                                    tooltipItem.datasetIndex
+                                ].data[tooltipItem.index];
                                 value = numeroFormateado(value);
-                                return data.datasets[tooltipItem.datasetIndex].label + ": " +  value + "%";
+                                return data.datasets[
+                                    tooltipItem.datasetIndex
+                                ].label + ": " + value + "%";
                             },
                             footer: (tooltipItems, data) => {
-                                let total = tooltipItems.reduce((a, e) => a + parseFloat(e.yLabel), 0);
-                                return "Total: " + new Intl.NumberFormat("es-AR", {maximumFractionDigits:2 }).format(total) + "%";
+                                let total = tooltipItems.reduce(
+                                    (a, e) => a + parseFloat(e.yLabel),
+                                    0
+                                );
+                                return "Total: " +
+                                    new Intl.NumberFormat("es-AR", {
+                                        maximumFractionDigits: 2
+                                    }).format(total) + "%";
                             }
                         }
                     };
@@ -4921,23 +5785,30 @@ function ponchoChart(opt) {
                         mode: "index",
                         callbacks: {
                             label: function(tooltipItem, data) {
-                                var value = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+                                var value = data.datasets[
+                                    tooltipItem.datasetIndex
+                                ].data[tooltipItem.index];
                                 value = numeroFormateado(value);
-                                return data.datasets[tooltipItem.datasetIndex].label + ": " +  value + "%";
+                                return data.datasets[
+                                    tooltipItem.datasetIndex
+                                ].label + ": " + value + "%";
                             }
                         }
                     };
                 }
             } else {
-                //seteo tooltips
                 toltips = {
                     enabled: true,
                     mode: "index",
                     callbacks: {
                         label: function(tooltipItem, data) {
-                            var value = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+                            var value = data.datasets[
+                                tooltipItem.datasetIndex
+                            ].data[tooltipItem.index];
                             value = numeroFormateado(value);
-                            return data.datasets[tooltipItem.datasetIndex].label + ": " +  value + "%";
+                            return data.datasets[
+                                tooltipItem.datasetIndex
+                            ].label + ": " + value + "%";
                         }
                     }
                 };
@@ -4945,93 +5816,116 @@ function ponchoChart(opt) {
 
         } else {
 
-            if (tipoGrafico == "line" && cantDatos > 1){
-                //seteo tooltips
+            if (tipoGrafico == "line" && cantDatos > 1) {
                 toltips = {
                     enabled: true,
                     callbacks: {
                         label: function(tooltipItem, data) {
-                            var value = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+                            var value = data.datasets[
+                                tooltipItem.datasetIndex
+                            ].data[tooltipItem.index];
                             value = numeroFormateado(value);
-                            return data.datasets[tooltipItem.datasetIndex].label + ": " + value;
+                            return data.datasets[
+                                tooltipItem.datasetIndex
+                            ].label + ": " + value;
                         }
                     },
                     mode: "index",
                     intersect: false,
                 };
-            } else if  (tipoGrafico == "pie"){
-                //seteo tooltips
+            } else if (tipoGrafico == "pie") {
                 toltips = {
                     enabled: true,
                     callbacks: {
                         label: function(tooltipItem, data) {
-                            var value = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+                            var value = data.datasets[
+                                tooltipItem.datasetIndex
+                            ].data[tooltipItem.index];
                             value = numeroFormateado(value);
-                            return data["labels"][tooltipItem.index] + ": " +  value;
+                            return data["labels"][tooltipItem.index] +
+                                ": " + value;
                         }
                     }
                 };
 
-            } else if (opt.tipoGrafico == "Stacked Bar" && cantDatos > 1){
-                //seteo tooltips
+            } else if (
+                opt.tipoGrafico == "Stacked Bar" &&
+                cantDatos > 1
+            ) {
                 if (mostrarTotal == true) {
                     toltips = {
                         enabled: true,
                         mode: "index",
                         intersect: false,
-                            callbacks: {
+                        callbacks: {
                             label: function(tooltipItem, data) {
-                                var value = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+                                var value = data.datasets[
+                                    tooltipItem.datasetIndex
+                                ].data[tooltipItem.index];
                                 value = numeroFormateado(value);
-                                return data.datasets[tooltipItem.datasetIndex].label + ": " + value;
+                                return data.datasets[
+                                    tooltipItem.datasetIndex
+                                ].label + ": " + value;
                             },
                             footer: (tooltipItems, data) => {
-                                let total = tooltipItems.reduce((a, e) => a + parseFloat(e.yLabel), 0);
-                                return "Total: " + new Intl.NumberFormat("es-AR", {maximumFractionDigits:2 }).format(total);
+                                let total = tooltipItems.reduce(
+                                    (a, e) => a + parseFloat(e.yLabel),
+                                    0
+                                );
+                                return "Total: " +
+                                    new Intl.NumberFormat("es-AR", {
+                                        maximumFractionDigits: 2
+                                    }).format(total);
                             }
-                            }
+                        }
                     };
                 } else {
                     toltips = {
-                    enabled: true,
-                    mode: "index",
-                    intersect: false,
+                        enabled: true,
+                        mode: "index",
+                        intersect: false,
                         callbacks: {
-                        label: function(tooltipItem, data) {
-                            var value = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
-                            value = numeroFormateado(value);
-                            return data.datasets[tooltipItem.datasetIndex].label + ": " + value;
-                        }
+                            label: function(tooltipItem, data) {
+                                var value = data.datasets[
+                                    tooltipItem.datasetIndex
+                                ].data[tooltipItem.index];
+                                value = numeroFormateado(value);
+                                return data.datasets[
+                                    tooltipItem.datasetIndex
+                                ].label + ": " + value;
+                            }
                         }
                     };
                 }
             } else {
-                //seteo tooltips
                 toltips = {
                     enabled: true,
                     mode: "index",
                     callbacks: {
                         label: function(tooltipItem, data) {
-                            var value = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+                            var value = data.datasets[
+                                tooltipItem.datasetIndex
+                            ].data[tooltipItem.index];
                             value = numeroFormateado(value);
-                            return data.datasets[tooltipItem.datasetIndex].label + ": " +  value;
+                            return data.datasets[
+                                tooltipItem.datasetIndex
+                            ].label + ": " + value;
                         }
                     }
                 };
             }
         }
 
-        //llamo a los constructores para cada tipo de grafico
         if (tipoGrafico == "pie") {
 
             colores.forEach(function(valor, indice, array) {
-                console.log(valor)
+                console.log(valor);
                 codigosColores.push(ponchoColor(valor));
             });
-            
+
             graficoTorta(
-                etiquetas, datos, tipoGrafico, codigosColores, 
-                opt.idComponenteGrafico, posicionLeyendas, toltips, 
+                etiquetas, datos, tipoGrafico, codigosColores,
+                opt.idComponenteGrafico, posicionLeyendas, toltips,
                 mostrarLeyendas
             );
         }
@@ -5042,116 +5936,152 @@ function ponchoChart(opt) {
             if (opt.tipoGrafico == "Line") {
                 graficoLineaSimple(
                     etiquetas, datos, tipoGrafico, color, columnas[0],
-                    opt.ejeYenCero, opt.idComponenteGrafico, posicionLeyendas, 
-                    toltips, mostrarLeyendas
+                    opt.ejeYenCero, opt.idComponenteGrafico,
+                    posicionLeyendas, toltips, mostrarLeyendas
                 );
             }
 
             if (tipoGrafico == "bar" || opt.tipoGrafico == "Area") {
                 graficoAreaBarraSimple(
-                    etiquetas, datos, tipoGrafico, color, columnas[0], 
-                    opt.ejeYenCero, opt.idComponenteGrafico, posicionLeyendas, 
-                    toltips, mostrarLeyendas
+                    etiquetas, datos, tipoGrafico, color, columnas[0],
+                    opt.ejeYenCero, opt.idComponenteGrafico,
+                    posicionLeyendas, toltips, mostrarLeyendas
                 );
             }
 
             if (tipoGrafico == "horizontalBar") {
                 graficoBarraHorizontalSimple(
-                    etiquetas, datos, tipoGrafico, color, columnas[0], 
-                    opt.ejeYenCero, opt.idComponenteGrafico, posicionLeyendas, 
-                    toltips, mostrarLeyendas
+                    etiquetas, datos, tipoGrafico, color, columnas[0],
+                    opt.ejeYenCero, opt.idComponenteGrafico,
+                    posicionLeyendas, toltips, mostrarLeyendas
                 );
             }
-
         }
 
         if (cantDatos > 1) {
             if (tipoGrafico == "heatmap") {
-                if ((typeof opt.heatMapColors != "undefined" && opt.heatMapColors != "") && 
-                    (typeof opt.heatMapColorsRange != "undefined" && opt.heatMapColorsRange != "")){
+                if (
+                    (
+                        typeof opt.heatMapColors != "undefined" &&
+                        opt.heatMapColors != ""
+                    ) &&
+                    (
+                        typeof opt.heatMapColorsRange != "undefined" &&
+                        opt.heatMapColorsRange != ""
+                    )
+                ) {
 
                     var datosFull = [];
                     var labelX = "labelFila";
                     var labelY = "labelColumna";
                     var labelValor = "labelValor";
 
-                    if ((typeof opt.datosTooltip != "undefined") && (opt.datosTooltip.length > 0)){
-                        if ((typeof opt.datosTooltip[0] != "undefined") && 
-                            (typeof opt.datosTooltip[0].labelFila != "undefined")){
+                    if (
+                        (typeof opt.datosTooltip != "undefined") &&
+                        (opt.datosTooltip.length > 0)
+                    ) {
+                        if (
+                            (typeof opt.datosTooltip[0] != "undefined")
+                            && (typeof opt.datosTooltip[0].labelFila
+                                != "undefined")
+                        ) {
                             labelX = opt.datosTooltip[0].labelFila;
                         }
-                        if ((typeof opt.datosTooltip[1] != "undefined") && 
-                            (typeof opt.datosTooltip[1].labelColumna != "undefined")){
-                            labelY = opt.datosTooltip[1].labelColumna
-                        };
-                        if ((typeof opt.datosTooltip[2] != "undefined") && 
-                            (typeof opt.datosTooltip[2].labelValor != "undefined")){
+                        if (
+                            (typeof opt.datosTooltip[1] != "undefined")
+                            && (typeof opt.datosTooltip[1].labelColumna
+                                != "undefined")
+                        ) {
+                            labelY = opt.datosTooltip[1].labelColumna;
+                        }
+                        if (
+                            (typeof opt.datosTooltip[2] != "undefined")
+                            && (typeof opt.datosTooltip[2].labelValor
+                                != "undefined")
+                        ) {
                             labelValor = opt.datosTooltip[2].labelValor;
                         }
-                    }                        
+                    }
 
-                    //getDatos
-                    jQuery.each(Object.keys(filteredTitleName), function(index, key) {
-                        var pos = filteredTitleName[index];
-                        if (valores.hasOwnProperty(pos)) {
-                            datos = valores[pos];
-                            datosFull.push(datos);
-                        };
-                    });
+                    jQuery.each(
+                        Object.keys(filteredTitleName),
+                        function(index, key) {
+                            var pos = filteredTitleName[index];
+                            if (valores.hasOwnProperty(pos)) {
+                                datos = valores[pos];
+                                datosFull.push(datos);
+                            }
+                        }
+                    );
 
                     var series = [];
 
-                    for (var i=0;i<columnas.length;i++) {
+                    for (var i = 0; i < columnas.length; i++) {
                         var data = [];
-                        for (var l=0;l<etiquetas.length;l++) {
+                        for (var l = 0; l < etiquetas.length; l++) {
                             var datos = {
                                 x: etiquetas[l],
                                 y: parseInt(datosFull[l][i])
                             };
-
                             data.push(datos);
-                        } 
+                        }
 
                         var serie = {
-                            name: labelsYCortos[i] != "*" ? labelsYCortos[i] : columnas[i],
+                            name: labelsYCortos[i] != "*"
+                                ? labelsYCortos[i]
+                                : columnas[i],
                             data: data
-                        } 
+                        };
 
                         series.push(serie);
-                    }   
+                    }
 
                     var rango = [];
 
-                    //construyo range object
-                    for (var i=0; i<opt.heatMapColorsRange.length -1; i++){
-                            var data = {
+                    for (
+                        var i = 0;
+                        i < opt.heatMapColorsRange.length - 1;
+                        i++
+                    ) {
+                        var data = {
                             from: opt.heatMapColorsRange[i],
                             to: opt.heatMapColorsRange[i + 1],
                             color: ponchoColor(opt.heatMapColors[i])
-                            };
+                        };
                         rango.push(data);
                     }
 
                     var mostrarYaxis = "";
-                    if (typeof opt.mostrarEjeY == "undefined"){
+                    if (typeof opt.mostrarEjeY == "undefined") {
                         mostrarYaxis = true;
                     } else {
                         mostrarYaxis = opt.mostrarEjeY;
                     }
 
                     graficoHeatMap(
-                        etiquetas, series, opt.idComponenteGrafico, columnas, 
-                        rango, labelX, labelY, labelValor, opt.tituloGrafico, 
-                        mostrarYaxis, posicionLeyendas, mostrarLeyendas);
+                        etiquetas, series, opt.idComponenteGrafico,
+                        columnas, rango, labelX, labelY, labelValor,
+                        opt.tituloGrafico, mostrarYaxis,
+                        posicionLeyendas, mostrarLeyendas
+                    );
 
                 } else {
-                    //informo por consola el faltante
-                    if (typeof opt.heatMapColors == "undefined" || opt.heatMapColors == "") {
-                        console.log("Completar vector con valores para los colores");
+                    if (
+                        typeof opt.heatMapColors == "undefined" ||
+                        opt.heatMapColors == ""
+                    ) {
+                        console.log(
+                            "Completar vector con valores para los colores"
+                        );
                     }
-
-                    if (typeof opt.heatMapColorsRange == "undefined" || opt.heatMapColorsRange == "") {
-                        console.log("Completar vector con el rango de valores para los colores");
+                    if (
+                        typeof opt.heatMapColorsRange == "undefined" ||
+                        opt.heatMapColorsRange == ""
+                    ) {
+                        console.log(
+                            "Completar vector con el rango de valores" +
+                            " para los colores"
+                        );
                     }
                 }
             } else {
@@ -5159,182 +6089,135 @@ function ponchoChart(opt) {
                 var datasets = [];
                 var indiceColor = 0;
 
-                //getColores
                 colores.forEach(function(valor, indice, array) {
                     codigosColores.push(ponchoColor(valor));
                 });
                 var indiceMixed = 0;
 
-                //getDatos
-                jQuery.each(Object.keys(filteredTitleName), function(index, key) {
-                    var pos = filteredTitleName[index];
-                    if (valores.hasOwnProperty(pos)) {
+                jQuery.each(
+                    Object.keys(filteredTitleName),
+                    function(index, key) {
+                        var pos = filteredTitleName[index];
+                        if (valores.hasOwnProperty(pos)) {
 
-                        datos = valores[pos];
+                            datos = valores[pos];
 
-                        if (opt.tipoGrafico == "Line") {
-                            //construyo datasets
-                            var dataset = {
-                                label: columnas[indiceColor],
-                                data: datos,
-                                borderColor: codigosColores[indiceColor],
-                                fill: false,
-                                borderWidth: 2,
-                                lineTension: 0,
-                                backgroundColor: codigosColores[indiceColor], 
-                            };
-                        } else if (opt.tipoGrafico == "Bar" || 
-                            opt.tipoGrafico == "Area" || 
-                            opt.tipoGrafico == "Horizontal Bar" || 
-                            opt.tipoGrafico == "Stacked Bar") {
-                            //construyo datasets
-                            var dataset = {
-                                label: columnas[indiceColor],
-                                data: datos,
-                                borderColor: codigosColores[indiceColor],
-                                backgroundColor: codigosColores[indiceColor], //BARRAS y AREA
-                                borderWidth: 2,
-                                lineTension: 0, //linea  y area
-                            };
-                        } else if (opt.tipoGrafico == "Mixed"){ 
-                            var tipo = tipoGraficosMixed[indiceMixed];
-                            //construyo datasets
-                            if (tipo == "barra") {
+                            if (opt.tipoGrafico == "Line") {
                                 var dataset = {
                                     label: columnas[indiceColor],
-                                    data: datos, 
-                                    backgroundColor: codigosColores[indiceColor],
-                                    // This binds the dataset to the left y axis
-                                    yAxisID: "left-y-axis",
-                                    type: "bar",
-                                };
-                            } else if (tipo == "linea"){
-                                var dataset = {
-                                    label: columnas[indiceColor],
-                                    data: datos, 
-                                    borderColor: codigosColores[indiceColor],
-                                    backgroundColor: codigosColores[indiceColor],
-                                    // Changes this dataset to become a line
-                                    type: "line",
-                                    // This binds the dataset to the right y axis
-                                    yAxisID: "right-y-axis",
+                                    data: datos,
+                                    borderColor:
+                                        codigosColores[indiceColor],
                                     fill: false,
+                                    borderWidth: 2,
+                                    lineTension: 0,
+                                    backgroundColor:
+                                        codigosColores[indiceColor],
                                 };
+                            } else if (
+                                opt.tipoGrafico == "Bar" ||
+                                opt.tipoGrafico == "Area" ||
+                                opt.tipoGrafico == "Horizontal Bar" ||
+                                opt.tipoGrafico == "Stacked Bar"
+                            ) {
+                                var dataset = {
+                                    label: columnas[indiceColor],
+                                    data: datos,
+                                    borderColor:
+                                        codigosColores[indiceColor],
+                                    backgroundColor:
+                                        codigosColores[indiceColor],
+                                    borderWidth: 2,
+                                    lineTension: 0,
+                                };
+                            } else if (opt.tipoGrafico == "Mixed") {
+                                var tipo = tipoGraficosMixed[indiceMixed];
+                                if (tipo == "barra") {
+                                    var dataset = {
+                                        label: columnas[indiceColor],
+                                        data: datos,
+                                        backgroundColor:
+                                            codigosColores[indiceColor],
+                                        yAxisID: "left-y-axis",
+                                        type: "bar",
+                                    };
+                                } else if (tipo == "linea") {
+                                    var dataset = {
+                                        label: columnas[indiceColor],
+                                        data: datos,
+                                        borderColor:
+                                            codigosColores[indiceColor],
+                                        backgroundColor:
+                                            codigosColores[indiceColor],
+                                        type: "line",
+                                        yAxisID: "right-y-axis",
+                                        fill: false,
+                                    };
+                                }
                             }
+
+                            datasets.push(dataset);
+                            indiceColor = indiceColor + 1;
+                            indiceMixed = indiceMixed + 1;
                         }
-
-                        datasets.push(dataset);
-                        indiceColor = indiceColor + 1;
-                        indiceMixed = indiceMixed + 1;
                     }
-                });
+                );
 
-                if (tipoGrafico == "mixed") { 
+                if (tipoGrafico == "mixed") {
                     if (porcentajesMixed.length == 2) {
-                        //los 2 dataset usan porcentaje
-                        indicePorcentajeMixed = 2; 
-                    } else if (porcentajesMixed.length == 1){
+                        indicePorcentajeMixed = 2;
+                    } else if (porcentajesMixed.length == 1) {
 
                         if (porcentajesMixed[0] == "eje-y1") {
-                            //solo el primer dataset usa porcentaje
-                            indicePorcentajeMixed = 0; 
+                            indicePorcentajeMixed = 0;
                         } else if (porcentajesMixed[0] == "eje-y2") {
-                            //solo el segundo dataset usa porcentaje
-                            indicePorcentajeMixed = 1; 
+                            indicePorcentajeMixed = 1;
                         }
 
-                    } else  {
-                        //ningun dataset usa escala de porcentaje
+                    } else {
                         indicePorcentajeMixed = 3;
-                    } 
+                    }
                 }
-                
 
-                if (opt.tipoGrafico == "Stacked Bar"){ 
+
+                if (opt.tipoGrafico == "Stacked Bar") {
                     graficoComplejoStacked(
-                        etiquetas, tipoGrafico, datasets, 
-                        opt.idComponenteGrafico, opt.ejeYenCero, 
-                        posicionLeyendas, toltips, mostrarLeyendas);
+                        etiquetas, tipoGrafico, datasets,
+                        opt.idComponenteGrafico, opt.ejeYenCero,
+                        posicionLeyendas, toltips, mostrarLeyendas
+                    );
                 } else if (opt.tipoGrafico == "Mixed") {
                     graficoComplejoMixed(
-                        etiquetas, "bar", datasets, opt.idComponenteGrafico, 
-                        opt.ejeYenCero, posicionLeyendas, 
-                        indicePorcentajeMixed, columnas[0], columnas[1], 
-                        mostrarLeyendas);
+                        etiquetas, "bar", datasets,
+                        opt.idComponenteGrafico, opt.ejeYenCero,
+                        posicionLeyendas, indicePorcentajeMixed,
+                        columnas[0], columnas[1], mostrarLeyendas
+                    );
                 } else if (opt.tipoGrafico == "Horizontal Bar") {
                     graficoComplejoHorizontal(
-                        etiquetas, tipoGrafico, datasets, 
-                        opt.idComponenteGrafico, opt.ejeYenCero, 
-                        posicionLeyendas, toltips, mostrarLeyendas);
+                        etiquetas, tipoGrafico, datasets,
+                        opt.idComponenteGrafico, opt.ejeYenCero,
+                        posicionLeyendas, toltips, mostrarLeyendas
+                    );
                 } else {
                     graficoComplejo(
-                        etiquetas, tipoGrafico, datasets, 
-                        opt.idComponenteGrafico, opt.ejeYenCero, 
-                        posicionLeyendas, toltips, mostrarLeyendas);
+                        etiquetas, tipoGrafico, datasets,
+                        opt.idComponenteGrafico, opt.ejeYenCero,
+                        posicionLeyendas, toltips, mostrarLeyendas
+                    );
                 }
             }
-
         }
 
-        //verifica si viene titulo del grafico, si no viene no dibuja nada
-        if (opt.tituloGrafico != "" && typeof opt.tituloGrafico != "undefined") {
+        if (
+            opt.tituloGrafico != "" &&
+            typeof opt.tituloGrafico != "undefined"
+        ) {
             graficaTitulo(opt.idTagTituloGrafico, opt.tituloGrafico);
         }
-    } 
-}
-
-
-/**
- * GAPI LEGACY
- * Retorna la estructura de la versión 3 de la API GoogleSheets.
- * 
- * @author Agustín Bouillet <bouilleta@jefatura.gob.ar>
- * @summary La estructura del objeto que retorna es de este modo:
- * @example
- * // Estructura de retorno
- *  .
- *  \--feed
- *      \-- entry
- *          |-- gsx$[nombre columna]
- *          |   \-- $t
- *          |-- gsx$[nombre columna]
- *          |   \-- $t
- * 
- * @param  {object} response Response JSON.
- * @return {object} JSON con la estructura V3 de la api de google sheet
- */
-const gapi_legacy = (response) => {
-
-  if (!response || !response.values || response.values.length === 0) {
-    throw new TypeError("Invalid response format");
-  }
-
-  if (!Array.isArray(response.values) || !Array.isArray(response.values[0])) {
-    throw new TypeError("Invalid response format: values should be arrays");
-  }
-
-  const keys = response.values[0];
-  const regex = / |\/|_/ig;
-  let entry = [];
-
-  response.values.forEach((v, k) => {
-    if(k > 0){
-        let zip = {};
-        for(const i in keys){
-            const d = (v.hasOwnProperty(i))? v[i].trim() : "";
-            zip[`gsx$${keys[i].toLowerCase().replace(regex, "")}`] = {"$t": d};
-        }
-        entry.push(zip);
     }
-  });
-
-  return {"feed": {"entry": entry}};
-};
-
-
-if (typeof exports !== "undefined") {
-  module.exports = gapi_legacy;
 }
+
 
 /**
  * PONCHO MAP
@@ -5419,7 +6302,7 @@ const PM_TRANSLATE = {
         search_placeholder: "Tu búsqueda",
         search_aria_label: "Buscador",
         theme_aria_label_panel: "Herramienta para cambiar de tema visual",
-        theme_change: "Sugerir cambios en el mapa",
+        theme_change: "Cambiar tema visual",
         theme_description_contrast: "Fondo oscuro con bordes blancos.",
         theme_description_dark: "Fondo oscuro con bordes blancos de contraste medio.",
         theme_description_default: "Colores predeterminados del proveedor del mapa.",
@@ -5430,7 +6313,7 @@ const PM_TRANSLATE = {
         theme_name_default: "Original",
         theme_name_grayscale: "Gris",
         theme_name_relax: "Relax",
-        theme_open_panel: "Abre el panel de temas",
+        theme_open_panel: "Seleccionar tema visual del mapa",
         theme_reset: "Restablece el tema del mapa a su configuración original",
         zoom_aria_label_panel: "Herramientas de zoom",
         zoom_goto_panel: "Ir a la herramienta de zoom",
@@ -5485,7 +6368,7 @@ const PM_TRANSLATE = {
         search_placeholder: "Your search",
         search_aria_label: "Search",
         theme_aria_label_panel: "Tool to change visual theme",
-        theme_change: "Suggest map changes",
+        theme_change: "Change visual theme",
         theme_description_contrast: "Dark background with white borders.",
         theme_description_dark: "Dark background with medium contrast white borders.",
         theme_description_default: "Default map provider colors.",
@@ -5983,7 +6866,7 @@ class PonchoMap {
      * Versión poncho
      */
     get version(){
-        return "2.2.4";
+        return "2.2.5";
     }
 
 
@@ -6817,7 +7700,6 @@ class PonchoMap {
 
         // contenedor enlaces
         const item = document.createElement("div");
-        item.tabIndex = "-1";
         item.dataset.toggle="true";
 
         // icono del menú
@@ -6825,26 +7707,35 @@ class PonchoMap {
         icon.ariaHidden = "true";
         icon.classList.add("pmi", "pmi-adjust");
 
+        const controlId = `list-themes-tool-button${this.scope_sufix}`;
+        const buttonId = `themes-tool-button${this.scope_sufix}`;
+
         // Botón para abrir el menú.
         const button = document.createElement("button");
         button.title = this._t("theme_change");
-        button.id = `themes-tool-button${this.scope_sufix}`;
-        button.tabIndex = "0";
+        button.id = buttonId; 
         button.classList.add("pm-btn", "pm-btn-rounded-circle");
-        button.ariaHasPopup = "true";
-        button.ariaControls = "menu";
+        button.setAttribute("aria-expanded", false);
+        button.setAttribute("aria-haspopup", true);
+        button.setAttribute("aria-controls", controlId);
         button.role = "button";
         button.ariaLabel = this._t("theme_open_panel");
         button.appendChild(icon);
 
         const list = document.createElement("ul");
-        list.id = `list-themes-tool-button${this.scope_sufix}`;
+        list.id = controlId;
         list.role = "menu";
-        list.ariaLabelledby = `themes-tool-button${this.scope_sufix}`;
+        list.ariaLabelledby = buttonId;
         list.classList.add(
-            "pm-container", "pm-list", "pm-list-unstyled", 
-            "pm-p-1", "pm-caret", "pm-caret-b", "pm-toggle", 
-            "pm-accesible-menu");
+            "pm-container", 
+            "pm-list",
+            "pm-list-unstyled", 
+            "pm-p-1", 
+            "pm-caret", 
+            "pm-caret-b", 
+            "pm-toggle", 
+            "pm-accesible-menu"
+        );
 
         // Botón para restablecer el mapa
         const restartLinkOptions = {
@@ -7117,7 +8008,7 @@ class PonchoMap {
             }
 
             const link = this.tplParser(templateLink, {latitude, longitude});
-            const anchorOptions = {...item, link, attributes: {tabIndex: 0}};
+            const anchorOptions = {...item, link };
 
             const a = this.addAnchorElement(anchorOptions);
             const li = document.createElement("li");
@@ -7127,7 +8018,6 @@ class PonchoMap {
 
         const summary = document.createElement("summary");
         summary.textContent = this._t(label);
-        summary.tabIndex = 0;
         summary.ariaLabel = this._t(aria_label);
 
         const details = document.createElement("details");
@@ -7811,6 +8701,8 @@ class PonchoMap {
             .forEach(e => {
                 e.classList.toggle(`${this.slider_selector}--in`);
                 e.style.display = (this.isSliderOpen() ? "block" : "none");  
+                e.setAttribute("aria-modal", (this.isSliderOpen() ? true : false));  
+
             });
     };
 
@@ -7890,6 +8782,11 @@ class PonchoMap {
                     left: 0,
                     behavior: "auto"
                 }); 
+            });
+        document
+            .querySelectorAll(`#slider${this.scope_sufix}`)
+            .forEach(e => {
+                e.setAttribute("aria-label", data[this.title]);
             });
         document
             .querySelectorAll(`.js-close-slider${this.scope_sufix}`)
@@ -8019,8 +8916,7 @@ class PonchoMap {
             `js-slider${this.scope_sufix}`
         );
         container.style.display = "none";
-        container.role = "region";
-        container.ariaLive = "polite";
+        container.setAttribute("aria-modal", false);
         container.ariaLabel = this._t("panel_aria_label");
 
         // Icono para el botón 
@@ -8037,9 +8933,7 @@ class PonchoMap {
             "pm-btn-close", 
             `js-close-slider${this.scope_sufix}`
         );
-        closeButton.setAttribute("autofocus", "autofocus");
         closeButton.title = this._t("close_panel");
-        closeButton.tabIndex = 0;
         closeButton.ariaLabel = this._t("close_aria_panel");
 
         // Enlace anchor.
@@ -8053,15 +8947,15 @@ class PonchoMap {
         // Contenedor del contenido
         const contentContainer = document.createElement("article");
         contentContainer.classList.add("pm-content-container");
-
+        contentContainer.tabIndex = -1;  
+        contentContainer.setAttribute("autofocus", "autofocus");
+        
         // Contenido
         const content = document.createElement("div");
         content.classList.add(
             "pm-content", 
             `js-content${this.scope_sufix}`
         );
-        content.tabIndex = 0;
-        
 
         const footer = document.createElement("footer");
         footer.classList.add(
@@ -9403,15 +10297,13 @@ class PonchoMap {
         );
         icon.ariaHidden = "true";
 
-        const nav = document.createElement("div");
+        const nav = document.createElement("nav");
+        nav.tabIndex = "0";
         nav.classList.add("pm-accesible-nav", "top", "pm-list");
         nav.id = `pm-accesible-nav${this.scope_sufix}`;
         nav.ariaLabel = this._t("map_aria_label");
-        nav.role = "navigation";
-        nav.tabIndex=0;
 
         const ul = document.createElement("ul");
-        ul.role = "menu";
         ul.classList.add("pm-list-unstyled");
 
         values.forEach((links) => {
@@ -9421,16 +10313,12 @@ class PonchoMap {
                 ...links,
                 label: this._t(label),
                 aria_label: this._t(aria_label),
-                css:[...css, ...["pm-item-link", "pm-accesible"]], 
-                attributes: {
-                    role: "menuitem",
-                    tabIndex: 0
-                }
+                css:[...css, ...["pm-item-link", "pm-accesible"]]
             };
             const a = this.addAnchorElement(anchorOpts);
 
             const li = document.createElement("li");
-            li.role = "presentation";
+            // li.role = "presentation";
             li.appendChild(a);
             ul.appendChild(li);
         });
@@ -9443,8 +10331,7 @@ class PonchoMap {
             label: this._t("map_goto_menu"),
             link: `#pm-accesible-nav${this.scope_sufix}`,
             id: `accesible-return-nav${this.scope_sufix}`,
-            css: ["pm-item-link", "pm-accesible"],
-            attributes: {tabIndex: 0}
+            css: ["pm-item-link", "pm-accesible"]
         };
         const backToNav = this.addAnchorElement(anchorOptions);
         const returnNav = document.createElement("div");
@@ -10075,9 +10962,7 @@ class PonchoMapFilter extends PonchoMap {
             ul.classList.add("m-b-0", "list-unstyled");
             const li = content => {
                 const item = document.createElement("li");
-                item.ariaLive = "polite";
                 item.innerHTML = content;
-                item.tabIndex = 0;
                 return item;
             };
 
@@ -11905,7 +12790,10 @@ class PonchoMapSearch {
      */
     _searchRegion = () => {
         const element = document.querySelector(this.search_scope_selector);
-        element.setAttribute("role", "region");
+        if(!element){
+            return;
+        }
+        element.setAttribute("role", "search");
         element.setAttribute("aria-label", this.instance._t("search_aria_label"));
     };
 
@@ -11999,6 +12887,11 @@ class PonchoMapSearch {
             searchContainer.classList.remove("pm-search-results");
             searchContainer.replaceChildren();
         }
+        const searchElement = this._cachedElements.input ||
+                document.querySelector(this.selectors.searchInput);
+        if (searchElement) {
+            searchElement.setAttribute("aria-expanded", "false");
+        }
     }
 
 
@@ -12038,15 +12931,16 @@ class PonchoMapSearch {
         // Batch DOM writes para mejorar rendimiento
         searchElement.setAttribute("autocomplete", "off");
         searchElement.setAttribute("aria-autocomplete", "list");
-        searchElement.setAttribute("aria-expanded", "true" );
+        searchElement.setAttribute("aria-expanded", "false" );
         searchElement.setAttribute("aria-haspopup", "listbox");
-        searchElement.setAttribute("aria-controls", "results-list");
+        searchElement.setAttribute("aria-controls", "js-poncho-results-list");
         searchElement.setAttribute("role", "combobox");
 
         // Crear y cachear el contenedor de búsqueda
         const searchContainer = document.createElement("div");
         searchContainer.classList.add("js-pm-search");
         searchContainer.setAttribute("aria-live", "polite");
+        searchContainer.id = "js-poncho-results-list";
 
         this._cachedElements.searchContainer = searchContainer;
 
@@ -12065,6 +12959,7 @@ class PonchoMapSearch {
                     searchContainer.classList.remove(comboboxWidth);
                 }
                 searchContainer.replaceChildren();
+                searchElement.setAttribute("aria-expanded", "false");
 
                 const value = String(searchElement.value);
 
@@ -12094,6 +12989,7 @@ class PonchoMapSearch {
                 }
 
                 searchContainer.appendChild(ul);
+                searchElement.setAttribute("aria-expanded", "true");
             }, DEBOUNCE_DELAY);
         });
 
@@ -12917,140 +13813,6 @@ class PonchoMapProvinces extends PonchoMapFilter {
     };
 }
 // end class
-
-/**
- * Helpers para manejar los json provenientes de Google Sheets.
- * 
- * @author Agustín Bouillet <bouilleta@jefatura.gob.ar>
- */
-class GapiSheetData {
-    constructor(options){
-        const defaults = {
-            gapi_key: "AIzaSyCq2wEEKL9-6RmX-TkW23qJsrmnFHFf5tY",
-            gapi_uri: "https://sheets.googleapis.com/v4/spreadsheets/"
-        };
-        let opts = Object.assign({}, defaults, options);
-        this.gapi_key = opts.gapi_key;
-        this.gapi_uri = opts.gapi_uri;
-    }
-
-
-    /**
-     * URI para obtener el json de google sheet.
-     * 
-     * @param {string} page Nombre de la página a obtener.
-     * @param {string} spreadsheet Id del documento Google Sheet.
-     * @param {string} api_key Google API Key.
-     * @returns {string} URL
-     */
-    url = (page, spreadsheet, api_key) => {
-        if(!page || typeof page !== "string"){
-            throw new Error("El parámetro 'page' es requerido.");
-        }
-        if(!spreadsheet || typeof spreadsheet !== "string"){
-            throw new Error("El parámetro 'spreadsheet' es requerido.");
-        }
-        const key = api_key || this.gapi_key;
-        return [
-            this.gapi_uri, spreadsheet, "/values/",
-            encodeURIComponent(page), "?key=", key, "&alt=json"
-        ].join("");
-    };
-
-
-    /**
-     * Retorna los elementos del json estructurados en feed,
-     * entries y headers.
-     *
-     * @param {object} json Respuesta JSON de la API de Google Sheets.
-     * @returns {{feed: object[], entries: object[], headers: object}}
-     */
-    json_data = (json) => {
-        if(!json || !json.values || !json.values.length){
-            throw new Error(
-                "El parámetro 'json' debe contener una propiedad 'values'"
-                + " con al menos una fila."
-            );
-        }
-        const feed = this.feed(json);
-        return {
-            "feed": feed,
-            "entries": this.entries(feed),
-            "headers": this.headers(feed)
-        };
-    };
-
-
-    /**
-     * Retorna con una estructura más cómoda para usar
-     * @param {object} response Feed Json 
-     * @returns {object}
-     */
-    feed = (response, lowercase = true) => {
-        const rawKeys = response.values[0];
-        const regex = / |\/|_/ig;
-        const keyCount = rawKeys.length;
-        const processedKeys = new Array(keyCount);
-        for(let i = 0; i < keyCount; i++){
-            processedKeys[i] = lowercase
-                ? rawKeys[i].toLowerCase().replace(regex, "")
-                : rawKeys[i].replace(regex, "");
-        }
-
-        const rows = response.values;
-        const len = rows.length;
-        const entry = new Array(len - 1);
-        for(let k = 1; k < len; k++){
-            const v = rows[k];
-            const zip = {};
-            for(let i = 0; i < keyCount; i++){
-                zip[processedKeys[i]] = i < v.length ? v[i].trim() : "";
-            }
-            entry[k - 1] = zip;
-        }
-        return entry;
-    };
-
-
-    /**
-     * Variables.
-     */
-    gapi_feed_row = (data, separator="-", filter_prefix=true) => {
-        const prefix = filter_prefix ? "filtro-" : "";
-        const feed_keys = Object.entries(data);
-        const clean = k => k.replace("gsx$", "")
-                            .replace(prefix, "").replace(/-/g, separator);
-        let list = {};
-        feed_keys.map(v => list[clean(v[0])] = v[1]["$t"]);
-        return list;
-    };
-
-    /**
-     * Retrona las entradas excluyendo el primer row, ya que 
-     * pertenece a los headers.
-     * 
-     * @param {object} feed 
-     * @returns {object}
-     */
-    entries = (feed) => {
-        return feed.slice(1);
-    };
-
-    /**
-     * Obtiene el primer row que es igual a los headers.
-     * @param {*} feed 
-     * @returns 
-     */
-    headers = (feed) => {
-        return feed[0];
-    };
-};
-
-
-
-if (typeof exports !== "undefined") {
-    module.exports = GapiSheetData;
-}
 
 /**
  * TRANSLATE

@@ -1,7 +1,7 @@
 /**
  * FERIADOS NACIONALES
  * 
- * Version: 2.0.0
+ * Version: 2.0.1
  * 
  * @summary Hace un render de un calendario anual de los feriados 
  * Nacionales de la República Argentina. 
