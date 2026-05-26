@@ -394,7 +394,7 @@ const calendar = {
         if( isNaN(Number(month)) || isNaN(Number(year)) ){
             return;
         }
-        if(month < 0 || month > 12){
+        if(month <= 0 || month > 12){
             return;
         }
 
