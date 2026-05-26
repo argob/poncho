@@ -414,7 +414,7 @@ const calendar = {
      * @returns {undefined}
      */
     renderCalendar: function() {
-        for(const monthNumber in [...Array(12).keys()]){
+        for(const monthNumber of [...Array(12).keys()]){
             const iterationDate = this.tZone(
                 new Date(this.calendarYear, monthNumber, 1, 12, 0, 0),
                 this.timeZone);
