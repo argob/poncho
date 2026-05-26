@@ -4,12 +4,19 @@
 <!-- omit in toc -->
 ## En ésta página
 
+- [Release 2.0.2](#release-202)
 - [Release 2.0.1](#release-201)
 - [Release 2.0.0](#release-200)
   - [Core](#core)
 - [Accesibilidad](#accesibilidad)
   - [CSS](#css)
 - [version 1.x](#version-1x)
+
+## Release 2.0.2
+
+- Se corrigió el bucle de `renderCalendar` de `for...in` a `for...of`, que hacía que `monthNumber` fuera un _string_ en lugar de un entero, impidiendo que se ejecutara el bloque de año bisiesto.
+- Se corrigió la declaración `const totalDaysOfMonth` en `drawCalendarMonth` que se intentaba reasignar para años bisiestos (error silencioso en modo no-estricto). Ahora el valor se calcula directamente al declarar la constante, y la condición de año bisiesto fue explícitamente parentizada para evitar ambigüedad de precedencia de operadores.
+- Se reemplazaron los métodos de fecha locales (`.getDay()`, `.getDate()`, `.getFullYear()`) por sus equivalentes UTC (`.getUTCDay()`, `.getUTCDate()`, `.getUTCFullYear()`) en todos los puntos donde se opera sobre fechas producidas por `tZone()`, garantizando coherencia en cualquier zona horaria del navegador.
 
 
 ## Release 2.0.1
