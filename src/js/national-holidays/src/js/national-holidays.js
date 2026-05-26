@@ -452,7 +452,10 @@ const calendar = {
         const date = iterationDate.getDate();
         const year = iterationDate.getFullYear();
 
-        const totalDaysOfMonth = this.daysOfMonth[monthNumber];
+        const isLeapYear = (year % 400 === 0) || ((year % 4 === 0) && (year % 100 !== 0));
+        const totalDaysOfMonth = (monthNumber === 1 && isLeapYear)
+            ? 29
+            : this.daysOfMonth[monthNumber];
         const monthName = this.dict.months[monthNumber];
 
         // Asigno el ID al tpl.
@@ -476,13 +479,6 @@ const calendar = {
         // Creo los días de la semana.
         const tplWeekdays = tpl.querySelector(".js-tpl-weekdays");
         tplWeekdays.appendChild(this.createWeekDays());
-
-        // Calcula si es año biciesto
-        if (monthNumber === 1) {
-            if ((year % 100 !== 0) && (year % 4 === 0) || (year % 400 === 0)){
-                totalDaysOfMonth = 29;
-            }
-        }
 
         // Get Start Day
         const entries = this.eventsByMonth(parseInt(monthNumber) + 1, year);
