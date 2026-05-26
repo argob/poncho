@@ -448,9 +448,9 @@ const calendar = {
      * @returns {HTMLElement} Template con sus elementos completados.
      */
     drawCalendarMonth: function(iterationDate, monthNumber, tpl) {
-        const day = iterationDate.getDay();
-        const date = iterationDate.getDate();
-        const year = iterationDate.getFullYear();
+        const day = iterationDate.getUTCDay();
+        const date = iterationDate.getUTCDate();
+        const year = iterationDate.getUTCFullYear();
 
         const totalDaysOfMonth = this.daysOfMonth[monthNumber];
         const monthName = this.dict.months[monthNumber];
@@ -738,7 +738,7 @@ const calendar = {
         let dayCount = 0;
 
         // Si el año es distinto al actual oculto el encabezado.
-        if(this.calendarYear !== today.getFullYear()){
+        if(this.calendarYear !== today.getUTCFullYear()){
             hoynoes.forEach(elem => elem.classList.add("hidden"));
             hoyes.forEach(elem => elem.classList.add("hidden"));
             return;
@@ -783,7 +783,7 @@ const calendar = {
             const proximoText = this.dict.nextHoliday
                 .replace("{day}", day)
                 .replace("{month}", month)
-                .replace("{year}", date.getFullYear());
+                .replace("{year}", date.getUTCFullYear());
 
             proximoHTML.forEach(elem => {
                 elem.innerHTML = proximoText;
