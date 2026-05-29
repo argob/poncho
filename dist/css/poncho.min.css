@@ -17873,12 +17873,14 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
     padding: 0 0 0 30px;
   }
 }
-/* SMN | Home */
-/* === Widget === */
+/* =========================================================
+   SMN | Weather Widget
+   ========================================================= */
 .weather-widget {
   background-color: #F2F2F2 !important;
   padding-top: 2rem !important;
   border-radius: 0.5rem;
+  /* Content */
 }
 .weather-widget #weather-content {
   padding-bottom: 1rem;
@@ -17899,6 +17901,9 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
     font-size: 34px !important;
     font-weight: 700 !important;
   }
+}
+.weather-widget {
+  /* Header */
 }
 .weather-widget .header-weather {
   display: flex;
@@ -17925,6 +17930,9 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
 .weather-widget .location-header h2 {
   margin: 0;
 }
+.weather-widget {
+  /* Search */
+}
 .weather-widget #locality-search {
   border-radius: 8px;
   height: 70px;
@@ -17935,6 +17943,9 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
     width: 100% !important;
     margin-bottom: 12px !important;
   }
+}
+.weather-widget {
+  /* Weather */
 }
 @media (max-width: 767px) {
   .weather-widget #weather-description {
@@ -17953,62 +17964,7 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
   }
 }
 .weather-widget {
-  /* === Tooltip === */
-}
-.weather-widget .pi-tooltip {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  top: 1px;
-  overflow: visible;
-}
-.weather-widget .pi-tooltip summary {
-  all: unset;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  line-height: 1;
-}
-.weather-widget .pi-tooltip summary i {
-  font-size: 14px;
-}
-.weather-widget .pi-tooltip summary::marker, .weather-widget .pi-tooltip summary::-webkit-details-marker {
-  display: none;
-}
-.weather-widget .pi-tooltip summary::before, .weather-widget .pi-tooltip summary::after {
-  content: none !important;
-  display: none !important;
-}
-.weather-widget .pi-tooltip:not([open]) .pi-tooltip-content {
-  display: none;
-}
-.weather-widget .pi-tooltip-content {
-  position: absolute;
-  top: 50%;
-  left: 32px;
-  transform: translateY(-50%);
-  background: #444444;
-  color: #FFFFFF;
-  padding: 6px 10px;
-  border-radius: 6px;
-  width: 220px;
-  z-index: 10;
-}
-.weather-widget .pi-tooltip-content a {
-  color: #FFFFFF;
-}
-.weather-widget .pi-tooltip-content::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: -6px;
-  transform: translateY(-50%);
-  border-style: solid;
-  border-width: 6px 6px 6px 0;
-  border-color: transparent #444444 transparent transparent;
-}
-.weather-widget {
-  /* === Forecast desktop === */
+  /* Forecast */
 }
 .weather-widget .forecast-grid {
   width: 100%;
@@ -18041,7 +17997,7 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
   white-space: nowrap;
 }
 .weather-widget {
-  /* === Pronóstico header === */
+  /* Pronóstico */
 }
 .weather-widget .pronostico .d-flex.align-items-center.gap-1 {
   display: block;
@@ -18058,7 +18014,7 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
   }
 }
 .weather-widget {
-  /* === Search container === */
+  /* Search container */
 }
 @media (max-width: 767px) {
   .weather-widget .search-container.p-b-0.p-l-3 {
@@ -18085,7 +18041,7 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
   }
 }
 .weather-widget {
-  /* === Mobile === */
+  /* Mobile */
 }
 @media (max-width: 767px) {
   .weather-widget .panel.bg-gray.p-x-3.p-b-3.p-t-0,
@@ -18093,7 +18049,7 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
     padding: 1rem !important;
   }
   .weather-widget {
-    /* Hero card */
+    /* Hero */
   }
   .weather-widget .principal {
     margin: 0 !important;
@@ -18122,7 +18078,7 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
     gap: 6px !important;
   }
   .weather-widget {
-    /* Datos + Solares */
+    /* Datos + solares */
   }
   .weather-widget .datos,
   .weather-widget .solares {
@@ -18150,101 +18106,9 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
   .weather-widget .col-xs-12:not(:last-child) .weather-col {
     border-bottom: 1px solid #F0F0F0;
   }
-  .weather-widget {
-    /* Forecast cards */
-  }
-  .weather-widget .forecast-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 6px;
-  }
-  .weather-widget .forecast-row:nth-child(n+5) {
-    display: none;
-  }
-  .weather-widget .forecast-row {
-    transition: all 0.2s ease;
-    border-radius: 14px;
-    border: 1px solid #E9E9E9;
-    background: #FFFFFF;
-    box-shadow: 0 1px 2px rgba(68, 68, 68, 0.08);
-  }
-  .weather-widget {
-    /* Card Hoy */
-  }
-  .weather-widget .forecast-row[data-today=true] {
-    grid-column: 1/-1;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 6px 12px;
-    padding: 12px 17px;
-    margin-bottom: 6px;
-    border-bottom: none;
-  }
-  .weather-widget .forecast-row[data-today=true] .fc-day {
-    font-size: 12px;
-    font-weight: 700;
-    text-transform: uppercase;
-    color: #838383;
-  }
-  .weather-widget .forecast-row[data-today=true] .fc-estado {
-    font-size: 16px;
-  }
-  .weather-widget .forecast-row[data-today=true] .fc-max {
-    font-size: 22px;
-    font-weight: 700;
-    text-align: right;
-  }
-  .weather-widget .forecast-row[data-today=true] .fc-min,
-  .weather-widget .forecast-row[data-today=true] .fc-lluvia {
-    font-size: 13px;
-    color: #838383;
-  }
-  .weather-widget .forecast-row[data-today=true] .fc-humedad,
-  .weather-widget .forecast-row[data-today=true] .fc-max i,
-  .weather-widget .forecast-row[data-today=true] .fc-min i {
-    display: none;
-  }
-  .weather-widget {
-    /* Cards futuras */
-  }
-  .weather-widget .forecast-row:not([data-today=true]) {
-    display: flex;
-    flex-direction: column;
-    padding: 12px 6px;
-    text-align: center;
-    gap: 3px;
-  }
-  .weather-widget .forecast-row:not([data-today=true]) .fc-day {
-    font-size: 12px;
-    color: #555555;
-  }
-  .weather-widget .forecast-row:not([data-today=true]) .fc-estado {
-    flex-direction: column;
-  }
-  .weather-widget .forecast-row:not([data-today=true]) .fc-estado i {
-    font-size: 22px;
-    margin: 4px 0;
-  }
-  .weather-widget .forecast-row:not([data-today=true]) .fc-estado span {
-    display: none;
-  }
-  .weather-widget .forecast-row:not([data-today=true]) .fc-max {
-    font-size: 16px;
-    font-weight: 700;
-  }
-  .weather-widget .forecast-row:not([data-today=true]) .fc-min {
-    font-size: 12px;
-    color: #838383;
-  }
-  .weather-widget .forecast-row:not([data-today=true]) .fc-max i,
-  .weather-widget .forecast-row:not([data-today=true]) .fc-min i,
-  .weather-widget .forecast-row:not([data-today=true]) .fc-lluvia,
-  .weather-widget .forecast-row:not([data-today=true]) .fc-humedad {
-    display: none;
-  }
 }
 .weather-widget {
-  /* === Mobile XS (≤450px) === */
+  /* XS */
 }
 @media (max-width: 450px) {
   .weather-widget .principal .col-md-8 > .d-flex.justify-content-center {
