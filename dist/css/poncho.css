@@ -17873,12 +17873,14 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
     padding: 0 0 0 30px;
   }
 }
-/* SMN | Home */
-/* === Widget === */
+/* =========================================================
+   SMN | Weather Widget
+   ========================================================= */
 .weather-widget {
   background-color: #F2F2F2 !important;
   padding-top: 2rem !important;
   border-radius: 0.5rem;
+  /* Content */
 }
 .weather-widget #weather-content {
   padding-bottom: 1rem;
@@ -17899,6 +17901,9 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
     font-size: 34px !important;
     font-weight: 700 !important;
   }
+}
+.weather-widget {
+  /* Header */
 }
 .weather-widget .header-weather {
   display: flex;
@@ -17925,6 +17930,9 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
 .weather-widget .location-header h2 {
   margin: 0;
 }
+.weather-widget {
+  /* Search */
+}
 .weather-widget #locality-search {
   border-radius: 8px;
   height: 70px;
@@ -17935,6 +17943,9 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
     width: 100% !important;
     margin-bottom: 12px !important;
   }
+}
+.weather-widget {
+  /* Weather */
 }
 @media (max-width: 767px) {
   .weather-widget #weather-description {
@@ -17953,62 +17964,7 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
   }
 }
 .weather-widget {
-  /* === Tooltip === */
-}
-.weather-widget .pi-tooltip {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  top: 1px;
-  overflow: visible;
-}
-.weather-widget .pi-tooltip summary {
-  all: unset;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  line-height: 1;
-}
-.weather-widget .pi-tooltip summary i {
-  font-size: 14px;
-}
-.weather-widget .pi-tooltip summary::marker, .weather-widget .pi-tooltip summary::-webkit-details-marker {
-  display: none;
-}
-.weather-widget .pi-tooltip summary::before, .weather-widget .pi-tooltip summary::after {
-  content: none !important;
-  display: none !important;
-}
-.weather-widget .pi-tooltip:not([open]) .pi-tooltip-content {
-  display: none;
-}
-.weather-widget .pi-tooltip-content {
-  position: absolute;
-  top: 50%;
-  left: 32px;
-  transform: translateY(-50%);
-  background: #444444;
-  color: #FFFFFF;
-  padding: 6px 10px;
-  border-radius: 6px;
-  width: 220px;
-  z-index: 10;
-}
-.weather-widget .pi-tooltip-content a {
-  color: #FFFFFF;
-}
-.weather-widget .pi-tooltip-content::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: -6px;
-  transform: translateY(-50%);
-  border-style: solid;
-  border-width: 6px 6px 6px 0;
-  border-color: transparent #444444 transparent transparent;
-}
-.weather-widget {
-  /* === Forecast desktop === */
+  /* Forecast */
 }
 .weather-widget .forecast-grid {
   width: 100%;
@@ -18041,7 +17997,7 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
   white-space: nowrap;
 }
 .weather-widget {
-  /* === Pronóstico header === */
+  /* Pronóstico */
 }
 .weather-widget .pronostico .d-flex.align-items-center.gap-1 {
   display: block;
@@ -18058,7 +18014,7 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
   }
 }
 .weather-widget {
-  /* === Search container === */
+  /* Search container */
 }
 @media (max-width: 767px) {
   .weather-widget .search-container.p-b-0.p-l-3 {
@@ -18085,7 +18041,7 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
   }
 }
 .weather-widget {
-  /* === Mobile === */
+  /* Mobile */
 }
 @media (max-width: 767px) {
   .weather-widget .panel.bg-gray.p-x-3.p-b-3.p-t-0,
@@ -18093,7 +18049,7 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
     padding: 1rem !important;
   }
   .weather-widget {
-    /* Hero card */
+    /* Hero */
   }
   .weather-widget .principal {
     margin: 0 !important;
@@ -18122,7 +18078,7 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
     gap: 6px !important;
   }
   .weather-widget {
-    /* Datos + Solares */
+    /* Datos + solares */
   }
   .weather-widget .datos,
   .weather-widget .solares {
@@ -18150,101 +18106,9 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
   .weather-widget .col-xs-12:not(:last-child) .weather-col {
     border-bottom: 1px solid #F0F0F0;
   }
-  .weather-widget {
-    /* Forecast cards */
-  }
-  .weather-widget .forecast-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 6px;
-  }
-  .weather-widget .forecast-row:nth-child(n+5) {
-    display: none;
-  }
-  .weather-widget .forecast-row {
-    transition: all 0.2s ease;
-    border-radius: 14px;
-    border: 1px solid #E9E9E9;
-    background: #FFFFFF;
-    box-shadow: 0 1px 2px rgba(68, 68, 68, 0.08);
-  }
-  .weather-widget {
-    /* Card Hoy */
-  }
-  .weather-widget .forecast-row[data-today=true] {
-    grid-column: 1/-1;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 6px 12px;
-    padding: 12px 17px;
-    margin-bottom: 6px;
-    border-bottom: none;
-  }
-  .weather-widget .forecast-row[data-today=true] .fc-day {
-    font-size: 12px;
-    font-weight: 700;
-    text-transform: uppercase;
-    color: #838383;
-  }
-  .weather-widget .forecast-row[data-today=true] .fc-estado {
-    font-size: 16px;
-  }
-  .weather-widget .forecast-row[data-today=true] .fc-max {
-    font-size: 22px;
-    font-weight: 700;
-    text-align: right;
-  }
-  .weather-widget .forecast-row[data-today=true] .fc-min,
-  .weather-widget .forecast-row[data-today=true] .fc-lluvia {
-    font-size: 13px;
-    color: #838383;
-  }
-  .weather-widget .forecast-row[data-today=true] .fc-humedad,
-  .weather-widget .forecast-row[data-today=true] .fc-max i,
-  .weather-widget .forecast-row[data-today=true] .fc-min i {
-    display: none;
-  }
-  .weather-widget {
-    /* Cards futuras */
-  }
-  .weather-widget .forecast-row:not([data-today=true]) {
-    display: flex;
-    flex-direction: column;
-    padding: 12px 6px;
-    text-align: center;
-    gap: 3px;
-  }
-  .weather-widget .forecast-row:not([data-today=true]) .fc-day {
-    font-size: 12px;
-    color: #555555;
-  }
-  .weather-widget .forecast-row:not([data-today=true]) .fc-estado {
-    flex-direction: column;
-  }
-  .weather-widget .forecast-row:not([data-today=true]) .fc-estado i {
-    font-size: 22px;
-    margin: 4px 0;
-  }
-  .weather-widget .forecast-row:not([data-today=true]) .fc-estado span {
-    display: none;
-  }
-  .weather-widget .forecast-row:not([data-today=true]) .fc-max {
-    font-size: 16px;
-    font-weight: 700;
-  }
-  .weather-widget .forecast-row:not([data-today=true]) .fc-min {
-    font-size: 12px;
-    color: #838383;
-  }
-  .weather-widget .forecast-row:not([data-today=true]) .fc-max i,
-  .weather-widget .forecast-row:not([data-today=true]) .fc-min i,
-  .weather-widget .forecast-row:not([data-today=true]) .fc-lluvia,
-  .weather-widget .forecast-row:not([data-today=true]) .fc-humedad {
-    display: none;
-  }
 }
 .weather-widget {
-  /* === Mobile XS (≤450px) === */
+  /* XS */
 }
 @media (max-width: 450px) {
   .weather-widget .principal .col-md-8 > .d-flex.justify-content-center {
@@ -18346,13 +18210,22 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
  * Estilos para el calendario de feriados nacionales.
  *
  * @summary Refactor de los estilos para el calendario. Con este nuevo
- * abordaje se soluciona la altura de la caja de cada mes, optimizando 
+ * abordaje se soluciona la altura de la caja de cada mes, optimizando
  * cada línea.
  *
  * @author Agustín Bouillet <bouilleta@jefatura.gob.ar>
  */
+/**
+ * Fija el color de texto en todos los estados de interacción, evitando
+ * que el navegador o Bootstrap lo sobreescriban en hover/focus/active.
+ *
+ * @param {color} $color Color a mantener en los estados interactivos.
+ */
 .national-holidays {
-  --icon-universal-access: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><path d="M0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm161.5-86.1c-12.2-5.2-26.3 .4-31.5 12.6s.4 26.3 12.6 31.5l11.9 5.1c17.3 7.4 35.2 12.9 53.6 16.3v50.1c0 4.3-.7 8.6-2.1 12.6l-28.7 86.1c-4.2 12.6 2.6 26.2 15.2 30.4s26.2-2.6 30.4-15.2l24.4-73.2c1.3-3.8 4.8-6.4 8.8-6.4s7.6 2.6 8.8 6.4l24.4 73.2c4.2 12.6 17.8 19.4 30.4 15.2s19.4-17.8 15.2-30.4l-28.7-86.1c-1.4-4.1-2.1-8.3-2.1-12.6V235.5c18.4-3.5 36.3-8.9 53.6-16.3l11.9-5.1c12.2-5.2 17.8-19.3 12.6-31.5s-19.3-17.8-31.5-12.6L338.7 175c-26.1 11.2-54.2 17-82.7 17s-56.5-5.8-82.7-17l-11.9-5.1zM256 160a40 40 0 1 0 0-80 40 40 0 1 0 0 80z"/></svg>');
+  --icon-universal-access: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgNTEyIDUxMiI+PHBhdGggZD0iTTAgMjU2YTI1NiAyNTYgMCAxIDEgNTEyIDBBMjU2IDI1NiAwIDEgMSAwIDI1NnptMTYxLjUtODYuMWMtMTIuMi01LjItMjYuMyAuNC0zMS41IDEyLjZzLjQgMjYuMyAxMi42IDMxLjVsMTEuOSA1LjFjMTcuMyA3LjQgMzUuMiAxMi45IDUzLjYgMTYuM3Y1MC4xYzAgNC4zLS43IDguNi0yLjEgMTIuNmwtMjguNyA4Ni4xYy00LjIgMTIuNiAyLjYgMjYuMiAxNS4yIDMwLjRzMjYuMi0yLjYgMzAuNC0xNS4ybDI0LjQtNzMuMmMxLjMtMy44IDQuOC02LjQgOC44LTYuNHM3LjYgMi42IDguOCA2LjRsMjQuNCA3My4yYzQuMiAxMi42IDE3LjggMTkuNCAzMC40IDE1LjJzMTkuNC0xNy44IDE1LjItMzAuNGwtMjguNy04Ni4xYy0xLjQtNC4xLTIuMS04LjMtMi4xLTEyLjZWMjM1LjVjMTguNC0zLjUgMzYuMy04LjkgNTMuNi0xNi4zbDExLjktNS4xYzEyLjItNS4yIDE3LjgtMTkuMyAxMi42LTMxLjVzLTE5LjMtMTcuOC0zMS41LTEyLjZMMzM4LjcgMTc1Yy0yNi4xIDExLjItNTQuMiAxNy04Mi43IDE3cy01Ni41LTUuOC04Mi43LTE3bC0xMS45LTUuMXpNMjU2IDE2MGE0MCA0MCAwIDEgMCAwLTgwIDQwIDQwIDAgMSAwIDAgODB6Ii8+PC9zdmc+');
+}
+.national-holidays .display-block {
+  display: block;
 }
 .national-holidays .calendar,
 .national-holidays .calendar * {
@@ -18366,32 +18239,88 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
   grid-row-gap: 1em;
   clear: both;
 }
+.national-holidays .month table td {
+  border-color: transparent;
+}
+.national-holidays .month table {
+  table-layout: fixed;
+}
+.national-holidays .calendar__holiday-td {
+  position: relative;
+}
+.national-holidays .calendar__holiday-td mark {
+  background: transparent;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.national-holidays a.calendar__holiday {
+  font-weight: 600;
+  text-decoration: none;
+  position: absolute;
+  height: calc(100% - 2px);
+  border-radius: 6px;
+  aspect-ratio: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.15s;
+  border: 3px solid transparent;
+}
+.national-holidays .calendar__holiday:focus,
+.national-holidays .calendar__holiday:focus-within,
+.national-holidays .calendar__holiday:hover {
+  outline: none;
+  border: 3px solid var(--arg-amarillo) !important;
+  text-decoration: none;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+}
 .national-holidays .table {
   border-bottom: 1px solid #ddd;
+}
+.national-holidays {
+  /* Colors */
 }
 .national-holidays .bg-transparent {
   background-color: transparent !important;
   color: inherit;
 }
-.national-holidays .display-block {
-  display: block;
-}
-.national-holidays {
-  /* Colors */
-}
 .national-holidays .bg-success {
+  color: white;
+}
+.national-holidays .bg-success:hover, .national-holidays .bg-success:focus-within, .national-holidays .bg-success:focus, .national-holidays .bg-success:active, .national-holidays .bg-success:active:focus {
   color: white;
 }
 .national-holidays .bg-nl {
   background-color: #c1c1c1;
+  color: black;
+}
+.national-holidays .bg-nl:hover, .national-holidays .bg-nl:focus-within, .national-holidays .bg-nl:focus, .national-holidays .bg-nl:active, .national-holidays .bg-nl:active:focus {
+  color: black;
 }
 .national-holidays .bg-turistico {
-  background-color: var(--arg-uva, #6a1b99);
+  background-color: var(--arg-uva);
   color: white;
 }
-.national-holidays .bg-turistico a {
+.national-holidays .bg-turistico:hover, .national-holidays .bg-turistico:focus-within, .national-holidays .bg-turistico:focus, .national-holidays .bg-turistico:active, .national-holidays .bg-turistico:active:focus {
   color: white;
 }
+.national-holidays .bg-primary {
+  color: white;
+}
+.national-holidays .bg-primary:hover, .national-holidays .bg-primary:focus-within, .national-holidays .bg-primary:focus, .national-holidays .bg-primary:active, .national-holidays .bg-primary:active:focus {
+  color: white;
+}
+.national-holidays .bg-turistico,
 .national-holidays .bg-success,
 .national-holidays .bg-primary,
 .national-holidays .bg-nl {
@@ -18401,7 +18330,10 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
   color: #c1c1c1;
 }
 .national-holidays .text-turistico {
-  color: var(--arg-uva, #6a1b99);
+  color: var(--arg-uva);
+}
+.national-holidays {
+  /* Cuenta regresiva */
 }
 .national-holidays .conteo-regresivo-dias {
   font-size: 70px;
@@ -18428,7 +18360,7 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
 .national-holidays .nh-icon.universal-access {
   -webkit-mask-image: var(--icon-universal-access);
   mask-image: var(--icon-universal-access);
-  background-color: var(--arg-azul-200, dodgerblue);
+  background-color: var(--arg-cielo, dodgerblue);
 }
 .national-holidays .jump-to-list {
   margin-bottom: 0;
