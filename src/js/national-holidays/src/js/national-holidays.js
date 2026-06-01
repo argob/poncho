@@ -152,7 +152,7 @@ const calendar = {
                 trasladable: "Feriado trasladable",
                 turistico: "Feriado turístico"
             },
-            calendarCaption: "Calendario de {month}",
+            calendarCaption: "Calendario de {month}. Navegue con las flechas o el tabulador.",
             jumpToList: "Ir al listado de {month}",
             months: [
                 "Enero",
@@ -197,7 +197,7 @@ const calendar = {
                 trasladable: "Movable Holiday",
                 turistico: "Tourist Holiday"
             },
-            calendarCaption: "{month} calendar",
+            calendarCaption: "{month} calendar. Navigate using arrows or Tab.",
             jumpToList: "Jump to {month} list",
             months: [
                 "January",
@@ -472,6 +472,7 @@ const calendar = {
         // Lang a la tabla
         const tplTable = tpl.querySelector(".js-table");
         tplTable.lang = this.ln;
+        tplTable.setAttribute("aria-labelledby", `mes-${monthName.toLowerCase()}`)
 
         const tplCaption = tpl.querySelector(".js-tpl-caption");
         tplCaption.textContent = this.dict.calendarCaption
@@ -598,6 +599,7 @@ const calendar = {
                 const a = document.createElement("a");
                 a.href = `#feriado-${cell}-${markerMonthInt}`;
                 a.setAttribute("tabindex", "0");
+                a.setAttribute("aria-describedby", `desc-feriado-${cell}-${markerMonthInt}`);
                 a.setAttribute("aria-label", label);
                 a.id = `feriado-cal-${cell}-${markerMonthInt}`;
                 a.lang = this.ln;
@@ -650,22 +652,18 @@ const calendar = {
      * @returns {HTMLElement}
      */
     addLabel: function(monthId, year) {
-        if( isNaN(Number(monthId)) ){
+        if (isNaN(Number(monthId))) {
             return;
         }
 
-        // Agrupa un listado de eventos por su nombre.
         const markerList = this.eventsByMonth(parseInt(monthId) + 1, year);
-        if(!markerList){
+        if (!markerList) {
             return [];
         }
 
-        const result = markerList.reduce((acc, item) => {
-            if (acc[item.label]) {
-                acc[item.label].push(item);
-            } else {
-                acc[item.label] = [item];
-            }
+        // Agrupa eventos por etiqueta para consolidar días del mismo feriado
+        const grouped = markerList.reduce((acc, item) => {
+            (acc[item.label] = acc[item.label] || []).push(item);
             return acc;
         }, {});
 
@@ -675,41 +673,57 @@ const calendar = {
         ul.classList.add("holidays", "list-unstyled");
         ul.id = `feriados-${parseInt(monthId) + 1}`;
 
-        for(let entry of Object.keys(result)){
-            const event = result[entry];
-            const {label, type} = event[0];
-            const refactorLabel = (!label.endsWith(".") ? label + "." : label);
+        for (const entry of Object.keys(grouped)) {
+            const events = grouped[entry];
+            const {label, type} = events[0];
+            const labelText = label.endsWith(".") ? label : `${label}.`;
             const holidayType = this.dict.holidaysType[type];
+            const {
+                markerDayInt: firstDay, 
+                markerMonthInt: firstMonth} = this.parseDate(events[0].date);
 
-            const compileDays = event.map(m => {
+            // <span id="feriado-30-5" aria-label="30 de mayo">30</span>
+            const daySpans = events.map(m => {
                 const {markerDayInt, markerMonthInt} = this.parseDate(m.date);
+
                 const ariaLabel = this.dict.dayAnchor
-                    .replace("{month}", this.dict.months[markerMonthInt-1])
+                    .replace("{month}", this.dict.months[markerMonthInt - 1])
                     .replace("{day}", markerDayInt);
 
                 const span = document.createElement("span");
+                span.id = `feriado-${markerDayInt}-${markerMonthInt}`;
                 span.textContent = markerDayInt;
                 span.setAttribute("aria-label", ariaLabel);
-                span.id = `feriado-${markerDayInt}-${markerMonthInt}`;
                 return span.outerHTML;
             });
 
-            const refactorCompliedDays = `${compileDays.join(", ")}. `
-            const refactorHolidayType = `<span class="sr-only">`
-                + `${holidayType}&nbsp;—&nbsp;</span>`;
+            const srOnlySpan = document.createElement("span");
+            srOnlySpan.className = "sr-only";
+            srOnlySpan.innerHTML = `${holidayType}&nbsp;—&nbsp;`;
+
+            const labelSpan = document.createElement("span");
+            if (this.allowHTML) {
+                labelSpan.insertAdjacentHTML("beforeend", labelText);
+            } else {
+                labelSpan.textContent = labelText;
+            }
+
+            // <span id="desc-feriado-30-5">
+            //   <span class="sr-only">Feriado inamovible — </span>
+            //   <span class="ffff">Oli &amp; Emi, las amo.</span>
+            // </span>
+            const descSpan = document.createElement("span");
+            descSpan.id = `desc-feriado-${firstDay}-${firstMonth}`;
+            descSpan.appendChild(srOnlySpan);
+            descSpan.appendChild(labelSpan);
 
             const li = document.createElement("li");
-            li.innerHTML = refactorCompliedDays + refactorHolidayType;
-
-            if (this.allowHTML){
-                li.insertAdjacentHTML('beforeend', refactorLabel);
-            } else {
-                const obj = document.createTextNode(refactorLabel);
-                li.appendChild(obj);
-            }
+            li.innerHTML = `${daySpans.join(", ")}. `;
+            li.appendChild(descSpan);
 
             ul.appendChild(li);
         }
+
         return ul;
     }, 
     /**
