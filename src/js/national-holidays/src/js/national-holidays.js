@@ -501,7 +501,6 @@ const calendar = {
             // Enlace de salto.
             const anchor = document.createElement("a");
             anchor.classList.add("sr-only", "sr-only-focusable");
-            anchor.setAttribute("tabindex", "0");
             anchor.href = `#feriados-${parseInt(monthNumber) + 1}`;
             anchor.lang = this.ln;
             const anchorText = this.dict.jumpToList
@@ -598,7 +597,6 @@ const calendar = {
 
                 const a = document.createElement("a");
                 a.href = `#feriado-${cell}-${markerMonthInt}`;
-                a.setAttribute("tabindex", "0");
                 a.setAttribute("aria-describedby", `desc-feriado-${cell}-${markerMonthInt}`);
                 a.setAttribute("aria-label", label);
                 a.id = `feriado-cal-${cell}-${markerMonthInt}`;
@@ -669,7 +667,6 @@ const calendar = {
 
         const ul = document.createElement("ul");
         ul.lang = this.ln;
-        ul.setAttribute("tabindex", "0");
         ul.classList.add("holidays", "list-unstyled");
         ul.id = `feriados-${parseInt(monthId) + 1}`;
 
