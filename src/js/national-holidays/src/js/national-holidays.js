@@ -431,10 +431,16 @@ const calendar = {
      */
     createWeekDays(){
         const tr = document.createElement("tr");
-        for(const day of this.dict.weekDaysAbbr){
+        for(const [i, day] of this.dict.weekDaysAbbr.entries()){
+            
+            const abbr = document.createElement("abbr");
+            abbr.title = this.dict.weekDays[i];
+            abbr.textContent = day;
+            
             const th = document.createElement("th");
             th.setAttribute("scope", "col");
-            th.textContent = day;
+
+            th.appendChild(abbr);
             tr.appendChild(th);
         }
         return tr;
