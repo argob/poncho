@@ -17,6 +17,9 @@
 - Se corrigió el bucle de `renderCalendar` de `for...in` a `for...of`, que hacía que `monthNumber` fuera un _string_ en lugar de un entero, impidiendo que se ejecutara el bloque de año bisiesto.
 - Se corrigió la declaración `const totalDaysOfMonth` en `drawCalendarMonth` que se intentaba reasignar para años bisiestos (error silencioso en modo no-estricto). Ahora el valor se calcula directamente al declarar la constante, y la condición de año bisiesto fue explícitamente parentizada para evitar ambigüedad de precedencia de operadores.
 - Se reemplazaron los métodos de fecha locales (`.getDay()`, `.getDate()`, `.getFullYear()`) por sus equivalentes UTC (`.getUTCDay()`, `.getUTCDate()`, `.getUTCFullYear()`) en todos los puntos donde se opera sobre fechas producidas por `tZone()`, garantizando coherencia en cualquier zona horaria del navegador.
+- Se corrigió un error de índice en `daysLeft` que provocaba que, cuando el día actual coincidía con un feriado, el enlace al mes apuntara al mes siguiente: `markerMonthInt` se usaba directamente como índice del array `dict.months` (base 0) en lugar de `markerMonthInt - 1`.
+- Se corrigió una comparación de fechas inconsistente en `daysLeft`: los métodos locales `.getDate()` y `.getMonth()` sobre el objeto `today` —construido con `tZone()` y cuyos valores correctos están en UTC— fueron reemplazados por `.getUTCDate()` y `.getUTCMonth()`. Adicionalmente, `parseDate` ahora construye `dateObject` con `Date.UTC()` en lugar de `new Date()` en hora local, garantizando que ambos lados de la comparación operen sobre la misma referencia temporal.
+- Se reemplazó la invocación directa `opts.hasOwnProperty()` en `validateMarkers` por `Object.prototype.hasOwnProperty.call(opts, ...)`, forma segura que funciona incluso con objetos de prototipo nulo, y consistente con el resto del código.
 
 
 ## Release 2.0.1

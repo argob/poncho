@@ -59,7 +59,7 @@ const calendar = {
             return;
         }
         const [markerDay, markerMonth, markerYear] = dateString.split("/");
-        const dateObject = new Date(markerYear, markerMonth - 1, markerDay);
+        const dateObject = new Date(Date.UTC(markerYear, markerMonth - 1, markerDay));
         const markerDayInt = parseInt(markerDay);
         const markerMonthInt = parseInt(markerMonth);
         const markerYearInt = parseInt(markerYear);
@@ -321,7 +321,7 @@ const calendar = {
      * @returns {true|Error} 
      */
     validateMarkers: function(opts){
-        if(!opts.hasOwnProperty("markers")){
+        if(!Object.prototype.hasOwnProperty.call(opts, "markers")){
             throw new Error(
                 "El índice `markers`, no está incluido en las opciones.");
         }
@@ -596,12 +596,14 @@ const calendar = {
                 a.id = `feriado-cal-${cell}-${markerMonthInt}`;
                 a.lang = this.ln;
                 a.textContent = markerDayInt;
+                a.classList.add("calendar__holiday", `bg-${this.holidayType[type]}`);
 
                 const mark = document.createElement("mark");
-                mark.classList.add(`bg-transparent`);
+                mark.classList.add("calendar__mark");
                 mark.appendChild(a);
                 
-                td.classList.add(`bg-${this.holidayType[type]}`);
+                // td.classList.add(`bg-${this.holidayType[type]}`);
+                td.classList.add("calendar__holiday-td");
                 td.appendChild(mark)
             } else {
                 td.innerHTML = cell;
@@ -744,8 +746,8 @@ const calendar = {
         const todayIsHoliday = this.markers.find(entry => {
             const {date, type} = entry;
             const {dateObject} = this.parseDate(date);
-            return (today.getDate() === dateObject.getDate() &&
-                today.getMonth() === dateObject.getMonth() &&
+            return (today.getUTCDate() === dateObject.getUTCDate() &&
+                today.getUTCMonth() === dateObject.getUTCMonth() &&
                 type !== "no_laborable");
         });
 
@@ -801,7 +803,7 @@ const calendar = {
         if(todayIsHoliday && Object.keys(todayIsHoliday).length > 0 ){
             const {label:markerLabel} = todayIsHoliday;
             const parseDate = this.parseDate(todayIsHoliday.date);
-            const month = this.dict.months[ parseDate.markerMonthInt ];
+            const month = this.dict.months[ parseDate.markerMonthInt - 1 ];
 
             hoyes.forEach(elem => {
                 elem.classList.remove("hidden");
