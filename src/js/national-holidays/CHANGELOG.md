@@ -5,6 +5,8 @@
 ## En ésta página
 
 - [Release 2.0.2](#release-202)
+  - [Mejoras de accesibilidad](#mejoras-de-accesibilidad)
+  - [Mejoras de rendimiento y correcciones de bug](#mejoras-de-rendimiento-y-correcciones-de-bug)
 - [Release 2.0.1](#release-201)
 - [Release 2.0.0](#release-200)
   - [Core](#core)
@@ -13,6 +15,15 @@
 - [version 1.x](#version-1x)
 
 ## Release 2.0.2
+
+### Mejoras de accesibilidad
+
+- **Vinculación de la tabla con su título (`aria-labelledby`):** La tabla del calendario ahora referencia directamente al `<h2>` del mes mediante `aria-labelledby`, en lugar de duplicar el texto en un `<caption>` oculto.
+- **Días de la semana más claros (`<abbr>`):** Las abreviaturas de los días de la semana en el encabezado de la tabla (`Dom`, `Lun`, `Mar`…) se envuelven en la etiqueta `<abbr>` con el nombre completo en el atributo `title`. Los lectores de pantalla anuncian "Domingo, Lunes, Martes…" sin afectar el diseño visual.
+- **Contexto inmediato en los feriados (`aria-describedby`):** Las celdas de días feriados incluyen ahora el atributo `aria-describedby` apuntando al elemento de la lista que describe el feriado correspondiente. Al navegar la tabla celda por celda, el lector de pantalla anuncia automáticamente el nombre del feriado sin necesidad de activar el enlace.
+- **Limpieza de `tabindex="0"` innecesarios:** Se eliminó el atributo `tabindex="0"` de elementos `<ul>` y `<a>` que ya son interactivos de forma nativa o son texto plano, evitando interrupciones en el orden natural de navegación con la tecla Tab.
+
+### Mejoras de rendimiento y correcciones de bug
 
 - Se corrigió el bucle de `renderCalendar` de `for...in` a `for...of`, que hacía que `monthNumber` fuera un _string_ en lugar de un entero, impidiendo que se ejecutara el bloque de año bisiesto.
 - Se corrigió la declaración `const totalDaysOfMonth` en `drawCalendarMonth` que se intentaba reasignar para años bisiestos (error silencioso en modo no-estricto). Ahora el valor se calcula directamente al declarar la constante, y la condición de año bisiesto fue explícitamente parentizada para evitar ambigüedad de precedencia de operadores.
