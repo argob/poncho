@@ -297,8 +297,23 @@
       },
     
       {
+        "nombre": "archivo-comprimido",
+        "clase": "icono-arg-archivo-comprimido"
+      },
+    
+      {
         "nombre": "archivo-consulta",
         "clase": "icono-arg-archivo-consulta"
+      },
+    
+      {
+        "nombre": "archivo-documento",
+        "clase": "icono-arg-archivo-documento"
+      },
+    
+      {
+        "nombre": "archivo-planilla",
+        "clase": "icono-arg-archivo-planilla"
       },
     
       {
