@@ -297,8 +297,23 @@
       },
     
       {
+        "nombre": "archivo-comprimido",
+        "clase": "icono-arg-archivo-comprimido"
+      },
+    
+      {
         "nombre": "archivo-consulta",
         "clase": "icono-arg-archivo-consulta"
+      },
+    
+      {
+        "nombre": "archivo-documento",
+        "clase": "icono-arg-archivo-documento"
+      },
+    
+      {
+        "nombre": "archivo-planilla",
+        "clase": "icono-arg-archivo-planilla"
       },
     
       {
@@ -2522,6 +2537,11 @@
       },
     
       {
+        "nombre": "infraestructura",
+        "clase": "icono-arg-infraestructura"
+      },
+    
+      {
         "nombre": "ingenieria-sismica",
         "clase": "icono-arg-ingenieria-sismica"
       },
@@ -3032,6 +3052,11 @@
       },
     
       {
+        "nombre": "mineria",
+        "clase": "icono-arg-mineria"
+      },
+    
+      {
         "nombre": "mirarnos",
         "clase": "icono-arg-mirarnos"
       },
@@ -3524,6 +3549,11 @@
       {
         "nombre": "petroleo",
         "clase": "icono-arg-petroleo"
+      },
+    
+      {
+        "nombre": "petroleo-y-gas",
+        "clase": "icono-arg-petroleo-y-gas"
       },
     
       {
@@ -4139,6 +4169,11 @@
       {
         "nombre": "servidor",
         "clase": "icono-arg-servidor"
+      },
+    
+      {
+        "nombre": "siderurgia",
+        "clase": "icono-arg-siderurgia"
       },
     
       {

@@ -18265,8 +18265,9 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
   text-decoration: none;
   position: absolute;
   height: calc(100% - 2px);
+  width: calc(100% - 2px);
   border-radius: 6px;
-  aspect-ratio: 1;
+  aspect-ratio: auto;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
