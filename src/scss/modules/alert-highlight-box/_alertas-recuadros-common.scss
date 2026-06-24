@@ -5,6 +5,9 @@
 */
 .highlight-wrapper {
     container: sidebar / inline-size;
+    container-type: inline-size;
+    container-name: sidebar;
+    container: sidebar / inline-size;
     clear: both;
 }
 
