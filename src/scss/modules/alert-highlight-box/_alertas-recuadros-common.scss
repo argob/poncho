@@ -5,6 +5,9 @@
 */
 .highlight-wrapper {
     container: sidebar / inline-size;
+    container-type: inline-size;
+    container-name: sidebar;
+    container: sidebar / inline-size;
     clear: both;
 }
 
@@ -14,7 +17,7 @@
 }
 
 @container sidebar (width > 780px) {
-    #{$scopeAlert} {
+    #{$scopeAlert}, #{$recuadrosScope}  {
         box-sizing: border-box;
         //width: 66.66666667%;
         width: calc((100% / 3) * 2);
