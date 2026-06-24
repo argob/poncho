@@ -10760,6 +10760,9 @@ input[type=text]:-ms-input-placeholder {
 .alert:not(:has(.media-left)) {
   padding: var(--main-padding);
 }
+.alert p:empty {
+  display: none;
+}
 .alert .media {
   grid-template-columns: var(--media-grid-template-columns);
   display: grid;
@@ -11062,18 +11065,6 @@ input[type=text]:-ms-input-placeholder {
 }
 
 /* 
-Fix para evitar el overflow hidden 
-.media tiene un overflow hidden y la hoja de estilos se llama después que 
-poncho.min.css. 
-No se puede modificar el orden de las hojas de estilos, por lo que se hace 
-esta corrección para evitar que el recuadro se corte.
-*/
-.media:has(> .alert) .alert {
-  width: calc(100% - (var(--main-shadow-spread-size) + 2px));
-  margin-top: 4px;
-}
-
-/* 
     Container para el recuadro destacado. 
     Evita que el ancho supere un col-md-8 
 */
@@ -11117,6 +11108,9 @@ esta corrección para evitar que el recuadro se corte.
 }
 .highlight-box:not(:has(.media-left)) {
   padding: var(--main-padding);
+}
+.highlight-box p:empty {
+  display: none;
 }
 .highlight-box .media {
   grid-template-columns: var(--media-grid-template-columns);
