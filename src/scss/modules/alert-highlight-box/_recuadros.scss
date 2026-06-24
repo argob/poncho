@@ -158,24 +158,3 @@ esta corrección para evitar que el recuadro se corte.
 }
 
 
-/* 
-    Container para el recuadro destacado. 
-    Evita que el ancho supere un col-md-8 
-*/
-.highlight-wrapper {
-    container: sidebar / inline-size;
-    clear:both;
-}
-
-.highlight-wrapper.container-fluid > #{$recuadrosScope} {
-    width: 100%;
-}
-
-@container sidebar (width > 780px) {
-    #{$recuadrosScope} {
-        box-sizing: border-box;
-        //width: 66.66666667%;
-        width: calc( (100% / 3) * 2);
-        margin: auto;
-    }
-}
