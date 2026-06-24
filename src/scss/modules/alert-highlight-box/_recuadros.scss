@@ -51,7 +51,8 @@ $colorThemesRecuadro: (
     &:not(:has(.media-left)) {
         padding: var(--main-padding);
     }
-
+    // Si hay un p vacío lo ocultamos para evitar que se vea un espacio en blanco.
+    p:empty { display:none }
 
     // REDEFINIMOS MEDIA
     .media {
@@ -164,7 +165,6 @@ esta corrección para evitar que el recuadro se corte.
 .highlight-wrapper {
     container: sidebar / inline-size;
     clear:both;
-    
 }
 
 .highlight-wrapper.container-fluid > #{$recuadrosScope} {
