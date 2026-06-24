@@ -54,6 +54,9 @@ $colorThemesAlerts: (
         padding: var(--main-padding);
     }
 
+    // Si hay un p vacío lo ocultamos para evitar que se vea un espacio en blanco.
+    p:empty { display:none }
+
     // REDEFINIMOS MEDIA
     .media {
         grid-template-columns: var(--media-grid-template-columns);
@@ -148,17 +151,6 @@ $colorThemesAlerts: (
     }
 }
 
-/* 
-Fix para evitar el overflow hidden 
-.media tiene un overflow hidden y la hoja de estilos se llama después que 
-poncho.min.css. 
-No se puede modificar el orden de las hojas de estilos, por lo que se hace 
-esta corrección para evitar que el recuadro se corte.
-*/
-.media:has(> #{$scopeAlert}) #{$scopeAlert} {
-    width: calc(100% - (var(--main-shadow-spread-size) + 2px));
-    margin-top: 4px;
-}
 
 /* 
     Container para el recuadro destacado. 
