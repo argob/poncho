@@ -11064,6 +11064,10 @@ input[type=text]:-ms-input-placeholder {
   background-color: black;
 }
 
+.alert-dismissible .close {
+  right: 0px;
+}
+
 /**
  * RECUADROS
  */
