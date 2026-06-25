@@ -11064,28 +11064,6 @@ input[type=text]:-ms-input-placeholder {
   background-color: black;
 }
 
-/* 
-    Container para el recuadro destacado. 
-    Evita que el ancho supere un col-md-8 
-*/
-.highlight-wrapper {
-  container: sidebar/inline-size;
-  container-type: inline-size;
-  container-name: sidebar;
-  clear: both;
-}
-
-.highlight-wrapper.container-fluid > .alert {
-  width: 100%;
-}
-
-@container sidebar (width > 780px) {
-  .alert {
-    box-sizing: border-box;
-    width: 66.6666666667%;
-    margin: auto;
-  }
-}
 /**
  * RECUADROS
  */
@@ -11246,24 +11224,26 @@ esta corrección para evitar que el recuadro se corte.
 }
 
 /* 
-    Container para el recuadro destacado. 
+    Container para el recuadro destacado y alerta. 
     Evita que el ancho supere un col-md-8 
 */
 .highlight-wrapper {
-  container: sidebar/inline-size;
   container-type: inline-size;
   container-name: sidebar;
   clear: both;
 }
 
-.highlight-wrapper.container-fluid > .highlight-box {
+.highlight-wrapper.container-fluid > .highlight-box,
+.highlight-wrapper.container-fluid > .alert {
   width: 100%;
 }
 
 @container sidebar (width > 780px) {
-  .highlight-box {
+  .highlight-box,
+  .alert {
     box-sizing: border-box;
     width: 66.6666666667%;
+    max-width: 760px;
     margin: auto;
   }
 }
