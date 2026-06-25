@@ -11246,7 +11246,6 @@ esta corrección para evitar que el recuadro se corte.
   .highlight-box,
   .alert {
     box-sizing: border-box;
-    width: 66.6666666667%;
     max-width: 760px;
     margin: auto;
   }
