@@ -19,7 +19,7 @@
     #{$recuadrosScope},
     #{$scopeAlert} {
         box-sizing: border-box;
-        width: calc((100% / 3) * 2);
+        // width: calc((100% / 3) * 2);
         max-width: 760px;
         margin: auto;
     }
