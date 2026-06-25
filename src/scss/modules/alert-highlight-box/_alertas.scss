@@ -150,3 +150,8 @@ $colorThemesAlerts: (
         );
     }
 }
+
+// Para que el botón de cerrar quede alineado a la derecha.
+.alert-dismissible .close {
+    right: 0px;
+}
