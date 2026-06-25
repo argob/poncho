@@ -20,7 +20,8 @@
     #{$scopeAlert} {
         box-sizing: border-box;
         // width: calc((100% / 3) * 2);
-        max-width: 760px;
-        margin: auto;
+        max-width: 730px;
+        margin-right: auto;
+        margin-left: auto;
     }
 }
