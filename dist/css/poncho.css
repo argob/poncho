@@ -11246,8 +11246,9 @@ esta corrección para evitar que el recuadro se corte.
   .highlight-box,
   .alert {
     box-sizing: border-box;
-    max-width: 760px;
-    margin: auto;
+    max-width: 730px;
+    margin-right: auto;
+    margin-left: auto;
   }
 }
 .embed-responsive-1by1 {
