@@ -152,7 +152,7 @@ poncho.min.css.
 No se puede modificar el orden de las hojas de estilos, por lo que se hace 
 esta corrección para evitar que el recuadro se corte.
 */
-.media:has(> #{$recuadrosScope}) #{$recuadrosScope} {
+.media:has(#{$recuadrosScope}) #{$recuadrosScope} {
     width:calc(100% - (var(--main-shadow-spread-size) + 2px));
     margin-top: 4px;
 }
