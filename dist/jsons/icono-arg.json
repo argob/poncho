@@ -1272,6 +1272,11 @@
       },
     
       {
+        "nombre": "comite",
+        "clase": "icono-arg-comite"
+      },
+    
+      {
         "nombre": "componentes",
         "clase": "icono-arg-componentes"
       },
