@@ -1,0 +1,55 @@
+{
+    "es": {
+        "holidays": [
+            { "date": "1/01/2026", "label": "Año Nuevo.", "type": "inamovible" },
+            { "date": "16/02/2026", "label": "Carnaval", "type": "inamovible" },
+            { "date": "17/02/2026", "label": "Carnaval", "type": "inamovible" },
+            { "date": "20/03/2026", "label": "Fiesta de la Ruptura del Ayuno del Sagrado Mes de Ramadán (Id al-Fitr) (c)", "type": "no_laborable" },
+            { "date": "23/03/2026", "label": "Día no laborable con fines turísticos", "type": "turistico" },
+            { "date": "24/03/2026", "label": "Día Nacional de la Memoria por la Verdad y la Justicia", "type": "inamovible" },
+            { "date": "02/04/2026", "label": "Día del Veterano y de los Caídos en la Guerra de Malvinas", "type": "inamovible" },
+            { "date": "02/04/2026", "label": "Jueves Santo Festividad Cristiana", "type": "no_laborable" },
+            { "date": "03/04/2026", "label": "Viernes Santo Festividad Cristiana", "type": "inamovible" },
+            { "date": "02/04/2026", "label": "Primeros dos días de la Pascua Judía (b)", "type": "no_laborable" },
+            { "date": "03/04/2026", "label": "Primeros dos días de la Pascua Judía (b)", "type": "no_laborable" },
+            { "date": "08/04/2026", "label": "Últimos dos días de la Pascua Judía (b)", "type": "no_laborable" },
+            { "date": "09/04/2026", "label": "Últimos dos días de la Pascua Judía (b)", "type": "no_laborable" },
+            { "date": "24/04/2026", "label": "Día de acción por la tolerancia y el respeto entre los pueblos (a)", "type": "no_laborable" },
+            { "date": "01/05/2026", "label": "Día del Trabajador", "type": "inamovible" },
+            { "date": "25/05/2026", "label": "Día de la Revolución de Mayo", "type": "inamovible" },
+            { "date": "27/05/2026", "label": "Fiesta del Sacrificio (c)", "type": "no_laborable" },
+            { "date": "15/06/2026", "label": "Paso a la Inmortalidad del Gral. Don Martín Miguel de Güemes (17/6)", "type": "trasladable" },
+            { "date": "17/06/2026", "label": "Año Nuevo Islámico (c)", "type": "no_laborable" },
+            { "date": "20/06/2026", "label": "Paso a la Inmortalidad del Gral. Manuel Belgrano", "type": "inamovible" },
+            { "date": "09/07/2026", "label": "Día de la Independencia", "type": "inamovible" },
+            { "date": "10/07/2026", "label": "Día no laborable con fines turísticos", "type": "turistico" },
+            { "date": "17/08/2026", "label": "Paso a la Inmortalidad del Gral. José de San Martín", "type": "trasladable" },
+            { "date": "12/09/2026", "label": "Año Nuevo Judío (b)", "type": "no_laborable" },
+            { "date": "13/09/2026", "label": "Año Nuevo Judío (b)", "type": "no_laborable" },
+            { "date": "21/09/2026", "label": "Día del Perdón (b)", "type": "no_laborable" },
+            { "date": "12/10/2026", "label": "Día de la Raza", "type": "trasladable" },
+            { "date": "23/11/2026", "label": "Día de la Soberanía Nacional (20/11)", "type": "trasladable" },
+            { "date": "07/12/2026", "label": "Día no laborable con fines turísticos", "type": "turistico" },
+            { "date": "08/12/2026", "label": "Inmaculada Concepción de María", "type": "inamovible" },
+            { "date": "25/12/2026", "label": "Navidad", "type": "inamovible" },
+            { "date": "01/01/2027", "label": "Año nuevo", "type": "inamovible" }
+        ],
+        "legalInfo": [
+            {   
+                "order": 3,
+                "name": "Feriados trasladables",
+                "description": "Los feriados nacionales cuyas fechas coincidan con los días martes y miércoles serán trasladados al día lunes anterior. Los que coincidan con los días jueves y viernes serán trasladados al día lunes siguiente. Art. 6 de la Ley 27.399.\n\nLos feriados nacionales cuyas fechas coincidan con un día sábado o domingo podrán trasladarse al lunes inmediato posterior o al último viernes inmediato anterior, según lo determine la Autoridad de Aplicación. Art. 1 del Decreto 614/2025."
+            },
+            {
+                "order": 1,
+                "name": "Feriados Nacionales",
+                "description": "Feriados Nacionales que se rigen por el la Ley de Establecimiento de Feriados y Fines de semanas largos Nº 27.399 Publicada en el Boletín Oficial del 18/10/2017."
+            },
+            {
+                "order": 2,
+                "name": "Días no laborables",
+                "description": "a. Ley Nº 26.199 dictada en conmemoración del genocidio sufrido por el pueblo armenio. Los empleados y funcionarios de organismos públicos y los alumnos de origen armenio quedan autorizados a disponer libremente de los días 24 de abril de todos los años para poder asistir y participar de las actividades que se realicen en conmemoración de la tragedia que afectó a su comunidad. Se invita a los gobiernos provinciales a adherir a las disposiciones de la presente ley.\n\nb. Sólo para habitantes que profesen la Religión Judía. Dispuesto por el Art. 2 de la Ley 27.399.\n- Pesaj primeros días desde el miércoles 01/04/2026 al atardecer hasta el viernes 03/04/2026 al atardecer\n- Pesaj últimos días desde el martes 07/04/2026 al atardecer hasta el jueves 09/04/2026 al atardecer\n- Rosh Hashaná desde el viernes 11/09/2026 al atardecer hasta el domingo 13/09/2026 al atardecer\n- Iom Kipur desde el domingo 20/09/2026 al atardecer hasta el lunes 21/09/2026 al atardecer\n\nc. Solo para los habitantes que profesen la Religión Islámica. Dispuesto por el Articulo 3 de la Ley N° 27.399.\n\nFechas aproximadas. Se rigen por el calendario lunar.\n\nd. Los fines de semana con fines turísticos conforme lo prescriptos por el art. 7 de la Ley N° 27.399, Resolución 164/2025."
+            }
+        ]
+    }
+}
