@@ -42,7 +42,7 @@
         Ver calendarios históricos
         <span class="caret"></span>
     </button>
-    <ul class="dropdown-menu js-dropdown-years-menu" aria-labelledby="share-table-data">
+    <ul class="dropdown-menu js-dropdown-years-menu holidays-dropdown-menu" aria-labelledby="share-table-data">
         <!-- OPCIONES -->
     </ul>
 </div>
@@ -95,7 +95,10 @@
                         data-text-en="For the next holiday, which is"
                         data-text-es="para el próximo feriado que es el"></span>
                     <span class="br-lg"></span>
-                    <span id="js-proximo"></span><span class="sr-only">.</span>
+                    <span 
+                        id="js-proximo" 
+                        style="text-transform: lowercase;"></span><span 
+                        class="sr-only">.</span>
                 </span>
                 <span
                     class="lead text-arg-secundario display-block js-detalle">
@@ -225,7 +228,7 @@
 <template id="calendar-not-found">
     <div class="highlight-wrapper">
         <div 
-            class="alert-highlight-box alert-highlight-box-warning" 
+            class="alert alert-warning" 
             role="complementary">
             <div class="media">
                 <div class="media-left">

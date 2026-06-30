@@ -3,6 +3,25 @@ const ALLOWED_YEARS = Array.from(
     {length: HOLIDAY_CALENDAR_SETTINGS.years_limit}, 
     (_, i) => CURRENT_YEAR - i);
 
+
+function appendAlternateJsonLink(url) {
+    if (typeof url !== 'string') return;
+    let parsed;
+    try {
+        parsed = new URL(url, window.location.origin);
+    } catch {
+        return;
+    }
+    if (!['https:', 'http:'].includes(parsed.protocol)) return;
+
+    const link = document.createElement('link');
+    link.rel = 'alternate';
+    link.type = 'application/json';
+    link.href = parsed.href;
+    document.head.appendChild(link);
+}
+
+
 /**
  * Formatea un valor de fecha al formato DD/MM/AAAA en español.
  *
@@ -78,7 +97,9 @@ const _markdownEnable = () => {
  * @param {string} [lang="es"] - Idioma activo (reservado para uso futuro).
  */
 function legalInfo(data, lang="es"){
-    if(!data?.length) return;
+    if(!data?.length) {
+        return;
+    };
     const container = document.querySelector(".js-legal-info-container");
     if(!container){
         console.warn("no se puede encontrar el contenedor");
@@ -93,18 +114,9 @@ function legalInfo(data, lang="es"){
     }
 
     const converter = new showdown.Converter(this.markdown_options);
-
-    const sorted = [...data].sort((a, b) => {
-        const aHasOrder = "order" in a;
-        const bHasOrder = "order" in b;
-        if (aHasOrder && bHasOrder) return a.order - b.order;
-        if (aHasOrder) return -1;
-        if (bHasOrder) return 1;
-        return 0;
-    });
-
+    
     const fragment = document.createDocumentFragment();
-    for(const {name, description} of sorted){
+    for(const [name, description] of data){
         const heading = document.createElement("h2");
         heading.classList.add("h4");
         heading.textContent = name;
@@ -123,11 +135,11 @@ function setDrowdownYearsMenu(){
     const combobox = document.querySelectorAll(".js-dropdown-years-menu");
 
     combobox.forEach(element => {
-        console.log(ALLOWED_YEARS)
+
         for(let year of ALLOWED_YEARS){
             const li = document.createElement("li");
             const a = document.createElement("a");
-            a.href=`./?year=${year}`;
+            a.href=`${ location.pathname }?year=${year}`;
             a.textContent = HOLIDAY_CALENDAR_SETTINGS.dropdown_label.replace(/\{\{year\}\}/g, year);
             li.appendChild(a);
             element.appendChild(li);
@@ -237,6 +249,7 @@ async function initCalendar(year, lang) {
                 .replaceAll(/\{\{\year}\}/g, year)
                 .replaceAll(/\{\{\lang}\}/g, lang)
         geoJsonData = await fetch_json(url);
+        appendAlternateJsonLink(url);
     } catch (error) {
         console.error("Error al cargar el calendario:", error);
         viewSwitcher(false);
@@ -245,6 +258,7 @@ async function initCalendar(year, lang) {
             lang, 
             message: `Error al cargar el calendario ${year}.`
         });
+    
         return;
     }
 
@@ -275,7 +289,7 @@ async function initCalendar(year, lang) {
         });
         return;
     }
-    console.log(calendarData)
+
     legalInfo( geoJsonData?.subjectOf, lang );
     calendar.render({
         calendarYear: year,
@@ -289,6 +303,7 @@ async function initCalendar(year, lang) {
 
 
 document.addEventListener("DOMContentLoaded", function() {
+    headStyle('id', `ul.dropdown-menu.holidays-dropdown-menu li a:hover { color: var(--arg-tomate) !important;}.dropdown #share-table-data  {color:var(--arg-secundario) !important}`);
     const url = new URL(window.location.href);
     const year = getYearFromUrl(url);
     const lang = getLangFromUrl(url);
