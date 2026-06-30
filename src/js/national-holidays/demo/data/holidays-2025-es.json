@@ -1,0 +1,652 @@
+{
+    "@context": {
+        "@vocab": "https://schema.org/",
+        "@language": "es"
+    },
+    "@type": "Dataset",
+    "name": "Feriados Nacionales 2025",
+    "description": "Calendario de Feriados Nacionales 2025",
+    "dateModified": "2026-05-13T20:41:11Z",
+    "temporalCoverage": "2025",
+    "inLanguage": "es",
+    "additionalProperty": {
+        "@type": "PropertyValue",
+        "name": "timezone",
+        "value": "America/Argentina/Buenos_Aires"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Ministerio del Interior"
+    },
+    "subjectOf": [
+        {
+            "@type": "CreativeWork",
+            "name": "Feriados trasladables",
+            "description": "Los feriados nacionales cuyas fechas coincidan con los días martes y miércoles serán trasladados al día lunes anterior. Los que coincidan con los días jueves y viernes serán trasladados al día lunes siguiente. Art. 6 de la [Ley 27.399](https://www.argentina.gob.ar/normativa/nacional/ley-27399-281835)\n\nLos feriados nacionales cuyas fechas coincidan con un día sábado o domingo podrán trasladarse al lunes inmediato posterior o al último viernes inmediato anterior, según lo determine la Autoridad de Aplicación. Art. 1 del [Decreto 614/2025](https://www.argentina.gob.ar/normativa/nacional/decreto-614-2025-416911/texto)"
+        },
+        {
+            "@type": "CreativeWork",
+            "name": "Feriados Nacionales",
+            "description": "Feriados Nacionales que se rigen por el la Ley de Establecimiento de Feriados y Fines de semanas largos Nº 27.399 Publicada en el Boletín Oficial del 18/10/2017."
+        },
+        {
+            "@type": "CreativeWork",
+            "name": "Días no laborables",
+            "description": "a. [Ley Nº 26.199](https://www.argentina.gob.ar/normativa/nacional/ley-26199-124099) dictada en conmemoración del genocidio sufrido por el pueblo armenio. Los empleados y funcionarios de organismos públicos y los alumnos de origen armenio quedan autorizados a disponer libremente de los días 24 de abril de todos los años para poder asistir y participar de las actividades que se realicen en conmemoración de la tragedia que afectó a su comunidad. Se invita a los gobiernos provinciales a adherir a las disposiciones de la presente ley.\n\nb. Sólo para habitantes que profesen la Religión Judía. Dispuesto por el Art. 2 de la [Ley 27.399](https://www.argentina.gob.ar/normativa/nacional/ley-27399-281835).\n-   Pesaj primeros días desde el sábado 12/04/2025 al atardecer hasta el lunes 14/04/2025 al atardecer\n-   Pesaj últimos días desde el viernes 18/04/2025 al atardecer hasta el domingo 20/04/2025 al atardecer\n-   Rosh Hashaná desde el lunes 22/09/2025 al atardecer hasta el miércoles 24/09/2025 al atardecer\n-   Iom Kipur desde el miércoles 01/10/2025 al atardecer hasta el jueves 02/10/2025 al atardecer\n\nc. Solo para los habitantes que profesen la Religión Islámica. Dispuesto por el Articulo 3 de la [Ley N° 27.399](https://www.argentina.gob.ar/normativa/nacional/ley-27399-281835).\n    \nFechas aproximadas. Se rigen por el calendario lunar.\n    \nd. Los fines de semana con fines turísticos conforme lo prescriptos por el art. 7 de la [Ley N° 27.399](https://www.argentina.gob.ar/normativa/nacional/ley-27399-281835), [Decreto 1027/2024](https://www.boletinoficial.gob.ar/detalleAviso/primera/317188/20241121)."
+        }
+    ],
+    "mainEntity": {
+        "@type": "ItemList",
+        "numberOfItems": 32,
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "item": {
+                    "@type": "Event",
+                    "name": "Año Nuevo.",
+                    "startDate": "2025-01-01",
+                    "additionalProperty": {
+                        "@type": "PropertyValue",
+                        "name": "tipo",
+                        "value": "inamovible"
+                    },
+                    "description": "Feriado inamovible",
+                    "location": {
+                        "@type": "Country",
+                        "name": "Argentina"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "item": {
+                    "@type": "Event",
+                    "name": "Carnaval",
+                    "startDate": "2025-03-03",
+                    "additionalProperty": {
+                        "@type": "PropertyValue",
+                        "name": "tipo",
+                        "value": "inamovible"
+                    },
+                    "description": "Feriado inamovible",
+                    "location": {
+                        "@type": "Country",
+                        "name": "Argentina"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "item": {
+                    "@type": "Event",
+                    "name": "Carnaval",
+                    "startDate": "2025-04-03",
+                    "additionalProperty": {
+                        "@type": "PropertyValue",
+                        "name": "tipo",
+                        "value": "inamovible"
+                    },
+                    "description": "Feriado inamovible",
+                    "location": {
+                        "@type": "Country",
+                        "name": "Argentina"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 4,
+                "item": {
+                    "@type": "Event",
+                    "name": "Día Nacional de la Memoria por la Verdad y la Justicia",
+                    "startDate": "2025-03-24",
+                    "additionalProperty": {
+                        "@type": "PropertyValue",
+                        "name": "tipo",
+                        "value": "inamovible"
+                    },
+                    "description": "Feriado inamovible",
+                    "location": {
+                        "@type": "Country",
+                        "name": "Argentina"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 5,
+                "item": {
+                    "@type": "Event",
+                    "name": "Día del Veterano y de los Caídos en la Guerra de Malvinas",
+                    "startDate": "2025-02-04",
+                    "additionalProperty": {
+                        "@type": "PropertyValue",
+                        "name": "tipo",
+                        "value": "inamovible"
+                    },
+                    "description": "Feriado inamovible",
+                    "location": {
+                        "@type": "Country",
+                        "name": "Argentina"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 6,
+                "item": {
+                    "@type": "Event",
+                    "name": "Fiesta de la Ruptura del Ayuno del Sagrado Mes de Ramadán (Id al-Fitr) (c)",
+                    "startDate": "2025-03-31",
+                    "additionalProperty": {
+                        "@type": "PropertyValue",
+                        "name": "tipo",
+                        "value": "no_laborable"
+                    },
+                    "description": "Día no laborable",
+                    "location": {
+                        "@type": "Country",
+                        "name": "Argentina"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 7,
+                "item": {
+                    "@type": "Event",
+                    "name": "Primeros dos días de la Pascua Judía (b)",
+                    "startDate": "2025-04-13",
+                    "additionalProperty": {
+                        "@type": "PropertyValue",
+                        "name": "tipo",
+                        "value": "no_laborable"
+                    },
+                    "description": "Día no laborable",
+                    "location": {
+                        "@type": "Country",
+                        "name": "Argentina"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 8,
+                "item": {
+                    "@type": "Event",
+                    "name": "Primeros dos días de la Pascua Judía (b)",
+                    "startDate": "2025-04-14",
+                    "additionalProperty": {
+                        "@type": "PropertyValue",
+                        "name": "tipo",
+                        "value": "no_laborable"
+                    },
+                    "description": "Día no laborable",
+                    "location": {
+                        "@type": "Country",
+                        "name": "Argentina"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 9,
+                "item": {
+                    "@type": "Event",
+                    "name": "Jueves Santo Festividad Cristiana",
+                    "startDate": "2025-04-17",
+                    "additionalProperty": {
+                        "@type": "PropertyValue",
+                        "name": "tipo",
+                        "value": "no_laborable"
+                    },
+                    "description": "Día no laborable",
+                    "location": {
+                        "@type": "Country",
+                        "name": "Argentina"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 10,
+                "item": {
+                    "@type": "Event",
+                    "name": "Viernes Santo Festividad Cristiana",
+                    "startDate": "2025-04-18",
+                    "additionalProperty": {
+                        "@type": "PropertyValue",
+                        "name": "tipo",
+                        "value": "inamovible"
+                    },
+                    "description": "Feriado inamovible",
+                    "location": {
+                        "@type": "Country",
+                        "name": "Argentina"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 11,
+                "item": {
+                    "@type": "Event",
+                    "name": "Últimos dos días de la Pascua Judía (b)",
+                    "startDate": "2025-04-19",
+                    "additionalProperty": {
+                        "@type": "PropertyValue",
+                        "name": "tipo",
+                        "value": "no_laborable"
+                    },
+                    "description": "Día no laborable",
+                    "location": {
+                        "@type": "Country",
+                        "name": "Argentina"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 12,
+                "item": {
+                    "@type": "Event",
+                    "name": "Últimos dos días de la Pascua Judía (b)",
+                    "startDate": "2025-04-20",
+                    "additionalProperty": {
+                        "@type": "PropertyValue",
+                        "name": "tipo",
+                        "value": "no_laborable"
+                    },
+                    "description": "Día no laborable",
+                    "location": {
+                        "@type": "Country",
+                        "name": "Argentina"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 13,
+                "item": {
+                    "@type": "Event",
+                    "name": "Día de acción por la tolerancia y el respeto entre los pueblos (a)",
+                    "startDate": "2025-04-24",
+                    "additionalProperty": {
+                        "@type": "PropertyValue",
+                        "name": "tipo",
+                        "value": "no_laborable"
+                    },
+                    "description": "Día no laborable",
+                    "location": {
+                        "@type": "Country",
+                        "name": "Argentina"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 14,
+                "item": {
+                    "@type": "Event",
+                    "name": "Día del Trabajador",
+                    "startDate": "2025-01-05",
+                    "additionalProperty": {
+                        "@type": "PropertyValue",
+                        "name": "tipo",
+                        "value": "inamovible"
+                    },
+                    "description": "Feriado inamovible",
+                    "location": {
+                        "@type": "Country",
+                        "name": "Argentina"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 15,
+                "item": {
+                    "@type": "Event",
+                    "name": "Día no laborable con fines turísticos",
+                    "startDate": "2025-05-05",
+                    "additionalProperty": {
+                        "@type": "PropertyValue",
+                        "name": "tipo",
+                        "value": "turistico"
+                    },
+                    "description": "Feriado turístico",
+                    "location": {
+                        "@type": "Country",
+                        "name": "Argentina"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 16,
+                "item": {
+                    "@type": "Event",
+                    "name": "Día de la Revolución de Mayo",
+                    "startDate": "2025-05-25",
+                    "additionalProperty": {
+                        "@type": "PropertyValue",
+                        "name": "tipo",
+                        "value": "inamovible"
+                    },
+                    "description": "Feriado inamovible",
+                    "location": {
+                        "@type": "Country",
+                        "name": "Argentina"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 17,
+                "item": {
+                    "@type": "Event",
+                    "name": "Fiesta del Sacrificio (c)",
+                    "startDate": "2025-10-06",
+                    "additionalProperty": {
+                        "@type": "PropertyValue",
+                        "name": "tipo",
+                        "value": "no_laborable"
+                    },
+                    "description": "Día no laborable",
+                    "location": {
+                        "@type": "Country",
+                        "name": "Argentina"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 18,
+                "item": {
+                    "@type": "Event",
+                    "name": "Paso a la Inmortalidad del Gral. Don Martín Miguel de Güemes",
+                    "startDate": "2025-06-16",
+                    "additionalProperty": {
+                        "@type": "PropertyValue",
+                        "name": "tipo",
+                        "value": "trasladable"
+                    },
+                    "description": "Feriado trasladable",
+                    "location": {
+                        "@type": "Country",
+                        "name": "Argentina"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 19,
+                "item": {
+                    "@type": "Event",
+                    "name": "Paso a la Inmortalidad del Gral. Manuel Belgrano",
+                    "startDate": "2025-06-20",
+                    "additionalProperty": {
+                        "@type": "PropertyValue",
+                        "name": "tipo",
+                        "value": "inamovible"
+                    },
+                    "description": "Feriado inamovible",
+                    "location": {
+                        "@type": "Country",
+                        "name": "Argentina"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 20,
+                "item": {
+                    "@type": "Event",
+                    "name": "Año Nuevo Islámico (c)",
+                    "startDate": "2025-06-26",
+                    "additionalProperty": {
+                        "@type": "PropertyValue",
+                        "name": "tipo",
+                        "value": "no_laborable"
+                    },
+                    "description": "Día no laborable",
+                    "location": {
+                        "@type": "Country",
+                        "name": "Argentina"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 21,
+                "item": {
+                    "@type": "Event",
+                    "name": "Día de la Independencia",
+                    "startDate": "2025-09-07",
+                    "additionalProperty": {
+                        "@type": "PropertyValue",
+                        "name": "tipo",
+                        "value": "inamovible"
+                    },
+                    "description": "Feriado inamovible",
+                    "location": {
+                        "@type": "Country",
+                        "name": "Argentina"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 22,
+                "item": {
+                    "@type": "Event",
+                    "name": "Día no laborable con fines turísticos",
+                    "startDate": "2025-08-15",
+                    "additionalProperty": {
+                        "@type": "PropertyValue",
+                        "name": "tipo",
+                        "value": "turistico"
+                    },
+                    "description": "Feriado turístico",
+                    "location": {
+                        "@type": "Country",
+                        "name": "Argentina"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 23,
+                "item": {
+                    "@type": "Event",
+                    "name": "Paso a la Inmortalidad del Gral. José de San Martín",
+                    "startDate": "2025-08-17",
+                    "additionalProperty": {
+                        "@type": "PropertyValue",
+                        "name": "tipo",
+                        "value": "trasladable"
+                    },
+                    "description": "Feriado trasladable",
+                    "location": {
+                        "@type": "Country",
+                        "name": "Argentina"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 24,
+                "item": {
+                    "@type": "Event",
+                    "name": "Año Nuevo Judío (b)",
+                    "startDate": "2025-09-23",
+                    "additionalProperty": {
+                        "@type": "PropertyValue",
+                        "name": "tipo",
+                        "value": "no_laborable"
+                    },
+                    "description": "Día no laborable",
+                    "location": {
+                        "@type": "Country",
+                        "name": "Argentina"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 25,
+                "item": {
+                    "@type": "Event",
+                    "name": "Año Nuevo Judío (b)",
+                    "startDate": "2025-09-24",
+                    "additionalProperty": {
+                        "@type": "PropertyValue",
+                        "name": "tipo",
+                        "value": "no_laborable"
+                    },
+                    "description": "Día no laborable",
+                    "location": {
+                        "@type": "Country",
+                        "name": "Argentina"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 26,
+                "item": {
+                    "@type": "Event",
+                    "name": "Día del Perdón (b)",
+                    "startDate": "2025-02-10",
+                    "additionalProperty": {
+                        "@type": "PropertyValue",
+                        "name": "tipo",
+                        "value": "no_laborable"
+                    },
+                    "description": "Día no laborable",
+                    "location": {
+                        "@type": "Country",
+                        "name": "Argentina"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 27,
+                "item": {
+                    "@type": "Event",
+                    "name": "Día de la Raza",
+                    "startDate": "2025-12-10",
+                    "additionalProperty": {
+                        "@type": "PropertyValue",
+                        "name": "tipo",
+                        "value": "trasladable"
+                    },
+                    "description": "Feriado trasladable",
+                    "location": {
+                        "@type": "Country",
+                        "name": "Argentina"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 28,
+                "item": {
+                    "@type": "Event",
+                    "name": "Día no laborable con fines turísticos",
+                    "startDate": "2025-11-21",
+                    "additionalProperty": {
+                        "@type": "PropertyValue",
+                        "name": "tipo",
+                        "value": "turistico"
+                    },
+                    "description": "Feriado turístico",
+                    "location": {
+                        "@type": "Country",
+                        "name": "Argentina"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 29,
+                "item": {
+                    "@type": "Event",
+                    "name": "Día de la Soberanía Nacional (20/11)",
+                    "startDate": "2025-11-24",
+                    "additionalProperty": {
+                        "@type": "PropertyValue",
+                        "name": "tipo",
+                        "value": "trasladable"
+                    },
+                    "description": "Feriado trasladable",
+                    "location": {
+                        "@type": "Country",
+                        "name": "Argentina"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 30,
+                "item": {
+                    "@type": "Event",
+                    "name": "Inmaculada Concepción de María",
+                    "startDate": "2025-08-12",
+                    "additionalProperty": {
+                        "@type": "PropertyValue",
+                        "name": "tipo",
+                        "value": "inamovible"
+                    },
+                    "description": "Feriado inamovible",
+                    "location": {
+                        "@type": "Country",
+                        "name": "Argentina"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 31,
+                "item": {
+                    "@type": "Event",
+                    "name": "Navidad",
+                    "startDate": "2025-12-25",
+                    "additionalProperty": {
+                        "@type": "PropertyValue",
+                        "name": "tipo",
+                        "value": "inamovible"
+                    },
+                    "description": "Feriado inamovible",
+                    "location": {
+                        "@type": "Country",
+                        "name": "Argentina"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 32,
+                "item": {
+                    "@type": "Event",
+                    "name": "Año nuevo",
+                    "startDate": "2026-01-01",
+                    "additionalProperty": {
+                        "@type": "PropertyValue",
+                        "name": "tipo",
+                        "value": "inamovible"
+                    },
+                    "description": "Feriado inamovible",
+                    "location": {
+                        "@type": "Country",
+                        "name": "Argentina"
+                    }
+                }
+            }
+        ]
+    }
+}

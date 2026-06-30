@@ -368,7 +368,9 @@ const calendar = {
         // Validación y obtención del template
         this.template = document.querySelector(opts.templateId);
         if(!this.template){
-            throw new Error(`No se encuentra la plantilla con id: ${opts.templateId}`);
+            throw new Error(
+                `No se encuentra la plantilla con id: ${opts.templateId}`
+            );
         }
 
         // Validación y preparación de markers
@@ -376,8 +378,21 @@ const calendar = {
         this.inputMarkers = this.isMultiLang(opts.markers)
             ? opts.markers[this.ln]
             : opts.markers[0];
-        this.inputMarkers.forEach(entry => this.isValidEntry(entry));
-        this.markers = this.orderByDate(this.inputMarkers);
+
+        const _markers = Object.prototype.hasOwnProperty.call(
+            this.inputMarkers, "holidays") 
+            ? this.inputMarkers.holidays 
+            : this.inputMarkers;
+
+        if(!Array.isArray(_markers) || !_markers.length){
+            throw new Error(
+                "El listado de feriados está vacío o "
+                + "tiene un formato incorrecto."
+            );
+        }
+
+        _markers.forEach(entry => this.isValidEntry(entry));
+        this.markers = this.orderByDate(_markers);
 
         // Renderizado del calendario
         this.daysLeft();
