@@ -2,14 +2,34 @@
  * Estilos para el calendario de feriados nacionales.
  *
  * @summary Refactor de los estilos para el calendario. Con este nuevo
- * abordaje se soluciona la altura de la caja de cada mes, optimizando 
+ * abordaje se soluciona la altura de la caja de cada mes, optimizando
  * cada línea.
  *
  * @author Agustín Bouillet <bouilleta@jefatura.gob.ar>
  */
-.national-holidays {
-    --icon-universal-access: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><path d="M0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm161.5-86.1c-12.2-5.2-26.3 .4-31.5 12.6s.4 26.3 12.6 31.5l11.9 5.1c17.3 7.4 35.2 12.9 53.6 16.3v50.1c0 4.3-.7 8.6-2.1 12.6l-28.7 86.1c-4.2 12.6 2.6 26.2 15.2 30.4s26.2-2.6 30.4-15.2l24.4-73.2c1.3-3.8 4.8-6.4 8.8-6.4s7.6 2.6 8.8 6.4l24.4 73.2c4.2 12.6 17.8 19.4 30.4 15.2s19.4-17.8 15.2-30.4l-28.7-86.1c-1.4-4.1-2.1-8.3-2.1-12.6V235.5c18.4-3.5 36.3-8.9 53.6-16.3l11.9-5.1c12.2-5.2 17.8-19.3 12.6-31.5s-19.3-17.8-31.5-12.6L338.7 175c-26.1 11.2-54.2 17-82.7 17s-56.5-5.8-82.7-17l-11.9-5.1zM256 160a40 40 0 1 0 0-80 40 40 0 1 0 0 80z"/></svg>');
 
+/**
+ * Fija el color de texto en todos los estados de interacción, evitando
+ * que el navegador o Bootstrap lo sobreescriban en hover/focus/active.
+ *
+ * @param {color} $color Color a mantener en los estados interactivos.
+ */
+@mixin interaction-color($color) {
+    &:hover,
+    &:focus-within,
+    &:focus,
+    &:active,
+    &:active:focus {
+        color: $color;
+    }
+}
+
+.national-holidays {
+    --icon-universal-access: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgNTEyIDUxMiI+PHBhdGggZD0iTTAgMjU2YTI1NiAyNTYgMCAxIDEgNTEyIDBBMjU2IDI1NiAwIDEgMSAwIDI1NnptMTYxLjUtODYuMWMtMTIuMi01LjItMjYuMyAuNC0zMS41IDEyLjZzLjQgMjYuMyAxMi42IDMxLjVsMTEuOSA1LjFjMTcuMyA3LjQgMzUuMiAxMi45IDUzLjYgMTYuM3Y1MC4xYzAgNC4zLS43IDguNi0yLjEgMTIuNmwtMjguNyA4Ni4xYy00LjIgMTIuNiAyLjYgMjYuMiAxNS4yIDMwLjRzMjYuMi0yLjYgMzAuNC0xNS4ybDI0LjQtNzMuMmMxLjMtMy44IDQuOC02LjQgOC44LTYuNHM3LjYgMi42IDguOCA2LjRsMjQuNCA3My4yYzQuMiAxMi42IDE3LjggMTkuNCAzMC40IDE1LjJzMTkuNC0xNy44IDE1LjItMzAuNGwtMjguNy04Ni4xYy0xLjQtNC4xLTIuMS04LjMtMi4xLTEyLjZWMjM1LjVjMTguNC0zLjUgMzYuMy04LjkgNTMuNi0xNi4zbDExLjktNS4xYzEyLjItNS4yIDE3LjgtMTkuMyAxMi42LTMxLjVzLTE5LjMtMTcuOC0zMS41LTEyLjZMMzM4LjcgMTc1Yy0yNi4xIDExLjItNTQuMiAxNy04Mi43IDE3cy01Ni41LTUuOC04Mi43LTE3bC0xMS45LTUuMXpNMjU2IDE2MGE0MCA0MCAwIDEgMCAwLTgwIDQwIDQwIDAgMSAwIDAgODB6Ii8+PC9zdmc+');
+
+    .display-block {
+        display: block;
+    }
 
 
     .calendar,
@@ -26,37 +46,95 @@
         clear: both;
     }
 
+    .month table td {
+        border-color: transparent
+    }
+
+    .month table {
+        table-layout: fixed;
+    }
+
+
+    .calendar__holiday-td {
+        position: relative;
+    }
+
+    .calendar__holiday-td mark {
+        background: transparent;
+
+        position: absolute;
+        width: 100%;
+        height: 100%;
+
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    a.calendar__holiday {
+        font-weight: 600;
+        text-decoration: none;
+        position: absolute;
+        height: calc(100% - 2px);
+        width: calc(100% - 2px);
+        border-radius: 6px;
+        aspect-ratio: auto;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: .15s;
+        border: 3px solid transparent;
+    }
+
+    .calendar__holiday:focus,
+    .calendar__holiday:focus-within,
+    .calendar__holiday:hover {
+        outline: none;
+        border: 3px solid var(--arg-amarillo) !important;
+        text-decoration: none;
+        box-shadow: 0 2px 3px rgb(0 0 0 / .1);
+    }
+
     .table {
         border-bottom: 1px solid #ddd
     }
 
+    /* Colors */
     .bg-transparent {
         background-color: transparent !important;
         color: inherit;
     }
 
-    .display-block {
-        display: block;
-    }
-
-    /* Colors */
     .bg-success {
         color: white;
+        @include interaction-color(white);
     }
 
     .bg-nl {
         background-color: #c1c1c1;
+        color: black;
+        @include interaction-color(black);
     }
 
     .bg-turistico {
-        background-color: var(--arg-uva, #6a1b99);
+        background-color: var(--arg-uva);
         color: white;
-
-        a {
-            color: white
-        }
+        @include interaction-color(white);
     }
 
+    .bg-primary {
+        color: white;
+        @include interaction-color(white);
+    }
+
+    .bg-turistico,
     .bg-success,
     .bg-primary,
     .bg-nl {
@@ -68,9 +146,10 @@
     }
 
     .text-turistico {
-        color: var(--arg-uva, #6a1b99);
+        color: var(--arg-uva);
     }
 
+    /* Cuenta regresiva */
     .conteo-regresivo-dias {
         font-size: 70px;
         font-weight: 600;
@@ -79,8 +158,6 @@
         gap: 10px;
         margin: 0px;
     }
-
-
 
     .nh-icon {
         display: inline-block;
@@ -99,7 +176,7 @@
         &.universal-access {
             -webkit-mask-image: var(--icon-universal-access);
             mask-image: var(--icon-universal-access);
-            background-color: var(--arg-azul-200, dodgerblue);
+            background-color: var(--arg-cielo, dodgerblue);
         }
     }
 

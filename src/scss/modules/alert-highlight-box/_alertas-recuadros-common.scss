@@ -1,0 +1,27 @@
+/* 
+    Container para el recuadro destacado y alerta. 
+    Evita que el ancho supere un col-md-8 
+*/
+.highlight-wrapper {
+    container-type: inline-size;
+    container-name: sidebar;
+    clear: both;
+}
+
+.highlight-wrapper.container-fluid {
+    > #{$recuadrosScope},
+    > #{$scopeAlert} {
+        width: 100%;
+    }
+}
+
+@container sidebar (width > 780px) {
+    #{$recuadrosScope},
+    #{$scopeAlert} {
+        box-sizing: border-box;
+        // width: calc((100% / 3) * 2);
+        max-width: 730px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+}
