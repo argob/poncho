@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="profile" href="http://www.w3.org/1999/xhtml/vocab" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link 
+        rel="stylesheet" 
+        href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+    <link 
+        rel="stylesheet" 
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+        integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+        crossorigin="anonymous" 
+        referrerpolicy="no-referrer" />
+    <link 
+        rel="stylesheet"
+        href="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css">
+    <script src="https://www.argentina.gob.ar/profiles/argentinagobar/libraries/jquery.jquery-371/jquery-3.7.1.min.js?v=3.7.1"></script>
+    <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../../../../dist/css/poncho.min.css">
+    <link rel="stylesheet" href="../dist/css/national-holidays.css">
+    <script src="https://qa3-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
+    <style>
+        body {
+            padding: 2em;
+        }
+    </style>
+    <title>develop | Feriados nacionales</title>
+</head>
+<body class="p-t-3">
+
+
+<div class="dropdown">
+    <button 
+        class="btn-secondary btn dropdown-toggle" 
+        type="button" 
+        id="share-table-data" 
+        data-toggle="dropdown" 
+        aria-haspopup="true" 
+        aria-expanded="false">
+        Ver calendarios históricos
+        <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu js-dropdown-years-menu" aria-labelledby="share-table-data">
+        <!-- OPCIONES -->
+    </ul>
+</div>
+
+<div class="border-bottom border-thick border-arg-amarillo p-b-1 m-b-2"></div>
+
+<h1>
+    <span
+        data-text-en="National holidays"
+        data-text-es="Feriados nacionales">
+        Feriados nacionales
+    </span>
+    <span class="js-current-year js-view-switcher"></span>
+</h1>
+
+<!-- No se encuentra el calendario -->
+<div class="not-found-message"></div> 
+<!-- / No se encuentra el calendario -->
+
+<!-- Calendar -->
+<section
+    class="national-holidays js-view-switcher col-md-12" 
+    style="display: none;">
+    <!-- Bloque dinámico -->
+    <!-- days countdown -->
+    <div class="row m-b-4 clearfix" id="js-hoynoes">
+        <div 
+            class="col-md-4 col-md-offset-4 col-xs-12 col-sm-12" 
+            tabindex="0" 
+            role="text">
+            <p class="m-b-0 text-arg-azul">
+                <span 
+                    class="js-falta text-capitalize" 
+                    data-text-singular-en="There is" 
+                    data-text-plural-en="There are" 
+                    data-text-singular-es="falta"
+                    data-text-plural-es="faltan">faltan</span>
+                <span class="h1 conteo-regresivo-dias" id="js-ndays">
+                    <i class="fa icono-arg-calendario-2"></i>
+                    <span id="js-faltan">0</span>
+                    <span 
+                        class="js-dia" 
+                        data-text-singular-en="day" 
+                        data-text-plural-en="days"
+                        data-text-singular-es="día" 
+                        data-text-plural-es="días"></span>
+                </span>
+                <span class="lead">
+                    <span 
+                        data-text-en="For the next holiday, which is"
+                        data-text-es="para el próximo feriado que es el"></span>
+                    <span class="br-lg"></span>
+                    <span id="js-proximo"></span><span class="sr-only">.</span>
+                </span>
+                <span
+                    class="lead text-arg-secundario display-block js-detalle">
+                </span><span class="sr-only">.</span>
+            </p>
+        </div>
+    </div>
+    <!-- / days countdown -->
+    <!-- Is hollyday -->
+    <div class="m-b-4 hidden clearfix" id="js-hoyes" aria-hidden="true">
+        <p class="col-md-4 col-md-offset-4 col-xs-12 col-sm-12">
+            <span 
+                class="p-y-0 m-y-0 text-arg-azul h1 conteo-regresivo-dias" 
+                id="js-hoy">
+                <i class="fa icono-arg-calendario-2 text-arg-azul "></i>
+                <span data-text-en="Today">Hoy</span>
+            </span>
+            <span class="lead m-b-0" data-text-en="is holiday">
+                es feriado
+            </span>. 
+            <span class="lead text-arg-secundario js-detalle">
+            </span><span class="sr-only">.</span>
+        </p>
+    </div>
+    <!-- / Is hollyday -->
+    <!-- / Bloque dinámico -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+
+                <!-- Subscribe -->
+                <div class="col-md-8 col-md-offset-2" style="display: none;">
+                    <div class="alert alert-info">
+                        <div class="media">
+                            <div class="media-left">&nbsp;</div>
+                            <div class="media-body">
+                                <h2>
+                                    ¿Querés enterarte cuándo es el próximo feriado?
+                                </h2>
+                                <p class="margin-0">
+                                    Creá tu cuenta en 
+                                    <a href="https://www.argentina.gob.ar/miargentina">
+                                        Mi Argentina</a> 
+                                    y recibí las notificaciones en el teléfono.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- / Subscribe -->
+
+                <div class="col-xs-12 m-b-2">
+                    <!-- References -->
+                    <div class="panel-body references text-md-center">
+                        <div class="media" role="presentation">
+                            <div class="media-left p-r-0">
+                            <i class="fa fa-2x fa-circle text-primary fa-fw"></i>
+                            </div>
+                            <div aria-hidden="true" class="media-body">
+                                <p class="text-muted" data-text-en="Fixed holidays">Feriados inamovibles</p>
+                            </div>
+                        </div>
+                        <div class="media" role="presentation">
+                            <div class="media-left p-r-0">
+                            <i class="fa fa-2x fa-circle text-success fa-fw"></i>
+                            </div>
+                            <div aria-hidden="true" class="media-body">
+                                <p class="text-muted" data-text-en="Movable holidays">Feriados trasladables</p>
+                            </div>
+                        </div>
+                        <div class="media" role="presentation">
+                            <div class="media-left p-r-0">
+                            <i class="fa fa-2x fa-circle text-nl fa-fw"></i>
+                            </div>
+                            <div aria-hidden="true" class="media-body">
+                                <p class="text-muted" data-text-en="Non-Working days">Días no laborables</p>
+                            </div>
+                        </div>
+                        <div class="media" role="presentation">
+                            <div class="media-left p-r-0">
+                            <i class="fa fa-2x fa-circle text-turistico fa-fw"></i>
+                            </div>
+                            <div aria-hidden="true" class="media-body">
+                                <p class="text-muted" data-text-en="Tourist holidays">Turísticos</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- / References -->
+                </div>
+                <div id="calendar-container" class="calendar"></div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- / Calendar -->
+
+<!-- Información legal -->
+<div 
+    class="container js-view-switcher" 
+    style="display: none;">
+    <div class="row">
+        <div class="border-bottom border-medium m-y-2"></div>
+        <div class="js-legal-info-container col-md-8 col-md-offset-2 m-b-2">
+        </div>
+    </div>
+</div>
+<!-- / Información legal -->
+
+<!-- Template -->
+<template id="month-tpl">
+    <article class="month js-tpl-id">
+        <h2 class="h5 text-center js-tpl-month"></h2>
+        <div class="js-jump-to-list"></div>
+        <table 
+            class="table text-center table-borderless small js-table">
+            <caption class="js-tpl-caption sr-only"></caption>
+            <thead class="js-tpl-weekdays"></thead>
+            <tbody class="js-tpl-tbody"></tbody>
+        </table>
+        <div class="js-tpl-holidays"></div>
+    </article>
+</template>
+<!-- / Template -->
+
+<!-- Template -->
+<template id="calendar-not-found">
+    <div class="highlight-wrapper">
+        <div 
+            class="alert alert-warning" 
+            role="complementary">
+            <div class="media">
+                <div class="media-left">
+                    <i class="fa fa-warning fa-2x"></i>
+                </div>
+                <div class="media-body">
+                    <p  class="tpl-message m-b-05"></p>
+                    <p>                    
+                        <a href="./" class="btn btn-warning btn-sm m-0">
+                        Ver calendario actual
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+<!-- / Template -->
+<script>
+const HOLIDAY_CALENDAR_SETTINGS = {
+    service_url: "./data/holidays-{{year}}-{{lang}}.json", // endpoint url con parámetros.
+    years_limit: 3, // Cantidad de años regresivamente desde el año actual
+    dropdown_label: "Ver calendario {{year}}" // Texto para cada uno de los años en el menú histórico
+};
+</script>
+<script src="https://www.argentina.gob.ar/sites/default/files/ponchotable/showdown.js"></script>
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/extensiones/showdown-extensions.js"></script>
+<script src="../src/js/national-holidays.js"></script>
+<script src="./js/main.js"></script>
+
+</body>
+</html>
