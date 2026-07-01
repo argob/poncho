@@ -198,8 +198,18 @@ $configSpaces: (
     white-space: nowrap;
 }
 .text-uppercase {
-    text-transform: uppercase;
+    text-transform: uppercase !important;
 }
+// As bootstrap 5.3.0, text-lowercase is deprecated, use text-lowercase instead
+.text-lowercase {
+    text-transform: lowercase !important;
+}
+
+.text-capitalize {
+    text-transform: capitalize !important;
+}
+
+
 
 .f-left {
     float: left;
