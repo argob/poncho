@@ -14373,7 +14373,15 @@ input[type=search].js-poncho-map-search__input::-webkit-search-cancel-button {
 }
 
 .text-uppercase {
-  text-transform: uppercase;
+  text-transform: uppercase !important;
+}
+
+.text-lowercase {
+  text-transform: lowercase !important;
+}
+
+.text-capitalize {
+  text-transform: capitalize !important;
 }
 
 .f-left {
