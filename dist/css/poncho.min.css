@@ -11096,6 +11096,9 @@ input[type=text]:-ms-input-placeholder {
 .highlight-box p:empty {
   display: none;
 }
+.highlight-box p:nth-last-child(2):has(+ p:empty) {
+  margin-bottom: 0;
+}
 .highlight-box .media {
   grid-template-columns: var(--media-grid-template-columns);
   display: grid;
