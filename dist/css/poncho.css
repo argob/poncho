@@ -10763,6 +10763,9 @@ input[type=text]:-ms-input-placeholder {
 .alert p:empty {
   display: none;
 }
+.alert p:nth-last-child(2):has(+ p:empty) {
+  margin-bottom: 0;
+}
 .alert .media {
   grid-template-columns: var(--media-grid-template-columns);
   display: grid;
