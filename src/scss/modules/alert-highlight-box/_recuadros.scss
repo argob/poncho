@@ -54,6 +54,12 @@ $colorThemesRecuadro: (
     // Si hay un p vacío lo ocultamos para evitar que se vea un espacio en blanco.
     p:empty { display:none }
 
+    // Cuando hay un p vacío y otro p antes de este, eliminamos el 
+    // margin-bottom del p anterior para evitar un espacio en blanco.
+    p:nth-last-child(2):has(+ p:empty) {
+        margin-bottom:0
+    }
+
     // REDEFINIMOS MEDIA
     .media {
         grid-template-columns:  var(--media-grid-template-columns);
