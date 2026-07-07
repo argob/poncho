@@ -14414,6 +14414,10 @@ input[type=search].js-poncho-map-search__input::-webkit-search-cancel-button {
   font-family: "Montserrat", sans-serif;
 }
 
+.smaller {
+  font-size: 0.833em;
+}
+
 @media (max-width: 575.98px) {
   .text-xs-left {
     text-align: left !important;
