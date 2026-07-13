@@ -1,15 +1,15 @@
 /**
  * FERIADOS NACIONALES
- * 
- * Version: 2.0.1
- * 
- * @summary Hace un render de un calendario anual de los feriados 
- * Nacionales de la República Argentina. 
- * @param {object} options 
+ *
+ * Version: 2.0.2
+ *
+ * @summary Hace un render de un calendario anual de los feriados
+ * Nacionales de la República Argentina.
+ * @param {object} options
  * @author Agustín Bouillet <bouilleta@jefatura.gob.ar>
  * @docs https://github.com/argob/poncho/tree/master/src/js/national-holidays
- * 
- * 
+ *
+ *
  * MIT License
  *
  * Copyright (c) 2025 Argentina.gob.ar
@@ -21,10 +21,10 @@
  * publish, distribute, sublicense, and/or sell copies of the Software,
  * and to permit persons to whom the Software is furnished to do so,
  * subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be
  * included in all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
  * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -37,8 +37,8 @@
 const calendar = {
     /**
      * Ordernar por key date
-     * 
-     * @param {array} array Array con las entradas 
+     *
+     * @param {array} array Array con las entradas
      * @returns {array}
      */
     orderByDate(array) {
@@ -47,10 +47,10 @@ const calendar = {
             const fechaB = this.parseDate(b.date).dateObject;
             return fechaA - fechaB;
         });
-    },      
+    },
     /**
      * Deconstruye la fecha y la retorna en sus partes y un en objeto Date.
-     * 
+     *
      * @param {string} dateString Fecha en formato dd/mm/yyyy.
      * @returns {object}
      */
@@ -64,24 +64,24 @@ const calendar = {
         const markerMonthInt = parseInt(markerMonth);
         const markerYearInt = parseInt(markerYear);
         return {
-            dateObject, 
-            markerDay, 
-            markerMonth, 
-            markerYear, 
+            dateObject,
+            markerDay,
+            markerMonth,
+            markerYear,
             markerDayInt,
-            markerMonthInt, 
+            markerMonthInt,
             markerYearInt};
     },
     /**
      * Remplaza un texto asignado a un dataset.
-     * 
-     * @summary Remplaza el texto de una etiqueta por el asginado en el 
+     *
+     * @summary Remplaza el texto de una etiqueta por el asginado en el
      * dataset con formato: `data-[scope]-[lang]`.
      * @example
-     * <span 
-     *     data-text-singular-en="day" 
-     *     data-text-plural-en="days" 
-     *     data-text-singular-es="día" 
+     * <span
+     *     data-text-singular-en="day"
+     *     data-text-plural-en="days"
+     *     data-text-singular-es="día"
      *     data-text-plural-es="días"></span>
      * @param {string} scope nombre del dataset sin el sufijo [-lang].
      * @param {string} ln Lenguaje, ej: es, en.
@@ -237,7 +237,7 @@ const calendar = {
     daysOfMonth: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
     /**
      * Verifica que una fecha sea válida
-     * 
+     *
      * @param {integer} year Año en formato yyyy
      * @param {integer} month Mes, considerando enero = 1.
      * @param {integer} day Día
@@ -257,7 +257,7 @@ const calendar = {
     },
     /**
      * Valida que una entrada al calendario tenga las claves correctas.
-     * 
+     *
      * @param {object} data Objeto entrada de calendario
      * @returns {boolean} Devuelve `true` si la operación fue exitosa.
      * @throws {Error} Si ocurre algún error durante la operación.
@@ -265,7 +265,7 @@ const calendar = {
     isValidEntry: function(data){
         const dataString = JSON.stringify(data);
         const expectedKeys = ["date", "type", "label"];
-        
+
         // 1. Valido que existan los keys
         const hasAllKeys = expectedKeys.every(
             key => Object.prototype.hasOwnProperty.call(data, key));
@@ -284,8 +284,8 @@ const calendar = {
 
         // 3. Valido que la fecha exista.
         const {
-            markerDayInt:day, 
-            markerMonthInt:month, 
+            markerDayInt:day,
+            markerMonthInt:month,
             markerYearInt:year} = this.parseDate(date);
 
         if(!this.isValidDate(year, month, day)){
@@ -303,22 +303,22 @@ const calendar = {
     },
     /**
      * Los markers tienen índice lang.
-     * @param {object} markers Objeto con markers. 
+     * @param {object} markers Objeto con markers.
      * @returns {boolean}
      */
     isMultiLang: function(markers){
         return Object
             .keys(markers)
             .some(f => this.availableLanguages.includes(f));
-    }, 
+    },
     /**
      * Valida los markers.
-     * 
-     * @summary Valida que el array con eventos esté bien formado. 
+     *
+     * @summary Valida que el array con eventos esté bien formado.
      * Caso contrario ejecuta una excepción y frena toda ejecución.
-     * 
+     *
      * @param {object} opts opciones
-     * @returns {true|Error} 
+     * @returns {true|Error}
      */
     validateMarkers: function(opts){
         if(!Object.prototype.hasOwnProperty.call(opts, "markers")){
@@ -380,8 +380,8 @@ const calendar = {
             : opts.markers[0];
 
         const _markers = Object.prototype.hasOwnProperty.call(
-            this.inputMarkers, "holidays") 
-            ? this.inputMarkers.holidays 
+            this.inputMarkers, "holidays")
+            ? this.inputMarkers.holidays
             : this.inputMarkers;
 
         if(!Array.isArray(_markers) || !_markers.length){
@@ -400,9 +400,9 @@ const calendar = {
     },
     /**
      * Retorna los eventos por mes y año.
-     * 
+     *
      * @param {number} month Número de mes comenzando en 0. Ej. enero = 0.
-     * @param {number} year Año en formato: yyyy. 
+     * @param {number} year Año en formato: yyyy.
      * @returns {object}
      */
     eventsByMonth(month, year){
@@ -423,19 +423,24 @@ const calendar = {
         return list;
     },
     /**
-     * Imprime cada uno de los calendarios completos en 
+     * Imprime cada uno de los calendarios completos en
      * la etiqueta contenedora.
-     * 
+     *
      * @returns {undefined}
      */
     renderCalendar: function() {
         for(const monthNumber of [...Array(12).keys()]){
+            // Se construye la fecha directamente en UTC (Date.UTC) para
+            // no depender de la zona horaria local del navegador. Antes
+            // se usaba `new Date(year, month, 1, 12, 0, 0)`, que interpreta
+            // los valores en hora local y podía desalinear el día en
+            // timezones muy alejados de America/Argentina/Buenos_Aires.
             const iterationDate = this.tZone(
-                new Date(this.calendarYear, monthNumber, 1, 12, 0, 0),
+                new Date(Date.UTC(this.calendarYear, monthNumber, 1, 12, 0, 0)),
                 this.timeZone);
 
             const tpl = this.template.content.cloneNode(true);
-            const monthObj = this.drawCalendarMonth(iterationDate, 
+            const monthObj = this.drawCalendarMonth(iterationDate,
                     monthNumber, tpl);
             this.container.appendChild(monthObj);
         }
@@ -447,11 +452,11 @@ const calendar = {
     createWeekDays(){
         const tr = document.createElement("tr");
         for(const [i, day] of this.dict.weekDaysAbbr.entries()){
-            
+
             const abbr = document.createElement("abbr");
             abbr.title = this.dict.weekDays[i];
             abbr.textContent = day;
-            
+
             const th = document.createElement("th");
             th.setAttribute("scope", "col");
 
@@ -462,7 +467,7 @@ const calendar = {
     },
     /**
      * Compone la información para el mes.
-     * 
+     *
      * @param {Date} iterationDate Objeto date para el mes.
      * @param {number} monthNumber Número de mes comenzando en 0.
      * @param {HTMLElement} tpl Template content
@@ -505,7 +510,7 @@ const calendar = {
         // Get Start Day
         const entries = this.eventsByMonth(parseInt(monthNumber) + 1, year);
 
-        // Si el mes tiene feriados imprimo el listado y un ancla 
+        // Si el mes tiene feriados imprimo el listado y un ancla
         // para llegar a ellos.
         if(entries.length > 0){
             // Iconos accesibilidad. Decorativo.
@@ -520,7 +525,7 @@ const calendar = {
             anchor.lang = this.ln;
             const anchorText = this.dict.jumpToList
                     .replace("{month}", monthName);
-            anchor.innerHTML = `${uaIcon.outerHTML} ${anchorText}`; 
+            anchor.innerHTML = `${uaIcon.outerHTML} ${anchorText}`;
 
             // Contenedor <p>
             const jumpToListContainer = document.createElement("p");
@@ -545,7 +550,7 @@ const calendar = {
     },
     /**
      * Dibuja todas las filas de la tabla.
-     * 
+     *
      * @param {HTMLElement} tpl Objeto element clone.
      * @param {number} startDay Día en que inicia el mes.
      * @param {number} totalDays Cantidad de días que tiene el mes.
@@ -555,7 +560,7 @@ const calendar = {
     renderMonth: function(tpl, startDay, totalDays, entries) {
         // El total de celdas del tbody es de 42 en 6 filas.
         // creo un array marcando los días del calendario y el resto
-        // en false. 
+        // en false.
         const calLen = 42;
         const arr = Array(calLen).fill(false);
         let day = 1;
@@ -577,9 +582,9 @@ const calendar = {
     },
     /**
      * Compronel e </tr> para la tabla de agenda de un mes.
-     * 
-     * @param {array} tableRow Listado con los días de la semana. 
-     * false si en la casilla aun no empieza el mes o si falta para 
+     *
+     * @param {array} tableRow Listado con los días de la semana.
+     * false si en la casilla aun no empieza el mes o si falta para
      * terminar la fila.
      * @param {array} entries Listado de feriados.
      * @returns {HTMLTableRowElement}
@@ -622,7 +627,7 @@ const calendar = {
                 const mark = document.createElement("mark");
                 mark.classList.add("calendar__mark");
                 mark.appendChild(a);
-                
+
                 // td.classList.add(`bg-${this.holidayType[type]}`);
                 td.classList.add("calendar__holiday-td");
                 td.appendChild(mark)
@@ -634,9 +639,9 @@ const calendar = {
         return tr;
     },
     /**
-     * Devuelve el día de la semana en que comienza el mes (ej. 0 para 
+     * Devuelve el día de la semana en que comienza el mes (ej. 0 para
      * Domingo, 1 para Lunes, etc.).
-     * 
+     *
      * @param {number} dayOfWeek Día de la semana.
      * @param {number} currentDate Día actual.
      * @returns {number}
@@ -659,9 +664,9 @@ const calendar = {
     },
     /**
      * Compone el listado de feriados
-     * 
+     *
      * @param {number} monthId Número de mes comenzando en 0. Ej. enero = 0.
-     * @param {number} year Año en formato: yyyy. 
+     * @param {number} year Año en formato: yyyy.
      * @returns {HTMLElement}
      */
     addLabel: function(monthId, year) {
@@ -691,7 +696,7 @@ const calendar = {
             const labelText = label.endsWith(".") ? label : `${label}.`;
             const holidayType = this.dict.holidaysType[type];
             const {
-                markerDayInt: firstDay, 
+                markerDayInt: firstDay,
                 markerMonthInt: firstMonth} = this.parseDate(events[0].date);
 
             // <span id="feriado-30-5" aria-label="30 de mayo">30</span>
@@ -737,10 +742,10 @@ const calendar = {
         }
 
         return ul;
-    }, 
+    },
     /**
      * Dias faltantes para el feriado.
-     * 
+     *
      * @param {Date} nowDate Objeto Date del momento now().
      * @param {Date} compareDate Objeto Date de la fecha a comparar.
      * @returns {number}
@@ -793,15 +798,18 @@ const calendar = {
         // Opciones para el próximo feriado
         if(nextHoliday && Object.keys(nextHoliday).length > 0 && !todayIsHoliday){
             const {
-                date:markerDate, 
+                date:markerDate,
                 label:markerLabel} = nextHoliday;
-            const {
-                markerDay, 
-                markerMonth, 
-                markerYear} = this.parseDate(markerDate);
-            const date = this.tZone(
-                new Date(markerYear, markerMonth - 1, markerDay),
-                this.timeZone);
+
+            // Se reutiliza el `dateObject` que ya arma `parseDate()` en UTC.
+            // Antes se reconstruía la fecha con `new Date(markerYear,
+            // markerMonth - 1, markerDay)` (hora LOCAL del navegador) y
+            // luego se pasaba por `tZone()`. Para usuarios en timezones
+            // adelantados respecto a Argentina (Europa, África, Asia,
+            // Oceanía), la medianoche local caía, vista desde Argentina,
+            // en el día anterior, mostrando la fecha del feriado corrida
+            // un día hacia atrás.
+            const {dateObject: date} = this.parseDate(markerDate);
 
             // Días que faltan para el feriado.
             dayCount = this.dayCount(today, date);
