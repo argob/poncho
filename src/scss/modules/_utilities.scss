@@ -198,8 +198,18 @@ $configSpaces: (
     white-space: nowrap;
 }
 .text-uppercase {
-    text-transform: uppercase;
+    text-transform: uppercase !important;
 }
+// As bootstrap 5.3.0
+.text-lowercase {
+    text-transform: lowercase !important;
+}
+
+.text-capitalize {
+    text-transform: capitalize !important;
+}
+
+
 
 .f-left {
     float: left;
@@ -223,6 +233,10 @@ $configSpaces: (
 
 .font-base {
     font-family: $font-family-base;
+}
+
+.smaller {
+    font-size: 0.833em;
 }
 
 @media (max-width: 575.98px) {

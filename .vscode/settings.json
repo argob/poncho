@@ -1,4 +1,9 @@
 {
   "liveServer.settings.port": 5502,
-  "compile-hero.disable-compile-files-on-did-save-code": false
+  "compile-hero.disable-compile-files-on-did-save-code": false,
+  "workbench.colorCustomizations": {
+      "titleBar.activeBackground": "#EF6C00",
+      "titleBar.activeForeground": "#ffffff",
+      "activityBar.background": "#6C1805",
+  }
 }
