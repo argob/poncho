@@ -18006,7 +18006,7 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
   display: none;
 }
 .weather-widget .forecast-mobile-right .forecast-mobile-chevron {
-  color: #DDDDDD;
+  color: var(--arg-negro-500);
   font-size: 12px;
   transition: transform 0.2s;
 }
@@ -18420,6 +18420,22 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
   .weather-widget .principal .col-md-8 > .d-flex.justify-content-center > .d-flex.gap-4 > .d-flex {
     justify-content: center;
     font-size: 13px;
+  }
+}
+/* ajuste espacio título pronóstico -mobile */
+@media (max-width: 767px) {
+  .weather-widget .pronostico {
+    margin: 4rem 0 0 !important;
+  }
+}
+/* ajuste desplegable día -desktop */
+@media (min-width: 768px) {
+  .weather-widget .forecast-mobile-body {
+    margin-bottom: 3rem;
+  }
+  .weather-widget .forecast-mobile-inner-row {
+    padding: 13px 16px;
+    background: var(--arg-negro-25);
   }
 }
 /**
