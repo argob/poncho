@@ -336,7 +336,7 @@
         }
 
         .forecast-mobile-chevron {
-            color: $gray-light;
+            color: var(--arg-negro-500);
             font-size: 12px;
             transition: transform 0.2s;
         }
@@ -866,3 +866,30 @@
         }
     }
 }
+
+/* ajuste espacio título pronóstico -mobile */
+
+@media (max-width: 767px) {
+  .weather-widget {
+    .pronostico {
+      margin: 4rem 0 0 !important;
+    }
+  }
+}
+
+/* ajuste desplegable día -desktop */
+
+@media (min-width: 768px) {
+  .weather-widget {
+    .forecast-mobile-body {
+      margin-bottom: 3rem;
+    }
+
+    .forecast-mobile-inner-row {
+      padding: 13px 16px;
+      background: var(--arg-negro-25);
+    }
+  }
+}
+
+
