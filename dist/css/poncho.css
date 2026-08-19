@@ -15967,6 +15967,27 @@ footer .nav > li > a:hover {
   font-size: 16px;
 }
 
+/* submenú bajo la versión de la norma */
+.card.card-body .blq-right-sub li {
+  display: flex;
+  align-items: center;
+  line-height: 1.5;
+}
+.card.card-body .blq-right-sub li a {
+  font-size: 16px;
+  font-weight: normal;
+}
+.card.card-body .blq-right-sub li::before {
+  content: "–";
+  color: var(--arg-azul-500);
+  margin-right: 0.35rem;
+  top: 0;
+}
+.card.card-body ul.blq-right-sub {
+  padding: 0 0 0.5rem 0;
+  margin-bottom: 0rem;
+}
+
 /* Fecha de publicación y nro de boletín clickeable */
 .normativa {
   margin: 20px 0;
