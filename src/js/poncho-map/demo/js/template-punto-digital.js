@@ -73,6 +73,7 @@ const template_punto_digital = (self, row) => {
     return Array.from(horarios_map, ([day, times]) => [day, times.reverse()]);
   };
 
+
   /** 
    * Define el formato para los horarios. 
    * >>> time_format('04:10:00')
@@ -84,6 +85,7 @@ const template_punto_digital = (self, row) => {
     const hms = new Date(`May 09 2012 ${horario}`);
     return `${hms.getHours()}:${String(hms.getMinutes()).padStart(2, '0')}`;
   };
+
 
   /**
    * Rangos horarios en cadena de texto
@@ -136,7 +138,7 @@ const template_punto_digital = (self, row) => {
         </dt>
         ${todayHTML}
         <dd>
-          <details class="js-details ar-details caret-transparent">
+          <details class="js-details ar-details">
             <summary class="ar-details__title">Horarios de atención</summary>
             <ul class="ar-details__content list-unstyled small m-t-0">
               ${scheduleItems}

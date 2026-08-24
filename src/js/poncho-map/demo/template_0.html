@@ -121,7 +121,7 @@ COPIAR DESDE ACÁ…
         class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab 
             leaflet-touch-drag leaflet-touch-zoom" 
         id="map" 
-        style="height:650px;width: 100%;" 
+        style="height:700px;" 
         tabindex="0">
     </div>
 </div>
@@ -139,29 +139,128 @@ COPIAR DESDE ACÁ…
     </div>
 </div>
 <script src="../../mapa-argentina/demo/js/demo.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios@1.7.2/dist/axios.min.js"></script>
 <!-- / SHOW CODE -->
-
 
 
 <!-- SCRIPTS -->
 <script id="code_map">
+/**
+ * Connection Axios
+ */ 
+function axiosConnect(url, timeout=9000){
+    const axiosOptions = {
+        responseType: 'application/json',
+        timeout: timeout,
+        signal: AbortSignal.timeout(timeout)
+    };
+    return axios.get(url, axiosOptions);
+}
 
-(async() => {
-    const loader = new PonchoMapLoader({scope: "ponchomap"});
-    loader.load();
 
-    const url = './data/response.json';
-    const jsonData = await fetch_json(url); 
-    const gdata = Object.values(jsonData.aPDs).flat();
+const gapi = new GapiSheetData();
+const spreadsheetId = '13fMXLCN-aqeAVo6YH9eNP1ojljFWB0ocRR3sWNMYaIg';
+const sheetName    = 'dataset';
+
+fetch(gapi.url(sheetName, spreadsheetId))
+    .then(res => res.json())
+    .then(json => {
+        const { feed, entries, headers } = gapi.json_data(json);
+
+        console.log(headers);   // Etiquetas de columna (fila 2 de la hoja)
+        console.log(entries);   // Filas de datos (fila 3 en adelante)
+        console.log(feed);      // Todos los registros procesados (filas 2+)
+    });
+
+
+
+    
+var data = new Map();
+
+function renderPD(){
+    Promise.all([
+        axiosConnect('https://sheets.googleapis.com/v4/spreadsheets/1kvVXn3GjRjbpUgMF9lxsIQ8dZAzYNwAa9R-V2w1qgzw/values/Hoja%201?key=AIzaSyCq2wEEKL9-6RmX-TkW23qJsrmnFHFf5tY&alt=json'),
+        axiosConnect('./data/response.json')
+    ]).then(function(responses){
+        responses.forEach((result, index) => {
+            try {
+                if (!result || !result.data) {
+                    logger.error(`Error: respuesta vacía en índice ${index}`);
+                    return;
+                }
+
+                if(index === 0){
+                    jsonData = JSON.parse(result.data);
+                    data.set("miarg", gapi.json_data(jsonData));
+                } else if(index === 1){
+                    jsonData = JSON.parse(result.data);
+                    data.set("pd", Object.values(jsonData.aPDs).flat());
+                }
+
+            } catch (error) {
+                logger.error(`Error al procesar respuesta ${index}:`, error);
+            }
+        });
+
+        setMap(data);
+
+    }).catch(function(error){
+        logger.error('Error al cargar objetivos:', error);
+    });
+
+}
+
+
+
+
+
+const loader = new PonchoMapLoader({scope: "ponchomap"});
+loader.load();
+
+renderPD();
+
+
+function tplSearch(){
+    return `
+        <div class="pm-search-result-option d-flex gap-1">
+            <div class="pm-search-result-option__text">
+                <p class="m-y-0 fw-semibold opt-name">
+                    {{nombre}}
+                </p>
+                <p class="m-y-0 small text-arg-gris-intermedio opt-location">
+                    {{localidad}} / {{provincia}}
+                </p>
+            </div>
+
+            {% '<p 
+                style="margin-left:auto; align-items:center; border-radius:4px;" 
+                class="label m-b-0 m-t-0 p-x-05 text-white bg-miarg-azul d-flex">
+                <i class="fa fa-2x icono-arg-mi-argentina text-white"></i> 
+                <span class="sr-only">Valida identidad con Mi Argentina</span>
+                </p>' if miarg == "1" else '' %}
+        </div>
+`;
+}
+
+function setMap(data){
+    const gdata = data.get("pd");
+    gdata.forEach((entry, i) => {
+        const pdToFind = slugify(entry.nombre);
+        const pdfFound = data.get("miarg").entries.find(found => slugify(found.puntodigital) === pdToFind);
+
+        entry.horarios_miarg = pdfFound?.estado ?? "";
+        entry.miarg = pdfFound ? "1" : "0";
+    });
+
     const iconColor = "text-arg-azul";
     // map options
     const options = {
         debug: true,
         summary: {
-            hidden: true,
+            hidden: false,
             title: "Mapa de Puntos Digitales en Argentina",
-            position: "top",
-            css: "m-y-xs p-y-05 small text-arg-enlace"
+            position: "bottom",
+            css: "m-b-1 p-y-05 smaller text-gris-intermedio border-bottom _border-medium _border-color-25",
         },
         // render_schema:false,
         error_reporting: 0,
@@ -169,6 +268,7 @@ COPIAR DESDE ACÁ…
         template: template_punto_digital,
         title:"nombre",
         map_layers: true,
+        theme_map: "relax",
         scope:"ponchomap",
         allowed_tags: ["*"],
         template_markdown: true,
@@ -183,14 +283,14 @@ COPIAR DESDE ACÁ…
         marker: (self, ele) => (ele.estado_funcionamiento == "3" ? 
                 "mandarina" : "azul"),
         header_icons:[
-            {
-                key: "institucion",
-                css: `fa fa-institution ${iconColor}`
-            },
-            {
-                key: "ubicacion",
-                css: `fa icono-arg-marcador-ubicacion-2 ${iconColor}`
-            },
+            // {
+            //     key: "institucion",
+            //     css: `fa fa-institution ${iconColor}`
+            // },
+            // {
+            //     key: "ubicacion",
+            //     css: `fa icono-arg-marcador-ubicacion-2 ${iconColor}`
+            // },
             {
                 key: "email",
                 css: `fa fa-envelope ${iconColor}`
@@ -206,6 +306,7 @@ COPIAR DESDE ACÁ…
                 "institucion",
                 "ubicacion",
                 "horarios_custom",
+                "horarios_miarg",
                 "telefono",
                 "email"
             ],
@@ -224,6 +325,7 @@ COPIAR DESDE ACÁ…
             institucion: "Institución",
             horarios_custom: "",
             estado_funcionamiento_custom: "",
+            horarios_miarg: "Horarios de validación de identidad MiArgentina",
         },
         open_maps: true,
         fit_bounds_after_filter: true,
@@ -238,6 +340,22 @@ COPIAR DESDE ACÁ…
                 show_label: false,
                 show_legend: true,
                 all_options_text: "Todas las provincias"
+            },
+            {
+                legend: "Valida identidad con Mi Argentina",
+                // field: ["miarg"],
+                                // type: "radio",
+                fields: [
+                    ["miarg", "Con validación MiArgentina", ["1"], "checked"],
+                    // ["miarg", "Sin validación", ["0"], "checked"],
+                ],
+                // fields: false,
+                // check_uncheck_all: true,
+                type: "select",
+                label: "Tipo",
+                show_label: false,
+                // show_legend: true,
+                // all_options_text: "Todos los estados"
             }
         ],
     };
@@ -251,11 +369,7 @@ COPIAR DESDE ACÁ…
         combobox: true,
         combobox_options: {
             key: false,
-            template: ponchoMapTplSearch({
-                title: 'name',
-                text: ['localidad', 'provincia'],
-                separator: ' / '
-            })
+            template: tplSearch()
         },
         text: "nombre",
         search_fields: [
@@ -275,7 +389,9 @@ COPIAR DESDE ACÁ…
     mapSearch.render();
 
     loader.close();
-})();
+
+}
+
 </script>
 
 
