@@ -1802,6 +1802,11 @@
       },
     
       {
+        "nombre": "emergencia-ferroviaria",
+        "clase": "icono-arg-emergencia-ferroviaria"
+      },
+    
+      {
         "nombre": "empleo-2",
         "clase": "icono-arg-empleo-2"
       },
