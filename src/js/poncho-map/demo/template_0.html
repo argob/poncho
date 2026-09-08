@@ -43,6 +43,45 @@
     <link rel="stylesheet" href="./css/demo.css">
     <link rel="stylesheet" href="../dist/css/clusters.css">
     <title>Poncho Map — Puntos digitales</title>
+    <style> 
+    .schedule {
+        padding: .5em;
+        background: var(--arg-gris-niebla);
+        border-radius: 9px;
+    }
+
+
+    /* Uso de modificador BEM */
+    .schedule__mi-argentina {
+        background: var(--arg-azul-50);
+        background: rgb(255 255 255 / .85);
+        padding: .5em;
+        border-radius: 4px;
+        position: relative;
+        font-size: smaller;
+        box-shadow:1px 1px 6px rgb(0 0 0 / .2);
+    }
+
+    .schedule__mi-argentina dt {
+        padding-right: 35px;
+    }
+
+    .schedule__mi-argentina__icon {
+        font-size: 1rem;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--miarg-azul);
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        aspect-ratio: 1;
+        width: 30px;
+        border-bottom-left-radius: 4px;
+        border-radius: 3px;
+    }
+    </style>
 </head>
 <body>
 <div class="demo-nav container">
@@ -306,7 +345,7 @@ function setMap(data){
                 "institucion",
                 "ubicacion",
                 "horarios_custom",
-                "horarios_miarg",
+                // "horarios_miarg",
                 "telefono",
                 "email"
             ],
