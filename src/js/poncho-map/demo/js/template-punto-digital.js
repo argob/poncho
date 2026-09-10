@@ -131,7 +131,8 @@ const time_tostring = (day) => {
     span.className = 'thin-space';
     span.textContent = ' ';
     dd2.appendChild(span);
-    dd2.appendChild(document.createTextNode('h.'));
+    dd2.appendChild(document.createTextNode('h'));
+
 
     fragment.appendChild(dd1);
     fragment.appendChild(dd2);
@@ -213,7 +214,7 @@ const buildScheduleHTML = (scheduleList, currentDay, todayFragment) => {
             span.className = 'thin-space';
             span.textContent = ' ';
             li.appendChild(span);
-            li.appendChild(document.createTextNode('h.'));
+            li.appendChild(document.createTextNode('h'));
 
             ul.appendChild(li);
         });
@@ -318,3 +319,36 @@ const buildScheduleHTML = (scheduleList, currentDay, todayFragment) => {
 
     return self.defaultTemplate(self, row);
 };
+
+function tplSearch(){
+    return `
+        <div class="pm-search-result-option">
+            <div class="pm-search-result-option__text">
+                <p class="m-y-0 fw-semibold opt-name">
+                    {{nombre}}
+                </p>
+                <p class="m-y-0 small text-arg-gris-intermedio opt-location">
+                    {{localidad}} / {{provincia}}
+                </p>
+            </div>
+
+            {% '<p class="pm-search-result-option__icon-miarg m-0 text-white">
+                <i class="fa fa-2x icono-arg-mi-argentina text-white"></i> 
+                <span class="sr-only">Valida identidad con Mi Argentina</span>
+                </p>' if miarg == "1" else '' %}
+        </div>
+`;
+}
+
+
+/**
+ * Connection Axios
+ */ 
+function axiosConnect(url, timeout=9000){
+    const axiosOptions = {
+        responseType: 'application/json',
+        timeout: timeout,
+        signal: AbortSignal.timeout(timeout)
+    };
+    return axios.get(url, axiosOptions);
+}
