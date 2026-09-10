@@ -15,7 +15,6 @@
     <link rel="stylesheet"
         href="https://capacita-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css?rfqjsh">
     <link rel="stylesheet" href="../../../../dist/css/poncho.min.css" />
-    
 <style>
 @import url("https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css?t9wpy2");
 </style>
@@ -42,6 +41,7 @@
 
     <link rel="stylesheet" href="./css/demo.css">
     <link rel="stylesheet" href="../dist/css/clusters.css">
+    <script src="./js/template-punto-digital.js"></script>
     <title>Poncho Map — Puntos digitales</title>
 </head>
 <body>
@@ -63,21 +63,23 @@ COPIAR DESDE ACÁ…
 -->
 
 <!-- INCLUDE SCRIPTS -->
-<!-- <script src="/sites/default/files/ponchotable/showdown.js"></script> -->
-<!-- <script src="/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/extensiones/showdown-extensions.js"></script> -->
+<script>
+    const CURRENT_ENV = "development";
+</script>
 <script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.js"></script>
 <script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script> 
 <link href="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.css" rel="stylesheet">
 <link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.css" rel="stylesheet">
 <link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.Default.css" rel="stylesheet">
-<!-- <script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script> -->
-<script src="./js/template-punto-digital.js"></script>
 
+<script src="/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios@1.7.2/dist/axios.min.js"></script>
 <!-- / INCLUDE SCRIPTS -->
+
 <div class="container">
 <div class="row">
-
 <div class="col-md-12 m-b-1">
+
 <!-- PONCHO SEARCH -->
 <search aria-label="Buscar puntos en el mapa">
     <form>
@@ -97,7 +99,7 @@ COPIAR DESDE ACÁ…
                     id="js-porcho-map-search__list">
                 </datalist>
                 <span class="input-group-btn">
-                    <button 
+                    <butto        gap: 20pxn 
                         class="js-poncho-map-search__submit btn btn-primary" 
                         type="submit">
                         <i class="fa fa-search text-white"></i>
@@ -115,18 +117,20 @@ COPIAR DESDE ACÁ…
 
 </div>
 <div class="col-md-12">
-<!-- PONCHO MAP -->
-<div class="poncho-map" data-scope="ponchomap">
-    <div 
-        class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab 
-            leaflet-touch-drag leaflet-touch-zoom" 
-        id="map" 
-        style="height:650px;width: 100%;" 
-        tabindex="0">
+
+    <!-- PONCHO MAP -->
+    <div class="poncho-map" data-scope="ponchomap">
+        <div 
+            class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab 
+                leaflet-touchc.erro-drag leaflet-touch-zoom" 
+            id="map" 
+            style="height:700px;" 
+            tabindex="0">
+        </div>
     </div>
-</div>
-<!-- / PONCHO MAP -->
-</div>
+    <!-- / PONCHO MAP -->
+
+</div>  
 </div>
 </div>
 
@@ -142,26 +146,150 @@ COPIAR DESDE ACÁ…
 <!-- / SHOW CODE -->
 
 
-
 <!-- SCRIPTS -->
+<script>
+    const cssDefinitions = `.schedule {
+        padding: .5em;
+        background: var(--arg-gris-niebla);
+        border-radius: 9px;
+    }
+    /* Uso de modificador BEM */
+    .schedule__mi-argentina {
+        background: var(--arg-azul-50);
+        background: rgb(255 255 255 / .85);
+        padding: .5em;c.erro
+        border-radius: 4px;
+        position: relative;
+        font-size: smaller;
+        box-shadow:1px 1px 6px rgb(0 0 0 / .2);
+    }
+    .schedule__mi-argentina dt {
+        padding-right: 35px;
+    }
+    .schedule__mi-argentina__icon {
+        font-size: .8rem;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--miarg-azul);
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        aspect-ratio: 1;
+        width: 30px;
+        border-bottom-left-radius: 4px;
+        border-radius: 3px;
+    }
+    .pm-search-results__option .pm-search-result-option {
+        background: transparent;
+        display: flex;;
+        position: relative;
+        padding-right: 55px;
+    }
+    .pm-search-result-option__icon-miarg {
+        margin-left: auto;
+        align-items: center;
+        position: absolute;
+        right: 0px;
+        top: 1px;
+        display: flex;
+        border-radius: 4px;
+        aspect-ratio: 1;
+      width:40px;
+        box-shadow: 1px 1px 3px rgb(0 0 0 / .2);
+        justify-content: center;
+        font-size: 60%;
+        
+background: linear-gradient(157deg,rgba(53, 38, 195, 1) 0%, rgba(35, 21, 161, 1) 100%);
+    }`;
+    headStyle('pm', cssDefinitions);
+</script>
 <script id="code_map">
+var data = new Map();
+const gapi = new GapiSheetData();
+const loader = new PonchoMapLoader({scope: "ponchomap"});
+loader.load();
 
-(async() => {
-    const loader = new PonchoMapLoader({scope: "ponchomap"});
-    loader.load();
+const CONFIG_ENV = {
+    development: {
+        pdData: "./data/response.json",
+        spreadsheetId: "1kvVXn3GjRjbpUgMF9lxsIQ8dZAzYNwAa9R-V2w1qgzw",
+        sheetName: "Hoja 1",
+    },
+    production: {
+        pdData: "https://servicios.puntodigital.gob.ar/ws/ws-eventos.php?method=getPDs",
+        spreadsheetId: "1kvVXn3GjRjbpUgMF9lxsIQ8dZAzYNwAa9R-V2w1qgzw",
+        sheetName: "Hoja 1",
+    },
+};
 
-    const url = './data/response.json';
-    const jsonData = await fetch_json(url); 
-    const gdata = Object.values(jsonData.aPDs).flat();
+const config = CONFIG_ENV[CURRENT_ENV];
+
+
+function renderPD(){
+    Promise.all([
+        axiosConnect(gapi.url(config.sheetName, config.spreadsheetId)),
+        axiosConnect(config.pdData)
+    ]).then(function(responses){
+        responses.forEach((result, index) => {
+            try {
+                if (!result || !result.data) {
+                    console.error(`Error: respuesta vacía en índice ${index}`);
+                    return;
+                }
+
+                if(index === 0){
+                    jsonData = JSON.parse(result.data);
+                    data.set("miarg", gapi.json_data(jsonData));
+                } else if(index === 1){
+                    jsonData = JSON.parse(result.data);
+                    data.set("pd", Object.values(jsonData.aPDs).flat());
+                }
+
+            } catch (error) {
+                console.error(`Error al procesar respuesta ${index}:`, error);
+            }
+        });
+
+        setMap(data);
+
+    }).catch(function(error){
+        logger.error('Error al cargar objetivos:', error);
+    });
+}
+
+renderPD();
+
+
+function setMap(data){
+    const gdata = data.get("pd");
+    gdata.forEach((entry, i) => {
+        const pdToFind = slugify(entry.nombre);
+        const pdfFound = data
+                .get("miarg")
+                .entries.find(
+                    found => slugify(found.puntodigital) === pdToFind);
+
+        entry.horarios_miarg = pdfFound?.estado ?? "";
+        entry.miarg = pdfFound ? "1" : "0";
+    });
+
     const iconColor = "text-arg-azul";
     // map options
     const options = {
         debug: true,
         summary: {
-            hidden: true,
+            hidden: false,
             title: "Mapa de Puntos Digitales en Argentina",
-            position: "top",
-            css: "m-y-xs p-y-05 small text-arg-enlace"
+            position: "bottom",
+            css: [
+                "m-b-1",
+                "p-y-05",
+                "smaller",
+                "text-gris-intermedio",
+                "border-bottom"
+            ]
         },
         // render_schema:false,
         error_reporting: 0,
@@ -169,6 +297,7 @@ COPIAR DESDE ACÁ…
         template: template_punto_digital,
         title:"nombre",
         map_layers: true,
+        theme_map: "relax",
         scope:"ponchomap",
         allowed_tags: ["*"],
         template_markdown: true,
@@ -183,14 +312,14 @@ COPIAR DESDE ACÁ…
         marker: (self, ele) => (ele.estado_funcionamiento == "3" ? 
                 "mandarina" : "azul"),
         header_icons:[
-            {
-                key: "institucion",
-                css: `fa fa-institution ${iconColor}`
-            },
-            {
-                key: "ubicacion",
-                css: `fa icono-arg-marcador-ubicacion-2 ${iconColor}`
-            },
+            // {
+            //     key: "institucion",
+            //     css: `fa fa-institution ${iconColor}`
+            // },
+            // {
+            //     key: "ubicacion",
+            //     css: `fa icono-arg-marcador-ubicacion-2 ${iconColor}`
+            // },
             {
                 key: "email",
                 css: `fa fa-envelope ${iconColor}`
@@ -206,6 +335,7 @@ COPIAR DESDE ACÁ…
                 "institucion",
                 "ubicacion",
                 "horarios_custom",
+                // "horarios_miarg",
                 "telefono",
                 "email"
             ],
@@ -224,6 +354,7 @@ COPIAR DESDE ACÁ…
             institucion: "Institución",
             horarios_custom: "",
             estado_funcionamiento_custom: "",
+            horarios_miarg: "Horarios de validación de identidad MiArgentina",
         },
         open_maps: true,
         fit_bounds_after_filter: true,
@@ -238,6 +369,22 @@ COPIAR DESDE ACÁ…
                 show_label: false,
                 show_legend: true,
                 all_options_text: "Todas las provincias"
+            },
+            {
+                legend: "Valida identidad con Mi Argentina",
+                // field: ["miarg"],
+                // type: "radio",
+                fields: [
+                    ["miarg", "Con validación MiArgentina", ["1"], "checked"],
+                    // ["miarg", "Sin validación", ["0"], "checked"],
+                ],
+                // fields: false,
+                // check_uncheck_all: true,
+                type: "select",
+                label: "Tipo",
+                show_label: false,
+                // show_legend: true,
+                // all_options_text: "Todos los estados"
             }
         ],
     };
@@ -251,11 +398,7 @@ COPIAR DESDE ACÁ…
         combobox: true,
         combobox_options: {
             key: false,
-            template: ponchoMapTplSearch({
-                title: 'name',
-                text: ['localidad', 'provincia'],
-                separator: ' / '
-            })
+            template: tplSearch()
         },
         text: "nombre",
         search_fields: [
@@ -270,15 +413,15 @@ COPIAR DESDE ACÁ…
         placeholder: "Buscá por nombre, localidad o provincia",
     };
     const mapSearch = new PonchoMapSearch(map, search_options);
-
     map.render();
     mapSearch.render();
-
     loader.close();
-})();
+}
+
+
+
+
 </script>
-
-
 
 <!-- / SCRIPTS -->
 </body>
