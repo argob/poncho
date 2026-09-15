@@ -4617,6 +4617,11 @@
       },
     
       {
+        "nombre": "tren-carga",
+        "clase": "icono-arg-tren-carga"
+      },
+    
+      {
         "nombre": "triciclo-A2",
         "clase": "icono-arg-triciclo-A2"
       },
