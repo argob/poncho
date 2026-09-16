@@ -125,29 +125,87 @@ gap: 2px 5px;
 
 /* ajuste buscador texto predictivo */
 
-#argobar-consulta-infoleg-consulta-avanzada {
-  .select2 {
-    border:solid 1px var(--arg-negro-500)!important;
-    background:var(--arg-blanco);
+// Sección Predictive
+.predictive {
+  .select2-results__options {
+    max-height: 200px;
+    overflow-y: auto;
   }
-  .select2-container--default {
+
+  .select2-results__option--highlighted {
+    background-color: var(--arg-azul-600);
+    color: var(--arg-blanco);
+  }
+}
+
+// Sección Formulario Infoleg
+.infoleg-search-form {
+  .select2-results__option {
+    padding: 6px;
+    user-select: none;
+  }
+
+  .select2-selection__clear {
+    display: none !important;
+  }
+
+  .select2 {
+    border: solid 1px var(--arg-negro-500) !important;
+    background: var(--arg-blanco);
+  }
+
+  // Estados deshabilitados
+  .select2-container--disabled {
+    background-color: var(--arg-negro-75);
+
+    * {
+      cursor: not-allowed;
+    }
+  }
+
+  // Estructura interna de Select2
+  .select2-container {
     .select2-selection--single {
-      .select2-selection__placeholder {
-        color:var(--arg-negro-900);
+      .select2-selection__rendered {
+        padding-left: 4px;
+        padding-top: 2px;
       }
     }
   }
-  .select2-container--disabled {
-    background:var(--arg-negro-75);
-    cursor:not-allowed;
+
+  // Flecha personalizada
+  .select2-selection__arrow {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    margin-top: -2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &::before {
+      content: "\f107";
+      font-family: "FontAwesome";
+      font-size: 14px;
+    }
   }
-  .select2-container--default.select2-container--disabled {
-    .select2-selection--single {
-      background:var(--arg-negro-75);
-      cursor:not-allowed;
+
+  // Ajuste para el campo Tipo de Norma
+  .form-item-tipo-norma {
+    .control-label {
+      display: block;
+    }
+
+    .select2-container {
+      width: 100% !important;
     }
   }
 }
+
+
+
+
 
 // IMPORTANTE:  bloque-leyes y bloque-leyes-mobile (Se usa en provincial)
 
