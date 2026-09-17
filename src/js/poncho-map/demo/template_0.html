@@ -64,7 +64,7 @@ COPIAR DESDE ACÁ…
 
 <!-- INCLUDE SCRIPTS -->
 <script>
-    const CURRENT_ENV = "development";
+    const CURRENT_ENV = "production";
 </script>
 <script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.js"></script>
 <script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script> 
@@ -149,9 +149,12 @@ COPIAR DESDE ACÁ…
 <!-- SCRIPTS -->
 <script>
     const cssDefinitions = `.schedule {
-        padding: .5em;
+        padding: .5em .5em 0 .5em;
         background: var(--arg-gris-niebla);
         border-radius: 9px;
+    }
+    .schedule:has(.schedule__mi-argentina){
+        padding-bottom: .5em;
     }
     /* Uso de modificador BEM */
     .schedule__mi-argentina {
@@ -196,12 +199,11 @@ COPIAR DESDE ACÁ…
         display: flex;
         border-radius: 4px;
         aspect-ratio: 1;
-      width:40px;
+        width:40px;
         box-shadow: 1px 1px 3px rgb(0 0 0 / .2);
         justify-content: center;
         font-size: 60%;
-        
-background: linear-gradient(157deg,rgba(53, 38, 195, 1) 0%, rgba(35, 21, 161, 1) 100%);
+        background: linear-gradient(157deg,rgba(53, 38, 195, 1) 0%, rgba(35, 21, 161, 1) 100%);
     }`;
     headStyle('pm', cssDefinitions);
 </script>
