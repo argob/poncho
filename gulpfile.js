@@ -47,6 +47,7 @@ const ponchoMinList = [
     './src/js/utils/secure-html/secure-html.js',
     './src/js/utils/slugify/slugify.js',
     './src/js/utils/to-title-case/to-title-case.js',
+    './src/js/utils/trigger-event/trigger-event.js',
 
     './src/js/gapi-sheet-data/gapi-sheet-data.js',
 

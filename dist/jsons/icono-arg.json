@@ -2142,6 +2142,11 @@
       },
     
       {
+        "nombre": "fondos-asistencia-laboral",
+        "clase": "icono-arg-fondos-asistencia-laboral"
+      },
+    
+      {
         "nombre": "formando-capital-humano",
         "clase": "icono-arg-formando-capital-humano"
       },
@@ -4614,6 +4619,11 @@
       {
         "nombre": "tren",
         "clase": "icono-arg-tren"
+      },
+    
+      {
+        "nombre": "tren-carga",
+        "clase": "icono-arg-tren-carga"
       },
     
       {

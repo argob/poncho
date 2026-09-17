@@ -15173,6 +15173,7 @@ pre {
   }
 }
 /**
+ * _argentina.scss
  * Poncho v0.2 (https://github.com/argob/poncho)
  * Copyright 2016
  * Subsecretaría de Tecnologías de la Información
@@ -16005,20 +16006,56 @@ footer .nav > li > a:hover {
 }
 
 /* ajuste buscador texto predictivo */
-#argobar-consulta-infoleg-consulta-avanzada .select2 {
+.predictive .select2-results__options {
+  max-height: 200px;
+  overflow-y: auto;
+}
+.predictive .select2-results__option--highlighted {
+  background-color: var(--arg-azul-600);
+  color: var(--arg-blanco);
+}
+
+.infoleg-search-form .select2-results__option {
+  padding: 6px;
+  user-select: none;
+}
+.infoleg-search-form .select2-selection__clear {
+  display: none !important;
+}
+.infoleg-search-form .select2 {
   border: solid 1px var(--arg-negro-500) !important;
   background: var(--arg-blanco);
 }
-#argobar-consulta-infoleg-consulta-avanzada .select2-container--default .select2-selection--single .select2-selection__placeholder {
-  color: var(--arg-negro-900);
+.infoleg-search-form .select2-container--disabled {
+  background-color: var(--arg-negro-75);
 }
-#argobar-consulta-infoleg-consulta-avanzada .select2-container--disabled {
-  background: var(--arg-negro-75);
+.infoleg-search-form .select2-container--disabled * {
   cursor: not-allowed;
 }
-#argobar-consulta-infoleg-consulta-avanzada .select2-container--default.select2-container--disabled .select2-selection--single {
-  background: var(--arg-negro-75);
-  cursor: not-allowed;
+.infoleg-search-form .select2-container .select2-selection--single .select2-selection__rendered {
+  padding-left: 4px;
+  padding-top: 2px;
+}
+.infoleg-search-form .select2-selection__arrow {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  margin-top: -2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.infoleg-search-form .select2-selection__arrow::before {
+  content: "\f107";
+  font-family: "FontAwesome";
+  font-size: 14px;
+}
+.infoleg-search-form .form-item-tipo-norma .control-label {
+  display: block;
+}
+.infoleg-search-form .form-item-tipo-norma .select2-container {
+  width: 100% !important;
 }
 
 .bloque-leyes i {

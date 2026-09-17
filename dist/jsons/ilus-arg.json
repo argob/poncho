@@ -315,8 +315,18 @@
     "Etiquetas ": "persona, señalar, señalando",
     "Descripción (texto alternativo)": "Una mujer señalando",
     "Formato": "16x9",
-    "Ilustrador/a": null,
+    "Ilustrador/a": "Ss de Vocería y Comunicación de Gobierno",
     "Fecha de alta": null,
+    "Grupo": null
+  },
+  {
+    "Nombre": "Familia",
+    "Codigo": "ilus-arg-familia",
+    "Etiquetas ": "familia,personas,abuelo,padres,hijos",
+    "Descripción (texto alternativo)": "Una familia abrazada",
+    "Formato": "16x9",
+    "Ilustrador/a": "Ss de Vocería y Comunicación de Gobierno",
+    "Fecha de alta": "15/9/2026",
     "Grupo": null
   }
 ]
