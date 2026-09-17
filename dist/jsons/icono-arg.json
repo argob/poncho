@@ -2142,6 +2142,11 @@
       },
     
       {
+        "nombre": "fondos-asistencia-laboral",
+        "clase": "icono-arg-fondos-asistencia-laboral"
+      },
+    
+      {
         "nombre": "formando-capital-humano",
         "clase": "icono-arg-formando-capital-humano"
       },
