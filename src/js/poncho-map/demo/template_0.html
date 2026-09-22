@@ -257,7 +257,7 @@ function renderPD(){
         setMap(data);
 
     }).catch(function(error){
-        logger.error('Error al cargar objetivos:', error);
+        console.error('Error al cargar objetivos:', error);
     });
 }
 
@@ -332,12 +332,12 @@ function setMap(data){
             },
         ],
         template_structure: {
+            "term_classlist": ["text-arg-azul"],
             values: [
                 "estado_funcionamiento_custom",
                 "institucion",
                 "ubicacion",
                 "horarios_custom",
-                // "horarios_miarg",
                 "telefono",
                 "email"
             ],
@@ -417,7 +417,11 @@ function setMap(data){
     const mapSearch = new PonchoMapSearch(map, search_options);
     map.render();
     mapSearch.render();
-    loader.close();
+
+    map.map.whenReady( function() {
+        console.log("All visible map tiles have fully loaded!");
+        loader.close();
+    });
 }
 
 
