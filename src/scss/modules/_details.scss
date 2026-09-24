@@ -28,6 +28,10 @@ $summaryPaddingB: 10px; // Padding bottom
 $summaryLineHeightSmall: 1.25em;
 $summaryLineHeightDefault: 1.35em;
 
+// summary compact
+$compactSummaryPaddingT: round($summaryPaddingT/2);
+$compactSummaryPaddingB: round($summaryPaddingB/2);
+
 // caret
 $circleDefaultSize: 40px; // Tamaño del círculo
 $circleSmallSize: 32px; // Tamaño del círculo pequeño
@@ -329,6 +333,10 @@ $colorThemes: (
     &.details-border-dark {
         border-color: rgb(0 0 0 / 0.25) !important;
     }
+    &.details-compact { 
+         --summary-padding-t: #{$compactSummaryPaddingT};
+         --summary-padding-b: #{$compactSummaryPaddingB};
+    }
 
     summary {
         min-height: calc(
@@ -562,7 +570,10 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
     &.caret-fixed > details {
         @include caretFixed();
     }
-
+    &.details-container-compact details { 
+         --summary-padding-t: #{$compactSummaryPaddingT};
+         --summary-padding-b: #{$compactSummaryPaddingB};
+    }
     &.details-container-borderless {
         border: none;
     }
