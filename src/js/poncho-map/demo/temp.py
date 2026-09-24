@@ -1,4 +1,5 @@
 import csv
+import re
 data = '''"Buenos Aires";"25 de Mayo";"25 de Mayo (Buenos Aires)";"Calle 10 S/N entre 26 y 27";"25demayopba@puntodigital.gob.ar";"De Lunes a Viernes 8:00 a 13:00 y de 16:00  a 22:00 hs";"664"|"Buenos Aires";"Adolfo Alsina";"Adolfo Alsina";"Avenida San Martin entre Libertad y Fray Mamerto Esquiu";"alsina@puntodigital.gob.ar";"De Lunes a Viernes de 13:00 a 21:00 hs";"570"|"Buenos Aires";"Alberti";"Alberti";"Intendente Rubén Darío Rivara 195 entre 9 de Julio y San Martín";"alberti@puntodigital.gob.ar";"De Lunes a viernes de 8:30 a 11:30";"917"|"Buenos Aires";"Arrecifes";"Arrecifes II (Juventud)";"Sarmiento 200 entre Stegmann e Irlanda";"arrecifes@puntodigital.gob.ar";"De Lunes a Viernes de 8:00 a 14:00";"675"|"Buenos Aires";"Ayacucho";"Ayacucho";"Calle Brown esquina Italianos";"pdayacucho@puntodigital.gob.ar";"";"620"|"Buenos Aires";"Azul";"Azul";"San Martín 612, esquina 25 de Mayo";"azul@puntodigital.gob.ar";"De Lunes a Viernes de 8:00 a 14:00 hs.";"70"|"Buenos Aires";"Bahía Blanca";"Bahía Blanca I";"Nicolás Pérez 1997, esquina Santa Cruz";"bahiablanca@puntodigital.gob.ar";"De Lunes a Viernes de 9:30 a 14:00 h";"393"|"Buenos Aires";"Bahía Blanca";"Bahía Blanca II (Cerri)";"Juan José Paso 405";"cerri@puntodigital.gob.ar";"Lunes a Jueves de 10:00 a 12:30h y Viernes de 8:30 a 12:30h (No se valida del 2 al 27 de febrero)";"396"|"Buenos Aires";"Balcarce";"Balcarce";"Avenida Eva Peron 3949 entre calles 116 y 118";"balcarce@puntodigital.gob.ar";"Martes y Jueves de 10:00 a 11:30 hs";"85"|"Buenos Aires";"Baradero";"Baradero";"Sanchez de Bustamante 3100 y Malvinas Argentinas";"baradero@puntodigital.gob.ar";"De Lunes a Viernes de 8:00 a 12:00 y de 18:00 a 20:00";"446"|"Buenos Aires";"Berisso";"Berisso I";"33 y 169, Barrio Obrero";"berisso@puntodigital.gob.ar";"De Lunes a Viernes de 8:00 a 14:00 hs.";"40"|"Buenos Aires";"Berisso";"Berisso II (El Carmen)";"Calle 604 y Ruta 11";"berissoelcarmen@puntodigital.gob.ar";"Lunes, Miércoles y Viernes de 9.30 a 12.30 hs.";"822"|"Buenos Aires";"Bolivar";"Urdampilleta";"Avenida Rivadavia entre Italia y Pasteur";"urdampilletabolivar@puntodigital.gob.ar";"De Lunes a Viernes de 8:00 a 13:00";"66"|"Buenos Aires";"Bragado";"Bragado";"Hermanos Islas 428";"bragado@puntodigital.gob.ar";"De Lunes a Viernes de 8:00 a 13:00";"569"|"Buenos Aires";"Campana";"Campana";"Avenida Intendente Jorge Ruben Varela 750 entre calles Avenida Ameghino y Sivori";"campana@puntodigital.gob.ar";"De Lunes a Viernes de 8.30 a 14.30 hs";"788"|"Buenos Aires";"Cañuelas";"Cañuelas";"Mozotegui 807, entre Mitre e Independencia";"canuelas@puntodigital.gob.ar";"De Lunes a Viernes de 8:00 a 14:00 hs.";"41"|"Buenos Aires";"Carlos Casares";"Carlos Casares";"Cecilia Borja 75";"carloscasares@puntodigital.gob.ar";"De Lunes a Viernes de 9:00 a 12:00 y de 18:00 a 21:00 hs";"568"|"Buenos Aires";"Carlos Tejedor";"Carlos Tejedor";"Almirón 148";"carlostejedor@puntodigital.gob.ar";"De Lunes a Viernes de 8:00 a 14:00";"831"|"Buenos Aires";"Castelli";"Castelli (Buenos Aires)";"Carlos Pellegrini 337 entre Sarmiento y Belgrano";"castellipba@puntodigital.gob.ar";"De Lunes a Viernes de 8:30 a 13:00 hs";"941"|"Buenos Aires";"Chascomús";"Chascomús";"Francisco Serantes 1363 entre Julián Carmona y Boulevard 4, Barrio 30 de Mayo";"chascomus@puntodigital.gob.ar";"De Lunes a Viernes de 8:00 a 14:00 hs.";"416"|"Buenos Aires";"Coronel Pringles";"Coronel Pringles";"España n°960 entre San Martín (50) y Stegmann (49)";"coronelpringles@puntodigital.gob.ar";"De Lunes a Viernes de 7:00 a 13:00 hs";"441"|"Buenos Aires";"Coronel Suarez";"Coronel Suárez I (Colonia Santa María)";"Avenida 11 de mayo N° 1263 entre las calles Mendoza y Santa Fe";"coronelsuarez@puntodigital.gob.ar";"De Lunes a Viernes de 9:30 a 15:00 hs";"45"|"Buenos Aires";"Coronel Suarez";"Coronel Suarez II (CTC)";"Rivadavia 155";"coronelsuarez2@puntodigital.gob.ar";"De Lunes a Viernes de 07:30 a 12:30 hs.";"46"|"Buenos Aires";"Escobar";"Escobar (Maquinista Savio)";"Boulevard 5 de Junio 1525, entre El Chingolo y Las Golondrinas";"maquinistasavio@puntodigital.gob.ar";"Lunes, Martes y Jueves de 9:00 a 13:00";"861"|"Buenos Aires";"Escobar";"Escobar II (La Chechela)";"Pasteur y Lauría s/n entre calles Melchor y General Paz";"lachechela@puntodigital.gob.ar";"Atención: del 09/02 al 23/02/2026 no se validará. Lunes, Miércoles y Viernes de 08:00 a 15:00 hs";"1265"|"Buenos Aires";"Ezeiza";"Ezeiza";"Avellaneda 51";"ezeiza@puntodigital.gob.ar";"Martes de 11:00 a 13:00 hs.";"80"|"Buenos Aires";"Ezeiza";"Ezeiza II";"Zapala 401";"ezeiza2@puntodigital.gob.ar";"Viernes de 11:00 a 13:00 hs.";"1114"|"Buenos Aires";"Florencio Varela";"Florencio Varela";"Intendente Oliver 4132 entre Lieja y Bélgica";"florenciovarela@puntodigital.gob.ar";"Martes, jueves y viernes 10:00 a 12:00 hs. Con Turno previo por msj al 115155 8103";"1138"|"Buenos Aires";"General Alvarado";"General Alvarado I (Miramar)";"Calle 110 y 11";"miramar@puntodigital.gob.ar";"De Lunes a Viernes de 8 :00a 13:00 hs";"62"|"Buenos Aires";"General Alvarado";"General Alvarado II (Otamendi)";"Mariano Moreno 2277";"otamendi@puntodigital.gob.ar";"Lunes y Viernes de 9:30 a 12:00 hs";"1170"|"Buenos Aires";"General Belgrano";"General Belgrano";"Avenida Larrea esquina Avenida Rivadavia";"generalbelgrano@puntodigital.gob.ar";"De Lunes a Viernes de 7:30 a 13:00 hs.";"414"|"Buenos Aires";"General Guido";"General Guido";"Belgrano 450";"generalguido@puntodigital.gob.ar";"De Lunes a Viernes de 7:00 a 13:00 h";"415"|"Buenos Aires";"General Lavalle";"General Lavalle";"Bartolomé Mitre 103";"generallavalle@puntodigital.gob.ar";"Lun a Vier de 7h a 13h (No se valida del 13 /03 hasta el 23/04).";"428"|"Buenos Aires";"General Madariaga";"General Madariaga";"Calle 4 entre 39 y 41 Bº Quintanilla";"madariaga@puntodigital.gob.ar";"Lun a Vier de 7h a 13h";"69"|"Buenos Aires";"General Pueyrredón";"Mar del Plata I (Polideportivo Las Heras)";"Avenida Fortunato de la plaza 8550 entre Rufino inda y Polonia";"mardelplata1@puntodigital.gob.ar";"Lunes a Viernes de 9:00 a 15:00hs";"59"|"Buenos Aires";"General Pueyrredón";"Mar del Plata II (Inareps)";"Ruta 88 Km 1,5";"inareps@puntodigital.gob.ar";"Lunes y Miércoles 12:00 a 15:00 hs / Martes, Jueves y Viernes 8:30 a 13:00 hs (No se valida desde el 31/08 al 25/09)";"82"|"Buenos Aires";"General Pueyrredón";"Mar del Plata III (Polideportivo Libertad)";"Ituzaingó 8350,
 entre Costa y Tandil";"polideportivolibertad@puntodigital.gob.ar";"Lunes, Miércoles y Viernes de 8:30 a 13:30 h
 8:30 a 13:30";"545"|"Buenos Aires";"General Pueyrredón";"Mar del Plata IV (Barrio Colinas)";"Einstein 1502,
@@ -29,11 +30,31 @@ Código Postal 2252.";"galvezsantafe@puntodigital.gob.ar";"";"253"|"Santa Fe";"S
 
 data_rows = data.split("|")
 
+data_to_list = []
+
+
+def curate_data(entry):
+    values = []
+    data = entry.split(';')
+    for i in data:
+        clean = re.sub(r'"|\n', '', i)
+        if ',' in clean:
+            values.append(f'"{clean}"')
+        else:
+            values.append(clean)
+
+    return values
+
+        
+
 
 with open('data-pd.csv', 'w', newline="") as csvfile:
-    spamwriter = csv.writer(csvfile, delimiter='|',
-                            quotechar=',')
+    spamwriter = csv.writer(csvfile)
 
     for row in data_rows:
-        row_data = row.split(';')
+
+        row_data = curate_data(row)
+        data_to_list.append(row_data)
         spamwriter.writerow(row_data)
+
+print(data_to_list)
