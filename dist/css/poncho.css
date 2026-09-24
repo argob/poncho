@@ -16964,6 +16964,10 @@ details.details-border-light {
 details.details-border-dark {
   border-color: rgba(0, 0, 0, 0.25) !important;
 }
+details.details-compact {
+  --summary-padding-t: 5px;
+  --summary-padding-b: 5px;
+}
 details summary {
   min-height: calc(var(--circle-size) + var(--summary-padding-t) + var(--summary-padding-b));
   line-height: var(--summary-line-height);
@@ -17228,6 +17232,10 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
 }
 .details-container.caret-fixed > details[open] > summary::after {
   top: calc(var(--circle-size) / 2 - var(--caret-width) / 2 + var(--summary-padding-t));
+}
+.details-container.details-container-compact details {
+  --summary-padding-t: 5px;
+  --summary-padding-b: 5px;
 }
 .details-container.details-container-borderless {
   border: none;
