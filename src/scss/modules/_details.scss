@@ -27,10 +27,12 @@ $summaryPaddingT: 10px; // Padding top
 $summaryPaddingB: 10px; // Padding bottom
 $summaryLineHeightSmall: 1.25em;
 $summaryLineHeightDefault: 1.35em;
-
-// summary compact
-$compactSummaryPaddingT: round($summaryPaddingT/2);
-$compactSummaryPaddingB: round($summaryPaddingB/2);
+// compact
+$compactSummaryPaddingT: round($summaryPaddingT/3);
+$compactSummaryPaddingB: round($summaryPaddingB/3);
+// Cozy
+$cozySummaryPaddingT: round($summaryPaddingT/5*3);
+$cozySummaryPaddingB: round($summaryPaddingB/5*3);
 
 // caret
 $circleDefaultSize: 40px; // Tamaño del círculo
@@ -334,10 +336,13 @@ $colorThemes: (
         border-color: rgb(0 0 0 / 0.25) !important;
     }
     &.details-compact { 
-         --summary-padding-t: #{$compactSummaryPaddingT};
-         --summary-padding-b: #{$compactSummaryPaddingB};
+        --summary-padding-t: #{$compactSummaryPaddingT};
+        --summary-padding-b: #{$compactSummaryPaddingB};
     }
-
+    &.details-cozy { 
+        --summary-padding-t: #{$cozySummaryPaddingT};
+        --summary-padding-b: #{$cozySummaryPaddingB};
+    }
     summary {
         min-height: calc(
             var(--circle-size) +
@@ -571,8 +576,12 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
         @include caretFixed();
     }
     &.details-container-compact details { 
-         --summary-padding-t: #{$compactSummaryPaddingT};
-         --summary-padding-b: #{$compactSummaryPaddingB};
+        --summary-padding-t: #{$compactSummaryPaddingT};
+        --summary-padding-b: #{$compactSummaryPaddingB};
+    }
+    &.details-container-cozy details { 
+        --summary-padding-t: #{$cozySummaryPaddingT};
+        --summary-padding-b: #{$cozySummaryPaddingB};
     }
     &.details-container-borderless {
         border: none;
