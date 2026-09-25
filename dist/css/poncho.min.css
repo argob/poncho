@@ -16965,8 +16965,12 @@ details.details-border-dark {
   border-color: rgba(0, 0, 0, 0.25) !important;
 }
 details.details-compact {
-  --summary-padding-t: 5px;
-  --summary-padding-b: 5px;
+  --summary-padding-t: 3px;
+  --summary-padding-b: 3px;
+}
+details.details-cozy {
+  --summary-padding-t: 6px;
+  --summary-padding-b: 6px;
 }
 details summary {
   min-height: calc(var(--circle-size) + var(--summary-padding-t) + var(--summary-padding-b));
@@ -17234,8 +17238,12 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
   top: calc(var(--circle-size) / 2 - var(--caret-width) / 2 + var(--summary-padding-t));
 }
 .details-container.details-container-compact details {
-  --summary-padding-t: 5px;
-  --summary-padding-b: 5px;
+  --summary-padding-t: 3px;
+  --summary-padding-b: 3px;
+}
+.details-container.details-container-cozy details {
+  --summary-padding-t: 6px;
+  --summary-padding-b: 6px;
 }
 .details-container.details-container-borderless {
   border: none;
