@@ -77,6 +77,7 @@ COPIAR DESDE ACÁ…
 <!-- / INCLUDE SCRIPTS -->
 
 <div class="container">
+
 <div class="row">
 <div class="col-md-12 m-b-1">
 
@@ -99,7 +100,7 @@ COPIAR DESDE ACÁ…
                     id="js-porcho-map-search__list">
                 </datalist>
                 <span class="input-group-btn">
-                    <butto        gap: 20pxn 
+                    <button 
                         class="js-poncho-map-search__submit btn btn-primary" 
                         type="submit">
                         <i class="fa fa-search text-white"></i>
@@ -117,7 +118,6 @@ COPIAR DESDE ACÁ…
 
 </div>
 <div class="col-md-12">
-
     <!-- PONCHO MAP -->
     <div class="poncho-map" data-scope="ponchomap">
         <div 
@@ -129,8 +129,8 @@ COPIAR DESDE ACÁ…
         </div>
     </div>
     <!-- / PONCHO MAP -->
+</div>
 
-</div>  
 </div>
 </div>
 
@@ -208,10 +208,10 @@ COPIAR DESDE ACÁ…
     headStyle('pm', cssDefinitions);
 </script>
 <script id="code_map">
+const loader = new PonchoMapLoader({scope: "ponchomap", close_delay:1000});
+loader.load();
 var data = new Map();
 const gapi = new GapiSheetData();
-const loader = new PonchoMapLoader({scope: "ponchomap"});
-loader.load();
 
 const CONFIG_ENV = {
     development: {
@@ -415,18 +415,13 @@ function setMap(data){
         placeholder: "Buscá por nombre, localidad o provincia",
     };
     const mapSearch = new PonchoMapSearch(map, search_options);
-    map.render();
-    mapSearch.render();
 
-    map.map.whenReady( function() {
-        console.log("All visible map tiles have fully loaded!");
+    requestAnimationFrame(() => {
+        map.render();
+        mapSearch.render();
         loader.close();
     });
 }
-
-
-
-
 </script>
 
 <!-- / SCRIPTS -->
