@@ -179,17 +179,18 @@ const buildScheduleHTML = (scheduleList, currentDay, todayFragment) => {
 
         // DD con detalles expandibles
         const ddDetails = document.createElement('dd');
-        const marginBottomClass = row.miarg == 1 ? 'm-b-1' : 'm-b-0';
+        const marginBottomClass = row.miarg == 1 ? 'm-b-05' : 'm-b-0';
         ddDetails.className = marginBottomClass;
 
         const details = document.createElement('details');
-        details.className = 'js-details ar-details caret-small caret-dark';
+        details.className = 'js-details ar-details caret-small caret-dark '
+            + 'details-cozy border-bottom border-arg-default border-color-25';
         if (row.miarg != 1) {
         details.classList.add('details-borderless');
         }
 
         const summary = document.createElement('summary');
-        summary.className = 'ar-details__title';
+        summary.className = 'ar-details__title ';
         summary.textContent = 'Horarios de atención';
         details.appendChild(summary);
 
@@ -226,7 +227,7 @@ const buildScheduleHTML = (scheduleList, currentDay, todayFragment) => {
         // Sección Mi Argentina
         if (row.miarg == 1) {
             const miArgDiv = document.createElement('div');
-            miArgDiv.className = 'schedule__mi-argentina _border border-medium border-miarg-azul';
+            miArgDiv.className = 'schedule__mi-argentina p-05';
 
             const iconSpan = document.createElement('span');
             iconSpan.className = 'schedule__mi-argentina__icon';

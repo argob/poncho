@@ -77,6 +77,9 @@ COPIAR DESDE ACÁ…
 <!-- / INCLUDE SCRIPTS -->
 
 <div class="container">
+
+
+
 <div class="row">
 <div class="col-md-12 m-b-1">
 
@@ -99,7 +102,7 @@ COPIAR DESDE ACÁ…
                     id="js-porcho-map-search__list">
                 </datalist>
                 <span class="input-group-btn">
-                    <butto        gap: 20pxn 
+                    <button  
                         class="js-poncho-map-search__submit btn btn-primary" 
                         type="submit">
                         <i class="fa fa-search text-white"></i>
@@ -117,7 +120,6 @@ COPIAR DESDE ACÁ…
 
 </div>
 <div class="col-md-12">
-
     <!-- PONCHO MAP -->
     <div class="poncho-map" data-scope="ponchomap">
         <div 
@@ -129,21 +131,10 @@ COPIAR DESDE ACÁ…
         </div>
     </div>
     <!-- / PONCHO MAP -->
-
 </div>  
 </div>
-</div>
 
-<!-- SHOW CODE -->
-<div class="container">
-    <div class="row m-y-2">
-        <div class="col-md-12">
-            <div data-code-from="code_map" data-title="Código para el mapa"></div>
-        </div>
-    </div>
 </div>
-<script src="../../mapa-argentina/demo/js/demo.js"></script>
-<!-- / SHOW CODE -->
 
 
 <!-- SCRIPTS -->
@@ -152,16 +143,15 @@ COPIAR DESDE ACÁ…
         padding: .5em;
         background: var(--arg-gris-niebla);
         border-radius: 9px;
+        color: var(--arg-negro)
     }
-    /* Uso de modificador BEM */
     .schedule__mi-argentina {
-        background: var(--arg-azul-50);
-        background: rgb(255 255 255 / .85);
-        padding: .5em;c.erro
-        border-radius: 4px;
+        background: var(--arg-blanco);
+        color: var(--arg-negro)
+        border-radius: 3px;
         position: relative;
         font-size: smaller;
-        box-shadow:1px 1px 6px rgb(0 0 0 / .2);
+        box-shadow:1px 1px 6px rgb(0 0 0 / .15);
     }
     .schedule__mi-argentina dt {
         padding-right: 35px;
@@ -196,12 +186,11 @@ COPIAR DESDE ACÁ…
         display: flex;
         border-radius: 4px;
         aspect-ratio: 1;
-      width:40px;
+        width:40px;
         box-shadow: 1px 1px 3px rgb(0 0 0 / .2);
         justify-content: center;
         font-size: 60%;
-        
-background: linear-gradient(157deg,rgba(53, 38, 195, 1) 0%, rgba(35, 21, 161, 1) 100%);
+        background: linear-gradient(157deg,rgba(53, 38, 195, 1) 0%, rgba(35, 21, 161, 1) 100%);
     }`;
     headStyle('pm', cssDefinitions);
 </script>
@@ -225,7 +214,6 @@ const CONFIG_ENV = {
 };
 
 const config = CONFIG_ENV[CURRENT_ENV];
-
 
 function renderPD(){
     Promise.all([
@@ -260,7 +248,6 @@ function renderPD(){
 }
 
 renderPD();
-
 
 function setMap(data){
     const gdata = data.get("pd");
@@ -417,12 +404,21 @@ function setMap(data){
     mapSearch.render();
     loader.close();
 }
-
-
-
-
 </script>
-
 <!-- / SCRIPTS -->
+
+
+
+
+<!-- SHOW CODE -->
+<div class="container">
+    <div class="row m-y-2">
+        <div class="col-md-12">
+            <div data-code-from="code_map" data-title="Código para el mapa"></div>
+        </div>
+    </div>
+</div>
+<script src="../../mapa-argentina/demo/js/demo.js"></script>
+<!-- / SHOW CODE -->
 </body>
 </html>
