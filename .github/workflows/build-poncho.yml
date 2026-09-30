@@ -16,8 +16,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: 🛡️ Configurar safe.directory
+        run: git config --global --add safe.directory '*'
+
       - name: 🛎 Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           path: ./poncho
           ref: ${{ github.ref_name }}
@@ -32,7 +35,7 @@ jobs:
           npm run gulp
 
       - name: Checkout Iconos Arg
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with: 
           repository: argob/iconos
           path: ./iconos
@@ -54,7 +57,8 @@ jobs:
           echo "Listamos fuentes de Poncho"
           ls ./poncho/dist/fonts/
 
-      - name: 🧪 Deploy build
+      - name: 🧪 Deploy build (solo en ramas de desarrollo)
+        if: github.ref_name != 'master'
         working-directory: ./poncho
         run: |
           git config user.name "${GITHUB_ACTOR}"
@@ -68,7 +72,7 @@ jobs:
           fi
 
       - name: 📤 Guardar artefactos dist para despliegue
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: poncho-dist
           path: ./poncho/dist/
@@ -79,14 +83,17 @@ jobs:
     if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     steps:
+      - name: 🛡️ Configurar safe.directory
+        run: git config --global --add safe.directory '*'
+
       - name: 🛎 Check out gh-pages-new
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           ref: gh-pages-new
           path: ./gh-pages-site
 
       - name: 📥 Descargar dist compilado de master
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: poncho-dist
           path: ./dist-artifact
@@ -118,7 +125,7 @@ jobs:
         run: bundle exec jekyll build -d docs
 
       - name: Descargo repo Iconos
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with: 
           repository: argob/iconos
           path: ./iconos
