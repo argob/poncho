@@ -1,50 +1,66 @@
-
 name: jekyll-cd
 
 on:
   push:
     branches:
       - gh-pages-new
+  workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-      - name: 🛎 Check out master
-        uses: actions/checkout@master
+      - name: 🛡️ Configurar safe.directory
+        run: git config --global --add safe.directory '*'
+
+      - name: 🛎 Check out repository
+        uses: actions/checkout@v7
         with:
           fetch-depth: 1
+
       - name: 🎩 Install Jekyll
         run: |
           sudo gem install bundler jekyll
           sudo bundle install
+
       - name: 🧹 Clean site
         run: |
           if [ -d "docs" ]; then
             rm -rf docs/*
           fi
+
       - name: Instalamos dependencias
         working-directory: ./src
         run: npm update
+
       - name: 🔨 Build site
         working-directory: ./
         run: bundle exec jekyll build -d docs
+
       - name: Descargo repo Iconos 
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with: 
           repository: argob/iconos
           path: ./iconos
+
       - name: copio dependencias
         working-directory: ./
-        run:  |
+        run: |
           cp -R ./iconos/dist/ilustraciones ./docs/
-          rm -R ./iconos
+          rm -rf ./iconos
+
       - name: 🧪 Deploy build
         run: |
           git config user.name "${GITHUB_ACTOR}"
           git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
           git add .
-          git commit -am "🧪 Deploy with ${GITHUB_WORKFLOW}"
-          git push --all -f https://${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git
+          if git diff --staged --quiet; then
+            echo "Sin cambios para desplegar."
+          else
+            git commit -m "🧪 Deploy with ${GITHUB_WORKFLOW}"
+            git push https://${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git HEAD:gh-pages-new
+          fi
