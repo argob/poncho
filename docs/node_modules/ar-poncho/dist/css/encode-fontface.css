@@ -1,1 +1,24 @@
-@font-face{font-family:"Encode Sans";src:url("../fonts/EncodeSans-Regular.ttf") format("truetype");font-weight:400;font-display:swap}@font-face{font-family:"Encode Sans";src:url("../fonts/EncodeSans-Medium.ttf") format("truetype");font-weight:500;font-style:normal;font-display:swap}@font-face{font-family:"Encode Sans";src:url("../fonts/EncodeSans-SemiBold.ttf") format("truetype");font-display:swap}@font-face{font-family:"Encode Sans";src:url("../fonts/EncodeSans-Bold.ttf") format("truetype");font-weight:700;font-display:swap}
+@font-face {
+  font-family: "Encode Sans";
+  src: url("../fonts/EncodeSans-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Encode Sans";
+  src: url("../fonts/EncodeSans-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Encode Sans";
+  src: url("../fonts/EncodeSans-SemiBold.ttf") format("truetype");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Encode Sans";
+  src: url("../fonts/EncodeSans-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-display: swap;
+}
