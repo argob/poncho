@@ -3,20 +3,26 @@ name: build-poncho
 on:
   push:
     branches:
+      - master
       - release-1.x
+  workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   build:
-
+    name: 🎩 Compilar Poncho
     runs-on: ubuntu-latest
 
     steps:
-      - name: 🛎 Check out release-1.x
+      - name: 🛎 Check out repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 1
           path: ./poncho
-          ref: release-1.x
+          ref: ${{ github.ref_name }}
+          fetch-depth: 1
+
       - name: 🎩 Compilamos todo
         working-directory: ./poncho
         run: |
@@ -24,11 +30,13 @@ jobs:
           npm test
           node src/create-colors.js
           npm run gulp
+
       - name: Checkout Iconos Arg
         uses: actions/checkout@v4
         with: 
           repository: argob/iconos
           path: ./iconos
+
       - name: Copy/Create file
         run: |
           echo "Copying $FILE"
@@ -45,11 +53,95 @@ jobs:
           cp ./iconos/docs/ilus-arg.json ./poncho/dist/jsons/
           echo "Listamos fuentes de Poncho"
           ls ./poncho/dist/fonts/
+
       - name: 🧪 Deploy build
         working-directory: ./poncho
         run: |
           git config user.name "${GITHUB_ACTOR}"
           git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
           git add --force -- dist/*
-          git commit -am "🧪 Deploy with ${GITHUB_WORKFLOW}"
-          git push --all -f https://${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git
+          if git diff --staged --quiet; then
+            echo "Sin cambios en dist para comitear."
+          else
+            git commit -m "🧪 Deploy with ${GITHUB_WORKFLOW}"
+            git push https://${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git HEAD:${{ github.ref_name }}
+          fi
+
+      - name: 📤 Guardar artefactos dist para despliegue
+        uses: actions/upload-artifact@v4
+        with:
+          name: poncho-dist
+          path: ./poncho/dist/
+
+  deploy-gh-pages:
+    name: 🚀 Actualizar gh-pages-new
+    needs: build
+    if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🛎 Check out gh-pages-new
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages-new
+          path: ./gh-pages-site
+
+      - name: 📥 Descargar dist compilado de master
+        uses: actions/download-artifact@v4
+        with:
+          name: poncho-dist
+          path: ./dist-artifact
+
+      - name: 🎩 Install Jekyll
+        working-directory: ./gh-pages-site
+        run: |
+          sudo gem install bundler jekyll
+          sudo bundle install
+
+      - name: 🧹 Clean site
+        working-directory: ./gh-pages-site
+        run: |
+          if [ -d "docs" ]; then
+            rm -rf docs/*
+          fi
+
+      - name: Instalamos dependencias
+        working-directory: ./gh-pages-site/src
+        run: npm update
+
+      - name: 📋 Copiar Poncho dist a dependencias de Jekyll
+        run: |
+          mkdir -p ./gh-pages-site/src/node_modules/ar-poncho/dist
+          cp -R ./dist-artifact/* ./gh-pages-site/src/node_modules/ar-poncho/dist/
+
+      - name: 🔨 Build site
+        working-directory: ./gh-pages-site
+        run: bundle exec jekyll build -d docs
+
+      - name: Descargo repo Iconos
+        uses: actions/checkout@v4
+        with: 
+          repository: argob/iconos
+          path: ./iconos
+
+      - name: Copio ilustraciones de Iconos
+        run: |
+          cp -R ./iconos/dist/ilustraciones ./gh-pages-site/docs/
+          rm -rf ./iconos
+
+      - name: 📋 Asegurar dist compilado en docs
+        run: |
+          mkdir -p ./gh-pages-site/docs/node_modules/ar-poncho/dist
+          cp -R ./dist-artifact/* ./gh-pages-site/docs/node_modules/ar-poncho/dist/
+
+      - name: 🧪 Deploy a gh-pages-new
+        working-directory: ./gh-pages-site
+        run: |
+          git config user.name "${GITHUB_ACTOR}"
+          git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+          git add .
+          if git diff --staged --quiet; then
+            echo "Sin cambios para desplegar en gh-pages-new."
+          else
+            git commit -m "🧪 Deploy from master with ${GITHUB_WORKFLOW}"
+            git push https://${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git HEAD:gh-pages-new
+          fi
