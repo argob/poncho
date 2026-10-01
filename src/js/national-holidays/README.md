@@ -15,7 +15,7 @@ Este componente JavaScript facilita la visualización de los feriados nacionales
 
 ## Versión
 
-2.0.1
+2.1.0
 
 <span id="opciones-de-configuracion"></span>
 
@@ -34,6 +34,7 @@ La inicialización del calendario se realiza mediante un objeto de configuració
 |  |  | - **trasladable**: Clase CSS para feriados trasladables. Default `success`. |
 |  |  | - **no_laborable**: Clase CSS para días no laborables. Default `nl`. |
 |  |  | - **turistico**: Clase CSS para feriados turísticos. Default `turistico`. |
+| excludedFromCountdown | Permite incorporar un array con todos los tipos que no deben incluirse en la cuenta regresiva de feriados. | - **Por defecto:** `["no_laborable"]`. |
 
 
 ### Internacionalización de Textos
