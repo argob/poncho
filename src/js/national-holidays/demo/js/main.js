@@ -291,11 +291,30 @@ async function initCalendar(year, lang) {
     }
 
     legalInfo( geoJsonData?.subjectOf, lang );
+
+    const style = '.bg-holiday-special{background:var(--arg-mandarina);color:black}';
+    headStyle("holiday-special", style);
+
+    calendar.dictionary[lang].holidaysType = {
+        inamovible: "Feriado inamovible",
+        no_laborable: "Día no laborable",
+        trasladable: "Feriado trasladable",
+        turistico: "Feriado turístico",
+        especial: "Feriado especial"
+    };
     calendar.render({
         calendarYear: year,
         markers: calendarData,
         lang,
-        allowHTML: true
+        allowHTML: true,
+        excludedFromCountdown:["no_laborable", "especial"],
+        holidays_type: {
+            inamovible: "primary",
+            trasladable: "success",
+            no_laborable: "nl",
+            turistico: "turistico",
+            especial: "holiday-special"
+        }
     });
 
     viewSwitcher(true);
