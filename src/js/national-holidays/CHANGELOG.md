@@ -4,6 +4,8 @@
 <!-- omit in toc -->
 ## En ésta página
 
+- [Release 2.1.0](#release-210)
+  - [Nuevas características](#nuevas-características)
 - [Release 2.0.2](#release-202)
   - [Mejoras de accesibilidad](#mejoras-de-accesibilidad)
   - [Mejoras de rendimiento y correcciones de bug](#mejoras-de-rendimiento-y-correcciones-de-bug)
@@ -13,6 +15,12 @@
 - [Accesibilidad](#accesibilidad)
   - [CSS](#css)
 - [version 1.x](#version-1x)
+
+## Release 2.1.0
+
+### Nuevas características
+
+- **Categoría extra para casos especiales:** Se incorporó un método que permite asignar tipos de feriados que no deben incluirse en la cuenta regresiva de feriados. Por defecto se dejó “no_laborable”, mientras que, si el usuario desea agregar uno nuevo, lo puede incluir como un array en la clave `excludedFromCountdown`.
 
 ## Release 2.0.2
 

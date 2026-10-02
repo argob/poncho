@@ -30,7 +30,6 @@
         "@babel/core": "^7.0",
         "@babel/preset-env": "^7.19",
         "@babel/types": "^7.24.0",
-        "babel-cli": "^6.26.0",
         "gulp": "^5",
         "gulp-babel": "^8.0.0",
         "gulp-cli": "^3",
@@ -42,7 +41,6 @@
         "gulp-replace": "1.1.4",
         "gulp-sass": "^6",
         "gulp-uglify": "^3.0.2",
-        "gulp-uglifyes": "^0.2.1",
         "install": "^0.13.0",
         "jest": "^29",
         "jshint": "^2.13.6",
@@ -51,10 +49,8 @@
         "uglify-js": "^3.17.0",
         "with": "^7"
     },
-    "dependencies": {
-        "babel-types": "^6.26.0"
-    },
+    "dependencies": {},
     "engines": {
-        "node": "~8.17.0 || ~18.19.0 || ~20.11.1 || ~20.19.3 || ~24.13.1"
+        "node": ">=18.0.0"
     }
 }

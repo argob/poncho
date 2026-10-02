@@ -338,6 +338,7 @@ const calendar = {
             templateId: "#month-tpl",
             allowHTML: false,
             lang: "es",
+            excludedFromCountdown:["no_laborable"],
             holidays_type: {
                 inamovible: "primary",
                 trasladable: "success",
@@ -357,6 +358,7 @@ const calendar = {
         this.holidayType = opts.holidays_type;
         this.calendarYear = opts.calendarYear;
         this.dict = this.dictionary[this.ln];
+        this.excludedFromCountdown = opts.excludedFromCountdown;
 
         // Validación y obtención del contenedor
         this.container = document.querySelector(opts.containerId);
@@ -785,14 +787,15 @@ const calendar = {
             const {dateObject} = this.parseDate(date);
             return (today.getUTCDate() === dateObject.getUTCDate() &&
                 today.getUTCMonth() === dateObject.getUTCMonth() &&
-                type !== "no_laborable");
+                !this.excludedFromCountdown.some(e => e === type));
         });
 
         // Obtengo el próximo feriado.
         const nextHoliday = this.markers.find(entry => {
             const {date, type} = entry;
             const {dateObject} = this.parseDate(date);
-            return (today < dateObject && type !== "no_laborable");
+            return (today < dateObject && 
+                !this.excludedFromCountdown.some(e => e === type));
         });
 
         // Opciones para el próximo feriado

@@ -8,7 +8,7 @@
     "itemListElement": [
       {
         "item": {
-          "name": "Año Nuevo.",
+          "name": "Año Nuevo",
           "description": "Feriado inamovible",
           "additionalProperty": {
             "name": "tipo",
@@ -521,6 +521,61 @@
       },
       {
         "item": {
+          "name": "Visita de Su Santidad el Papa León XIV",
+          "description": "Feriado inamovible",
+          "additionalProperty": {
+            "name": "tipo",
+            "value": "inamovible",
+            "@type": "PropertyValue"
+          },
+          "location": {
+            "name": "Argentina",
+            "@type": "Country"
+          },
+          "@type": "Event",
+          "startDate": "2026-11-09"
+        },
+        "@type": "ListItem",
+        "position": 28
+      },
+      {
+        "item": {
+          "name": "Visita de Su Santidad el Papa León XIV ((<a href=\"/xxx\">feriado en Córdoba y Ciudad Autónoma de Buenos Aires</a>)",
+          "additionalProperty": {
+            "name": "tipo",
+            "value": "especial",
+            "@type": "PropertyValue"
+          },
+          "location": {
+            "name": "Argentina",
+            "@type": "Country"
+          },
+          "@type": "Event",
+          "startDate": "2026-11-10"
+        },
+        "@type": "ListItem",
+        "position": 29
+      },
+      {
+        "item": {
+          "name": "Visita de Su Santidad el Papa León XIV (<a href=\"/xxx\">feriado en Provincia de Buenos Aires</a>)",
+          "additionalProperty": {
+            "name": "tipo",
+            "value": "especial",
+            "@type": "PropertyValue"
+          },
+          "location": {
+            "name": "Argentina",
+            "@type": "Country"
+          },
+          "@type": "Event",
+          "startDate": "2026-11-11"
+        },
+        "@type": "ListItem",
+        "position": 30
+      },
+      {
+        "item": {
           "name": "Día de la Soberanía Nacional (20/11)",
           "description": "Feriado trasladable",
           "additionalProperty": {
@@ -536,7 +591,7 @@
           "startDate": "2026-11-23"
         },
         "@type": "ListItem",
-        "position": 28
+        "position": 31
       },
       {
         "item": {
@@ -555,7 +610,7 @@
           "startDate": "2026-12-07"
         },
         "@type": "ListItem",
-        "position": 29
+        "position": 32
       },
       {
         "item": {
@@ -574,7 +629,7 @@
           "startDate": "2026-12-08"
         },
         "@type": "ListItem",
-        "position": 30
+        "position": 33
       },
       {
         "item": {
@@ -593,7 +648,7 @@
           "startDate": "2026-12-25"
         },
         "@type": "ListItem",
-        "position": 31
+        "position": 34
       },
       {
         "item": {
@@ -612,11 +667,11 @@
           "startDate": "2027-01-01"
         },
         "@type": "ListItem",
-        "position": 32
+        "position": 35
       }
     ],
-    "numberOfItems": 32,
-    "@type": "ItemList"
+    "@type": "ItemList",
+    "numberOfItems": 35
   },
   "temporalCoverage": "2026",
   "@type": "Dataset",
@@ -627,6 +682,7 @@
     "@type": "Organization"
   },
   "description": "Calendario de Feriados Nacionales 2026",
+  "dateModified": "2026-10-01T17:14:31Z",
   "subjectOf": [
     [
       "Feriados trasladables",
@@ -639,9 +695,12 @@
     [
       "Días no laborables",
       "a.   [Ley Nº 26.199](https://www.argentina.gob.ar/normativa/nacional/ley-26199-124099) dictada en conmemoración del genocidio sufrido por el pueblo armenio. Los empleados y funcionarios de organismos públicos y los alumnos de origen armenio quedan autorizados a disponer libremente de los días 24 de abril de todos los años para poder asistir y participar de las actividades que se realicen en conmemoración de la tragedia que afectó a su comunidad. Se invita a los gobiernos provinciales a adherir a las disposiciones de la presente ley.\n\nb.   Sólo para habitantes que profesen la Religión Judía. Dispuesto por el Art. 2 de la [Ley 27.399](https://www.argentina.gob.ar/normativa/nacional/ley-27399-281835).\n\n-   Pesaj primeros días desde el miércoles 01/04/2026 al atardecer hasta el viernes 03/04/2026 al atardecer\n-   Pesaj últimos días desde el martes 07/04/2026 al atardecer hasta el jueves 09/04/2026 al atardecer\n-   Rosh Hashaná desde el viernes 11/09/2026 al atardecer hasta el domingo 13/09/2026 al atardecer\n-   Iom Kipur desde el domingo 20/09/2026 al atardecer hasta el lunes 21/09/2026 al atardecer\n\nc.   Solo para los habitantes que profesen la Religión Islámica. Dispuesto por el Articulo 3 de la [Ley N° 27.399](https://www.argentina.gob.ar/normativa/nacional/ley-27399-281835).\n    \nFechas aproximadas. Se rigen por el calendario lunar.\n    \nd.   Los fines de semana con fines turísticos conforme lo prescriptos por el art. 7 de la [Ley N° 27.399](https://www.argentina.gob.ar/normativa/nacional/ley-27399-281835), [Resolución 164/2025](https://www.argentina.gob.ar/normativa/nacional/resolución-164-2025-421799)."
+    ],
+    [
+      "Visita de Su Santidad el Papa LEÓN XIV",
+      "[Decreto 1103/2026](https://www.argentina.gob.ar/normativa/nacional/norma-430580/texto):\n\n-    Establécese como feriado nacional el día lunes 9 de noviembre de 2026 en todo el territorio de la República Argentina. \n-    Establécese como feriado el día martes 10 de noviembre de 2026, exclusivamente en el ámbito de la Provincia de Córdoba y la Ciudad Autónoma de Buenos Aires. \n-    Establécese como feriado el día miércoles 11 de noviembre de 2026, exclusivamente en el ámbito de la Provincia de Buenos Aires."
     ]
   ],
-  "dateModified": "2026-06-02T13:48:38Z",
   "@context": {
     "@language": "es",
     "@vocab": "https://schema.org/"
