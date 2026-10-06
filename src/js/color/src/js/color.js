@@ -25,11 +25,11 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-const { replaceSpecialChars } = (typeof require !== "undefined")
-    ? require("../../../utils/replace-special-chars/replace-special-chars")
-    : { replaceSpecialChars: typeof replaceSpecialChars !== "undefined" ? replaceSpecialChars : null };
-
 class Color { //jslint-ignore-line
+    /**
+     * Inicializa la clase Color con un listado de definiciones de colores.
+     * @param {array} colorDefinitions Listado de definiciones de colores
+     */
     constructor(colorDefinitions){
         if(!this.isValidColorDefinitionList(colorDefinitions)){
             console.error("No se pasado por argumento el listado de color");
@@ -45,28 +45,14 @@ class Color { //jslint-ignore-line
      * @param {string} data Cadena de texto a limpiar.
      * @example
      * // returns Accion Murcielago arbol nino
-     * removeAccents("Acción Murciélago árbol niño")
+     * replaceChars("Acción Murciélago árbol niño")
      * @returns {string} Cadena de texto sin acentos.
      */
     replaceChars = (data) => {
         if(typeof replaceSpecialChars === "function"){
             return replaceSpecialChars(data);
         }
-
-        if(typeof data !== "string" || data.trim().length === 0){
-            console.warn("replaceChars: Debe pasar una cadena de texto.");
-            return "";
-        }
-
-        const search = "àáâäæãåāăąçćčđďèéêëēėęěğǵḧîïíīįìıİłḿñńǹňôöòóœøōõőṕ"
-                + "ŕřßśšşșťțûüùúūǘůűųẃẍÿýžźż";
-        const replace = "aaaaaaaaaacccddeeeeeeeegghiiiiiiiilmnnnnooooooooop"
-                + "rrsssssttuuuuuuuuuwxyyzzz";
-
-        const a = search + search.toUpperCase();
-        const b = replace + replace.toUpperCase();
-        const p = new RegExp(a.split("").join("|"), "g");
-        return data.toString().replace(p, c => b.charAt(a.indexOf(c)));
+        return;
     };
 
 
@@ -140,7 +126,13 @@ class Color { //jslint-ignore-line
 
                 variant.forEach(function(value){
                     if(!a.exclude){
-                        collect.push( [`${a.code}-${value.variant}`, value.color, "", code, value.name] );
+                        collect.push([
+                            `${a.code}-${value.variant}`,
+                            value.color, 
+                            "", 
+                            code, 
+                            value.name
+                        ]);
                     }
                 });
             })
@@ -149,11 +141,20 @@ class Color { //jslint-ignore-line
     };
 
 
+    /**
+     * Listado de espacios de color disponibles
+     * @returns {array} Espacios ordenados alfabéticamente
+     */
     get spaces(){
         return this.definitions.map(m => m.space).sort();
     }
 
 
+    /**
+     * Obtiene los grupos de colores dentro de un espacio específico
+     * @param {string} space Nombre del espacio de color
+     * @returns {array} Listado de grupos ordenados alfabéticamente
+     */
     groupsBySpace = space => {
         if (typeof space !== 'string') {
             throw new TypeError('groupsBySpace: El argumetno debe ser un string');
