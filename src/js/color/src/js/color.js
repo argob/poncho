@@ -25,6 +25,10 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+const { replaceSpecialChars } = (typeof require !== "undefined")
+    ? require("../../../utils/replace-special-chars/replace-special-chars")
+    : { replaceSpecialChars: typeof replaceSpecialChars !== "undefined" ? replaceSpecialChars : null };
+
 class Color { //jslint-ignore-line
     constructor(colorDefinitions){
         if(!this.isValidColorDefinitionList(colorDefinitions)){
@@ -44,9 +48,13 @@ class Color { //jslint-ignore-line
      * removeAccents("Acción Murciélago árbol niño")
      * @returns {string} Cadena de texto sin acentos.
      */
-    replaceSpecialChars = (data) => {
+    replaceChars = (data) => {
+        if(typeof replaceSpecialChars === "function"){
+            return replaceSpecialChars(data);
+        }
+
         if(typeof data !== "string" || data.trim().length === 0){
-            console.warn("replaceSpecialChars: Debe pasar una cadena de texto.");
+            console.warn("replaceChars: Debe pasar una cadena de texto.");
             return "";
         }
 
@@ -177,7 +185,7 @@ class Color { //jslint-ignore-line
             return defaultColor;
         }
 
-        const normalizedColor = this.replaceSpecialChars(color).toLowerCase();
+        const normalizedColor = this.replaceChars(color).toLowerCase();
         const colorDefinition = this.variables?.find(v => v[0] === normalizedColor) ||
                                 this.colors?.find(c => c[0] === normalizedColor);
 
@@ -230,7 +238,7 @@ class Color { //jslint-ignore-line
             return;
         }
 
-        const lowerCasePonchoColor = this.replaceSpecialChars(ponchoColor).toLowerCase();
+        const lowerCasePonchoColor = this.replaceChars(ponchoColor).toLowerCase();
         let result;
         let gSpace = "";
 

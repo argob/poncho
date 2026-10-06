@@ -27,6 +27,10 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
  * OTHER DEALINGS IN THE SOFTWARE.
  */
+const { charMap } = (typeof require !== "undefined")
+    ? require("../char-map")
+    : { charMap: typeof charMap !== "undefined" ? charMap : new Map() };
+
 /**
  * Remueve acentos y caracteres especiales.
  *
