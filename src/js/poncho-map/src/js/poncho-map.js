@@ -4271,7 +4271,12 @@ class PonchoMap {
             this.isObject(this.summary) && 
             this.summary.hasOwnProperty("title")){
             isObject = true;
-            summary = this.summary.title;
+
+            if(this.isObject(this.summary) && Object.hasOwn(this.summary, "template")){
+                summary = this.conditionalTemplate( this.summary.template, {});
+            } else {
+                summary = this.summary.title;
+            }
         }
 
         const selector = `.poncho-map${this.scope_selector}`;
@@ -4290,7 +4295,10 @@ class PonchoMap {
         // Si existe el elemento lo uso. De otro modo lo creo.
         const p = (document.querySelector(`#${id}`) || 
                 document.createElement("p"));
-        p.textContent = summary;
+
+        //p.textContent = summary;
+        p.innerHTML =  secureHTML(summary, ['a', 'strong', 'em', 'span', 'i']);
+
         p.id = id;
         p.classList.add("pm-summary");
 
