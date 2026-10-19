@@ -62,6 +62,10 @@ if (typeof exports !== "undefined") {
  * SOFTWARE.
  */
 class Color { //jslint-ignore-line
+    /**
+     * Inicializa la clase Color con un listado de definiciones de colores.
+     * @param {array} colorDefinitions Listado de definiciones de colores
+     */
     constructor(colorDefinitions){
         if(!this.isValidColorDefinitionList(colorDefinitions)){
             console.error("No se pasado por argumento el listado de color");
@@ -71,30 +75,23 @@ class Color { //jslint-ignore-line
     }
 
 
+
+
+    
     /**
      * Remueve acentos y caracteres especiales.
      *
      * @param {string} data Cadena de texto a limpiar.
      * @example
      * // returns Accion Murcielago arbol nino
-     * removeAccents("Acción Murciélago árbol niño")
+     * replaceChars("Acción Murciélago árbol niño")
      * @returns {string} Cadena de texto sin acentos.
      */
-    replaceSpecialChars = (data) => {
-        if(typeof data !== "string" || data.trim().length === 0){
-            console.warn("replaceSpecialChars: Debe pasar una cadena de texto.");
-            return "";
+    replaceChars = (data) => {
+        if(typeof replaceSpecialChars === "function"){
+            return replaceSpecialChars(data);
         }
-
-        const search = "àáâäæãåāăąçćčđďèéêëēėęěğǵḧîïíīįìıİłḿñńǹňôöòóœøōõőṕ"
-                + "ŕřßśšşșťțûüùúūǘůűųẃẍÿýžźż";
-        const replace = "aaaaaaaaaacccddeeeeeeeegghiiiiiiiilmnnnnooooooooop"
-                + "rrsssssttuuuuuuuuuwxyyzzz";
-
-        const a = search + search.toUpperCase();
-        const b = replace + replace.toUpperCase();
-        const p = new RegExp(a.split("").join("|"), "g");
-        return data.toString().replace(p, c => b.charAt(a.indexOf(c)));
+        return data;
     };
 
 
@@ -168,7 +165,13 @@ class Color { //jslint-ignore-line
 
                 variant.forEach(function(value){
                     if(!a.exclude){
-                        collect.push( [`${a.code}-${value.variant}`, value.color, "", code, value.name] );
+                        collect.push([
+                            `${a.code}-${value.variant}`,
+                            value.color, 
+                            "", 
+                            code, 
+                            value.name
+                        ]);
                     }
                 });
             })
@@ -177,11 +180,20 @@ class Color { //jslint-ignore-line
     };
 
 
+    /**
+     * Listado de espacios de color disponibles
+     * @returns {array} Espacios ordenados alfabéticamente
+     */
     get spaces(){
         return this.definitions.map(m => m.space).sort();
     }
 
 
+    /**
+     * Obtiene los grupos de colores dentro de un espacio específico
+     * @param {string} space Nombre del espacio de color
+     * @returns {array} Listado de grupos ordenados alfabéticamente
+     */
     groupsBySpace = space => {
         if (typeof space !== 'string') {
             throw new TypeError('groupsBySpace: El argumetno debe ser un string');
@@ -213,7 +225,7 @@ class Color { //jslint-ignore-line
             return defaultColor;
         }
 
-        const normalizedColor = this.replaceSpecialChars(color).toLowerCase();
+        const normalizedColor = this.replaceChars(color).toLowerCase();
         const colorDefinition = this.variables?.find(v => v[0] === normalizedColor) ||
                                 this.colors?.find(c => c[0] === normalizedColor);
 
@@ -262,11 +274,11 @@ class Color { //jslint-ignore-line
      * @returns {string|boolean}
      */
     colorDefinitions = (ponchoColor) => {
-        if(typeof ponchoColor == undefined || !ponchoColor.trim()){
+        if(typeof ponchoColor !== "string" || !ponchoColor.trim()){
             return;
         }
 
-        const lowerCasePonchoColor = this.replaceSpecialChars(ponchoColor).toLowerCase();
+        const lowerCasePonchoColor = this.replaceChars(ponchoColor).toLowerCase();
         let result;
         let gSpace = "";
 
@@ -1420,6 +1432,7 @@ const headStyle = (id, styleDefinitions, mediaType) => {
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
  * OTHER DEALINGS IN THE SOFTWARE.
  */
+
 /**
  * Remueve acentos y caracteres especiales.
  *
@@ -6718,6 +6731,7 @@ class PonchoMap {
             ...defaults.template_structure,
             ...options.template_structure
         };
+        this.hiddenHeaders = this._hiddenTemplateHeader();
         this.debug = opts.debug;
         this.render_schema = Boolean(opts.render_schema);
         this.template_innerhtml = opts.template_innerhtml;
@@ -6937,7 +6951,7 @@ class PonchoMap {
      * Versión poncho
      */
     get version(){
-        return "2.2.5";
+        return "2.2.6";
     }
 
 
@@ -7537,7 +7551,7 @@ class PonchoMap {
         if (label) {
             const isBlankTarget = isValidTarget(target) && target === '_blank';
             element.innerHTML = isBlankTarget
-                ? `${label} <span class="sr-only">${NEW_TAB_TEXT}</span>`
+                ? `${label} <span class="pm-visually-hidden">${NEW_TAB_TEXT}</span>`
                 : label;
         }
 
@@ -7844,12 +7858,12 @@ class PonchoMap {
 
             if(description){
                 const small = document.createElement("small");
-                small.classList.add("d-block", "small", "sr-only");
+                small.classList.add("d-block", "small", "pm-visually-hidden");
                 small.textContent = this._t(description);
 
                 const comma = document.createElement("span");
                 comma.textContent = ", ";
-                comma.className = "sr-only";
+                comma.className = "pm-visually-hidden";
 
                 buttonTheme.appendChild(comma);
                 buttonTheme.appendChild(small);
@@ -8270,7 +8284,7 @@ class PonchoMap {
 
         // Título de la alerta
         const heading = document.createElement("h2");
-        heading.className = "pm-visually-hidden sr-only";
+        heading.className = "pm-visually-hidden pm-visually-hidden";
         heading.textContent = "Registro de errores en el mapa";
 
         // Mensajes
@@ -9011,7 +9025,7 @@ class PonchoMap {
         const anchorOptions = {
             attributes: {tabIndex: 0},
             id: `js-anchor-slider${this.scope_sufix}`,
-            css: ['sr-only']
+            css: ['pm-visually-hidden']
         };
         const anchor = this.addAnchorElement(anchorOptions);
 
@@ -9554,6 +9568,31 @@ class PonchoMap {
 
 
     /**
+     * Obtiene un listado de keys que deben ocultarse en el 
+     * encabezado del slider.
+     * 
+     * @summary Evalúa la configuración de `template_structure.mixing` y
+     * retorna un array con las keys de los elementos que tienen la propiedad
+     * `hide_header` establecida en `true`.         
+     * @returns {Array}
+     */
+    _hiddenTemplateHeader = () => {
+        const mixing = this.template_structure?.mixing;
+        if(!mixing){
+            return [];
+        }
+
+        const hidden = [];
+        for(const m of mixing){
+            if(m?.hide_header === true && m.key){
+                hidden.push(m.key);
+            }
+        }
+        return hidden;
+    }
+
+
+    /**
      * Si el usuario usó la opción mixing reformulamos la entrada.
      * 
      * @summary La opción mixing, permite concatenar el valor de los
@@ -9594,7 +9633,6 @@ class PonchoMap {
                             })
                             .filter(Boolean)
                             .join(separator);
-
                     }
 
                 });
@@ -9801,9 +9839,15 @@ class PonchoMap {
                 definition.textContent = row[key];
             }
 
+            if(this.hiddenHeaders.includes(key)){
+                term.setAttribute("aria-hidden", "true");
+                term.classList.add("pm-visually-hidden");
+            }
+
             if(this.header(key) != ""){
                 definitions.appendChild(term);
             }
+
             definitions.appendChild(definition);
         };
 
