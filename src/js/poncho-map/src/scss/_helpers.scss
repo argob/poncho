@@ -11,13 +11,18 @@ input[type="search"].js-poncho-map-search__input::-webkit-search-cancel-button {
     .small {
         font-size: 75%;
     }
-    .d-block {
+    .d-block { // deprecated, use .pm-display-block instead
         display: block;
     }
-    .d-none {
+    .d-none { // deprecated, use .pm-display-none instead
         display: none;
     }
-
+    .pm-display-none {
+        display: none;
+    }
+    .pm-display-block {
+        display: block;
+    }
     .sr-only {
         position: absolute;
         width: 1px;
