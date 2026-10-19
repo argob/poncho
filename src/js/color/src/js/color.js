@@ -39,6 +39,9 @@ class Color { //jslint-ignore-line
     }
 
 
+
+
+    
     /**
      * Remueve acentos y caracteres especiales.
      *
@@ -52,7 +55,7 @@ class Color { //jslint-ignore-line
         if(typeof replaceSpecialChars === "function"){
             return replaceSpecialChars(data);
         }
-        return;
+        return data;
     };
 
 
@@ -235,7 +238,7 @@ class Color { //jslint-ignore-line
      * @returns {string|boolean}
      */
     colorDefinitions = (ponchoColor) => {
-        if(typeof ponchoColor == undefined || !ponchoColor.trim()){
+        if(typeof ponchoColor !== "string" || !ponchoColor.trim()){
             return;
         }
 
