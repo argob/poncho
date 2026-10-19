@@ -232,7 +232,8 @@ Los _mixings_ facilitan la creación de composiciones a partir de información f
             "key": [string],
             "header": [string],
             "values": [Array],
-            "separator": [string]
+            "separator": [string],
+            "hide_header": [boolean]
         },
         ...
     ]
@@ -249,6 +250,8 @@ Los _mixings_ facilitan la creación de composiciones a partir de información f
 | header | `string` | "" | Nombre que va a tener el campo como título. |
 | values | `Array` | [] | Listado de claves ordenados según el orden de aparición. |
 | separator | `string` | "" | Carácter o cadena de caracteres con la que se van a concatenar los valores. |
+| hide_header | `boolean` | false | Cuando está en true, el encabezado de esa clave se oculta visualmente y no se muestra al lector de pantalla, pero el valor sigue visible en el contenido. |
+
 
 
 ### Ejemplo

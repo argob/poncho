@@ -426,6 +426,7 @@ class PonchoMap {
             ...defaults.template_structure,
             ...options.template_structure
         };
+        this.hiddenHeaders = this._hiddenTemplateHeader();
         this.debug = opts.debug;
         this.render_schema = Boolean(opts.render_schema);
         this.template_innerhtml = opts.template_innerhtml;
@@ -645,7 +646,7 @@ class PonchoMap {
      * Versión poncho
      */
     get version(){
-        return "2.2.5";
+        return "2.2.6";
     }
 
 
@@ -1245,7 +1246,7 @@ class PonchoMap {
         if (label) {
             const isBlankTarget = isValidTarget(target) && target === '_blank';
             element.innerHTML = isBlankTarget
-                ? `${label} <span class="sr-only">${NEW_TAB_TEXT}</span>`
+                ? `${label} <span class="pm-visually-hidden">${NEW_TAB_TEXT}</span>`
                 : label;
         }
 
@@ -1552,12 +1553,12 @@ class PonchoMap {
 
             if(description){
                 const small = document.createElement("small");
-                small.classList.add("d-block", "small", "sr-only");
+                small.classList.add("d-block", "small", "pm-visually-hidden");
                 small.textContent = this._t(description);
 
                 const comma = document.createElement("span");
                 comma.textContent = ", ";
-                comma.className = "sr-only";
+                comma.className = "pm-visually-hidden";
 
                 buttonTheme.appendChild(comma);
                 buttonTheme.appendChild(small);
@@ -1978,7 +1979,7 @@ class PonchoMap {
 
         // Título de la alerta
         const heading = document.createElement("h2");
-        heading.className = "pm-visually-hidden sr-only";
+        heading.className = "pm-visually-hidden pm-visually-hidden";
         heading.textContent = "Registro de errores en el mapa";
 
         // Mensajes
@@ -2719,7 +2720,7 @@ class PonchoMap {
         const anchorOptions = {
             attributes: {tabIndex: 0},
             id: `js-anchor-slider${this.scope_sufix}`,
-            css: ['sr-only']
+            css: ['pm-visually-hidden']
         };
         const anchor = this.addAnchorElement(anchorOptions);
 
@@ -3262,6 +3263,31 @@ class PonchoMap {
 
 
     /**
+     * Obtiene un listado de keys que deben ocultarse en el 
+     * encabezado del slider.
+     * 
+     * @summary Evalúa la configuración de `template_structure.mixing` y
+     * retorna un array con las keys de los elementos que tienen la propiedad
+     * `hide_header` establecida en `true`.         
+     * @returns {Array}
+     */
+    _hiddenTemplateHeader = () => {
+        const mixing = this.template_structure?.mixing;
+        if(!mixing){
+            return [];
+        }
+
+        const hidden = [];
+        for(const m of mixing){
+            if(m?.hide_header === true && m.key){
+                hidden.push(m.key);
+            }
+        }
+        return hidden;
+    }
+
+
+    /**
      * Si el usuario usó la opción mixing reformulamos la entrada.
      * 
      * @summary La opción mixing, permite concatenar el valor de los
@@ -3302,7 +3328,6 @@ class PonchoMap {
                             })
                             .filter(Boolean)
                             .join(separator);
-
                     }
 
                 });
@@ -3509,9 +3534,15 @@ class PonchoMap {
                 definition.textContent = row[key];
             }
 
+            if(this.hiddenHeaders.includes(key)){
+                term.setAttribute("aria-hidden", "true");
+                term.classList.add("pm-visually-hidden");
+            }
+
             if(this.header(key) != ""){
                 definitions.appendChild(term);
             }
+
             definitions.appendChild(definition);
         };
 

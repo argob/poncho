@@ -105,10 +105,15 @@ COPIAR DESDE ACÁ…
     loader.load();
 
     // init
+    const SPREADSHEET_KEY = "13fMXLCN-aqeAVo6YH9eNP1ojljFWB0ocRR3sWNMYaIg";
+    const SHEET_NAME = "dataset";
+
 
     (async() => {
         const gapi = new GapiSheetData();
-        const googlesheet_data = await fetch_json( gapi.url("dataset", "13fMXLCN-aqeAVo6YH9eNP1ojljFWB0ocRR3sWNMYaIg") ); 
+        const googlesheet_data = await fetch_json( 
+            gapi.url(SHEET_NAME, SPREADSHEET_KEY) 
+        ); 
         const gapi_data = gapi.json_data(googlesheet_data);
         const options = {
             tooltip:true,
@@ -119,12 +124,25 @@ COPIAR DESDE ACÁ…
         "title": "nombre",
         "template_markdown": true,
         "template_structure" : {
-            "values": ["tipo", "descripcion", "direccion", "telefono", "email"],
+            "values": [
+                "testkey",
+                "tipo", 
+                "descripcion", 
+                "direccion", 
+                "telefono", 
+                "email"
+            ],
             "mixing": [
                 {
                     "key": "direccion",
                     "values": ["direccion", "localidad", "provincia"],
                     "separator": ", "
+                },
+                {
+                    key: "testkey",
+                    template: `<span class="bg-arg-{{color}}">{{email}}</span>`,
+                    header: "Test key",
+                    hide_header: true
                 }
             ],
         },

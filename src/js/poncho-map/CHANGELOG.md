@@ -4,28 +4,41 @@
 <!-- omit in toc -->
 ## En ésta página
 
+- [Release 2.2.6](#release-226)
+  - [PonchoMap](#ponchomap)
 - [Release 2.2.5](#release-225)
   - [Accesibilidad WAI-ARIA](#accesibilidad-wai-aria)
 - [Release 2.2.4](#release-224)
-  - [PonchoMap](#ponchomap)
+  - [PonchoMap](#ponchomap-1)
   - [PonchoMap, PonchoMapFilter y PonchoMapSearch](#ponchomap-ponchomapfilter-y-ponchomapsearch)
 - [Release 2.2.3](#release-223)
-  - [PonchoMap](#ponchomap-1)
-- [Release 2.2.2](#release-222)
   - [PonchoMap](#ponchomap-2)
-- [Release 2.2.1](#release-221)
+- [Release 2.2.2](#release-222)
   - [PonchoMap](#ponchomap-3)
+- [Release 2.2.1](#release-221)
+  - [PonchoMap](#ponchomap-4)
   - [PonchoMapFilter](#ponchomapfilter)
   - [PonchoMapSearch](#ponchomapsearch)
 - [Release 2.2](#release-22)
   - [PonchoMapFilter](#ponchomapfilter-1)
   - [PonchoMapLoader](#ponchomaploader)
-  - [PonchoMap](#ponchomap-4)
+  - [PonchoMap](#ponchomap-5)
   - [PonchoMapSearch](#ponchomapsearch-1)
 - [Release 2.1.4](#release-214)
 - [Release 2.1.3](#release-213)
 - [Release 2.1.2](#release-212)
 - [Release 2.1.1](#release-211)
+
+
+## Release 2.2.6
+
+### PonchoMap
+
+**Ocultar encabezados en el slider**: Se incorporó la propiedad `hide_header` en los elementos de `template_structure.mixing`. Cuando está en `true`, el encabezado de esa clave se oculta visualmente y no se muestra al lector de pantalla, pero el valor sigue visible en el contenido.
+
+**Clases de utilidad**: Se agregaron las clases `pm-display-none` y `pm-display-block`. Las clases `d-none` y `d-block` quedan marcadas como obsoletas.
+
+**Clases de accesibilidad**: Se reemplazó la clase `sr-only` por `pm-visually-hidden` en los elementos internos del componente, para evitar conflictos con estilos externos.
 
 
 ## Release 2.2.5
