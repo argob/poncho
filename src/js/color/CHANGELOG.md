@@ -7,6 +7,8 @@ Todos los cambios notables en este módulo serán documentados en este archivo.
   - [Extracción de `replaceSpecialChars`](#extracción-de-replacespecialchars)
 - [✨ Nuevas funcionalidades](#-nuevas-funcionalidades)
   - [Conversiones de color expandidas](#conversiones-de-color-expandidas)
+- [🐛 Correcciones](#-correcciones)
+  - [Error `Cannot read properties of undefined`](#error-cannot-read-properties-of-undefined)
 - [📚 Documentación](#-documentación)
   - [JSDoc completado](#jsdoc-completado)
   - [README mejorado](#readme-mejorado)
@@ -39,6 +41,12 @@ Todos los cambios notables en este módulo serán documentados en este archivo.
 - **`rgbToHsl(r, g, b)`**: Nueva función para convertir valores RGB a HSL
   - Parámetros: Valores de rojo, verde y azul (0-255)
   - Retorna: Array con [Hue (0-360), Saturation (%), Lightness (%)]
+
+### 🐛 Correcciones
+
+#### Error `Cannot read properties of undefined`
+- `replaceChars()` ya no devuelve `undefined` cuando la función global `replaceSpecialChars` no está disponible (por ejemplo, al ejecutar `create-colors.js` en Node); ahora devuelve el valor recibido, evitando el `TypeError` en `colorDefinitions()`
+- `colorDefinitions()`: la validación usaba `typeof x == undefined`, que nunca es verdadera; ahora usa `typeof x !== "string"`, por lo que un argumento `undefined` retorna sin lanzar error
 
 ### 📚 Documentación
 
