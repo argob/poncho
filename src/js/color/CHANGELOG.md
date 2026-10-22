@@ -3,26 +3,35 @@
 
 Todos los cambios notables en este módulo serán documentados en este archivo.
 
-- [🎨 Refactorización](#-refactorización)
-  - [Extracción de `replaceSpecialChars`](#extracción-de-replacespecialchars)
-- [✨ Nuevas funcionalidades](#-nuevas-funcionalidades)
-  - [Conversiones de color expandidas](#conversiones-de-color-expandidas)
-- [🐛 Correcciones](#-correcciones)
-  - [Error `Cannot read properties of undefined`](#error-cannot-read-properties-of-undefined)
-- [📚 Documentación](#-documentación)
-  - [JSDoc completado](#jsdoc-completado)
-  - [README mejorado](#readme-mejorado)
-- [🔧 Mantenimiento](#-mantenimiento)
-  - [Cambios internos](#cambios-internos)
-  - [Scripts de demostración](#scripts-de-demostración)
-- [🧪 Tests](#-tests)
-- [📝 Notas](#-notas)
+- [Incorporación de colores](#incorporación-de-colores)
+- [Release 1.0.0](#release-100)
+  - [Refactorización](#refactorización)
+    - [Extracción de `replaceSpecialChars`](#extracción-de-replacespecialchars)
+  - [Nuevas funcionalidades](#nuevas-funcionalidades)
+    - [Conversiones de color expandidas](#conversiones-de-color-expandidas)
+  - [Correcciones](#correcciones)
+    - [Error `Cannot read properties of undefined`](#error-cannot-read-properties-of-undefined)
+  - [Documentación](#documentación)
+    - [JSDoc completado](#jsdoc-completado)
+    - [README mejorado](#readme-mejorado)
+  - [Mantenimiento](#mantenimiento)
+    - [Cambios internos](#cambios-internos)
+    - [Scripts de demostración](#scripts-de-demostración)
+  - [Tests](#tests)
+  - [Notas](#notas)
 
 
 <!-- omit in toc -->
+## Release 1.0.1
+
+## Incorporación de colores
+
+Se incorporó la paleta de colores institucionales de la Ciudad del Vaticano.
+
+
 ## Release 1.0.0
 
-### 🎨 Refactorización
+### Refactorización
 
 #### Extracción de `replaceSpecialChars`
 - Se extrajo la funcionalidad de `replaceSpecialChars` de la clase `Color` y se movió a un módulo independiente
@@ -30,7 +39,7 @@ Todos los cambios notables en este módulo serán documentados en este archivo.
 - La clase `Color` ahora usa `replaceChars()` que delega a la función global `replaceSpecialChars`
 - Beneficio: Reutilización de la lógica en otros módulos del proyecto
 
-### ✨ Nuevas funcionalidades
+### Nuevas funcionalidades
 
 #### Conversiones de color expandidas
 - **`ponchoColor(color, mode)`**: Ahora soporta convertir colores a múltiples formatos:
@@ -42,13 +51,13 @@ Todos los cambios notables en este módulo serán documentados en este archivo.
   - Parámetros: Valores de rojo, verde y azul (0-255)
   - Retorna: Array con [Hue (0-360), Saturation (%), Lightness (%)]
 
-### 🐛 Correcciones
+### Correcciones
 
 #### Error `Cannot read properties of undefined`
 - `replaceChars()` ya no devuelve `undefined` cuando la función global `replaceSpecialChars` no está disponible (por ejemplo, al ejecutar `create-colors.js` en Node); ahora devuelve el valor recibido, evitando el `TypeError` en `colorDefinitions()`
 - `colorDefinitions()`: la validación usaba `typeof x == undefined`, que nunca es verdadera; ahora usa `typeof x !== "string"`, por lo que un argumento `undefined` retorna sin lanzar error
 
-### 📚 Documentación
+### Documentación
 
 #### JSDoc completado
 Se agregaron comentarios JSDoc a las siguientes funciones/métodos:
@@ -60,7 +69,7 @@ Se agregaron comentarios JSDoc a las siguientes funciones/métodos:
 - Nuevo archivo `README.md` en el módulo `replace-special-chars`
 - Documentación clara de sintaxis, parámetros y ejemplos de uso
 
-### 🔧 Mantenimiento
+### Mantenimiento
 
 #### Cambios internos
 - Removido `debugger` statement del método `colorDefinitions`
@@ -71,12 +80,12 @@ Se agregaron comentarios JSDoc a las siguientes funciones/métodos:
 - Actualizado `demo/index.html` para cargar los nuevos scripts modulares
 - Removidas referencias a scripts antiguos y consolidados
 
-### 🧪 Tests
+### Tests
 
 - Agregados tests para `replaceSpecialChars` en `test/replace-special-chars.test.js`
 - Validación de comportamiento con caracteres acentuados y especiales
 
-### 📝 Notas
+### Notas
 
 - La compatibilidad con el código existente se mantiene
 - `replaceChars()` es una envoltura que mantiene la compatibilidad interna
