@@ -1,72 +1,96 @@
+@function removePrefix($string) {
+  $dash-index: str-index($string, "-");
+  @if $dash-index {
+    @return str-slice($string, $dash-index + 1);
+  }
+  @return $string;
+}
+
+/*
+@use "sass:string";
+@function removePrefix($string) {
+  $dash-index: string.index($string, "-");
+  @if $dash-index {
+    @return string.slice($string, $dash-index + 1);
+  }
+  @return $string;
+}
+*/
+
 :root,
 html {
-    /* Valores por defecto para los mix */
-    --gradient-direction: to right;
-    --gradient-stop: 75%;
-    --gradient-start: var(--arg-info);
-    --gradient-end: var(--arg-azul);
+  /* Valores por defecto para los mix */
+  --gradient-direction: to right;
+  --gradient-stop: 75%;
+  --gradient-start: var(--arg-info);
+  --gradient-end: var(--arg-azul);
 }
 
 // --- Definición de mixes: (inicio fin) ---
 // El nombre de la clase se arma como .bg-mix-<inicio>-<fin>
-$bg-mixes: (info azul, azul info, palta azul, azul palta);
+$bg-mixes: (
+  arg-info arg-azul,
+  arg-azul arg-info,
+  arg-palta arg-azul,
+  arg-azul arg-palta,
+  arg-maiz arg-verdin
+);
 
 // Lista de selectores generada: .bg-mix-info-azul, .bg-mix-azul-info, ...
 $bg-mix-selectors: "";
-
-@each $start,
-$end in $bg-mixes {
-    @if $bg-mix-selectors !="" {
-        $bg-mix-selectors: "#{$bg-mix-selectors}, ";
-    }
-
-    $bg-mix-selectors: "#{$bg-mix-selectors}.bg-mix-#{$start}-#{$end}";
+@each $start, $end in $bg-mixes {
+  @if $bg-mix-selectors != "" {
+    $bg-mix-selectors: "#{$bg-mix-selectors}, ";
+  }
+  $bg-mix-selectors: "#{$bg-mix-selectors}.bg-mix-#{removePrefix($start)}-#{removePrefix($end)}";
 }
 
 // Base colores
 #{$bg-mix-selectors} {
-    color: var(--arg-blanco);
-    background-image: linear-gradient(var(--gradient-direction),
-            var(--gradient-start) var(--gradient-stop),
-            var(--gradient-end));
+  color: var(--arg-blanco);
+  background-image: linear-gradient(
+    var(--gradient-direction),
+    var(--gradient-start) var(--gradient-stop),
+    var(--gradient-end)
+  );
 }
 
 // selectores mix
-@each $start,
-$end in $bg-mixes {
-    .bg-mix-#{$start}-#{$end} {
-        --gradient-start: var(--arg-#{$start});
-        --gradient-end: var(--arg-#{$end});
-    }
+@each $start, $end in $bg-mixes {
+  .bg-mix-#{removePrefix($start)}-#{removePrefix($end)} {
+    --gradient-start: var(--#{$start});
+    --gradient-end: var(--#{$end});
+  }
 }
 
 // Direcciones
-$bg-gradient-directions: ("to-right": to right,
-    "to-left": to left,
-    "to-bottom": to bottom,
-    "to-top": to top,
-    "to-bottom-left": to bottom left,
-    "to-bottom-right": to bottom right,
-    "to-top-right": to top right,
-    "to-top-left": to top left);
+$bg-gradient-directions: (
+  "to-right": to right,
+  "to-left": to left,
+  "to-bottom": to bottom,
+  "to-top": to top,
+  "to-bottom-left": to bottom left,
+  "to-bottom-right": to bottom right,
+  "to-top-right": to top right,
+  "to-top-left": to top left
+);
 
-@each $name,
-$direction in $bg-gradient-directions {
-    .bg-gradient-#{$name} {
-        --gradient-direction: #{$direction};
-    }
+@each $name, $direction in $bg-gradient-directions {
+  .bg-gradient-#{$name} {
+    --gradient-direction: #{$direction};
+  }
 }
 
 // Posiciòn de degradé
 @each $stop in (0, 25, 50, 75) {
-    .bg-gradient-#{$stop} {
-        --gradient-stop: #{$stop * 1%};
-    }
+  .bg-gradient-#{$stop} {
+    --gradient-stop: #{$stop * 1%};
+  }
 }
 
 // responsive
 @media (max-width: 992px) {
-    #{$bg-mix-selectors} {
-        --gradient-stop: 100%;
-    }
+  #{$bg-mix-selectors} {
+    --gradient-stop: 100%;
+  }
 }
