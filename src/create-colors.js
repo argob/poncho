@@ -132,8 +132,11 @@ fs.writeFile(
  * JSON COLORES PARA ILUSTRACIONES
  * Códigos de color válidos para utilizar en ilustraciones.
  */
-const ILLUS_COLORS_JSON_PATH = `./dist/jsons/`;
+const JSON_PATH = `./dist/jsons/`;
+const ILLUS_COLORS_JSON_PATH = JSON_PATH;
 const ILLUS_COLORS_JSON_FILENAME = "illustrations-colors.json";
+
+fs.mkdirSync(JSON_PATH, { recursive: true });
 
 const illustrationColorsContent = illustrationColors.map(function(color){
     return _color.colorDefinitions(color);
@@ -158,7 +161,7 @@ fs.writeFile(
 /**
  * JSON COLORES
  */
-const COLORS_JSON_PATH = `./dist/jsons/`;
+const COLORS_JSON_PATH = JSON_PATH;
 const COLORS_JSON_FILENAME = "poncho-colors.json";
 
 fs.writeFile(
@@ -207,7 +210,7 @@ function colorNames() {
 }
 
 
-const HEADER_COLORS_JSON_PATH = `./dist/jsons/`;
+const HEADER_COLORS_JSON_PATH = JSON_PATH;
 const HEADER_COLORS_JSON_FILENAME = "poncho-headers-colors.json";
 
 fs.writeFile(

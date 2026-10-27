@@ -1,5 +1,14 @@
+const { replaceSpecialChars } = require("../../utils/replace-special-chars/replace-special-chars");
+const { charMap } = require("../../utils/char-map");
+
+globalThis.replaceSpecialChars = replaceSpecialChars;
+globalThis.charMap = charMap;
+
 const {ponchoColorDefinitionsList} = require('../src/js/color-definitions');
 const {Color} = require('../src/js/color');
+
+
+
 
 const _color = new Color(ponchoColorDefinitionsList);
 

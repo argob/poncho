@@ -177,6 +177,12 @@ html {
   --gna-verde-jade-150:#006666;
   --gna-verde-aloe-150:#4FBB73;
   --gna-verde-cemento-150:#B4BEBA;
+  --vatican-yellow-300:#FFF200;
+  --vatican-yellow-500:#FFCC20;
+  --vatican-black-400:#BDBEC0;
+  --vatican-black-700:#515356;
+  --vatican-gold-500:#A88D37;
+  --vatican-red-500:#C9252C;
   --amarillo:#E7BA61;
   --amarillo-intenso:#E7BA61;
   --arandano:#C2185B;
@@ -327,6 +333,12 @@ html {
   --success:#2E7D33;
   --tomate:#EF5350;
   --uva:#6A1B99;
+  --vatican-dark-yellow:#FFCC20;
+  --vatican-gold:#A88D37;
+  --vatican-grey:#515356;
+  --vatican-light-grey:#BDBEC0;
+  --vatican-red:#C9252C;
+  --vatican-yellow:#FFF200;
   --verde:#2E7D33;
   --verde-aloe:#4FBB73;
   --verde-azulado:#3B8681;
@@ -1066,6 +1078,30 @@ aside section {
 
 .bg-uva {
   background-color: #6A1B99 !important;
+}
+
+.bg-vatican-dark-yellow {
+  background-color: #FFCC20 !important;
+}
+
+.bg-vatican-gold {
+  background-color: #A88D37 !important;
+}
+
+.bg-vatican-grey {
+  background-color: #515356 !important;
+}
+
+.bg-vatican-light-grey {
+  background-color: #BDBEC0 !important;
+}
+
+.bg-vatican-red {
+  background-color: #C9252C !important;
+}
+
+.bg-vatican-yellow {
+  background-color: #FFF200 !important;
 }
 
 .bg-verde {
@@ -6304,6 +6340,30 @@ a.bg-danger p {
 
 .text-uva {
   color: #6A1B99 !important;
+}
+
+.text-vatican-dark-yellow {
+  color: #FFCC20 !important;
+}
+
+.text-vatican-gold {
+  color: #A88D37 !important;
+}
+
+.text-vatican-grey {
+  color: #515356 !important;
+}
+
+.text-vatican-light-grey {
+  color: #BDBEC0 !important;
+}
+
+.text-vatican-red {
+  color: #C9252C !important;
+}
+
+.text-vatican-yellow {
+  color: #FFF200 !important;
 }
 
 .text-verde {
@@ -12396,6 +12456,12 @@ input[type=search].js-poncho-map-search__input::-webkit-search-cancel-button {
 .poncho-map .d-none {
   display: none;
 }
+.poncho-map .pm-display-none {
+  display: none;
+}
+.poncho-map .pm-display-block {
+  display: block;
+}
 .poncho-map .sr-only {
   position: absolute;
   width: 1px;
@@ -13758,6 +13824,30 @@ input[type=search].js-poncho-map-search__input::-webkit-search-cancel-button {
   --border-color: var(--uva);
 }
 
+.border-vatican-dark-yellow {
+  --border-color: var(--vatican-dark-yellow);
+}
+
+.border-vatican-gold {
+  --border-color: var(--vatican-gold);
+}
+
+.border-vatican-grey {
+  --border-color: var(--vatican-grey);
+}
+
+.border-vatican-light-grey {
+  --border-color: var(--vatican-light-grey);
+}
+
+.border-vatican-red {
+  --border-color: var(--vatican-red);
+}
+
+.border-vatican-yellow {
+  --border-color: var(--vatican-yellow);
+}
+
 .border-verde {
   --border-color: var(--verde);
 }
@@ -14992,6 +15082,24 @@ pre {
 .listas-destacadas.uva > ol li:before, .listas-destacadas.uva > ul li:before {
   color: var(--uva);
 }
+.listas-destacadas.vatican-dark-yellow > ol li:before, .listas-destacadas.vatican-dark-yellow > ul li:before {
+  color: var(--vatican-dark-yellow);
+}
+.listas-destacadas.vatican-gold > ol li:before, .listas-destacadas.vatican-gold > ul li:before {
+  color: var(--vatican-gold);
+}
+.listas-destacadas.vatican-grey > ol li:before, .listas-destacadas.vatican-grey > ul li:before {
+  color: var(--vatican-grey);
+}
+.listas-destacadas.vatican-light-grey > ol li:before, .listas-destacadas.vatican-light-grey > ul li:before {
+  color: var(--vatican-light-grey);
+}
+.listas-destacadas.vatican-red > ol li:before, .listas-destacadas.vatican-red > ul li:before {
+  color: var(--vatican-red);
+}
+.listas-destacadas.vatican-yellow > ol li:before, .listas-destacadas.vatican-yellow > ul li:before {
+  color: var(--vatican-yellow);
+}
 .listas-destacadas.verde > ol li:before, .listas-destacadas.verde > ul li:before {
   color: var(--verde);
 }
@@ -15247,7 +15355,7 @@ main > div > div > div > section {
   padding-top: 20px;
 }
 
-/* Form-type
+/* Form-type *
    ======================================================================== 
 */
 .form-type-date .form-inline {
@@ -16611,6 +16719,108 @@ DEGRADÉ: .bg-mix-azul-info .bg-mix-info-azul .bg-mix-palta-azul .bg-mix-azul-pa
   }
   #encabezado .enc-img .btn {
     margin-left: 25px;
+  }
+}
+/*
+@use "sass:string";
+@function removePrefix($string) {
+  $dash-index: string.index($string, "-");
+  @if $dash-index {
+    @return string.slice($string, $dash-index + 1);
+  }
+  @return $string;
+}
+*/
+:root,
+html {
+  /* Valores por defecto para los mix */
+  --gradient-direction: to right;
+  --gradient-stop: 75%;
+  --gradient-start: var(--arg-info);
+  --gradient-end: var(--arg-azul);
+}
+
+.bg-mix-info-azul, .bg-mix-azul-info, .bg-mix-palta-azul, .bg-mix-azul-palta, .bg-mix-maiz-verdin {
+  color: var(--arg-blanco);
+  background-image: linear-gradient(var(--gradient-direction), var(--gradient-start) var(--gradient-stop), var(--gradient-end));
+}
+
+.bg-mix-info-azul {
+  --gradient-start: var(--arg-info);
+  --gradient-end: var(--arg-azul);
+}
+
+.bg-mix-azul-info {
+  --gradient-start: var(--arg-azul);
+  --gradient-end: var(--arg-info);
+}
+
+.bg-mix-palta-azul {
+  --gradient-start: var(--arg-palta);
+  --gradient-end: var(--arg-azul);
+}
+
+.bg-mix-azul-palta {
+  --gradient-start: var(--arg-azul);
+  --gradient-end: var(--arg-palta);
+}
+
+.bg-mix-maiz-verdin {
+  --gradient-start: var(--arg-maiz);
+  --gradient-end: var(--arg-verdin);
+}
+
+.bg-gradient-to-right {
+  --gradient-direction: to right;
+}
+
+.bg-gradient-to-left {
+  --gradient-direction: to left;
+}
+
+.bg-gradient-to-bottom {
+  --gradient-direction: to bottom;
+}
+
+.bg-gradient-to-top {
+  --gradient-direction: to top;
+}
+
+.bg-gradient-to-bottom-left {
+  --gradient-direction: to bottom left;
+}
+
+.bg-gradient-to-bottom-right {
+  --gradient-direction: to bottom right;
+}
+
+.bg-gradient-to-top-right {
+  --gradient-direction: to top right;
+}
+
+.bg-gradient-to-top-left {
+  --gradient-direction: to top left;
+}
+
+.bg-gradient-0 {
+  --gradient-stop: 0%;
+}
+
+.bg-gradient-25 {
+  --gradient-stop: 25%;
+}
+
+.bg-gradient-50 {
+  --gradient-stop: 50%;
+}
+
+.bg-gradient-75 {
+  --gradient-stop: 75%;
+}
+
+@media (max-width: 992px) {
+  .bg-mix-info-azul, .bg-mix-azul-info, .bg-mix-palta-azul, .bg-mix-azul-palta, .bg-mix-maiz-verdin {
+    --gradient-stop: 100%;
   }
 }
 .nav-menu {
@@ -18532,6 +18742,17 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
     background: var(--arg-negro-25);
   }
 }
+.as-firmas {
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.as-escudo-logo {
+  gap: 6px;
+}
+
 /**
  * Styles for the copy and share functionality in Poncho Table.
  */
