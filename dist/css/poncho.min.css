@@ -18742,6 +18742,17 @@ Cuando un elemento en inferior al breakpoint los caret cambian el tamaño
     background: var(--arg-negro-25);
   }
 }
+.as-firmas {
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.as-escudo-logo {
+  gap: 6px;
+}
+
 /**
  * Styles for the copy and share functionality in Poncho Table.
  */
