@@ -100,7 +100,7 @@ COPIAR DESDE ACÁ…
                 class="leaflet-container leaflet-touch leaflet-fade-anim 
                     leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
                 id="map"
-                style="height: 650px; width: 100%;"
+                style="height: 700px; width: 100%;"
                 tabindex="0">
             </div>
         </div>
@@ -123,7 +123,7 @@ COPIAR DESDE ACÁ…
 <script src="https://www.argentina.gob.ar/sites/default/files/ponchotable/showdown.js"></script>
 <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/extensiones/showdown-extensions.js"></script>
 <script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.js"></script>
-<script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script>
+<script src="_https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script>
 <link href="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.css" rel="stylesheet"/> 
 <link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.css" rel="stylesheet"/> 
 <link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.Default.css" rel="stylesheet"/> 
@@ -133,33 +133,35 @@ COPIAR DESDE ACÁ…
 <!-- SCRIPTS -->
 <script id="code_map">
 const _ENV = "develop";
-var pm;
 const conf = {
     production: {
-        imagePath: "./data/template-15/images/",
-        thumbnailPath: "./data/template-15/images/",
-        iconPath: "./data/template-15/images/",
-        strokeColor: "var(--arg-cielo)",
-        strokeActiveColor: "var(--arg-escarapela)",
-        service: "https://sigvial.vialidad.gob.ar/geoserver/dnv/ows?" +
-            "service=WFS" +
-            "&version=1.0.0" +
-            "&request=GetFeature" +
-            "&typeName=dnv:Obras_Ejecución2026" +
-            "&outputFormat=application/json",
+        imagePath: "/sites/default/files/",
+        thumbnailPath: "/sites/default/files/",
+        iconPath: "/sites/default/files/",
+        spreadsheetKey :"1k8FWqXHiOoKtnWA2QZSWgaIBOghlImhMKaLiz8xoh7E",
+        sheetName: "dataset",
+        mapView: { lat: -25.68148542057519, lng: -54.44990515708924 },
+        mapZoom: 17
     },
     develop : {
         imagePath: "./data/template-15/images/",
         thumbnailPath: "./data/template-15/images/",
         iconPath: "./data/template-15/images/",
-        strokeColor: "var(--arg-maiz)",
-        strokeActiveColor: "var(--arg-mandarina)",
-        service: "./data/template-15/iguazu-infraestructura.geojson"
+        spreadsheetKey :"1k8FWqXHiOoKtnWA2QZSWgaIBOghlImhMKaLiz8xoh7E",
+        sheetName: "dataset",
+        mapView: { lat: -25.68148542057519, lng: -54.44990515708924 },
+        mapZoom: 16
     }
 };
 
-const {strokeColor, strokeActiveColor, service, imagePath, thumbnailPath, iconPath} = conf[ _ENV ];
+const { 
+    imagePath, 
+    thumbnailPath, 
+    iconPath, 
+    spreadsheetKey, 
+    sheetName, mapView, mapZoom} = conf[ _ENV ];
 
+var pm;
 
 /**
  * Crea un divIcon personalizado para un marcador de mapa.
@@ -205,62 +207,17 @@ function _divMarker(urlImagen, textoAlternativo, statusKey) {
 }
 
 
-
-    headStyle(
-        "parques-nacionales-style", 
-        `.definition-list dd img {border-radius:4px;}.poncho-map .leaflet-tooltip-own{--pm-tooltip:var(--arg-gris-niebla, white);--pm-tooltip-color:var(--arg-gray-dark);padding:6px;font-size:.8rem}.tooltip-figure,.tooltip-figure figcaption{padding:0;margin:0;border:none}.tooltip-figure .tooltip-figure__caption{display:block;max-width:120px;line-height:1.35;color:var(--arg-gray-dark);margin-bottom:2px;overflow-wrap:break-word!important;white-space:normal}.tooltip-figure .tooltip-figure__image{aspect-ratio:16/10;width:120px;background:no-repeat 0 0 / cover gray;margin-bottom:6px;border-radius:2px}`
-    );
-
-
-// Modifica el color del active
-headStyle(
-    "vialidad", 
-    `.poncho-map path.marker--active {stroke:${strokeActiveColor};`
-    + `filter: none !important;opacity:1 !important;}`
-);
-
 // Loader
-const loader = new PonchoMapLoader({ scope: "poncho-map", cover_opacity: .3 });
+const loader = new PonchoMapLoader({scope: "poncho-map", cover_opacity: .3});
 loader.load();
 
  // init
 (async() => {
-    const gdata = await fetch_json( service ); 
 
-    // Propiedades de polígono
-    gdata.features = gdata.features.filter(entry => {
-        return ( ["41", "16","108", "20"].includes( String( entry.properties["ID"] ) )  )
-        // return ( ["41", "16","108", "20"].includes( String( entry.properties["ID"] ) ) || entry.geometry.type !== "Point" )
-    }); 
-
-    gdata.features.forEach((entry, i) => {
-        entry.properties.color = strokeColor;
-        entry.properties["stroke-color"] = strokeColor;
-        entry.properties["stroke-opacity"] = 1;
-        entry.properties["stroke-width"] = 3;
-        entry.properties["TIPO"] = entry.properties["TIPO"] === null ? "Sin especificar" : entry.properties["TIPO"]
-    });
-
-    // Set headers
-    const headers = {
-        areas: "Áreas",
-        tramo: "Tramo",
-        seccion: "Sección",
-        user_tramo: "Tramo",
-        user_seccion: "Sección",
-        km: "Km",
-        estado: "Estado",
-        obra: "Obra",
-        ruta: "Ruta",
-        distrito: "Provincia",
-        id_registro: "Número de registro",
-        id_sigo: "Identificador SIGO",
-        cod_ruta: "Código de ruta",
-        id_tipo_obra: "id_tipo_obra",
-        pkf: "Punto kilométrico final",
-        pki: "Punto kilométrico inicial",
-        tipo_obra: "Tipo de obra",
-    };
+    const gapi = new GapiSheetData();
+    // fetch data
+    const googlesheet_data = await fetch_json( gapi.url(sheetName, spreadsheetKey)); 
+    const gapiData = gapi.json_data(googlesheet_data);
 
     // map options
     const options = {
@@ -268,73 +225,88 @@ loader.load();
             title: "Mapa del estado de las obras viales",
             hidden: true
         },
+        map_zoom: mapZoom,
+        map_view: Object.values(mapView),
         scope: "poncho-map",
         id: "id",
-        title: "NOM_SITIO",
+        title: "nom-sitio",
         tooltip: true,
-        template_markdown: false,
+        template_markdown: true,
         theme_map: "dark",
         allowed_tags: ["*"],
         template_innerhtml:true,
-        template: (self, entry) => {
-            if (!entry.IMAGE.includes('<img')) {
-                entry.IMAGE = `<img src="${imagePath}${entry.IMAGE}" />`;
-            }
-            return self.defaultTemplate(self, entry);
-        },
-        _template_structure: {
-
-            _values: [
-                "distrito",
-                "areas",
-                "tipo_obra",
-                "ruta",
-                "tramo",
-                "seccion",
-                "km",
-                "estado",
-                "pki",
-                "pkf",
-                "id_registro",
-                "id_sigo",
-                "cod_ruta",
+        template_structure: {
+            lead: {
+                key: "tipo", 
+                css: "text-arg-gris-intermedio border-bottom small fw-semibold m-t-0",
+                //style: "color: orange; font-size:2em;"
+            },
+            values: [
+                "image-custom", "descripcion-custom", "url-custom"
+            ],
+            mixing: [
+                {
+                    template: `{% '<img src="${imagePath}{{image}}" alt="image-alt" />' `
+                    + `if image != "" else "" %}`,
+                    key: "image-custom",
+                    hide_header: true,
+                    header: "imagen"
+                },
+                {
+                    template: `{{descripcion}}`,
+                    key: "descripcion-custom",
+                    header: "Descripción",
+                    hide_header: true
+                },
+                {
+                    template: `{% '<a class="btn btn-primary" href="{{url}}">Ir al sitio</a>' if url != "" else "" %}`,
+                    key: "url-custom",
+                    header: "Sitio web",
+                    hide_header: true
+                }
             ]
         },
-        _headers: headers,
+        headers: gapiData.headers,
         slider: true,
+        map_layers_default: "satelital",
         hash: true,
         fit_bounds_after_filter: true,
                     tooltip_options:{
                 className: "leaflet-tooltip-own",
                 direction: "auto",
-                offset: [16, -18],
+                offset: [25, -18],
                 opacity: 1,
                 permanent: false,
                 sticky: false
             },
-        tooltip_label: `{% '<div class="m-b-05"><img width="150" src="${thumbnailPath}{{THUMBNAIL}}?v=1" /></div>' if THUMBNAIL != '' else '' %} {{NOM_SITIO}}`,
-        filters: [
-            {
-                //legend : "Filtrar por provincia",
-                field: ["TIPO", "checked"],
-                fields: false,
-                type: "select",
-                //show_label: false,
-                //check_uncheck_all: false,
-                //all_options_text: "Todas las provincias"
-            }
-        ],
+        tooltip_label: `<figure class="tooltip-figure">`
+            + `{% '<div class="image"><img class="tooltip-figure__image" `
+            + `width="150" src="${thumbnailPath}{{thumbnail}}?v=2" alt="{{thumbnail-alt}}" /></div>'`
+            + ` if thumbnail != '' else '' %} <figurecaption `
+            + `class="tooltip-figure__caption">{{nom-sitio}}` 
+            + `</figurecaption></figure>`,
         marker(self, ele) {
-            const { THUMBNAIL:thumbnail, NOM_SITIO:nombre, TIPO } = ele;
+            const availableIcons = [
+                "alojamiento-turistico",
+                "centro-de-visitantes",
+                "prestador-turistico",
+                "servicios-gastronomicos"
+            ];
+            const { thumbnail, "nom-sitio":nombre, tipo } = ele;
             const statusKey = true;
-            const tipo = slugify(TIPO);
-            return _divMarker(`${iconPath}${tipo}.svg`, nombre, statusKey);
+            const slugifiedTipo = slugify(tipo);
+            if(!availableIcons.includes(slugifiedTipo)){
+                return "azul";
+            }
+            return _divMarker(
+                `${iconPath}${slugifiedTipo}.svg`, nombre, statusKey
+            );
         },
         open_maps: true,
     };
 
     // render map
-    pm = new PonchoMapFilter(gdata, options);
+    pm = new PonchoMapFilter(gapiData.entries, options);
     
     // Buscador
     const searchOptions = {
@@ -342,9 +314,9 @@ loader.load();
         combobox: true,
         text: "tramo",
         open_maps:true,
-        placeholder: "Buscar por nombre de obra, ruta, id SIGO o provincia",
+        placeholder: "Buscar por nombre",
         search_fields: [
-            "NOM_SITIO", 
+            "nom-sitio", "tipo"
         ] 
     };
     const pmSearch = new PonchoMapSearch(pm, searchOptions);
