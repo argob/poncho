@@ -15,6 +15,7 @@
     <link rel="stylesheet"
         href="https://capacita-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css?rfqjsh">
     <link rel="stylesheet" href="../../../../dist/css/poncho.min.css" />
+    <link rel="stylesheet" href="./data/template-15/css/main.css" />
     <script src="../../mapa-argentina/demo/js/demo.js"></script>    
     <!-- 
         Script para debug 
@@ -135,6 +136,9 @@ const _ENV = "develop";
 var pm;
 const conf = {
     production: {
+        imagePath: "./data/template-15/images/",
+        thumbnailPath: "./data/template-15/images/",
+        iconPath: "./data/template-15/images/",
         strokeColor: "var(--arg-cielo)",
         strokeActiveColor: "var(--arg-escarapela)",
         service: "https://sigvial.vialidad.gob.ar/geoserver/dnv/ows?" +
@@ -145,13 +149,61 @@ const conf = {
             "&outputFormat=application/json",
     },
     develop : {
+        imagePath: "./data/template-15/images/",
+        thumbnailPath: "./data/template-15/images/",
+        iconPath: "./data/template-15/images/",
         strokeColor: "var(--arg-maiz)",
         strokeActiveColor: "var(--arg-mandarina)",
         service: "./data/template-15/iguazu-infraestructura.geojson"
     }
 };
 
-const {strokeColor, strokeActiveColor, service} = conf[ _ENV ];
+const {strokeColor, strokeActiveColor, service, imagePath, thumbnailPath, iconPath} = conf[ _ENV ];
+
+
+/**
+ * Crea un divIcon personalizado para un marcador de mapa.
+ * Utiliza L.divIcon de Leaflet.js.
+ * @param {string} urlImagen URL de la imagen del marcador.
+ * @param {string} textoAlternativo Texto para accesibilidad (sr-only).
+ * @returns {L.divIcon | undefined} Un objeto divIcon de Leaflet o undefined 
+ * si faltan parámetros.
+ */
+function _divMarker(urlImagen, textoAlternativo, statusKey) {
+    // Comprueba que ambos parámetros sean strings no vacíos
+    if ([urlImagen, textoAlternativo].every(param => typeof param === "string" && param.trim() !== "")) {
+        const imgElement = new Image();
+        imgElement.src = urlImagen;
+        imgElement.loading = "lazy";
+        imgElement.alt = "";
+        imgElement.setAttribute("width", 34);
+        imgElement.setAttribute("height", 34);
+
+        // const srOnlySpan = document.createElement("span");
+        // srOnlySpan.className = "sr-only";
+        // srOnlySpan.textContent =  `${textoAlternativo}`;
+
+        const iconSpan = document.createElement("span");
+        iconSpan.className = "poncho-map__icon";
+        //iconSpan.appendChild(srOnlySpan);
+        iconSpan.appendChild(imgElement);
+
+        const containerDiv = document.createElement("div");
+        containerDiv.className = "poncho-map__icon-container";
+        containerDiv.appendChild(iconSpan);
+  
+
+        const icon = new L.divIcon({
+            html: containerDiv.outerHTML,
+            iconAnchor: [20, 40],
+            iconSize: [40, 40],
+            popupAnchor: [-3, -40]
+        });
+
+        return icon;
+    }
+}
+
 
 
     headStyle(
@@ -177,7 +229,8 @@ loader.load();
 
     // Propiedades de polígono
     gdata.features = gdata.features.filter(entry => {
-        return ( ["41", "16","108", "20"].includes( String( entry.properties["ID"] ) ) || entry.geometry.type !== "Point" )
+        return ( ["41", "16","108", "20"].includes( String( entry.properties["ID"] ) )  )
+        // return ( ["41", "16","108", "20"].includes( String( entry.properties["ID"] ) ) || entry.geometry.type !== "Point" )
     }); 
 
     gdata.features.forEach((entry, i) => {
@@ -225,7 +278,7 @@ loader.load();
         template_innerhtml:true,
         template: (self, entry) => {
             if (!entry.IMAGE.includes('<img')) {
-                entry.IMAGE = `<img src="./data/template-15/img/${entry.IMAGE}" />`;
+                entry.IMAGE = `<img src="${imagePath}${entry.IMAGE}" />`;
             }
             return self.defaultTemplate(self, entry);
         },
@@ -259,7 +312,7 @@ loader.load();
                 permanent: false,
                 sticky: false
             },
-        tooltip_label: `{% '<div class="m-b-05"><img width="150" src="./data/template-15/img/{{THUMBNAIL}}" /></div>' if THUMBNAIL != '' else '' %} {{NOM_SITIO}}`,
+        tooltip_label: `{% '<div class="m-b-05"><img width="150" src="${thumbnailPath}{{THUMBNAIL}}?v=1" /></div>' if THUMBNAIL != '' else '' %} {{NOM_SITIO}}`,
         filters: [
             {
                 //legend : "Filtrar por provincia",
@@ -271,16 +324,24 @@ loader.load();
                 //all_options_text: "Todas las provincias"
             }
         ],
+        marker(self, ele) {
+            const { THUMBNAIL:thumbnail, NOM_SITIO:nombre, TIPO } = ele;
+            const statusKey = true;
+            const tipo = slugify(TIPO);
+            return _divMarker(`${iconPath}${tipo}.svg`, nombre, statusKey);
+        },
+        open_maps: true,
     };
 
     // render map
-     pm = new PonchoMapFilter(gdata, options);
+    pm = new PonchoMapFilter(gdata, options);
     
     // Buscador
     const searchOptions = {
         scope: "poncho-map-search", 
         combobox: true,
         text: "tramo",
+        open_maps:true,
         placeholder: "Buscar por nombre de obra, ruta, id SIGO o provincia",
         search_fields: [
             "NOM_SITIO", 

@@ -1,0 +1,81 @@
+:root {
+    --pm-icon-shadow: 1px 1px 6px rgba(0, 0, 0, 0.5), 0px 1px 1px #fff inset;
+    --pm-icon-inner-shadow: 2px 8px 6px rgba(255, 255, 255, 0.2) inset;
+    --pm-icon-gradient: linear-gradient(333deg, #bbbaa9 0%, white 100%);
+    --pm-hover-scale: 1.15;
+    --pm-transition-fast: 0.15s ease-in-out;
+    --pm-transition-medium: 0.15s ease-in-out;
+    --pm-border-radius-circle: 50%;
+    --pm-border-radius-base: 8px;
+    --pm-animation-duration: 1.25s;
+}
+
+.pi-tooltip-inner {
+    font-size: small;
+    min-width: 80px;
+    padding: 0 0 6px 0;
+    gap: 3px;
+    display: inline-flex;
+    flex-direction: column;
+    width: auto;
+}
+
+/* ========================================
+   ICONO DE MAPA
+   ======================================== */
+.poncho-map {
+    &__icon-container {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        padding: 3px;
+        background-color: var(--arg-verde);
+        border: none;
+        border-radius: var(--pm-border-radius-circle) !important;
+        box-shadow: var(--pm-icon-shadow);
+        transition: transform var(--pm-transition-fast);
+
+        &-position,
+        &::before,
+        &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            width: 100%;
+            height: 100%;
+            border-radius: var(--pm-border-radius-circle);
+        }
+
+        &::after {
+            border: none;
+            background: var(--pm-icon-gradient);
+            opacity: 0.75;
+            mix-blend-mode: multiply;
+        }
+
+        &::before {
+            background: transparent;
+            box-shadow: var(--pm-icon-inner-shadow);
+        }
+
+        &:hover {
+            transform: scale(var(--pm-hover-scale)) rotate(5deg);
+            transition: transform var(--pm-transition-medium);
+        }
+    }
+
+    &__icon {
+        display: block;
+        overflow: hidden;
+        border-radius: var(--pm-border-radius-circle);
+
+        &>img {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            //transform: scale(1.1);
+        }
+    }
+}
