@@ -162,6 +162,9 @@ COPIAR DESDE ACÁ…
                 }
             },
             template_structure : {
+                header_visibility: {
+                    'provincia': "sr-only",
+                },
                 _header: (self, row) => {
                     return `<img src="x" onclick="alert(1)"> {{name}} <-- \n * hello`
                     console.log("entra")
