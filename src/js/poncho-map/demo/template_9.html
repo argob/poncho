@@ -131,7 +131,7 @@ COPIAR DESDE ACÁ…
             // lang: "en",
             debug: true,
             id_mixing: ['id','descripcion'],
-            error_reporting: 1,
+            error_reporting: true,
             template: (self, entry) => {
                 entry.foto_html = (entry.foto ? `<img class="img-in" alt="${entry.name}" src="${entry.foto}" style="border-radius:6px; border:1px solid #eee" />` : ""); 
                 entry.boton_html = (entry.boton ? `<a href="${entry.boton}">Conocer más sobre ${entry.nombre}</a>` : "");

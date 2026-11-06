@@ -56,6 +56,12 @@
       <td style="text-align:left">Establece un selector CSS alternativo donde se renderizará el contenido.</td>
     </tr>
     <tr>
+      <td style="text-align:left">debug</td>
+      <td style="text-align:left"><code>boolean</code></td>
+      <td style="text-align:left"><code>false</code></td>
+      <td style="text-align:left">Habilita los mensajes de depuración en la consola del navegador (<em>log</em>, <em>info</em>, <em>warn</em>, <em>error</em> y <em>table</em>). Útil durante el desarrollo; en producción se recomienda mantenerla deshabilitada.</td>
+    </tr>
+    <tr>
       <td style="text-align:left">error_reporting</td>
       <td style="text-align:left"><code>boolean</code></td>
       <td style="text-align:left">true</td>
