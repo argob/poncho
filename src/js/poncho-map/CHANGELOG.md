@@ -4,6 +4,8 @@
 <!-- omit in toc -->
 ## En ésta página
 
+- [Release 2.2.7](#release-227)
+  - [PonchoMap](#ponchomap-6)
 - [Release 2.2.6](#release-226)
   - [PonchoMap](#ponchomap)
 - [Release 2.2.5](#release-225)
@@ -28,6 +30,23 @@
 - [Release 2.1.3](#release-213)
 - [Release 2.1.2](#release-212)
 - [Release 2.1.1](#release-211)
+
+
+## Release 2.2.7
+
+### PonchoMap
+
+**Visibilidad de encabezados desde template_structure**: Se incorporó la propiedad `template_structure.header_visibility`, un objeto que asigna a cada clave un modo de visibilidad para su encabezado:
+
+- `"hidden"`: no se ve ni se lee (`display: none`).
+- `"sr-only"`: solo lo leen los lectores de pantalla; el valor sigue visible en el contenido.
+- `"visible"`: comportamiento normal. Es el valor por defecto para las claves no listadas.
+
+Los elementos de `template_structure.mixing` también aceptan `header_visibility` con los mismos modos. Si una clave está definida en ambos lugares, prevalece `template_structure.header_visibility` y se muestra una alerta de advertencia. Los valores que no sean `"hidden"`, `"sr-only"` o `"visible"` se descartan y muestran una alerta de error.
+
+**Reemplazo de `hide_header`**: La propiedad `hide_header` de `template_structure.mixing` fue reemplazada por `header_visibility`. Quienes usaban `hide_header: true` deben reemplazarlo por `header_visibility` con el modo que corresponda.
+
+**Render de claves ocultas**: Las claves con modo `"hidden"` se eliminan del render con `display: none`, en lugar de usar `aria-hidden` y la clase `pm-visually-hidden`.
 
 
 ## Release 2.2.6
