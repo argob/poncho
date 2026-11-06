@@ -1,3 +1,4 @@
+// Mixin para aplicar border-radius con prefijos de navegadores antiguos.
 @mixin borderRadius($value) {
     -webkit-border-radius: #{$value};
     -moz-border-radius: #{$value};
@@ -7,50 +8,86 @@
 
 
 
+// Variables CSS del mapa. Se declaran dentro del scope (#{$scope})
+// para poder tener varios mapas en la misma página con configuraciones distintas.
+// Los valores con var(--xxx, valor) toman primero la variable global del sitio
+// (por ejemplo --primary) y, si no existe, usan el valor de respaldo.
 #{$scope}  {
+    // Ancho del slider en escritorio. Se ajusta en _container.scss según el tamaño de pantalla.
     --pm-slider-width: 330px;
+    // Ancho de la barra de herramientas (filtros).
     --pm-tools-width: 300px;
+    // Color principal de la interfaz (botones activos, spinner, etc.).
     --pm-color-primary: var(--primary, #0072bb);
+    // Color de fondo del mapa (tiles transparentes o no cargados).
     --pm-map-background:white;
-    
+
+    // Color de texto base de la interfaz.
     --pm-color-base: var(--black, #333);
+    // Padding interno estándar del contenido del slider y de los filtros.
     --pm-content-padding: 15px;
-    
+
+    // Fondo de un elemento al pasar el cursor sobre él.
     --pm-hover-background: #ddd;
+    // Color de texto de un elemento al pasar el cursor sobre él.
     --pm-hover-color: var(--pm-color-base);
+    // Color de los enlaces.
     --pm-link: var(--arg-enlace, #0767A7);
+    // Color de texto de un elemento activo o seleccionado.
     --pm-active-color: white;
+    // Fondo de un elemento activo o seleccionado.
     --pm-active-background: var(--pm-color-primary);
+    // Color de un enlace ya visitado.
     --pm-active-visited-color: var(--arg-uva, blueviolet);
 
+    // Fondo del slider.
     --pm-slider-background: rgba(255, 255, 255, 1);
+    // Color del borde del slider.
     --pm-slider-border-color: #ddd;
+    // Grosor del borde del slider.
     --pm-slider-border-width: 1px;
 
+    // Sombra proyectada por el slider.
     --pm-slider-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    // Separación entre el slider y los bordes del contenedor del mapa.
     --pm-slider-distance: 10px;
+    // Radio de borde redondeado del slider.
     --pm-slider-radius: 22px;
+    // Altura del slider en dispositivos móviles (100% ocupa toda la pantalla).
     --pm-slider-media-mobile-height: 100%;
-    
+
     // Colores para el tooltip
+    // --pm-tooltip: fondo del tooltip.
     --pm-tooltip: #333;
+    // --pm-tooltip-color: color de texto del tooltip.
     --pm-tooltip-color: white;
-    
+
     // Modal para mobiles.
     // Debajo del slider se crea un div con opacidad.
+    // Color de ese fondo modal. No se encontraron referencias a esta variable en el código.
     --pm-slider-modal-color: var(--black);
-    
+
+    // Color del resplandor (drop-shadow) del marcador activo.
     --pm-active-marker-color: var(--arg-maiz, gold);
+    // Segundo color del resplandor del marcador activo; se mezcla con --pm-active-marker-color al 50%.
     --pm-active-marker-color-darker: var(--arg-naranja, orange);
 
+    // Fondo de los elementos con clase .pm-accesible al recibir foco o hover.
     --pm-accesible-background: #eaeaea;
 
+    // Fondo de la capa de carga (loader) que cubre el mapa mientras se obtienen los datos.
     --pm-loader-background: var(--pm-map-background);
+    // Color del spinner de carga.
     --pm-loader-spinner-color: var(--pm-color-primary);
+    // Color de la pista de fondo del spinner (la parte no girada).
     --pm-loader-spinner-background: #ccc;
+    // Tamaño (ancho y alto) del spinner.
     --pm-loader-spinner-size: 80px;
+    // Grosor de la línea del spinner.
     --pm-loader-spinner-weight: 4px;
 
+    // Color del control deslizante (thumb) de las barras de desplazamiento.
     --pm-scrollbar-handle: #444;
+    // Color de la pista de la barra de desplazamiento.
     --pm-scrollbar-background: #ddd;
 }
