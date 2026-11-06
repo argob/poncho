@@ -9606,7 +9606,8 @@ class PonchoMap {
         const validVisibilityValues = ["hidden", "sr-only", "visible"];
         const { 
             header_visibility: headerVisibility, 
-            mixing } = this.template_structure ?? {};
+            mixing 
+        } = this.template_structure ?? {};
 
         const keysVisibility = new Map;
 
@@ -9629,6 +9630,9 @@ class PonchoMap {
 
         if(Array.isArray(mixing)){
             for(const mix of mixing){
+                if(!mix.hasOwnProperty("header_visibility")){
+                    continue;
+                } 
                 if(validVisibilityValues.includes(mix?.header_visibility)){
                     keysVisibility.set(mix.key, mix.header_visibility);
                 } else {
