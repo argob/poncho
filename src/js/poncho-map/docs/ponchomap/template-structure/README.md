@@ -7,6 +7,9 @@
 
 - [Sintaxis](#sintaxis)
 - [Parámetros](#parámetros)
+- [Visibilidad de encabezados](#visibilidad-de-encabezados)
+  - [Modos](#modos)
+  - [Ejemplo de visibilidad](#ejemplo-de-visibilidad)
 - [Lead](#lead)
   - [Sintaxis](#sintaxis-1)
   - [Parámetros](#parámetros-1)
@@ -33,6 +36,7 @@ const options = {
         "mixing": [],
         "values": [],
         "exclude": [],
+        "header_visibility": {},
         "container_classlist": ["info-container"],
         "title_classlist": ["h4","text-primary","m-t-0"],
         "definition_list_classlist":["definition-list"],
@@ -67,6 +71,15 @@ const options = {
       <td><code>Array()</code></td>
       <td><code>[]</code></td>
       <td><p>Permite definir cuales son las claves que <b>no</b> deben imprimirse en el slider.</p></td>
+    </tr>
+    <tr>
+      <td>header_visibility</td>
+      <td><code>object</code></td>
+      <td><code>{}</code></td>
+      <td>
+        <p>Define el modo de visibilidad del encabezado de cada clave. Las claves no listadas se muestran normalmente (<code>"visible"</code>).</p>
+        <p>Ver opciones para <a href="#visibilidad-de-encabezados">header_visibility</a>.</p>
+      </td>
     </tr>
     <tr>
       <td>container_classlist</td>
@@ -153,6 +166,53 @@ const options = {
 </table>
 
 
+## Visibilidad de encabezados
+
+`header_visibility` permite controlar si el encabezado (término) de una clave se muestra, se oculta solo para la vista o se oculta también para los lectores de pantalla. El valor de la clave en el contenido no se modifica.
+
+```js
+"template_structure": {
+    "header_visibility": {
+        "areas": "hidden",
+        "tipo_obra": "sr-only",
+        "distrito": "visible"
+    }
+}
+```
+
+### Modos
+
+| Modo | Descripción |
+|:---|:---|
+| `"hidden"` | No se ve ni se lee. El encabezado se oculta con `display: none`. |
+| `"sr-only"` | Solo lo leen los lectores de pantalla. El encabezado queda oculto visualmente. |
+| `"visible"` | Comportamiento normal. Es el valor por defecto para las claves no listadas. |
+
+Consideraciones:
+
+- Los valores que no sean `"hidden"`, `"sr-only"` o `"visible"` se descartan y muestran una alerta de error.
+- Las claves vacías se ignoran.
+- Los elementos de [mixing](#mixing) también aceptan `header_visibility`. Si una clave está definida en `template_structure.header_visibility` y en `mixing`, prevalece `template_structure.header_visibility` y se muestra una alerta de advertencia.
+
+### Ejemplo de visibilidad
+
+```js
+"template_structure": {
+    "header_visibility": {
+        "distrito": "visible"
+    },
+    "mixing": [
+        {
+            "key": "ruta",
+            "header": "Ruta",
+            "values": ["cod_ruta", "tramo"],
+            "separator": [" - "],
+            "header_visibility": "sr-only"
+        }
+    ]
+}
+```
+
 ## Lead
 
 ![Mixing](./img/lead.png)
@@ -233,7 +293,7 @@ Los _mixings_ facilitan la creación de composiciones a partir de información f
             "header": [string],
             "values": [Array],
             "separator": [string],
-            "hide_header": [boolean]
+            "header_visibility": [string]
         },
         ...
     ]
@@ -250,7 +310,7 @@ Los _mixings_ facilitan la creación de composiciones a partir de información f
 | header | `string` | "" | Nombre que va a tener el campo como título. |
 | values | `Array` | [] | Listado de claves ordenados según el orden de aparición. |
 | separator | `string` | "" | Carácter o cadena de caracteres con la que se van a concatenar los valores. |
-| hide_header | `boolean` | false | Cuando está en true, el encabezado de esa clave se oculta visualmente y no se muestra al lector de pantalla, pero el valor sigue visible en el contenido. |
+| header_visibility | `string` | "visible" | Modo de visibilidad del encabezado de la clave: `"hidden"`, `"sr-only"` o `"visible"`. Ver [Visibilidad de encabezados](#visibilidad-de-encabezados). Si la misma clave está en `template_structure.header_visibility`, prevalece esa configuración. |
 
 
 
