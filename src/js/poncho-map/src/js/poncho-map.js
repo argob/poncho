@@ -1955,7 +1955,7 @@ class PonchoMap {
             type = "danger";
         }
 
-        const { scope_sufix, scope_selector, error_reporting, throw_exceptions, map_selector } = this;
+        const {scope, scope_sufix, scope_selector, error_reporting, throw_exceptions, map_selector } = this;
         const logContainerId = `log-container${scope_sufix}`;
 
         // Contenedor de errores
@@ -1964,6 +1964,7 @@ class PonchoMap {
             logContainer = document.createElement("div");
             logContainer.role = "alert";
             logContainer.id = logContainerId;
+            logContainer.classList.add("poncho-map--log-container");
 
             // Ubico el contenedor de logs antes del mapa
             const node = document.querySelector(`${scope_selector}.poncho-map`);
