@@ -113,7 +113,6 @@ COPIAR DESDE ACÁ…
             data-title="Código para el mapa">
         </div>
         <!-- / DEBUGGER -->
-
         </div>
     </div>
 </div>
@@ -123,7 +122,7 @@ COPIAR DESDE ACÁ…
 <script src="https://www.argentina.gob.ar/sites/default/files/ponchotable/showdown.js"></script>
 <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/extensiones/showdown-extensions.js"></script>
 <script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.js"></script>
-<script src="_https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script>
+<script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script>
 <link href="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.css" rel="stylesheet"/> 
 <link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.css" rel="stylesheet"/> 
 <link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.Default.css" rel="stylesheet"/> 
@@ -140,6 +139,8 @@ const conf = {
         iconPath: "/sites/default/files/",
         spreadsheetKey :"1k8FWqXHiOoKtnWA2QZSWgaIBOghlImhMKaLiz8xoh7E",
         sheetName: "dataset",
+        geoDataSenderos: "/sites/default/files/iguazu-senderos.txt",
+        geoDataInfraestructura: "/sites/default/files/iguazu-infraestructura.txt",
         mapView: { lat: -25.68148542057519, lng: -54.44990515708924 },
         mapZoom: 17
     },
@@ -149,7 +150,10 @@ const conf = {
         iconPath: "./data/template-15/images/",
         spreadsheetKey :"1k8FWqXHiOoKtnWA2QZSWgaIBOghlImhMKaLiz8xoh7E",
         sheetName: "dataset",
-        mapView: { lat: -25.68148542057519, lng: -54.44990515708924 },
+        geoDataSenderos: "./data/template-15/iguazu-senderos.geojson",
+        geoDataInfraestructura: "./data/template-15/iguazu-infraestructura.geojson",
+        //mapView: { lat: -25.68148542057519, lng: -54.44990515708924 }, // zoom 17
+        mapView: {lat: -25.68148542057519, lng: -54.4499158859253}, // zoom 16
         mapZoom: 16
     }
 };
@@ -159,9 +163,53 @@ const {
     thumbnailPath, 
     iconPath, 
     spreadsheetKey, 
+    geoDataSenderos, geoDataInfraestructura,
     sheetName, mapView, mapZoom} = conf[ _ENV ];
 
 var pm;
+
+
+async function renderHome(){
+    const gapi = new GapiSheetData();
+
+    let data = new Map();
+    return Promise.all([
+            fetch_json( gapi.url(sheetName, spreadsheetKey)),
+            fetch_json( geoDataSenderos ),
+            fetch_json( geoDataInfraestructura )
+    ]).then(function(responses){
+        responses.forEach((result, index) => {
+            try {
+                if (!result) {
+                    console.error(`Error: respuesta vacía en índice ${index}`);
+                    return;
+                }
+                if(index === 0){
+                    if (result && result.values) {
+                        data.set("dataset", result);
+                    }
+                } else if(index === 1){
+                    if (result && result.features) {
+                        data.set("senderos", result.features);
+                    }
+                } else if(index === 2){
+                    if (result && result.features) {
+                        data.set("infraestructura", result.features);
+                    }
+                }
+
+            } catch (error) {
+                console.error(`Error al procesar respuesta ${index}:`, error);
+            }
+
+        });
+        return data;
+    }).catch(function(error){
+        console.error('Error al cargar datos:', error);
+        return data;
+    });
+}
+
 
 /**
  * Crea un divIcon personalizado para un marcador de mapa.
@@ -213,11 +261,69 @@ loader.load();
 
  // init
 (async() => {
-
     const gapi = new GapiSheetData();
-    // fetch data
-    const googlesheet_data = await fetch_json( gapi.url(sheetName, spreadsheetKey)); 
-    const gapiData = gapi.json_data(googlesheet_data);
+    const data = await renderHome();
+    const geoJsonData = {
+        type: "FeatureCollection",
+        features: [...data.get('senderos'),...data.get('infraestructura')]
+    };
+    const gapiData = gapi.json_data( data.get('dataset') );
+
+    const entries = new Map();
+    for(let entry of gapiData.entries){
+        const {
+            id, 
+            descripcion, 
+            url, 
+            image, 
+            "image-alt":imageAlt, 
+            thumbnail, 
+            "thumbnail-alt":thumbnailAlt
+        } = entry;
+        entries.set(String(id), {
+            descripcion, url, image, imageAlt, thumbnail, thumbnailAlt
+        });
+    }
+
+    geoJsonData.features.forEach(e => {
+        const {type} = e.geometry;
+        const {ID, NOM_SEND="", NOM_SITIO=""} = e.properties;
+
+        let name_custom;
+        if( String(NOM_SEND).trim() !== "" ) {
+            name_custom = NOM_SEND;
+        } else if( String(NOM_SITIO).trim() !== "" ) {
+            name_custom = NOM_SITIO;
+        } else {
+            name_custom = "Nombre no disponible";
+        }
+        e.properties = { ...e.properties, name_custom };
+
+        if(entries.has(String(ID)) && type === "Point"){
+            const {
+                descripcion, 
+                url, 
+                image, 
+                imageAlt, 
+                thumbnail, 
+                thumbnailAlt
+            } = entries.get(String(ID));
+
+
+
+
+            e.properties = {
+                ...e.properties,
+                descripcion,
+                url: url,
+                image: image,
+                "image-alt": imageAlt,
+                thumbnail: thumbnail,
+                "thumbnail-alt": thumbnailAlt
+            };
+        }
+    });
+
 
     // map options
     const options = {
@@ -228,50 +334,70 @@ loader.load();
         map_zoom: mapZoom,
         map_view: Object.values(mapView),
         scope: "poncho-map",
-        id: "id",
-        title: "nom-sitio",
+        // id: "id",
+        title: "name_custom",
+        // name: "name_custom",
         tooltip: true,
         template_markdown: true,
         theme_map: "dark",
         allowed_tags: ["*"],
         template_innerhtml:true,
+        _template:(self, entry)=>{
+            
+            let name;
+            if( entry.hasOwnProperty("NOM_SEND") && entry.NOM_SEND.trim() !== "" ) {
+                name = entry.NOM_SEND;
+            } else if( entry.hasOwnProperty("NOM_SITIO") && entry.NOM_SITIO.trim() !== "" ) {
+                name = entry.NOM_SITIO;
+            } else {
+                name = "Nombre no disponible";
+            }
+            entry["name_custom"] = name;
+
+            return self.defaultTemplate(self, entry);
+        },
         template_structure: {
             lead: {
                 key: "tipo", 
                 css: "text-arg-gris-intermedio border-bottom small fw-semibold m-t-0",
-                //style: "color: orange; font-size:2em;"
+            },
+            title:"name_custom",
+            header_visibility: {
+                "descripcion": "sr-only",
+                "image-custom": "sr-only",
+                "url-custom": "sr-only"
             },
             values: [
-                "image-custom", "descripcion-custom", "url-custom"
+                "image-custom", "descripcion", "url-custom"
             ],
             mixing: [
                 {
-                    template: `{% '<img src="${imagePath}{{image}}" alt="image-alt" />' `
+                    template: `{% '<img src="${imagePath}{{image}}" alt="{{image-alt}}" />' `
                     + `if image != "" else "" %}`,
                     key: "image-custom",
                     hide_header: true,
-                    header: "imagen"
-                },
-                {
-                    template: `{{descripcion}}`,
-                    key: "descripcion-custom",
-                    header: "Descripción",
-                    hide_header: true
                 },
                 {
                     template: `{% '<a class="btn btn-primary" href="{{url}}">Ir al sitio</a>' if url != "" else "" %}`,
                     key: "url-custom",
                     header: "Sitio web",
-                    hide_header: true
                 }
             ]
         },
-        headers: gapiData.headers,
+        // headers: gapiData.headers,
+        _filters: [
+            {
+                legend: "Filtrar por tipo",
+                label: "Tipo de infraestructura",
+                type: "select",
+                field: ["TIPO", "checked"]
+            }
+        ],
         slider: true,
         map_layers_default: "satelital",
         hash: true,
         fit_bounds_after_filter: true,
-                    tooltip_options:{
+        tooltip_options:{
                 className: "leaflet-tooltip-own",
                 direction: "auto",
                 offset: [25, -18],
@@ -283,7 +409,7 @@ loader.load();
             + `{% '<div class="image"><img class="tooltip-figure__image" `
             + `width="150" src="${thumbnailPath}{{thumbnail}}?v=2" alt="{{thumbnail-alt}}" /></div>'`
             + ` if thumbnail != '' else '' %} <figurecaption `
-            + `class="tooltip-figure__caption">{{nom-sitio}}` 
+            + `class="tooltip-figure__caption">{{name_custom}}` 
             + `</figurecaption></figure>`,
         marker(self, ele) {
             const availableIcons = [
@@ -292,10 +418,11 @@ loader.load();
                 "prestador-turistico",
                 "servicios-gastronomicos"
             ];
-            const { thumbnail, "nom-sitio":nombre, tipo } = ele;
+            const { thumbnail=false, "name_custom":nombre, "TIPO":tipo } = ele;
+
             const statusKey = true;
             const slugifiedTipo = slugify(tipo);
-            if(!availableIcons.includes(slugifiedTipo)){
+            if(!availableIcons.includes(slugifiedTipo) || !thumbnail){
                 return "azul";
             }
             return _divMarker(
@@ -306,7 +433,7 @@ loader.load();
     };
 
     // render map
-    pm = new PonchoMapFilter(gapiData.entries, options);
+    pm = new PonchoMapFilter(geoJsonData, options);
     
     // Buscador
     const searchOptions = {
@@ -316,7 +443,7 @@ loader.load();
         open_maps:true,
         placeholder: "Buscar por nombre",
         search_fields: [
-            "nom-sitio", "tipo"
+            "NOM_SITIO", "TIPO"
         ] 
     };
     const pmSearch = new PonchoMapSearch(pm, searchOptions);
