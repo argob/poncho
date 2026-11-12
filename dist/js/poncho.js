@@ -6731,7 +6731,6 @@ class PonchoMap {
             ...defaults.template_structure,
             ...options.template_structure
         };
-        this.hiddenHeaders = this._hiddenTemplateHeader();
         this.debug = opts.debug;
         this.render_schema = Boolean(opts.render_schema);
         this.template_innerhtml = opts.template_innerhtml;
@@ -6779,6 +6778,7 @@ class PonchoMap {
         this.selected_marker;
         this.scope_selector = `[data-scope="${this.scope}"]`;
         this.scope_sufix = `--${this.scope}`;
+        this.headersVisibility = this._getHeadersVisibility();
         this.content_selector = (opts.content_selector ?
                 opts.content_selector : `.js-content${this.scope_sufix}`);
         this.content_outside = (this.content_selector !==
@@ -6951,7 +6951,7 @@ class PonchoMap {
      * Versión poncho
      */
     get version(){
-        return "2.2.6";
+        return "2.2.7";
     }
 
 
@@ -8260,7 +8260,7 @@ class PonchoMap {
             type = "danger";
         }
 
-        const { scope_sufix, scope_selector, error_reporting, throw_exceptions, map_selector } = this;
+        const {scope, scope_sufix, scope_selector, error_reporting, throw_exceptions, map_selector } = this;
         const logContainerId = `log-container${scope_sufix}`;
 
         // Contenedor de errores
@@ -8269,6 +8269,7 @@ class PonchoMap {
             logContainer = document.createElement("div");
             logContainer.role = "alert";
             logContainer.id = logContainerId;
+            logContainer.classList.add("poncho-map--log-container");
 
             // Ubico el contenedor de logs antes del mapa
             const node = document.querySelector(`${scope_selector}.poncho-map`);
@@ -8276,7 +8277,7 @@ class PonchoMap {
                 node.parentNode.insertBefore(logContainer, node);
             }
         }
-        logContainer.textContent = ""; // Más rápido que innerHTML = ""
+        // logContainer.textContent = ""; // Más rápido que innerHTML = ""
 
         // Contenedor de alerta
         const container = document.createElement("div");
@@ -9568,27 +9569,121 @@ class PonchoMap {
 
 
     /**
-     * Obtiene un listado de keys que deben ocultarse en el 
-     * encabezado del slider.
-     * 
-     * @summary Evalúa la configuración de `template_structure.mixing` y
-     * retorna un array con las keys de los elementos que tienen la propiedad
-     * `hide_header` establecida en `true`.         
-     * @returns {Array}
+     * Calcula el modo de visibilidad de cada encabezado del slider.
+     *
+     * @summary Reúne en un `Map` la visibilidad de cada key de
+     * `template_structure.header_visibility` y las keys de
+     * `template_structure.mixing` con `hide_header: true`, que siempre
+     * quedan como `"hidden"`. Las claves de `header_visibility` con un valor
+     * fuera de `"hidden"`, `"sr-only"` o `"visible"` (o que no sean strings)
+     * se descartan y muestran una alerta de advertencia. Las keys vacías se
+     * ignoran. Las keys no listadas no aparecen en el
+     * `Map`; se asumen `"visible"`.
+     *
+     * Modos:
+     * - `"hidden"`: no se ve ni se lee (`display: none`).
+     * - `"sr-only"`: solo lo leen los lectores de pantalla.
+     * - `"visible"`: comportamiento normal.
+     *
+     * @example
+     * // template_structure
+     * {
+     *     header_visibility: {
+     *         "areas": "hidden",     // No se ve ni se lee
+     *         "tipo_obra": "sr-only", // Solo lectores de pantalla
+     *         "distrito": "visible"   // Comportamiento normal
+     *     },
+     *     mixing: [
+     *         { key: "barrio", hide_header: true } // → "hidden"
+     *     ]
+     * }
+     * // Resultado: Map { "areas" => "hidden", "tipo_obra" => "sr-only",
+     * //                  "distrito" => "visible", "barrio" => "hidden" }
+     *
+     * @returns {Map<string, ("hidden"|"sr-only"|"visible")>} Mapa de
+     * key → modo de visibilidad. Se asigna a `this.headersVisibility`.
      */
-    _hiddenTemplateHeader = () => {
-        const mixing = this.template_structure?.mixing;
-        if(!mixing){
-            return [];
+    _getHeadersVisibility = () => {
+        const validVisibilityValues = ["hidden", "sr-only", "visible"];
+        const { 
+            header_visibility: headerVisibility, 
+            mixing 
+        } = this.template_structure ?? {};
+
+        const keysVisibility = new Map;
+
+        const _showAlert = (key, keyValue) => {
+            this.showAlert(
+                {
+                    title: "Valor inválido",
+                    messages: [
+                        "El valor de la clave «" + key 
+                        + "» en <code>template_structure."
+                        + "header_visibility</code> debe ser uno "
+                        + "de los siguientes: " 
+                        + validVisibilityValues.join(", ")
+                    ],
+                    terminal: `{'${key}': '${keyValue}'}`
+                },
+                "danger"
+            );
         }
 
-        const hidden = [];
-        for(const m of mixing){
-            if(m?.hide_header === true && m.key){
-                hidden.push(m.key);
+        if(Array.isArray(mixing)){
+            for(const mix of mixing){
+                if(!mix.hasOwnProperty("header_visibility")){
+                    continue;
+                } 
+                if(validVisibilityValues.includes(mix?.header_visibility)){
+                    keysVisibility.set(mix.key, mix.header_visibility);
+                } else {
+                    _showAlert(mix.key, mix.header_visibility);
+                }
             }
         }
-        return hidden;
+
+        // Tiene precedencia sobre claves definidas en mixing
+        if(
+            this.isObject(headerVisibility) && 
+            !this.isEmptyObject(headerVisibility)
+        ){
+            
+            for(let key of Object.keys(headerVisibility)){
+                if(key.trim() === ""){
+                    continue;
+                }
+
+                if(keysVisibility.has(key)){
+                    this.showAlert(
+                        {
+                            title: "Clave duplicada",
+                            messages: [
+                                "La clave «" + key 
+                                + "» está definida en "
+                                + "<code>template_structure."
+                                + "header_visibility</code> "
+                                + "y en <code>template_structure.mixing</code>"
+                            ],
+                            terminal: `{'${key}'}`
+                        },
+                        "warning"
+                    );
+                }
+
+                const rawValue = headerVisibility[key];
+                const keyValue = (typeof rawValue === "string" ? 
+                        rawValue.trim() : rawValue);
+                const isValidKey = validVisibilityValues.includes(keyValue);
+                if(isValidKey){
+                    keysVisibility.set(key, keyValue);
+                } else {
+                    _showAlert(key, keyValue);
+                }
+            }
+            
+        }
+
+        return keysVisibility;
     }
 
 
@@ -9839,10 +9934,16 @@ class PonchoMap {
                 definition.textContent = row[key];
             }
 
-            if(this.hiddenHeaders.includes(key)){
-                term.setAttribute("aria-hidden", "true");
-                term.classList.add("pm-visually-hidden");
-            }
+            this.headersVisibility.keys().forEach(hiddenKey => {
+                if(hiddenKey === key){
+                    const visibility = this.headersVisibility.get(hiddenKey);
+                    if(visibility === "hidden"){
+                        term.style.display = "none";
+                    } else if(visibility === "sr-only"){
+                        term.classList.add("pm-visually-hidden");
+                    }
+                }
+            });
 
             if(this.header(key) != ""){
                 definitions.appendChild(term);

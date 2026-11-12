@@ -133,7 +133,7 @@ COPIAR DESDE ACÁ…
 <!-- SCRIPTS -->
 <script id="code_map">
 const _ENV = "develop";
-
+var pm;
 const conf = {
     production: {
         strokeColor: "var(--arg-cielo)",
@@ -200,6 +200,8 @@ loader.load();
 
     // map options
     const options = {
+        debug: true,
+        error_reporting: true,
         summary: {
             title: "Mapa del estado de las obras viales",
             hidden: true
@@ -212,7 +214,15 @@ loader.load();
         theme_map: "dark",
         allowed_tags: false,
         template_structure: {
+            header_visibility: {
+                "f": "f",
+                "test": "sr-only", // Solo lectores de pantalla
+                "areas": "hidden", // No se ve ni se lee
+                "tipo_obra": "sr-only", // Solo lectores de pantalla
+                "distrito": "visible" // Comportamiento normal (o por defecto). Si no se encuentra la clave en header_visibility, se asume visible
+            },
             values: [
+                "test",
                 "distrito",
                 "areas",
                 "tipo_obra",
@@ -226,6 +236,15 @@ loader.load();
                 "id_registro",
                 "id_sigo",
                 "cod_ruta",
+            ],
+            mixing: [
+                {
+                    "key": "test",
+                    "header": "Test",
+                    "values": ["distrito", "ruta"],
+                    "separator": [" - "],
+                    "header_visibility": "sr-only"
+                },
             ]
         },
         headers: headers,
@@ -254,7 +273,7 @@ loader.load();
     };
 
     // render map
-    const pm = new PonchoMapFilter(gdata, options);
+ pm = new PonchoMapFilter(gdata, options);
     
     // Buscador
     const searchOptions = {

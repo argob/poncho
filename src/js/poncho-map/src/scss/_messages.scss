@@ -1,5 +1,10 @@
 /* Mensajes de error y warning */
 #{$scope} {
+    &--message-container {
+        margin: 1em 0;
+        max-height: 400px;
+        overflow-y: auto;
+    }
     &--message {
         padding: 15px;
         font-size: smaller;

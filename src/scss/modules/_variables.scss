@@ -95,3 +95,10 @@ $border-heavy: 6px !default;
 $border-thick: 3px !default;
 $border-medium: 2px !default;
 $border-light: 1px !default;   
+
+$border-weights: (
+    "heavy": $border-heavy,
+    "thick": $border-thick,
+    "medium": $border-medium,
+    "light": $border-light
+) !default;
