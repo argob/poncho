@@ -28,7 +28,7 @@ $sides: (
 // Primero declaro los generales
 @each $name, $width in $border-weights {
     .border-#{$name} {
-        border#{$name}-width: $width !important;
+        border-width: $width !important;
     }
 }
 
