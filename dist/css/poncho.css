@@ -13913,19 +13913,19 @@ pre {
 }
 
 .border-heavy {
-  borderheavy-width: 6px !important;
+  border-width: 6px !important;
 }
 
 .border-thick {
-  borderthick-width: 3px !important;
+  border-width: 3px !important;
 }
 
 .border-medium {
-  bordermedium-width: 2px !important;
+  border-width: 2px !important;
 }
 
 .border-light {
-  borderlight-width: 1px !important;
+  border-width: 1px !important;
 }
 
 .border-top-heavy {
