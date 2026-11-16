@@ -1,0 +1,49 @@
+$sides: (
+    "": "",
+    "-top": "-top",
+    "-bottom": "-bottom",
+    "-right": "-right",
+    "-left": "-left"
+) !default;
+
+// Borde por defecto
+@each $suffix, $property-part in $sides {
+    .border#{$suffix} {
+        --border-color: var(--arg-gray-light);
+
+        border#{$property-part}-style: solid !important;
+        border#{$property-part}-width: $border-light !important;
+        border#{$property-part}-color: var(--border-color) !important;
+    }
+}
+
+// Eliminar bordes (.border-0, .border-top-0, ...)
+@each $suffix, $property-part in $sides {
+    .border#{$suffix}-0 {
+        border#{$property-part}: 0 !important;
+    }
+}
+
+// Grosor (.border-heavy, .border-top-heavy, ...)
+// Va después de los bordes por defecto para que gane sobre ellos.
+@each $name, $width in $border-weights {
+    @each $suffix, $property-part in $sides {
+        .border#{$suffix}-#{$name} {
+            border#{$property-part}-width: $width !important;
+        }
+    }
+}
+
+// Color (.border-primary, ...)
+@each $key, $_ in $colores {
+    .border-#{$key} {
+        --border-color: var(--#{$key});
+    }
+}
+
+// Opacidad (.border-color-25, .border-color-50, .border-color-75)
+@each $value in 25, 50, 75 {
+    .border-color-#{$value} {
+        border-color: color-mix(in srgb, var(--border-color) #{$value * 1%}, transparent) !important;
+    }
+}

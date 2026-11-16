@@ -73,6 +73,16 @@ const calendar = {
             markerYearInt};
     },
     /**
+     * Remueve las etiquetas HTML de una cadena de texto.
+     * @param {string} htmlString Cadena de texto a remplazar
+     * @returns {string} Cadena de texto sin etiquetas HTML.
+     */
+    cleanHtml: function(htmlString){
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(htmlString, 'text/html');
+        return doc.body.textContent || '';
+    },
+    /**
      * Remplaza un texto asignado a un dataset.
      *
      * @summary Remplaza el texto de una etiqueta por el asginado en el
@@ -834,7 +844,7 @@ const calendar = {
             // Nombre el feriado
             const anchorDetalle = document.createElement("a");
             anchorDetalle.href = `#mes-${month.toLowerCase()}`;
-            anchorDetalle.textContent = markerLabel;
+            anchorDetalle.textContent = (this.allowHTML ? this.cleanHtml(markerLabel) : markerLabel);
             detalle.forEach(detail => {
                 if(detail){
                     detail.innerHTML = anchorDetalle.outerHTML
@@ -860,7 +870,8 @@ const calendar = {
 
             const anchorDetalleHoy = document.createElement("a");
             anchorDetalleHoy.href =`#mes-${month.toLowerCase()}`;
-            anchorDetalleHoy.textContent = markerLabel;
+            anchorDetalleHoy.textContent = (this.allowHTML ? 
+                    this.cleanHtml(markerLabel) : markerLabel);
             detalle.forEach(elem => {
                 if(elem){
                     elem.innerHTML = anchorDetalleHoy.outerHTML

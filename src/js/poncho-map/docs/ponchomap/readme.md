@@ -56,6 +56,12 @@
       <td style="text-align:left">Establece un selector CSS alternativo donde se renderizará el contenido.</td>
     </tr>
     <tr>
+      <td style="text-align:left">debug</td>
+      <td style="text-align:left"><code>boolean</code></td>
+      <td style="text-align:left"><code>false</code></td>
+      <td style="text-align:left">Habilita los mensajes de depuración en la consola del navegador (<em>log</em>, <em>info</em>, <em>warn</em>, <em>error</em> y <em>table</em>). Útil durante el desarrollo; en producción se recomienda mantenerla deshabilitada.</td>
+    </tr>
+    <tr>
       <td style="text-align:left">error_reporting</td>
       <td style="text-align:left"><code>boolean</code></td>
       <td style="text-align:left">true</td>
@@ -304,7 +310,7 @@
       <td style="text-align:left">template_structure</td>
       <td style="text-align:left"><code>object</code></td>
       <td style="text-align:left"><code>{}</code></td>
-      <td style="text-align:left"><p>Define el listado de valores a mostrar en el template por defecto o excluye valores que no se deseen mostrar.</p><p><a href="template-structure/README.md">Ver opciones para template_structure</a>.</p></td>
+      <td style="text-align:left"><p>Define el listado de valores a mostrar en el template por defecto o excluye valores que no se deseen mostrar. Permite ocultar encabezados mediante <code>header_visibility</code>.</p><p><a href="template-structure/README.md">Ver opciones para template_structure</a>.</p></td>
     </tr>
     <tr>
       <td style="text-align:left">theme</td>

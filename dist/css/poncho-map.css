@@ -413,6 +413,11 @@ html {
   }
 }
 /* Mensajes de error y warning */
+.poncho-map--message-container {
+  margin: 1em 0;
+  max-height: 400px;
+  overflow-y: auto;
+}
 .poncho-map--message {
   padding: 15px;
   font-size: smaller;
