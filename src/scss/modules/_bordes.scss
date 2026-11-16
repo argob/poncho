@@ -24,12 +24,22 @@ $sides: (
     }
 }
 
-// Grosor (.border-heavy, .border-top-heavy, ...)
-// Va después de los bordes por defecto para que gane sobre ellos.
+// Grosor (.border-heavy, .border-thick)
+// Primero declaro los generales
+@each $name, $width in $border-weights {
+    .border-#{$name} {
+        border#{$name}-width: $width !important;
+    }
+}
+
+// Declaro los estilos particulares para tener especificidad sobre 
+// los generales.
 @each $name, $width in $border-weights {
     @each $suffix, $property-part in $sides {
-        .border#{$suffix}-#{$name} {
-            border#{$property-part}-width: $width !important;
+        @if $suffix and $suffix != "" {
+            .border#{$suffix}-#{$name} {
+                border#{$property-part}-width: $width !important;
+            }
         }
     }
 }
