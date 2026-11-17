@@ -1984,6 +1984,12 @@ function triggerEvent(selector, value, eventType, timeout=50,
     }, timeout);
 }
 
+
+
+if (typeof exports !== "undefined") {
+    module.exports = { triggerEvent };
+}
+
 /**
  * Helpers para manejar los json provenientes de Google Sheets.
  * 
