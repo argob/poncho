@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trigger event</title>
+    <script src="../trigger-event.js"></script>
+</head>
+<body>
+    <main>
+        <select id="mySelect">
+            <option value="">Seleccione una opción</option>
+            <option value="option1">Option 1</option>
+            <option value="option2">Option 2</option>
+            <option value="option3">Option 3</option>
+        </select>
+<p><b>Código para probar</b></p>
+<pre>
+<code>triggerEvent(&quot;#mySelect&quot;, &quot;option2&quot;, &quot;change&quot;, 50, eventOptions=&#123;bubbles: true&#125;);</code>
+</pre>
+</main>
+</body>
+</html>
