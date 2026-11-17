@@ -70,3 +70,9 @@ function triggerEvent(selector, value, eventType, timeout=50,
         element.dispatchEvent(event);
     }, timeout);
 }
+
+
+
+if (typeof exports !== "undefined") {
+    module.exports = { triggerEvent };
+}
