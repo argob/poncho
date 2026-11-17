@@ -1946,11 +1946,11 @@ if (typeof exports !== "undefined") {
   * @param {*} [value] - Valor opcional a asignar al elemento.
   * @param {string} eventType - Tipo de evento a disparar (ej. "input").
   * @param {number} [timeout=50] - Retraso en milisegundos.
-  * @param {Object} [eventOptions={ bubbles: false, cancelable: true }] - Opciones para el evento.
+  * @param {Object} [eventOptions={}] - Opciones para el evento.
   * @returns {number|undefined} ID del temporizador o undefined si falla.
   */
 function triggerEvent(selector, value, eventType, timeout=50, 
-                      eventOptions={bubbles: true}) {
+                      eventOptions={}) {
     let element;
     if(selector instanceof Element){
         element = selector;
