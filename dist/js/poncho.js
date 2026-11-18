@@ -1974,6 +1974,15 @@ function triggerEvent(selector, value, eventType, timeout=50,
         return;
     }
 
+    if(typeof eventOptions !== "object" || eventOptions === null || 
+        Array.isArray(eventOptions)){
+        console.error(
+            "[triggerEvent]", 
+            "Debe incorporar un eventOptions válido (debe ser un objeto)."
+        );
+        return;
+    }
+
     return setTimeout(function(){
         if(value !== undefined){
             element.value = value;
