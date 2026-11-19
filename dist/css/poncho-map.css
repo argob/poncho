@@ -354,6 +354,34 @@ html {
  * Generador de clases de bordes de colores
  * ([nombre], [valor])
  */
+:root {
+  --grid-gutter-width: 30px;
+  /* Espaciado */
+  --space-auto: auto;
+  --space-0: 0px;
+  --space-xs: 0.25rem;
+  --space-05: 0.5rem;
+  --space-1: 1rem;
+  --space-2: 1.5rem;
+  --space-3: 3rem;
+  --space-4: 4rem;
+  /* Variables de peso tipográfico */
+  --fw-thin: 100;
+  --fw-extra-light: 200;
+  --fw-light: 300;
+  --fw-normal: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+  --fw-extra-bold: 800;
+  --fw-black: 900;
+  /* Grosor de bordes */
+  --border-heavy: 6px;
+  --border-thick: 3px;
+  --border-medium: 2px;
+  --border-light: 1px;
+}
+
 .poncho-map {
   --pm-slider-width: 330px;
   --pm-tools-width: 300px;
