@@ -102,3 +102,35 @@ $border-weights: (
     "medium": $border-medium,
     "light": $border-light
 ) !default;
+
+
+:root {
+    --grid-gutter-width: #{$grid-gutter-width};
+    
+    /* Espaciado */
+    --space-auto: #{$space-auto};
+    --space-0: #{$space-0};
+    --space-xs: #{$space-xs};
+    --space-05: #{$space-05};
+    --space-1: #{$space-1};
+    --space-2: #{$space-2};
+    --space-3: #{$space-3};
+    --space-4: #{$space-4};
+
+    /* Variables de peso tipográfico */
+    --fw-thin: #{$fw-thin};
+    --fw-extra-light: #{$fw-extra-light};
+    --fw-light: #{$fw-light};
+    --fw-normal: #{$fw-normal};
+    --fw-medium: #{$fw-medium};
+    --fw-semibold: #{$fw-semibold};
+    --fw-bold: #{$fw-bold};
+    --fw-extra-bold: #{$fw-extra-bold};
+    --fw-black: #{$fw-black};
+
+    /* Grosor de bordes */
+    --border-heavy: #{$border-heavy};
+    --border-thick: #{$border-thick};
+    --border-medium: #{$border-medium};
+    --border-light: #{$border-light};
+}
