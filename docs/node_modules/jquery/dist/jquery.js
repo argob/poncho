@@ -1,12 +1,12 @@
 /*!
- * jQuery JavaScript Library v3.7.1
+ * jQuery JavaScript Library v3.8.0
  * https://jquery.com/
  *
  * Copyright OpenJS Foundation and other contributors
  * Released under the MIT license
- * https://jquery.org/license
+ * https://jquery.com/license/
  *
- * Date: 2023-08-28T13:37Z
+ * Date: 2026-11-17T15:47Z
  */
 ( function( global, factory ) {
 
@@ -127,7 +127,9 @@ var document = window.document;
 				}
 			}
 		}
-		doc.head.appendChild( script ).parentNode.removeChild( script );
+		if ( doc.head.appendChild( script ).parentNode ) {
+			script.parentNode.removeChild( script );
+		}
 	}
 
 
@@ -147,7 +149,7 @@ function toType( obj ) {
 
 
 
-var version = "3.7.1",
+var version = "3.8.0",
 
 	rhtmlSuffix = /HTML$/i,
 
@@ -243,13 +245,7 @@ jQuery.fn = jQuery.prototype = {
 
 	end: function() {
 		return this.prevObject || this.constructor();
-	},
-
-	// For internal use only.
-	// Behaves like an Array's method, not like a jQuery method.
-	push: push,
-	sort: arr.sort,
-	splice: arr.splice
+	}
 };
 
 jQuery.extend = jQuery.fn.extend = function() {
@@ -605,7 +601,13 @@ jQuery.contains = function( a, b ) {
 
 // CSS string/identifier serialization
 // https://drafts.csswg.org/cssom/#common-serializing-idioms
-var rcssescape = /([\0-\x1f\x7f]|^-?\d)|^-$|[^\x80-\uFFFF\w-]/g;
+// Support: Safari 27+
+// When searching past the initial position, WebKit's regex interpreter can
+// skip the first outer alternative. Put `^-$` first: it cannot match at
+// a later position, so skipping it is harmless and control characters still
+// use the capturing group.
+// https://bugs.webkit.org/show_bug.cgi?id=321253
+var rcssescape = /^-$|([\0-\x1f\x7f]|^-?\d)|[^\x80-\uFFFF\w-]/g;
 
 function fcssescape( ch, asCodePoint ) {
 	if ( asCodePoint ) {
@@ -664,14 +666,21 @@ var i,
 		return 0;
 	},
 
+	// Regular expressions
+
 	booleans = "checked|selected|async|autofocus|autoplay|controls|defer|disabled|hidden|ismap|" +
 		"loop|multiple|open|readonly|required|scoped",
 
-	// Regular expressions
+	// https://www.w3.org/TR/css-syntax-3/#escape-diagram
+	escape = "\\\\[\\da-fA-F]{1,6}" + whitespace + "?|" +
+		"\\\\[^\\da-fA-F\\r\\n\\f]",
 
 	// https://www.w3.org/TR/css-syntax-3/#ident-token-diagram
-	identifier = "(?:\\\\[\\da-fA-F]{1,6}" + whitespace +
-		"?|\\\\[^\\r\\n\\f]|[\\w-]|[^\0-\\x7f])+",
+	//
+	// Note: we are not 100% aligned with the spec here; the regex
+	// below e.g. accepts leading digits. We'll consider increasing
+	// the alignment in a future major version bump.
+	identifier = "(?:" + escape + "|[\\w-]|[^\\0-\\x7f])+",
 
 	// Attribute selectors: https://www.w3.org/TR/selectors/#attribute-selectors
 	attributes = "\\[" + whitespace + "*(" + identifier + ")(?:" + whitespace +
@@ -737,7 +746,7 @@ var i,
 	// CSS escapes
 	// https://www.w3.org/TR/CSS21/syndata.html#escaped-characters
 	runescape = new RegExp( "\\\\[\\da-fA-F]{1,6}" + whitespace +
-		"?|\\\\([^\\r\\n\\f])", "g" ),
+		"?|\\\\([^\\da-fA-F\\r\\n\\f])", "g" ),
 	funescape = function( escape, nonHex ) {
 		var high = "0x" + escape.slice( 1 ) - 0x10000;
 
@@ -777,7 +786,7 @@ var i,
 function safeActiveElement() {
 	try {
 		return document.activeElement;
-	} catch ( err ) { }
+	} catch ( _ ) { }
 }
 
 // Optimize for push.apply( _, NodeList )
@@ -791,7 +800,7 @@ try {
 	// Detect silently failing push.apply
 	// eslint-disable-next-line no-unused-expressions
 	arr[ preferredDoc.childNodes.length ].nodeType;
-} catch ( e ) {
+} catch ( _ ) {
 	push = {
 		apply: function( target, els ) {
 			pushNative.apply( target, slice.call( els ) );
@@ -924,7 +933,7 @@ function find( selector, context, results, seed ) {
 						newContext.querySelectorAll( newSelector )
 					);
 					return results;
-				} catch ( qsaError ) {
+				} catch ( _ ) {
 					nonnativeSelectorCache( selector, true );
 				} finally {
 					if ( nid === expando ) {
@@ -980,7 +989,7 @@ function assert( fn ) {
 
 	try {
 		return !!fn( el );
-	} catch ( e ) {
+	} catch ( _ ) {
 		return false;
 	} finally {
 
@@ -1184,7 +1193,7 @@ function setDocument( node ) {
 		try {
 			document.querySelector( ":has(*,:jqfake)" );
 			return false;
-		} catch ( e ) {
+		} catch ( _ ) {
 			return true;
 		}
 	} );
@@ -1357,7 +1366,11 @@ function setDocument( node ) {
 	sortOrder = function( a, b ) {
 
 		// Flag for duplicate removal
-		if ( a === b ) {
+		// Support: IE 11+, Edge 17 - 18+
+		// IE/Edge sometimes throw a "Permission denied" error when strict-comparing
+		// two documents; shallow comparisons work.
+		// eslint-disable-next-line eqeqeq
+		if ( a == b ) {
 			hasDuplicate = true;
 			return 0;
 		}
@@ -1388,7 +1401,7 @@ function setDocument( node ) {
 			// IE/Edge sometimes throw a "Permission denied" error when strict-comparing
 			// two documents; shallow comparisons work.
 			// eslint-disable-next-line eqeqeq
-			if ( a === document || a.ownerDocument == preferredDoc &&
+			if ( a == document || a.ownerDocument == preferredDoc &&
 				find.contains( preferredDoc, a ) ) {
 				return -1;
 			}
@@ -1397,7 +1410,7 @@ function setDocument( node ) {
 			// IE/Edge sometimes throw a "Permission denied" error when strict-comparing
 			// two documents; shallow comparisons work.
 			// eslint-disable-next-line eqeqeq
-			if ( b === document || b.ownerDocument == preferredDoc &&
+			if ( b == document || b.ownerDocument == preferredDoc &&
 				find.contains( preferredDoc, b ) ) {
 				return 1;
 			}
@@ -1436,7 +1449,7 @@ find.matchesSelector = function( elem, expr ) {
 					elem.document && elem.document.nodeType !== 11 ) {
 				return ret;
 			}
-		} catch ( e ) {
+		} catch ( _ ) {
 			nonnativeSelectorCache( expr, true );
 		}
 	}
@@ -2081,7 +2094,7 @@ for ( i in { submit: true, reset: true } ) {
 
 // Easy API for creating new setFilters
 function setFilters() {}
-setFilters.prototype = Expr.filters = Expr.pseudos;
+setFilters.prototype = Expr.pseudos;
 Expr.setFilters = new setFilters();
 
 function tokenize( selector, parseOnly ) {
@@ -2700,10 +2713,6 @@ support.sortDetached = assert( function( el ) {
 
 jQuery.find = find;
 
-// Deprecated
-jQuery.expr[ ":" ] = jQuery.expr.pseudos;
-jQuery.unique = jQuery.uniqueSort;
-
 // These have always been private, but they used to be documented as part of
 // Sizzle so let's maintain them for now for backwards compatibility purposes.
 find.compile = compile;
@@ -2718,7 +2727,6 @@ find.selectors = jQuery.expr;
 find.support = jQuery.support;
 find.uniqueSort = jQuery.uniqueSort;
 
-	/* eslint-enable */
 
 } )();
 
@@ -4173,7 +4181,7 @@ function dataAttr( elem, key, data ) {
 		if ( typeof data === "string" ) {
 			try {
 				data = getData( data );
-			} catch ( e ) {}
+			} catch ( _ ) {}
 
 			// Make sure we set the data so it isn't changed later
 			dataUser.set( elem, key, data );
@@ -4248,7 +4256,6 @@ jQuery.fn.extend( {
 		}
 
 		return access( this, function( value ) {
-			var data;
 
 			// The calling jQuery object (element matches) is not empty
 			// (and therefore has an element appears at this[ 0 ]) and the
@@ -4257,22 +4264,13 @@ jQuery.fn.extend( {
 			// throw an exception if an attempt to read a data cache is made.
 			if ( elem && value === undefined ) {
 
-				// Attempt to get data from the cache
-				// The key will always be camelCased in Data
-				data = dataUser.get( elem, key );
-				if ( data !== undefined ) {
-					return data;
-				}
-
-				// Attempt to "discover" the data in
-				// HTML5 custom data-* attrs
-				data = dataAttr( elem, key );
-				if ( data !== undefined ) {
-					return data;
-				}
-
-				// We tried really hard, but the data doesn't exist.
-				return;
+				// Attempt to get data from the `dataUser` cache.
+				// The key will always be camelCased in Data.
+				// Otherwise, attempt to "discover" the data in
+				// HTML5 custom data-* attrs.
+				// If this fails as well, data doesn't exist, and
+				// we get `undefined`.
+				return dataAttr( elem, key, dataUser.get( elem, key ) );
 			}
 
 			// Set the data...
@@ -4703,7 +4701,9 @@ function getAll( context, tag ) {
 	var ret;
 
 	if ( typeof context.getElementsByTagName !== "undefined" ) {
-		ret = context.getElementsByTagName( tag || "*" );
+
+		// Use slice to snapshot the live collection from gEBTN
+		ret = arr.slice.call( context.getElementsByTagName( tag || "*" ) );
 
 	} else if ( typeof context.querySelectorAll !== "undefined" ) {
 		ret = context.querySelectorAll( tag || "*" );
@@ -5343,14 +5343,29 @@ function leverageNative( el, type, isSetup ) {
 			var result,
 				saved = dataPriv.get( this, type );
 
+			// This controller function is invoked under multiple circumstances,
+			// differentiated by the stored value in `saved`:
+			// 1. For an outer synthetic `.trigger()`ed event (detected by
+			//    `event.isTrigger & 1` and non-array `saved`), it records arguments
+			//    as an array and fires an [inner] native event to prompt state
+			//    changes that should be observed by registered listeners (such as
+			//    checkbox toggling and focus updating), then clears the stored value.
+			// 2. For an [inner] native event (detected by `saved` being
+			//    an array), it triggers an inner synthetic event, records the
+			//    result, and preempts propagation to further jQuery listeners.
+			// 3. For an inner synthetic event (detected by `event.isTrigger & 1` and
+			//    array `saved`), it prevents double-propagation of surrogate events
+			//    but otherwise allows everything to proceed (particularly including
+			//    further listeners).
+			// Possible `saved` data shapes: `[...], `{ value }`, `false`.
 			if ( ( event.isTrigger & 1 ) && this[ type ] ) {
 
 				// Interrupt processing of the outer synthetic .trigger()ed event
-				if ( !saved ) {
+				if ( !saved.length ) {
 
 					// Store arguments for use when handling the inner native event
-					// There will always be at least one argument (an event object), so this array
-					// will not be confused with a leftover capture object.
+					// There will always be at least one argument (an event object),
+					// so this array will not be confused with a leftover capture object.
 					saved = slice.call( arguments );
 					dataPriv.set( this, type, saved );
 
@@ -5365,29 +5380,35 @@ function leverageNative( el, type, isSetup ) {
 						event.stopImmediatePropagation();
 						event.preventDefault();
 
-						return result;
+						// Support: Chrome 86+
+						// In Chrome, if an element having a focusout handler is
+						// blurred by clicking outside of it, it invokes the handler
+						// synchronously. If that handler calls `.remove()` on
+						// the element, the data is cleared, leaving `result`
+						// undefined. We need to guard against this.
+						return result && result.value;
 					}
 
-				// If this is an inner synthetic event for an event with a bubbling surrogate
-				// (focus or blur), assume that the surrogate already propagated from triggering
-				// the native event and prevent that from happening again here.
-				// This technically gets the ordering wrong w.r.t. to `.trigger()` (in which the
-				// bubbling surrogate propagates *after* the non-bubbling base), but that seems
-				// less bad than duplication.
+				// If this is an inner synthetic event for an event with a bubbling
+				// surrogate (focus or blur), assume that the surrogate already
+				// propagated from triggering the native event and prevent that
+				// from happening again here.
 				} else if ( ( jQuery.event.special[ type ] || {} ).delegateType ) {
 					event.stopPropagation();
 				}
 
-			// If this is a native event triggered above, everything is now in order
-			// Fire an inner synthetic event with the original arguments
-			} else if ( saved ) {
+			// If this is a native event triggered above, everything is now in order.
+			// Fire an inner synthetic event with the original arguments.
+			} else if ( saved.length ) {
 
 				// ...and capture the result
-				dataPriv.set( this, type, jQuery.event.trigger(
-					saved[ 0 ],
-					saved.slice( 1 ),
-					this
-				) );
+				dataPriv.set( this, type, {
+					value: jQuery.event.trigger(
+						saved[ 0 ],
+						saved.slice( 1 ),
+						this
+					)
+				} );
 
 				// Abort handling of the native event by all jQuery handlers while allowing
 				// native handlers on the same element to run. On target, this is achieved
@@ -6175,7 +6196,7 @@ jQuery.fn.extend( {
 					elem = 0;
 
 				// If using innerHTML throws an exception, use the fallback method
-				} catch ( e ) {}
+				} catch ( _ ) {}
 			}
 
 			if ( elem ) {
@@ -6275,6 +6296,21 @@ var rboxStyle = new RegExp( cssExpand.join( "|" ), "i" );
 
 ( function() {
 
+	var pixelPositionVal, boxSizingReliableVal, scrollboxSizeVal, pixelBoxStylesVal,
+		reliableMarginLeftVal, reliableTrDimensionsVal, reliableColDimensionsVal,
+		container = document.createElement( "div" ),
+		div = document.createElement( "div" ),
+		table = document.createElement( "table" );
+
+	// Finish early in limited (non-browser) environments
+	if ( !div.style ) {
+		return;
+	}
+
+	function roundPixelMeasures( measure ) {
+		return Math.round( parseFloat( measure ) );
+	}
+
 	// Executing both pixelPosition & boxSizingReliable tests require only one layout
 	// so they're executed at the same time to save the second computation.
 	function computeStyleTests() {
@@ -6293,7 +6329,16 @@ var rboxStyle = new RegExp( cssExpand.join( "|" ), "i" );
 		documentElement.appendChild( container ).appendChild( div );
 
 		var divStyle = window.getComputedStyle( div );
-		pixelPositionVal = divStyle.top !== "1%";
+
+		// Support: Firefox <=48 - 61 only
+		// Inside hidden iframes computed style is null in old Firefox.
+		pixelPositionVal = divStyle && divStyle.top !== "1%";
+
+		// Don't run until window is visible (https://github.com/jquery/jquery-ui/issues/2176)
+		if ( div.offsetWidth === 0 ) {
+			documentElement.removeChild( container ).textContent = "";
+			return;
+		}
 
 		// Support: Android 4.0 - 4.3 only, Firefox <=3 - 44
 		reliableMarginLeftVal = roundPixelMeasures( divStyle.marginLeft ) === 12;
@@ -6316,23 +6361,83 @@ var rboxStyle = new RegExp( cssExpand.join( "|" ), "i" );
 
 		documentElement.removeChild( container );
 
-		// Nullify the div so it wouldn't be stored in the memory and
-		// it will also be a sign that checks already performed
+		// Nullify the table so it wouldn't be stored in the memory;
+		// it will also be a sign that checks were already performed.
 		div = null;
 	}
 
-	function roundPixelMeasures( measure ) {
-		return Math.round( parseFloat( measure ) );
-	}
+	// Executing table tests requires only one layout, so they're executed
+	// at the same time to save the second computation.
+	function computeTableStyleTests() {
 
-	var pixelPositionVal, boxSizingReliableVal, scrollboxSizeVal, pixelBoxStylesVal,
-		reliableTrDimensionsVal, reliableMarginLeftVal,
-		container = document.createElement( "div" ),
-		div = document.createElement( "div" );
+		// This is a singleton, we need to execute it only once
+		if ( !table ) {
+			return;
+		}
 
-	// Finish early in limited (non-browser) environments
-	if ( !div.style ) {
-		return;
+		var trStyle,
+			col = document.createElement( "col" ),
+			tr = document.createElement( "tr" ),
+			td = document.createElement( "td" );
+
+		table.style.cssText = "position:absolute;left:-11111px;" +
+			"border-collapse:separate;border-spacing:0";
+		tr.style.cssText = "box-sizing:content-box;border:1px solid;height:1px";
+		td.style.cssText = "height:9px;width:9px;padding:0";
+
+		col.span = 2;
+
+		documentElement
+			.appendChild( table )
+			.appendChild( col )
+			.parentNode
+			.appendChild( tr )
+			.appendChild( td )
+			.parentNode
+			.appendChild( td.cloneNode( true ) );
+
+		// Don't run until window is visible
+		if ( table.offsetWidth === 0 ) {
+			documentElement.removeChild( table );
+			return;
+		}
+
+		trStyle = window.getComputedStyle( tr );
+
+		// Support: Firefox 135+
+		// Firefox always reports computed width as if `span` was 1.
+		// Support: Safari 18.3+
+		// In Safari, computed width for columns is always 0.
+		// In both these browsers, using `offsetWidth` solves the issue.
+		// Support: IE 11+, Edge 15 - 18+
+		// In IE/Edge, `<col>` computed width is `"auto"` unless `width` is set
+		// explicitly via CSS so measurements there remain incorrect. Because of
+		// the lack of a proper workaround, we accept this limitation, treating
+		// IE/Edge as passing the test. Detect them by checking for
+		// `msMatchesSelector`; despite Edge 15+ implementing `matches`, all
+		// IE 9+ and Edge Legacy versions implement `msMatchesSelector` as well.
+		reliableColDimensionsVal = !!documentElement.msMatchesSelector || Math.round( parseFloat(
+			window.getComputedStyle( col ).width )
+		) === 18;
+
+		// Support: IE 9 - 11+, Edge 15 - 18+
+		// IE/Edge misreport `getComputedStyle` of table rows with width/height
+		// set in CSS while `offset*` properties report correct values.
+		// Behavior in IE 9 is more subtle than in newer versions & it passes
+		// some versions of this test; make sure not to make it pass there!
+		//
+		// Support: Firefox 70+
+		// Only Firefox includes border widths
+		// in computed dimensions for table rows. (gh-4529)
+		reliableTrDimensionsVal = Math.round( parseFloat( trStyle.height ) +
+			parseFloat( trStyle.borderTopWidth ) +
+			parseFloat( trStyle.borderBottomWidth ) ) === tr.offsetHeight;
+
+		documentElement.removeChild( table );
+
+		// Nullify the table so it wouldn't be stored in the memory;
+		// it will also be a sign that checks were already performed.
+		table = null;
 	}
 
 	// Support: IE <=9 - 11 only
@@ -6363,52 +6468,13 @@ var rboxStyle = new RegExp( cssExpand.join( "|" ), "i" );
 			return scrollboxSizeVal;
 		},
 
-		// Support: IE 9 - 11+, Edge 15 - 18+
-		// IE/Edge misreport `getComputedStyle` of table rows with width/height
-		// set in CSS while `offset*` properties report correct values.
-		// Behavior in IE 9 is more subtle than in newer versions & it passes
-		// some versions of this test; make sure not to make it pass there!
-		//
-		// Support: Firefox 70+
-		// Only Firefox includes border widths
-		// in computed dimensions. (gh-4529)
 		reliableTrDimensions: function() {
-			var table, tr, trChild, trStyle;
-			if ( reliableTrDimensionsVal == null ) {
-				table = document.createElement( "table" );
-				tr = document.createElement( "tr" );
-				trChild = document.createElement( "div" );
-
-				table.style.cssText = "position:absolute;left:-11111px;border-collapse:separate";
-				tr.style.cssText = "box-sizing:content-box;border:1px solid";
-
-				// Support: Chrome 86+
-				// Height set through cssText does not get applied.
-				// Computed height then comes back as 0.
-				tr.style.height = "1px";
-				trChild.style.height = "9px";
-
-				// Support: Android 8 Chrome 86+
-				// In our bodyBackground.html iframe,
-				// display for all div elements is set to "inline",
-				// which causes a problem only in Android 8 Chrome 86.
-				// Ensuring the div is `display: block`
-				// gets around this issue.
-				trChild.style.display = "block";
-
-				documentElement
-					.appendChild( table )
-					.appendChild( tr )
-					.appendChild( trChild );
-
-				trStyle = window.getComputedStyle( tr );
-				reliableTrDimensionsVal = ( parseInt( trStyle.height, 10 ) +
-					parseInt( trStyle.borderTopWidth, 10 ) +
-					parseInt( trStyle.borderBottomWidth, 10 ) ) === tr.offsetHeight;
-
-				documentElement.removeChild( table );
-			}
+			computeTableStyleTests();
 			return reliableTrDimensionsVal;
+		},
+		reliableColDimensions: function() {
+			computeTableStyleTests();
+			return reliableColDimensionsVal;
 		}
 	} );
 } )();
@@ -6431,6 +6497,10 @@ function curCSS( elem, name, computed ) {
 	//   .css('--customProperty) (gh-3144)
 	if ( computed ) {
 
+		// A fallback to direct property access is needed as `computed`, being
+		// the output of `getComputedStyle`, contains camelCased keys and
+		// `getPropertyValue` requires kebab-case ones.
+		//
 		// Support: IE <=9 - 11+
 		// IE only supports `"float"` in `getPropertyValue`; in computed styles
 		// it's only available as `"cssFloat"`. We no longer modify properties
@@ -6552,13 +6622,7 @@ function finalPropName( name ) {
 }
 
 
-var
-
-	// Swappable if display is none or starts with table
-	// except "table", "table-cell", or "table-caption"
-	// See here for display values: https://developer.mozilla.org/en-US/docs/CSS/display
-	rdisplayswap = /^(none|table(?!-c[ea]).+)/,
-	cssShow = { position: "absolute", visibility: "hidden", display: "block" },
+var cssShow = { position: "absolute", visibility: "hidden", display: "block" },
 	cssNormalTransform = {
 		letterSpacing: "0",
 		fontWeight: "400"
@@ -6672,24 +6736,26 @@ function getWidthOrHeight( elem, dimension, extra ) {
 	}
 
 
-	// Support: IE 9 - 11 only
-	// Use offsetWidth/offsetHeight for when box sizing is unreliable.
-	// In those cases, the computed value can be trusted to be border-box.
-	if ( ( !support.boxSizingReliable() && isBorderBox ||
+	if (
+		(
 
-		// Support: IE 10 - 11+, Edge 15 - 18+
-		// IE/Edge misreport `getComputedStyle` of table rows with width/height
-		// set in CSS while `offset*` properties report correct values.
-		// Interestingly, in some cases IE 9 doesn't suffer from this issue.
-		!support.reliableTrDimensions() && nodeName( elem, "tr" ) ||
+			// Fall back to offsetWidth/offsetHeight when value is "auto"
+			// This happens for inline elements with no explicit setting (gh-3571)
+			val === "auto" ||
 
-		// Fall back to offsetWidth/offsetHeight when value is "auto"
-		// This happens for inline elements with no explicit setting (gh-3571)
-		val === "auto" ||
+			// Support: IE 9 - 11 only
+			// Use offsetWidth/offsetHeight for when box sizing is unreliable.
+			// In those cases, the computed value can be trusted to be border-box.
+			( !support.boxSizingReliable() && isBorderBox ) ||
 
-		// Support: Android <=4.1 - 4.3 only
-		// Also use offsetWidth/offsetHeight for misreported inline dimensions (gh-3602)
-		!parseFloat( val ) && jQuery.css( elem, "display", false, styles ) === "inline" ) &&
+			( !support.reliableColDimensions() && nodeName( elem, "col" ) ) ||
+
+			( !support.reliableTrDimensions() && nodeName( elem, "tr" ) ) ||
+
+			// Support: Android <=4.1 - 4.3 only
+			// Also use offsetWidth/offsetHeight for misreported inline dimensions (gh-3602)
+			( !parseFloat( val ) && jQuery.css( elem, "display", false, styles ) === "inline" )
+		) &&
 
 		// Make sure the element is visible & connected
 		elem.getClientRects().length ) {
@@ -6900,17 +6966,9 @@ jQuery.each( [ "height", "width" ], function( _i, dimension ) {
 		get: function( elem, computed, extra ) {
 			if ( computed ) {
 
-				// Certain elements can have dimension info if we invisibly show them
-				// but it must have a current display style that would benefit
-				return rdisplayswap.test( jQuery.css( elem, "display" ) ) &&
-
-					// Support: Safari 8+
-					// Table columns in Safari have non-zero offsetWidth & zero
-					// getBoundingClientRect().width unless display is changed.
-					// Support: IE <=11 only
-					// Running getBoundingClientRect on a disconnected node
-					// in IE throws an error.
-					( !elem.getClientRects().length || !elem.getBoundingClientRect().width ) ?
+				// Elements with `display: none` can have dimension info if
+				// we invisibly show them.
+				return jQuery.css( elem, "display" ) === "none" ?
 					swap( elem, cssShow, function() {
 						return getWidthOrHeight( elem, dimension, extra );
 					} ) :
@@ -7586,7 +7644,7 @@ jQuery.Animation = jQuery.extend( Animation, {
 
 jQuery.speed = function( speed, easing, fn ) {
 	var opt = speed && typeof speed === "object" ? jQuery.extend( {}, speed ) : {
-		complete: fn || !fn && easing ||
+		complete: fn || easing ||
 			isFunction( speed ) && speed,
 		duration: speed,
 		easing: fn && easing || easing && !isFunction( easing ) && easing
@@ -7961,12 +8019,19 @@ jQuery.extend( {
 // Hooks for boolean attributes
 boolHook = {
 	set: function( elem, value, name ) {
+		var strValue = String( value );
+
 		if ( value === false ) {
 
 			// Remove boolean attributes when set to false
 			jQuery.removeAttr( elem, name );
 		} else {
-			elem.setAttribute( name, name );
+			elem.setAttribute( name,
+				name.toLowerCase() === "hidden" &&
+						strValue.toLowerCase() === "until-found" ?
+					strValue :
+					name
+			);
 		}
 		return name;
 	}
@@ -7984,9 +8049,13 @@ jQuery.each( jQuery.expr.match.bool.source.match( /\w+/g ), function( _i, name )
 			// Avoid an infinite loop by temporarily removing this function from the getter
 			handle = attrHandle[ lowercaseName ];
 			attrHandle[ lowercaseName ] = ret;
-			ret = getter( elem, name, isXML ) != null ?
-				lowercaseName :
-				null;
+
+			ret = getter( elem, name, isXML );
+			ret = ret == null ||
+					( lowercaseName === "hidden" && ret.toLowerCase() === "until-found" ) ?
+				ret :
+				lowercaseName;
+
 			attrHandle[ lowercaseName ] = handle;
 		}
 		return ret;
@@ -8085,11 +8154,10 @@ jQuery.extend( {
 // when in an optgroup
 // eslint rule "no-unused-expressions" is disabled for this code
 // since it considers such accessions noop
+/* eslint-disable no-unused-expressions */
 if ( !support.optSelected ) {
 	jQuery.propHooks.selected = {
 		get: function( elem ) {
-
-			/* eslint no-unused-expressions: "off" */
 
 			var parent = elem.parentNode;
 			if ( parent && parent.parentNode ) {
@@ -8098,8 +8166,6 @@ if ( !support.optSelected ) {
 			return null;
 		},
 		set: function( elem ) {
-
-			/* eslint no-unused-expressions: "off" */
 
 			var parent = elem.parentNode;
 			if ( parent ) {
@@ -8112,6 +8178,7 @@ if ( !support.optSelected ) {
 		}
 	};
 }
+/* eslint-enable no-unused-expressions */
 
 jQuery.each( [
 	"tabIndex",
@@ -8515,7 +8582,7 @@ jQuery.parseXML = function( data ) {
 	// IE throws on parseFromString with invalid input.
 	try {
 		xml = ( new window.DOMParser() ).parseFromString( data, "text/xml" );
-	} catch ( e ) {}
+	} catch ( _ ) {}
 
 	parserErrorElem = xml && xml.getElementsByTagName( "parsererror" )[ 0 ];
 	if ( !xml || parserErrorElem ) {
@@ -9374,7 +9441,7 @@ jQuery.extend( {
 				urlAnchor.href = urlAnchor.href;
 				s.crossDomain = originAnchor.protocol + "//" + originAnchor.host !==
 					urlAnchor.protocol + "//" + urlAnchor.host;
-			} catch ( e ) {
+			} catch ( _ ) {
 
 				// If there is an error parsing the URL, assume it is crossDomain,
 				// it can be rejected by the transport if it is invalid
@@ -9533,8 +9600,19 @@ jQuery.extend( {
 
 		// Callback for when everything is done
 		function done( status, nativeStatusText, responses, headers ) {
-			var isSuccess, success, error, response, modified,
-				statusText = nativeStatusText;
+			var isSuccess, success, error, response, modified, statusText;
+
+			if ( typeof status === "object" ) {
+
+				// The new, object-based API
+				nativeStatusText = status.statusText;
+				responses = status.responses;
+				headers = status.headers;
+
+				status = status.status;
+			}
+
+			statusText = nativeStatusText;
 
 			// Ignore repeat invocations
 			if ( completed ) {
@@ -9798,7 +9876,7 @@ jQuery.expr.pseudos.visible = function( elem ) {
 jQuery.ajaxSettings.xhr = function() {
 	try {
 		return new window.XMLHttpRequest();
-	} catch ( e ) {}
+	} catch ( _ ) {}
 };
 
 var xhrSuccessStatus = {
@@ -9877,27 +9955,27 @@ jQuery.ajaxTransport( function( options ) {
 								if ( typeof xhr.status !== "number" ) {
 									complete( 0, "error" );
 								} else {
-									complete(
+									complete( {
 
 										// File: protocol always yields status 0; see trac-8605, trac-14207
-										xhr.status,
-										xhr.statusText
-									);
+										status: xhr.status,
+										statusText: xhr.statusText
+									} );
 								}
 							} else {
-								complete(
-									xhrSuccessStatus[ xhr.status ] || xhr.status,
-									xhr.statusText,
+								complete( {
+									status: xhrSuccessStatus[ xhr.status ] || xhr.status,
+									statusText: xhr.statusText,
 
 									// Support: IE <=9 only
 									// IE9 has no XHR2 but throws on binary (trac-11426)
 									// For XHR2 non-text, let the caller handle it (gh-2498)
-									( xhr.responseType || "text" ) !== "text"  ||
+									responses: ( xhr.responseType || "text" ) !== "text" ||
 									typeof xhr.responseText !== "string" ?
 										{ binary: xhr.response } :
 										{ text: xhr.responseText },
-									xhr.getAllResponseHeaders()
-								);
+									headers: xhr.getAllResponseHeaders()
+								} );
 							}
 						}
 					};
@@ -10657,6 +10735,17 @@ jQuery.trim = function( text ) {
 		"" :
 		( text + "" ).replace( rtrim, "$1" );
 };
+
+jQuery.expr[ ":" ] = jQuery.expr.filters = jQuery.expr.pseudos;
+jQuery.unique = jQuery.uniqueSort;
+
+// Those methods behave like an Array's methods, not like jQuery ones.
+jQuery.fn.extend( {
+	push: push,
+	sort: arr.sort,
+	splice: arr.splice
+} );
+
 
 
 
