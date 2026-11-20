@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trigger event</title>
+    <script src="../trigger-event.js"></script>
+    <link href="
+https://cdn.jsdelivr.net/npm/bootstrap5/src/css/bootstrap.min.css
+" rel="stylesheet">
+</head>
+
+<body>
+    <main class="container pt-4">
+        <h1>Trigger event</h1>
+        <p>Este es un ejemplo de cómo usar la función <code>triggerEvent</code> para disparar eventos en elementos del
+            DOM.</p>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="mb-3">
+
+                    <select id="mySelect" class="form-select">
+                        <option value="">Seleccione una opción</option>
+                        <option value="option1">Option 1</option>
+                        <option value="option2">Option 2</option>
+                        <option value="option3">Option 3</option>
+                    </select>
+
+                </div>
+                <p><b>Código para probar</b></p>
+                <pre class="bg-light border rounded p-3">
+<code>triggerEvent(&quot;#mySelect&quot;, &quot;option2&quot;, &quot;change&quot;, 3000, &#123;bubbles: true&#125;);</code>
+</pre>
+
+                <pre class="bg-light border rounded p-3">
+<code>triggerEvent(&quot;#mySelect&quot;, &quot;option3&quot;, &quot;change&quot;, 2000);</code>
+</pre>
+
+                <pre class="bg-light border rounded p-3">
+<code>triggerEvent(&quot;#mySelect&quot;, &quot;option1&quot;, &quot;change&quot;);</code>
+</pre>
+            </div>
+        </div>
+
+    </main>
+</body>
+
+</html>

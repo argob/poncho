@@ -33,9 +33,11 @@
   * @param {*} [value] - Valor opcional a asignar al elemento.
   * @param {string} eventType - Tipo de evento a disparar (ej. "input").
   * @param {number} [timeout=50] - Retraso en milisegundos.
+  * @param {Object} [eventOptions={}] - Opciones para el evento.
   * @returns {number|undefined} ID del temporizador o undefined si falla.
   */
-function triggerEvent(selector, value, eventType, timeout=50){
+function triggerEvent(selector, value, eventType, timeout=50, 
+                      eventOptions={}) {
     let element;
     if(selector instanceof Element){
         element = selector;
@@ -59,12 +61,27 @@ function triggerEvent(selector, value, eventType, timeout=50){
         return;
     }
 
+    if(typeof eventOptions !== "object" || eventOptions === null || 
+        Array.isArray(eventOptions)){
+        console.error(
+            "[triggerEvent]", 
+            "Debe incorporar un eventOptions válido (debe ser un objeto)."
+        );
+        return;
+    }
+
     return setTimeout(function(){
         if(value !== undefined){
             element.value = value;
         }
 
-        const event = new Event(eventType, { bubbles: true });
+        const event = new Event(eventType, eventOptions);
         element.dispatchEvent(event);
     }, timeout);
+}
+
+
+
+if (typeof exports !== "undefined") {
+    module.exports = { triggerEvent };
 }

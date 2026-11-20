@@ -16,6 +16,7 @@ Asigna un valor a un elemento del DOM y dispara un evento tras un retraso.
   - [Usar una referencia a un elemento](#usar-una-referencia-a-un-elemento)
   - [Personalizar el retraso](#personalizar-el-retraso)
   - [Selector o eventType inválido](#selector-o-eventtype-inválido)
+  - [Opciones para el objeto Event](#opciones-para-el-objeto-event)
 
 ## Sintaxis
 
@@ -31,6 +32,7 @@ triggerEvent(selector, value, eventType, timeout);
 | `value`     | `*`                     | No        | `undefined` | Valor a asignar a `element.value` antes de disparar el evento. Si no se pasa, no se modifica el valor del elemento. |
 | `eventType` | `string`                | Sí        | —           | Tipo de evento a disparar (ej.: `"input"`, `"change"`). |
 | `timeout`   | `number`                | No        | `50`        | Retraso en milisegundos antes de disparar el evento. |
+| `eventOptions`   | `object`           | No        | `{}` | Permite agregar opciones propias del objeto [Event](https://developer.mozilla.org/es/docs/Web/API/Event). |
 
 ### Retorno
 
@@ -42,7 +44,6 @@ Devuelve el ID del temporizador (`setTimeout`) generado, útil para cancelarlo c
 - Si no se encuentra un elemento válido, emite un error en consola (`[triggerEvent]`) y no ejecuta nada.
 - Si `eventType` no es un string válido (vacío o no es `string`), emite un error en consola y no ejecuta nada.
 - El evento se dispara dentro de un `setTimeout`, permitiendo que el cambio de valor y el evento ocurran de forma asíncrona.
-- El evento se crea con `{ bubbles: true }`, por lo que se propaga por el árbol del DOM.
 - Si se pasa `value`, se asigna a `element.value` justo antes de disparar el evento.
 
 ## Ejemplos
@@ -84,3 +85,12 @@ triggerEvent("#mi-input", "valor", "");
 // undefined
 // [triggerEvent] Debe incorporar un eventType válido.
 ```
+
+
+### Opciones para el objeto Event
+
+```js
+triggerEvent("#mi-input", "valor", "change", {bubbles: false});
+// permite agregar opciones de acuerdo a la documentación del Objeto.
+```
+
